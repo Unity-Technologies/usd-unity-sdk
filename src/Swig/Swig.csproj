@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F7549F5-D206-49C9-B3F5-32EC0873E49C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Swig</RootNamespace>
+    <AssemblyName>Swig</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Swig.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\ReleaseMonolithic\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\ReleaseMonolithic\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="pxr\base\gf\gfMatrix2f.i" />
+    <Content Include="pxr\base\gf\gfMatrix3f.i" />
+    <Content Include="pxr\base\gf\gfMatrix4f.i" />
+    <Content Include="pxr\base\gf\gfInterval.i" />
+    <Content Include="pxr\base\gf\gfBBox3d.i" />
+    <Content Include="pxr\base\gf\gfHalf.i" />
+    <Content Include="pxr\base\gf\gfRange2d.i" />
+    <Content Include="pxr\base\gf\gfRange3d.i" />
+    <Content Include="pxr\base\gf\gfRotation.i" />
+    <Content Include="pxr\base\gf\gfQuaternion.i" />
+    <Content Include="pxr\base\gf\gfQuatf.i" />
+    <Content Include="pxr\base\gf\gfQuatd.i" />
+    <Content Include="pxr\base\gf\gfQuath.i" />
+    <Content Include="pxr\base\gf\gfMatrix3d.i" />
+    <Content Include="pxr\base\gf\gfMatrix4d.i" />
+    <Content Include="pxr\base\gf\gfMatrix2d.i" />
+    <Content Include="pxr\base\gf\gfVec2d.i" />
+    <Content Include="pxr\base\gf\gfVec4d.i" />
+    <Content Include="pxr\base\gf\gfVec2f.i" />
+    <Content Include="pxr\base\gf\gfVec4f.i" />
+    <Content Include="pxr\base\gf\gfVec2h.i" />
+    <Content Include="pxr\base\gf\gfVec4h.i" />
+    <Content Include="pxr\base\gf\gfVec2i.i" />
+    <Content Include="pxr\base\gf\gfVec4i.i" />
+    <Content Include="pxr\base\js\js.i" />
+    <Content Include="pxr\base\js\jsJson.i" />
+    <Content Include="pxr\base\js\jsValue.i" />
+    <Content Include="pxr\base\js\jsTypes.i" />
+    <Content Include="pxr\base\plug\plug.i" />
+    <Content Include="pxr\base\plug\plugPlugin.i" />
+    <Content Include="pxr\base\plug\plugRegistry.i" />
+    <Content Include="pxr\base\tf\tfStringUtils.i" />
+    <Content Include="pxr\base\tf\tfType.i" />
+    <Content Include="pxr\base\vt\vtArray_Types.i" />
+    <Content Include="pxr\base\vt\vtDictionary.i" />
+    <Content Include="pxr\base\vt\vtValue_Accessors.i" />
+    <Content Include="pxr\base\vt\vtValue_Casts.i" />
+    <Content Include="pxr\base\vt\vtValue_Types.i" />
+    <Content Include="pxr\base\tf\tfWeakPtr.i" />
+    <Content Include="pxr\base\tf\tfRefPtr.i" />
+    <Content Include="pxr\callback.i" />
+    <Content Include="pxr\operators.i" />
+    <Content Include="pxr\base\tf\tfWeakPtrBase.i" />
+    <Content Include="pxr\base\tf\tfRefPtrBase.i" />
+    <Content Include="pxr\usd\ar\ar.i" />
+    <Content Include="pxr\usd\ar\arResolverContext.i" />
+    <Content Include="pxr\usd\sdf\sdfAssetPath.i" />
+    <Content Include="pxr\usd\sdf\sdfLayerBase.i" />
+    <Content Include="pxr\usd\sdf\sdfLayer.i" />
+    <Content Include="pxr\usd\sdf\sdfNamespaceEdit.i" />
+    <Content Include="pxr\usd\sdf\sdfPayload.i" />
+    <Content Include="pxr\usd\sdf\sdfTypes.i" />
+    <Content Include="pxr\usd\sdf\sdfLayerOffset.i" />
+    <Content Include="pxr\usd\sdf\sdfValueTypeNames.i" />
+    <Content Include="pxr\usd\sdf\sdfValueTypeName.i" />
+    <Content Include="pxr\usd\sdf\sdfValueTypeNames_Types.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomFaceSetAPI.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomPrimvar.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomScope.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomXform.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomXformOp.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomTokens_Tokens.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeLook.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeMaterial.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeShader.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeNodeGraph.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeTokens_Tokens.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeTokens.i" />
+    <Content Include="pxr\usd\usdShade\usdShade.i" />
+    <Content Include="pxr\usd\usd\usdInterpolation.i" />
+    <Content Include="pxr\usd\usd\usdEditTarget.i" />
+    <Content Include="pxr\usd\usd\usdPrimRange.i" />
+    <Content Include="pxr\usd\usd\usdPrimFlags.i" />
+    <Content Include="pxr\usd\usd\usdRelationship.i" />
+    <Content Include="pxr\usd\usd\usdAttribute.i" />
+    <Content Include="pxr\usd\usd\usdProperty.i" />
+    <Content Include="pxr\usd\usd\usdMetadataValueMap.i" />
+    <Content Include="scripts\gen.py" />
+    <Content Include="scripts\vt.py" />
+    <Content Include="scripts\usdGeom.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scripts\sdf.py" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="pxr\base\base.i" />
+    <Content Include="pxr\base\gf\gf.i" />
+    <Content Include="pxr\base\gf\gfVec3i.i" />
+    <Content Include="pxr\base\gf\gfVec3f.i" />
+    <Content Include="pxr\base\gf\gfVec3h.i" />
+    <Content Include="pxr\base\gf\gfVec3d.i" />
+    <Content Include="pxr\base\tf\tf.i" />
+    <Content Include="pxr\base\tf\tfToken.i" />
+    <Content Include="pxr\base\vt\vt.i" />
+    <Content Include="pxr\base\vt\vtArray.i" />
+    <Content Include="pxr\base\vt\vtValue.i" />
+    <Content Include="pxr\pxr.i" />
+    <Content Include="pxr\usd\sdf\sdfPath.i" />
+    <Content Include="pxr\usd\sdf\sdf.i" />
+    <Content Include="pxr\usd\usd.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeom.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomBoundable.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomTokens.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomGprim.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomImageable.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomMesh.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomPointBased.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomXformable.i" />
+    <Content Include="pxr\usd\usd\usd.i" />
+    <Content Include="pxr\usd\usd\usdInherits.i" />
+    <Content Include="pxr\usd\usd\usdObject.i" />
+    <Content Include="pxr\usd\usd\usdPrim.i" />
+    <Content Include="pxr\usd\usd\usdReferences.i" />
+    <Content Include="pxr\usd\usd\usdSchemaBase.i" />
+    <Content Include="pxr\usd\usd\usdSpecializes.i" />
+    <Content Include="pxr\usd\usd\usdStage.i" />
+    <Content Include="pxr\usd\usd\usdTimeCode.i" />
+    <Content Include="pxr\usd\usd\usdTyped.i" />
+    <Content Include="pxr\usd\usd\usdVariantSets.i" />
+    <Content Include="usdCs.i" />
+    <Content Include="usdDefines.h" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

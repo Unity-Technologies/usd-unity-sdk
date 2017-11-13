@@ -1,0 +1,52 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Visual Studio stuff
+*.db
+*.sdf
+*.opendb
+
+# Executables
+*.exe
+*.out
+*.app
+/swigwin-3.0.10/
+/gen/
+vs2015/Swig/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+
+# vim
+*.swp
+*.pyc
+
+# VS.NET
+*.csproj.user
+*.vcxproj.user
+bin
+obj
+x64
+vs2015/USD.NET/packages
+vs2015/UsdCs/Release/*
+packages.config
+/inst/

@@ -1,0 +1,152 @@
+// Copyright 2017 Google Inc. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+%module pxr
+
+/* TODO:
+ *   1) Upgrade Swig to get multiple cscode blocks and fix operator[] on GfVec*
+ */
+
+%{
+#include "pxr/base/tf/hash.h"
+%}
+%include "stl.i"
+
+%include "std_vector.i"
+%include "std_string.i"
+
+namespace std {
+	%template(StdStringVector) vector<std::string>;
+}
+typedef std::vector<std::string> StdStringVector;
+
+namespace std {
+	%template(StdIntVector) vector<int>;
+}
+typedef std::vector<int> StdIntVector;
+
+namespace std {
+	%template(StdFloatVector) vector<float>;
+}
+typedef std::vector<float> StdFloatVector;
+
+namespace std {
+	%template(StdFloatVectorVector) vector< vector<float> >;
+}
+typedef vector< vector<float> > StdFloatVectorVector;
+
+namespace std {
+	%template(StdDoubleVector) vector<double>;
+}
+typedef std::vector<double> StdDoubleVector;
+
+namespace std {
+	%template(StdDoubleVectorVector) vector< vector<double> >;
+}
+typedef std::vector< vector<double> > StdDoubleVectorVector;
+
+#define PXR_USE_NAMESPACES 0
+#include "pxr/pxr.h"
+
+#define PXR_NAMESPACE_OPEN_SCOPE 
+#define PXR_NAMESPACE_CLOSE_SCOPE 
+
+// Swig thinks these are types for some reason, but no, they are not.
+// We can get away with nust redefining them to a no-op.
+#define TF_DECLARE_WEAK_PTRS(x)
+#define SDF_DECLARE_HANDLES(x)
+
+%include "std_string.i"
+%include "typemaps.i"
+%include "stdint.i"  // Required for int64_t and friends
+
+%include "operators.i"
+
+%include "base/base.i"
+%include "usd/usd.i"
+
+%include "callback.i"
+
+%{
+#include "pxr/base/arch/env.h"
+%}
+
+%inline %{
+
+void SetEnv(std::string name, std::string value) {
+	ArchSetEnv(name, value, true);
+}
+
+VtValue GetFusedDisplayColor(UsdPrim prim, UsdTimeCode time) {
+  VtValue value;
+  
+  if (!prim) {
+    return value;
+  }
+
+  auto rgbAttr = prim.GetAttribute(UsdGeomTokens->primvarsDisplayColor);
+  auto alphaAttr = prim.GetAttribute(UsdGeomTokens->primvarsDisplayOpacity);
+
+  size_t n = 0;
+  VtVec3fArray rgb;
+  VtFloatArray alpha;
+  if (rgbAttr) { rgbAttr.Get(&rgb, time); }
+  if (alphaAttr) { alphaAttr.Get(&alpha, time); }
+
+  n = rgb.size() > alpha.size() ? rgb.size() : alpha.size();
+
+  if (n == 0) {
+    return value;
+  }
+
+  VtVec4fArray fused(n);
+  for (size_t i = 0; i < n; i++) {
+    if (i < rgb.size()) {
+      fused[i][0] = rgb[i][0];
+      fused[i][1] = rgb[i][1];
+      fused[i][2] = rgb[i][2];
+    }
+    if (i < alpha.size()) {
+      fused[i][3] = alpha[i];
+    }
+  }
+
+  return VtValue(fused);
+}
+
+bool SetFusedDisplayColor(UsdPrim prim, VtVec4fArray values, UsdTimeCode time) {
+  if (!prim) { return false; }
+
+  UsdGeomMesh mesh(prim);
+  auto rgbPv = mesh.CreateDisplayColorAttr();
+  auto alphaPv = mesh.CreateDisplayOpacityAttr();
+  
+  mesh.GetDisplayColorPrimvar().SetInterpolation(UsdGeomTokens->vertex);
+  mesh.GetDisplayOpacityPrimvar().SetInterpolation(UsdGeomTokens->vertex);
+
+  size_t n = values.size();
+  VtVec3fArray rgb(n);
+  VtFloatArray alpha(n);
+
+  for (size_t i = 0; i < n; i++) {
+    rgb[i][0] = values[i][0];
+    rgb[i][1] = values[i][1];
+    rgb[i][2] = values[i][2];
+    alpha[i] = values[i][3];
+  }
+
+  return rgbPv.Set(rgb, time) && alphaPv.Set(alpha, time);
+}
+
+%}

@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7706D7AC-A3AB-436A-A6EB-8C08B42D9A44}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>USD.NET</RootNamespace>
+    <AssemblyName>USD.NET</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\ReleaseMonolithic\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\x64\Release\USD.NET.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\ReleaseMonolithic\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="generated\pxr\base\js\JsObject.cs" />
+    <Compile Include="generated\pxr\base\js\JsObjectVector.cs" />
+    <Compile Include="generated\pxr\base\js\JsParseError.cs" />
+    <Compile Include="generated\pxr\base\js\JsValue.cs" />
+    <Compile Include="generated\pxr\base\plug\PlugPlugin.cs" />
+    <Compile Include="generated\pxr\base\plug\PlugRegistry.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_PcpMapFunction.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_PcpNodeRef.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_PcpPrimIndex.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_PcpVariantFallbackMap.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_PlugPluginPtr.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_PlugPluginPtrVector.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_p_char.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfAttributeSpecHandle.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfFileFormatConstPtr.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfLayerHandleSet.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfLayerStateDelegateBasePtr.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfLayerStateDelegateBaseRefPtr.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPathSet.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPrimSpecHandle.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPrimSpecHandleVector.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPrimSpecView.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPropertySpecHandle.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPropertySpecHandleVector.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfReference.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfReferenceVector.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfRelationshipSpecHandle.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfSchemaBase.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfSpec.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfSpecHandle.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__size_type.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__value_type.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_std__string_std__string_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t_bool_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_double_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_SdfLayerHandle_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_std__string_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_TfType_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__string.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__type_info.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__unordered_mapT_UsdShadeInput_std__vectorT_UsdShadeInput_t_UsdShadeInput__Hash_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdGeomSubset_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdShadeInput_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdShadeOutput_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_unsigned_long_long.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdGeomSubset.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdGeomSubset__FamilyType.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdListPosition.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimRange.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSiblingRange.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSubtreeRange.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdResolveInfo.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeConnectableAPI.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeInput.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeOutput.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdStagePopulationMask.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_va_list.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_void.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t.cs" />
+    <Compile Include="generated\usdCs\DiagnosticHandler.cs" />
+    <Compile Include="generated\usdCs\TaskCallback.cs" />
+    <Compile Include="generated\usdCs\TaskCallbackVector.cs" />
+    <Compile Include="pooling\ArrayUnpool.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="generated\pxr\base\gf\GfBBox3d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfHalf.cs" />
+    <Compile Include="generated\pxr\base\gf\GfInterval.cs" />
+    <Compile Include="generated\pxr\base\gf\GfMatrix2d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfMatrix2f.cs" />
+    <Compile Include="generated\pxr\base\gf\GfMatrix3d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfMatrix3f.cs" />
+    <Compile Include="generated\pxr\base\gf\GfMatrix4d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfMatrix4f.cs" />
+    <Compile Include="generated\pxr\base\gf\GfQuatd.cs" />
+    <Compile Include="generated\pxr\base\gf\GfQuaternion.cs" />
+    <Compile Include="generated\pxr\base\gf\GfQuatf.cs" />
+    <Compile Include="generated\pxr\base\gf\GfQuath.cs" />
+    <Compile Include="generated\pxr\base\gf\GfRange2d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfRange3d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfRotation.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec2d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec2f.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec2h.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec2i.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec3d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec3f.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec3h.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec3i.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec4d.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec4f.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec4h.cs" />
+    <Compile Include="generated\pxr\base\gf\GfVec4i.cs" />
+    <Compile Include="generated\pxr\base\tf\TfDictionaryLessThan.cs" />
+    <Compile Include="generated\pxr\base\tf\TfStreamDouble.cs" />
+    <Compile Include="generated\pxr\base\tf\TfStreamFloat.cs" />
+    <Compile Include="generated\pxr\base\tf\TfToken.cs" />
+    <Compile Include="generated\pxr\base\tf\TfTokenFastArbitraryLessThan.cs" />
+    <Compile Include="generated\pxr\base\tf\TfTokenVector.cs" />
+    <Compile Include="generated\pxr\base\tf\TfType.cs" />
+    <Compile Include="generated\pxr\base\tf\TfTypeVector.cs" />
+    <Compile Include="generated\pxr\base\vt\VtBoolArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtDictionary.cs" />
+    <Compile Include="generated\pxr\base\vt\VtDictionaryHash.cs" />
+    <Compile Include="generated\pxr\base\vt\VtDoubleArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtFloatArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtHalfArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtInt64Array.cs" />
+    <Compile Include="generated\pxr\base\vt\VtIntArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtMatrix2dArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtMatrix3dArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtMatrix4dArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtQuatdArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtQuatfArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtQuathArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtStringArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtTokenArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtUCharArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtUInt64Array.cs" />
+    <Compile Include="generated\pxr\base\vt\VtUIntArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtValue.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec2dArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec2fArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec2hArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec2iArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec3dArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec3fArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec3hArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec3iArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec4dArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec4fArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec4hArray.cs" />
+    <Compile Include="generated\pxr\base\vt\VtVec4iArray.cs" />
+    <Compile Include="generated\pxr\usd\ar\ArResolverContext.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfAssetPath.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfAssetPathArray.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfBatchNamespaceEdit.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfLayer.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfLayerBase.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfLayerHandle.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfLayerHandleVector.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfLayerOffset.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfLayerOffsetVector.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfLayerRefPtr.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfNamespaceEdit.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfNamespaceEditDetail.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfNamespaceEditDetailVector.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfNamespaceEditVector.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfPath.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfPathVector.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfPayload.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfPermission.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfSpecifier.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfSpecType.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfValueBlock.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfValueTypeName.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfValueTypeNameHash.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfValueTypeNames.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfVariability.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdAttribute.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdAttributeVector.cs" />
+    <Compile Include="generated\usdCs\UsdCs.cs" />
+    <Compile Include="generated\usdCs\UsdCsPINVOKE.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdEditTarget.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomBoundable.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomFaceSetAPI.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomFaceSetAPIVector.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomGprim.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomImageable.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomMesh.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomPointBased.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomPrimvar.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomPrimvarVector.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomScope.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomTokens.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomXform.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomXformable.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomXformOp.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomXformOpVector.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdInherits.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdInterpolationType.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdMetadataValueMap.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdObject.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdObjType.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdPrim.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdPrimVector.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdProperty.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdPropertyVector.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdReferences.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdRelationship.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdRelationshipVector.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdSchemaBase.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeLook.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeMaterial.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeNodeGraph.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeShader.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeShaderVector.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeTokens.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdSpecializes.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdStage.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdStageRefPtr.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdStageWeakPtr.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdTimeCode.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdTyped.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdVariantSet.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdVariantSets.cs" />
+    <Compile Include="generated\pxr\usd\usd\Usd_PrimFlags.cs" />
+    <Compile Include="generated\pxr\usd\usd\Usd_PrimFlagsConjunction.cs" />
+    <Compile Include="generated\pxr\usd\usd\Usd_PrimFlagsDisjunction.cs" />
+    <Compile Include="generated\pxr\usd\usd\Usd_PrimFlagsPredicate.cs" />
+    <Compile Include="generated\pxr\usd\usd\Usd_Term.cs" />
+    <Compile Include="serialization\BackgroundExecutor.cs" />
+    <Compile Include="serialization\CodeGen.cs" />
+    <Compile Include="serialization\IntrinsicTypeConverter.cs" />
+    <Compile Include="pooling\ArrayPool.cs" />
+    <Compile Include="serialization\PathCollection.cs" />
+    <Compile Include="serialization\PathEnumerator.cs" />
+    <Compile Include="pooling\PooledArray.cs" />
+    <Compile Include="pooling\PooledHandle.cs" />
+    <Compile Include="serialization\Reflect.cs" />
+    <Compile Include="serialization\ReflectionAttributes.cs" />
+    <Compile Include="serialization\SampleBase.cs" />
+    <Compile Include="serialization\Scene.cs" />
+    <Compile Include="serialization\TokenCache.cs" />
+    <Compile Include="serialization\TypeBinder.cs" />
+    <Compile Include="serialization\UsdEnums.cs" />
+    <Compile Include="serialization\UsdIo.cs" />
+    <Compile Include="generated\std\StdDoubleVector.cs" />
+    <Compile Include="generated\std\StdDoubleVectorVector.cs" />
+    <Compile Include="generated\std\StdFloatVector.cs" />
+    <Compile Include="generated\std\StdFloatVectorVector.cs" />
+    <Compile Include="generated\std\StdIntVector.cs" />
+    <Compile Include="generated\std\StdStringVector.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

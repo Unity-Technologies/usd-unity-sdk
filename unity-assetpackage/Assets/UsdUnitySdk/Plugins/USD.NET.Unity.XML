@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>USD.NET.Unity</name>
+    </assembly>
+    <members>
+        <member name="T:USD.NET.Unity.DiagnosticHandler">
+            <summary>
+            Implements a DiagnosticHandler which pipes messages to Unity's debug logger.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.DiagnosticHandler.Register">
+            <summary>
+            Registers this class a the global diagnostic handler.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.DiagnosticHandler.OnFatalError(System.String)">
+            <summary>
+            Messages sent when an unrecoverable fatal error occured in the USD API.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.DiagnosticHandler.OnError(System.String)">
+            <summary>
+            Messages sent when an error occured in the USD API, but was not fatal.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.DiagnosticHandler.OnWarning(System.String)">
+            <summary>
+            Warning messages sent from the USD API upon misuse or unexpected run-time conditions.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.DiagnosticHandler.OnInfo(System.String)">
+            <summary>
+            Informational messages sent from the USD API.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.GetPath(UnityEngine.Transform)">
+            <summary>
+            Returns a valid UsdPath for the given Unity GameObject.
+            </summary>
+            <remarks>
+            Note that illegal characters are converted into legal characters, so invalid names may
+            collide in the USD namespace.
+            </remarks>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractRgb(UnityEngine.Color32[])">
+            Returns just the RGB elements of a Color array as a new Vector3 array.
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractAlpha(UnityEngine.Color32[])">
+            Returns just the alpha component of a Color array as a new array of float.
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractRgb(UnityEngine.Color[])">
+            Returns just the RGB elements of a Color array as a new Vector3 array.
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractAlpha(UnityEngine.Color[])">
+            Returns just the alpha component of a Color array as a new array of float.
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeBindings.#cctor">
+            Static constructor automatically registers conversions with the global type binder.
+        </member>
+    </members>
+</doc>
