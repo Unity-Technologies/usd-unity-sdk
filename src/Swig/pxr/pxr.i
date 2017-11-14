@@ -80,12 +80,30 @@ typedef std::vector< vector<double> > StdDoubleVectorVector;
 
 %{
 #include "pxr/base/arch/env.h"
+#include "pxr/usd/usdGeom/xformable.h"
 %}
 
 %inline %{
 
 void SetEnv(std::string name, std::string value) {
 	ArchSetEnv(name, value, true);
+}
+
+VtValue GetFusedTransform(UsdPrim prim, UsdTimeCode time) {
+  VtValue value;
+  
+  if (!prim) {
+    return value;
+  }
+
+  UsdGeomXformable xf(prim);
+  GfMatrix4d mat;
+  bool resetsXfStack = false;
+  if (!xf.GetLocalTransformation(&mat, &resetsXfStack, time)) {
+    return VtValue();
+  }
+
+  return VtValue(mat);
 }
 
 VtValue GetFusedDisplayColor(UsdPrim prim, UsdTimeCode time) {

@@ -5018,11 +5018,29 @@ SWIGINTERN void std_vector_Sl_TaskCallback_Sg__SetRange(std::vector< TaskCallbac
       }
 
 #include "pxr/base/arch/env.h"
+#include "pxr/usd/usdGeom/xformable.h"
 
 
 
 void SetEnv(std::string name, std::string value) {
 	ArchSetEnv(name, value, true);
+}
+
+VtValue GetFusedTransform(UsdPrim prim, UsdTimeCode time) {
+  VtValue value;
+  
+  if (!prim) {
+    return value;
+  }
+
+  UsdGeomXformable xf(prim);
+  GfMatrix4d mat;
+  bool resetsXfStack = false;
+  if (!xf.GetLocalTransformation(&mat, &resetsXfStack, time)) {
+    return VtValue();
+  }
+
+  return VtValue(mat);
 }
 
 VtValue GetFusedDisplayColor(UsdPrim prim, UsdTimeCode time) {
@@ -69147,6 +69165,32 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SetEnv(char * jarg1, char * jarg2) {
   }
   (&arg2)->assign(jarg2); 
   SetEnv(arg1,arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GetFusedTransform(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdPrim arg1 ;
+  UsdTimeCode arg2 ;
+  UsdPrim *argp1 ;
+  UsdTimeCode *argp2 ;
+  VtValue result;
+  
+  argp1 = (UsdPrim *)jarg1; 
+  if (!argp1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdPrim", 0);
+    return 0;
+  }
+  arg1 = *argp1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = GetFusedTransform(arg1,arg2);
+  jresult = new VtValue((const VtValue &)result); 
+  return jresult;
 }
 
 

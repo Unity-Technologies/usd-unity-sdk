@@ -85,6 +85,14 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// Indicates that the attribute represents a USD transform and may consist of many component
+    /// T/S/R operations, which should be automatically collapsed into a single matrix.
+    /// </summary>
+    public static bool IsFusedTransform(MemberInfo info) {
+      return GetCacheEntry(info).isFusedTransform;
+    }
+
+    /// <summary>
     /// Returns true if the MemberInfo is intened to be serialized as metadata in the custom data
     /// field.
     /// </summary>
@@ -172,6 +180,7 @@ namespace USD.NET {
       public bool isNonSerialized;
       public string usdNamespace;
       public bool isFusedDisplayColor;
+      public bool isFusedTransform;
     }
 
     /// <summary>
@@ -219,6 +228,13 @@ namespace USD.NET {
       var attrs7 = (FusedDisplayColorAttribute[])info.
                           GetCustomAttributes(typeof(FusedDisplayColorAttribute), true);
       cachedInfo.isFusedDisplayColor = attrs7.Length > 0;
+
+      //
+      // IsFusedTransform
+      //
+      var attrs8 = (FusedTransformAttribute[])info.
+                          GetCustomAttributes(typeof(FusedTransformAttribute), true);
+      cachedInfo.isFusedTransform = attrs8.Length > 0;
 
       //
       // IsCustomData

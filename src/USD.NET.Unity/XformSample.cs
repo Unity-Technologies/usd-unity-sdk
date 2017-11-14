@@ -21,7 +21,7 @@ namespace USD.NET.Unity {
     private readonly string[] kXformOpTransform = new string[] { "xformOp:transform" };
     private Matrix4x4 m_xf;
 
-    [UsdNamespace("xformOp")]
+    [UsdNamespace("xformOp"), FusedTransform]
     public Matrix4x4 transform
     {
       get { return m_xf; }

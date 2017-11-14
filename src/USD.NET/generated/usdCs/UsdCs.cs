@@ -2730,6 +2730,12 @@ public class UsdCs {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static VtValue GetFusedTransform(UsdPrim prim, UsdTimeCode time) {
+    VtValue ret = new VtValue(UsdCsPINVOKE.GetFusedTransform(UsdPrim.getCPtr(prim), UsdTimeCode.getCPtr(time)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static VtValue GetFusedDisplayColor(UsdPrim prim, UsdTimeCode time) {
     VtValue ret = new VtValue(UsdCsPINVOKE.GetFusedDisplayColor(UsdPrim.getCPtr(prim), UsdTimeCode.getCPtr(time)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

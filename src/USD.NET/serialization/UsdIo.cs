@@ -407,6 +407,8 @@ namespace USD.NET {
           vtValue = prim.GetCustomDataByKey(sdfAttrName);
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           vtValue = pxr.UsdCs.GetFusedDisplayColor(prim, time);
+        } else if (Reflect.IsFusedTransform(memberInfo)) {
+          vtValue = pxr.UsdCs.GetFusedTransform(prim, time);
         } else {
           if (!prim.GetAttributeValue(sdfAttrName, vtValue, time)) {
             // Object has no value, still considered success.

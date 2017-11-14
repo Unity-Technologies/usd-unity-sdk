@@ -97,6 +97,20 @@ namespace USD.NET {
   }
 
   /// <summary>
+  /// Indicates that this is a USD transform should should be fused into a single GfMatrix4d.
+  /// </summary>
+  /// <remarks>
+  /// This special case is for performance and simplicity. Transforms in USD can be composed of an
+  /// arbitrary number of component (translate/rotate/scale) operations, however this API is
+  /// designed for ease of use and performance. In this case, all component operations are
+  /// collapsed into a single 4x4 matrix.
+  /// </remarks>
+  public class FusedTransformAttribute : Attribute {
+    public FusedTransformAttribute() {
+    }
+  }
+
+  /// <summary>
   /// Declares the attribute should be stored as metadata under the "customData" key.
   /// </summary>
   public class CustomDataAttribute : Attribute {
