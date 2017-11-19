@@ -26,6 +26,9 @@ namespace Tests {
     }
 
     static void RunTestCases() {
+      Cases.StageTests.PointerTest();
+      Cases.StageTests.MemoryTest();
+      Cases.StageTests.ApiTest();
       Cases.Basic.SmokeTest();
       Cases.Basic.IntrinsicTypes();
       Cases.UnityIO.TestXform();

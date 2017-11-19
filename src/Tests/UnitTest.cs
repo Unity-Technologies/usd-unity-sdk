@@ -20,7 +20,8 @@ namespace Tests {
     public static void WriteAndRead<T>(ref T inputSample, ref T outputSample, bool printLayer)
           where T : USD.NET.SampleBase
     {
-      var scene = USD.NET.Scene.Create();
+      string filename = GetTempFile();
+      var scene = USD.NET.Scene.Create(filename);
       scene.Write("/Foo", inputSample);
 
       if (printLayer) {
@@ -29,15 +30,21 @@ namespace Tests {
         Console.WriteLine(layer);
       }
 
-      scene.SaveAs("test.usda");
+      scene.Save();
       scene.Close();
 
-      var scene2 = USD.NET.Scene.Open("test.usda");
+      var scene2 = USD.NET.Scene.Open(filename);
       scene2.Read("/Foo", outputSample);
       scene2.Close();
+
+      System.IO.File.Delete(filename);
     }
 
-    public static void AssertEqual<T>(T[] first, T[] second) {
+    static protected string GetTempFile(string extension = "usd") {
+      return System.IO.Path.ChangeExtension(System.IO.Path.GetTempFileName(), extension);
+    }
+
+    static protected void AssertEqual<T>(T[] first, T[] second) {
       if (first.Length != second.Length) {
         throw new Exception("Length of arrays do not match");
       }
@@ -47,11 +54,18 @@ namespace Tests {
       }
     }
 
-    public static void AssertEqual<T>(T first, T second) {
+    static protected void AssertEqual<T>(T first, T second) {
       if (!first.Equals(second)) {
         throw new Exception("Values do not match for " + typeof(T).Name);
       }
     }
 
+    static protected void AssertTrue(bool value) {
+      AssertEqual(value, true);
+    }
+
+    static protected void AssertFalse(bool value) {
+      AssertEqual(value, false);
+    }
   }
-}
+  }
