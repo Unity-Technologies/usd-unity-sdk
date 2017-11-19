@@ -432,14 +432,14 @@ public class UsdCs {
     return ret;
   }
 
-  public static string PlugFindPluginResource(SWIGTYPE_p_PlugPluginPtr plugin, string path, bool verify) {
-    string ret = UsdCsPINVOKE.PlugFindPluginResource__SWIG_0(SWIGTYPE_p_PlugPluginPtr.getCPtr(plugin), path, verify);
+  public static string PlugFindPluginResource(SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr plugin, string path, bool verify) {
+    string ret = UsdCsPINVOKE.PlugFindPluginResource__SWIG_0(SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr.getCPtr(plugin), path, verify);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string PlugFindPluginResource(SWIGTYPE_p_PlugPluginPtr plugin, string path) {
-    string ret = UsdCsPINVOKE.PlugFindPluginResource__SWIG_1(SWIGTYPE_p_PlugPluginPtr.getCPtr(plugin), path);
+  public static string PlugFindPluginResource(SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr plugin, string path) {
+    string ret = UsdCsPINVOKE.PlugFindPluginResource__SWIG_1(SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr.getCPtr(plugin), path);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

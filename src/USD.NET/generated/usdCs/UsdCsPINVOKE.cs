@@ -8099,242 +8099,98 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerHandleVector")]
   public static extern void delete_SdfLayerHandleVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerRefPtr")]
-  public static extern global::System.IntPtr new_SdfLayerRefPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr___deref__")]
-  public static extern global::System.IntPtr SdfLayerRefPtr___deref__(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_Equals")]
-  public static extern bool SdfLayerRefPtr_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_ExportToString")]
-  public static extern string SdfLayerRefPtr_ExportToString(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerRefPtr")]
-  public static extern void delete_SdfLayerRefPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetSchema")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetSchema(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_IsEmpty")]
-  public static extern bool SdfLayerRefPtr_IsEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_IsAnonymous")]
-  public static extern bool SdfLayerRefPtr_IsAnonymous(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_Save")]
-  public static extern bool SdfLayerRefPtr_Save(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_Export__SWIG_0")]
-  public static extern bool SdfLayerRefPtr_Export__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_Export__SWIG_1")]
-  public static extern bool SdfLayerRefPtr_Export__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_Export__SWIG_2")]
-  public static extern bool SdfLayerRefPtr_Export__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetIdentifier")]
-  public static extern string SdfLayerRefPtr_GetIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetDisplayName")]
-  public static extern string SdfLayerRefPtr_GetDisplayName(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetRealPath")]
-  public static extern string SdfLayerRefPtr_GetRealPath(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetFileExtension")]
-  public static extern string SdfLayerRefPtr_GetFileExtension(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetVersion")]
-  public static extern string SdfLayerRefPtr_GetVersion(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetRepositoryPath")]
-  public static extern string SdfLayerRefPtr_GetRepositoryPath(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetAssetName")]
-  public static extern string SdfLayerRefPtr_GetAssetName(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetAssetInfo")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetAssetInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetSpecType")]
-  public static extern int SdfLayerRefPtr_GetSpecType(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasSpec")]
-  public static extern bool SdfLayerRefPtr_HasSpec(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_ListFields")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_ListFields(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasField")]
-  public static extern bool SdfLayerRefPtr_HasField(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasFieldDictKey")]
-  public static extern bool SdfLayerRefPtr_HasFieldDictKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetField")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetField(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetFieldDictValueByKey")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetFieldDictValueByKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetColorConfiguration")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasColorConfiguration")]
-  public static extern bool SdfLayerRefPtr_HasColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetColorManagementSystem")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasColorManagementSystem")]
-  public static extern bool SdfLayerRefPtr_HasColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetComment")]
-  public static extern string SdfLayerRefPtr_GetComment(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetDefaultPrim")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetDefaultPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetDocumentation")]
-  public static extern string SdfLayerRefPtr_GetDocumentation(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetStartTimeCode")]
-  public static extern double SdfLayerRefPtr_GetStartTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasStartTimeCode")]
-  public static extern bool SdfLayerRefPtr_HasStartTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetEndTimeCode")]
-  public static extern double SdfLayerRefPtr_GetEndTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasEndTimeCode")]
-  public static extern bool SdfLayerRefPtr_HasEndTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetTimeCodesPerSecond")]
-  public static extern double SdfLayerRefPtr_GetTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasTimeCodesPerSecond")]
-  public static extern bool SdfLayerRefPtr_HasTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetFramesPerSecond")]
-  public static extern double SdfLayerRefPtr_GetFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasFramesPerSecond")]
-  public static extern bool SdfLayerRefPtr_HasFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetFramePrecision")]
-  public static extern int SdfLayerRefPtr_GetFramePrecision(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasFramePrecision")]
-  public static extern bool SdfLayerRefPtr_HasFramePrecision(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetOwner")]
-  public static extern string SdfLayerRefPtr_GetOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasOwner")]
-  public static extern bool SdfLayerRefPtr_HasOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetSessionOwner")]
-  public static extern string SdfLayerRefPtr_GetSessionOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasSessionOwner")]
-  public static extern bool SdfLayerRefPtr_HasSessionOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetHasOwnedSubLayers")]
-  public static extern bool SdfLayerRefPtr_GetHasOwnedSubLayers(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetCustomLayerData")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetCustomLayerData(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_HasCustomLayerData")]
-  public static extern bool SdfLayerRefPtr_HasCustomLayerData(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetRootPrims")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetRootPrims(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_ApplyRootPrimOrder")]
-  public static extern void SdfLayerRefPtr_ApplyRootPrimOrder(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetNumSubLayerPaths")]
-  public static extern uint SdfLayerRefPtr_GetNumSubLayerPaths(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetSubLayerOffsets")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetSubLayerOffsets(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetSubLayerOffset")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetSubLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_IsMuted__SWIG_0")]
-  public static extern bool SdfLayerRefPtr_IsMuted__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetPseudoRoot")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetPseudoRoot(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_PermissionToEdit")]
-  public static extern bool SdfLayerRefPtr_PermissionToEdit(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_PermissionToSave")]
-  public static extern bool SdfLayerRefPtr_PermissionToSave(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_CanApply__SWIG_0")]
-  public static extern int SdfLayerRefPtr_CanApply__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_CanApply__SWIG_1")]
-  public static extern int SdfLayerRefPtr_CanApply__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetStateDelegate")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetStateDelegate(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_IsDirty")]
-  public static extern bool SdfLayerRefPtr_IsDirty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_ListAllTimeSamples")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_ListAllTimeSamples(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetNumTimeSamplesForPath")]
-  public static extern uint SdfLayerRefPtr_GetNumTimeSamplesForPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_ListTimeSamplesForPath")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_ListTimeSamplesForPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_QueryTimeSample")]
-  public static extern bool SdfLayerRefPtr_QueryTimeSample(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, double jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetFileFormat")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetFileFormat(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtr_GetFileFormatArguments")]
-  public static extern global::System.IntPtr SdfLayerRefPtr_GetFileFormatArguments(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerHandle__SWIG_0")]
-  public static extern global::System.IntPtr new_SdfLayerHandle__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerHandle__SWIG_1")]
-  public static extern global::System.IntPtr new_SdfLayerHandle__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerHandle")]
+  public static extern global::System.IntPtr new_SdfLayerHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle___deref__")]
   public static extern global::System.IntPtr SdfLayerHandle___deref__(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Equals")]
-  public static extern bool SdfLayerHandle_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ExportToString")]
-  public static extern string SdfLayerHandle_ExportToString(global::System.Runtime.InteropServices.HandleRef jarg1);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerHandle")]
   public static extern void delete_SdfLayerHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_0")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateNew__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_1")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateNew__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_2")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateNew__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_3")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateNew__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_4")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateNew__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_5")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateNew__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_New__SWIG_0")]
+  public static extern global::System.IntPtr SdfLayerHandle_New__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_New__SWIG_1")]
+  public static extern global::System.IntPtr SdfLayerHandle_New__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_New__SWIG_2")]
+  public static extern global::System.IntPtr SdfLayerHandle_New__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Find__SWIG_0")]
+  public static extern global::System.IntPtr SdfLayerHandle_Find__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Find__SWIG_1")]
+  public static extern global::System.IntPtr SdfLayerHandle_Find__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_FindRelativeToLayer__SWIG_0")]
+  public static extern global::System.IntPtr SdfLayerHandle_FindRelativeToLayer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_FindRelativeToLayer__SWIG_1")]
+  public static extern global::System.IntPtr SdfLayerHandle_FindRelativeToLayer__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_FindOrOpen__SWIG_0")]
+  public static extern global::System.IntPtr SdfLayerHandle_FindOrOpen__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_FindOrOpen__SWIG_1")]
+  public static extern global::System.IntPtr SdfLayerHandle_FindOrOpen__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_OpenAsAnonymous__SWIG_0")]
+  public static extern global::System.IntPtr SdfLayerHandle_OpenAsAnonymous__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_OpenAsAnonymous__SWIG_1")]
+  public static extern global::System.IntPtr SdfLayerHandle_OpenAsAnonymous__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_OpenAsAnonymous__SWIG_2")]
+  public static extern global::System.IntPtr SdfLayerHandle_OpenAsAnonymous__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetSchema")]
   public static extern global::System.IntPtr SdfLayerHandle_GetSchema(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetLoadedLayers")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetLoadedLayers(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_IsEmpty")]
   public static extern bool SdfLayerHandle_IsEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_TransferContent")]
+  public static extern void SdfLayerHandle_TransferContent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateAnonymous__SWIG_0")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateAnonymous__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateAnonymous__SWIG_1")]
+  public static extern global::System.IntPtr SdfLayerHandle_CreateAnonymous__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_IsAnonymous")]
   public static extern bool SdfLayerHandle_IsAnonymous(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_IsAnonymousLayerIdentifier")]
+  public static extern bool SdfLayerHandle_IsAnonymousLayerIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetDisplayNameFromIdentifier")]
+  public static extern string SdfLayerHandle_GetDisplayNameFromIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ComputeRealPath")]
+  public static extern string SdfLayerHandle_ComputeRealPath(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Save")]
   public static extern bool SdfLayerHandle_Save(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8348,8 +8204,53 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Export__SWIG_2")]
   public static extern bool SdfLayerHandle_Export__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ImportFromString")]
+  public static extern bool SdfLayerHandle_ImportFromString(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Clear")]
+  public static extern void SdfLayerHandle_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Reload__SWIG_0")]
+  public static extern bool SdfLayerHandle_Reload__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Reload__SWIG_1")]
+  public static extern bool SdfLayerHandle_Reload__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ReloadLayers__SWIG_0")]
+  public static extern bool SdfLayerHandle_ReloadLayers__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ReloadLayers__SWIG_1")]
+  public static extern bool SdfLayerHandle_ReloadLayers__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Import")]
+  public static extern bool SdfLayerHandle_Import(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetExternalReferences")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetExternalReferences(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_UpdateExternalReference__SWIG_0")]
+  public static extern bool SdfLayerHandle_UpdateExternalReference__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_UpdateExternalReference__SWIG_1")]
+  public static extern bool SdfLayerHandle_UpdateExternalReference__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SplitIdentifier")]
+  public static extern bool SdfLayerHandle_SplitIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CreateIdentifier")]
+  public static extern string SdfLayerHandle_CreateIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetIdentifier")]
   public static extern string SdfLayerHandle_GetIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetIdentifier")]
+  public static extern void SdfLayerHandle_SetIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_UpdateAssetInfo__SWIG_0")]
+  public static extern void SdfLayerHandle_UpdateAssetInfo__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_UpdateAssetInfo__SWIG_1")]
+  public static extern void SdfLayerHandle_UpdateAssetInfo__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetDisplayName")]
   public static extern string SdfLayerHandle_GetDisplayName(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8372,6 +8273,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetAssetInfo")]
   public static extern global::System.IntPtr SdfLayerHandle_GetAssetInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ComputeAbsolutePath")]
+  public static extern string SdfLayerHandle_ComputeAbsolutePath(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetSpecType")]
   public static extern int SdfLayerHandle_GetSpecType(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
@@ -8393,86 +8297,221 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetFieldDictValueByKey")]
   public static extern global::System.IntPtr SdfLayerHandle_GetFieldDictValueByKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_EraseField")]
+  public static extern void SdfLayerHandle_EraseField(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_EraseFieldDictValueByKey")]
+  public static extern void SdfLayerHandle_EraseFieldDictValueByKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetColorConfiguration")]
   public static extern global::System.IntPtr SdfLayerHandle_GetColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetColorConfiguration")]
+  public static extern void SdfLayerHandle_SetColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasColorConfiguration")]
   public static extern bool SdfLayerHandle_HasColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearColorConfiguration")]
+  public static extern void SdfLayerHandle_ClearColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetColorManagementSystem")]
   public static extern global::System.IntPtr SdfLayerHandle_GetColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetColorManagementSystem")]
+  public static extern void SdfLayerHandle_SetColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasColorManagementSystem")]
   public static extern bool SdfLayerHandle_HasColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearColorManagementSystem")]
+  public static extern void SdfLayerHandle_ClearColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetComment")]
   public static extern string SdfLayerHandle_GetComment(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetComment")]
+  public static extern void SdfLayerHandle_SetComment(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetDefaultPrim")]
   public static extern global::System.IntPtr SdfLayerHandle_GetDefaultPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetDefaultPrim")]
+  public static extern void SdfLayerHandle_SetDefaultPrim(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearDefaultPrim")]
+  public static extern void SdfLayerHandle_ClearDefaultPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasDefaultPrim")]
+  public static extern bool SdfLayerHandle_HasDefaultPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetDocumentation")]
   public static extern string SdfLayerHandle_GetDocumentation(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetDocumentation")]
+  public static extern void SdfLayerHandle_SetDocumentation(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetStartTimeCode")]
   public static extern double SdfLayerHandle_GetStartTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetStartTimeCode")]
+  public static extern void SdfLayerHandle_SetStartTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasStartTimeCode")]
   public static extern bool SdfLayerHandle_HasStartTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearStartTimeCode")]
+  public static extern void SdfLayerHandle_ClearStartTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetEndTimeCode")]
   public static extern double SdfLayerHandle_GetEndTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetEndTimeCode")]
+  public static extern void SdfLayerHandle_SetEndTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasEndTimeCode")]
   public static extern bool SdfLayerHandle_HasEndTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearEndTimeCode")]
+  public static extern void SdfLayerHandle_ClearEndTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetTimeCodesPerSecond")]
   public static extern double SdfLayerHandle_GetTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetTimeCodesPerSecond")]
+  public static extern void SdfLayerHandle_SetTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasTimeCodesPerSecond")]
   public static extern bool SdfLayerHandle_HasTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearTimeCodesPerSecond")]
+  public static extern void SdfLayerHandle_ClearTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetFramesPerSecond")]
   public static extern double SdfLayerHandle_GetFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetFramesPerSecond")]
+  public static extern void SdfLayerHandle_SetFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasFramesPerSecond")]
   public static extern bool SdfLayerHandle_HasFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearFramesPerSecond")]
+  public static extern void SdfLayerHandle_ClearFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetFramePrecision")]
   public static extern int SdfLayerHandle_GetFramePrecision(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetFramePrecision")]
+  public static extern void SdfLayerHandle_SetFramePrecision(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasFramePrecision")]
   public static extern bool SdfLayerHandle_HasFramePrecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearFramePrecision")]
+  public static extern void SdfLayerHandle_ClearFramePrecision(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetOwner")]
   public static extern string SdfLayerHandle_GetOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetOwner")]
+  public static extern void SdfLayerHandle_SetOwner(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasOwner")]
   public static extern bool SdfLayerHandle_HasOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearOwner")]
+  public static extern void SdfLayerHandle_ClearOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetSessionOwner")]
   public static extern string SdfLayerHandle_GetSessionOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetSessionOwner")]
+  public static extern void SdfLayerHandle_SetSessionOwner(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasSessionOwner")]
   public static extern bool SdfLayerHandle_HasSessionOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearSessionOwner")]
+  public static extern void SdfLayerHandle_ClearSessionOwner(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetHasOwnedSubLayers")]
   public static extern bool SdfLayerHandle_GetHasOwnedSubLayers(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetHasOwnedSubLayers")]
+  public static extern void SdfLayerHandle_SetHasOwnedSubLayers(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetCustomLayerData")]
   public static extern global::System.IntPtr SdfLayerHandle_GetCustomLayerData(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetCustomLayerData")]
+  public static extern void SdfLayerHandle_SetCustomLayerData(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_HasCustomLayerData")]
   public static extern bool SdfLayerHandle_HasCustomLayerData(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ClearCustomLayerData")]
+  public static extern void SdfLayerHandle_ClearCustomLayerData(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetRootPrims")]
   public static extern global::System.IntPtr SdfLayerHandle_GetRootPrims(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetRootPrims")]
+  public static extern void SdfLayerHandle_SetRootPrims(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_InsertRootPrim__SWIG_0")]
+  public static extern bool SdfLayerHandle_InsertRootPrim__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_InsertRootPrim__SWIG_1")]
+  public static extern bool SdfLayerHandle_InsertRootPrim__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemoveRootPrim")]
+  public static extern void SdfLayerHandle_RemoveRootPrim(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ScheduleRemoveIfInert")]
+  public static extern void SdfLayerHandle_ScheduleRemoveIfInert(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemovePrimIfInert")]
+  public static extern void SdfLayerHandle_RemovePrimIfInert(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemovePropertyIfHasOnlyRequiredFields")]
+  public static extern void SdfLayerHandle_RemovePropertyIfHasOnlyRequiredFields(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemoveInertSceneDescription")]
+  public static extern void SdfLayerHandle_RemoveInertSceneDescription(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetRootPrimOrder")]
+  public static extern void SdfLayerHandle_SetRootPrimOrder(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_InsertInRootPrimOrder__SWIG_0")]
+  public static extern void SdfLayerHandle_InsertInRootPrimOrder__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_InsertInRootPrimOrder__SWIG_1")]
+  public static extern void SdfLayerHandle_InsertInRootPrimOrder__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemoveFromRootPrimOrder")]
+  public static extern void SdfLayerHandle_RemoveFromRootPrimOrder(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemoveFromRootPrimOrderByIndex")]
+  public static extern void SdfLayerHandle_RemoveFromRootPrimOrderByIndex(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ApplyRootPrimOrder")]
   public static extern void SdfLayerHandle_ApplyRootPrimOrder(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetSubLayerPaths")]
+  public static extern void SdfLayerHandle_SetSubLayerPaths(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetNumSubLayerPaths")]
   public static extern uint SdfLayerHandle_GetNumSubLayerPaths(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_InsertSubLayerPath__SWIG_0")]
+  public static extern void SdfLayerHandle_InsertSubLayerPath__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_InsertSubLayerPath__SWIG_1")]
+  public static extern void SdfLayerHandle_InsertSubLayerPath__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemoveSubLayerPath")]
+  public static extern void SdfLayerHandle_RemoveSubLayerPath(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetSubLayerOffsets")]
   public static extern global::System.IntPtr SdfLayerHandle_GetSubLayerOffsets(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8480,11 +8519,44 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetSubLayerOffset")]
   public static extern global::System.IntPtr SdfLayerHandle_GetSubLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetSubLayerOffset")]
+  public static extern void SdfLayerHandle_SetSubLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetMutedLayers")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetMutedLayers(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_IsMuted__SWIG_0")]
   public static extern bool SdfLayerHandle_IsMuted__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_IsMuted__SWIG_1")]
+  public static extern bool SdfLayerHandle_IsMuted__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetMuted")]
+  public static extern void SdfLayerHandle_SetMuted(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_AddToMutedLayers")]
+  public static extern void SdfLayerHandle_AddToMutedLayers(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_RemoveFromMutedLayers")]
+  public static extern void SdfLayerHandle_RemoveFromMutedLayers(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetPseudoRoot")]
   public static extern global::System.IntPtr SdfLayerHandle_GetPseudoRoot(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetObjectAtPath")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetObjectAtPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetPrimAtPath")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetPrimAtPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetPropertyAtPath")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetPropertyAtPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetAttributeAtPath")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetAttributeAtPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetRelationshipAtPath")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetRelationshipAtPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_PermissionToEdit")]
   public static extern bool SdfLayerHandle_PermissionToEdit(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8492,14 +8564,26 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_PermissionToSave")]
   public static extern bool SdfLayerHandle_PermissionToSave(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetPermissionToEdit")]
+  public static extern void SdfLayerHandle_SetPermissionToEdit(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetPermissionToSave")]
+  public static extern void SdfLayerHandle_SetPermissionToSave(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CanApply__SWIG_0")]
   public static extern int SdfLayerHandle_CanApply__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_CanApply__SWIG_1")]
   public static extern int SdfLayerHandle_CanApply__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_Apply")]
+  public static extern bool SdfLayerHandle_Apply(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetStateDelegate")]
   public static extern global::System.IntPtr SdfLayerHandle_GetStateDelegate(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetStateDelegate")]
+  public static extern void SdfLayerHandle_SetStateDelegate(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_IsDirty")]
   public static extern bool SdfLayerHandle_IsDirty(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8507,14 +8591,32 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ListAllTimeSamples")]
   public static extern global::System.IntPtr SdfLayerHandle_ListAllTimeSamples(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetBracketingTimeSamples")]
+  public static extern bool SdfLayerHandle_GetBracketingTimeSamples(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, ref double jarg3, ref double jarg4);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetNumTimeSamplesForPath")]
   public static extern uint SdfLayerHandle_GetNumTimeSamplesForPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ListTimeSamplesForPath")]
   public static extern global::System.IntPtr SdfLayerHandle_ListTimeSamplesForPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetBracketingTimeSamplesForPath")]
+  public static extern bool SdfLayerHandle_GetBracketingTimeSamplesForPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, double jarg3, ref double jarg4, ref double jarg5);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_QueryTimeSample")]
   public static extern bool SdfLayerHandle_QueryTimeSample(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, double jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_EraseTimeSample")]
+  public static extern void SdfLayerHandle_EraseTimeSample(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, double jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_DumpLayerInfo")]
+  public static extern void SdfLayerHandle_DumpLayerInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_WriteDataFile")]
+  public static extern bool SdfLayerHandle_WriteDataFile(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ExportToString")]
+  public static extern string SdfLayerHandle_ExportToString(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetFileFormat")]
   public static extern global::System.IntPtr SdfLayerHandle_GetFileFormat(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -9224,161 +9326,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTraverseInstanceProxies__SWIG_1")]
   public static extern global::System.IntPtr UsdTraverseInstanceProxies__SWIG_1();
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageRefPtr")]
-  public static extern global::System.IntPtr new_UsdStageRefPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr___deref__")]
-  public static extern global::System.IntPtr UsdStageRefPtr___deref__(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdStageRefPtr")]
-  public static extern void delete_UsdStageRefPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetPopulationMask")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetPopulationMask(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetPseudoRoot")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetPseudoRoot(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetDefaultPrim")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetDefaultPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_HasDefaultPrim")]
-  public static extern bool UsdStageRefPtr_HasDefaultPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetPrimAtPath")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetPrimAtPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetSessionLayer")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetSessionLayer(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetRootLayer")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetRootLayer(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetPathResolverContext")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetPathResolverContext(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_ResolveIdentifierToEditTarget")]
-  public static extern string UsdStageRefPtr_ResolveIdentifierToEditTarget(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetLayerStack__SWIG_0")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetLayerStack__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetLayerStack__SWIG_1")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetLayerStack__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetUsedLayers__SWIG_0")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetUsedLayers__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetUsedLayers__SWIG_1")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetUsedLayers__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_HasLocalLayer")]
-  public static extern bool UsdStageRefPtr_HasLocalLayer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetEditTarget")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetEditTarget(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetMutedLayers")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetMutedLayers(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_IsLayerMuted")]
-  public static extern bool UsdStageRefPtr_IsLayerMuted(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_Export__SWIG_0")]
-  public static extern bool UsdStageRefPtr_Export__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_Export__SWIG_1")]
-  public static extern bool UsdStageRefPtr_Export__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_Export__SWIG_2")]
-  public static extern bool UsdStageRefPtr_Export__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_ExportToString__SWIG_0")]
-  public static extern bool UsdStageRefPtr_ExportToString__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, /*imtype*/ out string jarg2, bool jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_ExportToString__SWIG_1")]
-  public static extern bool UsdStageRefPtr_ExportToString__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, /*imtype*/ out string jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_Flatten__SWIG_0")]
-  public static extern global::System.IntPtr UsdStageRefPtr_Flatten__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_Flatten__SWIG_1")]
-  public static extern global::System.IntPtr UsdStageRefPtr_Flatten__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetMetadata")]
-  public static extern bool UsdStageRefPtr_GetMetadata(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_HasMetadata")]
-  public static extern bool UsdStageRefPtr_HasMetadata(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_HasAuthoredMetadata")]
-  public static extern bool UsdStageRefPtr_HasAuthoredMetadata(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_SetMetadata")]
-  public static extern bool UsdStageRefPtr_SetMetadata(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_ClearMetadata")]
-  public static extern bool UsdStageRefPtr_ClearMetadata(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetMetadataByDictKey")]
-  public static extern bool UsdStageRefPtr_GetMetadataByDictKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_HasMetadataDictKey")]
-  public static extern bool UsdStageRefPtr_HasMetadataDictKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_HasAuthoredMetadataDictKey")]
-  public static extern bool UsdStageRefPtr_HasAuthoredMetadataDictKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_SetMetadataByDictKey")]
-  public static extern bool UsdStageRefPtr_SetMetadataByDictKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_ClearMetadataByDictKey")]
-  public static extern bool UsdStageRefPtr_ClearMetadataByDictKey(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetStartTimeCode")]
-  public static extern double UsdStageRefPtr_GetStartTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetEndTimeCode")]
-  public static extern double UsdStageRefPtr_GetEndTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_HasAuthoredTimeCodeRange")]
-  public static extern bool UsdStageRefPtr_HasAuthoredTimeCodeRange(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetTimeCodesPerSecond")]
-  public static extern double UsdStageRefPtr_GetTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_SetTimeCodesPerSecond")]
-  public static extern void UsdStageRefPtr_SetTimeCodesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetFramesPerSecond")]
-  public static extern double UsdStageRefPtr_GetFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_SetFramesPerSecond")]
-  public static extern void UsdStageRefPtr_SetFramesPerSecond(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_SetColorConfiguration")]
-  public static extern void UsdStageRefPtr_SetColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetColorConfiguration")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetColorConfiguration(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_SetColorManagementSystem")]
-  public static extern void UsdStageRefPtr_SetColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetColorManagementSystem")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetColorManagementSystem(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetInterpolationType")]
-  public static extern int UsdStageRefPtr_GetInterpolationType(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtr_GetMasters")]
-  public static extern global::System.IntPtr UsdStageRefPtr_GetMasters(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageWeakPtr__SWIG_0")]
-  public static extern global::System.IntPtr new_UsdStageWeakPtr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageWeakPtr__SWIG_1")]
-  public static extern global::System.IntPtr new_UsdStageWeakPtr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageWeakPtr")]
+  public static extern global::System.IntPtr new_UsdStageWeakPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageWeakPtr___deref__")]
   public static extern global::System.IntPtr UsdStageWeakPtr___deref__(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12968,8 +12917,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SetFusedDisplayColor")]
   public static extern bool SetFusedDisplayColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayer_SWIGUpcast")]
-  public static extern global::System.IntPtr SdfLayer_SWIGUpcast(global::System.IntPtr jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayer_SWIGSmartPtrUpcast")]
+  public static extern global::System.IntPtr SdfLayer_SWIGSmartPtrUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_Usd_PrimFlagsConjunction_SWIGUpcast")]
   public static extern global::System.IntPtr Usd_PrimFlagsConjunction_SWIGUpcast(global::System.IntPtr jarg1);

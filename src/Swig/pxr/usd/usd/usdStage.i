@@ -59,27 +59,32 @@ class string;
 
 }
 
-// Must be defined before interfaces to which it applies
-%typemap(cscode) UsdStageWeakPtr %{
-    public static implicit operator UsdStageWeakPtr(UsdStageRefPtr d)
-    {
-        return new UsdStageWeakPtr(d);
-    }
-%}
+// ---------------------------------------------------------------------------------------------- //
+// STAGE SMART POINTERS
+// ---------------------------------------------------------------------------------------------- //
 
-class UsdStageRefPtr{
-public:
-    UsdStageRefPtr(UsdStage* stage);
-    UsdStage const* operator->();
-};
+%TfRefPtr(UsdStage);
 
+// The potential problem here is that the object is always held by the smart pointer type, but
+// a without a reference, weak pointer expires immediately.
+//
+// XXX: First class weak ptrs still need work. Following the RefPtr pattern (as WeakPtr currently
+//      does) is wrong.
+//
+//%TfWeakPtr(UsdStage);
 class UsdStageWeakPtr{
 public:
     UsdStageWeakPtr(UsdStage* stage);
-	explicit UsdStageWeakPtr(UsdStageRefPtr const& stage);
     UsdStage const* operator->();
+    // Required when there is no automagic smart pointer support enabled.
+    // explicit UsdStageWeakPtr(UsdStageRefPtr const& stage);
 };
+
+typedef TfWeakPtr<UsdStage> UsdStageWeakPtr;
 typedef UsdStageWeakPtr UsdStagePtr;
+typedef TfRefPtr<UsdStage> UsdStageRefPtr;
+
+// ---------------------------------------------------------------------------------------------- //
 
 %ignore UsdStage::Traverse() const;
 %ignore UsdStage::ExpandPopulationMask;

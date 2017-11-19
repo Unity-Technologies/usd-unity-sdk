@@ -101,14 +101,14 @@ public class UsdVariantSet : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t GetVariantEditContext(SdfLayerHandle layer) {
-    SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t(UsdCsPINVOKE.UsdVariantSet_GetVariantEditContext__SWIG_0(swigCPtr, SdfLayerHandle.getCPtr(layer)), true);
+  public SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t GetVariantEditContext(SdfLayerHandle layer) {
+    SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t(UsdCsPINVOKE.UsdVariantSet_GetVariantEditContext__SWIG_0(swigCPtr, SdfLayerHandle.getCPtr(layer)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t GetVariantEditContext() {
-    SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t(UsdCsPINVOKE.UsdVariantSet_GetVariantEditContext__SWIG_1(swigCPtr), true);
+  public SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t GetVariantEditContext() {
+    SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t(UsdCsPINVOKE.UsdVariantSet_GetVariantEditContext__SWIG_1(swigCPtr), true);
     return ret;
   }
 

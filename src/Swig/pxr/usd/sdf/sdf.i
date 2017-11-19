@@ -16,6 +16,10 @@
 
 #define SDF_API
 
+// TODO: switch to using the header version.
+//%include "pxr/usd/sdf/declareHandles.h"
+#define SDF_DECLARE_HANDLES(x)
+
 %include "sdfTypes.i"
 %include "sdfValueTypeName.i"
 %include "sdfValueTypeNames.i"

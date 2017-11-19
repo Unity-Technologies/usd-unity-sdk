@@ -40,32 +40,135 @@ public class SdfLayerHandle : global::System.IDisposable {
     }
   }
 
-    public static implicit operator SdfLayerHandle(SdfLayerRefPtr d)
-    {
-        return new SdfLayerHandle(d);
-    }
-
-  public SdfLayerHandle(SdfLayer layer) : this(UsdCsPINVOKE.new_SdfLayerHandle__SWIG_0(SdfLayer.getCPtr(layer)), true) {
-  }
-
-  public SdfLayerHandle(SdfLayerRefPtr layer) : this(UsdCsPINVOKE.new_SdfLayerHandle__SWIG_1(SdfLayerRefPtr.getCPtr(layer)), true) {
+  public SdfLayerHandle(SdfLayer layer) : this(UsdCsPINVOKE.new_SdfLayerHandle(SdfLayer.getCPtr(layer)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public SdfLayer __deref__() {
     global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle___deref__(swigCPtr);
-    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, false);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     return ret;
   }
 
-  public static bool Equals(SdfLayerHandle lhs, SdfLayerHandle rhs) {
-    bool ret = UsdCsPINVOKE.SdfLayerHandle_Equals(SdfLayerHandle.getCPtr(lhs), SdfLayerHandle.getCPtr(rhs));
+  public SdfLayer CreateNew(string identifier, string realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateNew__SWIG_0(swigCPtr, identifier, realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public string ExportToString() {
-    string ret = UsdCsPINVOKE.SdfLayerHandle_ExportToString(swigCPtr);
+  public SdfLayer CreateNew(string identifier, string realPath) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateNew__SWIG_1(swigCPtr, identifier, realPath);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer CreateNew(string identifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateNew__SWIG_2(swigCPtr, identifier);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer CreateNew(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateNew__SWIG_3(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer CreateNew(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateNew__SWIG_4(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer CreateNew(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateNew__SWIG_5(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer New(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_New__SWIG_0(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer New(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier, string realPath) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_New__SWIG_1(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier, realPath);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer New(SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr fileFormat, string identifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_New__SWIG_2(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(fileFormat), identifier);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayerHandle Find(string identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayerHandle_Find__SWIG_0(swigCPtr, identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayerHandle Find(string identifier) {
+    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayerHandle_Find__SWIG_1(swigCPtr, identifier), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayerHandle FindRelativeToLayer(SdfLayerHandle anchor, string layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayerHandle_FindRelativeToLayer__SWIG_0(swigCPtr, SdfLayerHandle.getCPtr(anchor), layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayerHandle FindRelativeToLayer(SdfLayerHandle anchor, string layerPath) {
+    SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.SdfLayerHandle_FindRelativeToLayer__SWIG_1(swigCPtr, SdfLayerHandle.getCPtr(anchor), layerPath), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer FindOrOpen(string identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_FindOrOpen__SWIG_0(swigCPtr, identifier, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer FindOrOpen(string identifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_FindOrOpen__SWIG_1(swigCPtr, identifier);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer OpenAsAnonymous(string layerPath, bool metadataOnly, string tag) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_OpenAsAnonymous__SWIG_0(swigCPtr, layerPath, metadataOnly, tag);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer OpenAsAnonymous(string layerPath, bool metadataOnly) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_OpenAsAnonymous__SWIG_1(swigCPtr, layerPath, metadataOnly);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer OpenAsAnonymous(string layerPath) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_OpenAsAnonymous__SWIG_2(swigCPtr, layerPath);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -74,13 +177,54 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_SdfLayerHandleSet GetLoadedLayers() {
+    SWIGTYPE_p_SdfLayerHandleSet ret = new SWIGTYPE_p_SdfLayerHandleSet(UsdCsPINVOKE.SdfLayerHandle_GetLoadedLayers(swigCPtr), true);
+    return ret;
+  }
+
   public bool IsEmpty() {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_IsEmpty(swigCPtr);
     return ret;
   }
 
+  public void TransferContent(SdfLayerHandle layer) {
+    UsdCsPINVOKE.SdfLayerHandle_TransferContent(swigCPtr, SdfLayerHandle.getCPtr(layer));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SdfLayer CreateAnonymous(string tag) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateAnonymous__SWIG_0(swigCPtr, tag);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer CreateAnonymous() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateAnonymous__SWIG_1(swigCPtr);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    return ret;
+  }
+
   public bool IsAnonymous() {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_IsAnonymous(swigCPtr);
+    return ret;
+  }
+
+  public bool IsAnonymousLayerIdentifier(string identifier) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_IsAnonymousLayerIdentifier(swigCPtr, identifier);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public string GetDisplayNameFromIdentifier(string identifier) {
+    string ret = UsdCsPINVOKE.SdfLayerHandle_GetDisplayNameFromIdentifier(swigCPtr, identifier);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public string ComputeRealPath(string layerPath) {
+    string ret = UsdCsPINVOKE.SdfLayerHandle_ComputeRealPath(swigCPtr, layerPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -107,9 +251,90 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public bool ImportFromString(string arg0) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_ImportFromString(swigCPtr, arg0);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void Clear() {
+    UsdCsPINVOKE.SdfLayerHandle_Clear(swigCPtr);
+  }
+
+  public bool Reload(bool force) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_Reload__SWIG_0(swigCPtr, force);
+    return ret;
+  }
+
+  public bool Reload() {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_Reload__SWIG_1(swigCPtr);
+    return ret;
+  }
+
+  public bool ReloadLayers(SWIGTYPE_p_std__setT_SdfLayerHandle_t layers, bool force) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_ReloadLayers__SWIG_0(swigCPtr, SWIGTYPE_p_std__setT_SdfLayerHandle_t.getCPtr(layers), force);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ReloadLayers(SWIGTYPE_p_std__setT_SdfLayerHandle_t layers) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_ReloadLayers__SWIG_1(swigCPtr, SWIGTYPE_p_std__setT_SdfLayerHandle_t.getCPtr(layers));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool Import(string layerPath) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_Import(swigCPtr, layerPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_std__setT_std__string_t GetExternalReferences() {
+    SWIGTYPE_p_std__setT_std__string_t ret = new SWIGTYPE_p_std__setT_std__string_t(UsdCsPINVOKE.SdfLayerHandle_GetExternalReferences(swigCPtr), true);
+    return ret;
+  }
+
+  public bool UpdateExternalReference(string oldAssetPath, string newAssetPath) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_UpdateExternalReference__SWIG_0(swigCPtr, oldAssetPath, newAssetPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool UpdateExternalReference(string oldAssetPath) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_UpdateExternalReference__SWIG_1(swigCPtr, oldAssetPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool SplitIdentifier(string identifier, SWIGTYPE_p_std__string layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t arguments) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_SplitIdentifier(swigCPtr, identifier, SWIGTYPE_p_std__string.getCPtr(layerPath), SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(arguments));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public string CreateIdentifier(string layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t arguments) {
+    string ret = UsdCsPINVOKE.SdfLayerHandle_CreateIdentifier(swigCPtr, layerPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(arguments));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public string GetIdentifier() {
     string ret = UsdCsPINVOKE.SdfLayerHandle_GetIdentifier(swigCPtr);
     return ret;
+  }
+
+  public void SetIdentifier(string identifier) {
+    UsdCsPINVOKE.SdfLayerHandle_SetIdentifier(swigCPtr, identifier);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void UpdateAssetInfo(string fileVersion) {
+    UsdCsPINVOKE.SdfLayerHandle_UpdateAssetInfo__SWIG_0(swigCPtr, fileVersion);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void UpdateAssetInfo() {
+    UsdCsPINVOKE.SdfLayerHandle_UpdateAssetInfo__SWIG_1(swigCPtr);
   }
 
   public string GetDisplayName() {
@@ -144,6 +369,12 @@ public class SdfLayerHandle : global::System.IDisposable {
 
   public VtValue GetAssetInfo() {
     VtValue ret = new VtValue(UsdCsPINVOKE.SdfLayerHandle_GetAssetInfo(swigCPtr), false);
+    return ret;
+  }
+
+  public string ComputeAbsolutePath(string relativePath) {
+    string ret = UsdCsPINVOKE.SdfLayerHandle_ComputeAbsolutePath(swigCPtr, relativePath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -189,9 +420,24 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void EraseField(SdfPath path, TfToken fieldName) {
+    UsdCsPINVOKE.SdfLayerHandle_EraseField(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void EraseFieldDictValueByKey(SdfPath path, TfToken fieldName, TfToken keyPath) {
+    UsdCsPINVOKE.SdfLayerHandle_EraseFieldDictValueByKey(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public SdfAssetPath GetColorConfiguration() {
     SdfAssetPath ret = new SdfAssetPath(UsdCsPINVOKE.SdfLayerHandle_GetColorConfiguration(swigCPtr), true);
     return ret;
+  }
+
+  public void SetColorConfiguration(SdfAssetPath colorConfiguration) {
+    UsdCsPINVOKE.SdfLayerHandle_SetColorConfiguration(swigCPtr, SdfAssetPath.getCPtr(colorConfiguration));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool HasColorConfiguration() {
@@ -199,9 +445,18 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearColorConfiguration() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearColorConfiguration(swigCPtr);
+  }
+
   public TfToken GetColorManagementSystem() {
     TfToken ret = new TfToken(UsdCsPINVOKE.SdfLayerHandle_GetColorManagementSystem(swigCPtr), true);
     return ret;
+  }
+
+  public void SetColorManagementSystem(TfToken cms) {
+    UsdCsPINVOKE.SdfLayerHandle_SetColorManagementSystem(swigCPtr, TfToken.getCPtr(cms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool HasColorManagementSystem() {
@@ -209,13 +464,36 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearColorManagementSystem() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearColorManagementSystem(swigCPtr);
+  }
+
   public string GetComment() {
     string ret = UsdCsPINVOKE.SdfLayerHandle_GetComment(swigCPtr);
     return ret;
   }
 
+  public void SetComment(string comment) {
+    UsdCsPINVOKE.SdfLayerHandle_SetComment(swigCPtr, comment);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public TfToken GetDefaultPrim() {
     TfToken ret = new TfToken(UsdCsPINVOKE.SdfLayerHandle_GetDefaultPrim(swigCPtr), true);
+    return ret;
+  }
+
+  public void SetDefaultPrim(TfToken name) {
+    UsdCsPINVOKE.SdfLayerHandle_SetDefaultPrim(swigCPtr, TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void ClearDefaultPrim() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearDefaultPrim(swigCPtr);
+  }
+
+  public bool HasDefaultPrim() {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_HasDefaultPrim(swigCPtr);
     return ret;
   }
 
@@ -224,9 +502,18 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void SetDocumentation(string documentation) {
+    UsdCsPINVOKE.SdfLayerHandle_SetDocumentation(swigCPtr, documentation);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public double GetStartTimeCode() {
     double ret = UsdCsPINVOKE.SdfLayerHandle_GetStartTimeCode(swigCPtr);
     return ret;
+  }
+
+  public void SetStartTimeCode(double startTimecode) {
+    UsdCsPINVOKE.SdfLayerHandle_SetStartTimeCode(swigCPtr, startTimecode);
   }
 
   public bool HasStartTimeCode() {
@@ -234,9 +521,17 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearStartTimeCode() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearStartTimeCode(swigCPtr);
+  }
+
   public double GetEndTimeCode() {
     double ret = UsdCsPINVOKE.SdfLayerHandle_GetEndTimeCode(swigCPtr);
     return ret;
+  }
+
+  public void SetEndTimeCode(double endTimeCode) {
+    UsdCsPINVOKE.SdfLayerHandle_SetEndTimeCode(swigCPtr, endTimeCode);
   }
 
   public bool HasEndTimeCode() {
@@ -244,9 +539,17 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearEndTimeCode() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearEndTimeCode(swigCPtr);
+  }
+
   public double GetTimeCodesPerSecond() {
     double ret = UsdCsPINVOKE.SdfLayerHandle_GetTimeCodesPerSecond(swigCPtr);
     return ret;
+  }
+
+  public void SetTimeCodesPerSecond(double timeCodesPerSecond) {
+    UsdCsPINVOKE.SdfLayerHandle_SetTimeCodesPerSecond(swigCPtr, timeCodesPerSecond);
   }
 
   public bool HasTimeCodesPerSecond() {
@@ -254,9 +557,17 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearTimeCodesPerSecond() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearTimeCodesPerSecond(swigCPtr);
+  }
+
   public double GetFramesPerSecond() {
     double ret = UsdCsPINVOKE.SdfLayerHandle_GetFramesPerSecond(swigCPtr);
     return ret;
+  }
+
+  public void SetFramesPerSecond(double framesPerSecond) {
+    UsdCsPINVOKE.SdfLayerHandle_SetFramesPerSecond(swigCPtr, framesPerSecond);
   }
 
   public bool HasFramesPerSecond() {
@@ -264,9 +575,17 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearFramesPerSecond() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearFramesPerSecond(swigCPtr);
+  }
+
   public int GetFramePrecision() {
     int ret = UsdCsPINVOKE.SdfLayerHandle_GetFramePrecision(swigCPtr);
     return ret;
+  }
+
+  public void SetFramePrecision(int framePrecision) {
+    UsdCsPINVOKE.SdfLayerHandle_SetFramePrecision(swigCPtr, framePrecision);
   }
 
   public bool HasFramePrecision() {
@@ -274,9 +593,18 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearFramePrecision() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearFramePrecision(swigCPtr);
+  }
+
   public string GetOwner() {
     string ret = UsdCsPINVOKE.SdfLayerHandle_GetOwner(swigCPtr);
     return ret;
+  }
+
+  public void SetOwner(string owner) {
+    UsdCsPINVOKE.SdfLayerHandle_SetOwner(swigCPtr, owner);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool HasOwner() {
@@ -284,9 +612,18 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearOwner() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearOwner(swigCPtr);
+  }
+
   public string GetSessionOwner() {
     string ret = UsdCsPINVOKE.SdfLayerHandle_GetSessionOwner(swigCPtr);
     return ret;
+  }
+
+  public void SetSessionOwner(string owner) {
+    UsdCsPINVOKE.SdfLayerHandle_SetSessionOwner(swigCPtr, owner);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool HasSessionOwner() {
@@ -294,9 +631,17 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void ClearSessionOwner() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearSessionOwner(swigCPtr);
+  }
+
   public bool GetHasOwnedSubLayers() {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_GetHasOwnedSubLayers(swigCPtr);
     return ret;
+  }
+
+  public void SetHasOwnedSubLayers(bool arg0) {
+    UsdCsPINVOKE.SdfLayerHandle_SetHasOwnedSubLayers(swigCPtr, arg0);
   }
 
   public VtDictionary GetCustomLayerData() {
@@ -304,9 +649,18 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void SetCustomLayerData(VtDictionary value) {
+    UsdCsPINVOKE.SdfLayerHandle_SetCustomLayerData(swigCPtr, VtDictionary.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public bool HasCustomLayerData() {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_HasCustomLayerData(swigCPtr);
     return ret;
+  }
+
+  public void ClearCustomLayerData() {
+    UsdCsPINVOKE.SdfLayerHandle_ClearCustomLayerData(swigCPtr);
   }
 
   public SWIGTYPE_p_SdfPrimSpecView GetRootPrims() {
@@ -314,13 +668,97 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void SetRootPrims(SWIGTYPE_p_SdfPrimSpecHandleVector rootPrims) {
+    UsdCsPINVOKE.SdfLayerHandle_SetRootPrims(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandleVector.getCPtr(rootPrims));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public bool InsertRootPrim(SWIGTYPE_p_SdfPrimSpecHandle prim, int index) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_InsertRootPrim__SWIG_0(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim), index);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool InsertRootPrim(SWIGTYPE_p_SdfPrimSpecHandle prim) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_InsertRootPrim__SWIG_1(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void RemoveRootPrim(SWIGTYPE_p_SdfPrimSpecHandle prim) {
+    UsdCsPINVOKE.SdfLayerHandle_RemoveRootPrim(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void ScheduleRemoveIfInert(SWIGTYPE_p_SdfSpec spec) {
+    UsdCsPINVOKE.SdfLayerHandle_ScheduleRemoveIfInert(swigCPtr, SWIGTYPE_p_SdfSpec.getCPtr(spec));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RemovePrimIfInert(SWIGTYPE_p_SdfPrimSpecHandle prim) {
+    UsdCsPINVOKE.SdfLayerHandle_RemovePrimIfInert(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RemovePropertyIfHasOnlyRequiredFields(SWIGTYPE_p_SdfPropertySpecHandle prop) {
+    UsdCsPINVOKE.SdfLayerHandle_RemovePropertyIfHasOnlyRequiredFields(swigCPtr, SWIGTYPE_p_SdfPropertySpecHandle.getCPtr(prop));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RemoveInertSceneDescription() {
+    UsdCsPINVOKE.SdfLayerHandle_RemoveInertSceneDescription(swigCPtr);
+  }
+
+  public void SetRootPrimOrder(TfTokenVector names) {
+    UsdCsPINVOKE.SdfLayerHandle_SetRootPrimOrder(swigCPtr, TfTokenVector.getCPtr(names));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void InsertInRootPrimOrder(TfToken name, int index) {
+    UsdCsPINVOKE.SdfLayerHandle_InsertInRootPrimOrder__SWIG_0(swigCPtr, TfToken.getCPtr(name), index);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void InsertInRootPrimOrder(TfToken name) {
+    UsdCsPINVOKE.SdfLayerHandle_InsertInRootPrimOrder__SWIG_1(swigCPtr, TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RemoveFromRootPrimOrder(TfToken name) {
+    UsdCsPINVOKE.SdfLayerHandle_RemoveFromRootPrimOrder(swigCPtr, TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RemoveFromRootPrimOrderByIndex(int index) {
+    UsdCsPINVOKE.SdfLayerHandle_RemoveFromRootPrimOrderByIndex(swigCPtr, index);
+  }
+
   public void ApplyRootPrimOrder(TfTokenVector vec) {
     UsdCsPINVOKE.SdfLayerHandle_ApplyRootPrimOrder(swigCPtr, TfTokenVector.getCPtr(vec));
+  }
+
+  public void SetSubLayerPaths(StdStringVector newPaths) {
+    UsdCsPINVOKE.SdfLayerHandle_SetSubLayerPaths(swigCPtr, StdStringVector.getCPtr(newPaths));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public uint GetNumSubLayerPaths() {
     uint ret = UsdCsPINVOKE.SdfLayerHandle_GetNumSubLayerPaths(swigCPtr);
     return ret;
+  }
+
+  public void InsertSubLayerPath(string path, int index) {
+    UsdCsPINVOKE.SdfLayerHandle_InsertSubLayerPath__SWIG_0(swigCPtr, path, index);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void InsertSubLayerPath(string path) {
+    UsdCsPINVOKE.SdfLayerHandle_InsertSubLayerPath__SWIG_1(swigCPtr, path);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RemoveSubLayerPath(int index) {
+    UsdCsPINVOKE.SdfLayerHandle_RemoveSubLayerPath(swigCPtr, index);
   }
 
   public SdfLayerOffsetVector GetSubLayerOffsets() {
@@ -333,13 +771,73 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public void SetSubLayerOffset(SdfLayerOffset offset, int index) {
+    UsdCsPINVOKE.SdfLayerHandle_SetSubLayerOffset(swigCPtr, SdfLayerOffset.getCPtr(offset), index);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SWIGTYPE_p_std__setT_std__string_t GetMutedLayers() {
+    SWIGTYPE_p_std__setT_std__string_t ret = new SWIGTYPE_p_std__setT_std__string_t(UsdCsPINVOKE.SdfLayerHandle_GetMutedLayers(swigCPtr), true);
+    return ret;
+  }
+
   public bool IsMuted() {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_IsMuted__SWIG_0(swigCPtr);
     return ret;
   }
 
+  public bool IsMuted(string path) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_IsMuted__SWIG_1(swigCPtr, path);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void SetMuted(bool muted) {
+    UsdCsPINVOKE.SdfLayerHandle_SetMuted(swigCPtr, muted);
+  }
+
+  public void AddToMutedLayers(string mutedPath) {
+    UsdCsPINVOKE.SdfLayerHandle_AddToMutedLayers(swigCPtr, mutedPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RemoveFromMutedLayers(string mutedPath) {
+    UsdCsPINVOKE.SdfLayerHandle_RemoveFromMutedLayers(swigCPtr, mutedPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public SWIGTYPE_p_SdfPrimSpecHandle GetPseudoRoot() {
     SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPseudoRoot(swigCPtr), true);
+    return ret;
+  }
+
+  public SWIGTYPE_p_SdfSpecHandle GetObjectAtPath(SdfPath path) {
+    SWIGTYPE_p_SdfSpecHandle ret = new SWIGTYPE_p_SdfSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetObjectAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_SdfPrimSpecHandle GetPrimAtPath(SdfPath path) {
+    SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPrimAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_SdfPropertySpecHandle GetPropertyAtPath(SdfPath path) {
+    SWIGTYPE_p_SdfPropertySpecHandle ret = new SWIGTYPE_p_SdfPropertySpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPropertyAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_SdfAttributeSpecHandle GetAttributeAtPath(SdfPath path) {
+    SWIGTYPE_p_SdfAttributeSpecHandle ret = new SWIGTYPE_p_SdfAttributeSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetAttributeAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_SdfRelationshipSpecHandle GetRelationshipAtPath(SdfPath path) {
+    SWIGTYPE_p_SdfRelationshipSpecHandle ret = new SWIGTYPE_p_SdfRelationshipSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetRelationshipAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -351,6 +849,14 @@ public class SdfLayerHandle : global::System.IDisposable {
   public bool PermissionToSave() {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_PermissionToSave(swigCPtr);
     return ret;
+  }
+
+  public void SetPermissionToEdit(bool allow) {
+    UsdCsPINVOKE.SdfLayerHandle_SetPermissionToEdit(swigCPtr, allow);
+  }
+
+  public void SetPermissionToSave(bool allow) {
+    UsdCsPINVOKE.SdfLayerHandle_SetPermissionToSave(swigCPtr, allow);
   }
 
   public SdfNamespaceEditDetail.Result CanApply(SdfBatchNamespaceEdit arg0, SdfNamespaceEditDetailVector details) {
@@ -365,9 +871,20 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_SdfLayerStateDelegateBasePtr GetStateDelegate() {
-    SWIGTYPE_p_SdfLayerStateDelegateBasePtr ret = new SWIGTYPE_p_SdfLayerStateDelegateBasePtr(UsdCsPINVOKE.SdfLayerHandle_GetStateDelegate(swigCPtr), true);
+  public bool Apply(SdfBatchNamespaceEdit arg0) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_Apply(swigCPtr, SdfBatchNamespaceEdit.getCPtr(arg0));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__Ptr GetStateDelegate() {
+    SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__Ptr ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__Ptr(UsdCsPINVOKE.SdfLayerHandle_GetStateDelegate(swigCPtr), true);
+    return ret;
+  }
+
+  public void SetStateDelegate(SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__RefPtr arg0) {
+    UsdCsPINVOKE.SdfLayerHandle_SetStateDelegate(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__RefPtr.getCPtr(arg0));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool IsDirty() {
@@ -377,6 +894,11 @@ public class SdfLayerHandle : global::System.IDisposable {
 
   public SWIGTYPE_p_std__setT_double_t ListAllTimeSamples() {
     SWIGTYPE_p_std__setT_double_t ret = new SWIGTYPE_p_std__setT_double_t(UsdCsPINVOKE.SdfLayerHandle_ListAllTimeSamples(swigCPtr), true);
+    return ret;
+  }
+
+  public bool GetBracketingTimeSamples(double time, ref double tLower, ref double tUpper) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_GetBracketingTimeSamples(swigCPtr, time, ref tLower, ref tUpper);
     return ret;
   }
 
@@ -392,14 +914,40 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public bool GetBracketingTimeSamplesForPath(SdfPath path, double time, ref double tLower, ref double tUpper) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_GetBracketingTimeSamplesForPath(swigCPtr, SdfPath.getCPtr(path), time, ref tLower, ref tUpper);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool QueryTimeSample(SdfPath path, double time) {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_QueryTimeSample(swigCPtr, SdfPath.getCPtr(path), time);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfFileFormatConstPtr GetFileFormat() {
-    SWIGTYPE_p_SdfFileFormatConstPtr ret = new SWIGTYPE_p_SdfFileFormatConstPtr(UsdCsPINVOKE.SdfLayerHandle_GetFileFormat(swigCPtr), true);
+  public void EraseTimeSample(SdfPath path, double time) {
+    UsdCsPINVOKE.SdfLayerHandle_EraseTimeSample(swigCPtr, SdfPath.getCPtr(path), time);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void DumpLayerInfo() {
+    UsdCsPINVOKE.SdfLayerHandle_DumpLayerInfo(swigCPtr);
+  }
+
+  public bool WriteDataFile(string filename) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_WriteDataFile(swigCPtr, filename);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public string ExportToString() {
+    string ret = UsdCsPINVOKE.SdfLayerHandle_ExportToString(swigCPtr);
+    return ret;
+  }
+
+  public SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr GetFileFormat() {
+    SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr(UsdCsPINVOKE.SdfLayerHandle_GetFileFormat(swigCPtr), true);
     return ret;
   }
 

@@ -145,7 +145,7 @@
     return ret;
   }
 
-
+/*
 %typemap(csout, excode=SWIGEXCODE) CONST TYPE {
     $typemap(cstype, TYPE) ret = new $typemap(cstype, TYPE)($imcall, true);$excode
     return ret;
@@ -176,6 +176,7 @@
       $csclassname ret = (cPtr == global::System.IntPtr.Zero) ? null : new $csclassname(cPtr, true);$excode
       return ret;
     } %}
+*/
 
 %typemap(csvarout, excode=SWIGEXCODE2) TfWeakPtr< CONST TYPE > & %{
     get {
@@ -190,7 +191,7 @@
       return ret;
     } %}
 
-
+/*
 // Proxy classes (base classes, ie, not derived classes)
 %typemap(csbody) TYPE %{
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -220,7 +221,8 @@
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 %}
-
+*/
+/*
 %typemap(csdestruct, methodname="Dispose", methodmodifiers="public") TYPE {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
@@ -247,6 +249,7 @@
       base.Dispose();
     }
   }
+*/
 
 %template() TfWeakPtr< CONST TYPE >;
 %enddef

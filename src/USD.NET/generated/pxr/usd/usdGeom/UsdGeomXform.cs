@@ -60,14 +60,14 @@ public class UsdGeomXform : UsdGeomXformable {
     return ret;
   }
 
-  public new static UsdGeomXform Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomXform ret = new UsdGeomXform(UsdCsPINVOKE.UsdGeomXform_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdGeomXform Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdGeomXform ret = new UsdGeomXform(UsdCsPINVOKE.UsdGeomXform_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomXform Define(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomXform ret = new UsdGeomXform(UsdCsPINVOKE.UsdGeomXform_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public static UsdGeomXform Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdGeomXform ret = new UsdGeomXform(UsdCsPINVOKE.UsdGeomXform_Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

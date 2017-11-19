@@ -27,19 +27,16 @@
 %include "std_string.i"
 %include "std_vector.i"
 
+// ---------------------------------------------------------------------------------------------- //
+// SMART POINTERS
+// ---------------------------------------------------------------------------------------------- //
+
 namespace std {
 	%template(SdfLayerHandleVector) vector<SdfLayerHandle>;
 }
 typedef std::vector<SdfLayerHandle> SdfLayerHandleVector;
 
 // Must be defined before interfaces to which it applies
-%typemap(cscode) SdfLayerHandle %{
-    public static implicit operator SdfLayerHandle(SdfLayerRefPtr d)
-    {
-        return new SdfLayerHandle(d);
-    }
-%}
-
 %extend SdfLayer {
   std::string ExportToString() const {
 	std::string str;
@@ -49,39 +46,22 @@ typedef std::vector<SdfLayerHandle> SdfLayerHandleVector;
 }
 %ignore SdfLayer::ExportToString(std::string*) const;
 
-class SdfLayerRefPtr{
-public:
-    SdfLayerRefPtr(SdfLayer* layer);
-    SdfLayer const* operator->();
-};
+%TfRefPtr(SdfLayer);
+%TfRefPtr(SdfLayerBase);
 
-%extend SdfLayerRefPtr {
-  static bool Equals(SdfLayerRefPtr const& lhs, SdfLayerRefPtr const& rhs) {
-	return lhs == rhs;
-  }
-  std::string ExportToString() const {
-	std::string str;
-	(*self)->ExportToString(&str);
-	return str;
-  }
-}
+typedef TfRefPtr<SdfLayer> SdfLayerRefPtr;
+
+class SdfLayerBase;
 
 class SdfLayerHandle{
 public:
     SdfLayerHandle(SdfLayer* layer);
-	explicit SdfLayerHandle(SdfLayerRefPtr const& layer);
-    SdfLayer const* operator->();
+    //explicit SdfLayerHandle(SdfLayerRefPtr const& layer);
+    SdfLayer* operator->();
 };
-%extend SdfLayerHandle {
-  static bool Equals(SdfLayerHandle const& lhs, SdfLayerHandle const& rhs) {
-	return lhs == rhs;
-  }
-  std::string ExportToString() const {
-	std::string str;
-	(*self)->ExportToString(&str);
-	return str;
-  }
-}
+
+// ---------------------------------------------------------------------------------------------- //
+
 
 %ignore SdfLayer::GetMetadata;
 %ignore SdfLayer::GetSpecType(const SdfAbstractDataSpecId& id) const;

@@ -60,14 +60,14 @@ public class UsdGeomMesh : UsdGeomPointBased {
     return ret;
   }
 
-  public new static UsdGeomMesh Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomMesh ret = new UsdGeomMesh(UsdCsPINVOKE.UsdGeomMesh_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdGeomMesh Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdGeomMesh ret = new UsdGeomMesh(UsdCsPINVOKE.UsdGeomMesh_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomMesh Define(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomMesh ret = new UsdGeomMesh(UsdCsPINVOKE.UsdGeomMesh_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public static UsdGeomMesh Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdGeomMesh ret = new UsdGeomMesh(UsdCsPINVOKE.UsdGeomMesh_Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -3936,22 +3936,6 @@ SWIGINTERN void std_vector_Sl_SdfLayerHandle_Sg__SetRange(std::vector< SdfLayerH
           throw std::out_of_range("index");
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
-SWIGINTERN bool SdfLayerRefPtr_Equals(SdfLayerRefPtr const &lhs,SdfLayerRefPtr const &rhs){
-	return lhs == rhs;
-  }
-SWIGINTERN std::string SdfLayerRefPtr_ExportToString(SdfLayerRefPtr const *self){
-	std::string str;
-	(*self)->ExportToString(&str);
-	return str;
-  }
-SWIGINTERN bool SdfLayerHandle_Equals(SdfLayerHandle const &lhs,SdfLayerHandle const &rhs){
-	return lhs == rhs;
-  }
-SWIGINTERN std::string SdfLayerHandle_ExportToString(SdfLayerHandle const *self){
-	std::string str;
-	(*self)->ExportToString(&str);
-	return str;
-  }
 SWIGINTERN std::string SdfLayer_ExportToString(SdfLayer const *self){
 	std::string str;
 	self->ExportToString(&str);
@@ -11864,7 +11848,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_PlugFindPluginResource__SWIG_0(void * j
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
   arg3 = jarg3 ? true : false; 
-  result = PlugFindPluginResource((PlugPluginPtr const &)*arg1,(std::string const &)*arg2,arg3);
+  result = PlugFindPluginResource((TfDeclarePtrs< PlugPlugin >::Ptr const &)*arg1,(std::string const &)*arg2,arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -11887,7 +11871,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_PlugFindPluginResource__SWIG_1(void * j
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = PlugFindPluginResource((PlugPluginPtr const &)*arg1,(std::string const &)*arg2);
+  result = PlugFindPluginResource((TfDeclarePtrs< PlugPlugin >::Ptr const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -11907,7 +11891,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_RegisterPlugins__SWIG_0(vo
   void * jresult ;
   PlugRegistry *arg1 = (PlugRegistry *) 0 ;
   std::string *arg2 = 0 ;
-  PlugPluginPtrVector result;
+  SwigValueWrapper< TfDeclarePtrs< PlugPlugin >::PtrVector > result;
   
   arg1 = (PlugRegistry *)jarg1; 
   if (!jarg2) {
@@ -11926,7 +11910,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_RegisterPlugins__SWIG_1(vo
   void * jresult ;
   PlugRegistry *arg1 = (PlugRegistry *) 0 ;
   std::vector< std::string > *arg2 = 0 ;
-  PlugPluginPtrVector result;
+  SwigValueWrapper< TfDeclarePtrs< PlugPlugin >::PtrVector > result;
   
   arg1 = (PlugRegistry *)jarg1; 
   arg2 = (std::vector< std::string > *)jarg2;
@@ -12021,7 +12005,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_GetPluginForType(void * ja
   PlugRegistry *arg1 = (PlugRegistry *) 0 ;
   TfType arg2 ;
   TfType *argp2 ;
-  PlugPluginPtr result;
+  SwigValueWrapper< TfDeclarePtrs< PlugPlugin >::Ptr > result;
   
   arg1 = (PlugRegistry *)jarg1; 
   argp2 = (TfType *)jarg2; 
@@ -12039,7 +12023,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_GetPluginForType(void * ja
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_GetAllPlugins(void * jarg1) {
   void * jresult ;
   PlugRegistry *arg1 = (PlugRegistry *) 0 ;
-  PlugPluginPtrVector result;
+  SwigValueWrapper< TfDeclarePtrs< PlugPlugin >::PtrVector > result;
   
   arg1 = (PlugRegistry *)jarg1; 
   result = ((PlugRegistry const *)arg1)->GetAllPlugins();
@@ -12052,7 +12036,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_GetPluginWithName(void * j
   void * jresult ;
   PlugRegistry *arg1 = (PlugRegistry *) 0 ;
   std::string *arg2 = 0 ;
-  PlugPluginPtr result;
+  SwigValueWrapper< TfDeclarePtrs< PlugPlugin >::Ptr > result;
   
   arg1 = (PlugRegistry *)jarg1; 
   if (!jarg2) {
@@ -43379,7 +43363,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfBatchNamespaceEdit_GetEdits(void * j
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerBase_GetFileFormat(void * jarg1) {
   void * jresult ;
   SdfLayerBase *arg1 = (SdfLayerBase *) 0 ;
-  SdfFileFormatConstPtr result;
+  SwigValueWrapper< TfDeclarePtrs< SdfFileFormat >::ConstPtr > result;
   
   arg1 = (SdfLayerBase *)jarg1; 
   result = ((SdfLayerBase const *)arg1)->GetFileFormat();
@@ -43792,1028 +43776,16 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayerHandleVector(void * jarg1)
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfLayerRefPtr(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfLayerHandle(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
-  SdfLayerRefPtr *result = 0 ;
-  
-  arg1 = (SdfLayer *)jarg1; 
-  result = (SdfLayerRefPtr *)new SdfLayerRefPtr(arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr___deref__(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfLayer *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (SdfLayer *)(arg1)->operator ->();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_Equals(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = 0 ;
-  SdfLayerRefPtr *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerRefPtr const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (SdfLayerRefPtr *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerRefPtr const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)SdfLayerRefPtr_Equals((SdfLayerRefPtr const &)*arg1,(SdfLayerRefPtr const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_ExportToString(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = SdfLayerRefPtr_ExportToString((SdfLayerRefPtr const *)arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayerRefPtr(void * jarg1) {
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetSchema(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfSchemaBase *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (SdfSchemaBase *) &(*arg1)->GetSchema();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_IsEmpty(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->IsEmpty();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_IsAnonymous(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->IsAnonymous();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_Save(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->Save();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_Export__SWIG_0(void * jarg1, char * jarg2, char * jarg3, void * jarg4) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  SdfLayer::FileFormatArguments *arg4 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  arg4 = (SdfLayer::FileFormatArguments *)jarg4;
-  if (!arg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->Export((std::string const &)*arg2,(std::string const &)*arg3,(SdfLayer::FileFormatArguments const &)*arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_Export__SWIG_1(void * jarg1, char * jarg2, char * jarg3) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = (bool)(*arg1)->Export((std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_Export__SWIG_2(void * jarg1, char * jarg2) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (bool)(*arg1)->Export((std::string const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetIdentifier(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (std::string *) &(*arg1)->GetIdentifier();
-  jresult = SWIG_csharp_string_callback(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetDisplayName(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetDisplayName();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetRealPath(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (std::string *) &(*arg1)->GetRealPath();
-  jresult = SWIG_csharp_string_callback(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetFileExtension(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetFileExtension();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetVersion(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (std::string *) &(*arg1)->GetVersion();
-  jresult = SWIG_csharp_string_callback(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetRepositoryPath(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (std::string *) &(*arg1)->GetRepositoryPath();
-  jresult = SWIG_csharp_string_callback(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetAssetName(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (std::string *) &(*arg1)->GetAssetName();
-  jresult = SWIG_csharp_string_callback(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetAssetInfo(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  VtValue *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (VtValue *) &(*arg1)->GetAssetInfo();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetSpecType(void * jarg1, void * jarg2) {
-  int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  SdfSpecType result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = (SdfSpecType)(*arg1)->GetSpecType((SdfPath const &)*arg2);
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasSpec(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasSpec((SdfPath const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_ListFields(void * jarg1, void * jarg2) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  std::vector< TfToken > result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = (*arg1)->ListFields((SdfPath const &)*arg2);
-  jresult = new std::vector< TfToken >((const std::vector< TfToken > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasField(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasField((SdfPath const &)*arg2,(TfToken const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasFieldDictKey(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  TfToken *arg4 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg4 = (TfToken *)jarg4;
-  if (!arg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasFieldDictKey((SdfPath const &)*arg2,(TfToken const &)*arg3,(TfToken const &)*arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetField(void * jarg1, void * jarg2, void * jarg3) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  VtValue result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (*arg1)->GetField((SdfPath const &)*arg2,(TfToken const &)*arg3);
-  jresult = new VtValue((const VtValue &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetFieldDictValueByKey(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  TfToken *arg4 = 0 ;
-  VtValue result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg4 = (TfToken *)jarg4;
-  if (!arg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (*arg1)->GetFieldDictValueByKey((SdfPath const &)*arg2,(TfToken const &)*arg3,(TfToken const &)*arg4);
-  jresult = new VtValue((const VtValue &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetColorConfiguration(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfAssetPath result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetColorConfiguration();
-  jresult = new SdfAssetPath((const SdfAssetPath &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasColorConfiguration(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasColorConfiguration();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetColorManagementSystem(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  TfToken result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetColorManagementSystem();
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasColorManagementSystem(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasColorManagementSystem();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetComment(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetComment();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetDefaultPrim(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  TfToken result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetDefaultPrim();
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetDocumentation(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetDocumentation();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetStartTimeCode(void * jarg1) {
-  double jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetStartTimeCode();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasStartTimeCode(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasStartTimeCode();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetEndTimeCode(void * jarg1) {
-  double jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetEndTimeCode();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasEndTimeCode(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasEndTimeCode();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetTimeCodesPerSecond(void * jarg1) {
-  double jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetTimeCodesPerSecond();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasTimeCodesPerSecond(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasTimeCodesPerSecond();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetFramesPerSecond(void * jarg1) {
-  double jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetFramesPerSecond();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasFramesPerSecond(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasFramesPerSecond();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetFramePrecision(void * jarg1) {
-  int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  int result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (int)(*arg1)->GetFramePrecision();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasFramePrecision(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasFramePrecision();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetOwner(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetOwner();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasOwner(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasOwner();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetSessionOwner(void * jarg1) {
-  char * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetSessionOwner();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasSessionOwner(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasSessionOwner();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetHasOwnedSubLayers(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->GetHasOwnedSubLayers();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetCustomLayerData(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  VtDictionary result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetCustomLayerData();
-  jresult = new VtDictionary((const VtDictionary &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_HasCustomLayerData(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasCustomLayerData();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetRootPrims(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfLayer::RootPrimsView result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetRootPrims();
-  jresult = new SdfLayer::RootPrimsView((const SdfLayer::RootPrimsView &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_ApplyRootPrimOrder(void * jarg1, void * jarg2) {
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::vector< TfToken > *arg2 = (std::vector< TfToken > *) 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (std::vector< TfToken > *)jarg2; 
-  (*arg1)->ApplyRootPrimOrder(arg2);
-}
-
-
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetNumSubLayerPaths(void * jarg1) {
-  unsigned long jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  size_t result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetNumSubLayerPaths();
-  jresult = (unsigned long)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetSubLayerOffsets(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfLayerOffsetVector result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetSubLayerOffsets();
-  jresult = new SdfLayerOffsetVector((const SdfLayerOffsetVector &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetSubLayerOffset(void * jarg1, int jarg2) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  int arg2 ;
-  SdfLayerOffset result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (int)jarg2; 
-  result = (*arg1)->GetSubLayerOffset(arg2);
-  jresult = new SdfLayerOffset((const SdfLayerOffset &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_IsMuted__SWIG_0(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->IsMuted();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetPseudoRoot(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPrimSpecHandle result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetPseudoRoot();
-  jresult = new SdfPrimSpecHandle((const SdfPrimSpecHandle &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_PermissionToEdit(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->PermissionToEdit();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_PermissionToSave(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->PermissionToSave();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_CanApply__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfBatchNamespaceEdit *arg2 = 0 ;
-  SdfNamespaceEditDetailVector *arg3 = (SdfNamespaceEditDetailVector *) 0 ;
-  SdfNamespaceEditDetail::Result result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfBatchNamespaceEdit *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfBatchNamespaceEdit const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (SdfNamespaceEditDetailVector *)jarg3; 
-  result = (SdfNamespaceEditDetail::Result)(*arg1)->CanApply((SdfBatchNamespaceEdit const &)*arg2,arg3);
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_CanApply__SWIG_1(void * jarg1, void * jarg2) {
-  int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfBatchNamespaceEdit *arg2 = 0 ;
-  SdfNamespaceEditDetail::Result result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfBatchNamespaceEdit *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfBatchNamespaceEdit const & type is null", 0);
-    return 0;
-  } 
-  result = (SdfNamespaceEditDetail::Result)(*arg1)->CanApply((SdfBatchNamespaceEdit const &)*arg2);
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetStateDelegate(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfLayerStateDelegateBasePtr result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetStateDelegate();
-  jresult = new SdfLayerStateDelegateBasePtr((const SdfLayerStateDelegateBasePtr &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_IsDirty(void * jarg1) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (bool)(*arg1)->IsDirty();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_ListAllTimeSamples(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  std::set< double > result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->ListAllTimeSamples();
-  jresult = new std::set< double >((const std::set< double > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetNumTimeSamplesForPath(void * jarg1, void * jarg2) {
-  unsigned long jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  size_t result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = (*arg1)->GetNumTimeSamplesForPath((SdfPath const &)*arg2);
-  jresult = (unsigned long)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_ListTimeSamplesForPath(void * jarg1, void * jarg2) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  std::set< double > result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = (*arg1)->ListTimeSamplesForPath((SdfPath const &)*arg2);
-  jresult = new std::set< double >((const std::set< double > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_QueryTimeSample(void * jarg1, void * jarg2, double jarg3) {
-  unsigned int jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  double arg3 ;
-  bool result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (double)jarg3; 
-  result = (bool)(*arg1)->QueryTimeSample((SdfPath const &)*arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetFileFormat(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfFileFormatConstPtr result;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (*arg1)->GetFileFormat();
-  jresult = new SdfFileFormatConstPtr((const SdfFileFormatConstPtr &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerRefPtr_GetFileFormatArguments(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = (SdfLayerRefPtr *) 0 ;
-  SdfLayerBase::FileFormatArguments *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1; 
-  result = (SdfLayerBase::FileFormatArguments *) &(*arg1)->GetFileFormatArguments();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfLayerHandle__SWIG_0(void * jarg1) {
-  void * jresult ;
-  SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfLayerHandle *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (SdfLayerHandle *)new SdfLayerHandle(arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfLayerHandle__SWIG_1(void * jarg1) {
-  void * jresult ;
-  SdfLayerRefPtr *arg1 = 0 ;
-  SdfLayerHandle *result = 0 ;
-  
-  arg1 = (SdfLayerRefPtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerRefPtr const & type is null", 0);
-    return 0;
-  } 
-  result = (SdfLayerHandle *)new SdfLayerHandle((SdfLayerRefPtr const &)*arg1);
   jresult = (void *)result; 
   return jresult;
 }
@@ -44831,45 +43803,490 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle___deref__(void * jarg1) 
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Equals(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  SdfLayerHandle *arg1 = 0 ;
-  SdfLayerHandle *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (SdfLayerHandle *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (SdfLayerHandle *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)SdfLayerHandle_Equals((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ExportToString(void * jarg1) {
-  char * jresult ;
-  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
-  std::string result;
-  
-  arg1 = (SdfLayerHandle *)jarg1; 
-  result = SdfLayerHandle_ExportToString((SdfLayerHandle const *)arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayerHandle(void * jarg1) {
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
   
   arg1 = (SdfLayerHandle *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_0(void * jarg1, char * jarg2, char * jarg3, void * jarg4) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  SdfLayer::FileFormatArguments *arg4 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  arg4 = (SdfLayer::FileFormatArguments *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->CreateNew((std::string const &)*arg2,(std::string const &)*arg3,(SdfLayer::FileFormatArguments const &)*arg4);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_1(void * jarg1, char * jarg2, char * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (*arg1)->CreateNew((std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_2(void * jarg1, char * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->CreateNew((std::string const &)*arg2);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_3(void * jarg1, void * jarg2, char * jarg3, char * jarg4, void * jarg5) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfFileFormatConstPtr *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  SdfLayer::FileFormatArguments *arg5 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfFileFormatConstPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  arg5 = (SdfLayer::FileFormatArguments *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->CreateNew((SdfFileFormatConstPtr const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(SdfLayer::FileFormatArguments const &)*arg5);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_4(void * jarg1, void * jarg2, char * jarg3, char * jarg4) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfFileFormatConstPtr *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfFileFormatConstPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (*arg1)->CreateNew((SdfFileFormatConstPtr const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateNew__SWIG_5(void * jarg1, void * jarg2, char * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfFileFormatConstPtr *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfFileFormatConstPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (*arg1)->CreateNew((SdfFileFormatConstPtr const &)*arg2,(std::string const &)*arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_New__SWIG_0(void * jarg1, void * jarg2, char * jarg3, char * jarg4, void * jarg5) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfFileFormatConstPtr *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  SdfLayer::FileFormatArguments *arg5 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfFileFormatConstPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  arg5 = (SdfLayer::FileFormatArguments *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->New((SdfFileFormatConstPtr const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(SdfLayer::FileFormatArguments const &)*arg5);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_New__SWIG_1(void * jarg1, void * jarg2, char * jarg3, char * jarg4) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfFileFormatConstPtr *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfFileFormatConstPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (*arg1)->New((SdfFileFormatConstPtr const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_New__SWIG_2(void * jarg1, void * jarg2, char * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfFileFormatConstPtr *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfFileFormatConstPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (*arg1)->New((SdfFileFormatConstPtr const &)*arg2,(std::string const &)*arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Find__SWIG_0(void * jarg1, char * jarg2, void * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfLayer::FileFormatArguments *arg3 = 0 ;
+  SwigValueWrapper< SdfLayerHandle > result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (SdfLayer::FileFormatArguments *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->Find((std::string const &)*arg2,(SdfLayer::FileFormatArguments const &)*arg3);
+  jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Find__SWIG_1(void * jarg1, char * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SwigValueWrapper< SdfLayerHandle > result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->Find((std::string const &)*arg2);
+  jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_FindRelativeToLayer__SWIG_0(void * jarg1, void * jarg2, char * jarg3, void * jarg4) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfLayerHandle *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  SdfLayer::FileFormatArguments *arg4 = 0 ;
+  SwigValueWrapper< SdfLayerHandle > result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfLayerHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  arg4 = (SdfLayer::FileFormatArguments *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->FindRelativeToLayer((SdfLayerHandle const &)*arg2,(std::string const &)*arg3,(SdfLayer::FileFormatArguments const &)*arg4);
+  jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_FindRelativeToLayer__SWIG_1(void * jarg1, void * jarg2, char * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfLayerHandle *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  SwigValueWrapper< SdfLayerHandle > result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfLayerHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (*arg1)->FindRelativeToLayer((SdfLayerHandle const &)*arg2,(std::string const &)*arg3);
+  jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_FindOrOpen__SWIG_0(void * jarg1, char * jarg2, void * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfLayer::FileFormatArguments *arg3 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (SdfLayer::FileFormatArguments *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->FindOrOpen((std::string const &)*arg2,(SdfLayer::FileFormatArguments const &)*arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_FindOrOpen__SWIG_1(void * jarg1, char * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->FindOrOpen((std::string const &)*arg2);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_OpenAsAnonymous__SWIG_0(void * jarg1, char * jarg2, unsigned int jarg3, char * jarg4) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  std::string *arg4 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = jarg3 ? true : false; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (*arg1)->OpenAsAnonymous((std::string const &)*arg2,arg3,(std::string const &)*arg4);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_OpenAsAnonymous__SWIG_1(void * jarg1, char * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = jarg3 ? true : false; 
+  result = (*arg1)->OpenAsAnonymous((std::string const &)*arg2,arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_OpenAsAnonymous__SWIG_2(void * jarg1, char * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->OpenAsAnonymous((std::string const &)*arg2);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
 }
 
 
@@ -44881,6 +44298,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetSchema(void * jarg1) 
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (SdfSchemaBase *) &(*arg1)->GetSchema();
   jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetLoadedLayers(void * jarg1) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfLayerHandleSet result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = (*arg1)->GetLoadedLayers();
+  jresult = new SdfLayerHandleSet((const SdfLayerHandleSet &)result); 
   return jresult;
 }
 
@@ -44897,6 +44326,51 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsEmpty(void * jar
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_TransferContent(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfLayerHandle *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfLayerHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->TransferContent((SdfLayerHandle const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateAnonymous__SWIG_0(void * jarg1, char * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->CreateAnonymous((std::string const &)*arg2);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateAnonymous__SWIG_1(void * jarg1) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = (*arg1)->CreateAnonymous();
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsAnonymous(void * jarg1) {
   unsigned int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -44905,6 +44379,63 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsAnonymous(void *
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (bool)(*arg1)->IsAnonymous();
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsAnonymousLayerIdentifier(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(*arg1)->IsAnonymousLayerIdentifier((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetDisplayNameFromIdentifier(void * jarg1, char * jarg2) {
+  char * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->GetDisplayNameFromIdentifier((std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ComputeRealPath(void * jarg1, char * jarg2) {
+  char * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->ComputeRealPath((std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
@@ -44998,6 +44529,221 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Export__SWIG_2(voi
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ImportFromString(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(*arg1)->ImportFromString((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Clear(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->Clear();
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Reload__SWIG_0(void * jarg1, unsigned int jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool arg2 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  result = (bool)(*arg1)->Reload(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Reload__SWIG_1(void * jarg1) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = (bool)(*arg1)->Reload();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ReloadLayers__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::set< SdfLayerHandle > *arg2 = 0 ;
+  bool arg3 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (std::set< SdfLayerHandle > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::set< SdfLayerHandle > const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = (bool)(*arg1)->ReloadLayers((std::set< SdfLayerHandle > const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ReloadLayers__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::set< SdfLayerHandle > *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (std::set< SdfLayerHandle > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::set< SdfLayerHandle > const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(*arg1)->ReloadLayers((std::set< SdfLayerHandle > const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Import(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(*arg1)->Import((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetExternalReferences(void * jarg1) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SwigValueWrapper< std::set< std::string > > result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = (*arg1)->GetExternalReferences();
+  jresult = new std::set< std::string >((const std::set< std::string > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_UpdateExternalReference__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (bool)(*arg1)->UpdateExternalReference((std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_UpdateExternalReference__SWIG_1(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(*arg1)->UpdateExternalReference((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SplitIdentifier(void * jarg1, char * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  SdfLayer::FileFormatArguments *arg4 = (SdfLayer::FileFormatArguments *) 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (std::string *)jarg3; 
+  arg4 = (SdfLayer::FileFormatArguments *)jarg4; 
+  result = (bool)(*arg1)->SplitIdentifier((std::string const &)*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateIdentifier(void * jarg1, char * jarg2, void * jarg3) {
+  char * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfLayer::FileFormatArguments *arg3 = 0 ;
+  std::string result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (SdfLayer::FileFormatArguments *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->CreateIdentifier((std::string const &)*arg2,(SdfLayer::FileFormatArguments const &)*arg3);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetIdentifier(void * jarg1) {
   char * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45007,6 +44753,44 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetIdentifier(void * jar
   result = (std::string *) &(*arg1)->GetIdentifier();
   jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetIdentifier(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->SetIdentifier((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_UpdateAssetInfo__SWIG_0(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->UpdateAssetInfo((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_UpdateAssetInfo__SWIG_1(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->UpdateAssetInfo();
 }
 
 
@@ -45090,6 +44874,25 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetAssetInfo(void * jarg
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (VtValue *) &(*arg1)->GetAssetInfo();
   jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ComputeAbsolutePath(void * jarg1, char * jarg2) {
+  char * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (*arg1)->ComputeAbsolutePath((std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
@@ -45256,6 +45059,52 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFieldDictValueByKey(v
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_EraseField(void * jarg1, void * jarg2, void * jarg3) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return ;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->EraseField((SdfPath const &)*arg2,(TfToken const &)*arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_EraseFieldDictValueByKey(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  TfToken *arg4 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return ;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  arg4 = (TfToken *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->EraseFieldDictValueByKey((SdfPath const &)*arg2,(TfToken const &)*arg3,(TfToken const &)*arg4);
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetColorConfiguration(void * jarg1) {
   void * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45265,6 +45114,20 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetColorConfiguration(vo
   result = (*arg1)->GetColorConfiguration();
   jresult = new SdfAssetPath((const SdfAssetPath &)result); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetColorConfiguration(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfAssetPath *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfAssetPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetColorConfiguration((SdfAssetPath const &)*arg2);
 }
 
 
@@ -45280,6 +45143,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasColorConfigurat
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearColorConfiguration(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearColorConfiguration();
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetColorManagementSystem(void * jarg1) {
   void * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45289,6 +45160,20 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetColorManagementSystem
   result = (*arg1)->GetColorManagementSystem();
   jresult = new TfToken((const TfToken &)result); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetColorManagementSystem(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetColorManagementSystem((TfToken const &)*arg2);
 }
 
 
@@ -45304,6 +45189,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasColorManagement
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearColorManagementSystem(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearColorManagementSystem();
+}
+
+
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetComment(void * jarg1) {
   char * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45316,6 +45209,21 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetComment(void * jarg1)
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetComment(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->SetComment((std::string const &)*arg2);
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetDefaultPrim(void * jarg1) {
   void * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45324,6 +45232,40 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetDefaultPrim(void * ja
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (*arg1)->GetDefaultPrim();
   jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetDefaultPrim(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetDefaultPrim((TfToken const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearDefaultPrim(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearDefaultPrim();
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasDefaultPrim(void * jarg1) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = (bool)(*arg1)->HasDefaultPrim();
+  jresult = result; 
   return jresult;
 }
 
@@ -45340,6 +45282,21 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetDocumentation(void * 
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetDocumentation(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->SetDocumentation((std::string const &)*arg2);
+}
+
+
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetStartTimeCode(void * jarg1) {
   double jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45349,6 +45306,16 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetStartTimeCode(void * 
   result = (double)(*arg1)->GetStartTimeCode();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetStartTimeCode(void * jarg1, double jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  double arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (double)jarg2; 
+  (*arg1)->SetStartTimeCode(arg2);
 }
 
 
@@ -45364,6 +45331,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasStartTimeCode(v
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearStartTimeCode(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearStartTimeCode();
+}
+
+
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetEndTimeCode(void * jarg1) {
   double jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45373,6 +45348,16 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetEndTimeCode(void * ja
   result = (double)(*arg1)->GetEndTimeCode();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetEndTimeCode(void * jarg1, double jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  double arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (double)jarg2; 
+  (*arg1)->SetEndTimeCode(arg2);
 }
 
 
@@ -45388,6 +45373,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasEndTimeCode(voi
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearEndTimeCode(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearEndTimeCode();
+}
+
+
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetTimeCodesPerSecond(void * jarg1) {
   double jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45397,6 +45390,16 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetTimeCodesPerSecond(vo
   result = (double)(*arg1)->GetTimeCodesPerSecond();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetTimeCodesPerSecond(void * jarg1, double jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  double arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (double)jarg2; 
+  (*arg1)->SetTimeCodesPerSecond(arg2);
 }
 
 
@@ -45412,6 +45415,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasTimeCodesPerSec
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearTimeCodesPerSecond(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearTimeCodesPerSecond();
+}
+
+
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFramesPerSecond(void * jarg1) {
   double jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45421,6 +45432,16 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFramesPerSecond(void 
   result = (double)(*arg1)->GetFramesPerSecond();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetFramesPerSecond(void * jarg1, double jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  double arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (double)jarg2; 
+  (*arg1)->SetFramesPerSecond(arg2);
 }
 
 
@@ -45436,6 +45457,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasFramesPerSecond
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearFramesPerSecond(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearFramesPerSecond();
+}
+
+
 SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFramePrecision(void * jarg1) {
   int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45445,6 +45474,16 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFramePrecision(void * ja
   result = (int)(*arg1)->GetFramePrecision();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetFramePrecision(void * jarg1, int jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  int arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (int)jarg2; 
+  (*arg1)->SetFramePrecision(arg2);
 }
 
 
@@ -45460,6 +45499,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasFramePrecision(
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearFramePrecision(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearFramePrecision();
+}
+
+
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetOwner(void * jarg1) {
   char * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45469,6 +45516,21 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetOwner(void * jarg1) {
   result = (*arg1)->GetOwner();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetOwner(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->SetOwner((std::string const &)*arg2);
 }
 
 
@@ -45484,6 +45546,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasOwner(void * ja
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearOwner(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearOwner();
+}
+
+
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetSessionOwner(void * jarg1) {
   char * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45493,6 +45563,21 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetSessionOwner(void * j
   result = (*arg1)->GetSessionOwner();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetSessionOwner(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->SetSessionOwner((std::string const &)*arg2);
 }
 
 
@@ -45508,6 +45593,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasSessionOwner(vo
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearSessionOwner(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearSessionOwner();
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetHasOwnedSubLayers(void * jarg1) {
   unsigned int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45517,6 +45610,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetHasOwnedSubLaye
   result = (bool)(*arg1)->GetHasOwnedSubLayers();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetHasOwnedSubLayers(void * jarg1, unsigned int jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (*arg1)->SetHasOwnedSubLayers(arg2);
 }
 
 
@@ -45532,6 +45635,20 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetCustomLayerData(void 
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetCustomLayerData(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  VtDictionary *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (VtDictionary *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtDictionary const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetCustomLayerData((VtDictionary const &)*arg2);
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasCustomLayerData(void * jarg1) {
   unsigned int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45541,6 +45658,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_HasCustomLayerData
   result = (bool)(*arg1)->HasCustomLayerData();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ClearCustomLayerData(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->ClearCustomLayerData();
 }
 
 
@@ -45556,6 +45681,194 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetRootPrims(void * jarg
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetRootPrims(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPrimSpecHandleVector *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPrimSpecHandleVector *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandleVector const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetRootPrims((SdfPrimSpecHandleVector const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_InsertRootPrim__SWIG_0(void * jarg1, void * jarg2, int jarg3) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPrimSpecHandle *arg2 = 0 ;
+  int arg3 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPrimSpecHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandle const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (int)jarg3; 
+  result = (bool)(*arg1)->InsertRootPrim((SdfPrimSpecHandle const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_InsertRootPrim__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPrimSpecHandle *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPrimSpecHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandle const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(*arg1)->InsertRootPrim((SdfPrimSpecHandle const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemoveRootPrim(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPrimSpecHandle *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPrimSpecHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandle const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->RemoveRootPrim((SdfPrimSpecHandle const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ScheduleRemoveIfInert(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfSpec *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfSpec *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfSpec const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->ScheduleRemoveIfInert((SdfSpec const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemovePrimIfInert(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPrimSpecHandle arg2 ;
+  SdfPrimSpecHandle *argp2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  argp2 = (SdfPrimSpecHandle *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfPrimSpecHandle", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  (*arg1)->RemovePrimIfInert(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemovePropertyIfHasOnlyRequiredFields(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPropertySpecHandle arg2 ;
+  SdfPropertySpecHandle *argp2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  argp2 = (SdfPropertySpecHandle *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfPropertySpecHandle", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  (*arg1)->RemovePropertyIfHasOnlyRequiredFields(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemoveInertSceneDescription(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->RemoveInertSceneDescription();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetRootPrimOrder(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::vector< TfToken > *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (std::vector< TfToken > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< TfToken > const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetRootPrimOrder((std::vector< TfToken > const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_InsertInRootPrimOrder__SWIG_0(void * jarg1, void * jarg2, int jarg3) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  TfToken *arg2 = 0 ;
+  int arg3 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  arg3 = (int)jarg3; 
+  (*arg1)->InsertInRootPrimOrder((TfToken const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_InsertInRootPrimOrder__SWIG_1(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->InsertInRootPrimOrder((TfToken const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemoveFromRootPrimOrder(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->RemoveFromRootPrimOrder((TfToken const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemoveFromRootPrimOrderByIndex(void * jarg1, int jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  int arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (int)jarg2; 
+  (*arg1)->RemoveFromRootPrimOrderByIndex(arg2);
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ApplyRootPrimOrder(void * jarg1, void * jarg2) {
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
   std::vector< TfToken > *arg2 = (std::vector< TfToken > *) 0 ;
@@ -45563,6 +45876,20 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ApplyRootPrimOrder(void * 
   arg1 = (SdfLayerHandle *)jarg1; 
   arg2 = (std::vector< TfToken > *)jarg2; 
   (*arg1)->ApplyRootPrimOrder(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetSubLayerPaths(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::vector< std::string > *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (std::vector< std::string > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::string > const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetSubLayerPaths((std::vector< std::string > const &)*arg2);
 }
 
 
@@ -45575,6 +45902,48 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetNumSubLayerPat
   result = (*arg1)->GetNumSubLayerPaths();
   jresult = (unsigned long)result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_InsertSubLayerPath__SWIG_0(void * jarg1, char * jarg2, int jarg3) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  int arg3 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (int)jarg3; 
+  (*arg1)->InsertSubLayerPath((std::string const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_InsertSubLayerPath__SWIG_1(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->InsertSubLayerPath((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemoveSubLayerPath(void * jarg1, int jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  int arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (int)jarg2; 
+  (*arg1)->RemoveSubLayerPath(arg2);
 }
 
 
@@ -45604,6 +45973,34 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetSubLayerOffset(void *
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetSubLayerOffset(void * jarg1, void * jarg2, int jarg3) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfLayerOffset *arg2 = 0 ;
+  int arg3 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfLayerOffset *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerOffset const & type is null", 0);
+    return ;
+  } 
+  arg3 = (int)jarg3; 
+  (*arg1)->SetSubLayerOffset((SdfLayerOffset const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetMutedLayers(void * jarg1) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SwigValueWrapper< std::set< std::string > > result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = (*arg1)->GetMutedLayers();
+  jresult = new std::set< std::string >((const std::set< std::string > &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsMuted__SWIG_0(void * jarg1) {
   unsigned int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45616,6 +46013,65 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsMuted__SWIG_0(vo
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsMuted__SWIG_1(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(*arg1)->IsMuted((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetMuted(void * jarg1, unsigned int jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (*arg1)->SetMuted(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_AddToMutedLayers(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->AddToMutedLayers((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_RemoveFromMutedLayers(void * jarg1, char * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (*arg1)->RemoveFromMutedLayers((std::string const &)*arg2);
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetPseudoRoot(void * jarg1) {
   void * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45624,6 +46080,96 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetPseudoRoot(void * jar
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (*arg1)->GetPseudoRoot();
   jresult = new SdfPrimSpecHandle((const SdfPrimSpecHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetObjectAtPath(void * jarg1, void * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  SdfSpecHandle result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->GetObjectAtPath((SdfPath const &)*arg2);
+  jresult = new SdfSpecHandle((const SdfSpecHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetPrimAtPath(void * jarg1, void * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  SdfPrimSpecHandle result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->GetPrimAtPath((SdfPath const &)*arg2);
+  jresult = new SdfPrimSpecHandle((const SdfPrimSpecHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetPropertyAtPath(void * jarg1, void * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  SdfPropertySpecHandle result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->GetPropertyAtPath((SdfPath const &)*arg2);
+  jresult = new SdfPropertySpecHandle((const SdfPropertySpecHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetAttributeAtPath(void * jarg1, void * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  SdfAttributeSpecHandle result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->GetAttributeAtPath((SdfPath const &)*arg2);
+  jresult = new SdfAttributeSpecHandle((const SdfAttributeSpecHandle &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetRelationshipAtPath(void * jarg1, void * jarg2) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  SdfRelationshipSpecHandle result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->GetRelationshipAtPath((SdfPath const &)*arg2);
+  jresult = new SdfRelationshipSpecHandle((const SdfRelationshipSpecHandle &)result); 
   return jresult;
 }
 
@@ -45649,6 +46195,26 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_PermissionToSave(v
   result = (bool)(*arg1)->PermissionToSave();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetPermissionToEdit(void * jarg1, unsigned int jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (*arg1)->SetPermissionToEdit(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetPermissionToSave(void * jarg1, unsigned int jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (*arg1)->SetPermissionToSave(arg2);
 }
 
 
@@ -45690,15 +46256,47 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CanApply__SWIG_1(void * jar
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Apply(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfBatchNamespaceEdit *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfBatchNamespaceEdit *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfBatchNamespaceEdit const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(*arg1)->Apply((SdfBatchNamespaceEdit const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetStateDelegate(void * jarg1) {
   void * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
-  SdfLayerStateDelegateBasePtr result;
+  SwigValueWrapper< TfDeclarePtrs< SdfLayerStateDelegateBase >::Ptr > result;
   
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (*arg1)->GetStateDelegate();
   jresult = new SdfLayerStateDelegateBasePtr((const SdfLayerStateDelegateBasePtr &)result); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetStateDelegate(void * jarg1, void * jarg2) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfLayerStateDelegateBaseRefPtr *arg2 = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfLayerStateDelegateBaseRefPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerStateDelegateBaseRefPtr const & type is null", 0);
+    return ;
+  } 
+  (*arg1)->SetStateDelegate((SdfLayerStateDelegateBaseRefPtr const &)*arg2);
 }
 
 
@@ -45722,6 +46320,24 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ListAllTimeSamples(void 
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (*arg1)->ListAllTimeSamples();
   jresult = new std::set< double >((const std::set< double > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetBracketingTimeSamples(void * jarg1, double jarg2, double * jarg3, double * jarg4) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  double arg2 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (double)jarg2; 
+  arg3 = (double *)jarg3; 
+  arg4 = (double *)jarg4; 
+  result = (bool)(*arg1)->GetBracketingTimeSamples(arg2,arg3,arg4);
+  jresult = result; 
   return jresult;
 }
 
@@ -45762,6 +46378,30 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ListTimeSamplesForPath(v
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetBracketingTimeSamplesForPath(void * jarg1, void * jarg2, double jarg3, double * jarg4, double * jarg5) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  double arg3 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  arg4 = (double *)jarg4; 
+  arg5 = (double *)jarg5; 
+  result = (bool)(*arg1)->GetBracketingTimeSamplesForPath((SdfPath const &)*arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_QueryTimeSample(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -45782,10 +46422,65 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_QueryTimeSample(vo
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_EraseTimeSample(void * jarg1, void * jarg2, double jarg3) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  double arg3 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return ;
+  } 
+  arg3 = (double)jarg3; 
+  (*arg1)->EraseTimeSample((SdfPath const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_DumpLayerInfo(void * jarg1) {
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  (*arg1)->DumpLayerInfo();
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_WriteDataFile(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(*arg1)->WriteDataFile((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ExportToString(void * jarg1) {
+  char * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = SdfLayer_ExportToString((SdfLayer*)(arg1)->operator ->());
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFileFormat(void * jarg1) {
   void * jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
-  SdfFileFormatConstPtr result;
+  SwigValueWrapper< TfDeclarePtrs< SdfFileFormat >::ConstPtr > result;
   
   arg1 = (SdfLayerHandle *)jarg1; 
   result = (*arg1)->GetFileFormat();
@@ -45808,9 +46503,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFileFormatArguments(v
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayer(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
-  delete arg1;
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
+  (void)arg1; delete smartarg1;
 }
 
 
@@ -45819,7 +46517,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_0(char * jarg1
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   SdfLayer::FileFormatArguments *arg3 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -45839,7 +46537,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_0(char * jarg1
     return 0;
   } 
   result = SdfLayer::CreateNew((std::string const &)*arg1,(std::string const &)*arg2,(std::map< std::string,std::string,std::less< std::string > > const &)*arg3);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -45848,7 +46546,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_1(char * jarg1
   void * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -45863,7 +46561,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_1(char * jarg1
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
   result = SdfLayer::CreateNew((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -45871,7 +46569,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_1(char * jarg1
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_2(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -45880,7 +46578,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_2(char * jarg1
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = SdfLayer::CreateNew((std::string const &)*arg1);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -45891,7 +46589,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_3(void * jarg1
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   SdfLayer::FileFormatArguments *arg4 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (SdfFileFormatConstPtr *)jarg1;
   if (!arg1) {
@@ -45915,8 +46613,8 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_3(void * jarg1
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
     return 0;
   } 
-  result = SdfLayer::CreateNew((SdfFileFormatConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::map< std::string,std::string,std::less< std::string > > const &)*arg4);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  result = SdfLayer::CreateNew((TfDeclarePtrs< SdfFileFormat >::ConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::map< std::string,std::string,std::less< std::string > > const &)*arg4);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -45926,7 +46624,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_4(void * jarg1
   SdfFileFormatConstPtr *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (SdfFileFormatConstPtr *)jarg1;
   if (!arg1) {
@@ -45945,8 +46643,8 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_4(void * jarg1
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = SdfLayer::CreateNew((SdfFileFormatConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  result = SdfLayer::CreateNew((TfDeclarePtrs< SdfFileFormat >::ConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -45955,7 +46653,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_5(void * jarg1
   void * jresult ;
   SdfFileFormatConstPtr *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (SdfFileFormatConstPtr *)jarg1;
   if (!arg1) {
@@ -45968,8 +46666,8 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateNew__SWIG_5(void * jarg1
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = SdfLayer::CreateNew((SdfFileFormatConstPtr const &)*arg1,(std::string const &)*arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  result = SdfLayer::CreateNew((TfDeclarePtrs< SdfFileFormat >::ConstPtr const &)*arg1,(std::string const &)*arg2);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -45980,7 +46678,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_New__SWIG_0(void * jarg1, char
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   SdfLayer::FileFormatArguments *arg4 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (SdfFileFormatConstPtr *)jarg1;
   if (!arg1) {
@@ -46004,8 +46702,8 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_New__SWIG_0(void * jarg1, char
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
     return 0;
   } 
-  result = SdfLayer::New((SdfFileFormatConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::map< std::string,std::string,std::less< std::string > > const &)*arg4);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  result = SdfLayer::New((TfDeclarePtrs< SdfFileFormat >::ConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::map< std::string,std::string,std::less< std::string > > const &)*arg4);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46015,7 +46713,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_New__SWIG_1(void * jarg1, char
   SdfFileFormatConstPtr *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (SdfFileFormatConstPtr *)jarg1;
   if (!arg1) {
@@ -46034,8 +46732,8 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_New__SWIG_1(void * jarg1, char
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = SdfLayer::New((SdfFileFormatConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  result = SdfLayer::New((TfDeclarePtrs< SdfFileFormat >::ConstPtr const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46044,7 +46742,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_New__SWIG_2(void * jarg1, char
   void * jresult ;
   SdfFileFormatConstPtr *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (SdfFileFormatConstPtr *)jarg1;
   if (!arg1) {
@@ -46057,8 +46755,8 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_New__SWIG_2(void * jarg1, char
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = SdfLayer::New((SdfFileFormatConstPtr const &)*arg1,(std::string const &)*arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  result = SdfLayer::New((TfDeclarePtrs< SdfFileFormat >::ConstPtr const &)*arg1,(std::string const &)*arg2);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46159,7 +46857,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_FindOrOpen__SWIG_0(char * jarg
   void * jresult ;
   std::string *arg1 = 0 ;
   SdfLayer::FileFormatArguments *arg2 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -46173,7 +46871,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_FindOrOpen__SWIG_0(char * jarg
     return 0;
   } 
   result = SdfLayer::FindOrOpen((std::string const &)*arg1,(std::map< std::string,std::string,std::less< std::string > > const &)*arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46181,7 +46879,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_FindOrOpen__SWIG_0(char * jarg
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_FindOrOpen__SWIG_1(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -46190,7 +46888,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_FindOrOpen__SWIG_1(char * jarg
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = SdfLayer::FindOrOpen((std::string const &)*arg1);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46200,7 +46898,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_0(char *
   std::string *arg1 = 0 ;
   bool arg2 ;
   std::string *arg3 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -46216,7 +46914,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_0(char *
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
   result = SdfLayer::OpenAsAnonymous((std::string const &)*arg1,arg2,(std::string const &)*arg3);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46225,7 +46923,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_1(char *
   void * jresult ;
   std::string *arg1 = 0 ;
   bool arg2 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -46235,7 +46933,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_1(char *
   arg1 = &arg1_str; 
   arg2 = jarg2 ? true : false; 
   result = SdfLayer::OpenAsAnonymous((std::string const &)*arg1,arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46243,7 +46941,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_1(char *
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_2(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -46252,7 +46950,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_2(char *
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = SdfLayer::OpenAsAnonymous((std::string const &)*arg1);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46260,9 +46958,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_OpenAsAnonymous__SWIG_2(char *
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetSchema(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfSchemaBase *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (SdfSchemaBase *) &((SdfLayer const *)arg1)->GetSchema();
   jresult = (void *)result; 
   return jresult;
@@ -46282,9 +46983,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetLoadedLayers() {
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsEmpty(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->IsEmpty();
   jresult = result; 
   return jresult;
@@ -46294,8 +46998,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsEmpty(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_TransferContent(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfLayerHandle *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfLayerHandle *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
@@ -46308,7 +47015,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_TransferContent(void * jarg1, vo
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateAnonymous__SWIG_0(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -46317,17 +47024,17 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateAnonymous__SWIG_0(char *
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = SdfLayer::CreateAnonymous((std::string const &)*arg1);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateAnonymous__SWIG_1() {
   void * jresult ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   result = SdfLayer::CreateAnonymous();
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -46335,9 +47042,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateAnonymous__SWIG_1() {
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsAnonymous(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->IsAnonymous();
   jresult = result; 
   return jresult;
@@ -46398,9 +47108,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_ComputeRealPath(char * jarg1) 
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Save(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->Save();
   jresult = result; 
   return jresult;
@@ -46413,9 +47126,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Export__SWIG_0(void * ja
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   SdfLayer::FileFormatArguments *arg4 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46444,9 +47160,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Export__SWIG_1(void * ja
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46469,9 +47188,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Export__SWIG_2(void * ja
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46488,9 +47210,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_ImportFromString(void * 
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46505,8 +47230,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_ImportFromString(void * 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_Clear(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->Clear();
 }
 
@@ -46515,9 +47243,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Reload__SWIG_0(void * ja
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   bool arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   result = (bool)(arg1)->Reload(arg2);
   jresult = result; 
@@ -46528,9 +47259,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Reload__SWIG_0(void * ja
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Reload__SWIG_1(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)(arg1)->Reload();
   jresult = result; 
   return jresult;
@@ -46575,9 +47309,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Import(void * jarg1, cha
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46593,9 +47330,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Import(void * jarg1, cha
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetExternalReferences(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SwigValueWrapper< std::set< std::string > > result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (arg1)->GetExternalReferences();
   jresult = new std::set< std::string >((const std::set< std::string > &)result); 
   return jresult;
@@ -46607,9 +47347,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_UpdateExternalReference_
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46632,9 +47375,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_UpdateExternalReference_
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46694,9 +47440,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateIdentifier(char * jarg1,
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetIdentifier(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (std::string *) &((SdfLayer const *)arg1)->GetIdentifier();
   jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
@@ -46706,8 +47455,11 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetIdentifier(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetIdentifier(void * jarg1, char * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -46721,8 +47473,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetIdentifier(void * jarg1, char
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_UpdateAssetInfo__SWIG_0(void * jarg1, char * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -46735,8 +47490,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_UpdateAssetInfo__SWIG_0(void * j
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_UpdateAssetInfo__SWIG_1(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->UpdateAssetInfo();
 }
 
@@ -46744,9 +47502,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_UpdateAssetInfo__SWIG_1(void * j
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetDisplayName(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetDisplayName();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
@@ -46756,9 +47517,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetDisplayName(void * jarg1) {
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRealPath(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (std::string *) &((SdfLayer const *)arg1)->GetRealPath();
   jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
@@ -46768,9 +47532,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRealPath(void * jarg1) {
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetFileExtension(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetFileExtension();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
@@ -46780,9 +47547,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetFileExtension(void * jarg1)
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetVersion(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (std::string *) &((SdfLayer const *)arg1)->GetVersion();
   jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
@@ -46792,9 +47562,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetVersion(void * jarg1) {
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRepositoryPath(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (std::string *) &((SdfLayer const *)arg1)->GetRepositoryPath();
   jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
@@ -46804,9 +47577,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRepositoryPath(void * jarg1
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetAssetName(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (std::string *) &((SdfLayer const *)arg1)->GetAssetName();
   jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
@@ -46816,9 +47592,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetAssetName(void * jarg1) {
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetAssetInfo(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   VtValue *result = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (VtValue *) &((SdfLayer const *)arg1)->GetAssetInfo();
   jresult = (void *)result; 
   return jresult;
@@ -46829,9 +47608,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_ComputeAbsolutePath(void * jar
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -46848,9 +47630,12 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayer_GetSpecType(void * jarg1, void * 
   int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfSpecType result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -46866,9 +47651,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasSpec(void * jarg1, vo
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -46884,9 +47672,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_ListFields(void * jarg1, void 
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::vector< TfToken > result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -46903,9 +47694,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasField(void * jarg1, v
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
   TfToken *arg3 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -46928,9 +47722,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasFieldDictKey(void * j
   SdfPath *arg2 = 0 ;
   TfToken *arg3 = 0 ;
   TfToken *arg4 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -46957,9 +47754,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetField(void * jarg1, void * 
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
   TfToken *arg3 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   VtValue result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -46982,9 +47782,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetFieldDictValueByKey(void * 
   SdfPath *arg2 = 0 ;
   TfToken *arg3 = 0 ;
   TfToken *arg4 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   VtValue result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -47010,8 +47813,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_EraseField(void * jarg1, void * 
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
   TfToken *arg3 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -47031,8 +47837,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_EraseFieldDictValueByKey(void * 
   SdfPath *arg2 = 0 ;
   TfToken *arg3 = 0 ;
   TfToken *arg4 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -47055,9 +47864,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_EraseFieldDictValueByKey(void * 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetColorConfiguration(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfAssetPath result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetColorConfiguration();
   jresult = new SdfAssetPath((const SdfAssetPath &)result); 
   return jresult;
@@ -47067,8 +47879,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetColorConfiguration(void * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetColorConfiguration(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfAssetPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfAssetPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
@@ -47081,9 +47896,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetColorConfiguration(void * jar
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasColorConfiguration(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasColorConfiguration();
   jresult = result; 
   return jresult;
@@ -47092,8 +47910,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasColorConfiguration(vo
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearColorConfiguration(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearColorConfiguration();
 }
 
@@ -47101,9 +47922,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearColorConfiguration(void * j
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetColorManagementSystem(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   TfToken result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetColorManagementSystem();
   jresult = new TfToken((const TfToken &)result); 
   return jresult;
@@ -47113,8 +47937,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetColorManagementSystem(void 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetColorManagementSystem(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -47127,9 +47954,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetColorManagementSystem(void * 
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasColorManagementSystem(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasColorManagementSystem();
   jresult = result; 
   return jresult;
@@ -47138,8 +47968,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasColorManagementSystem
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearColorManagementSystem(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearColorManagementSystem();
 }
 
@@ -47147,9 +47980,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearColorManagementSystem(void 
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetComment(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetComment();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
@@ -47159,8 +47995,11 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetComment(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetComment(void * jarg1, char * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -47174,9 +48013,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetComment(void * jarg1, char * 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetDefaultPrim(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   TfToken result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetDefaultPrim();
   jresult = new TfToken((const TfToken &)result); 
   return jresult;
@@ -47186,8 +48028,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetDefaultPrim(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetDefaultPrim(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -47199,8 +48044,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetDefaultPrim(void * jarg1, voi
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearDefaultPrim(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearDefaultPrim();
 }
 
@@ -47208,9 +48056,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearDefaultPrim(void * jarg1) {
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasDefaultPrim(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)(arg1)->HasDefaultPrim();
   jresult = result; 
   return jresult;
@@ -47220,9 +48071,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasDefaultPrim(void * ja
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetDocumentation(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetDocumentation();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
@@ -47232,8 +48086,11 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetDocumentation(void * jarg1)
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetDocumentation(void * jarg1, char * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -47247,9 +48104,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetDocumentation(void * jarg1, c
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetStartTimeCode(void * jarg1) {
   double jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((SdfLayer const *)arg1)->GetStartTimeCode();
   jresult = result; 
   return jresult;
@@ -47259,8 +48119,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetStartTimeCode(void * jarg1)
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetStartTimeCode(void * jarg1, double jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   double arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   (arg1)->SetStartTimeCode(arg2);
 }
@@ -47269,9 +48132,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetStartTimeCode(void * jarg1, d
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasStartTimeCode(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasStartTimeCode();
   jresult = result; 
   return jresult;
@@ -47280,8 +48146,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasStartTimeCode(void * 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearStartTimeCode(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearStartTimeCode();
 }
 
@@ -47289,9 +48158,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearStartTimeCode(void * jarg1)
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetEndTimeCode(void * jarg1) {
   double jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((SdfLayer const *)arg1)->GetEndTimeCode();
   jresult = result; 
   return jresult;
@@ -47301,8 +48173,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetEndTimeCode(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetEndTimeCode(void * jarg1, double jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   double arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   (arg1)->SetEndTimeCode(arg2);
 }
@@ -47311,9 +48186,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetEndTimeCode(void * jarg1, dou
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasEndTimeCode(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasEndTimeCode();
   jresult = result; 
   return jresult;
@@ -47322,8 +48200,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasEndTimeCode(void * ja
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearEndTimeCode(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearEndTimeCode();
 }
 
@@ -47331,9 +48212,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearEndTimeCode(void * jarg1) {
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetTimeCodesPerSecond(void * jarg1) {
   double jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((SdfLayer const *)arg1)->GetTimeCodesPerSecond();
   jresult = result; 
   return jresult;
@@ -47343,8 +48227,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetTimeCodesPerSecond(void * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetTimeCodesPerSecond(void * jarg1, double jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   double arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   (arg1)->SetTimeCodesPerSecond(arg2);
 }
@@ -47353,9 +48240,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetTimeCodesPerSecond(void * jar
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasTimeCodesPerSecond(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasTimeCodesPerSecond();
   jresult = result; 
   return jresult;
@@ -47364,8 +48254,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasTimeCodesPerSecond(vo
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearTimeCodesPerSecond(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearTimeCodesPerSecond();
 }
 
@@ -47373,9 +48266,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearTimeCodesPerSecond(void * j
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetFramesPerSecond(void * jarg1) {
   double jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((SdfLayer const *)arg1)->GetFramesPerSecond();
   jresult = result; 
   return jresult;
@@ -47385,8 +48281,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_SdfLayer_GetFramesPerSecond(void * jarg
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetFramesPerSecond(void * jarg1, double jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   double arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   (arg1)->SetFramesPerSecond(arg2);
 }
@@ -47395,9 +48294,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetFramesPerSecond(void * jarg1,
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasFramesPerSecond(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasFramesPerSecond();
   jresult = result; 
   return jresult;
@@ -47406,8 +48308,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasFramesPerSecond(void 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearFramesPerSecond(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearFramesPerSecond();
 }
 
@@ -47415,9 +48320,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearFramesPerSecond(void * jarg
 SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayer_GetFramePrecision(void * jarg1) {
   int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   int result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (int)((SdfLayer const *)arg1)->GetFramePrecision();
   jresult = result; 
   return jresult;
@@ -47427,8 +48335,11 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayer_GetFramePrecision(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetFramePrecision(void * jarg1, int jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   int arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (int)jarg2; 
   (arg1)->SetFramePrecision(arg2);
 }
@@ -47437,9 +48348,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetFramePrecision(void * jarg1, 
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasFramePrecision(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasFramePrecision();
   jresult = result; 
   return jresult;
@@ -47448,8 +48362,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasFramePrecision(void *
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearFramePrecision(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearFramePrecision();
 }
 
@@ -47457,9 +48374,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearFramePrecision(void * jarg1
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetOwner(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetOwner();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
@@ -47469,8 +48389,11 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetOwner(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetOwner(void * jarg1, char * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -47484,9 +48407,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetOwner(void * jarg1, char * ja
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasOwner(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasOwner();
   jresult = result; 
   return jresult;
@@ -47495,8 +48421,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasOwner(void * jarg1) {
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearOwner(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearOwner();
 }
 
@@ -47504,9 +48433,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearOwner(void * jarg1) {
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetSessionOwner(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetSessionOwner();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
@@ -47516,8 +48448,11 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_GetSessionOwner(void * jarg1) 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetSessionOwner(void * jarg1, char * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -47531,9 +48466,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetSessionOwner(void * jarg1, ch
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasSessionOwner(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasSessionOwner();
   jresult = result; 
   return jresult;
@@ -47542,8 +48480,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasSessionOwner(void * j
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearSessionOwner(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearSessionOwner();
 }
 
@@ -47551,9 +48492,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearSessionOwner(void * jarg1) 
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_GetHasOwnedSubLayers(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->GetHasOwnedSubLayers();
   jresult = result; 
   return jresult;
@@ -47563,8 +48507,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_GetHasOwnedSubLayers(voi
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetHasOwnedSubLayers(void * jarg1, unsigned int jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   bool arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   (arg1)->SetHasOwnedSubLayers(arg2);
 }
@@ -47573,9 +48520,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetHasOwnedSubLayers(void * jarg
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetCustomLayerData(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   VtDictionary result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetCustomLayerData();
   jresult = new VtDictionary((const VtDictionary &)result); 
   return jresult;
@@ -47585,8 +48535,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetCustomLayerData(void * jarg
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetCustomLayerData(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   VtDictionary *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (VtDictionary *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtDictionary const & type is null", 0);
@@ -47599,9 +48552,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetCustomLayerData(void * jarg1,
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasCustomLayerData(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->HasCustomLayerData();
   jresult = result; 
   return jresult;
@@ -47610,8 +48566,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasCustomLayerData(void 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearCustomLayerData(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearCustomLayerData();
 }
 
@@ -47619,9 +48578,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ClearCustomLayerData(void * jarg
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRootPrims(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfLayer::RootPrimsView result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetRootPrims();
   jresult = new SdfLayer::RootPrimsView((const SdfLayer::RootPrimsView &)result); 
   return jresult;
@@ -47631,8 +48593,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRootPrims(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetRootPrims(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPrimSpecHandleVector *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPrimSpecHandleVector *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandleVector const & type is null", 0);
@@ -47647,9 +48612,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_InsertRootPrim__SWIG_0(v
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPrimSpecHandle *arg2 = 0 ;
   int arg3 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPrimSpecHandle *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandle const & type is null", 0);
@@ -47666,9 +48634,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_InsertRootPrim__SWIG_1(v
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPrimSpecHandle *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPrimSpecHandle *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandle const & type is null", 0);
@@ -47683,8 +48654,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_InsertRootPrim__SWIG_1(v
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveRootPrim(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPrimSpecHandle *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPrimSpecHandle *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPrimSpecHandle const & type is null", 0);
@@ -47697,8 +48671,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveRootPrim(void * jarg1, voi
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ScheduleRemoveIfInert(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfSpec *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfSpec *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfSpec const & type is null", 0);
@@ -47711,9 +48688,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ScheduleRemoveIfInert(void * jar
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemovePrimIfInert(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPrimSpecHandle arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfPrimSpecHandle *argp2 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   argp2 = (SdfPrimSpecHandle *)jarg2; 
   if (!argp2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfPrimSpecHandle", 0);
@@ -47727,9 +48707,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemovePrimIfInert(void * jarg1, 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemovePropertyIfHasOnlyRequiredFields(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPropertySpecHandle arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfPropertySpecHandle *argp2 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   argp2 = (SdfPropertySpecHandle *)jarg2; 
   if (!argp2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfPropertySpecHandle", 0);
@@ -47742,8 +48725,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemovePropertyIfHasOnlyRequiredF
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveInertSceneDescription(void * jarg1) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->RemoveInertSceneDescription();
 }
 
@@ -47751,8 +48737,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveInertSceneDescription(void
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetRootPrimOrder(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::vector< TfToken > *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (std::vector< TfToken > *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< TfToken > const & type is null", 0);
@@ -47766,8 +48755,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertInRootPrimOrder__SWIG_0(vo
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   TfToken *arg2 = 0 ;
   int arg3 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -47781,8 +48773,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertInRootPrimOrder__SWIG_0(vo
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertInRootPrimOrder__SWIG_1(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -47795,8 +48790,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertInRootPrimOrder__SWIG_1(vo
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveFromRootPrimOrder(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -47809,8 +48807,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveFromRootPrimOrder(void * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveFromRootPrimOrderByIndex(void * jarg1, int jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   int arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (int)jarg2; 
   (arg1)->RemoveFromRootPrimOrderByIndex(arg2);
 }
@@ -47819,8 +48820,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveFromRootPrimOrderByIndex(v
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ApplyRootPrimOrder(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::vector< TfToken > *arg2 = (std::vector< TfToken > *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (std::vector< TfToken > *)jarg2; 
   ((SdfLayer const *)arg1)->ApplyRootPrimOrder(arg2);
 }
@@ -47829,8 +48833,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ApplyRootPrimOrder(void * jarg1,
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetSubLayerPaths(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::vector< std::string > *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (std::vector< std::string > *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::string > const & type is null", 0);
@@ -47843,9 +48850,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetSubLayerPaths(void * jarg1, v
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfLayer_GetNumSubLayerPaths(void * jarg1) {
   unsigned long jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   size_t result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetNumSubLayerPaths();
   jresult = (unsigned long)result; 
   return jresult;
@@ -47856,8 +48866,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertSubLayerPath__SWIG_0(void 
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
   int arg3 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -47872,8 +48885,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertSubLayerPath__SWIG_0(void 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertSubLayerPath__SWIG_1(void * jarg1, char * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -47887,8 +48903,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_InsertSubLayerPath__SWIG_1(void 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveSubLayerPath(void * jarg1, int jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   int arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (int)jarg2; 
   (arg1)->RemoveSubLayerPath(arg2);
 }
@@ -47897,9 +48916,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveSubLayerPath(void * jarg1,
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetSubLayerOffsets(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfLayerOffsetVector result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetSubLayerOffsets();
   jresult = new SdfLayerOffsetVector((const SdfLayerOffsetVector &)result); 
   return jresult;
@@ -47910,9 +48932,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetSubLayerOffset(void * jarg1
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   int arg2 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfLayerOffset result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (int)jarg2; 
   result = ((SdfLayer const *)arg1)->GetSubLayerOffset(arg2);
   jresult = new SdfLayerOffset((const SdfLayerOffset &)result); 
@@ -47924,8 +48949,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetSubLayerOffset(void * jarg1, 
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfLayerOffset *arg2 = 0 ;
   int arg3 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfLayerOffset *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerOffset const & type is null", 0);
@@ -47949,9 +48977,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetMutedLayers() {
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsMuted__SWIG_0(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->IsMuted();
   jresult = result; 
   return jresult;
@@ -47978,8 +49009,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsMuted__SWIG_1(char * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetMuted(void * jarg1, unsigned int jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   bool arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   (arg1)->SetMuted(arg2);
 }
@@ -48014,9 +49048,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_RemoveFromMutedLayers(char * jar
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetPseudoRoot(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfPrimSpecHandle result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetPseudoRoot();
   jresult = new SdfPrimSpecHandle((const SdfPrimSpecHandle &)result); 
   return jresult;
@@ -48027,9 +49064,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetObjectAtPath(void * jarg1, 
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfSpecHandle result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48045,9 +49085,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetPrimAtPath(void * jarg1, vo
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfPrimSpecHandle result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48063,9 +49106,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetPropertyAtPath(void * jarg1
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfPropertySpecHandle result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48081,9 +49127,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetAttributeAtPath(void * jarg
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfAttributeSpecHandle result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48099,9 +49148,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRelationshipAtPath(void * j
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   SdfRelationshipSpecHandle result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48116,9 +49168,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetRelationshipAtPath(void * j
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_PermissionToEdit(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->PermissionToEdit();
   jresult = result; 
   return jresult;
@@ -48128,9 +49183,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_PermissionToEdit(void * 
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_PermissionToSave(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->PermissionToSave();
   jresult = result; 
   return jresult;
@@ -48140,8 +49198,11 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_PermissionToSave(void * 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetPermissionToEdit(void * jarg1, unsigned int jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   bool arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   (arg1)->SetPermissionToEdit(arg2);
 }
@@ -48150,8 +49211,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetPermissionToEdit(void * jarg1
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetPermissionToSave(void * jarg1, unsigned int jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   bool arg2 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   (arg1)->SetPermissionToSave(arg2);
 }
@@ -48162,9 +49226,12 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayer_CanApply__SWIG_0(void * jarg1, vo
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfBatchNamespaceEdit *arg2 = 0 ;
   SdfNamespaceEditDetailVector *arg3 = (SdfNamespaceEditDetailVector *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfNamespaceEditDetail::Result result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfBatchNamespaceEdit *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfBatchNamespaceEdit const & type is null", 0);
@@ -48181,9 +49248,12 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayer_CanApply__SWIG_1(void * jarg1, vo
   int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfBatchNamespaceEdit *arg2 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   SdfNamespaceEditDetail::Result result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfBatchNamespaceEdit *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfBatchNamespaceEdit const & type is null", 0);
@@ -48199,9 +49269,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Apply(void * jarg1, void
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfBatchNamespaceEdit *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfBatchNamespaceEdit *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfBatchNamespaceEdit const & type is null", 0);
@@ -48216,9 +49289,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Apply(void * jarg1, void
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetStateDelegate(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
-  SdfLayerStateDelegateBasePtr result;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
+  SwigValueWrapper< TfDeclarePtrs< SdfLayerStateDelegateBase >::Ptr > result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->GetStateDelegate();
   jresult = new SdfLayerStateDelegateBasePtr((const SdfLayerStateDelegateBasePtr &)result); 
   return jresult;
@@ -48228,8 +49304,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetStateDelegate(void * jarg1)
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetStateDelegate(void * jarg1, void * jarg2) {
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfLayerStateDelegateBaseRefPtr *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfLayerStateDelegateBaseRefPtr *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerStateDelegateBaseRefPtr const & type is null", 0);
@@ -48242,9 +49321,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_SetStateDelegate(void * jarg1, v
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsDirty(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((SdfLayer const *)arg1)->IsDirty();
   jresult = result; 
   return jresult;
@@ -48254,9 +49336,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsDirty(void * jarg1) {
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_ListAllTimeSamples(void * jarg1) {
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::set< double > result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((SdfLayer const *)arg1)->ListAllTimeSamples();
   jresult = new std::set< double >((const std::set< double > &)result); 
   return jresult;
@@ -48269,9 +49354,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_GetBracketingTimeSamples
   double arg2 ;
   double *arg3 = (double *) 0 ;
   double *arg4 = (double *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   arg3 = (double *)jarg3; 
   arg4 = (double *)jarg4; 
@@ -48285,9 +49373,12 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfLayer_GetNumTimeSamplesForPat
   unsigned long jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   size_t result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48303,9 +49394,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_ListTimeSamplesForPath(void * 
   void * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::set< double > result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48324,9 +49418,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_GetBracketingTimeSamples
   double arg3 ;
   double *arg4 = (double *) 0 ;
   double *arg5 = (double *) 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48346,9 +49443,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_QueryTimeSample(void * j
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
   double arg3 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48365,8 +49465,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_EraseTimeSample(void * jarg1, vo
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   SdfPath *arg2 = 0 ;
   double arg3 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -48386,9 +49489,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_WriteDataFile(void * jar
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< SdfLayer > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -48404,9 +49510,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_WriteDataFile(void * jar
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_ExportToString(void * jarg1) {
   char * jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (SdfLayer *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = SdfLayer_ExportToString((SdfLayer const *)arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
@@ -48605,14 +49714,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdEditTarget__SWIG_3(void * jarg1,
   void * jresult ;
   SdfLayerRefPtr *arg1 = 0 ;
   SdfLayerOffset arg2 ;
+  SdfLayerRefPtr tempnull1 ;
   SdfLayerOffset *argp2 ;
   UsdEditTarget *result = 0 ;
   
-  arg1 = (SdfLayerRefPtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerRefPtr const & type is null", 0);
-    return 0;
-  } 
+  arg1 = jarg1 ? (SdfLayerRefPtr *)jarg1 : &tempnull1; 
   argp2 = (SdfLayerOffset *)jarg2; 
   if (!argp2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfLayerOffset", 0);
@@ -48628,13 +49734,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdEditTarget__SWIG_3(void * jarg1,
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdEditTarget__SWIG_4(void * jarg1) {
   void * jresult ;
   SdfLayerRefPtr *arg1 = 0 ;
+  SdfLayerRefPtr tempnull1 ;
   UsdEditTarget *result = 0 ;
   
-  arg1 = (SdfLayerRefPtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerRefPtr const & type is null", 0);
-    return 0;
-  } 
+  arg1 = jarg1 ? (SdfLayerRefPtr *)jarg1 : &tempnull1; 
   result = (UsdEditTarget *)new UsdEditTarget((SdfLayerRefPtr const &)*arg1);
   jresult = (void *)result; 
   return jresult;
@@ -48667,13 +49770,10 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdEditTarget__SWIG_6(void * jarg1,
   void * jresult ;
   SdfLayerRefPtr *arg1 = 0 ;
   PcpNodeRef *arg2 = 0 ;
+  SdfLayerRefPtr tempnull1 ;
   UsdEditTarget *result = 0 ;
   
-  arg1 = (SdfLayerRefPtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerRefPtr const & type is null", 0);
-    return 0;
-  } 
+  arg1 = jarg1 ? (SdfLayerRefPtr *)jarg1 : &tempnull1; 
   arg2 = (PcpNodeRef *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "PcpNodeRef const & type is null", 0);
@@ -49231,816 +50331,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdTraverseInstanceProxies__SWIG_1() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageRefPtr(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageWeakPtr(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
-  UsdStageRefPtr *result = 0 ;
-  
-  arg1 = (UsdStage *)jarg1; 
-  result = (UsdStageRefPtr *)new UsdStageRefPtr(arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr___deref__(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  UsdStage *result = 0 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (UsdStage *)(arg1)->operator ->();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdStageRefPtr(void * jarg1) {
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetPopulationMask(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  UsdStagePopulationMask result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetPopulationMask();
-  jresult = new UsdStagePopulationMask((const UsdStagePopulationMask &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetPseudoRoot(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  UsdPrim result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetPseudoRoot();
-  jresult = new UsdPrim((const UsdPrim &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetDefaultPrim(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  UsdPrim result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetDefaultPrim();
-  jresult = new UsdPrim((const UsdPrim &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_HasDefaultPrim(void * jarg1) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasDefaultPrim();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetPrimAtPath(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SdfPath *arg2 = 0 ;
-  UsdPrim result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = (*arg1)->GetPrimAtPath((SdfPath const &)*arg2);
-  jresult = new UsdPrim((const UsdPrim &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetSessionLayer(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SwigValueWrapper< SdfLayerHandle > result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetSessionLayer();
-  jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetRootLayer(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SwigValueWrapper< SdfLayerHandle > result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetRootLayer();
-  jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetPathResolverContext(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  ArResolverContext result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetPathResolverContext();
-  jresult = new ArResolverContext((const ArResolverContext &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_ResolveIdentifierToEditTarget(void * jarg1, char * jarg2) {
-  char * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (*arg1)->ResolveIdentifierToEditTarget((std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetLayerStack__SWIG_0(void * jarg1, unsigned int jarg2) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  bool arg2 ;
-  SdfLayerHandleVector result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = jarg2 ? true : false; 
-  result = (*arg1)->GetLayerStack(arg2);
-  jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetLayerStack__SWIG_1(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SdfLayerHandleVector result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetLayerStack();
-  jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetUsedLayers__SWIG_0(void * jarg1, unsigned int jarg2) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  bool arg2 ;
-  SdfLayerHandleVector result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = jarg2 ? true : false; 
-  result = (*arg1)->GetUsedLayers(arg2);
-  jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetUsedLayers__SWIG_1(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SdfLayerHandleVector result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetUsedLayers();
-  jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_HasLocalLayer(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SdfLayerHandle *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (SdfLayerHandle *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasLocalLayer((SdfLayerHandle const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetEditTarget(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  UsdEditTarget *result = 0 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (UsdEditTarget *) &(*arg1)->GetEditTarget();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetMutedLayers(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::vector< std::string > *result = 0 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (std::vector< std::string > *) &(*arg1)->GetMutedLayers();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_IsLayerMuted(void * jarg1, char * jarg2) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (bool)(*arg1)->IsLayerMuted((std::string const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_Export__SWIG_0(void * jarg1, char * jarg2, unsigned int jarg3, void * jarg4) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  bool arg3 ;
-  SdfLayer::FileFormatArguments *arg4 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  arg3 = jarg3 ? true : false; 
-  arg4 = (SdfLayer::FileFormatArguments *)jarg4;
-  if (!arg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayer::FileFormatArguments const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->Export((std::string const &)*arg2,arg3,(SdfLayer::FileFormatArguments const &)*arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_Export__SWIG_1(void * jarg1, char * jarg2, unsigned int jarg3) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  bool arg3 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  arg3 = jarg3 ? true : false; 
-  result = (bool)(*arg1)->Export((std::string const &)*arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_Export__SWIG_2(void * jarg1, char * jarg2) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (bool)(*arg1)->Export((std::string const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_ExportToString__SWIG_0(void * jarg1, char** jarg2, unsigned int jarg3) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::string *arg2 = (std::string *) 0 ;
-  bool arg3 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  //typemap in
-  std::string temp;
-  arg2 = &temp; 
-  
-  arg3 = jarg3 ? true : false; 
-  result = (bool)(*arg1)->ExportToString(arg2,arg3);
-  jresult = result; 
-  
-  //Typemap argout in c++ file.
-  //This will convert c++ string to c# string
-  *jarg2 = SWIG_csharp_string_callback(arg2->c_str());
-  
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_ExportToString__SWIG_1(void * jarg1, char** jarg2) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::string *arg2 = (std::string *) 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  //typemap in
-  std::string temp;
-  arg2 = &temp; 
-  
-  result = (bool)(*arg1)->ExportToString(arg2);
-  jresult = result; 
-  
-  //Typemap argout in c++ file.
-  //This will convert c++ string to c# string
-  *jarg2 = SWIG_csharp_string_callback(arg2->c_str());
-  
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_Flatten__SWIG_0(void * jarg1, unsigned int jarg2) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  bool arg2 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = jarg2 ? true : false; 
-  result = (*arg1)->Flatten(arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_Flatten__SWIG_1(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->Flatten();
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetMetadata(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  VtValue *arg3 = (VtValue *) 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (VtValue *)jarg3; 
-  result = (bool)(*arg1)->GetMetadata((TfToken const &)*arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_HasMetadata(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasMetadata((TfToken const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_HasAuthoredMetadata(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasAuthoredMetadata((TfToken const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_SetMetadata(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  VtValue *arg3 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (VtValue *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->SetMetadata((TfToken const &)*arg2,(VtValue const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_ClearMetadata(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->ClearMetadata((TfToken const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetMetadataByDictKey(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  VtValue *arg4 = (VtValue *) 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg4 = (VtValue *)jarg4; 
-  result = (bool)(*arg1)->GetMetadataByDictKey((TfToken const &)*arg2,(TfToken const &)*arg3,arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_HasMetadataDictKey(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasMetadataDictKey((TfToken const &)*arg2,(TfToken const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_HasAuthoredMetadataDictKey(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->HasAuthoredMetadataDictKey((TfToken const &)*arg2,(TfToken const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_SetMetadataByDictKey(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  VtValue *arg4 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg4 = (VtValue *)jarg4;
-  if (!arg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->SetMetadataByDictKey((TfToken const &)*arg2,(TfToken const &)*arg3,(VtValue const &)*arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_ClearMetadataByDictKey(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  TfToken *arg3 = 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (TfToken *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)(*arg1)->ClearMetadataByDictKey((TfToken const &)*arg2,(TfToken const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetStartTimeCode(void * jarg1) {
-  double jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetStartTimeCode();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetEndTimeCode(void * jarg1) {
-  double jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetEndTimeCode();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_HasAuthoredTimeCodeRange(void * jarg1) {
-  unsigned int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  bool result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (bool)(*arg1)->HasAuthoredTimeCodeRange();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetTimeCodesPerSecond(void * jarg1) {
-  double jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetTimeCodesPerSecond();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_SetTimeCodesPerSecond(void * jarg1, double jarg2) {
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  double arg2 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (double)jarg2; 
-  (*arg1)->SetTimeCodesPerSecond(arg2);
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetFramesPerSecond(void * jarg1) {
-  double jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  double result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (double)(*arg1)->GetFramesPerSecond();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_SetFramesPerSecond(void * jarg1, double jarg2) {
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  double arg2 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (double)jarg2; 
-  (*arg1)->SetFramesPerSecond(arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_SetColorConfiguration(void * jarg1, void * jarg2) {
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SdfAssetPath *arg2 = 0 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (SdfAssetPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
-    return ;
-  } 
-  (*arg1)->SetColorConfiguration((SdfAssetPath const &)*arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetColorConfiguration(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  SdfAssetPath result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetColorConfiguration();
-  jresult = new SdfAssetPath((const SdfAssetPath &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_SetColorManagementSystem(void * jarg1, void * jarg2) {
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken *arg2 = 0 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return ;
-  } 
-  (*arg1)->SetColorManagementSystem((TfToken const &)*arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetColorManagementSystem(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  TfToken result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetColorManagementSystem();
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetInterpolationType(void * jarg1) {
-  int jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  UsdInterpolationType result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (UsdInterpolationType)(*arg1)->GetInterpolationType();
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageRefPtr_GetMasters(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = (UsdStageRefPtr *) 0 ;
-  std::vector< UsdPrim > result;
-  
-  arg1 = (UsdStageRefPtr *)jarg1; 
-  result = (*arg1)->GetMasters();
-  jresult = new std::vector< UsdPrim >((const std::vector< UsdPrim > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageWeakPtr__SWIG_0(void * jarg1) {
-  void * jresult ;
-  UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdStageWeakPtr *result = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (UsdStageWeakPtr *)new UsdStageWeakPtr(arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageWeakPtr__SWIG_1(void * jarg1) {
-  void * jresult ;
-  UsdStageRefPtr *arg1 = 0 ;
-  UsdStageWeakPtr *result = 0 ;
-  
-  arg1 = (UsdStageRefPtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStageRefPtr const & type is null", 0);
-    return 0;
-  } 
-  result = (UsdStageWeakPtr *)new UsdStageWeakPtr((UsdStageRefPtr const &)*arg1);
   jresult = (void *)result; 
   return jresult;
 }
@@ -50417,12 +50717,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageWeakPtr_Flatten__SWIG_0(void * 
   void * jresult ;
   UsdStageWeakPtr *arg1 = (UsdStageWeakPtr *) 0 ;
   bool arg2 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (UsdStageWeakPtr *)jarg1; 
   arg2 = jarg2 ? true : false; 
   result = (*arg1)->Flatten(arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -50430,11 +50730,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageWeakPtr_Flatten__SWIG_0(void * 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageWeakPtr_Flatten__SWIG_1(void * jarg1) {
   void * jresult ;
   UsdStageWeakPtr *arg1 = (UsdStageWeakPtr *) 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  SdfLayerRefPtr result;
   
   arg1 = (UsdStageWeakPtr *)jarg1; 
   result = (*arg1)->Flatten();
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -50824,7 +51124,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageWeakPtr_GetMasters(void * jarg1
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_0(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -50833,7 +51133,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_0(char * jarg1
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = UsdStage::CreateNew((std::string const &)*arg1);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -50842,7 +51142,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_1(char * jarg1
   void * jresult ;
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -50856,7 +51156,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_1(char * jarg1
     return 0;
   } 
   result = UsdStage::CreateNew((std::string const &)*arg1,(SdfLayerHandle const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -50866,7 +51166,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_2(char * jarg1
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
   ArResolverContext *arg3 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -50885,7 +51185,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_2(char * jarg1
     return 0;
   } 
   result = UsdStage::CreateNew((std::string const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -50894,7 +51194,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_3(char * jarg1
   void * jresult ;
   std::string *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -50908,17 +51208,17 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_3(char * jarg1
     return 0;
   } 
   result = UsdStage::CreateNew((std::string const &)*arg1,(ArResolverContext const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_0() {
   void * jresult ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   result = UsdStage::CreateInMemory();
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -50926,7 +51226,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_0() {
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_1(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -50935,7 +51235,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_1(char * 
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = UsdStage::CreateInMemory((std::string const &)*arg1);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -50944,7 +51244,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_2(char * 
   void * jresult ;
   std::string *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -50958,7 +51258,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_2(char * 
     return 0;
   } 
   result = UsdStage::CreateInMemory((std::string const &)*arg1,(ArResolverContext const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -50967,7 +51267,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_3(char * 
   void * jresult ;
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -50981,7 +51281,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_3(char * 
     return 0;
   } 
   result = UsdStage::CreateInMemory((std::string const &)*arg1,(SdfLayerHandle const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -50991,7 +51291,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_4(char * 
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
   ArResolverContext *arg3 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51010,7 +51310,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_4(char * 
     return 0;
   } 
   result = UsdStage::CreateInMemory((std::string const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51019,7 +51319,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_0(char * jarg1, int
   void * jresult ;
   std::string *arg1 = 0 ;
   UsdStage::InitialLoadSet arg2 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51029,7 +51329,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_0(char * jarg1, int
   arg1 = &arg1_str; 
   arg2 = (UsdStage::InitialLoadSet)jarg2; 
   result = UsdStage::Open((std::string const &)*arg1,arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51037,7 +51337,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_0(char * jarg1, int
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_1(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51046,7 +51346,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_1(char * jarg1) {
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = UsdStage::Open((std::string const &)*arg1);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51056,7 +51356,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_2(char * jarg1, voi
   std::string *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
   UsdStage::InitialLoadSet arg3 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51071,7 +51371,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_2(char * jarg1, voi
   } 
   arg3 = (UsdStage::InitialLoadSet)jarg3; 
   result = UsdStage::Open((std::string const &)*arg1,(ArResolverContext const &)*arg2,arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51080,7 +51380,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_3(char * jarg1, voi
   void * jresult ;
   std::string *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51094,7 +51394,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_3(char * jarg1, voi
     return 0;
   } 
   result = UsdStage::Open((std::string const &)*arg1,(ArResolverContext const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51104,7 +51404,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_0(char * jarg
   std::string *arg1 = 0 ;
   UsdStagePopulationMask *arg2 = 0 ;
   UsdStage::InitialLoadSet arg3 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51119,7 +51419,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_0(char * jarg
   } 
   arg3 = (UsdStage::InitialLoadSet)jarg3; 
   result = UsdStage::OpenMasked((std::string const &)*arg1,(UsdStagePopulationMask const &)*arg2,arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51128,7 +51428,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_1(char * jarg
   void * jresult ;
   std::string *arg1 = 0 ;
   UsdStagePopulationMask *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51142,7 +51442,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_1(char * jarg
     return 0;
   } 
   result = UsdStage::OpenMasked((std::string const &)*arg1,(UsdStagePopulationMask const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51153,7 +51453,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_2(char * jarg
   ArResolverContext *arg2 = 0 ;
   UsdStagePopulationMask *arg3 = 0 ;
   UsdStage::InitialLoadSet arg4 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51173,7 +51473,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_2(char * jarg
   } 
   arg4 = (UsdStage::InitialLoadSet)jarg4; 
   result = UsdStage::OpenMasked((std::string const &)*arg1,(ArResolverContext const &)*arg2,(UsdStagePopulationMask const &)*arg3,arg4);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51183,7 +51483,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_3(char * jarg
   std::string *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
   UsdStagePopulationMask *arg3 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -51202,7 +51502,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_3(char * jarg
     return 0;
   } 
   result = UsdStage::OpenMasked((std::string const &)*arg1,(ArResolverContext const &)*arg2,(UsdStagePopulationMask const &)*arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51211,7 +51511,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_4(void * jarg1, int
   void * jresult ;
   SdfLayerHandle *arg1 = 0 ;
   UsdStage::InitialLoadSet arg2 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51220,7 +51520,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_4(void * jarg1, int
   } 
   arg2 = (UsdStage::InitialLoadSet)jarg2; 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1,arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51228,7 +51528,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_4(void * jarg1, int
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_5(void * jarg1) {
   void * jresult ;
   SdfLayerHandle *arg1 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51236,7 +51536,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_5(void * jarg1) {
     return 0;
   } 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51246,7 +51546,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_6(void * jarg1, voi
   SdfLayerHandle *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
   UsdStage::InitialLoadSet arg3 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51260,7 +51560,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_6(void * jarg1, voi
   } 
   arg3 = (UsdStage::InitialLoadSet)jarg3; 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2,arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51269,7 +51569,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_7(void * jarg1, voi
   void * jresult ;
   SdfLayerHandle *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51282,7 +51582,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_7(void * jarg1, voi
     return 0;
   } 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51292,7 +51592,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_8(void * jarg1, voi
   SdfLayerHandle *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
   UsdStage::InitialLoadSet arg3 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51306,7 +51606,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_8(void * jarg1, voi
   } 
   arg3 = (UsdStage::InitialLoadSet)jarg3; 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1,(ArResolverContext const &)*arg2,arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51315,7 +51615,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_9(void * jarg1, voi
   void * jresult ;
   SdfLayerHandle *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51328,7 +51628,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_9(void * jarg1, voi
     return 0;
   } 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1,(ArResolverContext const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51339,7 +51639,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_10(void * jarg1, vo
   SdfLayerHandle *arg2 = 0 ;
   ArResolverContext *arg3 = 0 ;
   UsdStage::InitialLoadSet arg4 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51358,7 +51658,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_10(void * jarg1, vo
   } 
   arg4 = (UsdStage::InitialLoadSet)jarg4; 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3,arg4);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51368,7 +51668,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_11(void * jarg1, vo
   SdfLayerHandle *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
   ArResolverContext *arg3 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51386,7 +51686,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Open__SWIG_11(void * jarg1, vo
     return 0;
   } 
   result = UsdStage::Open((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51396,7 +51696,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_4(void * jarg
   SdfLayerHandle *arg1 = 0 ;
   UsdStagePopulationMask *arg2 = 0 ;
   UsdStage::InitialLoadSet arg3 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51410,7 +51710,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_4(void * jarg
   } 
   arg3 = (UsdStage::InitialLoadSet)jarg3; 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(UsdStagePopulationMask const &)*arg2,arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51419,7 +51719,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_5(void * jarg
   void * jresult ;
   SdfLayerHandle *arg1 = 0 ;
   UsdStagePopulationMask *arg2 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51432,7 +51732,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_5(void * jarg
     return 0;
   } 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(UsdStagePopulationMask const &)*arg2);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51443,7 +51743,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_6(void * jarg
   SdfLayerHandle *arg2 = 0 ;
   UsdStagePopulationMask *arg3 = 0 ;
   UsdStage::InitialLoadSet arg4 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51462,7 +51762,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_6(void * jarg
   } 
   arg4 = (UsdStage::InitialLoadSet)jarg4; 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2,(UsdStagePopulationMask const &)*arg3,arg4);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51472,7 +51772,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_7(void * jarg
   SdfLayerHandle *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
   UsdStagePopulationMask *arg3 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51490,7 +51790,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_7(void * jarg
     return 0;
   } 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2,(UsdStagePopulationMask const &)*arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51501,7 +51801,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_8(void * jarg
   ArResolverContext *arg2 = 0 ;
   UsdStagePopulationMask *arg3 = 0 ;
   UsdStage::InitialLoadSet arg4 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51520,7 +51820,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_8(void * jarg
   } 
   arg4 = (UsdStage::InitialLoadSet)jarg4; 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(ArResolverContext const &)*arg2,(UsdStagePopulationMask const &)*arg3,arg4);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51530,7 +51830,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_9(void * jarg
   SdfLayerHandle *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
   UsdStagePopulationMask *arg3 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51548,7 +51848,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_9(void * jarg
     return 0;
   } 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(ArResolverContext const &)*arg2,(UsdStagePopulationMask const &)*arg3);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51560,7 +51860,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_10(void * jar
   ArResolverContext *arg3 = 0 ;
   UsdStagePopulationMask *arg4 = 0 ;
   UsdStage::InitialLoadSet arg5 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51584,7 +51884,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_10(void * jar
   } 
   arg5 = (UsdStage::InitialLoadSet)jarg5; 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3,(UsdStagePopulationMask const &)*arg4,arg5);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
@@ -51595,7 +51895,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_11(void * jar
   SdfLayerHandle *arg2 = 0 ;
   ArResolverContext *arg3 = 0 ;
   UsdStagePopulationMask *arg4 = 0 ;
-  SwigValueWrapper< UsdStageRefPtr > result;
+  UsdStageRefPtr result;
   
   arg1 = (SdfLayerHandle *)jarg1;
   if (!arg1) {
@@ -51618,23 +51918,29 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OpenMasked__SWIG_11(void * jar
     return 0;
   } 
   result = UsdStage::OpenMasked((SdfLayerHandle const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3,(UsdStagePopulationMask const &)*arg4);
-  jresult = new UsdStageRefPtr((const UsdStageRefPtr &)result); 
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
 }
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdStage(void * jarg1) {
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
-  delete arg1;
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
+  (void)arg1; delete smartarg1;
 }
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_Reload(void * jarg1) {
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->Reload();
 }
 
@@ -51658,16 +51964,22 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_IsSupportedFile(char * j
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_Save(void * jarg1) {
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->Save();
 }
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SaveSessionLayers(void * jarg1) {
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->SaveSessionLayers();
 }
 
@@ -51698,9 +52010,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_0(void * jarg1, voi
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -51715,9 +52030,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_0(void * jarg1, voi
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_1(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (arg1)->Load();
   jresult = new UsdPrim((const UsdPrim &)result); 
   return jresult;
@@ -51727,8 +52045,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_1(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_Unload__SWIG_0(void * jarg1, void * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -51740,8 +52061,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_Unload__SWIG_0(void * jarg1, voi
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_Unload__SWIG_1(void * jarg1) {
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->Unload();
 }
 
@@ -51750,8 +52074,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_LoadAndUnload(void * jarg1, void
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPathSet *arg2 = 0 ;
   SdfPathSet *arg3 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPathSet *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathSet const & type is null", 0);
@@ -51769,9 +52096,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_LoadAndUnload(void * jarg1, void
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetLoadSet(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   SdfPathSet result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (arg1)->GetLoadSet();
   jresult = new SdfPathSet((const SdfPathSet &)result); 
   return jresult;
@@ -51782,9 +52112,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_FindLoadable__SWIG_0(void * ja
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   SdfPathSet result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -51799,9 +52132,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_FindLoadable__SWIG_0(void * ja
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_FindLoadable__SWIG_1(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   SdfPathSet result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (arg1)->FindLoadable();
   jresult = new SdfPathSet((const SdfPathSet &)result); 
   return jresult;
@@ -51811,9 +52147,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_FindLoadable__SWIG_1(void * ja
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPopulationMask(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   UsdStagePopulationMask result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetPopulationMask();
   jresult = new UsdStagePopulationMask((const UsdStagePopulationMask &)result); 
   return jresult;
@@ -51823,8 +52162,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPopulationMask(void * jarg1
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetPopulationMask(void * jarg1, void * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   UsdStagePopulationMask *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (UsdStagePopulationMask *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePopulationMask const & type is null", 0);
@@ -51837,9 +52179,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetPopulationMask(void * jarg1, 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPseudoRoot(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetPseudoRoot();
   jresult = new UsdPrim((const UsdPrim &)result); 
   return jresult;
@@ -51849,9 +52194,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPseudoRoot(void * jarg1) {
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetDefaultPrim(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetDefaultPrim();
   jresult = new UsdPrim((const UsdPrim &)result); 
   return jresult;
@@ -51861,8 +52209,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetDefaultPrim(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetDefaultPrim(void * jarg1, void * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   UsdPrim *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (UsdPrim *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
@@ -51874,8 +52225,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetDefaultPrim(void * jarg1, voi
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_ClearDefaultPrim(void * jarg1) {
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   (arg1)->ClearDefaultPrim();
 }
 
@@ -51883,9 +52237,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_ClearDefaultPrim(void * jarg1) {
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasDefaultPrim(void * jarg1) {
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((UsdStage const *)arg1)->HasDefaultPrim();
   jresult = result; 
   return jresult;
@@ -51896,9 +52253,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPrimAtPath(void * jarg1, vo
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -51913,9 +52273,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPrimAtPath(void * jarg1, vo
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Traverse__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrimRange result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (arg1)->Traverse();
   jresult = new UsdPrimRange((const UsdPrimRange &)result); 
   return jresult;
@@ -51926,9 +52289,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Traverse__SWIG_1(void * jarg1,
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   Usd_PrimFlagsPredicate *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrimRange result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (Usd_PrimFlagsPredicate *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Usd_PrimFlagsPredicate const & type is null", 0);
@@ -51943,9 +52309,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Traverse__SWIG_1(void * jarg1,
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_TraverseAll(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrimRange result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (arg1)->TraverseAll();
   jresult = new UsdPrimRange((const UsdPrimRange &)result); 
   return jresult;
@@ -51956,9 +52325,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_OverridePrim(void * jarg1, voi
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -51975,9 +52347,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_DefinePrim__SWIG_0(void * jarg
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
   TfToken *arg3 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -51998,9 +52373,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_DefinePrim__SWIG_1(void * jarg
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -52016,9 +52394,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateClassPrim(void * jarg1, 
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdPrim result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -52034,9 +52415,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_RemovePrim(void * jarg1,
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
@@ -52051,9 +52435,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_RemovePrim(void * jarg1,
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetSessionLayer(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   SwigValueWrapper< SdfLayerHandle > result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetSessionLayer();
   jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
   return jresult;
@@ -52063,9 +52450,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetSessionLayer(void * jarg1) 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetRootLayer(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   SwigValueWrapper< SdfLayerHandle > result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetRootLayer();
   jresult = new SdfLayerHandle((const SdfLayerHandle &)result); 
   return jresult;
@@ -52075,9 +52465,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetRootLayer(void * jarg1) {
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPathResolverContext(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   ArResolverContext result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetPathResolverContext();
   jresult = new ArResolverContext((const ArResolverContext &)result); 
   return jresult;
@@ -52088,9 +52481,12 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdStage_ResolveIdentifierToEditTarget(
   char * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   std::string result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -52107,9 +52503,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetLayerStack__SWIG_0(void * j
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   bool arg2 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   SdfLayerHandleVector result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   result = ((UsdStage const *)arg1)->GetLayerStack(arg2);
   jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
@@ -52120,9 +52519,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetLayerStack__SWIG_0(void * j
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetLayerStack__SWIG_1(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   SdfLayerHandleVector result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetLayerStack();
   jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
   return jresult;
@@ -52133,9 +52535,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetUsedLayers__SWIG_0(void * j
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   bool arg2 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   SdfLayerHandleVector result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   result = ((UsdStage const *)arg1)->GetUsedLayers(arg2);
   jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
@@ -52146,9 +52551,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetUsedLayers__SWIG_0(void * j
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetUsedLayers__SWIG_1(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   SdfLayerHandleVector result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetUsedLayers();
   jresult = new SdfLayerHandleVector((const SdfLayerHandleVector &)result); 
   return jresult;
@@ -52159,9 +52567,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasLocalLayer(void * jar
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfLayerHandle *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfLayerHandle *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
@@ -52176,9 +52587,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasLocalLayer(void * jar
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetEditTarget(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   UsdEditTarget *result = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (UsdEditTarget *) &((UsdStage const *)arg1)->GetEditTarget();
   jresult = (void *)result; 
   return jresult;
@@ -52189,9 +52603,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetEditTargetForLocalLayer__SW
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   size_t arg2 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdEditTarget result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (size_t)jarg2; 
   result = (arg1)->GetEditTargetForLocalLayer(arg2);
   jresult = new UsdEditTarget((const UsdEditTarget &)result); 
@@ -52203,9 +52620,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetEditTargetForLocalLayer__SW
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfLayerHandle *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   UsdEditTarget result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfLayerHandle *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
@@ -52220,8 +52640,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetEditTargetForLocalLayer__SW
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetEditTarget(void * jarg1, void * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   UsdEditTarget *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (UsdEditTarget *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdEditTarget const & type is null", 0);
@@ -52234,8 +52657,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetEditTarget(void * jarg1, void
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_MuteLayer(void * jarg1, char * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -52249,8 +52675,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_MuteLayer(void * jarg1, char * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_UnmuteLayer(void * jarg1, char * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
@@ -52265,8 +52694,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_MuteAndUnmuteLayers(void * jarg1
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::vector< std::string > *arg2 = 0 ;
   std::vector< std::string > *arg3 = 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (std::vector< std::string > *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::string > const & type is null", 0);
@@ -52284,9 +52716,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_MuteAndUnmuteLayers(void * jarg1
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetMutedLayers(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   std::vector< std::string > *result = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (std::vector< std::string > *) &((UsdStage const *)arg1)->GetMutedLayers();
   jresult = (void *)result; 
   return jresult;
@@ -52297,9 +52732,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_IsLayerMuted(void * jarg
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -52318,9 +52756,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_Export__SWIG_0(void * ja
   std::string *arg2 = 0 ;
   bool arg3 ;
   SdfLayer::FileFormatArguments *arg4 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -52344,9 +52785,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_Export__SWIG_1(void * ja
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = 0 ;
   bool arg3 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -52364,9 +52808,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_Export__SWIG_2(void * ja
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -52384,9 +52831,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_ExportToString__SWIG_0(v
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = (std::string *) 0 ;
   bool arg3 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   //typemap in
   std::string temp;
   arg2 = &temp; 
@@ -52407,9 +52857,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_ExportToString__SWIG_1(v
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string *arg2 = (std::string *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   //typemap in
   std::string temp;
   arg2 = &temp; 
@@ -52429,12 +52882,15 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Flatten__SWIG_0(void * jarg1, 
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   bool arg2 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
+  SdfLayerRefPtr result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = jarg2 ? true : false; 
   result = ((UsdStage const *)arg1)->Flatten(arg2);
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -52442,11 +52898,14 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Flatten__SWIG_0(void * jarg1, 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Flatten__SWIG_1(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
-  SwigValueWrapper< SdfLayerRefPtr > result;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
+  SdfLayerRefPtr result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->Flatten();
-  jresult = new SdfLayerRefPtr((const SdfLayerRefPtr &)result); 
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
   return jresult;
 }
 
@@ -52456,9 +52915,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_GetMetadata(void * jarg1
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
   VtValue *arg3 = (VtValue *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52475,9 +52937,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasMetadata(void * jarg1
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52493,9 +52958,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasAuthoredMetadata(void
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52512,9 +52980,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_SetMetadata(void * jarg1
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
   VtValue *arg3 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52535,9 +53006,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_ClearMetadata(void * jar
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52555,9 +53029,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_GetMetadataByDictKey(voi
   TfToken *arg2 = 0 ;
   TfToken *arg3 = 0 ;
   VtValue *arg4 = (VtValue *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52580,9 +53057,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasMetadataDictKey(void 
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
   TfToken *arg3 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52604,9 +53084,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasAuthoredMetadataDictK
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
   TfToken *arg3 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52629,9 +53112,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_SetMetadataByDictKey(voi
   TfToken *arg2 = 0 ;
   TfToken *arg3 = 0 ;
   VtValue *arg4 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52658,9 +53144,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_ClearMetadataByDictKey(v
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
   TfToken *arg3 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52680,9 +53169,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_ClearMetadataByDictKey(v
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetStartTimeCode(void * jarg1) {
   double jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((UsdStage const *)arg1)->GetStartTimeCode();
   jresult = result; 
   return jresult;
@@ -52692,8 +53184,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetStartTimeCode(void * jarg1)
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetStartTimeCode(void * jarg1, double jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   double arg2 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   (arg1)->SetStartTimeCode(arg2);
 }
@@ -52702,9 +53197,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetStartTimeCode(void * jarg1, d
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetEndTimeCode(void * jarg1) {
   double jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((UsdStage const *)arg1)->GetEndTimeCode();
   jresult = result; 
   return jresult;
@@ -52714,8 +53212,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetEndTimeCode(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetEndTimeCode(void * jarg1, double jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   double arg2 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   (arg1)->SetEndTimeCode(arg2);
 }
@@ -52724,9 +53225,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetEndTimeCode(void * jarg1, dou
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasAuthoredTimeCodeRange(void * jarg1) {
   unsigned int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   bool result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (bool)((UsdStage const *)arg1)->HasAuthoredTimeCodeRange();
   jresult = result; 
   return jresult;
@@ -52736,9 +53240,12 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStage_HasAuthoredTimeCodeRange
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetTimeCodesPerSecond(void * jarg1) {
   double jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((UsdStage const *)arg1)->GetTimeCodesPerSecond();
   jresult = result; 
   return jresult;
@@ -52748,8 +53255,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetTimeCodesPerSecond(void * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetTimeCodesPerSecond(void * jarg1, double jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   double arg2 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   ((UsdStage const *)arg1)->SetTimeCodesPerSecond(arg2);
 }
@@ -52758,9 +53268,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetTimeCodesPerSecond(void * jar
 SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetFramesPerSecond(void * jarg1) {
   double jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   double result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (double)((UsdStage const *)arg1)->GetFramesPerSecond();
   jresult = result; 
   return jresult;
@@ -52770,8 +53283,11 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdStage_GetFramesPerSecond(void * jarg
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetFramesPerSecond(void * jarg1, double jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   double arg2 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (double)jarg2; 
   ((UsdStage const *)arg1)->SetFramesPerSecond(arg2);
 }
@@ -52780,8 +53296,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetFramesPerSecond(void * jarg1,
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetColorConfiguration(void * jarg1, void * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfAssetPath *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (SdfAssetPath *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
@@ -52794,9 +53313,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetColorConfiguration(void * jar
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetColorConfiguration(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   SdfAssetPath result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetColorConfiguration();
   jresult = new SdfAssetPath((const SdfAssetPath &)result); 
   return jresult;
@@ -52806,8 +53328,11 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetColorConfiguration(void * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetColorManagementSystem(void * jarg1, void * jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfToken *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
@@ -52820,9 +53345,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetColorManagementSystem(void * 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetColorManagementSystem(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   TfToken result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetColorManagementSystem();
   jresult = new TfToken((const TfToken &)result); 
   return jresult;
@@ -52860,8 +53388,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetColorConfigFallbacks(void * j
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetInterpolationType(void * jarg1, int jarg2) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   UsdInterpolationType arg2 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (UsdInterpolationType)jarg2; 
   (arg1)->SetInterpolationType(arg2);
 }
@@ -52870,9 +53401,12 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetInterpolationType(void * jarg
 SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdStage_GetInterpolationType(void * jarg1) {
   int jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   UsdInterpolationType result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = (UsdInterpolationType)((UsdStage const *)arg1)->GetInterpolationType();
   jresult = (int)result; 
   return jresult;
@@ -52882,9 +53416,12 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdStage_GetInterpolationType(void * jarg1
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetMasters(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
   std::vector< UsdPrim > result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = ((UsdStage const *)arg1)->GetMasters();
   jresult = new std::vector< UsdPrim >((const std::vector< UsdPrim > &)result); 
   return jresult;
@@ -52894,9 +53431,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetMasters(void * jarg1) {
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPrims(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   std::vector< UsdPrim > result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = UsdStage_GetAllPrims(arg1);
   jresult = new std::vector< UsdPrim >((const std::vector< UsdPrim > &)result); 
   return jresult;
@@ -52907,9 +53447,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPrimsByType(void * jarg1
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string arg2 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   std::vector< UsdPrim > result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -52924,9 +53467,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPrimsByType(void * jarg1
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPaths(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   std::vector< SdfPath > result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   result = UsdStage_GetAllPaths(arg1);
   jresult = new std::vector< SdfPath >((const std::vector< SdfPath > &)result); 
   return jresult;
@@ -52937,9 +53483,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPathsByType(void * jarg1
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string arg2 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
   std::vector< SdfPath > result;
   
-  arg1 = (UsdStage *)jarg1; 
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -59077,7 +59626,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdTyped_Get(void * jarg1, void * jarg2
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdTyped::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdTyped::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdTyped((const UsdTyped &)result); 
   return jresult;
 }
@@ -62019,7 +62568,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomImageable_Get(void * jarg1, void
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomImageable::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomImageable::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomImageable((const UsdGeomImageable &)result); 
   return jresult;
 }
@@ -63061,7 +63610,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_Get(void * jarg1, void * j
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomScope::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomScope::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomScope((const UsdGeomScope &)result); 
   return jresult;
 }
@@ -63083,7 +63632,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_Define(void * jarg1, void 
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomScope::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomScope::Define((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomScope((const UsdGeomScope &)result); 
   return jresult;
 }
@@ -63187,7 +63736,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformable_Get(void * jarg1, void
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomXformable::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomXformable::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomXformable((const UsdGeomXformable &)result); 
   return jresult;
 }
@@ -64728,7 +65277,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXform_Get(void * jarg1, void * j
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomXform::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomXform::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomXform((const UsdGeomXform &)result); 
   return jresult;
 }
@@ -64750,7 +65299,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXform_Define(void * jarg1, void 
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomXform::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomXform::Define((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomXform((const UsdGeomXform &)result); 
   return jresult;
 }
@@ -64854,7 +65403,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBoundable_Get(void * jarg1, void
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomBoundable::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomBoundable::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomBoundable((const UsdGeomBoundable &)result); 
   return jresult;
 }
@@ -65044,7 +65593,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomGprim_Get(void * jarg1, void * j
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomGprim::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomGprim::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomGprim((const UsdGeomGprim &)result); 
   return jresult;
 }
@@ -65520,7 +66069,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_Get(void * jarg1, voi
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomPointBased::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomPointBased::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomPointBased((const UsdGeomPointBased &)result); 
   return jresult;
 }
@@ -65858,7 +66407,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMesh_Get(void * jarg1, void * ja
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomMesh::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomMesh::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomMesh((const UsdGeomMesh &)result); 
   return jresult;
 }
@@ -65880,7 +66429,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMesh_Define(void * jarg1, void *
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdGeomMesh::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdGeomMesh::Define((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomMesh((const UsdGeomMesh &)result); 
   return jresult;
 }
@@ -66738,7 +67287,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_Get(void * jarg1, voi
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeNodeGraph::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeNodeGraph::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeNodeGraph((const UsdShadeNodeGraph &)result); 
   return jresult;
 }
@@ -66760,7 +67309,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_Define(void * jarg1, 
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeNodeGraph::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeNodeGraph::Define((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeNodeGraph((const UsdShadeNodeGraph &)result); 
   return jresult;
 }
@@ -67058,7 +67607,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_Get(void * jarg1, void
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeMaterial::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeMaterial::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeMaterial((const UsdShadeMaterial &)result); 
   return jresult;
 }
@@ -67080,7 +67629,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_Define(void * jarg1, v
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeMaterial::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeMaterial::Define((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeMaterial((const UsdShadeMaterial &)result); 
   return jresult;
 }
@@ -67558,7 +68107,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_Get(void * jarg1, void *
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeShader::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeShader::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeShader((const UsdShadeShader &)result); 
   return jresult;
 }
@@ -67580,7 +68129,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_Define(void * jarg1, voi
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeShader::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeShader::Define((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeShader((const UsdShadeShader &)result); 
   return jresult;
 }
@@ -68246,7 +68795,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeLook_Get(void * jarg1, void * j
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeLook::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeLook::Get((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeLook((const UsdShadeLook &)result); 
   return jresult;
 }
@@ -68268,7 +68817,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeLook_Define(void * jarg1, void 
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeLook::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  result = UsdShadeLook::Define((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeLook((const UsdShadeLook &)result); 
   return jresult;
 }
@@ -69254,8 +69803,8 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SetFusedDisplayColor(void * jarg1
 }
 
 
-SWIGEXPORT SdfLayerBase * SWIGSTDCALL CSharp_pxr_SdfLayer_SWIGUpcast(SdfLayer *jarg1) {
-    return (SdfLayerBase *)jarg1;
+SWIGEXPORT TfRefPtr< SdfLayerBase > * SWIGSTDCALL CSharp_pxr_SdfLayer_SWIGSmartPtrUpcast(TfRefPtr< SdfLayer > *jarg1) {
+    return jarg1 ? new TfRefPtr< SdfLayerBase >(*jarg1) : 0;
 }
 
 SWIGEXPORT Usd_PrimFlagsPredicate * SWIGSTDCALL CSharp_pxr_Usd_PrimFlagsConjunction_SWIGUpcast(Usd_PrimFlagsConjunction *jarg1) {

@@ -12,10 +12,10 @@ namespace pxr {
 
 public class UsdStage : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
+  private bool swigCMemOwnBase;
 
   internal UsdStage(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+    swigCMemOwnBase = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -30,8 +30,8 @@ public class UsdStage : global::System.IDisposable {
   public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
+        if (swigCMemOwnBase) {
+          swigCMemOwnBase = false;
           UsdCsPINVOKE.delete_UsdStage(swigCPtr);
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
@@ -40,205 +40,239 @@ public class UsdStage : global::System.IDisposable {
     }
   }
 
-  public static UsdStageRefPtr CreateNew(string identifier) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateNew__SWIG_0(identifier), true);
+  public static UsdStage CreateNew(string identifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_0(identifier);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr CreateNew(string identifier, SdfLayerHandle sessionLayer) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateNew__SWIG_1(identifier, SdfLayerHandle.getCPtr(sessionLayer)), true);
+  public static UsdStage CreateNew(string identifier, SdfLayerHandle sessionLayer) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_1(identifier, SdfLayerHandle.getCPtr(sessionLayer));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr CreateNew(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateNew__SWIG_2(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public static UsdStage CreateNew(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_2(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr CreateNew(string identifier, ArResolverContext pathResolverContext) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateNew__SWIG_3(identifier, ArResolverContext.getCPtr(pathResolverContext)), true);
+  public static UsdStage CreateNew(string identifier, ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_3(identifier, ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr CreateInMemory() {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_0(), true);
+  public static UsdStage CreateInMemory() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_0();
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     return ret;
   }
 
-  public static UsdStageRefPtr CreateInMemory(string identifier) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_1(identifier), true);
+  public static UsdStage CreateInMemory(string identifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_1(identifier);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr CreateInMemory(string identifier, ArResolverContext pathResolverContext) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_2(identifier, ArResolverContext.getCPtr(pathResolverContext)), true);
+  public static UsdStage CreateInMemory(string identifier, ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_2(identifier, ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr CreateInMemory(string identifier, SdfLayerHandle sessionLayer) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_3(identifier, SdfLayerHandle.getCPtr(sessionLayer)), true);
+  public static UsdStage CreateInMemory(string identifier, SdfLayerHandle sessionLayer) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_3(identifier, SdfLayerHandle.getCPtr(sessionLayer));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr CreateInMemory(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_4(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public static UsdStage CreateInMemory(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_4(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(string filePath, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_0(filePath, (int)load), true);
+  public static UsdStage Open(string filePath, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_0(filePath, (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(string filePath) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_1(filePath), true);
+  public static UsdStage Open(string filePath) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_1(filePath);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(string filePath, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_2(filePath, ArResolverContext.getCPtr(pathResolverContext), (int)load), true);
+  public static UsdStage Open(string filePath, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_2(filePath, ArResolverContext.getCPtr(pathResolverContext), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(string filePath, ArResolverContext pathResolverContext) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_3(filePath, ArResolverContext.getCPtr(pathResolverContext)), true);
+  public static UsdStage Open(string filePath, ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_3(filePath, ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(string filePath, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_0(filePath, SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load), true);
+  public static UsdStage OpenMasked(string filePath, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_0(filePath, SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(string filePath, SWIGTYPE_p_UsdStagePopulationMask mask) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_1(filePath, SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask)), true);
+  public static UsdStage OpenMasked(string filePath, SWIGTYPE_p_UsdStagePopulationMask mask) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_1(filePath, SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(string filePath, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_2(filePath, ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load), true);
+  public static UsdStage OpenMasked(string filePath, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_2(filePath, ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(string filePath, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_3(filePath, ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask)), true);
+  public static UsdStage OpenMasked(string filePath, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_3(filePath, ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_4(SdfLayerHandle.getCPtr(rootLayer), (int)load), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_4(SdfLayerHandle.getCPtr(rootLayer), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_5(SdfLayerHandle.getCPtr(rootLayer)), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_5(SdfLayerHandle.getCPtr(rootLayer));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_6(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), (int)load), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_6(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_7(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer)), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_7(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_8(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext), (int)load), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_8(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_9(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_9(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_10(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), (int)load), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_10(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_Open__SWIG_11(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public static UsdStage Open(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Open__SWIG_11(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_4(SdfLayerHandle.getCPtr(rootLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_4(SdfLayerHandle.getCPtr(rootLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, SWIGTYPE_p_UsdStagePopulationMask mask) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_5(SdfLayerHandle.getCPtr(rootLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask)), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, SWIGTYPE_p_UsdStagePopulationMask mask) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_5(SdfLayerHandle.getCPtr(rootLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_6(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_6(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, SWIGTYPE_p_UsdStagePopulationMask mask) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_7(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask)), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, SWIGTYPE_p_UsdStagePopulationMask mask) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_7(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_8(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_8(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_9(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask)), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_9(SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_10(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_10(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask), (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStageRefPtr OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask) {
-    UsdStageRefPtr ret = new UsdStageRefPtr(UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_11(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask)), true);
+  public static UsdStage OpenMasked(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, SWIGTYPE_p_UsdStagePopulationMask mask) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_OpenMasked__SWIG_11(SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), SWIGTYPE_p_UsdStagePopulationMask.getCPtr(mask));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void Reload() {
     UsdCsPINVOKE.UsdStage_Reload(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static bool IsSupportedFile(string filePath) {
@@ -249,10 +283,12 @@ public class UsdStage : global::System.IDisposable {
 
   public void Save() {
     UsdCsPINVOKE.UsdStage_Save(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void SaveSessionLayers() {
     UsdCsPINVOKE.UsdStage_SaveSessionLayers(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static SWIGTYPE_p_PcpVariantFallbackMap GetGlobalVariantFallbacks() {
@@ -273,6 +309,7 @@ public class UsdStage : global::System.IDisposable {
 
   public UsdPrim Load() {
     UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_Load__SWIG_1(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -283,6 +320,7 @@ public class UsdStage : global::System.IDisposable {
 
   public void Unload() {
     UsdCsPINVOKE.UsdStage_Unload__SWIG_1(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void LoadAndUnload(SWIGTYPE_p_SdfPathSet loadSet, SWIGTYPE_p_SdfPathSet unloadSet) {
@@ -292,6 +330,7 @@ public class UsdStage : global::System.IDisposable {
 
   public SWIGTYPE_p_SdfPathSet GetLoadSet() {
     SWIGTYPE_p_SdfPathSet ret = new SWIGTYPE_p_SdfPathSet(UsdCsPINVOKE.UsdStage_GetLoadSet(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -303,11 +342,13 @@ public class UsdStage : global::System.IDisposable {
 
   public SWIGTYPE_p_SdfPathSet FindLoadable() {
     SWIGTYPE_p_SdfPathSet ret = new SWIGTYPE_p_SdfPathSet(UsdCsPINVOKE.UsdStage_FindLoadable__SWIG_1(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_UsdStagePopulationMask GetPopulationMask() {
     SWIGTYPE_p_UsdStagePopulationMask ret = new SWIGTYPE_p_UsdStagePopulationMask(UsdCsPINVOKE.UsdStage_GetPopulationMask(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -318,11 +359,13 @@ public class UsdStage : global::System.IDisposable {
 
   public UsdPrim GetPseudoRoot() {
     UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_GetPseudoRoot(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public UsdPrim GetDefaultPrim() {
     UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_GetDefaultPrim(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -333,10 +376,12 @@ public class UsdStage : global::System.IDisposable {
 
   public void ClearDefaultPrim() {
     UsdCsPINVOKE.UsdStage_ClearDefaultPrim(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool HasDefaultPrim() {
     bool ret = UsdCsPINVOKE.UsdStage_HasDefaultPrim(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -348,6 +393,7 @@ public class UsdStage : global::System.IDisposable {
 
   public SWIGTYPE_p_UsdPrimRange Traverse() {
     SWIGTYPE_p_UsdPrimRange ret = new SWIGTYPE_p_UsdPrimRange(UsdCsPINVOKE.UsdStage_Traverse__SWIG_0(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -359,6 +405,7 @@ public class UsdStage : global::System.IDisposable {
 
   public SWIGTYPE_p_UsdPrimRange TraverseAll() {
     SWIGTYPE_p_UsdPrimRange ret = new SWIGTYPE_p_UsdPrimRange(UsdCsPINVOKE.UsdStage_TraverseAll(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -394,16 +441,19 @@ public class UsdStage : global::System.IDisposable {
 
   public SdfLayerHandle GetSessionLayer() {
     SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.UsdStage_GetSessionLayer(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SdfLayerHandle GetRootLayer() {
     SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.UsdStage_GetRootLayer(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public ArResolverContext GetPathResolverContext() {
     ArResolverContext ret = new ArResolverContext(UsdCsPINVOKE.UsdStage_GetPathResolverContext(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -415,21 +465,25 @@ public class UsdStage : global::System.IDisposable {
 
   public SdfLayerHandleVector GetLayerStack(bool includeSessionLayers) {
     SdfLayerHandleVector ret = new SdfLayerHandleVector(UsdCsPINVOKE.UsdStage_GetLayerStack__SWIG_0(swigCPtr, includeSessionLayers), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SdfLayerHandleVector GetLayerStack() {
     SdfLayerHandleVector ret = new SdfLayerHandleVector(UsdCsPINVOKE.UsdStage_GetLayerStack__SWIG_1(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SdfLayerHandleVector GetUsedLayers(bool includeClipLayers) {
     SdfLayerHandleVector ret = new SdfLayerHandleVector(UsdCsPINVOKE.UsdStage_GetUsedLayers__SWIG_0(swigCPtr, includeClipLayers), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SdfLayerHandleVector GetUsedLayers() {
     SdfLayerHandleVector ret = new SdfLayerHandleVector(UsdCsPINVOKE.UsdStage_GetUsedLayers__SWIG_1(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -441,11 +495,13 @@ public class UsdStage : global::System.IDisposable {
 
   public UsdEditTarget GetEditTarget() {
     UsdEditTarget ret = new UsdEditTarget(UsdCsPINVOKE.UsdStage_GetEditTarget(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public UsdEditTarget GetEditTargetForLocalLayer(uint i) {
     UsdEditTarget ret = new UsdEditTarget(UsdCsPINVOKE.UsdStage_GetEditTargetForLocalLayer__SWIG_0(swigCPtr, i), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -477,6 +533,7 @@ public class UsdStage : global::System.IDisposable {
 
   public StdStringVector GetMutedLayers() {
     StdStringVector ret = new StdStringVector(UsdCsPINVOKE.UsdStage_GetMutedLayers(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -516,13 +573,17 @@ public class UsdStage : global::System.IDisposable {
     return ret;
   }
 
-  public SdfLayerRefPtr Flatten(bool addSourceFileComment) {
-    SdfLayerRefPtr ret = new SdfLayerRefPtr(UsdCsPINVOKE.UsdStage_Flatten__SWIG_0(swigCPtr, addSourceFileComment), true);
+  public SdfLayer Flatten(bool addSourceFileComment) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Flatten__SWIG_0(swigCPtr, addSourceFileComment);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SdfLayerRefPtr Flatten() {
-    SdfLayerRefPtr ret = new SdfLayerRefPtr(UsdCsPINVOKE.UsdStage_Flatten__SWIG_1(swigCPtr), true);
+  public SdfLayer Flatten() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_Flatten__SWIG_1(swigCPtr);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -588,43 +649,52 @@ public class UsdStage : global::System.IDisposable {
 
   public double GetStartTimeCode() {
     double ret = UsdCsPINVOKE.UsdStage_GetStartTimeCode(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void SetStartTimeCode(double arg0) {
     UsdCsPINVOKE.UsdStage_SetStartTimeCode(swigCPtr, arg0);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public double GetEndTimeCode() {
     double ret = UsdCsPINVOKE.UsdStage_GetEndTimeCode(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void SetEndTimeCode(double arg0) {
     UsdCsPINVOKE.UsdStage_SetEndTimeCode(swigCPtr, arg0);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool HasAuthoredTimeCodeRange() {
     bool ret = UsdCsPINVOKE.UsdStage_HasAuthoredTimeCodeRange(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public double GetTimeCodesPerSecond() {
     double ret = UsdCsPINVOKE.UsdStage_GetTimeCodesPerSecond(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void SetTimeCodesPerSecond(double timeCodesPerSecond) {
     UsdCsPINVOKE.UsdStage_SetTimeCodesPerSecond(swigCPtr, timeCodesPerSecond);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public double GetFramesPerSecond() {
     double ret = UsdCsPINVOKE.UsdStage_GetFramesPerSecond(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void SetFramesPerSecond(double framesPerSecond) {
     UsdCsPINVOKE.UsdStage_SetFramesPerSecond(swigCPtr, framesPerSecond);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void SetColorConfiguration(SdfAssetPath colorConfig) {
@@ -634,6 +704,7 @@ public class UsdStage : global::System.IDisposable {
 
   public SdfAssetPath GetColorConfiguration() {
     SdfAssetPath ret = new SdfAssetPath(UsdCsPINVOKE.UsdStage_GetColorConfiguration(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -644,6 +715,7 @@ public class UsdStage : global::System.IDisposable {
 
   public TfToken GetColorManagementSystem() {
     TfToken ret = new TfToken(UsdCsPINVOKE.UsdStage_GetColorManagementSystem(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -658,20 +730,24 @@ public class UsdStage : global::System.IDisposable {
 
   public void SetInterpolationType(UsdInterpolationType interpolationType) {
     UsdCsPINVOKE.UsdStage_SetInterpolationType(swigCPtr, (int)interpolationType);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public UsdInterpolationType GetInterpolationType() {
     UsdInterpolationType ret = (UsdInterpolationType)UsdCsPINVOKE.UsdStage_GetInterpolationType(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public UsdPrimVector GetMasters() {
     UsdPrimVector ret = new UsdPrimVector(UsdCsPINVOKE.UsdStage_GetMasters(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public UsdPrimVector GetAllPrims() {
     UsdPrimVector ret = new UsdPrimVector(UsdCsPINVOKE.UsdStage_GetAllPrims(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -683,6 +759,7 @@ public class UsdStage : global::System.IDisposable {
 
   public SdfPathVector GetAllPaths() {
     SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.UsdStage_GetAllPaths(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

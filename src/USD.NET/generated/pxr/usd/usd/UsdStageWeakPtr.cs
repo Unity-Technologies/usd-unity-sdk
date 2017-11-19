@@ -40,21 +40,13 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     }
   }
 
-    public static implicit operator UsdStageWeakPtr(UsdStageRefPtr d)
-    {
-        return new UsdStageWeakPtr(d);
-    }
-
-  public UsdStageWeakPtr(UsdStage stage) : this(UsdCsPINVOKE.new_UsdStageWeakPtr__SWIG_0(UsdStage.getCPtr(stage)), true) {
-  }
-
-  public UsdStageWeakPtr(UsdStageRefPtr stage) : this(UsdCsPINVOKE.new_UsdStageWeakPtr__SWIG_1(UsdStageRefPtr.getCPtr(stage)), true) {
+  public UsdStageWeakPtr(UsdStage stage) : this(UsdCsPINVOKE.new_UsdStageWeakPtr(UsdStage.getCPtr(stage)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public UsdStage __deref__() {
     global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageWeakPtr___deref__(swigCPtr);
-    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, false);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     return ret;
   }
 
@@ -177,13 +169,15 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     return ret;
   }
 
-  public SdfLayerRefPtr Flatten(bool addSourceFileComment) {
-    SdfLayerRefPtr ret = new SdfLayerRefPtr(UsdCsPINVOKE.UsdStageWeakPtr_Flatten__SWIG_0(swigCPtr, addSourceFileComment), true);
+  public SdfLayer Flatten(bool addSourceFileComment) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageWeakPtr_Flatten__SWIG_0(swigCPtr, addSourceFileComment);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     return ret;
   }
 
-  public SdfLayerRefPtr Flatten() {
-    SdfLayerRefPtr ret = new SdfLayerRefPtr(UsdCsPINVOKE.UsdStageWeakPtr_Flatten__SWIG_1(swigCPtr), true);
+  public SdfLayer Flatten() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageWeakPtr_Flatten__SWIG_1(swigCPtr);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     return ret;
   }
 

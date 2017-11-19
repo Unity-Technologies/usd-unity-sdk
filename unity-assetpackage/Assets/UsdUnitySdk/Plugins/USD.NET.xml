@@ -280,6 +280,12 @@
             Indicates DisplayColor and DisplayOpacity have been fused into a single object in Unity.
             </summary>
         </member>
+        <member name="M:USD.NET.Reflect.IsFusedTransform(System.Reflection.MemberInfo)">
+            <summary>
+            Indicates that the attribute represents a USD transform and may consist of many component
+            T/S/R operations, which should be automatically collapsed into a single matrix.
+            </summary>
+        </member>
         <member name="M:USD.NET.Reflect.IsCustomData(System.Reflection.MemberInfo)">
             <summary>
             Returns true if the MemberInfo is intened to be serialized as metadata in the custom data
@@ -389,6 +395,17 @@
             This special case is entirely for performance. The cost of iterating over display color and 
             opacity in C# to fuse them back into a single vector is too great (138ms in one test), this
             avoids that cost.
+            </remarks>
+        </member>
+        <member name="T:USD.NET.FusedTransformAttribute">
+            <summary>
+            Indicates that this is a USD transform should should be fused into a single GfMatrix4d.
+            </summary>
+            <remarks>
+            This special case is for performance and simplicity. Transforms in USD can be composed of an
+            arbitrary number of component (translate/rotate/scale) operations, however this API is
+            designed for ease of use and performance. In this case, all component operations are
+            collapsed into a single 4x4 matrix.
             </remarks>
         </member>
         <member name="T:USD.NET.CustomDataAttribute">
@@ -586,7 +603,7 @@
             Translates a string path to an SdfPath, caching the result to avoid churn.
             </summary>
         </member>
-        <member name="M:USD.NET.Scene.#ctor(pxr.UsdStageRefPtr)">
+        <member name="M:USD.NET.Scene.#ctor(pxr.UsdStage)">
             <summary>
             Constructor declared private to force access through the static factories.
             </summary>

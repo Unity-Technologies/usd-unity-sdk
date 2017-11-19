@@ -51,7 +51,7 @@ namespace USD.NET {
     /// This is exposed only for low level, direct access to the underlying stage, not intended
     /// for common use.
     /// </remarks>
-    public UsdStageRefPtr Stage { get { return m_stage; } }
+    public UsdStage Stage { get { return m_stage; } }
 
     /// <summary>
     /// The time at which key frames should be read and written.
@@ -107,7 +107,7 @@ namespace USD.NET {
     /// </summary>
     public PathCollection AllPaths {
       get {
-        return new PathCollection(Stage.__deref__().GetAllPaths());
+        return new PathCollection(Stage.GetAllPaths());
       }
     }
 
@@ -116,7 +116,7 @@ namespace USD.NET {
     /// </summary>
     public PathCollection AllMeshes {
       get {
-        return new PathCollection(Stage.__deref__().GetAllPathsByType("Mesh"));
+        return new PathCollection(Stage.GetAllPathsByType("Mesh"));
       }
     }
 
@@ -125,7 +125,7 @@ namespace USD.NET {
     /// </summary>
     public PathCollection AllXforms {
       get {
-        return new PathCollection(Stage.__deref__().GetAllPathsByType("Xform"));
+        return new PathCollection(Stage.GetAllPathsByType("Xform"));
       }
     }
 
@@ -169,9 +169,9 @@ namespace USD.NET {
     /// </summary>
     public void SetInterpolation(InterpolationMode mode) {
       if (mode == InterpolationMode.Held) {
-        Stage.__deref__().SetInterpolationType(UsdInterpolationType.UsdInterpolationTypeHeld);
+        Stage.SetInterpolationType(UsdInterpolationType.UsdInterpolationTypeHeld);
       } else if (mode == InterpolationMode.Linear) {
-        Stage.__deref__().SetInterpolationType(UsdInterpolationType.UsdInterpolationTypeLinear);
+        Stage.SetInterpolationType(UsdInterpolationType.UsdInterpolationTypeLinear);
       } else {
         throw new ArgumentException(string.Format("Unknown interpolation mode: {0}", mode));
       }
@@ -190,7 +190,7 @@ namespace USD.NET {
       }
       var sdfRootPath = GetSdfPath(rootPath);
       var tfAttrName = new pxr.TfToken(attribute);
-      foreach(var child in Stage.__deref__().GetAllPrims()) {
+      foreach(var child in Stage.GetAllPrims()) {
         if (child.GetPath() == SdfPath.AbsoluteRootPath()) {
           Console.WriteLine("Was abs: {0}", child.GetPath());
 
@@ -239,7 +239,7 @@ namespace USD.NET {
     /// </summary>
     public void Save() {
       WaitForWrites();
-      m_stage.__deref__().Save();
+      m_stage.Save();
     }
 
     /// <summary>
@@ -359,7 +359,7 @@ namespace USD.NET {
                                   UsdTimeCode timeCode) where T : SampleBase {
       pxr.UsdPrim prim;
       lock (m_stageLock) {
-        prim = m_stage.__deref__().DefinePrim(path,
+        prim = m_stage.DefinePrim(path,
             new TfToken(Reflect.GetSchema(typeof(T))));
         if (!prim) { return; }
         prim.SetCustomDataByKey(new pxr.TfToken("kVersion"), kVersion);
@@ -412,7 +412,7 @@ namespace USD.NET {
     /// <summary>
     /// Constructor declared private to force access through the static factories.
     /// </summary>
-    private Scene(UsdStageRefPtr stage) {
+    private Scene(UsdStage stage) {
       m_stage = stage;
       m_usdIo = new UsdIo(m_stageLock);
       // Initialize Time / TimeCode to UsdTimeCode.Default();
@@ -433,7 +433,7 @@ namespace USD.NET {
     private Dictionary<SdfPath, pxr.UsdPrim> primMap = new Dictionary<SdfPath, UsdPrim>();
     private object m_stageLock = new object();
     private UsdIo m_usdIo;
-    private UsdStageRefPtr m_stage;
+    private UsdStage m_stage;
     private BackgroundExecutor m_bgExe = new BackgroundExecutor();
   }
 }

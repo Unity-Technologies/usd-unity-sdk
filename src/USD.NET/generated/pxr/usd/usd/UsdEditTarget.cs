@@ -51,11 +51,11 @@ public class UsdEditTarget : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdEditTarget(SdfLayerRefPtr layer, SdfLayerOffset offset) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_3(SdfLayerRefPtr.getCPtr(layer), SdfLayerOffset.getCPtr(offset)), true) {
+  public UsdEditTarget(SdfLayer layer, SdfLayerOffset offset) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_3(SdfLayer.getCPtr(layer), SdfLayerOffset.getCPtr(offset)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdEditTarget(SdfLayerRefPtr layer) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_4(SdfLayerRefPtr.getCPtr(layer)), true) {
+  public UsdEditTarget(SdfLayer layer) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_4(SdfLayer.getCPtr(layer)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -63,7 +63,7 @@ public class UsdEditTarget : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdEditTarget(SdfLayerRefPtr layer, SWIGTYPE_p_PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_6(SdfLayerRefPtr.getCPtr(layer), SWIGTYPE_p_PcpNodeRef.getCPtr(node)), true) {
+  public UsdEditTarget(SdfLayer layer, SWIGTYPE_p_PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_6(SdfLayer.getCPtr(layer), SWIGTYPE_p_PcpNodeRef.getCPtr(node)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

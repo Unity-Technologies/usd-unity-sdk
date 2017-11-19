@@ -60,8 +60,8 @@ public class UsdGeomBoundable : UsdGeomXformable {
     return ret;
   }
 
-  public new static UsdGeomBoundable Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomBoundable ret = new UsdGeomBoundable(UsdCsPINVOKE.UsdGeomBoundable_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdGeomBoundable Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdGeomBoundable ret = new UsdGeomBoundable(UsdCsPINVOKE.UsdGeomBoundable_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

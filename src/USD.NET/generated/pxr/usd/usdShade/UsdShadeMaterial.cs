@@ -60,14 +60,14 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
-  public new static UsdShadeMaterial Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdShadeMaterial ret = new UsdShadeMaterial(UsdCsPINVOKE.UsdShadeMaterial_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdShadeMaterial Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdShadeMaterial ret = new UsdShadeMaterial(UsdCsPINVOKE.UsdShadeMaterial_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public new static UsdShadeMaterial Define(UsdStageWeakPtr stage, SdfPath path) {
-    UsdShadeMaterial ret = new UsdShadeMaterial(UsdCsPINVOKE.UsdShadeMaterial_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdShadeMaterial Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdShadeMaterial ret = new UsdShadeMaterial(UsdCsPINVOKE.UsdShadeMaterial_Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -96,14 +96,14 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
-  public SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t GetEditContextForVariant(TfToken MaterialVariantName, SdfLayerHandle layer) {
-    SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t(UsdCsPINVOKE.UsdShadeMaterial_GetEditContextForVariant__SWIG_0(swigCPtr, TfToken.getCPtr(MaterialVariantName), SdfLayerHandle.getCPtr(layer)), true);
+  public SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t GetEditContextForVariant(TfToken MaterialVariantName, SdfLayerHandle layer) {
+    SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t(UsdCsPINVOKE.UsdShadeMaterial_GetEditContextForVariant__SWIG_0(swigCPtr, TfToken.getCPtr(MaterialVariantName), SdfLayerHandle.getCPtr(layer)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t GetEditContextForVariant(TfToken MaterialVariantName) {
-    SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t(UsdCsPINVOKE.UsdShadeMaterial_GetEditContextForVariant__SWIG_1(swigCPtr, TfToken.getCPtr(MaterialVariantName)), true);
+  public SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t GetEditContextForVariant(TfToken MaterialVariantName) {
+    SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t ret = new SWIGTYPE_p_std__pairT_TfDeclarePtrsT_UsdStage_t__Ptr_UsdEditTarget_t(UsdCsPINVOKE.UsdShadeMaterial_GetEditContextForVariant__SWIG_1(swigCPtr, TfToken.getCPtr(MaterialVariantName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

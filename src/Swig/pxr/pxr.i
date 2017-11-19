@@ -62,10 +62,8 @@ typedef std::vector< vector<double> > StdDoubleVectorVector;
 #define PXR_NAMESPACE_OPEN_SCOPE 
 #define PXR_NAMESPACE_CLOSE_SCOPE 
 
-// Swig thinks these are types for some reason, but no, they are not.
-// We can get away with nust redefining them to a no-op.
-#define TF_DECLARE_WEAK_PTRS(x)
-#define SDF_DECLARE_HANDLES(x)
+// Included for TF_DECLARE_WEAK_PTRS
+%include "pxr/base/tf/declarePtrs.h"
 
 %include "std_string.i"
 %include "typemaps.i"

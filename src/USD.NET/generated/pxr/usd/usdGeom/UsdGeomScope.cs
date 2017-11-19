@@ -60,14 +60,14 @@ public class UsdGeomScope : UsdGeomImageable {
     return ret;
   }
 
-  public new static UsdGeomScope Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomScope ret = new UsdGeomScope(UsdCsPINVOKE.UsdGeomScope_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdGeomScope Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdGeomScope ret = new UsdGeomScope(UsdCsPINVOKE.UsdGeomScope_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomScope Define(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomScope ret = new UsdGeomScope(UsdCsPINVOKE.UsdGeomScope_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public static UsdGeomScope Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
+    UsdGeomScope ret = new UsdGeomScope(UsdCsPINVOKE.UsdGeomScope_Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

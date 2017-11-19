@@ -36,8 +36,8 @@ public class SdfLayerBase : global::System.IDisposable {
     }
   }
 
-  public SWIGTYPE_p_SdfFileFormatConstPtr GetFileFormat() {
-    SWIGTYPE_p_SdfFileFormatConstPtr ret = new SWIGTYPE_p_SdfFileFormatConstPtr(UsdCsPINVOKE.SdfLayerBase_GetFileFormat(swigCPtr), true);
+  public SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr GetFileFormat() {
+    SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr(UsdCsPINVOKE.SdfLayerBase_GetFileFormat(swigCPtr), true);
     return ret;
   }
 

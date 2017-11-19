@@ -16,7 +16,6 @@
 
 #define PLUG_API
 #define PLUG_LOCAL
-#define TF_DECLARE_WEAK_AND_REF_PTRS(x)
 
 %include "plugPlugin.i"
 %include "plugRegistry.i"

@@ -41,14 +41,14 @@ public class PlugRegistry : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_PlugPluginPtrVector RegisterPlugins(string pathToPlugInfo) {
-    SWIGTYPE_p_PlugPluginPtrVector ret = new SWIGTYPE_p_PlugPluginPtrVector(UsdCsPINVOKE.PlugRegistry_RegisterPlugins__SWIG_0(swigCPtr, pathToPlugInfo), true);
+  public SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector RegisterPlugins(string pathToPlugInfo) {
+    SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector ret = new SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector(UsdCsPINVOKE.PlugRegistry_RegisterPlugins__SWIG_0(swigCPtr, pathToPlugInfo), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_PlugPluginPtrVector RegisterPlugins(StdStringVector pathsToPlugInfo) {
-    SWIGTYPE_p_PlugPluginPtrVector ret = new SWIGTYPE_p_PlugPluginPtrVector(UsdCsPINVOKE.PlugRegistry_RegisterPlugins__SWIG_1(swigCPtr, StdStringVector.getCPtr(pathsToPlugInfo)), true);
+  public SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector RegisterPlugins(StdStringVector pathsToPlugInfo) {
+    SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector ret = new SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector(UsdCsPINVOKE.PlugRegistry_RegisterPlugins__SWIG_1(swigCPtr, StdStringVector.getCPtr(pathsToPlugInfo)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -76,19 +76,19 @@ public class PlugRegistry : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_PlugPluginPtr GetPluginForType(TfType t) {
-    SWIGTYPE_p_PlugPluginPtr ret = new SWIGTYPE_p_PlugPluginPtr(UsdCsPINVOKE.PlugRegistry_GetPluginForType(swigCPtr, TfType.getCPtr(t)), true);
+  public SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr GetPluginForType(TfType t) {
+    SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr ret = new SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr(UsdCsPINVOKE.PlugRegistry_GetPluginForType(swigCPtr, TfType.getCPtr(t)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_PlugPluginPtrVector GetAllPlugins() {
-    SWIGTYPE_p_PlugPluginPtrVector ret = new SWIGTYPE_p_PlugPluginPtrVector(UsdCsPINVOKE.PlugRegistry_GetAllPlugins(swigCPtr), true);
+  public SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector GetAllPlugins() {
+    SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector ret = new SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__PtrVector(UsdCsPINVOKE.PlugRegistry_GetAllPlugins(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_PlugPluginPtr GetPluginWithName(string name) {
-    SWIGTYPE_p_PlugPluginPtr ret = new SWIGTYPE_p_PlugPluginPtr(UsdCsPINVOKE.PlugRegistry_GetPluginWithName(swigCPtr, name), true);
+  public SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr GetPluginWithName(string name) {
+    SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr ret = new SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr(UsdCsPINVOKE.PlugRegistry_GetPluginWithName(swigCPtr, name), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
