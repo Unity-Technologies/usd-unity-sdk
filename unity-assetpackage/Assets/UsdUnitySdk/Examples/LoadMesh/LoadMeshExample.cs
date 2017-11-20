@@ -25,7 +25,6 @@ using USD.NET;
 /// meshes.
 /// </summary>
 public class LoadMeshExample : MonoBehaviour {
-
   public string m_usdFile;
   public Material m_material;
 
@@ -74,6 +73,20 @@ public class LoadMeshExample : MonoBehaviour {
     // Set the time at which to read samples from USD.
     m_scene.Time = m_usdTime;
 
+    // Handle configurable up-axis (Y or Z).
+    Vector3 up = GetUpVector(m_scene);
+    var rootXf = new GameObject("root");
+    if (up != Vector3.up) {
+      rootXf.transform.localRotation = Quaternion.FromToRotation(Vector3.up, up);
+    }
+
+    // Convert from right-handed (USD) to left-handed (Unity).
+    // The math below works out to either (1, -1, 1) or (1, 1, -1), depending on up.
+    rootXf.transform.localScale = -1 * up + -1 * (Vector3.one - up);
+
+    // Assign this transform as the root.
+    m_primMap.Add("/", rootXf);
+
     // Load transforms.
     foreach (var path in m_scene.AllXforms) {
       var xf = new USD.NET.Unity.XformSample();
@@ -97,6 +110,29 @@ public class LoadMeshExample : MonoBehaviour {
     m_usdFile = m_scene.Stage.GetRootLayer().GetIdentifier();
   }
 
+  // Best practice: store a single value for objects that are reused, rather than recreating them.
+  private readonly pxr.TfToken kUpAxisToken = new pxr.TfToken("upAxis");
+  Vector3 GetUpVector(Scene scene) {
+    pxr.VtValue valUpAxis = new pxr.VtValue();
+    if (!m_scene.Stage.GetMetadata(kUpAxisToken, valUpAxis)) {
+      // Should never happen.
+      throw new Exception("Get UpAxis failed");
+    }
+
+    // Note: currently Y and Z are the only valid values.
+    // https://graphics.pixar.com/usd/docs/api/group___usd_geom_up_axis__group.html
+
+    switch (((pxr.TfToken)valUpAxis).ToString()) {
+    case "Y":
+      // Note, this is also Unity's default up vector.
+      return Vector3.up;
+    case "Z":
+      return new Vector3(0, 0, 1);
+    default:
+      throw new Exception("Invalid upAxis value: " + ((pxr.TfToken)valUpAxis).ToString());
+    }
+  }
+
   // Convert Matrix4x4 into TSR components.
   void AssignTransform(USD.NET.Unity.XformSample xf, GameObject go) {
     go.transform.localPosition = ExtractPosition(xf.transform);
@@ -107,9 +143,6 @@ public class LoadMeshExample : MonoBehaviour {
   // Recreate hierarchy.
   void AssignParent(pxr.SdfPath path, GameObject go) {
     m_primMap.Add(path, go);
-    if (path.IsRootPrimPath()) {
-      return;
-    }
     go.transform.SetParent(m_primMap[path.GetParentPath()].transform, worldPositionStays: false);
   }
 
@@ -128,6 +161,16 @@ public class LoadMeshExample : MonoBehaviour {
     var counts = USD.NET.Unity.UnityTypeConverter.ToVtArray(usdMesh.faceVertexCounts);
     pxr.UsdGeomMesh.Triangulate(indices, counts);
     USD.NET.Unity.UnityTypeConverter.FromVtArray(indices, ref usdMesh.faceVertexIndices);
+
+    if (usdMesh.orientation == Orientation.LeftHanded) {
+      // USD is right-handed, so the mesh needs to be flipped.
+      // Unity is left-handed, but that doesn't matter here.
+      for (int i = 0; i < usdMesh.faceVertexIndices.Length; i += 3) {
+        int tmp = usdMesh.faceVertexIndices[i];
+        usdMesh.faceVertexIndices[i] = usdMesh.faceVertexIndices[i + 1];
+        usdMesh.faceVertexIndices[i + 1] = tmp;
+      }
+    }
 
     unityMesh.triangles = usdMesh.faceVertexIndices;
 
