@@ -118,10 +118,17 @@ public class LoadMeshExample : MonoBehaviour {
     var mf = go.AddComponent<MeshFilter>();
     var mr = go.AddComponent<MeshRenderer>();
     var unityMesh = new UnityEngine.Mesh();
+    var mat = Material.Instantiate(m_material);
 
     unityMesh.vertices = usdMesh.points;
 
-    // IMPORTANT: n-gons are not handled, assumes triangle mesh.
+    // Triangulate n-gons.
+    // For best performance, triangulate off-line and skip conversion.
+    var indices = USD.NET.Unity.UnityTypeConverter.ToVtArray(usdMesh.faceVertexIndices);
+    var counts = USD.NET.Unity.UnityTypeConverter.ToVtArray(usdMesh.faceVertexCounts);
+    pxr.UsdGeomMesh.Triangulate(indices, counts);
+    USD.NET.Unity.UnityTypeConverter.FromVtArray(indices, ref usdMesh.faceVertexIndices);
+
     unityMesh.triangles = usdMesh.faceVertexIndices;
 
     if (usdMesh.extent.size.x > 0 || usdMesh.extent.size.y > 0 || usdMesh.extent.size.z > 0) {
@@ -142,7 +149,28 @@ public class LoadMeshExample : MonoBehaviour {
       unityMesh.RecalculateTangents();
     }
 
-    if (usdMesh.colors != null) { unityMesh.colors = usdMesh.colors; }
+    if (usdMesh.colors != null) {
+      // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
+      // For best performance, convert color space to linear off-line and skip conversion.
+
+      if (usdMesh.colors.Length == 1) {
+        // Constant color can just be set on the material.
+        mat.color = usdMesh.colors[0].gamma;
+      } else if (usdMesh.colors.Length == usdMesh.points.Length) {
+        // Vertex colors map on to verts.
+        // TODO: move the conversion to C++ and use the color management API.
+        for (int i = 0; i < usdMesh.colors.Length; i++) {
+          usdMesh.colors[i] = usdMesh.colors[i].gamma;
+        }
+
+        unityMesh.colors = usdMesh.colors;
+      } else {
+        // FaceVarying and uniform both require breaking up the mesh and are not yet handled in this
+        // example.
+        Debug.LogWarning("Uniform (color per face) and FaceVarying (color per vert per face) "
+                       + "display color not supported in this example");
+      }
+    }
 
     // As in Unity, UVs are a dynamic type which can be vec2, vec3, or vec4.
     if (usdMesh.uv != null) {
@@ -158,7 +186,7 @@ public class LoadMeshExample : MonoBehaviour {
       }
     }
 
-    mr.material = m_material;
+    mr.material = mat;
     mf.mesh = unityMesh;
   }
 
