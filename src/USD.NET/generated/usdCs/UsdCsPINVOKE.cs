@@ -12410,6 +12410,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_SHARPNESS_INFINITE_get")]
   public static extern float UsdGeomMesh_SHARPNESS_INFINITE_get();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_Triangulate")]
+  public static extern void UsdGeomMesh_Triangulate(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeNodeGraph_IsConcrete_get")]
   public static extern bool UsdShadeNodeGraph_IsConcrete_get();
 

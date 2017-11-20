@@ -19,3 +19,29 @@
 %}
 
 %include "pxr/usd/usdGeom/mesh.h"
+
+%extend UsdGeomMesh {
+  static void Triangulate(VtIntArray& faceVertexIndices, VtIntArray& faceVertexCounts) {
+    VtIntArray newIndices;
+    VtIntArray newCounts;
+    
+    newIndices.reserve(faceVertexIndices.size());
+    newCounts.reserve(faceVertexCounts.size());
+
+    int last = 0;
+    int next = 1;
+    for (int i = 0; i < faceVertexCounts.size(); i++) {
+      next = last + 1;
+      for (int t = 0; t < faceVertexCounts[i] - 2; t++) {
+        newCounts.push_back(3);
+        newIndices.push_back(faceVertexIndices[last]);
+        newIndices.push_back(faceVertexIndices[next++]);
+        newIndices.push_back(faceVertexIndices[next]);
+      }
+      last += faceVertexCounts[i];
+    }
+
+    faceVertexIndices.swap(newIndices);
+    faceVertexCounts.swap(newCounts);
+  }
+}

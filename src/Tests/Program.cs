@@ -26,6 +26,7 @@ namespace Tests {
     }
 
     static void RunTestCases() {
+      Cases.MeshTests.TestTriangulation();
       Cases.StageTests.PointerTest();
       Cases.StageTests.MemoryTest();
       Cases.StageTests.ApiTest();

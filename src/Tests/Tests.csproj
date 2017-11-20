@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cases\Basic.cs" />
+    <Compile Include="Cases\MeshTests.cs" />
     <Compile Include="Cases\StageTests.cs" />
     <Compile Include="Cases\UnityIO.cs" />
     <Compile Include="Program.cs" />

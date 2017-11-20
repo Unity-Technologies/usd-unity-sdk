@@ -343,6 +343,11 @@ public class UsdGeomMesh : UsdGeomPointBased {
     } 
   }
 
+  public static void Triangulate(VtIntArray faceVertexIndices, VtIntArray faceVertexCounts) {
+    UsdCsPINVOKE.UsdGeomMesh_Triangulate(VtIntArray.getCPtr(faceVertexIndices), VtIntArray.getCPtr(faceVertexCounts));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomMesh_IsConcrete_get();
 }
 

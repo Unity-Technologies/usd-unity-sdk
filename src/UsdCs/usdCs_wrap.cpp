@@ -4777,6 +4777,29 @@ SWIGINTERN void std_vector_Sl_UsdGeomPrimvar_Sg__SetRange(std::vector< UsdGeomPr
 
 #include "pxr/usd/usdGeom/mesh.h"
 
+SWIGINTERN void UsdGeomMesh_Triangulate(VtIntArray &faceVertexIndices,VtIntArray &faceVertexCounts){
+    VtIntArray newIndices;
+    VtIntArray newCounts;
+    
+    newIndices.reserve(faceVertexIndices.size());
+    newCounts.reserve(faceVertexCounts.size());
+
+    int last = 0;
+    int next = 1;
+    for (int i = 0; i < faceVertexCounts.size(); i++) {
+      next = last + 1;
+      for (int t = 0; t < faceVertexCounts[i] - 2; t++) {
+        newCounts.push_back(3);
+        newIndices.push_back(faceVertexIndices[last]);
+        newIndices.push_back(faceVertexIndices[next++]);
+        newIndices.push_back(faceVertexIndices[next]);
+      }
+      last += faceVertexCounts[i];
+    }
+
+    faceVertexIndices.swap(newIndices);
+    faceVertexCounts.swap(newCounts);
+  }
 
 #include "pxr/usd/usdGeom/tokens.h"
 
@@ -67186,6 +67209,24 @@ SWIGEXPORT float SWIGSTDCALL CSharp_pxr_UsdGeomMesh_SHARPNESS_INFINITE_get() {
   result = (float)(float)UsdGeomMesh::SHARPNESS_INFINITE;
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomMesh_Triangulate(void * jarg1, void * jarg2) {
+  VtIntArray *arg1 = 0 ;
+  VtIntArray *arg2 = 0 ;
+  
+  arg1 = (VtIntArray *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray & type is null", 0);
+    return ;
+  } 
+  arg2 = (VtIntArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray & type is null", 0);
+    return ;
+  } 
+  UsdGeomMesh_Triangulate(*arg1,*arg2);
 }
 
 
