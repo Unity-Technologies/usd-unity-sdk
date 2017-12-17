@@ -21,7 +21,7 @@ namespace USD.NET {
 
   public enum Visibility {
     Inherited,    // Default
-    Hidden,
+    Invisible,
   }
 
   public enum Purpose {
