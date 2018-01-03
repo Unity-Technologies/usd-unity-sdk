@@ -21,7 +21,7 @@ namespace Tests.Cases {
     public static void TestVisibility() {
       var sample = new USD.NET.Unity.MeshSample();
       var outSample = new USD.NET.Unity.MeshSample();
-      sample.visibility = USD.NET.Visibility.Hidden;
+      sample.visibility = USD.NET.Visibility.Invisible;
 
       WriteAndRead(ref sample, ref outSample, true);
 
