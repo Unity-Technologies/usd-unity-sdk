@@ -95,6 +95,7 @@ public class UsdGeomBoundable : UsdGeomXformable {
   }
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomBoundable_IsConcrete_get();
+  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomBoundable_IsTyped_get();
 }
 
 }

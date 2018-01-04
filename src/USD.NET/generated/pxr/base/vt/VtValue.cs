@@ -570,13 +570,13 @@ public class VtValue : global::System.IDisposable {
   }
 
   public static VtValue CastToTypeOf(VtValue val, VtValue other) {
-    VtValue ret = new VtValue(UsdCsPINVOKE.VtValue_CastToTypeOf(VtValue.getCPtr(val), VtValue.getCPtr(other)), true);
+    VtValue ret = new VtValue(UsdCsPINVOKE.VtValue_CastToTypeOf__SWIG_0(VtValue.getCPtr(val), VtValue.getCPtr(other)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static VtValue CastToTypeid(VtValue val, SWIGTYPE_p_std__type_info type) {
-    VtValue ret = new VtValue(UsdCsPINVOKE.VtValue_CastToTypeid(VtValue.getCPtr(val), SWIGTYPE_p_std__type_info.getCPtr(type)), true);
+    VtValue ret = new VtValue(UsdCsPINVOKE.VtValue_CastToTypeid__SWIG_0(VtValue.getCPtr(val), SWIGTYPE_p_std__type_info.getCPtr(type)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -593,8 +593,19 @@ public class VtValue : global::System.IDisposable {
     return ret;
   }
 
+  public bool CanCastToTypeid(SWIGTYPE_p_std__type_info type) {
+    bool ret = UsdCsPINVOKE.VtValue_CanCastToTypeid(swigCPtr, SWIGTYPE_p_std__type_info.getCPtr(type));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool IsEmpty() {
     bool ret = UsdCsPINVOKE.VtValue_IsEmpty(swigCPtr);
+    return ret;
+  }
+
+  public bool CanHash() {
+    bool ret = UsdCsPINVOKE.VtValue_CanHash(swigCPtr);
     return ret;
   }
 

@@ -18,4 +18,4 @@
 #include "pxr/usd/sdf/assetPath.h"
 %}
 
-%include "third_party/include/sdfAssetPath.h"
+%include "pxr/usd/sdf/assetPath.h"

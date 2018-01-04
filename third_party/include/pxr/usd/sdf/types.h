@@ -21,28 +21,97 @@
 // KIND, either express or implied. See the Apache License for the specific
 // language governing permissions and limitations under the Apache License.
 //
+#ifndef SDF_TYPES_H
+#define SDF_TYPES_H
 
+/// \file sdf/types.h
+/// Basic Sdf data types
+
+#include "pxr/pxr.h"
+#include "pxr/usd/sdf/api.h"
+#include "pxr/usd/sdf/assetPath.h"
+#include "pxr/usd/sdf/declareHandles.h"
+#include "pxr/usd/sdf/listOp.h"
+#include "pxr/usd/sdf/valueTypeName.h"
+
+#include "pxr/base/arch/demangle.h"
+#include "pxr/base/arch/inttypes.h"
+#include "pxr/base/gf/half.h"
+#include "pxr/base/gf/matrix2d.h"
+#include "pxr/base/gf/matrix3d.h"
+#include "pxr/base/gf/matrix4d.h"
+#include "pxr/base/gf/quatd.h"
+#include "pxr/base/gf/quatf.h"
+#include "pxr/base/gf/quath.h"
+#include "pxr/base/gf/vec2d.h"
+#include "pxr/base/gf/vec2f.h"
+#include "pxr/base/gf/vec2h.h"
+#include "pxr/base/gf/vec2i.h"
+#include "pxr/base/gf/vec3d.h"
+#include "pxr/base/gf/vec3f.h"
+#include "pxr/base/gf/vec3h.h"
+#include "pxr/base/gf/vec3i.h"
+#include "pxr/base/gf/vec4d.h"
+#include "pxr/base/gf/vec4f.h"
+#include "pxr/base/gf/vec4h.h"
+#include "pxr/base/gf/vec4i.h"
+#include "pxr/base/tf/enum.h"
+#include "pxr/base/tf/preprocessorUtils.h"
+#include "pxr/base/tf/staticTokens.h"
+#include "pxr/base/tf/token.h"
+#include "pxr/base/tf/type.h"
+#include "pxr/base/vt/array.h"
+#include "pxr/base/vt/dictionary.h"
+#include "pxr/base/vt/value.h"
+
+#include <boost/mpl/joint_view.hpp>
+#include <boost/mpl/transform_view.hpp>
+#include <boost/mpl/vector.hpp>
+#include <boost/noncopyable.hpp>
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/list/fold_left.hpp>
+#include <boost/preprocessor/list/for_each.hpp>
+#include <boost/preprocessor/list/size.hpp>
+#include <boost/preprocessor/punctuation/comma.hpp>
+#include <boost/preprocessor/selection/max.hpp>
+#include <boost/preprocessor/seq/for_each.hpp>
+#include <boost/preprocessor/seq/seq.hpp>
+#include <boost/preprocessor/seq/size.hpp>
+#include <boost/preprocessor/stringize.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/shared_ptr.hpp>
+#include <iosfwd>
+#include <list>
+#include <map>
+#include <stdint.h>
+#include <string>
+#include <typeinfo>
+#include <vector>
+
+PXR_NAMESPACE_OPEN_SCOPE
+
+class SdfPath;
 
 /// An enum that specifies the type of an object. Objects
 /// are entities that have fields and are addressable by path.
 enum SdfSpecType {
-  // The unknown type has a value of 0 so that SdfSpecType() is unknown.
-  SdfSpecTypeUnknown = 0,
+    // The unknown type has a value of 0 so that SdfSpecType() is unknown.
+    SdfSpecTypeUnknown = 0,
 
-  // Real concrete types
-  SdfSpecTypeAttribute,
-  SdfSpecTypeConnection,
-  SdfSpecTypeExpression,
-  SdfSpecTypeMapper,
-  SdfSpecTypeMapperArg,
-  SdfSpecTypePrim,
-  SdfSpecTypePseudoRoot,
-  SdfSpecTypeRelationship,
-  SdfSpecTypeRelationshipTarget,
-  SdfSpecTypeVariant,
-  SdfSpecTypeVariantSet,
+    // Real concrete types
+    SdfSpecTypeAttribute,
+    SdfSpecTypeConnection,
+    SdfSpecTypeExpression,
+    SdfSpecTypeMapper,
+    SdfSpecTypeMapperArg,
+    SdfSpecTypePrim,
+    SdfSpecTypePseudoRoot,
+    SdfSpecTypeRelationship,
+    SdfSpecTypeRelationshipTarget,
+    SdfSpecTypeVariant,
+    SdfSpecTypeVariantSet,
 
-  SdfNumSpecTypes
+    SdfNumSpecTypes
 };
 
 /// An enum that identifies the possible specifiers for an
@@ -51,21 +120,17 @@ enum SdfSpecType {
 ///
 /// <b>SdfSpecifier:</b>
 /// <ul>
-/// <li><b>SdfSpecifierDef.</b> Defines a new concrete prim.
-///        A prim with the same namespace path must not already
-///        have been defined (as a def or class) by a weaker layer.
-/// <li><b>SdfSpecifierOver.</b> Defines overrides for an existing prim.
-/// <li><b>SdfSpecifierClass.</b> Defines a new abstract prim.
-///        A prim with the same namespace path must not already
-///        have been defined (as a def or class) by a weaker layer.
+/// <li><b>SdfSpecifierDef.</b> Defines a concrete prim.
+/// <li><b>SdfSpecifierOver.</b> Overrides an existing prim.
+/// <li><b>SdfSpecifierClass.</b> Defines an abstract prim.
 /// <li><b>SdfNumSpecifiers.</b> The number of specifiers.
 /// </ul>
 ///
 enum SdfSpecifier {
-  SdfSpecifierDef,
-  SdfSpecifierOver,
-  SdfSpecifierClass,
-  SdfNumSpecifiers
+    SdfSpecifierDef,
+    SdfSpecifierOver,
+    SdfSpecifierClass,
+    SdfNumSpecifiers
 };
 
 /// Returns true if the specifier defines a prim.
@@ -73,7 +138,7 @@ inline
 bool
 SdfIsDefiningSpecifier(SdfSpecifier spec)
 {
-  return (spec != SdfSpecifierOver);
+    return (spec != SdfSpecifierOver);
 }
 
 /// An enum that defines permission levels.
@@ -94,10 +159,10 @@ SdfIsDefiningSpecifier(SdfSpecifier spec)
 /// </ul>
 ///
 enum SdfPermission {
-  SdfPermissionPublic,
-  SdfPermissionPrivate,
+    SdfPermissionPublic,         
+    SdfPermissionPrivate,        
 
-  SdfNumPermissions
+    SdfNumPermissions            
 };
 
 /// An enum that identifies variability types for attributes.
@@ -121,13 +186,14 @@ enum SdfPermission {
 /// </ul>
 ///
 enum SdfVariability {
-  SdfVariabilityVarying,
-  SdfVariabilityUniform,
-  SdfVariabilityConfig,
+    SdfVariabilityVarying,
+    SdfVariabilityUniform,
+    SdfVariabilityConfig,
 
-  SdfNumVariabilities
+    SdfNumVariabilities 
 };
 
+// USD.NET: Remove Boost PP Declarations (197-688)
 
 /// \class SdfValueBlock
 /// A special value type that can be used to explicitly author an
@@ -143,10 +209,17 @@ enum SdfVariability {
 /// layer->SetTimeSample(attribute->GetPath(), 101, VtValue(SdfValueBlock()));
 /// \endcode
 ///
-struct SdfValueBlock {
-  bool operator==(const SdfValueBlock& block) const { return true; }
-  bool operator!=(const SdfValueBlock& block) const { return false; }
+struct SdfValueBlock { 
+    bool operator==(const SdfValueBlock& block) const { return true; }
+    bool operator!=(const SdfValueBlock& block) const { return false; }
 
 private:
-  friend inline size_t hash_value(const SdfValueBlock &block) { return 0; }
+    friend inline size_t hash_value(const SdfValueBlock &block) { return 0; }
 };
+
+// Write out the string representation of a block.
+SDF_API std::ostream& operator<<(std::ostream&, SdfValueBlock const&); 
+
+PXR_NAMESPACE_CLOSE_SCOPE
+
+#endif // SDF_TYPES_H

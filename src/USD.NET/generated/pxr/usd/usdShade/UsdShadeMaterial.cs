@@ -154,26 +154,20 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
-  public static SWIGTYPE_p_UsdGeomSubset CreateMaterialBindFaceSubset(UsdGeomImageable geom, TfToken subsetName, VtIntArray indices) {
-    SWIGTYPE_p_UsdGeomSubset ret = new SWIGTYPE_p_UsdGeomSubset(UsdCsPINVOKE.UsdShadeMaterial_CreateMaterialBindFaceSubset(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(subsetName), VtIntArray.getCPtr(indices)), true);
+  public static SWIGTYPE_p_std__vectorT_UsdGeomSubset_t GetMaterialBindSubsets(UsdGeomImageable geom) {
+    SWIGTYPE_p_std__vectorT_UsdGeomSubset_t ret = new SWIGTYPE_p_std__vectorT_UsdGeomSubset_t(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindSubsets(UsdGeomImageable.getCPtr(geom)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdGeomSubset_t GetMaterialBindFaceSubsets(UsdGeomImageable geom) {
-    SWIGTYPE_p_std__vectorT_UsdGeomSubset_t ret = new SWIGTYPE_p_std__vectorT_UsdGeomSubset_t(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindFaceSubsets(UsdGeomImageable.getCPtr(geom)), true);
+  public static bool SetMaterialBindSubsetsFamilyType(UsdGeomImageable geom, TfToken familyType) {
+    bool ret = UsdCsPINVOKE.UsdShadeMaterial_SetMaterialBindSubsetsFamilyType(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(familyType));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool SetMaterialBindFaceSubsetsFamilyType(UsdGeomImageable geom, SWIGTYPE_p_UsdGeomSubset__FamilyType familyType) {
-    bool ret = UsdCsPINVOKE.UsdShadeMaterial_SetMaterialBindFaceSubsetsFamilyType(UsdGeomImageable.getCPtr(geom), SWIGTYPE_p_UsdGeomSubset__FamilyType.getCPtr(familyType));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SWIGTYPE_p_UsdGeomSubset__FamilyType GetMaterialBindFaceSubsetsFamilyType(UsdGeomImageable geom) {
-    SWIGTYPE_p_UsdGeomSubset__FamilyType ret = new SWIGTYPE_p_UsdGeomSubset__FamilyType(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindFaceSubsetsFamilyType(UsdGeomImageable.getCPtr(geom)), true);
+  public static TfToken GetMaterialBindSubsetsFamilyType(UsdGeomImageable geom) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindSubsetsFamilyType(UsdGeomImageable.getCPtr(geom)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -197,6 +191,7 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
   }
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeMaterial_IsConcrete_get();
+  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeMaterial_IsTyped_get();
 }
 
 }

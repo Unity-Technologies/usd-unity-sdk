@@ -28,4 +28,4 @@ typedef std::set<TfType> TfTypeSet;
 
 //%include "pxr/base/tf/type.h"
 
-%include "third_party/include/tfType.h"
+%include "third_party/include/pxr/base/tf/type.h"

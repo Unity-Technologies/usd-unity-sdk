@@ -18,4 +18,4 @@
 #include "pxr/usd/sdf/layerBase.h"
 %}
 
-%include "third_party/include/sdfLayerBase.h"
+%include "pxr/usd/sdf/layerBase.h"

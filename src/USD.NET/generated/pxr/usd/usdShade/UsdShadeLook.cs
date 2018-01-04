@@ -173,6 +173,7 @@ public class UsdShadeLook : UsdShadeMaterial {
   }
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeLook_IsConcrete_get();
+  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeLook_IsTyped_get();
 }
 
 }

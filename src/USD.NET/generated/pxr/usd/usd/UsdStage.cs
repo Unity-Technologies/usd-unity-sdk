@@ -301,14 +301,20 @@ public class UsdStage : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public UsdPrim Load(SdfPath path, SWIGTYPE_p_UsdLoadPolicy policy) {
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_Load__SWIG_0(swigCPtr, SdfPath.getCPtr(path), SWIGTYPE_p_UsdLoadPolicy.getCPtr(policy)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdPrim Load(SdfPath path) {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_Load__SWIG_0(swigCPtr, SdfPath.getCPtr(path)), true);
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_Load__SWIG_1(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public UsdPrim Load() {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_Load__SWIG_1(swigCPtr), true);
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdStage_Load__SWIG_2(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -323,25 +329,30 @@ public class UsdStage : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void LoadAndUnload(SWIGTYPE_p_SdfPathSet loadSet, SWIGTYPE_p_SdfPathSet unloadSet) {
-    UsdCsPINVOKE.UsdStage_LoadAndUnload(swigCPtr, SWIGTYPE_p_SdfPathSet.getCPtr(loadSet), SWIGTYPE_p_SdfPathSet.getCPtr(unloadSet));
+  public void LoadAndUnload(SWIGTYPE_p_std__setT_SdfPath_t loadSet, SWIGTYPE_p_std__setT_SdfPath_t unloadSet, SWIGTYPE_p_UsdLoadPolicy policy) {
+    UsdCsPINVOKE.UsdStage_LoadAndUnload__SWIG_0(swigCPtr, SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(loadSet), SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(unloadSet), SWIGTYPE_p_UsdLoadPolicy.getCPtr(policy));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_SdfPathSet GetLoadSet() {
-    SWIGTYPE_p_SdfPathSet ret = new SWIGTYPE_p_SdfPathSet(UsdCsPINVOKE.UsdStage_GetLoadSet(swigCPtr), true);
+  public void LoadAndUnload(SWIGTYPE_p_std__setT_SdfPath_t loadSet, SWIGTYPE_p_std__setT_SdfPath_t unloadSet) {
+    UsdCsPINVOKE.UsdStage_LoadAndUnload__SWIG_1(swigCPtr, SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(loadSet), SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(unloadSet));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SWIGTYPE_p_std__setT_SdfPath_t GetLoadSet() {
+    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.UsdStage_GetLoadSet(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPathSet FindLoadable(SdfPath rootPath) {
-    SWIGTYPE_p_SdfPathSet ret = new SWIGTYPE_p_SdfPathSet(UsdCsPINVOKE.UsdStage_FindLoadable__SWIG_0(swigCPtr, SdfPath.getCPtr(rootPath)), true);
+  public SWIGTYPE_p_std__setT_SdfPath_t FindLoadable(SdfPath rootPath) {
+    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.UsdStage_FindLoadable__SWIG_0(swigCPtr, SdfPath.getCPtr(rootPath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPathSet FindLoadable() {
-    SWIGTYPE_p_SdfPathSet ret = new SWIGTYPE_p_SdfPathSet(UsdCsPINVOKE.UsdStage_FindLoadable__SWIG_1(swigCPtr), true);
+  public SWIGTYPE_p_std__setT_SdfPath_t FindLoadable() {
+    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.UsdStage_FindLoadable__SWIG_1(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

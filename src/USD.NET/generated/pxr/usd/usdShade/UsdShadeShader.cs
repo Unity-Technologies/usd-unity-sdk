@@ -134,6 +134,7 @@ public class UsdShadeShader : UsdTyped {
   }
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeShader_IsConcrete_get();
+  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeShader_IsTyped_get();
 }
 
 }

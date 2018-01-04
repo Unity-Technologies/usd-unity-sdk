@@ -117,6 +117,7 @@ public class UsdSchemaBase : global::System.IDisposable {
   }
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdSchemaBase_IsConcrete_get();
+  public static readonly bool IsTyped = UsdCsPINVOKE.UsdSchemaBase_IsTyped_get();
 }
 
 }

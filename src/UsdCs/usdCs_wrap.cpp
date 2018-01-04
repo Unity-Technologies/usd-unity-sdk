@@ -9435,6 +9435,24 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_TfTypeVector(void * jarg1) {
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_TfType_FactoryBase(void * jarg1) {
+  TfType::FactoryBase *arg1 = (TfType::FactoryBase *) 0 ;
+  
+  arg1 = (TfType::FactoryBase *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfType_FactoryBase() {
+  void * jresult ;
+  TfType::FactoryBase *result = 0 ;
+  
+  result = (TfType::FactoryBase *)new TfType::FactoryBase();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfType() {
   void * jresult ;
   TfType *result = 0 ;
@@ -10262,7 +10280,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_TfToken(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfToken__SWIG_2(char * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfToken__SWIG_3(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
   TfToken *result = 0 ;
@@ -10279,7 +10297,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfToken__SWIG_2(char * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfToken__SWIG_3(char * jarg1, int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfToken__SWIG_4(char * jarg1, int jarg2) {
   void * jresult ;
   std::string *arg1 = 0 ;
   TfToken::_ImmortalTag arg2 ;
@@ -10363,21 +10381,15 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_TfToken_LTTokenFunctor(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_TfToken_TokensEqualFunctor() {
-  void * jresult ;
-  TfToken::TokensEqualFunctor *result = 0 ;
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_TfToken_size(void * jarg1) {
+  unsigned long jresult ;
+  TfToken *arg1 = (TfToken *) 0 ;
+  size_t result;
   
-  result = (TfToken::TokensEqualFunctor *)new TfToken::TokensEqualFunctor();
-  jresult = (void *)result; 
+  arg1 = (TfToken *)jarg1; 
+  result = ((TfToken const *)arg1)->size();
+  jresult = (unsigned long)result; 
   return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_TfToken_TokensEqualFunctor(void * jarg1) {
-  TfToken::TokensEqualFunctor *arg1 = (TfToken::TokensEqualFunctor *) 0 ;
-  
-  arg1 = (TfToken::TokensEqualFunctor *)jarg1; 
-  delete arg1;
 }
 
 
@@ -10388,6 +10400,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_TfToken_GetText(void * jarg1) {
   
   arg1 = (TfToken *)jarg1; 
   result = (char *)((TfToken const *)arg1)->GetText();
+  jresult = SWIG_csharp_string_callback((const char *)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_TfToken_data(void * jarg1) {
+  char * jresult ;
+  TfToken *arg1 = (TfToken *) 0 ;
+  char *result = 0 ;
+  
+  arg1 = (TfToken *)jarg1; 
+  result = (char *)((TfToken const *)arg1)->data();
   jresult = SWIG_csharp_string_callback((const char *)result); 
   return jresult;
 }
@@ -36763,7 +36787,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_VtValue_GetTypeName(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_VtValue_CastToTypeOf(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_VtValue_CastToTypeOf__SWIG_0(void * jarg1, void * jarg2) {
   void * jresult ;
   VtValue *arg1 = 0 ;
   VtValue *arg2 = 0 ;
@@ -36785,7 +36809,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_VtValue_CastToTypeOf(void * jarg1, void
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_VtValue_CastToTypeid(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_VtValue_CastToTypeid__SWIG_0(void * jarg1, void * jarg2) {
   void * jresult ;
   VtValue *arg1 = 0 ;
   std::type_info *arg2 = 0 ;
@@ -36847,6 +36871,24 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_VtValue_CanCastToTypeOf(void * ja
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_VtValue_CanCastToTypeid(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  VtValue *arg1 = (VtValue *) 0 ;
+  std::type_info *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (VtValue *)jarg1; 
+  arg2 = (std::type_info *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::type_info const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((VtValue const *)arg1)->CanCastToTypeid((std::type_info const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_VtValue_IsEmpty(void * jarg1) {
   unsigned int jresult ;
   VtValue *arg1 = (VtValue *) 0 ;
@@ -36854,6 +36896,18 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_VtValue_IsEmpty(void * jarg1) {
   
   arg1 = (VtValue *)jarg1; 
   result = (bool)((VtValue const *)arg1)->IsEmpty();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_VtValue_CanHash(void * jarg1) {
+  unsigned int jresult ;
+  VtValue *arg1 = (VtValue *) 0 ;
+  bool result;
+  
+  arg1 = (VtValue *)jarg1; 
+  result = (bool)((VtValue const *)arg1)->CanHash();
   jresult = result; 
   return jresult;
 }
@@ -36871,7 +36925,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_VtValue_GetHash(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_26(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_27(void * jarg1) {
   unsigned long jresult ;
   VtValue *arg1 = 0 ;
   size_t result;
@@ -38065,7 +38119,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_2(void * jarg1, void * jarg2) 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_27(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_28(void * jarg1) {
   unsigned long jresult ;
   VtDictionary *arg1 = 0 ;
   size_t result;
@@ -38439,7 +38493,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_ArResolverContext_GetDebugString(void *
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_28(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_29(void * jarg1) {
   unsigned long jresult ;
   ArResolverContext *arg1 = 0 ;
   size_t result;
@@ -38475,7 +38529,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfIsDefiningSpecifier(int jarg1)
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_29(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_30(void * jarg1) {
   unsigned long jresult ;
   SdfValueBlock *arg1 = 0 ;
   size_t result;
@@ -38791,7 +38845,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfValueTypeNameHash(void * jarg1)
 }
 
 
-SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_30(void * jarg1) {
+SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_31(void * jarg1) {
   unsigned long long jresult ;
   SdfValueTypeName *arg1 = 0 ;
   uint64_t result;
@@ -39790,7 +39844,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfAssetPath_GetHash(void * jarg
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_31(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_32(void * jarg1) {
   unsigned long jresult ;
   SdfAssetPath *arg1 = 0 ;
   size_t result;
@@ -39827,6 +39881,24 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfAssetPath_GetResolvedPath(void * jar
   result = (std::string *) &((SdfAssetPath const *)arg1)->GetResolvedPath();
   jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_3(void * jarg1, void * jarg2) {
+  SdfAssetPath *arg1 = 0 ;
+  SdfAssetPath *arg2 = 0 ;
+  
+  arg1 = (SdfAssetPath *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath & type is null", 0);
+    return ;
+  } 
+  arg2 = (SdfAssetPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath & type is null", 0);
+    return ;
+  } 
+  swap(*arg1,*arg2);
 }
 
 
@@ -40418,6 +40490,18 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfPath_ContainsPrimVariantSelect
   
   arg1 = (SdfPath *)jarg1; 
   result = (bool)((SdfPath const *)arg1)->ContainsPrimVariantSelection();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfPath_ContainsTargetPath(void * jarg1) {
+  unsigned int jresult ;
+  SdfPath *arg1 = (SdfPath *) 0 ;
+  bool result;
+  
+  arg1 = (SdfPath *)jarg1; 
+  result = (bool)((SdfPath const *)arg1)->ContainsTargetPath();
   jresult = result; 
   return jresult;
 }
@@ -41324,6 +41408,24 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfPath_IsBuiltInMarker(char * ja
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPath_Hash() {
+  void * jresult ;
+  SdfPath::Hash *result = 0 ;
+  
+  result = (SdfPath::Hash *)new SdfPath::Hash();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPath_Hash(void * jarg1) {
+  SdfPath::Hash *arg1 = (SdfPath::Hash *) 0 ;
+  
+  arg1 = (SdfPath::Hash *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfPath_GetHash(void * jarg1) {
   unsigned long jresult ;
   SdfPath *arg1 = (SdfPath *) 0 ;
@@ -41333,6 +41435,24 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfPath_GetHash(void * jarg1) {
   result = ((SdfPath const *)arg1)->GetHash();
   jresult = (unsigned long)result; 
   return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPath_FastLessThan() {
+  void * jresult ;
+  SdfPath::FastLessThan *result = 0 ;
+  
+  result = (SdfPath::FastLessThan *)new SdfPath::FastLessThan();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPath_FastLessThan(void * jarg1) {
+  SdfPath::FastLessThan *arg1 = (SdfPath::FastLessThan *) 0 ;
+  
+  arg1 = (SdfPath::FastLessThan *)jarg1; 
+  delete arg1;
 }
 
 
@@ -41368,7 +41488,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPath_RemoveAncestorPaths(void * jarg1)
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_3(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_4(void * jarg1, void * jarg2) {
   SdfPath *arg1 = 0 ;
   SdfPath *arg2 = 0 ;
   
@@ -41413,6 +41533,22 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPath(void * jarg1) {
   
   arg1 = (SdfPath *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_33(void * jarg1) {
+  unsigned long jresult ;
+  SdfPath *arg1 = 0 ;
+  size_t result;
+  
+  arg1 = (SdfPath *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = hash_value((SdfPath const &)*arg1);
+  jresult = (unsigned long)result; 
+  return jresult;
 }
 
 
@@ -41942,7 +42078,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayerOffset_Hash(void * jarg1) 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_32(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_34(void * jarg1) {
   unsigned long jresult ;
   SdfLayerOffset *arg1 = 0 ;
   size_t result;
@@ -42069,7 +42205,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPayload_SetPrimPath(void * jarg1, void
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_33(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_35(void * jarg1) {
   unsigned long jresult ;
   SdfPayload *arg1 = 0 ;
   size_t result;
@@ -49659,7 +49795,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdTimeCode_GetValue(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_34(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
   unsigned long jresult ;
   UsdTimeCode *arg1 = 0 ;
   size_t result;
@@ -50140,7 +50276,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_Usd_PrimFlagsPredicate_IncludeIns
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_35(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_37(void * jarg1) {
   unsigned long jresult ;
   Usd_PrimFlagsPredicate *arg1 = 0 ;
   size_t result;
@@ -52029,7 +52165,36 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_SetGlobalVariantFallbacks(void *
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_0(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdStage *arg1 = (UsdStage *) 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdLoadPolicy arg3 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
+  UsdLoadPolicy *argp3 ;
+  UsdPrim result;
+  
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  argp3 = (UsdLoadPolicy *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdLoadPolicy", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (arg1)->Load((SdfPath const &)*arg2,arg3);
+  jresult = new UsdPrim((const UsdPrim &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_1(void * jarg1, void * jarg2) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
@@ -52050,7 +52215,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_0(void * jarg1, voi
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Load__SWIG_2(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfRefPtr< UsdStage > *smartarg1 = 0 ;
@@ -52093,7 +52258,38 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_Unload__SWIG_1(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_LoadAndUnload(void * jarg1, void * jarg2, void * jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_LoadAndUnload__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  UsdStage *arg1 = (UsdStage *) 0 ;
+  SdfPathSet *arg2 = 0 ;
+  SdfPathSet *arg3 = 0 ;
+  UsdLoadPolicy arg4 ;
+  TfRefPtr< UsdStage > *smartarg1 = 0 ;
+  UsdLoadPolicy *argp4 ;
+  
+  
+  smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
+  arg2 = (SdfPathSet *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathSet const & type is null", 0);
+    return ;
+  } 
+  arg3 = (SdfPathSet *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathSet const & type is null", 0);
+    return ;
+  } 
+  argp4 = (UsdLoadPolicy *)jarg4; 
+  if (!argp4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdLoadPolicy", 0);
+    return ;
+  }
+  arg4 = *argp4; 
+  (arg1)->LoadAndUnload((SdfPathSet const &)*arg2,(SdfPathSet const &)*arg3,arg4);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStage_LoadAndUnload__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPathSet *arg2 = 0 ;
   SdfPathSet *arg3 = 0 ;
@@ -52120,7 +52316,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetLoadSet(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfRefPtr< UsdStage > *smartarg1 = 0 ;
-  SdfPathSet result;
+  SwigValueWrapper< std::set< SdfPath > > result;
   
   
   smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
@@ -52136,7 +52332,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_FindLoadable__SWIG_0(void * ja
   UsdStage *arg1 = (UsdStage *) 0 ;
   SdfPath *arg2 = 0 ;
   TfRefPtr< UsdStage > *smartarg1 = 0 ;
-  SdfPathSet result;
+  SwigValueWrapper< std::set< SdfPath > > result;
   
   
   smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
@@ -52156,7 +52352,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_FindLoadable__SWIG_1(void * ja
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   TfRefPtr< UsdStage > *smartarg1 = 0 ;
-  SdfPathSet result;
+  SwigValueWrapper< std::set< SdfPath > > result;
   
   
   smartarg1 = (TfRefPtr<  UsdStage > *)jarg1;
@@ -53641,7 +53837,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdObject_IsValid(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_38(void * jarg1) {
   unsigned long jresult ;
   UsdObject *arg1 = 0 ;
   size_t result;
@@ -55970,7 +56166,23 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdPrim_SetPayload__SWIG_2(void *
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrim_Load(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrim_Load__SWIG_0(void * jarg1, void * jarg2) {
+  UsdPrim *arg1 = (UsdPrim *) 0 ;
+  UsdLoadPolicy arg2 ;
+  UsdLoadPolicy *argp2 ;
+  
+  arg1 = (UsdPrim *)jarg1; 
+  argp2 = (UsdLoadPolicy *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdLoadPolicy", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  ((UsdPrim const *)arg1)->Load(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrim_Load__SWIG_1(void * jarg1) {
   UsdPrim *arg1 = (UsdPrim *) 0 ;
   
   arg1 = (UsdPrim *)jarg1; 
@@ -56904,6 +57116,66 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdProperty_IsAuthoredAt(void * j
   } 
   result = (bool)((UsdProperty const *)arg1)->IsAuthoredAt((UsdEditTarget const &)*arg2);
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdProperty_FlattenTo__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdProperty *arg1 = (UsdProperty *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  UsdProperty result;
+  
+  arg1 = (UsdProperty *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdProperty const *)arg1)->FlattenTo((UsdPrim const &)*arg2);
+  jresult = new UsdProperty((const UsdProperty &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdProperty_FlattenTo__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdProperty *arg1 = (UsdProperty *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdProperty result;
+  
+  arg1 = (UsdProperty *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdProperty const *)arg1)->FlattenTo((UsdPrim const &)*arg2,(TfToken const &)*arg3);
+  jresult = new UsdProperty((const UsdProperty &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdProperty_FlattenTo__SWIG_2(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdProperty *arg1 = (UsdProperty *) 0 ;
+  UsdProperty *arg2 = 0 ;
+  UsdProperty result;
+  
+  arg1 = (UsdProperty *)jarg1; 
+  arg2 = (UsdProperty *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdProperty const *)arg1)->FlattenTo((UsdProperty const &)*arg2);
+  jresult = new UsdProperty((const UsdProperty &)result); 
   return jresult;
 }
 
@@ -58907,6 +59179,18 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdInherits_SetInherits(void * ja
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdInherits_GetAllDirectInherits(void * jarg1) {
+  void * jresult ;
+  UsdInherits *arg1 = (UsdInherits *) 0 ;
+  SdfPathVector result;
+  
+  arg1 = (UsdInherits *)jarg1; 
+  result = ((UsdInherits const *)arg1)->GetAllDirectInherits();
+  jresult = new SdfPathVector((const SdfPathVector &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdInherits_GetPrim__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdInherits *arg1 = (UsdInherits *) 0 ;
@@ -59402,6 +59686,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsConcrete_get() {
   bool result;
   
   result = (bool)UsdSchemaBase::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdSchemaBase::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -62503,6 +62797,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_IsConcrete_get()
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomImageable::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomImageable__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -63545,6 +63849,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsConcrete_get() {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomScope::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomScope__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -63666,6 +63980,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformable_IsConcrete_get()
   bool result;
   
   result = (bool)UsdGeomXformable::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformable_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomXformable::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -65212,6 +65536,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXform_IsConcrete_get() {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXform_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomXform::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXform__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -65333,6 +65667,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBoundable_IsConcrete_get()
   bool result;
   
   result = (bool)UsdGeomBoundable::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBoundable_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomBoundable::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -65523,6 +65867,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomGprim_IsConcrete_get() {
   bool result;
   
   result = (bool)UsdGeomGprim::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomGprim_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomGprim::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -66004,6 +66358,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_IsConcrete_get(
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomPointBased::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomPointBased__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -66337,6 +66701,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMesh_IsConcrete_get() {
   bool result;
   
   result = (bool)UsdGeomMesh::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMesh_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomMesh::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -67240,6 +67614,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_IsConcrete_get(
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeNodeGraph::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeNodeGraph__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -67555,6 +67939,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_IsConcrete_get()
   bool result;
   
   result = (bool)UsdShadeMaterial::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeMaterial::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -67918,12 +68312,27 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_HasBaseMaterial(
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateMaterialBindFaceSubset(void * jarg1, void * jarg2, void * jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetMaterialBindSubsets(void * jarg1) {
   void * jresult ;
   UsdGeomImageable *arg1 = 0 ;
+  SwigValueWrapper< std::vector< UsdGeomSubset > > result;
+  
+  arg1 = (UsdGeomImageable *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomImageable const & type is null", 0);
+    return 0;
+  } 
+  result = UsdShadeMaterial::GetMaterialBindSubsets((UsdGeomImageable const &)*arg1);
+  jresult = new std::vector< UsdGeomSubset >((const std::vector< UsdGeomSubset > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_SetMaterialBindSubsetsFamilyType(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomImageable *arg1 = 0 ;
   TfToken *arg2 = 0 ;
-  VtIntArray *arg3 = 0 ;
-  UsdGeomSubset result;
+  bool result;
   
   arg1 = (UsdGeomImageable *)jarg1;
   if (!arg1) {
@@ -67935,69 +68344,24 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateMaterialBindFace
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
     return 0;
   } 
-  arg3 = (VtIntArray *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
-    return 0;
-  } 
-  result = UsdShadeMaterial::CreateMaterialBindFaceSubset((UsdGeomImageable const &)*arg1,(TfToken const &)*arg2,(VtArray< int > const &)*arg3);
-  jresult = new UsdGeomSubset((const UsdGeomSubset &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetMaterialBindFaceSubsets(void * jarg1) {
-  void * jresult ;
-  UsdGeomImageable *arg1 = 0 ;
-  SwigValueWrapper< std::vector< UsdGeomSubset > > result;
-  
-  arg1 = (UsdGeomImageable *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomImageable const & type is null", 0);
-    return 0;
-  } 
-  result = UsdShadeMaterial::GetMaterialBindFaceSubsets((UsdGeomImageable const &)*arg1);
-  jresult = new std::vector< UsdGeomSubset >((const std::vector< UsdGeomSubset > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_SetMaterialBindFaceSubsetsFamilyType(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdGeomImageable *arg1 = 0 ;
-  UsdGeomSubset::FamilyType arg2 ;
-  UsdGeomSubset::FamilyType const *argp2 ;
-  bool result;
-  
-  arg1 = (UsdGeomImageable *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomImageable const & type is null", 0);
-    return 0;
-  } 
-  argp2 = (UsdGeomSubset::FamilyType *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdGeomSubset::FamilyType const", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = (bool)UsdShadeMaterial::SetMaterialBindFaceSubsetsFamilyType((UsdGeomImageable const &)*arg1,arg2);
+  result = (bool)UsdShadeMaterial::SetMaterialBindSubsetsFamilyType((UsdGeomImageable const &)*arg1,(TfToken const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetMaterialBindFaceSubsetsFamilyType(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetMaterialBindSubsetsFamilyType(void * jarg1) {
   void * jresult ;
   UsdGeomImageable *arg1 = 0 ;
-  UsdGeomSubset::FamilyType result;
+  TfToken result;
   
   arg1 = (UsdGeomImageable *)jarg1;
   if (!arg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomImageable const & type is null", 0);
     return 0;
   } 
-  result = UsdShadeMaterial::GetMaterialBindFaceSubsetsFamilyType((UsdGeomImageable const &)*arg1);
-  jresult = new UsdGeomSubset::FamilyType((const UsdGeomSubset::FamilyType &)result); 
+  result = UsdShadeMaterial::GetMaterialBindSubsetsFamilyType((UsdGeomImageable const &)*arg1);
+  jresult = new TfToken((const TfToken &)result); 
   return jresult;
 }
 
@@ -68055,6 +68419,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_IsConcrete_get() {
   bool result;
   
   result = (bool)UsdShadeShader::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeShader::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -68743,6 +69117,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeLook_IsConcrete_get() {
   bool result;
   
   result = (bool)UsdShadeLook::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeLook_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeLook::IsTyped;
   jresult = result; 
   return jresult;
 }

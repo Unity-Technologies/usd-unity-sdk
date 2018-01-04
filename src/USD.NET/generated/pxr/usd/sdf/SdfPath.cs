@@ -143,6 +143,11 @@ public class SdfPath : global::System.IDisposable {
     return ret;
   }
 
+  public bool ContainsTargetPath() {
+    bool ret = UsdCsPINVOKE.SdfPath_ContainsTargetPath(swigCPtr);
+    return ret;
+  }
+
   public bool IsRelationalAttributePath() {
     bool ret = UsdCsPINVOKE.SdfPath_IsRelationalAttributePath(swigCPtr);
     return ret;
@@ -459,9 +464,79 @@ public class SdfPath : global::System.IDisposable {
     return ret;
   }
 
+  public class Hash : global::System.IDisposable {
+    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    protected bool swigCMemOwn;
+  
+    internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn) {
+      swigCMemOwn = cMemoryOwn;
+      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+    }
+  
+    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj) {
+      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+    }
+  
+    ~Hash() {
+      Dispose();
+    }
+  
+    public virtual void Dispose() {
+      lock(this) {
+        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+          if (swigCMemOwn) {
+            swigCMemOwn = false;
+            UsdCsPINVOKE.delete_SdfPath_Hash(swigCPtr);
+          }
+          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
+        global::System.GC.SuppressFinalize(this);
+      }
+    }
+  
+    public Hash() : this(UsdCsPINVOKE.new_SdfPath_Hash(), true) {
+    }
+  
+  }
+
   public uint GetHash() {
     uint ret = UsdCsPINVOKE.SdfPath_GetHash(swigCPtr);
     return ret;
+  }
+
+  public class FastLessThan : global::System.IDisposable {
+    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    protected bool swigCMemOwn;
+  
+    internal FastLessThan(global::System.IntPtr cPtr, bool cMemoryOwn) {
+      swigCMemOwn = cMemoryOwn;
+      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+    }
+  
+    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FastLessThan obj) {
+      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+    }
+  
+    ~FastLessThan() {
+      Dispose();
+    }
+  
+    public virtual void Dispose() {
+      lock(this) {
+        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+          if (swigCMemOwn) {
+            swigCMemOwn = false;
+            UsdCsPINVOKE.delete_SdfPath_FastLessThan(swigCPtr);
+          }
+          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
+        global::System.GC.SuppressFinalize(this);
+      }
+    }
+  
+    public FastLessThan() : this(UsdCsPINVOKE.new_SdfPath_FastLessThan(), true) {
+    }
+  
   }
 
   public static SdfPathVector GetConciseRelativePaths(SdfPathVector paths) {

@@ -25,7 +25,7 @@
  *   void myArrayCopy( int *sourceArray, int* targetArray, int nitems );
  */
 
-%include "third_party/include/vtArray.h"
+%include "third_party/include/pxr/base/vt/array.h"
 
 
 %extend VtArray {

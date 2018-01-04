@@ -48,5 +48,5 @@ typedef std::vector<UsdPrim> UsdPrimVector;
 %ignore UsdPrim::FindAllRelationshipTargetPaths;
 %ignore UsdPrim::FindAllAttributeConnectionPaths;
 
-%include "third_party/include/usdPrim.h"
+%include "third_party/include/pxr/usd/usd/prim.h"
 

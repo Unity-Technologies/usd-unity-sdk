@@ -197,6 +197,7 @@ public class UsdShadeNodeGraph : UsdTyped {
   }
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeNodeGraph_IsConcrete_get();
+  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeNodeGraph_IsTyped_get();
 }
 
 }

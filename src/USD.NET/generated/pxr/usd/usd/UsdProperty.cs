@@ -147,6 +147,24 @@ public class UsdProperty : UsdObject {
     return ret;
   }
 
+  public UsdProperty FlattenTo(UsdPrim parent) {
+    UsdProperty ret = new UsdProperty(UsdCsPINVOKE.UsdProperty_FlattenTo__SWIG_0(swigCPtr, UsdPrim.getCPtr(parent)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdProperty FlattenTo(UsdPrim parent, TfToken propName) {
+    UsdProperty ret = new UsdProperty(UsdCsPINVOKE.UsdProperty_FlattenTo__SWIG_1(swigCPtr, UsdPrim.getCPtr(parent), TfToken.getCPtr(propName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdProperty FlattenTo(UsdProperty property) {
+    UsdProperty ret = new UsdProperty(UsdCsPINVOKE.UsdProperty_FlattenTo__SWIG_2(swigCPtr, UsdProperty.getCPtr(property)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
 }
 
 }

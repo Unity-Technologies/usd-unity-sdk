@@ -55,11 +55,11 @@ public class TfToken : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public TfToken(string s) : this(UsdCsPINVOKE.new_TfToken__SWIG_2(s), true) {
+  public TfToken(string s) : this(UsdCsPINVOKE.new_TfToken__SWIG_3(s), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public TfToken(string s, TfToken._ImmortalTag arg1) : this(UsdCsPINVOKE.new_TfToken__SWIG_3(s, (int)arg1), true) {
+  public TfToken(string s, TfToken._ImmortalTag arg1) : this(UsdCsPINVOKE.new_TfToken__SWIG_4(s, (int)arg1), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -144,43 +144,18 @@ public class TfToken : global::System.IDisposable {
   
   }
 
-  public class TokensEqualFunctor : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal TokensEqualFunctor(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TokensEqualFunctor obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~TokensEqualFunctor() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_TfToken_TokensEqualFunctor(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-        }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public TokensEqualFunctor() : this(UsdCsPINVOKE.new_TfToken_TokensEqualFunctor(), true) {
-    }
-  
+  public uint size() {
+    uint ret = UsdCsPINVOKE.TfToken_size(swigCPtr);
+    return ret;
   }
 
   public string GetText() {
     string ret = UsdCsPINVOKE.TfToken_GetText(swigCPtr);
+    return ret;
+  }
+
+  public string data() {
+    string ret = UsdCsPINVOKE.TfToken_data(swigCPtr);
     return ret;
   }
 

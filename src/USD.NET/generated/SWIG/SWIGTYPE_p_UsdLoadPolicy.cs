@@ -10,18 +10,18 @@
 
 namespace pxr {
 
-public class SWIGTYPE_p_UsdGeomSubset {
+public class SWIGTYPE_p_UsdLoadPolicy {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal SWIGTYPE_p_UsdGeomSubset(global::System.IntPtr cPtr, bool futureUse) {
+  internal SWIGTYPE_p_UsdLoadPolicy(global::System.IntPtr cPtr, bool futureUse) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  protected SWIGTYPE_p_UsdGeomSubset() {
+  protected SWIGTYPE_p_UsdLoadPolicy() {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_UsdGeomSubset obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_UsdLoadPolicy obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 }

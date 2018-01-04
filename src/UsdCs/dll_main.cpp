@@ -96,7 +96,7 @@ std::once_flag reg;
 
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
   std::call_once(reg, [] {
-     TfDiagnosticMgr::GetInstance().SetDelegate(TfCreateWeakPtr(CsharpDelegate::GetInstance()));
+     TfDiagnosticMgr::GetInstance().AddDelegate(CsharpDelegate::GetInstance());
   });
   _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
   return true;

@@ -69,6 +69,11 @@ public class UsdInherits : global::System.IDisposable {
     return ret;
   }
 
+  public SdfPathVector GetAllDirectInherits() {
+    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.UsdInherits_GetAllDirectInherits(swigCPtr), true);
+    return ret;
+  }
+
   public UsdPrim GetPrim() {
     UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdInherits_GetPrim__SWIG_0(swigCPtr), false);
     return ret;

@@ -20,8 +20,10 @@
   public static TfToken bezier = new TfToken("bezier");
   public static TfToken bilinear = new TfToken("bilinear");
   public static TfToken boundaries = new TfToken("boundaries");
+  public static TfToken bounds = new TfToken("bounds");
+  public static TfToken box = new TfToken("box");
   public static TfToken bspline = new TfToken("bspline");
-  public static TfToken card = new TfToken("card");
+  public static TfToken cards = new TfToken("cards");
   public static TfToken catmullClark = new TfToken("catmullClark");
   public static TfToken catmullRom = new TfToken("catmullRom");
   public static TfToken clippingPlanes = new TfToken("clippingPlanes");
@@ -37,6 +39,7 @@
   public static TfToken creaseIndices = new TfToken("creaseIndices");
   public static TfToken creaseLengths = new TfToken("creaseLengths");
   public static TfToken creaseSharpnesses = new TfToken("creaseSharpnesses");
+  public static TfToken cross = new TfToken("cross");
   public static TfToken cubic = new TfToken("cubic");
   public static TfToken curveVertexCounts = new TfToken("curveVertexCounts");
   public static TfToken default_ = new TfToken("default");
@@ -57,7 +60,7 @@
   public static TfToken familyName = new TfToken("familyName");
   public static TfToken focalLength = new TfToken("focalLength");
   public static TfToken focusDistance = new TfToken("focusDistance");
-  public static TfToken fullGeom = new TfToken("fullGeom");
+  public static TfToken fromTexture = new TfToken("fromTexture");
   public static TfToken guide = new TfToken("guide");
   public static TfToken height = new TfToken("height");
   public static TfToken hermite = new TfToken("hermite");
@@ -77,8 +80,19 @@
   public static TfToken leftHanded = new TfToken("leftHanded");
   public static TfToken linear = new TfToken("linear");
   public static TfToken loop = new TfToken("loop");
+  public static TfToken modelApplyDrawMode = new TfToken("model:applyDrawMode");
+  public static TfToken modelCardGeometry = new TfToken("model:cardGeometry");
+  public static TfToken modelCardTextureXNeg = new TfToken("model:cardTextureXNeg");
+  public static TfToken modelCardTextureXPos = new TfToken("model:cardTextureXPos");
+  public static TfToken modelCardTextureYNeg = new TfToken("model:cardTextureYNeg");
+  public static TfToken modelCardTextureYPos = new TfToken("model:cardTextureYPos");
+  public static TfToken modelCardTextureZNeg = new TfToken("model:cardTextureZNeg");
+  public static TfToken modelCardTextureZPos = new TfToken("model:cardTextureZPos");
+  public static TfToken modelDrawMode = new TfToken("model:drawMode");
+  public static TfToken modelDrawModeColor = new TfToken("model:drawModeColor");
   public static TfToken mono = new TfToken("mono");
   public static TfToken motionVelocityScale = new TfToken("motion:velocityScale");
+  public static TfToken nonOverlapping = new TfToken("nonOverlapping");
   public static TfToken none = new TfToken("none");
   public static TfToken nonperiodic = new TfToken("nonperiodic");
   public static TfToken normals = new TfToken("normals");
@@ -86,10 +100,11 @@
   public static TfToken order = new TfToken("order");
   public static TfToken orientation = new TfToken("orientation");
   public static TfToken orientations = new TfToken("orientations");
+  public static TfToken origin = new TfToken("origin");
   public static TfToken orthographic = new TfToken("orthographic");
+  public static TfToken partition = new TfToken("partition");
   public static TfToken periodic = new TfToken("periodic");
   public static TfToken perspective = new TfToken("perspective");
-  public static TfToken point = new TfToken("point");
   public static TfToken pointWeights = new TfToken("pointWeights");
   public static TfToken points = new TfToken("points");
   public static TfToken positions = new TfToken("positions");
@@ -98,7 +113,6 @@
   public static TfToken primvarsDisplayOpacity = new TfToken("primvars:displayOpacity");
   public static TfToken projection = new TfToken("projection");
   public static TfToken protoIndices = new TfToken("protoIndices");
-  public static TfToken prototypeDrawMode = new TfToken("prototypeDrawMode");
   public static TfToken prototypes = new TfToken("prototypes");
   public static TfToken proxy = new TfToken("proxy");
   public static TfToken proxyPrim = new TfToken("proxyPrim");
@@ -130,6 +144,7 @@
   public static TfToken uVertexCount = new TfToken("uVertexCount");
   public static TfToken unauthoredValuesIndex = new TfToken("unauthoredValuesIndex");
   public static TfToken uniform = new TfToken("uniform");
+  public static TfToken unrestricted = new TfToken("unrestricted");
   public static TfToken upAxis = new TfToken("upAxis");
   public static TfToken vForm = new TfToken("vForm");
   public static TfToken vKnots = new TfToken("vKnots");

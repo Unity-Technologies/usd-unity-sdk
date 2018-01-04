@@ -19,4 +19,4 @@
 %}
 
 
-%include "third_party/include/sdfTypes.h"
+%include "third_party/include/pxr/usd/sdf/types.h"

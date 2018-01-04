@@ -93,7 +93,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_p_char.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfAttributeSpecHandle.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfLayerHandleSet.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPathSet.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPrimSpecHandle.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPrimSpecHandleVector.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPrimSpecView.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t_bool_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_double_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_SdfLayerHandle_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_SdfPath_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_std__string_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_TfType_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__string.cs" />
@@ -129,9 +129,8 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__RefPtr.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_unsigned_long_long.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdGeomSubset.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdGeomSubset__FamilyType.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdListPosition.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdLoadPolicy.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimRange.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSiblingRange.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSubtreeRange.cs" />
@@ -143,6 +142,7 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_va_list.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_void.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_Vt_Reserved.cs" />
     <Compile Include="generated\usdCs\DiagnosticHandler.cs" />
     <Compile Include="generated\usdCs\TaskCallback.cs" />
     <Compile Include="generated\usdCs\TaskCallbackVector.cs" />

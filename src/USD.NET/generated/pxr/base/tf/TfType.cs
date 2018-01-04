@@ -40,6 +40,41 @@ public class TfType : global::System.IDisposable {
     }
   }
 
+  public class FactoryBase : global::System.IDisposable {
+    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    protected bool swigCMemOwn;
+  
+    internal FactoryBase(global::System.IntPtr cPtr, bool cMemoryOwn) {
+      swigCMemOwn = cMemoryOwn;
+      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+    }
+  
+    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FactoryBase obj) {
+      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+    }
+  
+    ~FactoryBase() {
+      Dispose();
+    }
+  
+    public virtual void Dispose() {
+      lock(this) {
+        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+          if (swigCMemOwn) {
+            swigCMemOwn = false;
+            UsdCsPINVOKE.delete_TfType_FactoryBase(swigCPtr);
+          }
+          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
+        global::System.GC.SuppressFinalize(this);
+      }
+    }
+  
+    public FactoryBase() : this(UsdCsPINVOKE.new_TfType_FactoryBase(), true) {
+    }
+  
+  }
+
   public TfType() : this(UsdCsPINVOKE.new_TfType(), true) {
   }
 

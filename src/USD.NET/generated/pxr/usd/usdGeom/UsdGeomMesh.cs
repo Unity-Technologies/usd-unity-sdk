@@ -349,6 +349,7 @@ public class UsdGeomMesh : UsdGeomPointBased {
   }
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomMesh_IsConcrete_get();
+  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomMesh_IsTyped_get();
 }
 
 }

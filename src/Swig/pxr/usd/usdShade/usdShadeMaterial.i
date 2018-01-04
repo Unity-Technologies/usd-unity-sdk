@@ -8,4 +8,8 @@
 
 %ignore UsdShadeMaterial::FindBaseMaterialPathInPrimIndex;
 
-%include "pxr/usd/usdShade/material.h"
+%ignore UsdShadeMaterial::CreateMaterialBindSubset;
+
+//%include "pxr/usd/usdShade/material.h"
+
+%include "third_party/include/pxr/usd/usdShade/material.h"

@@ -37,6 +37,6 @@
 %import "vtArray.i"
 %include "vtValue_Accessors.i"
 
-%include "third_party/include/vtValue.h"
+%include "third_party/include/pxr/base/vt/value.h"
 
 %include "vtValue_Types.i"

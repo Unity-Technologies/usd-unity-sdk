@@ -926,6 +926,12 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_TfTypeVector")]
   public static extern void delete_TfTypeVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_TfType_FactoryBase")]
+  public static extern void delete_TfType_FactoryBase(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_TfType_FactoryBase")]
+  public static extern global::System.IntPtr new_TfType_FactoryBase();
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_TfType")]
   public static extern global::System.IntPtr new_TfType();
 
@@ -1085,11 +1091,11 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_TfToken")]
   public static extern void delete_TfToken(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_TfToken__SWIG_2")]
-  public static extern global::System.IntPtr new_TfToken__SWIG_2(string jarg1);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_TfToken__SWIG_3")]
-  public static extern global::System.IntPtr new_TfToken__SWIG_3(string jarg1, int jarg2);
+  public static extern global::System.IntPtr new_TfToken__SWIG_3(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_TfToken__SWIG_4")]
+  public static extern global::System.IntPtr new_TfToken__SWIG_4(string jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfToken_Find")]
   public static extern global::System.IntPtr TfToken_Find(string jarg1);
@@ -1109,14 +1115,14 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_TfToken_LTTokenFunctor")]
   public static extern void delete_TfToken_LTTokenFunctor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_TfToken_TokensEqualFunctor")]
-  public static extern global::System.IntPtr new_TfToken_TokensEqualFunctor();
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_TfToken_TokensEqualFunctor")]
-  public static extern void delete_TfToken_TokensEqualFunctor(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfToken_size")]
+  public static extern uint TfToken_size(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfToken_GetText")]
   public static extern string TfToken_GetText(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfToken_data")]
+  public static extern string TfToken_data(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfToken_GetString")]
   public static extern string TfToken_GetString(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -6623,11 +6629,11 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_GetTypeName")]
   public static extern string VtValue_GetTypeName(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CastToTypeOf")]
-  public static extern global::System.IntPtr VtValue_CastToTypeOf(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CastToTypeOf__SWIG_0")]
+  public static extern global::System.IntPtr VtValue_CastToTypeOf__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CastToTypeid")]
-  public static extern global::System.IntPtr VtValue_CastToTypeid(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CastToTypeid__SWIG_0")]
+  public static extern global::System.IntPtr VtValue_CastToTypeid__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CanCastFromTypeidToTypeid")]
   public static extern bool VtValue_CanCastFromTypeidToTypeid(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -6635,14 +6641,20 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CanCastToTypeOf")]
   public static extern bool VtValue_CanCastToTypeOf(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CanCastToTypeid")]
+  public static extern bool VtValue_CanCastToTypeid(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_IsEmpty")]
   public static extern bool VtValue_IsEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_CanHash")]
+  public static extern bool VtValue_CanHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_GetHash")]
   public static extern uint VtValue_GetHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_26")]
-  public static extern uint hash_value__SWIG_26(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_27")]
+  public static extern uint hash_value__SWIG_27(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtValue__SWIG_3")]
   public static extern global::System.IntPtr new_VtValue__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -6872,8 +6884,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_swap__SWIG_2")]
   public static extern void swap__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_27")]
-  public static extern uint hash_value__SWIG_27(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_28")]
+  public static extern uint hash_value__SWIG_28(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtDictionary_insert")]
   public static extern global::System.IntPtr VtDictionary_insert(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -6941,8 +6953,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_ArResolverContext_GetDebugString")]
   public static extern string ArResolverContext_GetDebugString(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_28")]
-  public static extern uint hash_value__SWIG_28(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_29")]
+  public static extern uint hash_value__SWIG_29(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_ArResolverContext")]
   public static extern void delete_ArResolverContext(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -6950,8 +6962,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfIsDefiningSpecifier")]
   public static extern bool SdfIsDefiningSpecifier(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_29")]
-  public static extern uint hash_value__SWIG_29(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_30")]
+  public static extern uint hash_value__SWIG_30(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfValueBlock")]
   public static extern global::System.IntPtr new_SdfValueBlock();
@@ -7031,8 +7043,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfValueTypeNameHash")]
   public static extern void delete_SdfValueTypeNameHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_30")]
-  public static extern ulong hash_value__SWIG_30(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_31")]
+  public static extern ulong hash_value__SWIG_31(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfGetValueTypeColor4dArray")]
   public static extern global::System.IntPtr SdfGetValueTypeColor4dArray();
@@ -7322,14 +7334,17 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfAssetPath_GetHash")]
   public static extern uint SdfAssetPath_GetHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_31")]
-  public static extern uint hash_value__SWIG_31(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_32")]
+  public static extern uint hash_value__SWIG_32(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfAssetPath_GetAssetPath")]
   public static extern string SdfAssetPath_GetAssetPath(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfAssetPath_GetResolvedPath")]
   public static extern string SdfAssetPath_GetResolvedPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_swap__SWIG_3")]
+  public static extern void swap__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfAssetPath")]
   public static extern void delete_SdfAssetPath(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -7450,6 +7465,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_ContainsPrimVariantSelection")]
   public static extern bool SdfPath_ContainsPrimVariantSelection(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_ContainsTargetPath")]
+  public static extern bool SdfPath_ContainsTargetPath(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_IsRelationalAttributePath")]
   public static extern bool SdfPath_IsRelationalAttributePath(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -7622,8 +7640,20 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_IsBuiltInMarker")]
   public static extern bool SdfPath_IsBuiltInMarker(string jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfPath_Hash")]
+  public static extern global::System.IntPtr new_SdfPath_Hash();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfPath_Hash")]
+  public static extern void delete_SdfPath_Hash(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_GetHash")]
   public static extern uint SdfPath_GetHash(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfPath_FastLessThan")]
+  public static extern global::System.IntPtr new_SdfPath_FastLessThan();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfPath_FastLessThan")]
+  public static extern void delete_SdfPath_FastLessThan(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_GetConciseRelativePaths")]
   public static extern global::System.IntPtr SdfPath_GetConciseRelativePaths(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -7634,14 +7664,17 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_RemoveAncestorPaths")]
   public static extern void SdfPath_RemoveAncestorPaths(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_swap__SWIG_3")]
-  public static extern void swap__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_swap__SWIG_4")]
+  public static extern void swap__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPath_Equals")]
   public static extern bool SdfPath_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfPath")]
   public static extern void delete_SdfPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_33")]
+  public static extern uint hash_value__SWIG_33(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerOffsetVector_Clear")]
   public static extern void SdfLayerOffsetVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -7748,8 +7781,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerOffset_Hash")]
   public static extern void delete_SdfLayerOffset_Hash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_32")]
-  public static extern uint hash_value__SWIG_32(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_34")]
+  public static extern uint hash_value__SWIG_34(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerOffset")]
   public static extern void delete_SdfLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -7775,8 +7808,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPayload_SetPrimPath")]
   public static extern void SdfPayload_SetPrimPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_33")]
-  public static extern uint hash_value__SWIG_33(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_35")]
+  public static extern uint hash_value__SWIG_35(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfPayload")]
   public static extern void delete_SdfPayload(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -9167,8 +9200,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCode_GetValue")]
   public static extern double UsdTimeCode_GetValue(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_34")]
-  public static extern uint hash_value__SWIG_34(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_36")]
+  public static extern uint hash_value__SWIG_36(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdTimeCode")]
   public static extern void delete_UsdTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -9269,8 +9302,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_Usd_PrimFlagsPredicate_IncludeInstanceProxiesInTraversal")]
   public static extern bool Usd_PrimFlagsPredicate_IncludeInstanceProxiesInTraversal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_35")]
-  public static extern uint hash_value__SWIG_35(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_37")]
+  public static extern uint hash_value__SWIG_37(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_Usd_PrimFlagsPredicate")]
   public static extern void delete_Usd_PrimFlagsPredicate(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -9597,10 +9630,13 @@ class UsdCsPINVOKE {
   public static extern void UsdStage_SetGlobalVariantFallbacks(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_Load__SWIG_0")]
-  public static extern global::System.IntPtr UsdStage_Load__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern global::System.IntPtr UsdStage_Load__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_Load__SWIG_1")]
-  public static extern global::System.IntPtr UsdStage_Load__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern global::System.IntPtr UsdStage_Load__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_Load__SWIG_2")]
+  public static extern global::System.IntPtr UsdStage_Load__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_Unload__SWIG_0")]
   public static extern void UsdStage_Unload__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -9608,8 +9644,11 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_Unload__SWIG_1")]
   public static extern void UsdStage_Unload__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_LoadAndUnload")]
-  public static extern void UsdStage_LoadAndUnload(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_LoadAndUnload__SWIG_0")]
+  public static extern void UsdStage_LoadAndUnload__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_LoadAndUnload__SWIG_1")]
+  public static extern void UsdStage_LoadAndUnload__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStage_GetLoadSet")]
   public static extern global::System.IntPtr UsdStage_GetLoadSet(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -9866,8 +9905,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_IsValid")]
   public static extern bool UsdObject_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_36")]
-  public static extern uint hash_value__SWIG_36(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_38")]
+  public static extern uint hash_value__SWIG_38(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_GetStage")]
   public static extern global::System.IntPtr UsdObject_GetStage(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -10304,8 +10343,11 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_SetPayload__SWIG_2")]
   public static extern bool UsdPrim_SetPayload__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_Load")]
-  public static extern void UsdPrim_Load(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_Load__SWIG_0")]
+  public static extern void UsdPrim_Load__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_Load__SWIG_1")]
+  public static extern void UsdPrim_Load__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_Unload")]
   public static extern void UsdPrim_Unload(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -10498,6 +10540,15 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdProperty_IsAuthoredAt")]
   public static extern bool UsdProperty_IsAuthoredAt(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdProperty_FlattenTo__SWIG_0")]
+  public static extern global::System.IntPtr UsdProperty_FlattenTo__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdProperty_FlattenTo__SWIG_1")]
+  public static extern global::System.IntPtr UsdProperty_FlattenTo__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdProperty_FlattenTo__SWIG_2")]
+  public static extern global::System.IntPtr UsdProperty_FlattenTo__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdProperty")]
   public static extern void delete_UsdProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -10874,6 +10925,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdInherits_SetInherits")]
   public static extern bool UsdInherits_SetInherits(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdInherits_GetAllDirectInherits")]
+  public static extern global::System.IntPtr UsdInherits_GetAllDirectInherits(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdInherits_GetPrim__SWIG_0")]
   public static extern global::System.IntPtr UsdInherits_GetPrim__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -10951,6 +11005,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSchemaBase_IsConcrete_get")]
   public static extern bool UsdSchemaBase_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSchemaBase_IsTyped_get")]
+  public static extern bool UsdSchemaBase_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSchemaBase__SWIG_0")]
   public static extern global::System.IntPtr new_UsdSchemaBase__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -11540,6 +11597,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomImageable_IsConcrete_get")]
   public static extern bool UsdGeomImageable_IsConcrete_get();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomImageable_IsTyped_get")]
+  public static extern bool UsdGeomImageable_IsTyped_get();
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomImageable__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomImageable__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -11702,6 +11762,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomScope_IsConcrete_get")]
   public static extern bool UsdGeomScope_IsConcrete_get();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomScope_IsTyped_get")]
+  public static extern bool UsdGeomScope_IsTyped_get();
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomScope__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomScope__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -11728,6 +11791,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomXformable_IsConcrete_get")]
   public static extern bool UsdGeomXformable_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomXformable_IsTyped_get")]
+  public static extern bool UsdGeomXformable_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomXformable__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomXformable__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12008,6 +12074,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomXform_IsConcrete_get")]
   public static extern bool UsdGeomXform_IsConcrete_get();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomXform_IsTyped_get")]
+  public static extern bool UsdGeomXform_IsTyped_get();
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomXform__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomXform__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -12034,6 +12103,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoundable_IsConcrete_get")]
   public static extern bool UsdGeomBoundable_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoundable_IsTyped_get")]
+  public static extern bool UsdGeomBoundable_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBoundable__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomBoundable__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12073,6 +12145,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGprim_IsConcrete_get")]
   public static extern bool UsdGeomGprim_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGprim_IsTyped_get")]
+  public static extern bool UsdGeomGprim_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomGprim__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomGprim__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12170,6 +12245,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointBased_IsConcrete_get")]
   public static extern bool UsdGeomPointBased_IsConcrete_get();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointBased_IsTyped_get")]
+  public static extern bool UsdGeomPointBased_IsTyped_get();
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPointBased__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomPointBased__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -12238,6 +12316,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_IsConcrete_get")]
   public static extern bool UsdGeomMesh_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_IsTyped_get")]
+  public static extern bool UsdGeomMesh_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomMesh__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomMesh__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12416,6 +12497,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeNodeGraph_IsConcrete_get")]
   public static extern bool UsdShadeNodeGraph_IsConcrete_get();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeNodeGraph_IsTyped_get")]
+  public static extern bool UsdShadeNodeGraph_IsTyped_get();
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeNodeGraph__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeNodeGraph__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -12484,6 +12568,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_IsConcrete_get")]
   public static extern bool UsdShadeMaterial_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_IsTyped_get")]
+  public static extern bool UsdShadeMaterial_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterial__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeMaterial__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12554,17 +12641,14 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_HasBaseMaterial")]
   public static extern bool UsdShadeMaterial_HasBaseMaterial(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_CreateMaterialBindFaceSubset")]
-  public static extern global::System.IntPtr UsdShadeMaterial_CreateMaterialBindFaceSubset(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_GetMaterialBindSubsets")]
+  public static extern global::System.IntPtr UsdShadeMaterial_GetMaterialBindSubsets(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_GetMaterialBindFaceSubsets")]
-  public static extern global::System.IntPtr UsdShadeMaterial_GetMaterialBindFaceSubsets(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_SetMaterialBindSubsetsFamilyType")]
+  public static extern bool UsdShadeMaterial_SetMaterialBindSubsetsFamilyType(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_SetMaterialBindFaceSubsetsFamilyType")]
-  public static extern bool UsdShadeMaterial_SetMaterialBindFaceSubsetsFamilyType(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_GetMaterialBindFaceSubsetsFamilyType")]
-  public static extern global::System.IntPtr UsdShadeMaterial_GetMaterialBindFaceSubsetsFamilyType(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_GetMaterialBindSubsetsFamilyType")]
+  public static extern global::System.IntPtr UsdShadeMaterial_GetMaterialBindSubsetsFamilyType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_CreateMaterialFaceSet")]
   public static extern global::System.IntPtr UsdShadeMaterial_CreateMaterialFaceSet(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12577,6 +12661,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShader_IsConcrete_get")]
   public static extern bool UsdShadeShader_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShader_IsTyped_get")]
+  public static extern bool UsdShadeShader_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeShader__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeShader__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -12703,6 +12790,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeLook_IsConcrete_get")]
   public static extern bool UsdShadeLook_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeLook_IsTyped_get")]
+  public static extern bool UsdShadeLook_IsTyped_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeLook__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeLook__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
