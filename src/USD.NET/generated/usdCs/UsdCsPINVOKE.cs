@@ -10178,6 +10178,24 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageCacheRequest_Manufacture")]
   public static extern global::System.IntPtr UsdStageCacheRequest_Manufacture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdResolveInfo")]
+  public static extern global::System.IntPtr new_UsdResolveInfo();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdResolveInfo_GetSource")]
+  public static extern int UsdResolveInfo_GetSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdResolveInfo_HasAuthoredValueOpinion")]
+  public static extern bool UsdResolveInfo_HasAuthoredValueOpinion(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdResolveInfo_GetNode")]
+  public static extern global::System.IntPtr UsdResolveInfo_GetNode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdResolveInfo_ValueIsBlocked")]
+  public static extern bool UsdResolveInfo_ValueIsBlocked(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdResolveInfo")]
+  public static extern void delete_UsdResolveInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdIsSubtype")]
   public static extern bool UsdIsSubtype(int jarg1, int jarg2);
 

@@ -89,6 +89,8 @@
     <Compile Include="generated\pxr\usd\usd\UsdListPosition.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdLoadPolicy.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdPrimRange.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdResolveInfo.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdResolveInfoSource.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStageCache.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStageCacheRequest.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStagePopulationMask.cs" />
@@ -139,7 +141,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_unsigned_long_long.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSiblingRange.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSubtreeRange.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdResolveInfo.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeConnectableAPI.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeInput.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeOutput.cs" />

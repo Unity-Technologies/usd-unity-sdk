@@ -132,6 +132,7 @@
     <Content Include="pxr\usd\usdShade\usdShadeTokens_Tokens.i" />
     <Content Include="pxr\usd\usdShade\usdShadeTokens.i" />
     <Content Include="pxr\usd\usdShade\usdShade.i" />
+    <Content Include="pxr\usd\usd\usdResolveInfo.i" />
     <Content Include="pxr\usd\usd\usdStagePopulationMask.i" />
     <Content Include="pxr\usd\usd\usdStageCache.i" />
     <Content Include="pxr\usd\usd\usdCommon.i" />

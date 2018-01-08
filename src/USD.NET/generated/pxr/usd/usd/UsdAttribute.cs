@@ -104,14 +104,14 @@ public class UsdAttribute : UsdProperty {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdResolveInfo GetResolveInfo(UsdTimeCode time) {
-    SWIGTYPE_p_UsdResolveInfo ret = new SWIGTYPE_p_UsdResolveInfo(UsdCsPINVOKE.UsdAttribute_GetResolveInfo__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time)), true);
+  public UsdResolveInfo GetResolveInfo(UsdTimeCode time) {
+    UsdResolveInfo ret = new UsdResolveInfo(UsdCsPINVOKE.UsdAttribute_GetResolveInfo__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_UsdResolveInfo GetResolveInfo() {
-    SWIGTYPE_p_UsdResolveInfo ret = new SWIGTYPE_p_UsdResolveInfo(UsdCsPINVOKE.UsdAttribute_GetResolveInfo__SWIG_1(swigCPtr), true);
+  public UsdResolveInfo GetResolveInfo() {
+    UsdResolveInfo ret = new UsdResolveInfo(UsdCsPINVOKE.UsdAttribute_GetResolveInfo__SWIG_1(swigCPtr), true);
     return ret;
   }
 

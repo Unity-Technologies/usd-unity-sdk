@@ -4034,6 +4034,9 @@ SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std:
 #include "pxr/usd/usd/stageCache.h"
 
 
+#include "pxr/usd/usd/resolveInfo.h"
+
+
 #include "pxr/usd/usd/object.h"
 
 SWIGINTERN bool UsdObject_Equals(UsdObject const &lhs,UsdObject const &rhs){
@@ -55254,6 +55257,72 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageCacheRequest_Manufacture(void *
   result = (arg1)->Manufacture();
   jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
   return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdResolveInfo() {
+  void * jresult ;
+  UsdResolveInfo *result = 0 ;
+  
+  result = (UsdResolveInfo *)new UsdResolveInfo();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdResolveInfo_GetSource(void * jarg1) {
+  int jresult ;
+  UsdResolveInfo *arg1 = (UsdResolveInfo *) 0 ;
+  UsdResolveInfoSource result;
+  
+  arg1 = (UsdResolveInfo *)jarg1; 
+  result = (UsdResolveInfoSource)((UsdResolveInfo const *)arg1)->GetSource();
+  jresult = (int)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdResolveInfo_HasAuthoredValueOpinion(void * jarg1) {
+  unsigned int jresult ;
+  UsdResolveInfo *arg1 = (UsdResolveInfo *) 0 ;
+  bool result;
+  
+  arg1 = (UsdResolveInfo *)jarg1; 
+  result = (bool)((UsdResolveInfo const *)arg1)->HasAuthoredValueOpinion();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdResolveInfo_GetNode(void * jarg1) {
+  void * jresult ;
+  UsdResolveInfo *arg1 = (UsdResolveInfo *) 0 ;
+  PcpNodeRef result;
+  
+  arg1 = (UsdResolveInfo *)jarg1; 
+  result = ((UsdResolveInfo const *)arg1)->GetNode();
+  jresult = new PcpNodeRef((const PcpNodeRef &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdResolveInfo_ValueIsBlocked(void * jarg1) {
+  unsigned int jresult ;
+  UsdResolveInfo *arg1 = (UsdResolveInfo *) 0 ;
+  bool result;
+  
+  arg1 = (UsdResolveInfo *)jarg1; 
+  result = (bool)((UsdResolveInfo const *)arg1)->ValueIsBlocked();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdResolveInfo(void * jarg1) {
+  UsdResolveInfo *arg1 = (UsdResolveInfo *) 0 ;
+  
+  arg1 = (UsdResolveInfo *)jarg1; 
+  delete arg1;
 }
 
 
