@@ -3954,6 +3954,30 @@ SWIGINTERN std::string SdfLayer_ExportToString(SdfLayer const *self){
 #include "pxr/usd/usd/primFlags.h"
 
 
+#include "pxr/usd/usd/primRange.h"
+
+
+#include <stdio.h>
+
+SWIGINTERN void UsdPrimRange_iterator_MoveNext(UsdPrimRange::iterator *self){
+    ++(*self);
+  }
+SWIGINTERN UsdPrim UsdPrimRange_iterator_GetCurrent(UsdPrimRange::iterator *self){
+    return **self;
+  }
+SWIGINTERN bool UsdPrimRange_iterator_Equals(UsdPrimRange::iterator const &lhs,UsdPrimRange::iterator const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int UsdPrimRange_iterator_GetHashCode(UsdPrimRange::iterator *self){
+    return (int)TfHash()(self);
+  }
+SWIGINTERN bool UsdPrimRange_Equals(UsdPrimRange const &lhs,UsdPrimRange const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int UsdPrimRange_GetHashCode(UsdPrimRange *self){
+    return (int)TfHash()(self);
+  }
+
 #include "pxr/usd/usd/stage.h"
 #include "pxr/usd/usd/prim.h"
 #include "pxr/usd/usd/primRange.h"
@@ -50487,6 +50511,392 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdTraverseInstanceProxies__SWIG_1() {
   result = UsdTraverseInstanceProxies();
   jresult = new Usd_PrimFlagsPredicate((const Usd_PrimFlagsPredicate &)result); 
   return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimRange_EndSentinel(void * jarg1) {
+  UsdPrimRange::EndSentinel *arg1 = (UsdPrimRange::EndSentinel *) 0 ;
+  
+  arg1 = (UsdPrimRange::EndSentinel *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimRange_iterator__SWIG_0() {
+  void * jresult ;
+  UsdPrimRange::iterator *result = 0 ;
+  
+  result = (UsdPrimRange::iterator *)new UsdPrimRange::iterator();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimRange_iterator__SWIG_1(void * jarg1) {
+  void * jresult ;
+  SwigValueWrapper< UsdPrimRange::EndSentinel > arg1 ;
+  UsdPrimRange::EndSentinel *argp1 ;
+  UsdPrimRange::iterator *result = 0 ;
+  
+  argp1 = (UsdPrimRange::EndSentinel *)jarg1; 
+  if (!argp1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdPrimRange::EndSentinel", 0);
+    return 0;
+  }
+  arg1 = *argp1; 
+  result = (UsdPrimRange::iterator *)new UsdPrimRange::iterator(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdPrimRange_iterator_IsPostVisit(void * jarg1) {
+  unsigned int jresult ;
+  UsdPrimRange::iterator *arg1 = (UsdPrimRange::iterator *) 0 ;
+  bool result;
+  
+  arg1 = (UsdPrimRange::iterator *)jarg1; 
+  result = (bool)((UsdPrimRange::iterator const *)arg1)->IsPostVisit();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrimRange_iterator_PruneChildren(void * jarg1) {
+  UsdPrimRange::iterator *arg1 = (UsdPrimRange::iterator *) 0 ;
+  
+  arg1 = (UsdPrimRange::iterator *)jarg1; 
+  (arg1)->PruneChildren();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrimRange_iterator_MoveNext(void * jarg1) {
+  UsdPrimRange::iterator *arg1 = (UsdPrimRange::iterator *) 0 ;
+  
+  arg1 = (UsdPrimRange::iterator *)jarg1; 
+  UsdPrimRange_iterator_MoveNext(arg1);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_iterator_GetCurrent(void * jarg1) {
+  void * jresult ;
+  UsdPrimRange::iterator *arg1 = (UsdPrimRange::iterator *) 0 ;
+  UsdPrim result;
+  
+  arg1 = (UsdPrimRange::iterator *)jarg1; 
+  result = UsdPrimRange_iterator_GetCurrent(arg1);
+  jresult = new UsdPrim((const UsdPrim &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdPrimRange_iterator_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdPrimRange::iterator *arg1 = 0 ;
+  UsdPrimRange::iterator *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdPrimRange::iterator *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimRange::iterator const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdPrimRange::iterator *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimRange::iterator const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdPrimRange_iterator_Equals((UsdPrimRange::iterator const &)*arg1,(UsdPrimRange::iterator const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdPrimRange_iterator_GetHashCode(void * jarg1) {
+  int jresult ;
+  UsdPrimRange::iterator *arg1 = (UsdPrimRange::iterator *) 0 ;
+  int result;
+  
+  arg1 = (UsdPrimRange::iterator *)jarg1; 
+  result = (int)UsdPrimRange_iterator_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimRange_iterator(void * jarg1) {
+  UsdPrimRange::iterator *arg1 = (UsdPrimRange::iterator *) 0 ;
+  
+  arg1 = (UsdPrimRange::iterator *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimRange__SWIG_0() {
+  void * jresult ;
+  UsdPrimRange *result = 0 ;
+  
+  result = (UsdPrimRange *)new UsdPrimRange();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimRange__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdPrimRange *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdPrimRange *)new UsdPrimRange((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimRange__SWIG_2(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  Usd_PrimFlagsPredicate *arg2 = 0 ;
+  UsdPrimRange *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (Usd_PrimFlagsPredicate *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Usd_PrimFlagsPredicate const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdPrimRange *)new UsdPrimRange((UsdPrim const &)*arg1,(Usd_PrimFlagsPredicate const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_PreAndPostVisit__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdPrimRange result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = UsdPrimRange::PreAndPostVisit((UsdPrim const &)*arg1);
+  jresult = new UsdPrimRange((const UsdPrimRange &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_PreAndPostVisit__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  Usd_PrimFlagsPredicate *arg2 = 0 ;
+  UsdPrimRange result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (Usd_PrimFlagsPredicate *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Usd_PrimFlagsPredicate const & type is null", 0);
+    return 0;
+  } 
+  result = UsdPrimRange::PreAndPostVisit((UsdPrim const &)*arg1,(Usd_PrimFlagsPredicate const &)*arg2);
+  jresult = new UsdPrimRange((const UsdPrimRange &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_AllPrims(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdPrimRange result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = UsdPrimRange::AllPrims((UsdPrim const &)*arg1);
+  jresult = new UsdPrimRange((const UsdPrimRange &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_AllPrimsPreAndPostVisit(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdPrimRange result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = UsdPrimRange::AllPrimsPreAndPostVisit((UsdPrim const &)*arg1);
+  jresult = new UsdPrimRange((const UsdPrimRange &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_Stage__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  Usd_PrimFlagsPredicate *arg2 = 0 ;
+  UsdPrimRange result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (Usd_PrimFlagsPredicate *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Usd_PrimFlagsPredicate const & type is null", 0);
+    return 0;
+  } 
+  result = UsdPrimRange::Stage((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1,(Usd_PrimFlagsPredicate const &)*arg2);
+  jresult = new UsdPrimRange((const UsdPrimRange &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_Stage__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  UsdPrimRange result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  result = UsdPrimRange::Stage((TfDeclarePtrs< UsdStage >::Ptr const &)*arg1);
+  jresult = new UsdPrimRange((const UsdPrimRange &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_GetStart(void * jarg1) {
+  void * jresult ;
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  UsdPrimRange::iterator result;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  result = ((UsdPrimRange const *)arg1)->begin();
+  jresult = new UsdPrimRange::iterator((const UsdPrimRange::iterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_GetCurrent(void * jarg1) {
+  void * jresult ;
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  UsdPrim result;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  result = ((UsdPrimRange const *)arg1)->front();
+  jresult = new UsdPrim((const UsdPrim &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimRange_GetEnd(void * jarg1) {
+  void * jresult ;
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  UsdPrimRange::iterator result;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  result = ((UsdPrimRange const *)arg1)->end();
+  jresult = new UsdPrimRange::iterator((const UsdPrimRange::iterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrimRange_IncrementBegin(void * jarg1) {
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  (arg1)->increment_begin();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrimRange_SetBegin(void * jarg1, void * jarg2) {
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  UsdPrimRange::iterator *arg2 = 0 ;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  arg2 = (UsdPrimRange::iterator *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimRange::iterator const & type is null", 0);
+    return ;
+  } 
+  (arg1)->set_begin((UsdPrimRange::iterator const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdPrimRange_IsEmpty(void * jarg1) {
+  unsigned int jresult ;
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  bool result;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  result = (bool)((UsdPrimRange const *)arg1)->empty();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdPrimRange_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdPrimRange *arg1 = 0 ;
+  UsdPrimRange *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdPrimRange *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimRange const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdPrimRange *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimRange const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdPrimRange_Equals((UsdPrimRange const &)*arg1,(UsdPrimRange const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdPrimRange_GetHashCode(void * jarg1) {
+  int jresult ;
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  int result;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  result = (int)UsdPrimRange_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimRange(void * jarg1) {
+  UsdPrimRange *arg1 = (UsdPrimRange *) 0 ;
+  
+  arg1 = (UsdPrimRange *)jarg1; 
+  delete arg1;
 }
 
 

@@ -35,6 +35,8 @@ namespace Tests {
       Cases.Basic.IntrinsicTypes();
       Cases.UnityIO.TestXform();
       Cases.UnityIO.TestXform2();
+      Cases.StageTests.TraverseTest();
+
       Console.ReadKey();
     }
 

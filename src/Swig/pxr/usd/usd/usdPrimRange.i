@@ -18,4 +18,48 @@
 #include "pxr/usd/usd/primRange.h"
 %}
 
+// C# Property generation support.
+// % attribute(CLASS_NAME, DATA_TYPE, PROP_NAME, GETTER_NAME, SETTER_NAME);
+%include "attribute.i"
+
+%typemap(csinterfaces) UsdPrimRange %{
+    global::System.Collections.IEnumerable,
+    global::System.Collections.Generic.IEnumerable<UsdPrim>
+%}
+
+%typemap(cscode) UsdPrimRange %{
+  // Returning an externally defined class is ugly, but dramatically simplifies the bindings while
+  // allowing the use of C#'s foreach mechanism.
+  System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+    return new USD.NET.RangeIterator(this);
+  }
+
+  public System.Collections.Generic.IEnumerator<UsdPrim> GetEnumerator() {
+    return new USD.NET.RangeIterator(this);
+  }
+
+%}
+
+%extend UsdPrimRange::iterator {
+  void MoveNext() {
+    ++(*self);
+  }
+  UsdPrim GetCurrent() {
+    return **self;
+  }
+}
+
+%rename UsdPrimRange::front GetCurrent;
+%rename UsdPrimRange::begin GetStart;
+%rename UsdPrimRange::end GetEnd;
+%rename UsdPrimRange::increment_begin IncrementBegin;
+%rename UsdPrimRange::set_begin SetBegin;
+%rename UsdPrimRange::empty IsEmpty;
+
+%ignore UsdPrimRange::cbegin;
+%ignore UsdPrimRange::cend;
+
+WRAP_EQUAL(UsdPrimRange)
+WRAP_EQUAL(UsdPrimRange::iterator)
+
 %include "pxr/usd/usd/primRange.h"

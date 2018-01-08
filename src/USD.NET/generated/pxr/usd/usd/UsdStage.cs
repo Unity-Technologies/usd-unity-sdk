@@ -402,20 +402,20 @@ public class UsdStage : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimRange Traverse() {
-    SWIGTYPE_p_UsdPrimRange ret = new SWIGTYPE_p_UsdPrimRange(UsdCsPINVOKE.UsdStage_Traverse__SWIG_0(swigCPtr), true);
+  public UsdPrimRange Traverse() {
+    UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdStage_Traverse__SWIG_0(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimRange Traverse(Usd_PrimFlagsPredicate predicate) {
-    SWIGTYPE_p_UsdPrimRange ret = new SWIGTYPE_p_UsdPrimRange(UsdCsPINVOKE.UsdStage_Traverse__SWIG_1(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
+  public UsdPrimRange Traverse(Usd_PrimFlagsPredicate predicate) {
+    UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdStage_Traverse__SWIG_1(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimRange TraverseAll() {
-    SWIGTYPE_p_UsdPrimRange ret = new SWIGTYPE_p_UsdPrimRange(UsdCsPINVOKE.UsdStage_TraverseAll(swigCPtr), true);
+  public UsdPrimRange TraverseAll() {
+    UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdStage_TraverseAll(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -35,6 +35,61 @@ namespace Tests.Cases {
       }
     }
 
+    public static void TraverseTest() {
+      UsdStage s = UsdStage.CreateInMemory();
+      s.DefinePrim(new SdfPath("/Foo"));
+      s.DefinePrim(new SdfPath("/Foo/P1"));
+      s.DefinePrim(new SdfPath("/Foo/P2"));
+      s.DefinePrim(new SdfPath("/Foo/P3"));
+      s.DefinePrim(new SdfPath("/Foo/P4"));
+      s.DefinePrim(new SdfPath("/Foo/P5"));
+      s.DefinePrim(new SdfPath("/Bar"));
+      s.DefinePrim(new SdfPath("/Bar/B1"));
+      s.DefinePrim(new SdfPath("/Bar/B2"));
+      s.DefinePrim(new SdfPath("/Bar/B3"));
+      s.DefinePrim(new SdfPath("/Bar/B3/C1"));
+      s.DefinePrim(new SdfPath("/Bar/B3/C2"));
+      s.DefinePrim(new SdfPath("/Bar/B3/C3"));
+      s.DefinePrim(new SdfPath("/Bar/B4"));
+
+      // Basic traversal.
+      System.Console.WriteLine("All Prims:");
+      foreach (UsdPrim curPrim in s.Traverse()) {
+        System.Console.WriteLine(curPrim.GetPath());
+      }
+
+      // Make sure pruing logic works.
+      System.Console.WriteLine("");
+      System.Console.WriteLine("/Bar children pruned:");
+      var range = new USD.NET.RangeIterator(s.Traverse());
+      foreach (UsdPrim curPrim in range) {
+        System.Console.WriteLine(curPrim.GetPath());
+        if (curPrim.GetPath() == "/Bar/B3") {
+          range.PruneChildren();
+          System.Console.WriteLine("pruned.");
+        }
+      }
+
+      // Make sure pre/post traversal logic works.
+      System.Console.WriteLine("");
+      System.Console.WriteLine("Pre/Post Traversal with all children pruned:");
+      var prePostRange = new USD.NET.RangeIterator(UsdPrimRange.PreAndPostVisit(s.GetPseudoRoot()));
+      bool[] expected = { false, false, true, false, true, true };
+      bool[] actual = new bool[6];
+      int i = 0;
+      foreach (UsdPrim curPrim in prePostRange) {
+        System.Console.WriteLine("IsPostVisit: " + prePostRange.IsPostVisit().ToString()
+                               + ", " + curPrim.GetPath());
+        if (!prePostRange.IsPostVisit() && i > 0) {
+          // It's only valid to prune on the pre-traversal.
+          prePostRange.PruneChildren();
+        }
+
+        actual[i++] = prePostRange.IsPostVisit();
+      }
+      AssertEqual(expected, actual);
+    }
+
     public static void ApiTest() {
       UsdStage s = UsdStage.CreateInMemory();
       var prim = s.DefinePrim(new SdfPath("/Foo"));

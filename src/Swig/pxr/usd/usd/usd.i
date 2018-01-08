@@ -24,6 +24,7 @@
 %include "usdEditTarget.i"
 %include "usdInterpolation.i"
 %include "usdPrimFlags.i"
+%include "usdPrimRange.i"
 
 %include "usdStage.i"
 

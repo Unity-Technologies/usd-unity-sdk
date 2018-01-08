@@ -9359,6 +9359,90 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTraverseInstanceProxies__SWIG_1")]
   public static extern global::System.IntPtr UsdTraverseInstanceProxies__SWIG_1();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimRange_EndSentinel")]
+  public static extern void delete_UsdPrimRange_EndSentinel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimRange_iterator__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdPrimRange_iterator__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimRange_iterator__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdPrimRange_iterator__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_iterator_IsPostVisit")]
+  public static extern bool UsdPrimRange_iterator_IsPostVisit(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_iterator_PruneChildren")]
+  public static extern void UsdPrimRange_iterator_PruneChildren(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_iterator_MoveNext")]
+  public static extern void UsdPrimRange_iterator_MoveNext(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_iterator_GetCurrent")]
+  public static extern global::System.IntPtr UsdPrimRange_iterator_GetCurrent(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_iterator_Equals")]
+  public static extern bool UsdPrimRange_iterator_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_iterator_GetHashCode")]
+  public static extern int UsdPrimRange_iterator_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimRange_iterator")]
+  public static extern void delete_UsdPrimRange_iterator(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimRange__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdPrimRange__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimRange__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdPrimRange__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimRange__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdPrimRange__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_PreAndPostVisit__SWIG_0")]
+  public static extern global::System.IntPtr UsdPrimRange_PreAndPostVisit__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_PreAndPostVisit__SWIG_1")]
+  public static extern global::System.IntPtr UsdPrimRange_PreAndPostVisit__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_AllPrims")]
+  public static extern global::System.IntPtr UsdPrimRange_AllPrims(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_AllPrimsPreAndPostVisit")]
+  public static extern global::System.IntPtr UsdPrimRange_AllPrimsPreAndPostVisit(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_Stage__SWIG_0")]
+  public static extern global::System.IntPtr UsdPrimRange_Stage__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_Stage__SWIG_1")]
+  public static extern global::System.IntPtr UsdPrimRange_Stage__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_GetStart")]
+  public static extern global::System.IntPtr UsdPrimRange_GetStart(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_GetCurrent")]
+  public static extern global::System.IntPtr UsdPrimRange_GetCurrent(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_GetEnd")]
+  public static extern global::System.IntPtr UsdPrimRange_GetEnd(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_IncrementBegin")]
+  public static extern void UsdPrimRange_IncrementBegin(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_SetBegin")]
+  public static extern void UsdPrimRange_SetBegin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_IsEmpty")]
+  public static extern bool UsdPrimRange_IsEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_Equals")]
+  public static extern bool UsdPrimRange_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimRange_GetHashCode")]
+  public static extern int UsdPrimRange_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimRange")]
+  public static extern void delete_UsdPrimRange(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageWeakPtr")]
   public static extern global::System.IntPtr new_UsdStageWeakPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
 
