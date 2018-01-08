@@ -2607,6 +2607,51 @@ public class UsdCs {
     return ret;
   }
 
+  public static string UsdDescribe(UsdObject arg0) {
+    string ret = UsdCsPINVOKE.UsdDescribe__SWIG_0(UsdObject.getCPtr(arg0));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string UsdDescribe(UsdStageWeakPtr arg0) {
+    string ret = UsdCsPINVOKE.UsdDescribe__SWIG_1(UsdStageWeakPtr.getCPtr(arg0));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string UsdDescribe(UsdStage arg0) {
+    string ret = UsdCsPINVOKE.UsdDescribe__SWIG_2(UsdStage.getCPtr(arg0));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string UsdDescribe(UsdStageCache arg0) {
+    string ret = UsdCsPINVOKE.UsdDescribe__SWIG_4(UsdStageCache.getCPtr(arg0));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdIsRetireLumosEnabled() {
+    bool ret = UsdCsPINVOKE.UsdIsRetireLumosEnabled();
+    return ret;
+  }
+
+  public static bool UsdAuthorOldStyleAdd() {
+    bool ret = UsdCsPINVOKE.UsdAuthorOldStyleAdd();
+    return ret;
+  }
+
+  public static bool UsdUsesInverseLayerOffset() {
+    bool ret = UsdCsPINVOKE.UsdUsesInverseLayerOffset();
+    return ret;
+  }
+
+  public static SdfLayerOffset UsdPrepLayerOffset(SdfLayerOffset offset) {
+    SdfLayerOffset ret = new SdfLayerOffset(UsdCsPINVOKE.UsdPrepLayerOffset(SdfLayerOffset.getCPtr(offset)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static uint hash_value(UsdTimeCode time) {
     uint ret = UsdCsPINVOKE.hash_value__SWIG_36(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -2692,6 +2737,16 @@ public class UsdCs {
   public static Usd_PrimFlagsPredicate UsdTraverseInstanceProxies() {
     Usd_PrimFlagsPredicate ret = new Usd_PrimFlagsPredicate(UsdCsPINVOKE.UsdTraverseInstanceProxies__SWIG_1(), true);
     return ret;
+  }
+
+  public static void swap(UsdStagePopulationMask l, UsdStagePopulationMask r) {
+    UsdCsPINVOKE.swap__SWIG_5(UsdStagePopulationMask.getCPtr(l), UsdStagePopulationMask.getCPtr(r));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static void swap(UsdStageCache lhs, UsdStageCache rhs) {
+    UsdCsPINVOKE.swap__SWIG_6(UsdStageCache.getCPtr(lhs), UsdStageCache.getCPtr(rhs));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static bool UsdIsSubtype(UsdObjType baseType, UsdObjType subType) {

@@ -207,14 +207,14 @@ public class UsdPrimRange :
     return ret;
   }
 
-  public static UsdPrimRange Stage(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, Usd_PrimFlagsPredicate predicate) {
-    UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdPrimRange_Stage__SWIG_0(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
+  public static UsdPrimRange Stage(UsdStageWeakPtr stage, Usd_PrimFlagsPredicate predicate) {
+    UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdPrimRange_Stage__SWIG_0(UsdStageWeakPtr.getCPtr(stage), Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdPrimRange Stage(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage) {
-    UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdPrimRange_Stage__SWIG_1(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage)), true);
+  public static UsdPrimRange Stage(UsdStageWeakPtr stage) {
+    UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdPrimRange_Stage__SWIG_1(UsdStageWeakPtr.getCPtr(stage)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

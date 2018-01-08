@@ -40,8 +40,8 @@ public class UsdInherits : global::System.IDisposable {
     }
   }
 
-  public bool AddInherit(SdfPath primPath, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdInherits_AddInherit__SWIG_0(swigCPtr, SdfPath.getCPtr(primPath), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddInherit(SdfPath primPath, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdInherits_AddInherit__SWIG_0(swigCPtr, SdfPath.getCPtr(primPath), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

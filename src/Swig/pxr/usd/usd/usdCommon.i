@@ -12,31 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module usdTimeCode
+%module usdCommon
 
 %{
-#include "pxr/base/vt/value.h"
-#include "pxr/base/tf/token.h"
 #include "pxr/usd/usd/common.h"
 %}
 
-%extend UsdMetadataValueMap {
-	%csmethodmodifiers GetValue(TfToken const& key) "protected";
-	VtValue const& GetValue(TfToken const& key) const {
-		return self->at(key);
-	}
-	
-	%csmethodmodifiers SetValue(TfToken const& key, VtValue const& value) "protected";
-	void SetValue(TfToken const& key, VtValue const& value) {
-		(*self)[key] = value;
-	}
-}
+// Swig gets confused about the aliasing between UsdStage* and UsdStageRefPtr.
+// Ignoring the RefPtr overload here avoids generating two C# functions with identical signatures.
+%ignore UsdDescribe(const UsdStageRefPtr &);
 
-class UsdMetadataValueMap {
-	%typemap(cscode) VtArray %{
-  public $typemap(cstype, VtValue) this[$typemap(cstype, TfToken) index] {
-	get { return GetValue(index); }
-	set { SetValue(index, value); }
-  }
-	%}
-};
+%include "pxr/usd/usd/common.h"

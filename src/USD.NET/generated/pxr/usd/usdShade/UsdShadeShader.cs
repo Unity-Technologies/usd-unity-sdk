@@ -60,14 +60,14 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
-  public new static UsdShadeShader Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
-    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeShader_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdShadeShader Get(UsdStageWeakPtr stage, SdfPath path) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeShader_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdShadeShader Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
-    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeShader_Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public static UsdShadeShader Define(UsdStageWeakPtr stage, SdfPath path) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeShader_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

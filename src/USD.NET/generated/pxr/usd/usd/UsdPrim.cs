@@ -424,9 +424,8 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public void Load(SWIGTYPE_p_UsdLoadPolicy policy) {
-    UsdCsPINVOKE.UsdPrim_Load__SWIG_0(swigCPtr, SWIGTYPE_p_UsdLoadPolicy.getCPtr(policy));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public void Load(UsdLoadPolicy policy) {
+    UsdCsPINVOKE.UsdPrim_Load__SWIG_0(swigCPtr, (int)policy);
   }
 
   public void Load() {

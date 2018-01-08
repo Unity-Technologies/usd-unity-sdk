@@ -42,8 +42,8 @@ public class UsdRelationship : UsdProperty {
   public UsdRelationship() : this(UsdCsPINVOKE.new_UsdRelationship(), true) {
   }
 
-  public bool AddTarget(SdfPath target, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdRelationship_AddTarget__SWIG_0(swigCPtr, SdfPath.getCPtr(target), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddTarget(SdfPath target, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdRelationship_AddTarget__SWIG_0(swigCPtr, SdfPath.getCPtr(target), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

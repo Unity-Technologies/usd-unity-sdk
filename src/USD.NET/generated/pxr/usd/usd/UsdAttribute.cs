@@ -147,8 +147,8 @@ public class UsdAttribute : UsdProperty {
     UsdCsPINVOKE.UsdAttribute_Block(swigCPtr);
   }
 
-  public bool AddConnection(SdfPath source, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdAttribute_AddConnection__SWIG_0(swigCPtr, SdfPath.getCPtr(source), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddConnection(SdfPath source, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdAttribute_AddConnection__SWIG_0(swigCPtr, SdfPath.getCPtr(source), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

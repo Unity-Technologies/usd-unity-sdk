@@ -60,14 +60,14 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
-  public new static UsdShadeNodeGraph Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
-    UsdShadeNodeGraph ret = new UsdShadeNodeGraph(UsdCsPINVOKE.UsdShadeNodeGraph_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdShadeNodeGraph Get(UsdStageWeakPtr stage, SdfPath path) {
+    UsdShadeNodeGraph ret = new UsdShadeNodeGraph(UsdCsPINVOKE.UsdShadeNodeGraph_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdShadeNodeGraph Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
-    UsdShadeNodeGraph ret = new UsdShadeNodeGraph(UsdCsPINVOKE.UsdShadeNodeGraph_Define(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public static UsdShadeNodeGraph Define(UsdStageWeakPtr stage, SdfPath path) {
+    UsdShadeNodeGraph ret = new UsdShadeNodeGraph(UsdCsPINVOKE.UsdShadeNodeGraph_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

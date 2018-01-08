@@ -40,8 +40,8 @@ public class UsdSpecializes : global::System.IDisposable {
     }
   }
 
-  public bool AddSpecialize(SdfPath primPath, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdSpecializes_AddSpecialize__SWIG_0(swigCPtr, SdfPath.getCPtr(primPath), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddSpecialize(SdfPath primPath, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdSpecializes_AddSpecialize__SWIG_0(swigCPtr, SdfPath.getCPtr(primPath), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

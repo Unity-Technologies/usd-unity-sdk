@@ -50,8 +50,8 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdStagePopulationMask GetPopulationMask() {
-    SWIGTYPE_p_UsdStagePopulationMask ret = new SWIGTYPE_p_UsdStagePopulationMask(UsdCsPINVOKE.UsdStageWeakPtr_GetPopulationMask(swigCPtr), true);
+  public UsdStagePopulationMask GetPopulationMask() {
+    UsdStagePopulationMask ret = new UsdStagePopulationMask(UsdCsPINVOKE.UsdStageWeakPtr_GetPopulationMask(swigCPtr), true);
     return ret;
   }
 
@@ -157,15 +157,13 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     return ret;
   }
 
-  public bool ExportToString(/*cstype*/ out string result, bool addSourceFileComment) {
-    bool ret = UsdCsPINVOKE.UsdStageWeakPtr_ExportToString__SWIG_0(swigCPtr, out result, addSourceFileComment);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public bool ExportToString(SWIGTYPE_p_std__string result, bool addSourceFileComment) {
+    bool ret = UsdCsPINVOKE.UsdStageWeakPtr_ExportToString__SWIG_0(swigCPtr, SWIGTYPE_p_std__string.getCPtr(result), addSourceFileComment);
     return ret;
   }
 
-  public bool ExportToString(/*cstype*/ out string result) {
-    bool ret = UsdCsPINVOKE.UsdStageWeakPtr_ExportToString__SWIG_1(swigCPtr, out result);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public bool ExportToString(SWIGTYPE_p_std__string result) {
+    bool ret = UsdCsPINVOKE.UsdStageWeakPtr_ExportToString__SWIG_1(swigCPtr, SWIGTYPE_p_std__string.getCPtr(result));
     return ret;
   }
 

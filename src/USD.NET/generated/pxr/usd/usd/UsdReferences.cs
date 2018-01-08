@@ -40,8 +40,8 @@ public class UsdReferences : global::System.IDisposable {
     }
   }
 
-  public bool AddReference(SWIGTYPE_p_SdfReference arg0, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_0(swigCPtr, SWIGTYPE_p_SdfReference.getCPtr(arg0), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddReference(SWIGTYPE_p_SdfReference arg0, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_0(swigCPtr, SWIGTYPE_p_SdfReference.getCPtr(arg0), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -52,8 +52,8 @@ public class UsdReferences : global::System.IDisposable {
     return ret;
   }
 
-  public bool AddReference(string identifier, SdfPath primPath, SdfLayerOffset layerOffset, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_2(swigCPtr, identifier, SdfPath.getCPtr(primPath), SdfLayerOffset.getCPtr(layerOffset), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddReference(string identifier, SdfPath primPath, SdfLayerOffset layerOffset, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_2(swigCPtr, identifier, SdfPath.getCPtr(primPath), SdfLayerOffset.getCPtr(layerOffset), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -70,8 +70,8 @@ public class UsdReferences : global::System.IDisposable {
     return ret;
   }
 
-  public bool AddReference(string identifier, SdfLayerOffset layerOffset, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_5(swigCPtr, identifier, SdfLayerOffset.getCPtr(layerOffset), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddReference(string identifier, SdfLayerOffset layerOffset, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_5(swigCPtr, identifier, SdfLayerOffset.getCPtr(layerOffset), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -88,8 +88,8 @@ public class UsdReferences : global::System.IDisposable {
     return ret;
   }
 
-  public bool AddInternalReference(SdfPath primPath, SdfLayerOffset layerOffset, SWIGTYPE_p_UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdReferences_AddInternalReference__SWIG_0(swigCPtr, SdfPath.getCPtr(primPath), SdfLayerOffset.getCPtr(layerOffset), SWIGTYPE_p_UsdListPosition.getCPtr(position));
+  public bool AddInternalReference(SdfPath primPath, SdfLayerOffset layerOffset, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdReferences_AddInternalReference__SWIG_0(swigCPtr, SdfPath.getCPtr(primPath), SdfLayerOffset.getCPtr(layerOffset), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

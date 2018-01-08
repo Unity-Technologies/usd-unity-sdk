@@ -60,8 +60,8 @@ public class UsdTyped : UsdSchemaBase {
     return ret;
   }
 
-  public static UsdTyped Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
-    UsdTyped ret = new UsdTyped(UsdCsPINVOKE.UsdTyped_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public static UsdTyped Get(UsdStageWeakPtr stage, SdfPath path) {
+    UsdTyped ret = new UsdTyped(UsdCsPINVOKE.UsdTyped_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

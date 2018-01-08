@@ -60,8 +60,8 @@ public class UsdGeomXformable : UsdGeomImageable {
     return ret;
   }
 
-  public new static UsdGeomXformable Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr stage, SdfPath path) {
-    UsdGeomXformable ret = new UsdGeomXformable(UsdCsPINVOKE.UsdGeomXformable_Get(SWIGTYPE_p_TfDeclarePtrsT_UsdStage_t__Ptr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+  public new static UsdGeomXformable Get(UsdStageWeakPtr stage, SdfPath path) {
+    UsdGeomXformable ret = new UsdGeomXformable(UsdCsPINVOKE.UsdGeomXformable_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -20,15 +20,45 @@
 
 %ignore Usd_SpecPathMapping;
 
+// ---------------------------------------------------------------------------------------------- //
+// STAGE SMART POINTERS
+// ---------------------------------------------------------------------------------------------- //
+
+%TfRefPtr(UsdStage);
+
+// The potential problem here is that the object is always held by the smart pointer type, but
+// a without a reference, weak pointer expires immediately.
+//
+// XXX: First class weak ptrs still need work. Following the RefPtr pattern (as WeakPtr currently
+//      does) is wrong.
+//
+//%TfWeakPtr(UsdStage);
+class UsdStageWeakPtr{
+public:
+    UsdStageWeakPtr(UsdStage* stage);
+    UsdStage const* operator->();
+    // Required when there is no automagic smart pointer support enabled.
+    // explicit UsdStageWeakPtr(UsdStageRefPtr const& stage);
+};
+
+typedef TfWeakPtr<UsdStage> UsdStageWeakPtr;
+typedef UsdStageWeakPtr UsdStagePtr;
+typedef TfRefPtr<UsdStage> UsdStageRefPtr;
+
+// ---------------------------------------------------------------------------------------------- //
+
+%include "usdMetadataValueMap.i"
+%include "usdCommon.i"
 %include "usdTimeCode.i"
 %include "usdEditTarget.i"
 %include "usdInterpolation.i"
 %include "usdPrimFlags.i"
 %include "usdPrimRange.i"
 
+%include "usdStagePopulationMask.i"
 %include "usdStage.i"
+%include "usdStageCache.i"
 
-%include "usdMetadataValueMap.i"
 %include "usdObject.i"
 %include "usdPrim.i"
 %include "usdProperty.i"

@@ -40,8 +40,8 @@ public class UsdVariantSets : global::System.IDisposable {
     }
   }
 
-  public UsdVariantSet AddVariantSet(string variantSetName, SWIGTYPE_p_UsdListPosition position) {
-    UsdVariantSet ret = new UsdVariantSet(UsdCsPINVOKE.UsdVariantSets_AddVariantSet__SWIG_0(swigCPtr, variantSetName, SWIGTYPE_p_UsdListPosition.getCPtr(position)), true);
+  public UsdVariantSet AddVariantSet(string variantSetName, UsdListPosition position) {
+    UsdVariantSet ret = new UsdVariantSet(UsdCsPINVOKE.UsdVariantSets_AddVariantSet__SWIG_0(swigCPtr, variantSetName, (int)position), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

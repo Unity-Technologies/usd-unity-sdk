@@ -132,6 +132,9 @@
     <Content Include="pxr\usd\usdShade\usdShadeTokens_Tokens.i" />
     <Content Include="pxr\usd\usdShade\usdShadeTokens.i" />
     <Content Include="pxr\usd\usdShade\usdShade.i" />
+    <Content Include="pxr\usd\usd\usdStagePopulationMask.i" />
+    <Content Include="pxr\usd\usd\usdStageCache.i" />
+    <Content Include="pxr\usd\usd\usdCommon.i" />
     <Content Include="pxr\usd\usd\usdInterpolation.i" />
     <Content Include="pxr\usd\usd\usdEditTarget.i" />
     <Content Include="pxr\usd\usd\usdPrimRange.i" />
