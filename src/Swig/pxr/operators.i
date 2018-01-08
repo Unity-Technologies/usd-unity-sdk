@@ -77,22 +77,22 @@
   }
 
   %proxycode %{
-    public static bool operator==(CTYPE lhs, CTYPE rhs){
-	    // The Swig binding glew will re-enter this operator comparing to null, so 
+    public static bool operator==($typemap(cstype, CTYPE) lhs, $typemap(cstype, CTYPE) rhs){
+	    // The Swig binding glue will re-enter this operator comparing to null, so 
 	    // that case must be handled explicitly to avoid an infinite loop. This is still
 	    // not great, since it crosses the C#/C++ barrier twice. A better approache might
 	    // be to return a simple value from C++ that can be compared in C#.
       bool lnull = lhs as object == null;
       bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || CTYPE.Equals(lhs, rhs));
+      return (lnull == rnull) && ((lnull && rnull) || $typemap(cstype, CTYPE).Equals(lhs, rhs));
     }
 
-    public static bool operator !=(CTYPE lhs, CTYPE rhs) {
+    public static bool operator !=($typemap(cstype, CTYPE) lhs, $typemap(cstype, CTYPE) rhs) {
         return !(lhs == rhs);
     }
 
 	  override public bool Equals(object rhs) {
-		  return CTYPE.Equals(this, rhs as CTYPE);
+		  return $typemap(cstype, CTYPE).Equals(this, rhs as $typemap(cstype, CTYPE));
 	  }
   %}
 

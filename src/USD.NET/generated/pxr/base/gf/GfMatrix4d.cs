@@ -362,7 +362,7 @@ public class GfMatrix4d : global::System.IDisposable {
   }
 
     public static bool operator==(GfMatrix4d lhs, GfMatrix4d rhs){
-	    // The Swig binding glew will re-enter this operator comparing to null, so 
+	    // The Swig binding glue will re-enter this operator comparing to null, so 
 	    // that case must be handled explicitly to avoid an infinite loop. This is still
 	    // not great, since it crosses the C#/C++ barrier twice. A better approache might
 	    // be to return a simple value from C++ that can be compared in C#.
