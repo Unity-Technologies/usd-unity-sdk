@@ -94,19 +94,19 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdShadeConnectableAPI ConnectableAPI() {
-    SWIGTYPE_p_UsdShadeConnectableAPI ret = new SWIGTYPE_p_UsdShadeConnectableAPI(UsdCsPINVOKE.UsdShadeShader_ConnectableAPI(swigCPtr), true);
+  public UsdShadeConnectableAPI ConnectableAPI() {
+    UsdShadeConnectableAPI ret = new UsdShadeConnectableAPI(UsdCsPINVOKE.UsdShadeShader_ConnectableAPI(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_UsdShadeOutput CreateOutput(TfToken name, SdfValueTypeName typeName) {
-    SWIGTYPE_p_UsdShadeOutput ret = new SWIGTYPE_p_UsdShadeOutput(UsdCsPINVOKE.UsdShadeShader_CreateOutput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
+  public UsdShadeOutput CreateOutput(TfToken name, SdfValueTypeName typeName) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeShader_CreateOutput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_UsdShadeOutput GetOutput(TfToken name) {
-    SWIGTYPE_p_UsdShadeOutput ret = new SWIGTYPE_p_UsdShadeOutput(UsdCsPINVOKE.UsdShadeShader_GetOutput(swigCPtr, TfToken.getCPtr(name)), true);
+  public UsdShadeOutput GetOutput(TfToken name) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeShader_GetOutput(swigCPtr, TfToken.getCPtr(name)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -116,14 +116,14 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdShadeInput CreateInput(TfToken name, SdfValueTypeName typeName) {
-    SWIGTYPE_p_UsdShadeInput ret = new SWIGTYPE_p_UsdShadeInput(UsdCsPINVOKE.UsdShadeShader_CreateInput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
+  public UsdShadeInput CreateInput(TfToken name, SdfValueTypeName typeName) {
+    UsdShadeInput ret = new UsdShadeInput(UsdCsPINVOKE.UsdShadeShader_CreateInput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_UsdShadeInput GetInput(TfToken name) {
-    SWIGTYPE_p_UsdShadeInput ret = new SWIGTYPE_p_UsdShadeInput(UsdCsPINVOKE.UsdShadeShader_GetInput(swigCPtr, TfToken.getCPtr(name)), true);
+  public UsdShadeInput GetInput(TfToken name) {
+    UsdShadeInput ret = new UsdShadeInput(UsdCsPINVOKE.UsdShadeShader_GetInput(swigCPtr, TfToken.getCPtr(name)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

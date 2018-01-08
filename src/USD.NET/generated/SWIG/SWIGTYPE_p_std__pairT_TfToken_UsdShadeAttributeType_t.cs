@@ -10,18 +10,18 @@
 
 namespace pxr {
 
-public class SWIGTYPE_p_UsdShadeConnectableAPI {
+public class SWIGTYPE_p_std__pairT_TfToken_UsdShadeAttributeType_t {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal SWIGTYPE_p_UsdShadeConnectableAPI(global::System.IntPtr cPtr, bool futureUse) {
+  internal SWIGTYPE_p_std__pairT_TfToken_UsdShadeAttributeType_t(global::System.IntPtr cPtr, bool futureUse) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  protected SWIGTYPE_p_UsdShadeConnectableAPI() {
+  protected SWIGTYPE_p_std__pairT_TfToken_UsdShadeAttributeType_t() {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_UsdShadeConnectableAPI obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_std__pairT_TfToken_UsdShadeAttributeType_t obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 }

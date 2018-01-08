@@ -12800,6 +12800,24 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_Triangulate")]
   public static extern void UsdGeomMesh_Triangulate(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeUtils_GetPrefixForAttributeType")]
+  public static extern string UsdShadeUtils_GetPrefixForAttributeType(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeUtils_GetFullName")]
+  public static extern global::System.IntPtr UsdShadeUtils_GetFullName(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeUtils_ReadOldEncoding")]
+  public static extern bool UsdShadeUtils_ReadOldEncoding();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeUtils_WriteNewEncoding")]
+  public static extern bool UsdShadeUtils_WriteNewEncoding();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeUtils")]
+  public static extern global::System.IntPtr new_UsdShadeUtils();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeUtils")]
+  public static extern void delete_UsdShadeUtils(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeNodeGraph_IsConcrete_get")]
   public static extern bool UsdShadeNodeGraph_IsConcrete_get();
 
@@ -13094,6 +13112,417 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeShaderVector")]
   public static extern void delete_UsdShadeShaderVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeInput__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeInput__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetFullName")]
+  public static extern global::System.IntPtr UsdShadeInput_GetFullName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetBaseName")]
+  public static extern global::System.IntPtr UsdShadeInput_GetBaseName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetTypeName")]
+  public static extern global::System.IntPtr UsdShadeInput_GetTypeName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetPrim")]
+  public static extern global::System.IntPtr UsdShadeInput_GetPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_Get__SWIG_2")]
+  public static extern bool UsdShadeInput_Get__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_Get__SWIG_3")]
+  public static extern bool UsdShadeInput_Get__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_Set__SWIG_0")]
+  public static extern bool UsdShadeInput_Set__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_Set__SWIG_1")]
+  public static extern bool UsdShadeInput_Set__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeInput_Hash")]
+  public static extern global::System.IntPtr new_UsdShadeInput_Hash();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeInput_Hash")]
+  public static extern void delete_UsdShadeInput_Hash(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_SetRenderType")]
+  public static extern bool UsdShadeInput_SetRenderType(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetRenderType")]
+  public static extern global::System.IntPtr UsdShadeInput_GetRenderType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_HasRenderType")]
+  public static extern bool UsdShadeInput_HasRenderType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeInput__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeInput__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_IsInput")]
+  public static extern bool UsdShadeInput_IsInput(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_IsInterfaceInputName")]
+  public static extern bool UsdShadeInput_IsInterfaceInputName(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetAttr")]
+  public static extern global::System.IntPtr UsdShadeInput_GetAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_IsDefined")]
+  public static extern bool UsdShadeInput_IsDefined(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_SetDocumentation")]
+  public static extern bool UsdShadeInput_SetDocumentation(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetDocumentation")]
+  public static extern string UsdShadeInput_GetDocumentation(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_SetDisplayGroup")]
+  public static extern bool UsdShadeInput_SetDisplayGroup(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetDisplayGroup")]
+  public static extern string UsdShadeInput_GetDisplayGroup(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_CanConnect__SWIG_0")]
+  public static extern bool UsdShadeInput_CanConnect__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_CanConnect__SWIG_1")]
+  public static extern bool UsdShadeInput_CanConnect__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_CanConnect__SWIG_2")]
+  public static extern bool UsdShadeInput_CanConnect__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_0")]
+  public static extern bool UsdShadeInput_ConnectToSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_1")]
+  public static extern bool UsdShadeInput_ConnectToSource__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_2")]
+  public static extern bool UsdShadeInput_ConnectToSource__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_3")]
+  public static extern bool UsdShadeInput_ConnectToSource__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_4")]
+  public static extern bool UsdShadeInput_ConnectToSource__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_5")]
+  public static extern bool UsdShadeInput_ConnectToSource__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetConnectedSource")]
+  public static extern bool UsdShadeInput_GetConnectedSource(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, out UsdShadeAttributeType jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetRawConnectedSourcePaths")]
+  public static extern bool UsdShadeInput_GetRawConnectedSourcePaths(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_HasConnectedSource")]
+  public static extern bool UsdShadeInput_HasConnectedSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_IsSourceConnectionFromBaseMaterial")]
+  public static extern bool UsdShadeInput_IsSourceConnectionFromBaseMaterial(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_DisconnectSource")]
+  public static extern bool UsdShadeInput_DisconnectSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ClearSource")]
+  public static extern bool UsdShadeInput_ClearSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_SetConnectability")]
+  public static extern bool UsdShadeInput_SetConnectability(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_GetConnectability")]
+  public static extern global::System.IntPtr UsdShadeInput_GetConnectability(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInput_ClearConnectability")]
+  public static extern bool UsdShadeInput_ClearConnectability(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeInput")]
+  public static extern void delete_UsdShadeInput(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeOutput__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeOutput__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetFullName")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetFullName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetBaseName")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetBaseName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetPrim")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetTypeName")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetTypeName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_Set__SWIG_0")]
+  public static extern bool UsdShadeOutput_Set__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_Set__SWIG_1")]
+  public static extern bool UsdShadeOutput_Set__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_SetRenderType")]
+  public static extern bool UsdShadeOutput_SetRenderType(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetRenderType")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetRenderType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_HasRenderType")]
+  public static extern bool UsdShadeOutput_HasRenderType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeOutput__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeOutput__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_IsOutput")]
+  public static extern bool UsdShadeOutput_IsOutput(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetAttr")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetProperty")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetRel")]
+  public static extern global::System.IntPtr UsdShadeOutput_GetRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_IsTerminal")]
+  public static extern bool UsdShadeOutput_IsTerminal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_IsDefined")]
+  public static extern bool UsdShadeOutput_IsDefined(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_CanConnect__SWIG_0")]
+  public static extern bool UsdShadeOutput_CanConnect__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_CanConnect__SWIG_1")]
+  public static extern bool UsdShadeOutput_CanConnect__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_CanConnect__SWIG_2")]
+  public static extern bool UsdShadeOutput_CanConnect__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_0")]
+  public static extern bool UsdShadeOutput_ConnectToSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_1")]
+  public static extern bool UsdShadeOutput_ConnectToSource__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_2")]
+  public static extern bool UsdShadeOutput_ConnectToSource__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_3")]
+  public static extern bool UsdShadeOutput_ConnectToSource__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_4")]
+  public static extern bool UsdShadeOutput_ConnectToSource__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_5")]
+  public static extern bool UsdShadeOutput_ConnectToSource__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetConnectedSource")]
+  public static extern bool UsdShadeOutput_GetConnectedSource(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, out UsdShadeAttributeType jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_GetRawConnectedSourcePaths")]
+  public static extern bool UsdShadeOutput_GetRawConnectedSourcePaths(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_HasConnectedSource")]
+  public static extern bool UsdShadeOutput_HasConnectedSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_IsSourceConnectionFromBaseMaterial")]
+  public static extern bool UsdShadeOutput_IsSourceConnectionFromBaseMaterial(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_DisconnectSource")]
+  public static extern bool UsdShadeOutput_DisconnectSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutput_ClearSource")]
+  public static extern bool UsdShadeOutput_ClearSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeOutput")]
+  public static extern void delete_UsdShadeOutput(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_IsConcrete_get")]
+  public static extern bool UsdShadeConnectableAPI_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_IsTyped_get")]
+  public static extern bool UsdShadeConnectableAPI_IsTyped_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeConnectableAPI__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeConnectableAPI__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdShadeConnectableAPI__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeConnectableAPI")]
+  public static extern void delete_UsdShadeConnectableAPI(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_Get")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_3")]
+  public static extern global::System.IntPtr new_UsdShadeConnectableAPI__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_4")]
+  public static extern global::System.IntPtr new_UsdShadeConnectableAPI__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_IsShader")]
+  public static extern bool UsdShadeConnectableAPI_IsShader(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_IsNodeGraph")]
+  public static extern bool UsdShadeConnectableAPI_IsNodeGraph(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_CanConnect__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_CanConnect__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_CanConnect__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_3")]
+  public static extern bool UsdShadeConnectableAPI_CanConnect__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_4")]
+  public static extern bool UsdShadeConnectableAPI_CanConnect__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_5")]
+  public static extern bool UsdShadeConnectableAPI_CanConnect__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_6")]
+  public static extern bool UsdShadeConnectableAPI_CanConnect__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_3")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_4")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_5")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_6")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_7")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_7(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_8")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_8(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_9")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_9(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_10")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_10(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_11")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_11(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_12")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_12(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_13")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_13(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_14")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_14(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_15")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_15(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_16")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_16(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_17")]
+  public static extern bool UsdShadeConnectableAPI_ConnectToSource__SWIG_17(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetConnectedSource__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_GetConnectedSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, out UsdShadeAttributeType jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetConnectedSource__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_GetConnectedSource__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, out UsdShadeAttributeType jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetConnectedSource__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_GetConnectedSource__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, out UsdShadeAttributeType jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_HasConnectedSource__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_HasConnectedSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_HasConnectedSource__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_HasConnectedSource__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_HasConnectedSource__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_HasConnectedSource__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_DisconnectSource__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_DisconnectSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_DisconnectSource__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_DisconnectSource__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_DisconnectSource__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_DisconnectSource__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ClearSource__SWIG_0")]
+  public static extern bool UsdShadeConnectableAPI_ClearSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ClearSource__SWIG_1")]
+  public static extern bool UsdShadeConnectableAPI_ClearSource__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_ClearSource__SWIG_2")]
+  public static extern bool UsdShadeConnectableAPI_ClearSource__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CreateOutput")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_CreateOutput(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetOutput")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_GetOutput(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetOutputs")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_GetOutputs(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_CreateInput")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_CreateInput(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetInput")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_GetInput(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetInputs")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_GetInputs(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeLook_IsConcrete_get")]
   public static extern bool UsdShadeLook_IsConcrete_get();
 
@@ -13375,6 +13804,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShader_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeShader_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeLook_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeLook_SWIGUpcast(global::System.IntPtr jarg1);

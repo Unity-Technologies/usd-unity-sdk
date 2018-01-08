@@ -86,6 +86,11 @@
     <Compile Include="generated\pxr\base\plug\PlugPlugin.cs" />
     <Compile Include="generated\pxr\base\plug\PlugRegistry.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfTupleDimensions.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeAttributeType.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeConnectableAPI.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeInput.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeOutput.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeUtils.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdListPosition.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdLoadPolicy.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdPrimRange.cs" />
@@ -119,6 +124,7 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_std__string_std__string_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_TfRefPtrT_UsdStage_t_bool_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_TfToken_UsdShadeAttributeType_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t_bool_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_double_t.cs" />
@@ -141,9 +147,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_unsigned_long_long.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSiblingRange.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSubtreeRange.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeConnectableAPI.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeInput.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeOutput.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_va_list.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_void.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t.cs" />

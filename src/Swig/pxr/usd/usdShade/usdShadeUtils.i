@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdShadeNodeGraph
+%module UsdShadeUtils
 %{
-#include "pxr/usd/usdShade/nodeGraph.h"
+#include "pxr/usd/usdShade/utils.h"
 %}
 
-%include "pxr/usd/usdShade/nodeGraph.h"
+// Currently generates invalid C++ wrapper code, need to investigate.
+%ignore UsdShadeUtils::GetBaseNameAndType;
+
+%include "pxr/usd/usdShade/utils.h"

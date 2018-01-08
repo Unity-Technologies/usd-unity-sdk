@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdShadeNodeGraph
+%module UsdShadeOutput
 %{
-#include "pxr/usd/usdShade/nodeGraph.h"
+#include "pxr/usd/usdShade/output.h"
 %}
 
-%include "pxr/usd/usdShade/nodeGraph.h"
+%apply UsdShadeAttributeType *OUTPUT { UsdShadeAttributeType *sourceType };
+
+%include "pxr/usd/usdShade/output.h"

@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdShadeNodeGraph
+%module UsdShadeConnectableAPI
 %{
-#include "pxr/usd/usdShade/nodeGraph.h"
+#include "pxr/usd/usdShade/connectableAPI.h"
 %}
 
-%include "pxr/usd/usdShade/nodeGraph.h"
+// It's currently missing the API decl (USD v0.8.2), causing missing symbol linker errors.
+%ignore UsdShadeConnectableAPI::AreBidirectionalInterfaceConnectionsEnabled;
+
+%include "pxr/usd/usdShade/connectableAPI.h"

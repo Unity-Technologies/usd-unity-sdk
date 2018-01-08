@@ -4841,6 +4841,9 @@ SWIGINTERN void UsdGeomMesh_Triangulate(VtIntArray &faceVertexIndices,VtIntArray
 #include "pxr/usd/usdGeom/tokens.h"
 
 
+#include "pxr/usd/usdShade/utils.h"
+
+
 #include "pxr/usd/usdShade/nodeGraph.h"
 
 
@@ -4941,6 +4944,15 @@ SWIGINTERN void std_vector_Sl_UsdShadeShader_Sg__SetRange(std::vector< UsdShadeS
           throw std::out_of_range("index");
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
+
+#include "pxr/usd/usdShade/input.h"
+
+
+#include "pxr/usd/usdShade/output.h"
+
+
+#include "pxr/usd/usdShade/connectableAPI.h"
+
 
 #include "pxr/usd/usdShade/tokens.h"
 
@@ -69089,6 +69101,74 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomMesh_Triangulate(void * jarg1, voi
 }
 
 
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeUtils_GetPrefixForAttributeType(int jarg1) {
+  char * jresult ;
+  UsdShadeAttributeType arg1 ;
+  std::string result;
+  
+  arg1 = (UsdShadeAttributeType)jarg1; 
+  result = UsdShadeUtils::GetPrefixForAttributeType(arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeUtils_GetFullName(void * jarg1, int jarg2) {
+  void * jresult ;
+  TfToken *arg1 = 0 ;
+  UsdShadeAttributeType arg2 ;
+  TfToken result;
+  
+  arg1 = (TfToken *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeAttributeType)jarg2; 
+  result = UsdShadeUtils::GetFullName((TfToken const &)*arg1,arg2);
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeUtils_ReadOldEncoding() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeUtils::ReadOldEncoding();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeUtils_WriteNewEncoding() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeUtils::WriteNewEncoding();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeUtils() {
+  void * jresult ;
+  UsdShadeUtils *result = 0 ;
+  
+  result = (UsdShadeUtils *)new UsdShadeUtils();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeUtils(void * jarg1) {
+  UsdShadeUtils *arg1 = (UsdShadeUtils *) 0 ;
+  
+  arg1 = (UsdShadeUtils *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_IsConcrete_get() {
   unsigned int jresult ;
   bool result;
@@ -69397,7 +69477,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_ComputeInterfaceInput
   void * jresult ;
   UsdShadeNodeGraph *arg1 = (UsdShadeNodeGraph *) 0 ;
   bool arg2 ;
-  UsdShadeNodeGraph::InterfaceInputConsumersMap result;
+  SwigValueWrapper< std::unordered_map< UsdShadeInput,std::vector< UsdShadeInput >,UsdShadeInput::Hash > > result;
   
   arg1 = (UsdShadeNodeGraph *)jarg1; 
   arg2 = jarg2 ? true : false; 
@@ -69410,7 +69490,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_ComputeInterfaceInput
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_ComputeInterfaceInputConsumersMap__SWIG_1(void * jarg1) {
   void * jresult ;
   UsdShadeNodeGraph *arg1 = (UsdShadeNodeGraph *) 0 ;
-  UsdShadeNodeGraph::InterfaceInputConsumersMap result;
+  SwigValueWrapper< std::unordered_map< UsdShadeInput,std::vector< UsdShadeInput >,UsdShadeInput::Hash > > result;
   
   arg1 = (UsdShadeNodeGraph *)jarg1; 
   result = ((UsdShadeNodeGraph const *)arg1)->ComputeInterfaceInputConsumersMap();
@@ -70594,6 +70674,2401 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeShaderVector(void * jarg1)
   
   arg1 = (std::vector< UsdShadeShader > *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeInput__SWIG_0() {
+  void * jresult ;
+  UsdShadeInput *result = 0 ;
+  
+  result = (UsdShadeInput *)new UsdShadeInput();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetFullName(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken *result = 0 ;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (TfToken *) &((UsdShadeInput const *)arg1)->GetFullName();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetBaseName(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetBaseName();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetTypeName(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  SdfValueTypeName result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetTypeName();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetPrim(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdPrim result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetPrim();
+  jresult = new UsdPrim((const UsdPrim &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_Get__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  VtValue *arg2 = (VtValue *) 0 ;
+  UsdTimeCode arg3 ;
+  UsdTimeCode *argp3 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (VtValue *)jarg2; 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (bool)((UsdShadeInput const *)arg1)->Get(arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_Get__SWIG_3(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  VtValue *arg2 = (VtValue *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (VtValue *)jarg2; 
+  result = (bool)((UsdShadeInput const *)arg1)->Get(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_Set__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdTimeCode arg3 ;
+  UsdTimeCode *argp3 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (bool)((UsdShadeInput const *)arg1)->Set((VtValue const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_Set__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->Set((VtValue const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeInput_Hash() {
+  void * jresult ;
+  UsdShadeInput::Hash *result = 0 ;
+  
+  result = (UsdShadeInput::Hash *)new UsdShadeInput::Hash();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeInput_Hash(void * jarg1) {
+  UsdShadeInput::Hash *arg1 = (UsdShadeInput::Hash *) 0 ;
+  
+  arg1 = (UsdShadeInput::Hash *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_SetRenderType(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->SetRenderType((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetRenderType(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetRenderType();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_HasRenderType(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->HasRenderType();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeInput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdAttribute *arg1 = 0 ;
+  UsdShadeInput *result = 0 ;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeInput *)new UsdShadeInput((UsdAttribute const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_IsInput(void * jarg1) {
+  unsigned int jresult ;
+  UsdAttribute *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeInput::IsInput((UsdAttribute const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_IsInterfaceInputName(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)UsdShadeInput::IsInterfaceInputName((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetAttr(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdAttribute *result = 0 ;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (UsdAttribute *) &((UsdShadeInput const *)arg1)->GetAttr();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_IsDefined(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->IsDefined();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_SetDocumentation(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)((UsdShadeInput const *)arg1)->SetDocumentation((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetDocumentation(void * jarg1) {
+  char * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  std::string result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetDocumentation();
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_SetDisplayGroup(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)((UsdShadeInput const *)arg1)->SetDisplayGroup((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetDisplayGroup(void * jarg1) {
+  char * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  std::string result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetDisplayGroup();
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_CanConnect__SWIG_0(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdAttribute *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdAttribute *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->CanConnect((UsdAttribute const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_CanConnect__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->CanConnect((UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_CanConnect__SWIG_2(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->CanConnect((UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_0(void * jarg1, void * jarg2, void * jarg3, int jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  SdfValueTypeName arg5 ;
+  SdfValueTypeName *argp5 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  argp5 = (SdfValueTypeName *)jarg5; 
+  if (!argp5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfValueTypeName", 0);
+    return 0;
+  }
+  arg5 = *argp5; 
+  result = (bool)((UsdShadeInput const *)arg1)->ConnectToSource((UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_1(void * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  result = (bool)((UsdShadeInput const *)arg1)->ConnectToSource((UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->ConnectToSource((UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_3(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  SdfPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->ConnectToSource((SdfPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_4(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->ConnectToSource((UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ConnectToSource__SWIG_5(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->ConnectToSource((UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetConnectedSource(void * jarg1, void * jarg2, void * jarg3, UsdShadeAttributeType * jarg4) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2; 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = (bool)((UsdShadeInput const *)arg1)->GetConnectedSource(arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetRawConnectedSourcePaths(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  SdfPathVector *arg2 = (SdfPathVector *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (SdfPathVector *)jarg2; 
+  result = (bool)((UsdShadeInput const *)arg1)->GetRawConnectedSourcePaths(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_HasConnectedSource(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->HasConnectedSource();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_IsSourceConnectionFromBaseMaterial(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->IsSourceConnectionFromBaseMaterial();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_DisconnectSource(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->DisconnectSource();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ClearSource(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->ClearSource();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_SetConnectability(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->SetConnectability((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetConnectability(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetConnectability();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_ClearConnectability(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->ClearConnectability();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeInput(void * jarg1) {
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeOutput__SWIG_0() {
+  void * jresult ;
+  UsdShadeOutput *result = 0 ;
+  
+  result = (UsdShadeOutput *)new UsdShadeOutput();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetFullName(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken *result = 0 ;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (TfToken *) &((UsdShadeOutput const *)arg1)->GetFullName();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetBaseName(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = ((UsdShadeOutput const *)arg1)->GetBaseName();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetPrim(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdPrim result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = ((UsdShadeOutput const *)arg1)->GetPrim();
+  jresult = new UsdPrim((const UsdPrim &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetTypeName(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  SdfValueTypeName result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = ((UsdShadeOutput const *)arg1)->GetTypeName();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_Set__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdTimeCode arg3 ;
+  UsdTimeCode *argp3 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (bool)((UsdShadeOutput const *)arg1)->Set((VtValue const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_Set__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->Set((VtValue const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_SetRenderType(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->SetRenderType((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetRenderType(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = ((UsdShadeOutput const *)arg1)->GetRenderType();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_HasRenderType(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->HasRenderType();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeOutput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdAttribute *arg1 = 0 ;
+  UsdShadeOutput *result = 0 ;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeOutput *)new UsdShadeOutput((UsdAttribute const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_IsOutput(void * jarg1) {
+  unsigned int jresult ;
+  UsdAttribute *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeOutput::IsOutput((UsdAttribute const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetAttr(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = ((UsdShadeOutput const *)arg1)->GetAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetProperty(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdProperty *result = 0 ;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (UsdProperty *) &((UsdShadeOutput const *)arg1)->GetProperty();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetRel(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdRelationship result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = ((UsdShadeOutput const *)arg1)->GetRel();
+  jresult = new UsdRelationship((const UsdRelationship &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_IsTerminal(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->IsTerminal();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_IsDefined(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->IsDefined();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_CanConnect__SWIG_0(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdAttribute *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdAttribute *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->CanConnect((UsdAttribute const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_CanConnect__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->CanConnect((UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_CanConnect__SWIG_2(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->CanConnect((UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_0(void * jarg1, void * jarg2, void * jarg3, int jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  SdfValueTypeName arg5 ;
+  SdfValueTypeName *argp5 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  argp5 = (SdfValueTypeName *)jarg5; 
+  if (!argp5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfValueTypeName", 0);
+    return 0;
+  }
+  arg5 = *argp5; 
+  result = (bool)((UsdShadeOutput const *)arg1)->ConnectToSource((UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_1(void * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  result = (bool)((UsdShadeOutput const *)arg1)->ConnectToSource((UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->ConnectToSource((UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_3(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  SdfPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->ConnectToSource((SdfPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_4(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->ConnectToSource((UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ConnectToSource__SWIG_5(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->ConnectToSource((UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetConnectedSource(void * jarg1, void * jarg2, void * jarg3, UsdShadeAttributeType * jarg4) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  UsdShadeConnectableAPI *arg2 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (UsdShadeConnectableAPI *)jarg2; 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = (bool)((UsdShadeOutput const *)arg1)->GetConnectedSource(arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetRawConnectedSourcePaths(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  SdfPathVector *arg2 = (SdfPathVector *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (SdfPathVector *)jarg2; 
+  result = (bool)((UsdShadeOutput const *)arg1)->GetRawConnectedSourcePaths(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_HasConnectedSource(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->HasConnectedSource();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_IsSourceConnectionFromBaseMaterial(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->IsSourceConnectionFromBaseMaterial();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_DisconnectSource(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->DisconnectSource();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ClearSource(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->ClearSource();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeOutput(void * jarg1) {
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeConnectableAPI::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeConnectableAPI::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdShadeConnectableAPI *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeConnectableAPI *)new UsdShadeConnectableAPI((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_1() {
+  void * jresult ;
+  UsdShadeConnectableAPI *result = 0 ;
+  
+  result = (UsdShadeConnectableAPI *)new UsdShadeConnectableAPI();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdShadeConnectableAPI *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeConnectableAPI *)new UsdShadeConnectableAPI((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeConnectableAPI(void * jarg1) {
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdShadeConnectableAPI::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdShadeConnectableAPI::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdShadeConnectableAPI result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdShadeConnectableAPI::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdShadeConnectableAPI((const UsdShadeConnectableAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_3(void * jarg1) {
+  void * jresult ;
+  UsdShadeShader *arg1 = 0 ;
+  UsdShadeConnectableAPI *result = 0 ;
+  
+  arg1 = (UsdShadeShader *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeShader const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeConnectableAPI *)new UsdShadeConnectableAPI((UsdShadeShader const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_4(void * jarg1) {
+  void * jresult ;
+  UsdShadeNodeGraph *arg1 = 0 ;
+  UsdShadeConnectableAPI *result = 0 ;
+  
+  arg1 = (UsdShadeNodeGraph *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeNodeGraph const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeConnectableAPI *)new UsdShadeConnectableAPI((UsdShadeNodeGraph const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsShader(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  result = (bool)((UsdShadeConnectableAPI const *)arg1)->IsShader();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsNodeGraph(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  result = (bool)((UsdShadeConnectableAPI const *)arg1)->IsNodeGraph();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_0(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdAttribute *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdAttribute *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::CanConnect((UsdShadeInput const &)*arg1,(UsdAttribute const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::CanConnect((UsdShadeInput const &)*arg1,(UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_2(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::CanConnect((UsdShadeInput const &)*arg1,(UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_3(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdAttribute *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdAttribute *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::CanConnect((UsdShadeOutput const &)*arg1,(UsdAttribute const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_4(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::CanConnect((UsdShadeOutput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_5(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::CanConnect((UsdShadeOutput const &)*arg1,(UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CanConnect__SWIG_6(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::CanConnect((UsdShadeOutput const &)*arg1,(UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_0(void * jarg1, void * jarg2, void * jarg3, int jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  SdfValueTypeName arg5 ;
+  SdfValueTypeName *argp5 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  argp5 = (SdfValueTypeName *)jarg5; 
+  if (!argp5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfValueTypeName", 0);
+    return 0;
+  }
+  arg5 = *argp5; 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdProperty const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_1(void * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdProperty const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdProperty const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_3(void * jarg1, void * jarg2, void * jarg3, int jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  SdfValueTypeName arg5 ;
+  SdfValueTypeName *argp5 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  argp5 = (SdfValueTypeName *)jarg5; 
+  if (!argp5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfValueTypeName", 0);
+    return 0;
+  }
+  arg5 = *argp5; 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeInput const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_4(void * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeInput const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_5(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeInput const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_6(void * jarg1, void * jarg2, void * jarg3, int jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  SdfValueTypeName arg5 ;
+  SdfValueTypeName *argp5 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  argp5 = (SdfValueTypeName *)jarg5; 
+  if (!argp5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfValueTypeName", 0);
+    return 0;
+  }
+  arg5 = *argp5; 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeOutput const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_7(void * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  UsdShadeAttributeType arg4 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdShadeAttributeType)jarg4; 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeOutput const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_8(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeOutput const &)*arg1,(UsdShadeConnectableAPI const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_9(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdProperty const &)*arg1,(SdfPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_10(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeInput const &)*arg1,(SdfPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_11(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeOutput const &)*arg1,(SdfPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_12(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdProperty const &)*arg1,(UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_13(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeInput const &)*arg1,(UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_14(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeInput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeInput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeOutput const &)*arg1,(UsdShadeInput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_15(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdProperty const &)*arg1,(UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_16(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeInput const &)*arg1,(UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ConnectToSource__SWIG_17(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeOutput *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeOutput *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ConnectToSource((UsdShadeOutput const &)*arg1,(UsdShadeOutput const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetConnectedSource__SWIG_0(void * jarg1, void * jarg2, void * jarg3, UsdShadeAttributeType * jarg4) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2; 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = (bool)UsdShadeConnectableAPI::GetConnectedSource((UsdProperty const &)*arg1,arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetConnectedSource__SWIG_1(void * jarg1, void * jarg2, void * jarg3, UsdShadeAttributeType * jarg4) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2; 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = (bool)UsdShadeConnectableAPI::GetConnectedSource((UsdShadeInput const &)*arg1,arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetConnectedSource__SWIG_2(void * jarg1, void * jarg2, void * jarg3, UsdShadeAttributeType * jarg4) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  UsdShadeConnectableAPI *arg2 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdShadeConnectableAPI *)jarg2; 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = (bool)UsdShadeConnectableAPI::GetConnectedSource((UsdShadeOutput const &)*arg1,arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_0(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  SdfPathVector *arg2 = (SdfPathVector *) 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPathVector *)jarg2; 
+  result = (bool)UsdShadeConnectableAPI::GetRawConnectedSourcePaths((UsdProperty const &)*arg1,arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  SdfPathVector *arg2 = (SdfPathVector *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPathVector *)jarg2; 
+  result = (bool)UsdShadeConnectableAPI::GetRawConnectedSourcePaths((UsdShadeInput const &)*arg1,arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_2(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  SdfPathVector *arg2 = (SdfPathVector *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPathVector *)jarg2; 
+  result = (bool)UsdShadeConnectableAPI::GetRawConnectedSourcePaths((UsdShadeOutput const &)*arg1,arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_HasConnectedSource__SWIG_0(void * jarg1) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::HasConnectedSource((UsdProperty const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_HasConnectedSource__SWIG_1(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::HasConnectedSource((UsdShadeInput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_HasConnectedSource__SWIG_2(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::HasConnectedSource((UsdShadeOutput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_0(void * jarg1) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::IsSourceConnectionFromBaseMaterial((UsdProperty const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_1(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::IsSourceConnectionFromBaseMaterial((UsdShadeInput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_2(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::IsSourceConnectionFromBaseMaterial((UsdShadeOutput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_DisconnectSource__SWIG_0(void * jarg1) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::DisconnectSource((UsdProperty const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_DisconnectSource__SWIG_1(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::DisconnectSource((UsdShadeInput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_DisconnectSource__SWIG_2(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::DisconnectSource((UsdShadeOutput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ClearSource__SWIG_0(void * jarg1) {
+  unsigned int jresult ;
+  UsdProperty *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdProperty *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdProperty const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ClearSource((UsdProperty const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ClearSource__SWIG_1(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeInput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ClearSource((UsdShadeInput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_ClearSource__SWIG_2(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeOutput const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdShadeConnectableAPI::ClearSource((UsdShadeOutput const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CreateOutput(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg2 = 0 ;
+  SdfValueTypeName *arg3 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfValueTypeName *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfValueTypeName const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeConnectableAPI const *)arg1)->CreateOutput((TfToken const &)*arg2,(SdfValueTypeName const &)*arg3);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetOutput(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeConnectableAPI const *)arg1)->GetOutput((TfToken const &)*arg2);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetOutputs(void * jarg1) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  SwigValueWrapper< std::vector< UsdShadeOutput > > result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  result = ((UsdShadeConnectableAPI const *)arg1)->GetOutputs();
+  jresult = new std::vector< UsdShadeOutput >((const std::vector< UsdShadeOutput > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_CreateInput(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg2 = 0 ;
+  SdfValueTypeName *arg3 = 0 ;
+  UsdShadeInput result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfValueTypeName *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfValueTypeName const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeConnectableAPI const *)arg1)->CreateInput((TfToken const &)*arg2,(SdfValueTypeName const &)*arg3);
+  jresult = new UsdShadeInput((const UsdShadeInput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetInput(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeInput result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeConnectableAPI const *)arg1)->GetInput((TfToken const &)*arg2);
+  jresult = new UsdShadeInput((const UsdShadeInput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_GetInputs(void * jarg1) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = (UsdShadeConnectableAPI *) 0 ;
+  SwigValueWrapper< std::vector< UsdShadeInput > > result;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1; 
+  result = ((UsdShadeConnectableAPI const *)arg1)->GetInputs();
+  jresult = new std::vector< UsdShadeInput >((const std::vector< UsdShadeInput > &)result); 
+  return jresult;
 }
 
 
@@ -71791,6 +74266,10 @@ SWIGEXPORT UsdShadeNodeGraph * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_SWIGUpcas
 
 SWIGEXPORT UsdTyped * SWIGSTDCALL CSharp_pxr_UsdShadeShader_SWIGUpcast(UsdShadeShader *jarg1) {
     return (UsdTyped *)jarg1;
+}
+
+SWIGEXPORT UsdSchemaBase * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_SWIGUpcast(UsdShadeConnectableAPI *jarg1) {
+    return (UsdSchemaBase *)jarg1;
 }
 
 SWIGEXPORT UsdShadeMaterial * SWIGSTDCALL CSharp_pxr_UsdShadeLook_SWIGUpcast(UsdShadeLook *jarg1) {

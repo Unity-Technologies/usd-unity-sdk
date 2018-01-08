@@ -125,6 +125,10 @@
     <Content Include="pxr\usd\usdGeom\usdGeomXform.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomXformOp.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomTokens_Tokens.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeConnectableAPI.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeUtils.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeOutput.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeInput.i" />
     <Content Include="pxr\usd\usdShade\usdShadeLook.i" />
     <Content Include="pxr\usd\usdShade\usdShadeMaterial.i" />
     <Content Include="pxr\usd\usdShade\usdShadeShader.i" />
