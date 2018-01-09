@@ -18,10 +18,6 @@
 #include "pxr/usd/usd/primRange.h"
 %}
 
-// C# Property generation support.
-// % attribute(CLASS_NAME, DATA_TYPE, PROP_NAME, GETTER_NAME, SETTER_NAME);
-%include "attribute.i"
-
 %typemap(csinterfaces) UsdPrimRange %{
     global::System.Collections.IEnumerable,
     global::System.Collections.Generic.IEnumerable<UsdPrim>
@@ -37,7 +33,6 @@
   public System.Collections.Generic.IEnumerator<UsdPrim> GetEnumerator() {
     return new USD.NET.RangeIterator(this);
   }
-
 %}
 
 %extend UsdPrimRange::iterator {
