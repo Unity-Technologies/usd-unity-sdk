@@ -48,5 +48,116 @@ typedef std::vector<UsdPrim> UsdPrimVector;
 %ignore UsdPrim::FindAllRelationshipTargetPaths;
 %ignore UsdPrim::FindAllAttributeConnectionPaths;
 
+// ---------------------------------------------------------------------------------------------- //
+// UsdPrimSiblingIterator
+// ---------------------------------------------------------------------------------------------- //
+%extend UsdPrimSiblingIterator {
+  void MoveNext() {
+    ++(*self);
+  }
+  UsdPrim GetCurrent() {
+    return **self;
+  }
+}
+
+WRAP_EQUAL(UsdPrimSiblingIterator)
+
+class UsdPrimSiblingIterator {
+public:
+  typedef class UsdPrim value_type;
+  typedef value_type reference;
+};
+
+// ---------------------------------------------------------------------------------------------- //
+// UsdPrimSubtreeIterator
+// ---------------------------------------------------------------------------------------------- //
+%extend UsdPrimSubtreeIterator {
+  void MoveNext() {
+    ++(*self);
+  }
+  UsdPrim GetCurrent() {
+    return **self;
+  }
+}
+
+WRAP_EQUAL(UsdPrimSubtreeIterator)
+
+class UsdPrimSubtreeIterator {
+public:
+  typedef class UsdPrim value_type;
+  typedef value_type reference;
+};
+
+// ---------------------------------------------------------------------------------------------- //
+// UsdPrimSiblingRange
+// ---------------------------------------------------------------------------------------------- //
+%extend boost::iterator_range<UsdPrimSiblingIterator> {
+  UsdPrimSiblingIterator GetStart() {
+    return self->begin();
+  }
+  UsdPrimSiblingIterator GetEnd() {
+    return self->end();
+  }
+}
+
+%typemap(csinterfaces) boost::iterator_range<UsdPrimSiblingIterator> %{
+    global::System.Collections.IEnumerable,
+    global::System.Collections.Generic.IEnumerable<UsdPrim>
+%}
+
+%typemap(cscode) boost::iterator_range<UsdPrimSiblingIterator> %{
+  // Returning an externally defined class is ugly, but dramatically simplifies the bindings while
+  // allowing the use of C#'s foreach mechanism.
+  System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+    return new USD.NET.SiblingIterator(this);
+  }
+
+  public System.Collections.Generic.IEnumerator<UsdPrim> GetEnumerator() {
+    return new USD.NET.SiblingIterator(this);
+  }
+%}
+
+// ---------------------------------------------------------------------------------------------- //
+// UsdPrimSubtreeRange
+// ---------------------------------------------------------------------------------------------- //
+%extend boost::iterator_range<UsdPrimSubtreeIterator> {
+  UsdPrimSubtreeIterator GetStart() {
+    return self->begin();
+  }
+  UsdPrimSubtreeIterator GetEnd() {
+    return self->end();
+  }
+}
+
+%typemap(csinterfaces) boost::iterator_range<UsdPrimSubtreeIterator> %{
+    global::System.Collections.IEnumerable,
+    global::System.Collections.Generic.IEnumerable<UsdPrim>
+%}
+
+%typemap(cscode) boost::iterator_range<UsdPrimSubtreeIterator> %{
+  // Returning an externally defined class is ugly, but dramatically simplifies the bindings while
+  // allowing the use of C#'s foreach mechanism.
+  System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+    return new USD.NET.SubtreeIterator(this);
+  }
+
+  public System.Collections.Generic.IEnumerator<UsdPrim> GetEnumerator() {
+    return new USD.NET.SubtreeIterator(this);
+  }
+%}
+
+
+namespace boost {
+  template<class T>
+  class iterator_range{
+  public:
+    T begin() const;
+    T end() const;
+  };
+
+  %template(UsdPrimSiblingRange) iterator_range<UsdPrimSiblingIterator>;
+  %template(UsdPrimSubtreeRange) iterator_range<UsdPrimSubtreeIterator>;
+}
+
 %include "third_party/include/pxr/usd/usd/prim.h"
 

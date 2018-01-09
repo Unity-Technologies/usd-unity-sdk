@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="collections\RangeIterator.cs" />
+    <Compile Include="collections\SubtreeIterator.cs" />
+    <Compile Include="collections\SiblingIterator.cs" />
     <Compile Include="generated\pxr\base\js\JsObject.cs" />
     <Compile Include="generated\pxr\base\js\JsObjectVector.cs" />
     <Compile Include="generated\pxr\base\js\JsParseError.cs" />
@@ -94,6 +96,10 @@
     <Compile Include="generated\pxr\usd\usd\UsdListPosition.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdLoadPolicy.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdPrimRange.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdPrimSiblingIterator.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdPrimSiblingRange.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdPrimSubtreeIterator.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdPrimSubtreeRange.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdResolveInfo.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdResolveInfoSource.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStageCache.cs" />
@@ -124,7 +130,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_std__string_std__string_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_TfRefPtrT_UsdStage_t_bool_t.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_TfToken_UsdShadeAttributeType_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_UsdStageWeakPtr_UsdEditTarget_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__pairT_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t_bool_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_double_t.cs" />
@@ -145,8 +150,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__Ptr.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_TfDeclarePtrsT_SdfLayerStateDelegateBase_t__RefPtr.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_unsigned_long_long.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSiblingRange.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_UsdPrimSubtreeRange.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_va_list.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_void.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t.cs" />

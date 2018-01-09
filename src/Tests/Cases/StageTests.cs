@@ -36,14 +36,18 @@ namespace Tests.Cases {
     }
 
     public static void TraverseTest() {
+      //
+      // Setup a stage with parents and children.
+      // TODO: Add tests with classes and instancing.
+      //
       UsdStage s = UsdStage.CreateInMemory();
-      s.DefinePrim(new SdfPath("/Foo"));
+      var foo = s.DefinePrim(new SdfPath("/Foo"));
       s.DefinePrim(new SdfPath("/Foo/P1"));
       s.DefinePrim(new SdfPath("/Foo/P2"));
       s.DefinePrim(new SdfPath("/Foo/P3"));
       s.DefinePrim(new SdfPath("/Foo/P4"));
       s.DefinePrim(new SdfPath("/Foo/P5"));
-      s.DefinePrim(new SdfPath("/Bar"));
+      var bar = s.DefinePrim(new SdfPath("/Bar"));
       s.DefinePrim(new SdfPath("/Bar/B1"));
       s.DefinePrim(new SdfPath("/Bar/B2"));
       s.DefinePrim(new SdfPath("/Bar/B3"));
@@ -52,13 +56,34 @@ namespace Tests.Cases {
       s.DefinePrim(new SdfPath("/Bar/B3/C3"));
       s.DefinePrim(new SdfPath("/Bar/B4"));
 
-      // Basic traversal.
+      // Prim children
+      System.Console.WriteLine("");
+      System.Console.WriteLine("Foo children:");
+      foreach (UsdPrim curPrim in foo.GetChildren()) {
+        System.Console.WriteLine(curPrim.GetPath());
+      }
+
+      System.Console.WriteLine("");
+      System.Console.WriteLine("Bar children:");
+      foreach (UsdPrim curPrim in bar.GetChildren()) {
+        System.Console.WriteLine(curPrim.GetPath());
+      }
+
+      // Prim Descendants
+      System.Console.WriteLine("");
+      System.Console.WriteLine("Bar descendants:");
+      foreach (UsdPrim curPrim in bar.GetDescendants()) {
+        System.Console.WriteLine(curPrim.GetPath());
+      }
+
+      // Basic Stage traversal.
+      System.Console.WriteLine("");
       System.Console.WriteLine("All Prims:");
       foreach (UsdPrim curPrim in s.Traverse()) {
         System.Console.WriteLine(curPrim.GetPath());
       }
 
-      // Make sure pruing logic works.
+      // Traversal with child pruning.
       System.Console.WriteLine("");
       System.Console.WriteLine("/Bar children pruned:");
       var range = new USD.NET.RangeIterator(s.Traverse());
@@ -70,7 +95,7 @@ namespace Tests.Cases {
         }
       }
 
-      // Make sure pre/post traversal logic works.
+      // Fully general pre/post traversal.
       System.Console.WriteLine("");
       System.Console.WriteLine("Pre/Post Traversal with all children pruned:");
       var prePostRange = new USD.NET.RangeIterator(UsdPrimRange.PreAndPostVisit(s.GetPseudoRoot()));

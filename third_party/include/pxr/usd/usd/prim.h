@@ -68,13 +68,15 @@ class UsdVariantSet;
 
 class SdfPayload;
 
+
+#endif // USD.NET
+
+
 class UsdPrimSiblingIterator;
 typedef boost::iterator_range<UsdPrimSiblingIterator> UsdPrimSiblingRange;
 
 class UsdPrimSubtreeIterator;
 typedef boost::iterator_range<UsdPrimSubtreeIterator> UsdPrimSubtreeRange;
-
-#endif // USD.NET
 
 /// \class UsdPrim
 ///
@@ -1084,7 +1086,6 @@ private:
     { return _Prim()->GetSourcePrimIndex(); }
 #endif // USD.NET
 };
-#if 0 // USD.NET
 #ifdef doxygen
 
 /// Forward traversal iterator of sibling ::UsdPrim s.  This is a
@@ -1241,6 +1242,7 @@ struct Tf_ShouldIterateOverCopy<
     const UsdPrimSiblingRange> : boost::true_type {};
 
 #endif // doxygen
+#if 0 // USD.NET
 
 
 UsdPrimSiblingRange

@@ -10436,6 +10436,78 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimVector")]
   public static extern void delete_UsdPrimVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingIterator_MoveNext")]
+  public static extern void UsdPrimSiblingIterator_MoveNext(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingIterator_GetCurrent")]
+  public static extern global::System.IntPtr UsdPrimSiblingIterator_GetCurrent(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingIterator_Equals")]
+  public static extern bool UsdPrimSiblingIterator_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingIterator_GetHashCode")]
+  public static extern int UsdPrimSiblingIterator_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimSiblingIterator")]
+  public static extern global::System.IntPtr new_UsdPrimSiblingIterator();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimSiblingIterator")]
+  public static extern void delete_UsdPrimSiblingIterator(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeIterator_MoveNext")]
+  public static extern void UsdPrimSubtreeIterator_MoveNext(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeIterator_GetCurrent")]
+  public static extern global::System.IntPtr UsdPrimSubtreeIterator_GetCurrent(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeIterator_Equals")]
+  public static extern bool UsdPrimSubtreeIterator_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeIterator_GetHashCode")]
+  public static extern int UsdPrimSubtreeIterator_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimSubtreeIterator")]
+  public static extern global::System.IntPtr new_UsdPrimSubtreeIterator();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimSubtreeIterator")]
+  public static extern void delete_UsdPrimSubtreeIterator(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingRange_begin")]
+  public static extern global::System.IntPtr UsdPrimSiblingRange_begin(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingRange_end")]
+  public static extern global::System.IntPtr UsdPrimSiblingRange_end(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingRange_GetStart")]
+  public static extern global::System.IntPtr UsdPrimSiblingRange_GetStart(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSiblingRange_GetEnd")]
+  public static extern global::System.IntPtr UsdPrimSiblingRange_GetEnd(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimSiblingRange")]
+  public static extern global::System.IntPtr new_UsdPrimSiblingRange();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimSiblingRange")]
+  public static extern void delete_UsdPrimSiblingRange(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeRange_begin")]
+  public static extern global::System.IntPtr UsdPrimSubtreeRange_begin(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeRange_end")]
+  public static extern global::System.IntPtr UsdPrimSubtreeRange_end(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeRange_GetStart")]
+  public static extern global::System.IntPtr UsdPrimSubtreeRange_GetStart(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimSubtreeRange_GetEnd")]
+  public static extern global::System.IntPtr UsdPrimSubtreeRange_GetEnd(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimSubtreeRange")]
+  public static extern global::System.IntPtr new_UsdPrimSubtreeRange();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimSubtreeRange")]
+  public static extern void delete_UsdPrimSubtreeRange(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrim")]
   public static extern global::System.IntPtr new_UsdPrim();
 

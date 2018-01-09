@@ -211,34 +211,34 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimSiblingRange GetChildren() {
-    SWIGTYPE_p_UsdPrimSiblingRange ret = new SWIGTYPE_p_UsdPrimSiblingRange(UsdCsPINVOKE.UsdPrim_GetChildren(swigCPtr), true);
+  public UsdPrimSiblingRange GetChildren() {
+    UsdPrimSiblingRange ret = new UsdPrimSiblingRange(UsdCsPINVOKE.UsdPrim_GetChildren(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimSiblingRange GetAllChildren() {
-    SWIGTYPE_p_UsdPrimSiblingRange ret = new SWIGTYPE_p_UsdPrimSiblingRange(UsdCsPINVOKE.UsdPrim_GetAllChildren(swigCPtr), true);
+  public UsdPrimSiblingRange GetAllChildren() {
+    UsdPrimSiblingRange ret = new UsdPrimSiblingRange(UsdCsPINVOKE.UsdPrim_GetAllChildren(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimSiblingRange GetFilteredChildren(Usd_PrimFlagsPredicate predicate) {
-    SWIGTYPE_p_UsdPrimSiblingRange ret = new SWIGTYPE_p_UsdPrimSiblingRange(UsdCsPINVOKE.UsdPrim_GetFilteredChildren(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
+  public UsdPrimSiblingRange GetFilteredChildren(Usd_PrimFlagsPredicate predicate) {
+    UsdPrimSiblingRange ret = new UsdPrimSiblingRange(UsdCsPINVOKE.UsdPrim_GetFilteredChildren(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimSubtreeRange GetDescendants() {
-    SWIGTYPE_p_UsdPrimSubtreeRange ret = new SWIGTYPE_p_UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetDescendants(swigCPtr), true);
+  public UsdPrimSubtreeRange GetDescendants() {
+    UsdPrimSubtreeRange ret = new UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetDescendants(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimSubtreeRange GetAllDescendants() {
-    SWIGTYPE_p_UsdPrimSubtreeRange ret = new SWIGTYPE_p_UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetAllDescendants(swigCPtr), true);
+  public UsdPrimSubtreeRange GetAllDescendants() {
+    UsdPrimSubtreeRange ret = new UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetAllDescendants(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_UsdPrimSubtreeRange GetFilteredDescendants(Usd_PrimFlagsPredicate predicate) {
-    SWIGTYPE_p_UsdPrimSubtreeRange ret = new SWIGTYPE_p_UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetFilteredDescendants(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
+  public UsdPrimSubtreeRange GetFilteredDescendants(Usd_PrimFlagsPredicate predicate) {
+    UsdPrimSubtreeRange ret = new UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetFilteredDescendants(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -53,7 +53,6 @@ public class UsdPrimRange :
     return new USD.NET.RangeIterator(this);
   }
 
-
   public class EndSentinel : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;

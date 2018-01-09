@@ -3970,9 +3970,6 @@ SWIGINTERN void UsdMetadataValueMap_SetValue(UsdMetadataValueMap *self,TfToken c
 
 #include "pxr/usd/usd/primRange.h"
 
-
-#include <stdio.h>
-
 SWIGINTERN void UsdPrimRange_iterator_MoveNext(UsdPrimRange::iterator *self){
     ++(*self);
   }
@@ -4161,6 +4158,42 @@ SWIGINTERN void std_vector_Sl_UsdPrim_Sg__SetRange(std::vector< UsdPrim > *self,
           throw std::out_of_range("index");
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
+SWIGINTERN void UsdPrimSiblingIterator_MoveNext(UsdPrimSiblingIterator *self){
+    ++(*self);
+  }
+SWIGINTERN UsdPrim UsdPrimSiblingIterator_GetCurrent(UsdPrimSiblingIterator *self){
+    return **self;
+  }
+SWIGINTERN bool UsdPrimSiblingIterator_Equals(UsdPrimSiblingIterator const &lhs,UsdPrimSiblingIterator const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int UsdPrimSiblingIterator_GetHashCode(UsdPrimSiblingIterator *self){
+    return (int)TfHash()(self);
+  }
+SWIGINTERN void UsdPrimSubtreeIterator_MoveNext(UsdPrimSubtreeIterator *self){
+    ++(*self);
+  }
+SWIGINTERN UsdPrim UsdPrimSubtreeIterator_GetCurrent(UsdPrimSubtreeIterator *self){
+    return **self;
+  }
+SWIGINTERN bool UsdPrimSubtreeIterator_Equals(UsdPrimSubtreeIterator const &lhs,UsdPrimSubtreeIterator const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int UsdPrimSubtreeIterator_GetHashCode(UsdPrimSubtreeIterator *self){
+    return (int)TfHash()(self);
+  }
+SWIGINTERN UsdPrimSiblingIterator boost_iterator_range_Sl_UsdPrimSiblingIterator_Sg__GetStart(boost::iterator_range< UsdPrimSiblingIterator > *self){
+    return self->begin();
+  }
+SWIGINTERN UsdPrimSiblingIterator boost_iterator_range_Sl_UsdPrimSiblingIterator_Sg__GetEnd(boost::iterator_range< UsdPrimSiblingIterator > *self){
+    return self->end();
+  }
+SWIGINTERN UsdPrimSubtreeIterator boost_iterator_range_Sl_UsdPrimSubtreeIterator_Sg__GetStart(boost::iterator_range< UsdPrimSubtreeIterator > *self){
+    return self->begin();
+  }
+SWIGINTERN UsdPrimSubtreeIterator boost_iterator_range_Sl_UsdPrimSubtreeIterator_Sg__GetEnd(boost::iterator_range< UsdPrimSubtreeIterator > *self){
+    return self->end();
+  }
 SWIGINTERN bool UsdPrim_GetAttributeValue(UsdPrim *self,TfToken attrName,VtValue *valueOut,UsdTimeCode time){
     UsdAttribute attr = self->GetAttribute(attrName);
     if (!attr) { return false; }
@@ -56593,6 +56626,282 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimVector(void * jarg1) {
   std::vector< UsdPrim > *arg1 = (std::vector< UsdPrim > *) 0 ;
   
   arg1 = (std::vector< UsdPrim > *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrimSiblingIterator_MoveNext(void * jarg1) {
+  UsdPrimSiblingIterator *arg1 = (UsdPrimSiblingIterator *) 0 ;
+  
+  arg1 = (UsdPrimSiblingIterator *)jarg1; 
+  UsdPrimSiblingIterator_MoveNext(arg1);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSiblingIterator_GetCurrent(void * jarg1) {
+  void * jresult ;
+  UsdPrimSiblingIterator *arg1 = (UsdPrimSiblingIterator *) 0 ;
+  UsdPrim result;
+  
+  arg1 = (UsdPrimSiblingIterator *)jarg1; 
+  result = UsdPrimSiblingIterator_GetCurrent(arg1);
+  jresult = new UsdPrim((const UsdPrim &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdPrimSiblingIterator_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdPrimSiblingIterator *arg1 = 0 ;
+  UsdPrimSiblingIterator *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdPrimSiblingIterator *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimSiblingIterator const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdPrimSiblingIterator *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimSiblingIterator const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdPrimSiblingIterator_Equals((UsdPrimSiblingIterator const &)*arg1,(UsdPrimSiblingIterator const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdPrimSiblingIterator_GetHashCode(void * jarg1) {
+  int jresult ;
+  UsdPrimSiblingIterator *arg1 = (UsdPrimSiblingIterator *) 0 ;
+  int result;
+  
+  arg1 = (UsdPrimSiblingIterator *)jarg1; 
+  result = (int)UsdPrimSiblingIterator_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimSiblingIterator() {
+  void * jresult ;
+  UsdPrimSiblingIterator *result = 0 ;
+  
+  result = (UsdPrimSiblingIterator *)new UsdPrimSiblingIterator();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimSiblingIterator(void * jarg1) {
+  UsdPrimSiblingIterator *arg1 = (UsdPrimSiblingIterator *) 0 ;
+  
+  arg1 = (UsdPrimSiblingIterator *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeIterator_MoveNext(void * jarg1) {
+  UsdPrimSubtreeIterator *arg1 = (UsdPrimSubtreeIterator *) 0 ;
+  
+  arg1 = (UsdPrimSubtreeIterator *)jarg1; 
+  UsdPrimSubtreeIterator_MoveNext(arg1);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeIterator_GetCurrent(void * jarg1) {
+  void * jresult ;
+  UsdPrimSubtreeIterator *arg1 = (UsdPrimSubtreeIterator *) 0 ;
+  UsdPrim result;
+  
+  arg1 = (UsdPrimSubtreeIterator *)jarg1; 
+  result = UsdPrimSubtreeIterator_GetCurrent(arg1);
+  jresult = new UsdPrim((const UsdPrim &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeIterator_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdPrimSubtreeIterator *arg1 = 0 ;
+  UsdPrimSubtreeIterator *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdPrimSubtreeIterator *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimSubtreeIterator const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (UsdPrimSubtreeIterator *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimSubtreeIterator const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdPrimSubtreeIterator_Equals((UsdPrimSubtreeIterator const &)*arg1,(UsdPrimSubtreeIterator const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeIterator_GetHashCode(void * jarg1) {
+  int jresult ;
+  UsdPrimSubtreeIterator *arg1 = (UsdPrimSubtreeIterator *) 0 ;
+  int result;
+  
+  arg1 = (UsdPrimSubtreeIterator *)jarg1; 
+  result = (int)UsdPrimSubtreeIterator_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimSubtreeIterator() {
+  void * jresult ;
+  UsdPrimSubtreeIterator *result = 0 ;
+  
+  result = (UsdPrimSubtreeIterator *)new UsdPrimSubtreeIterator();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimSubtreeIterator(void * jarg1) {
+  UsdPrimSubtreeIterator *arg1 = (UsdPrimSubtreeIterator *) 0 ;
+  
+  arg1 = (UsdPrimSubtreeIterator *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSiblingRange_begin(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSiblingIterator > *arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *) 0 ;
+  UsdPrimSiblingIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *)jarg1; 
+  result = ((boost::iterator_range< UsdPrimSiblingIterator > const *)arg1)->begin();
+  jresult = new UsdPrimSiblingIterator((const UsdPrimSiblingIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSiblingRange_end(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSiblingIterator > *arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *) 0 ;
+  UsdPrimSiblingIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *)jarg1; 
+  result = ((boost::iterator_range< UsdPrimSiblingIterator > const *)arg1)->end();
+  jresult = new UsdPrimSiblingIterator((const UsdPrimSiblingIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSiblingRange_GetStart(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSiblingIterator > *arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *) 0 ;
+  UsdPrimSiblingIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *)jarg1; 
+  result = boost_iterator_range_Sl_UsdPrimSiblingIterator_Sg__GetStart(arg1);
+  jresult = new UsdPrimSiblingIterator((const UsdPrimSiblingIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSiblingRange_GetEnd(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSiblingIterator > *arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *) 0 ;
+  UsdPrimSiblingIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *)jarg1; 
+  result = boost_iterator_range_Sl_UsdPrimSiblingIterator_Sg__GetEnd(arg1);
+  jresult = new UsdPrimSiblingIterator((const UsdPrimSiblingIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimSiblingRange() {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSiblingIterator > *result = 0 ;
+  
+  result = (boost::iterator_range< UsdPrimSiblingIterator > *)new boost::iterator_range< UsdPrimSiblingIterator >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimSiblingRange(void * jarg1) {
+  boost::iterator_range< UsdPrimSiblingIterator > *arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *) 0 ;
+  
+  arg1 = (boost::iterator_range< UsdPrimSiblingIterator > *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeRange_begin(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSubtreeIterator > *arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *) 0 ;
+  UsdPrimSubtreeIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *)jarg1; 
+  result = ((boost::iterator_range< UsdPrimSubtreeIterator > const *)arg1)->begin();
+  jresult = new UsdPrimSubtreeIterator((const UsdPrimSubtreeIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeRange_end(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSubtreeIterator > *arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *) 0 ;
+  UsdPrimSubtreeIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *)jarg1; 
+  result = ((boost::iterator_range< UsdPrimSubtreeIterator > const *)arg1)->end();
+  jresult = new UsdPrimSubtreeIterator((const UsdPrimSubtreeIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeRange_GetStart(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSubtreeIterator > *arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *) 0 ;
+  UsdPrimSubtreeIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *)jarg1; 
+  result = boost_iterator_range_Sl_UsdPrimSubtreeIterator_Sg__GetStart(arg1);
+  jresult = new UsdPrimSubtreeIterator((const UsdPrimSubtreeIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimSubtreeRange_GetEnd(void * jarg1) {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSubtreeIterator > *arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *) 0 ;
+  UsdPrimSubtreeIterator result;
+  
+  arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *)jarg1; 
+  result = boost_iterator_range_Sl_UsdPrimSubtreeIterator_Sg__GetEnd(arg1);
+  jresult = new UsdPrimSubtreeIterator((const UsdPrimSubtreeIterator &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdPrimSubtreeRange() {
+  void * jresult ;
+  boost::iterator_range< UsdPrimSubtreeIterator > *result = 0 ;
+  
+  result = (boost::iterator_range< UsdPrimSubtreeIterator > *)new boost::iterator_range< UsdPrimSubtreeIterator >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdPrimSubtreeRange(void * jarg1) {
+  boost::iterator_range< UsdPrimSubtreeIterator > *arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *) 0 ;
+  
+  arg1 = (boost::iterator_range< UsdPrimSubtreeIterator > *)jarg1; 
   delete arg1;
 }
 
