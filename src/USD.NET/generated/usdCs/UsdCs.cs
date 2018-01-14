@@ -2907,6 +2907,8 @@ public class UsdCs {
   public static readonly int JS_VALUE_API_VERSION = UsdCsPINVOKE.JS_VALUE_API_VERSION_get();
   public static readonly int VT_DICTIONARY_MAX_ARITY = UsdCsPINVOKE.VT_DICTIONARY_MAX_ARITY_get();
   public static readonly string BOOST_PP_FILENAME_1 = UsdCsPINVOKE.BOOST_PP_FILENAME_1_get();
+  public static readonly int USDGEOM_CYLINDER_API_VERSION = UsdCsPINVOKE.USDGEOM_CYLINDER_API_VERSION_get();
+  public static readonly int USDGEOM_XFORM_CACHE_API_VERSION = UsdCsPINVOKE.USDGEOM_XFORM_CACHE_API_VERSION_get();
 }
 
 }

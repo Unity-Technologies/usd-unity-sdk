@@ -237,8 +237,8 @@ public class SdfPath : global::System.IDisposable {
     UsdCsPINVOKE.SdfPath_GetAllTargetPathsRecursively(swigCPtr, SdfPathVector.getCPtr(result));
   }
 
-  public SWIGTYPE_p_std__pairT_std__string_std__string_t GetVariantSelection() {
-    SWIGTYPE_p_std__pairT_std__string_std__string_t ret = new SWIGTYPE_p_std__pairT_std__string_std__string_t(UsdCsPINVOKE.SdfPath_GetVariantSelection(swigCPtr), true);
+  public SdfPathStringPair GetVariantSelection() {
+    SdfPathStringPair ret = new SdfPathStringPair(UsdCsPINVOKE.SdfPath_GetVariantSelection(swigCPtr), true);
     return ret;
   }
 

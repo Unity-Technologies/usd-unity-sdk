@@ -130,6 +130,10 @@
     <Content Include="pxr\usd\sdf\sdfValueTypeNames_Types.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCamera.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomBasisCurves.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomNurbsPatch.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomSphere.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomCylinder.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomCapsule.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCube.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCone.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomNurbsCurves.i" />

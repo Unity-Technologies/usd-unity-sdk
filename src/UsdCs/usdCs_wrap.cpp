@@ -4893,6 +4893,103 @@ SWIGINTERN void std_vector_Sl_UsdGeomFaceSetAPI_Sg__SetRange(std::vector< UsdGeo
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 
+#include "pxr/usd/usdGeom/motionAPI.h"
+
+
+#include "pxr/usd/usdGeom/collectionAPI.h"
+
+SWIGINTERN std::vector< UsdGeomCollectionAPI > *new_std_vector_Sl_UsdGeomCollectionAPI_Sg___SWIG_2(int capacity){
+        std::vector< UsdGeomCollectionAPI >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< UsdGeomCollectionAPI >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN UsdGeomCollectionAPI std_vector_Sl_UsdGeomCollectionAPI_Sg__getitemcopy(std::vector< UsdGeomCollectionAPI > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN UsdGeomCollectionAPI const &std_vector_Sl_UsdGeomCollectionAPI_Sg__getitem(std::vector< UsdGeomCollectionAPI > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__setitem(std::vector< UsdGeomCollectionAPI > *self,int index,UsdGeomCollectionAPI const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__AddRange(std::vector< UsdGeomCollectionAPI > *self,std::vector< UsdGeomCollectionAPI > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< UsdGeomCollectionAPI > *std_vector_Sl_UsdGeomCollectionAPI_Sg__GetRange(std::vector< UsdGeomCollectionAPI > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< UsdGeomCollectionAPI >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__Insert(std::vector< UsdGeomCollectionAPI > *self,int index,UsdGeomCollectionAPI const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__InsertRange(std::vector< UsdGeomCollectionAPI > *self,int index,std::vector< UsdGeomCollectionAPI > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__RemoveAt(std::vector< UsdGeomCollectionAPI > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__RemoveRange(std::vector< UsdGeomCollectionAPI > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< UsdGeomCollectionAPI > *std_vector_Sl_UsdGeomCollectionAPI_Sg__Repeat(UsdGeomCollectionAPI const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< UsdGeomCollectionAPI >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__Reverse__SWIG_0(std::vector< UsdGeomCollectionAPI > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__Reverse__SWIG_1(std::vector< UsdGeomCollectionAPI > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomCollectionAPI_Sg__SetRange(std::vector< UsdGeomCollectionAPI > *self,int index,std::vector< UsdGeomCollectionAPI > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
+
 #include "pxr/usd/usdGeom/primvar.h"
 
 SWIGINTERN std::vector< UsdGeomPrimvar > *new_std_vector_Sl_UsdGeomPrimvar_Sg___SWIG_2(int capacity){
@@ -5340,10 +5437,19 @@ SWIGINTERN bool std_vector_Sl_int64_t_Sg__Remove(std::vector< int64_t > *self,lo
 #include "pxr/usd/usdGeom/gprim.h"
 
 
+#include "pxr/usd/usdGeom/capsule.h"
+
+
 #include "pxr/usd/usdGeom/cone.h"
 
 
 #include "pxr/usd/usdGeom/cube.h"
+
+
+#include "pxr/usd/usdGeom/cylinder.h"
+
+
+#include "pxr/usd/usdGeom/sphere.h"
 
 
 #include "pxr/usd/usdGeom/pointBased.h"
@@ -5452,6 +5558,9 @@ SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__SetRange(std
 #include "pxr/usd/usdGeom/nurbsCurves.h"
 
 
+#include "pxr/usd/usdGeom/nurbsPatch.h"
+
+
 #include "pxr/usd/usdGeom/mesh.h"
 
 SWIGINTERN void UsdGeomMesh_Triangulate(VtIntArray &faceVertexIndices,VtIntArray &faceVertexCounts){
@@ -5477,6 +5586,109 @@ SWIGINTERN void UsdGeomMesh_Triangulate(VtIntArray &faceVertexIndices,VtIntArray
     faceVertexIndices.swap(newIndices);
     faceVertexCounts.swap(newCounts);
   }
+
+#include "pxr/usd/usdGeom/constraintTarget.h"
+
+
+#include "pxr/usd/usdGeom/xformCache.h"
+
+
+#include "pxr/usd/usdGeom/bboxCache.h"
+
+
+#include "pxr/usd/usdGeom/modelAPI.h"
+
+SWIGINTERN std::vector< UsdGeomConstraintTarget > *new_std_vector_Sl_UsdGeomConstraintTarget_Sg___SWIG_2(int capacity){
+        std::vector< UsdGeomConstraintTarget >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< UsdGeomConstraintTarget >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN UsdGeomConstraintTarget std_vector_Sl_UsdGeomConstraintTarget_Sg__getitemcopy(std::vector< UsdGeomConstraintTarget > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN UsdGeomConstraintTarget const &std_vector_Sl_UsdGeomConstraintTarget_Sg__getitem(std::vector< UsdGeomConstraintTarget > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__setitem(std::vector< UsdGeomConstraintTarget > *self,int index,UsdGeomConstraintTarget const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__AddRange(std::vector< UsdGeomConstraintTarget > *self,std::vector< UsdGeomConstraintTarget > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< UsdGeomConstraintTarget > *std_vector_Sl_UsdGeomConstraintTarget_Sg__GetRange(std::vector< UsdGeomConstraintTarget > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< UsdGeomConstraintTarget >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__Insert(std::vector< UsdGeomConstraintTarget > *self,int index,UsdGeomConstraintTarget const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__InsertRange(std::vector< UsdGeomConstraintTarget > *self,int index,std::vector< UsdGeomConstraintTarget > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__RemoveAt(std::vector< UsdGeomConstraintTarget > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__RemoveRange(std::vector< UsdGeomConstraintTarget > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< UsdGeomConstraintTarget > *std_vector_Sl_UsdGeomConstraintTarget_Sg__Repeat(UsdGeomConstraintTarget const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< UsdGeomConstraintTarget >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__Reverse__SWIG_0(std::vector< UsdGeomConstraintTarget > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__Reverse__SWIG_1(std::vector< UsdGeomConstraintTarget > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__SetRange(std::vector< UsdGeomConstraintTarget > *self,int index,std::vector< UsdGeomConstraintTarget > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
 
 #include "pxr/usd/usdShade/utils.h"
 
@@ -45957,6 +46169,116 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPathVector(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPathStringPair__SWIG_0() {
+  void * jresult ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  result = (std::pair< std::string,std::string > *)new std::pair< std::string,std::string >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPathStringPair__SWIG_1(char * jarg1, char * jarg2) {
+  void * jresult ;
+  std::string arg1 ;
+  std::string arg2 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg1)->assign(jarg1); 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  result = (std::pair< std::string,std::string > *)new std::pair< std::string,std::string >(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPathStringPair__SWIG_2(void * jarg1) {
+  void * jresult ;
+  std::pair< std::string,std::string > *arg1 = 0 ;
+  std::pair< std::string,std::string > *result = 0 ;
+  
+  arg1 = (std::pair< std::string,std::string > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< std::string,std::string > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::pair< std::string,std::string > *)new std::pair< std::string,std::string >((std::pair< std::string,std::string > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPathStringPair_first_set(void * jarg1, char * jarg2) {
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (std::pair< std::string,std::string > *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (arg1) (arg1)->first = *arg2;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfPathStringPair_first_get(void * jarg1) {
+  char * jresult ;
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (std::pair< std::string,std::string > *)jarg1; 
+  result = (std::string *) & ((arg1)->first);
+  jresult = SWIG_csharp_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPathStringPair_second_set(void * jarg1, char * jarg2) {
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (std::pair< std::string,std::string > *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (arg1) (arg1)->second = *arg2;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfPathStringPair_second_get(void * jarg1) {
+  char * jresult ;
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (std::pair< std::string,std::string > *)jarg1; 
+  result = (std::string *) & ((arg1)->second);
+  jresult = SWIG_csharp_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPathStringPair(void * jarg1) {
+  std::pair< std::string,std::string > *arg1 = (std::pair< std::string,std::string > *) 0 ;
+  
+  arg1 = (std::pair< std::string,std::string > *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GetPathFromVector(void * jarg1, int jarg2, void * jarg3) {
   std::vector< SdfPath > *arg1 = 0 ;
   int arg2 ;
@@ -46395,7 +46717,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPath_GetAllTargetPathsRecursively(void
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfPath_GetVariantSelection(void * jarg1) {
   void * jresult ;
   SdfPath *arg1 = (SdfPath *) 0 ;
-  SwigValueWrapper< std::pair< std::string,std::string > > result;
+  std::pair< std::string,std::string > result;
   
   arg1 = (SdfPath *)jarg1; 
   result = ((SdfPath const *)arg1)->GetVariantSelection();
@@ -68448,6 +68770,1388 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomFaceSetAPIVector(void * jar
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomMotionAPI::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomMotionAPI::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomMotionAPI__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomMotionAPI *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomMotionAPI *)new UsdGeomMotionAPI((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomMotionAPI__SWIG_1() {
+  void * jresult ;
+  UsdGeomMotionAPI *result = 0 ;
+  
+  result = (UsdGeomMotionAPI *)new UsdGeomMotionAPI();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomMotionAPI__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomMotionAPI *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomMotionAPI *)new UsdGeomMotionAPI((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomMotionAPI(void * jarg1) {
+  UsdGeomMotionAPI *arg1 = (UsdGeomMotionAPI *) 0 ;
+  
+  arg1 = (UsdGeomMotionAPI *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomMotionAPI::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomMotionAPI::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomMotionAPI result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomMotionAPI::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomMotionAPI((const UsdGeomMotionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_GetVelocityScaleAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomMotionAPI *arg1 = (UsdGeomMotionAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomMotionAPI *)jarg1; 
+  result = ((UsdGeomMotionAPI const *)arg1)->GetVelocityScaleAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_CreateVelocityScaleAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomMotionAPI *arg1 = (UsdGeomMotionAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomMotionAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomMotionAPI const *)arg1)->CreateVelocityScaleAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_CreateVelocityScaleAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomMotionAPI *arg1 = (UsdGeomMotionAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomMotionAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomMotionAPI const *)arg1)->CreateVelocityScaleAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_CreateVelocityScaleAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomMotionAPI *arg1 = (UsdGeomMotionAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomMotionAPI *)jarg1; 
+  result = ((UsdGeomMotionAPI const *)arg1)->CreateVelocityScaleAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_ComputeVelocityScale__SWIG_0(void * jarg1, void * jarg2) {
+  float jresult ;
+  UsdGeomMotionAPI *arg1 = (UsdGeomMotionAPI *) 0 ;
+  UsdTimeCode arg2 ;
+  UsdTimeCode *argp2 ;
+  float result;
+  
+  arg1 = (UsdGeomMotionAPI *)jarg1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (float)((UsdGeomMotionAPI const *)arg1)->ComputeVelocityScale(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_ComputeVelocityScale__SWIG_1(void * jarg1) {
+  float jresult ;
+  UsdGeomMotionAPI *arg1 = (UsdGeomMotionAPI *) 0 ;
+  float result;
+  
+  arg1 = (UsdGeomMotionAPI *)jarg1; 
+  result = (float)((UsdGeomMotionAPI const *)arg1)->ComputeVelocityScale();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCollectionAPI__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  UsdGeomCollectionAPI *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCollectionAPI *)new UsdGeomCollectionAPI((UsdPrim const &)*arg1,(TfToken const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCollectionAPI__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomCollectionAPI *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCollectionAPI *)new UsdGeomCollectionAPI((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCollectionAPI__SWIG_2() {
+  void * jresult ;
+  UsdGeomCollectionAPI *result = 0 ;
+  
+  result = (UsdGeomCollectionAPI *)new UsdGeomCollectionAPI();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCollectionAPI__SWIG_3(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  UsdGeomCollectionAPI *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCollectionAPI *)new UsdGeomCollectionAPI((UsdSchemaBase const &)*arg1,(TfToken const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomCollectionAPI(void * jarg1) {
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetCollectionName(void * jarg1) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->GetCollectionName();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_IsEmpty(void * jarg1) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->IsEmpty();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_SetTargets(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  SdfPathVector *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (SdfPathVector *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->SetTargets((SdfPathVector const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_SetTargetFaceCounts__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = 0 ;
+  UsdTimeCode *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->SetTargetFaceCounts((VtIntArray const &)*arg2,(UsdTimeCode const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_SetTargetFaceCounts__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->SetTargetFaceCounts((VtIntArray const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetTargetFaceCounts__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = (VtIntArray *) 0 ;
+  UsdTimeCode *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2; 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->GetTargetFaceCounts(arg2,(UsdTimeCode const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetTargetFaceCounts__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = (VtIntArray *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2; 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->GetTargetFaceCounts(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_SetTargetFaceIndices__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = 0 ;
+  UsdTimeCode *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->SetTargetFaceIndices((VtIntArray const &)*arg2,(UsdTimeCode const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_SetTargetFaceIndices__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->SetTargetFaceIndices((VtIntArray const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetTargetFaceIndices__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = (VtIntArray *) 0 ;
+  UsdTimeCode *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2; 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->GetTargetFaceIndices(arg2,(UsdTimeCode const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetTargetFaceIndices__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtIntArray *arg2 = (VtIntArray *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtIntArray *)jarg2; 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->GetTargetFaceIndices(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_AddTarget__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  SdfPath *arg2 = 0 ;
+  VtIntArray *arg3 = 0 ;
+  UsdTimeCode *arg4 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (VtIntArray *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdTimeCode *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->AddTarget((SdfPath const &)*arg2,(VtIntArray const &)*arg3,(UsdTimeCode const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_AddTarget__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  SdfPath *arg2 = 0 ;
+  VtIntArray *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (VtIntArray *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->AddTarget((SdfPath const &)*arg2,(VtIntArray const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_AddTarget__SWIG_2(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  SdfPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->AddTarget((SdfPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetTargetFaceCountsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->GetTargetFaceCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_CreateTargetFaceCountsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->CreateTargetFaceCountsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_CreateTargetFaceCountsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCollectionAPI const *)arg1)->CreateTargetFaceCountsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_CreateTargetFaceCountsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->CreateTargetFaceCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetTargetFaceIndicesAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->GetTargetFaceIndicesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_CreateTargetFaceIndicesAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->CreateTargetFaceIndicesAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_CreateTargetFaceIndicesAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCollectionAPI const *)arg1)->CreateTargetFaceIndicesAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_CreateTargetFaceIndicesAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->CreateTargetFaceIndicesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetTargetsRel(void * jarg1) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  UsdRelationship result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->GetTargetsRel();
+  jresult = new UsdRelationship((const UsdRelationship &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_CreateTargetsRel(void * jarg1) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  UsdRelationship result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  result = ((UsdGeomCollectionAPI const *)arg1)->CreateTargetsRel();
+  jresult = new UsdRelationship((const UsdRelationship &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  SdfPathVector *arg3 = 0 ;
+  VtIntArray *arg4 = 0 ;
+  VtIntArray *arg5 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfPathVector *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (VtIntArray *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (VtIntArray *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdPrim const &)*arg1,(TfToken const &)*arg2,(std::vector< SdfPath > const &)*arg3,(VtArray< int > const &)*arg4,(VtArray< int > const &)*arg5);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  SdfPathVector *arg3 = 0 ;
+  VtIntArray *arg4 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfPathVector *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (VtIntArray *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdPrim const &)*arg1,(TfToken const &)*arg2,(std::vector< SdfPath > const &)*arg3,(VtArray< int > const &)*arg4);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  SdfPathVector *arg3 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfPathVector *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdPrim const &)*arg1,(TfToken const &)*arg2,(std::vector< SdfPath > const &)*arg3);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_3(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdPrim const &)*arg1,(TfToken const &)*arg2);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_4(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  SdfPathVector *arg3 = 0 ;
+  VtIntArray *arg4 = 0 ;
+  VtIntArray *arg5 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfPathVector *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (VtIntArray *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (VtIntArray *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdSchemaBase const &)*arg1,(TfToken const &)*arg2,(std::vector< SdfPath > const &)*arg3,(VtArray< int > const &)*arg4,(VtArray< int > const &)*arg5);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_5(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  SdfPathVector *arg3 = 0 ;
+  VtIntArray *arg4 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfPathVector *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (VtIntArray *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdSchemaBase const &)*arg1,(TfToken const &)*arg2,(std::vector< SdfPath > const &)*arg3,(VtArray< int > const &)*arg4);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_6(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  SdfPathVector *arg3 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfPathVector *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdSchemaBase const &)*arg1,(TfToken const &)*arg2,(std::vector< SdfPath > const &)*arg3);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Create__SWIG_7(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  TfToken *arg2 = 0 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::Create((UsdSchemaBase const &)*arg1,(TfToken const &)*arg2);
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetCollections__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  std::vector< UsdGeomCollectionAPI > result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::GetCollections((UsdPrim const &)*arg1);
+  jresult = new std::vector< UsdGeomCollectionAPI >((const std::vector< UsdGeomCollectionAPI > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_GetCollections__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  std::vector< UsdGeomCollectionAPI > result;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCollectionAPI::GetCollections((UsdSchemaBase const &)*arg1);
+  jresult = new std::vector< UsdGeomCollectionAPI >((const std::vector< UsdGeomCollectionAPI > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_Validate(void * jarg1, char** jarg2) {
+  unsigned int jresult ;
+  UsdGeomCollectionAPI *arg1 = (UsdGeomCollectionAPI *) 0 ;
+  std::string *arg2 = (std::string *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1; 
+  //typemap in
+  std::string temp;
+  arg2 = &temp; 
+  
+  result = (bool)((UsdGeomCollectionAPI const *)arg1)->Validate(arg2);
+  jresult = result; 
+  
+  //Typemap argout in c++ file.
+  //This will convert c++ string to c# string
+  *jarg2 = SWIG_csharp_string_callback(arg2->c_str());
+  
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_Clear(void * jarg1) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_Add(void * jarg1, void * jarg2) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  UsdGeomCollectionAPI *arg2 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (UsdGeomCollectionAPI *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomCollectionAPI const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((UsdGeomCollectionAPI const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  std::vector< UsdGeomCollectionAPI >::size_type result;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  result = ((std::vector< UsdGeomCollectionAPI > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  std::vector< UsdGeomCollectionAPI >::size_type result;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  result = ((std::vector< UsdGeomCollectionAPI > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  std::vector< UsdGeomCollectionAPI >::size_type arg2 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (std::vector< UsdGeomCollectionAPI >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCollectionAPIVector__SWIG_0() {
+  void * jresult ;
+  std::vector< UsdGeomCollectionAPI > *result = 0 ;
+  
+  result = (std::vector< UsdGeomCollectionAPI > *)new std::vector< UsdGeomCollectionAPI >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCollectionAPIVector__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< UsdGeomCollectionAPI > *arg1 = 0 ;
+  std::vector< UsdGeomCollectionAPI > *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomCollectionAPI > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< UsdGeomCollectionAPI > *)new std::vector< UsdGeomCollectionAPI >((std::vector< UsdGeomCollectionAPI > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCollectionAPIVector__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< UsdGeomCollectionAPI > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< UsdGeomCollectionAPI > *)new_std_vector_Sl_UsdGeomCollectionAPI_Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_getitemcopy(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  UsdGeomCollectionAPI result;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_UsdGeomCollectionAPI_Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new UsdGeomCollectionAPI((const UsdGeomCollectionAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  UsdGeomCollectionAPI *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (UsdGeomCollectionAPI *) &std_vector_Sl_UsdGeomCollectionAPI_Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  UsdGeomCollectionAPI *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (UsdGeomCollectionAPI *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomCollectionAPI const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomCollectionAPI_Sg__setitem(arg1,arg2,(UsdGeomCollectionAPI const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_AddRange(void * jarg1, void * jarg2) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  std::vector< UsdGeomCollectionAPI > *arg2 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (std::vector< UsdGeomCollectionAPI > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomCollectionAPI > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_UsdGeomCollectionAPI_Sg__AddRange(arg1,(std::vector< UsdGeomCollectionAPI > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< UsdGeomCollectionAPI > *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< UsdGeomCollectionAPI > *)std_vector_Sl_UsdGeomCollectionAPI_Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  UsdGeomCollectionAPI *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (UsdGeomCollectionAPI *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomCollectionAPI const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomCollectionAPI_Sg__Insert(arg1,arg2,(UsdGeomCollectionAPI const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  std::vector< UsdGeomCollectionAPI > *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< UsdGeomCollectionAPI > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomCollectionAPI > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomCollectionAPI_Sg__InsertRange(arg1,arg2,(std::vector< UsdGeomCollectionAPI > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_UsdGeomCollectionAPI_Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_UsdGeomCollectionAPI_Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  UsdGeomCollectionAPI *arg1 = 0 ;
+  int arg2 ;
+  std::vector< UsdGeomCollectionAPI > *result = 0 ;
+  
+  arg1 = (UsdGeomCollectionAPI *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomCollectionAPI const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< UsdGeomCollectionAPI > *)std_vector_Sl_UsdGeomCollectionAPI_Sg__Repeat((UsdGeomCollectionAPI const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_Reverse__SWIG_0(void * jarg1) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  std_vector_Sl_UsdGeomCollectionAPI_Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_UsdGeomCollectionAPI_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPIVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  int arg2 ;
+  std::vector< UsdGeomCollectionAPI > *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< UsdGeomCollectionAPI > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomCollectionAPI > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomCollectionAPI_Sg__SetRange(arg1,arg2,(std::vector< UsdGeomCollectionAPI > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomCollectionAPIVector(void * jarg1) {
+  std::vector< UsdGeomCollectionAPI > *arg1 = (std::vector< UsdGeomCollectionAPI > *) 0 ;
+  
+  arg1 = (std::vector< UsdGeomCollectionAPI > *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomPrimvarVector_Clear(void * jarg1) {
   std::vector< UsdGeomPrimvar > *arg1 = (std::vector< UsdGeomPrimvar > *) 0 ;
   
@@ -76637,6 +78341,390 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomGprim_CreateDisplayOpacityPrimva
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCapsule::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCapsule::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCapsule__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomCapsule *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCapsule *)new UsdGeomCapsule((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCapsule__SWIG_1() {
+  void * jresult ;
+  UsdGeomCapsule *result = 0 ;
+  
+  result = (UsdGeomCapsule *)new UsdGeomCapsule();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCapsule__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomCapsule *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCapsule *)new UsdGeomCapsule((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomCapsule(void * jarg1) {
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomCapsule::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomCapsule::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomCapsule result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCapsule::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomCapsule((const UsdGeomCapsule &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomCapsule result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCapsule::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomCapsule((const UsdGeomCapsule &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_GetHeightAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->GetHeightAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateHeightAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateHeightAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateHeightAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCapsule const *)arg1)->CreateHeightAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateHeightAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateHeightAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_GetRadiusAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->GetRadiusAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateRadiusAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateRadiusAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateRadiusAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCapsule const *)arg1)->CreateRadiusAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateRadiusAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateRadiusAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_GetAxisAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->GetAxisAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateAxisAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateAxisAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateAxisAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCapsule const *)arg1)->CreateAxisAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateAxisAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateAxisAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_GetExtentAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->GetExtentAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateExtentAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateExtentAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateExtentAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCapsule const *)arg1)->CreateExtentAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_CreateExtentAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCapsule *arg1 = (UsdGeomCapsule *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCapsule *)jarg1; 
+  result = ((UsdGeomCapsule const *)arg1)->CreateExtentAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCone_IsConcrete_get() {
   unsigned int jresult ;
   bool result;
@@ -77276,6 +79364,660 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCube_CreateExtentAttr__SWIG_2(vo
   
   arg1 = (UsdGeomCube *)jarg1; 
   result = ((UsdGeomCube const *)arg1)->CreateExtentAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCylinder::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCylinder::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCylinder__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomCylinder *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCylinder *)new UsdGeomCylinder((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCylinder__SWIG_1() {
+  void * jresult ;
+  UsdGeomCylinder *result = 0 ;
+  
+  result = (UsdGeomCylinder *)new UsdGeomCylinder();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCylinder__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomCylinder *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCylinder *)new UsdGeomCylinder((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomCylinder(void * jarg1) {
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomCylinder::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomCylinder::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomCylinder result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCylinder::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomCylinder((const UsdGeomCylinder &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomCylinder result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCylinder::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomCylinder((const UsdGeomCylinder &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_GetHeightAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->GetHeightAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateHeightAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateHeightAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateHeightAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCylinder const *)arg1)->CreateHeightAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateHeightAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateHeightAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_GetRadiusAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->GetRadiusAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateRadiusAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateRadiusAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateRadiusAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCylinder const *)arg1)->CreateRadiusAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateRadiusAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateRadiusAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_GetAxisAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->GetAxisAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateAxisAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateAxisAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateAxisAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCylinder const *)arg1)->CreateAxisAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateAxisAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateAxisAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_GetExtentAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->GetExtentAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateExtentAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateExtentAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateExtentAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCylinder const *)arg1)->CreateExtentAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_CreateExtentAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCylinder *arg1 = (UsdGeomCylinder *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCylinder *)jarg1; 
+  result = ((UsdGeomCylinder const *)arg1)->CreateExtentAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_USDGEOM_CYLINDER_API_VERSION_get() {
+  int jresult ;
+  int result;
+  
+  result = (int)(1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomSphere_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomSphere::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomSphere_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomSphere::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomSphere__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomSphere *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomSphere *)new UsdGeomSphere((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomSphere__SWIG_1() {
+  void * jresult ;
+  UsdGeomSphere *result = 0 ;
+  
+  result = (UsdGeomSphere *)new UsdGeomSphere();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomSphere__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomSphere *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomSphere *)new UsdGeomSphere((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomSphere(void * jarg1) {
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomSphere::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomSphere::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomSphere result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomSphere::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomSphere((const UsdGeomSphere &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomSphere result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomSphere::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomSphere((const UsdGeomSphere &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_GetRadiusAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  result = ((UsdGeomSphere const *)arg1)->GetRadiusAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_CreateRadiusAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomSphere const *)arg1)->CreateRadiusAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_CreateRadiusAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomSphere const *)arg1)->CreateRadiusAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_CreateRadiusAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  result = ((UsdGeomSphere const *)arg1)->CreateRadiusAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_GetExtentAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  result = ((UsdGeomSphere const *)arg1)->GetExtentAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_CreateExtentAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomSphere const *)arg1)->CreateExtentAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_CreateExtentAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomSphere const *)arg1)->CreateExtentAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_CreateExtentAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomSphere *arg1 = (UsdGeomSphere *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomSphere *)jarg1; 
+  result = ((UsdGeomSphere const *)arg1)->CreateExtentAttr();
   jresult = new UsdAttribute((const UsdAttribute &)result); 
   return jresult;
 }
@@ -79423,6 +82165,1196 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsCurves_CreateRangesAttr__SW
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomNurbsPatch::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomNurbsPatch::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomNurbsPatch__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomNurbsPatch *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomNurbsPatch *)new UsdGeomNurbsPatch((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomNurbsPatch__SWIG_1() {
+  void * jresult ;
+  UsdGeomNurbsPatch *result = 0 ;
+  
+  result = (UsdGeomNurbsPatch *)new UsdGeomNurbsPatch();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomNurbsPatch__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomNurbsPatch *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomNurbsPatch *)new UsdGeomNurbsPatch((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomNurbsPatch(void * jarg1) {
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomNurbsPatch::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomNurbsPatch::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomNurbsPatch result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomNurbsPatch::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomNurbsPatch((const UsdGeomNurbsPatch &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomNurbsPatch result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomNurbsPatch::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomNurbsPatch((const UsdGeomNurbsPatch &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetUVertexCountAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetUVertexCountAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUVertexCountAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUVertexCountAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUVertexCountAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUVertexCountAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUVertexCountAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUVertexCountAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetVVertexCountAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetVVertexCountAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVVertexCountAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVVertexCountAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVVertexCountAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVVertexCountAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVVertexCountAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVVertexCountAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetUOrderAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetUOrderAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUOrderAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUOrderAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUOrderAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUOrderAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUOrderAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUOrderAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetVOrderAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetVOrderAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVOrderAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVOrderAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVOrderAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVOrderAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVOrderAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVOrderAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetUKnotsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetUKnotsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUKnotsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUKnotsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUKnotsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUKnotsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUKnotsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUKnotsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetVKnotsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetVKnotsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVKnotsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVKnotsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVKnotsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVKnotsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVKnotsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVKnotsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetUFormAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetUFormAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUFormAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUFormAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUFormAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUFormAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateUFormAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateUFormAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetVFormAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetVFormAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVFormAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVFormAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVFormAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVFormAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVFormAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVFormAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetURangeAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetURangeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateURangeAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateURangeAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateURangeAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateURangeAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateURangeAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateURangeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetVRangeAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetVRangeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVRangeAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVRangeAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVRangeAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVRangeAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateVRangeAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateVRangeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetPointWeightsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetPointWeightsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreatePointWeightsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreatePointWeightsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreatePointWeightsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreatePointWeightsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreatePointWeightsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreatePointWeightsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetTrimCurveCountsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetTrimCurveCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveCountsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveCountsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveCountsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveCountsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveCountsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetTrimCurveOrdersAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetTrimCurveOrdersAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveOrdersAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveOrdersAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveOrdersAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveOrdersAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveOrdersAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveOrdersAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetTrimCurveVertexCountsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetTrimCurveVertexCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveVertexCountsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveVertexCountsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveVertexCountsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveVertexCountsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveVertexCountsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveVertexCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetTrimCurveKnotsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetTrimCurveKnotsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveKnotsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveKnotsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveKnotsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveKnotsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveKnotsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveKnotsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetTrimCurveRangesAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetTrimCurveRangesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveRangesAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveRangesAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveRangesAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveRangesAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurveRangesAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurveRangesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_GetTrimCurvePointsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->GetTrimCurvePointsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurvePointsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurvePointsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurvePointsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurvePointsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurvePointsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomNurbsPatch *arg1 = (UsdGeomNurbsPatch *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomNurbsPatch *)jarg1; 
+  result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurvePointsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMesh_IsConcrete_get() {
   unsigned int jresult ;
   bool result;
@@ -80328,6 +84260,2266 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomMesh_Triangulate(void * jarg1, voi
     return ;
   } 
   UsdGeomMesh_Triangulate(*arg1,*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomConstraintTarget__SWIG_0() {
+  void * jresult ;
+  UsdGeomConstraintTarget *result = 0 ;
+  
+  result = (UsdGeomConstraintTarget *)new UsdGeomConstraintTarget();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomConstraintTarget__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdAttribute *arg1 = 0 ;
+  UsdGeomConstraintTarget *result = 0 ;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomConstraintTarget *)new UsdGeomConstraintTarget((UsdAttribute const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_IsValid(void * jarg1) {
+  unsigned int jresult ;
+  UsdAttribute *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdGeomConstraintTarget::IsValid((UsdAttribute const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_GetAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  UsdAttribute *result = 0 ;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  result = (UsdAttribute *) &((UsdGeomConstraintTarget const *)arg1)->GetAttr();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_IsDefined(void * jarg1) {
+  unsigned int jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  result = (bool)((UsdGeomConstraintTarget const *)arg1)->IsDefined();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_Get__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  GfMatrix4d *arg2 = (GfMatrix4d *) 0 ;
+  UsdTimeCode arg3 ;
+  UsdTimeCode *argp3 ;
+  bool result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2; 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (bool)((UsdGeomConstraintTarget const *)arg1)->Get(arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_Get__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  GfMatrix4d *arg2 = (GfMatrix4d *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2; 
+  result = (bool)((UsdGeomConstraintTarget const *)arg1)->Get(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_Set__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  UsdTimeCode arg3 ;
+  UsdTimeCode *argp3 ;
+  bool result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (bool)((UsdGeomConstraintTarget const *)arg1)->Set((GfMatrix4d const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_Set__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomConstraintTarget const *)arg1)->Set((GfMatrix4d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_GetIdentifier(void * jarg1) {
+  void * jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  result = ((UsdGeomConstraintTarget const *)arg1)->GetIdentifier();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_SetIdentifier(void * jarg1, void * jarg2) {
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetIdentifier((TfToken const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_GetConstraintAttrName(char * jarg1) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  TfToken result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = UsdGeomConstraintTarget::GetConstraintAttrName((std::string const &)*arg1);
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_ComputeInWorldSpace__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  UsdTimeCode arg2 ;
+  UsdGeomXformCache *arg3 = (UsdGeomXformCache *) 0 ;
+  UsdTimeCode *argp2 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  arg3 = (UsdGeomXformCache *)jarg3; 
+  result = ((UsdGeomConstraintTarget const *)arg1)->ComputeInWorldSpace(arg2,arg3);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_ComputeInWorldSpace__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  UsdTimeCode arg2 ;
+  UsdTimeCode *argp2 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = ((UsdGeomConstraintTarget const *)arg1)->ComputeInWorldSpace(arg2);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTarget_ComputeInWorldSpace__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  result = ((UsdGeomConstraintTarget const *)arg1)->ComputeInWorldSpace();
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomConstraintTarget(void * jarg1) {
+  UsdGeomConstraintTarget *arg1 = (UsdGeomConstraintTarget *) 0 ;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformCache__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdTimeCode arg1 ;
+  UsdTimeCode const *argp1 ;
+  UsdGeomXformCache *result = 0 ;
+  
+  argp1 = (UsdTimeCode *)jarg1; 
+  if (!argp1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode const", 0);
+    return 0;
+  }
+  arg1 = *argp1; 
+  result = (UsdGeomXformCache *)new UsdGeomXformCache(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformCache__SWIG_1() {
+  void * jresult ;
+  UsdGeomXformCache *result = 0 ;
+  
+  result = (UsdGeomXformCache *)new UsdGeomXformCache();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetLocalToWorldTransform(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->GetLocalToWorldTransform((UsdPrim const &)*arg2);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetParentToWorldTransform(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->GetParentToWorldTransform((UsdPrim const &)*arg2);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetLocalTransformation(void * jarg1, void * jarg2, unsigned int * jarg3) {
+  void * jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  bool *arg3 = (bool *) 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  *jarg3 = 0; 
+  arg3 = (bool *)jarg3; 
+  result = (arg1)->GetLocalTransformation((UsdPrim const &)*arg2,arg3);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_IsAttributeIncludedInLocalTransform(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(arg1)->IsAttributeIncludedInLocalTransform((UsdPrim const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_TransformMightBeTimeVarying(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(arg1)->TransformMightBeTimeVarying((UsdPrim const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetResetXformStack(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(arg1)->GetResetXformStack((UsdPrim const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_Clear(void * jarg1) {
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  (arg1)->Clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_SetTime(void * jarg1, void * jarg2) {
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdTimeCode arg2 ;
+  UsdTimeCode *argp2 ;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  (arg1)->SetTime(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetTime(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdTimeCode result;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  result = (arg1)->GetTime();
+  jresult = new UsdTimeCode((const UsdTimeCode &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_SetWorldPath(void * jarg1, void * jarg2) {
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  SdfPath *arg2 = 0 ;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetWorldPath((SdfPath const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetWorldPath(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  SdfPath *result = 0 ;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  result = (SdfPath *) &((UsdGeomXformCache const *)arg1)->GetWorldPath();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_Swap(void * jarg1, void * jarg2) {
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  UsdGeomXformCache *arg2 = 0 ;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  arg2 = (UsdGeomXformCache *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformCache & type is null", 0);
+    return ;
+  } 
+  (arg1)->Swap(*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomXformCache(void * jarg1) {
+  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
+  
+  arg1 = (UsdGeomXformCache *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_USDGEOM_XFORM_CACHE_API_VERSION_get() {
+  int jresult ;
+  int result;
+  
+  result = (int)(1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBBoxCache__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdTimeCode arg1 ;
+  TfTokenVector arg2 ;
+  bool arg3 ;
+  UsdTimeCode *argp1 ;
+  TfTokenVector *argp2 ;
+  UsdGeomBBoxCache *result = 0 ;
+  
+  argp1 = (UsdTimeCode *)jarg1; 
+  if (!argp1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg1 = *argp1; 
+  argp2 = (TfTokenVector *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null TfTokenVector", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  arg3 = jarg3 ? true : false; 
+  result = (UsdGeomBBoxCache *)new UsdGeomBBoxCache(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBBoxCache__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdTimeCode arg1 ;
+  TfTokenVector arg2 ;
+  UsdTimeCode *argp1 ;
+  TfTokenVector *argp2 ;
+  UsdGeomBBoxCache *result = 0 ;
+  
+  argp1 = (UsdTimeCode *)jarg1; 
+  if (!argp1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg1 = *argp1; 
+  argp2 = (TfTokenVector *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null TfTokenVector", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (UsdGeomBBoxCache *)new UsdGeomBBoxCache(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputeWorldBound(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->ComputeWorldBound((UsdPrim const &)*arg2);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputeRelativeBound(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  UsdPrim *arg3 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdPrim *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->ComputeRelativeBound((UsdPrim const &)*arg2,(UsdPrim const &)*arg3);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputeLocalBound(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->ComputeLocalBound((UsdPrim const &)*arg2);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputeUntransformedBound__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->ComputeUntransformedBound((UsdPrim const &)*arg2);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputeUntransformedBound__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdPrim *arg2 = 0 ;
+  SdfPathSet *arg3 = 0 ;
+  TfHashMap< SdfPath,GfMatrix4d,SdfPath::Hash > *arg4 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdPrim *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (SdfPathSet *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathSet const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (TfHashMap< SdfPath,GfMatrix4d,SdfPath::Hash > *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfHashMap< SdfPath,GfMatrix4d,SdfPath::Hash > const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->ComputeUntransformedBound((UsdPrim const &)*arg2,(SdfPathSet const &)*arg3,(TfHashMap< SdfPath,GfMatrix4d,SdfPath::Hash > const &)*arg4);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceWorldBounds(void * jarg1, void * jarg2, int64_t* jarg3, unsigned long jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t *arg3 = (int64_t *) 0 ;
+  size_t arg4 ;
+  GfBBox3d *arg5 = (GfBBox3d *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3;
+  arg4 = (size_t)jarg4; 
+  arg5 = (GfBBox3d *)jarg5; 
+  result = (bool)(arg1)->ComputePointInstanceWorldBounds((UsdGeomPointInstancer const &)*arg2,(int64_t const *)arg3,arg4,arg5);
+  jresult = result; 
+  
+  
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceWorldBound(void * jarg1, void * jarg2, long long jarg3) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t arg3 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (int64_t)jarg3; 
+  result = (arg1)->ComputePointInstanceWorldBound((UsdGeomPointInstancer const &)*arg2,arg3);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceRelativeBounds(void * jarg1, void * jarg2, int64_t* jarg3, unsigned long jarg4, void * jarg5, void * jarg6) {
+  unsigned int jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t *arg3 = (int64_t *) 0 ;
+  size_t arg4 ;
+  UsdPrim *arg5 = 0 ;
+  GfBBox3d *arg6 = (GfBBox3d *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3;
+  arg4 = (size_t)jarg4; 
+  arg5 = (UsdPrim *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  arg6 = (GfBBox3d *)jarg6; 
+  result = (bool)(arg1)->ComputePointInstanceRelativeBounds((UsdGeomPointInstancer const &)*arg2,(int64_t const *)arg3,arg4,(UsdPrim const &)*arg5,arg6);
+  jresult = result; 
+  
+  
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceRelativeBound(void * jarg1, void * jarg2, long long jarg3, void * jarg4) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t arg3 ;
+  UsdPrim *arg4 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (int64_t)jarg3; 
+  arg4 = (UsdPrim *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (arg1)->ComputePointInstanceRelativeBound((UsdGeomPointInstancer const &)*arg2,arg3,(UsdPrim const &)*arg4);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceLocalBounds(void * jarg1, void * jarg2, int64_t* jarg3, unsigned long jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t *arg3 = (int64_t *) 0 ;
+  size_t arg4 ;
+  GfBBox3d *arg5 = (GfBBox3d *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3;
+  arg4 = (size_t)jarg4; 
+  arg5 = (GfBBox3d *)jarg5; 
+  result = (bool)(arg1)->ComputePointInstanceLocalBounds((UsdGeomPointInstancer const &)*arg2,(int64_t const *)arg3,arg4,arg5);
+  jresult = result; 
+  
+  
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceLocalBound(void * jarg1, void * jarg2, long long jarg3) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t arg3 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (int64_t)jarg3; 
+  result = (arg1)->ComputePointInstanceLocalBound((UsdGeomPointInstancer const &)*arg2,arg3);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceUntransformedBounds(void * jarg1, void * jarg2, int64_t* jarg3, unsigned long jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t *arg3 = (int64_t *) 0 ;
+  size_t arg4 ;
+  GfBBox3d *arg5 = (GfBBox3d *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3;
+  arg4 = (size_t)jarg4; 
+  arg5 = (GfBBox3d *)jarg5; 
+  result = (bool)(arg1)->ComputePointInstanceUntransformedBounds((UsdGeomPointInstancer const &)*arg2,(int64_t const *)arg3,arg4,arg5);
+  jresult = result; 
+  
+  
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ComputePointInstanceUntransformedBound(void * jarg1, void * jarg2, long long jarg3) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdGeomPointInstancer *arg2 = 0 ;
+  int64_t arg3 ;
+  GfBBox3d result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (UsdGeomPointInstancer *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomPointInstancer const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (int64_t)jarg3; 
+  result = (arg1)->ComputePointInstanceUntransformedBound((UsdGeomPointInstancer const &)*arg2,arg3);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_Clear(void * jarg1) {
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  (arg1)->Clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_SetIncludedPurposes(void * jarg1, void * jarg2) {
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  TfTokenVector *arg2 = 0 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  arg2 = (TfTokenVector *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfTokenVector const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetIncludedPurposes((TfTokenVector const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_GetIncludedPurposes(void * jarg1) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  result = (TfTokenVector *) &(arg1)->GetIncludedPurposes();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_GetUseExtentsHint(void * jarg1) {
+  unsigned int jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  result = (bool)((UsdGeomBBoxCache const *)arg1)->GetUseExtentsHint();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_SetTime(void * jarg1, void * jarg2) {
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdTimeCode arg2 ;
+  UsdTimeCode *argp2 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  (arg1)->SetTime(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_GetTime(void * jarg1) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdTimeCode result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  result = ((UsdGeomBBoxCache const *)arg1)->GetTime();
+  jresult = new UsdTimeCode((const UsdTimeCode &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_SetBaseTime(void * jarg1, void * jarg2) {
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdTimeCode arg2 ;
+  UsdTimeCode *argp2 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return ;
+  }
+  arg2 = *argp2; 
+  (arg1)->SetBaseTime(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_GetBaseTime(void * jarg1) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  UsdTimeCode result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  result = ((UsdGeomBBoxCache const *)arg1)->GetBaseTime();
+  jresult = new UsdTimeCode((const UsdTimeCode &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_ClearBaseTime(void * jarg1) {
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  (arg1)->ClearBaseTime();
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBBoxCache_HasBaseTime(void * jarg1) {
+  unsigned int jresult ;
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  result = (bool)((UsdGeomBBoxCache const *)arg1)->HasBaseTime();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomBBoxCache(void * jarg1) {
+  UsdGeomBBoxCache *arg1 = (UsdGeomBBoxCache *) 0 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomModelAPI::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomModelAPI::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomModelAPI__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomModelAPI *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomModelAPI *)new UsdGeomModelAPI((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomModelAPI__SWIG_1() {
+  void * jresult ;
+  UsdGeomModelAPI *result = 0 ;
+  
+  result = (UsdGeomModelAPI *)new UsdGeomModelAPI();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomModelAPI__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomModelAPI *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomModelAPI *)new UsdGeomModelAPI((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomModelAPI(void * jarg1) {
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomModelAPI::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomModelAPI::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomModelAPI result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomModelAPI::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomModelAPI((const UsdGeomModelAPI &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelDrawModeAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelDrawModeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelDrawModeAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelDrawModeAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelDrawModeAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelDrawModeAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelDrawModeAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelDrawModeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelApplyDrawModeAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelApplyDrawModeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelApplyDrawModeAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelApplyDrawModeAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelApplyDrawModeAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelApplyDrawModeAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelApplyDrawModeAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelApplyDrawModeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelDrawModeColorAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelDrawModeColorAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelDrawModeColorAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelDrawModeColorAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelDrawModeColorAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelDrawModeColorAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelDrawModeColorAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelDrawModeColorAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelCardGeometryAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelCardGeometryAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardGeometryAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardGeometryAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardGeometryAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardGeometryAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardGeometryAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardGeometryAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelCardTextureXPosAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelCardTextureXPosAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureXPosAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureXPosAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureXPosAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureXPosAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureXPosAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureXPosAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelCardTextureYPosAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelCardTextureYPosAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureYPosAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureYPosAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureYPosAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureYPosAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureYPosAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureYPosAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelCardTextureZPosAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelCardTextureZPosAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureZPosAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureZPosAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureZPosAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureZPosAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureZPosAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureZPosAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelCardTextureXNegAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelCardTextureXNegAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureXNegAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureXNegAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureXNegAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureXNegAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureXNegAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureXNegAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelCardTextureYNegAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelCardTextureYNegAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureYNegAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureYNegAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureYNegAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureYNegAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureYNegAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureYNegAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetModelCardTextureZNegAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetModelCardTextureZNegAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureZNegAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureZNegAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureZNegAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureZNegAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateModelCardTextureZNegAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateModelCardTextureZNegAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetExtentsHint__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtVec3fArray *arg2 = (VtVec3fArray *) 0 ;
+  UsdTimeCode *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtVec3fArray *)jarg2; 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomModelAPI const *)arg1)->GetExtentsHint(arg2,(UsdTimeCode const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetExtentsHint__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtVec3fArray *arg2 = (VtVec3fArray *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtVec3fArray *)jarg2; 
+  result = (bool)((UsdGeomModelAPI const *)arg1)->GetExtentsHint(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_SetExtentsHint__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtVec3fArray *arg2 = 0 ;
+  UsdTimeCode *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtVec3fArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(arg1)->SetExtentsHint((VtVec3fArray const &)*arg2,(UsdTimeCode const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_SetExtentsHint__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  VtVec3fArray *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (VtVec3fArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(arg1)->SetExtentsHint((VtVec3fArray const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetExtentsHintAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = (arg1)->GetExtentsHintAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_ComputeExtentsHint(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  UsdGeomBBoxCache *arg2 = 0 ;
+  VtVec3fArray result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  arg2 = (UsdGeomBBoxCache *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomBBoxCache & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomModelAPI const *)arg1)->ComputeExtentsHint(*arg2);
+  jresult = new VtVec3fArray((const VtVec3fArray &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetConstraintTarget(void * jarg1, char * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  std::string *arg2 = 0 ;
+  UsdGeomConstraintTarget result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetConstraintTarget((std::string const &)*arg2);
+  jresult = new UsdGeomConstraintTarget((const UsdGeomConstraintTarget &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_CreateConstraintTarget(void * jarg1, char * jarg2) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  std::string *arg2 = 0 ;
+  UsdGeomConstraintTarget result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = ((UsdGeomModelAPI const *)arg1)->CreateConstraintTarget((std::string const &)*arg2);
+  jresult = new UsdGeomConstraintTarget((const UsdGeomConstraintTarget &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_GetConstraintTargets(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  std::vector< UsdGeomConstraintTarget > result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->GetConstraintTargets();
+  jresult = new std::vector< UsdGeomConstraintTarget >((const std::vector< UsdGeomConstraintTarget > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_ComputeModelDrawMode(void * jarg1) {
+  void * jresult ;
+  UsdGeomModelAPI *arg1 = (UsdGeomModelAPI *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomModelAPI *)jarg1; 
+  result = ((UsdGeomModelAPI const *)arg1)->ComputeModelDrawMode();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_Clear(void * jarg1) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_Add(void * jarg1, void * jarg2) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  UsdGeomConstraintTarget *arg2 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (UsdGeomConstraintTarget *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomConstraintTarget const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((UsdGeomConstraintTarget const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  std::vector< UsdGeomConstraintTarget >::size_type result;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  result = ((std::vector< UsdGeomConstraintTarget > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  std::vector< UsdGeomConstraintTarget >::size_type result;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  result = ((std::vector< UsdGeomConstraintTarget > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  std::vector< UsdGeomConstraintTarget >::size_type arg2 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (std::vector< UsdGeomConstraintTarget >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomConstraintTargetVector__SWIG_0() {
+  void * jresult ;
+  std::vector< UsdGeomConstraintTarget > *result = 0 ;
+  
+  result = (std::vector< UsdGeomConstraintTarget > *)new std::vector< UsdGeomConstraintTarget >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomConstraintTargetVector__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< UsdGeomConstraintTarget > *arg1 = 0 ;
+  std::vector< UsdGeomConstraintTarget > *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomConstraintTarget > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< UsdGeomConstraintTarget > *)new std::vector< UsdGeomConstraintTarget >((std::vector< UsdGeomConstraintTarget > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomConstraintTargetVector__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< UsdGeomConstraintTarget > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< UsdGeomConstraintTarget > *)new_std_vector_Sl_UsdGeomConstraintTarget_Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_getitemcopy(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  UsdGeomConstraintTarget result;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_UsdGeomConstraintTarget_Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new UsdGeomConstraintTarget((const UsdGeomConstraintTarget &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  UsdGeomConstraintTarget *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (UsdGeomConstraintTarget *) &std_vector_Sl_UsdGeomConstraintTarget_Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  UsdGeomConstraintTarget *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (UsdGeomConstraintTarget *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomConstraintTarget const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomConstraintTarget_Sg__setitem(arg1,arg2,(UsdGeomConstraintTarget const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_AddRange(void * jarg1, void * jarg2) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  std::vector< UsdGeomConstraintTarget > *arg2 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (std::vector< UsdGeomConstraintTarget > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomConstraintTarget > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_UsdGeomConstraintTarget_Sg__AddRange(arg1,(std::vector< UsdGeomConstraintTarget > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< UsdGeomConstraintTarget > *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< UsdGeomConstraintTarget > *)std_vector_Sl_UsdGeomConstraintTarget_Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  UsdGeomConstraintTarget *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (UsdGeomConstraintTarget *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomConstraintTarget const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomConstraintTarget_Sg__Insert(arg1,arg2,(UsdGeomConstraintTarget const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  std::vector< UsdGeomConstraintTarget > *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< UsdGeomConstraintTarget > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomConstraintTarget > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomConstraintTarget_Sg__InsertRange(arg1,arg2,(std::vector< UsdGeomConstraintTarget > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_UsdGeomConstraintTarget_Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_UsdGeomConstraintTarget_Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  UsdGeomConstraintTarget *arg1 = 0 ;
+  int arg2 ;
+  std::vector< UsdGeomConstraintTarget > *result = 0 ;
+  
+  arg1 = (UsdGeomConstraintTarget *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomConstraintTarget const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< UsdGeomConstraintTarget > *)std_vector_Sl_UsdGeomConstraintTarget_Sg__Repeat((UsdGeomConstraintTarget const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_Reverse__SWIG_0(void * jarg1) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  std_vector_Sl_UsdGeomConstraintTarget_Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_UsdGeomConstraintTarget_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomConstraintTargetVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  int arg2 ;
+  std::vector< UsdGeomConstraintTarget > *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< UsdGeomConstraintTarget > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomConstraintTarget > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomConstraintTarget_Sg__SetRange(arg1,arg2,(std::vector< UsdGeomConstraintTarget > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomConstraintTargetVector(void * jarg1) {
+  std::vector< UsdGeomConstraintTarget > *arg1 = (std::vector< UsdGeomConstraintTarget > *) 0 ;
+  
+  arg1 = (std::vector< UsdGeomConstraintTarget > *)jarg1; 
+  delete arg1;
 }
 
 
@@ -85454,6 +91646,14 @@ SWIGEXPORT UsdSchemaBase * SWIGSTDCALL CSharp_pxr_UsdGeomFaceSetAPI_SWIGUpcast(U
     return (UsdSchemaBase *)jarg1;
 }
 
+SWIGEXPORT UsdSchemaBase * SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_SWIGUpcast(UsdGeomMotionAPI *jarg1) {
+    return (UsdSchemaBase *)jarg1;
+}
+
+SWIGEXPORT UsdSchemaBase * SWIGSTDCALL CSharp_pxr_UsdGeomCollectionAPI_SWIGUpcast(UsdGeomCollectionAPI *jarg1) {
+    return (UsdSchemaBase *)jarg1;
+}
+
 SWIGEXPORT UsdTyped * SWIGSTDCALL CSharp_pxr_UsdGeomImageable_SWIGUpcast(UsdGeomImageable *jarg1) {
     return (UsdTyped *)jarg1;
 }
@@ -85482,11 +91682,23 @@ SWIGEXPORT UsdGeomBoundable * SWIGSTDCALL CSharp_pxr_UsdGeomGprim_SWIGUpcast(Usd
     return (UsdGeomBoundable *)jarg1;
 }
 
+SWIGEXPORT UsdGeomGprim * SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_SWIGUpcast(UsdGeomCapsule *jarg1) {
+    return (UsdGeomGprim *)jarg1;
+}
+
 SWIGEXPORT UsdGeomGprim * SWIGSTDCALL CSharp_pxr_UsdGeomCone_SWIGUpcast(UsdGeomCone *jarg1) {
     return (UsdGeomGprim *)jarg1;
 }
 
 SWIGEXPORT UsdGeomGprim * SWIGSTDCALL CSharp_pxr_UsdGeomCube_SWIGUpcast(UsdGeomCube *jarg1) {
+    return (UsdGeomGprim *)jarg1;
+}
+
+SWIGEXPORT UsdGeomGprim * SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_SWIGUpcast(UsdGeomCylinder *jarg1) {
+    return (UsdGeomGprim *)jarg1;
+}
+
+SWIGEXPORT UsdGeomGprim * SWIGSTDCALL CSharp_pxr_UsdGeomSphere_SWIGUpcast(UsdGeomSphere *jarg1) {
     return (UsdGeomGprim *)jarg1;
 }
 
@@ -85508,6 +91720,10 @@ SWIGEXPORT UsdGeomCurves * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_SWIGUpcast(
 
 SWIGEXPORT UsdGeomCurves * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsCurves_SWIGUpcast(UsdGeomNurbsCurves *jarg1) {
     return (UsdGeomCurves *)jarg1;
+}
+
+SWIGEXPORT UsdGeomPointBased * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_SWIGUpcast(UsdGeomNurbsPatch *jarg1) {
+    return (UsdGeomPointBased *)jarg1;
 }
 
 SWIGEXPORT UsdGeomPointBased * SWIGSTDCALL CSharp_pxr_UsdGeomMesh_SWIGUpcast(UsdGeomMesh *jarg1) {

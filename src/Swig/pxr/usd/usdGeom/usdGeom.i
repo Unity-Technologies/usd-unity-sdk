@@ -19,6 +19,9 @@
 %include "usdGeomTokens.i"
 
 %include "usdGeomFaceSetAPI.i"
+%include "usdGeomMotionAPI.i"
+%include "usdGeomCollectionAPI.i"
+
 %include "usdGeomPrimvar.i"
 %include "usdGeomScope.i"
 
@@ -32,8 +35,11 @@
 %include "usdGeomPointInstancer.i"
 
 %include "usdGeomGprim.i"
+%include "usdGeomCapsule.i"
 %include "usdGeomCone.i"
 %include "usdGeomCube.i"
+%include "usdGeomCylinder.i"
+%include "usdGeomSphere.i"
 
 %include "usdGeomPointBased.i"
 %include "usdGeomPoints.i"
@@ -41,6 +47,12 @@
 %include "usdGeomCurves.i"
 %include "usdGeomBasisCurves.i"
 %include "usdGeomNurbsCurves.i"
+%include "usdGeomNurbsPatch.i"
 
 %include "usdGeomMesh.i"
+
+%include "usdGeomConstraintTarget.i"
+%include "usdGeomXformCache.i"
+%include "usdGeomBBoxCache.i"
+%include "usdGeomModelAPI.i"
 

@@ -60,6 +60,7 @@
 %include "std_vector.i"
 namespace std {
 	%template(SdfPathVector) vector<SdfPath>;
+  %template(SdfPathStringPair) pair<string, string>;
 }
 typedef std::vector<SdfPath> SdfPathVector;
 

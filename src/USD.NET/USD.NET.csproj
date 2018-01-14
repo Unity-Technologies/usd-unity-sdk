@@ -104,13 +104,17 @@
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomBasisCurvesComputeInterpolationInfoPair.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomBoolVector.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomCamera.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomCapsule.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomCone.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomCube.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomCurves.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomCylinder.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomLongVector.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomNurbsCurves.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomNurbsPatch.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomPointInstancer.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomPoints.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomSphere.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeAttributeType.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeConnectableAPI.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeInput.cs" />
