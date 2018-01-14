@@ -46279,6 +46279,110 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPathStringPair(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPathPair__SWIG_0() {
+  void * jresult ;
+  std::pair< SdfPath,SdfPath > *result = 0 ;
+  
+  result = (std::pair< SdfPath,SdfPath > *)new std::pair< SdfPath,SdfPath >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPathPair__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  SdfPath arg1 ;
+  SdfPath arg2 ;
+  SdfPath *argp1 ;
+  SdfPath *argp2 ;
+  std::pair< SdfPath,SdfPath > *result = 0 ;
+  
+  argp1 = (SdfPath *)jarg1; 
+  if (!argp1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfPath", 0);
+    return 0;
+  }
+  arg1 = *argp1; 
+  argp2 = (SdfPath *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfPath", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (std::pair< SdfPath,SdfPath > *)new std::pair< SdfPath,SdfPath >(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfPathPair__SWIG_2(void * jarg1) {
+  void * jresult ;
+  std::pair< SdfPath,SdfPath > *arg1 = 0 ;
+  std::pair< SdfPath,SdfPath > *result = 0 ;
+  
+  arg1 = (std::pair< SdfPath,SdfPath > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< SdfPath,SdfPath > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::pair< SdfPath,SdfPath > *)new std::pair< SdfPath,SdfPath >((std::pair< SdfPath,SdfPath > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPathPair_first_set(void * jarg1, void * jarg2) {
+  std::pair< SdfPath,SdfPath > *arg1 = (std::pair< SdfPath,SdfPath > *) 0 ;
+  SdfPath *arg2 = (SdfPath *) 0 ;
+  
+  arg1 = (std::pair< SdfPath,SdfPath > *)jarg1; 
+  arg2 = (SdfPath *)jarg2; 
+  if (arg1) (arg1)->first = *arg2;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfPathPair_first_get(void * jarg1) {
+  void * jresult ;
+  std::pair< SdfPath,SdfPath > *arg1 = (std::pair< SdfPath,SdfPath > *) 0 ;
+  SdfPath *result = 0 ;
+  
+  arg1 = (std::pair< SdfPath,SdfPath > *)jarg1; 
+  result = (SdfPath *)& ((arg1)->first);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPathPair_second_set(void * jarg1, void * jarg2) {
+  std::pair< SdfPath,SdfPath > *arg1 = (std::pair< SdfPath,SdfPath > *) 0 ;
+  SdfPath *arg2 = (SdfPath *) 0 ;
+  
+  arg1 = (std::pair< SdfPath,SdfPath > *)jarg1; 
+  arg2 = (SdfPath *)jarg2; 
+  if (arg1) (arg1)->second = *arg2;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfPathPair_second_get(void * jarg1) {
+  void * jresult ;
+  std::pair< SdfPath,SdfPath > *arg1 = (std::pair< SdfPath,SdfPath > *) 0 ;
+  SdfPath *result = 0 ;
+  
+  arg1 = (std::pair< SdfPath,SdfPath > *)jarg1; 
+  result = (SdfPath *)& ((arg1)->second);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPathPair(void * jarg1) {
+  std::pair< SdfPath,SdfPath > *arg1 = (std::pair< SdfPath,SdfPath > *) 0 ;
+  
+  arg1 = (std::pair< SdfPath,SdfPath > *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GetPathFromVector(void * jarg1, int jarg2, void * jarg3) {
   std::vector< SdfPath > *arg1 = 0 ;
   int arg2 ;
@@ -47096,7 +47200,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfPath_RemoveCommonSuffix__SWIG_0(void
   SdfPath *arg1 = (SdfPath *) 0 ;
   SdfPath *arg2 = 0 ;
   bool arg3 ;
-  SwigValueWrapper< std::pair< SdfPath,SdfPath > > result;
+  std::pair< SdfPath,SdfPath > result;
   
   arg1 = (SdfPath *)jarg1; 
   arg2 = (SdfPath *)jarg2;
@@ -47115,7 +47219,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfPath_RemoveCommonSuffix__SWIG_1(void
   void * jresult ;
   SdfPath *arg1 = (SdfPath *) 0 ;
   SdfPath *arg2 = 0 ;
-  SwigValueWrapper< std::pair< SdfPath,SdfPath > > result;
+  std::pair< SdfPath,SdfPath > result;
   
   arg1 = (SdfPath *)jarg1; 
   arg2 = (SdfPath *)jarg2;
@@ -60537,6 +60641,99 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPathsByType(void * jarg1
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageCacheResultPair__SWIG_0() {
+  void * jresult ;
+  std::pair< UsdStageRefPtr,bool > *result = 0 ;
+  
+  result = (std::pair< UsdStageRefPtr,bool > *)new std::pair< UsdStageRefPtr,bool >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageCacheResultPair__SWIG_1(void * jarg1, unsigned int jarg2) {
+  void * jresult ;
+  TfRefPtr< UsdStage > arg1 ;
+  bool arg2 ;
+  std::pair< UsdStageRefPtr,bool > *result = 0 ;
+  
+  if (jarg1) arg1 = *(TfRefPtr< UsdStage > *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  result = (std::pair< UsdStageRefPtr,bool > *)new std::pair< UsdStageRefPtr,bool >(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageCacheResultPair__SWIG_2(void * jarg1) {
+  void * jresult ;
+  std::pair< UsdStageRefPtr,bool > *arg1 = 0 ;
+  std::pair< UsdStageRefPtr,bool > *result = 0 ;
+  
+  arg1 = (std::pair< UsdStageRefPtr,bool > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< UsdStageRefPtr,bool > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::pair< UsdStageRefPtr,bool > *)new std::pair< UsdStageRefPtr,bool >((std::pair< UsdStageRefPtr,bool > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStageCacheResultPair_first_set(void * jarg1, void * jarg2) {
+  std::pair< UsdStageRefPtr,bool > *arg1 = (std::pair< UsdStageRefPtr,bool > *) 0 ;
+  TfRefPtr< UsdStage > *arg2 = 0 ;
+  TfRefPtr< UsdStage > tempnull2 ;
+  
+  arg1 = (std::pair< UsdStageRefPtr,bool > *)jarg1; 
+  arg2 = jarg2 ? (TfRefPtr< UsdStage > *)jarg2 : &tempnull2; 
+  if (arg1) (arg1)->first = *arg2;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageCacheResultPair_first_get(void * jarg1) {
+  void * jresult ;
+  std::pair< UsdStageRefPtr,bool > *arg1 = (std::pair< UsdStageRefPtr,bool > *) 0 ;
+  TfRefPtr< UsdStage > *result = 0 ;
+  
+  arg1 = (std::pair< UsdStageRefPtr,bool > *)jarg1; 
+  result = (TfRefPtr< UsdStage > *) & ((arg1)->first);
+  jresult = *result ? new TfRefPtr< UsdStage>(*result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdStageCacheResultPair_second_set(void * jarg1, unsigned int jarg2) {
+  std::pair< UsdStageRefPtr,bool > *arg1 = (std::pair< UsdStageRefPtr,bool > *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (std::pair< UsdStageRefPtr,bool > *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->second = arg2;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdStageCacheResultPair_second_get(void * jarg1) {
+  unsigned int jresult ;
+  std::pair< UsdStageRefPtr,bool > *arg1 = (std::pair< UsdStageRefPtr,bool > *) 0 ;
+  bool result;
+  
+  arg1 = (std::pair< UsdStageRefPtr,bool > *)jarg1; 
+  result = (bool) ((arg1)->second);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdStageCacheResultPair(void * jarg1) {
+  std::pair< UsdStageRefPtr,bool > *arg1 = (std::pair< UsdStageRefPtr,bool > *) 0 ;
+  
+  arg1 = (std::pair< UsdStageRefPtr,bool > *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdStageCache_Id() {
   void * jresult ;
   UsdStageCache::Id *result = 0 ;
@@ -60708,7 +60905,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageCache_RequestStage(void * jarg1
   void * jresult ;
   UsdStageCache *arg1 = (UsdStageCache *) 0 ;
   UsdStageCacheRequest *arg2 = 0 ;
-  SwigValueWrapper< std::pair< TfRefPtr< UsdStage >,bool > > result;
+  std::pair< UsdStageRefPtr,bool > result;
   
   arg1 = (UsdStageCache *)jarg1; 
   arg2 = (UsdStageCacheRequest *)jarg2;

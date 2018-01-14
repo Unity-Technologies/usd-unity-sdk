@@ -128,8 +128,8 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__pairT_TfRefPtrT_UsdStage_t_bool_t RequestStage(UsdStageCacheRequest request) {
-    SWIGTYPE_p_std__pairT_TfRefPtrT_UsdStage_t_bool_t ret = new SWIGTYPE_p_std__pairT_TfRefPtrT_UsdStage_t_bool_t(UsdCsPINVOKE.UsdStageCache_RequestStage(swigCPtr, UsdStageCacheRequest.getCPtr(request)), true);
+  public UsdStageCacheResultPair RequestStage(UsdStageCacheRequest request) {
+    UsdStageCacheResultPair ret = new UsdStageCacheResultPair(UsdCsPINVOKE.UsdStageCache_RequestStage(swigCPtr, UsdStageCacheRequest.getCPtr(request)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

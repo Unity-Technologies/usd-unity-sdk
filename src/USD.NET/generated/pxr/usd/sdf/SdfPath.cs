@@ -362,14 +362,14 @@ public class SdfPath : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t RemoveCommonSuffix(SdfPath otherPath, bool stopAtRootPrim) {
-    SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t ret = new SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t(UsdCsPINVOKE.SdfPath_RemoveCommonSuffix__SWIG_0(swigCPtr, SdfPath.getCPtr(otherPath), stopAtRootPrim), true);
+  public SdfPathPair RemoveCommonSuffix(SdfPath otherPath, bool stopAtRootPrim) {
+    SdfPathPair ret = new SdfPathPair(UsdCsPINVOKE.SdfPath_RemoveCommonSuffix__SWIG_0(swigCPtr, SdfPath.getCPtr(otherPath), stopAtRootPrim), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t RemoveCommonSuffix(SdfPath otherPath) {
-    SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t ret = new SWIGTYPE_p_std__pairT_SdfPath_SdfPath_t(UsdCsPINVOKE.SdfPath_RemoveCommonSuffix__SWIG_1(swigCPtr, SdfPath.getCPtr(otherPath)), true);
+  public SdfPathPair RemoveCommonSuffix(SdfPath otherPath) {
+    SdfPathPair ret = new SdfPathPair(UsdCsPINVOKE.SdfPath_RemoveCommonSuffix__SWIG_1(swigCPtr, SdfPath.getCPtr(otherPath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

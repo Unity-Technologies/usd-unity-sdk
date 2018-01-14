@@ -73,7 +73,7 @@
 %typemap(in, canthrow=1) TfRefPtr< CONST TYPE > & ($*1_ltype tempnull)
 %{ $1 = $input ? ($1_ltype)$input : &tempnull; %}
 %typemap(out) TfRefPtr< CONST TYPE > &
-%{ $result = *$1 ? new TfRefPtr<CONST TYPE>(TfCreateRefPtr(*$1)) : 0; %} 
+%{ $result = *$1 ? new TfRefPtr<CONST TYPE>(*$1) : 0; %} 
 
 // TfRefPtr by pointer
 %typemap(in) TfRefPtr< CONST TYPE > * ($*1_ltype tempnull)

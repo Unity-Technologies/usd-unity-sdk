@@ -130,7 +130,13 @@
     <Content Include="pxr\usd\sdf\sdfValueTypeNames_Types.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCamera.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomBasisCurves.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomBBoxCache.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomConstraintTarget.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomMotionAPI.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomModelAPI.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomNurbsPatch.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomCollectionAPI.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomSubset.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomSphere.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCylinder.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCapsule.i" />
@@ -143,6 +149,7 @@
     <Content Include="pxr\usd\usdGeom\usdGeomPoints.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomPrimvar.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomScope.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomXformCache.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomXform.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomXformOp.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomTokens_Tokens.i" />

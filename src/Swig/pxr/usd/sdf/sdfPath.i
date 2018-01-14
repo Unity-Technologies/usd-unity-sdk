@@ -61,6 +61,7 @@
 namespace std {
 	%template(SdfPathVector) vector<SdfPath>;
   %template(SdfPathStringPair) pair<string, string>;
+  %template(SdfPathPair) pair<SdfPath, SdfPath>;
 }
 typedef std::vector<SdfPath> SdfPathVector;
 

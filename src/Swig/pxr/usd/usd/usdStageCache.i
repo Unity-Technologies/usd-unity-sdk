@@ -18,4 +18,6 @@
 #include "pxr/usd/usd/stageCache.h"
 %}
 
+%template(UsdStageCacheResultPair) std::pair<UsdStageRefPtr, bool>;
+
 %include "pxr/usd/usd/stageCache.h"
