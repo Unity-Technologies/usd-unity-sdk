@@ -12,22 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdGeom
+%module UsdGeomCurves
 
-#define USDGEOM_API
+%{
+#include "pxr/usd/usdGeom/curves.h"
+%}
 
-%include "usdGeomXformOp.i"
-
-%include "usdGeomFaceSetAPI.i"
-%include "usdGeomPrimvar.i"
-%include "usdGeomImageable.i"
-%include "usdGeomScope.i"
-%include "usdGeomCurves.i"
-%include "usdGeomXformable.i"
-%include "usdGeomXform.i"
-%include "usdGeomBoundable.i"
-%include "usdGeomGprim.i"
-%include "usdGeomPointBased.i"
-%include "usdGeomMesh.i"
-%include "usdGeomTokens.i"
-
+%include "pxr/usd/usdGeom/curves.h"

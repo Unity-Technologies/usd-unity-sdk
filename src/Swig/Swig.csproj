@@ -119,6 +119,7 @@
     <Content Include="pxr\usd\sdf\sdfValueTypeNames.i" />
     <Content Include="pxr\usd\sdf\sdfValueTypeName.i" />
     <Content Include="pxr\usd\sdf\sdfValueTypeNames_Types.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomCurves.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomFaceSetAPI.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomPrimvar.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomScope.i" />
