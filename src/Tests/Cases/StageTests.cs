@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using pxr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,12 +27,12 @@ namespace Tests.Cases {
       const int kCount = 100;
       for (int i = 0; i < kCount; i++) {
         UsdStage s = UsdStage.CreateInMemory();
-        if (s == null) { throw new System.Exception("Init Stage failed");}
+        if (s == null) { throw new Exception("Init Stage failed");}
         s.Dispose();
 
         string tmpName = GetTempFile();
         UsdStage ss = UsdStage.CreateNew(tmpName);
-        if (ss == null) { throw new System.Exception("Init Stage failed"); }
+        if (ss == null) { throw new Exception("Init Stage failed"); }
         ss.Dispose();
         System.IO.File.Delete(tmpName);
       }
@@ -40,23 +41,23 @@ namespace Tests.Cases {
     public static void OpenFailTest() {
       try {
         var scene = USD.NET.Scene.Open(@"C:\Exist.foo");
-        throw new System.Exception("Expected exception opening non-existing file");
-      } catch (System.ApplicationException ex) {
-        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+        throw new Exception("Expected exception opening non-existing file");
+      } catch (ApplicationException ex) {
+        Console.WriteLine("Caught expected exception: " + ex.Message);
       }
 
       try {
         var scene = USD.NET.Scene.Open(@"C:\This\Doesnt\Exist.usd");
-        throw new System.Exception("Expected exception opening non-existing file");
-      } catch (System.ApplicationException ex) {
-        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+        throw new Exception("Expected exception opening non-existing file");
+      } catch (ApplicationException ex) {
+        Console.WriteLine("Caught expected exception: " + ex.Message);
       }
 
       try {
         var scene = USD.NET.Scene.Create(@"C:\Exist.foo");
-        throw new System.Exception("Expected exception opening non-existing file");
-      } catch (System.ApplicationException ex) {
-        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+        throw new Exception("Expected exception opening non-existing file");
+      } catch (ApplicationException ex) {
+        Console.WriteLine("Caught expected exception: " + ex.Message);
       }
 
       /*
@@ -65,9 +66,9 @@ namespace Tests.Cases {
        * 
       try {
         var scene = USD.NET.Scene.Create(@"C:\This\Doesnt\Exist.usd");
-        throw new System.Exception("Expected exception opening non-existing file");
-      } catch (System.ApplicationException ex) {
-        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+        throw new Exception("Expected exception opening non-existing file");
+      } catch (ApplicationException ex) {
+        Console.WriteLine("Caught expected exception: " + ex.Message);
       }
       */
     }
@@ -94,56 +95,56 @@ namespace Tests.Cases {
       s.DefinePrim(new SdfPath("/Bar/B4"));
 
       // Prim children
-      System.Console.WriteLine("");
-      System.Console.WriteLine("Foo children:");
+      Console.WriteLine("");
+      Console.WriteLine("Foo children:");
       foreach (UsdPrim curPrim in foo.GetChildren()) {
-        System.Console.WriteLine(curPrim.GetPath());
+        Console.WriteLine(curPrim.GetPath());
       }
 
-      System.Console.WriteLine("");
-      System.Console.WriteLine("Bar children:");
+      Console.WriteLine("");
+      Console.WriteLine("Bar children:");
       foreach (UsdPrim curPrim in bar.GetChildren()) {
-        System.Console.WriteLine(curPrim.GetPath());
+        Console.WriteLine(curPrim.GetPath());
       }
 
       // Prim Descendants
-      System.Console.WriteLine("");
-      System.Console.WriteLine("Bar descendants:");
+      Console.WriteLine("");
+      Console.WriteLine("Bar descendants:");
       foreach (UsdPrim curPrim in bar.GetDescendants()) {
-        System.Console.WriteLine(curPrim.GetPath());
+        Console.WriteLine(curPrim.GetPath());
       }
 
       // Basic Stage traversal.
-      System.Console.WriteLine("");
-      System.Console.WriteLine("All Prims:");
+      Console.WriteLine("");
+      Console.WriteLine("All Prims:");
       List<UsdPrim> primList = s.Traverse().ToList();
       int i = 0;
       foreach (UsdPrim curPrim in s.Traverse()) {
-        System.Console.WriteLine(curPrim.GetPath());
+        Console.WriteLine(curPrim.GetPath());
         AssertEqual(primList[i++], curPrim);
       }
 
       // Traversal with child pruning.
-      System.Console.WriteLine("");
-      System.Console.WriteLine("/Bar children pruned:");
+      Console.WriteLine("");
+      Console.WriteLine("/Bar children pruned:");
       var range = new USD.NET.RangeIterator(s.Traverse());
       foreach (UsdPrim curPrim in range) {
-        System.Console.WriteLine(curPrim.GetPath());
+        Console.WriteLine(curPrim.GetPath());
         if (curPrim.GetPath() == "/Bar/B3") {
           range.PruneChildren();
-          System.Console.WriteLine("pruned.");
+          Console.WriteLine("pruned.");
         }
       }
 
       // Fully general pre/post traversal.
-      System.Console.WriteLine("");
-      System.Console.WriteLine("Pre/Post Traversal with all children pruned:");
+      Console.WriteLine("");
+      Console.WriteLine("Pre/Post Traversal with all children pruned:");
       var prePostRange = new USD.NET.RangeIterator(UsdPrimRange.PreAndPostVisit(s.GetPseudoRoot()));
       bool[] expected = { false, false, true, false, true, true };
       bool[] actual = new bool[6];
       i = 0;
       foreach (UsdPrim curPrim in prePostRange) {
-        System.Console.WriteLine("IsPostVisit: " + prePostRange.IsPostVisit().ToString()
+        Console.WriteLine("IsPostVisit: " + prePostRange.IsPostVisit().ToString()
                                + ", " + curPrim.GetPath());
         if (!prePostRange.IsPostVisit() && i > 0) {
           // It's only valid to prune on the pre-traversal.
