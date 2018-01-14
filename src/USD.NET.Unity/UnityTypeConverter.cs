@@ -460,5 +460,13 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    static public GfVec2f Vector2ToVec2f(UnityEngine.Vector2 obj) {
+      return new GfVec2f(obj[0], obj[1]);
+    }
+
+    static public UnityEngine.Vector2 Vec2fToVector2(GfVec2f obj) {
+      return new UnityEngine.Vector2(obj[0], obj[1]);
+    }
+
   }
 }

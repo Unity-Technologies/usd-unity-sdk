@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiagnosticHandler.cs" />
+    <Compile Include="CameraSample.cs" />
     <Compile Include="MeshSample.cs" />
     <Compile Include="MeshSampleBase.cs" />
     <Compile Include="UnityTypeConverter.cs" />

@@ -40,6 +40,10 @@ namespace USD.NET.Unity {
       //
       // Vector {2,3,4} {[],List<>}
       //
+      binder.BindType(typeof(Vector2), new UsdTypeBinding(
+          (object obj) => UnityTypeConverter.Vector2ToVec2f((Vector2)obj),
+          (pxr.VtValue vtVal) => UnityTypeConverter.Vec2fToVector2(vtVal),
+          SdfValueTypeNames.Color4fArray));
       binder.BindArrayType<UnityTypeConverter>(typeof(Vector2[]), typeof(pxr.VtVec2fArray), SdfValueTypeNames.Float2Array);
       binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector2>), typeof(pxr.VtVec2fArray), SdfValueTypeNames.Float2Array);
 

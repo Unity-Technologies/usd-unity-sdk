@@ -41,6 +41,9 @@ namespace Tests {
       Cases.UnityIO.TestXform();
       Cases.UnityIO.TestXform2();
 
+      Cases.UsdGeomTests.CurvesTest();
+      Cases.UsdGeomTests.CameraTest();
+
       Console.ReadKey();
     }
 
