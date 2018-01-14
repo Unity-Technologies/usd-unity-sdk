@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module sdfLayerBase
+%module UsdGeomCone
 
 %{
-#include "pxr/usd/sdf/layerBase.h"
+#include "pxr/usd/usdGeom/cone.h"
 %}
 
-%include "pxr/usd/sdf/layerBase.h"
+%include "pxr/usd/usdGeom/cone.h"

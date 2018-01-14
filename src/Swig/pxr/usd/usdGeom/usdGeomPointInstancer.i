@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module sdfLayerBase
+%module UsdGeomPointInstancer
 
 %{
-#include "pxr/usd/sdf/layerBase.h"
+#include "pxr/usd/usdGeom/pointInstancer.h"
 %}
 
-%include "pxr/usd/sdf/layerBase.h"
+%template(UsdGeomBoolVector) std::vector<bool>;
+%template(UsdGeomLongVector) std::vector<int64_t>;
+
+%include "pxr/usd/usdGeom/pointInstancer.h"

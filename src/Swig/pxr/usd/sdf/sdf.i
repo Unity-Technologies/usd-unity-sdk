@@ -21,6 +21,7 @@
 #define SDF_DECLARE_HANDLES(x)
 
 %include "sdfTypes.i"
+%include "sdfListOp.i"
 %include "sdfValueTypeName.i"
 %include "sdfValueTypeNames.i"
 %include "sdfAssetPath.i"

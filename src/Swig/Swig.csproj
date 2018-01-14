@@ -118,6 +118,7 @@
     <Content Include="pxr\usd\ar\ar.i" />
     <Content Include="pxr\usd\ar\arResolverContext.i" />
     <Content Include="pxr\usd\sdf\sdfAssetPath.i" />
+    <Content Include="pxr\usd\sdf\sdfListOp.i" />
     <Content Include="pxr\usd\sdf\sdfLayerBase.i" />
     <Content Include="pxr\usd\sdf\sdfLayer.i" />
     <Content Include="pxr\usd\sdf\sdfNamespaceEdit.i" />
@@ -129,8 +130,13 @@
     <Content Include="pxr\usd\sdf\sdfValueTypeNames_Types.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCamera.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomBasisCurves.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomCube.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomCone.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomNurbsCurves.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCurves.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomFaceSetAPI.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomPointInstancer.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomPoints.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomPrimvar.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomScope.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomXform.i" />

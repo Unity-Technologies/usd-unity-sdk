@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module sdfLayerBase
+%module UsdGeomCube
 
 %{
-#include "pxr/usd/sdf/layerBase.h"
+#include "pxr/usd/usdGeom/cube.h"
 %}
 
-%include "pxr/usd/sdf/layerBase.h"
+%include "pxr/usd/usdGeom/cube.h"

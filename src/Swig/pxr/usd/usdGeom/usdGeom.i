@@ -28,11 +28,19 @@
 %include "usdGeomXform.i"
 %include "usdGeomCamera.i"
 %include "usdGeomBoundable.i"
+
+%include "usdGeomPointInstancer.i"
+
 %include "usdGeomGprim.i"
+%include "usdGeomCone.i"
+%include "usdGeomCube.i"
+
 %include "usdGeomPointBased.i"
+%include "usdGeomPoints.i"
 
 %include "usdGeomCurves.i"
 %include "usdGeomBasisCurves.i"
+%include "usdGeomNurbsCurves.i"
 
 %include "usdGeomMesh.i"
 

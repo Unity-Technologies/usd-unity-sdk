@@ -7916,8 +7916,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfValueTypeNameHash")]
   public static extern void delete_SdfValueTypeNameHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_34")]
-  public static extern ulong hash_value__SWIG_34(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_35")]
+  public static extern ulong hash_value__SWIG_35(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfGetValueTypeColor4dArray")]
   public static extern global::System.IntPtr SdfGetValueTypeColor4dArray();
@@ -8207,8 +8207,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfAssetPath_GetHash")]
   public static extern uint SdfAssetPath_GetHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_35")]
-  public static extern uint hash_value__SWIG_35(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_36")]
+  public static extern uint hash_value__SWIG_36(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfAssetPath_GetAssetPath")]
   public static extern string SdfAssetPath_GetAssetPath(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8546,8 +8546,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfPath")]
   public static extern void delete_SdfPath(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_36")]
-  public static extern uint hash_value__SWIG_36(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_37")]
+  public static extern uint hash_value__SWIG_37(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerOffsetVector_Clear")]
   public static extern void SdfLayerOffsetVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8654,8 +8654,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerOffset_Hash")]
   public static extern void delete_SdfLayerOffset_Hash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_37")]
-  public static extern uint hash_value__SWIG_37(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_38")]
+  public static extern uint hash_value__SWIG_38(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerOffset")]
   public static extern void delete_SdfLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8681,8 +8681,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfPayload_SetPrimPath")]
   public static extern void SdfPayload_SetPrimPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_38")]
-  public static extern uint hash_value__SWIG_38(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_39")]
+  public static extern uint hash_value__SWIG_39(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfPayload")]
   public static extern void delete_SdfPayload(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -10259,8 +10259,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCode_GetValue")]
   public static extern double UsdTimeCode_GetValue(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_39")]
-  public static extern uint hash_value__SWIG_39(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_40")]
+  public static extern uint hash_value__SWIG_40(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdTimeCode")]
   public static extern void delete_UsdTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -10361,8 +10361,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_Usd_PrimFlagsPredicate_IncludeInstanceProxiesInTraversal")]
   public static extern bool Usd_PrimFlagsPredicate_IncludeInstanceProxiesInTraversal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_40")]
-  public static extern uint hash_value__SWIG_40(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_41")]
+  public static extern uint hash_value__SWIG_41(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_Usd_PrimFlagsPredicate")]
   public static extern void delete_Usd_PrimFlagsPredicate(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -11084,8 +11084,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_IsValid")]
   public static extern bool UsdObject_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_41")]
-  public static extern uint hash_value__SWIG_41(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_42")]
+  public static extern uint hash_value__SWIG_42(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_GetStage")]
   public static extern global::System.IntPtr UsdObject_GetStage(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -13586,6 +13586,348 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoundable_ComputeExtentFromPlugins")]
   public static extern bool UsdGeomBoundable_ComputeExtentFromPlugins(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Clear")]
+  public static extern void UsdGeomBoolVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Add")]
+  public static extern void UsdGeomBoolVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_size")]
+  public static extern uint UsdGeomBoolVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_capacity")]
+  public static extern uint UsdGeomBoolVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_reserve")]
+  public static extern void UsdGeomBoolVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBoolVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomBoolVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBoolVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomBoolVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBoolVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomBoolVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_getitemcopy")]
+  public static extern bool UsdGeomBoolVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_getitem")]
+  public static extern bool UsdGeomBoolVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_setitem")]
+  public static extern void UsdGeomBoolVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_AddRange")]
+  public static extern void UsdGeomBoolVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_GetRange")]
+  public static extern global::System.IntPtr UsdGeomBoolVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Insert")]
+  public static extern void UsdGeomBoolVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_InsertRange")]
+  public static extern void UsdGeomBoolVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_RemoveAt")]
+  public static extern void UsdGeomBoolVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_RemoveRange")]
+  public static extern void UsdGeomBoolVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Repeat")]
+  public static extern global::System.IntPtr UsdGeomBoolVector_Repeat(bool jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Reverse__SWIG_0")]
+  public static extern void UsdGeomBoolVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Reverse__SWIG_1")]
+  public static extern void UsdGeomBoolVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_SetRange")]
+  public static extern void UsdGeomBoolVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Contains")]
+  public static extern bool UsdGeomBoolVector_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_IndexOf")]
+  public static extern int UsdGeomBoolVector_IndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_LastIndexOf")]
+  public static extern int UsdGeomBoolVector_LastIndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Remove")]
+  public static extern bool UsdGeomBoolVector_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomBoolVector")]
+  public static extern void delete_UsdGeomBoolVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Clear")]
+  public static extern void UsdGeomLongVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Add")]
+  public static extern void UsdGeomLongVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_size")]
+  public static extern uint UsdGeomLongVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_capacity")]
+  public static extern uint UsdGeomLongVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_reserve")]
+  public static extern void UsdGeomLongVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomLongVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomLongVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomLongVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomLongVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomLongVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomLongVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_getitemcopy")]
+  public static extern long UsdGeomLongVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_getitem")]
+  public static extern long UsdGeomLongVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_setitem")]
+  public static extern void UsdGeomLongVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, long jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_AddRange")]
+  public static extern void UsdGeomLongVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_GetRange")]
+  public static extern global::System.IntPtr UsdGeomLongVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Insert")]
+  public static extern void UsdGeomLongVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, long jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_InsertRange")]
+  public static extern void UsdGeomLongVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_RemoveAt")]
+  public static extern void UsdGeomLongVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_RemoveRange")]
+  public static extern void UsdGeomLongVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Repeat")]
+  public static extern global::System.IntPtr UsdGeomLongVector_Repeat(long jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Reverse__SWIG_0")]
+  public static extern void UsdGeomLongVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Reverse__SWIG_1")]
+  public static extern void UsdGeomLongVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_SetRange")]
+  public static extern void UsdGeomLongVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Contains")]
+  public static extern bool UsdGeomLongVector_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_IndexOf")]
+  public static extern int UsdGeomLongVector_IndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_LastIndexOf")]
+  public static extern int UsdGeomLongVector_LastIndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLongVector_Remove")]
+  public static extern bool UsdGeomLongVector_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomLongVector")]
+  public static extern void delete_UsdGeomLongVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_IsConcrete_get")]
+  public static extern bool UsdGeomPointInstancer_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_IsTyped_get")]
+  public static extern bool UsdGeomPointInstancer_IsTyped_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPointInstancer__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomPointInstancer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPointInstancer__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomPointInstancer__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPointInstancer__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomPointInstancer__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomPointInstancer")]
+  public static extern void delete_UsdGeomPointInstancer(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_Get")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_Define")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_Define(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetProtoIndicesAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetProtoIndicesAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetIdsAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetIdsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateIdsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateIdsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateIdsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateIdsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateIdsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateIdsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetPositionsAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetPositionsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreatePositionsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreatePositionsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreatePositionsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreatePositionsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreatePositionsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreatePositionsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetOrientationsAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetOrientationsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetScalesAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetScalesAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateScalesAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateScalesAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateScalesAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateScalesAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateScalesAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateScalesAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetVelocitiesAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetVelocitiesAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetAngularVelocitiesAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetAngularVelocitiesAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetInvisibleIdsAttr")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetInvisibleIdsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_GetPrototypesRel")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_GetPrototypesRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_CreatePrototypesRel")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_CreatePrototypesRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ActivateId")]
+  public static extern bool UsdGeomPointInstancer_ActivateId(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ActivateIds")]
+  public static extern bool UsdGeomPointInstancer_ActivateIds(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ActivateAllIds")]
+  public static extern bool UsdGeomPointInstancer_ActivateAllIds(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_DeactivateId")]
+  public static extern bool UsdGeomPointInstancer_DeactivateId(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_DeactivateIds")]
+  public static extern bool UsdGeomPointInstancer_DeactivateIds(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_VisId")]
+  public static extern bool UsdGeomPointInstancer_VisId(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_VisIds")]
+  public static extern bool UsdGeomPointInstancer_VisIds(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_VisAllIds")]
+  public static extern bool UsdGeomPointInstancer_VisAllIds(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_InvisId")]
+  public static extern bool UsdGeomPointInstancer_InvisId(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_InvisIds")]
+  public static extern bool UsdGeomPointInstancer_InvisIds(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_0")]
+  public static extern bool UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5, int jarg6);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_1")]
+  public static extern bool UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_2")]
+  public static extern bool UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_ComputeExtentAtTime")]
+  public static extern bool UsdGeomPointInstancer_ComputeExtentAtTime(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancerApplyNewStyleListOps")]
+  public static extern bool UsdGeomPointInstancerApplyNewStyleListOps();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancerSetOrMergeOverOp")]
+  public static extern bool UsdGeomPointInstancerSetOrMergeOverOp(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGprim_IsConcrete_get")]
   public static extern bool UsdGeomGprim_IsConcrete_get();
 
@@ -13685,6 +14027,138 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGprim_CreateDisplayOpacityPrimvar__SWIG_2")]
   public static extern global::System.IntPtr UsdGeomGprim_CreateDisplayOpacityPrimvar__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_IsConcrete_get")]
+  public static extern bool UsdGeomCone_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_IsTyped_get")]
+  public static extern bool UsdGeomCone_IsTyped_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomCone__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomCone__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomCone__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomCone__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomCone__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomCone__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomCone")]
+  public static extern void delete_UsdGeomCone(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCone_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCone_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_Get")]
+  public static extern global::System.IntPtr UsdGeomCone_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_Define")]
+  public static extern global::System.IntPtr UsdGeomCone_Define(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_GetHeightAttr")]
+  public static extern global::System.IntPtr UsdGeomCone_GetHeightAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateHeightAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateHeightAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateHeightAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateHeightAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateHeightAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateHeightAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_GetRadiusAttr")]
+  public static extern global::System.IntPtr UsdGeomCone_GetRadiusAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateRadiusAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateRadiusAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateRadiusAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateRadiusAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateRadiusAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateRadiusAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_GetAxisAttr")]
+  public static extern global::System.IntPtr UsdGeomCone_GetAxisAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateAxisAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateAxisAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateAxisAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateAxisAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateAxisAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateAxisAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_GetExtentAttr")]
+  public static extern global::System.IntPtr UsdGeomCone_GetExtentAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateExtentAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateExtentAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateExtentAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateExtentAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_CreateExtentAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomCone_CreateExtentAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_IsConcrete_get")]
+  public static extern bool UsdGeomCube_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_IsTyped_get")]
+  public static extern bool UsdGeomCube_IsTyped_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomCube__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomCube__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomCube__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomCube__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomCube__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomCube__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomCube")]
+  public static extern void delete_UsdGeomCube(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCube_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCube_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_Get")]
+  public static extern global::System.IntPtr UsdGeomCube_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_Define")]
+  public static extern global::System.IntPtr UsdGeomCube_Define(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_GetSizeAttr")]
+  public static extern global::System.IntPtr UsdGeomCube_GetSizeAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_CreateSizeAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCube_CreateSizeAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_CreateSizeAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCube_CreateSizeAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_CreateSizeAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomCube_CreateSizeAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_GetExtentAttr")]
+  public static extern global::System.IntPtr UsdGeomCube_GetExtentAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_CreateExtentAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomCube_CreateExtentAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_CreateExtentAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomCube_CreateExtentAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_CreateExtentAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomCube_CreateExtentAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointBased_IsConcrete_get")]
   public static extern bool UsdGeomPointBased_IsConcrete_get();
 
@@ -13756,6 +14230,63 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointBased_ComputeExtent")]
   public static extern bool UsdGeomPointBased_ComputeExtent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_IsConcrete_get")]
+  public static extern bool UsdGeomPoints_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_IsTyped_get")]
+  public static extern bool UsdGeomPoints_IsTyped_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPoints__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomPoints__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPoints__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomPoints__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPoints__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomPoints__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomPoints")]
+  public static extern void delete_UsdGeomPoints(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPoints_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPoints_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_Get")]
+  public static extern global::System.IntPtr UsdGeomPoints_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_Define")]
+  public static extern global::System.IntPtr UsdGeomPoints_Define(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_GetWidthsAttr")]
+  public static extern global::System.IntPtr UsdGeomPoints_GetWidthsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_CreateWidthsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPoints_CreateWidthsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_CreateWidthsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPoints_CreateWidthsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_CreateWidthsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPoints_CreateWidthsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_GetIdsAttr")]
+  public static extern global::System.IntPtr UsdGeomPoints_GetIdsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_CreateIdsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomPoints_CreateIdsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_CreateIdsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomPoints_CreateIdsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_CreateIdsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomPoints_CreateIdsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_ComputeExtent")]
+  public static extern bool UsdGeomPoints_ComputeExtent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCurves_IsConcrete_get")]
   public static extern bool UsdGeomCurves_IsConcrete_get();
@@ -13987,6 +14518,72 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomBasisCurvesComputeInterpolationInfo")]
   public static extern void delete_UsdGeomBasisCurvesComputeInterpolationInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_IsConcrete_get")]
+  public static extern bool UsdGeomNurbsCurves_IsConcrete_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_IsTyped_get")]
+  public static extern bool UsdGeomNurbsCurves_IsTyped_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomNurbsCurves__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomNurbsCurves__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomNurbsCurves__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomNurbsCurves__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomNurbsCurves__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomNurbsCurves__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomNurbsCurves")]
+  public static extern void delete_UsdGeomNurbsCurves(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_Get")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_Define")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_Define(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_GetOrderAttr")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_GetOrderAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateOrderAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateOrderAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateOrderAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateOrderAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateOrderAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateOrderAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_GetKnotsAttr")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_GetKnotsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateKnotsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateKnotsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateKnotsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateKnotsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateKnotsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateKnotsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_GetRangesAttr")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_GetRangesAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateRangesAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateRangesAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateRangesAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateRangesAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_CreateRangesAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_CreateRangesAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_IsConcrete_get")]
   public static extern bool UsdGeomMesh_IsConcrete_get();
@@ -15155,17 +15752,32 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoundable_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomBoundable_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointInstancer_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdGeomPointInstancer_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGprim_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomGprim_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCone_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdGeomCone_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCube_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdGeomCube_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPointBased_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomPointBased_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomPoints_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdGeomPoints_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCurves_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomCurves_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBasisCurves_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomBasisCurves_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomNurbsCurves_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdGeomNurbsCurves_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomMesh_SWIGUpcast(global::System.IntPtr jarg1);
