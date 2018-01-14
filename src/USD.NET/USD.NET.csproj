@@ -107,6 +107,7 @@
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeConnectableAPI.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeInput.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeOutput.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeTokens.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeUtils.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdListPosition.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdLoadPolicy.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="generated\pxr\usd\usd\UsdPrimSubtreeRange.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdResolveInfo.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdResolveInfoSource.cs" />
-    <Compile Include="generated\pxr\usd\usd\UsdShadeTokens.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStageCache.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStageCacheRequest.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStagePopulationMask.cs" />
