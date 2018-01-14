@@ -12,27 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdGeom
+%module gfBBox3d
 
-#define USDGEOM_API
+%{
+#include "pxr/base/gf/bBox3d.h"
+%}
 
-%include "usdGeomTokens.i"
+WRAP_EQUAL(GfCamera)
 
-%include "usdGeomFaceSetAPI.i"
-%include "usdGeomPrimvar.i"
-%include "usdGeomScope.i"
+namespace std {
+  %template (GfVec4fVector) vector<GfVec4f>;
+}
 
-%include "usdGeomImageable.i"
-%include "usdGeomXformOp.i"
-%include "usdGeomXformable.i"
-%include "usdGeomXform.i"
-%include "usdGeomCamera.i"
-%include "usdGeomBoundable.i"
-%include "usdGeomGprim.i"
-%include "usdGeomPointBased.i"
-
-%include "usdGeomCurves.i"
-%include "usdGeomBasisCurves.i"
-
-%include "usdGeomMesh.i"
-
+%include "pxr/base/gf/bBox3d.h"

@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module gfBBox3d
+%module gfCamera
 
 %{
-#include "pxr/base/gf/bBox3d.h"
+#include "pxr/base/gf/camera.h"
 %}
 
 WRAP_EQUAL(GfBBox3d)
 
-%include "pxr/base/gf/bBox3d.h"
+%include "pxr/base/gf/camera.h"

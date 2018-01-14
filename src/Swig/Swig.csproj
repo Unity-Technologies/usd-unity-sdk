@@ -63,12 +63,20 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="pxr\base\gf\gfFrustum.i" />
+    <Content Include="pxr\base\gf\gfCamera.i" />
+    <Content Include="pxr\base\gf\gfLineSeg.i" />
     <Content Include="pxr\base\gf\gfMatrix2f.i" />
     <Content Include="pxr\base\gf\gfMatrix3f.i" />
     <Content Include="pxr\base\gf\gfMatrix4f.i" />
     <Content Include="pxr\base\gf\gfInterval.i" />
     <Content Include="pxr\base\gf\gfBBox3d.i" />
     <Content Include="pxr\base\gf\gfHalf.i" />
+    <Content Include="pxr\base\gf\gfPlane.i" />
+    <Content Include="pxr\base\gf\gfLine.i" />
+    <Content Include="pxr\base\gf\gfRay.i" />
+    <Content Include="pxr\base\gf\gfRange1d.i" />
+    <Content Include="pxr\base\gf\gfRange1f.i" />
     <Content Include="pxr\base\gf\gfRange2d.i" />
     <Content Include="pxr\base\gf\gfRange3d.i" />
     <Content Include="pxr\base\gf\gfRotation.i" />
@@ -119,6 +127,8 @@
     <Content Include="pxr\usd\sdf\sdfValueTypeNames.i" />
     <Content Include="pxr\usd\sdf\sdfValueTypeName.i" />
     <Content Include="pxr\usd\sdf\sdfValueTypeNames_Types.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomCamera.i" />
+    <Content Include="pxr\usd\usdGeom\usdGeomBasisCurves.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCurves.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomFaceSetAPI.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomPrimvar.i" />

@@ -12,27 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdGeom
+%module gfFrustum
 
-#define USDGEOM_API
+%{
+#include "pxr/base/gf/frustum.h"
+%}
 
-%include "usdGeomTokens.i"
+WRAP_EQUAL(GfFrustum)
 
-%include "usdGeomFaceSetAPI.i"
-%include "usdGeomPrimvar.i"
-%include "usdGeomScope.i"
+namespace std {
+  %template (GfVec3dVector) vector<GfVec3d>;
+}
 
-%include "usdGeomImageable.i"
-%include "usdGeomXformOp.i"
-%include "usdGeomXformable.i"
-%include "usdGeomXform.i"
-%include "usdGeomCamera.i"
-%include "usdGeomBoundable.i"
-%include "usdGeomGprim.i"
-%include "usdGeomPointBased.i"
-
-%include "usdGeomCurves.i"
-%include "usdGeomBasisCurves.i"
-
-%include "usdGeomMesh.i"
-
+%include "pxr/base/gf/frustum.h"

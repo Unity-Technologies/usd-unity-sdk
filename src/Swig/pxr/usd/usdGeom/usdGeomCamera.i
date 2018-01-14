@@ -12,27 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdGeom
+%module UsdGeomCamera
 
-#define USDGEOM_API
+%{
+#include "pxr/usd/usdGeom/camera.h"
+%}
 
-%include "usdGeomTokens.i"
+%include "pxr/usd/usdGeom/camera.h"
 
-%include "usdGeomFaceSetAPI.i"
-%include "usdGeomPrimvar.i"
-%include "usdGeomScope.i"
 
-%include "usdGeomImageable.i"
-%include "usdGeomXformOp.i"
-%include "usdGeomXformable.i"
-%include "usdGeomXform.i"
-%include "usdGeomCamera.i"
-%include "usdGeomBoundable.i"
-%include "usdGeomGprim.i"
-%include "usdGeomPointBased.i"
-
-%include "usdGeomCurves.i"
-%include "usdGeomBasisCurves.i"
-
-%include "usdGeomMesh.i"
 

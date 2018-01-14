@@ -10,10 +10,12 @@
 
 namespace pxr {
 
-public class UsdGeomScope : UsdGeomImageable {
+public class UsdGeomScope : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+  protected bool swigCMemOwn;
 
-  internal UsdGeomScope(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomScope_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal UsdGeomScope(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -25,7 +27,7 @@ public class UsdGeomScope : UsdGeomImageable {
     Dispose();
   }
 
-  public override void Dispose() {
+  public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -35,7 +37,6 @@ public class UsdGeomScope : UsdGeomImageable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 
@@ -50,17 +51,17 @@ public class UsdGeomScope : UsdGeomImageable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
+  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomScope_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames() {
+  public static TfTokenVector GetSchemaAttributeNames() {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomScope_GetSchemaAttributeNames__SWIG_1(), false);
     return ret;
   }
 
-  public new static UsdGeomScope Get(UsdStageWeakPtr stage, SdfPath path) {
+  public static UsdGeomScope Get(UsdStageWeakPtr stage, SdfPath path) {
     UsdGeomScope ret = new UsdGeomScope(UsdCsPINVOKE.UsdGeomScope_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;

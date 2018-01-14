@@ -180,14 +180,9 @@ public class UsdShadeOutput : global::System.IDisposable {
     return ret;
   }
 
-  public bool GetConnectedSource(UsdShadeConnectableAPI source, /*cstype*/ out TfToken sourceName, out UsdShadeAttributeType sourceType) {
-    TfToken tempsourceName = new TfToken();
-    try {
-      bool ret = UsdCsPINVOKE.UsdShadeOutput_GetConnectedSource(swigCPtr, UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(tempsourceName), out sourceType);
-      return ret;
-    } finally {
-    sourceName = tempsourceName;
-    }
+  public bool GetConnectedSource(UsdShadeConnectableAPI source, TfToken sourceName, out UsdShadeAttributeType sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeOutput_GetConnectedSource(swigCPtr, UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), out sourceType);
+    return ret;
   }
 
   public bool GetRawConnectedSourcePaths(SdfPathVector sourcePaths) {

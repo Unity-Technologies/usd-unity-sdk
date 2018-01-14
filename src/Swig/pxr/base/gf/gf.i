@@ -29,6 +29,9 @@
 
 %include "gfHalf.i"
 
+%include "gfRange1f.i"
+%include "gfRange1d.i"
+
 %include "gfRange2d.i"
 %include "gfRange3d.i"
 
@@ -60,4 +63,28 @@
 %include "gfQuath.i"
 %include "gfQuatf.i"
 %include "gfQuatd.i"
+
+%apply double *OUTPUT { double *fieldOfView }
+%apply double *OUTPUT { double *fieldOfViewHeight }
+%apply double *OUTPUT { double *aspectRatio }
+%apply double *OUTPUT { double *nearDistance }
+%apply double *OUTPUT { double *farDistance }
+%apply double *OUTPUT { double *left }
+%apply double *OUTPUT { double *right }
+%apply double *OUTPUT { double *bottom }
+%apply double *OUTPUT { double *top }
+%apply double *OUTPUT { double *nearPlane }
+%apply double *OUTPUT { double *farPlane }
+%apply double *OUTPUT { double *t }
+%apply double *OUTPUT { double *rayDistance }
+%apply double *OUTPUT { double *distance }
+%apply double *OUTPUT { double *enterDistance }
+%apply double *OUTPUT { double *exitDistance }
+
+%include "gfRay.i"
+%include "gfLine.i"
+%include "gfLineSeg.i"
+%include "gfPlane.i"
+%include "gfFrustum.i"
+%include "gfCamera.i"
 

@@ -12,27 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdGeom
+%module gfLine
 
-#define USDGEOM_API
+%{
+#include "pxr/base/gf/line.h"
+%}
 
-%include "usdGeomTokens.i"
+IGNORE_OPERATORS(GfLine)
+WRAP_EQUAL(GfLine)
 
-%include "usdGeomFaceSetAPI.i"
-%include "usdGeomPrimvar.i"
-%include "usdGeomScope.i"
+// TODO(jcowles): ignore doesn't work nor do the OUTPUT directives. What's going on here?
 
-%include "usdGeomImageable.i"
-%include "usdGeomXformOp.i"
-%include "usdGeomXformable.i"
-%include "usdGeomXform.i"
-%include "usdGeomCamera.i"
-%include "usdGeomBoundable.i"
-%include "usdGeomGprim.i"
-%include "usdGeomPointBased.i"
+%apply double *OUTPUT { double *t1 }
+%apply double *OUTPUT { double *t2 }
 
-%include "usdGeomCurves.i"
-%include "usdGeomBasisCurves.i"
+%ignore GfFindClosestPoints;
 
-%include "usdGeomMesh.i"
-
+%include "pxr/base/gf/line.h"

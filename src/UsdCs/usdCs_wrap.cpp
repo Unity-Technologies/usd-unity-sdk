@@ -1436,12 +1436,12 @@ SWIGINTERN void std_vector_Sl_JsValue_Sg__SetRange(std::vector< JsValue > *self,
 #include "pxr/base/plug/registry.h"
 
 
-#include "pxr/base/gf/bBox3d.h"
+#include "pxr/base/gf/camera.h"
 
-SWIGINTERN bool GfBBox3d_Equals(GfBBox3d const &lhs,GfBBox3d const &rhs){
+SWIGINTERN bool GfCamera_Equals(GfCamera const &lhs,GfCamera const &rhs){
 	  return lhs == rhs;
   }
-SWIGINTERN int GfBBox3d_GetHashCode(GfBBox3d *self){
+SWIGINTERN int GfCamera_GetHashCode(GfCamera *self){
     return (int)TfHash()(self);
   }
 
@@ -1460,6 +1460,24 @@ SWIGINTERN bool GfHalf_Equals(GfHalf const &lhs,GfHalf const &rhs){
 	  return lhs == rhs;
   }
 SWIGINTERN int GfHalf_GetHashCode(GfHalf *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/range1f.h"
+
+SWIGINTERN bool GfRange1f_Equals(GfRange1f const &lhs,GfRange1f const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfRange1f_GetHashCode(GfRange1f *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/range1d.h"
+
+SWIGINTERN bool GfRange1d_Equals(GfRange1d const &lhs,GfRange1d const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfRange1d_GetHashCode(GfRange1d *self){
     return (int)TfHash()(self);
   }
 
@@ -1823,6 +1841,242 @@ SWIGINTERN bool GfQuatd_Equals(GfQuatd const &lhs,GfQuatd const &rhs){
 	  return lhs == rhs;
   }
 SWIGINTERN int GfQuatd_GetHashCode(GfQuatd *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/ray.h"
+
+SWIGINTERN bool GfRay_Equals(GfRay const &lhs,GfRay const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfRay_GetHashCode(GfRay *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/line.h"
+
+SWIGINTERN bool GfLine_Equals(GfLine const &lhs,GfLine const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfLine_GetHashCode(GfLine *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/lineSeg.h"
+
+SWIGINTERN bool GfLineSeg_Equals(GfLineSeg const &lhs,GfLineSeg const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfLineSeg_GetHashCode(GfLineSeg *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/plane.h"
+
+SWIGINTERN bool GfPlane_Equals(GfPlane const &lhs,GfPlane const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfPlane_GetHashCode(GfPlane *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/frustum.h"
+
+SWIGINTERN std::vector< GfVec3d > *new_std_vector_Sl_GfVec3d_Sg___SWIG_2(int capacity){
+        std::vector< GfVec3d >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< GfVec3d >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN GfVec3d std_vector_Sl_GfVec3d_Sg__getitemcopy(std::vector< GfVec3d > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN GfVec3d const &std_vector_Sl_GfVec3d_Sg__getitem(std::vector< GfVec3d > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__setitem(std::vector< GfVec3d > *self,int index,GfVec3d const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__AddRange(std::vector< GfVec3d > *self,std::vector< GfVec3d > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< GfVec3d > *std_vector_Sl_GfVec3d_Sg__GetRange(std::vector< GfVec3d > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< GfVec3d >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__Insert(std::vector< GfVec3d > *self,int index,GfVec3d const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__InsertRange(std::vector< GfVec3d > *self,int index,std::vector< GfVec3d > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__RemoveAt(std::vector< GfVec3d > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__RemoveRange(std::vector< GfVec3d > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< GfVec3d > *std_vector_Sl_GfVec3d_Sg__Repeat(GfVec3d const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< GfVec3d >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__Reverse__SWIG_0(std::vector< GfVec3d > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__Reverse__SWIG_1(std::vector< GfVec3d > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_GfVec3d_Sg__SetRange(std::vector< GfVec3d > *self,int index,std::vector< GfVec3d > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
+SWIGINTERN bool GfFrustum_Equals(GfFrustum const &lhs,GfFrustum const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfFrustum_GetHashCode(GfFrustum *self){
+    return (int)TfHash()(self);
+  }
+
+#include "pxr/base/gf/bBox3d.h"
+
+SWIGINTERN std::vector< GfVec4f > *new_std_vector_Sl_GfVec4f_Sg___SWIG_2(int capacity){
+        std::vector< GfVec4f >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< GfVec4f >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN GfVec4f std_vector_Sl_GfVec4f_Sg__getitemcopy(std::vector< GfVec4f > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN GfVec4f const &std_vector_Sl_GfVec4f_Sg__getitem(std::vector< GfVec4f > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__setitem(std::vector< GfVec4f > *self,int index,GfVec4f const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__AddRange(std::vector< GfVec4f > *self,std::vector< GfVec4f > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< GfVec4f > *std_vector_Sl_GfVec4f_Sg__GetRange(std::vector< GfVec4f > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< GfVec4f >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Insert(std::vector< GfVec4f > *self,int index,GfVec4f const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__InsertRange(std::vector< GfVec4f > *self,int index,std::vector< GfVec4f > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__RemoveAt(std::vector< GfVec4f > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__RemoveRange(std::vector< GfVec4f > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< GfVec4f > *std_vector_Sl_GfVec4f_Sg__Repeat(GfVec4f const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< GfVec4f >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_0(std::vector< GfVec4f > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_1(std::vector< GfVec4f > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__SetRange(std::vector< GfVec4f > *self,int index,std::vector< GfVec4f > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
+SWIGINTERN bool GfBBox3d_Equals(GfBBox3d const &lhs,GfBBox3d const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int GfBBox3d_GetHashCode(GfBBox3d *self){
     return (int)TfHash()(self);
   }
 
@@ -4539,102 +4793,8 @@ SWIGINTERN bool UsdSchemaBase__IsValid(UsdSchemaBase *self){
 #include "pxr/usd/usd/typed.h"
 
 
-#include "pxr/usd/usdGeom/xformOp.h"
+#include "pxr/usd/usdGeom/tokens.h"
 
-SWIGINTERN std::vector< UsdGeomXformOp > *new_std_vector_Sl_UsdGeomXformOp_Sg___SWIG_2(int capacity){
-        std::vector< UsdGeomXformOp >* pv = 0;
-        if (capacity >= 0) {
-          pv = new std::vector< UsdGeomXformOp >();
-          pv->reserve(capacity);
-       } else {
-          throw std::out_of_range("capacity");
-       }
-       return pv;
-      }
-SWIGINTERN UsdGeomXformOp std_vector_Sl_UsdGeomXformOp_Sg__getitemcopy(std::vector< UsdGeomXformOp > *self,int index){
-        if (index>=0 && index<(int)self->size())
-          return (*self)[index];
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN UsdGeomXformOp const &std_vector_Sl_UsdGeomXformOp_Sg__getitem(std::vector< UsdGeomXformOp > *self,int index){
-        if (index>=0 && index<(int)self->size())
-          return (*self)[index];
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__setitem(std::vector< UsdGeomXformOp > *self,int index,UsdGeomXformOp const &val){
-        if (index>=0 && index<(int)self->size())
-          (*self)[index] = val;
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__AddRange(std::vector< UsdGeomXformOp > *self,std::vector< UsdGeomXformOp > const &values){
-        self->insert(self->end(), values.begin(), values.end());
-      }
-SWIGINTERN std::vector< UsdGeomXformOp > *std_vector_Sl_UsdGeomXformOp_Sg__GetRange(std::vector< UsdGeomXformOp > *self,int index,int count){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (count < 0)
-          throw std::out_of_range("count");
-        if (index >= (int)self->size()+1 || index+count > (int)self->size())
-          throw std::invalid_argument("invalid range");
-        return new std::vector< UsdGeomXformOp >(self->begin()+index, self->begin()+index+count);
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__Insert(std::vector< UsdGeomXformOp > *self,int index,UsdGeomXformOp const &x){
-        if (index>=0 && index<(int)self->size()+1)
-          self->insert(self->begin()+index, x);
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__InsertRange(std::vector< UsdGeomXformOp > *self,int index,std::vector< UsdGeomXformOp > const &values){
-        if (index>=0 && index<(int)self->size()+1)
-          self->insert(self->begin()+index, values.begin(), values.end());
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__RemoveAt(std::vector< UsdGeomXformOp > *self,int index){
-        if (index>=0 && index<(int)self->size())
-          self->erase(self->begin() + index);
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__RemoveRange(std::vector< UsdGeomXformOp > *self,int index,int count){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (count < 0)
-          throw std::out_of_range("count");
-        if (index >= (int)self->size()+1 || index+count > (int)self->size())
-          throw std::invalid_argument("invalid range");
-        self->erase(self->begin()+index, self->begin()+index+count);
-      }
-SWIGINTERN std::vector< UsdGeomXformOp > *std_vector_Sl_UsdGeomXformOp_Sg__Repeat(UsdGeomXformOp const &value,int count){
-        if (count < 0)
-          throw std::out_of_range("count");
-        return new std::vector< UsdGeomXformOp >(count, value);
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_0(std::vector< UsdGeomXformOp > *self){
-        std::reverse(self->begin(), self->end());
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_1(std::vector< UsdGeomXformOp > *self,int index,int count){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (count < 0)
-          throw std::out_of_range("count");
-        if (index >= (int)self->size()+1 || index+count > (int)self->size())
-          throw std::invalid_argument("invalid range");
-        std::reverse(self->begin()+index, self->begin()+index+count);
-      }
-SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__SetRange(std::vector< UsdGeomXformOp > *self,int index,std::vector< UsdGeomXformOp > const &values){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (index+values.size() > self->size())
-          throw std::out_of_range("index");
-        std::copy(values.begin(), values.end(), self->begin()+index);
-      }
-SWIGINTERN bool UsdGeomXformOp_Set__SWIG_2(UsdGeomXformOp const *self,GfMatrix4d const &value,UsdTimeCode time=UsdTimeCode::Default()){
-    return self->Set(value, time);
-  }
 
 #include "pxr/usd/usdGeom/faceSetAPI.h"
 
@@ -4824,19 +4984,116 @@ SWIGINTERN void std_vector_Sl_UsdGeomPrimvar_Sg__SetRange(std::vector< UsdGeomPr
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 
-#include "pxr/usd/usdGeom/imageable.h"
-
-
 #include "pxr/usd/usdGeom/scope.h"
 
 
-#include "pxr/usd/usdGeom/curves.h"
+#include "pxr/usd/usdGeom/imageable.h"
 
+
+#include "pxr/usd/usdGeom/xformOp.h"
+
+SWIGINTERN std::vector< UsdGeomXformOp > *new_std_vector_Sl_UsdGeomXformOp_Sg___SWIG_2(int capacity){
+        std::vector< UsdGeomXformOp >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< UsdGeomXformOp >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN UsdGeomXformOp std_vector_Sl_UsdGeomXformOp_Sg__getitemcopy(std::vector< UsdGeomXformOp > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN UsdGeomXformOp const &std_vector_Sl_UsdGeomXformOp_Sg__getitem(std::vector< UsdGeomXformOp > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__setitem(std::vector< UsdGeomXformOp > *self,int index,UsdGeomXformOp const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__AddRange(std::vector< UsdGeomXformOp > *self,std::vector< UsdGeomXformOp > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< UsdGeomXformOp > *std_vector_Sl_UsdGeomXformOp_Sg__GetRange(std::vector< UsdGeomXformOp > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< UsdGeomXformOp >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__Insert(std::vector< UsdGeomXformOp > *self,int index,UsdGeomXformOp const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__InsertRange(std::vector< UsdGeomXformOp > *self,int index,std::vector< UsdGeomXformOp > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__RemoveAt(std::vector< UsdGeomXformOp > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__RemoveRange(std::vector< UsdGeomXformOp > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< UsdGeomXformOp > *std_vector_Sl_UsdGeomXformOp_Sg__Repeat(UsdGeomXformOp const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< UsdGeomXformOp >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_0(std::vector< UsdGeomXformOp > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_1(std::vector< UsdGeomXformOp > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_UsdGeomXformOp_Sg__SetRange(std::vector< UsdGeomXformOp > *self,int index,std::vector< UsdGeomXformOp > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
+SWIGINTERN bool UsdGeomXformOp_Set__SWIG_2(UsdGeomXformOp const *self,GfMatrix4d const &value,UsdTimeCode time=UsdTimeCode::Default()){
+    return self->Set(value, time);
+  }
 
 #include "pxr/usd/usdGeom/xformable.h"
 
 
 #include "pxr/usd/usdGeom/xform.h"
+
+
+#include "pxr/usd/usdGeom/camera.h"
 
 
 #include "pxr/usd/usdGeom/boundable.h"
@@ -4847,6 +5104,103 @@ SWIGINTERN void std_vector_Sl_UsdGeomPrimvar_Sg__SetRange(std::vector< UsdGeomPr
 
 #include "pxr/usd/usdGeom/pointBased.h"
 
+
+#include "pxr/usd/usdGeom/curves.h"
+
+
+#include "pxr/usd/usdGeom/basisCurves.h"
+
+SWIGINTERN std::vector< std::pair< TfToken,size_t > > *new_std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg___SWIG_2(int capacity){
+        std::vector< std::pair< TfToken,size_t > >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< std::pair< TfToken,size_t > >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN std::pair< TfToken,size_t > std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__getitemcopy(std::vector< std::pair< TfToken,size_t > > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN std::pair< TfToken,size_t > const &std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__getitem(std::vector< std::pair< TfToken,size_t > > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__setitem(std::vector< std::pair< TfToken,size_t > > *self,int index,std::pair< TfToken,size_t > const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__AddRange(std::vector< std::pair< TfToken,size_t > > *self,std::vector< std::pair< TfToken,size_t > > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< std::pair< TfToken,size_t > > *std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__GetRange(std::vector< std::pair< TfToken,size_t > > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< std::pair< TfToken,size_t > >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Insert(std::vector< std::pair< TfToken,size_t > > *self,int index,std::pair< TfToken,size_t > const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__InsertRange(std::vector< std::pair< TfToken,size_t > > *self,int index,std::vector< std::pair< TfToken,size_t > > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__RemoveAt(std::vector< std::pair< TfToken,size_t > > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__RemoveRange(std::vector< std::pair< TfToken,size_t > > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< std::pair< TfToken,size_t > > *std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Repeat(std::pair< TfToken,size_t > const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< std::pair< TfToken,size_t > >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Reverse__SWIG_0(std::vector< std::pair< TfToken,size_t > > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Reverse__SWIG_1(std::vector< std::pair< TfToken,size_t > > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__SetRange(std::vector< std::pair< TfToken,size_t > > *self,int index,std::vector< std::pair< TfToken,size_t > > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
 
 #include "pxr/usd/usdGeom/mesh.h"
 
@@ -4873,9 +5227,6 @@ SWIGINTERN void UsdGeomMesh_Triangulate(VtIntArray &faceVertexIndices,VtIntArray
     faceVertexIndices.swap(newIndices);
     faceVertexCounts.swap(newCounts);
   }
-
-#include "pxr/usd/usdGeom/tokens.h"
-
 
 #include "pxr/usd/usdShade/utils.h"
 
@@ -12237,310 +12588,766 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_GetDataFromPluginMetaData(
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_0() {
-  void * jresult ;
-  GfBBox3d *result = 0 ;
-  
-  result = (GfBBox3d *)new GfBBox3d();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_1(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = 0 ;
-  GfBBox3d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  result = (GfBBox3d *)new GfBBox3d((GfBBox3d const &)*arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_2(void * jarg1) {
-  void * jresult ;
-  GfRange3d *arg1 = 0 ;
-  GfBBox3d *result = 0 ;
-  
-  arg1 = (GfRange3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return 0;
-  } 
-  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_3(void * jarg1, void * jarg2) {
-  void * jresult ;
-  GfRange3d *arg1 = 0 ;
-  GfMatrix4d *arg2 = 0 ;
-  GfBBox3d *result = 0 ;
-  
-  arg1 = (GfRange3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfMatrix4d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1,(GfMatrix4d const &)*arg2);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Set(void * jarg1, void * jarg2, void * jarg3) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *arg2 = 0 ;
-  GfMatrix4d *arg3 = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = (GfRange3d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return ;
-  } 
-  arg3 = (GfMatrix4d *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return ;
-  } 
-  (arg1)->Set((GfRange3d const &)*arg2,(GfMatrix4d const &)*arg3);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetMatrix(void * jarg1, void * jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfMatrix4d *arg2 = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return ;
-  } 
-  (arg1)->SetMatrix((GfMatrix4d const &)*arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetRange(void * jarg1, void * jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *arg2 = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = (GfRange3d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return ;
-  } 
-  (arg1)->SetRange((GfRange3d const &)*arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetRange(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetRange();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetBox(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetBox();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetMatrix(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfMatrix4d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetMatrix();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetInverseMatrix(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfMatrix4d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetInverseMatrix();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetHasZeroAreaPrimitives(void * jarg1, unsigned int jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  bool arg2 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = jarg2 ? true : false; 
-  (arg1)->SetHasZeroAreaPrimitives(arg2);
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_HasZeroAreaPrimitives(void * jarg1) {
-  unsigned int jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  bool result;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (bool)((GfBBox3d const *)arg1)->HasZeroAreaPrimitives();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfBBox3d_GetVolume(void * jarg1) {
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_APERTURE_UNIT_get() {
   double jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
   double result;
   
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (double)((GfBBox3d const *)arg1)->GetVolume();
+  result = (double)(double)GfCamera::APERTURE_UNIT;
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Transform(void * jarg1, void * jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_FOCAL_LENGTH_UNIT_get() {
+  double jresult ;
+  double result;
+  
+  result = (double)(double)GfCamera::FOCAL_LENGTH_UNIT;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfCamera_ZUp_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)(bool)GfCamera::ZUp;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfCamera_YUp_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)(bool)GfCamera::YUp;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_DEFAULT_HORIZONTAL_APERTURE_get() {
+  double jresult ;
+  double result;
+  
+  result = (double)(double)GfCamera::DEFAULT_HORIZONTAL_APERTURE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_DEFAULT_VERTICAL_APERTURE_get() {
+  double jresult ;
+  double result;
+  
+  result = (double)(double)GfCamera::DEFAULT_VERTICAL_APERTURE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_0(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9, float jarg10, float jarg11) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  std::vector< GfVec4f > *arg9 = 0 ;
+  float arg10 ;
+  float arg11 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg9 = (std::vector< GfVec4f > *)jarg9;
+  if (!arg9) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return 0;
+  } 
+  arg10 = (float)jarg10; 
+  arg11 = (float)jarg11; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9,arg10,arg11);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_1(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9, float jarg10) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  std::vector< GfVec4f > *arg9 = 0 ;
+  float arg10 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg9 = (std::vector< GfVec4f > *)jarg9;
+  if (!arg9) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return 0;
+  } 
+  arg10 = (float)jarg10; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9,arg10);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_2(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  std::vector< GfVec4f > *arg9 = 0 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg9 = (std::vector< GfVec4f > *)jarg9;
+  if (!arg9) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return 0;
+  } 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_3(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_4(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_5(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_6(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_7(void * jarg1, int jarg2, float jarg3, float jarg4) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_8(void * jarg1, int jarg2, float jarg3) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_9(void * jarg1, int jarg2) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_10(void * jarg1) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_11() {
+  void * jresult ;
+  GfCamera *result = 0 ;
+  
+  result = (GfCamera *)new GfCamera();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetTransform(void * jarg1, void * jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
   GfMatrix4d *arg2 = 0 ;
   
-  arg1 = (GfBBox3d *)jarg1; 
+  arg1 = (GfCamera *)jarg1; 
   arg2 = (GfMatrix4d *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
     return ;
   } 
-  (arg1)->Transform((GfMatrix4d const &)*arg2);
+  (arg1)->SetTransform((GfMatrix4d const &)*arg2);
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedRange(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d result;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetProjection(void * jarg1, int jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfCamera::Projection *arg2 = 0 ;
+  GfCamera::Projection temp2 ;
   
-  arg1 = (GfBBox3d *)jarg1; 
-  result = ((GfBBox3d const *)arg1)->ComputeAlignedRange();
-  jresult = new GfRange3d((const GfRange3d &)result); 
-  return jresult;
+  arg1 = (GfCamera *)jarg1; 
+  temp2 = (GfCamera::Projection)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->SetProjection((GfCamera::Projection const &)*arg2);
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedBox(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d result;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFocalLength(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
   
-  arg1 = (GfBBox3d *)jarg1; 
-  result = ((GfBBox3d const *)arg1)->ComputeAlignedBox();
-  jresult = new GfRange3d((const GfRange3d &)result); 
-  return jresult;
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetFocalLength(arg2);
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_Combine(void * jarg1, void * jarg2) {
-  void * jresult ;
-  GfBBox3d *arg1 = 0 ;
-  GfBBox3d *arg2 = 0 ;
-  GfBBox3d result;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetHorizontalAperture(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
   
-  arg1 = (GfBBox3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfBBox3d *)jarg2;
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetHorizontalAperture(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetVerticalAperture(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetVerticalAperture(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetHorizontalApertureOffset(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetHorizontalApertureOffset(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetVerticalApertureOffset(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetVerticalApertureOffset(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0(void * jarg1, float jarg2, float jarg3, int jarg4, float jarg5) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  GfCamera::FOVDirection arg4 ;
+  float arg5 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (GfCamera::FOVDirection)jarg4; 
+  arg5 = (float)jarg5; 
+  (arg1)->SetPerspectiveFromAspectRatioAndFieldOfView(arg2,arg3,arg4,arg5);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1(void * jarg1, float jarg2, float jarg3, int jarg4) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  GfCamera::FOVDirection arg4 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (GfCamera::FOVDirection)jarg4; 
+  (arg1)->SetPerspectiveFromAspectRatioAndFieldOfView(arg2,arg3,arg4);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetOrthographicFromAspectRatioAndSize(void * jarg1, float jarg2, float jarg3, int jarg4) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  GfCamera::FOVDirection arg4 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (GfCamera::FOVDirection)jarg4; 
+  (arg1)->SetOrthographicFromAspectRatioAndSize(arg2,arg3,arg4);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetClippingRange(void * jarg1, void * jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return ;
   } 
-  result = GfBBox3d::Combine((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
-  jresult = new GfBBox3d((const GfBBox3d &)result); 
-  return jresult;
+  (arg1)->SetClippingRange((GfRange1f const &)*arg2);
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeCentroid(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfVec3d result;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetClippingPlanes(void * jarg1, void * jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  std::vector< GfVec4f > *arg2 = 0 ;
   
-  arg1 = (GfBBox3d *)jarg1; 
-  result = ((GfBBox3d const *)arg1)->ComputeCentroid();
-  jresult = new GfVec3d((const GfVec3d &)result); 
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (std::vector< GfVec4f > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetClippingPlanes((std::vector< GfVec4f > const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFStop(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetFStop(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFocusDistance(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetFocusDistance(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetTransform(void * jarg1) {
+  void * jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = ((GfCamera const *)arg1)->GetTransform();
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_Equals(void * jarg1, void * jarg2) {
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfCamera_GetProjection(void * jarg1) {
+  int jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfCamera::Projection result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (GfCamera::Projection)((GfCamera const *)arg1)->GetProjection();
+  jresult = (int)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetHorizontalAperture(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetHorizontalAperture();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetVerticalAperture(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetVerticalAperture();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetHorizontalApertureOffset(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetHorizontalApertureOffset();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetVerticalApertureOffset(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetVerticalApertureOffset();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetAspectRatio(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetAspectRatio();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFocalLength(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetFocalLength();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFieldOfView(void * jarg1, int jarg2) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfCamera::FOVDirection arg2 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (GfCamera::FOVDirection)jarg2; 
+  result = (float)((GfCamera const *)arg1)->GetFieldOfView(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetClippingRange(void * jarg1) {
+  void * jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfRange1f result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = ((GfCamera const *)arg1)->GetClippingRange();
+  jresult = new GfRange1f((const GfRange1f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetClippingPlanes(void * jarg1) {
+  void * jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (std::vector< GfVec4f > *) &((GfCamera const *)arg1)->GetClippingPlanes();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetFrustum(void * jarg1) {
+  void * jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfFrustum result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = ((GfCamera const *)arg1)->GetFrustum();
+  jresult = new GfFrustum((const GfFrustum &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFStop(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetFStop();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFocusDistance(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetFocusDistance();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfCamera_Equals(void * jarg1, void * jarg2) {
   unsigned int jresult ;
-  GfBBox3d *arg1 = 0 ;
-  GfBBox3d *arg2 = 0 ;
+  GfCamera *arg1 = 0 ;
+  GfCamera *arg2 = 0 ;
   bool result;
   
-  arg1 = (GfBBox3d *)jarg1;
+  arg1 = (GfCamera *)jarg1;
   if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfCamera const & type is null", 0);
     return 0;
   } 
-  arg2 = (GfBBox3d *)jarg2;
+  arg2 = (GfCamera *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfCamera const & type is null", 0);
     return 0;
   } 
-  result = (bool)GfBBox3d_Equals((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
+  result = (bool)GfCamera_Equals((GfCamera const &)*arg1,(GfCamera const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfBBox3d_GetHashCode(void * jarg1) {
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfCamera_GetHashCode(void * jarg1) {
   int jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
   int result;
   
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (int)GfBBox3d_GetHashCode(arg1);
+  arg1 = (GfCamera *)jarg1; 
+  result = (int)GfCamera_GetHashCode(arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfBBox3d(void * jarg1) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfCamera(void * jarg1) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
   
-  arg1 = (GfBBox3d *)jarg1; 
+  arg1 = (GfCamera *)jarg1; 
   delete arg1;
 }
 
@@ -12999,6 +13806,910 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfHalf(void * jarg1) {
 }
 
 
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfRange1f_dimension_get() {
+  unsigned long jresult ;
+  size_t result;
+  
+  result = GfRange1f::dimension;
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1f_SetEmpty(void * jarg1) {
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  (arg1)->SetEmpty();
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfRange1f__SWIG_0() {
+  void * jresult ;
+  GfRange1f *result = 0 ;
+  
+  result = (GfRange1f *)new GfRange1f();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfRange1f__SWIG_1(float jarg1, float jarg2) {
+  void * jresult ;
+  float arg1 ;
+  float arg2 ;
+  GfRange1f *result = 0 ;
+  
+  arg1 = (float)jarg1; 
+  arg2 = (float)jarg2; 
+  result = (GfRange1f *)new GfRange1f(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfRange1f_GetMin(void * jarg1) {
+  float jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  result = (float)((GfRange1f const *)arg1)->GetMin();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfRange1f_GetMax(void * jarg1) {
+  float jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  result = (float)((GfRange1f const *)arg1)->GetMax();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfRange1f_GetSize(void * jarg1) {
+  float jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  result = (float)((GfRange1f const *)arg1)->GetSize();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfRange1f_GetMidpoint(void * jarg1) {
+  float jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  result = (float)((GfRange1f const *)arg1)->GetMidpoint();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1f_SetMin(void * jarg1, float jarg2) {
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetMin(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1f_SetMax(void * jarg1, float jarg2) {
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetMax(arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1f_IsEmpty(void * jarg1) {
+  unsigned int jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  bool result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  result = (bool)((GfRange1f const *)arg1)->IsEmpty();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1f_ExtendBy__SWIG_0(void * jarg1, float jarg2) {
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->ExtendBy(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1f_ExtendBy__SWIG_1(void * jarg1, void * jarg2) {
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return ;
+  } 
+  (arg1)->ExtendBy((GfRange1f const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1f_Contains__SWIG_0(void * jarg1, float jarg2) {
+  unsigned int jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  bool result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  result = (bool)((GfRange1f const *)arg1)->Contains(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1f_Contains__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRange1f const *)arg1)->Contains((GfRange1f const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1f_IsInside__SWIG_0(void * jarg1, float jarg2) {
+  unsigned int jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  bool result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  result = (bool)((GfRange1f const *)arg1)->IsInside(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1f_IsInside__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRange1f const *)arg1)->IsInside((GfRange1f const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1f_IsOutside(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRange1f const *)arg1)->IsOutside((GfRange1f const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_GetUnion(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = 0 ;
+  GfRange1f *arg2 = 0 ;
+  GfRange1f result;
+  
+  arg1 = (GfRange1f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1f::GetUnion((GfRange1f const &)*arg1,(GfRange1f const &)*arg2);
+  jresult = new GfRange1f((const GfRange1f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_UnionWith__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  GfRange1f *result = 0 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (GfRange1f *) &(arg1)->UnionWith((GfRange1f const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_UnionWith__SWIG_1(void * jarg1, float jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  GfRange1f *result = 0 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  result = (GfRange1f *) &(arg1)->UnionWith(arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_Union__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = 0 ;
+  GfRange1f *arg2 = 0 ;
+  GfRange1f result;
+  
+  arg1 = (GfRange1f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1f::Union((GfRange1f const &)*arg1,(GfRange1f const &)*arg2);
+  jresult = new GfRange1f((const GfRange1f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_Union__SWIG_2(void * jarg1, float jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  GfRange1f *result = 0 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  result = (GfRange1f *) &(arg1)->Union(arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_GetIntersection(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = 0 ;
+  GfRange1f *arg2 = 0 ;
+  GfRange1f result;
+  
+  arg1 = (GfRange1f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1f::GetIntersection((GfRange1f const &)*arg1,(GfRange1f const &)*arg2);
+  jresult = new GfRange1f((const GfRange1f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_Intersection__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = 0 ;
+  GfRange1f *arg2 = 0 ;
+  GfRange1f result;
+  
+  arg1 = (GfRange1f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1f::Intersection((GfRange1f const &)*arg1,(GfRange1f const &)*arg2);
+  jresult = new GfRange1f((const GfRange1f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_IntersectWith(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  GfRange1f *result = 0 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (GfRange1f *) &(arg1)->IntersectWith((GfRange1f const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_2(void * jarg1) {
+  unsigned long jresult ;
+  GfRange1f *arg1 = 0 ;
+  size_t result;
+  
+  arg1 = (GfRange1f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = hash_value((GfRange1f const &)*arg1);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfRange1f_GetDistanceSquared(void * jarg1, float jarg2) {
+  double jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  float arg2 ;
+  double result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  arg2 = (float)jarg2; 
+  result = (double)((GfRange1f const *)arg1)->GetDistanceSquared(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1f_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1f *arg1 = 0 ;
+  GfRange1f *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfRange1f_Equals((GfRange1f const &)*arg1,(GfRange1f const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfRange1f_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  int result;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  result = (int)GfRange1f_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfRange1f(void * jarg1) {
+  GfRange1f *arg1 = (GfRange1f *) 0 ;
+  
+  arg1 = (GfRange1f *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfRange1d_dimension_get() {
+  unsigned long jresult ;
+  size_t result;
+  
+  result = GfRange1d::dimension;
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1d_SetEmpty(void * jarg1) {
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  (arg1)->SetEmpty();
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfRange1d__SWIG_0() {
+  void * jresult ;
+  GfRange1d *result = 0 ;
+  
+  result = (GfRange1d *)new GfRange1d();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfRange1d__SWIG_1(double jarg1, double jarg2) {
+  void * jresult ;
+  double arg1 ;
+  double arg2 ;
+  GfRange1d *result = 0 ;
+  
+  arg1 = (double)jarg1; 
+  arg2 = (double)jarg2; 
+  result = (GfRange1d *)new GfRange1d(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfRange1d_GetMin(void * jarg1) {
+  double jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  result = (double)((GfRange1d const *)arg1)->GetMin();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfRange1d_GetMax(void * jarg1) {
+  double jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  result = (double)((GfRange1d const *)arg1)->GetMax();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfRange1d_GetSize(void * jarg1) {
+  double jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  result = (double)((GfRange1d const *)arg1)->GetSize();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfRange1d_GetMidpoint(void * jarg1) {
+  double jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  result = (double)((GfRange1d const *)arg1)->GetMidpoint();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1d_SetMin(void * jarg1, double jarg2) {
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  (arg1)->SetMin(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1d_SetMax(void * jarg1, double jarg2) {
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  (arg1)->SetMax(arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1d_IsEmpty(void * jarg1) {
+  unsigned int jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  bool result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  result = (bool)((GfRange1d const *)arg1)->IsEmpty();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1d_ExtendBy__SWIG_0(void * jarg1, double jarg2) {
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  (arg1)->ExtendBy(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRange1d_ExtendBy__SWIG_1(void * jarg1, void * jarg2) {
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  GfRange1d *arg2 = 0 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->ExtendBy((GfRange1d const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1d_Contains__SWIG_0(void * jarg1, double jarg2) {
+  unsigned int jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  bool result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = (bool)((GfRange1d const *)arg1)->Contains(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1d_Contains__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  GfRange1d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRange1d const *)arg1)->Contains((GfRange1d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1d_IsInside__SWIG_0(void * jarg1, double jarg2) {
+  unsigned int jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  bool result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = (bool)((GfRange1d const *)arg1)->IsInside(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1d_IsInside__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  GfRange1d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRange1d const *)arg1)->IsInside((GfRange1d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1d_IsOutside(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  GfRange1d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRange1d const *)arg1)->IsOutside((GfRange1d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_GetUnion(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = 0 ;
+  GfRange1d *arg2 = 0 ;
+  GfRange1d result;
+  
+  arg1 = (GfRange1d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1d::GetUnion((GfRange1d const &)*arg1,(GfRange1d const &)*arg2);
+  jresult = new GfRange1d((const GfRange1d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_UnionWith__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  GfRange1d *arg2 = 0 ;
+  GfRange1d *result = 0 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfRange1d *) &(arg1)->UnionWith((GfRange1d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_UnionWith__SWIG_1(void * jarg1, double jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  GfRange1d *result = 0 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = (GfRange1d *) &(arg1)->UnionWith(arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_Union__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = 0 ;
+  GfRange1d *arg2 = 0 ;
+  GfRange1d result;
+  
+  arg1 = (GfRange1d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1d::Union((GfRange1d const &)*arg1,(GfRange1d const &)*arg2);
+  jresult = new GfRange1d((const GfRange1d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_Union__SWIG_2(void * jarg1, double jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  GfRange1d *result = 0 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = (GfRange1d *) &(arg1)->Union(arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_GetIntersection(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = 0 ;
+  GfRange1d *arg2 = 0 ;
+  GfRange1d result;
+  
+  arg1 = (GfRange1d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1d::GetIntersection((GfRange1d const &)*arg1,(GfRange1d const &)*arg2);
+  jresult = new GfRange1d((const GfRange1d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_Intersection__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = 0 ;
+  GfRange1d *arg2 = 0 ;
+  GfRange1d result;
+  
+  arg1 = (GfRange1d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = GfRange1d::Intersection((GfRange1d const &)*arg1,(GfRange1d const &)*arg2);
+  jresult = new GfRange1d((const GfRange1d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_IntersectWith(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  GfRange1d *arg2 = 0 ;
+  GfRange1d *result = 0 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfRange1d *) &(arg1)->IntersectWith((GfRange1d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_3(void * jarg1) {
+  unsigned long jresult ;
+  GfRange1d *arg1 = 0 ;
+  size_t result;
+  
+  arg1 = (GfRange1d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = hash_value((GfRange1d const &)*arg1);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfRange1d_GetDistanceSquared(void * jarg1, double jarg2) {
+  double jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  double arg2 ;
+  double result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = (double)((GfRange1d const *)arg1)->GetDistanceSquared(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRange1d_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRange1d *arg1 = 0 ;
+  GfRange1d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRange1d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfRange1d_Equals((GfRange1d const &)*arg1,(GfRange1d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfRange1d_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  int result;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  result = (int)GfRange1d_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfRange1d(void * jarg1) {
+  GfRange1d *arg1 = (GfRange1d *) 0 ;
+  
+  arg1 = (GfRange1d *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfRange2d_dimension_get() {
   unsigned long jresult ;
   size_t result;
@@ -13415,7 +15126,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange2d_IntersectWith(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_2(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_4(void * jarg1) {
   unsigned long jresult ;
   GfRange2d *arg1 = 0 ;
   size_t result;
@@ -13945,7 +15656,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange3d_IntersectWith(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_3(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_5(void * jarg1) {
   unsigned long jresult ;
   GfRange3d *arg1 = 0 ;
   size_t result;
@@ -14331,7 +16042,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2f_SetDiagonal__SWIG_1(void * j
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_4(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_6(void * jarg1) {
   unsigned long jresult ;
   GfMatrix2f *arg1 = 0 ;
   size_t result;
@@ -14799,7 +16510,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_SetDiagonal__SWIG_1(void * j
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_5(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_7(void * jarg1) {
   unsigned long jresult ;
   GfMatrix3f *arg1 = 0 ;
   size_t result;
@@ -15549,7 +17260,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetDiagonal__SWIG_1(void * j
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_6(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_8(void * jarg1) {
   unsigned long jresult ;
   GfMatrix4f *arg1 = 0 ;
   size_t result;
@@ -16585,7 +18296,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2d_SetDiagonal__SWIG_1(void * j
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_7(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_9(void * jarg1) {
   unsigned long jresult ;
   GfMatrix2d *arg1 = 0 ;
   size_t result;
@@ -17053,7 +18764,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_SetDiagonal__SWIG_1(void * j
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_8(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_10(void * jarg1) {
   unsigned long jresult ;
   GfMatrix3d *arg1 = 0 ;
   size_t result;
@@ -17825,7 +19536,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetDiagonal__SWIG_1(void * j
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_9(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_11(void * jarg1) {
   unsigned long jresult ;
   GfMatrix4d *arg1 = 0 ;
   size_t result;
@@ -18711,7 +20422,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2i_Set(void * jarg1, int jarg2, in
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_10(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_12(void * jarg1) {
   unsigned long jresult ;
   GfVec2i *arg1 = 0 ;
   size_t result;
@@ -19111,7 +20822,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2h_Set__SWIG_1(void * jarg1, void 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_11(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_13(void * jarg1) {
   unsigned long jresult ;
   GfVec2h *arg1 = 0 ;
   size_t result;
@@ -19699,7 +21410,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2f_Set(void * jarg1, float jarg2, 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_12(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_14(void * jarg1) {
   unsigned long jresult ;
   GfVec2f *arg1 = 0 ;
   size_t result;
@@ -20263,7 +21974,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2d_Set(void * jarg1, double jarg2,
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_13(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_15(void * jarg1) {
   unsigned long jresult ;
   GfVec2d *arg1 = 0 ;
   size_t result;
@@ -20793,7 +22504,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3i_Set(void * jarg1, int jarg2, in
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_14(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_16(void * jarg1) {
   unsigned long jresult ;
   GfVec3i *arg1 = 0 ;
   size_t result;
@@ -21219,7 +22930,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3h_Set__SWIG_1(void * jarg1, void 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_15(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_17(void * jarg1) {
   unsigned long jresult ;
   GfVec3h *arg1 = 0 ;
   size_t result;
@@ -22015,7 +23726,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3f_Set(void * jarg1, float jarg2, 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_16(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_18(void * jarg1) {
   unsigned long jresult ;
   GfVec3f *arg1 = 0 ;
   size_t result;
@@ -22775,7 +24486,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3d_Set(void * jarg1, double jarg2,
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_17(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_19(void * jarg1) {
   unsigned long jresult ;
   GfVec3d *arg1 = 0 ;
   size_t result;
@@ -23501,7 +25212,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4i_Set(void * jarg1, int jarg2, in
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_18(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_20(void * jarg1) {
   unsigned long jresult ;
   GfVec4i *arg1 = 0 ;
   size_t result;
@@ -23953,7 +25664,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4h_Set__SWIG_1(void * jarg1, void 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_19(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_21(void * jarg1) {
   unsigned long jresult ;
   GfVec4h *arg1 = 0 ;
   size_t result;
@@ -24569,7 +26280,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4f_Set(void * jarg1, float jarg2, 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_20(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_22(void * jarg1) {
   unsigned long jresult ;
   GfVec4f *arg1 = 0 ;
   size_t result;
@@ -25161,7 +26872,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4d_Set(void * jarg1, double jarg2,
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_21(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_23(void * jarg1) {
   unsigned long jresult ;
   GfVec4d *arg1 = 0 ;
   size_t result;
@@ -26059,7 +27770,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRotation_TransformDir__SWIG_1(void * 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_22(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_24(void * jarg1) {
   unsigned long jresult ;
   GfRotation *arg1 = 0 ;
   size_t result;
@@ -26291,7 +28002,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfQuaternion_GetInverse(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_23(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_25(void * jarg1) {
   unsigned long jresult ;
   GfQuaternion *arg1 = 0 ;
   size_t result;
@@ -26699,7 +28410,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfQuatf_GetInverse(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_24(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_26(void * jarg1) {
   unsigned long jresult ;
   GfQuatf *arg1 = 0 ;
   size_t result;
@@ -27055,7 +28766,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfQuatd_GetInverse(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_25(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_27(void * jarg1) {
   unsigned long jresult ;
   GfQuatd *arg1 = 0 ;
   size_t result;
@@ -27158,6 +28869,3627 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfSlerp__SWIG_8(void * jarg1, void * ja
   result = GfSlerp((GfQuatd const &)*arg1,(GfQuatd const &)*arg2,arg3);
   jresult = new GfQuatd((const GfQuatd &)result); 
   return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfRay__SWIG_0() {
+  void * jresult ;
+  GfRay *result = 0 ;
+  
+  result = (GfRay *)new GfRay();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfRay__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfRay *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfRay *)new GfRay((GfVec3d const &)*arg1,(GfVec3d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRay_SetPointAndDirection(void * jarg1, void * jarg2, void * jarg3) {
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetPointAndDirection((GfVec3d const &)*arg2,(GfVec3d const &)*arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfRay_SetEnds(void * jarg1, void * jarg2, void * jarg3) {
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetEnds((GfVec3d const &)*arg2,(GfVec3d const &)*arg3);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRay_GetStartPoint(void * jarg1) {
+  void * jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *result = 0 ;
+  
+  arg1 = (GfRay *)jarg1; 
+  result = (GfVec3d *) &((GfRay const *)arg1)->GetStartPoint();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRay_GetDirection(void * jarg1) {
+  void * jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *result = 0 ;
+  
+  arg1 = (GfRay *)jarg1; 
+  result = (GfVec3d *) &((GfRay const *)arg1)->GetDirection();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRay_GetPoint(void * jarg1, double jarg2) {
+  void * jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  double arg2 ;
+  GfVec3d result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = ((GfRay const *)arg1)->GetPoint(arg2);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRay_Transform(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  GfRay *result = 0 ;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfRay *) &(arg1)->Transform((GfMatrix4d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRay_FindClosestPoint__SWIG_0(void * jarg1, void * jarg2, double * jarg3) {
+  void * jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double *arg3 = (double *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double *)jarg3; 
+  result = ((GfRay const *)arg1)->FindClosestPoint((GfVec3d const &)*arg2,arg3);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRay_FindClosestPoint__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfRay const *)arg1)->FindClosestPoint((GfVec3d const &)*arg2);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4, double * jarg5, void * jarg6, unsigned int * jarg7, double jarg8) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfVec3d *arg4 = 0 ;
+  double *arg5 = (double *) 0 ;
+  GfVec3d *arg6 = (GfVec3d *) 0 ;
+  bool *arg7 = (bool *) 0 ;
+  double arg8 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfVec3d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (double *)jarg5; 
+  arg6 = (GfVec3d *)jarg6; 
+  *jarg7 = 0; 
+  arg7 = (bool *)jarg7; 
+  arg8 = (double)jarg8; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,(GfVec3d const &)*arg4,arg5,arg6,arg7,arg8);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4, double * jarg5, void * jarg6, unsigned int * jarg7) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfVec3d *arg4 = 0 ;
+  double *arg5 = (double *) 0 ;
+  GfVec3d *arg6 = (GfVec3d *) 0 ;
+  bool *arg7 = (bool *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfVec3d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (double *)jarg5; 
+  arg6 = (GfVec3d *)jarg6; 
+  *jarg7 = 0; 
+  arg7 = (bool *)jarg7; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,(GfVec3d const &)*arg4,arg5,arg6,arg7);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_2(void * jarg1, void * jarg2, void * jarg3, void * jarg4, double * jarg5, void * jarg6) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfVec3d *arg4 = 0 ;
+  double *arg5 = (double *) 0 ;
+  GfVec3d *arg6 = (GfVec3d *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfVec3d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (double *)jarg5; 
+  arg6 = (GfVec3d *)jarg6; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,(GfVec3d const &)*arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_3(void * jarg1, void * jarg2, void * jarg3, void * jarg4, double * jarg5) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfVec3d *arg4 = 0 ;
+  double *arg5 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfVec3d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (double *)jarg5; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,(GfVec3d const &)*arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_4(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfVec3d *arg4 = 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfVec3d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,(GfVec3d const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_5(void * jarg1, void * jarg2, double * jarg3, unsigned int * jarg4) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfPlane *arg2 = 0 ;
+  double *arg3 = (double *) 0 ;
+  bool *arg4 = (bool *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfPlane *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfPlane const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double *)jarg3; 
+  *jarg4 = 0; 
+  arg4 = (bool *)jarg4; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfPlane const &)*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_6(void * jarg1, void * jarg2, double * jarg3) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfPlane *arg2 = 0 ;
+  double *arg3 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfPlane *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfPlane const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double *)jarg3; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfPlane const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_7(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfPlane *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfPlane *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfPlane const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfPlane const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_8(void * jarg1, void * jarg2, double * jarg3, double * jarg4) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfRange3d *arg2 = 0 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double *)jarg3; 
+  arg4 = (double *)jarg4; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfRange3d const &)*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_9(void * jarg1, void * jarg2, double * jarg3) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfRange3d *arg2 = 0 ;
+  double *arg3 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double *)jarg3; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfRange3d const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_10(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfRange3d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfRange3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_11(void * jarg1, void * jarg2, double jarg3, double * jarg4, double * jarg5) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double arg3 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  arg4 = (double *)jarg4; 
+  arg5 = (double *)jarg5; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_12(void * jarg1, void * jarg2, double jarg3, double * jarg4) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double arg3 ;
+  double *arg4 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  arg4 = (double *)jarg4; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_13(void * jarg1, void * jarg2, double jarg3) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double arg3 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_14(void * jarg1, void * jarg2, void * jarg3, double jarg4, double * jarg5, double * jarg6) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  double arg4 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (double)jarg4; 
+  arg5 = (double *)jarg5; 
+  arg6 = (double *)jarg6; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_15(void * jarg1, void * jarg2, void * jarg3, double jarg4, double * jarg5) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  double arg4 ;
+  double *arg5 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (double)jarg4; 
+  arg5 = (double *)jarg5; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_16(void * jarg1, void * jarg2, void * jarg3, double jarg4) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  double arg4 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (double)jarg4; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_17(void * jarg1, void * jarg2, void * jarg3, double jarg4, double jarg5, double * jarg6, double * jarg7) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  double arg4 ;
+  double arg5 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  arg6 = (double *)jarg6; 
+  arg7 = (double *)jarg7; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,arg4,arg5,arg6,arg7);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_18(void * jarg1, void * jarg2, void * jarg3, double jarg4, double jarg5, double * jarg6) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  double arg4 ;
+  double arg5 ;
+  double *arg6 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  arg6 = (double *)jarg6; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Intersect__SWIG_19(void * jarg1, void * jarg2, void * jarg3, double jarg4, double jarg5) {
+  unsigned int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  double arg4 ;
+  double arg5 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  result = (bool)((GfRay const *)arg1)->Intersect((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5, void * jarg6) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLine *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  GfVec3d *arg4 = (GfVec3d *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLine *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLine const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  arg4 = (GfVec3d *)jarg4; 
+  arg5 = (double *)jarg5; 
+  arg6 = (double *)jarg6; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLine const &)*arg2,arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5, void * jarg6) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLineSeg *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  GfVec3d *arg4 = (GfVec3d *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLineSeg *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLineSeg const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  arg4 = (GfVec3d *)jarg4; 
+  arg5 = (double *)jarg5; 
+  arg6 = (double *)jarg6; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLineSeg const &)*arg2,arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfRay_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfRay *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRay *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfRay_Equals((GfRay const &)*arg1,(GfRay const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfRay_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfRay *arg1 = (GfRay *) 0 ;
+  int result;
+  
+  arg1 = (GfRay *)jarg1; 
+  result = (int)GfRay_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfRay(void * jarg1) {
+  GfRay *arg1 = (GfRay *) 0 ;
+  
+  arg1 = (GfRay *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_2(void * jarg1, void * jarg2, void * jarg3, void * jarg4, double * jarg5) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLine *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  GfVec3d *arg4 = (GfVec3d *) 0 ;
+  double *arg5 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLine *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLine const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  arg4 = (GfVec3d *)jarg4; 
+  arg5 = (double *)jarg5; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLine const &)*arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_3(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLine *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  GfVec3d *arg4 = (GfVec3d *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLine *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLine const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  arg4 = (GfVec3d *)jarg4; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLine const &)*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_4(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLine *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLine *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLine const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLine const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_5(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLine *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLine *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLine const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLine const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_6(void * jarg1, void * jarg2, void * jarg3, void * jarg4, double * jarg5) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLineSeg *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  GfVec3d *arg4 = (GfVec3d *) 0 ;
+  double *arg5 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLineSeg *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLineSeg const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  arg4 = (GfVec3d *)jarg4; 
+  arg5 = (double *)jarg5; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLineSeg const &)*arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_7(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLineSeg *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  GfVec3d *arg4 = (GfVec3d *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLineSeg *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLineSeg const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  arg4 = (GfVec3d *)jarg4; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLineSeg const &)*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_8(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLineSeg *arg2 = 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLineSeg *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLineSeg const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3; 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLineSeg const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFindClosestPoints__SWIG_9(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfRay *arg1 = 0 ;
+  GfLineSeg *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfRay *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRay const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLineSeg *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLineSeg const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfFindClosestPoints((GfRay const &)*arg1,(GfLineSeg const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfLine__SWIG_0() {
+  void * jresult ;
+  GfLine *result = 0 ;
+  
+  result = (GfLine *)new GfLine();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfLine__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfLine *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfLine *)new GfLine((GfVec3d const &)*arg1,(GfVec3d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfLine_Set(void * jarg1, void * jarg2, void * jarg3) {
+  double jresult ;
+  GfLine *arg1 = (GfLine *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  double result;
+  
+  arg1 = (GfLine *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (double)(arg1)->Set((GfVec3d const &)*arg2,(GfVec3d const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLine_GetPoint(void * jarg1, double jarg2) {
+  void * jresult ;
+  GfLine *arg1 = (GfLine *) 0 ;
+  double arg2 ;
+  GfVec3d result;
+  
+  arg1 = (GfLine *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = ((GfLine const *)arg1)->GetPoint(arg2);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLine_GetDirection(void * jarg1) {
+  void * jresult ;
+  GfLine *arg1 = (GfLine *) 0 ;
+  GfVec3d *result = 0 ;
+  
+  arg1 = (GfLine *)jarg1; 
+  result = (GfVec3d *) &((GfLine const *)arg1)->GetDirection();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLine_FindClosestPoint__SWIG_0(void * jarg1, void * jarg2, double * jarg3) {
+  void * jresult ;
+  GfLine *arg1 = (GfLine *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double *arg3 = (double *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfLine *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double *)jarg3; 
+  result = ((GfLine const *)arg1)->FindClosestPoint((GfVec3d const &)*arg2,arg3);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLine_FindClosestPoint__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfLine *arg1 = (GfLine *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfLine *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfLine const *)arg1)->FindClosestPoint((GfVec3d const &)*arg2);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfLine_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfLine *arg1 = 0 ;
+  GfLine *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfLine *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLine const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLine *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLine const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfLine_Equals((GfLine const &)*arg1,(GfLine const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfLine_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfLine *arg1 = (GfLine *) 0 ;
+  int result;
+  
+  arg1 = (GfLine *)jarg1; 
+  result = (int)GfLine_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfLine(void * jarg1) {
+  GfLine *arg1 = (GfLine *) 0 ;
+  
+  arg1 = (GfLine *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfLineSeg__SWIG_0() {
+  void * jresult ;
+  GfLineSeg *result = 0 ;
+  
+  result = (GfLineSeg *)new GfLineSeg();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfLineSeg__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfLineSeg *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfLineSeg *)new GfLineSeg((GfVec3d const &)*arg1,(GfVec3d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLineSeg_GetPoint(void * jarg1, double jarg2) {
+  void * jresult ;
+  GfLineSeg *arg1 = (GfLineSeg *) 0 ;
+  double arg2 ;
+  GfVec3d result;
+  
+  arg1 = (GfLineSeg *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = ((GfLineSeg const *)arg1)->GetPoint(arg2);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLineSeg_GetDirection(void * jarg1) {
+  void * jresult ;
+  GfLineSeg *arg1 = (GfLineSeg *) 0 ;
+  GfVec3d *result = 0 ;
+  
+  arg1 = (GfLineSeg *)jarg1; 
+  result = (GfVec3d *) &((GfLineSeg const *)arg1)->GetDirection();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfLineSeg_GetLength(void * jarg1) {
+  double jresult ;
+  GfLineSeg *arg1 = (GfLineSeg *) 0 ;
+  double result;
+  
+  arg1 = (GfLineSeg *)jarg1; 
+  result = (double)((GfLineSeg const *)arg1)->GetLength();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLineSeg_FindClosestPoint__SWIG_0(void * jarg1, void * jarg2, double * jarg3) {
+  void * jresult ;
+  GfLineSeg *arg1 = (GfLineSeg *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double *arg3 = (double *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfLineSeg *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double *)jarg3; 
+  result = ((GfLineSeg const *)arg1)->FindClosestPoint((GfVec3d const &)*arg2,arg3);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfLineSeg_FindClosestPoint__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfLineSeg *arg1 = (GfLineSeg *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfLineSeg *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfLineSeg const *)arg1)->FindClosestPoint((GfVec3d const &)*arg2);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfLineSeg_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfLineSeg *arg1 = 0 ;
+  GfLineSeg *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfLineSeg *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLineSeg const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfLineSeg *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfLineSeg const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfLineSeg_Equals((GfLineSeg const &)*arg1,(GfLineSeg const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfLineSeg_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfLineSeg *arg1 = (GfLineSeg *) 0 ;
+  int result;
+  
+  arg1 = (GfLineSeg *)jarg1; 
+  result = (int)GfLineSeg_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfLineSeg(void * jarg1) {
+  GfLineSeg *arg1 = (GfLineSeg *) 0 ;
+  
+  arg1 = (GfLineSeg *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfPlane__SWIG_0() {
+  void * jresult ;
+  GfPlane *result = 0 ;
+  
+  result = (GfPlane *)new GfPlane();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfPlane__SWIG_1(void * jarg1, double jarg2) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  double arg2 ;
+  GfPlane *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (double)jarg2; 
+  result = (GfPlane *)new GfPlane((GfVec3d const &)*arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfPlane__SWIG_2(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfPlane *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfPlane *)new GfPlane((GfVec3d const &)*arg1,(GfVec3d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfPlane__SWIG_3(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfPlane *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfPlane *)new GfPlane((GfVec3d const &)*arg1,(GfVec3d const &)*arg2,(GfVec3d const &)*arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfPlane_Set__SWIG_0(void * jarg1, void * jarg2, double jarg3) {
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double arg3 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (double)jarg3; 
+  (arg1)->Set((GfVec3d const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfPlane_Set__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->Set((GfVec3d const &)*arg2,(GfVec3d const &)*arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfPlane_Set__SWIG_2(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfVec3d *arg4 = 0 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg4 = (GfVec3d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->Set((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,(GfVec3d const &)*arg4);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfPlane_GetNormal(void * jarg1) {
+  void * jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *result = 0 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  result = (GfVec3d *) &((GfPlane const *)arg1)->GetNormal();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfPlane_GetDistanceFromOrigin(void * jarg1) {
+  double jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  double result;
+  
+  arg1 = (GfPlane *)jarg1; 
+  result = (double)((GfPlane const *)arg1)->GetDistanceFromOrigin();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfPlane_GetDistance(void * jarg1, void * jarg2) {
+  double jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double result;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (double)((GfPlane const *)arg1)->GetDistance((GfVec3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfPlane_Project(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfPlane const *)arg1)->Project((GfVec3d const &)*arg2);
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfPlane_Transform(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  GfPlane *result = 0 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfPlane *) &(arg1)->Transform((GfMatrix4d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfPlane_Reorient(void * jarg1, void * jarg2) {
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->Reorient((GfVec3d const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfPlane_IntersectsPositiveHalfSpace__SWIG_0(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfRange3d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfPlane const *)arg1)->IntersectsPositiveHalfSpace((GfRange3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfPlane_IntersectsPositiveHalfSpace__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfPlane const *)arg1)->IntersectsPositiveHalfSpace((GfVec3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfPlane_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfPlane *arg1 = 0 ;
+  GfPlane *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfPlane *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfPlane const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfPlane *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfPlane const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfPlane_Equals((GfPlane const &)*arg1,(GfPlane const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfPlane_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  int result;
+  
+  arg1 = (GfPlane *)jarg1; 
+  result = (int)GfPlane_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfPlane(void * jarg1) {
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_Clear(void * jarg1) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_Add(void * jarg1, void * jarg2) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((GfVec3d const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec3dVector_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  std::vector< GfVec3d >::size_type result;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  result = ((std::vector< GfVec3d > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec3dVector_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  std::vector< GfVec3d >::size_type result;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  result = ((std::vector< GfVec3d > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  std::vector< GfVec3d >::size_type arg2 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (std::vector< GfVec3d >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec3dVector__SWIG_0() {
+  void * jresult ;
+  std::vector< GfVec3d > *result = 0 ;
+  
+  result = (std::vector< GfVec3d > *)new std::vector< GfVec3d >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec3dVector__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< GfVec3d > *arg1 = 0 ;
+  std::vector< GfVec3d > *result = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec3d > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< GfVec3d > *)new std::vector< GfVec3d >((std::vector< GfVec3d > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec3dVector__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< GfVec3d > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< GfVec3d > *)new_std_vector_Sl_GfVec3d_Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3dVector_getitemcopy(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  GfVec3d result;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_GfVec3d_Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3dVector_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  GfVec3d *result = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (GfVec3d *) &std_vector_Sl_GfVec3d_Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  GfVec3d *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec3d_Sg__setitem(arg1,arg2,(GfVec3d const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_AddRange(void * jarg1, void * jarg2) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  std::vector< GfVec3d > *arg2 = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (std::vector< GfVec3d > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec3d > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_GfVec3d_Sg__AddRange(arg1,(std::vector< GfVec3d > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3dVector_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< GfVec3d > *result = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< GfVec3d > *)std_vector_Sl_GfVec3d_Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  GfVec3d *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec3d_Sg__Insert(arg1,arg2,(GfVec3d const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  std::vector< GfVec3d > *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< GfVec3d > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec3d > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec3d_Sg__InsertRange(arg1,arg2,(std::vector< GfVec3d > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_GfVec3d_Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_GfVec3d_Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3dVector_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  int arg2 ;
+  std::vector< GfVec3d > *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< GfVec3d > *)std_vector_Sl_GfVec3d_Sg__Repeat((GfVec3d const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_Reverse__SWIG_0(void * jarg1) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  std_vector_Sl_GfVec3d_Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_GfVec3d_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  int arg2 ;
+  std::vector< GfVec3d > *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< GfVec3d > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec3d > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec3d_Sg__SetRange(arg1,arg2,(std::vector< GfVec3d > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfVec3dVector(void * jarg1) {
+  std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfFrustum__SWIG_0() {
+  void * jresult ;
+  GfFrustum *result = 0 ;
+  
+  result = (GfFrustum *)new GfFrustum();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfFrustum__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4, int jarg5, double jarg6) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  GfRotation *arg2 = 0 ;
+  GfRange2d *arg3 = 0 ;
+  GfRange1d *arg4 = 0 ;
+  GfFrustum::ProjectionType arg5 ;
+  double arg6 ;
+  GfFrustum *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRotation *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRotation const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfRange2d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange2d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfRange1d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (GfFrustum::ProjectionType)jarg5; 
+  arg6 = (double)jarg6; 
+  result = (GfFrustum *)new GfFrustum((GfVec3d const &)*arg1,(GfRotation const &)*arg2,(GfRange2d const &)*arg3,(GfRange1d const &)*arg4,arg5,arg6);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfFrustum__SWIG_2(void * jarg1, void * jarg2, void * jarg3, void * jarg4, int jarg5) {
+  void * jresult ;
+  GfVec3d *arg1 = 0 ;
+  GfRotation *arg2 = 0 ;
+  GfRange2d *arg3 = 0 ;
+  GfRange1d *arg4 = 0 ;
+  GfFrustum::ProjectionType arg5 ;
+  GfFrustum *result = 0 ;
+  
+  arg1 = (GfVec3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRotation *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRotation const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfRange2d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange2d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfRange1d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (GfFrustum::ProjectionType)jarg5; 
+  result = (GfFrustum *)new GfFrustum((GfVec3d const &)*arg1,(GfRotation const &)*arg2,(GfRange2d const &)*arg3,(GfRange1d const &)*arg4,arg5);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfFrustum__SWIG_3(void * jarg1, void * jarg2, void * jarg3, int jarg4, double jarg5) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfRange2d *arg2 = 0 ;
+  GfRange1d *arg3 = 0 ;
+  GfFrustum::ProjectionType arg4 ;
+  double arg5 ;
+  GfFrustum *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange2d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange2d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfRange1d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfFrustum::ProjectionType)jarg4; 
+  arg5 = (double)jarg5; 
+  result = (GfFrustum *)new GfFrustum((GfMatrix4d const &)*arg1,(GfRange2d const &)*arg2,(GfRange1d const &)*arg3,arg4,arg5);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfFrustum__SWIG_4(void * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfRange2d *arg2 = 0 ;
+  GfRange1d *arg3 = 0 ;
+  GfFrustum::ProjectionType arg4 ;
+  GfFrustum *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfRange2d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange2d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfRange1d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfFrustum::ProjectionType)jarg4; 
+  result = (GfFrustum *)new GfFrustum((GfMatrix4d const &)*arg1,(GfRange2d const &)*arg2,(GfRange1d const &)*arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_28(void * jarg1) {
+  unsigned long jresult ;
+  GfFrustum *arg1 = 0 ;
+  size_t result;
+  
+  arg1 = (GfFrustum *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfFrustum const & type is null", 0);
+    return 0;
+  } 
+  result = hash_value((GfFrustum const &)*arg1);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfFrustum(void * jarg1) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetPosition(void * jarg1, void * jarg2) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetPosition((GfVec3d const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_GetPosition(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *result = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (GfVec3d *) &((GfFrustum const *)arg1)->GetPosition();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetRotation(void * jarg1, void * jarg2) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfRotation *arg2 = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfRotation *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRotation const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetRotation((GfRotation const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_GetRotation(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfRotation *result = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (GfRotation *) &((GfFrustum const *)arg1)->GetRotation();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetPositionAndRotationFromMatrix(void * jarg1, void * jarg2) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetPositionAndRotationFromMatrix((GfMatrix4d const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetWindow(void * jarg1, void * jarg2) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfRange2d *arg2 = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfRange2d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange2d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetWindow((GfRange2d const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_GetWindow(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfRange2d *result = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (GfRange2d *) &((GfFrustum const *)arg1)->GetWindow();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfFrustum_GetReferencePlaneDepth() {
+  double jresult ;
+  double result;
+  
+  result = (double)GfFrustum::GetReferencePlaneDepth();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetNearFar(void * jarg1, void * jarg2) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfRange1d *arg2 = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfRange1d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetNearFar((GfRange1d const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_GetNearFar(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfRange1d *result = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (GfRange1d *) &((GfFrustum const *)arg1)->GetNearFar();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetViewDistance(void * jarg1, double jarg2) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double arg2 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (double)jarg2; 
+  (arg1)->SetViewDistance(arg2);
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfFrustum_GetViewDistance(void * jarg1) {
+  double jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (double)((GfFrustum const *)arg1)->GetViewDistance();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetProjectionType(void * jarg1, int jarg2) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfFrustum::ProjectionType arg2 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfFrustum::ProjectionType)jarg2; 
+  (arg1)->SetProjectionType(arg2);
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfFrustum_GetProjectionType(void * jarg1) {
+  int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfFrustum::ProjectionType result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (GfFrustum::ProjectionType)((GfFrustum const *)arg1)->GetProjectionType();
+  jresult = (int)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetPerspective__SWIG_0(void * jarg1, double jarg2, double jarg3, double jarg4, double jarg5) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double arg2 ;
+  double arg3 ;
+  double arg4 ;
+  double arg5 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (double)jarg2; 
+  arg3 = (double)jarg3; 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  (arg1)->SetPerspective(arg2,arg3,arg4,arg5);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetPerspective__SWIG_1(void * jarg1, double jarg2, unsigned int jarg3, double jarg4, double jarg5, double jarg6) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double arg2 ;
+  bool arg3 ;
+  double arg4 ;
+  double arg5 ;
+  double arg6 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (double)jarg2; 
+  arg3 = jarg3 ? true : false; 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  arg6 = (double)jarg6; 
+  (arg1)->SetPerspective(arg2,arg3,arg4,arg5,arg6);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_GetPerspective__SWIG_0(void * jarg1, double * jarg2, double * jarg3, double * jarg4, double * jarg5) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double *arg2 = (double *) 0 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (double *)jarg2; 
+  arg3 = (double *)jarg3; 
+  arg4 = (double *)jarg4; 
+  arg5 = (double *)jarg5; 
+  result = (bool)((GfFrustum const *)arg1)->GetPerspective(arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_GetPerspective__SWIG_1(void * jarg1, unsigned int jarg2, double * jarg3, double * jarg4, double * jarg5, double * jarg6) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  bool arg2 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  arg3 = (double *)jarg3; 
+  arg4 = (double *)jarg4; 
+  arg5 = (double *)jarg5; 
+  arg6 = (double *)jarg6; 
+  result = (bool)((GfFrustum const *)arg1)->GetPerspective(arg2,arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfFrustum_GetFOV__SWIG_0(void * jarg1, unsigned int jarg2) {
+  double jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  bool arg2 ;
+  double result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  result = (double)(arg1)->GetFOV(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfFrustum_GetFOV__SWIG_1(void * jarg1) {
+  double jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (double)(arg1)->GetFOV();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_SetOrthographic(void * jarg1, double jarg2, double jarg3, double jarg4, double jarg5, double jarg6, double jarg7) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double arg2 ;
+  double arg3 ;
+  double arg4 ;
+  double arg5 ;
+  double arg6 ;
+  double arg7 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (double)jarg2; 
+  arg3 = (double)jarg3; 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  arg6 = (double)jarg6; 
+  arg7 = (double)jarg7; 
+  (arg1)->SetOrthographic(arg2,arg3,arg4,arg5,arg6,arg7);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_GetOrthographic(void * jarg1, double * jarg2, double * jarg3, double * jarg4, double * jarg5, double * jarg6, double * jarg7) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double *arg2 = (double *) 0 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (double *)jarg2; 
+  arg3 = (double *)jarg3; 
+  arg4 = (double *)jarg4; 
+  arg5 = (double *)jarg5; 
+  arg6 = (double *)jarg6; 
+  arg7 = (double *)jarg7; 
+  result = (bool)((GfFrustum const *)arg1)->GetOrthographic(arg2,arg3,arg4,arg5,arg6,arg7);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_FitToSphere__SWIG_0(void * jarg1, void * jarg2, double jarg3, double jarg4) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double arg3 ;
+  double arg4 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (double)jarg3; 
+  arg4 = (double)jarg4; 
+  (arg1)->FitToSphere((GfVec3d const &)*arg2,arg3,arg4);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_FitToSphere__SWIG_1(void * jarg1, void * jarg2, double jarg3) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  double arg3 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (double)jarg3; 
+  (arg1)->FitToSphere((GfVec3d const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_Transform(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  GfFrustum *result = 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfFrustum *) &(arg1)->Transform((GfMatrix4d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeViewDirection(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = ((GfFrustum const *)arg1)->ComputeViewDirection();
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeUpVector(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = ((GfFrustum const *)arg1)->ComputeUpVector();
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeViewFrame(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = (GfVec3d *) 0 ;
+  GfVec3d *arg3 = (GfVec3d *) 0 ;
+  GfVec3d *arg4 = (GfVec3d *) 0 ;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2; 
+  arg3 = (GfVec3d *)jarg3; 
+  arg4 = (GfVec3d *)jarg4; 
+  ((GfFrustum const *)arg1)->ComputeViewFrame(arg2,arg3,arg4);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeLookAtPoint(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = ((GfFrustum const *)arg1)->ComputeLookAtPoint();
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeViewMatrix(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = ((GfFrustum const *)arg1)->ComputeViewMatrix();
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeViewInverse(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = ((GfFrustum const *)arg1)->ComputeViewInverse();
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeProjectionMatrix(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = ((GfFrustum const *)arg1)->ComputeProjectionMatrix();
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeAspectRatio(void * jarg1) {
+  double jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (double)((GfFrustum const *)arg1)->ComputeAspectRatio();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeCorners(void * jarg1) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  std::vector< GfVec3d > result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = ((GfFrustum const *)arg1)->ComputeCorners();
+  jresult = new std::vector< GfVec3d >((const std::vector< GfVec3d > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeCornersAtDistance(void * jarg1, double jarg2) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  double arg2 ;
+  std::vector< GfVec3d > result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (double)jarg2; 
+  result = ((GfFrustum const *)arg1)->ComputeCornersAtDistance(arg2);
+  jresult = new std::vector< GfVec3d >((const std::vector< GfVec3d > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeNarrowedFrustum__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec2d *arg2 = 0 ;
+  GfVec2d *arg3 = 0 ;
+  GfFrustum result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec2d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec2d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec2d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec2d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfFrustum const *)arg1)->ComputeNarrowedFrustum((GfVec2d const &)*arg2,(GfVec2d const &)*arg3);
+  jresult = new GfFrustum((const GfFrustum &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeNarrowedFrustum__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec2d *arg3 = 0 ;
+  GfFrustum result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec2d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec2d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfFrustum const *)arg1)->ComputeNarrowedFrustum((GfVec3d const &)*arg2,(GfVec2d const &)*arg3);
+  jresult = new GfFrustum((const GfFrustum &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeRay__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec2d *arg2 = 0 ;
+  GfRay result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec2d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec2d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfFrustum const *)arg1)->ComputeRay((GfVec2d const &)*arg2);
+  jresult = new GfRay((const GfRay &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputeRay__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfRay result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfFrustum const *)arg1)->ComputeRay((GfVec3d const &)*arg2);
+  jresult = new GfRay((const GfRay &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputePickRay__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec2d *arg2 = 0 ;
+  GfRay result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec2d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec2d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfFrustum const *)arg1)->ComputePickRay((GfVec2d const &)*arg2);
+  jresult = new GfRay((const GfRay &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfFrustum_ComputePickRay__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfRay result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = ((GfFrustum const *)arg1)->ComputePickRay((GfVec3d const &)*arg2);
+  jresult = new GfRay((const GfRay &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_Intersects__SWIG_0(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfBBox3d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfBBox3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfFrustum const *)arg1)->Intersects((GfBBox3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_Intersects__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfFrustum const *)arg1)->Intersects((GfVec3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_Intersects__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfFrustum const *)arg1)->Intersects((GfVec3d const &)*arg2,(GfVec3d const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_Intersects__SWIG_3(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  GfVec3d *arg2 = 0 ;
+  GfVec3d *arg3 = 0 ;
+  GfVec3d *arg4 = 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  arg2 = (GfVec3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (GfVec3d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (GfVec3d *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((GfFrustum const *)arg1)->Intersects((GfVec3d const &)*arg2,(GfVec3d const &)*arg3,(GfVec3d const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_IntersectsViewVolume(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfBBox3d *arg1 = 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfFrustum::IntersectsViewVolume((GfBBox3d const &)*arg1,(GfMatrix4d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFrustum_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfFrustum *arg1 = 0 ;
+  GfFrustum *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfFrustum *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfFrustum const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfFrustum *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfFrustum const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfFrustum_Equals((GfFrustum const &)*arg1,(GfFrustum const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfFrustum_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfFrustum *arg1 = (GfFrustum *) 0 ;
+  int result;
+  
+  arg1 = (GfFrustum *)jarg1; 
+  result = (int)GfFrustum_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Clear(void * jarg1) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Add(void * jarg1, void * jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  GfVec4f *arg2 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (GfVec4f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((GfVec4f const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec4fVector_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f >::size_type result;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  result = ((std::vector< GfVec4f > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec4fVector_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f >::size_type result;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  result = ((std::vector< GfVec4f > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f >::size_type arg2 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (std::vector< GfVec4f >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_0() {
+  void * jresult ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  result = (std::vector< GfVec4f > *)new std::vector< GfVec4f >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = 0 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< GfVec4f > *)new std::vector< GfVec4f >((std::vector< GfVec4f > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< GfVec4f > *)new_std_vector_Sl_GfVec4f_Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_getitemcopy(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f result;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_GfVec4f_Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new GfVec4f((const GfVec4f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f *result = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (GfVec4f *) &std_vector_Sl_GfVec4f_Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (GfVec4f *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__setitem(arg1,arg2,(GfVec4f const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_AddRange(void * jarg1, void * jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f > *arg2 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (std::vector< GfVec4f > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_GfVec4f_Sg__AddRange(arg1,(std::vector< GfVec4f > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< GfVec4f > *)std_vector_Sl_GfVec4f_Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (GfVec4f *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__Insert(arg1,arg2,(GfVec4f const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  std::vector< GfVec4f > *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< GfVec4f > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__InsertRange(arg1,arg2,(std::vector< GfVec4f > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_GfVec4f_Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_GfVec4f_Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  GfVec4f *arg1 = 0 ;
+  int arg2 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (GfVec4f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< GfVec4f > *)std_vector_Sl_GfVec4f_Sg__Repeat((GfVec4f const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Reverse__SWIG_0(void * jarg1) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  std::vector< GfVec4f > *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< GfVec4f > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__SetRange(arg1,arg2,(std::vector< GfVec4f > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfVec4fVector(void * jarg1) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_0() {
+  void * jresult ;
+  GfBBox3d *result = 0 ;
+  
+  result = (GfBBox3d *)new GfBBox3d();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_1(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = 0 ;
+  GfBBox3d *result = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfBBox3d *)new GfBBox3d((GfBBox3d const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_2(void * jarg1) {
+  void * jresult ;
+  GfRange3d *arg1 = 0 ;
+  GfBBox3d *result = 0 ;
+  
+  arg1 = (GfRange3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_3(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange3d *arg1 = 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  GfBBox3d *result = 0 ;
+  
+  arg1 = (GfRange3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1,(GfMatrix4d const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Set(void * jarg1, void * jarg2, void * jarg3) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *arg2 = 0 ;
+  GfMatrix4d *arg3 = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (GfMatrix4d *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->Set((GfRange3d const &)*arg2,(GfMatrix4d const &)*arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetMatrix(void * jarg1, void * jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetMatrix((GfMatrix4d const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetRange(void * jarg1, void * jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *arg2 = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetRange((GfRange3d const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetRange(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *result = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetRange();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetBox(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *result = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetBox();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetMatrix(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfMatrix4d *result = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetMatrix();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetInverseMatrix(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfMatrix4d *result = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetInverseMatrix();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetHasZeroAreaPrimitives(void * jarg1, unsigned int jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (arg1)->SetHasZeroAreaPrimitives(arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_HasZeroAreaPrimitives(void * jarg1) {
+  unsigned int jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  bool result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (bool)((GfBBox3d const *)arg1)->HasZeroAreaPrimitives();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfBBox3d_GetVolume(void * jarg1) {
+  double jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  double result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (double)((GfBBox3d const *)arg1)->GetVolume();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Transform(void * jarg1, void * jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->Transform((GfMatrix4d const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedRange(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = ((GfBBox3d const *)arg1)->ComputeAlignedRange();
+  jresult = new GfRange3d((const GfRange3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedBox(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = ((GfBBox3d const *)arg1)->ComputeAlignedBox();
+  jresult = new GfRange3d((const GfRange3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_Combine(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfBBox3d *arg1 = 0 ;
+  GfBBox3d *arg2 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfBBox3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = GfBBox3d::Combine((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeCentroid(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = ((GfBBox3d const *)arg1)->ComputeCentroid();
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfBBox3d *arg1 = 0 ;
+  GfBBox3d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfBBox3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfBBox3d_Equals((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfBBox3d_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  int result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (int)GfBBox3d_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfBBox3d(void * jarg1) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  delete arg1;
 }
 
 
@@ -37010,7 +42342,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_VtValue_GetHash(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_27(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_30(void * jarg1) {
   unsigned long jresult ;
   VtValue *arg1 = 0 ;
   size_t result;
@@ -38204,7 +43536,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_2(void * jarg1, void * jarg2) 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_28(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_31(void * jarg1) {
   unsigned long jresult ;
   VtDictionary *arg1 = 0 ;
   size_t result;
@@ -38578,7 +43910,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_ArResolverContext_GetDebugString(void *
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_29(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_32(void * jarg1) {
   unsigned long jresult ;
   ArResolverContext *arg1 = 0 ;
   size_t result;
@@ -38614,7 +43946,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfIsDefiningSpecifier(int jarg1)
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_30(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_33(void * jarg1) {
   unsigned long jresult ;
   SdfValueBlock *arg1 = 0 ;
   size_t result;
@@ -38930,7 +44262,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfValueTypeNameHash(void * jarg1)
 }
 
 
-SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_31(void * jarg1) {
+SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_34(void * jarg1) {
   unsigned long long jresult ;
   SdfValueTypeName *arg1 = 0 ;
   uint64_t result;
@@ -39929,7 +45261,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfAssetPath_GetHash(void * jarg
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_32(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_35(void * jarg1) {
   unsigned long jresult ;
   SdfAssetPath *arg1 = 0 ;
   size_t result;
@@ -41621,7 +46953,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPath(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_33(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
   unsigned long jresult ;
   SdfPath *arg1 = 0 ;
   size_t result;
@@ -42163,7 +47495,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayerOffset_Hash(void * jarg1) 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_34(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_37(void * jarg1) {
   unsigned long jresult ;
   SdfLayerOffset *arg1 = 0 ;
   size_t result;
@@ -42290,7 +47622,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPayload_SetPrimPath(void * jarg1, void
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_35(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_38(void * jarg1) {
   unsigned long jresult ;
   SdfPayload *arg1 = 0 ;
   size_t result;
@@ -50821,7 +56153,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdTimeCode_GetValue(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_39(void * jarg1) {
   unsigned long jresult ;
   UsdTimeCode *arg1 = 0 ;
   size_t result;
@@ -51302,7 +56634,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_Usd_PrimFlagsPredicate_IncludeIns
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_37(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_40(void * jarg1) {
   unsigned long jresult ;
   Usd_PrimFlagsPredicate *arg1 = 0 ;
   size_t result;
@@ -55436,7 +60768,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdObject_IsValid(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_38(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_41(void * jarg1) {
   unsigned long jresult ;
   UsdObject *arg1 = 0 ;
   size_t result;
@@ -61758,868 +67090,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdTyped_Get(void * jarg1, void * jarg2
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Clear(void * jarg1) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  (arg1)->clear();
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Add(void * jarg1, void * jarg2) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  UsdGeomXformOp *arg2 = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (UsdGeomXformOp *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
-    return ;
-  } 
-  (arg1)->push_back((UsdGeomXformOp const &)*arg2);
-}
-
-
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_size(void * jarg1) {
-  unsigned long jresult ;
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  std::vector< UsdGeomXformOp >::size_type result;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  result = ((std::vector< UsdGeomXformOp > const *)arg1)->size();
-  jresult = (unsigned long)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_capacity(void * jarg1) {
-  unsigned long jresult ;
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  std::vector< UsdGeomXformOp >::size_type result;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  result = ((std::vector< UsdGeomXformOp > const *)arg1)->capacity();
-  jresult = (unsigned long)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_reserve(void * jarg1, unsigned long jarg2) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  std::vector< UsdGeomXformOp >::size_type arg2 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (std::vector< UsdGeomXformOp >::size_type)jarg2; 
-  (arg1)->reserve(arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOpVector__SWIG_0() {
-  void * jresult ;
-  std::vector< UsdGeomXformOp > *result = 0 ;
-  
-  result = (std::vector< UsdGeomXformOp > *)new std::vector< UsdGeomXformOp >();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOpVector__SWIG_1(void * jarg1) {
-  void * jresult ;
-  std::vector< UsdGeomXformOp > *arg1 = 0 ;
-  std::vector< UsdGeomXformOp > *result = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
-    return 0;
-  } 
-  result = (std::vector< UsdGeomXformOp > *)new std::vector< UsdGeomXformOp >((std::vector< UsdGeomXformOp > const &)*arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOpVector__SWIG_2(int jarg1) {
-  void * jresult ;
-  int arg1 ;
-  std::vector< UsdGeomXformOp > *result = 0 ;
-  
-  arg1 = (int)jarg1; 
-  try {
-    result = (std::vector< UsdGeomXformOp > *)new_std_vector_Sl_UsdGeomXformOp_Sg___SWIG_2(arg1);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return 0;
-  }
-  
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_getitemcopy(void * jarg1, int jarg2) {
-  void * jresult ;
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  UsdGeomXformOp result;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  try {
-    result = std_vector_Sl_UsdGeomXformOp_Sg__getitemcopy(arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return 0;
-  }
-  
-  jresult = new UsdGeomXformOp((const UsdGeomXformOp &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_getitem(void * jarg1, int jarg2) {
-  void * jresult ;
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  UsdGeomXformOp *result = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  try {
-    result = (UsdGeomXformOp *) &std_vector_Sl_UsdGeomXformOp_Sg__getitem(arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return 0;
-  }
-  
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_setitem(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  UsdGeomXformOp *arg3 = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (UsdGeomXformOp *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
-    return ;
-  } 
-  try {
-    std_vector_Sl_UsdGeomXformOp_Sg__setitem(arg1,arg2,(UsdGeomXformOp const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_AddRange(void * jarg1, void * jarg2) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  std::vector< UsdGeomXformOp > *arg2 = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (std::vector< UsdGeomXformOp > *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
-    return ;
-  } 
-  std_vector_Sl_UsdGeomXformOp_Sg__AddRange(arg1,(std::vector< UsdGeomXformOp > const &)*arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_GetRange(void * jarg1, int jarg2, int jarg3) {
-  void * jresult ;
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  std::vector< UsdGeomXformOp > *result = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  try {
-    result = (std::vector< UsdGeomXformOp > *)std_vector_Sl_UsdGeomXformOp_Sg__GetRange(arg1,arg2,arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return 0;
-  }
-  catch(std::invalid_argument &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
-    return 0;
-  }
-  
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Insert(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  UsdGeomXformOp *arg3 = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (UsdGeomXformOp *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
-    return ;
-  } 
-  try {
-    std_vector_Sl_UsdGeomXformOp_Sg__Insert(arg1,arg2,(UsdGeomXformOp const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  std::vector< UsdGeomXformOp > *arg3 = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (std::vector< UsdGeomXformOp > *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
-    return ;
-  } 
-  try {
-    std_vector_Sl_UsdGeomXformOp_Sg__InsertRange(arg1,arg2,(std::vector< UsdGeomXformOp > const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_RemoveAt(void * jarg1, int jarg2) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  try {
-    std_vector_Sl_UsdGeomXformOp_Sg__RemoveAt(arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  try {
-    std_vector_Sl_UsdGeomXformOp_Sg__RemoveRange(arg1,arg2,arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  catch(std::invalid_argument &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Repeat(void * jarg1, int jarg2) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = 0 ;
-  int arg2 ;
-  std::vector< UsdGeomXformOp > *result = 0 ;
-  
-  arg1 = (UsdGeomXformOp *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (int)jarg2; 
-  try {
-    result = (std::vector< UsdGeomXformOp > *)std_vector_Sl_UsdGeomXformOp_Sg__Repeat((UsdGeomXformOp const &)*arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return 0;
-  }
-  
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Reverse__SWIG_0(void * jarg1) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_0(arg1);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  try {
-    std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  catch(std::invalid_argument &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  int arg2 ;
-  std::vector< UsdGeomXformOp > *arg3 = 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (std::vector< UsdGeomXformOp > *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
-    return ;
-  } 
-  try {
-    std_vector_Sl_UsdGeomXformOp_Sg__SetRange(arg1,arg2,(std::vector< UsdGeomXformOp > const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomXformOpVector(void * jarg1) {
-  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
-  
-  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOp__SWIG_0() {
-  void * jresult ;
-  UsdGeomXformOp *result = 0 ;
-  
-  result = (UsdGeomXformOp *)new UsdGeomXformOp();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOp__SWIG_1(void * jarg1, unsigned int jarg2) {
-  void * jresult ;
-  UsdAttribute *arg1 = 0 ;
-  bool arg2 ;
-  UsdGeomXformOp *result = 0 ;
-  
-  arg1 = (UsdAttribute *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
-    return 0;
-  } 
-  arg2 = jarg2 ? true : false; 
-  result = (UsdGeomXformOp *)new UsdGeomXformOp((UsdAttribute const &)*arg1,arg2);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOp__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdAttribute *arg1 = 0 ;
-  UsdGeomXformOp *result = 0 ;
-  
-  arg1 = (UsdAttribute *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
-    return 0;
-  } 
-  result = (UsdGeomXformOp *)new UsdGeomXformOp((UsdAttribute const &)*arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsXformOp__SWIG_0(void * jarg1) {
-  unsigned int jresult ;
-  UsdAttribute *arg1 = 0 ;
-  bool result;
-  
-  arg1 = (UsdAttribute *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)UsdGeomXformOp::IsXformOp((UsdAttribute const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsXformOp__SWIG_1(void * jarg1) {
-  unsigned int jresult ;
-  TfToken *arg1 = 0 ;
-  bool result;
-  
-  arg1 = (TfToken *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)UsdGeomXformOp::IsXformOp((TfToken const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTypeToken(int jarg1) {
-  void * jresult ;
-  UsdGeomXformOp::Type arg1 ;
-  TfToken *result = 0 ;
-  
-  arg1 = (UsdGeomXformOp::Type)jarg1; 
-  result = (TfToken *) &UsdGeomXformOp::GetOpTypeToken(arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTypeEnum(void * jarg1) {
-  int jresult ;
-  TfToken *arg1 = 0 ;
-  UsdGeomXformOp::Type result;
-  
-  arg1 = (TfToken *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (UsdGeomXformOp::Type)UsdGeomXformOp::GetOpTypeEnum((TfToken const &)*arg1);
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetPrecisionFromValueTypeName(void * jarg1) {
-  int jresult ;
-  SdfValueTypeName *arg1 = 0 ;
-  UsdGeomXformOp::Precision result;
-  
-  arg1 = (SdfValueTypeName *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfValueTypeName const & type is null", 0);
-    return 0;
-  } 
-  result = (UsdGeomXformOp::Precision)UsdGeomXformOp::GetPrecisionFromValueTypeName((SdfValueTypeName const &)*arg1);
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetValueTypeName(int jarg1, int jarg2) {
-  void * jresult ;
-  UsdGeomXformOp::Type arg1 ;
-  UsdGeomXformOp::Precision arg2 ;
-  SdfValueTypeName *result = 0 ;
-  
-  arg1 = (UsdGeomXformOp::Type)jarg1; 
-  arg2 = (UsdGeomXformOp::Precision)jarg2; 
-  result = (SdfValueTypeName *) &UsdGeomXformOp::GetValueTypeName(arg1,arg2);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_0(int jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdGeomXformOp::Type arg1 ;
-  TfToken *arg2 = 0 ;
-  bool arg3 ;
-  TfToken result;
-  
-  arg1 = (UsdGeomXformOp::Type)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = UsdGeomXformOp::GetOpName(arg1,(TfToken const &)*arg2,arg3);
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_1(int jarg1, void * jarg2) {
-  void * jresult ;
-  UsdGeomXformOp::Type arg1 ;
-  TfToken *arg2 = 0 ;
-  TfToken result;
-  
-  arg1 = (UsdGeomXformOp::Type)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = UsdGeomXformOp::GetOpName(arg1,(TfToken const &)*arg2);
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_2(int jarg1) {
-  void * jresult ;
-  UsdGeomXformOp::Type arg1 ;
-  TfToken result;
-  
-  arg1 = (UsdGeomXformOp::Type)jarg1; 
-  result = UsdGeomXformOp::GetOpName(arg1);
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpType(void * jarg1) {
-  int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  UsdGeomXformOp::Type result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = (UsdGeomXformOp::Type)((UsdGeomXformOp const *)arg1)->GetOpType();
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetPrecision(void * jarg1) {
-  int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  UsdGeomXformOp::Precision result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = (UsdGeomXformOp::Precision)((UsdGeomXformOp const *)arg1)->GetPrecision();
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsInverseOp(void * jarg1) {
-  unsigned int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  bool result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = (bool)((UsdGeomXformOp const *)arg1)->IsInverseOp();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_3(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  TfToken result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = ((UsdGeomXformOp const *)arg1)->GetOpName();
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_HasSuffix(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  TfToken *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  arg2 = (TfToken *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)((UsdGeomXformOp const *)arg1)->HasSuffix((TfToken const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTransform__SWIG_0(int jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdGeomXformOp::Type arg1 ;
-  VtValue *arg2 = 0 ;
-  bool arg3 ;
-  GfMatrix4d result;
-  
-  arg1 = (UsdGeomXformOp::Type)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = UsdGeomXformOp::GetOpTransform(arg1,(VtValue const &)*arg2,arg3);
-  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTransform__SWIG_1(int jarg1, void * jarg2) {
-  void * jresult ;
-  UsdGeomXformOp::Type arg1 ;
-  VtValue *arg2 = 0 ;
-  GfMatrix4d result;
-  
-  arg1 = (UsdGeomXformOp::Type)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = UsdGeomXformOp::GetOpTransform(arg1,(VtValue const &)*arg2);
-  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTransform__SWIG_2(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  UsdTimeCode arg2 ;
-  UsdTimeCode *argp2 ;
-  GfMatrix4d result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  argp2 = (UsdTimeCode *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = ((UsdGeomXformOp const *)arg1)->GetOpTransform(arg2);
-  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_MightBeTimeVarying(void * jarg1) {
-  unsigned int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  bool result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = (bool)((UsdGeomXformOp const *)arg1)->MightBeTimeVarying();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetAttr(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  UsdAttribute *result = 0 ;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = (UsdAttribute *) &((UsdGeomXformOp const *)arg1)->GetAttr();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsDefined(void * jarg1) {
-  unsigned int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  bool result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = (bool)((UsdGeomXformOp const *)arg1)->IsDefined();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetName(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  TfToken *result = 0 ;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = (TfToken *) &((UsdGeomXformOp const *)arg1)->GetName();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetBaseName(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  TfToken result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = ((UsdGeomXformOp const *)arg1)->GetBaseName();
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetNamespace(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  TfToken result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = ((UsdGeomXformOp const *)arg1)->GetNamespace();
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_SplitName(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  std::vector< std::string > result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = ((UsdGeomXformOp const *)arg1)->SplitName();
-  jresult = new std::vector< std::string >((const std::vector< std::string > &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetTypeName(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  SdfValueTypeName result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = ((UsdGeomXformOp const *)arg1)->GetTypeName();
-  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetTimeSamples(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  std::vector< double > *arg2 = (std::vector< double > *) 0 ;
-  bool result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  arg2 = (std::vector< double > *)jarg2; 
-  result = (bool)((UsdGeomXformOp const *)arg1)->GetTimeSamples(arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetNumTimeSamples(void * jarg1) {
-  unsigned long jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  size_t result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  result = ((UsdGeomXformOp const *)arg1)->GetNumTimeSamples();
-  jresult = (unsigned long)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_Set__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  GfMatrix4d *arg2 = 0 ;
-  UsdTimeCode arg3 ;
-  UsdTimeCode *argp3 ;
-  bool result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  argp3 = (UsdTimeCode *)jarg3; 
-  if (!argp3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (bool)UsdGeomXformOp_Set__SWIG_2((UsdGeomXformOp const *)arg1,(GfMatrix4d const &)*arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_Set__SWIG_3(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  GfMatrix4d *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)UsdGeomXformOp_Set__SWIG_2((UsdGeomXformOp const *)arg1,(GfMatrix4d const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomXformOp(void * jarg1) {
-  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
-  
-  arg1 = (UsdGeomXformOp *)jarg1; 
-  delete arg1;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomFaceSetAPI__SWIG_0(void * jarg1, void * jarg2) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -64596,6 +69066,142 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomPrimvar(void * jarg1) {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomScope::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomScope::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomScope__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomScope *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomScope *)new UsdGeomScope((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomScope__SWIG_1() {
+  void * jresult ;
+  UsdGeomScope *result = 0 ;
+  
+  result = (UsdGeomScope *)new UsdGeomScope();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomScope__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomScope *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomScope *)new UsdGeomScope((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomScope(void * jarg1) {
+  UsdGeomScope *arg1 = (UsdGeomScope *) 0 ;
+  
+  arg1 = (UsdGeomScope *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomScope::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomScope::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomScope result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomScope::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomScope((const UsdGeomScope &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomScope result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomScope::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomScope((const UsdGeomScope &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_IsConcrete_get() {
   unsigned int jresult ;
   bool result;
@@ -65648,431 +70254,865 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomImageable_ComputeParentToWorldTr
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Clear(void * jarg1) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
   
-  result = (bool)UsdGeomScope::IsConcrete;
-  jresult = result; 
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Add(void * jarg1, void * jarg2) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  UsdGeomXformOp *arg2 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (UsdGeomXformOp *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((UsdGeomXformOp const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  std::vector< UsdGeomXformOp >::size_type result;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  result = ((std::vector< UsdGeomXformOp > const *)arg1)->size();
+  jresult = (unsigned long)result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  std::vector< UsdGeomXformOp >::size_type result;
   
-  result = (bool)UsdGeomScope::IsTyped;
-  jresult = result; 
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  result = ((std::vector< UsdGeomXformOp > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomScope__SWIG_0(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  std::vector< UsdGeomXformOp >::size_type arg2 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (std::vector< UsdGeomXformOp >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOpVector__SWIG_0() {
   void * jresult ;
-  UsdPrim *arg1 = 0 ;
-  UsdGeomScope *result = 0 ;
+  std::vector< UsdGeomXformOp > *result = 0 ;
   
-  arg1 = (UsdPrim *)jarg1;
+  result = (std::vector< UsdGeomXformOp > *)new std::vector< UsdGeomXformOp >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOpVector__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< UsdGeomXformOp > *arg1 = 0 ;
+  std::vector< UsdGeomXformOp > *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1;
   if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
     return 0;
   } 
-  result = (UsdGeomScope *)new UsdGeomScope((UsdPrim const &)*arg1);
+  result = (std::vector< UsdGeomXformOp > *)new std::vector< UsdGeomXformOp >((std::vector< UsdGeomXformOp > const &)*arg1);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomScope__SWIG_1() {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOpVector__SWIG_2(int jarg1) {
   void * jresult ;
-  UsdGeomScope *result = 0 ;
+  int arg1 ;
+  std::vector< UsdGeomXformOp > *result = 0 ;
   
-  result = (UsdGeomScope *)new UsdGeomScope();
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< UsdGeomXformOp > *)new_std_vector_Sl_UsdGeomXformOp_Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomScope__SWIG_2(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_getitemcopy(void * jarg1, int jarg2) {
   void * jresult ;
-  UsdSchemaBase *arg1 = 0 ;
-  UsdGeomScope *result = 0 ;
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  UsdGeomXformOp result;
   
-  arg1 = (UsdSchemaBase *)jarg1;
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_UsdGeomXformOp_Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new UsdGeomXformOp((const UsdGeomXformOp &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  UsdGeomXformOp *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (UsdGeomXformOp *) &std_vector_Sl_UsdGeomXformOp_Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  UsdGeomXformOp *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (UsdGeomXformOp *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomXformOp_Sg__setitem(arg1,arg2,(UsdGeomXformOp const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_AddRange(void * jarg1, void * jarg2) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  std::vector< UsdGeomXformOp > *arg2 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (std::vector< UsdGeomXformOp > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_UsdGeomXformOp_Sg__AddRange(arg1,(std::vector< UsdGeomXformOp > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< UsdGeomXformOp > *result = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< UsdGeomXformOp > *)std_vector_Sl_UsdGeomXformOp_Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  UsdGeomXformOp *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (UsdGeomXformOp *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomXformOp_Sg__Insert(arg1,arg2,(UsdGeomXformOp const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  std::vector< UsdGeomXformOp > *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< UsdGeomXformOp > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomXformOp_Sg__InsertRange(arg1,arg2,(std::vector< UsdGeomXformOp > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_UsdGeomXformOp_Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_UsdGeomXformOp_Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = 0 ;
+  int arg2 ;
+  std::vector< UsdGeomXformOp > *result = 0 ;
+  
+  arg1 = (UsdGeomXformOp *)jarg1;
   if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomXformOp const & type is null", 0);
     return 0;
   } 
-  result = (UsdGeomScope *)new UsdGeomScope((UsdSchemaBase const &)*arg1);
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< UsdGeomXformOp > *)std_vector_Sl_UsdGeomXformOp_Sg__Repeat((UsdGeomXformOp const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomScope(void * jarg1) {
-  UsdGeomScope *arg1 = (UsdGeomScope *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Reverse__SWIG_0(void * jarg1) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
   
-  arg1 = (UsdGeomScope *)jarg1; 
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_UsdGeomXformOp_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformOpVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  int arg2 ;
+  std::vector< UsdGeomXformOp > *arg3 = 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< UsdGeomXformOp > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdGeomXformOp > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_UsdGeomXformOp_Sg__SetRange(arg1,arg2,(std::vector< UsdGeomXformOp > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomXformOpVector(void * jarg1) {
+  std::vector< UsdGeomXformOp > *arg1 = (std::vector< UsdGeomXformOp > *) 0 ;
+  
+  arg1 = (std::vector< UsdGeomXformOp > *)jarg1; 
   delete arg1;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOp__SWIG_0() {
   void * jresult ;
-  bool arg1 ;
-  TfTokenVector *result = 0 ;
+  UsdGeomXformOp *result = 0 ;
   
-  arg1 = jarg1 ? true : false; 
-  result = (TfTokenVector *) &UsdGeomScope::GetSchemaAttributeNames(arg1);
+  result = (UsdGeomXformOp *)new UsdGeomXformOp();
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_GetSchemaAttributeNames__SWIG_1() {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOp__SWIG_1(void * jarg1, unsigned int jarg2) {
   void * jresult ;
-  TfTokenVector *result = 0 ;
+  UsdAttribute *arg1 = 0 ;
+  bool arg2 ;
+  UsdGeomXformOp *result = 0 ;
   
-  result = (TfTokenVector *) &UsdGeomScope::GetSchemaAttributeNames();
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  arg2 = jarg2 ? true : false; 
+  result = (UsdGeomXformOp *)new UsdGeomXformOp((UsdAttribute const &)*arg1,arg2);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_Get(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformOp__SWIG_2(void * jarg1) {
   void * jresult ;
-  UsdStagePtr *arg1 = 0 ;
-  SdfPath *arg2 = 0 ;
-  UsdGeomScope result;
+  UsdAttribute *arg1 = 0 ;
+  UsdGeomXformOp *result = 0 ;
   
-  arg1 = (UsdStagePtr *)jarg1;
+  arg1 = (UsdAttribute *)jarg1;
   if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
     return 0;
   } 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = UsdGeomScope::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
-  jresult = new UsdGeomScope((const UsdGeomScope &)result); 
+  result = (UsdGeomXformOp *)new UsdGeomXformOp((UsdAttribute const &)*arg1);
+  jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_Define(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdStagePtr *arg1 = 0 ;
-  SdfPath *arg2 = 0 ;
-  UsdGeomScope result;
-  
-  arg1 = (UsdStagePtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = UsdGeomScope::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
-  jresult = new UsdGeomScope((const UsdGeomScope &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_IsConcrete_get() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsXformOp__SWIG_0(void * jarg1) {
   unsigned int jresult ;
+  UsdAttribute *arg1 = 0 ;
   bool result;
   
-  result = (bool)UsdGeomCurves::IsConcrete;
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdGeomXformOp::IsXformOp((UsdAttribute const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_IsTyped_get() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsXformOp__SWIG_1(void * jarg1) {
   unsigned int jresult ;
+  TfToken *arg1 = 0 ;
   bool result;
   
-  result = (bool)UsdGeomCurves::IsTyped;
+  arg1 = (TfToken *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdGeomXformOp::IsXformOp((TfToken const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCurves__SWIG_0(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTypeToken(int jarg1) {
   void * jresult ;
-  UsdPrim *arg1 = 0 ;
-  UsdGeomCurves *result = 0 ;
+  UsdGeomXformOp::Type arg1 ;
+  TfToken *result = 0 ;
   
-  arg1 = (UsdPrim *)jarg1;
+  arg1 = (UsdGeomXformOp::Type)jarg1; 
+  result = (TfToken *) &UsdGeomXformOp::GetOpTypeToken(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTypeEnum(void * jarg1) {
+  int jresult ;
+  TfToken *arg1 = 0 ;
+  UsdGeomXformOp::Type result;
+  
+  arg1 = (TfToken *)jarg1;
   if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
     return 0;
   } 
-  result = (UsdGeomCurves *)new UsdGeomCurves((UsdPrim const &)*arg1);
-  jresult = (void *)result; 
+  result = (UsdGeomXformOp::Type)UsdGeomXformOp::GetOpTypeEnum((TfToken const &)*arg1);
+  jresult = (int)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCurves__SWIG_1() {
-  void * jresult ;
-  UsdGeomCurves *result = 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetPrecisionFromValueTypeName(void * jarg1) {
+  int jresult ;
+  SdfValueTypeName *arg1 = 0 ;
+  UsdGeomXformOp::Precision result;
   
-  result = (UsdGeomCurves *)new UsdGeomCurves();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCurves__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdSchemaBase *arg1 = 0 ;
-  UsdGeomCurves *result = 0 ;
-  
-  arg1 = (UsdSchemaBase *)jarg1;
+  arg1 = (SdfValueTypeName *)jarg1;
   if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfValueTypeName const & type is null", 0);
     return 0;
   } 
-  result = (UsdGeomCurves *)new UsdGeomCurves((UsdSchemaBase const &)*arg1);
+  result = (UsdGeomXformOp::Precision)UsdGeomXformOp::GetPrecisionFromValueTypeName((SdfValueTypeName const &)*arg1);
+  jresult = (int)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetValueTypeName(int jarg1, int jarg2) {
+  void * jresult ;
+  UsdGeomXformOp::Type arg1 ;
+  UsdGeomXformOp::Precision arg2 ;
+  SdfValueTypeName *result = 0 ;
+  
+  arg1 = (UsdGeomXformOp::Type)jarg1; 
+  arg2 = (UsdGeomXformOp::Precision)jarg2; 
+  result = (SdfValueTypeName *) &UsdGeomXformOp::GetValueTypeName(arg1,arg2);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomCurves(void * jarg1) {
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_0(int jarg1, void * jarg2, unsigned int jarg3) {
   void * jresult ;
-  bool arg1 ;
-  TfTokenVector *result = 0 ;
-  
-  arg1 = jarg1 ? true : false; 
-  result = (TfTokenVector *) &UsdGeomCurves::GetSchemaAttributeNames(arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetSchemaAttributeNames__SWIG_1() {
-  void * jresult ;
-  TfTokenVector *result = 0 ;
-  
-  result = (TfTokenVector *) &UsdGeomCurves::GetSchemaAttributeNames();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_Get(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdStagePtr *arg1 = 0 ;
-  SdfPath *arg2 = 0 ;
-  UsdGeomCurves result;
-  
-  arg1 = (UsdStagePtr *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return 0;
-  } 
-  result = UsdGeomCurves::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
-  jresult = new UsdGeomCurves((const UsdGeomCurves &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetCurveVertexCountsAttr(void * jarg1) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  result = ((UsdGeomCurves const *)arg1)->GetCurveVertexCountsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateCurveVertexCountsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  VtValue *arg2 = 0 ;
+  UsdGeomXformOp::Type arg1 ;
+  TfToken *arg2 = 0 ;
   bool arg3 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = ((UsdGeomCurves const *)arg1)->CreateCurveVertexCountsAttr((VtValue const &)*arg2,arg3);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateCurveVertexCountsAttr__SWIG_1(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  VtValue *arg2 = 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = ((UsdGeomCurves const *)arg1)->CreateCurveVertexCountsAttr((VtValue const &)*arg2);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateCurveVertexCountsAttr__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  result = ((UsdGeomCurves const *)arg1)->CreateCurveVertexCountsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetWidthsAttr(void * jarg1) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  result = ((UsdGeomCurves const *)arg1)->GetWidthsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateWidthsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  VtValue *arg2 = 0 ;
-  bool arg3 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = ((UsdGeomCurves const *)arg1)->CreateWidthsAttr((VtValue const &)*arg2,arg3);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateWidthsAttr__SWIG_1(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  VtValue *arg2 = 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = ((UsdGeomCurves const *)arg1)->CreateWidthsAttr((VtValue const &)*arg2);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateWidthsAttr__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
-  result = ((UsdGeomCurves const *)arg1)->CreateWidthsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetWidthsInterpolation(void * jarg1) {
-  void * jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
   TfToken result;
   
-  arg1 = (UsdGeomCurves *)jarg1; 
-  result = ((UsdGeomCurves const *)arg1)->GetWidthsInterpolation();
-  jresult = new TfToken((const TfToken &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_SetWidthsInterpolation(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
-  TfToken *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (UsdGeomCurves *)jarg1; 
+  arg1 = (UsdGeomXformOp::Type)jarg1; 
   arg2 = (TfToken *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
     return 0;
   } 
-  result = (bool)(arg1)->SetWidthsInterpolation((TfToken const &)*arg2);
+  arg3 = jarg3 ? true : false; 
+  result = UsdGeomXformOp::GetOpName(arg1,(TfToken const &)*arg2,arg3);
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_1(int jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomXformOp::Type arg1 ;
+  TfToken *arg2 = 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomXformOp::Type)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomXformOp::GetOpName(arg1,(TfToken const &)*arg2);
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_2(int jarg1) {
+  void * jresult ;
+  UsdGeomXformOp::Type arg1 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomXformOp::Type)jarg1; 
+  result = UsdGeomXformOp::GetOpName(arg1);
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpType(void * jarg1) {
+  int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  UsdGeomXformOp::Type result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = (UsdGeomXformOp::Type)((UsdGeomXformOp const *)arg1)->GetOpType();
+  jresult = (int)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetPrecision(void * jarg1) {
+  int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  UsdGeomXformOp::Precision result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = (UsdGeomXformOp::Precision)((UsdGeomXformOp const *)arg1)->GetPrecision();
+  jresult = (int)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsInverseOp(void * jarg1) {
+  unsigned int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = (bool)((UsdGeomXformOp const *)arg1)->IsInverseOp();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_ComputeExtent(void * jarg1, void * jarg2, void * jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpName__SWIG_3(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = ((UsdGeomXformOp const *)arg1)->GetOpName();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_HasSuffix(void * jarg1, void * jarg2) {
   unsigned int jresult ;
-  VtVec3fArray *arg1 = 0 ;
-  VtFloatArray *arg2 = 0 ;
-  VtVec3fArray *arg3 = (VtVec3fArray *) 0 ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  TfToken *arg2 = 0 ;
   bool result;
   
-  arg1 = (VtVec3fArray *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (VtFloatArray *)jarg2;
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  arg2 = (TfToken *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtFloatArray const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
     return 0;
   } 
-  arg3 = (VtVec3fArray *)jarg3; 
-  result = (bool)UsdGeomCurves::ComputeExtent((VtArray< GfVec3f > const &)*arg1,(VtArray< float > const &)*arg2,arg3);
+  result = (bool)((UsdGeomXformOp const *)arg1)->HasSuffix((TfToken const &)*arg2);
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTransform__SWIG_0(int jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomXformOp::Type arg1 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomXformOp::Type)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = UsdGeomXformOp::GetOpTransform(arg1,(VtValue const &)*arg2,arg3);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTransform__SWIG_1(int jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomXformOp::Type arg1 ;
+  VtValue *arg2 = 0 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomXformOp::Type)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomXformOp::GetOpTransform(arg1,(VtValue const &)*arg2);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetOpTransform__SWIG_2(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  UsdTimeCode arg2 ;
+  UsdTimeCode *argp2 ;
+  GfMatrix4d result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  argp2 = (UsdTimeCode *)jarg2; 
+  if (!argp2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = ((UsdGeomXformOp const *)arg1)->GetOpTransform(arg2);
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_MightBeTimeVarying(void * jarg1) {
+  unsigned int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = (bool)((UsdGeomXformOp const *)arg1)->MightBeTimeVarying();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  UsdAttribute *result = 0 ;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = (UsdAttribute *) &((UsdGeomXformOp const *)arg1)->GetAttr();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_IsDefined(void * jarg1) {
+  unsigned int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = (bool)((UsdGeomXformOp const *)arg1)->IsDefined();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetName(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  TfToken *result = 0 ;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = (TfToken *) &((UsdGeomXformOp const *)arg1)->GetName();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetBaseName(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = ((UsdGeomXformOp const *)arg1)->GetBaseName();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetNamespace(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = ((UsdGeomXformOp const *)arg1)->GetNamespace();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_SplitName(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  std::vector< std::string > result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = ((UsdGeomXformOp const *)arg1)->SplitName();
+  jresult = new std::vector< std::string >((const std::vector< std::string > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetTypeName(void * jarg1) {
+  void * jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  SdfValueTypeName result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = ((UsdGeomXformOp const *)arg1)->GetTypeName();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetTimeSamples(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  std::vector< double > *arg2 = (std::vector< double > *) 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  arg2 = (std::vector< double > *)jarg2; 
+  result = (bool)((UsdGeomXformOp const *)arg1)->GetTimeSamples(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_GetNumTimeSamples(void * jarg1) {
+  unsigned long jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  size_t result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  result = ((UsdGeomXformOp const *)arg1)->GetNumTimeSamples();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_Set__SWIG_2(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  UsdTimeCode arg3 ;
+  UsdTimeCode *argp3 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (bool)UsdGeomXformOp_Set__SWIG_2((UsdGeomXformOp const *)arg1,(GfMatrix4d const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformOp_Set__SWIG_3(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdGeomXformOp_Set__SWIG_2((UsdGeomXformOp const *)arg1,(GfMatrix4d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomXformOp(void * jarg1) {
+  UsdGeomXformOp *arg1 = (UsdGeomXformOp *) 0 ;
+  
+  arg1 = (UsdGeomXformOp *)jarg1; 
+  delete arg1;
 }
 
 
@@ -67763,6 +72803,986 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXform_Define(void * jarg1, void 
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCamera_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCamera::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCamera_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCamera::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCamera__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomCamera *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCamera *)new UsdGeomCamera((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCamera__SWIG_1() {
+  void * jresult ;
+  UsdGeomCamera *result = 0 ;
+  
+  result = (UsdGeomCamera *)new UsdGeomCamera();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCamera__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomCamera *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCamera *)new UsdGeomCamera((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomCamera(void * jarg1) {
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomCamera::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomCamera::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomCamera result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCamera::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomCamera((const UsdGeomCamera &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomCamera result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCamera::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomCamera((const UsdGeomCamera &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetProjectionAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetProjectionAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateProjectionAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateProjectionAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateProjectionAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateProjectionAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateProjectionAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateProjectionAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetHorizontalApertureAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetHorizontalApertureAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateHorizontalApertureAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateHorizontalApertureAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateHorizontalApertureAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateHorizontalApertureAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateHorizontalApertureAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateHorizontalApertureAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetVerticalApertureAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetVerticalApertureAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateVerticalApertureAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateVerticalApertureAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateVerticalApertureAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateVerticalApertureAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateVerticalApertureAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateVerticalApertureAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetHorizontalApertureOffsetAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetHorizontalApertureOffsetAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateHorizontalApertureOffsetAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateHorizontalApertureOffsetAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateHorizontalApertureOffsetAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateHorizontalApertureOffsetAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateHorizontalApertureOffsetAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateHorizontalApertureOffsetAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetVerticalApertureOffsetAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetVerticalApertureOffsetAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateVerticalApertureOffsetAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateVerticalApertureOffsetAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateVerticalApertureOffsetAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateVerticalApertureOffsetAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateVerticalApertureOffsetAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateVerticalApertureOffsetAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetFocalLengthAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetFocalLengthAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFocalLengthAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateFocalLengthAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFocalLengthAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateFocalLengthAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFocalLengthAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateFocalLengthAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetClippingRangeAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetClippingRangeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateClippingRangeAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateClippingRangeAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateClippingRangeAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateClippingRangeAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateClippingRangeAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateClippingRangeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetClippingPlanesAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetClippingPlanesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateClippingPlanesAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateClippingPlanesAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateClippingPlanesAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateClippingPlanesAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateClippingPlanesAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateClippingPlanesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetFStopAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetFStopAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFStopAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateFStopAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFStopAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateFStopAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFStopAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateFStopAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetFocusDistanceAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetFocusDistanceAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFocusDistanceAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateFocusDistanceAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFocusDistanceAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateFocusDistanceAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateFocusDistanceAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateFocusDistanceAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetStereoRoleAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetStereoRoleAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateStereoRoleAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateStereoRoleAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateStereoRoleAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateStereoRoleAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateStereoRoleAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateStereoRoleAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetShutterOpenAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetShutterOpenAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateShutterOpenAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateShutterOpenAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateShutterOpenAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateShutterOpenAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateShutterOpenAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateShutterOpenAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetShutterCloseAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->GetShutterCloseAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateShutterCloseAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCamera const *)arg1)->CreateShutterCloseAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateShutterCloseAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->CreateShutterCloseAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_CreateShutterCloseAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  result = ((UsdGeomCamera const *)arg1)->CreateShutterCloseAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_GetCamera(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  UsdTimeCode *arg2 = 0 ;
+  GfCamera result;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (UsdTimeCode *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCamera const *)arg1)->GetCamera((UsdTimeCode const &)*arg2);
+  jresult = new GfCamera((const GfCamera &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCamera_SetFromCamera(void * jarg1, void * jarg2, void * jarg3) {
+  UsdGeomCamera *arg1 = (UsdGeomCamera *) 0 ;
+  GfCamera *arg2 = 0 ;
+  UsdTimeCode *arg3 = 0 ;
+  
+  arg1 = (UsdGeomCamera *)jarg1; 
+  arg2 = (GfCamera *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfCamera const & type is null", 0);
+    return ;
+  } 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetFromCamera((GfCamera const &)*arg2,(UsdTimeCode const &)*arg3);
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBoundable_IsConcrete_get() {
   unsigned int jresult ;
   bool result;
@@ -68794,6 +74814,1194 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_ComputeExtent(v
   result = (bool)UsdGeomPointBased::ComputeExtent((VtArray< GfVec3f > const &)*arg1,arg2);
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCurves::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomCurves::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCurves__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomCurves *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCurves *)new UsdGeomCurves((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCurves__SWIG_1() {
+  void * jresult ;
+  UsdGeomCurves *result = 0 ;
+  
+  result = (UsdGeomCurves *)new UsdGeomCurves();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCurves__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomCurves *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomCurves *)new UsdGeomCurves((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomCurves(void * jarg1) {
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomCurves::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomCurves::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomCurves result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomCurves::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomCurves((const UsdGeomCurves &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetCurveVertexCountsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  result = ((UsdGeomCurves const *)arg1)->GetCurveVertexCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateCurveVertexCountsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCurves const *)arg1)->CreateCurveVertexCountsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateCurveVertexCountsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCurves const *)arg1)->CreateCurveVertexCountsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateCurveVertexCountsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  result = ((UsdGeomCurves const *)arg1)->CreateCurveVertexCountsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetWidthsAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  result = ((UsdGeomCurves const *)arg1)->GetWidthsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateWidthsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomCurves const *)arg1)->CreateWidthsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateWidthsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomCurves const *)arg1)->CreateWidthsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_CreateWidthsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  result = ((UsdGeomCurves const *)arg1)->CreateWidthsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_GetWidthsInterpolation(void * jarg1) {
+  void * jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  result = ((UsdGeomCurves const *)arg1)->GetWidthsInterpolation();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_SetWidthsInterpolation(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomCurves *arg1 = (UsdGeomCurves *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomCurves *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(arg1)->SetWidthsInterpolation((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_ComputeExtent(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  VtVec3fArray *arg1 = 0 ;
+  VtFloatArray *arg2 = 0 ;
+  VtVec3fArray *arg3 = (VtVec3fArray *) 0 ;
+  bool result;
+  
+  arg1 = (VtVec3fArray *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (VtFloatArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtFloatArray const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (VtVec3fArray *)jarg3; 
+  result = (bool)UsdGeomCurves::ComputeExtent((VtArray< GfVec3f > const &)*arg1,(VtArray< float > const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_IsConcrete_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomBasisCurves::IsConcrete;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_IsTyped_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomBasisCurves::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurves__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdGeomBasisCurves *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomBasisCurves *)new UsdGeomBasisCurves((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurves__SWIG_1() {
+  void * jresult ;
+  UsdGeomBasisCurves *result = 0 ;
+  
+  result = (UsdGeomBasisCurves *)new UsdGeomBasisCurves();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurves__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdGeomBasisCurves *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomBasisCurves *)new UsdGeomBasisCurves((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomBasisCurves(void * jarg1) {
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdGeomBasisCurves::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdGeomBasisCurves::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomBasisCurves result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomBasisCurves::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomBasisCurves((const UsdGeomBasisCurves &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdGeomBasisCurves result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdGeomBasisCurves::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdGeomBasisCurves((const UsdGeomBasisCurves &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_GetTypeAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  result = ((UsdGeomBasisCurves const *)arg1)->GetTypeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateTypeAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateTypeAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateTypeAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateTypeAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateTypeAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateTypeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_GetBasisAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  result = ((UsdGeomBasisCurves const *)arg1)->GetBasisAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateBasisAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateBasisAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateBasisAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateBasisAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateBasisAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateBasisAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_GetWrapAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  result = ((UsdGeomBasisCurves const *)arg1)->GetWrapAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateWrapAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateWrapAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateWrapAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateWrapAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_CreateWrapAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  result = ((UsdGeomBasisCurves const *)arg1)->CreateWrapAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_ComputeInterpolationForSize__SWIG_0(void * jarg1, unsigned long jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  size_t arg2 ;
+  UsdTimeCode *arg3 = 0 ;
+  UsdGeomBasisCurves::ComputeInterpolationInfo *arg4 = (UsdGeomBasisCurves::ComputeInterpolationInfo *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdGeomBasisCurves::ComputeInterpolationInfo *)jarg4; 
+  result = ((UsdGeomBasisCurves const *)arg1)->ComputeInterpolationForSize(arg2,(UsdTimeCode const &)*arg3,arg4);
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_ComputeInterpolationForSize__SWIG_1(void * jarg1, unsigned long jarg2, void * jarg3) {
+  void * jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  size_t arg2 ;
+  UsdTimeCode *arg3 = 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  arg3 = (UsdTimeCode *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomBasisCurves const *)arg1)->ComputeInterpolationForSize(arg2,(UsdTimeCode const &)*arg3);
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_ComputeUniformDataSize(void * jarg1, void * jarg2) {
+  unsigned long jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdTimeCode *arg2 = 0 ;
+  size_t result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (UsdTimeCode *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomBasisCurves const *)arg1)->ComputeUniformDataSize((UsdTimeCode const &)*arg2);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_ComputeVaryingDataSize(void * jarg1, void * jarg2) {
+  unsigned long jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdTimeCode *arg2 = 0 ;
+  size_t result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (UsdTimeCode *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomBasisCurves const *)arg1)->ComputeVaryingDataSize((UsdTimeCode const &)*arg2);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_ComputeVertexDataSize(void * jarg1, void * jarg2) {
+  unsigned long jresult ;
+  UsdGeomBasisCurves *arg1 = (UsdGeomBasisCurves *) 0 ;
+  UsdTimeCode *arg2 = 0 ;
+  size_t result;
+  
+  arg1 = (UsdGeomBasisCurves *)jarg1; 
+  arg2 = (UsdTimeCode *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdTimeCode const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomBasisCurves const *)arg1)->ComputeVertexDataSize((UsdTimeCode const &)*arg2);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurvesComputeInterpolationInfoPair__SWIG_0() {
+  void * jresult ;
+  std::pair< TfToken,size_t > *result = 0 ;
+  
+  result = (std::pair< TfToken,size_t > *)new std::pair< TfToken,size_t >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurvesComputeInterpolationInfoPair__SWIG_1(void * jarg1, unsigned long jarg2) {
+  void * jresult ;
+  TfToken arg1 ;
+  size_t arg2 ;
+  TfToken *argp1 ;
+  std::pair< TfToken,size_t > *result = 0 ;
+  
+  argp1 = (TfToken *)jarg1; 
+  if (!argp1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null TfToken", 0);
+    return 0;
+  }
+  arg1 = *argp1; 
+  arg2 = (size_t)jarg2; 
+  result = (std::pair< TfToken,size_t > *)new std::pair< TfToken,size_t >(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurvesComputeInterpolationInfoPair__SWIG_2(void * jarg1) {
+  void * jresult ;
+  std::pair< TfToken,size_t > *arg1 = 0 ;
+  std::pair< TfToken,size_t > *result = 0 ;
+  
+  arg1 = (std::pair< TfToken,size_t > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< TfToken,size_t > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::pair< TfToken,size_t > *)new std::pair< TfToken,size_t >((std::pair< TfToken,size_t > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfoPair_first_set(void * jarg1, void * jarg2) {
+  std::pair< TfToken,size_t > *arg1 = (std::pair< TfToken,size_t > *) 0 ;
+  TfToken *arg2 = (TfToken *) 0 ;
+  
+  arg1 = (std::pair< TfToken,size_t > *)jarg1; 
+  arg2 = (TfToken *)jarg2; 
+  if (arg1) (arg1)->first = *arg2;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfoPair_first_get(void * jarg1) {
+  void * jresult ;
+  std::pair< TfToken,size_t > *arg1 = (std::pair< TfToken,size_t > *) 0 ;
+  TfToken *result = 0 ;
+  
+  arg1 = (std::pair< TfToken,size_t > *)jarg1; 
+  result = (TfToken *)& ((arg1)->first);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfoPair_second_set(void * jarg1, unsigned long jarg2) {
+  std::pair< TfToken,size_t > *arg1 = (std::pair< TfToken,size_t > *) 0 ;
+  size_t arg2 ;
+  
+  arg1 = (std::pair< TfToken,size_t > *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  if (arg1) (arg1)->second = arg2;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfoPair_second_get(void * jarg1) {
+  unsigned long jresult ;
+  std::pair< TfToken,size_t > *arg1 = (std::pair< TfToken,size_t > *) 0 ;
+  size_t result;
+  
+  arg1 = (std::pair< TfToken,size_t > *)jarg1; 
+  result =  ((arg1)->second);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomBasisCurvesComputeInterpolationInfoPair(void * jarg1) {
+  std::pair< TfToken,size_t > *arg1 = (std::pair< TfToken,size_t > *) 0 ;
+  
+  arg1 = (std::pair< TfToken,size_t > *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_Clear(void * jarg1) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_Add(void * jarg1, void * jarg2) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  std::pair< TfToken,size_t > *arg2 = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (std::pair< TfToken,size_t > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< TfToken,size_t > const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((std::pair< TfToken,size_t > const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  std::vector< std::pair< TfToken,size_t > >::size_type result;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  result = ((std::vector< std::pair< TfToken,size_t > > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  std::vector< std::pair< TfToken,size_t > >::size_type result;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  result = ((std::vector< std::pair< TfToken,size_t > > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  std::vector< std::pair< TfToken,size_t > >::size_type arg2 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (std::vector< std::pair< TfToken,size_t > >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurvesComputeInterpolationInfo__SWIG_0() {
+  void * jresult ;
+  std::vector< std::pair< TfToken,size_t > > *result = 0 ;
+  
+  result = (std::vector< std::pair< TfToken,size_t > > *)new std::vector< std::pair< TfToken,size_t > >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurvesComputeInterpolationInfo__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< std::pair< TfToken,size_t > > *arg1 = 0 ;
+  std::vector< std::pair< TfToken,size_t > > *result = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::pair< TfToken,size_t > > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< std::pair< TfToken,size_t > > *)new std::vector< std::pair< TfToken,size_t > >((std::vector< std::pair< TfToken,size_t > > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBasisCurvesComputeInterpolationInfo__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< std::pair< TfToken,size_t > > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< std::pair< TfToken,size_t > > *)new_std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_getitemcopy(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  std::pair< TfToken,size_t > result;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new std::pair< TfToken,size_t >((const std::pair< TfToken,size_t > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  std::pair< TfToken,size_t > *result = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::pair< TfToken,size_t > *) &std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  std::pair< TfToken,size_t > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::pair< TfToken,size_t > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< TfToken,size_t > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__setitem(arg1,arg2,(std::pair< TfToken,size_t > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_AddRange(void * jarg1, void * jarg2) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  std::vector< std::pair< TfToken,size_t > > *arg2 = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (std::vector< std::pair< TfToken,size_t > > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::pair< TfToken,size_t > > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__AddRange(arg1,(std::vector< std::pair< TfToken,size_t > > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< std::pair< TfToken,size_t > > *result = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< std::pair< TfToken,size_t > > *)std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  std::pair< TfToken,size_t > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::pair< TfToken,size_t > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< TfToken,size_t > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Insert(arg1,arg2,(std::pair< TfToken,size_t > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  std::vector< std::pair< TfToken,size_t > > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< std::pair< TfToken,size_t > > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::pair< TfToken,size_t > > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__InsertRange(arg1,arg2,(std::vector< std::pair< TfToken,size_t > > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::pair< TfToken,size_t > *arg1 = 0 ;
+  int arg2 ;
+  std::vector< std::pair< TfToken,size_t > > *result = 0 ;
+  
+  arg1 = (std::pair< TfToken,size_t > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::pair< TfToken,size_t > const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< std::pair< TfToken,size_t > > *)std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Repeat((std::pair< TfToken,size_t > const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_Reverse__SWIG_0(void * jarg1) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurvesComputeInterpolationInfo_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  int arg2 ;
+  std::vector< std::pair< TfToken,size_t > > *arg3 = 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< std::pair< TfToken,size_t > > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< std::pair< TfToken,size_t > > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_pair_Sl_TfToken_Sc_size_t_Sg__Sg__SetRange(arg1,arg2,(std::vector< std::pair< TfToken,size_t > > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomBasisCurvesComputeInterpolationInfo(void * jarg1) {
+  std::vector< std::pair< TfToken,size_t > > *arg1 = (std::vector< std::pair< TfToken,size_t > > *) 0 ;
+  
+  arg1 = (std::vector< std::pair< TfToken,size_t > > *)jarg1; 
+  delete arg1;
 }
 
 
@@ -74832,15 +82040,15 @@ SWIGEXPORT UsdTyped * SWIGSTDCALL CSharp_pxr_UsdGeomImageable_SWIGUpcast(UsdGeom
     return (UsdTyped *)jarg1;
 }
 
-SWIGEXPORT UsdGeomImageable * SWIGSTDCALL CSharp_pxr_UsdGeomScope_SWIGUpcast(UsdGeomScope *jarg1) {
-    return (UsdGeomImageable *)jarg1;
-}
-
 SWIGEXPORT UsdGeomImageable * SWIGSTDCALL CSharp_pxr_UsdGeomXformable_SWIGUpcast(UsdGeomXformable *jarg1) {
     return (UsdGeomImageable *)jarg1;
 }
 
 SWIGEXPORT UsdGeomXformable * SWIGSTDCALL CSharp_pxr_UsdGeomXform_SWIGUpcast(UsdGeomXform *jarg1) {
+    return (UsdGeomXformable *)jarg1;
+}
+
+SWIGEXPORT UsdGeomXformable * SWIGSTDCALL CSharp_pxr_UsdGeomCamera_SWIGUpcast(UsdGeomCamera *jarg1) {
     return (UsdGeomXformable *)jarg1;
 }
 
@@ -74854,6 +82062,14 @@ SWIGEXPORT UsdGeomBoundable * SWIGSTDCALL CSharp_pxr_UsdGeomGprim_SWIGUpcast(Usd
 
 SWIGEXPORT UsdGeomGprim * SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_SWIGUpcast(UsdGeomPointBased *jarg1) {
     return (UsdGeomGprim *)jarg1;
+}
+
+SWIGEXPORT UsdGeomPointBased * SWIGSTDCALL CSharp_pxr_UsdGeomCurves_SWIGUpcast(UsdGeomCurves *jarg1) {
+    return (UsdGeomPointBased *)jarg1;
+}
+
+SWIGEXPORT UsdGeomCurves * SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_SWIGUpcast(UsdGeomBasisCurves *jarg1) {
+    return (UsdGeomCurves *)jarg1;
 }
 
 SWIGEXPORT UsdGeomPointBased * SWIGSTDCALL CSharp_pxr_UsdGeomMesh_SWIGUpcast(UsdGeomMesh *jarg1) {

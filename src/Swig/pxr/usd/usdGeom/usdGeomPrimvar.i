@@ -22,24 +22,6 @@
 
 %apply int *OUTPUT { int *elementSize }
 
-%typemap(cstype) TfToken * "/*cstype*/ out TfToken"
-%typemap(csin,
-   pre="    $csclassname temp$csinput = new $csclassname();",
-  post="    $csinput = temp$csinput;"
-) TfToken * "$csclassname.getCPtr(temp$csinput)"
-
-%typemap(cstype) SdfValueTypeName * "/*cstype*/ out SdfValueTypeName"
-%typemap(csin,
-   pre="    $csclassname temp$csinput = new $csclassname();",
-  post="    $csinput = temp$csinput;"
-) SdfValueTypeName * "$csclassname.getCPtr(temp$csinput)"
-
-%typemap(cstype) VtIntArray * "out VtIntArray"
-%typemap(csin,
-   pre="    $csclassname temp$csinput = new $csclassname();",
-  post="    $csinput = temp$csinput;"
-) VtIntArray * "$csclassname.getCPtr(temp$csinput)"
-
 %include "std_vector.i"
 namespace std {
 	%template(UsdGeomPrimvarVector) vector<UsdGeomPrimvar>;

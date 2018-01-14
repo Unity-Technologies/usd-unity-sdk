@@ -90,17 +90,8 @@ public class UsdGeomPrimvar : global::System.IDisposable {
     return ret;
   }
 
-  public void GetDeclarationInfo(/*cstype*/ out TfToken name, /*cstype*/ out SdfValueTypeName typeName, /*cstype*/ out TfToken interpolation, out int elementSize) {
-    TfToken tempname = new TfToken();
-    SdfValueTypeName temptypeName = new SdfValueTypeName();
-    TfToken tempinterpolation = new TfToken();
-    try {
-      UsdCsPINVOKE.UsdGeomPrimvar_GetDeclarationInfo(swigCPtr, TfToken.getCPtr(tempname), SdfValueTypeName.getCPtr(temptypeName), TfToken.getCPtr(tempinterpolation), out elementSize);
-    } finally {
-    name = tempname;
-    typeName = temptypeName;
-    interpolation = tempinterpolation;
-    }
+  public void GetDeclarationInfo(TfToken name, SdfValueTypeName typeName, TfToken interpolation, out int elementSize) {
+    UsdCsPINVOKE.UsdGeomPrimvar_GetDeclarationInfo(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName), TfToken.getCPtr(interpolation), out elementSize);
   }
 
   public UsdAttribute GetAttr() {
@@ -170,25 +161,15 @@ public class UsdGeomPrimvar : global::System.IDisposable {
     return ret;
   }
 
-  public bool GetIndices(out VtIntArray indices, UsdTimeCode time) {
-    VtIntArray tempindices = new VtIntArray();
-    try {
-      bool ret = UsdCsPINVOKE.UsdGeomPrimvar_GetIndices__SWIG_0(swigCPtr, VtIntArray.getCPtr(tempindices), UsdTimeCode.getCPtr(time));
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } finally {
-    indices = tempindices;
-    }
+  public bool GetIndices(VtIntArray indices, UsdTimeCode time) {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_GetIndices__SWIG_0(swigCPtr, VtIntArray.getCPtr(indices), UsdTimeCode.getCPtr(time));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
-  public bool GetIndices(out VtIntArray indices) {
-    VtIntArray tempindices = new VtIntArray();
-    try {
-      bool ret = UsdCsPINVOKE.UsdGeomPrimvar_GetIndices__SWIG_1(swigCPtr, VtIntArray.getCPtr(tempindices));
-      return ret;
-    } finally {
-    indices = tempindices;
-    }
+  public bool GetIndices(VtIntArray indices) {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_GetIndices__SWIG_1(swigCPtr, VtIntArray.getCPtr(indices));
+    return ret;
   }
 
   public void BlockIndices() {

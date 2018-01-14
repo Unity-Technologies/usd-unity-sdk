@@ -450,56 +450,68 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint hash_value(GfRange1f r) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_2(GfRange1f.getCPtr(r));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(GfRange1d r) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_3(GfRange1d.getCPtr(r));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static uint hash_value(GfRange2d r) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_2(GfRange2d.getCPtr(r));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_4(GfRange2d.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfRange3d r) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_3(GfRange3d.getCPtr(r));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_5(GfRange3d.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfMatrix2f m) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_4(GfMatrix2f.getCPtr(m));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_6(GfMatrix2f.getCPtr(m));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfMatrix3f m) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_5(GfMatrix3f.getCPtr(m));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_7(GfMatrix3f.getCPtr(m));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfMatrix4f m) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_6(GfMatrix4f.getCPtr(m));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_8(GfMatrix4f.getCPtr(m));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfMatrix2d m) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_7(GfMatrix2d.getCPtr(m));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_9(GfMatrix2d.getCPtr(m));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfMatrix3d m) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_8(GfMatrix3d.getCPtr(m));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_10(GfMatrix3d.getCPtr(m));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfMatrix4d m) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_9(GfMatrix4d.getCPtr(m));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_11(GfMatrix4d.getCPtr(m));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfVec2i vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_10(GfVec2i.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_12(GfVec2i.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -523,7 +535,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec2h vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_11(GfVec2h.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_13(GfVec2h.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -594,7 +606,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec2f vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_12(GfVec2f.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_14(GfVec2f.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -664,7 +676,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec2d vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_13(GfVec2d.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_15(GfVec2d.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -734,7 +746,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec3i vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_14(GfVec3i.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_16(GfVec3i.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -758,7 +770,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec3h vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_15(GfVec3h.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_17(GfVec3h.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -861,7 +873,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec3f vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_16(GfVec3f.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_18(GfVec3f.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -963,7 +975,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec3d vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_17(GfVec3d.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_19(GfVec3d.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1065,7 +1077,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec4i vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_18(GfVec4i.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_20(GfVec4i.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1089,7 +1101,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec4h vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_19(GfVec4h.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_21(GfVec4h.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1160,7 +1172,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec4f vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_20(GfVec4f.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_22(GfVec4f.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1230,7 +1242,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfVec4d vec) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_21(GfVec4d.getCPtr(vec));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_23(GfVec4d.getCPtr(vec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1300,13 +1312,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfRotation r) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_22(GfRotation.getCPtr(r));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_24(GfRotation.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(GfQuaternion q) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_23(GfQuaternion.getCPtr(q));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_25(GfQuaternion.getCPtr(q));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1324,7 +1336,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfQuatf q) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_24(GfQuatf.getCPtr(q));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_26(GfQuatf.getCPtr(q));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1342,7 +1354,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(GfQuatd q) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_25(GfQuatd.getCPtr(q));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_27(GfQuatd.getCPtr(q));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1355,6 +1367,72 @@ public class UsdCs {
 
   public static GfQuatd GfSlerp(GfQuatd q0, GfQuatd q1, double alpha) {
     GfQuatd ret = new GfQuatd(UsdCsPINVOKE.GfSlerp__SWIG_8(GfQuatd.getCPtr(q0), GfQuatd.getCPtr(q1), alpha), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay arg0, GfLine arg1, GfVec3d arg2, GfVec3d arg3, SWIGTYPE_p_double arg4, SWIGTYPE_p_double arg5) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_0(GfRay.getCPtr(arg0), GfLine.getCPtr(arg1), GfVec3d.getCPtr(arg2), GfVec3d.getCPtr(arg3), SWIGTYPE_p_double.getCPtr(arg4), SWIGTYPE_p_double.getCPtr(arg5));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay arg0, GfLineSeg arg1, GfVec3d arg2, GfVec3d arg3, SWIGTYPE_p_double arg4, SWIGTYPE_p_double arg5) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_1(GfRay.getCPtr(arg0), GfLineSeg.getCPtr(arg1), GfVec3d.getCPtr(arg2), GfVec3d.getCPtr(arg3), SWIGTYPE_p_double.getCPtr(arg4), SWIGTYPE_p_double.getCPtr(arg5));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLine line, GfVec3d rayPoint, GfVec3d linePoint, out double rayDistance) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_2(GfRay.getCPtr(ray), GfLine.getCPtr(line), GfVec3d.getCPtr(rayPoint), GfVec3d.getCPtr(linePoint), out rayDistance);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLine line, GfVec3d rayPoint, GfVec3d linePoint) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_3(GfRay.getCPtr(ray), GfLine.getCPtr(line), GfVec3d.getCPtr(rayPoint), GfVec3d.getCPtr(linePoint));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLine line, GfVec3d rayPoint) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_4(GfRay.getCPtr(ray), GfLine.getCPtr(line), GfVec3d.getCPtr(rayPoint));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLine line) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_5(GfRay.getCPtr(ray), GfLine.getCPtr(line));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLineSeg seg, GfVec3d rayPoint, GfVec3d segPoint, out double rayDistance) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_6(GfRay.getCPtr(ray), GfLineSeg.getCPtr(seg), GfVec3d.getCPtr(rayPoint), GfVec3d.getCPtr(segPoint), out rayDistance);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLineSeg seg, GfVec3d rayPoint, GfVec3d segPoint) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_7(GfRay.getCPtr(ray), GfLineSeg.getCPtr(seg), GfVec3d.getCPtr(rayPoint), GfVec3d.getCPtr(segPoint));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLineSeg seg, GfVec3d rayPoint) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_8(GfRay.getCPtr(ray), GfLineSeg.getCPtr(seg), GfVec3d.getCPtr(rayPoint));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFindClosestPoints(GfRay ray, GfLineSeg seg) {
+    bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_9(GfRay.getCPtr(ray), GfLineSeg.getCPtr(seg));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(GfFrustum f) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_28(GfFrustum.getCPtr(f));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2025,7 +2103,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(VtValue val) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_27(VtValue.getCPtr(val));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_30(VtValue.getCPtr(val));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2036,7 +2114,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(VtDictionary dict) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_28(VtDictionary.getCPtr(dict));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_31(VtDictionary.getCPtr(dict));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2071,7 +2149,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(ArResolverContext context) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_29(ArResolverContext.getCPtr(context));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_32(ArResolverContext.getCPtr(context));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2082,13 +2160,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(SdfValueBlock block) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_30(SdfValueBlock.getCPtr(block));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_33(SdfValueBlock.getCPtr(block));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static ulong hash_value(SdfValueTypeName typeName) {
-    ulong ret = UsdCsPINVOKE.hash_value__SWIG_31(SdfValueTypeName.getCPtr(typeName));
+    ulong ret = UsdCsPINVOKE.hash_value__SWIG_34(SdfValueTypeName.getCPtr(typeName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2554,7 +2632,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(SdfAssetPath ap) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_32(SdfAssetPath.getCPtr(ap));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_35(SdfAssetPath.getCPtr(ap));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2575,19 +2653,19 @@ public class UsdCs {
   }
 
   public static uint hash_value(SdfPath path) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_33(SdfPath.getCPtr(path));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_36(SdfPath.getCPtr(path));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfLayerOffset offset) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_34(SdfLayerOffset.getCPtr(offset));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_37(SdfLayerOffset.getCPtr(offset));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfPayload p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_35(SdfPayload.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_38(SdfPayload.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2653,13 +2731,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdTimeCode time) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_36(UsdTimeCode.getCPtr(time));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_39(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(Usd_PrimFlagsPredicate p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_37(Usd_PrimFlagsPredicate.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_40(Usd_PrimFlagsPredicate.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2765,7 +2843,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdObject obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_38(UsdObject.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_41(UsdObject.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

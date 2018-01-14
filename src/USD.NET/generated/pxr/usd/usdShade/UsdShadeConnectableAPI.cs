@@ -234,37 +234,22 @@ public class UsdShadeConnectableAPI : UsdSchemaBase {
     return ret;
   }
 
-  public static bool GetConnectedSource(UsdProperty shadingProp, UsdShadeConnectableAPI source, /*cstype*/ out TfToken sourceName, out UsdShadeAttributeType sourceType) {
-    TfToken tempsourceName = new TfToken();
-    try {
-      bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_0(UsdProperty.getCPtr(shadingProp), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(tempsourceName), out sourceType);
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } finally {
-    sourceName = tempsourceName;
-    }
+  public static bool GetConnectedSource(UsdProperty shadingProp, UsdShadeConnectableAPI source, TfToken sourceName, out UsdShadeAttributeType sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_0(UsdProperty.getCPtr(shadingProp), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), out sourceType);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
-  public static bool GetConnectedSource(UsdShadeInput input, UsdShadeConnectableAPI source, /*cstype*/ out TfToken sourceName, out UsdShadeAttributeType sourceType) {
-    TfToken tempsourceName = new TfToken();
-    try {
-      bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_1(UsdShadeInput.getCPtr(input), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(tempsourceName), out sourceType);
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } finally {
-    sourceName = tempsourceName;
-    }
+  public static bool GetConnectedSource(UsdShadeInput input, UsdShadeConnectableAPI source, TfToken sourceName, out UsdShadeAttributeType sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_1(UsdShadeInput.getCPtr(input), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), out sourceType);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
-  public static bool GetConnectedSource(UsdShadeOutput output, UsdShadeConnectableAPI source, /*cstype*/ out TfToken sourceName, out UsdShadeAttributeType sourceType) {
-    TfToken tempsourceName = new TfToken();
-    try {
-      bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_2(UsdShadeOutput.getCPtr(output), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(tempsourceName), out sourceType);
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } finally {
-    sourceName = tempsourceName;
-    }
+  public static bool GetConnectedSource(UsdShadeOutput output, UsdShadeConnectableAPI source, TfToken sourceName, out UsdShadeAttributeType sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_2(UsdShadeOutput.getCPtr(output), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), out sourceType);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
   }
 
   public static bool GetRawConnectedSourcePaths(UsdProperty shadingProp, SdfPathVector sourcePaths) {
