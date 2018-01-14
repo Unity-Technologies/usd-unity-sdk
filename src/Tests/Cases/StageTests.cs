@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using pxr;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tests.Cases {
   class StageTests : UnitTest {
@@ -79,8 +81,11 @@ namespace Tests.Cases {
       // Basic Stage traversal.
       System.Console.WriteLine("");
       System.Console.WriteLine("All Prims:");
+      List<UsdPrim> primList = s.Traverse().ToList();
+      int i = 0;
       foreach (UsdPrim curPrim in s.Traverse()) {
         System.Console.WriteLine(curPrim.GetPath());
+        AssertEqual(primList[i++], curPrim);
       }
 
       // Traversal with child pruning.
@@ -101,7 +106,7 @@ namespace Tests.Cases {
       var prePostRange = new USD.NET.RangeIterator(UsdPrimRange.PreAndPostVisit(s.GetPseudoRoot()));
       bool[] expected = { false, false, true, false, true, true };
       bool[] actual = new bool[6];
-      int i = 0;
+      i = 0;
       foreach (UsdPrim curPrim in prePostRange) {
         System.Console.WriteLine("IsPostVisit: " + prePostRange.IsPostVisit().ToString()
                                + ", " + curPrim.GetPath());
