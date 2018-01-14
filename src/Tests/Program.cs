@@ -28,14 +28,18 @@ namespace Tests {
     static void RunTestCases() {
       Cases.MeshTests.TestTriangulation();
       Cases.MeshTests.TestVisibility();
+
+      Cases.StageTests.OpenFailTest();
       Cases.StageTests.PointerTest();
       Cases.StageTests.MemoryTest();
       Cases.StageTests.ApiTest();
+      Cases.StageTests.TraverseTest();
+
       Cases.Basic.SmokeTest();
       Cases.Basic.IntrinsicTypes();
+
       Cases.UnityIO.TestXform();
       Cases.UnityIO.TestXform2();
-      Cases.StageTests.TraverseTest();
 
       Console.ReadKey();
     }

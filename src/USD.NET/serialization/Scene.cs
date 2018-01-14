@@ -134,7 +134,11 @@ namespace USD.NET {
     /// the file is in use or cannot be created, an exception is thrown.
     /// </summary>
     public static Scene Create(string filePath) {
-      return new Scene(UsdStage.CreateNew(filePath));
+      var stage = UsdStage.CreateNew(filePath);
+      if (stage == null) {
+        throw new ApplicationException("Failed to create: " + filePath);
+      }
+      return new Scene(stage);
     }
 
     /// <summary>
@@ -150,9 +154,14 @@ namespace USD.NET {
 
     /// <summary>
     /// Opens an existing USD file for reading.
+    /// An exception is thrown if the filePath cannot be opened.
     /// </summary>
     public static Scene Open(string filePath) {
-      return new Scene(UsdStage.Open(filePath));
+      var stage = UsdStage.Open(filePath);
+      if (stage == null) {
+        throw new ApplicationException("Failed to open: " + filePath);
+      }
+      return new Scene(stage);
     }
 
     /// <summary>
@@ -413,6 +422,9 @@ namespace USD.NET {
     /// Constructor declared private to force access through the static factories.
     /// </summary>
     private Scene(UsdStage stage) {
+      if (stage == null) {
+        throw new System.NullReferenceException("Scene was constructed with a null UsdStage");
+      }
       m_stage = stage;
       m_usdIo = new UsdIo(m_stageLock);
       // Initialize Time / TimeCode to UsdTimeCode.Default();

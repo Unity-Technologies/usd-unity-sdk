@@ -37,6 +37,41 @@ namespace Tests.Cases {
       }
     }
 
+    public static void OpenFailTest() {
+      try {
+        var scene = USD.NET.Scene.Open(@"C:\Exist.foo");
+        throw new System.Exception("Expected exception opening non-existing file");
+      } catch (System.ApplicationException ex) {
+        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+      }
+
+      try {
+        var scene = USD.NET.Scene.Open(@"C:\This\Doesnt\Exist.usd");
+        throw new System.Exception("Expected exception opening non-existing file");
+      } catch (System.ApplicationException ex) {
+        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+      }
+
+      try {
+        var scene = USD.NET.Scene.Create(@"C:\Exist.foo");
+        throw new System.Exception("Expected exception opening non-existing file");
+      } catch (System.ApplicationException ex) {
+        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+      }
+
+      /*
+       * Currently causes a stack overflow, issue filed:
+       * https://github.com/PixarAnimationStudios/USD/issues/364
+       * 
+      try {
+        var scene = USD.NET.Scene.Create(@"C:\This\Doesnt\Exist.usd");
+        throw new System.Exception("Expected exception opening non-existing file");
+      } catch (System.ApplicationException ex) {
+        System.Console.WriteLine("Caught expected exception: " + ex.Message);
+      }
+      */
+    }
+
     public static void TraverseTest() {
       //
       // Setup a stage with parents and children.
