@@ -13,7 +13,8 @@
 # limitations under the License.
 
 import sys, os
-import vt, usdGeom, sdf
+import vt, sdf
+import usdGeom, usdShade
 
 basePath = "src/Swig/pxr/base/"
 usdPath = "src/Swig/pxr/usd/"
@@ -50,3 +51,6 @@ if __name__ == "__main__":
 
     print "Generating UsdGeom "
     usdGeom.genUsdGeomTokens(usdPath, copyright)
+
+    print "Generating UsdShade "
+    usdShade.genUsdShadeTokens(usdPath, copyright)

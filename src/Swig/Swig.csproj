@@ -150,6 +150,7 @@
     <Content Include="pxr\usd\usd\usdProperty.i" />
     <Content Include="pxr\usd\usd\usdMetadataValueMap.i" />
     <Content Include="scripts\gen.py" />
+    <Content Include="scripts\usdShade.py" />
     <Content Include="scripts\vt.py" />
     <Content Include="scripts\usdGeom.py" />
   </ItemGroup>

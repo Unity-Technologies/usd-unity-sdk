@@ -13,5 +13,19 @@
 // limitations under the License.
 
 %typemap(cscode) UsdShadeTokens %{
-  //public static TfToken all = new TfToken("all");
+  public static TfToken connectedSourceFor = new TfToken("connectedSourceFor:");
+  public static TfToken derivesFrom = new TfToken("derivesFrom");
+  public static TfToken displacement = new TfToken("displacement");
+  public static TfToken full = new TfToken("full");
+  public static TfToken infoId = new TfToken("info:id");
+  public static TfToken inputs = new TfToken("inputs:");
+  public static TfToken interfaceOnly = new TfToken("interfaceOnly");
+  public static TfToken interfaceRecipientsOf = new TfToken("interfaceRecipientsOf:");
+  public static TfToken interface_ = new TfToken("interface:");
+  public static TfToken lookBinding = new TfToken("look:binding");
+  public static TfToken materialBind = new TfToken("materialBind");
+  public static TfToken materialBinding = new TfToken("material:binding");
+  public static TfToken materialVariant = new TfToken("materialVariant");
+  public static TfToken outputs = new TfToken("outputs:");
+  public static TfToken surface = new TfToken("surface");
 %}
