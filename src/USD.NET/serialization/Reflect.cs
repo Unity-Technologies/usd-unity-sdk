@@ -101,6 +101,20 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// Returns true if the MemberInfo is inteneded to represent a relationship.
+    /// </summary>
+    public static bool IsRelationship(MemberInfo info) {
+      return GetCacheEntry(info).isRelationship;
+    }
+
+    /// <summary>
+    /// Returns true if the MemberInfo is inteneded to represent an SdfAssetPath.
+    /// </summary>
+    public static bool IsAssetPath(MemberInfo info) {
+      return GetCacheEntry(info).isAssetPath;
+    }
+
+    /// <summary>
     /// Indicates the member should not be serialized.
     /// </summary>
     public static bool IsNonSerialized(MemberInfo info) {
@@ -181,6 +195,8 @@ namespace USD.NET {
       public string usdNamespace;
       public bool isFusedDisplayColor;
       public bool isFusedTransform;
+      public bool isRelationship;
+      public bool isAssetPath;
     }
 
     /// <summary>
@@ -256,6 +272,20 @@ namespace USD.NET {
       var attrs4 = (UsdNamespaceAttribute[])info.
                           GetCustomAttributes(typeof(UsdNamespaceAttribute), true);
       cachedInfo.usdNamespace = attrs4.Length == 0 ? "" : attrs4[0].Name;
+
+      //
+      // IsRelationship
+      //
+      var attrs9 = (UsdRelationshipAttribute[])info.
+                          GetCustomAttributes(typeof(UsdRelationshipAttribute), true);
+      cachedInfo.isRelationship = attrs9.Length > 0;
+
+      //
+      // IsAssetPath
+      //
+      var attrs10 = (UsdAssetPathAttribute[])info.
+                          GetCustomAttributes(typeof(UsdAssetPathAttribute), true);
+      cachedInfo.isAssetPath = attrs10.Length > 0;
 
       //
       // Cache & return.

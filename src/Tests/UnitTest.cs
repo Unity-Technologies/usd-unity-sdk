@@ -25,9 +25,7 @@ namespace Tests {
       scene.Write("/Foo", inputSample);
 
       if (printLayer) {
-        string layer;
-        scene.Stage.ExportToString(out layer);
-        Console.WriteLine(layer);
+        PrintScene(scene);
       }
 
       scene.Save();
@@ -40,11 +38,20 @@ namespace Tests {
       System.IO.File.Delete(filename);
     }
 
+    public static void PrintScene(USD.NET.Scene scene) {
+      string layer;
+      scene.Stage.ExportToString(out layer);
+      Console.WriteLine(layer);
+    }
+
     static protected string GetTempFile(string extension = "usd") {
       return System.IO.Path.ChangeExtension(System.IO.Path.GetTempFileName(), extension);
     }
 
     static protected void AssertEqual<T>(T[] first, T[] second) {
+      if (first == null && second == null) {
+        return;
+      }
       if (first.Length != second.Length) {
         throw new Exception("Length of arrays do not match");
       }
@@ -55,6 +62,9 @@ namespace Tests {
     }
 
     static protected void AssertEqual<T>(T first, T second) {
+      if (first == null && second == null) {
+        return;
+      }
       if (!first.Equals(second)) {
         throw new Exception("Values do not match for " + typeof(T).Name);
       }

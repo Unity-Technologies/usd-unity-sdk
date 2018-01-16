@@ -69,6 +69,23 @@ namespace USD.NET {
   }
 
   /// <summary>
+  /// Declares a string/string[] valued member to be serialized as a UsdRelationship.
+  /// </summary>
+  /// <remarks>
+  /// Relationships may have multiple targets; when only a single target is valid, the member should
+  /// be declared with type string, since there can only be one value. Similarly, when the
+  /// relationship may have multiple values, the corresponding type is string[].
+  /// </remarks>
+  public class UsdRelationshipAttribute : Attribute {
+  }
+
+  /// <summary>
+  /// Declares a string value member to be serialized as an SdfAssetPath.
+  /// </summary>
+  public class UsdAssetPathAttribute : Attribute {
+  }
+
+  /// <summary>
   /// Declares the attribute as vertex data which can be made available to the shader at render
   /// time and enables repteated value compression.
   /// </summary>

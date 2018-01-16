@@ -237,10 +237,64 @@ namespace USD.NET {
         return true;
       }
 
-      bool isCustomData = Reflect.IsCustomData(memberInfo);
-      bool isPrimvar = Reflect.IsPrimvar(memberInfo);
       string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
           Reflect.GetNamespace(memberInfo));
+      pxr.TfToken sdfAttrName = sm_tokenCache[attrName];
+
+      if (Reflect.IsRelationship(memberInfo) && csValue != null) {
+
+        //
+        // Write Relationship
+        //
+
+        // For now, only string and string[] are supported.
+        if (csType != typeof(string) && csType != typeof(string[])) {
+          throw new ApplicationException("Relationships may only be of type string or string[]");
+        }
+
+        string[] arr = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName).Split(':');
+        pxr.StdStringVector elts = new pxr.StdStringVector(arr.Length);
+        foreach (var s in arr) {
+          elts.Add(s);
+        }
+
+        pxr.UsdRelationship rel = null;
+        lock (m_stageLock) {
+          rel = prim.CreateRelationship(elts);
+        }
+
+        if (!rel.IsValid()) {
+          throw new ApplicationException("Failed to create relationship <"
+              + prim.GetPath().AppendProperty(
+                new pxr.TfToken(
+                  IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName))).ToString() + ">");
+        }
+
+        if (csType == typeof(string)) {
+          var targets = new pxr.SdfPathVector();
+          targets.Add(new pxr.SdfPath((string)csValue));
+          lock (m_stageLock) {
+            rel.SetTargets(targets);
+          }
+        } else {
+          var targets = new pxr.SdfPathVector();
+          foreach (var path in (string[])csValue) {
+            targets.Add(new pxr.SdfPath(path));
+          }
+          lock (m_stageLock) {
+            rel.SetTargets(targets);
+          }
+        }
+
+        return true;
+      }
+
+      //
+      // Write Attribute
+      //
+
+      bool isCustomData = Reflect.IsCustomData(memberInfo);
+      bool isPrimvar = Reflect.IsPrimvar(memberInfo);
 
       UsdTypeBinding binding;
 
@@ -255,8 +309,6 @@ namespace USD.NET {
 
       pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
       pxr.SdfValueTypeName sdfTypeName = binding.sdfTypeName;
-      pxr.TfToken sdfAttrName = sm_tokenCache[attrName];
-
       pxr.UsdTimeCode time = variability == pxr.SdfVariability.SdfVariabilityUniform
                                           ? pxr.UsdTimeCode.Default()
                                           : usdTime;
@@ -372,6 +424,51 @@ namespace USD.NET {
         return true;
       }
 
+      pxr.TfToken sdfAttrName = sm_tokenCache[ns, attrName];
+
+      if (Reflect.IsRelationship(memberInfo)) {
+
+        //
+        // Read Relationship
+        //
+
+        // For now, only string and string[] are supported.
+        if (csType != typeof(string) && csType != typeof(string[])) {
+          throw new ApplicationException("Relationships may only be of type string or string[]");
+        }
+
+        pxr.UsdRelationship rel = null;
+        lock (m_stageLock) {
+          rel = prim.GetRelationship(sm_tokenCache[sdfAttrName]);
+        }
+
+        if (rel == null || !rel.IsValid()) {
+          csValue = null;
+          return false;
+        }
+
+        pxr.SdfPathVector paths = rel.GetTargets();
+        if (csType == typeof(string)) {
+          if (paths.Count > 1) {
+            // This should be a warning;
+            throw new ApplicationException("Invalid number of target paths, expected 1");
+          }
+          if (paths.Count == 1) {
+            csValue = paths[0].ToString();
+          } else {
+            csValue = "";
+          }
+        } else {
+          string[] result = new string[paths.Count];
+          for (int i = 0; i < paths.Count; i++) {
+            result[i] = paths[i].ToString();
+          }
+          csValue = result;
+        }
+
+        return true;
+      }
+
       UsdTypeBinding binding;
 
       if (!sm_bindings.GetBinding(csType, out binding)
@@ -386,7 +483,6 @@ namespace USD.NET {
       }
 
       pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
-      pxr.TfToken sdfAttrName = sm_tokenCache[ns, attrName];
 
       // Note that namespaced primvars are not supported, so "primvars" will replace the incoming
       // namespace. This will happen if a nested/namespaced object has a member declared as a

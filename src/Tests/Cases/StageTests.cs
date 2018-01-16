@@ -217,5 +217,44 @@ namespace Tests.Cases {
       s.SetFramesPerSecond(90.0);
       AssertEqual(s.GetFramesPerSecond(), 90.0);
     }
+
+    [USD.NET.UsdSchema("Material")]
+    public class MaterialSampleTest : USD.NET.SampleBase {
+      // Note that relationships may have many target paths, but declaring this as a single string
+      // indicates that this relationship should only have 0 or 1 target paths.
+      [USD.NET.UsdNamespace("unity"), USD.NET.UsdRelationship()]
+      public string surface;
+
+      [USD.NET.UsdNamespace("unity"), USD.NET.UsdRelationship()]
+      public string[] surfaces;
+    }
+
+    public static void RelationshipTest() {
+      var scene = USD.NET.Scene.Create();
+      var shaderPath = "/Model/Materials/SimpleMat/StandardShader";
+
+      var material = new MaterialSampleTest();
+      material.surface = shaderPath;
+      material.surfaces = new string[] { "/Foo", "/Bar/Baz" };
+
+      var mat2 = new MaterialSampleTest();
+      WriteAndRead(ref material, ref mat2, true);
+      AssertEqual(material.surface, mat2.surface);
+      AssertEqual(material.surfaces, mat2.surfaces);
+
+      material.surface = "";
+      material.surfaces = new string[0];
+      WriteAndRead(ref material, ref mat2, true);
+      AssertEqual(material.surface, mat2.surface);
+      AssertEqual(material.surfaces, mat2.surfaces);
+
+      material.surface = null;
+      material.surfaces = null;
+      WriteAndRead(ref material, ref mat2, true);
+      AssertEqual(material.surface, mat2.surface);
+      AssertEqual(material.surfaces, mat2.surfaces);
+
+    }
+
   }
 }
