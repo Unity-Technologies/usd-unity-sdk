@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasisCurvesSample.cs" />
+    <Compile Include="CubeSample.cs" />
     <Compile Include="CurvesSample.cs" />
     <Compile Include="DiagnosticHandler.cs" />
     <Compile Include="CameraSample.cs" />
