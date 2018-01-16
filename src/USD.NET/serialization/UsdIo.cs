@@ -260,7 +260,7 @@ namespace USD.NET {
 
         pxr.UsdRelationship rel = null;
         lock (m_stageLock) {
-          rel = prim.CreateRelationship(elts);
+          rel = prim.CreateRelationship(elts, custom:false);
         }
 
         if (!rel.IsValid()) {

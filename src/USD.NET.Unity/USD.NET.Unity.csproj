@@ -65,6 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasisCurvesSample.cs" />
+    <Compile Include="StandardShaderSample.cs" />
+    <Compile Include="Texture2DSample.cs" />
+    <Compile Include="ShaderSample.cs" />
+    <Compile Include="MaterialSample.cs" />
     <Compile Include="CubeSample.cs" />
     <Compile Include="CurvesSample.cs" />
     <Compile Include="DiagnosticHandler.cs" />
