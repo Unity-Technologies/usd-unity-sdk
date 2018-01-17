@@ -30,10 +30,11 @@ namespace Tests.Cases {
       //   2. Create a material
       //   3. Create a shader
       //   4. Create a texture
-      //   5. Wire the material to the shader
-      //   6. Add parameters to the shader
-      //   7. Expose parameters on the material
-      //   8. Wire albedo parameter to texture
+      //   5. Connect the material to the shader's output
+      //   6. Connect the shader's albedo parameter to the texture's output
+      //   7. Connect the texture to the source file on disk
+      //   8. Write all values
+      //   9. Bind the cube to the material
       var scene = Scene.Create();
 
       var cubePath     = "/Model/Geom/Cube";
@@ -46,12 +47,12 @@ namespace Tests.Cases {
 
       var material = new MaterialSample();
       material.surface.defaultValue = Color.magenta;
-      material.surface.connectedPath = shaderPath;
+      material.surface.connectedPath = shaderPath + ".outputs:out";
 
       var shader = new StandardShaderSample();
       shader.id = "Unity.Standard";
       shader.albedo.defaultValue = Color.white;
-      shader.albedo.connectedPath = texturePath;
+      shader.albedo.connectedPath = texturePath + ".outputs:out";
 
       var texture = new Texture2DSample();
       texture.sourceFile.defaultValue = Color.white;
