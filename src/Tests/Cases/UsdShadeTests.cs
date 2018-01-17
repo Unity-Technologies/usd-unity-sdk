@@ -55,8 +55,7 @@ namespace Tests.Cases {
       shader.albedo.connectedPath = texturePath + ".outputs:out";
 
       var texture = new Texture2DSample();
-      texture.sourceFile.defaultValue = Color.white;
-      texture.sourceFile.connectedPath = @"C:\A\Bogus\Texture\Path.png";
+      texture.sourceFile.defaultValue = @"C:\A\Bogus\Texture\Path.png";
       texture.sRgb = true;
 
       scene.Write(cubePath, cube);

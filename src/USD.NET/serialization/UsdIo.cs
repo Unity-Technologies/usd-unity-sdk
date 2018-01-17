@@ -337,10 +337,13 @@ namespace USD.NET {
         }
       }
 
-      if (attr != null && conn != null) {
+      if (attr != null && conn != null && conn.GetConnectedPath() != null) {
         // TODO: Pool temp vector, possibly add a single item overload for SetConnections.
         var paths = new pxr.SdfPathVector();
-        paths.Add(new pxr.SdfPath(conn.GetConnectedPath()));
+        var connPath = conn.GetConnectedPath();
+        if (connPath != string.Empty) {
+          paths.Add(new pxr.SdfPath(conn.GetConnectedPath()));
+        }
         attr.SetConnections(paths);
       }
 
