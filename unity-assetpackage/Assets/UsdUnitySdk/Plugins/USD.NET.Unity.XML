@@ -4,6 +4,18 @@
         <name>USD.NET.Unity</name>
     </assembly>
     <members>
+        <member name="M:USD.NET.Unity.MaterialSample.Bind(USD.NET.Scene,System.String,System.String)">
+            <summary>
+            Binds the prim to the given material.
+            https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a116ed8259600f7a48f3792364252a4e1
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MaterialSample.Unbind(USD.NET.Scene,System.String)">
+            <summary>
+            Unbinds the prim from all materials.
+            https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a6fc9d56d2e2e826aa3d96711c7b0e605
+            </summary>
+        </member>
         <member name="T:USD.NET.Unity.DiagnosticHandler">
             <summary>
             Implements a DiagnosticHandler which pipes messages to Unity's debug logger.
