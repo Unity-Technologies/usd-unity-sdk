@@ -46,15 +46,18 @@ namespace Tests.Cases {
       cube.size = 1;
 
       var material = new MaterialSample();
-      material.surface = shaderPath;
+      material.surface.defaultValue = Color.magenta;
+      material.surface.connectedPath = shaderPath;
 
       var shader = new StandardShaderSample();
       shader.id = "Unity.Standard";
-      shader.albedoTexture = texturePath;
+      shader.albedo.defaultValue = Color.white;
+      shader.albedo.connectedPath = texturePath;
 
       var texture = new Texture2DSample();
-      texture.sourceFile = @"C:\A\Bogus\Texture\Path.png";
-      texture.sRGB = true;
+      texture.sourceFile.defaultValue = Color.white;
+      texture.sourceFile.connectedPath = @"C:\A\Bogus\Texture\Path.png";
+      texture.sRgb = true;
 
       scene.Write(cubePath, cube);
       scene.Write(materialPath, material);

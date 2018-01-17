@@ -16,9 +16,9 @@ namespace USD.NET.Unity {
 
   [UsdSchema("Texture2D")]
   public class Texture2DSample : SampleBase {
-    [UsdAssetPath()]
-    public string sourceFile;
-    public bool sRGB;
+    [UsdNamespace("inputs"), UsdAssetPath]
+    public Connectable<UnityEngine.Color> sourceFile = new Connectable<UnityEngine.Color>();
+    public bool sRgb;
   }
 
 }

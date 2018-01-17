@@ -340,6 +340,7 @@
     <Compile Include="generated\pxr\usd\usd\Usd_Term.cs" />
     <Compile Include="serialization\BackgroundExecutor.cs" />
     <Compile Include="serialization\CodeGen.cs" />
+    <Compile Include="serialization\Relationship.cs" />
     <Compile Include="serialization\IntrinsicTypeConverter.cs" />
     <Compile Include="pooling\ArrayPool.cs" />
     <Compile Include="serialization\PathCollection.cs" />
@@ -349,6 +350,7 @@
     <Compile Include="serialization\Reflect.cs" />
     <Compile Include="serialization\ReflectionAttributes.cs" />
     <Compile Include="serialization\SampleBase.cs" />
+    <Compile Include="serialization\Connectable.cs" />
     <Compile Include="serialization\Scene.cs" />
     <Compile Include="serialization\TokenCache.cs" />
     <Compile Include="serialization\TypeBinder.cs" />

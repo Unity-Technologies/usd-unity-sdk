@@ -220,13 +220,11 @@ namespace Tests.Cases {
 
     [USD.NET.UsdSchema("Material")]
     public class MaterialSampleTest : USD.NET.SampleBase {
-      // Note that relationships may have many target paths, but declaring this as a single string
-      // indicates that this relationship should only have 0 or 1 target paths.
-      [USD.NET.UsdNamespace("unity"), USD.NET.UsdRelationship()]
-      public string surface;
+      [USD.NET.UsdNamespace("unity")]
+      public USD.NET.Relationship surface = new USD.NET.Relationship();
 
-      [USD.NET.UsdNamespace("unity"), USD.NET.UsdRelationship()]
-      public string[] surfaces;
+      [USD.NET.UsdNamespace("unity")]
+      public USD.NET.Relationship surfaces = new USD.NET.Relationship();
     }
 
     public static void RelationshipTest() {
@@ -239,20 +237,22 @@ namespace Tests.Cases {
 
       var mat2 = new MaterialSampleTest();
       WriteAndRead(ref material, ref mat2, true);
-      AssertEqual(material.surface, mat2.surface);
-      AssertEqual(material.surfaces, mat2.surfaces);
+      AssertEqual(material.surface.targetPaths, mat2.surface.targetPaths);
+      AssertEqual(material.surfaces.targetPaths, mat2.surfaces.targetPaths);
 
       material.surface = "";
       material.surfaces = new string[0];
       WriteAndRead(ref material, ref mat2, true);
-      AssertEqual(material.surface, mat2.surface);
-      AssertEqual(material.surfaces, mat2.surfaces);
+      AssertEqual(material.surface.targetPaths, mat2.surface.targetPaths);
+      AssertEqual(material.surfaces.targetPaths, mat2.surfaces.targetPaths);
 
-      material.surface = null;
-      material.surfaces = null;
+      material.surface.targetPaths = null;
+      material.surfaces.targetPaths = null;
+      mat2.surface = new USD.NET.Relationship();
+      mat2.surfaces = new USD.NET.Relationship();
       WriteAndRead(ref material, ref mat2, true);
-      AssertEqual(material.surface, mat2.surface);
-      AssertEqual(material.surfaces, mat2.surfaces);
+      AssertEqual(material.surface.targetPaths, mat2.surface.targetPaths);
+      AssertEqual(material.surfaces.targetPaths, mat2.surfaces.targetPaths);
 
     }
 

@@ -19,10 +19,9 @@ namespace USD.NET.Unity {
 
   [UsdSchema("Material")]
   public class MaterialSample : SampleBase {
-    // Note that relationships may have many target paths, but declaring this as a single string
-    // indicates that this relationship should only have 0 or 1 target paths.
-    [UsdNamespace("unity"), UsdRelationship()]
-    public string surface;
+
+    [UsdNamespace("outputs:glslfx")]
+    public Connectable<UnityEngine.Color> surface = new Connectable<UnityEngine.Color>();
 
     /// <summary>
     /// Binds the prim to the given material.

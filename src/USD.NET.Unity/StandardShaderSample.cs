@@ -17,9 +17,8 @@ namespace USD.NET.Unity {
   [UsdSchema("Shader")]
   public class StandardShaderSample : ShaderSample {
     // Albedo will either be a solid color or connected to a texture.
-    [UsdRelationship()]
-    public string albedoTexture;
-    public UnityEngine.Color albedoValue;
+    [UsdNamespace("inputs")]
+    public Connectable<UnityEngine.Color> albedo = new Connectable<UnityEngine.Color>();
   }
 
 }

@@ -241,51 +241,38 @@ namespace USD.NET {
           Reflect.GetNamespace(memberInfo));
       pxr.TfToken sdfAttrName = sm_tokenCache[attrName];
 
-      if (Reflect.IsRelationship(memberInfo) && csValue != null) {
-
-        //
-        // Write Relationship
-        //
-
-        // For now, only string and string[] are supported.
-        if (csType != typeof(string) && csType != typeof(string[])) {
-          throw new ApplicationException("Relationships may only be of type string or string[]");
-        }
-
-        string[] arr = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName).Split(':');
-        pxr.StdStringVector elts = new pxr.StdStringVector(arr.Length);
-        foreach (var s in arr) {
-          elts.Add(s);
-        }
-
-        pxr.UsdRelationship rel = null;
-        lock (m_stageLock) {
-          rel = prim.CreateRelationship(elts, custom:false);
-        }
-
-        if (!rel.IsValid()) {
-          throw new ApplicationException("Failed to create relationship <"
-              + prim.GetPath().AppendProperty(
-                new pxr.TfToken(
-                  IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName))).ToString() + ">");
-        }
-
-        if (csType == typeof(string)) {
-          var targets = new pxr.SdfPathVector();
-          targets.Add(new pxr.SdfPath((string)csValue));
-          lock (m_stageLock) {
-            rel.SetTargets(targets);
+      if (csType == typeof(Relationship) && csValue != null) {
+        string[] targetStrings = ((Relationship)csValue).targetPaths;
+        if (targetStrings != null) {
+          //
+          // Write Relationship
+          //
+          string[] arr = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName).Split(':');
+          pxr.StdStringVector elts = new pxr.StdStringVector(arr.Length);
+          foreach (var s in arr) {
+            elts.Add(s);
           }
-        } else {
+
+          pxr.UsdRelationship rel = null;
+          lock (m_stageLock) {
+            rel = prim.CreateRelationship(elts, custom: false);
+          }
+
+          if (!rel.IsValid()) {
+            throw new ApplicationException("Failed to create relationship <"
+                + prim.GetPath().AppendProperty(
+                  new pxr.TfToken(
+                    IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName))).ToString() + ">");
+          }
+
           var targets = new pxr.SdfPathVector();
-          foreach (var path in (string[])csValue) {
+          foreach (var path in ((Relationship)csValue).targetPaths) {
             targets.Add(new pxr.SdfPath(path));
           }
           lock (m_stageLock) {
             rel.SetTargets(targets);
           }
         }
-
         return true;
       }
 
@@ -297,6 +284,12 @@ namespace USD.NET {
       bool isPrimvar = Reflect.IsPrimvar(memberInfo);
 
       UsdTypeBinding binding;
+
+      var conn = csValue as Connectable;
+      if (conn != null) {
+        csType = conn.GetValue().GetType();
+        csValue = conn.GetValue();
+      }
 
       if (!sm_bindings.GetBinding(csType, out binding) && !csType.IsEnum) {
         if (string.IsNullOrEmpty(ns)) {
@@ -342,6 +335,13 @@ namespace USD.NET {
           attr = imgble.CreatePrimvar(sdfAttrName, sdfTypeName,
               VertexDataAttribute.Interpolation).GetAttr();
         }
+      }
+
+      if (attr != null && conn != null) {
+        // TODO: Pool temp vector, possibly add a single item overload for SetConnections.
+        var paths = new pxr.SdfPathVector();
+        paths.Add(new pxr.SdfPath(conn.GetConnectedPath()));
+        attr.SetConnections(paths);
       }
 
       pxr.VtValue vtValue = binding.toVtValue(csValue);
@@ -426,46 +426,31 @@ namespace USD.NET {
 
       pxr.TfToken sdfAttrName = sm_tokenCache[ns, attrName];
 
-      if (Reflect.IsRelationship(memberInfo)) {
+      if (csType == typeof(Relationship)) {
 
         //
         // Read Relationship
         //
-
-        // For now, only string and string[] are supported.
-        if (csType != typeof(string) && csType != typeof(string[])) {
-          throw new ApplicationException("Relationships may only be of type string or string[]");
-        }
 
         pxr.UsdRelationship rel = null;
         lock (m_stageLock) {
           rel = prim.GetRelationship(sm_tokenCache[sdfAttrName]);
         }
 
+        var relationship = new Relationship();
+        csValue = relationship;
+
         if (rel == null || !rel.IsValid()) {
-          csValue = null;
-          return false;
+          return true;
         }
 
         pxr.SdfPathVector paths = rel.GetTargets();
-        if (csType == typeof(string)) {
-          if (paths.Count > 1) {
-            // This should be a warning;
-            throw new ApplicationException("Invalid number of target paths, expected 1");
-          }
-          if (paths.Count == 1) {
-            csValue = paths[0].ToString();
-          } else {
-            csValue = "";
-          }
-        } else {
-          string[] result = new string[paths.Count];
-          for (int i = 0; i < paths.Count; i++) {
-            result[i] = paths[i].ToString();
-          }
-          csValue = result;
+        string[] result = new string[paths.Count];
+        for (int i = 0; i < paths.Count; i++) {
+          result[i] = paths[i].ToString();
         }
 
+        relationship.targetPaths = result;
         return true;
       }
 
@@ -499,6 +484,20 @@ namespace USD.NET {
       //using (var valWrapper = new PooledHandle<pxr.VtValue>(ArrayAllocator)) {
       pxr.VtValue vtValue = (pxr.VtValue)ArrayAllocator.MallocHandle(typeof(pxr.VtValue));
       try {
+
+        Connectable conn = null;
+        if (csValue != null) {
+          conn = csValue as Connectable;
+        }
+        if (conn != null) {
+          var sources = new pxr.SdfPathVector();
+          if (prim.GetAttribute(sdfAttrName).GetConnections(sources)) {
+            if (sources.Count > 0) {
+              conn.SetConnectedPath(sources[0].ToString());
+            }
+          }
+        }
+
         if (Reflect.IsCustomData(memberInfo)) {
           vtValue = prim.GetCustomDataByKey(sdfAttrName);
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
@@ -542,6 +541,9 @@ namespace USD.NET {
         }
 
         csValue = binding.toCsObject(vtValue);
+        if (conn != null && csValue != null) {
+          conn.SetValue(csValue);
+        }
       } finally {
         // Would prefer RAII handle, but introduces garbage.
         ArrayAllocator.FreeHandle(vtValue);
