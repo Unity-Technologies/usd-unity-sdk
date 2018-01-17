@@ -26,7 +26,7 @@ namespace Tests.Cases {
     public static void MaterialBindTest() {
 
       // Game plan:
-      //   1. Make a cube
+      //   1. Create a cube
       //   2. Create a material
       //   3. Create a shader
       //   4. Create a texture
@@ -34,13 +34,12 @@ namespace Tests.Cases {
       //   6. Add parameters to the shader
       //   7. Expose parameters on the material
       //   8. Wire albedo parameter to texture
-      //   9. Verify
       var scene = Scene.Create();
 
       var cubePath     = "/Model/Geom/Cube";
       var materialPath = "/Model/Materials/SimpleMat";
       var shaderPath   = "/Model/Materials/SimpleMat/StandardShader";
-      var texturePath  = "/Model/Textures/Albedo";
+      var texturePath  = "/Model/Materials/SimpleMat/AlbedoTexture";
 
       var cube = new CubeSample();
       cube.size = 1;
