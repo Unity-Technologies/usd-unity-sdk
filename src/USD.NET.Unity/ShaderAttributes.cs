@@ -16,35 +16,36 @@ namespace USD.NET.Unity {
 
   /// <summary>
   /// A declaration that a given value is a shader input, used to discover shader parameters at
-  /// runtime.
+  /// runtime. Implicitly declares the parameter to be in the "inputs" namespace.
   /// </summary>
-  public class InputParameterAttribute : System.Attribute {
+  public class InputParameterAttribute : UsdNamespaceAttribute {
 
     public string UnityName { get; private set; }
 
-    public InputParameterAttribute() {
+    public InputParameterAttribute() : base("inputs") {
       UnityName = "";
     }
 
     /// <param name="unityName">The corresponding name in the Unity shader.</param>
-    public InputParameterAttribute(string unityName) {
+    public InputParameterAttribute(string unityName) : base("inputs") {
       UnityName = unityName;
     }
   }
 
   /// <summary>
   /// Declares a given parameter to be a texture, used to discover shader textures at runtime.
+  /// Implicitly declares the parameter to be in the "inputs" namespace.
   /// </summary>
-  public class InputTextureAttribute : System.Attribute {
+  public class InputTextureAttribute : UsdNamespaceAttribute {
 
     public string UnityName { get; private set; }
 
-    public InputTextureAttribute() {
+    public InputTextureAttribute() : base("inputs") {
       UnityName = "";
     }
 
     /// <param name="unityName">The corresponding name in the Unity shader.</param>
-    public InputTextureAttribute(string unityName) {
+    public InputTextureAttribute(string unityName) : base("inputs") {
       UnityName = unityName;
     }
   }
