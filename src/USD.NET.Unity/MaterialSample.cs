@@ -23,6 +23,68 @@ namespace USD.NET.Unity {
     [UsdNamespace("outputs:glslfx")]
     public Connectable<UnityEngine.Color> surface = new Connectable<UnityEngine.Color>();
 
+    // A material instance may require specific keywords to be enabled with respect to the shader
+    // configuration. This attribute enables the material writer to include required keywords.
+    public string[] requiredKeywords;
+
+    // ------------------------------------------------------------------------------------------ //
+    // Helper functions.
+    // ------------------------------------------------------------------------------------------ //
+
+    /// <summary>
+    /// Reads the material associated with the geometry at the target path. If a valid material is
+    /// bound, the "surface" shader is inspected, if valid, the shader ID is queried and returned
+    /// via the shaderId output parameter. Returns true when shaderId is set.
+    /// </summary>
+    static public bool ReadMaterial(Scene scene,
+                                    string geometryPath,
+                                    MaterialSample materialSample, 
+                                    out string shaderId) {
+      // Discover the material bound to the geometry.
+      // Note that with this structure, the geometry type does not matter.
+      var geomMaterialBinding = new MaterialBindingSample();
+
+      // Discover the binding for the geometry.
+      // Note that the details of how to import geometry is handled in a different example.
+      scene.Read(geometryPath, geomMaterialBinding);
+
+      // In general, there is no guarantee that any prim is bound, so this null check is always
+      // required.
+      if (geomMaterialBinding.binding.targetPaths == null) {
+        // In this example, exceptions are thrown on invalid data, but in practice invalid bindings
+        // should probably be collected into a summary report and emitted as a single warning.
+        throw new System.Exception("Expected bound material");
+      }
+
+      // Similarly, there is no guarantee the source file is well formed, so an invalid number of
+      // target paths must also be handled.
+      if (geomMaterialBinding.binding.targetPaths.Length != 1) {
+        throw new System.Exception("Expected exactly one target path for material binding");
+      }
+
+      // Read the material, which will provide the shader binding.
+      scene.Read(geomMaterialBinding.binding.targetPaths[0], materialSample);
+
+      // Again, the surface may be invalid, so protect against broken scene description.
+      if (materialSample.surface == null || string.IsNullOrEmpty(materialSample.surface.connectedPath)) {
+        throw new System.Exception("Material had no surface bound");
+      }
+
+      string shaderPath = materialSample.surface.connectedPath.Replace(".outputs:out", "");
+      var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath(shaderPath));
+      if (prim == null || !prim.IsValid()) {
+        throw new System.Exception("Invalid shader prim");
+      }
+
+      var val = new VtValue();
+      if (!prim.GetAttributeValue(new TfToken("info:id"), val, scene.Time ?? UsdTimeCode.Default())) {
+        throw new System.Exception("Shader prim had no identifier");
+      }
+
+      shaderId = pxr.UsdCs.VtValueToTfToken(val).ToString();
+      return true;
+    }
+
     /// <summary>
     /// Binds the prim to the given material.
     /// https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a116ed8259600f7a48f3792364252a4e1

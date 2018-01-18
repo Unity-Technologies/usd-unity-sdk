@@ -11,14 +11,77 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace USD.NET.Unity {
 
+  /// <summary>
+  /// A base class for all shader samples.
+  /// </summary>
   [UsdSchema("Shader")]
   public class ShaderSample : SampleBase {
     // The attribute "info:id" is required by UsdShadeShader.
     [UsdNamespace("info")]
-    public string id;
-  }
+    public pxr.TfToken id;
 
+    // Note that this is not an input/parameter to be copied, it is a fundamental quality of the
+    // shader that must be handled by the importer.
+    [UsdNamespace("info")]
+    public bool enableGpuInstancing;
+
+    // ------------------------------------------------------------------------------------------ //
+    // Helper functions.
+    // ------------------------------------------------------------------------------------------ //
+
+    private System.Type GetClassType() {
+      return this.GetType();
+    }
+
+    private object GetValue(FieldInfo info) {
+      return info.GetValue(this);
+    }
+
+    public IEnumerable<ParameterInfo> GetInputParameters() {
+      var inputParamType = typeof(InputParameterAttribute);
+      var flags = BindingFlags.Public | BindingFlags.Instance;
+      foreach (var info in GetClassType().GetFields(flags).Where(
+          (info) => System.Attribute.IsDefined(info, inputParamType))) {
+        var param = new ParameterInfo();
+        var conn = (Connectable)(GetValue(info));
+        var pi = (InputParameterAttribute)info.GetCustomAttributes(inputParamType, inherit:true)[0];
+        param.value = conn.GetValue();
+        param.connectedPath = conn.GetConnectedPath();
+        param.usdName = info.Name;
+        param.unityName = pi.UnityName;
+        yield return param;
+      }
+    }
+
+    public IEnumerable<ParameterInfo> GetInputTextures() {
+      var inputParamType = typeof(InputTextureAttribute);
+      var requireKeywordType = typeof(RequireShaderKeywordsAttribute);
+      var flags = BindingFlags.Public | BindingFlags.Instance;
+      foreach (var info in GetClassType().GetFields(flags).Where(
+          (info) => System.Attribute.IsDefined(info, inputParamType))) {
+        var param = new ParameterInfo();
+        var conn = (Connectable)(GetValue(info));
+        var pi = (InputTextureAttribute)info.GetCustomAttributes(inputParamType, inherit: true)[0];
+        param.value = conn.GetValue();
+        param.connectedPath = conn.GetConnectedPath();
+        param.usdName = info.Name;
+        param.unityName = pi.UnityName;
+
+        if (System.Attribute.IsDefined(info, requireKeywordType)) {
+          var rk = (RequireShaderKeywordsAttribute)info.GetCustomAttributes(requireKeywordType, inherit: true)[0];
+          param.requiredShaderKeywords = rk.Keywords;
+        } else {
+          param.requiredShaderKeywords = new string[0];
+        }
+
+        yield return param;
+      }
+    }
+  }
 }

@@ -65,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasisCurvesSample.cs" />
+    <Compile Include="MaterialBindingSample.cs" />
+    <Compile Include="ParameterInfo.cs" />
+    <Compile Include="ShaderAttributes.cs" />
     <Compile Include="StandardShaderSample.cs" />
     <Compile Include="Texture2DSample.cs" />
     <Compile Include="ShaderSample.cs" />
