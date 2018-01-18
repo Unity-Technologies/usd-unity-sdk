@@ -44,7 +44,7 @@
         <member name="T:USD.NET.Unity.InputParameterAttribute">
             <summary>
             A declaration that a given value is a shader input, used to discover shader parameters at
-            runtime.
+            runtime. Implicitly declares the parameter to be in the "inputs" namespace.
             </summary>
         </member>
         <member name="M:USD.NET.Unity.InputParameterAttribute.#ctor(System.String)">
@@ -53,6 +53,7 @@
         <member name="T:USD.NET.Unity.InputTextureAttribute">
             <summary>
             Declares a given parameter to be a texture, used to discover shader textures at runtime.
+            Implicitly declares the parameter to be in the "inputs" namespace.
             </summary>
         </member>
         <member name="M:USD.NET.Unity.InputTextureAttribute.#ctor(System.String)">
