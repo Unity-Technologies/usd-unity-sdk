@@ -283,7 +283,7 @@ namespace USD.NET.Examples {
       
       shader.metallicMap.connectedPath = metallicMapPath + ".outputs:out";
 
-      shader.occlusionMapScale.defaultValue = 0.75f;
+      shader.occlusionMapScale.defaultValue = 0.65f;
       shader.occlusionMap.connectedPath = occlusionMapPath + ".outputs:out";
 
       shader.parallaxMapScale.defaultValue = 0.1f;
