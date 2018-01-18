@@ -296,6 +296,7 @@ namespace USD.NET {
       // String
       //
       BindNativeType(typeof(string), SdfValueTypeNames.String);
+      BindNativeType(typeof(pxr.TfToken), SdfValueTypeNames.Token);
       BindNativeType(typeof(pxr.VtStringArray), SdfValueTypeNames.StringArray);
       BindNativeType(typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(string[]), typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray);
