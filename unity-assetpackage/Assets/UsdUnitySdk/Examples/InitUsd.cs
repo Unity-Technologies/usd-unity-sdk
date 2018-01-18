@@ -16,59 +16,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class InitUsd {
-  private static bool m_usdInitialized;
+namespace USD.NET.Examples {
 
-  public static bool Initialize() {
-    if (m_usdInitialized) {
+  public static class InitUsd {
+    private static bool m_usdInitialized;
+
+    public static bool Initialize() {
+      if (m_usdInitialized) {
+        return true;
+      }
+      try {
+        // Initializes native USD plugins and ensures plugins are discoverable on the system path. 
+        SetupUsdPath();
+
+        // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
+        // Vector3[] -> VtVec3fArray).
+        USD.NET.Unity.UnityTypeBindings.RegisterTypes();
+
+        // The DiagnosticHandler propagates USD native errors, warnings and info up to C# exceptions
+        // and Debug.Log[Warning] respectively.
+        USD.NET.Unity.DiagnosticHandler.Register();
+      } catch (System.Exception ex) {
+        Debug.LogException(ex);
+        return false;
+      }
+      m_usdInitialized = true;
       return true;
     }
-    try {
-      // Initializes native USD plugins and ensures plugins are discoverable on the system path. 
-      SetupUsdPath();
 
-      // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
-      // Vector3[] -> VtVec3fArray).
-      USD.NET.Unity.UnityTypeBindings.RegisterTypes();
-
-      // The DiagnosticHandler propagates USD native errors, warnings and info up to C# exceptions
-      // and Debug.Log[Warning] respectively.
-      USD.NET.Unity.DiagnosticHandler.Register();
-    } catch (System.Exception ex) {
-      Debug.LogException(ex);
-      return false;
-    }
-    m_usdInitialized = true;
-    return true;
-  }
-
-  // USD has several auxillary C++ plugin discovery files which must be discoverable at run-time
-  // We store those libs in Support/ThirdParty/Usd and then set a magic environment variable to let
-  // USD's libPlug know where to look to find them.
-  private static void SetupUsdPath() {
-    var supPath = UnityEngine.Application.dataPath.Replace("\\", "/");
+    // USD has several auxillary C++ plugin discovery files which must be discoverable at run-time
+    // We store those libs in Support/ThirdParty/Usd and then set a magic environment variable to let
+    // USD's libPlug know where to look to find them.
+    private static void SetupUsdPath() {
+      var supPath = UnityEngine.Application.dataPath.Replace("\\", "/");
 
 #if (UNITY_EDITOR)
-    supPath += @"/UsdUnitySdk/Plugins/x86_64/share/";
+      supPath += @"/UsdUnitySdk/Plugins/x86_64/share/";
 #else
     supPath += @"/Plugins/share/";
 #endif
 
-    SetupUsdSysPath();
+      SetupUsdSysPath();
 
-    Debug.LogFormat("Registering plugins: {0}", supPath);
-    pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
+      Debug.LogFormat("Registering plugins: {0}", supPath);
+      pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
+    }
+
+    /// Adds the USD plugin paths to the system path.
+    private static void SetupUsdSysPath() {
+      var pathVar = "PATH";
+      var target = System.EnvironmentVariableTarget.Process;
+      var pathvar = System.Environment.GetEnvironmentVariable(pathVar, target);
+      var supPath = UnityEngine.Application.dataPath + @"\Plugins;";
+      supPath += UnityEngine.Application.dataPath + @"\UsdUnitySdk\Plugins\x86_64;";
+      var value = pathvar + @";" + supPath;
+      Debug.LogFormat("Adding to sys path: {0}", supPath);
+      System.Environment.SetEnvironmentVariable(pathVar, value, target);
+    }
   }
 
-  /// Adds the USD plugin paths to the system path.
-  private static void SetupUsdSysPath() {
-    var pathVar = "PATH";
-    var target = System.EnvironmentVariableTarget.Process;
-    var pathvar = System.Environment.GetEnvironmentVariable(pathVar, target);
-    var supPath = UnityEngine.Application.dataPath + @"\Plugins;";
-    supPath += UnityEngine.Application.dataPath + @"\UsdUnitySdk\Plugins\x86_64;";
-    var value = pathvar + @";" + supPath;
-    Debug.LogFormat("Adding to sys path: {0}", supPath);
-    System.Environment.SetEnvironmentVariable(pathVar, value, target);
-  }
 }
