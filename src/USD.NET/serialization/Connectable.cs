@@ -23,6 +23,7 @@ namespace USD.NET {
   /// </summary>
   public interface Connectable {
     object GetValue();
+    Type GetValueType();
     string GetConnectedPath();
 
     void SetValue(object value);
@@ -37,10 +38,21 @@ namespace USD.NET {
     public T defaultValue;
     public string connectedPath;
 
+    public Connectable() {
+    }
+
+    public Connectable(T defaultValue) {
+      this.defaultValue = defaultValue;
+    }
+
     public bool IsConnected() { return !string.IsNullOrEmpty(connectedPath); }
 
     public object GetValue() {
       return defaultValue;
+    }
+
+    public Type GetValueType() {
+      return typeof(T);
     }
 
     public string GetConnectedPath() {

@@ -459,6 +459,17 @@ namespace USD.NET {
 
       UsdTypeBinding binding;
 
+      Connectable conn = null;
+      if (csValue != null
+          && csType.IsGenericType
+          && csType.GetGenericTypeDefinition() == typeof(Connectable<>)) {
+        conn = csValue as Connectable;
+        if (conn != null) {
+          csValue = conn.GetValue();
+          csType = conn.GetValueType();
+        }
+      }
+
       if (!sm_bindings.GetBinding(csType, out binding)
           && !csType.IsEnum
           && csType != typeof(object)) {
@@ -466,8 +477,16 @@ namespace USD.NET {
           return false;
         }
 
+        var sample = csValue as SampleBase;
+        if (sample == null) {
+          throw new Exception("Could not deserialize: Prim: " + prim.GetPath() + " namespace: " + ns);
+        }
         Deserialize((SampleBase)csValue, prim, usdTime, usdNamespace: ns);
         return true;
+      }
+
+      if (conn != null) {
+        csValue = conn;
       }
 
       pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
@@ -487,11 +506,6 @@ namespace USD.NET {
       //using (var valWrapper = new PooledHandle<pxr.VtValue>(ArrayAllocator)) {
       pxr.VtValue vtValue = (pxr.VtValue)ArrayAllocator.MallocHandle(typeof(pxr.VtValue));
       try {
-
-        Connectable conn = null;
-        if (csValue != null) {
-          conn = csValue as Connectable;
-        }
         if (conn != null) {
           var sources = new pxr.SdfPathVector();
           if (prim.GetAttribute(sdfAttrName).GetConnections(sources)) {
@@ -546,6 +560,7 @@ namespace USD.NET {
         csValue = binding.toCsObject(vtValue);
         if (conn != null && csValue != null) {
           conn.SetValue(csValue);
+          csValue = conn;
         }
       } finally {
         // Would prefer RAII handle, but introduces garbage.
