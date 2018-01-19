@@ -280,6 +280,9 @@ namespace USD.NET {
       // Write Attribute
       //
 
+      // Object not written, still considered success.
+      if (csValue == null) { return true; }
+
       bool isCustomData = Reflect.IsCustomData(memberInfo);
       bool isPrimvar = Reflect.IsPrimvar(memberInfo);
 
@@ -305,9 +308,6 @@ namespace USD.NET {
       pxr.UsdTimeCode time = variability == pxr.SdfVariability.SdfVariabilityUniform
                                           ? pxr.UsdTimeCode.Default()
                                           : usdTime;
-
-      // Object not created, still considered success.
-      if (csValue == null) { return true; }
 
       bool custom = false;
       pxr.UsdAttribute attr;

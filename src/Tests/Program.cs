@@ -44,6 +44,7 @@ namespace Tests {
 
       Cases.UsdGeomTests.CurvesTest();
       Cases.UsdGeomTests.CameraTest();
+      Cases.UsdGeomTests.CameraTest2();
 
       Cases.UsdShadeTests.MaterialBindTest();
 

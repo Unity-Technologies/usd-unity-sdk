@@ -62,6 +62,22 @@ namespace Tests.Cases {
       AssertEqual(basisCurves.xformOpOrder, basisCurves2.xformOpOrder);
     }
 
+    public static void CameraTest2() {
+      CameraSample sample = new CameraSample();
+      sample.transform = UnityEngine.Matrix4x4.identity;
+      sample.clippingRange = new UnityEngine.Vector2(.01f, 10);
+
+      // GfCamera is a gold mine of camera math.
+      pxr.GfCamera c = new pxr.GfCamera(UnityTypeConverter.ToGfMatrix(UnityEngine.Matrix4x4.identity));
+
+      sample.focalLength = c.GetFocalLength();
+      sample.horizontalAperture = c.GetHorizontalAperture();
+      sample.verticalAperture = c.GetVerticalAperture();
+
+      var scene = USD.NET.Scene.Create();
+      scene.Write("/Foo/Bar", sample);
+    }
+
     public static void CameraTest() {
       var scene = USD.NET.Scene.Create();
       var cam = new CameraSample();
