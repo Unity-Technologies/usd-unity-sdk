@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasisCurvesSample.cs" />
     <Compile Include="Geometry\BasisCurvesSample.cs" />
     <Compile Include="Geometry\CameraSample.cs" />
     <Compile Include="Geometry\CubeSample.cs" />
@@ -79,16 +78,10 @@
     <Compile Include="Shading\ShaderSample.cs" />
     <Compile Include="Shading\StandardShaderSample.cs" />
     <Compile Include="Shading\Texture2DSample.cs" />
-    <Compile Include="CubeSample.cs" />
-    <Compile Include="CurvesSample.cs" />
     <Compile Include="DiagnosticHandler.cs" />
-    <Compile Include="CameraSample.cs" />
-    <Compile Include="MeshSample.cs" />
-    <Compile Include="MeshSampleBase.cs" />
     <Compile Include="UnityTypeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityTypeBindings.cs" />
-    <Compile Include="XformSample.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\USD.NET\USD.NET.csproj">
