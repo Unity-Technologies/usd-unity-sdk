@@ -27,7 +27,7 @@ namespace Tests.Cases {
       const int kCount = 100;
       for (int i = 0; i < kCount; i++) {
         UsdStage s = UsdStage.CreateInMemory();
-        if (s == null) { throw new Exception("Init Stage failed");}
+        if (s == null) { throw new Exception("Init Stage failed"); }
         s.Dispose();
 
         string tmpName = GetTempFile();
@@ -256,5 +256,11 @@ namespace Tests.Cases {
 
     }
 
+    public static void StartEndTimeTest() {
+      USD.NET.Scene scene = USD.NET.Scene.Create();
+      scene.StartTime = 0;
+      scene.EndTime = 1;
+      scene.Close();
+    }
   }
 }

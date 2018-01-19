@@ -35,6 +35,7 @@ namespace Tests {
       Cases.StageTests.ApiTest();
       Cases.StageTests.TraverseTest();
       Cases.StageTests.RelationshipTest();
+      Cases.StageTests.StartEndTimeTest();
 
       Cases.Basic.SmokeTest();
       Cases.Basic.IntrinsicTypes();

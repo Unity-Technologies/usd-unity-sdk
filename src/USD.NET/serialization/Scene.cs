@@ -79,11 +79,11 @@ namespace USD.NET {
     /// </summary>
     public double StartTime {
       get {
-        return Stage.GetRootLayer().GetStartTimeCode();
+        return Stage.GetEditTarget().GetLayer().GetStartTimeCode();
       }
       set {
         lock (m_stageLock) {
-          Stage.GetRootLayer().__deref__().SetStartTimeCode(value);
+          Stage.GetEditTarget().GetLayer().SetStartTimeCode(value);
         }
       }
     }
@@ -93,11 +93,11 @@ namespace USD.NET {
     /// </summary>
     public double EndTime {
       get {
-        return Stage.GetRootLayer().GetEndTimeCode();
+        return Stage.GetEditTarget().GetLayer().GetEndTimeCode();
       }
       set {
         lock (m_stageLock) {
-          Stage.GetRootLayer().__deref__().SetEndTimeCode(value);
+          Stage.GetEditTarget().GetLayer().SetEndTimeCode(value);
         }
       }
     }
@@ -256,7 +256,7 @@ namespace USD.NET {
     /// </summary>
     public void SaveAs(string filePath) {
       WaitForWrites();
-      m_stage.GetRootLayer().Export(filePath);
+      m_stage.GetEditTarget().GetLayer().Export(filePath);
     }
 
     /// <summary>
