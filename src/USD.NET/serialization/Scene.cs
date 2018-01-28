@@ -368,10 +368,17 @@ namespace USD.NET {
                                   UsdTimeCode timeCode) where T : SampleBase {
       pxr.UsdPrim prim;
       lock (m_stageLock) {
-        prim = m_stage.DefinePrim(path,
-            new TfToken(Reflect.GetSchema(typeof(T))));
-        if (!prim) { return; }
-        prim.SetCustomDataByKey(new pxr.TfToken("kVersion"), kVersion);
+        // TODO(jcowles): there is a potential issue here if the cache gets out of sync with the 
+        // underlying USD scene. The correct fix is to listen for change processing events and
+        // clear the cache accordingly.
+        if (!m_primMap.TryGetValue(path, out prim)) {
+          prim = m_stage.DefinePrim(path, new TfToken(Reflect.GetSchema(typeof(T))));
+          if (!prim) {
+            return;
+          }
+          prim.SetCustomDataByKey(new pxr.TfToken("kVersion"), kVersion);
+          m_primMap.Add(path, prim);
+        }
       }
       m_usdIo.Serialize(sample, prim, timeCode);
     }
