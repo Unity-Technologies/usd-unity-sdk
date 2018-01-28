@@ -146,7 +146,7 @@ namespace USD.NET {
         }
       }
       set {
-        VtValue val = value.ToString();
+        VtValue val = new pxr.TfToken(value.ToString());
         Stage.SetMetadata(kUpAxisToken, val);
       }
     }
