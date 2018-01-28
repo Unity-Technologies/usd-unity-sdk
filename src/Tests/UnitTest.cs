@@ -40,7 +40,7 @@ namespace Tests {
 
     public static void PrintScene(USD.NET.Scene scene) {
       string layer;
-      scene.Stage.ExportToString(out layer);
+      scene.Stage.ExportToString(out layer, addSourceFileComment: false);
       Console.WriteLine(layer);
     }
 
