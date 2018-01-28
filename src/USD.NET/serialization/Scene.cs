@@ -101,6 +101,24 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// The rate at which the cache should playback, in frames per second.
+    /// </summary>
+    public double FrameRate {
+      get {
+        return Stage.GetFramesPerSecond();
+      }
+      set {
+        if (value <= 0) {
+          throw new ApplicationException("Invalid frame rate, frame rate must be > 0");
+        }
+        lock (m_stageLock) {
+          Stage.SetTimeCodesPerSecond(value);
+          Stage.SetFramesPerSecond(value);
+        }
+      }
+    }
+
+    /// <summary>
     /// A list of all Prim paths present in the scene.
     /// </summary>
     public PathCollection AllPaths {
