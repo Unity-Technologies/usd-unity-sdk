@@ -393,11 +393,11 @@ namespace USD.NET {
     /// Translates a string path to an SdfPath, caching the result to avoid churn.
     /// </summary>
     private pxr.SdfPath GetSdfPath(string path) {
-      if (pathMap.ContainsKey(path)) {
-        return pathMap[path];
+      if (m_pathMap.ContainsKey(path)) {
+        return m_pathMap[path];
       }
       var p = new pxr.SdfPath(path);
-      pathMap.Add(path, p);
+      m_pathMap.Add(path, p);
       return p;
     }
 
@@ -411,9 +411,9 @@ namespace USD.NET {
 
     private pxr.UsdPrim GetUsdPrim(SdfPath path) {
       UsdPrim prim;
-      if (!primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
+      if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
         prim = Stage.GetPrimAtPath(path);
-        primMap.Add(path, prim);
+        m_primMap.Add(path, prim);
       }
       return prim;
     }
@@ -441,8 +441,8 @@ namespace USD.NET {
       set;
     }
 
-    private Dictionary<string, pxr.SdfPath> pathMap = new Dictionary<string, SdfPath>();
-    private Dictionary<SdfPath, pxr.UsdPrim> primMap = new Dictionary<SdfPath, UsdPrim>();
+    private Dictionary<string, pxr.SdfPath> m_pathMap = new Dictionary<string, SdfPath>();
+    private Dictionary<SdfPath, pxr.UsdPrim> m_primMap = new Dictionary<SdfPath, UsdPrim>();
     private object m_stageLock = new object();
     private UsdIo m_usdIo;
     private UsdStage m_stage;
