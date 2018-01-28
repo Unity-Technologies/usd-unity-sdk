@@ -272,6 +272,9 @@ namespace USD.NET.Examples {
 
       shader.smoothnessScale.defaultValue = 0.99f;
 
+      shader.enableSpecularHighlights.defaultValue = true;
+      shader.enableGlossyReflections.defaultValue = true;
+
       shader.albedo.defaultValue = Color.white;
       shader.albedoMap.connectedPath = albedoMapPath + ".outputs:out";
 
