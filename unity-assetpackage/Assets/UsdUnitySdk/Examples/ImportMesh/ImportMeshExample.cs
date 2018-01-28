@@ -113,26 +113,18 @@ namespace USD.NET.Examples {
       m_usdFile = m_scene.Stage.GetRootLayer().GetIdentifier();
     }
 
-    // Best practice: store a single value for objects that are reused, rather than recreating them.
-    private readonly pxr.TfToken kUpAxisToken = new pxr.TfToken("upAxis");
     Vector3 GetUpVector(Scene scene) {
-      pxr.VtValue valUpAxis = new pxr.VtValue();
-      if (!m_scene.Stage.GetMetadata(kUpAxisToken, valUpAxis)) {
-        // Should never happen.
-        throw new Exception("Get UpAxis failed");
-      }
-
       // Note: currently Y and Z are the only valid values.
       // https://graphics.pixar.com/usd/docs/api/group___usd_geom_up_axis__group.html
 
-      switch (((pxr.TfToken)valUpAxis).ToString()) {
-      case "Y":
+      switch (scene.UpAxis) {
+      case Scene.UpAxes.Y:
         // Note, this is also Unity's default up vector.
         return Vector3.up;
-      case "Z":
+      case Scene.UpAxes.Z:
         return new Vector3(0, 0, 1);
       default:
-        throw new Exception("Invalid upAxis value: " + ((pxr.TfToken)valUpAxis).ToString());
+        throw new Exception("Invalid upAxis value: " + scene.UpAxis.ToString());
       }
     }
 

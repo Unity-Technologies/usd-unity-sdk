@@ -260,6 +260,21 @@ namespace Tests.Cases {
       USD.NET.Scene scene = USD.NET.Scene.Create();
       scene.StartTime = 0;
       scene.EndTime = 1;
+      AssertEqual(scene.StartTime, 0);
+      AssertEqual(scene.EndTime, 1);
+      scene.Close();
+    }
+
+    public static void FrameRateTest() {
+      USD.NET.Scene scene = USD.NET.Scene.Create();
+      scene.FrameRate = 30;
+      AssertEqual(scene.FrameRate, 30);
+      scene.Close();
+    }
+
+    public static void YUpTest() {
+      USD.NET.Scene scene = USD.NET.Scene.Create();
+      AssertEqual(scene.UpAxis, USD.NET.Scene.UpAxes.Y);
       scene.Close();
     }
   }

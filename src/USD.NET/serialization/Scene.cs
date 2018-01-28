@@ -38,6 +38,17 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// Indicates the up-axis of the world contained in this cache.
+    /// </summary>
+    /// <remarks>
+    /// These values are defined by USD, thus are limited to Y and Z.
+    /// </remarks>
+    public enum UpAxes {
+      Y,
+      Z
+    }
+
+    /// <summary>
     /// Declares the file format version of the serializer, written with all serialized data on the
     /// UsdPrim of the serialized object as customData metadata.
     /// </summary>
@@ -46,7 +57,6 @@ namespace USD.NET {
     /// <summary>
     /// Gets the underlying UsdStage for this scene, if available.
     /// </summary>
-    /// 
     /// <remarks>
     /// This is exposed only for low level, direct access to the underlying stage, not intended
     /// for common use.
@@ -56,7 +66,6 @@ namespace USD.NET {
     /// <summary>
     /// The time at which key frames should be read and written.
     /// </summary>
-    /// 
     /// <remarks>
     /// Setting this value to null indicates values should be read from the "default" time
     /// (e.g. to store a rest pose, etc.)
@@ -119,6 +128,30 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// The Up-axis of the world contained in the cache.
+    /// </summary>
+    public UpAxes UpAxis {
+      get {
+        VtValue val = new VtValue();
+        string upAxis = null;
+        if (Stage.GetMetadata(kUpAxisToken, val)) {
+          upAxis = UsdCs.VtValueTostring(val);
+        }
+
+        if (!string.IsNullOrEmpty(upAxis)) {
+          return (UpAxes)Enum.Parse(typeof(UpAxes), upAxis);
+        } else {
+          // USD defines the default up-axis to be Z.
+          return UpAxes.Z;
+        }
+      }
+      set {
+        VtValue val = value.ToString();
+        Stage.SetMetadata(kUpAxisToken, val);
+      }
+    }
+
+    /// <summary>
     /// A list of all Prim paths present in the scene.
     /// </summary>
     public PathCollection AllPaths {
@@ -154,7 +187,9 @@ namespace USD.NET {
       if (stage == null) {
         throw new ApplicationException("Failed to create: " + filePath);
       }
-      return new Scene(stage);
+      var scene = new Scene(stage);
+      scene.UpAxis = UpAxes.Y;
+      return scene;
     }
 
     /// <summary>
@@ -165,7 +200,9 @@ namespace USD.NET {
     /// Note that SaveAs can be used to write memory to disk.
     /// </remarks>
     public static Scene Create() {
-      return new Scene(UsdStage.CreateInMemory());
+      var scene = new Scene(UsdStage.CreateInMemory());
+      scene.UpAxis = UpAxes.Y;
+      return scene;
     }
 
     /// <summary>
@@ -184,8 +221,10 @@ namespace USD.NET {
     /// Release any open files and stop asynchronous execution.
     /// </summary>
     public void Close() {
-      this.m_stage.Dispose();
-      this.m_stage = null;
+      if (m_stage != null) {
+        this.m_stage.Dispose();
+        this.m_stage = null;
+      }
       this.m_bgExe.Stop();
     }
 
@@ -470,5 +509,9 @@ namespace USD.NET {
     private UsdIo m_usdIo;
     private UsdStage m_stage;
     private BackgroundExecutor m_bgExe = new BackgroundExecutor();
+
+    // Cache TfTokens for reuse to avoid P/Invoke and token churn.
+    private static readonly TfToken kUpAxisToken = new TfToken("upAxis");
+    private static readonly TfToken kYUpToken = new TfToken("Y");
   }
 }
