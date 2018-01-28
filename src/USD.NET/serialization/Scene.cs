@@ -63,12 +63,10 @@ namespace USD.NET {
     /// </remarks>
     private double? m_time;
     public double? Time {
-      get
-      {
+      get {
         return m_time;
       }
-      set
-      {
+      set {
         m_time = value;
         TimeCode = m_time.HasValue ? new UsdTimeCode(m_time.Value) : pxr.UsdTimeCode.Default();
       }
