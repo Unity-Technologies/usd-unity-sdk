@@ -63,7 +63,7 @@ namespace Tests.Cases {
       scene.Write(shaderPath, shader);
       scene.Write(texturePath, texture);
 
-      material.Bind(scene, cubePath, materialPath);
+      MaterialSample.Bind(scene, cubePath, materialPath);
 
       var material2 = new MaterialSample();
       var shader2 = new StandardShaderSample();

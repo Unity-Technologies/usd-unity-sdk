@@ -89,7 +89,7 @@ namespace USD.NET.Unity {
     /// Binds the prim to the given material.
     /// https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a116ed8259600f7a48f3792364252a4e1
     /// </summary>
-    public void Bind(Scene scene, string primPath, string materialPath) {
+    static public void Bind(Scene scene, string primPath, string materialPath) {
       var prim = scene.Stage.GetPrimAtPath(new SdfPath(materialPath));
       if (!prim.IsValid()) {
         throw new ApplicationException("Invalid prim <" + primPath + ">");
@@ -105,7 +105,7 @@ namespace USD.NET.Unity {
     /// Unbinds the prim from all materials.
     /// https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a6fc9d56d2e2e826aa3d96711c7b0e605
     /// </summary>
-    public void Unbind(Scene scene, string primPath) {
+    static public void Unbind(Scene scene, string primPath) {
       // TODO: verify all objects before use, throw exceptions
       var prim = scene.Stage.GetPrimAtPath(new SdfPath(primPath));
       if (!prim.IsValid()) {

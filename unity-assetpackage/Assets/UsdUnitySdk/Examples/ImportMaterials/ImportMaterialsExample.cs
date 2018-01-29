@@ -350,7 +350,7 @@ namespace USD.NET.Examples {
       //
       // Bind Material.
       //
-      material.Bind(scene, cubePath, materialPath);
+      MaterialSample.Bind(scene, cubePath, materialPath);
 
       //
       // Write out the scene as a string, for debugging.
