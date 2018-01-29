@@ -135,7 +135,7 @@ namespace USD.NET {
         VtValue val = new VtValue();
         string upAxis = null;
         if (Stage.GetMetadata(kUpAxisToken, val)) {
-          upAxis = UsdCs.VtValueTostring(val);
+          upAxis = UsdCs.VtValueToTfToken(val).ToString();
         }
 
         if (!string.IsNullOrEmpty(upAxis)) {
