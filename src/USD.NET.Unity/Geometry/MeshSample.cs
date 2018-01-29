@@ -33,5 +33,20 @@ namespace USD.NET.Unity {
 
     // Should be an array of "3", one for each triangle, unles arbitrary polygons are used.
     public int[] faceVertexCounts;
+
+    // ------------------------------------------------------------------------------------------ //
+    // Helper Functions
+    // ------------------------------------------------------------------------------------------ //
+
+    /// <summary>
+    /// Sets the faceVertexIndicies and faceVertexCounts from triangle indices alone.
+    /// </summary>
+    public void SetTriangles(int[] triangleIndices) {
+      this.faceVertexIndices = triangleIndices;
+      this.faceVertexCounts = new int[this.faceVertexIndices.Length / 3];
+      for (int i = 0; i < this.faceVertexCounts.Length; i++) {
+        this.faceVertexCounts[i] = 3;
+      }
+    }
   }
 }
