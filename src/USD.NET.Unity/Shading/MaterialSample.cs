@@ -90,13 +90,13 @@ namespace USD.NET.Unity {
     /// https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a116ed8259600f7a48f3792364252a4e1
     /// </summary>
     static public void Bind(Scene scene, string primPath, string materialPath) {
-      var prim = scene.Stage.GetPrimAtPath(new SdfPath(materialPath));
-      if (!prim.IsValid()) {
-        throw new ApplicationException("Invalid prim <" + primPath + ">");
+      var materialPrim = scene.Stage.GetPrimAtPath(new SdfPath(materialPath));
+      if (!materialPrim.IsValid()) {
+        throw new ApplicationException("Invalid material prim <" + materialPath + ">");
       }
-      var mat = new UsdShadeMaterial(prim);
+      var mat = new UsdShadeMaterial(materialPrim);
       if (!mat.GetPrim().IsValid()) {
-        throw new ApplicationException("Invalid material <" + materialPath + ">");
+        throw new ApplicationException("Invalid material on prim <" + materialPath + ">");
       }
       mat.Bind(scene.Stage.GetPrimAtPath(new SdfPath(primPath)));
     }
