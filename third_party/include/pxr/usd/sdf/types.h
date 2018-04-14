@@ -193,7 +193,7 @@ enum SdfVariability {
     SdfNumVariabilities 
 };
 
-// USD.NET: Remove Boost PP Declarations (197-688)
+// USD.NET: Remove Boost PP Declarations (196-687)
 
 /// \class SdfValueBlock
 /// A special value type that can be used to explicitly author an

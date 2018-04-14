@@ -185,6 +185,348 @@ struct Vt_ValueGetStored
 /// that are range-checked when held singly.
 class VtValue
 {
+#if 0 // USD.NET
+    static const unsigned int _LocalFlag       = 1 << 0;
+    static const unsigned int _TrivialCopyFlag = 1 << 1;
+    static const unsigned int _ProxyFlag       = 1 << 2;
+
+    template <class T>
+    struct _Counted {
+        explicit _Counted(T const &obj) : _obj(obj) {
+            _refCount = 0;
+            TF_AXIOM(static_cast<void const *>(this) ==
+                     static_cast<void const *>(&_obj));
+        }
+        bool IsUnique() const { return _refCount == 1; }
+        T const &Get() const { return _obj; }
+        T &GetMutable() { return _obj; }
+
+    private:
+        T _obj;
+        mutable tbb::atomic<int> _refCount;
+
+        friend inline void intrusive_ptr_add_ref(_Counted const *d) {
+            ++d->_refCount;
+        }
+        friend inline void intrusive_ptr_release(_Counted const *d) {
+            if (d->_refCount.fetch_and_decrement() == 1)
+                delete d;
+        }
+    };
+
+    // Hold objects up to 1 word large locally.  This makes the total structure
+    // 16 bytes when compiled 64 bit (1 word type-info pointer, 1 word storage
+    // space).
+    static const size_t _MaxLocalSize = sizeof(void*);
+    typedef boost::aligned_storage<
+        /* size */_MaxLocalSize, /* alignment */_MaxLocalSize>::type _Storage;
+
+    template <class T>
+    struct _IsTriviallyCopyable : boost::mpl::and_<
+        boost::has_trivial_constructor<T>,
+        boost::has_trivial_copy<T>,
+        boost::has_trivial_assign<T>,
+        boost::has_trivial_destructor<T> > {};
+
+    // Metafunction that returns true if T should be stored locally, false if it
+    // should be stored remotely.
+    template <class T>
+    struct _UsesLocalStore : boost::mpl::bool_<
+        (sizeof(T) <= sizeof(_Storage)) &&
+        VtValueTypeHasCheapCopy<T>::value > {};
+
+    // Type information base class.
+    struct _TypeInfo {
+    protected:
+        ~_TypeInfo() = default;
+
+    public:
+        constexpr _TypeInfo(const std::type_info &ti,
+                            const std::type_info &elementTi,
+                            bool isArray,
+                            bool isHashable)
+            : typeInfo(ti)
+            , elementTypeInfo(elementTi)
+            , isArray(isArray)
+            , isHashable(isHashable)
+            {}
+
+        virtual void CopyInit(_Storage const &, _Storage &) const = 0;
+        virtual void Destroy(_Storage &) const = 0;
+        virtual void Move(_Storage &, _Storage &) const = 0;
+        virtual size_t Hash(_Storage const &) const = 0;
+        virtual bool Equal(_Storage const &, _Storage const &) const = 0;
+        virtual void MakeMutable(_Storage &) const = 0;
+#ifdef PXR_PYTHON_SUPPORT_ENABLED
+        virtual TfPyObjWrapper GetPyObj(_Storage const &) const = 0;
+#endif // PXR_PYTHON_SUPPORT_ENABLED
+        virtual std::ostream & StreamOut(_Storage const &,
+                                         std::ostream &) const = 0;
+        virtual const Vt_ShapeData* GetShapeData(_Storage const &) const = 0;
+        virtual size_t GetNumElements(_Storage const &) const = 0;
+        virtual bool ProxyHoldsType(_Storage const &,
+                                    std::type_info const &) const = 0;
+        virtual TfType GetProxiedType(_Storage const &) const = 0;
+        virtual VtValue const *GetProxiedValue(_Storage const &) const = 0;
+
+        const std::type_info &typeInfo;
+        const std::type_info &elementTypeInfo;
+        bool isArray;
+        bool isHashable;
+    };
+
+    // Type-dispatching overloads.
+
+    // Array type helper.
+    template <class T, class Enable=void>
+    struct _ArrayHelper {
+        static const Vt_ShapeData* GetShapeData(T const &) { return NULL; }
+        static size_t GetNumElements(T const &) { return 0; }
+        constexpr static std::type_info const &GetElementTypeid() { return typeid(void); }
+    };
+    template <class Array>
+    struct _ArrayHelper<Array,
+                        typename boost::enable_if<VtIsArray<Array> >::type> {
+        static const Vt_ShapeData* GetShapeData(Array const &obj) {
+            return obj._GetShapeData();
+        }
+        static size_t GetNumElements(Array const &obj) {
+            return obj.size();
+        }
+        constexpr static std::type_info const &GetElementTypeid() {
+            return typeid(typename Array::ElementType);
+        }
+    };
+
+    // _TypeInfo implementation helper.  This is a CRTP base that the
+    // _LocalTypeInfo and _RemoteTypeInfo types derive.  It wraps their
+    // type-specific implementations with type-generic interfaces.
+    template <class T, class Container, class Derived>
+    struct _TypeInfoImpl : public _TypeInfo
+    {
+        static const bool IsLocal = _UsesLocalStore<T>::value;
+        static const bool HasTrivialCopy = _IsTriviallyCopyable<T>::value;
+        static const bool IsProxy = VtIsValueProxy<T>::value;
+
+        constexpr _TypeInfoImpl()
+            : _TypeInfo(typeid(T),
+                        _ArrayHelper<T>::GetElementTypeid(),
+                        VtIsArray<T>::value,
+                        VtIsHashable<T>()) {}
+
+        ////////////////////////////////////////////////////////////////////
+        // Typed API for client use.
+        static T const &GetObj(_Storage const &storage) {
+            return Derived::_GetObj(_Container(storage));
+        }
+
+        static T &GetMutableObj(_Storage &storage) {
+            return Derived::_GetMutableObj(_Container(storage));
+        }
+
+        static void CopyInitObj(T const &objSrc, _Storage &dst) {
+            Derived::_PlaceCopy(&_Container(dst), objSrc);
+        }
+
+    private:
+        static_assert(sizeof(Container) <= sizeof(_Storage),
+                      "Container size cannot exceed storage size.");
+
+        ////////////////////////////////////////////////////////////////////
+        // Virtual function implementations.
+        virtual void CopyInit(_Storage const &src, _Storage &dst) const {
+            new (&dst) Container(_Container(src));
+        }
+
+        virtual void Destroy(_Storage &storage) const {
+            _Container(storage).~Container();
+        }
+
+        virtual size_t Hash(_Storage const &storage) const {
+            return VtHashValue(GetObj(storage));
+        }
+
+        virtual bool Equal(_Storage const &lhs, _Storage const &rhs) const {
+            // Equal is only ever invoked with an object of this specific type.
+            // That is, we only ever ask a proxy to compare to a proxy; we never
+            // ask a proxy to compare to the proxied object.
+            return GetObj(lhs) == GetObj(rhs);
+        }
+
+        virtual void Move(_Storage &src, _Storage &dst) const {
+            TfMoveTo(&_Container(dst), _Container(src));
+            Destroy(src);
+        }
+
+        virtual void MakeMutable(_Storage &storage) const {
+            GetMutableObj(storage);
+        }
+
+#ifdef PXR_PYTHON_SUPPORT_ENABLED
+        virtual TfPyObjWrapper GetPyObj(_Storage const &storage) const {
+            TfPyLock lock;
+            return boost::python::api::object(this->GetObj(storage));
+        }
+#endif // PXR_PYTHON_SUPPORT_ENABLED
+
+        virtual std::ostream &StreamOut(
+            _Storage const &storage, std::ostream &out) const {
+            return VtStreamOut(GetObj(storage), out);
+        }
+
+        virtual const Vt_ShapeData* GetShapeData(_Storage const &storage) const {
+            return _ArrayHelper<T>::GetShapeData(GetObj(storage));
+        }
+
+        virtual size_t GetNumElements(_Storage const &storage) const {
+            return _ArrayHelper<T>::GetNumElements(GetObj(storage));
+        }
+
+        virtual bool
+        ProxyHoldsType(_Storage const &storage, std::type_info const &t) const {
+            return VtProxyHoldsType(GetObj(storage), t);
+        }
+
+        virtual TfType
+        GetProxiedType(_Storage const &storage) const {
+            return VtGetProxiedType(GetObj(storage));
+        }
+
+        virtual VtValue const *
+        GetProxiedValue(_Storage const &storage) const {
+            return VtGetProxiedValue(GetObj(storage));
+        }
+
+        ////////////////////////////////////////////////////////////////////
+        // Internal helper -- cast type-generic storage to type-specific
+        // container.
+        static Container &_Container(_Storage &storage) {
+            return *((Container *)&storage);
+        }
+        static Container const &_Container(_Storage const &storage) {
+            return *((Container const *)&storage);
+        }
+    };
+
+    ////////////////////////////////////////////////////////////////////////
+    // Local-storage type info implementation.  The container and the object are
+    // the same -- there is no distinct container.
+    template <class T>
+    struct _LocalTypeInfo : _TypeInfoImpl<
+        T,                 // type
+        T,                 // container
+        _LocalTypeInfo<T>  // CRTP
+        >
+    {
+        constexpr _LocalTypeInfo()
+            : _TypeInfoImpl<T, T, _LocalTypeInfo<T>>()
+        {}
+
+        // Get returns object directly.
+        static T &_GetMutableObj(T &obj) { return obj; }
+        static T const &_GetObj(T const &obj) { return obj; }
+        // Place placement new's object directly.
+        static void _PlaceCopy(T *dst, T const &src) { new (dst) T(src); }
+    };
+
+    ////////////////////////////////////////////////////////////////////////
+    // Remote-storage type info implementation.  The container is an
+    // intrusive_ptr to an object holder: _Counted<T>.
+    template <class T>
+    struct _RemoteTypeInfo : _TypeInfoImpl<
+        T,                                  // type
+        boost::intrusive_ptr<_Counted<T> >, // container
+        _RemoteTypeInfo<T>                  // CRTP
+        >
+    {
+        constexpr _RemoteTypeInfo()
+            : _TypeInfoImpl<
+                  T, boost::intrusive_ptr<_Counted<T>>, _RemoteTypeInfo<T>>()
+        {}
+
+        typedef boost::intrusive_ptr<_Counted<T> > Ptr;
+        // Get returns object stored in the pointed-to _Counted<T>.
+        static T &_GetMutableObj(Ptr &ptr) {
+            if (!ptr->IsUnique())
+                ptr.reset(new _Counted<T>(ptr->Get()));
+            return ptr->GetMutable();
+        }
+        static T const &_GetObj(Ptr const &ptr) { return ptr->Get(); }
+        // PlaceCopy() allocates a new _Counted<T> with a copy of the object.
+        static void _PlaceCopy(Ptr *dst, T const &src) {
+            new (dst) Ptr(new _Counted<T>(src));
+        }
+    };
+
+    // Metafunction that returns the specific _TypeInfo subclass for T.
+    template <class T>
+    struct _TypeInfoFor {
+        // return _UsesLocalStore(T) ? _LocalTypeInfo<T> : _RemoteTypeInfo<T>;
+        typedef typename boost::mpl::if_<_UsesLocalStore<T>,
+                                         _LocalTypeInfo<T>,
+                                         _RemoteTypeInfo<T> >::type Type;
+    };
+
+    // Make sure char[N] is treated as a string.
+    template <size_t N>
+    struct _TypeInfoFor<char[N]> {
+        // return _UsesLocalStore(T) ? _LocalTypeInfo<T> : _RemoteTypeInfo<T>;
+        typedef typename boost::mpl::if_<_UsesLocalStore<std::string>,
+                                         _LocalTypeInfo<std::string>,
+                                         _RemoteTypeInfo<std::string> >::type Type;
+    };
+
+    // Runtime function to return a _TypeInfo base pointer to a specific
+    // _TypeInfo subclass for type T.
+    template <class T>
+    TfPointerAndBits<const _TypeInfo> GetTypeInfo() {
+        typedef typename _TypeInfoFor<T>::Type TI;
+        static const TI ti;
+        static const TfPointerAndBits<const _TypeInfo>
+            ptrAndBits(&ti, (TI::IsLocal ? _LocalFlag : 0) |
+                       (TI::HasTrivialCopy ? _TrivialCopyFlag : 0) |
+                       (TI::IsProxy ? _ProxyFlag : 0));
+        return ptrAndBits;
+    }
+
+    // A helper that moves a held value to temporary storage, but keeps it alive
+    // until the _HoldAside object is destroyed.  This is used when assigning
+    // over a VtValue that might own the object being assigned.  For instance,
+    // if I have a VtValue holding a map<string, VtValue>, and I reassign this
+    // VtValue with one of the elements from the map, we must ensure that the
+    // map isn't destroyed until after the assignment has taken place.
+    friend struct _HoldAside;
+    struct _HoldAside {
+        explicit _HoldAside(VtValue *val)
+            : info((val->IsEmpty() || val->_IsLocalAndTriviallyCopyable())
+                   ? static_cast<_TypeInfo const *>(NULL) : val->_info) {
+            if (info)
+                info->Move(val->_storage, storage);
+        }
+        ~_HoldAside() {
+            if (info)
+                info->Destroy(storage);
+        }
+        _Storage storage;
+        _TypeInfo const *info;
+    };
+
+    template <class T>
+    typename boost::enable_if<
+        boost::is_same<T, typename Vt_ValueGetStored<T>::Type> >::type
+    _Init(T const &obj) {
+        _info = GetTypeInfo<T>();
+        typedef typename _TypeInfoFor<T>::Type TypeInfo;
+        TypeInfo::CopyInitObj(obj, _storage);
+    }
+
+    template <class T>
+    typename boost::disable_if<
+        boost::is_same<T, typename Vt_ValueGetStored<T>::Type> >::type
+    _Init(T const &obj) {
+        _Init(typename Vt_ValueGetStored<T>::Type(obj));
+    }
+#endif // USD.NET
 public:
 
     /// Default ctor gives empty VtValue.
@@ -260,8 +602,6 @@ public:
         _Init(obj);
         return *this;
     }
-    return *this;
-  }
 #endif
 
     /// Assignment operator from any type.
@@ -589,9 +929,9 @@ public:
 
 private:
 #if 0 // USD.NET
-    const Vt_Reserved* _GetReserved() const;
+    const Vt_ShapeData* _GetShapeData() const;
     size_t _GetNumElements() const;
-    friend struct Vt_ValueReservedAccess;
+    friend struct Vt_ValueShapeDataAccess;
 #endif // USD.NET
 
     static void _Copy(VtValue const &src, VtValue &dst) {
@@ -742,9 +1082,9 @@ struct Vt_DefaultValueFactory {
 };
 
 #if 0 // USD.NET
-struct Vt_ValueReservedAccess {
-    static const Vt_Reserved* _GetReserved(const VtValue& value) {
-        return value._GetReserved();
+struct Vt_ValueShapeDataAccess {
+    static const Vt_ShapeData* _GetShapeData(const VtValue& value) {
+        return value._GetShapeData();
     }
 
     static size_t _GetNumElements(const VtValue& value) {
