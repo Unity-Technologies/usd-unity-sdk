@@ -129,10 +129,12 @@ The full build process is:
  10. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
  11. Build the solution
  12. Hit play to run tests
- 13. Distribute DLLs to the unity package
- 14. Test the Unity package
- 15. Export a new Unity Asset Package
- 16. Test the exported Asset Package
+ 13. Run bin\install to copy USD.NET DLLs to the Unity asset package
+ 14. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
+ 15. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
+ 14. Test the asset package
+ 15. Export a new Unity asset package
+ 16. Test the exported asset package
 
 The following is an example of valid environment variables:
 
