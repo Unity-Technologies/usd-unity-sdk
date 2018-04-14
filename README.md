@@ -96,7 +96,7 @@ C component of the build (UsdCs):
 
 ## Generating Bindings
 
-There are two steps to code generation, the first is a sequence of
+There are two main steps to code generation, the first is a sequence of
 Python scripts which generate type-specific SWIG shims (.i files). The
 second step is the SWIG code generator itself.
 
@@ -106,13 +106,44 @@ second step is the SWIG code generator itself.
 
 By setting USD_LOCATION_PYTHON to the root install directory of a USD
 python build, all scripts will work without setting the system PATH or
-PYTHONPATH.
+PYTHONPATH. The variable USD_LOCATION should be set to a USD build without
+python, to minimize runtime dependencies of the final plugin.
 
 Once these two requirements are met, [build.cmd](build.cmd) can be run
 from a cmd prompt from the root of the UsdBindings directory. It will
 generate the additional SWIG inputs via Python, run SWIG, and then copy
 the outputs into the correct locations in the source tree. If this script
 fails at any step, execution will stop so the error can be observed.
+
+The full build process is:
+
+ 1. Clone a USD repository
+ 2. Check out the desired version to a new branch (e.g. git checkout -b v0.8.4)
+ 3. Build USD with python enabled (this is required to generate C# bindings)
+ 4. Build USD to a different directory with python disabled (to minimize runtime dependencies)
+ 5. Set the environment variable USD_LOCATION_PYTHON to the path used in step (3)
+ 6. Set the environment variable USD_LOCATION to the path used in step (4)
+ 7. If upgrading USD to a newer version, run bin\diff-src.bat to merge modified header files. The "generated" source folder should also be deleted so it can be regenerated in the next step
+ 8. Run bin\build.bat to generate Swig bindings
+ 9. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
+ 10. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
+ 11. Build the solution
+ 12. Hit play to run tests
+ 13. Distribute DLLs to the unity package
+ 14. Test the Unity package
+ 15. Export a new Unity Asset Package
+ 16. Test the exported Asset Package
+
+The following is an example of valid environment variables:
+
+SET USD_LOCAITON=C:\src\usd\builds\v0.8.4\monolithic_no-python\
+SET USD_LOCATION_PYTHON=C:\src\usd\builds\v0.8.4\monolithic\
+
+The following are the USD build commands used to generate the two build paths noted above:
+
+python build_scripts\build_usd.py --build-monolithic --no-tests --no-docs --no-ptex --no-embree --alembic --no-hdf5 --no-python --no-imaging C:\src\usd\builds\v0.8.4\monolithic_no-python
+
+python build_scripts\build_usd.py --build-monolithic --no-tests --no-docs --no-ptex --no-embree --alembic --no-hdf5 C:\src\usd\builds\v0.8.4\usd_monolithic
 
 ## License
 
