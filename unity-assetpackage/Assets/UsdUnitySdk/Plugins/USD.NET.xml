@@ -365,6 +365,14 @@
             interpolated.
             </remarks>
         </member>
+        <member name="T:USD.NET.Scene.UpAxes">
+            <summary>
+            Indicates the up-axis of the world contained in this cache.
+            </summary>
+            <remarks>
+            These values are defined by USD, thus are limited to Y and Z.
+            </remarks>
+        </member>
         <member name="F:USD.NET.Scene.kVersion">
             <summary>
             Declares the file format version of the serializer, written with all serialized data on the
@@ -375,7 +383,6 @@
             <summary>
             Gets the underlying UsdStage for this scene, if available.
             </summary>
-            
             <remarks>
             This is exposed only for low level, direct access to the underlying stage, not intended
             for common use.
@@ -385,7 +392,6 @@
             <summary>
             The time at which key frames should be read and written.
             </summary>
-            
             <remarks>
             Setting this value to null indicates values should be read from the "default" time
             (e.g. to store a rest pose, etc.)
@@ -399,6 +405,16 @@
         <member name="P:USD.NET.Scene.EndTime">
             <summary>
             The closing bracket at which animation ends, the time of the last key frame.
+            </summary>
+        </member>
+        <member name="P:USD.NET.Scene.FrameRate">
+            <summary>
+            The rate at which the cache should playback, in frames per second.
+            </summary>
+        </member>
+        <member name="P:USD.NET.Scene.UpAxis">
+            <summary>
+            The Up-axis of the world contained in the cache.
             </summary>
         </member>
         <member name="P:USD.NET.Scene.AllPaths">
@@ -705,42 +721,6 @@
             collection but not when one of the elements of the collection is modified as it is a bit
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
-        <member name="T:pxr.UsdGeomBasisCurvesComputeInterpolationInfo.UsdGeomBasisCurvesComputeInterpolationInfoEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
-        <member name="T:pxr.UsdGeomBoolVector.UsdGeomBoolVectorEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
-        <member name="T:pxr.UsdGeomCollectionAPIVector.UsdGeomCollectionAPIVectorEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
-        <member name="T:pxr.UsdGeomConstraintTargetVector.UsdGeomConstraintTargetVectorEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
-        <member name="T:pxr.UsdGeomLongVector.UsdGeomLongVectorEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
-        <member name="T:pxr.TaskCallbackVector.TaskCallbackVectorEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
         <member name="T:pxr.TfTokenVector.TfTokenVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
@@ -783,13 +763,37 @@
             collection but not when one of the elements of the collection is modified as it is a bit
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
-        <member name="T:pxr.UsdAttributeVector.UsdAttributeVectorEnumerator">
+        <member name="T:pxr.UsdGeomBasisCurvesComputeInterpolationInfo.UsdGeomBasisCurvesComputeInterpolationInfoEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.UsdGeomBoolVector.UsdGeomBoolVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.UsdGeomCollectionAPIVector.UsdGeomCollectionAPIVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.UsdGeomConstraintTargetVector.UsdGeomConstraintTargetVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
         <member name="T:pxr.UsdGeomFaceSetAPIVector.UsdGeomFaceSetAPIVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.UsdGeomLongVector.UsdGeomLongVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit
@@ -802,6 +806,18 @@
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
         <member name="T:pxr.UsdGeomXformOpVector.UsdGeomXformOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.UsdShadeShaderVector.UsdShadeShaderVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.UsdAttributeVector.UsdAttributeVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit
@@ -820,12 +836,6 @@
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
         <member name="T:pxr.UsdRelationshipVector.UsdRelationshipVectorEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
-        <member name="T:pxr.UsdShadeShaderVector.UsdShadeShaderVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit
@@ -862,6 +872,12 @@
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
         <member name="T:pxr.StdStringVector.StdStringVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.TaskCallbackVector.TaskCallbackVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit

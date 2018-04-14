@@ -4,9 +4,33 @@
         <name>USD.NET.Unity</name>
     </assembly>
     <members>
+        <member name="M:USD.NET.Unity.MeshSample.SetTriangles(System.Int32[])">
+            <summary>
+            Sets the faceVertexIndicies and faceVertexCounts from triangle indices alone.
+            </summary>
+        </member>
         <member name="T:USD.NET.Unity.MaterialBindingSample">
             <summary>
             Provides access to the material binding (if any) on the UsdPrim.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MaterialSample.ReadMaterial(USD.NET.Scene,System.String,USD.NET.Unity.MaterialSample,System.String@)">
+            <summary>
+            Reads the material associated with the geometry at the target path. If a valid material is
+            bound, the "surface" shader is inspected, if valid, the shader ID is queried and returned
+            via the shaderId output parameter. Returns true when shaderId is set.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MaterialSample.Bind(USD.NET.Scene,System.String,System.String)">
+            <summary>
+            Binds the prim to the given material.
+            https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a116ed8259600f7a48f3792364252a4e1
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MaterialSample.Unbind(USD.NET.Scene,System.String)">
+            <summary>
+            Unbinds the prim from all materials.
+            https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a6fc9d56d2e2e826aa3d96711c7b0e605
             </summary>
         </member>
         <member name="T:USD.NET.Unity.ParameterInfo">
@@ -68,25 +92,6 @@
         <member name="T:USD.NET.Unity.ShaderSample">
             <summary>
             A base class for all shader samples.
-            </summary>
-        </member>
-        <member name="M:USD.NET.Unity.MaterialSample.ReadMaterial(USD.NET.Scene,System.String,USD.NET.Unity.MaterialSample,System.String@)">
-            <summary>
-            Reads the material associated with the geometry at the target path. If a valid material is
-            bound, the "surface" shader is inspected, if valid, the shader ID is queried and returned
-            via the shaderId output parameter. Returns true when shaderId is set.
-            </summary>
-        </member>
-        <member name="M:USD.NET.Unity.MaterialSample.Bind(USD.NET.Scene,System.String,System.String)">
-            <summary>
-            Binds the prim to the given material.
-            https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a116ed8259600f7a48f3792364252a4e1
-            </summary>
-        </member>
-        <member name="M:USD.NET.Unity.MaterialSample.Unbind(USD.NET.Scene,System.String)">
-            <summary>
-            Unbinds the prim from all materials.
-            https://graphics.pixar.com/usd/docs/api/class_usd_shade_material.html#a6fc9d56d2e2e826aa3d96711c7b0e605
             </summary>
         </member>
         <member name="T:USD.NET.Unity.DiagnosticHandler">
