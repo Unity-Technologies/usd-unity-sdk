@@ -1,18 +1,23 @@
 @ECHO OFF
-
-SET PATH=%USD_LOCATION_PYTHON%\lib;%USD_LOCATION_PYTHON%\bin;%PATH%
-SET PYTHONPATH=%USD_LOCATION_PYTHON%\lib\python;%PYTHONPATH%
+SET ORIGPATH=%PATH%
 
 ECHO Generating type info from Python...
+ECHO Switching PATH to non-python build USD_LOCATION_PYTHON
+ECHO %USD_LOCATION_PYTHON%
+SET PATH=%USD_LOCATION_PYTHON%\lib;%USD_LOCATION_PYTHON%\bin;%ORIGPATH%
 
 @python .\src\Swig\scripts\gen.py
 IF NOT %ERRORLEVEL% == 0 (
   EXIT /B
 )
 
+ECHO Switching PATH to non-python build USD_LOCATION
+ECHO %USD_LOCATION%
+SET PATH=%USD_LOCATION%\lib;%USD_LOCATION%\bin;%ORIGPATH%
+
 ECHO.
 ECHO Running SWIG code generation...
-swig.exe -w401 -w516 -w503 -namespace pxr -I%USD_LOCATION_PYTHON%\include -I.\src\UsdCs\ -I.\ -c++ -csharp -outdir .\src\USD.NET -o .\src\UsdCs\usdCs_wrap.cpp .\src\Swig\usdCs.i
+swig.exe -w401 -w516 -w503 -namespace pxr -I%USD_LOCATION%\include -I.\src\UsdCs\ -I.\ -c++ -csharp -outdir .\src\USD.NET -o .\src\UsdCs\usdCs_wrap.cpp .\src\Swig\usdCs.i
 IF NOT %ERRORLEVEL% == 0 (
   EXIT /B
 )
