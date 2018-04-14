@@ -34,6 +34,7 @@ WRAP_EQUAL(TfToken)
 namespace std {
 	%template(TfTokenVector) vector<TfToken>;
 }
+typedef std::vector<TfToken> TfTokenVector;
 
 
 %include "pxr/base/tf/token.h"
