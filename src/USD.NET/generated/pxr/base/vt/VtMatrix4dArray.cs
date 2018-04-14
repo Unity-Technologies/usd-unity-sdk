@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class VtMatrix4dArray : global::System.IDisposable {
+public class VtMatrix4dArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal VtMatrix4dArray(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal VtMatrix4dArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtMatrix4dArray_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class VtMatrix4dArray : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class VtMatrix4dArray : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -48,7 +47,15 @@ public class VtMatrix4dArray : global::System.IDisposable {
   public VtMatrix4dArray() : this(UsdCsPINVOKE.new_VtMatrix4dArray__SWIG_0(), true) {
   }
 
-  public VtMatrix4dArray(uint n) : this(UsdCsPINVOKE.new_VtMatrix4dArray__SWIG_1(n), true) {
+  public VtMatrix4dArray(VtMatrix4dArray other) : this(UsdCsPINVOKE.new_VtMatrix4dArray__SWIG_1(VtMatrix4dArray.getCPtr(other)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtMatrix4dArray(uint n, GfMatrix4d value) : this(UsdCsPINVOKE.new_VtMatrix4dArray__SWIG_3(n, GfMatrix4d.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtMatrix4dArray(uint n) : this(UsdCsPINVOKE.new_VtMatrix4dArray__SWIG_4(n), true) {
   }
 
   public void push_back(GfMatrix4d elem) {
@@ -65,6 +72,11 @@ public class VtMatrix4dArray : global::System.IDisposable {
     return ret;
   }
 
+  public uint capacity() {
+    uint ret = UsdCsPINVOKE.VtMatrix4dArray_capacity(swigCPtr);
+    return ret;
+  }
+
   public bool empty() {
     bool ret = UsdCsPINVOKE.VtMatrix4dArray_empty(swigCPtr);
     return ret;
@@ -74,8 +86,8 @@ public class VtMatrix4dArray : global::System.IDisposable {
     UsdCsPINVOKE.VtMatrix4dArray_reserve(swigCPtr, num);
   }
 
-  public void resize(uint num) {
-    UsdCsPINVOKE.VtMatrix4dArray_resize(swigCPtr, num);
+  public void resize(uint newSize) {
+    UsdCsPINVOKE.VtMatrix4dArray_resize(swigCPtr, newSize);
   }
 
   public void clear() {

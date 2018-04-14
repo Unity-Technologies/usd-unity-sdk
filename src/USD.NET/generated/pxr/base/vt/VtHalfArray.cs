@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class VtHalfArray : global::System.IDisposable {
+public class VtHalfArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal VtHalfArray(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal VtHalfArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtHalfArray_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class VtHalfArray : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class VtHalfArray : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -48,7 +47,15 @@ public class VtHalfArray : global::System.IDisposable {
   public VtHalfArray() : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_0(), true) {
   }
 
-  public VtHalfArray(uint n) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_1(n), true) {
+  public VtHalfArray(VtHalfArray other) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_1(VtHalfArray.getCPtr(other)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtHalfArray(uint n, GfHalf value) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_3(n, GfHalf.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtHalfArray(uint n) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_4(n), true) {
   }
 
   public void push_back(GfHalf elem) {
@@ -65,6 +72,11 @@ public class VtHalfArray : global::System.IDisposable {
     return ret;
   }
 
+  public uint capacity() {
+    uint ret = UsdCsPINVOKE.VtHalfArray_capacity(swigCPtr);
+    return ret;
+  }
+
   public bool empty() {
     bool ret = UsdCsPINVOKE.VtHalfArray_empty(swigCPtr);
     return ret;
@@ -74,8 +86,8 @@ public class VtHalfArray : global::System.IDisposable {
     UsdCsPINVOKE.VtHalfArray_reserve(swigCPtr, num);
   }
 
-  public void resize(uint num) {
-    UsdCsPINVOKE.VtHalfArray_resize(swigCPtr, num);
+  public void resize(uint newSize) {
+    UsdCsPINVOKE.VtHalfArray_resize(swigCPtr, newSize);
   }
 
   public void clear() {

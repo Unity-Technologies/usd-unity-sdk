@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class SdfAssetPathArray : global::System.IDisposable {
+public class SdfAssetPathArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal SdfAssetPathArray(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal SdfAssetPathArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.SdfAssetPathArray_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class SdfAssetPathArray : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class SdfAssetPathArray : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -48,7 +47,15 @@ public class SdfAssetPathArray : global::System.IDisposable {
   public SdfAssetPathArray() : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_0(), true) {
   }
 
-  public SdfAssetPathArray(uint n) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_1(n), true) {
+  public SdfAssetPathArray(SdfAssetPathArray other) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_1(SdfAssetPathArray.getCPtr(other)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SdfAssetPathArray(uint n, SdfAssetPath value) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_3(n, SdfAssetPath.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SdfAssetPathArray(uint n) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_4(n), true) {
   }
 
   public void push_back(SdfAssetPath elem) {
@@ -65,6 +72,11 @@ public class SdfAssetPathArray : global::System.IDisposable {
     return ret;
   }
 
+  public uint capacity() {
+    uint ret = UsdCsPINVOKE.SdfAssetPathArray_capacity(swigCPtr);
+    return ret;
+  }
+
   public bool empty() {
     bool ret = UsdCsPINVOKE.SdfAssetPathArray_empty(swigCPtr);
     return ret;
@@ -74,8 +86,8 @@ public class SdfAssetPathArray : global::System.IDisposable {
     UsdCsPINVOKE.SdfAssetPathArray_reserve(swigCPtr, num);
   }
 
-  public void resize(uint num) {
-    UsdCsPINVOKE.SdfAssetPathArray_resize(swigCPtr, num);
+  public void resize(uint newSize) {
+    UsdCsPINVOKE.SdfAssetPathArray_resize(swigCPtr, newSize);
   }
 
   public void clear() {

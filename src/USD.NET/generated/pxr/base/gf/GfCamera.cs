@@ -54,20 +54,6 @@ public class GfCamera : global::System.IDisposable {
     } 
   }
 
-  public static bool ZUp {
-    get {
-      bool ret = UsdCsPINVOKE.GfCamera_ZUp_get();
-      return ret;
-    } 
-  }
-
-  public static bool YUp {
-    get {
-      bool ret = UsdCsPINVOKE.GfCamera_YUp_get();
-      return ret;
-    } 
-  }
-
   public static double DEFAULT_HORIZONTAL_APERTURE {
     get {
       double ret = UsdCsPINVOKE.GfCamera_DEFAULT_HORIZONTAL_APERTURE_get();

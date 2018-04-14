@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class VtVec2dArray : global::System.IDisposable {
+public class VtVec2dArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal VtVec2dArray(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal VtVec2dArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtVec2dArray_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class VtVec2dArray : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class VtVec2dArray : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -48,7 +47,15 @@ public class VtVec2dArray : global::System.IDisposable {
   public VtVec2dArray() : this(UsdCsPINVOKE.new_VtVec2dArray__SWIG_0(), true) {
   }
 
-  public VtVec2dArray(uint n) : this(UsdCsPINVOKE.new_VtVec2dArray__SWIG_1(n), true) {
+  public VtVec2dArray(VtVec2dArray other) : this(UsdCsPINVOKE.new_VtVec2dArray__SWIG_1(VtVec2dArray.getCPtr(other)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtVec2dArray(uint n, GfVec2d value) : this(UsdCsPINVOKE.new_VtVec2dArray__SWIG_3(n, GfVec2d.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtVec2dArray(uint n) : this(UsdCsPINVOKE.new_VtVec2dArray__SWIG_4(n), true) {
   }
 
   public void push_back(GfVec2d elem) {
@@ -65,6 +72,11 @@ public class VtVec2dArray : global::System.IDisposable {
     return ret;
   }
 
+  public uint capacity() {
+    uint ret = UsdCsPINVOKE.VtVec2dArray_capacity(swigCPtr);
+    return ret;
+  }
+
   public bool empty() {
     bool ret = UsdCsPINVOKE.VtVec2dArray_empty(swigCPtr);
     return ret;
@@ -74,8 +86,8 @@ public class VtVec2dArray : global::System.IDisposable {
     UsdCsPINVOKE.VtVec2dArray_reserve(swigCPtr, num);
   }
 
-  public void resize(uint num) {
-    UsdCsPINVOKE.VtVec2dArray_resize(swigCPtr, num);
+  public void resize(uint newSize) {
+    UsdCsPINVOKE.VtVec2dArray_resize(swigCPtr, newSize);
   }
 
   public void clear() {

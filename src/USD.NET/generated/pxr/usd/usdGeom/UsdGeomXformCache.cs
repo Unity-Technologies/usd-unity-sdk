@@ -65,6 +65,12 @@ public class UsdGeomXformCache : global::System.IDisposable {
     return ret;
   }
 
+  public GfMatrix4d ComputeRelativeTransform(UsdPrim prim, UsdPrim ancestor, SWIGTYPE_p_bool resetXformStack) {
+    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_ComputeRelativeTransform(swigCPtr, UsdPrim.getCPtr(prim), UsdPrim.getCPtr(ancestor), SWIGTYPE_p_bool.getCPtr(resetXformStack)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool IsAttributeIncludedInLocalTransform(UsdPrim prim, TfToken attrName) {
     bool ret = UsdCsPINVOKE.UsdGeomXformCache_IsAttributeIncludedInLocalTransform(swigCPtr, UsdPrim.getCPtr(prim), TfToken.getCPtr(attrName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

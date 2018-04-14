@@ -144,7 +144,13 @@ public class UsdGeomPointBased : UsdGeomGprim {
   }
 
   public static bool ComputeExtent(VtVec3fArray points, VtVec3fArray extent) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointBased_ComputeExtent(VtVec3fArray.getCPtr(points), VtVec3fArray.getCPtr(extent));
+    bool ret = UsdCsPINVOKE.UsdGeomPointBased_ComputeExtent__SWIG_0(VtVec3fArray.getCPtr(points), VtVec3fArray.getCPtr(extent));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool ComputeExtent(VtVec3fArray points, GfMatrix4d transform, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointBased_ComputeExtent__SWIG_1(VtVec3fArray.getCPtr(points), GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

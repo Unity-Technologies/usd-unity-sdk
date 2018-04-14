@@ -10,10 +10,12 @@
 
 namespace pxr {
 
-public class UsdGeomMotionAPI : UsdSchemaBase {
+public class UsdGeomMotionAPI : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+  protected bool swigCMemOwn;
 
-  internal UsdGeomMotionAPI(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomMotionAPI_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal UsdGeomMotionAPI(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -25,7 +27,7 @@ public class UsdGeomMotionAPI : UsdSchemaBase {
     Dispose();
   }
 
-  public override void Dispose() {
+  public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -35,7 +37,6 @@ public class UsdGeomMotionAPI : UsdSchemaBase {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 
@@ -50,18 +51,24 @@ public class UsdGeomMotionAPI : UsdSchemaBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
+  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomMotionAPI_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames() {
+  public static TfTokenVector GetSchemaAttributeNames() {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomMotionAPI_GetSchemaAttributeNames__SWIG_1(), false);
     return ret;
   }
 
   public static UsdGeomMotionAPI Get(UsdStageWeakPtr stage, SdfPath path) {
     UsdGeomMotionAPI ret = new UsdGeomMotionAPI(UsdCsPINVOKE.UsdGeomMotionAPI_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdGeomMotionAPI Apply(UsdPrim prim) {
+    UsdGeomMotionAPI ret = new UsdGeomMotionAPI(UsdCsPINVOKE.UsdGeomMotionAPI_Apply(UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -101,6 +108,7 @@ public class UsdGeomMotionAPI : UsdSchemaBase {
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomMotionAPI_IsConcrete_get();
   public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomMotionAPI_IsTyped_get();
+  public static readonly bool IsMultipleApply = UsdCsPINVOKE.UsdGeomMotionAPI_IsMultipleApply_get();
 }
 
 }

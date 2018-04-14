@@ -160,6 +160,18 @@ public class UsdGeomCylinder : UsdGeomGprim {
     return ret;
   }
 
+  public static bool ComputeExtent(double height, double radius, TfToken axis, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdGeomCylinder_ComputeExtent__SWIG_0(height, radius, TfToken.getCPtr(axis), VtVec3fArray.getCPtr(extent));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool ComputeExtent(double height, double radius, TfToken axis, GfMatrix4d transform, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdGeomCylinder_ComputeExtent__SWIG_1(height, radius, TfToken.getCPtr(axis), GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomCylinder_IsConcrete_get();
   public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomCylinder_IsTyped_get();
 }

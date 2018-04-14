@@ -116,6 +116,17 @@ public class UsdGeomSphere : UsdGeomGprim {
     return ret;
   }
 
+  public static bool ComputeExtent(double radius, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdGeomSphere_ComputeExtent__SWIG_0(radius, VtVec3fArray.getCPtr(extent));
+    return ret;
+  }
+
+  public static bool ComputeExtent(double radius, GfMatrix4d transform, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdGeomSphere_ComputeExtent__SWIG_1(radius, GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomSphere_IsConcrete_get();
   public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomSphere_IsTyped_get();
 }

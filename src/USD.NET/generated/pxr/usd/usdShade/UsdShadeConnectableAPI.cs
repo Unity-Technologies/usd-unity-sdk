@@ -10,10 +10,12 @@
 
 namespace pxr {
 
-public class UsdShadeConnectableAPI : UsdSchemaBase {
+public class UsdShadeConnectableAPI : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+  protected bool swigCMemOwn;
 
-  internal UsdShadeConnectableAPI(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdShadeConnectableAPI_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal UsdShadeConnectableAPI(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -25,7 +27,7 @@ public class UsdShadeConnectableAPI : UsdSchemaBase {
     Dispose();
   }
 
-  public override void Dispose() {
+  public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -35,7 +37,6 @@ public class UsdShadeConnectableAPI : UsdSchemaBase {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 
@@ -50,18 +51,24 @@ public class UsdShadeConnectableAPI : UsdSchemaBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
+  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames() {
+  public static TfTokenVector GetSchemaAttributeNames() {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_1(), false);
     return ret;
   }
 
   public static UsdShadeConnectableAPI Get(UsdStageWeakPtr stage, SdfPath path) {
     UsdShadeConnectableAPI ret = new UsdShadeConnectableAPI(UsdCsPINVOKE.UsdShadeConnectableAPI_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdShadeConnectableAPI Apply(UsdPrim prim) {
+    UsdShadeConnectableAPI ret = new UsdShadeConnectableAPI(UsdCsPINVOKE.UsdShadeConnectableAPI_Apply(UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -378,6 +385,7 @@ public class UsdShadeConnectableAPI : UsdSchemaBase {
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeConnectableAPI_IsConcrete_get();
   public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeConnectableAPI_IsTyped_get();
+  public static readonly bool IsMultipleApply = UsdCsPINVOKE.UsdShadeConnectableAPI_IsMultipleApply_get();
 }
 
 }

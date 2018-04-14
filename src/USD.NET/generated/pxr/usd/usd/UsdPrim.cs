@@ -133,23 +133,52 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
+  public TfTokenVector GetAppliedSchemas() {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetAppliedSchemas(swigCPtr), true);
+    return ret;
+  }
+
+  public TfTokenVector GetPropertyNames(SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t predicate) {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetPropertyNames__SWIG_0(swigCPtr, SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t.getCPtr(predicate)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public TfTokenVector GetPropertyNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetPropertyNames(swigCPtr), true);
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetPropertyNames__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public TfTokenVector GetAuthoredPropertyNames(SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t predicate) {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetAuthoredPropertyNames__SWIG_0(swigCPtr, SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t.getCPtr(predicate)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public TfTokenVector GetAuthoredPropertyNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetAuthoredPropertyNames(swigCPtr), true);
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetAuthoredPropertyNames__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdPropertyVector GetProperties(SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t predicate) {
+    UsdPropertyVector ret = new UsdPropertyVector(UsdCsPINVOKE.UsdPrim_GetProperties__SWIG_0(swigCPtr, SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t.getCPtr(predicate)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public UsdPropertyVector GetProperties() {
-    UsdPropertyVector ret = new UsdPropertyVector(UsdCsPINVOKE.UsdPrim_GetProperties(swigCPtr), true);
+    UsdPropertyVector ret = new UsdPropertyVector(UsdCsPINVOKE.UsdPrim_GetProperties__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdPropertyVector GetAuthoredProperties(SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t predicate) {
+    UsdPropertyVector ret = new UsdPropertyVector(UsdCsPINVOKE.UsdPrim_GetAuthoredProperties__SWIG_0(swigCPtr, SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t.getCPtr(predicate)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public UsdPropertyVector GetAuthoredProperties() {
-    UsdPropertyVector ret = new UsdPropertyVector(UsdCsPINVOKE.UsdPrim_GetAuthoredProperties(swigCPtr), true);
+    UsdPropertyVector ret = new UsdPropertyVector(UsdCsPINVOKE.UsdPrim_GetAuthoredProperties__SWIG_1(swigCPtr), true);
     return ret;
   }
 

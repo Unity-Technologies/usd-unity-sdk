@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class VtQuatfArray : global::System.IDisposable {
+public class VtQuatfArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal VtQuatfArray(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal VtQuatfArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtQuatfArray_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class VtQuatfArray : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class VtQuatfArray : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -48,7 +47,15 @@ public class VtQuatfArray : global::System.IDisposable {
   public VtQuatfArray() : this(UsdCsPINVOKE.new_VtQuatfArray__SWIG_0(), true) {
   }
 
-  public VtQuatfArray(uint n) : this(UsdCsPINVOKE.new_VtQuatfArray__SWIG_1(n), true) {
+  public VtQuatfArray(VtQuatfArray other) : this(UsdCsPINVOKE.new_VtQuatfArray__SWIG_1(VtQuatfArray.getCPtr(other)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtQuatfArray(uint n, GfQuatf value) : this(UsdCsPINVOKE.new_VtQuatfArray__SWIG_3(n, GfQuatf.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtQuatfArray(uint n) : this(UsdCsPINVOKE.new_VtQuatfArray__SWIG_4(n), true) {
   }
 
   public void push_back(GfQuatf elem) {
@@ -65,6 +72,11 @@ public class VtQuatfArray : global::System.IDisposable {
     return ret;
   }
 
+  public uint capacity() {
+    uint ret = UsdCsPINVOKE.VtQuatfArray_capacity(swigCPtr);
+    return ret;
+  }
+
   public bool empty() {
     bool ret = UsdCsPINVOKE.VtQuatfArray_empty(swigCPtr);
     return ret;
@@ -74,8 +86,8 @@ public class VtQuatfArray : global::System.IDisposable {
     UsdCsPINVOKE.VtQuatfArray_reserve(swigCPtr, num);
   }
 
-  public void resize(uint num) {
-    UsdCsPINVOKE.VtQuatfArray_resize(swigCPtr, num);
+  public void resize(uint newSize) {
+    UsdCsPINVOKE.VtQuatfArray_resize(swigCPtr, newSize);
   }
 
   public void clear() {

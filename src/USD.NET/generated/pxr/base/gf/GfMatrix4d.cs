@@ -127,6 +127,12 @@ public class GfMatrix4d : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_double Get(SWIGTYPE_p_a_4__double m) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix4d_Get(swigCPtr, SWIGTYPE_p_a_4__double.getCPtr(m));
+    SWIGTYPE_p_double ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_double(cPtr, false);
+    return ret;
+  }
+
   public GfMatrix4d GetTranspose() {
     GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.GfMatrix4d_GetTranspose(swigCPtr), true);
     return ret;

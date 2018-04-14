@@ -346,7 +346,13 @@ public class UsdGeomPointInstancer : UsdGeomBoundable {
   }
 
   public bool ComputeExtentAtTime(VtVec3fArray extent, UsdTimeCode time, UsdTimeCode baseTime) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTime(swigCPtr, VtVec3fArray.getCPtr(extent), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime));
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTime__SWIG_0(swigCPtr, VtVec3fArray.getCPtr(extent), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ComputeExtentAtTime(VtVec3fArray extent, UsdTimeCode time, UsdTimeCode baseTime, GfMatrix4d transform) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTime__SWIG_1(swigCPtr, VtVec3fArray.getCPtr(extent), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime), GfMatrix4d.getCPtr(transform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

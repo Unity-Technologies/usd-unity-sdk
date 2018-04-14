@@ -89,7 +89,13 @@ public class UsdGeomBoundable : UsdGeomXformable {
   }
 
   public static bool ComputeExtentFromPlugins(UsdGeomBoundable boundable, UsdTimeCode time, VtVec3fArray extent) {
-    bool ret = UsdCsPINVOKE.UsdGeomBoundable_ComputeExtentFromPlugins(UsdGeomBoundable.getCPtr(boundable), UsdTimeCode.getCPtr(time), VtVec3fArray.getCPtr(extent));
+    bool ret = UsdCsPINVOKE.UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_0(UsdGeomBoundable.getCPtr(boundable), UsdTimeCode.getCPtr(time), VtVec3fArray.getCPtr(extent));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool ComputeExtentFromPlugins(UsdGeomBoundable boundable, UsdTimeCode time, GfMatrix4d transform, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_1(UsdGeomBoundable.getCPtr(boundable), UsdTimeCode.getCPtr(time), GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

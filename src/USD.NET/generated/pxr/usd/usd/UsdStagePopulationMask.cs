@@ -109,6 +109,12 @@ public class UsdStagePopulationMask : global::System.IDisposable {
     return ret;
   }
 
+  public bool GetIncludedChildNames(SdfPath path, TfTokenVector childNames) {
+    bool ret = UsdCsPINVOKE.UsdStagePopulationMask_GetIncludedChildNames(swigCPtr, SdfPath.getCPtr(path), TfTokenVector.getCPtr(childNames));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public SdfPathVector GetPaths() {
     SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.UsdStagePopulationMask_GetPaths(swigCPtr), true);
     return ret;

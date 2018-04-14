@@ -68,6 +68,18 @@ public class UsdAttribute : UsdProperty {
     return ret;
   }
 
+  public static bool GetUnionedTimeSamples(UsdAttributeVector attrs, StdDoubleVector times) {
+    bool ret = UsdCsPINVOKE.UsdAttribute_GetUnionedTimeSamples(UsdAttributeVector.getCPtr(attrs), StdDoubleVector.getCPtr(times));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GetUnionedTimeSamplesInInterval(UsdAttributeVector attrs, GfInterval interval, StdDoubleVector times) {
+    bool ret = UsdCsPINVOKE.UsdAttribute_GetUnionedTimeSamplesInInterval(UsdAttributeVector.getCPtr(attrs), GfInterval.getCPtr(interval), StdDoubleVector.getCPtr(times));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public uint GetNumTimeSamples() {
     uint ret = UsdCsPINVOKE.UsdAttribute_GetNumTimeSamples(swigCPtr);
     return ret;

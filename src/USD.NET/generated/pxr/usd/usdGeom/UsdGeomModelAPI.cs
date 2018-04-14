@@ -67,6 +67,12 @@ public class UsdGeomModelAPI : global::System.IDisposable {
     return ret;
   }
 
+  public static UsdGeomModelAPI Apply(UsdPrim prim) {
+    UsdGeomModelAPI ret = new UsdGeomModelAPI(UsdCsPINVOKE.UsdGeomModelAPI_Apply(UsdPrim.getCPtr(prim)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdAttribute GetModelDrawModeAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomModelAPI_GetModelDrawModeAttr(swigCPtr), true);
     return ret;
@@ -345,6 +351,7 @@ public class UsdGeomModelAPI : global::System.IDisposable {
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomModelAPI_IsConcrete_get();
   public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomModelAPI_IsTyped_get();
+  public static readonly bool IsMultipleApply = UsdCsPINVOKE.UsdGeomModelAPI_IsMultipleApply_get();
 }
 
 }

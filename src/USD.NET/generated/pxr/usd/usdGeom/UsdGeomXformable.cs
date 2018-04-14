@@ -510,13 +510,19 @@ public class UsdGeomXformable : UsdGeomImageable {
     return ret;
   }
 
-  public bool GetTimeSamples(StdDoubleVector timeSamples) {
-    bool ret = UsdCsPINVOKE.UsdGeomXformable_GetTimeSamples__SWIG_0(swigCPtr, StdDoubleVector.getCPtr(timeSamples));
+  public bool GetTimeSamples(StdDoubleVector times) {
+    bool ret = UsdCsPINVOKE.UsdGeomXformable_GetTimeSamples__SWIG_0(swigCPtr, StdDoubleVector.getCPtr(times));
     return ret;
   }
 
   public static bool GetTimeSamples(UsdGeomXformOpVector orderedXformOps, StdDoubleVector times) {
     bool ret = UsdCsPINVOKE.UsdGeomXformable_GetTimeSamples__SWIG_1(UsdGeomXformOpVector.getCPtr(orderedXformOps), StdDoubleVector.getCPtr(times));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GetTimeSamplesInInterval(UsdGeomXformOpVector orderedXformOps, GfInterval interval, StdDoubleVector times) {
+    bool ret = UsdCsPINVOKE.UsdGeomXformable_GetTimeSamplesInInterval(UsdGeomXformOpVector.getCPtr(orderedXformOps), GfInterval.getCPtr(interval), StdDoubleVector.getCPtr(times));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

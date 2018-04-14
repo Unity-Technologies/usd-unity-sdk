@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class VtInt64Array : global::System.IDisposable {
+public class VtInt64Array : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal VtInt64Array(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal VtInt64Array(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtInt64Array_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class VtInt64Array : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class VtInt64Array : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -48,7 +47,14 @@ public class VtInt64Array : global::System.IDisposable {
   public VtInt64Array() : this(UsdCsPINVOKE.new_VtInt64Array__SWIG_0(), true) {
   }
 
-  public VtInt64Array(uint n) : this(UsdCsPINVOKE.new_VtInt64Array__SWIG_1(n), true) {
+  public VtInt64Array(VtInt64Array other) : this(UsdCsPINVOKE.new_VtInt64Array__SWIG_1(VtInt64Array.getCPtr(other)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtInt64Array(uint n, long value) : this(UsdCsPINVOKE.new_VtInt64Array__SWIG_3(n, value), true) {
+  }
+
+  public VtInt64Array(uint n) : this(UsdCsPINVOKE.new_VtInt64Array__SWIG_4(n), true) {
   }
 
   public void push_back(long elem) {
@@ -64,6 +70,11 @@ public class VtInt64Array : global::System.IDisposable {
     return ret;
   }
 
+  public uint capacity() {
+    uint ret = UsdCsPINVOKE.VtInt64Array_capacity(swigCPtr);
+    return ret;
+  }
+
   public bool empty() {
     bool ret = UsdCsPINVOKE.VtInt64Array_empty(swigCPtr);
     return ret;
@@ -73,8 +84,8 @@ public class VtInt64Array : global::System.IDisposable {
     UsdCsPINVOKE.VtInt64Array_reserve(swigCPtr, num);
   }
 
-  public void resize(uint num) {
-    UsdCsPINVOKE.VtInt64Array_resize(swigCPtr, num);
+  public void resize(uint newSize) {
+    UsdCsPINVOKE.VtInt64Array_resize(swigCPtr, newSize);
   }
 
   public void clear() {

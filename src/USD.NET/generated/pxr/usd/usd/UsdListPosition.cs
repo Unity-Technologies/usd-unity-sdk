@@ -11,8 +11,10 @@
 namespace pxr {
 
 public enum UsdListPosition {
-  UsdListPositionFront,
-  UsdListPositionBack,
+  UsdListPositionFrontOfPrependList,
+  UsdListPositionBackOfPrependList,
+  UsdListPositionFrontOfAppendList,
+  UsdListPositionBackOfAppendList,
   UsdListPositionTempDefault
 }
 
