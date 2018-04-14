@@ -48,6 +48,3 @@ OUTPUT_TYPEMAP(UsdShadeAttributeType, UsdShadeAttributeType, UsdShadeAttributeTy
 %include "usdShadeConnectableAPI.i"
 
 %include "usdShadeTokens.i"
-
-// Deprecated
-%include "usdShadeLook.i"
