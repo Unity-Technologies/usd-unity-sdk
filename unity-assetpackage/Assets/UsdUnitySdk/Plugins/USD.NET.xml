@@ -586,7 +586,7 @@
         <member name="T:USD.NET.DefaultConversions">
             Conversions discovered automatically via reflection on VtValue.
         </member>
-        <member name="M:USD.NET.TypeBinder.BindArrayType``1(System.Type,System.Type,pxr.SdfValueTypeName)">
+        <member name="M:USD.NET.TypeBinder.BindArrayType``1(System.Type,System.Type,pxr.SdfValueTypeName,System.String)">
             <summary>
             Binds the specified C# type to the given USD array and scene description (Sdf) types,
             looking for ConverterT.ToVtArray(csType) and ConverterT.FromVtArray(vtArrayType).
