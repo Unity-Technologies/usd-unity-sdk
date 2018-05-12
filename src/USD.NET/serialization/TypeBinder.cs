@@ -137,14 +137,17 @@ namespace USD.NET {
     /// 
     public void BindArrayType<ConverterT>(Type csType,
                                           Type vtArrayType,
-                                          pxr.SdfValueTypeName sdfName) {
-      var csToVtArray = typeof(ConverterT).GetMethod("ToVtArray", new Type[] { csType });
+                                          pxr.SdfValueTypeName sdfName,
+                                          string methodNamePrefix = "") {
+      var csToVtArray = typeof(ConverterT)
+                      .GetMethod(methodNamePrefix + "ToVtArray", new Type[] { csType });
       if (csToVtArray == null) {
         throw new ArgumentException(string.Format("No ToVtArray overload found for type {0}",
           csType.ToString()));
       }
 
-      var vtToCsArray = typeof(ConverterT).GetMethod("FromVtArray", new Type[] { vtArrayType });
+      var vtToCsArray = typeof(ConverterT)
+                      .GetMethod(methodNamePrefix + "FromVtArray", new Type[] { vtArrayType });
       if (vtToCsArray == null) {
         throw new ArgumentException(string.Format("No FromVtArray overload found for type {0}",
           vtArrayType.ToString()));
