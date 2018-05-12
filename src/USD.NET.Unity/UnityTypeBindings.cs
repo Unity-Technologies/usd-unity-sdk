@@ -34,8 +34,12 @@ namespace USD.NET.Unity {
       //
       // Quaternion
       //
+      binder.BindType(typeof(Quaternion), new UsdTypeBinding(
+          (object obj) => UnityTypeConverter.QuaternionToQuatf((Quaternion)obj),
+          (pxr.VtValue vtVal) => UnityTypeConverter.QuatfToQuaternion(vtVal),
+          SdfValueTypeNames.Quatf));
       binder.BindArrayType<UnityTypeConverter>(typeof(Quaternion[]), typeof(pxr.VtQuatfArray), SdfValueTypeNames.QuatfArray);
-      binder.BindArrayType<UnityTypeConverter>(typeof(List<Quaternion>), typeof(pxr.VtQuatfArray), SdfValueTypeNames.QuatfArray);
+      binder.BindArrayType<UnityTypeConverter>(typeof(List<Quaternion>), typeof(pxr.VtQuatfArray), SdfValueTypeNames.QuatfArray, "List");
 
       //
       // Vector {2,3,4} {[],List<>}

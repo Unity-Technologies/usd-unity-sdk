@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using pxr;
 
 namespace USD.NET.Unity {
@@ -294,7 +295,18 @@ namespace USD.NET.Unity {
       }
     }
 
-    static public VtQuatfArray ToVtArray(List<UnityEngine.Quaternion> input) {
+    static public GfQuatf QuaternionToQuatf(UnityEngine.Quaternion quaternion) {
+      // See pxr/unity quaternion layout above.
+      return new GfQuatf(quaternion.w, quaternion.x, quaternion.y, quaternion.z);
+    }
+
+    static public UnityEngine.Quaternion QuatfToQuaternion(GfQuatf quat) {
+      // See pxr/unity quaternion layout above.
+      GfVec3f img = quat.GetImaginary();
+      return new UnityEngine.Quaternion(img[0], img[1], img[2], quat.GetReal());
+    }
+
+    static public VtQuatfArray ListToVtArray(List<UnityEngine.Quaternion> input) {
       return ToVtArray(input.ToArray());
     }
 
@@ -329,6 +341,19 @@ namespace USD.NET.Unity {
       // Swap real component for USD/Unity mis-match.
       SwapQuaternionReal(ref output);
       return output;
+    }
+
+    static public List<UnityEngine.Quaternion> ListFromVtArray(VtQuatfArray input) {
+      var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Quaternion>(input.size());
+      unsafe
+      {
+        fixed (UnityEngine.Quaternion* p = output) {
+          input.CopyToArray((IntPtr)p);
+        }
+      }
+      // Swap real component for USD/Unity mis-match.
+      SwapQuaternionReal(ref output);
+      return output.ToList();
     }
 
     // ----------------------------------------------------------------------------------------- //

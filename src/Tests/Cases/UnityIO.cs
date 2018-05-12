@@ -13,9 +13,42 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace Tests.Cases {
   class UnityIO : UnitTest {
+
+    class QuaternionSample : USD.NET.SampleBase {
+      public UnityEngine.Quaternion quaternion;
+      public List<UnityEngine.Quaternion> quaternionList;
+      public UnityEngine.Quaternion[] quaternionArray;
+
+      public static QuaternionSample GetTestSample() {
+        var quat = new QuaternionSample();
+        quat.quaternion = new UnityEngine.Quaternion(1, 2, 3, 4);
+        quat.quaternionList = new List<UnityEngine.Quaternion>();
+        quat.quaternionList.Add(quat.quaternion);
+        quat.quaternionList.Add(new UnityEngine.Quaternion(5, 6, 7, 8));
+        quat.quaternionArray = quat.quaternionList.ToArray();
+        return quat;
+      }
+
+      public void Verify() {
+        var q0 = new UnityEngine.Quaternion(1, 2, 3, 4);
+        var q1 = new UnityEngine.Quaternion(5, 6, 7, 8);
+        AssertEqual(q0, quaternion);
+        AssertEqual(q0, quaternionList[0]);
+        AssertEqual(q1, quaternionList[1]);
+        AssertEqual(q0, quaternionArray[0]);
+        AssertEqual(q1, quaternionArray[1]);
+      }
+    }
+
+    public static void TestQuaternion() {
+      var sample = QuaternionSample.GetTestSample();
+      var sample2 = new QuaternionSample();
+      WriteAndRead(ref sample, ref sample2, true);
+    }
 
     public static void TestXform() {
       var sample = new USD.NET.Unity.XformSample();
