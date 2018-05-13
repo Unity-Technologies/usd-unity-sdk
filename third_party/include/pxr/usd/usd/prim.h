@@ -34,7 +34,7 @@
 #include "pxr/usd/usd/primFlags.h"
 
 #include "pxr/usd/sdf/schema.h"
-#include "pxr/base/tracelite/trace.h"
+#include "pxr/base/trace/trace.h"
 
 #include "pxr/base/tf/declarePtrs.h"
 #include "pxr/base/tf/refBase.h"
@@ -44,7 +44,6 @@
 #include "pxr/usd/sdf/path.h"
 
 #include <boost/iterator/iterator_adaptor.hpp>
-#include <boost/mpl/assert.hpp>
 #include <boost/range/iterator_range.hpp>
 
 #include <string>
@@ -487,7 +486,7 @@ public:
     /// The python version of this method takes as an argument the TfType
     /// of the API schema class. Similar validation of the schema type is 
     /// performed in python at run-time and a coding error is issued if 
-    /// the given type is unknown or is a typed schema.
+    /// the given type is not a valid applied API schema.
     /// 
     /// <b>Using HasAPI in Python</b>
     /// \code{.py}
@@ -507,6 +506,8 @@ public:
                       "Provided type must not be UsdAPISchemaBase.");
         static_assert(!T::IsTyped,
                       "Provided schema type must not be typed.");
+        static_assert(T::IsApplied,
+                      "Provided schema type must be an applied API schema.");
 
         if (!T::IsMultipleApply && !instanceName.IsEmpty()) {
             TF_CODING_ERROR("HasAPI: single application API schemas like %s do "
@@ -1131,6 +1132,7 @@ private:
     friend class UsdPrimSubtreeIterator;
     friend class UsdProperty;
     friend class UsdSchemaBase;
+    friend class UsdAPISchemaBase;
     friend class UsdStage;
     friend class UsdPrimRange;
     friend class Usd_PrimData;
@@ -1370,7 +1372,7 @@ UsdPrim::GetFilteredChildren(const Usd_PrimFlagsPredicate &pred) const
 UsdPrimSiblingRange
 UsdPrim::GetAllChildren() const
 {
-    return GetFilteredChildren(Usd_PrimFlagsPredicate::Tautology());
+    return GetFilteredChildren(UsdPrimAllPrimsPredicate);
 }
 
 UsdPrimSiblingRange
@@ -1567,7 +1569,7 @@ UsdPrim::GetFilteredDescendants(const Usd_PrimFlagsPredicate &pred) const
 UsdPrimSubtreeRange
 UsdPrim::GetAllDescendants() const
 {
-    return GetFilteredDescendants(Usd_PrimFlagsPredicate::Tautology());
+    return GetFilteredDescendants(UsdPrimAllPrimsPredicate);
 }
 
 UsdPrimSubtreeRange
