@@ -56,7 +56,6 @@ class string;
 %typemap(throws, canthrow=1) string *
 %{ SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, $1.c_str());
    return $null; %}
-
 }
 
 %ignore UsdStage::Traverse() const;
@@ -67,14 +66,14 @@ class string;
 %extend UsdStage {
   std::vector<UsdPrim> GetAllPrims() {
     std::vector<UsdPrim> targets;
-    TF_FOR_ALL(p, self->Traverse()) { targets.push_back(*p); }
+    for (auto&& p : self->Traverse()) { targets.push_back(p); }
 	  return targets;
   }
   std::vector<UsdPrim> GetAllPrimsByType(std::string typeName) {
     std::vector<UsdPrim> targets;
-    TF_FOR_ALL(p, self->Traverse()) {
-      if (p->GetTypeName() == typeName) {
-        targets.push_back(*p);
+    for (auto&& p : self->Traverse()) {
+      if (p.GetTypeName() == typeName) {
+        targets.push_back(p);
       }
     }
 	  return targets;
@@ -82,17 +81,17 @@ class string;
 
   std::vector<SdfPath> GetAllPaths() {
     std::vector<SdfPath> targets;
-    TF_FOR_ALL(p, self->Traverse()) {
-      targets.push_back(p->GetPath());
+    for (auto&& p : self->Traverse()) {
+      targets.push_back(p.GetPath());
     }
 	  return targets;
   }
 
   std::vector<SdfPath> GetAllPathsByType(std::string typeName) {
     std::vector<SdfPath> targets;
-    TF_FOR_ALL(p, self->Traverse()) {
-      if (p->GetTypeName() == typeName) {
-        targets.push_back(p->GetPath());
+    for (auto&& p : self->Traverse()) {
+      if (p.GetTypeName() == typeName) {
+        targets.push_back(p.GetPath());
       }
     }
 	  return targets;
