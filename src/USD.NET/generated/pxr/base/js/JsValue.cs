@@ -47,26 +47,30 @@ public class JsValue : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public JsValue(JsObjectVector value) : this(UsdCsPINVOKE.new_JsValue__SWIG_2(JsObjectVector.getCPtr(value)), true) {
+  public JsValue(JsObjectVector value) : this(UsdCsPINVOKE.new_JsValue__SWIG_3(JsObjectVector.getCPtr(value)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public JsValue(string value) : this(UsdCsPINVOKE.new_JsValue__SWIG_3(value), true) {
+  public JsValue(string value) : this(UsdCsPINVOKE.new_JsValue__SWIG_5(value), true) {
   }
 
-  public JsValue(bool value) : this(UsdCsPINVOKE.new_JsValue__SWIG_5(value), true) {
+  public JsValue(SWIGTYPE_p_std__string value) : this(UsdCsPINVOKE.new_JsValue__SWIG_7(SWIGTYPE_p_std__string.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public JsValue(int value) : this(UsdCsPINVOKE.new_JsValue__SWIG_6(value), true) {
+  public JsValue(bool value) : this(UsdCsPINVOKE.new_JsValue__SWIG_8(value), true) {
   }
 
-  public JsValue(long value) : this(UsdCsPINVOKE.new_JsValue__SWIG_7(value), true) {
+  public JsValue(int value) : this(UsdCsPINVOKE.new_JsValue__SWIG_9(value), true) {
   }
 
-  public JsValue(ulong value) : this(UsdCsPINVOKE.new_JsValue__SWIG_8(value), true) {
+  public JsValue(long value) : this(UsdCsPINVOKE.new_JsValue__SWIG_10(value), true) {
   }
 
-  public JsValue(double value) : this(UsdCsPINVOKE.new_JsValue__SWIG_9(value), true) {
+  public JsValue(ulong value) : this(UsdCsPINVOKE.new_JsValue__SWIG_11(value), true) {
+  }
+
+  public JsValue(double value) : this(UsdCsPINVOKE.new_JsValue__SWIG_12(value), true) {
   }
 
   public JsObject GetJsObject() {

@@ -18,6 +18,7 @@ using pxr;
 public static class SdfValueTypeNames {
     static public SdfValueTypeName Color4dArray = UsdCs.SdfGetValueTypeColor4dArray();
     static public SdfValueTypeName Matrix3d = UsdCs.SdfGetValueTypeMatrix3d();
+    static public SdfValueTypeName TexCoord3dArray = UsdCs.SdfGetValueTypeTexCoord3dArray();
     static public SdfValueTypeName Point3h = UsdCs.SdfGetValueTypePoint3h();
     static public SdfValueTypeName Asset = UsdCs.SdfGetValueTypeAsset();
     static public SdfValueTypeName Point3d = UsdCs.SdfGetValueTypePoint3d();
@@ -25,6 +26,7 @@ public static class SdfValueTypeNames {
     static public SdfValueTypeName QuathArray = UsdCs.SdfGetValueTypeQuathArray();
     static public SdfValueTypeName UChar = UsdCs.SdfGetValueTypeUChar();
     static public SdfValueTypeName Matrix2dArray = UsdCs.SdfGetValueTypeMatrix2dArray();
+    static public SdfValueTypeName TexCoord2fArray = UsdCs.SdfGetValueTypeTexCoord2fArray();
     static public SdfValueTypeName Vector3dArray = UsdCs.SdfGetValueTypeVector3dArray();
     static public SdfValueTypeName Color4h = UsdCs.SdfGetValueTypeColor4h();
     static public SdfValueTypeName Color4f = UsdCs.SdfGetValueTypeColor4f();
@@ -36,6 +38,7 @@ public static class SdfValueTypeNames {
     static public SdfValueTypeName Normal3fArray = UsdCs.SdfGetValueTypeNormal3fArray();
     static public SdfValueTypeName Token = UsdCs.SdfGetValueTypeToken();
     static public SdfValueTypeName Float3Array = UsdCs.SdfGetValueTypeFloat3Array();
+    static public SdfValueTypeName TexCoord2hArray = UsdCs.SdfGetValueTypeTexCoord2hArray();
     static public SdfValueTypeName UCharArray = UsdCs.SdfGetValueTypeUCharArray();
     static public SdfValueTypeName DoubleArray = UsdCs.SdfGetValueTypeDoubleArray();
     static public SdfValueTypeName Frame4d = UsdCs.SdfGetValueTypeFrame4d();
@@ -45,6 +48,7 @@ public static class SdfValueTypeNames {
     static public SdfValueTypeName Double4 = UsdCs.SdfGetValueTypeDouble4();
     static public SdfValueTypeName Normal3dArray = UsdCs.SdfGetValueTypeNormal3dArray();
     static public SdfValueTypeName Color3dArray = UsdCs.SdfGetValueTypeColor3dArray();
+    static public SdfValueTypeName TexCoord2dArray = UsdCs.SdfGetValueTypeTexCoord2dArray();
     static public SdfValueTypeName Half3Array = UsdCs.SdfGetValueTypeHalf3Array();
     static public SdfValueTypeName Matrix4dArray = UsdCs.SdfGetValueTypeMatrix4dArray();
     static public SdfValueTypeName Normal3h = UsdCs.SdfGetValueTypeNormal3h();
@@ -60,6 +64,7 @@ public static class SdfValueTypeNames {
     static public SdfValueTypeName Int64Array = UsdCs.SdfGetValueTypeInt64Array();
     static public SdfValueTypeName IntArray = UsdCs.SdfGetValueTypeIntArray();
     static public SdfValueTypeName Point3dArray = UsdCs.SdfGetValueTypePoint3dArray();
+    static public SdfValueTypeName TexCoord3hArray = UsdCs.SdfGetValueTypeTexCoord3hArray();
     static public SdfValueTypeName Bool = UsdCs.SdfGetValueTypeBool();
     static public SdfValueTypeName Color3hArray = UsdCs.SdfGetValueTypeColor3hArray();
     static public SdfValueTypeName Double2 = UsdCs.SdfGetValueTypeDouble2();
@@ -87,9 +92,13 @@ public static class SdfValueTypeNames {
     static public SdfValueTypeName Float2 = UsdCs.SdfGetValueTypeFloat2();
     static public SdfValueTypeName Float3 = UsdCs.SdfGetValueTypeFloat3();
     static public SdfValueTypeName UIntArray = UsdCs.SdfGetValueTypeUIntArray();
+    static public SdfValueTypeName TexCoord2d = UsdCs.SdfGetValueTypeTexCoord2d();
     static public SdfValueTypeName Half3 = UsdCs.SdfGetValueTypeHalf3();
+    static public SdfValueTypeName TexCoord3h = UsdCs.SdfGetValueTypeTexCoord3h();
     static public SdfValueTypeName Frame4dArray = UsdCs.SdfGetValueTypeFrame4dArray();
     static public SdfValueTypeName Vector3fArray = UsdCs.SdfGetValueTypeVector3fArray();
+    static public SdfValueTypeName TexCoord3d = UsdCs.SdfGetValueTypeTexCoord3d();
+    static public SdfValueTypeName TexCoord3f = UsdCs.SdfGetValueTypeTexCoord3f();
     static public SdfValueTypeName Color3h = UsdCs.SdfGetValueTypeColor3h();
     static public SdfValueTypeName Half = UsdCs.SdfGetValueTypeHalf();
     static public SdfValueTypeName Vector3h = UsdCs.SdfGetValueTypeVector3h();
@@ -103,9 +112,12 @@ public static class SdfValueTypeNames {
     static public SdfValueTypeName TokenArray = UsdCs.SdfGetValueTypeTokenArray();
     static public SdfValueTypeName Normal3hArray = UsdCs.SdfGetValueTypeNormal3hArray();
     static public SdfValueTypeName Int3Array = UsdCs.SdfGetValueTypeInt3Array();
+    static public SdfValueTypeName TexCoord2h = UsdCs.SdfGetValueTypeTexCoord2h();
     static public SdfValueTypeName Half4 = UsdCs.SdfGetValueTypeHalf4();
     static public SdfValueTypeName Float = UsdCs.SdfGetValueTypeFloat();
+    static public SdfValueTypeName TexCoord2f = UsdCs.SdfGetValueTypeTexCoord2f();
     static public SdfValueTypeName Half2 = UsdCs.SdfGetValueTypeHalf2();
     static public SdfValueTypeName Int2Array = UsdCs.SdfGetValueTypeInt2Array();
     static public SdfValueTypeName Int64 = UsdCs.SdfGetValueTypeInt64();
+    static public SdfValueTypeName TexCoord3fArray = UsdCs.SdfGetValueTypeTexCoord3fArray();
 }

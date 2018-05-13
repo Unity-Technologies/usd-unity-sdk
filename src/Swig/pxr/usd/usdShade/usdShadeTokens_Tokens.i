@@ -30,8 +30,13 @@
   public static TfToken materialBindingCollection = new TfToken("material:binding:collection");
   public static TfToken materialVariant = new TfToken("materialVariant");
   public static TfToken outputs = new TfToken("outputs:");
+  public static TfToken outputsDisplacement = new TfToken("outputs:displacement");
+  public static TfToken outputsSurface = new TfToken("outputs:surface");
+  public static TfToken outputsVolume = new TfToken("outputs:volume");
   public static TfToken preview = new TfToken("preview");
   public static TfToken strongerThanDescendants = new TfToken("strongerThanDescendants");
   public static TfToken surface = new TfToken("surface");
+  public static TfToken universalRenderContext = new TfToken("");
+  public static TfToken volume = new TfToken("volume");
   public static TfToken weakerThanDescendants = new TfToken("weakerThanDescendants");
 %}

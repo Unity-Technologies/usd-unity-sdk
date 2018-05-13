@@ -154,8 +154,25 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
+  public UsdGeomPrimvarVector FindInheritedPrimvars() {
+    UsdGeomPrimvarVector ret = new UsdGeomPrimvarVector(UsdCsPINVOKE.UsdGeomImageable_FindInheritedPrimvars(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdGeomPrimvar FindInheritedPrimvar(TfToken name) {
+    UsdGeomPrimvar ret = new UsdGeomPrimvar(UsdCsPINVOKE.UsdGeomImageable_FindInheritedPrimvar(swigCPtr, TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool HasPrimvar(TfToken name) {
     bool ret = UsdCsPINVOKE.UsdGeomImageable_HasPrimvar(swigCPtr, TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasInheritedPrimvar(TfToken name) {
+    bool ret = UsdCsPINVOKE.UsdGeomImageable_HasInheritedPrimvar(swigCPtr, TfToken.getCPtr(name));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

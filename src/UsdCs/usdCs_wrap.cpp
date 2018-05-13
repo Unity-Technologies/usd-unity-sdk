@@ -3616,6 +3616,7 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
 
     SdfValueTypeName SdfGetValueTypeColor4dArray() { return SdfValueTypeNames->Color4dArray; }
     SdfValueTypeName SdfGetValueTypeMatrix3d() { return SdfValueTypeNames->Matrix3d; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3dArray() { return SdfValueTypeNames->TexCoord3dArray; }
     SdfValueTypeName SdfGetValueTypePoint3h() { return SdfValueTypeNames->Point3h; }
     SdfValueTypeName SdfGetValueTypeAsset() { return SdfValueTypeNames->Asset; }
     SdfValueTypeName SdfGetValueTypePoint3d() { return SdfValueTypeNames->Point3d; }
@@ -3623,6 +3624,7 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
     SdfValueTypeName SdfGetValueTypeQuathArray() { return SdfValueTypeNames->QuathArray; }
     SdfValueTypeName SdfGetValueTypeUChar() { return SdfValueTypeNames->UChar; }
     SdfValueTypeName SdfGetValueTypeMatrix2dArray() { return SdfValueTypeNames->Matrix2dArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2fArray() { return SdfValueTypeNames->TexCoord2fArray; }
     SdfValueTypeName SdfGetValueTypeVector3dArray() { return SdfValueTypeNames->Vector3dArray; }
     SdfValueTypeName SdfGetValueTypeColor4h() { return SdfValueTypeNames->Color4h; }
     SdfValueTypeName SdfGetValueTypeColor4f() { return SdfValueTypeNames->Color4f; }
@@ -3634,6 +3636,7 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
     SdfValueTypeName SdfGetValueTypeNormal3fArray() { return SdfValueTypeNames->Normal3fArray; }
     SdfValueTypeName SdfGetValueTypeToken() { return SdfValueTypeNames->Token; }
     SdfValueTypeName SdfGetValueTypeFloat3Array() { return SdfValueTypeNames->Float3Array; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2hArray() { return SdfValueTypeNames->TexCoord2hArray; }
     SdfValueTypeName SdfGetValueTypeUCharArray() { return SdfValueTypeNames->UCharArray; }
     SdfValueTypeName SdfGetValueTypeDoubleArray() { return SdfValueTypeNames->DoubleArray; }
     SdfValueTypeName SdfGetValueTypeFrame4d() { return SdfValueTypeNames->Frame4d; }
@@ -3643,6 +3646,7 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
     SdfValueTypeName SdfGetValueTypeDouble4() { return SdfValueTypeNames->Double4; }
     SdfValueTypeName SdfGetValueTypeNormal3dArray() { return SdfValueTypeNames->Normal3dArray; }
     SdfValueTypeName SdfGetValueTypeColor3dArray() { return SdfValueTypeNames->Color3dArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2dArray() { return SdfValueTypeNames->TexCoord2dArray; }
     SdfValueTypeName SdfGetValueTypeHalf3Array() { return SdfValueTypeNames->Half3Array; }
     SdfValueTypeName SdfGetValueTypeMatrix4dArray() { return SdfValueTypeNames->Matrix4dArray; }
     SdfValueTypeName SdfGetValueTypeNormal3h() { return SdfValueTypeNames->Normal3h; }
@@ -3658,6 +3662,7 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
     SdfValueTypeName SdfGetValueTypeInt64Array() { return SdfValueTypeNames->Int64Array; }
     SdfValueTypeName SdfGetValueTypeIntArray() { return SdfValueTypeNames->IntArray; }
     SdfValueTypeName SdfGetValueTypePoint3dArray() { return SdfValueTypeNames->Point3dArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3hArray() { return SdfValueTypeNames->TexCoord3hArray; }
     SdfValueTypeName SdfGetValueTypeBool() { return SdfValueTypeNames->Bool; }
     SdfValueTypeName SdfGetValueTypeColor3hArray() { return SdfValueTypeNames->Color3hArray; }
     SdfValueTypeName SdfGetValueTypeDouble2() { return SdfValueTypeNames->Double2; }
@@ -3685,9 +3690,13 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
     SdfValueTypeName SdfGetValueTypeFloat2() { return SdfValueTypeNames->Float2; }
     SdfValueTypeName SdfGetValueTypeFloat3() { return SdfValueTypeNames->Float3; }
     SdfValueTypeName SdfGetValueTypeUIntArray() { return SdfValueTypeNames->UIntArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2d() { return SdfValueTypeNames->TexCoord2d; }
     SdfValueTypeName SdfGetValueTypeHalf3() { return SdfValueTypeNames->Half3; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3h() { return SdfValueTypeNames->TexCoord3h; }
     SdfValueTypeName SdfGetValueTypeFrame4dArray() { return SdfValueTypeNames->Frame4dArray; }
     SdfValueTypeName SdfGetValueTypeVector3fArray() { return SdfValueTypeNames->Vector3fArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3d() { return SdfValueTypeNames->TexCoord3d; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3f() { return SdfValueTypeNames->TexCoord3f; }
     SdfValueTypeName SdfGetValueTypeColor3h() { return SdfValueTypeNames->Color3h; }
     SdfValueTypeName SdfGetValueTypeHalf() { return SdfValueTypeNames->Half; }
     SdfValueTypeName SdfGetValueTypeVector3h() { return SdfValueTypeNames->Vector3h; }
@@ -3701,11 +3710,14 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
     SdfValueTypeName SdfGetValueTypeTokenArray() { return SdfValueTypeNames->TokenArray; }
     SdfValueTypeName SdfGetValueTypeNormal3hArray() { return SdfValueTypeNames->Normal3hArray; }
     SdfValueTypeName SdfGetValueTypeInt3Array() { return SdfValueTypeNames->Int3Array; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2h() { return SdfValueTypeNames->TexCoord2h; }
     SdfValueTypeName SdfGetValueTypeHalf4() { return SdfValueTypeNames->Half4; }
     SdfValueTypeName SdfGetValueTypeFloat() { return SdfValueTypeNames->Float; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2f() { return SdfValueTypeNames->TexCoord2f; }
     SdfValueTypeName SdfGetValueTypeHalf2() { return SdfValueTypeNames->Half2; }
     SdfValueTypeName SdfGetValueTypeInt2Array() { return SdfValueTypeNames->Int2Array; }
     SdfValueTypeName SdfGetValueTypeInt64() { return SdfValueTypeNames->Int64; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3fArray() { return SdfValueTypeNames->TexCoord3fArray; }
 
 
 #include "pxr/usd/sdf/assetPath.h"
@@ -4256,30 +4268,30 @@ SWIGINTERN int UsdPrimRange_GetHashCode(UsdPrimRange *self){
 
 SWIGINTERN std::vector< UsdPrim > UsdStage_GetAllPrims(UsdStage *self){
     std::vector<UsdPrim> targets;
-    TF_FOR_ALL(p, self->Traverse()) { targets.push_back(*p); }
+    for (auto&& p : self->Traverse()) { targets.push_back(p); }
 	  return targets;
   }
 SWIGINTERN std::vector< UsdPrim > UsdStage_GetAllPrimsByType(UsdStage *self,std::string typeName){
     std::vector<UsdPrim> targets;
-    TF_FOR_ALL(p, self->Traverse()) {
-      if (p->GetTypeName() == typeName) {
-        targets.push_back(*p);
+    for (auto&& p : self->Traverse()) {
+      if (p.GetTypeName() == typeName) {
+        targets.push_back(p);
       }
     }
 	  return targets;
   }
 SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPaths(UsdStage *self){
     std::vector<SdfPath> targets;
-    TF_FOR_ALL(p, self->Traverse()) {
-      targets.push_back(p->GetPath());
+    for (auto&& p : self->Traverse()) {
+      targets.push_back(p.GetPath());
     }
 	  return targets;
   }
 SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std::string typeName){
     std::vector<SdfPath> targets;
-    TF_FOR_ALL(p, self->Traverse()) {
-      if (p->GetTypeName() == typeName) {
-        targets.push_back(p->GetPath());
+    for (auto&& p : self->Traverse()) {
+      if (p.GetTypeName() == typeName) {
+        targets.push_back(p.GetPath());
       }
     }
 	  return targets;
@@ -4784,7 +4796,7 @@ SWIGINTERN VtValue UsdAttribute_Get__SWIG_4(UsdAttribute const *self,UsdTimeCode
 #include "pxr/usd/usd/schemaBase.h"
 
 SWIGINTERN bool UsdSchemaBase_Equals(UsdSchemaBase const &lhs,UsdSchemaBase const &rhs){
-	  return lhs == rhs;
+	  return bool(lhs) == bool(rhs) && (!bool(lhs) || lhs.GetPrim() == rhs.GetPrim());
   }
 SWIGINTERN int UsdSchemaBase_GetHashCode(UsdSchemaBase *self){
     return (int)TfHash()(self);
@@ -11504,7 +11516,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_1(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_2(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_3(void * jarg1) {
   void * jresult ;
   JsArray *arg1 = 0 ;
   JsValue *result = 0 ;
@@ -11520,7 +11532,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_2(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_3(char * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_5(char * jarg1) {
   void * jresult ;
   char *arg1 = (char *) 0 ;
   JsValue *result = 0 ;
@@ -11532,7 +11544,23 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_3(char * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_5(unsigned int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_7(void * jarg1) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  JsValue *result = 0 ;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string && type is null", 0);
+    return 0;
+  } 
+  result = (JsValue *)new JsValue((std::string &&)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_8(unsigned int jarg1) {
   void * jresult ;
   bool arg1 ;
   JsValue *result = 0 ;
@@ -11544,7 +11572,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_5(unsigned int jarg1)
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_6(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_9(int jarg1) {
   void * jresult ;
   int arg1 ;
   JsValue *result = 0 ;
@@ -11556,7 +11584,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_6(int jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_7(long long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_10(long long jarg1) {
   void * jresult ;
   int64_t arg1 ;
   JsValue *result = 0 ;
@@ -11568,7 +11596,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_7(long long jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_8(unsigned long long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_11(unsigned long long jarg1) {
   void * jresult ;
   uint64_t arg1 ;
   JsValue *result = 0 ;
@@ -11580,7 +11608,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_8(unsigned long long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_9(double jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsValue__SWIG_12(double jarg1) {
   void * jresult ;
   double arg1 ;
   JsValue *result = 0 ;
@@ -16655,6 +16683,30 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfMatrix2f(void * jarg1) {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_0(void * jarg1, void * jarg2, double jarg3) {
+  unsigned int jresult ;
+  GfMatrix2f *arg1 = 0 ;
+  GfMatrix2f *arg2 = 0 ;
+  double arg3 ;
+  bool result;
+  
+  arg1 = (GfMatrix2f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix2f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix2f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix2f const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  result = (bool)GfIsClose((GfMatrix2f const &)*arg1,(GfMatrix2f const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfMatrix3f_numRows_get() {
   unsigned long jresult ;
   size_t result;
@@ -16802,6 +16854,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfMatrix3f__SWIG_7(void * jarg1) {
 
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfMatrix3f__SWIG_8(void * jarg1) {
+  void * jresult ;
+  GfQuatf *arg1 = 0 ;
+  GfMatrix3f *result = 0 ;
+  
+  arg1 = (GfQuatf *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatf const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix3f *)new GfMatrix3f((GfQuatf const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfMatrix3f__SWIG_9(void * jarg1) {
   void * jresult ;
   GfMatrix3d *arg1 = 0 ;
   GfMatrix3f *result = 0 ;
@@ -17161,7 +17229,25 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_SetScale__SWIG_0(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_SetRotate(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_SetRotate__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfMatrix3f *arg1 = (GfMatrix3f *) 0 ;
+  GfQuatf *arg2 = 0 ;
+  GfMatrix3f *result = 0 ;
+  
+  arg1 = (GfMatrix3f *)jarg1; 
+  arg2 = (GfQuatf *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatf const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix3f *) &(arg1)->SetRotate((GfQuatf const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_SetRotate__SWIG_1(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix3f *arg1 = (GfMatrix3f *) 0 ;
   GfRotation *arg2 = 0 ;
@@ -17326,6 +17412,30 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfMatrix3f(void * jarg1) {
   
   arg1 = (GfMatrix3f *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_1(void * jarg1, void * jarg2, double jarg3) {
+  unsigned int jresult ;
+  GfMatrix3f *arg1 = 0 ;
+  GfMatrix3f *arg2 = 0 ;
+  double arg3 ;
+  bool result;
+  
+  arg1 = (GfMatrix3f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix3f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix3f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix3f const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  result = (bool)GfIsClose((GfMatrix3f const &)*arg1,(GfMatrix3f const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
 }
 
 
@@ -17982,6 +18092,42 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetScale__SWIG_0(void * jarg
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotate__SWIG_0(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4f *arg1 = (GfMatrix4f *) 0 ;
+  GfQuatf *arg2 = 0 ;
+  GfMatrix4f *result = 0 ;
+  
+  arg1 = (GfMatrix4f *)jarg1; 
+  arg2 = (GfQuatf *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatf const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix4f *) &(arg1)->SetRotate((GfQuatf const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotateOnly__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfMatrix4f *arg1 = (GfMatrix4f *) 0 ;
+  GfQuatf *arg2 = 0 ;
+  GfMatrix4f *result = 0 ;
+  
+  arg1 = (GfMatrix4f *)jarg1; 
+  arg2 = (GfQuatf *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatf const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix4f *) &(arg1)->SetRotateOnly((GfQuatf const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotate__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfMatrix4f *arg1 = (GfMatrix4f *) 0 ;
   GfRotation *arg2 = 0 ;
   GfMatrix4f *result = 0 ;
   
@@ -17997,7 +18143,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotate__SWIG_0(void * jar
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotateOnly__SWIG_0(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotateOnly__SWIG_1(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4f *arg1 = (GfMatrix4f *) 0 ;
   GfRotation *arg2 = 0 ;
@@ -18015,7 +18161,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotateOnly__SWIG_0(void *
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotate__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotate__SWIG_2(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4f *arg1 = (GfMatrix4f *) 0 ;
   GfMatrix3f *arg2 = 0 ;
@@ -18033,7 +18179,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotate__SWIG_1(void * jar
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotateOnly__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_SetRotateOnly__SWIG_2(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4f *arg1 = (GfMatrix4f *) 0 ;
   GfMatrix3f *arg2 = 0 ;
@@ -18505,6 +18651,30 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfMatrix4f(void * jarg1) {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_2(void * jarg1, void * jarg2, double jarg3) {
+  unsigned int jresult ;
+  GfMatrix4f *arg1 = 0 ;
+  GfMatrix4f *arg2 = 0 ;
+  double arg3 ;
+  bool result;
+  
+  arg1 = (GfMatrix4f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix4f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4f const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  result = (bool)GfIsClose((GfMatrix4f const &)*arg1,(GfMatrix4f const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfMatrix2d_numRows_get() {
   unsigned long jresult ;
   size_t result;
@@ -18951,6 +19121,30 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfMatrix2d(void * jarg1) {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_3(void * jarg1, void * jarg2, double jarg3) {
+  unsigned int jresult ;
+  GfMatrix2d *arg1 = 0 ;
+  GfMatrix2d *arg2 = 0 ;
+  double arg3 ;
+  bool result;
+  
+  arg1 = (GfMatrix2d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix2d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix2d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix2d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  result = (bool)GfIsClose((GfMatrix2d const &)*arg1,(GfMatrix2d const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfMatrix3d_numRows_get() {
   unsigned long jresult ;
   size_t result;
@@ -19098,6 +19292,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfMatrix3d__SWIG_7(void * jarg1) {
 
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfMatrix3d__SWIG_8(void * jarg1) {
+  void * jresult ;
+  GfQuatd *arg1 = 0 ;
+  GfMatrix3d *result = 0 ;
+  
+  arg1 = (GfQuatd *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatd const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix3d *)new GfMatrix3d((GfQuatd const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfMatrix3d__SWIG_9(void * jarg1) {
   void * jresult ;
   GfMatrix3f *arg1 = 0 ;
   GfMatrix3d *result = 0 ;
@@ -19457,7 +19667,25 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_SetScale__SWIG_0(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_SetRotate(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_SetRotate__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfMatrix3d *arg1 = (GfMatrix3d *) 0 ;
+  GfQuatd *arg2 = 0 ;
+  GfMatrix3d *result = 0 ;
+  
+  arg1 = (GfMatrix3d *)jarg1; 
+  arg2 = (GfQuatd *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatd const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix3d *) &(arg1)->SetRotate((GfQuatd const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_SetRotate__SWIG_1(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix3d *arg1 = (GfMatrix3d *) 0 ;
   GfRotation *arg2 = 0 ;
@@ -19622,6 +19850,30 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfMatrix3d(void * jarg1) {
   
   arg1 = (GfMatrix3d *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_4(void * jarg1, void * jarg2, double jarg3) {
+  unsigned int jresult ;
+  GfMatrix3d *arg1 = 0 ;
+  GfMatrix3d *arg2 = 0 ;
+  double arg3 ;
+  bool result;
+  
+  arg1 = (GfMatrix3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix3d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  result = (bool)GfIsClose((GfMatrix3d const &)*arg1,(GfMatrix3d const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
 }
 
 
@@ -20312,6 +20564,42 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_RemoveScaleShear(void * jarg
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotate__SWIG_0(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
+  GfQuatd *arg2 = 0 ;
+  GfMatrix4d *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1; 
+  arg2 = (GfQuatd *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatd const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix4d *) &(arg1)->SetRotate((GfQuatd const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotateOnly__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
+  GfQuatd *arg2 = 0 ;
+  GfMatrix4d *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1; 
+  arg2 = (GfQuatd *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfQuatd const & type is null", 0);
+    return 0;
+  } 
+  result = (GfMatrix4d *) &(arg1)->SetRotateOnly((GfQuatd const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotate__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
   GfRotation *arg2 = 0 ;
   GfMatrix4d *result = 0 ;
   
@@ -20327,7 +20615,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotate__SWIG_0(void * jar
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotateOnly__SWIG_0(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotateOnly__SWIG_1(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
   GfRotation *arg2 = 0 ;
@@ -20345,7 +20633,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotateOnly__SWIG_0(void *
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotate__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotate__SWIG_2(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
   GfMatrix3d *arg2 = 0 ;
@@ -20363,7 +20651,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotate__SWIG_1(void * jar
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotateOnly__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_SetRotateOnly__SWIG_2(void * jarg1, void * jarg2) {
   void * jresult ;
   GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
   GfMatrix3d *arg2 = 0 ;
@@ -20832,6 +21120,30 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfMatrix4d(void * jarg1) {
   
   arg1 = (GfMatrix4d *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_5(void * jarg1, void * jarg2, double jarg3) {
+  unsigned int jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  double arg3 ;
+  bool result;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (double)jarg3; 
+  result = (bool)GfIsClose((GfMatrix4d const &)*arg1,(GfMatrix4d const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
 }
 
 
@@ -21751,7 +22063,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_0(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_0(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_6(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec2h *arg1 = 0 ;
   GfVec2h *arg2 = 0 ;
@@ -22315,7 +22627,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_1(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_1(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_7(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec2f *arg1 = 0 ;
   GfVec2f *arg2 = 0 ;
@@ -22879,7 +23191,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_2(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_2(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_8(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec2d *arg1 = 0 ;
   GfVec2d *arg2 = 0 ;
@@ -23929,7 +24241,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_3(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_3(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_9(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec3h *arg1 = 0 ;
   GfVec3h *arg2 = 0 ;
@@ -24695,7 +25007,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_4(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_4(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_10(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec3f *arg1 = 0 ;
   GfVec3f *arg2 = 0 ;
@@ -25455,7 +25767,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_5(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_5(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_11(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec3d *arg1 = 0 ;
   GfVec3d *arg2 = 0 ;
@@ -26593,7 +26905,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_6(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_6(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_12(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec4h *arg1 = 0 ;
   GfVec4h *arg2 = 0 ;
@@ -27185,7 +27497,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_7(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_7(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_13(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec4f *arg1 = 0 ;
   GfVec4f *arg2 = 0 ;
@@ -27777,7 +28089,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfGetComplement__SWIG_8(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_8(void * jarg1, void * jarg2, double jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_14(void * jarg1, void * jarg2, double jarg3) {
   unsigned int jresult ;
   GfVec4d *arg1 = 0 ;
   GfVec4d *arg2 = 0 ;
@@ -30786,6 +31098,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfPlane__SWIG_3(void * jarg1, void 
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfPlane__SWIG_4(void * jarg1) {
+  void * jresult ;
+  GfVec4d *arg1 = 0 ;
+  GfPlane *result = 0 ;
+  
+  arg1 = (GfVec4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfPlane *)new GfPlane((GfVec4d const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfPlane_Set__SWIG_0(void * jarg1, void * jarg2, double jarg3) {
   GfPlane *arg1 = (GfPlane *) 0 ;
   GfVec3d *arg2 = 0 ;
@@ -30848,6 +31176,20 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfPlane_Set__SWIG_2(void * jarg1, void * 
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfPlane_Set__SWIG_3(void * jarg1, void * jarg2) {
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec4d *arg2 = 0 ;
+  
+  arg1 = (GfPlane *)jarg1; 
+  arg2 = (GfVec4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->Set((GfVec4d const &)*arg2);
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfPlane_GetNormal(void * jarg1) {
   void * jresult ;
   GfPlane *arg1 = (GfPlane *) 0 ;
@@ -30868,6 +31210,18 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfPlane_GetDistanceFromOrigin(void * ja
   arg1 = (GfPlane *)jarg1; 
   result = (double)((GfPlane const *)arg1)->GetDistanceFromOrigin();
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfPlane_GetEquation(void * jarg1) {
+  void * jresult ;
+  GfPlane *arg1 = (GfPlane *) 0 ;
+  GfVec4d result;
+  
+  arg1 = (GfPlane *)jarg1; 
+  result = ((GfPlane const *)arg1)->GetEquation();
+  jresult = new GfVec4d((const GfVec4d &)result); 
   return jresult;
 }
 
@@ -32974,6 +33328,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeCentroid(void * jarg1) 
 }
 
 
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_29(void * jarg1) {
+  unsigned long jresult ;
+  GfBBox3d *arg1 = 0 ;
+  size_t result;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = hash_value((GfBBox3d const &)*arg1);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_Equals(void * jarg1, void * jarg2) {
   unsigned int jresult ;
   GfBBox3d *arg1 = 0 ;
@@ -33016,17 +33386,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfBBox3d(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_0() {
-  void * jresult ;
-  Vt_ArrayForeignDataSource *result = 0 ;
-  
-  result = (Vt_ArrayForeignDataSource *)new Vt_ArrayForeignDataSource();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_1(void * jarg1, unsigned long jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_0(void * jarg1, unsigned long jarg2) {
   void * jresult ;
   void (*arg1)(Vt_ArrayForeignDataSource *) = (void (*)(Vt_ArrayForeignDataSource *)) 0 ;
   size_t arg2 ;
@@ -33040,13 +33400,23 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_1(v
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_2(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_1(void * jarg1) {
   void * jresult ;
   void (*arg1)(Vt_ArrayForeignDataSource *) = (void (*)(Vt_ArrayForeignDataSource *)) 0 ;
   Vt_ArrayForeignDataSource *result = 0 ;
   
   arg1 = (void (*)(Vt_ArrayForeignDataSource *))jarg1; 
   result = (Vt_ArrayForeignDataSource *)new Vt_ArrayForeignDataSource(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_2() {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *result = 0 ;
+  
+  result = (Vt_ArrayForeignDataSource *)new Vt_ArrayForeignDataSource();
   jresult = (void *)result; 
   return jresult;
 }
@@ -33071,6 +33441,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayBase__SWIG_0() {
 
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayBase__SWIG_1(void * jarg1) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  Vt_ArrayBase *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  result = (Vt_ArrayBase *)new Vt_ArrayBase(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_Vt_ArrayBase__SWIG_2(void * jarg1) {
   void * jresult ;
   Vt_ArrayBase *arg1 = 0 ;
   Vt_ArrayBase *result = 0 ;
@@ -33104,7 +33486,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< SdfAssetPath >::ElementType *arg2 = (VtArray< SdfAssetPath >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< SdfAssetPath > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< SdfAssetPath >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< SdfAssetPath > *)new VtArray< SdfAssetPath >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< SdfAssetPath >::ElementType *arg2 = (VtArray< SdfAssetPath >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< SdfAssetPath > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< SdfAssetPath >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< SdfAssetPath > *)new VtArray< SdfAssetPath >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< SdfAssetPath > *arg1 = 0 ;
   VtArray< SdfAssetPath > *result = 0 ;
@@ -33120,7 +33536,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_1(void * ja
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< SdfAssetPath >::value_type *arg2 = 0 ;
@@ -33138,7 +33554,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_3(unsigned 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfAssetPathArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< SdfAssetPath > *result = 0 ;
@@ -33410,7 +33826,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< bool >::ElementType *arg2 = (VtArray< bool >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< bool > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< bool >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< bool > *)new VtArray< bool >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< bool >::ElementType *arg2 = (VtArray< bool >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< bool > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< bool >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< bool > *)new VtArray< bool >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< bool > *arg1 = 0 ;
   VtArray< bool > *result = 0 ;
@@ -33426,7 +33876,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_1(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_3(unsigned long jarg1, unsigned int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_5(unsigned long jarg1, unsigned int jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< bool >::value_type *arg2 = 0 ;
@@ -33442,7 +33892,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_3(unsigned long j
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtBoolArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< bool > *result = 0 ;
@@ -33708,7 +34158,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< double >::ElementType *arg2 = (VtArray< double >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< double > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< double >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< double > *)new VtArray< double >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< double >::ElementType *arg2 = (VtArray< double >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< double > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< double >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< double > *)new VtArray< double >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< double > *arg1 = 0 ;
   VtArray< double > *result = 0 ;
@@ -33724,7 +34208,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_1(void * jarg1)
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_3(unsigned long jarg1, double jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_5(unsigned long jarg1, double jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< double >::value_type *arg2 = 0 ;
@@ -33740,7 +34224,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_3(unsigned long
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtDoubleArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< double > *result = 0 ;
@@ -34006,7 +34490,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< float >::ElementType *arg2 = (VtArray< float >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< float > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< float >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< float > *)new VtArray< float >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< float >::ElementType *arg2 = (VtArray< float >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< float > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< float >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< float > *)new VtArray< float >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< float > *arg1 = 0 ;
   VtArray< float > *result = 0 ;
@@ -34022,7 +34540,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_3(unsigned long jarg1, float jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_5(unsigned long jarg1, float jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< float >::value_type *arg2 = 0 ;
@@ -34038,7 +34556,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtFloatArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< float > *result = 0 ;
@@ -34304,7 +34822,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfHalf >::ElementType *arg2 = (VtArray< GfHalf >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfHalf > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfHalf >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfHalf > *)new VtArray< GfHalf >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfHalf >::ElementType *arg2 = (VtArray< GfHalf >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfHalf > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfHalf >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfHalf > *)new VtArray< GfHalf >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfHalf > *arg1 = 0 ;
   VtArray< GfHalf > *result = 0 ;
@@ -34320,7 +34872,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_1(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfHalf >::value_type *arg2 = 0 ;
@@ -34338,7 +34890,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_3(unsigned long j
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtHalfArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfHalf > *result = 0 ;
@@ -34610,7 +35162,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< long long >::ElementType *arg2 = (VtArray< long long >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< int64_t > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< long long >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< int64_t > *)new VtArray< int64_t >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< long long >::ElementType *arg2 = (VtArray< long long >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< int64_t > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< long long >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< int64_t > *)new VtArray< int64_t >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< int64_t > *arg1 = 0 ;
   VtArray< int64_t > *result = 0 ;
@@ -34626,7 +35212,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_3(unsigned long jarg1, long long jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_5(unsigned long jarg1, long long jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< long long >::value_type *arg2 = 0 ;
@@ -34642,7 +35228,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtInt64Array__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< int64_t > *result = 0 ;
@@ -34908,7 +35494,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< int >::ElementType *arg2 = (VtArray< int >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< int > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< int >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< int > *)new VtArray< int >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< int >::ElementType *arg2 = (VtArray< int >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< int > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< int >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< int > *)new VtArray< int >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< int > *arg1 = 0 ;
   VtArray< int > *result = 0 ;
@@ -34924,7 +35544,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_1(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_3(unsigned long jarg1, int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_5(unsigned long jarg1, int jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< int >::value_type *arg2 = 0 ;
@@ -34940,7 +35560,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_3(unsigned long ja
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtIntArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< int > *result = 0 ;
@@ -35206,7 +35826,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfMatrix2d >::ElementType *arg2 = (VtArray< GfMatrix2d >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfMatrix2d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfMatrix2d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfMatrix2d > *)new VtArray< GfMatrix2d >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfMatrix2d >::ElementType *arg2 = (VtArray< GfMatrix2d >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfMatrix2d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfMatrix2d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfMatrix2d > *)new VtArray< GfMatrix2d >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfMatrix2d > *arg1 = 0 ;
   VtArray< GfMatrix2d > *result = 0 ;
@@ -35222,7 +35876,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_1(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfMatrix2d >::value_type *arg2 = 0 ;
@@ -35240,7 +35894,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_3(unsigned lo
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix2dArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfMatrix2d > *result = 0 ;
@@ -35512,7 +36166,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfMatrix3d >::ElementType *arg2 = (VtArray< GfMatrix3d >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfMatrix3d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfMatrix3d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfMatrix3d > *)new VtArray< GfMatrix3d >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfMatrix3d >::ElementType *arg2 = (VtArray< GfMatrix3d >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfMatrix3d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfMatrix3d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfMatrix3d > *)new VtArray< GfMatrix3d >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfMatrix3d > *arg1 = 0 ;
   VtArray< GfMatrix3d > *result = 0 ;
@@ -35528,7 +36216,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_1(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfMatrix3d >::value_type *arg2 = 0 ;
@@ -35546,7 +36234,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_3(unsigned lo
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix3dArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfMatrix3d > *result = 0 ;
@@ -35818,7 +36506,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfMatrix4d >::ElementType *arg2 = (VtArray< GfMatrix4d >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfMatrix4d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfMatrix4d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfMatrix4d > *)new VtArray< GfMatrix4d >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfMatrix4d >::ElementType *arg2 = (VtArray< GfMatrix4d >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfMatrix4d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfMatrix4d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfMatrix4d > *)new VtArray< GfMatrix4d >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfMatrix4d > *arg1 = 0 ;
   VtArray< GfMatrix4d > *result = 0 ;
@@ -35834,7 +36556,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_1(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfMatrix4d >::value_type *arg2 = 0 ;
@@ -35852,7 +36574,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_3(unsigned lo
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtMatrix4dArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfMatrix4d > *result = 0 ;
@@ -36124,7 +36846,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfQuatd >::ElementType *arg2 = (VtArray< GfQuatd >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfQuatd > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfQuatd >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfQuatd > *)new VtArray< GfQuatd >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfQuatd >::ElementType *arg2 = (VtArray< GfQuatd >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfQuatd > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfQuatd >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfQuatd > *)new VtArray< GfQuatd >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfQuatd > *arg1 = 0 ;
   VtArray< GfQuatd > *result = 0 ;
@@ -36140,7 +36896,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfQuatd >::value_type *arg2 = 0 ;
@@ -36158,7 +36914,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatdArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfQuatd > *result = 0 ;
@@ -36430,7 +37186,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfQuatf >::ElementType *arg2 = (VtArray< GfQuatf >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfQuatf > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfQuatf >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfQuatf > *)new VtArray< GfQuatf >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfQuatf >::ElementType *arg2 = (VtArray< GfQuatf >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfQuatf > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfQuatf >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfQuatf > *)new VtArray< GfQuatf >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfQuatf > *arg1 = 0 ;
   VtArray< GfQuatf > *result = 0 ;
@@ -36446,7 +37236,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfQuatf >::value_type *arg2 = 0 ;
@@ -36464,7 +37254,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuatfArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfQuatf > *result = 0 ;
@@ -36736,7 +37526,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfQuath >::ElementType *arg2 = (VtArray< GfQuath >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfQuath > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfQuath >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfQuath > *)new VtArray< GfQuath >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfQuath >::ElementType *arg2 = (VtArray< GfQuath >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfQuath > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfQuath >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfQuath > *)new VtArray< GfQuath >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfQuath > *arg1 = 0 ;
   VtArray< GfQuath > *result = 0 ;
@@ -36752,7 +37576,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfQuath >::value_type *arg2 = 0 ;
@@ -36770,7 +37594,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtQuathArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfQuath > *result = 0 ;
@@ -37042,7 +37866,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< std::string >::ElementType *arg2 = (VtArray< std::string >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< std::string > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< std::string >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< std::string > *)new VtArray< std::string >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< std::string >::ElementType *arg2 = (VtArray< std::string >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< std::string > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< std::string >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< std::string > *)new VtArray< std::string >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< std::string > *arg1 = 0 ;
   VtArray< std::string > *result = 0 ;
@@ -37058,7 +37916,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_1(void * jarg1)
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_3(unsigned long jarg1, char * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_5(unsigned long jarg1, char * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< std::string >::value_type *arg2 = 0 ;
@@ -37077,7 +37935,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_3(unsigned long
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtStringArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< std::string > *result = 0 ;
@@ -37352,7 +38210,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< TfToken >::ElementType *arg2 = (VtArray< TfToken >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< TfToken > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< TfToken >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< TfToken > *)new VtArray< TfToken >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< TfToken >::ElementType *arg2 = (VtArray< TfToken >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< TfToken > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< TfToken >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< TfToken > *)new VtArray< TfToken >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< TfToken > *arg1 = 0 ;
   VtArray< TfToken > *result = 0 ;
@@ -37368,7 +38260,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< TfToken >::value_type *arg2 = 0 ;
@@ -37386,7 +38278,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtTokenArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< TfToken > *result = 0 ;
@@ -37658,7 +38550,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< unsigned char >::ElementType *arg2 = (VtArray< unsigned char >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< unsigned char > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< unsigned char >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< unsigned char > *)new VtArray< unsigned char >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< unsigned char >::ElementType *arg2 = (VtArray< unsigned char >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< unsigned char > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< unsigned char >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< unsigned char > *)new VtArray< unsigned char >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< unsigned char > *arg1 = 0 ;
   VtArray< unsigned char > *result = 0 ;
@@ -37674,7 +38600,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_3(unsigned long jarg1, unsigned char jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_5(unsigned long jarg1, unsigned char jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< unsigned char >::value_type *arg2 = 0 ;
@@ -37690,7 +38616,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUCharArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< unsigned char > *result = 0 ;
@@ -37956,7 +38882,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< unsigned long long >::ElementType *arg2 = (VtArray< unsigned long long >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< uint64_t > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< unsigned long long >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< uint64_t > *)new VtArray< uint64_t >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< unsigned long long >::ElementType *arg2 = (VtArray< unsigned long long >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< uint64_t > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< unsigned long long >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< uint64_t > *)new VtArray< uint64_t >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< uint64_t > *arg1 = 0 ;
   VtArray< uint64_t > *result = 0 ;
@@ -37972,7 +38932,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_1(void * jarg1)
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_3(unsigned long jarg1, unsigned long long jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_5(unsigned long jarg1, unsigned long long jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< unsigned long long >::value_type *arg2 = 0 ;
@@ -37988,7 +38948,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_3(unsigned long
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUInt64Array__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< uint64_t > *result = 0 ;
@@ -38254,7 +39214,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< unsigned int >::ElementType *arg2 = (VtArray< unsigned int >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< unsigned int > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< unsigned int >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< unsigned int > *)new VtArray< unsigned int >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< unsigned int >::ElementType *arg2 = (VtArray< unsigned int >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< unsigned int > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< unsigned int >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< unsigned int > *)new VtArray< unsigned int >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< unsigned int > *arg1 = 0 ;
   VtArray< unsigned int > *result = 0 ;
@@ -38270,7 +39264,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_1(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_3(unsigned long jarg1, unsigned int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_5(unsigned long jarg1, unsigned int jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< unsigned int >::value_type *arg2 = 0 ;
@@ -38286,7 +39280,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_3(unsigned long j
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtUIntArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< unsigned int > *result = 0 ;
@@ -38552,7 +39546,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2d >::ElementType *arg2 = (VtArray< GfVec2d >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec2d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec2d > *)new VtArray< GfVec2d >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2d >::ElementType *arg2 = (VtArray< GfVec2d >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec2d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec2d > *)new VtArray< GfVec2d >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec2d > *arg1 = 0 ;
   VtArray< GfVec2d > *result = 0 ;
@@ -38568,7 +39596,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2d >::value_type *arg2 = 0 ;
@@ -38586,7 +39614,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2dArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2d > *result = 0 ;
@@ -38858,7 +39886,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2f >::ElementType *arg2 = (VtArray< GfVec2f >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec2f > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2f >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec2f > *)new VtArray< GfVec2f >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2f >::ElementType *arg2 = (VtArray< GfVec2f >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec2f > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2f >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec2f > *)new VtArray< GfVec2f >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec2f > *arg1 = 0 ;
   VtArray< GfVec2f > *result = 0 ;
@@ -38874,7 +39936,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2f >::value_type *arg2 = 0 ;
@@ -38892,7 +39954,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2fArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2f > *result = 0 ;
@@ -39164,7 +40226,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2h >::ElementType *arg2 = (VtArray< GfVec2h >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec2h > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2h >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec2h > *)new VtArray< GfVec2h >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2h >::ElementType *arg2 = (VtArray< GfVec2h >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec2h > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2h >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec2h > *)new VtArray< GfVec2h >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec2h > *arg1 = 0 ;
   VtArray< GfVec2h > *result = 0 ;
@@ -39180,7 +40276,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2h >::value_type *arg2 = 0 ;
@@ -39198,7 +40294,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2hArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2h > *result = 0 ;
@@ -39470,7 +40566,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2i >::ElementType *arg2 = (VtArray< GfVec2i >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec2i > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2i >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec2i > *)new VtArray< GfVec2i >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec2i >::ElementType *arg2 = (VtArray< GfVec2i >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec2i > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec2i >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec2i > *)new VtArray< GfVec2i >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec2i > *arg1 = 0 ;
   VtArray< GfVec2i > *result = 0 ;
@@ -39486,7 +40616,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2i >::value_type *arg2 = 0 ;
@@ -39504,7 +40634,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec2iArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec2i > *result = 0 ;
@@ -39776,7 +40906,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3d >::ElementType *arg2 = (VtArray< GfVec3d >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec3d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec3d > *)new VtArray< GfVec3d >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3d >::ElementType *arg2 = (VtArray< GfVec3d >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec3d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec3d > *)new VtArray< GfVec3d >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec3d > *arg1 = 0 ;
   VtArray< GfVec3d > *result = 0 ;
@@ -39792,7 +40956,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3d >::value_type *arg2 = 0 ;
@@ -39810,7 +40974,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3dArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3d > *result = 0 ;
@@ -40082,7 +41246,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3f >::ElementType *arg2 = (VtArray< GfVec3f >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec3f > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3f >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec3f > *)new VtArray< GfVec3f >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3f >::ElementType *arg2 = (VtArray< GfVec3f >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec3f > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3f >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec3f > *)new VtArray< GfVec3f >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec3f > *arg1 = 0 ;
   VtArray< GfVec3f > *result = 0 ;
@@ -40098,7 +41296,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3f >::value_type *arg2 = 0 ;
@@ -40116,7 +41314,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3fArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3f > *result = 0 ;
@@ -40388,7 +41586,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3h >::ElementType *arg2 = (VtArray< GfVec3h >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec3h > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3h >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec3h > *)new VtArray< GfVec3h >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3h >::ElementType *arg2 = (VtArray< GfVec3h >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec3h > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3h >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec3h > *)new VtArray< GfVec3h >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec3h > *arg1 = 0 ;
   VtArray< GfVec3h > *result = 0 ;
@@ -40404,7 +41636,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3h >::value_type *arg2 = 0 ;
@@ -40422,7 +41654,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3hArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3h > *result = 0 ;
@@ -40694,7 +41926,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3i >::ElementType *arg2 = (VtArray< GfVec3i >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec3i > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3i >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec3i > *)new VtArray< GfVec3i >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec3i >::ElementType *arg2 = (VtArray< GfVec3i >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec3i > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec3i >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec3i > *)new VtArray< GfVec3i >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec3i > *arg1 = 0 ;
   VtArray< GfVec3i > *result = 0 ;
@@ -40710,7 +41976,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3i >::value_type *arg2 = 0 ;
@@ -40728,7 +41994,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec3iArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec3i > *result = 0 ;
@@ -41000,7 +42266,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4d >::ElementType *arg2 = (VtArray< GfVec4d >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec4d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec4d > *)new VtArray< GfVec4d >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4d >::ElementType *arg2 = (VtArray< GfVec4d >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec4d > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4d >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec4d > *)new VtArray< GfVec4d >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec4d > *arg1 = 0 ;
   VtArray< GfVec4d > *result = 0 ;
@@ -41016,7 +42316,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4d >::value_type *arg2 = 0 ;
@@ -41034,7 +42334,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4dArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4d > *result = 0 ;
@@ -41306,7 +42606,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4f >::ElementType *arg2 = (VtArray< GfVec4f >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec4f > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4f >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec4f > *)new VtArray< GfVec4f >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4f >::ElementType *arg2 = (VtArray< GfVec4f >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec4f > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4f >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec4f > *)new VtArray< GfVec4f >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec4f > *arg1 = 0 ;
   VtArray< GfVec4f > *result = 0 ;
@@ -41322,7 +42656,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4f >::value_type *arg2 = 0 ;
@@ -41340,7 +42674,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4fArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4f > *result = 0 ;
@@ -41612,7 +42946,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4h >::ElementType *arg2 = (VtArray< GfVec4h >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec4h > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4h >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec4h > *)new VtArray< GfVec4h >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4h >::ElementType *arg2 = (VtArray< GfVec4h >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec4h > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4h >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec4h > *)new VtArray< GfVec4h >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec4h > *arg1 = 0 ;
   VtArray< GfVec4h > *result = 0 ;
@@ -41628,7 +42996,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4h >::value_type *arg2 = 0 ;
@@ -41646,7 +43014,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4hArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4h > *result = 0 ;
@@ -41918,7 +43286,41 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3, unsigned int jarg4) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4i >::ElementType *arg2 = (VtArray< GfVec4i >::ElementType *) 0 ;
+  size_t arg3 ;
+  bool arg4 ;
+  VtArray< GfVec4i > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4i >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (VtArray< GfVec4i > *)new VtArray< GfVec4i >(arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_2(void * jarg1, void * jarg2, unsigned long jarg3) {
+  void * jresult ;
+  Vt_ArrayForeignDataSource *arg1 = (Vt_ArrayForeignDataSource *) 0 ;
+  VtArray< GfVec4i >::ElementType *arg2 = (VtArray< GfVec4i >::ElementType *) 0 ;
+  size_t arg3 ;
+  VtArray< GfVec4i > *result = 0 ;
+  
+  arg1 = (Vt_ArrayForeignDataSource *)jarg1; 
+  arg2 = (VtArray< GfVec4i >::ElementType *)jarg2; 
+  arg3 = (size_t)jarg3; 
+  result = (VtArray< GfVec4i > *)new VtArray< GfVec4i >(arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_3(void * jarg1) {
   void * jresult ;
   VtArray< GfVec4i > *arg1 = 0 ;
   VtArray< GfVec4i > *result = 0 ;
@@ -41934,7 +43336,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_1(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_3(unsigned long jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_5(unsigned long jarg1, void * jarg2) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4i >::value_type *arg2 = 0 ;
@@ -41952,7 +43354,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_3(unsigned long 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_4(unsigned long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_VtVec4iArray__SWIG_6(unsigned long jarg1) {
   void * jresult ;
   size_t arg1 ;
   VtArray< GfVec4i > *result = 0 ;
@@ -44308,7 +45710,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_VtValue_GetHash(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_30(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_31(void * jarg1) {
   unsigned long jresult ;
   VtValue *arg1 = 0 ;
   size_t result;
@@ -45502,7 +46904,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_2(void * jarg1, void * jarg2) 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_31(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_32(void * jarg1) {
   unsigned long jresult ;
   VtDictionary *arg1 = 0 ;
   size_t result;
@@ -45876,7 +47278,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_ArResolverContext_GetDebugString(void *
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_32(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_33(void * jarg1) {
   unsigned long jresult ;
   ArResolverContext *arg1 = 0 ;
   size_t result;
@@ -45912,7 +47314,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfIsDefiningSpecifier(int jarg1)
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_33(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_34(void * jarg1) {
   unsigned long jresult ;
   SdfValueBlock *arg1 = 0 ;
   size_t result;
@@ -45977,6 +47379,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_2(unsigned
   arg1 = (uint64_t)jarg1; 
   arg2 = (uint64_t)jarg2; 
   result = (SdfTupleDimensions *)new SdfTupleDimensions(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_3(void * jarg1) {
+  void * jresult ;
+  uint64_t (*arg1)[2] = 0 ;
+  SdfTupleDimensions *result = 0 ;
+  
+  arg1 = (uint64_t (*)[2])jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "uint64_t const (&)[2] type is null", 0);
+    return 0;
+  } 
+  result = (SdfTupleDimensions *)new SdfTupleDimensions((uint64_t const (&)[2])*arg1);
   jresult = (void *)result; 
   return jresult;
 }
@@ -46068,6 +47486,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfValueTypeName_GetTfType(void * jarg1
   arg1 = (SdfValueTypeName *)jarg1; 
   result = (TfType *) &((SdfValueTypeName const *)arg1)->GetType();
   jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfValueTypeName_GetCPPTypeName(void * jarg1) {
+  char * jresult ;
+  SdfValueTypeName *arg1 = (SdfValueTypeName *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (SdfValueTypeName *)jarg1; 
+  result = (std::string *) &((SdfValueTypeName const *)arg1)->GetCPPTypeName();
+  jresult = SWIG_csharp_string_callback(result->c_str()); 
   return jresult;
 }
 
@@ -46228,7 +47658,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfValueTypeNameHash(void * jarg1)
 }
 
 
-SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_35(void * jarg1) {
+SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
   unsigned long long jresult ;
   SdfValueTypeName *arg1 = 0 ;
   uint64_t result;
@@ -46259,6 +47689,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeMatrix3d() {
   SdfValueTypeName result;
   
   result = SdfGetValueTypeMatrix3d();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord3dArray() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord3dArray();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -46329,6 +47769,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeMatrix2dArray() {
   SdfValueTypeName result;
   
   result = SdfGetValueTypeMatrix2dArray();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord2fArray() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord2fArray();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -46444,6 +47894,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeFloat3Array() {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord2hArray() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord2hArray();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeUCharArray() {
   void * jresult ;
   SdfValueTypeName result;
@@ -46529,6 +47989,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeColor3dArray() {
   SdfValueTypeName result;
   
   result = SdfGetValueTypeColor3dArray();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord2dArray() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord2dArray();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -46679,6 +48149,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypePoint3dArray() {
   SdfValueTypeName result;
   
   result = SdfGetValueTypePoint3dArray();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord3hArray() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord3hArray();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -46954,11 +48434,31 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeUIntArray() {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord2d() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord2d();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeHalf3() {
   void * jresult ;
   SdfValueTypeName result;
   
   result = SdfGetValueTypeHalf3();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord3h() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord3h();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -46979,6 +48479,26 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeVector3fArray() {
   SdfValueTypeName result;
   
   result = SdfGetValueTypeVector3fArray();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord3d() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord3d();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord3f() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord3f();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -47114,6 +48634,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeInt3Array() {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord2h() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord2h();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeHalf4() {
   void * jresult ;
   SdfValueTypeName result;
@@ -47129,6 +48659,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeFloat() {
   SdfValueTypeName result;
   
   result = SdfGetValueTypeFloat();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord2f() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord2f();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -47159,6 +48699,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeInt64() {
   SdfValueTypeName result;
   
   result = SdfGetValueTypeInt64();
+  jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfGetValueTypeTexCoord3fArray() {
+  void * jresult ;
+  SdfValueTypeName result;
+  
+  result = SdfGetValueTypeTexCoord3fArray();
   jresult = new SdfValueTypeName((const SdfValueTypeName &)result); 
   return jresult;
 }
@@ -47227,7 +48777,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfAssetPath_GetHash(void * jarg
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_37(void * jarg1) {
   unsigned long jresult ;
   SdfAssetPath *arg1 = 0 ;
   size_t result;
@@ -49133,7 +50683,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPath(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_37(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_38(void * jarg1) {
   unsigned long jresult ;
   SdfPath *arg1 = 0 ;
   size_t result;
@@ -49675,7 +51225,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayerOffset_Hash(void * jarg1) 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_38(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_39(void * jarg1) {
   unsigned long jresult ;
   SdfLayerOffset *arg1 = 0 ;
   size_t result;
@@ -49802,7 +51352,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPayload_SetPrimPath(void * jarg1, void
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_39(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_40(void * jarg1) {
   unsigned long jresult ;
   SdfPayload *arg1 = 0 ;
   size_t result;
@@ -58171,16 +59721,6 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdDescribe__SWIG_4(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdIsRetireLumosEnabled() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdIsRetireLumosEnabled();
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdAuthorOldStyleAdd() {
   unsigned int jresult ;
   bool result;
@@ -58333,7 +59873,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdTimeCode_GetValue(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_40(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_41(void * jarg1) {
   unsigned long jresult ;
   UsdTimeCode *arg1 = 0 ;
   size_t result;
@@ -58814,7 +60354,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_Usd_PrimFlagsPredicate_IncludeIns
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_41(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_42(void * jarg1) {
   unsigned long jresult ;
   Usd_PrimFlagsPredicate *arg1 = 0 ;
   size_t result;
@@ -58995,6 +60535,16 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimDefaultPredicate_get() {
   Usd_PrimFlagsConjunction *result = 0 ;
   
   result = (Usd_PrimFlagsConjunction *)&UsdPrimDefaultPredicate;
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdPrimAllPrimsPredicate_get() {
+  void * jresult ;
+  Usd_PrimFlagsPredicate *result = 0 ;
+  
+  result = (Usd_PrimFlagsPredicate *)&UsdPrimAllPrimsPredicate;
   jresult = (void *)result; 
   return jresult;
 }
@@ -59738,7 +61288,26 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_5(void * jarg1, void * jarg2) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_0(char * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_0(char * jarg1, int jarg2) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  UsdStage::InitialLoadSet arg2 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (UsdStage::InitialLoadSet)jarg2; 
+  result = UsdStage::CreateNew((std::string const &)*arg1,arg2);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_1(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
   UsdStageRefPtr result;
@@ -59755,7 +61324,32 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_0(char * jarg1
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_1(char * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_2(char * jarg1, void * jarg2, int jarg3) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  SdfLayerHandle *arg2 = 0 ;
+  UsdStage::InitialLoadSet arg3 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (SdfLayerHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdStage::InitialLoadSet)jarg3; 
+  result = UsdStage::CreateNew((std::string const &)*arg1,(SdfLayerHandle const &)*arg2,arg3);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_3(char * jarg1, void * jarg2) {
   void * jresult ;
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
@@ -59778,7 +61372,38 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_1(char * jarg1
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_2(char * jarg1, void * jarg2, void * jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_4(char * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  SdfLayerHandle *arg2 = 0 ;
+  ArResolverContext *arg3 = 0 ;
+  UsdStage::InitialLoadSet arg4 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (SdfLayerHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (ArResolverContext *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "ArResolverContext const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdStage::InitialLoadSet)jarg4; 
+  result = UsdStage::CreateNew((std::string const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3,arg4);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_5(char * jarg1, void * jarg2, void * jarg3) {
   void * jresult ;
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
@@ -59807,7 +61432,32 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_2(char * jarg1
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_3(char * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_6(char * jarg1, void * jarg2, int jarg3) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  ArResolverContext *arg2 = 0 ;
+  UsdStage::InitialLoadSet arg3 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (ArResolverContext *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "ArResolverContext const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdStage::InitialLoadSet)jarg3; 
+  result = UsdStage::CreateNew((std::string const &)*arg1,(ArResolverContext const &)*arg2,arg3);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_7(char * jarg1, void * jarg2) {
   void * jresult ;
   std::string *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
@@ -59830,7 +61480,19 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateNew__SWIG_3(char * jarg1
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_0() {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_0(int jarg1) {
+  void * jresult ;
+  UsdStage::InitialLoadSet arg1 ;
+  UsdStageRefPtr result;
+  
+  arg1 = (UsdStage::InitialLoadSet)jarg1; 
+  result = UsdStage::CreateInMemory(arg1);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_1() {
   void * jresult ;
   UsdStageRefPtr result;
   
@@ -59840,7 +61502,26 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_1(char * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_2(char * jarg1, int jarg2) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  UsdStage::InitialLoadSet arg2 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (UsdStage::InitialLoadSet)jarg2; 
+  result = UsdStage::CreateInMemory((std::string const &)*arg1,arg2);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_3(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
   UsdStageRefPtr result;
@@ -59857,7 +61538,32 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_1(char * 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_2(char * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_4(char * jarg1, void * jarg2, int jarg3) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  ArResolverContext *arg2 = 0 ;
+  UsdStage::InitialLoadSet arg3 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (ArResolverContext *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "ArResolverContext const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdStage::InitialLoadSet)jarg3; 
+  result = UsdStage::CreateInMemory((std::string const &)*arg1,(ArResolverContext const &)*arg2,arg3);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_5(char * jarg1, void * jarg2) {
   void * jresult ;
   std::string *arg1 = 0 ;
   ArResolverContext *arg2 = 0 ;
@@ -59880,7 +61586,32 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_2(char * 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_3(char * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_6(char * jarg1, void * jarg2, int jarg3) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  SdfLayerHandle *arg2 = 0 ;
+  UsdStage::InitialLoadSet arg3 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (SdfLayerHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdStage::InitialLoadSet)jarg3; 
+  result = UsdStage::CreateInMemory((std::string const &)*arg1,(SdfLayerHandle const &)*arg2,arg3);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_7(char * jarg1, void * jarg2) {
   void * jresult ;
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
@@ -59903,7 +61634,38 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_3(char * 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_4(char * jarg1, void * jarg2, void * jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_8(char * jarg1, void * jarg2, void * jarg3, int jarg4) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  SdfLayerHandle *arg2 = 0 ;
+  ArResolverContext *arg3 = 0 ;
+  UsdStage::InitialLoadSet arg4 ;
+  UsdStageRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (SdfLayerHandle *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfLayerHandle const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (ArResolverContext *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "ArResolverContext const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdStage::InitialLoadSet)jarg4; 
+  result = UsdStage::CreateInMemory((std::string const &)*arg1,(SdfLayerHandle const &)*arg2,(ArResolverContext const &)*arg3,arg4);
+  jresult = result ? new TfRefPtr< UsdStage>(result) : 0; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_CreateInMemory__SWIG_9(char * jarg1, void * jarg2, void * jarg3) {
   void * jresult ;
   std::string *arg1 = 0 ;
   SdfLayerHandle *arg2 = 0 ;
@@ -63061,7 +64823,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdObject_IsValid(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_42(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_43(void * jarg1) {
   unsigned long jresult ;
   UsdObject *arg1 = 0 ;
   size_t result;
@@ -70637,6 +72399,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsTyped_get() {
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsApplied_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomMotionAPI::IsApplied;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsMultipleApply_get() {
   unsigned int jresult ;
   bool result;
@@ -72793,6 +74565,18 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPrimvar_IsIndexed(void * j
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomPrimvar_GetIndicesAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomPrimvar *arg1 = (UsdGeomPrimvar *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomPrimvar *)jarg1; 
+  result = ((UsdGeomPrimvar const *)arg1)->GetIndicesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPrimvar_SetUnauthoredValuesIndex(void * jarg1, int jarg2) {
   unsigned int jresult ;
   UsdGeomPrimvar *arg1 = (UsdGeomPrimvar *) 0 ;
@@ -73419,6 +75203,36 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomImageable_GetAuthoredPrimvars(vo
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomImageable_FindInheritedPrimvars(void * jarg1) {
+  void * jresult ;
+  UsdGeomImageable *arg1 = (UsdGeomImageable *) 0 ;
+  std::vector< UsdGeomPrimvar > result;
+  
+  arg1 = (UsdGeomImageable *)jarg1; 
+  result = ((UsdGeomImageable const *)arg1)->FindInheritedPrimvars();
+  jresult = new std::vector< UsdGeomPrimvar >((const std::vector< UsdGeomPrimvar > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomImageable_FindInheritedPrimvar(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdGeomImageable *arg1 = (UsdGeomImageable *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdGeomPrimvar result;
+  
+  arg1 = (UsdGeomImageable *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdGeomImageable const *)arg1)->FindInheritedPrimvar((TfToken const &)*arg2);
+  jresult = new UsdGeomPrimvar((const UsdGeomPrimvar &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_HasPrimvar(void * jarg1, void * jarg2) {
   unsigned int jresult ;
   UsdGeomImageable *arg1 = (UsdGeomImageable *) 0 ;
@@ -73432,6 +75246,24 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_HasPrimvar(void 
     return 0;
   } 
   result = (bool)((UsdGeomImageable const *)arg1)->HasPrimvar((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_HasInheritedPrimvar(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomImageable *arg1 = (UsdGeomImageable *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomImageable *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomImageable const *)arg1)->HasInheritedPrimvar((TfToken const &)*arg2);
   jresult = result; 
   return jresult;
 }
@@ -79712,6 +81544,278 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeInst
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4, int jarg5, int jarg6) {
+  unsigned int jresult ;
+  UsdGeomPointInstancer *arg1 = (UsdGeomPointInstancer *) 0 ;
+  std::vector< VtArray< GfMatrix4d > > *arg2 = (std::vector< VtArray< GfMatrix4d > > *) 0 ;
+  std::vector< UsdTimeCode > *arg3 = 0 ;
+  UsdTimeCode arg4 ;
+  UsdGeomPointInstancer::ProtoXformInclusion arg5 ;
+  UsdGeomPointInstancer::MaskApplication arg6 ;
+  UsdTimeCode const *argp4 ;
+  bool result;
+  
+  arg1 = (UsdGeomPointInstancer *)jarg1; 
+  arg2 = (std::vector< VtArray< GfMatrix4d > > *)jarg2; 
+  arg3 = (std::vector< UsdTimeCode > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdTimeCode > const & type is null", 0);
+    return 0;
+  } 
+  argp4 = (UsdTimeCode *)jarg4; 
+  if (!argp4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode const", 0);
+    return 0;
+  }
+  arg4 = *argp4; 
+  arg5 = (UsdGeomPointInstancer::ProtoXformInclusion)jarg5; 
+  arg6 = (UsdGeomPointInstancer::MaskApplication)jarg6; 
+  result = (bool)((UsdGeomPointInstancer const *)arg1)->ComputeInstanceTransformsAtTimes(arg2,(std::vector< UsdTimeCode > const &)*arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4, int jarg5) {
+  unsigned int jresult ;
+  UsdGeomPointInstancer *arg1 = (UsdGeomPointInstancer *) 0 ;
+  std::vector< VtArray< GfMatrix4d > > *arg2 = (std::vector< VtArray< GfMatrix4d > > *) 0 ;
+  std::vector< UsdTimeCode > *arg3 = 0 ;
+  UsdTimeCode arg4 ;
+  UsdGeomPointInstancer::ProtoXformInclusion arg5 ;
+  UsdTimeCode const *argp4 ;
+  bool result;
+  
+  arg1 = (UsdGeomPointInstancer *)jarg1; 
+  arg2 = (std::vector< VtArray< GfMatrix4d > > *)jarg2; 
+  arg3 = (std::vector< UsdTimeCode > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdTimeCode > const & type is null", 0);
+    return 0;
+  } 
+  argp4 = (UsdTimeCode *)jarg4; 
+  if (!argp4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode const", 0);
+    return 0;
+  }
+  arg4 = *argp4; 
+  arg5 = (UsdGeomPointInstancer::ProtoXformInclusion)jarg5; 
+  result = (bool)((UsdGeomPointInstancer const *)arg1)->ComputeInstanceTransformsAtTimes(arg2,(std::vector< UsdTimeCode > const &)*arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_2(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  UsdGeomPointInstancer *arg1 = (UsdGeomPointInstancer *) 0 ;
+  std::vector< VtArray< GfMatrix4d > > *arg2 = (std::vector< VtArray< GfMatrix4d > > *) 0 ;
+  std::vector< UsdTimeCode > *arg3 = 0 ;
+  UsdTimeCode arg4 ;
+  UsdTimeCode const *argp4 ;
+  bool result;
+  
+  arg1 = (UsdGeomPointInstancer *)jarg1; 
+  arg2 = (std::vector< VtArray< GfMatrix4d > > *)jarg2; 
+  arg3 = (std::vector< UsdTimeCode > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdTimeCode > const & type is null", 0);
+    return 0;
+  } 
+  argp4 = (UsdTimeCode *)jarg4; 
+  if (!argp4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode const", 0);
+    return 0;
+  }
+  arg4 = *argp4; 
+  result = (bool)((UsdGeomPointInstancer const *)arg1)->ComputeInstanceTransformsAtTimes(arg2,(std::vector< UsdTimeCode > const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_3(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5, void * jarg6, void * jarg7, void * jarg8, void * jarg9, void * jarg10, void * jarg11, void * jarg12, void * jarg13, float jarg14) {
+  unsigned int jresult ;
+  VtArray< GfMatrix4d > *arg1 = (VtArray< GfMatrix4d > *) 0 ;
+  UsdStageWeakPtr *arg2 = 0 ;
+  UsdTimeCode arg3 ;
+  VtIntArray *arg4 = 0 ;
+  VtVec3fArray *arg5 = 0 ;
+  VtVec3fArray *arg6 = 0 ;
+  UsdTimeCode arg7 ;
+  VtVec3fArray *arg8 = 0 ;
+  VtQuathArray *arg9 = 0 ;
+  VtVec3fArray *arg10 = 0 ;
+  UsdTimeCode arg11 ;
+  SdfPathVector *arg12 = 0 ;
+  std::vector< bool > *arg13 = 0 ;
+  float arg14 ;
+  UsdTimeCode *argp3 ;
+  UsdTimeCode *argp7 ;
+  UsdTimeCode *argp11 ;
+  bool result;
+  
+  arg1 = (VtArray< GfMatrix4d > *)jarg1; 
+  arg2 = (UsdStageWeakPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStageWeakPtr & type is null", 0);
+    return 0;
+  } 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  arg4 = (VtIntArray *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (VtVec3fArray *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  arg6 = (VtVec3fArray *)jarg6;
+  if (!arg6) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  argp7 = (UsdTimeCode *)jarg7; 
+  if (!argp7) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg7 = *argp7; 
+  arg8 = (VtVec3fArray *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  arg9 = (VtQuathArray *)jarg9;
+  if (!arg9) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtQuathArray const & type is null", 0);
+    return 0;
+  } 
+  arg10 = (VtVec3fArray *)jarg10;
+  if (!arg10) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  argp11 = (UsdTimeCode *)jarg11; 
+  if (!argp11) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg11 = *argp11; 
+  arg12 = (SdfPathVector *)jarg12;
+  if (!arg12) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  arg13 = (std::vector< bool > *)jarg13;
+  if (!arg13) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< bool > const & type is null", 0);
+    return 0;
+  } 
+  arg14 = (float)jarg14; 
+  result = (bool)UsdGeomPointInstancer::ComputeInstanceTransformsAtTime(arg1,*arg2,arg3,(VtArray< int > const &)*arg4,(VtArray< GfVec3f > const &)*arg5,(VtArray< GfVec3f > const &)*arg6,arg7,(VtArray< GfVec3f > const &)*arg8,(VtArray< GfQuath > const &)*arg9,(VtArray< GfVec3f > const &)*arg10,arg11,(std::vector< SdfPath > const &)*arg12,(std::vector< bool > const &)*arg13,arg14);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_4(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5, void * jarg6, void * jarg7, void * jarg8, void * jarg9, void * jarg10, void * jarg11, void * jarg12, void * jarg13) {
+  unsigned int jresult ;
+  VtArray< GfMatrix4d > *arg1 = (VtArray< GfMatrix4d > *) 0 ;
+  UsdStageWeakPtr *arg2 = 0 ;
+  UsdTimeCode arg3 ;
+  VtIntArray *arg4 = 0 ;
+  VtVec3fArray *arg5 = 0 ;
+  VtVec3fArray *arg6 = 0 ;
+  UsdTimeCode arg7 ;
+  VtVec3fArray *arg8 = 0 ;
+  VtQuathArray *arg9 = 0 ;
+  VtVec3fArray *arg10 = 0 ;
+  UsdTimeCode arg11 ;
+  SdfPathVector *arg12 = 0 ;
+  std::vector< bool > *arg13 = 0 ;
+  UsdTimeCode *argp3 ;
+  UsdTimeCode *argp7 ;
+  UsdTimeCode *argp11 ;
+  bool result;
+  
+  arg1 = (VtArray< GfMatrix4d > *)jarg1; 
+  arg2 = (UsdStageWeakPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStageWeakPtr & type is null", 0);
+    return 0;
+  } 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  arg4 = (VtIntArray *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg5 = (VtVec3fArray *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  arg6 = (VtVec3fArray *)jarg6;
+  if (!arg6) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  argp7 = (UsdTimeCode *)jarg7; 
+  if (!argp7) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg7 = *argp7; 
+  arg8 = (VtVec3fArray *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  arg9 = (VtQuathArray *)jarg9;
+  if (!arg9) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtQuathArray const & type is null", 0);
+    return 0;
+  } 
+  arg10 = (VtVec3fArray *)jarg10;
+  if (!arg10) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  argp11 = (UsdTimeCode *)jarg11; 
+  if (!argp11) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg11 = *argp11; 
+  arg12 = (SdfPathVector *)jarg12;
+  if (!arg12) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPathVector const & type is null", 0);
+    return 0;
+  } 
+  arg13 = (std::vector< bool > *)jarg13;
+  if (!arg13) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< bool > const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdGeomPointInstancer::ComputeInstanceTransformsAtTime(arg1,*arg2,arg3,(VtArray< int > const &)*arg4,(VtArray< GfVec3f > const &)*arg5,(VtArray< GfVec3f > const &)*arg6,arg7,(VtArray< GfVec3f > const &)*arg8,(VtArray< GfQuath > const &)*arg9,(VtArray< GfVec3f > const &)*arg10,arg11,(std::vector< SdfPath > const &)*arg12,(std::vector< bool > const &)*arg13);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeExtentAtTime__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
   unsigned int jresult ;
   UsdGeomPointInstancer *arg1 = (UsdGeomPointInstancer *) 0 ;
@@ -79773,6 +81877,68 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeExte
     return 0;
   } 
   result = (bool)((UsdGeomPointInstancer const *)arg1)->ComputeExtentAtTime(arg2,arg3,arg4,(GfMatrix4d const &)*arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  UsdGeomPointInstancer *arg1 = (UsdGeomPointInstancer *) 0 ;
+  std::vector< VtVec3fArray > *arg2 = (std::vector< VtVec3fArray > *) 0 ;
+  std::vector< UsdTimeCode > *arg3 = 0 ;
+  UsdTimeCode arg4 ;
+  UsdTimeCode const *argp4 ;
+  bool result;
+  
+  arg1 = (UsdGeomPointInstancer *)jarg1; 
+  arg2 = (std::vector< VtVec3fArray > *)jarg2; 
+  arg3 = (std::vector< UsdTimeCode > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdTimeCode > const & type is null", 0);
+    return 0;
+  } 
+  argp4 = (UsdTimeCode *)jarg4; 
+  if (!argp4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode const", 0);
+    return 0;
+  }
+  arg4 = *argp4; 
+  result = (bool)((UsdGeomPointInstancer const *)arg1)->ComputeExtentAtTimes(arg2,(std::vector< UsdTimeCode > const &)*arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5) {
+  unsigned int jresult ;
+  UsdGeomPointInstancer *arg1 = (UsdGeomPointInstancer *) 0 ;
+  std::vector< VtVec3fArray > *arg2 = (std::vector< VtVec3fArray > *) 0 ;
+  std::vector< UsdTimeCode > *arg3 = 0 ;
+  UsdTimeCode arg4 ;
+  GfMatrix4d *arg5 = 0 ;
+  UsdTimeCode const *argp4 ;
+  bool result;
+  
+  arg1 = (UsdGeomPointInstancer *)jarg1; 
+  arg2 = (std::vector< VtVec3fArray > *)jarg2; 
+  arg3 = (std::vector< UsdTimeCode > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< UsdTimeCode > const & type is null", 0);
+    return 0;
+  } 
+  argp4 = (UsdTimeCode *)jarg4; 
+  if (!argp4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode const", 0);
+    return 0;
+  }
+  arg4 = *argp4; 
+  arg5 = (GfMatrix4d *)jarg5;
+  if (!arg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdGeomPointInstancer const *)arg1)->ComputeExtentAtTimes(arg2,(std::vector< UsdTimeCode > const &)*arg3,arg4,(GfMatrix4d const &)*arg5);
   jresult = result; 
   return jresult;
 }
@@ -86500,6 +88666,64 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomMesh_CreateCreaseSharpnessesAttr
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMesh_ValidateTopology__SWIG_0(void * jarg1, void * jarg2, unsigned long jarg3, char** jarg4) {
+  unsigned int jresult ;
+  VtIntArray *arg1 = 0 ;
+  VtIntArray *arg2 = 0 ;
+  size_t arg3 ;
+  std::string *arg4 = (std::string *) 0 ;
+  bool result;
+  
+  arg1 = (VtIntArray *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (VtIntArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (size_t)jarg3; 
+  //typemap in
+  std::string temp;
+  arg4 = &temp; 
+  
+  result = (bool)UsdGeomMesh::ValidateTopology((VtArray< int > const &)*arg1,(VtArray< int > const &)*arg2,arg3,arg4);
+  jresult = result; 
+  
+  //Typemap argout in c++ file.
+  //This will convert c++ string to c# string
+  *jarg4 = SWIG_csharp_string_callback(arg4->c_str());
+  
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMesh_ValidateTopology__SWIG_1(void * jarg1, void * jarg2, unsigned long jarg3) {
+  unsigned int jresult ;
+  VtIntArray *arg1 = 0 ;
+  VtIntArray *arg2 = 0 ;
+  size_t arg3 ;
+  bool result;
+  
+  arg1 = (VtIntArray *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (VtIntArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtIntArray const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (size_t)jarg3; 
+  result = (bool)UsdGeomMesh::ValidateTopology((VtArray< int > const &)*arg1,(VtArray< int > const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT float SWIGSTDCALL CSharp_pxr_UsdGeomMesh_SHARPNESS_INFINITE_get() {
   float jresult ;
   float result;
@@ -86986,32 +89210,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetTime(void * jarg1)
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_SetWorldPath(void * jarg1, void * jarg2) {
-  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
-  SdfPath *arg2 = 0 ;
-  
-  arg1 = (UsdGeomXformCache *)jarg1; 
-  arg2 = (SdfPath *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
-    return ;
-  } 
-  (arg1)->SetWorldPath((SdfPath const &)*arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_GetWorldPath(void * jarg1) {
-  void * jresult ;
-  UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
-  SdfPath *result = 0 ;
-  
-  arg1 = (UsdGeomXformCache *)jarg1; 
-  result = (SdfPath *) &((UsdGeomXformCache const *)arg1)->GetWorldPath();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomXformCache_Swap(void * jarg1, void * jarg2) {
   UsdGeomXformCache *arg1 = (UsdGeomXformCache *) 0 ;
   UsdGeomXformCache *arg2 = 0 ;
@@ -87093,6 +89291,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBBoxCache__SWIG_1(void * jar
   }
   arg2 = *argp2; 
   result = (UsdGeomBBoxCache *)new UsdGeomBBoxCache(arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomBBoxCache__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdGeomBBoxCache *arg1 = 0 ;
+  UsdGeomBBoxCache *result = 0 ;
+  
+  arg1 = (UsdGeomBBoxCache *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdGeomBBoxCache const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdGeomBBoxCache *)new UsdGeomBBoxCache((UsdGeomBBoxCache const &)*arg1);
   jresult = (void *)result; 
   return jresult;
 }
@@ -87547,6 +89761,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsTyped_get() {
   bool result;
   
   result = (bool)UsdGeomModelAPI::IsTyped;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsApplied_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdGeomModelAPI::IsApplied;
   jresult = result; 
   return jresult;
 }
@@ -89074,7 +91298,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_CreateOutput(void * j
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfValueTypeName const & type is null", 0);
     return 0;
   } 
-  result = (arg1)->CreateOutput((TfToken const &)*arg2,(SdfValueTypeName const &)*arg3);
+  result = ((UsdShadeNodeGraph const *)arg1)->CreateOutput((TfToken const &)*arg2,(SdfValueTypeName const &)*arg3);
   jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
   return jresult;
 }
@@ -89110,6 +91334,28 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_GetOutputs(void * jar
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_ComputeOutputSource(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdShadeNodeGraph *arg1 = (UsdShadeNodeGraph *) 0 ;
+  TfToken *arg2 = 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeNodeGraph *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = ((UsdShadeNodeGraph const *)arg1)->ComputeOutputSource((TfToken const &)*arg2,arg3,arg4);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_CreateInput(void * jarg1, void * jarg2, void * jarg3) {
   void * jresult ;
   UsdShadeNodeGraph *arg1 = (UsdShadeNodeGraph *) 0 ;
@@ -89128,7 +91374,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_CreateInput(void * ja
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfValueTypeName const & type is null", 0);
     return 0;
   } 
-  result = (arg1)->CreateInput((TfToken const &)*arg2,(SdfValueTypeName const &)*arg3);
+  result = ((UsdShadeNodeGraph const *)arg1)->CreateInput((TfToken const &)*arg2,(SdfValueTypeName const &)*arg3);
   jresult = new UsdShadeInput((const UsdShadeInput &)result); 
   return jresult;
 }
@@ -89374,6 +91620,192 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_Define(void * jarg1, v
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetSurfaceAttr(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->GetSurfaceAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateSurfaceAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateSurfaceAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateSurfaceAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->CreateSurfaceAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateSurfaceAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateSurfaceAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetDisplacementAttr(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->GetDisplacementAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateDisplacementAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateDisplacementAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateDisplacementAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->CreateDisplacementAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateDisplacementAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateDisplacementAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetVolumeAttr(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->GetVolumeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateVolumeAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateVolumeAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateVolumeAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->CreateVolumeAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateVolumeAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateVolumeAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_Bind(void * jarg1, void * jarg2) {
   unsigned int jresult ;
   UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
@@ -89436,6 +91868,402 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetBoundMaterial(void 
   } 
   result = UsdShadeMaterial::GetBoundMaterial((UsdPrim const &)*arg1);
   jresult = new UsdShadeMaterial((const UsdShadeMaterial &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateSurfaceOutput__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->CreateSurfaceOutput((TfToken const &)*arg2);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateSurfaceOutput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateSurfaceOutput();
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetSurfaceOutput__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->GetSurfaceOutput((TfToken const &)*arg2);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetSurfaceOutput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->GetSurfaceOutput();
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeSurfaceSource__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeSurfaceSource((TfToken const &)*arg2,arg3,arg4);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeSurfaceSource__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeSurfaceSource((TfToken const &)*arg2,arg3);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeSurfaceSource__SWIG_2(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeSurfaceSource((TfToken const &)*arg2);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeSurfaceSource__SWIG_3(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeSurfaceSource();
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateDisplacementOutput__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->CreateDisplacementOutput((TfToken const &)*arg2);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateDisplacementOutput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateDisplacementOutput();
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetDisplacementOutput__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->GetDisplacementOutput((TfToken const &)*arg2);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetDisplacementOutput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->GetDisplacementOutput();
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeDisplacementSource__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeDisplacementSource((TfToken const &)*arg2,arg3,arg4);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeDisplacementSource__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeDisplacementSource((TfToken const &)*arg2,arg3);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeDisplacementSource__SWIG_2(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeDisplacementSource((TfToken const &)*arg2);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeDisplacementSource__SWIG_3(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeDisplacementSource();
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateVolumeOutput__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->CreateVolumeOutput((TfToken const &)*arg2);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_CreateVolumeOutput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->CreateVolumeOutput();
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetVolumeOutput__SWIG_0(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->GetVolumeOutput((TfToken const &)*arg2);
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_GetVolumeOutput__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeOutput result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->GetVolumeOutput();
+  jresult = new UsdShadeOutput((const UsdShadeOutput &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeVolumeSource__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeAttributeType *arg4 = (UsdShadeAttributeType *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (UsdShadeAttributeType *)jarg4; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeVolumeSource((TfToken const &)*arg2,arg3,arg4);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeVolumeSource__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeVolumeSource((TfToken const &)*arg2,arg3);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeVolumeSource__SWIG_2(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeVolumeSource((TfToken const &)*arg2);
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_ComputeVolumeSource__SWIG_3(void * jarg1) {
+  void * jresult ;
+  UsdShadeMaterial *arg1 = (UsdShadeMaterial *) 0 ;
+  UsdShadeShader result;
+  
+  arg1 = (UsdShadeMaterial *)jarg1; 
+  result = ((UsdShadeMaterial const *)arg1)->ComputeVolumeSource();
+  jresult = new UsdShadeShader((const UsdShadeShader &)result); 
   return jresult;
 }
 
@@ -91607,6 +94435,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsTyped_ge
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsApplied_get() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)UsdShadeConnectableAPI::IsApplied;
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsMultipleApply_get() {
   unsigned int jresult ;
   bool result;
@@ -91706,22 +94544,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_Get(void * jarg1
     return 0;
   } 
   result = UsdShadeConnectableAPI::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
-  jresult = new UsdShadeConnectableAPI((const UsdShadeConnectableAPI &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_Apply(void * jarg1) {
-  void * jresult ;
-  UsdPrim *arg1 = 0 ;
-  UsdShadeConnectableAPI result;
-  
-  arg1 = (UsdPrim *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
-    return 0;
-  } 
-  result = UsdShadeConnectableAPI::Apply((UsdPrim const &)*arg1);
   jresult = new UsdShadeConnectableAPI((const UsdShadeConnectableAPI &)result); 
   return jresult;
 }

@@ -40,13 +40,13 @@ public class Vt_ArrayForeignDataSource : global::System.IDisposable {
     }
   }
 
-  public Vt_ArrayForeignDataSource() : this(UsdCsPINVOKE.new_Vt_ArrayForeignDataSource__SWIG_0(), true) {
+  public Vt_ArrayForeignDataSource(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void detachedFn, uint initRefCount) : this(UsdCsPINVOKE.new_Vt_ArrayForeignDataSource__SWIG_0(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void.getCPtr(detachedFn), initRefCount), true) {
   }
 
-  public Vt_ArrayForeignDataSource(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void detachedFn, uint initRefCount) : this(UsdCsPINVOKE.new_Vt_ArrayForeignDataSource__SWIG_1(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void.getCPtr(detachedFn), initRefCount), true) {
+  public Vt_ArrayForeignDataSource(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void detachedFn) : this(UsdCsPINVOKE.new_Vt_ArrayForeignDataSource__SWIG_1(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void.getCPtr(detachedFn)), true) {
   }
 
-  public Vt_ArrayForeignDataSource(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void detachedFn) : this(UsdCsPINVOKE.new_Vt_ArrayForeignDataSource__SWIG_2(SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void.getCPtr(detachedFn)), true) {
+  public Vt_ArrayForeignDataSource() : this(UsdCsPINVOKE.new_Vt_ArrayForeignDataSource__SWIG_2(), true) {
   }
 
 }

@@ -108,6 +108,7 @@ public class UsdGeomMotionAPI : global::System.IDisposable {
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomMotionAPI_IsConcrete_get();
   public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomMotionAPI_IsTyped_get();
+  public static readonly bool IsApplied = UsdCsPINVOKE.UsdGeomMotionAPI_IsApplied_get();
   public static readonly bool IsMultipleApply = UsdCsPINVOKE.UsdGeomMotionAPI_IsMultipleApply_get();
 }
 

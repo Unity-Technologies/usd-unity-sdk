@@ -181,6 +181,11 @@ public class UsdGeomPrimvar : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetIndicesAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPrimvar_GetIndicesAttr(swigCPtr), true);
+    return ret;
+  }
+
   public bool SetUnauthoredValuesIndex(int unauthoredValuesIndex) {
     bool ret = UsdCsPINVOKE.UsdGeomPrimvar_SetUnauthoredValuesIndex(swigCPtr, unauthoredValuesIndex);
     return ret;

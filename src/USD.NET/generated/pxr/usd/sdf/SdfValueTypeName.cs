@@ -53,6 +53,11 @@ public class SdfValueTypeName : global::System.IDisposable {
     return ret;
   }
 
+  public string GetCPPTypeName() {
+    string ret = UsdCsPINVOKE.SdfValueTypeName_GetCPPTypeName(swigCPtr);
+    return ret;
+  }
+
   public TfToken GetRole() {
     TfToken ret = new TfToken(UsdCsPINVOKE.SdfValueTypeName_GetRole(swigCPtr), false);
     return ret;

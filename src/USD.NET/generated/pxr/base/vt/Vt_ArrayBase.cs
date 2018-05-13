@@ -43,7 +43,10 @@ public class Vt_ArrayBase : global::System.IDisposable {
   public Vt_ArrayBase() : this(UsdCsPINVOKE.new_Vt_ArrayBase__SWIG_0(), true) {
   }
 
-  public Vt_ArrayBase(Vt_ArrayBase other) : this(UsdCsPINVOKE.new_Vt_ArrayBase__SWIG_1(Vt_ArrayBase.getCPtr(other)), true) {
+  public Vt_ArrayBase(Vt_ArrayForeignDataSource foreignSrc) : this(UsdCsPINVOKE.new_Vt_ArrayBase__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc)), true) {
+  }
+
+  public Vt_ArrayBase(Vt_ArrayBase other) : this(UsdCsPINVOKE.new_Vt_ArrayBase__SWIG_2(Vt_ArrayBase.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

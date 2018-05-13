@@ -94,6 +94,12 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
+  public UsdShadeShader ComputeOutputSource(TfToken outputName, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeNodeGraph_ComputeOutputSource(swigCPtr, TfToken.getCPtr(outputName), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdShadeInput CreateInput(TfToken name, SdfValueTypeName typeName) {
     UsdShadeInput ret = new UsdShadeInput(UsdCsPINVOKE.UsdShadeNodeGraph_CreateInput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

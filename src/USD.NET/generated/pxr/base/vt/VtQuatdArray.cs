@@ -47,15 +47,21 @@ public class VtQuatdArray : Vt_ArrayBase {
   public VtQuatdArray() : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_0(), true) {
   }
 
-  public VtQuatdArray(VtQuatdArray other) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_1(VtQuatdArray.getCPtr(other)), true) {
+  public VtQuatdArray(Vt_ArrayForeignDataSource foreignSrc, GfQuatd data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfQuatd.getCPtr(data), size, addRef), true) {
+  }
+
+  public VtQuatdArray(Vt_ArrayForeignDataSource foreignSrc, GfQuatd data, uint size) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfQuatd.getCPtr(data), size), true) {
+  }
+
+  public VtQuatdArray(VtQuatdArray other) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_3(VtQuatdArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtQuatdArray(uint n, GfQuatd value) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_3(n, GfQuatd.getCPtr(value)), true) {
+  public VtQuatdArray(uint n, GfQuatd value) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_5(n, GfQuatd.getCPtr(value)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtQuatdArray(uint n) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_4(n), true) {
+  public VtQuatdArray(uint n) : this(UsdCsPINVOKE.new_VtQuatdArray__SWIG_6(n), true) {
   }
 
   public void push_back(GfQuatd elem) {

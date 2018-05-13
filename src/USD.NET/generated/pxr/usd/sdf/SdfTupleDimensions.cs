@@ -49,6 +49,10 @@ public class SdfTupleDimensions : global::System.IDisposable {
   public SdfTupleDimensions(ulong m, ulong n) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_2(m, n), true) {
   }
 
+  public SdfTupleDimensions(SWIGTYPE_p_a_2__unsigned_long_long s) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_3(SWIGTYPE_p_a_2__unsigned_long_long.getCPtr(s)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public SWIGTYPE_p_unsigned_long_long d {
     set {
       UsdCsPINVOKE.SdfTupleDimensions_d_set(swigCPtr, SWIGTYPE_p_unsigned_long_long.getCPtr(value));

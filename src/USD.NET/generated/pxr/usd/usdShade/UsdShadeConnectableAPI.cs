@@ -67,12 +67,6 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
     return ret;
   }
 
-  public static UsdShadeConnectableAPI Apply(UsdPrim prim) {
-    UsdShadeConnectableAPI ret = new UsdShadeConnectableAPI(UsdCsPINVOKE.UsdShadeConnectableAPI_Apply(UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public UsdShadeConnectableAPI(UsdShadeShader shader) : this(UsdCsPINVOKE.new_UsdShadeConnectableAPI__SWIG_3(UsdShadeShader.getCPtr(shader)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -385,6 +379,7 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
 
   public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeConnectableAPI_IsConcrete_get();
   public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeConnectableAPI_IsTyped_get();
+  public static readonly bool IsApplied = UsdCsPINVOKE.UsdShadeConnectableAPI_IsApplied_get();
   public static readonly bool IsMultipleApply = UsdCsPINVOKE.UsdShadeConnectableAPI_IsMultipleApply_get();
 }
 

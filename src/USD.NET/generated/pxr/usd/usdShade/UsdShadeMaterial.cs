@@ -72,6 +72,72 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public UsdAttribute GetSurfaceAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_GetSurfaceAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateSurfaceAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateSurfaceAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateSurfaceAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateSurfaceAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateSurfaceAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateSurfaceAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute GetDisplacementAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_GetDisplacementAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateDisplacementAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateDisplacementAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateDisplacementAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateDisplacementAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateDisplacementAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateDisplacementAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute GetVolumeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_GetVolumeAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateVolumeAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateVolumeAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateVolumeAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateVolumeAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateVolumeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeMaterial_CreateVolumeAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public bool Bind(UsdPrim prim) {
     bool ret = UsdCsPINVOKE.UsdShadeMaterial_Bind(swigCPtr, UsdPrim.getCPtr(prim));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -93,6 +159,141 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
   public static UsdShadeMaterial GetBoundMaterial(UsdPrim prim) {
     UsdShadeMaterial ret = new UsdShadeMaterial(UsdCsPINVOKE.UsdShadeMaterial_GetBoundMaterial(UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput CreateSurfaceOutput(TfToken renderContext) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_CreateSurfaceOutput__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput CreateSurfaceOutput() {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_CreateSurfaceOutput__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeOutput GetSurfaceOutput(TfToken renderContext) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_GetSurfaceOutput__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput GetSurfaceOutput() {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_GetSurfaceOutput__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeShader ComputeSurfaceSource(TfToken renderContext, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeSurfaceSource(TfToken renderContext, TfToken sourceName) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_1(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeSurfaceSource(TfToken renderContext) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_2(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeSurfaceSource() {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_3(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeOutput CreateDisplacementOutput(TfToken renderContext) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_CreateDisplacementOutput__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput CreateDisplacementOutput() {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_CreateDisplacementOutput__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeOutput GetDisplacementOutput(TfToken renderContext) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_GetDisplacementOutput__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput GetDisplacementOutput() {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_GetDisplacementOutput__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeShader ComputeDisplacementSource(TfToken renderContext, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeDisplacementSource(TfToken renderContext, TfToken sourceName) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_1(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeDisplacementSource(TfToken renderContext) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_2(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeDisplacementSource() {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_3(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeOutput CreateVolumeOutput(TfToken renderContext) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_CreateVolumeOutput__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput CreateVolumeOutput() {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_CreateVolumeOutput__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeOutput GetVolumeOutput(TfToken renderContext) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_GetVolumeOutput__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput GetVolumeOutput() {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_GetVolumeOutput__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeShader ComputeVolumeSource(TfToken renderContext, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeVolumeSource(TfToken renderContext, TfToken sourceName) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_1(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeVolumeSource(TfToken renderContext) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_2(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeVolumeSource() {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_3(swigCPtr), true);
     return ret;
   }
 

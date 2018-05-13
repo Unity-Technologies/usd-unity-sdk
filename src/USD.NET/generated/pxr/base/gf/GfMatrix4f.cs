@@ -214,26 +214,38 @@ public class GfMatrix4f : global::System.IDisposable {
     return ret;
   }
 
+  public GfMatrix4f SetRotate(GfQuatf rot) {
+    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotate__SWIG_0(swigCPtr, GfQuatf.getCPtr(rot)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public GfMatrix4f SetRotateOnly(GfQuatf rot) {
+    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotateOnly__SWIG_0(swigCPtr, GfQuatf.getCPtr(rot)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public GfMatrix4f SetRotate(GfRotation rot) {
-    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotate__SWIG_0(swigCPtr, GfRotation.getCPtr(rot)), false);
+    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotate__SWIG_1(swigCPtr, GfRotation.getCPtr(rot)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public GfMatrix4f SetRotateOnly(GfRotation rot) {
-    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotateOnly__SWIG_0(swigCPtr, GfRotation.getCPtr(rot)), false);
+    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotateOnly__SWIG_1(swigCPtr, GfRotation.getCPtr(rot)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public GfMatrix4f SetRotate(GfMatrix3f mx) {
-    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotate__SWIG_1(swigCPtr, GfMatrix3f.getCPtr(mx)), false);
+    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotate__SWIG_2(swigCPtr, GfMatrix3f.getCPtr(mx)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public GfMatrix4f SetRotateOnly(GfMatrix3f mx) {
-    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotateOnly__SWIG_1(swigCPtr, GfMatrix3f.getCPtr(mx)), false);
+    GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_SetRotateOnly__SWIG_2(swigCPtr, GfMatrix3f.getCPtr(mx)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

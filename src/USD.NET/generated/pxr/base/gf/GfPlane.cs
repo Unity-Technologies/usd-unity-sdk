@@ -55,6 +55,10 @@ public class GfPlane : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public GfPlane(GfVec4d eqn) : this(UsdCsPINVOKE.new_GfPlane__SWIG_4(GfVec4d.getCPtr(eqn)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public void Set(GfVec3d normal, double distanceToOrigin) {
     UsdCsPINVOKE.GfPlane_Set__SWIG_0(swigCPtr, GfVec3d.getCPtr(normal), distanceToOrigin);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -70,6 +74,11 @@ public class GfPlane : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public void Set(GfVec4d eqn) {
+    UsdCsPINVOKE.GfPlane_Set__SWIG_3(swigCPtr, GfVec4d.getCPtr(eqn));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public GfVec3d GetNormal() {
     GfVec3d ret = new GfVec3d(UsdCsPINVOKE.GfPlane_GetNormal(swigCPtr), false);
     return ret;
@@ -77,6 +86,11 @@ public class GfPlane : global::System.IDisposable {
 
   public double GetDistanceFromOrigin() {
     double ret = UsdCsPINVOKE.GfPlane_GetDistanceFromOrigin(swigCPtr);
+    return ret;
+  }
+
+  public GfVec4d GetEquation() {
+    GfVec4d ret = new GfVec4d(UsdCsPINVOKE.GfPlane_GetEquation(swigCPtr), true);
     return ret;
   }
 

@@ -48,6 +48,10 @@ public class UsdGeomBBoxCache : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public UsdGeomBBoxCache(UsdGeomBBoxCache other) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_2(UsdGeomBBoxCache.getCPtr(other)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public GfBBox3d ComputeWorldBound(UsdPrim prim) {
     GfBBox3d ret = new GfBBox3d(UsdCsPINVOKE.UsdGeomBBoxCache_ComputeWorldBound(swigCPtr, UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

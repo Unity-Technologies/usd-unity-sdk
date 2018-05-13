@@ -47,15 +47,21 @@ public class VtVec2fArray : Vt_ArrayBase {
   public VtVec2fArray() : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_0(), true) {
   }
 
-  public VtVec2fArray(VtVec2fArray other) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_1(VtVec2fArray.getCPtr(other)), true) {
+  public VtVec2fArray(Vt_ArrayForeignDataSource foreignSrc, GfVec2f data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfVec2f.getCPtr(data), size, addRef), true) {
+  }
+
+  public VtVec2fArray(Vt_ArrayForeignDataSource foreignSrc, GfVec2f data, uint size) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfVec2f.getCPtr(data), size), true) {
+  }
+
+  public VtVec2fArray(VtVec2fArray other) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_3(VtVec2fArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtVec2fArray(uint n, GfVec2f value) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_3(n, GfVec2f.getCPtr(value)), true) {
+  public VtVec2fArray(uint n, GfVec2f value) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_5(n, GfVec2f.getCPtr(value)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtVec2fArray(uint n) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_4(n), true) {
+  public VtVec2fArray(uint n) : this(UsdCsPINVOKE.new_VtVec2fArray__SWIG_6(n), true) {
   }
 
   public void push_back(GfVec2f elem) {

@@ -336,6 +336,18 @@ public class UsdGeomMesh : UsdGeomPointBased {
     return ret;
   }
 
+  public static bool ValidateTopology(VtIntArray faceVertexIndices, VtIntArray faceVertexCounts, uint numPoints, /*cstype*/ out string reason) {
+    bool ret = UsdCsPINVOKE.UsdGeomMesh_ValidateTopology__SWIG_0(VtIntArray.getCPtr(faceVertexIndices), VtIntArray.getCPtr(faceVertexCounts), numPoints, out reason);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool ValidateTopology(VtIntArray faceVertexIndices, VtIntArray faceVertexCounts, uint numPoints) {
+    bool ret = UsdCsPINVOKE.UsdGeomMesh_ValidateTopology__SWIG_1(VtIntArray.getCPtr(faceVertexIndices), VtIntArray.getCPtr(faceVertexCounts), numPoints);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static float SHARPNESS_INFINITE {
     get {
       float ret = UsdCsPINVOKE.UsdGeomMesh_SHARPNESS_INFINITE_get();

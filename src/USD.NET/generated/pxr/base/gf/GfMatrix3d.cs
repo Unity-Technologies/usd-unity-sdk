@@ -68,7 +68,11 @@ public class GfMatrix3d : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfMatrix3d(GfMatrix3f m) : this(UsdCsPINVOKE.new_GfMatrix3d__SWIG_8(GfMatrix3f.getCPtr(m)), true) {
+  public GfMatrix3d(GfQuatd rot) : this(UsdCsPINVOKE.new_GfMatrix3d__SWIG_8(GfQuatd.getCPtr(rot)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public GfMatrix3d(GfMatrix3f m) : this(UsdCsPINVOKE.new_GfMatrix3d__SWIG_9(GfMatrix3f.getCPtr(m)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -189,8 +193,14 @@ public class GfMatrix3d : global::System.IDisposable {
     return ret;
   }
 
+  public GfMatrix3d SetRotate(GfQuatd rot) {
+    GfMatrix3d ret = new GfMatrix3d(UsdCsPINVOKE.GfMatrix3d_SetRotate__SWIG_0(swigCPtr, GfQuatd.getCPtr(rot)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public GfMatrix3d SetRotate(GfRotation rot) {
-    GfMatrix3d ret = new GfMatrix3d(UsdCsPINVOKE.GfMatrix3d_SetRotate(swigCPtr, GfRotation.getCPtr(rot)), false);
+    GfMatrix3d ret = new GfMatrix3d(UsdCsPINVOKE.GfMatrix3d_SetRotate__SWIG_1(swigCPtr, GfRotation.getCPtr(rot)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

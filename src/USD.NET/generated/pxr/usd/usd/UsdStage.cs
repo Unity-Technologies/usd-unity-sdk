@@ -40,63 +40,125 @@ public class UsdStage : global::System.IDisposable {
     }
   }
 
+  public static UsdStage CreateNew(string identifier, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_0(identifier, (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static UsdStage CreateNew(string identifier) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_0(identifier);
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_1(identifier);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdStage CreateNew(string identifier, SdfLayerHandle sessionLayer, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_2(identifier, SdfLayerHandle.getCPtr(sessionLayer), (int)load);
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static UsdStage CreateNew(string identifier, SdfLayerHandle sessionLayer) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_1(identifier, SdfLayerHandle.getCPtr(sessionLayer));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_3(identifier, SdfLayerHandle.getCPtr(sessionLayer));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdStage CreateNew(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_4(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), (int)load);
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static UsdStage CreateNew(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_2(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_5(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdStage CreateNew(string identifier, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_6(identifier, ArResolverContext.getCPtr(pathResolverContext), (int)load);
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static UsdStage CreateNew(string identifier, ArResolverContext pathResolverContext) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_3(identifier, ArResolverContext.getCPtr(pathResolverContext));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateNew__SWIG_7(identifier, ArResolverContext.getCPtr(pathResolverContext));
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdStage CreateInMemory() {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_0();
+  public static UsdStage CreateInMemory(UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_0((int)load);
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     return ret;
   }
 
+  public static UsdStage CreateInMemory() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_1();
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    return ret;
+  }
+
+  public static UsdStage CreateInMemory(string identifier, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_2(identifier, (int)load);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static UsdStage CreateInMemory(string identifier) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_1(identifier);
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_3(identifier);
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdStage CreateInMemory(string identifier, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_4(identifier, ArResolverContext.getCPtr(pathResolverContext), (int)load);
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static UsdStage CreateInMemory(string identifier, ArResolverContext pathResolverContext) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_2(identifier, ArResolverContext.getCPtr(pathResolverContext));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_5(identifier, ArResolverContext.getCPtr(pathResolverContext));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdStage CreateInMemory(string identifier, SdfLayerHandle sessionLayer, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_6(identifier, SdfLayerHandle.getCPtr(sessionLayer), (int)load);
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static UsdStage CreateInMemory(string identifier, SdfLayerHandle sessionLayer) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_3(identifier, SdfLayerHandle.getCPtr(sessionLayer));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_7(identifier, SdfLayerHandle.getCPtr(sessionLayer));
+    UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdStage CreateInMemory(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext, UsdStage.InitialLoadSet load) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_8(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext), (int)load);
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static UsdStage CreateInMemory(string identifier, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_4(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStage_CreateInMemory__SWIG_9(identifier, SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;

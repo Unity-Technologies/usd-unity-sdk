@@ -103,16 +103,6 @@ public class UsdGeomXformCache : global::System.IDisposable {
     return ret;
   }
 
-  public void SetWorldPath(SdfPath worldPath) {
-    UsdCsPINVOKE.UsdGeomXformCache_SetWorldPath(swigCPtr, SdfPath.getCPtr(worldPath));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPath GetWorldPath() {
-    SdfPath ret = new SdfPath(UsdCsPINVOKE.UsdGeomXformCache_GetWorldPath(swigCPtr), false);
-    return ret;
-  }
-
   public void Swap(UsdGeomXformCache other) {
     UsdCsPINVOKE.UsdGeomXformCache_Swap(swigCPtr, UsdGeomXformCache.getCPtr(other));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

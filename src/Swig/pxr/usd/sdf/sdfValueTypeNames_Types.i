@@ -15,6 +15,7 @@
 %inline %{
     SdfValueTypeName SdfGetValueTypeColor4dArray() { return SdfValueTypeNames->Color4dArray; }
     SdfValueTypeName SdfGetValueTypeMatrix3d() { return SdfValueTypeNames->Matrix3d; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3dArray() { return SdfValueTypeNames->TexCoord3dArray; }
     SdfValueTypeName SdfGetValueTypePoint3h() { return SdfValueTypeNames->Point3h; }
     SdfValueTypeName SdfGetValueTypeAsset() { return SdfValueTypeNames->Asset; }
     SdfValueTypeName SdfGetValueTypePoint3d() { return SdfValueTypeNames->Point3d; }
@@ -22,6 +23,7 @@
     SdfValueTypeName SdfGetValueTypeQuathArray() { return SdfValueTypeNames->QuathArray; }
     SdfValueTypeName SdfGetValueTypeUChar() { return SdfValueTypeNames->UChar; }
     SdfValueTypeName SdfGetValueTypeMatrix2dArray() { return SdfValueTypeNames->Matrix2dArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2fArray() { return SdfValueTypeNames->TexCoord2fArray; }
     SdfValueTypeName SdfGetValueTypeVector3dArray() { return SdfValueTypeNames->Vector3dArray; }
     SdfValueTypeName SdfGetValueTypeColor4h() { return SdfValueTypeNames->Color4h; }
     SdfValueTypeName SdfGetValueTypeColor4f() { return SdfValueTypeNames->Color4f; }
@@ -33,6 +35,7 @@
     SdfValueTypeName SdfGetValueTypeNormal3fArray() { return SdfValueTypeNames->Normal3fArray; }
     SdfValueTypeName SdfGetValueTypeToken() { return SdfValueTypeNames->Token; }
     SdfValueTypeName SdfGetValueTypeFloat3Array() { return SdfValueTypeNames->Float3Array; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2hArray() { return SdfValueTypeNames->TexCoord2hArray; }
     SdfValueTypeName SdfGetValueTypeUCharArray() { return SdfValueTypeNames->UCharArray; }
     SdfValueTypeName SdfGetValueTypeDoubleArray() { return SdfValueTypeNames->DoubleArray; }
     SdfValueTypeName SdfGetValueTypeFrame4d() { return SdfValueTypeNames->Frame4d; }
@@ -42,6 +45,7 @@
     SdfValueTypeName SdfGetValueTypeDouble4() { return SdfValueTypeNames->Double4; }
     SdfValueTypeName SdfGetValueTypeNormal3dArray() { return SdfValueTypeNames->Normal3dArray; }
     SdfValueTypeName SdfGetValueTypeColor3dArray() { return SdfValueTypeNames->Color3dArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2dArray() { return SdfValueTypeNames->TexCoord2dArray; }
     SdfValueTypeName SdfGetValueTypeHalf3Array() { return SdfValueTypeNames->Half3Array; }
     SdfValueTypeName SdfGetValueTypeMatrix4dArray() { return SdfValueTypeNames->Matrix4dArray; }
     SdfValueTypeName SdfGetValueTypeNormal3h() { return SdfValueTypeNames->Normal3h; }
@@ -57,6 +61,7 @@
     SdfValueTypeName SdfGetValueTypeInt64Array() { return SdfValueTypeNames->Int64Array; }
     SdfValueTypeName SdfGetValueTypeIntArray() { return SdfValueTypeNames->IntArray; }
     SdfValueTypeName SdfGetValueTypePoint3dArray() { return SdfValueTypeNames->Point3dArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3hArray() { return SdfValueTypeNames->TexCoord3hArray; }
     SdfValueTypeName SdfGetValueTypeBool() { return SdfValueTypeNames->Bool; }
     SdfValueTypeName SdfGetValueTypeColor3hArray() { return SdfValueTypeNames->Color3hArray; }
     SdfValueTypeName SdfGetValueTypeDouble2() { return SdfValueTypeNames->Double2; }
@@ -84,9 +89,13 @@
     SdfValueTypeName SdfGetValueTypeFloat2() { return SdfValueTypeNames->Float2; }
     SdfValueTypeName SdfGetValueTypeFloat3() { return SdfValueTypeNames->Float3; }
     SdfValueTypeName SdfGetValueTypeUIntArray() { return SdfValueTypeNames->UIntArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2d() { return SdfValueTypeNames->TexCoord2d; }
     SdfValueTypeName SdfGetValueTypeHalf3() { return SdfValueTypeNames->Half3; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3h() { return SdfValueTypeNames->TexCoord3h; }
     SdfValueTypeName SdfGetValueTypeFrame4dArray() { return SdfValueTypeNames->Frame4dArray; }
     SdfValueTypeName SdfGetValueTypeVector3fArray() { return SdfValueTypeNames->Vector3fArray; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3d() { return SdfValueTypeNames->TexCoord3d; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3f() { return SdfValueTypeNames->TexCoord3f; }
     SdfValueTypeName SdfGetValueTypeColor3h() { return SdfValueTypeNames->Color3h; }
     SdfValueTypeName SdfGetValueTypeHalf() { return SdfValueTypeNames->Half; }
     SdfValueTypeName SdfGetValueTypeVector3h() { return SdfValueTypeNames->Vector3h; }
@@ -100,9 +109,12 @@
     SdfValueTypeName SdfGetValueTypeTokenArray() { return SdfValueTypeNames->TokenArray; }
     SdfValueTypeName SdfGetValueTypeNormal3hArray() { return SdfValueTypeNames->Normal3hArray; }
     SdfValueTypeName SdfGetValueTypeInt3Array() { return SdfValueTypeNames->Int3Array; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2h() { return SdfValueTypeNames->TexCoord2h; }
     SdfValueTypeName SdfGetValueTypeHalf4() { return SdfValueTypeNames->Half4; }
     SdfValueTypeName SdfGetValueTypeFloat() { return SdfValueTypeNames->Float; }
+    SdfValueTypeName SdfGetValueTypeTexCoord2f() { return SdfValueTypeNames->TexCoord2f; }
     SdfValueTypeName SdfGetValueTypeHalf2() { return SdfValueTypeNames->Half2; }
     SdfValueTypeName SdfGetValueTypeInt2Array() { return SdfValueTypeNames->Int2Array; }
     SdfValueTypeName SdfGetValueTypeInt64() { return SdfValueTypeNames->Int64; }
+    SdfValueTypeName SdfGetValueTypeTexCoord3fArray() { return SdfValueTypeNames->TexCoord3fArray; }
 %}

@@ -47,14 +47,20 @@ public class VtBoolArray : Vt_ArrayBase {
   public VtBoolArray() : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_0(), true) {
   }
 
-  public VtBoolArray(VtBoolArray other) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_1(VtBoolArray.getCPtr(other)), true) {
+  public VtBoolArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_bool data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_bool.getCPtr(data), size, addRef), true) {
+  }
+
+  public VtBoolArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_bool data, uint size) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_bool.getCPtr(data), size), true) {
+  }
+
+  public VtBoolArray(VtBoolArray other) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_3(VtBoolArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtBoolArray(uint n, bool value) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_3(n, value), true) {
+  public VtBoolArray(uint n, bool value) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_5(n, value), true) {
   }
 
-  public VtBoolArray(uint n) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_4(n), true) {
+  public VtBoolArray(uint n) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_6(n), true) {
   }
 
   public void push_back(bool elem) {
