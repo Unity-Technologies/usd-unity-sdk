@@ -63,5 +63,10 @@
         <member name="M:USD.NET.Unity.UnityTypeBindings.#cctor">
             Static constructor automatically registers conversions with the global type binder.
         </member>
+        <member name="M:USD.NET.Unity.UnityTypeBindings.RegisterTypes">
+            <summary>
+            Registers Unity-specifc data type conversions in the global type binder (UsdIo.Bindings).
+            </summary>
+        </member>
     </members>
 </doc>
