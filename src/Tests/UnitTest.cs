@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace Tests {
   class UnitTest {
@@ -57,6 +58,19 @@ namespace Tests {
       }
 
       for (int i = 0; i < first.Length; i++) {
+        AssertEqual(first[i], second[i]);
+      }
+    }
+
+    static protected void AssertEqual<T>(List<T> first, List<T> second) {
+      if (first == null && second == null) {
+        return;
+      }
+      if (first.Count != second.Count) {
+        throw new Exception("Length of arrays do not match");
+      }
+
+      for (int i = 0; i < first.Count; i++) {
         AssertEqual(first[i], second[i]);
       }
     }
