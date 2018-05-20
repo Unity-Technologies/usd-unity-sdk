@@ -45,3 +45,4 @@ vs2015/USD.NET/packages
 vs2015/UsdCs/Release/*
 packages.config
 /inst/
+*.unitypackage
