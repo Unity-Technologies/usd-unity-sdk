@@ -25,6 +25,9 @@ namespace USD.NET.Unity {
 
     private static bool isInitialized = false;
 
+    /// <summary>
+    /// Registers Unity-specifc data type conversions in the global type binder (UsdIo.Bindings).
+    /// </summary>
     static public void RegisterTypes() {
       if (isInitialized) { return; }
       isInitialized = true;
@@ -36,26 +39,46 @@ namespace USD.NET.Unity {
       //
       binder.BindType(typeof(Quaternion), new UsdTypeBinding(
           (object obj) => UnityTypeConverter.QuaternionToQuatf((Quaternion)obj),
-          (pxr.VtValue vtVal) => UnityTypeConverter.QuatfToQuaternion(vtVal),
+          (pxr.VtValue value) => UnityTypeConverter.QuatfToQuaternion(value),
           SdfValueTypeNames.Quatf));
       binder.BindArrayType<UnityTypeConverter>(typeof(Quaternion[]), typeof(pxr.VtQuatfArray), SdfValueTypeNames.QuatfArray);
       binder.BindArrayType<UnityTypeConverter>(typeof(List<Quaternion>), typeof(pxr.VtQuatfArray), SdfValueTypeNames.QuatfArray, "List");
 
       //
-      // Vector {2,3,4} {[],List<>}
+      // Scalar Vector{2,3,4}
       //
       binder.BindType(typeof(Vector2), new UsdTypeBinding(
           (object obj) => UnityTypeConverter.Vector2ToVec2f((Vector2)obj),
-          (pxr.VtValue vtVal) => UnityTypeConverter.Vec2fToVector2(vtVal),
-          SdfValueTypeNames.Color4fArray));
+          (pxr.VtValue value) => UnityTypeConverter.Vec2fToVector2(value),
+          SdfValueTypeNames.Float2));
+      binder.BindType(typeof(Vector3), new UsdTypeBinding(
+          (object obj) => UnityTypeConverter.Vector3ToVec3f((Vector3)obj),
+          (pxr.VtValue value) => UnityTypeConverter.Vec3fToVector3(value),
+          SdfValueTypeNames.Float3));
+      binder.BindType(typeof(Vector4), new UsdTypeBinding(
+          (object obj) => UnityTypeConverter.Vector4ToVec4f((Vector4)obj),
+          (pxr.VtValue value) => UnityTypeConverter.Vec4fToVector4(value),
+          SdfValueTypeNames.Float4));
+
+      //
+      // Scaler Rect <-> GfVec4f
+      //
+      binder.BindType(typeof(Rect), new UsdTypeBinding(
+          (object obj) => UnityTypeConverter.RectToVtVec4((Rect)obj),
+          (pxr.VtValue value) => UnityTypeConverter.Vec4fToRect(value),
+          SdfValueTypeNames.Float4));
+
+      //
+      // Vector {2,3,4} {[],List<>}
+      //
       binder.BindArrayType<UnityTypeConverter>(typeof(Vector2[]), typeof(pxr.VtVec2fArray), SdfValueTypeNames.Float2Array);
-      binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector2>), typeof(pxr.VtVec2fArray), SdfValueTypeNames.Float2Array);
+      binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector2>), typeof(pxr.VtVec2fArray), SdfValueTypeNames.Float2Array, "List");
 
       binder.BindArrayType<UnityTypeConverter>(typeof(Vector3[]), typeof(pxr.VtVec3fArray), SdfValueTypeNames.Float3Array);
-      binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector3>), typeof(pxr.VtVec3fArray), SdfValueTypeNames.Float3Array);
+      binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector3>), typeof(pxr.VtVec3fArray), SdfValueTypeNames.Float3Array, "List");
 
       binder.BindArrayType<UnityTypeConverter>(typeof(Vector4[]), typeof(pxr.VtVec4fArray), SdfValueTypeNames.Float4Array);
-      binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector4>), typeof(pxr.VtVec4fArray), SdfValueTypeNames.Float4Array);
+      binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector4>), typeof(pxr.VtVec4fArray), SdfValueTypeNames.Float4Array, "List");
 
       //
       // Color / Color32
