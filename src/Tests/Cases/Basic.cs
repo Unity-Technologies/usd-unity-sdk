@@ -43,6 +43,16 @@ namespace Tests.Cases {
       public string[] stringArray_;
       public float[] floatArray_;
       public double[] doubleArray_;
+
+      public List<bool> boolList_;
+      public List<byte> byteList_;
+      public List<int> intList_;
+      public List<uint> uintList_;
+      public List<long> longList_;
+      public List<ulong> ulongList_;
+      public List<string> stringList_;
+      public List<float> floatList_;
+      public List<double> doubleList_;
     }
 
     public static void SmokeTest() {
@@ -60,30 +70,39 @@ namespace Tests.Cases {
       var sample2 = new IntrinsicsSample();
 
       sample.boolArray_ = new bool[] { false, true };
+      sample.boolList_ = sample.boolArray_.ToList();
       sample.bool_ = true;
 
       sample.byteArray_ = new byte[] { 1, 2, 3 };
+      sample.byteList_ = sample.byteArray_.ToList();
       sample.byte_ = 42;
 
       sample.doubleArray_ = new double[] { -1.1, 2.2, double.MaxValue, double.MinValue };
+      sample.doubleList_ = sample.doubleArray_.ToList();
       sample.double_ = double.MaxValue;
 
       sample.floatArray_ = new float[] { -1.1f, 2.2f, float.MaxValue, float.MinValue };
+      sample.floatList_ = sample.floatArray_.ToList();
       sample.float_ = float.MaxValue;
 
       sample.intArray_ = new int[] { -1, 0, 1, 2, int.MaxValue, int.MinValue };
+      sample.intList_ = sample.intArray_.ToList();
       sample.int_ = int.MaxValue;
 
       sample.longArray_ = new long[] { -1, 0, 2, long.MaxValue, long.MinValue };
+      sample.longList_ = sample.longArray_.ToList();
       sample.long_ = long.MinValue;
 
       sample.stringArray_ = new string[] { "hello", "world" };
+      sample.stringList_ = sample.stringArray_.ToList();
       sample.string_ = "foobar";
 
       sample.uintArray_ = new uint[] { 0, 1, 2, uint.MaxValue, uint.MinValue };
+      sample.uintList_ = sample.uintArray_.ToList();
       sample.uint_ = uint.MaxValue;
 
       sample.ulongArray_ = new ulong[] { 0, 2, ulong.MaxValue, ulong.MinValue };
+      sample.ulongList_ = sample.ulongArray_.ToList();
       sample.ulong_ = ulong.MaxValue;
 
       WriteAndRead(ref sample, ref sample2, true);
@@ -97,6 +116,16 @@ namespace Tests.Cases {
       AssertEqual(sample.stringArray_,  sample2.stringArray_);
       AssertEqual(sample.uintArray_,    sample2.uintArray_);
       AssertEqual(sample.ulongArray_,   sample2.ulongArray_);
+
+      AssertEqual(sample2.boolList_, sample2.boolList_);
+      AssertEqual(sample.byteList_, sample2.byteList_);
+      AssertEqual(sample.doubleList_, sample2.doubleList_);
+      AssertEqual(sample.floatList_, sample2.floatList_);
+      AssertEqual(sample.intList_, sample2.intList_);
+      AssertEqual(sample.longList_, sample2.longList_);
+      AssertEqual(sample.stringList_, sample2.stringList_);
+      AssertEqual(sample.uintList_, sample2.uintList_);
+      AssertEqual(sample.ulongList_, sample2.ulongList_);
 
       AssertEqual(sample2.bool_,        sample2.bool_);
       AssertEqual(sample.byte_,         sample2.byte_);

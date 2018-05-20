@@ -285,7 +285,7 @@ namespace USD.NET {
       BindNativeType(typeof(bool), SdfValueTypeNames.Bool);
       BindNativeType(typeof(pxr.VtBoolArray), SdfValueTypeNames.BoolArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(bool[]), typeof(pxr.VtBoolArray), SdfValueTypeNames.BoolArray);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<bool>), typeof(pxr.VtBoolArray), SdfValueTypeNames.BoolArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<bool>), typeof(pxr.VtBoolArray), SdfValueTypeNames.BoolArray, "List");
 
       //
       // UChar/byte
@@ -293,7 +293,7 @@ namespace USD.NET {
       BindNativeType(typeof(byte), SdfValueTypeNames.UChar);
       BindNativeType(typeof(pxr.VtUCharArray), SdfValueTypeNames.UCharArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(byte[]), typeof(pxr.VtUCharArray), SdfValueTypeNames.UCharArray);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<byte>), typeof(pxr.VtUCharArray), SdfValueTypeNames.UCharArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<byte>), typeof(pxr.VtUCharArray), SdfValueTypeNames.UCharArray, "List");
 
       //
       // String
@@ -303,7 +303,7 @@ namespace USD.NET {
       BindNativeType(typeof(pxr.VtStringArray), SdfValueTypeNames.StringArray);
       BindNativeType(typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(string[]), typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<string>), typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<string>), typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray, "List");
 
       //
       // Int
@@ -311,7 +311,7 @@ namespace USD.NET {
       BindNativeType(typeof(int), SdfValueTypeNames.Int);
       BindNativeType(typeof(pxr.VtIntArray), SdfValueTypeNames.IntArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(int[]), typeof(pxr.VtIntArray), SdfValueTypeNames.IntArray);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<int>), typeof(pxr.VtIntArray), SdfValueTypeNames.IntArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<int>), typeof(pxr.VtIntArray), SdfValueTypeNames.IntArray, "List");
 
       //
       // UInt
@@ -319,7 +319,7 @@ namespace USD.NET {
       BindNativeType(typeof(uint), SdfValueTypeNames.UInt);
       BindNativeType(typeof(pxr.VtUIntArray), SdfValueTypeNames.UIntArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(uint[]), typeof(pxr.VtUIntArray), SdfValueTypeNames.UIntArray);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<uint>), typeof(pxr.VtUIntArray), SdfValueTypeNames.UIntArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<uint>), typeof(pxr.VtUIntArray), SdfValueTypeNames.UIntArray, "List");
 
       //
       // Long
@@ -327,7 +327,7 @@ namespace USD.NET {
       BindNativeType(typeof(long), SdfValueTypeNames.Int64);
       BindNativeType(typeof(pxr.VtInt64Array), SdfValueTypeNames.Int64Array);
       BindArrayType<IntrinsicTypeConverter>(typeof(long[]), typeof(pxr.VtInt64Array), SdfValueTypeNames.Int64Array);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<long>), typeof(pxr.VtInt64Array), SdfValueTypeNames.Int64Array);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<long>), typeof(pxr.VtInt64Array), SdfValueTypeNames.Int64Array, "List");
 
       //
       // ULong
@@ -335,7 +335,7 @@ namespace USD.NET {
       BindNativeType(typeof(ulong), SdfValueTypeNames.UInt64);
       BindNativeType(typeof(pxr.VtUInt64Array), SdfValueTypeNames.UInt64Array);
       BindArrayType<IntrinsicTypeConverter>(typeof(ulong[]), typeof(pxr.VtUInt64Array), SdfValueTypeNames.UInt64Array);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<ulong>), typeof(pxr.VtUInt64Array), SdfValueTypeNames.UInt64Array);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<ulong>), typeof(pxr.VtUInt64Array), SdfValueTypeNames.UInt64Array, "List");
 
       //
       // Half
@@ -349,7 +349,7 @@ namespace USD.NET {
       BindNativeType(typeof(float), SdfValueTypeNames.Float);
       BindNativeType(typeof(pxr.VtFloatArray), SdfValueTypeNames.FloatArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(float[]), typeof(pxr.VtFloatArray), SdfValueTypeNames.FloatArray);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<float>), typeof(pxr.VtFloatArray), SdfValueTypeNames.FloatArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<float>), typeof(pxr.VtFloatArray), SdfValueTypeNames.FloatArray, "List");
 
       //
       // Double
@@ -357,7 +357,7 @@ namespace USD.NET {
       BindNativeType(typeof(double), SdfValueTypeNames.Double);
       BindNativeType(typeof(pxr.VtDoubleArray), SdfValueTypeNames.DoubleArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(double[]), typeof(pxr.VtDoubleArray), SdfValueTypeNames.DoubleArray);
-      BindArrayType<IntrinsicTypeConverter>(typeof(List<double>), typeof(pxr.VtDoubleArray), SdfValueTypeNames.DoubleArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<double>), typeof(pxr.VtDoubleArray), SdfValueTypeNames.DoubleArray, "List");
 
       //
       // Quaternion
