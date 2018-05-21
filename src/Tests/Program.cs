@@ -51,6 +51,8 @@ namespace Tests {
       Cases.UsdGeomTests.CameraTest();
       Cases.UsdGeomTests.CameraTest2();
 
+      Cases.UsdShadeTests.MaterialBindTest();
+
       Console.ReadKey();
     }
 
