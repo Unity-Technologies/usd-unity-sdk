@@ -39,5 +39,13 @@ namespace USD.NET.Unity {
     // Ideally this would be private, but it needs to be serialized.
     [UsdVariability(Variability.Uniform)]
     public string[] xformOpOrder;
+
+    /// <summary>
+    /// Converts the transform from Unity to USD or vice versa. This is required after reading
+    /// values from USD or before writing values to USD.
+    /// </summary>
+    public void ConvertTransform() {
+      m_xf = UnityTypeConverter.ChangeBasis(m_xf);
+    }
   }
 }

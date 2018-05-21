@@ -20,6 +20,76 @@ using pxr;
 namespace USD.NET.Unity {
   public class UnityTypeConverter : IntrinsicTypeConverter {
 
+    /// <summary>
+    /// Converts to and from the USD transform space.
+    /// This method should be applied to all Unity matrices before being written and all USD
+    /// matrices after being read, unless the USD file is stored in the Unity transform space
+    /// (though doing so will result in a non-standard USD file).
+    /// </summary>
+    static public UnityEngine.Matrix4x4 ChangeBasis(UnityEngine.Matrix4x4 input) {
+      // TODO(jcowles): the change of basis matrix should probably be cached.
+      var basisChange = UnityEngine.Matrix4x4.identity;
+      // Invert the forward vector.
+      basisChange[2, 2] = -1;
+
+      // Note that the fully general solution is basisChange * m * basisChange.inverse, however
+      // basisChange and basisChange.inverse are identical. Just aliasing here so the math below
+      // reads correctly.
+      var basisChangeInverse = basisChange;
+
+      // Furthermore, this could be simplified to multiplying -1 by input elements [2,6,8,9,11,14].
+      return basisChange * input * basisChangeInverse;
+    }
+
+    /// <summary>
+    /// Sets the local transform matrix on the given Unity Transform given a Matrix4x4.
+    /// </summary>
+    static public void SetTransform(UnityEngine.Matrix4x4 localXf,
+                                    UnityEngine.Transform transform) {
+      transform.localPosition = ExtractPosition(localXf);
+      transform.localRotation = ExtractRotation(localXf);
+      transform.localScale = ExtractScale(localXf);
+    }
+
+    /// <summary>
+    /// Extracts the local position, rotation and scale from the given Matrix4x4.
+    /// </summary>
+    static public void ExtractTrs(UnityEngine.Matrix4x4 transform,
+                              ref UnityEngine.Vector3 localPosition,
+                              ref UnityEngine.Quaternion localRotation,
+                              ref UnityEngine.Vector3 localScale) {
+      localPosition = ExtractPosition(transform);
+      localRotation = ExtractRotation(transform);
+      localScale = ExtractScale(transform);
+    }
+
+    /// <summary>
+    /// Extracts the local rotation from the given matrix.
+    /// </summary>
+    static private UnityEngine.Quaternion ExtractRotation(UnityEngine.Matrix4x4 mat4) {
+      var forward = new UnityEngine.Vector3(mat4.m02, mat4.m12, mat4.m22);
+      var up = new UnityEngine.Vector3(mat4.m01, mat4.m11, mat4.m21);
+      return UnityEngine.Quaternion.LookRotation(forward, up);
+    }
+
+    /// <summary>
+    /// Extracts the local position from the given matrix.
+    /// </summary>
+    static UnityEngine.Vector3 ExtractPosition(UnityEngine.Matrix4x4 mat4) {
+      return new UnityEngine.Vector3(mat4.m03, mat4.m13, mat4.m23);
+    }
+
+    /// <summary>
+    /// Extracts the local scale from the given matrix.
+    /// </summary>
+    static UnityEngine.Vector3 ExtractScale(UnityEngine.Matrix4x4 mat4) {
+      UnityEngine.Vector3 scale;
+      scale.x = new UnityEngine.Vector4(mat4.m00, mat4.m10, mat4.m20, mat4.m30).magnitude;
+      scale.y = new UnityEngine.Vector4(mat4.m01, mat4.m11, mat4.m21, mat4.m31).magnitude;
+      scale.z = new UnityEngine.Vector4(mat4.m02, mat4.m12, mat4.m22, mat4.m32).magnitude;
+      return scale;
+    }
+
     // ----------------------------------------------------------------------------------------- //
     // Paths
     // ----------------------------------------------------------------------------------------- //
