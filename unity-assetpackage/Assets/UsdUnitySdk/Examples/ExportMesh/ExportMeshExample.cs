@@ -61,10 +61,6 @@ namespace USD.NET.Examples {
     private Scene m_usdScene;
     private int m_startFrame;
 
-    // Support for fully general change of basis from Unity to USD.
-    private Matrix4x4 m_basis;
-    private Matrix4x4 m_basisInverse;
-
     // The export function allows for dispatch to different export functions without knowing what
     // type of data they export (e.g. mesh vs. transform).
     delegate void ExportFunction(Scene scene, GameObject go, ExportPlan exportPlan);
@@ -141,17 +137,6 @@ namespace USD.NET.Examples {
         // Set the start frame and add one because the button event fires after update, so the first
         // frame update sees while recording is (frameCount + 1).
         m_startFrame = Time.frameCount + 1;
-
-        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
-        // basis is required. There are shortcuts, but this is fully general.
-        Vector3[] vectorBasis = { Vector3.right, Vector3.up, -Vector3.forward };
-        m_basis = Matrix4x4.identity;
-        for (int i = 0; i < 3; i++) {
-          for (int j = 0; j < 3; j++) {
-            m_basis[i, j] = vectorBasis[i][j];
-          }
-        }
-        m_basisInverse = m_basis.inverse;
       } catch {
         if (m_usdScene != null) {
           m_usdScene.Close();
@@ -323,6 +308,11 @@ namespace USD.NET.Examples {
         // Only export the mesh topology on the first frame.
         var sample = (MeshSample)exportPlan.sample;
         sample.transform = GetLocalTransformMatrix(go.transform);
+
+        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
+        // basis is required. There are shortcuts, but this is fully general.
+        sample.ConvertTransform();
+
         sample.normals = mesh.normals;
         sample.points = mesh.vertices;
         sample.tangents = mesh.tangents;
@@ -347,6 +337,11 @@ namespace USD.NET.Examples {
       } else {
         var sample = new XformSample();
         sample.transform = GetLocalTransformMatrix(go.transform);
+
+        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
+        // basis is required. There are shortcuts, but this is fully general.
+        sample.ConvertTransform();
+
         scene.Write(exportPlan.path, sample);
       }
 
@@ -358,41 +353,23 @@ namespace USD.NET.Examples {
     void ExportCamera(Scene scene, GameObject go, ExportPlan exportPlan) {
       CameraSample sample = (CameraSample)exportPlan.sample;
       Camera camera = go.GetComponent<Camera>();
-
-      var camToWorld = ChangeBasis(camera.cameraToWorldMatrix);
-      camToWorld.m32 *= -1;
-
-      // GfCamera is a gold mine of camera math.
-      pxr.GfCamera c = new pxr.GfCamera();
-
-      // Setup focalLength & apertures.
-      c.SetPerspectiveFromAspectRatioAndFieldOfView(camera.aspect, camera.fieldOfView,
-                                                    pxr.GfCamera.FOVDirection.FOVVertical);
-
-      sample.clippingRange = new Vector2(camera.nearClipPlane, camera.farClipPlane);
-      sample.focalLength = c.GetFocalLength();
-      sample.horizontalAperture = c.GetHorizontalAperture();
-      sample.verticalAperture = c.GetVerticalAperture();
-      sample.projection = CameraSample.ProjectionType.Perspective;
-
-      sample.transform = GetLocalTransformMatrix(go.transform);
-
+      sample.CopyFromCamera(camera);
       scene.Write(exportPlan.path, sample);
     }
 
     void ExportXform(Scene scene, GameObject go, ExportPlan exportPlan) {
       XformSample sample = (XformSample)exportPlan.sample;
       sample.transform = GetLocalTransformMatrix(go.transform);
+
+      // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
+      // basis is required. There are shortcuts, but this is fully general.
+      sample.ConvertTransform();
+
       scene.Write(exportPlan.path, sample);
     }
 
     Matrix4x4 GetLocalTransformMatrix(Transform tr) {
-      // Change of basis transformation.
-      return ChangeBasis(Matrix4x4.TRS(tr.localPosition, tr.localRotation, tr.localScale));
-    }
-
-    Matrix4x4 ChangeBasis(Matrix4x4 input) {
-      return m_basis * input * m_basisInverse;
+      return Matrix4x4.TRS(tr.localPosition, tr.localRotation, tr.localScale);
     }
 
     // ------------------------------------------------------------------------------------------ //
