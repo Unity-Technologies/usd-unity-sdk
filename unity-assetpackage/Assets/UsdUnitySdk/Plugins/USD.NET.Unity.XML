@@ -4,9 +4,30 @@
         <name>USD.NET.Unity</name>
     </assembly>
     <members>
+        <member name="M:USD.NET.Unity.CameraSample.CopyFromCamera(UnityEngine.Camera,System.Boolean)">
+            <summary>
+            Copys all relevant values of the given camera to the current camera sample.
+            </summary>
+            <param name="camera">The camera to copy.</param>
+            <param name="convertTransformToUsd">
+              If true, converts the transform matrix from left handed(Unity) to right handed(USD). If
+              you're unsure about this parameter, it should be left to the default value of true.
+            </param>
+        </member>
+        <member name="M:USD.NET.Unity.CameraSample.CopyToCamera(UnityEngine.Camera)">
+            <summary>
+            Copyies the current sample values to the given camera.
+            </summary>
+        </member>
         <member name="M:USD.NET.Unity.MeshSample.SetTriangles(System.Int32[])">
             <summary>
             Sets the faceVertexIndicies and faceVertexCounts from triangle indices alone.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.XformSample.ConvertTransform">
+            <summary>
+            Converts the transform from Unity to USD or vice versa. This is required after reading
+            values from USD or before writing values to USD.
             </summary>
         </member>
         <member name="T:USD.NET.Unity.MaterialBindingSample">
@@ -122,6 +143,39 @@
         <member name="M:USD.NET.Unity.DiagnosticHandler.OnInfo(System.String)">
             <summary>
             Informational messages sent from the USD API.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ChangeBasis(UnityEngine.Matrix4x4)">
+            <summary>
+            Converts to and from the USD transform space.
+            This method should be applied to all Unity matrices before being written and all USD
+            matrices after being read, unless the USD file is stored in the Unity transform space
+            (though doing so will result in a non-standard USD file).
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.SetTransform(UnityEngine.Matrix4x4,UnityEngine.Transform)">
+            <summary>
+            Sets the local transform matrix on the given Unity Transform given a Matrix4x4.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractTrs(UnityEngine.Matrix4x4,UnityEngine.Vector3@,UnityEngine.Quaternion@,UnityEngine.Vector3@)">
+            <summary>
+            Extracts the local position, rotation and scale from the given Matrix4x4.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractRotation(UnityEngine.Matrix4x4)">
+            <summary>
+            Extracts the local rotation from the given matrix.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractPosition(UnityEngine.Matrix4x4)">
+            <summary>
+            Extracts the local position from the given matrix.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractScale(UnityEngine.Matrix4x4)">
+            <summary>
+            Extracts the local scale from the given matrix.
             </summary>
         </member>
         <member name="M:USD.NET.Unity.UnityTypeConverter.GetPath(UnityEngine.Transform)">
