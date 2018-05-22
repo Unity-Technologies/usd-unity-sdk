@@ -245,6 +245,17 @@
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeShaderVector.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeTokens.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeUtils.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelAnimMapper.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelAnimQuery.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelBindingAPI.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelCache.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelPackedJointAnimation.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelRoot.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkeleton.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkeletonQuery.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkinningQuery.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelTokens.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelTopology.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdAttribute.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdAttributeVector.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdEditTarget.cs" />

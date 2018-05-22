@@ -2975,6 +2975,202 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint hash_value(UsdSkelAnimQuery query) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_44(UsdSkelAnimQuery.getCPtr(query));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(UsdSkelSkeletonQuery query) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_45(UsdSkelSkeletonQuery.getCPtr(query));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray inverseXforms, VtMatrix4dArray jointLocalXforms, GfMatrix4d rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_0(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(inverseXforms), VtMatrix4dArray.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray inverseXforms, VtMatrix4dArray jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_1(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(inverseXforms), VtMatrix4dArray.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, GfMatrix4d xforms, GfMatrix4d inverseXforms, GfMatrix4d jointLocalXforms, GfMatrix4d rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, GfMatrix4d xforms, GfMatrix4d inverseXforms, GfMatrix4d jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, VtMatrix4dArray jointLocalXforms, VtMatrix4dArray xforms, GfMatrix4d rootXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_0(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(jointLocalXforms), VtMatrix4dArray.getCPtr(xforms), GfMatrix4d.getCPtr(rootXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, VtMatrix4dArray jointLocalXforms, VtMatrix4dArray xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_1(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(jointLocalXforms), VtMatrix4dArray.getCPtr(xforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, GfMatrix4d jointLocalXforms, GfMatrix4d xforms, GfMatrix4d rootXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(rootXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelConcatJointTransforms(UsdSkelTopology topology, GfMatrix4d jointLocalXforms, GfMatrix4d xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelConcatJointTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(xforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointsExtent(VtMatrix4dArray joints, VtVec3fArray extent, float pad, GfMatrix4d rootXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_0(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent), pad, GfMatrix4d.getCPtr(rootXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointsExtent(VtMatrix4dArray joints, VtVec3fArray extent, float pad) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_1(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent), pad);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointsExtent(VtMatrix4dArray joints, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_2(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelDecomposeTransform(GfMatrix4d xform, GfVec3f translate, GfRotation rotate, GfVec3h scale) {
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransform__SWIG_0(GfMatrix4d.getCPtr(xform), GfVec3f.getCPtr(translate), GfRotation.getCPtr(rotate), GfVec3h.getCPtr(scale));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelDecomposeTransform(GfMatrix4d xform, GfVec3f translate, GfQuatf rotate, GfVec3h scale) {
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransform__SWIG_1(GfMatrix4d.getCPtr(xform), GfVec3f.getCPtr(translate), GfQuatf.getCPtr(rotate), GfVec3h.getCPtr(scale));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelDecomposeTransforms(VtMatrix4dArray xforms, VtVec3fArray translations, VtQuatfArray rotations, VtVec3hArray scales) {
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_0(VtMatrix4dArray.getCPtr(xforms), VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelDecomposeTransforms(GfMatrix4d xforms, GfVec3f translations, GfQuatf rotations, GfVec3h scales, uint count) {
+    bool ret = UsdCsPINVOKE.UsdSkelDecomposeTransforms__SWIG_1(GfMatrix4d.getCPtr(xforms), GfVec3f.getCPtr(translations), GfQuatf.getCPtr(rotations), GfVec3h.getCPtr(scales), count);
+    return ret;
+  }
+
+  public static GfMatrix4d UsdSkelMakeTransform(GfVec3f translate, GfMatrix3f rotate, GfVec3h scale) {
+    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelMakeTransform__SWIG_0(GfVec3f.getCPtr(translate), GfMatrix3f.getCPtr(rotate), GfVec3h.getCPtr(scale)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static GfMatrix4d UsdSkelMakeTransform(GfVec3f translate, GfQuatf rotate, GfVec3h scale) {
+    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelMakeTransform__SWIG_1(GfVec3f.getCPtr(translate), GfQuatf.getCPtr(rotate), GfVec3h.getCPtr(scale)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelMakeTransforms(VtVec3fArray translations, VtQuatfArray rotations, VtVec3hArray scales, VtMatrix4dArray xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_0(VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales), VtMatrix4dArray.getCPtr(xforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelMakeTransforms(GfVec3f translations, GfQuatf rotations, GfVec3h scales, GfMatrix4d xforms, uint count) {
+    bool ret = UsdCsPINVOKE.UsdSkelMakeTransforms__SWIG_1(GfVec3f.getCPtr(translations), GfQuatf.getCPtr(rotations), GfVec3h.getCPtr(scales), GfMatrix4d.getCPtr(xforms), count);
+    return ret;
+  }
+
+  public static bool UsdSkelNormalizeWeights(VtFloatArray weights, int numInfluencesPerComponent) {
+    bool ret = UsdCsPINVOKE.UsdSkelNormalizeWeights(VtFloatArray.getCPtr(weights), numInfluencesPerComponent);
+    return ret;
+  }
+
+  public static bool UsdSkelSortInfluences(VtIntArray indices, VtFloatArray weights, int numInfluencesPerComponent) {
+    bool ret = UsdCsPINVOKE.UsdSkelSortInfluences(VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights), numInfluencesPerComponent);
+    return ret;
+  }
+
+  public static bool UsdSkelExpandConstantInfluencesToVarying(VtIntArray indices, uint size) {
+    bool ret = UsdCsPINVOKE.UsdSkelExpandConstantInfluencesToVarying__SWIG_0(VtIntArray.getCPtr(indices), size);
+    return ret;
+  }
+
+  public static bool UsdSkelExpandConstantInfluencesToVarying(VtFloatArray weights, uint size) {
+    bool ret = UsdCsPINVOKE.UsdSkelExpandConstantInfluencesToVarying__SWIG_1(VtFloatArray.getCPtr(weights), size);
+    return ret;
+  }
+
+  public static bool UsdSkelResizeInfluences(VtIntArray indices, int srcNumInfluencesPerComponent, int newNumInfluencesPerComponent) {
+    bool ret = UsdCsPINVOKE.UsdSkelResizeInfluences__SWIG_0(VtIntArray.getCPtr(indices), srcNumInfluencesPerComponent, newNumInfluencesPerComponent);
+    return ret;
+  }
+
+  public static bool UsdSkelResizeInfluences(VtFloatArray weights, int srcNumInfluencesPerComponent, int newNumInfluencesPerComponent) {
+    bool ret = UsdCsPINVOKE.UsdSkelResizeInfluences__SWIG_1(VtFloatArray.getCPtr(weights), srcNumInfluencesPerComponent, newNumInfluencesPerComponent);
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, VtMatrix4dArray jointXforms, VtIntArray jointIndices, VtFloatArray jointWeights, int numInfluencesPerPoint, VtVec3fArray points) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_0(GfMatrix4d.getCPtr(geomBindTransform), VtMatrix4dArray.getCPtr(jointXforms), VtIntArray.getCPtr(jointIndices), VtFloatArray.getCPtr(jointWeights), numInfluencesPerPoint, VtVec3fArray.getCPtr(points));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, GfMatrix4d jointXforms, uint numJoints, SWIGTYPE_p_int jointIndices, SWIGTYPE_p_float jointWeights, uint numInfluences, int numInfluencesPerPoint, GfVec3f points, uint numPoints, bool forceSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_1(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, numInfluencesPerPoint, GfVec3f.getCPtr(points), numPoints, forceSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinPointsLBS(GfMatrix4d geomBindTransform, GfMatrix4d jointXforms, uint numJoints, SWIGTYPE_p_int jointIndices, SWIGTYPE_p_float jointWeights, uint numInfluences, int numInfluencesPerPoint, GfVec3f points, uint numPoints) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinPointsLBS__SWIG_2(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, numInfluencesPerPoint, GfVec3f.getCPtr(points), numPoints);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinTransformLBS(GfMatrix4d geomBindTransform, VtMatrix4dArray jointXforms, VtIntArray jointIndices, VtFloatArray jointWeights, GfMatrix4d xform) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_0(GfMatrix4d.getCPtr(geomBindTransform), VtMatrix4dArray.getCPtr(jointXforms), VtIntArray.getCPtr(jointIndices), VtFloatArray.getCPtr(jointWeights), GfMatrix4d.getCPtr(xform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinTransformLBS(GfMatrix4d geomBindTransform, GfMatrix4d jointXforms, uint numJoints, SWIGTYPE_p_int jointIndices, SWIGTYPE_p_float jointWeights, uint numInfluences, GfMatrix4d xform) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_1(GfMatrix4d.getCPtr(geomBindTransform), GfMatrix4d.getCPtr(jointXforms), numJoints, SWIGTYPE_p_int.getCPtr(jointIndices), SWIGTYPE_p_float.getCPtr(jointWeights), numInfluences, GfMatrix4d.getCPtr(xform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelBakeSkinningLBS(UsdSkelRoot root, GfInterval interval) {
+    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinningLBS__SWIG_0(UsdSkelRoot.getCPtr(root), GfInterval.getCPtr(interval));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelBakeSkinningLBS(UsdSkelRoot root) {
+    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinningLBS__SWIG_1(UsdSkelRoot.getCPtr(root));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static void TestCall(TaskCallback cb, int start, int end) {
     UsdCsPINVOKE.TestCall(TaskCallback.getCPtr(cb), start, end);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
