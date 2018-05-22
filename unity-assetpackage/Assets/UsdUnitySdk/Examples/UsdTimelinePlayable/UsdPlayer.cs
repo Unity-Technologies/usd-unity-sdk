@@ -26,6 +26,7 @@ namespace USD.NET.Unity.Extensions.Player {
 
     void UpdateScene() {
       foreach (var path in m_scene.AllPaths) {
+        if (!m_primMap.ContainsKey(path)) { continue; }
         var xf = new USD.NET.Unity.XformSample();
         m_scene.Read(new pxr.SdfPath(path), xf);
         var go = m_primMap[path];
