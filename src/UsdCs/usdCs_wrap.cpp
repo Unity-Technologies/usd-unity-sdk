@@ -3569,7 +3569,7 @@ extern unsigned char VtValueTobyte(VtValue const& value) {
   if (value.IsHolding<unsigned char>()) {
     return value.UncheckedGet<unsigned char>();
   }
-  return unsigned char();
+  return '0';
 }
 extern void VtValueTobyte(VtValue const& value, unsigned char* output) {
   if (value.IsHolding<unsigned char>()) {
@@ -3581,7 +3581,7 @@ extern unsigned int VtValueTouint(VtValue const& value) {
   if (value.IsHolding<unsigned int>()) {
     return value.UncheckedGet<unsigned int>();
   }
-  return unsigned int();
+  return 0;
 }
 extern void VtValueTouint(VtValue const& value, unsigned int* output) {
   if (value.IsHolding<unsigned int>()) {
@@ -5724,7 +5724,7 @@ SWIGINTERN void std_vector_Sl_UsdGeomConstraintTarget_Sg__SetRange(std::vector< 
 
 
 #include "pxr/usd/usdShade/shader.h"
-#include "pxr/usd/usdShade/connectableApi.h"
+#include "pxr/usd/usdShade/connectableAPI.h"
 
 SWIGINTERN std::vector< UsdShadeShader > *new_std_vector_Sl_UsdShadeShader_Sg___SWIG_2(int capacity){
         std::vector< UsdShadeShader >* pv = 0;
@@ -8734,6 +8734,9 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_TfStringPrintf(char * jarg1) {
 
 
 SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_TfVStringPrintf__SWIG_0(char * jarg1, void * jarg2) {
+#if defined(__APPLE__)
+  return 0;
+#else
   char * jresult ;
   std::string *arg1 = 0 ;
   va_list arg2 ;
@@ -8755,6 +8758,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_TfVStringPrintf__SWIG_0(char * jarg1, v
   result = TfVStringPrintf((std::string const &)*arg1,arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
+#endif
 }
 
 
@@ -47475,9 +47479,14 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_3(void * j
   if (!arg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "uint64_t const (&)[2] type is null", 0);
     return 0;
-  } 
+  }
+#if defined(__APPLE__)
+  result = (SdfTupleDimensions *)new SdfTupleDimensions((size_t const (&)[2])*arg1);
+#else
   result = (SdfTupleDimensions *)new SdfTupleDimensions((uint64_t const (&)[2])*arg1);
-  jresult = (void *)result; 
+#endif
+  
+  jresult = (void *)result;
   return jresult;
 }
 
