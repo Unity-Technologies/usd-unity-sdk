@@ -139,6 +139,10 @@ namespace USD.NET.Unity.Extensions.Player {
 
     void BuildCamera(pxr.UsdGeomCamera usdCamera, GameObject go) {
       var cam = go.AddComponent<Camera>();
+      var cameraSample = usdCamera.GetCamera(m_scene.Time);
+      cam.fieldOfView = cameraSample.GetFieldOfView(pxr.GfCamera.FOVDirection.FOVHorizontal);
+      cam.nearClipPlane = cameraSample.GetClippingRange().GetMin();
+      cam.farClipPlane = cameraSample.GetClippingRange().GetMax();
     }
 
     // Copy mesh data to Unity and assign mesh with material.
