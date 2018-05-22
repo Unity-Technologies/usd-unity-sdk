@@ -14,7 +14,7 @@
 
 import sys, os
 import vt, sdf
-import usdGeom, usdShade
+import usdGeom, usdShade, usdSkel
 
 basePath = "src/Swig/pxr/base/"
 usdPath = "src/Swig/pxr/usd/"
@@ -54,3 +54,6 @@ if __name__ == "__main__":
 
     print "Generating UsdShade "
     usdShade.genUsdShadeTokens(usdPath, copyright)
+
+    print "Generating UsdSkel "
+    usdSkel.genUsdSkelTokens(usdPath, copyright)

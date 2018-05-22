@@ -5,4 +5,5 @@
 %include "usd/usd.i"
 %include "usdGeom/usdGeom.i"
 %include "usdShade/usdShade.i"
+%include "usdSkel/usdSkel.i"
 

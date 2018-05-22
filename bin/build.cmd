@@ -48,11 +48,13 @@ md src\USD.NET\generated\pxr\usd\sdf 2> nul
 md src\USD.NET\generated\pxr\usd\usd 2> nul
 md src\USD.NET\generated\pxr\usd\usdGeom 2> nul
 md src\USD.NET\generated\pxr\usd\usdShade 2> nul
+md src\USD.NET\generated\pxr\usd\usdSkel 2> nul
 move src\USD.NET\Ar*.cs        .\src\USD.NET\generated\pxr\usd\ar
 move src\USD.NET\Sdf*.cs       .\src\USD.NET\generated\pxr\usd\sdf
 move src\USD.NET\UsdCs*.cs     .\src\USD.NET\generated\usdCs
 move src\USD.NET\UsdGeom*.cs   .\src\USD.NET\generated\pxr\usd\usdGeom
 move src\USD.NET\UsdShade*.cs  .\src\USD.NET\generated\pxr\usd\usdShade
+move src\USD.NET\UsdSkel*.cs  .\src\USD.NET\generated\pxr\usd\usdSkel
 move src\USD.NET\Usd*.cs       .\src\USD.NET\generated\pxr\usd\usd
 
 md src\USD.NET\generated\SWIG 2> nul
