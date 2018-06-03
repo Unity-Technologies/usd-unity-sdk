@@ -3589,6 +3589,12 @@ extern void VtValueTouint(VtValue const& value, unsigned int* output) {
   }
 }
 
+SWIGINTERN bool VtValue_Equals(VtValue const &lhs,VtValue const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int VtValue_GetHashCode(VtValue *self){
+    return (int)TfHash()(self);
+  }
 
 #include "pxr/base/vt/dictionary.h"
 
@@ -45758,6 +45764,40 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_31(void * jarg1
   } 
   result = hash_value((VtValue const &)*arg1);
   jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_VtValue_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  VtValue *arg1 = 0 ;
+  VtValue *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (VtValue *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)VtValue_Equals((VtValue const &)*arg1,(VtValue const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_VtValue_GetHashCode(void * jarg1) {
+  int jresult ;
+  VtValue *arg1 = (VtValue *) 0 ;
+  int result;
+  
+  arg1 = (VtValue *)jarg1; 
+  result = (int)VtValue_GetHashCode(arg1);
+  jresult = result; 
   return jresult;
 }
 

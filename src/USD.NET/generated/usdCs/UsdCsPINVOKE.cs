@@ -8072,6 +8072,12 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_31")]
   public static extern uint hash_value__SWIG_31(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_Equals")]
+  public static extern bool VtValue_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtValue_GetHashCode")]
+  public static extern int VtValue_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtValue__SWIG_3")]
   public static extern global::System.IntPtr new_VtValue__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
 
