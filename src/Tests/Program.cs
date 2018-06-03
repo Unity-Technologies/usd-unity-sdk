@@ -41,6 +41,7 @@ namespace Tests {
 
       Cases.Basic.SmokeTest();
       Cases.Basic.IntrinsicTypes();
+      Cases.Basic.EqualityTest();
 
       Cases.UnityIO.TestVectors();
       Cases.UnityIO.TestQuaternion();

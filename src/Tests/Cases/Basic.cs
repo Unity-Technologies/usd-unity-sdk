@@ -138,5 +138,78 @@ namespace Tests.Cases {
       AssertEqual(sample.ulong_,        sample2.ulong_);
     }
 
+    public static void EqualityTest() {
+      var A = new pxr.VtValue(1);
+      var B = new pxr.VtValue(1);
+      var C = new pxr.VtValue(2);
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(1.1f);
+      B = new pxr.VtValue(1.1f);
+      C = new pxr.VtValue(1.3f);
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(1.1);
+      B = new pxr.VtValue(1.1);
+      C = new pxr.VtValue(1.2);
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(9L);
+      B = new pxr.VtValue(9L);
+      C = new pxr.VtValue(0L);
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue("string");
+      B = new pxr.VtValue("string");
+      C = new pxr.VtValue("foo");
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(new pxr.TfToken("token"));
+      B = new pxr.VtValue(new pxr.TfToken("token"));
+      C = new pxr.VtValue(new pxr.TfToken("foo"));
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(new pxr.GfVec2f(1.1f, 2.2f));
+      B = new pxr.VtValue(new pxr.GfVec2f(1.1f, 2.2f));
+      C = new pxr.VtValue(new pxr.GfVec2f(1.1f, 3.3f));
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(new pxr.GfVec3f(1.1f, 2.2f, 3.3f));
+      B = new pxr.VtValue(new pxr.GfVec3f(1.1f, 2.2f, 3.3f));
+      C = new pxr.VtValue(new pxr.GfVec3f(1.1f, 2.2f, 3.1f));
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(new pxr.GfVec4f(1.1f, 2.2f, 3.3f, 4.4f));
+      B = new pxr.VtValue(new pxr.GfVec4f(1.1f, 2.2f, 3.3f, 4.4f));
+      C = new pxr.VtValue(new pxr.GfVec4f(1.1f, 2.2f, 3.3f, 4.1f));
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(new pxr.VtVec2fArray(2, new pxr.GfVec2f(1.1f, 2.2f)));
+      B = new pxr.VtValue(new pxr.VtVec2fArray(2, new pxr.GfVec2f(1.1f, 2.2f)));
+      C = new pxr.VtValue(new pxr.VtVec2fArray(2, new pxr.GfVec2f(1.1f, 2.1f)));
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(new pxr.VtVec3fArray(2, new pxr.GfVec3f(1.1f, 2.2f, 3.3f)));
+      B = new pxr.VtValue(new pxr.VtVec3fArray(2, new pxr.GfVec3f(1.1f, 2.2f, 3.3f)));
+      C = new pxr.VtValue(new pxr.VtVec3fArray(1, new pxr.GfVec3f(1.1f, 2.2f, 3.3f)));
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+
+      A = new pxr.VtValue(new pxr.VtVec4fArray(2, new pxr.GfVec4f(1.1f, 2.2f, 3.3f, 4.4f)));
+      B = new pxr.VtValue(new pxr.VtVec4fArray(2, new pxr.GfVec4f(1.1f, 2.2f, 3.3f, 4.4f)));
+      C = new pxr.VtValue(new pxr.VtVec4fArray(2, new pxr.GfVec4f(1.1f, 2.1f, 3.1f, 4.4f)));
+      AssertEqual(A, B);
+      AssertNotEqual(A, C);
+    }
   }
 }
