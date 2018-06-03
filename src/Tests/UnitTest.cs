@@ -84,6 +84,15 @@ namespace Tests {
       }
     }
 
+    static protected void AssertNotEqual<T>(T first, T second) {
+      if (first == null && second == null) {
+        throw new Exception("Both values are null for " + typeof(T).Name);
+      }
+      if (first.Equals(second)) {
+        throw new Exception("Values do match for " + typeof(T).Name);
+      }
+    }
+
     static protected void AssertTrue(bool value) {
       AssertEqual(value, true);
     }
