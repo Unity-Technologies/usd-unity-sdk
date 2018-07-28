@@ -14,7 +14,7 @@
 
 namespace USD.NET.Unity {
 
-
+  [System.Serializable]
   [UsdSchema("Camera")]
   public class CameraSample : XformSample {
 
@@ -29,7 +29,8 @@ namespace USD.NET.Unity {
       Right,
     }
 
-    public class Shutter : SampleBase {
+	[System.Serializable]
+	public class Shutter : SampleBase {
       public double open;
       public double close;
     }

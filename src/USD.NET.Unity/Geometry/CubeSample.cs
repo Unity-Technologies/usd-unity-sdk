@@ -14,6 +14,7 @@
 
 namespace USD.NET.Unity {
 
+  [System.Serializable]
   [UsdSchema("Cube")]
   public class CubeSample : XformSample {
     // Indicates the length of each side of the cube.

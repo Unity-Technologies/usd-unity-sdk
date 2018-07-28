@@ -15,6 +15,8 @@
 using UnityEngine;
 
 namespace USD.NET.Unity {
+
+  [System.Serializable]
   [UsdSchema("Mesh")]
   public class MeshSampleBase : XformSample {
     public Bounds extent;

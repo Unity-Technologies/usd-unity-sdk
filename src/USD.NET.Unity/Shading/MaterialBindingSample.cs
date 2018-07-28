@@ -17,6 +17,7 @@ namespace USD.NET.Unity {
   /// <summary>
   /// Provides access to the material binding (if any) on the UsdPrim.
   /// </summary>
+  [System.Serializable]
   public class MaterialBindingSample : SampleBase {
     [UsdNamespace("material")]
     public Relationship binding;

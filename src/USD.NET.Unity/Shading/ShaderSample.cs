@@ -20,6 +20,7 @@ namespace USD.NET.Unity {
   /// <summary>
   /// A base class for all shader samples.
   /// </summary>
+  [System.Serializable]
   [UsdSchema("Shader")]
   public class ShaderSample : SampleBase {
     // The attribute "info:id" is required by UsdShadeShader.

@@ -14,6 +14,7 @@
 
 namespace USD.NET.Unity {
 
+  [System.Serializable]
   [UsdSchema("Texture2D")]
   public class Texture2DSample : SampleBase {
     [UsdNamespace("inputs"), UsdAssetPath]

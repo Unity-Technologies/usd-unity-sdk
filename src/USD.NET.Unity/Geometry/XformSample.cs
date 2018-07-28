@@ -16,7 +16,8 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
-  [UsdSchema("Xform"), System.Serializable]
+  [System.Serializable]
+  [UsdSchema("Xform")]
   public class XformSample : SampleBase {
     private readonly string[] kXformOpTransform = new string[] { "xformOp:transform" };
     private Matrix4x4 m_xf;
