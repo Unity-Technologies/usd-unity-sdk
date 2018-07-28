@@ -55,54 +55,54 @@ namespace Tests.Cases {
       public List<double> doubleList_;
     }
 
-	class AssetPathSample : USD.NET.SampleBase {
+    class AssetPathSample : USD.NET.SampleBase {
 
-	  public pxr.SdfAssetPath assetPath;
-	  public pxr.SdfAssetPath[] assetPathArray;
-	  public List<pxr.SdfAssetPath> assetPathList;
+      public pxr.SdfAssetPath assetPath;
+      public pxr.SdfAssetPath[] assetPathArray;
+      public List<pxr.SdfAssetPath> assetPathList;
 
-	  static private readonly string m_path = "C:/foo/bar/baz.usd";
-	  static private readonly string m_path2 = "C:/garply/quz.usd";
+      static private readonly string m_path = "C:/foo/bar/baz.usd";
+      static private readonly string m_path2 = "C:/garply/quz.usd";
 
-	  public static AssetPathSample GetTestSample() {
-		var sample = new AssetPathSample();
-		sample.assetPath = new pxr.SdfAssetPath(m_path);
-		sample.assetPathArray = new pxr.SdfAssetPath[] {
-		  new pxr.SdfAssetPath(m_path),
-		  new pxr.SdfAssetPath(m_path2)
-		};
-		sample.assetPathList = sample.assetPathArray.ToList();
-		return sample;
-	  }
+      public static AssetPathSample GetTestSample() {
+        var sample = new AssetPathSample();
+        sample.assetPath = new pxr.SdfAssetPath(m_path);
+        sample.assetPathArray = new pxr.SdfAssetPath[] {
+      new pxr.SdfAssetPath(m_path),
+      new pxr.SdfAssetPath(m_path2)
+    };
+        sample.assetPathList = sample.assetPathArray.ToList();
+        return sample;
+      }
 
-	  public void Verify() {
-		var baselineSample = GetTestSample();
-		AssertEqual(baselineSample.assetPath, assetPath);
-		AssertEqual(baselineSample.assetPathArray, assetPathArray);
-		AssertEqual(baselineSample.assetPathList, assetPathList);
-	  }
-	}
+      public void Verify() {
+        var baselineSample = GetTestSample();
+        AssertEqual(baselineSample.assetPath, assetPath);
+        AssertEqual(baselineSample.assetPathArray, assetPathArray);
+        AssertEqual(baselineSample.assetPathList, assetPathList);
+      }
+    }
 
-	class PrimvarSample : USD.NET.SampleBase {
-	  [USD.NET.VertexData()]
-	  public int[] somePrimvar;
+    class PrimvarSample : USD.NET.SampleBase {
+      [USD.NET.VertexData()]
+      public int[] somePrimvar;
 
-	  [USD.NET.VertexData(1)]
-	  public int[] somePrimvar1;
+      [USD.NET.VertexData(1)]
+      public int[] somePrimvar1;
 
-	  [USD.NET.VertexData(2)]
-	  public int[] somePrimvar2;
+      [USD.NET.VertexData(2)]
+      public int[] somePrimvar2;
 
-	  public static PrimvarSample GetTestSample() {
-		var sample = new PrimvarSample();
-		sample.somePrimvar = new int[] { 1, 2, 3, 4 };
-		sample.somePrimvar1 = new int[] { 2, 4, 6, 8 };
-		sample.somePrimvar2 = new int[] { 9, 8, 7, 6 };
-		return sample;
-	  }
-	}
+      public static PrimvarSample GetTestSample() {
+        var sample = new PrimvarSample();
+        sample.somePrimvar = new int[] { 1, 2, 3, 4 };
+        sample.somePrimvar1 = new int[] { 2, 4, 6, 8 };
+        sample.somePrimvar2 = new int[] { 9, 8, 7, 6 };
+        return sample;
+      }
+    }
 
-	public static void SmokeTest() {
+    public static void SmokeTest() {
       var sample = new MinimalSample();
       var sample2 = new MinimalSample();
 
@@ -154,15 +154,15 @@ namespace Tests.Cases {
 
       WriteAndRead(ref sample, ref sample2, true);
 
-      AssertEqual(sample2.boolArray_,   sample2.boolArray_);
-      AssertEqual(sample.byteArray_,    sample2.byteArray_);
-      AssertEqual(sample.doubleArray_,  sample2.doubleArray_);
-      AssertEqual(sample.floatArray_,   sample2.floatArray_);
-      AssertEqual(sample.intArray_,     sample2.intArray_);
-      AssertEqual(sample.longArray_,    sample2.longArray_);
-      AssertEqual(sample.stringArray_,  sample2.stringArray_);
-      AssertEqual(sample.uintArray_,    sample2.uintArray_);
-      AssertEqual(sample.ulongArray_,   sample2.ulongArray_);
+      AssertEqual(sample2.boolArray_, sample2.boolArray_);
+      AssertEqual(sample.byteArray_, sample2.byteArray_);
+      AssertEqual(sample.doubleArray_, sample2.doubleArray_);
+      AssertEqual(sample.floatArray_, sample2.floatArray_);
+      AssertEqual(sample.intArray_, sample2.intArray_);
+      AssertEqual(sample.longArray_, sample2.longArray_);
+      AssertEqual(sample.stringArray_, sample2.stringArray_);
+      AssertEqual(sample.uintArray_, sample2.uintArray_);
+      AssertEqual(sample.ulongArray_, sample2.ulongArray_);
 
       AssertEqual(sample2.boolList_, sample2.boolList_);
       AssertEqual(sample.byteList_, sample2.byteList_);
@@ -174,15 +174,15 @@ namespace Tests.Cases {
       AssertEqual(sample.uintList_, sample2.uintList_);
       AssertEqual(sample.ulongList_, sample2.ulongList_);
 
-      AssertEqual(sample2.bool_,        sample2.bool_);
-      AssertEqual(sample.byte_,         sample2.byte_);
-      AssertEqual(sample.double_,       sample2.double_);
-      AssertEqual(sample.float_,        sample2.float_);
-      AssertEqual(sample.int_,          sample2.int_);
-      AssertEqual(sample.long_,         sample2.long_);
-      AssertEqual(sample.string_,       sample2.string_);
-      AssertEqual(sample.uint_,         sample2.uint_);
-      AssertEqual(sample.ulong_,        sample2.ulong_);
+      AssertEqual(sample2.bool_, sample2.bool_);
+      AssertEqual(sample.byte_, sample2.byte_);
+      AssertEqual(sample.double_, sample2.double_);
+      AssertEqual(sample.float_, sample2.float_);
+      AssertEqual(sample.int_, sample2.int_);
+      AssertEqual(sample.long_, sample2.long_);
+      AssertEqual(sample.string_, sample2.string_);
+      AssertEqual(sample.uint_, sample2.uint_);
+      AssertEqual(sample.ulong_, sample2.ulong_);
     }
 
     public static void EqualityTest() {
@@ -259,34 +259,34 @@ namespace Tests.Cases {
       AssertNotEqual(A, C);
     }
 
-	public static void TestAssetPath() {
-	  var sample = AssetPathSample.GetTestSample();
-	  var sample2 = new AssetPathSample();
-	  WriteAndRead(ref sample, ref sample2, true);
-	  sample2.Verify();
-	}
+    public static void TestAssetPath() {
+      var sample = AssetPathSample.GetTestSample();
+      var sample2 = new AssetPathSample();
+      WriteAndRead(ref sample, ref sample2, true);
+      sample2.Verify();
+    }
 
-	public static void TestPrimvars() {
-	  var sample = PrimvarSample.GetTestSample();
-	  var scene = USD.NET.Scene.Create();
+    public static void TestPrimvars() {
+      var sample = PrimvarSample.GetTestSample();
+      var scene = USD.NET.Scene.Create();
 
-	  scene.Write("/Foo", sample);
+      scene.Write("/Foo", sample);
 
-	  PrintScene(scene);
+      PrintScene(scene);
 
-	  var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/Foo"));
+      var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/Foo"));
 
-	  var primvar = new pxr.UsdGeomPrimvar(
-		  prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar")));
-	  AssertEqual(primvar.GetElementSize(), 1);
+      var primvar = new pxr.UsdGeomPrimvar(
+          prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar")));
+      AssertEqual(primvar.GetElementSize(), 1);
 
-	  primvar = new pxr.UsdGeomPrimvar(
-		  prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar1")));
-	  AssertEqual(primvar.GetElementSize(), 1);
+      primvar = new pxr.UsdGeomPrimvar(
+          prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar1")));
+      AssertEqual(primvar.GetElementSize(), 1);
 
-	  primvar = new pxr.UsdGeomPrimvar(
-		  prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar2")));
-	  AssertEqual(primvar.GetElementSize(), 2);
-	}
+      primvar = new pxr.UsdGeomPrimvar(
+          prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar2")));
+      AssertEqual(primvar.GetElementSize(), 2);
+    }
   }
 }
