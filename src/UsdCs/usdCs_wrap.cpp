@@ -3728,6 +3728,12 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
 
 #include "pxr/usd/sdf/assetPath.h"
 
+SWIGINTERN bool SdfAssetPath_Equals(SdfAssetPath const &lhs,SdfAssetPath const &rhs){
+	  return lhs == rhs;
+  }
+SWIGINTERN int SdfAssetPath_GetHashCode(SdfAssetPath *self){
+    return (int)TfHash()(self);
+  }
 
 #include "pxr/usd/sdf/path.h"
 
@@ -48908,6 +48914,40 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_swap__SWIG_3(void * jarg1, void * jarg2) 
     return ;
   } 
   swap(*arg1,*arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfAssetPath_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  SdfAssetPath *arg1 = 0 ;
+  SdfAssetPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (SdfAssetPath *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfAssetPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)SdfAssetPath_Equals((SdfAssetPath const &)*arg1,(SdfAssetPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfAssetPath_GetHashCode(void * jarg1) {
+  int jresult ;
+  SdfAssetPath *arg1 = (SdfAssetPath *) 0 ;
+  int result;
+  
+  arg1 = (SdfAssetPath *)jarg1; 
+  result = (int)SdfAssetPath_GetHashCode(arg1);
+  jresult = result; 
+  return jresult;
 }
 
 
