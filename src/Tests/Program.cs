@@ -42,8 +42,9 @@ namespace Tests {
       Cases.Basic.SmokeTest();
       Cases.Basic.IntrinsicTypes();
       Cases.Basic.EqualityTest();
+	  Cases.Basic.TestAssetPath();
 
-      Cases.UnityIO.TestVectors();
+	  Cases.UnityIO.TestVectors();
       Cases.UnityIO.TestQuaternion();
       Cases.UnityIO.TestXform();
       Cases.UnityIO.TestXform2();

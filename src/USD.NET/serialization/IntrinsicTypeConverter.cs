@@ -85,10 +85,47 @@ namespace USD.NET {
       }
     }
 
-    // ----------------------------------------------------------------------------------------- //
-    // bool[], List<bool> <--> BoolArray
-    // ----------------------------------------------------------------------------------------- //
-    static public VtBoolArray ToVtArray(bool[] input) {
+	// ----------------------------------------------------------------------------------------- //
+	// SdfAssetPath[], List<SdfAssetPath> <--> SdfAssetPath
+	// ----------------------------------------------------------------------------------------- //
+	static public SdfAssetPathArray ToVtArray(SdfAssetPath[] input) {
+	  var output = new SdfAssetPathArray((uint)input.Length);
+	  // PERFORMANCE: this is super inefficient.
+	  for (int i = 0; i < input.Length; i++) {
+		output[i] = new SdfAssetPath(input[i].GetAssetPath());
+	  }
+	  return output;
+	}
+
+	static public SdfAssetPathArray ListToVtArray(List<SdfAssetPath> input) {
+	  return ToVtArray(input.ToArray());
+	}
+
+	static public List<SdfAssetPath> ListFromVtArray(SdfAssetPathArray input) {
+	  return FromVtArray(input).ToList();
+	}
+
+	// Convenience API: generates garbage, do not use when performance matters.
+	static public SdfAssetPath[] FromVtArray(SdfAssetPathArray input) {
+	  var output = UsdIo.ArrayAllocator.Malloc<SdfAssetPath>(input.size());
+	  FromVtArray(input, ref output);
+	  return output;
+	}
+
+	static public void FromVtArray(SdfAssetPathArray input, ref SdfAssetPath[] output) {
+	  if (output.Length != input.size()) {
+		output = UsdIo.ArrayAllocator.Malloc<SdfAssetPath>(input.size());
+	  }
+	  // PERFORMANCE: this is super inefficient.
+	  for (int i = 0; i < input.size(); i++) {
+		output[i] = input[i];
+	  }
+	}
+
+	// ----------------------------------------------------------------------------------------- //
+	// bool[], List<bool> <--> BoolArray
+	// ----------------------------------------------------------------------------------------- //
+	static public VtBoolArray ToVtArray(bool[] input) {
       var output = new VtBoolArray((uint)input.Length);
       unsafe
       {

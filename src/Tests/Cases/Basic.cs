@@ -55,7 +55,35 @@ namespace Tests.Cases {
       public List<double> doubleList_;
     }
 
-    public static void SmokeTest() {
+	class AssetPathSample : USD.NET.SampleBase {
+
+	  public pxr.SdfAssetPath assetPath;
+	  public pxr.SdfAssetPath[] assetPathArray;
+	  public List<pxr.SdfAssetPath> assetPathList;
+
+	  static private readonly string m_path = "C:/foo/bar/baz.usd";
+	  static private readonly string m_path2 = "C:/garply/quz.usd";
+
+	  public static AssetPathSample GetTestSample() {
+		var sample = new AssetPathSample();
+		sample.assetPath = new pxr.SdfAssetPath(m_path);
+		sample.assetPathArray = new pxr.SdfAssetPath[] {
+		  new pxr.SdfAssetPath(m_path),
+		  new pxr.SdfAssetPath(m_path2)
+		};
+		sample.assetPathList = sample.assetPathArray.ToList();
+		return sample;
+	  }
+
+	  public void Verify() {
+		var baselineSample = GetTestSample();
+		AssertEqual(baselineSample.assetPath, assetPath);
+		AssertEqual(baselineSample.assetPathArray, assetPathArray);
+		AssertEqual(baselineSample.assetPathList, assetPathList);
+	  }
+	}
+
+	public static void SmokeTest() {
       var sample = new MinimalSample();
       var sample2 = new MinimalSample();
 
@@ -211,5 +239,13 @@ namespace Tests.Cases {
       AssertEqual(A, B);
       AssertNotEqual(A, C);
     }
+
+	public static void TestAssetPath() {
+	  var sample = AssetPathSample.GetTestSample();
+	  var sample2 = new AssetPathSample();
+	  WriteAndRead(ref sample, ref sample2, true);
+	  sample2.Verify();
+	}
+
   }
 }
