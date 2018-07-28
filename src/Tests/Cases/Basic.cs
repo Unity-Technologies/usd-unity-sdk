@@ -83,6 +83,25 @@ namespace Tests.Cases {
 	  }
 	}
 
+	class PrimvarSample : USD.NET.SampleBase {
+	  [USD.NET.VertexData()]
+	  public int[] somePrimvar;
+
+	  [USD.NET.VertexData(1)]
+	  public int[] somePrimvar1;
+
+	  [USD.NET.VertexData(2)]
+	  public int[] somePrimvar2;
+
+	  public static PrimvarSample GetTestSample() {
+		var sample = new PrimvarSample();
+		sample.somePrimvar = new int[] { 1, 2, 3, 4 };
+		sample.somePrimvar1 = new int[] { 2, 4, 6, 8 };
+		sample.somePrimvar2 = new int[] { 9, 8, 7, 6 };
+		return sample;
+	  }
+	}
+
 	public static void SmokeTest() {
       var sample = new MinimalSample();
       var sample2 = new MinimalSample();
@@ -247,5 +266,27 @@ namespace Tests.Cases {
 	  sample2.Verify();
 	}
 
+	public static void TestPrimvars() {
+	  var sample = PrimvarSample.GetTestSample();
+	  var scene = USD.NET.Scene.Create();
+
+	  scene.Write("/Foo", sample);
+
+	  PrintScene(scene);
+
+	  var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/Foo"));
+
+	  var primvar = new pxr.UsdGeomPrimvar(
+		  prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar")));
+	  AssertEqual(primvar.GetElementSize(), 1);
+
+	  primvar = new pxr.UsdGeomPrimvar(
+		  prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar1")));
+	  AssertEqual(primvar.GetElementSize(), 1);
+
+	  primvar = new pxr.UsdGeomPrimvar(
+		  prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar2")));
+	  AssertEqual(primvar.GetElementSize(), 2);
+	}
   }
 }

@@ -285,6 +285,7 @@ namespace USD.NET {
 
       bool isCustomData = Reflect.IsCustomData(memberInfo);
       bool isPrimvar = Reflect.IsPrimvar(memberInfo);
+	  int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
 
       UsdTypeBinding binding;
 
@@ -332,8 +333,10 @@ namespace USD.NET {
       } else {
         // Primvars do not support additional namespaces.
         lock (m_stageLock) {
-          attr = imgble.CreatePrimvar(sdfAttrName, sdfTypeName,
-              VertexDataAttribute.Interpolation).GetAttr();
+          var primvar = imgble.CreatePrimvar(sdfAttrName, sdfTypeName,
+              VertexDataAttribute.Interpolation);
+		  primvar.SetElementSize(primvarElementSize);
+		  attr = primvar.GetAttr();
         }
       }
 

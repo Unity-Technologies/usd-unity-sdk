@@ -29,6 +29,7 @@ namespace Tests {
       Cases.MeshTests.TestTriangulation();
       Cases.MeshTests.TestVisibility();
 
+	  Cases.StageTests.BadPrimTest();
       Cases.StageTests.OpenFailTest();
       Cases.StageTests.PointerTest();
       Cases.StageTests.MemoryTest();
@@ -43,6 +44,7 @@ namespace Tests {
       Cases.Basic.IntrinsicTypes();
       Cases.Basic.EqualityTest();
 	  Cases.Basic.TestAssetPath();
+	  Cases.Basic.TestPrimvars();
 
 	  Cases.UnityIO.TestVectors();
       Cases.UnityIO.TestQuaternion();
