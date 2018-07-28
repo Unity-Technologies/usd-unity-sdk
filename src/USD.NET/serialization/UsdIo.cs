@@ -285,7 +285,7 @@ namespace USD.NET {
 
       bool isCustomData = Reflect.IsCustomData(memberInfo);
       bool isPrimvar = Reflect.IsPrimvar(memberInfo);
-	  int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
+      int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
 
       UsdTypeBinding binding;
 
@@ -331,12 +331,12 @@ namespace USD.NET {
           }
         }
       } else {
-        // Primvars do not support additional namespaces.
         lock (m_stageLock) {
-          var primvar = imgble.CreatePrimvar(sdfAttrName, sdfTypeName,
+          var fullAttrName = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName);
+          var primvar = imgble.CreatePrimvar(new pxr.TfToken(fullAttrName), sdfTypeName,
               VertexDataAttribute.Interpolation);
-		  primvar.SetElementSize(primvarElementSize);
-		  attr = primvar.GetAttr();
+          primvar.SetElementSize(primvarElementSize);
+          attr = primvar.GetAttr();
         }
       }
 
@@ -494,12 +494,9 @@ namespace USD.NET {
 
       pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
 
-      // Note that namespaced primvars are not supported, so "primvars" will replace the incoming
-      // namespace. This will happen if a nested/namespaced object has a member declared as a
-      // primvar.
       if (isPrimvar) {
-        System.Diagnostics.Debug.Assert(string.IsNullOrEmpty(ns));
-        sdfAttrName = sm_tokenCache["primvars", attrName];
+        var joinedName = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
+        sdfAttrName = sm_tokenCache["primvars", joinedName];
       }
 
       pxr.UsdTimeCode time = variability == pxr.SdfVariability.SdfVariabilityUniform

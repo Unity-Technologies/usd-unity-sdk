@@ -84,6 +84,20 @@ namespace Tests.Cases {
     }
 
     class PrimvarSample : USD.NET.SampleBase {
+
+      public class NestedSample : USD.NET.SampleBase {
+        // Because an outer namespace was declared, this results in the namespace
+        // "primvars:nested:foo:bar:baz"
+        [USD.NET.UsdNamespace("foo:bar")]
+        [USD.NET.VertexData(4)]
+        public int[] baz;
+
+        // Not a primvar, so the resulting namespace is:
+        // "nested:foo:bar:garply"
+        [USD.NET.UsdNamespace("foo:bar")]
+        public int[] garply;
+      }
+
       [USD.NET.VertexData()]
       public int[] somePrimvar;
 
@@ -93,11 +107,22 @@ namespace Tests.Cases {
       [USD.NET.VertexData(2)]
       public int[] somePrimvar2;
 
+      [USD.NET.UsdNamespace("skel")]
+      [USD.NET.VertexData(3)]
+      public int[] jointIndices;
+
+      [USD.NET.UsdNamespace("nested")]
+      public NestedSample nestedSample;
+
       public static PrimvarSample GetTestSample() {
         var sample = new PrimvarSample();
         sample.somePrimvar = new int[] { 1, 2, 3, 4 };
         sample.somePrimvar1 = new int[] { 2, 4, 6, 8 };
         sample.somePrimvar2 = new int[] { 9, 8, 7, 6 };
+        sample.jointIndices = new int[] { 9, 8, 7, 6, 5, 3 };
+        sample.nestedSample = new NestedSample();
+        sample.nestedSample.baz = new int[] { 9, 8, 7, 1 };
+        sample.nestedSample.garply = new int[] { 99, 88, 77 };
         return sample;
       }
     }
@@ -268,6 +293,7 @@ namespace Tests.Cases {
 
     public static void TestPrimvars() {
       var sample = PrimvarSample.GetTestSample();
+      var sample2 = new PrimvarSample();
       var scene = USD.NET.Scene.Create();
 
       scene.Write("/Foo", sample);
@@ -275,6 +301,9 @@ namespace Tests.Cases {
       PrintScene(scene);
 
       var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/Foo"));
+
+      var garply = prim.GetAttribute(new pxr.TfToken("nested:foo:bar:garply"));
+      AssertTrue(garply.GetNamespace() == new pxr.TfToken("nested:foo:bar"));
 
       var primvar = new pxr.UsdGeomPrimvar(
           prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar")));
@@ -287,6 +316,25 @@ namespace Tests.Cases {
       primvar = new pxr.UsdGeomPrimvar(
           prim.GetAttribute(new pxr.TfToken("primvars:somePrimvar2")));
       AssertEqual(primvar.GetElementSize(), 2);
+
+      primvar = new pxr.UsdGeomPrimvar(
+          prim.GetAttribute(new pxr.TfToken("primvars:skel:jointIndices")));
+      AssertEqual(primvar.GetElementSize(), 3);
+
+      primvar = new pxr.UsdGeomPrimvar(
+          prim.GetAttribute(new pxr.TfToken("primvars:nested:foo:bar:baz")));
+      AssertEqual(primvar.GetElementSize(), 4);
+
+      sample2.nestedSample = new PrimvarSample.NestedSample();
+      scene.Read("/Foo", sample2);
+
+      AssertEqual(sample.somePrimvar, sample2.somePrimvar);
+      AssertEqual(sample.somePrimvar1, sample2.somePrimvar1);
+      AssertEqual(sample.somePrimvar2, sample2.somePrimvar2);
+      AssertEqual(sample.jointIndices, sample2.jointIndices);
+      AssertEqual(sample.nestedSample.baz, sample2.nestedSample.baz);
+      AssertEqual(sample.nestedSample.garply, sample2.nestedSample.garply);
+
     }
   }
 }
