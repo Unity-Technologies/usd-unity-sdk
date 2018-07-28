@@ -49,12 +49,6 @@ namespace USD.NET {
     }
 
     /// <summary>
-    /// Declares the file format version of the serializer, written with all serialized data on the
-    /// UsdPrim of the serialized object as customData metadata.
-    /// </summary>
-    public readonly GfVec2i kVersion = new GfVec2i(1, 0);
-
-    /// <summary>
     /// Gets the underlying UsdStage for this scene, if available.
     /// </summary>
     /// <remarks>
@@ -431,7 +425,6 @@ namespace USD.NET {
           if (!prim) {
             return;
           }
-          prim.SetCustomDataByKey(new pxr.TfToken("kVersion"), kVersion);
           m_primMap.Add(path, prim);
         }
       }
