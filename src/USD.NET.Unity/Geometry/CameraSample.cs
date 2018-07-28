@@ -18,11 +18,13 @@ namespace USD.NET.Unity {
   [UsdSchema("Camera")]
   public class CameraSample : XformSample {
 
+    [System.Serializable]
     public enum ProjectionType {
       Perspective,
       Orthographic,
     }
 
+    [System.Serializable]
     public enum StereoRole {
       Mono,
       Left,
