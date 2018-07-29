@@ -23,7 +23,7 @@
 
 class UsdShadeTokens {
 private:
-	UsdShadeTokens();
-	~UsdShadeTokens();
+  UsdShadeTokens();
+  ~UsdShadeTokens();
 public:
 };

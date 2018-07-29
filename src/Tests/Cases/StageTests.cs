@@ -278,12 +278,12 @@ namespace Tests.Cases {
       scene.Close();
     }
 
-	public static void BadPrimTest() {
-	  var stage = UsdStage.CreateInMemory();
-	  var prim = stage.GetPrimAtPath(new SdfPath("/Foo"));
-	  AssertTrue(prim != null);
-	  AssertTrue(prim.IsValid() == false);
-	  stage.Dispose();
-	}
+    public static void BadPrimTest() {
+      var stage = UsdStage.CreateInMemory();
+      var prim = stage.GetPrimAtPath(new SdfPath("/Foo"));
+      AssertTrue(prim != null);
+      AssertTrue(prim.IsValid() == false);
+      stage.Dispose();
+    }
   }
 }

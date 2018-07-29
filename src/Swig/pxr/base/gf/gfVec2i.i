@@ -47,15 +47,15 @@ WRAP_EQUAL(GfVec2i)
 
 %extend GfVec2i {
   
-	%csmethodmodifiers GetValue(int index) "protected";
-	int GetValue(int index) {
-		return (*self)[index];
-	}
-	
-	%csmethodmodifiers SetValue(int index, int value) "protected";
-	void SetValue(int index, int value) {
-		(*self)[index] = value;
-	}
+  %csmethodmodifiers GetValue(int index) "protected";
+  int GetValue(int index) {
+    return (*self)[index];
+  }
+  
+  %csmethodmodifiers SetValue(int index, int value) "protected";
+  void SetValue(int index, int value) {
+    (*self)[index] = value;
+  }
 
   %proxycode %{
   public int this[int index] {

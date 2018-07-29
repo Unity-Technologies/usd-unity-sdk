@@ -149,10 +149,10 @@ public class GfVec2h : global::System.IDisposable {
   }
 
     public static bool operator==(GfVec2h lhs, GfVec2h rhs){
-	    // The Swig binding glue will re-enter this operator comparing to null, so 
-	    // that case must be handled explicitly to avoid an infinite loop. This is still
-	    // not great, since it crosses the C#/C++ barrier twice. A better approache might
-	    // be to return a simple value from C++ that can be compared in C#.
+      // The Swig binding glue will re-enter this operator comparing to null, so 
+      // that case must be handled explicitly to avoid an infinite loop. This is still
+      // not great, since it crosses the C#/C++ barrier twice. A better approache might
+      // be to return a simple value from C++ that can be compared in C#.
       bool lnull = lhs as object == null;
       bool rnull = rhs as object == null;
       return (lnull == rnull) && ((lnull && rnull) || GfVec2h.Equals(lhs, rhs));
@@ -162,9 +162,9 @@ public class GfVec2h : global::System.IDisposable {
         return !(lhs == rhs);
     }
 
-	  override public bool Equals(object rhs) {
-		  return GfVec2h.Equals(this, rhs as GfVec2h);
-	  }
+    override public bool Equals(object rhs) {
+      return GfVec2h.Equals(this, rhs as GfVec2h);
+    }
   
   protected float GetValue(int index) {
     float ret = UsdCsPINVOKE.GfVec2h_GetValue(swigCPtr, index);

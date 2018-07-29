@@ -20,7 +20,7 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(UsdRelationshipVector) vector<UsdRelationship>;
+  %template(UsdRelationshipVector) vector<UsdRelationship>;
 }
 typedef std::vector<UsdRelationship> UsdRelationshipVector;
 
@@ -33,14 +33,14 @@ typedef std::vector<UsdRelationship> UsdRelationshipVector;
 
 %extend UsdRelationship {
   SdfPathVector GetTargets() {
-	SdfPathVector targets;
-	self->GetTargets(&targets);
-	return targets;
+  SdfPathVector targets;
+  self->GetTargets(&targets);
+  return targets;
   }
 
    SdfPathVector GetForwardedTargets() const {
-   	SdfPathVector targets;
-	self->GetForwardedTargets(&targets);
-	return targets;
+     SdfPathVector targets;
+  self->GetForwardedTargets(&targets);
+  return targets;
    }
 }

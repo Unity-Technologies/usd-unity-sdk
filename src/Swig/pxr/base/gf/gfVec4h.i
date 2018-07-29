@@ -44,15 +44,15 @@ WRAP_EQUAL(GfVec4h)
 %include "pxr/base/gf/vec4h.h"
 
 %extend GfVec4h {
-	%csmethodmodifiers GetValue(int index) "protected";
-	float GetValue(int index) {
-		return (*self)[index];
-	}
-	
-	%csmethodmodifiers SetValue(int index, float value) "protected";
-	void SetValue(int index, float value) {
-		(*self)[index] = value;
-	}
+  %csmethodmodifiers GetValue(int index) "protected";
+  float GetValue(int index) {
+    return (*self)[index];
+  }
+  
+  %csmethodmodifiers SetValue(int index, float value) "protected";
+  void SetValue(int index, float value) {
+    (*self)[index] = value;
+  }
 
   %proxycode %{
   public float this[int index] {

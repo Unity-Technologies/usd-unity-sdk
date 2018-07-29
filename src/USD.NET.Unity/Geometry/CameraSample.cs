@@ -31,8 +31,8 @@ namespace USD.NET.Unity {
       Right,
     }
 
-	[System.Serializable]
-	public class Shutter : SampleBase {
+    [System.Serializable]
+    public class Shutter : SampleBase {
       public double open;
       public double close;
     }

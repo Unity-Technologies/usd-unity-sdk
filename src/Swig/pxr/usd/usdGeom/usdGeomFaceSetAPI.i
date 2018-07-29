@@ -22,5 +22,5 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(UsdGeomFaceSetAPIVector) vector<UsdGeomFaceSetAPI>;
+  %template(UsdGeomFaceSetAPIVector) vector<UsdGeomFaceSetAPI>;
 }

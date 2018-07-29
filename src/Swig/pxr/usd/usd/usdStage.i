@@ -67,7 +67,7 @@ class string;
   std::vector<UsdPrim> GetAllPrims() {
     std::vector<UsdPrim> targets;
     for (auto&& p : self->Traverse()) { targets.push_back(p); }
-	  return targets;
+    return targets;
   }
   std::vector<UsdPrim> GetAllPrimsByType(std::string typeName) {
     std::vector<UsdPrim> targets;
@@ -76,7 +76,7 @@ class string;
         targets.push_back(p);
       }
     }
-	  return targets;
+    return targets;
   }
 
   std::vector<SdfPath> GetAllPaths() {
@@ -84,7 +84,7 @@ class string;
     for (auto&& p : self->Traverse()) {
       targets.push_back(p.GetPath());
     }
-	  return targets;
+    return targets;
   }
 
   std::vector<SdfPath> GetAllPathsByType(std::string typeName) {
@@ -94,6 +94,6 @@ class string;
         targets.push_back(p.GetPath());
       }
     }
-	  return targets;
+    return targets;
   }
 }

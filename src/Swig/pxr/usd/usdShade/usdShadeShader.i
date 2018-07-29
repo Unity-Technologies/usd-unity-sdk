@@ -22,5 +22,5 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(UsdShadeShaderVector) vector<UsdShadeShader>;
+  %template(UsdShadeShaderVector) vector<UsdShadeShader>;
 }

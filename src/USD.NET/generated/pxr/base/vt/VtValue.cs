@@ -626,10 +626,10 @@ public class VtValue : global::System.IDisposable {
   }
 
     public static bool operator==(VtValue lhs, VtValue rhs){
-	    // The Swig binding glue will re-enter this operator comparing to null, so 
-	    // that case must be handled explicitly to avoid an infinite loop. This is still
-	    // not great, since it crosses the C#/C++ barrier twice. A better approache might
-	    // be to return a simple value from C++ that can be compared in C#.
+      // The Swig binding glue will re-enter this operator comparing to null, so 
+      // that case must be handled explicitly to avoid an infinite loop. This is still
+      // not great, since it crosses the C#/C++ barrier twice. A better approache might
+      // be to return a simple value from C++ that can be compared in C#.
       bool lnull = lhs as object == null;
       bool rnull = rhs as object == null;
       return (lnull == rnull) && ((lnull && rnull) || VtValue.Equals(lhs, rhs));
@@ -639,9 +639,9 @@ public class VtValue : global::System.IDisposable {
         return !(lhs == rhs);
     }
 
-	  override public bool Equals(object rhs) {
-		  return VtValue.Equals(this, rhs as VtValue);
-	  }
+    override public bool Equals(object rhs) {
+      return VtValue.Equals(this, rhs as VtValue);
+    }
   
   public VtValue(GfHalf obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_3(GfHalf.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -87,10 +87,10 @@ public class GfLine : global::System.IDisposable {
   }
 
     public static bool operator==(GfLine lhs, GfLine rhs){
-	    // The Swig binding glue will re-enter this operator comparing to null, so 
-	    // that case must be handled explicitly to avoid an infinite loop. This is still
-	    // not great, since it crosses the C#/C++ barrier twice. A better approache might
-	    // be to return a simple value from C++ that can be compared in C#.
+      // The Swig binding glue will re-enter this operator comparing to null, so 
+      // that case must be handled explicitly to avoid an infinite loop. This is still
+      // not great, since it crosses the C#/C++ barrier twice. A better approache might
+      // be to return a simple value from C++ that can be compared in C#.
       bool lnull = lhs as object == null;
       bool rnull = rhs as object == null;
       return (lnull == rnull) && ((lnull && rnull) || GfLine.Equals(lhs, rhs));
@@ -100,9 +100,9 @@ public class GfLine : global::System.IDisposable {
         return !(lhs == rhs);
     }
 
-	  override public bool Equals(object rhs) {
-		  return GfLine.Equals(this, rhs as GfLine);
-	  }
+    override public bool Equals(object rhs) {
+      return GfLine.Equals(this, rhs as GfLine);
+    }
   
 }
 

@@ -32,16 +32,16 @@
 // ---------------------------------------------------------------------------------------------- //
 
 namespace std {
-	%template(SdfLayerHandleVector) vector<SdfLayerHandle>;
+  %template(SdfLayerHandleVector) vector<SdfLayerHandle>;
 }
 typedef std::vector<SdfLayerHandle> SdfLayerHandleVector;
 
 // Must be defined before interfaces to which it applies
 %extend SdfLayer {
   std::string ExportToString() const {
-	std::string str;
-	self->ExportToString(&str);
-	return str;
+  std::string str;
+  self->ExportToString(&str);
+  return str;
   }
 }
 %ignore SdfLayer::ExportToString(std::string*) const;

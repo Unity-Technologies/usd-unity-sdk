@@ -20,7 +20,7 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(SdfLayerOffsetVector) vector<SdfLayerOffset>;
+  %template(SdfLayerOffsetVector) vector<SdfLayerOffset>;
 }
 typedef std::vector<SdfLayerOffset> SdfLayerOffsetVector;
 

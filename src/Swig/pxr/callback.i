@@ -45,5 +45,5 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(TaskCallbackVector) vector<TaskCallback>;
+  %template(TaskCallbackVector) vector<TaskCallback>;
 }

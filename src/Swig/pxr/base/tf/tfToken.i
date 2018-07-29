@@ -25,14 +25,14 @@ WRAP_EQUAL(TfToken)
         return value.GetText();
     }
 
-	  public override string ToString() {
+    public override string ToString() {
         return GetText();
     }
 %}
 
 %include "std_vector.i"
 namespace std {
-	%template(TfTokenVector) vector<TfToken>;
+  %template(TfTokenVector) vector<TfToken>;
 }
 typedef std::vector<TfToken> TfTokenVector;
 

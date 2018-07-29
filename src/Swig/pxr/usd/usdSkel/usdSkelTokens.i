@@ -23,7 +23,7 @@
 
 class UsdSkelTokens {
 private:
-	UsdSkelTokens();
-	~UsdSkelTokens();
+  UsdSkelTokens();
+  ~UsdSkelTokens();
 public:
 };

@@ -305,18 +305,18 @@ namespace USD.NET {
       BindArrayType<IntrinsicTypeConverter>(typeof(string[]), typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(List<string>), typeof(pxr.VtTokenArray), SdfValueTypeNames.TokenArray, "List");
 
-	  //
-	  // SdfAssetPath
-	  //
-	  //BindType(typeof(pxr.SdfAssetPath), new UsdTypeBinding((obj) => new pxr.VtValue((pxr.SdfAssetPath)obj), (obj) => (pxr.SdfAssetPath)obj, SdfValueTypeNames.Asset));
-	  BindNativeType(typeof(pxr.SdfAssetPath), SdfValueTypeNames.Asset);
-	  BindArrayType<IntrinsicTypeConverter>(typeof(pxr.SdfAssetPath[]), typeof(pxr.SdfAssetPathArray), SdfValueTypeNames.AssetArray);
-	  BindArrayType<IntrinsicTypeConverter>(typeof(List<pxr.SdfAssetPath>), typeof(pxr.SdfAssetPathArray), SdfValueTypeNames.AssetArray, "List");
+      //
+      // SdfAssetPath
+      //
+      //BindType(typeof(pxr.SdfAssetPath), new UsdTypeBinding((obj) => new pxr.VtValue((pxr.SdfAssetPath)obj), (obj) => (pxr.SdfAssetPath)obj, SdfValueTypeNames.Asset));
+      BindNativeType(typeof(pxr.SdfAssetPath), SdfValueTypeNames.Asset);
+      BindArrayType<IntrinsicTypeConverter>(typeof(pxr.SdfAssetPath[]), typeof(pxr.SdfAssetPathArray), SdfValueTypeNames.AssetArray);
+      BindArrayType<IntrinsicTypeConverter>(typeof(List<pxr.SdfAssetPath>), typeof(pxr.SdfAssetPathArray), SdfValueTypeNames.AssetArray, "List");
 
-	  //
-	  // Int
-	  //
-	  BindNativeType(typeof(int), SdfValueTypeNames.Int);
+      //
+      // Int
+      //
+      BindNativeType(typeof(int), SdfValueTypeNames.Int);
       BindNativeType(typeof(pxr.VtIntArray), SdfValueTypeNames.IntArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(int[]), typeof(pxr.VtIntArray), SdfValueTypeNames.IntArray);
       BindArrayType<IntrinsicTypeConverter>(typeof(List<int>), typeof(pxr.VtIntArray), SdfValueTypeNames.IntArray, "List");

@@ -1284,7 +1284,7 @@ SWIGINTERN void std_vector_Sl_TfToken_Sg__SetRange(std::vector< TfToken > *self,
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 SWIGINTERN bool TfToken_Equals(TfToken const &lhs,TfToken const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int TfToken_GetHashCode(TfToken *self){
     return (int)TfHash()(self);
@@ -1439,7 +1439,7 @@ SWIGINTERN void std_vector_Sl_JsValue_Sg__SetRange(std::vector< JsValue > *self,
 #include "pxr/base/gf/camera.h"
 
 SWIGINTERN bool GfCamera_Equals(GfCamera const &lhs,GfCamera const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfCamera_GetHashCode(GfCamera *self){
     return (int)TfHash()(self);
@@ -1448,7 +1448,7 @@ SWIGINTERN int GfCamera_GetHashCode(GfCamera *self){
 #include "pxr/base/gf/interval.h"
 
 SWIGINTERN bool GfInterval_Equals(GfInterval const &lhs,GfInterval const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfInterval_GetHashCode(GfInterval *self){
     return (int)TfHash()(self);
@@ -1457,7 +1457,7 @@ SWIGINTERN int GfInterval_GetHashCode(GfInterval *self){
 #include "pxr/base/gf/half.h"
 
 SWIGINTERN bool GfHalf_Equals(GfHalf const &lhs,GfHalf const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfHalf_GetHashCode(GfHalf *self){
     return (int)TfHash()(self);
@@ -1466,7 +1466,7 @@ SWIGINTERN int GfHalf_GetHashCode(GfHalf *self){
 #include "pxr/base/gf/range1f.h"
 
 SWIGINTERN bool GfRange1f_Equals(GfRange1f const &lhs,GfRange1f const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfRange1f_GetHashCode(GfRange1f *self){
     return (int)TfHash()(self);
@@ -1475,7 +1475,7 @@ SWIGINTERN int GfRange1f_GetHashCode(GfRange1f *self){
 #include "pxr/base/gf/range1d.h"
 
 SWIGINTERN bool GfRange1d_Equals(GfRange1d const &lhs,GfRange1d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfRange1d_GetHashCode(GfRange1d *self){
     return (int)TfHash()(self);
@@ -1484,7 +1484,7 @@ SWIGINTERN int GfRange1d_GetHashCode(GfRange1d *self){
 #include "pxr/base/gf/range2d.h"
 
 SWIGINTERN bool GfRange2d_Equals(GfRange2d const &lhs,GfRange2d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfRange2d_GetHashCode(GfRange2d *self){
     return (int)TfHash()(self);
@@ -1493,7 +1493,7 @@ SWIGINTERN int GfRange2d_GetHashCode(GfRange2d *self){
 #include "pxr/base/gf/range3d.h"
 
 SWIGINTERN bool GfRange3d_Equals(GfRange3d const &lhs,GfRange3d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfRange3d_GetHashCode(GfRange3d *self){
     return (int)TfHash()(self);
@@ -1502,307 +1502,307 @@ SWIGINTERN int GfRange3d_GetHashCode(GfRange3d *self){
 #include "pxr/base/gf/matrix2f.h"
 
 SWIGINTERN bool GfMatrix2f_Equals(GfMatrix2f const &lhs,GfMatrix2f const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfMatrix2f_GetHashCode(GfMatrix2f *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN std::string GfMatrix2f_ToString(GfMatrix2f *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void GfMatrix2f_CopyToArray(GfMatrix2f *self,float *dest){
-		memcpy(dest, self->GetArray(), 4 * sizeof(float)); 
-	}
+    memcpy(dest, self->GetArray(), 4 * sizeof(float)); 
+  }
 SWIGINTERN void GfMatrix2f_CopyFromArray(GfMatrix2f *self,float *src){ 
-		memcpy(self->GetArray(), src, 4 * sizeof(float));
-	}
+    memcpy(self->GetArray(), src, 4 * sizeof(float));
+  }
 
 #include "pxr/base/gf/matrix3f.h"
 
 SWIGINTERN bool GfMatrix3f_Equals(GfMatrix3f const &lhs,GfMatrix3f const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfMatrix3f_GetHashCode(GfMatrix3f *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN std::string GfMatrix3f_ToString(GfMatrix3f *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void GfMatrix3f_CopyToArray(GfMatrix3f *self,float *dest){
-		memcpy(dest, self->GetArray(), 9 * sizeof(float)); 
-	}
+    memcpy(dest, self->GetArray(), 9 * sizeof(float)); 
+  }
 SWIGINTERN void GfMatrix3f_CopyFromArray(GfMatrix3f *self,float *src){ 
-		memcpy(self->GetArray(), src, 9 * sizeof(float));
-	}
+    memcpy(self->GetArray(), src, 9 * sizeof(float));
+  }
 
 #include "pxr/base/gf/matrix4f.h"
 
 SWIGINTERN bool GfMatrix4f_Equals(GfMatrix4f const &lhs,GfMatrix4f const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfMatrix4f_GetHashCode(GfMatrix4f *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN std::string GfMatrix4f_ToString(GfMatrix4f *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void GfMatrix4f_CopyToArray(GfMatrix4f *self,float *dest){
-		memcpy(dest, self->GetArray(), 16 * sizeof(float)); 
-	}
+    memcpy(dest, self->GetArray(), 16 * sizeof(float)); 
+  }
 SWIGINTERN void GfMatrix4f_CopyFromArray(GfMatrix4f *self,float *src){ 
-		memcpy(self->GetArray(), src, 16 * sizeof(float));
-	}
+    memcpy(self->GetArray(), src, 16 * sizeof(float));
+  }
 
 #include "pxr/base/gf/matrix2d.h"
 
 SWIGINTERN bool GfMatrix2d_Equals(GfMatrix2d const &lhs,GfMatrix2d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfMatrix2d_GetHashCode(GfMatrix2d *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN std::string GfMatrix2d_ToString(GfMatrix2d *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void GfMatrix2d_CopyToArray(GfMatrix2d *self,double *dest){
-		memcpy(dest, self->GetArray(), 4 * sizeof(double)); 
-	}
+    memcpy(dest, self->GetArray(), 4 * sizeof(double)); 
+  }
 SWIGINTERN void GfMatrix2d_CopyFromArray(GfMatrix2d *self,double *src){ 
-		memcpy(self->GetArray(), src, 4 * sizeof(double));
-	}
+    memcpy(self->GetArray(), src, 4 * sizeof(double));
+  }
 
 #include "pxr/base/gf/matrix3d.h"
 
 SWIGINTERN bool GfMatrix3d_Equals(GfMatrix3d const &lhs,GfMatrix3d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfMatrix3d_GetHashCode(GfMatrix3d *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN std::string GfMatrix3d_ToString(GfMatrix3d *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void GfMatrix3d_CopyToArray(GfMatrix3d *self,double *dest){
-		memcpy(dest, self->GetArray(), 9 * sizeof(double)); 
-	}
+    memcpy(dest, self->GetArray(), 9 * sizeof(double)); 
+  }
 SWIGINTERN void GfMatrix3d_CopyFromArray(GfMatrix3d *self,double *src){ 
-		memcpy(self->GetArray(), src, 9 * sizeof(double));
-	}
+    memcpy(self->GetArray(), src, 9 * sizeof(double));
+  }
 
 #include "pxr/base/gf/matrix4d.h"
 
 SWIGINTERN bool GfMatrix4d_Equals(GfMatrix4d const &lhs,GfMatrix4d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfMatrix4d_GetHashCode(GfMatrix4d *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN std::string GfMatrix4d_ToString(GfMatrix4d *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void GfMatrix4d_CopyToArray(GfMatrix4d *self,double *dest){
-		memcpy(dest, self->GetArray(), 16 * sizeof(double)); 
-	}
+    memcpy(dest, self->GetArray(), 16 * sizeof(double)); 
+  }
 SWIGINTERN void GfMatrix4d_CopyFromArray(GfMatrix4d *self,double *src){ 
-		memcpy(self->GetArray(), src, 16 * sizeof(double));
-	}
+    memcpy(self->GetArray(), src, 16 * sizeof(double));
+  }
 
 #include "pxr/base/gf/vec2i.h"
 
 SWIGINTERN bool GfVec2i_Equals(GfVec2i const &lhs,GfVec2i const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec2i_GetHashCode(GfVec2i *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN int GfVec2i_GetValue(GfVec2i *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec2i_SetValue(GfVec2i *self,int index,int value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec2h.h"
 
 SWIGINTERN bool GfVec2h_Equals(GfVec2h const &lhs,GfVec2h const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec2h_GetHashCode(GfVec2h *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN float GfVec2h_GetValue(GfVec2h *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec2h_SetValue(GfVec2h *self,int index,float value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec2f.h"
 
 SWIGINTERN bool GfVec2f_Equals(GfVec2f const &lhs,GfVec2f const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec2f_GetHashCode(GfVec2f *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN float GfVec2f_GetValue(GfVec2f *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec2f_SetValue(GfVec2f *self,int index,float value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec2d.h"
 
 SWIGINTERN bool GfVec2d_Equals(GfVec2d const &lhs,GfVec2d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec2d_GetHashCode(GfVec2d *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN double GfVec2d_GetValue(GfVec2d *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec2d_SetValue(GfVec2d *self,int index,double value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec3i.h"
 
 SWIGINTERN bool GfVec3i_Equals(GfVec3i const &lhs,GfVec3i const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec3i_GetHashCode(GfVec3i *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN int GfVec3i_GetValue(GfVec3i *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec3i_SetValue(GfVec3i *self,int index,int value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec3h.h"
 
 SWIGINTERN bool GfVec3h_Equals(GfVec3h const &lhs,GfVec3h const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec3h_GetHashCode(GfVec3h *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN float GfVec3h_GetValue(GfVec3h *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec3h_SetValue(GfVec3h *self,int index,float value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec3f.h"
 
 SWIGINTERN bool GfVec3f_Equals(GfVec3f const &lhs,GfVec3f const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec3f_GetHashCode(GfVec3f *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN float GfVec3f_GetValue(GfVec3f *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec3f_SetValue(GfVec3f *self,int index,float value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec3d.h"
 
 SWIGINTERN bool GfVec3d_Equals(GfVec3d const &lhs,GfVec3d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec3d_GetHashCode(GfVec3d *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN double GfVec3d_GetValue(GfVec3d *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec3d_SetValue(GfVec3d *self,int index,double value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec4i.h"
 
 SWIGINTERN bool GfVec4i_Equals(GfVec4i const &lhs,GfVec4i const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec4i_GetHashCode(GfVec4i *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN int GfVec4i_GetValue(GfVec4i *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec4i_SetValue(GfVec4i *self,int index,int value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec4h.h"
 
 SWIGINTERN bool GfVec4h_Equals(GfVec4h const &lhs,GfVec4h const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec4h_GetHashCode(GfVec4h *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN float GfVec4h_GetValue(GfVec4h *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec4h_SetValue(GfVec4h *self,int index,float value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec4f.h"
 
 SWIGINTERN bool GfVec4f_Equals(GfVec4f const &lhs,GfVec4f const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec4f_GetHashCode(GfVec4f *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN float GfVec4f_GetValue(GfVec4f *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec4f_SetValue(GfVec4f *self,int index,float value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/vec4d.h"
 
 SWIGINTERN bool GfVec4d_Equals(GfVec4d const &lhs,GfVec4d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfVec4d_GetHashCode(GfVec4d *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN double GfVec4d_GetValue(GfVec4d *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void GfVec4d_SetValue(GfVec4d *self,int index,double value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/gf/rotation.h"
 
 SWIGINTERN bool GfRotation_Equals(GfRotation const &lhs,GfRotation const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfRotation_GetHashCode(GfRotation *self){
     return (int)TfHash()(self);
@@ -1811,7 +1811,7 @@ SWIGINTERN int GfRotation_GetHashCode(GfRotation *self){
 #include "pxr/base/gf/quaternion.h"
 
 SWIGINTERN bool GfQuaternion_Equals(GfQuaternion const &lhs,GfQuaternion const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfQuaternion_GetHashCode(GfQuaternion *self){
     return (int)TfHash()(self);
@@ -1820,7 +1820,7 @@ SWIGINTERN int GfQuaternion_GetHashCode(GfQuaternion *self){
 #include "pxr/base/gf/quath.h"
 
 SWIGINTERN bool GfQuath_Equals(GfQuath const &lhs,GfQuath const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfQuath_GetHashCode(GfQuath *self){
     return (int)TfHash()(self);
@@ -1829,7 +1829,7 @@ SWIGINTERN int GfQuath_GetHashCode(GfQuath *self){
 #include "pxr/base/gf/quatf.h"
 
 SWIGINTERN bool GfQuatf_Equals(GfQuatf const &lhs,GfQuatf const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfQuatf_GetHashCode(GfQuatf *self){
     return (int)TfHash()(self);
@@ -1838,7 +1838,7 @@ SWIGINTERN int GfQuatf_GetHashCode(GfQuatf *self){
 #include "pxr/base/gf/quatd.h"
 
 SWIGINTERN bool GfQuatd_Equals(GfQuatd const &lhs,GfQuatd const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfQuatd_GetHashCode(GfQuatd *self){
     return (int)TfHash()(self);
@@ -1847,7 +1847,7 @@ SWIGINTERN int GfQuatd_GetHashCode(GfQuatd *self){
 #include "pxr/base/gf/ray.h"
 
 SWIGINTERN bool GfRay_Equals(GfRay const &lhs,GfRay const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfRay_GetHashCode(GfRay *self){
     return (int)TfHash()(self);
@@ -1856,7 +1856,7 @@ SWIGINTERN int GfRay_GetHashCode(GfRay *self){
 #include "pxr/base/gf/line.h"
 
 SWIGINTERN bool GfLine_Equals(GfLine const &lhs,GfLine const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfLine_GetHashCode(GfLine *self){
     return (int)TfHash()(self);
@@ -1865,7 +1865,7 @@ SWIGINTERN int GfLine_GetHashCode(GfLine *self){
 #include "pxr/base/gf/lineSeg.h"
 
 SWIGINTERN bool GfLineSeg_Equals(GfLineSeg const &lhs,GfLineSeg const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfLineSeg_GetHashCode(GfLineSeg *self){
     return (int)TfHash()(self);
@@ -1874,7 +1874,7 @@ SWIGINTERN int GfLineSeg_GetHashCode(GfLineSeg *self){
 #include "pxr/base/gf/plane.h"
 
 SWIGINTERN bool GfPlane_Equals(GfPlane const &lhs,GfPlane const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfPlane_GetHashCode(GfPlane *self){
     return (int)TfHash()(self);
@@ -1974,7 +1974,7 @@ SWIGINTERN void std_vector_Sl_GfVec3d_Sg__SetRange(std::vector< GfVec3d > *self,
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 SWIGINTERN bool GfFrustum_Equals(GfFrustum const &lhs,GfFrustum const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfFrustum_GetHashCode(GfFrustum *self){
     return (int)TfHash()(self);
@@ -2074,7 +2074,7 @@ SWIGINTERN void std_vector_Sl_GfVec4f_Sg__SetRange(std::vector< GfVec4f > *self,
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 SWIGINTERN bool GfBBox3d_Equals(GfBBox3d const &lhs,GfBBox3d const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int GfBBox3d_GetHashCode(GfBBox3d *self){
     return (int)TfHash()(self);
@@ -2083,785 +2083,785 @@ SWIGINTERN int GfBBox3d_GetHashCode(GfBBox3d *self){
 #include "pxr/base/vt/array.h"
 
 SWIGINTERN bool VtArray_Sl_SdfAssetPath_Sg__Equals(VtArray< SdfAssetPath > const &lhs,VtArray< SdfAssetPath > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_SdfAssetPath_Sg__ToString(VtArray< SdfAssetPath > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_SdfAssetPath_Sg__CopyToArray__SWIG_0(VtArray< SdfAssetPath > *self,SdfAssetPath *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(SdfAssetPath));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(SdfAssetPath));
+  }
 SWIGINTERN void VtArray_Sl_SdfAssetPath_Sg__CopyFromArray__SWIG_0(VtArray< SdfAssetPath > *self,SdfAssetPath *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(SdfAssetPath));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(SdfAssetPath));
+  }
 SWIGINTERN void VtArray_Sl_SdfAssetPath_Sg__CopyToArray__SWIG_1(VtArray< SdfAssetPath > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(SdfAssetPath));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(SdfAssetPath));
+  }
 SWIGINTERN void VtArray_Sl_SdfAssetPath_Sg__CopyFromArray__SWIG_1(VtArray< SdfAssetPath > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(SdfAssetPath));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(SdfAssetPath));
+  }
 SWIGINTERN SdfAssetPath const &VtArray_Sl_SdfAssetPath_Sg__GetValue(VtArray< SdfAssetPath > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_SdfAssetPath_Sg__SetValue(VtArray< SdfAssetPath > *self,int index,SdfAssetPath const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_bool_Sg__Equals(VtArray< bool > const &lhs,VtArray< bool > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_bool_Sg__ToString(VtArray< bool > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_bool_Sg__CopyToArray__SWIG_0(VtArray< bool > *self,bool *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(bool));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(bool));
+  }
 SWIGINTERN void VtArray_Sl_bool_Sg__CopyFromArray__SWIG_0(VtArray< bool > *self,bool *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(bool));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(bool));
+  }
 SWIGINTERN void VtArray_Sl_bool_Sg__CopyToArray__SWIG_1(VtArray< bool > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(bool));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(bool));
+  }
 SWIGINTERN void VtArray_Sl_bool_Sg__CopyFromArray__SWIG_1(VtArray< bool > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(bool));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(bool));
+  }
 SWIGINTERN bool const &VtArray_Sl_bool_Sg__GetValue(VtArray< bool > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_bool_Sg__SetValue(VtArray< bool > *self,int index,bool const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_double_Sg__Equals(VtArray< double > const &lhs,VtArray< double > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_double_Sg__ToString(VtArray< double > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_double_Sg__CopyToArray__SWIG_0(VtArray< double > *self,double *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(double));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(double));
+  }
 SWIGINTERN void VtArray_Sl_double_Sg__CopyFromArray__SWIG_0(VtArray< double > *self,double *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(double));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(double));
+  }
 SWIGINTERN void VtArray_Sl_double_Sg__CopyToArray__SWIG_1(VtArray< double > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(double));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(double));
+  }
 SWIGINTERN void VtArray_Sl_double_Sg__CopyFromArray__SWIG_1(VtArray< double > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(double));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(double));
+  }
 SWIGINTERN double const &VtArray_Sl_double_Sg__GetValue(VtArray< double > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_double_Sg__SetValue(VtArray< double > *self,int index,double const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_float_Sg__Equals(VtArray< float > const &lhs,VtArray< float > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_float_Sg__ToString(VtArray< float > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_float_Sg__CopyToArray__SWIG_0(VtArray< float > *self,float *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(float));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(float));
+  }
 SWIGINTERN void VtArray_Sl_float_Sg__CopyFromArray__SWIG_0(VtArray< float > *self,float *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(float));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(float));
+  }
 SWIGINTERN void VtArray_Sl_float_Sg__CopyToArray__SWIG_1(VtArray< float > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(float));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(float));
+  }
 SWIGINTERN void VtArray_Sl_float_Sg__CopyFromArray__SWIG_1(VtArray< float > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(float));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(float));
+  }
 SWIGINTERN float const &VtArray_Sl_float_Sg__GetValue(VtArray< float > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_float_Sg__SetValue(VtArray< float > *self,int index,float const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfHalf_Sg__Equals(VtArray< GfHalf > const &lhs,VtArray< GfHalf > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfHalf_Sg__ToString(VtArray< GfHalf > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfHalf_Sg__CopyToArray__SWIG_0(VtArray< GfHalf > *self,GfHalf *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfHalf));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfHalf));
+  }
 SWIGINTERN void VtArray_Sl_GfHalf_Sg__CopyFromArray__SWIG_0(VtArray< GfHalf > *self,GfHalf *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfHalf));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfHalf));
+  }
 SWIGINTERN void VtArray_Sl_GfHalf_Sg__CopyToArray__SWIG_1(VtArray< GfHalf > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfHalf));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfHalf));
+  }
 SWIGINTERN void VtArray_Sl_GfHalf_Sg__CopyFromArray__SWIG_1(VtArray< GfHalf > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfHalf));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfHalf));
+  }
 SWIGINTERN GfHalf const &VtArray_Sl_GfHalf_Sg__GetValue(VtArray< GfHalf > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfHalf_Sg__SetValue(VtArray< GfHalf > *self,int index,GfHalf const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_int64_t_Sg__Equals(VtArray< long long > const &lhs,VtArray< long long > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_int64_t_Sg__ToString(VtArray< int64_t > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_int64_t_Sg__CopyToArray__SWIG_0(VtArray< int64_t > *self,long long *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(long long));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(long long));
+  }
 SWIGINTERN void VtArray_Sl_int64_t_Sg__CopyFromArray__SWIG_0(VtArray< int64_t > *self,long long *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(long long));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(long long));
+  }
 SWIGINTERN void VtArray_Sl_int64_t_Sg__CopyToArray__SWIG_1(VtArray< int64_t > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(long long));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(long long));
+  }
 SWIGINTERN void VtArray_Sl_int64_t_Sg__CopyFromArray__SWIG_1(VtArray< int64_t > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(long long));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(long long));
+  }
 SWIGINTERN long long const &VtArray_Sl_int64_t_Sg__GetValue(VtArray< int64_t > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_int64_t_Sg__SetValue(VtArray< int64_t > *self,int index,long long const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_int_Sg__Equals(VtArray< int > const &lhs,VtArray< int > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_int_Sg__ToString(VtArray< int > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_int_Sg__CopyToArray__SWIG_0(VtArray< int > *self,int *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(int));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(int));
+  }
 SWIGINTERN void VtArray_Sl_int_Sg__CopyFromArray__SWIG_0(VtArray< int > *self,int *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(int));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(int));
+  }
 SWIGINTERN void VtArray_Sl_int_Sg__CopyToArray__SWIG_1(VtArray< int > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(int));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(int));
+  }
 SWIGINTERN void VtArray_Sl_int_Sg__CopyFromArray__SWIG_1(VtArray< int > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(int));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(int));
+  }
 SWIGINTERN int const &VtArray_Sl_int_Sg__GetValue(VtArray< int > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_int_Sg__SetValue(VtArray< int > *self,int index,int const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfMatrix2d_Sg__Equals(VtArray< GfMatrix2d > const &lhs,VtArray< GfMatrix2d > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfMatrix2d_Sg__ToString(VtArray< GfMatrix2d > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix2d_Sg__CopyToArray__SWIG_0(VtArray< GfMatrix2d > *self,GfMatrix2d *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfMatrix2d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfMatrix2d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix2d_Sg__CopyFromArray__SWIG_0(VtArray< GfMatrix2d > *self,GfMatrix2d *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfMatrix2d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfMatrix2d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix2d_Sg__CopyToArray__SWIG_1(VtArray< GfMatrix2d > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfMatrix2d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfMatrix2d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix2d_Sg__CopyFromArray__SWIG_1(VtArray< GfMatrix2d > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfMatrix2d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfMatrix2d));
+  }
 SWIGINTERN GfMatrix2d const &VtArray_Sl_GfMatrix2d_Sg__GetValue(VtArray< GfMatrix2d > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix2d_Sg__SetValue(VtArray< GfMatrix2d > *self,int index,GfMatrix2d const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfMatrix3d_Sg__Equals(VtArray< GfMatrix3d > const &lhs,VtArray< GfMatrix3d > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfMatrix3d_Sg__ToString(VtArray< GfMatrix3d > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix3d_Sg__CopyToArray__SWIG_0(VtArray< GfMatrix3d > *self,GfMatrix3d *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfMatrix3d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfMatrix3d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix3d_Sg__CopyFromArray__SWIG_0(VtArray< GfMatrix3d > *self,GfMatrix3d *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfMatrix3d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfMatrix3d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix3d_Sg__CopyToArray__SWIG_1(VtArray< GfMatrix3d > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfMatrix3d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfMatrix3d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix3d_Sg__CopyFromArray__SWIG_1(VtArray< GfMatrix3d > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfMatrix3d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfMatrix3d));
+  }
 SWIGINTERN GfMatrix3d const &VtArray_Sl_GfMatrix3d_Sg__GetValue(VtArray< GfMatrix3d > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix3d_Sg__SetValue(VtArray< GfMatrix3d > *self,int index,GfMatrix3d const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfMatrix4d_Sg__Equals(VtArray< GfMatrix4d > const &lhs,VtArray< GfMatrix4d > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfMatrix4d_Sg__ToString(VtArray< GfMatrix4d > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix4d_Sg__CopyToArray__SWIG_0(VtArray< GfMatrix4d > *self,GfMatrix4d *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfMatrix4d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfMatrix4d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix4d_Sg__CopyFromArray__SWIG_0(VtArray< GfMatrix4d > *self,GfMatrix4d *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfMatrix4d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfMatrix4d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix4d_Sg__CopyToArray__SWIG_1(VtArray< GfMatrix4d > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfMatrix4d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfMatrix4d));
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix4d_Sg__CopyFromArray__SWIG_1(VtArray< GfMatrix4d > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfMatrix4d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfMatrix4d));
+  }
 SWIGINTERN GfMatrix4d const &VtArray_Sl_GfMatrix4d_Sg__GetValue(VtArray< GfMatrix4d > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfMatrix4d_Sg__SetValue(VtArray< GfMatrix4d > *self,int index,GfMatrix4d const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfQuatd_Sg__Equals(VtArray< GfQuatd > const &lhs,VtArray< GfQuatd > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfQuatd_Sg__ToString(VtArray< GfQuatd > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfQuatd_Sg__CopyToArray__SWIG_0(VtArray< GfQuatd > *self,GfQuatd *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfQuatd));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfQuatd));
+  }
 SWIGINTERN void VtArray_Sl_GfQuatd_Sg__CopyFromArray__SWIG_0(VtArray< GfQuatd > *self,GfQuatd *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfQuatd));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfQuatd));
+  }
 SWIGINTERN void VtArray_Sl_GfQuatd_Sg__CopyToArray__SWIG_1(VtArray< GfQuatd > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfQuatd));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfQuatd));
+  }
 SWIGINTERN void VtArray_Sl_GfQuatd_Sg__CopyFromArray__SWIG_1(VtArray< GfQuatd > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfQuatd));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfQuatd));
+  }
 SWIGINTERN GfQuatd const &VtArray_Sl_GfQuatd_Sg__GetValue(VtArray< GfQuatd > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfQuatd_Sg__SetValue(VtArray< GfQuatd > *self,int index,GfQuatd const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfQuatf_Sg__Equals(VtArray< GfQuatf > const &lhs,VtArray< GfQuatf > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfQuatf_Sg__ToString(VtArray< GfQuatf > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfQuatf_Sg__CopyToArray__SWIG_0(VtArray< GfQuatf > *self,GfQuatf *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfQuatf));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfQuatf));
+  }
 SWIGINTERN void VtArray_Sl_GfQuatf_Sg__CopyFromArray__SWIG_0(VtArray< GfQuatf > *self,GfQuatf *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfQuatf));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfQuatf));
+  }
 SWIGINTERN void VtArray_Sl_GfQuatf_Sg__CopyToArray__SWIG_1(VtArray< GfQuatf > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfQuatf));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfQuatf));
+  }
 SWIGINTERN void VtArray_Sl_GfQuatf_Sg__CopyFromArray__SWIG_1(VtArray< GfQuatf > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfQuatf));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfQuatf));
+  }
 SWIGINTERN GfQuatf const &VtArray_Sl_GfQuatf_Sg__GetValue(VtArray< GfQuatf > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfQuatf_Sg__SetValue(VtArray< GfQuatf > *self,int index,GfQuatf const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfQuath_Sg__Equals(VtArray< GfQuath > const &lhs,VtArray< GfQuath > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfQuath_Sg__ToString(VtArray< GfQuath > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfQuath_Sg__CopyToArray__SWIG_0(VtArray< GfQuath > *self,GfQuath *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfQuath));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfQuath));
+  }
 SWIGINTERN void VtArray_Sl_GfQuath_Sg__CopyFromArray__SWIG_0(VtArray< GfQuath > *self,GfQuath *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfQuath));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfQuath));
+  }
 SWIGINTERN void VtArray_Sl_GfQuath_Sg__CopyToArray__SWIG_1(VtArray< GfQuath > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfQuath));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfQuath));
+  }
 SWIGINTERN void VtArray_Sl_GfQuath_Sg__CopyFromArray__SWIG_1(VtArray< GfQuath > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfQuath));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfQuath));
+  }
 SWIGINTERN GfQuath const &VtArray_Sl_GfQuath_Sg__GetValue(VtArray< GfQuath > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfQuath_Sg__SetValue(VtArray< GfQuath > *self,int index,GfQuath const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_std_string_Sg__Equals(VtArray< std::string > const &lhs,VtArray< std::string > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_std_string_Sg__ToString(VtArray< std::string > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_std_string_Sg__CopyToArray__SWIG_0(VtArray< std::string > *self,std::string *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(std::string));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(std::string));
+  }
 SWIGINTERN void VtArray_Sl_std_string_Sg__CopyFromArray__SWIG_0(VtArray< std::string > *self,std::string *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(std::string));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(std::string));
+  }
 SWIGINTERN void VtArray_Sl_std_string_Sg__CopyToArray__SWIG_1(VtArray< std::string > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(std::string));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(std::string));
+  }
 SWIGINTERN void VtArray_Sl_std_string_Sg__CopyFromArray__SWIG_1(VtArray< std::string > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(std::string));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(std::string));
+  }
 SWIGINTERN std::string const &VtArray_Sl_std_string_Sg__GetValue(VtArray< std::string > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_std_string_Sg__SetValue(VtArray< std::string > *self,int index,std::string const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_TfToken_Sg__Equals(VtArray< TfToken > const &lhs,VtArray< TfToken > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_TfToken_Sg__ToString(VtArray< TfToken > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_TfToken_Sg__CopyToArray__SWIG_0(VtArray< TfToken > *self,TfToken *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(TfToken));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(TfToken));
+  }
 SWIGINTERN void VtArray_Sl_TfToken_Sg__CopyFromArray__SWIG_0(VtArray< TfToken > *self,TfToken *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(TfToken));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(TfToken));
+  }
 SWIGINTERN void VtArray_Sl_TfToken_Sg__CopyToArray__SWIG_1(VtArray< TfToken > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(TfToken));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(TfToken));
+  }
 SWIGINTERN void VtArray_Sl_TfToken_Sg__CopyFromArray__SWIG_1(VtArray< TfToken > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(TfToken));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(TfToken));
+  }
 SWIGINTERN TfToken const &VtArray_Sl_TfToken_Sg__GetValue(VtArray< TfToken > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_TfToken_Sg__SetValue(VtArray< TfToken > *self,int index,TfToken const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_unsigned_SS_char_Sg__Equals(VtArray< unsigned char > const &lhs,VtArray< unsigned char > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_unsigned_SS_char_Sg__ToString(VtArray< unsigned char > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_char_Sg__CopyToArray__SWIG_0(VtArray< unsigned char > *self,unsigned char *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(unsigned char));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(unsigned char));
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_char_Sg__CopyFromArray__SWIG_0(VtArray< unsigned char > *self,unsigned char *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(unsigned char));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(unsigned char));
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_char_Sg__CopyToArray__SWIG_1(VtArray< unsigned char > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(unsigned char));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(unsigned char));
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_char_Sg__CopyFromArray__SWIG_1(VtArray< unsigned char > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(unsigned char));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(unsigned char));
+  }
 SWIGINTERN unsigned char const &VtArray_Sl_unsigned_SS_char_Sg__GetValue(VtArray< unsigned char > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_char_Sg__SetValue(VtArray< unsigned char > *self,int index,unsigned char const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_uint64_t_Sg__Equals(VtArray< unsigned long long > const &lhs,VtArray< unsigned long long > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_uint64_t_Sg__ToString(VtArray< uint64_t > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_uint64_t_Sg__CopyToArray__SWIG_0(VtArray< uint64_t > *self,unsigned long long *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(unsigned long long));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(unsigned long long));
+  }
 SWIGINTERN void VtArray_Sl_uint64_t_Sg__CopyFromArray__SWIG_0(VtArray< uint64_t > *self,unsigned long long *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(unsigned long long));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(unsigned long long));
+  }
 SWIGINTERN void VtArray_Sl_uint64_t_Sg__CopyToArray__SWIG_1(VtArray< uint64_t > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(unsigned long long));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(unsigned long long));
+  }
 SWIGINTERN void VtArray_Sl_uint64_t_Sg__CopyFromArray__SWIG_1(VtArray< uint64_t > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(unsigned long long));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(unsigned long long));
+  }
 SWIGINTERN unsigned long long const &VtArray_Sl_uint64_t_Sg__GetValue(VtArray< uint64_t > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_uint64_t_Sg__SetValue(VtArray< uint64_t > *self,int index,unsigned long long const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_unsigned_SS_int_Sg__Equals(VtArray< unsigned int > const &lhs,VtArray< unsigned int > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_unsigned_SS_int_Sg__ToString(VtArray< unsigned int > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_int_Sg__CopyToArray__SWIG_0(VtArray< unsigned int > *self,unsigned int *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(unsigned int));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(unsigned int));
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_int_Sg__CopyFromArray__SWIG_0(VtArray< unsigned int > *self,unsigned int *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(unsigned int));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(unsigned int));
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_int_Sg__CopyToArray__SWIG_1(VtArray< unsigned int > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(unsigned int));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(unsigned int));
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_int_Sg__CopyFromArray__SWIG_1(VtArray< unsigned int > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(unsigned int));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(unsigned int));
+  }
 SWIGINTERN unsigned int const &VtArray_Sl_unsigned_SS_int_Sg__GetValue(VtArray< unsigned int > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_unsigned_SS_int_Sg__SetValue(VtArray< unsigned int > *self,int index,unsigned int const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec2d_Sg__Equals(VtArray< GfVec2d > const &lhs,VtArray< GfVec2d > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec2d_Sg__ToString(VtArray< GfVec2d > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec2d_Sg__CopyToArray__SWIG_0(VtArray< GfVec2d > *self,GfVec2d *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2d_Sg__CopyFromArray__SWIG_0(VtArray< GfVec2d > *self,GfVec2d *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2d_Sg__CopyToArray__SWIG_1(VtArray< GfVec2d > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2d_Sg__CopyFromArray__SWIG_1(VtArray< GfVec2d > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2d));
+  }
 SWIGINTERN GfVec2d const &VtArray_Sl_GfVec2d_Sg__GetValue(VtArray< GfVec2d > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec2d_Sg__SetValue(VtArray< GfVec2d > *self,int index,GfVec2d const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec2f_Sg__Equals(VtArray< GfVec2f > const &lhs,VtArray< GfVec2f > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec2f_Sg__ToString(VtArray< GfVec2f > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec2f_Sg__CopyToArray__SWIG_0(VtArray< GfVec2f > *self,GfVec2f *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2f));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2f_Sg__CopyFromArray__SWIG_0(VtArray< GfVec2f > *self,GfVec2f *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2f));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2f_Sg__CopyToArray__SWIG_1(VtArray< GfVec2f > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2f));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2f_Sg__CopyFromArray__SWIG_1(VtArray< GfVec2f > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2f));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2f));
+  }
 SWIGINTERN GfVec2f const &VtArray_Sl_GfVec2f_Sg__GetValue(VtArray< GfVec2f > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec2f_Sg__SetValue(VtArray< GfVec2f > *self,int index,GfVec2f const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec2h_Sg__Equals(VtArray< GfVec2h > const &lhs,VtArray< GfVec2h > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec2h_Sg__ToString(VtArray< GfVec2h > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec2h_Sg__CopyToArray__SWIG_0(VtArray< GfVec2h > *self,GfVec2h *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2h));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2h_Sg__CopyFromArray__SWIG_0(VtArray< GfVec2h > *self,GfVec2h *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2h));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2h_Sg__CopyToArray__SWIG_1(VtArray< GfVec2h > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2h));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2h_Sg__CopyFromArray__SWIG_1(VtArray< GfVec2h > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2h));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2h));
+  }
 SWIGINTERN GfVec2h const &VtArray_Sl_GfVec2h_Sg__GetValue(VtArray< GfVec2h > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec2h_Sg__SetValue(VtArray< GfVec2h > *self,int index,GfVec2h const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec2i_Sg__Equals(VtArray< GfVec2i > const &lhs,VtArray< GfVec2i > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec2i_Sg__ToString(VtArray< GfVec2i > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec2i_Sg__CopyToArray__SWIG_0(VtArray< GfVec2i > *self,GfVec2i *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2i));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2i_Sg__CopyFromArray__SWIG_0(VtArray< GfVec2i > *self,GfVec2i *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2i));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2i_Sg__CopyToArray__SWIG_1(VtArray< GfVec2i > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec2i));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec2i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec2i_Sg__CopyFromArray__SWIG_1(VtArray< GfVec2i > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec2i));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec2i));
+  }
 SWIGINTERN GfVec2i const &VtArray_Sl_GfVec2i_Sg__GetValue(VtArray< GfVec2i > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec2i_Sg__SetValue(VtArray< GfVec2i > *self,int index,GfVec2i const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec3d_Sg__Equals(VtArray< GfVec3d > const &lhs,VtArray< GfVec3d > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec3d_Sg__ToString(VtArray< GfVec3d > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec3d_Sg__CopyToArray__SWIG_0(VtArray< GfVec3d > *self,GfVec3d *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3d_Sg__CopyFromArray__SWIG_0(VtArray< GfVec3d > *self,GfVec3d *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3d_Sg__CopyToArray__SWIG_1(VtArray< GfVec3d > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3d_Sg__CopyFromArray__SWIG_1(VtArray< GfVec3d > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3d));
+  }
 SWIGINTERN GfVec3d const &VtArray_Sl_GfVec3d_Sg__GetValue(VtArray< GfVec3d > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec3d_Sg__SetValue(VtArray< GfVec3d > *self,int index,GfVec3d const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec3f_Sg__Equals(VtArray< GfVec3f > const &lhs,VtArray< GfVec3f > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec3f_Sg__ToString(VtArray< GfVec3f > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec3f_Sg__CopyToArray__SWIG_0(VtArray< GfVec3f > *self,GfVec3f *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3f));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3f_Sg__CopyFromArray__SWIG_0(VtArray< GfVec3f > *self,GfVec3f *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3f));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3f_Sg__CopyToArray__SWIG_1(VtArray< GfVec3f > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3f));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3f_Sg__CopyFromArray__SWIG_1(VtArray< GfVec3f > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3f));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3f));
+  }
 SWIGINTERN GfVec3f const &VtArray_Sl_GfVec3f_Sg__GetValue(VtArray< GfVec3f > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec3f_Sg__SetValue(VtArray< GfVec3f > *self,int index,GfVec3f const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec3h_Sg__Equals(VtArray< GfVec3h > const &lhs,VtArray< GfVec3h > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec3h_Sg__ToString(VtArray< GfVec3h > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec3h_Sg__CopyToArray__SWIG_0(VtArray< GfVec3h > *self,GfVec3h *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3h));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3h_Sg__CopyFromArray__SWIG_0(VtArray< GfVec3h > *self,GfVec3h *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3h));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3h_Sg__CopyToArray__SWIG_1(VtArray< GfVec3h > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3h));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3h_Sg__CopyFromArray__SWIG_1(VtArray< GfVec3h > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3h));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3h));
+  }
 SWIGINTERN GfVec3h const &VtArray_Sl_GfVec3h_Sg__GetValue(VtArray< GfVec3h > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec3h_Sg__SetValue(VtArray< GfVec3h > *self,int index,GfVec3h const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec3i_Sg__Equals(VtArray< GfVec3i > const &lhs,VtArray< GfVec3i > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec3i_Sg__ToString(VtArray< GfVec3i > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec3i_Sg__CopyToArray__SWIG_0(VtArray< GfVec3i > *self,GfVec3i *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3i));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3i_Sg__CopyFromArray__SWIG_0(VtArray< GfVec3i > *self,GfVec3i *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3i));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3i_Sg__CopyToArray__SWIG_1(VtArray< GfVec3i > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec3i));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec3i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec3i_Sg__CopyFromArray__SWIG_1(VtArray< GfVec3i > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec3i));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec3i));
+  }
 SWIGINTERN GfVec3i const &VtArray_Sl_GfVec3i_Sg__GetValue(VtArray< GfVec3i > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec3i_Sg__SetValue(VtArray< GfVec3i > *self,int index,GfVec3i const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec4d_Sg__Equals(VtArray< GfVec4d > const &lhs,VtArray< GfVec4d > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec4d_Sg__ToString(VtArray< GfVec4d > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec4d_Sg__CopyToArray__SWIG_0(VtArray< GfVec4d > *self,GfVec4d *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4d_Sg__CopyFromArray__SWIG_0(VtArray< GfVec4d > *self,GfVec4d *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4d_Sg__CopyToArray__SWIG_1(VtArray< GfVec4d > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4d));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4d));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4d_Sg__CopyFromArray__SWIG_1(VtArray< GfVec4d > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4d));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4d));
+  }
 SWIGINTERN GfVec4d const &VtArray_Sl_GfVec4d_Sg__GetValue(VtArray< GfVec4d > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec4d_Sg__SetValue(VtArray< GfVec4d > *self,int index,GfVec4d const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec4f_Sg__Equals(VtArray< GfVec4f > const &lhs,VtArray< GfVec4f > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec4f_Sg__ToString(VtArray< GfVec4f > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec4f_Sg__CopyToArray__SWIG_0(VtArray< GfVec4f > *self,GfVec4f *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4f));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4f_Sg__CopyFromArray__SWIG_0(VtArray< GfVec4f > *self,GfVec4f *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4f));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4f_Sg__CopyToArray__SWIG_1(VtArray< GfVec4f > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4f));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4f));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4f_Sg__CopyFromArray__SWIG_1(VtArray< GfVec4f > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4f));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4f));
+  }
 SWIGINTERN GfVec4f const &VtArray_Sl_GfVec4f_Sg__GetValue(VtArray< GfVec4f > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec4f_Sg__SetValue(VtArray< GfVec4f > *self,int index,GfVec4f const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec4h_Sg__Equals(VtArray< GfVec4h > const &lhs,VtArray< GfVec4h > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec4h_Sg__ToString(VtArray< GfVec4h > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec4h_Sg__CopyToArray__SWIG_0(VtArray< GfVec4h > *self,GfVec4h *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4h));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4h_Sg__CopyFromArray__SWIG_0(VtArray< GfVec4h > *self,GfVec4h *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4h));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4h_Sg__CopyToArray__SWIG_1(VtArray< GfVec4h > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4h));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4h));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4h_Sg__CopyFromArray__SWIG_1(VtArray< GfVec4h > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4h));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4h));
+  }
 SWIGINTERN GfVec4h const &VtArray_Sl_GfVec4h_Sg__GetValue(VtArray< GfVec4h > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec4h_Sg__SetValue(VtArray< GfVec4h > *self,int index,GfVec4h const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 SWIGINTERN bool VtArray_Sl_GfVec4i_Sg__Equals(VtArray< GfVec4i > const &lhs,VtArray< GfVec4i > const &rhs){
-		return lhs == rhs;
-	}
+    return lhs == rhs;
+  }
 SWIGINTERN std::string VtArray_Sl_GfVec4i_Sg__ToString(VtArray< GfVec4i > *self){
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 SWIGINTERN void VtArray_Sl_GfVec4i_Sg__CopyToArray__SWIG_0(VtArray< GfVec4i > *self,GfVec4i *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4i));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4i_Sg__CopyFromArray__SWIG_0(VtArray< GfVec4i > *self,GfVec4i *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4i));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4i_Sg__CopyToArray__SWIG_1(VtArray< GfVec4i > *self,void *dest){ 
-		memcpy(dest, self->data(), self->size() * sizeof(GfVec4i));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(GfVec4i));
+  }
 SWIGINTERN void VtArray_Sl_GfVec4i_Sg__CopyFromArray__SWIG_1(VtArray< GfVec4i > *self,void *src){ 
-		memcpy(self->data(), src, self->size() * sizeof(GfVec4i));
-	}
+    memcpy(self->data(), src, self->size() * sizeof(GfVec4i));
+  }
 SWIGINTERN GfVec4i const &VtArray_Sl_GfVec4i_Sg__GetValue(VtArray< GfVec4i > *self,int index){
-		return (*self)[index];
-	}
+    return (*self)[index];
+  }
 SWIGINTERN void VtArray_Sl_GfVec4i_Sg__SetValue(VtArray< GfVec4i > *self,int index,GfVec4i const &value){
-		(*self)[index] = value;
-	}
+    (*self)[index] = value;
+  }
 
 #include "pxr/base/vt/value.h"
 
@@ -3590,7 +3590,7 @@ extern void VtValueTouint(VtValue const& value, unsigned int* output) {
 }
 
 SWIGINTERN bool VtValue_Equals(VtValue const &lhs,VtValue const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int VtValue_GetHashCode(VtValue *self){
     return (int)TfHash()(self);
@@ -3611,7 +3611,7 @@ SWIGINTERN int VtValue_GetHashCode(VtValue *self){
 #include "pxr/usd/sdf/valueTypeName.h"
 
 SWIGINTERN bool SdfValueTypeName_Equals(SdfValueTypeName const &lhs,SdfValueTypeName const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
     return (int)TfHash()(self);
@@ -3729,7 +3729,7 @@ SWIGINTERN int SdfValueTypeName_GetHashCode(SdfValueTypeName *self){
 #include "pxr/usd/sdf/assetPath.h"
 
 SWIGINTERN bool SdfAssetPath_Equals(SdfAssetPath const &lhs,SdfAssetPath const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int SdfAssetPath_GetHashCode(SdfAssetPath *self){
     return (int)TfHash()(self);
@@ -3834,7 +3834,7 @@ SWIGINTERN void std_vector_Sl_SdfPath_Sg__SetRange(std::vector< SdfPath > *self,
   }
 
 SWIGINTERN bool SdfPath_Equals(SdfPath const &lhs,SdfPath const &rhs){
-	return lhs == rhs;
+  return lhs == rhs;
   }
 
 #include "pxr/usd/sdf/layerOffset.h"
@@ -4218,9 +4218,9 @@ SWIGINTERN void std_vector_Sl_SdfLayerHandle_Sg__SetRange(std::vector< SdfLayerH
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 SWIGINTERN std::string SdfLayer_ExportToString(SdfLayer const *self){
-	std::string str;
-	self->ExportToString(&str);
-	return str;
+  std::string str;
+  self->ExportToString(&str);
+  return str;
   }
 
 #include "pxr/base/vt/value.h"
@@ -4228,11 +4228,11 @@ SWIGINTERN std::string SdfLayer_ExportToString(SdfLayer const *self){
 #include "pxr/usd/usd/common.h"
 
 SWIGINTERN VtValue const &UsdMetadataValueMap_GetValue(UsdMetadataValueMap const *self,TfToken const &key){
-		return self->at(key);
-	}
+    return self->at(key);
+  }
 SWIGINTERN void UsdMetadataValueMap_SetValue(UsdMetadataValueMap *self,TfToken const &key,VtValue const &value){
-		(*self)[key] = value;
-	}
+    (*self)[key] = value;
+  }
 
 #include "pxr/usd/usd/common.h"
 
@@ -4258,13 +4258,13 @@ SWIGINTERN UsdPrim UsdPrimRange_iterator_GetCurrent(UsdPrimRange::iterator *self
     return **self;
   }
 SWIGINTERN bool UsdPrimRange_iterator_Equals(UsdPrimRange::iterator const &lhs,UsdPrimRange::iterator const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int UsdPrimRange_iterator_GetHashCode(UsdPrimRange::iterator *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN bool UsdPrimRange_Equals(UsdPrimRange const &lhs,UsdPrimRange const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int UsdPrimRange_GetHashCode(UsdPrimRange *self){
     return (int)TfHash()(self);
@@ -4281,7 +4281,7 @@ SWIGINTERN int UsdPrimRange_GetHashCode(UsdPrimRange *self){
 SWIGINTERN std::vector< UsdPrim > UsdStage_GetAllPrims(UsdStage *self){
     std::vector<UsdPrim> targets;
     for (auto&& p : self->Traverse()) { targets.push_back(p); }
-	  return targets;
+    return targets;
   }
 SWIGINTERN std::vector< UsdPrim > UsdStage_GetAllPrimsByType(UsdStage *self,std::string typeName){
     std::vector<UsdPrim> targets;
@@ -4290,14 +4290,14 @@ SWIGINTERN std::vector< UsdPrim > UsdStage_GetAllPrimsByType(UsdStage *self,std:
         targets.push_back(p);
       }
     }
-	  return targets;
+    return targets;
   }
 SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPaths(UsdStage *self){
     std::vector<SdfPath> targets;
     for (auto&& p : self->Traverse()) {
       targets.push_back(p.GetPath());
     }
-	  return targets;
+    return targets;
   }
 SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std::string typeName){
     std::vector<SdfPath> targets;
@@ -4306,7 +4306,7 @@ SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std:
         targets.push_back(p.GetPath());
       }
     }
-	  return targets;
+    return targets;
   }
 
 #include "pxr/usd/usd/stageCache.h"
@@ -4318,20 +4318,20 @@ SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std:
 #include "pxr/usd/usd/object.h"
 
 SWIGINTERN bool UsdObject_Equals(UsdObject const &lhs,UsdObject const &rhs){
-	return lhs == rhs;
+  return lhs == rhs;
   }
 SWIGINTERN bool UsdObject__IsValid(UsdObject *self){
-	return bool(*self);
+  return bool(*self);
   }
 SWIGINTERN VtValue UsdObject_GetMetadata(UsdObject const *self,TfToken key){
-	VtValue v;
-	self->GetMetadata(key, &v);
-	return v;
+  VtValue v;
+  self->GetMetadata(key, &v);
+  return v;
   }
 SWIGINTERN VtValue UsdObject_GetMetadataByDictKey(UsdObject const *self,TfToken const &key,TfToken const &keyPath){
-	VtValue v;
-	self->GetMetadataByDictKey(key, keyPath, &v);
-	return v;
+  VtValue v;
+  self->GetMetadataByDictKey(key, keyPath, &v);
+  return v;
   }
 
 #include "pxr/usd/usd/prim.h"
@@ -4446,7 +4446,7 @@ SWIGINTERN UsdPrim UsdPrimSiblingIterator_GetCurrent(UsdPrimSiblingIterator *sel
     return **self;
   }
 SWIGINTERN bool UsdPrimSiblingIterator_Equals(UsdPrimSiblingIterator const &lhs,UsdPrimSiblingIterator const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int UsdPrimSiblingIterator_GetHashCode(UsdPrimSiblingIterator *self){
     return (int)TfHash()(self);
@@ -4458,7 +4458,7 @@ SWIGINTERN UsdPrim UsdPrimSubtreeIterator_GetCurrent(UsdPrimSubtreeIterator *sel
     return **self;
   }
 SWIGINTERN bool UsdPrimSubtreeIterator_Equals(UsdPrimSubtreeIterator const &lhs,UsdPrimSubtreeIterator const &rhs){
-	  return lhs == rhs;
+    return lhs == rhs;
   }
 SWIGINTERN int UsdPrimSubtreeIterator_GetHashCode(UsdPrimSubtreeIterator *self){
     return (int)TfHash()(self);
@@ -4669,14 +4669,14 @@ SWIGINTERN void std_vector_Sl_UsdRelationship_Sg__SetRange(std::vector< UsdRelat
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 SWIGINTERN SdfPathVector UsdRelationship_GetTargets(UsdRelationship *self){
-	SdfPathVector targets;
-	self->GetTargets(&targets);
-	return targets;
+  SdfPathVector targets;
+  self->GetTargets(&targets);
+  return targets;
   }
 SWIGINTERN SdfPathVector UsdRelationship_GetForwardedTargets(UsdRelationship const *self){
-   	SdfPathVector targets;
-	self->GetForwardedTargets(&targets);
-	return targets;
+     SdfPathVector targets;
+  self->GetForwardedTargets(&targets);
+  return targets;
    }
 
 #include "pxr/usd/usd/attribute.h"
@@ -4773,24 +4773,24 @@ SWIGINTERN void std_vector_Sl_UsdAttribute_Sg__SetRange(std::vector< UsdAttribut
         std::copy(values.begin(), values.end(), self->begin()+index);
       }
 SWIGINTERN std::vector< double > UsdAttribute_GetTimeSamples(UsdAttribute const *self){
-	std::vector<double> v;
-	self->GetTimeSamples(&v);
-	return v;
+  std::vector<double> v;
+  self->GetTimeSamples(&v);
+  return v;
   }
 SWIGINTERN std::vector< double > UsdAttribute_GetTimeSamplesInInterval(UsdAttribute const *self,GfInterval const &interval){
-	std::vector<double> v;
-	self->GetTimeSamplesInInterval(interval, &v);
-	return v;
+  std::vector<double> v;
+  self->GetTimeSamplesInInterval(interval, &v);
+  return v;
   }
 SWIGINTERN VtValue UsdAttribute_Get__SWIG_3(UsdAttribute const *self){
-	VtValue v;
-	self->Get(&v);
-	return v;
+  VtValue v;
+  self->Get(&v);
+  return v;
   }
 SWIGINTERN VtValue UsdAttribute_Get__SWIG_4(UsdAttribute const *self,UsdTimeCode time){
-	VtValue v;
-	self->Get(&v, time);
-	return v;
+  VtValue v;
+  self->Get(&v, time);
+  return v;
   }
 
 #include "pxr/usd/usd/variantSets.h"
@@ -4808,14 +4808,14 @@ SWIGINTERN VtValue UsdAttribute_Get__SWIG_4(UsdAttribute const *self,UsdTimeCode
 #include "pxr/usd/usd/schemaBase.h"
 
 SWIGINTERN bool UsdSchemaBase_Equals(UsdSchemaBase const &lhs,UsdSchemaBase const &rhs){
-	  return bool(lhs) == bool(rhs) && (!bool(lhs) || lhs.GetPrim() == rhs.GetPrim());
+    return bool(lhs) == bool(rhs) && (!bool(lhs) || lhs.GetPrim() == rhs.GetPrim());
   }
 SWIGINTERN int UsdSchemaBase_GetHashCode(UsdSchemaBase *self){
     return (int)TfHash()(self);
   }
 SWIGINTERN bool UsdSchemaBase__IsValid(UsdSchemaBase *self){
-		return bool(*self);
-	}
+    return bool(*self);
+  }
 
 #include "pxr/usd/usd/typed.h"
 
@@ -5985,7 +5985,7 @@ SWIGINTERN void std_vector_Sl_TaskCallback_Sg__SetRange(std::vector< TaskCallbac
 
 
 void SetEnv(std::string name, std::string value) {
-	ArchSetEnv(name, value, true);
+  ArchSetEnv(name, value, true);
 }
 
 VtValue GetFusedTransform(UsdPrim prim, UsdTimeCode time) {

@@ -43,11 +43,11 @@ public class UsdTimeCode : global::System.IDisposable {
     public static implicit operator UsdTimeCode (double value) {
         return new UsdTimeCode(value);
     }
-	public static bool operator==(UsdTimeCode lhs, UsdTimeCode rhs){
-	    // The Swig binding glew will re-enter this operator comparing to null, so 
-		// that case must be handled explicitly to avoid an infinite loop. This is still
-		// not great, since it crosses the C#/C++ barrier twice. A better approache might
-		// be to return a simple value from C++ that can be compared in C#.
+  public static bool operator==(UsdTimeCode lhs, UsdTimeCode rhs){
+      // The Swig binding glew will re-enter this operator comparing to null, so 
+    // that case must be handled explicitly to avoid an infinite loop. This is still
+    // not great, since it crosses the C#/C++ barrier twice. A better approache might
+    // be to return a simple value from C++ that can be compared in C#.
         bool lnull = lhs as object == null;
         bool rnull = rhs as object == null;
         return (lnull == rnull) && ((lnull && rnull) || UsdTimeCode.Equals(lhs, rhs));
@@ -55,9 +55,9 @@ public class UsdTimeCode : global::System.IDisposable {
     public static bool operator !=(UsdTimeCode lhs, UsdTimeCode rhs) {
         return !(lhs == rhs);
     }
-	override public bool Equals(object rhs) {
-		return UsdTimeCode.Equals(this, rhs as UsdTimeCode);
-	}
+  override public bool Equals(object rhs) {
+    return UsdTimeCode.Equals(this, rhs as UsdTimeCode);
+  }
 
   public UsdTimeCode(double t) : this(UsdCsPINVOKE.new_UsdTimeCode__SWIG_0(t), true) {
   }
