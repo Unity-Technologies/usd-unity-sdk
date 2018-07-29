@@ -250,15 +250,9 @@ namespace USD.NET {
       var tfAttrName = new pxr.TfToken(attribute);
       foreach(var child in Stage.GetAllPrims()) {
         if (child.GetPath() == SdfPath.AbsoluteRootPath()) {
-          Console.WriteLine("Was abs: {0}", child.GetPath());
-
-          continue;
-        }
-        if (child.GetTypeName() != "Mesh") {
           continue;
         }
 
-        Console.WriteLine(child.GetPath());
         if (!child.GetPath().HasPrefix(sdfRootPath)) {
           continue;
         }
