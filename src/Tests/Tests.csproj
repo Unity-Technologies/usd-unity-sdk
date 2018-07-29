@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Tests.Program</StartupObject>
+    <StartupObject>Tests.UnitTestDriver</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -86,13 +86,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cases\Basic.cs" />
+    <Compile Include="Cases\BasicTests.cs" />
     <Compile Include="Cases\MeshTests.cs" />
     <Compile Include="Cases\StageTests.cs" />
-    <Compile Include="Cases\UnityIO.cs" />
+    <Compile Include="Cases\UnityIoTests.cs" />
     <Compile Include="Cases\UsdGeomTests.cs" />
     <Compile Include="Cases\UsdShadeTests.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="UnitTestDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\DiagnosticHandler.cs" />
     <Compile Include="UnitTest.cs" />

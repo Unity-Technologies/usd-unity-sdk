@@ -18,7 +18,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Tests.Cases {
-  class UnityIO : UnitTest {
+  class UnityIoTests : UnitTest {
 
     class QuaternionSample : USD.NET.SampleBase {
       public Quaternion quaternion;
@@ -115,21 +115,21 @@ namespace Tests.Cases {
       }
     }
 
-    public static void TestQuaternion() {
+    public static void QuaternionTest() {
       var sample = QuaternionSample.GetTestSample();
       var sample2 = new QuaternionSample();
       WriteAndRead(ref sample, ref sample2, true);
       sample2.Verify();
     }
 
-    public static void TestVectors() {
+    public static void VectorsTest() {
       var sample = VectorSample.GetTestSample();
       var sample2 = new VectorSample();
       WriteAndRead(ref sample, ref sample2, true);
       sample2.Verify();
     }
 
-    public static void TestXform() {
+    public static void XformTest() {
       var sample = new USD.NET.Unity.XformSample();
       var sample2 = new USD.NET.Unity.XformSample();
 
@@ -164,7 +164,7 @@ namespace Tests.Cases {
       AssertEqual(sample.xformOpOrder, sample2.xformOpOrder);
     }
 
-    public static void TestXform2() {
+    public static void Xform2Test() {
       var sample = new USD.NET.Unity.XformSample();
       var sample2 = new USD.NET.Unity.XformSample();
 

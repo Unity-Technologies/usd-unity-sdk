@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Tests.Cases {
-  class Basic : UnitTest {
+  class BasicTests : UnitTest {
 
     class MinimalSample : USD.NET.SampleBase {
       public int number;
@@ -163,7 +163,7 @@ namespace Tests.Cases {
       if (sample2.number != sample.number) { throw new Exception("Values do not match"); }
     }
 
-    public static void IntrinsicTypes() {
+    public static void IntrinsicTypesTest() {
       var sample = new IntrinsicsSample();
       var sample2 = new IntrinsicsSample();
 
@@ -310,14 +310,14 @@ namespace Tests.Cases {
       AssertNotEqual(A, C);
     }
 
-    public static void TestAssetPath() {
+    public static void AssetPathTest() {
       var sample = AssetPathSample.GetTestSample();
       var sample2 = new AssetPathSample();
       WriteAndRead(ref sample, ref sample2, true);
       sample2.Verify();
     }
 
-    public static void TestPrimvars() {
+    public static void PrimvarsTest() {
       var sample = PrimvarSample.GetTestSample();
       var sample2 = new PrimvarSample();
       var scene = USD.NET.Scene.Create();

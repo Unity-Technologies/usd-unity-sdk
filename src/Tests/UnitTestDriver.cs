@@ -15,7 +15,7 @@
 using System;
 
 namespace Tests {
-  class Program {
+  class UnitTestDriver {
     // Force static initialization as early as possible.
     //   This is really only required because the system PATH needs to be modified and that must
     //   happen before any other static variables are initialized (which may be using USD).
@@ -26,8 +26,8 @@ namespace Tests {
     }
 
     static void RunTestCases() {
-      Cases.MeshTests.TestTriangulation();
-      Cases.MeshTests.TestVisibility();
+      Cases.MeshTests.TriangulationTest();
+      Cases.MeshTests.VisibilityTest();
 
       Cases.StageTests.BadPrimTest();
       Cases.StageTests.OpenFailTest();
@@ -40,21 +40,21 @@ namespace Tests {
       Cases.StageTests.YUpTest();
       Cases.StageTests.FrameRateTest();
 
-      Cases.Basic.SmokeTest();
-      Cases.Basic.IntrinsicTypes();
-      Cases.Basic.EqualityTest();
-      Cases.Basic.TestAssetPath();
-      Cases.Basic.TestPrimvars();
-      Cases.Basic.SampleBaseTest();
+      Cases.BasicTests.SmokeTest();
+      Cases.BasicTests.IntrinsicTypesTest();
+      Cases.BasicTests.EqualityTest();
+      Cases.BasicTests.AssetPathTest();
+      Cases.BasicTests.PrimvarsTest();
+      Cases.BasicTests.SampleBaseTest();
 
-      Cases.UnityIO.TestVectors();
-      Cases.UnityIO.TestQuaternion();
-      Cases.UnityIO.TestXform();
-      Cases.UnityIO.TestXform2();
+      Cases.UnityIoTests.VectorsTest();
+      Cases.UnityIoTests.QuaternionTest();
+      Cases.UnityIoTests.XformTest();
+      Cases.UnityIoTests.Xform2Test();
 
       Cases.UsdGeomTests.CurvesTest();
       Cases.UsdGeomTests.CameraTest();
-      Cases.UsdGeomTests.CameraTest2();
+      Cases.UsdGeomTests.Camera2Test();
 
       Cases.UsdShadeTests.MaterialBindTest();
 

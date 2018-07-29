@@ -62,7 +62,7 @@ namespace Tests.Cases {
       AssertEqual(basisCurves.xformOpOrder, basisCurves2.xformOpOrder);
     }
 
-    public static void CameraTest2() {
+    public static void Camera2Test() {
       CameraSample sample = new CameraSample();
       sample.transform = UnityEngine.Matrix4x4.identity;
       sample.clippingRange = new UnityEngine.Vector2(.01f, 10);
