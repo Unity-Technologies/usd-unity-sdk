@@ -257,6 +257,7 @@ namespace USD.NET {
         if (child.GetTypeName() != "Mesh") {
           continue;
         }
+
         Console.WriteLine(child.GetPath());
         if (!child.GetPath().HasPrefix(sdfRootPath)) {
           continue;
@@ -284,7 +285,7 @@ namespace USD.NET {
     }
 
     /// <summary>
-    /// Wait until all asynchronous writes complete.
+    /// Wait until all asynchronous reads complete.
     /// </summary>
     public void WaitForReads() {
       m_bgExe.Paused = false;
@@ -309,7 +310,7 @@ namespace USD.NET {
     }
 
     /// <summary>
-    /// Writes the current scene to the given file path, flattneing all references.
+    /// Writes the current scene to the given file path, flattening all references.
     /// </summary>
     /// 
     /// <remarks>
