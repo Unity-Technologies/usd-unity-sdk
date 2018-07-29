@@ -335,6 +335,19 @@ namespace Tests.Cases {
       AssertEqual(sample.nestedSample.baz, sample2.nestedSample.baz);
       AssertEqual(sample.nestedSample.garply, sample2.nestedSample.garply);
 
+      //
+      // Test deserialization without nested object instantiated.
+      //
+      sample2 = new PrimvarSample();
+      sample2.nestedSample = null;
+      scene.Read("/Foo", sample2);
+
+      AssertEqual(sample.somePrimvar, sample2.somePrimvar);
+      AssertEqual(sample.somePrimvar1, sample2.somePrimvar1);
+      AssertEqual(sample.somePrimvar2, sample2.somePrimvar2);
+      AssertEqual(sample.jointIndices, sample2.jointIndices);
+      AssertEqual(null, sample2.nestedSample);
+
     }
   }
 }

@@ -482,7 +482,9 @@ namespace USD.NET {
 
         var sample = csValue as SampleBase;
         if (sample == null) {
-          throw new Exception("Could not deserialize: Prim: " + prim.GetPath() + " namespace: " + ns);
+          // This could attempt to automatically constuct the needed object, then nullable objects
+          // could be used instead to drive deserialization.
+          return false;
         }
         Deserialize((SampleBase)csValue, prim, usdTime, usdNamespace: ns);
         return true;
