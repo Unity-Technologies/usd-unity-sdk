@@ -89,6 +89,7 @@
     <Compile Include="Cases\BasicTests.cs" />
     <Compile Include="Cases\MeshTests.cs" />
     <Compile Include="Cases\StageTests.cs" />
+    <Compile Include="Cases\TimeSampleTests.cs" />
     <Compile Include="Cases\UnityIoTests.cs" />
     <Compile Include="Cases\UsdGeomTests.cs" />
     <Compile Include="Cases\UsdShadeTests.cs" />

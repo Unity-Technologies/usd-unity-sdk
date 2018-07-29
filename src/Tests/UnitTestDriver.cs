@@ -58,6 +58,8 @@ namespace Tests {
 
       Cases.UsdShadeTests.MaterialBindTest();
 
+      Cases.TimeSampleTests.ComputeKeyFramesTest();
+
       Console.ReadKey();
     }
 
