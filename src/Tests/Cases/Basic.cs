@@ -127,6 +127,32 @@ namespace Tests.Cases {
       }
     }
 
+    class InheritNonSampleBaseSample : USD.NET.SampleBase {
+      [USD.NET.UsdNamespace("foo")]
+      public NonSampleBaseSample nonSampleBase;
+
+      public class NonSampleBaseSample {
+        public int foo = 0;
+      }
+    }
+
+    class LateBoundSample : USD.NET.SampleBase {
+      public object intValue;
+      public object doubleValue;
+
+      [USD.NET.UsdNamespace("nested")]
+      public NestedLate nestedLate;
+
+      public class NestedLate : USD.NET.SampleBase {
+        public object floatValue = 0.0f;
+        public NestedLate() {
+        }
+        public NestedLate(float v) {
+          floatValue = v;
+        }
+      }
+    }
+
     public static void SmokeTest() {
       var sample = new MinimalSample();
       var sample2 = new MinimalSample();
@@ -349,5 +375,37 @@ namespace Tests.Cases {
       AssertEqual(null, sample2.nestedSample);
 
     }
+
+    public static void SampleBaseTest() {
+      var scene = USD.NET.Scene.Create();
+      var s1 = new InheritNonSampleBaseSample();
+      var s2 = new InheritNonSampleBaseSample();
+
+      try {
+        s1.nonSampleBase = new InheritNonSampleBaseSample.NonSampleBaseSample();
+        scene.Write("/Foo", s1);
+      } catch (ArgumentException) {
+        Console.WriteLine("Non-SampleBase sample successfully threw exception on Write");
+      }
+
+      try {
+        s2.nonSampleBase = new InheritNonSampleBaseSample.NonSampleBaseSample();
+        scene.Read("/Foo", s2);
+      } catch (ArgumentException) {
+        Console.WriteLine("Non-SampleBase sample successfully threw exception on Read\n");
+      }
+
+      var late1 = new LateBoundSample();
+      var late2 = new LateBoundSample();
+      late1.intValue = 42;
+      late1.doubleValue = 99.44;
+      late1.nestedLate = new LateBoundSample.NestedLate(.1f);
+      
+      late2.nestedLate = new LateBoundSample.NestedLate();
+      WriteAndRead(ref late1, ref late2, true);
+
+      scene.Close();
+    }
+
   }
 }

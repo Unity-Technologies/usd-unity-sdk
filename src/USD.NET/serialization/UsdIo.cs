@@ -300,6 +300,11 @@ namespace USD.NET {
           return false;
         }
 
+        var sample = csValue as SampleBase;
+        if (sample == null && csValue != null) {
+          throw new ArgumentException("Type does not inherit from SampleBase: " + attrName);
+        }
+
         Serialize(csValue, prim, usdTime, usdNamespace: ns);
         return true;
       }
@@ -481,11 +486,15 @@ namespace USD.NET {
         }
 
         var sample = csValue as SampleBase;
-        if (sample == null) {
+        if (csValue == null) {
           // This could attempt to automatically constuct the needed object, then nullable objects
           // could be used instead to drive deserialization.
           return false;
+        } else if (sample == null) {
+          // In this case, csValue is not null, but also cannot be converted to SampleBase.
+          throw new ArgumentException("Type does not inherit from SampleBase: " + attrName);
         }
+
         Deserialize((SampleBase)csValue, prim, usdTime, usdNamespace: ns);
         return true;
       }

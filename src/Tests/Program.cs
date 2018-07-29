@@ -45,6 +45,7 @@ namespace Tests {
       Cases.Basic.EqualityTest();
       Cases.Basic.TestAssetPath();
       Cases.Basic.TestPrimvars();
+      Cases.Basic.SampleBaseTest();
 
       Cases.UnityIO.TestVectors();
       Cases.UnityIO.TestQuaternion();
