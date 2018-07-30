@@ -92,6 +92,7 @@
     <Compile Include="Cases\TimeSampleTests.cs" />
     <Compile Include="Cases\UnityIoTests.cs" />
     <Compile Include="Cases\UsdGeomTests.cs" />
+    <Compile Include="Cases\UsdPreviewSurfaceTests.cs" />
     <Compile Include="Cases\UsdShadeTests.cs" />
     <Compile Include="UnitTestDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
