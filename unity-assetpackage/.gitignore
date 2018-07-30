@@ -4,3 +4,4 @@
 /unity-assetpackage.sln
 *.suo
 *.pdb
+*.CSharp.Editor.csproj
