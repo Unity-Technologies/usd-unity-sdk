@@ -46,7 +46,6 @@ namespace Tests.Cases {
       cube.size = 1;
 
       var material = new MaterialSample();
-      material.surface.defaultValue = Color.magenta;
       material.surface.connectedPath = shaderPath + ".outputs:out";
 
       var shader = new StandardShaderSample();

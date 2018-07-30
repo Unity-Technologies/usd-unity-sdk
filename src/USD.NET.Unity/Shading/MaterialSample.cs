@@ -21,8 +21,11 @@ namespace USD.NET.Unity {
   [UsdSchema("Material")]
   public class MaterialSample : SampleBase {
 
-    [UsdNamespace("outputs:glslfx")]
-    public Connectable<UnityEngine.Color> surface = new Connectable<UnityEngine.Color>();
+    [UsdNamespace("outputs")]
+    public Connectable<TfToken> surface = new Connectable<TfToken>();
+
+    [UsdNamespace("outputs")]
+    public Connectable<TfToken> displacement = new Connectable<TfToken>();
 
     // A material instance may require specific keywords to be enabled with respect to the shader
     // configuration. This attribute enables the material writer to include required keywords.
