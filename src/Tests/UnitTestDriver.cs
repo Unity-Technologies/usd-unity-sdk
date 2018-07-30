@@ -60,6 +60,10 @@ namespace Tests {
 
       Cases.TimeSampleTests.ComputeKeyFramesTest();
 
+      Cases.UsdShadeTests.MaterialBindTest();
+
+      Cases.UsdPreviewSurfaceTests.ReadWriteTest();
+
       Console.ReadKey();
     }
 
