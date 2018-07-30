@@ -291,7 +291,7 @@ namespace USD.NET {
 
       var conn = csValue as Connectable;
       if (conn != null) {
-        csType = conn.GetValue().GetType();
+        csType = conn.GetValueType();
         csValue = conn.GetValue();
       }
 
@@ -353,6 +353,13 @@ namespace USD.NET {
           paths.Add(new pxr.SdfPath(conn.GetConnectedPath()));
         }
         attr.SetConnections(paths);
+      }
+
+      // This may happen when a connection is present, but has a null default value.
+      // Because the connection is applied just before this point, this is the earliest possible
+      // exit point.
+      if (csValue == null) {
+        return true;
       }
 
       pxr.VtValue vtValue = binding.toVtValue(csValue);
