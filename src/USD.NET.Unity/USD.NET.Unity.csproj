@@ -79,8 +79,8 @@
     <Compile Include="Shading\ShaderAttributes.cs" />
     <Compile Include="Shading\ShaderSample.cs" />
     <Compile Include="Shading\UsdPreviewSurface\PreviewSurfaceSample.cs" />
-    <Compile Include="Shading\StandardShaderSample.cs" />
-    <Compile Include="Shading\Texture2DSample.cs" />
+    <Compile Include="Shading\UnityNative\StandardShaderSample.cs" />
+    <Compile Include="Shading\UnityNative\Texture2DSample.cs" />
     <Compile Include="DiagnosticHandler.cs" />
     <Compile Include="UnityTypeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
