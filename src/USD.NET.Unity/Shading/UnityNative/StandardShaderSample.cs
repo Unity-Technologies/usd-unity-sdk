@@ -20,6 +20,10 @@ namespace USD.NET.Unity {
   [UsdSchema("Shader")]
   public class StandardShaderSample : ShaderSample {
 
+    public StandardShaderSample() {
+      id = new pxr.TfToken("Unity.Standard");
+    }
+
     [InputParameter("_Color")]
     public Connectable<Color> albedo = new Connectable<Color>(Color.white);
 
