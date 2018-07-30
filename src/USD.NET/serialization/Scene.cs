@@ -435,6 +435,7 @@ namespace USD.NET {
       return s;
     }
 
+    #region "Private API"
     // ----------------------------------------------------------------------------------------- //
     // Private API
     // ----------------------------------------------------------------------------------------- //
@@ -490,6 +491,8 @@ namespace USD.NET {
       get;
       set;
     }
+
+    #endregion
 
     private Dictionary<string, pxr.SdfPath> m_pathMap = new Dictionary<string, SdfPath>();
     private Dictionary<SdfPath, pxr.UsdPrim> m_primMap = new Dictionary<SdfPath, UsdPrim>();
