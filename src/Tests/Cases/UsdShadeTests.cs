@@ -49,7 +49,6 @@ namespace Tests.Cases {
       material.surface.connectedPath = shaderPath + ".outputs:out";
 
       var shader = new StandardShaderSample();
-      shader.id = new pxr.TfToken("Unity.Standard");
       shader.albedo.defaultValue = Color.white;
       shader.albedo.connectedPath = texturePath + ".outputs:out";
 
@@ -57,6 +56,9 @@ namespace Tests.Cases {
       texture.sourceFile.defaultValue = @"C:\A\Bogus\Texture\Path.png";
       texture.sRgb = true;
 
+      scene.Write("/Model", new XformSample());
+      scene.Write("/Model/Geom", new XformSample());
+      scene.Write("/Model/Materials", new XformSample());
       scene.Write(cubePath, cube);
       scene.Write(materialPath, material);
       scene.Write(shaderPath, shader);

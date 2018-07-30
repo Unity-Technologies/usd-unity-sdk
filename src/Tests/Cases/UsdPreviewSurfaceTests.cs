@@ -48,7 +48,6 @@ namespace Tests.Cases {
       material.surface.connectedPath = shaderPath + ".outputs:result";
 
       var shader = new PreviewSurfaceSample();
-      shader.id = new TfToken("Unity.Standard");
       shader.diffuseColor.defaultValue = Vector3.one;
       shader.diffuseColor.connectedPath = texturePath + ".outputs:rgb";
 
@@ -58,6 +57,9 @@ namespace Tests.Cases {
       var primvarReader = new PrimvarReaderSample<Vector2>();
       primvarReader.varname.defaultValue = new TfToken("st");
 
+      scene.Write("/Model", new XformSample());
+      scene.Write("/Model/Geom", new XformSample());
+      scene.Write("/Model/Materials", new XformSample());
       scene.Write(cubePath, cube);
       scene.Write(materialPath, material);
       scene.Write(shaderPath, shader);
