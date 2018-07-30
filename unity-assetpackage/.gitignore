@@ -3,3 +3,4 @@
 /unity-assetpackage.CSharp.csproj
 /unity-assetpackage.sln
 *.suo
+*.pdb
