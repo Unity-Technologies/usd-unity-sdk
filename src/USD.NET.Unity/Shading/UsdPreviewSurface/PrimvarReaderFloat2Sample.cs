@@ -66,7 +66,7 @@ namespace USD.NET.Unity {
     [InputParameter("_Fallback")]
     public Connectable<T> fallback = new Connectable<T>();
 
-    public class Outputs {
+    public class Outputs : SampleBase {
       public T result;
     }
 

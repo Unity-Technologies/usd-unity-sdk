@@ -133,7 +133,7 @@ namespace USD.NET.Unity {
     /// UsdShadeOutput to carry typeName information that may be useful to a renderer or shading
     /// system.
     /// </remarks>
-    public class Outputs {
+    public class Outputs : SampleBase {
       public pxr.TfToken displacement;
       public pxr.TfToken surface;
     }

@@ -40,7 +40,7 @@ namespace USD.NET.Unity {
     /// @textures/occlusion.<UDIM>.tex@
     /// </summary>
     [InputParameter("_File")]
-    public Connectable<pxr.SdfAssetPath> diffuseColor = new Connectable<pxr.SdfAssetPath>(new pxr.SdfAssetPath(""));
+    public Connectable<pxr.SdfAssetPath> file = new Connectable<pxr.SdfAssetPath>(new pxr.SdfAssetPath(""));
 
     /// <summary>
     /// Texture coordinate to use to fetch this texture.  This node defines a mathematical/cartesian
@@ -94,7 +94,7 @@ namespace USD.NET.Unity {
     /// both the single a output and the a component of the rgba outputs will be set to the second
     /// channel's value.
     /// </remarks>
-    public class Outputs {
+    public class Outputs : SampleBase {
       public float r;
       public float g;
       public float b;
