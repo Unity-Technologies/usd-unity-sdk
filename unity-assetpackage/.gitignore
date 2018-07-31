@@ -4,4 +4,7 @@
 /unity-assetpackage.sln
 *.suo
 *.pdb
+*.pdb.meta
+*.mdb
+*.mdb.meta
 *.CSharp.Editor.csproj
