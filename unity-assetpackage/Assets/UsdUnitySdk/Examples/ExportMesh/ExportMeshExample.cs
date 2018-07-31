@@ -288,7 +288,6 @@ namespace USD.NET.Examples {
       string shaderPath = usdMaterialPath + "/StandardShader";
 
       var material = new USD.NET.Unity.MaterialSample();
-      material.surface.defaultValue = Color.magenta;
       material.surface.connectedPath = shaderPath + ".outputs:out";
 
       var shader = new StandardShaderSample();

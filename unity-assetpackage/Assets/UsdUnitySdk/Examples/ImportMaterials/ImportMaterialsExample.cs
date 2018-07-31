@@ -252,7 +252,6 @@ namespace USD.NET.Examples {
       // Setup Material.
       //
       var material = new MaterialSample();
-      material.surface.defaultValue = Color.magenta;
       material.surface.connectedPath = shaderPath + ".outputs:out";
 
       // Various shader keywords are required to enable the standard shader to work as intended,
