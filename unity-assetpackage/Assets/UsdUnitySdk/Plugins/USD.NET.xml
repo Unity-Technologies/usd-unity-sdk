@@ -169,6 +169,12 @@
             here is limited to per vertex only.
             </summary>
         </member>
+        <member name="M:USD.NET.Reflect.GetPrimvarElementSize(System.Reflection.MemberInfo)">
+            <summary>
+            When this member info represents a Primvar (see IsPrimvar), the element size indicates the
+            number of array elements to be aggregated per element on the primitive surface.
+            </summary>
+        </member>
         <member name="M:USD.NET.Reflect.IsFusedDisplayColor(System.Reflection.MemberInfo)">
             <summary>
             Indicates DisplayColor and DisplayOpacity have been fused into a single object in Unity.
@@ -373,12 +379,6 @@
             These values are defined by USD, thus are limited to Y and Z.
             </remarks>
         </member>
-        <member name="F:USD.NET.Scene.kVersion">
-            <summary>
-            Declares the file format version of the serializer, written with all serialized data on the
-            UsdPrim of the serialized object as customData metadata.
-            </summary>
-        </member>
         <member name="P:USD.NET.Scene.Stage">
             <summary>
             Gets the underlying UsdStage for this scene, if available.
@@ -476,7 +476,7 @@
         </member>
         <member name="M:USD.NET.Scene.WaitForReads">
             <summary>
-            Wait until all asynchronous writes complete.
+            Wait until all asynchronous reads complete.
             </summary>
         </member>
         <member name="M:USD.NET.Scene.Save">
@@ -492,7 +492,7 @@
         </member>
         <member name="M:USD.NET.Scene.FlattenAs(System.String)">
             <summary>
-            Writes the current scene to the given file path, flattneing all references.
+            Writes the current scene to the given file path, flattening all references.
             </summary>
             
             <remarks>
