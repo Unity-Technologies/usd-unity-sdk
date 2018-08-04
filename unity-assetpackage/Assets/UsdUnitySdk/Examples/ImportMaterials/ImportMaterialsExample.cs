@@ -252,7 +252,7 @@ namespace USD.NET.Examples {
       // Setup Material.
       //
       var material = new MaterialSample();
-      material.surface.connectedPath = shaderPath + ".outputs:out";
+      material.surface.SetConnectedPath(shaderPath, "outputs:out");
 
       // Various shader keywords are required to enable the standard shader to work as intended,
       // while these can be encoded as part of the schema, often they require some logic (e.g. is
@@ -275,25 +275,25 @@ namespace USD.NET.Examples {
       shader.enableGlossyReflections.defaultValue = true;
 
       shader.albedo.defaultValue = Color.white;
-      shader.albedoMap.connectedPath = albedoMapPath + ".outputs:out";
+      shader.albedoMap.SetConnectedPath(albedoMapPath, "outputs:out");
 
       shader.normalMapScale.defaultValue = 0.76f;
-      shader.normalMap.connectedPath = normalMapPath + ".outputs:out";
+      shader.normalMap.SetConnectedPath(normalMapPath, "outputs:out");
 
       shader.emission.defaultValue = Color.white * 0.3f;
-      shader.emissionMap.connectedPath = emissionMapPath + ".outputs:out";
-      
-      shader.metallicMap.connectedPath = metallicMapPath + ".outputs:out";
+      shader.emissionMap.SetConnectedPath(emissionMapPath, "outputs:out");
+
+      shader.metallicMap.SetConnectedPath(metallicMapPath, "outputs:out");
 
       shader.occlusionMapScale.defaultValue = 0.65f;
-      shader.occlusionMap.connectedPath = occlusionMapPath + ".outputs:out";
+      shader.occlusionMap.SetConnectedPath(occlusionMapPath, "outputs:out");
 
       shader.parallaxMapScale.defaultValue = 0.1f;
-      shader.parallaxMap.connectedPath = parallaxMapPath + ".outputs:out";
+      shader.parallaxMap.SetConnectedPath(parallaxMapPath, "outputs:out");
 
-      shader.detailMask.connectedPath = detailMaskPath;
+      shader.detailMask.SetConnectedPath(detailMaskPath);
       shader.detailNormalMapScale.defaultValue = .05f;
-      shader.detailNormalMap.connectedPath = detailNormalMapPath + ".outputs:out";
+      shader.detailNormalMap.SetConnectedPath(detailNormalMapPath, "outputs:out");
 
       //
       // Setup Textures.

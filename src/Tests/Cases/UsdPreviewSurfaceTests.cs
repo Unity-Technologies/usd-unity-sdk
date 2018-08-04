@@ -45,11 +45,11 @@ namespace Tests.Cases {
       cube.size = 1;
 
       var material = new MaterialSample();
-      material.surface.connectedPath = shaderPath + ".outputs:result";
+      material.surface.SetConnectedPath(shaderPath, "outputs:result");
 
       var shader = new PreviewSurfaceSample();
       shader.diffuseColor.defaultValue = Vector3.one;
-      shader.diffuseColor.connectedPath = texturePath + ".outputs:rgb";
+      shader.diffuseColor.SetConnectedPath(texturePath, "outputs:rgb");
 
       var texture = new TextureReaderSample();
       texture.file.defaultValue = new SdfAssetPath(@"C:\A\Bogus\Texture\Path.png");

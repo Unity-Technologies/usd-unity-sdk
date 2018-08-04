@@ -46,11 +46,11 @@ namespace Tests.Cases {
       cube.size = 1;
 
       var material = new MaterialSample();
-      material.surface.connectedPath = shaderPath + ".outputs:out";
+      material.surface.SetConnectedPath(shaderPath, "outputs:out");
 
       var shader = new StandardShaderSample();
       shader.albedo.defaultValue = Color.white;
-      shader.albedo.connectedPath = texturePath + ".outputs:out";
+      shader.albedo.SetConnectedPath(texturePath, "outputs:out");
 
       var texture = new Texture2DSample();
       texture.sourceFile.defaultValue = @"C:\A\Bogus\Texture\Path.png";

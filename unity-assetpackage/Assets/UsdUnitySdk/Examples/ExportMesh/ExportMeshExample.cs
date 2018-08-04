@@ -288,7 +288,7 @@ namespace USD.NET.Examples {
       string shaderPath = usdMaterialPath + "/StandardShader";
 
       var material = new USD.NET.Unity.MaterialSample();
-      material.surface.connectedPath = shaderPath + ".outputs:out";
+      material.surface.SetConnectedPath(shaderPath, "outputs:out");
 
       var shader = new StandardShaderSample();
       shader.id = new pxr.TfToken("Unity.Standard");
