@@ -23,6 +23,31 @@ using UnityEngine;
 namespace Tests.Cases {
   class UsdShadeTests : UnitTest {
 
+    /// <summary>
+    /// Read and write materials with as little code as possible.
+    /// </summary>
+    public static void MaterialIoTest() {
+      var scene = Scene.Create();
+      scene.Write("/Model/Geom/Cube", new CubeSample(1.0));
+      scene.Write("/Model/Geom/Cube", new MaterialBindingSample("/Model/Materials/SampleMat"));
+      scene.Write("/Model/Materials/SampleMat", new MaterialSample("/Model/Materials/PrevewShader.outputs:result"));
+
+      var previewSurface = new PreviewSurfaceSample();
+      previewSurface.diffuseColor.SetConnectedPath("/Model/Materials/Tex.outputs:result");
+      scene.Write("/Model/Materials/PrevewShader", previewSurface);
+      scene.Write("/Model/Materials/Tex", new TextureReaderSample("C:\\foo\\bar.png"));
+
+      PrintScene(scene);
+
+      var cube = new CubeSample();
+      scene.Read("/Model/Geom/Cube", cube);
+      var binding = new MaterialBindingSample();
+      scene.Read("/Model/Geom/Cube", binding);
+      var material = new MaterialSample();
+      scene.Read(binding.binding.GetOnlyTarget(), material);
+      var shader = new PreviewSurfaceSample();
+      scene.Read(material.surface.GetConnectedPath(), shader);
+    }
     public static void MaterialBindTest() {
 
       // Game plan:

@@ -57,6 +57,7 @@ namespace Tests {
       Cases.UsdGeomTests.Camera2Test();
 
       Cases.UsdShadeTests.MaterialBindTest();
+      Cases.UsdShadeTests.MaterialIoTest();
 
       Cases.TimeSampleTests.ComputeKeyFramesTest();
 
