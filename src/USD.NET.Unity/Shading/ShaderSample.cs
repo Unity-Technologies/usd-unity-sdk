@@ -36,6 +36,7 @@ namespace USD.NET.Unity {
     // Helper functions.
     // ------------------------------------------------------------------------------------------ //
 
+    #region "Private Helpers"
     private System.Type GetClassType() {
       return this.GetType();
     }
@@ -43,6 +44,7 @@ namespace USD.NET.Unity {
     private object GetValue(FieldInfo info) {
       return info.GetValue(this);
     }
+    #endregion
 
     public IEnumerable<ParameterInfo> GetInputParameters() {
       var inputParamType = typeof(InputParameterAttribute);
@@ -84,5 +86,6 @@ namespace USD.NET.Unity {
         yield return param;
       }
     }
+
   }
 }
