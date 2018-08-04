@@ -19,6 +19,13 @@ namespace USD.NET.Unity {
   /// </summary>
   [System.Serializable]
   public class MaterialBindingSample : SampleBase {
+    public MaterialBindingSample() : base() {
+    }
+
+    public MaterialBindingSample(string materialPath) : base() {
+      binding = new Relationship(materialPath);
+    }
+
     [UsdNamespace("material")]
     public Relationship binding;
   }
