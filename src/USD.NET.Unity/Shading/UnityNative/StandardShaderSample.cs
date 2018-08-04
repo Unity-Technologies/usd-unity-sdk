@@ -24,6 +24,11 @@ namespace USD.NET.Unity {
       id = new pxr.TfToken("Unity.Standard");
     }
 
+    // Note that this is not an input/parameter to be copied, it is a fundamental quality of the
+    // shader that must be handled by the importer.
+    [UsdNamespace("info")]
+    public bool enableGpuInstancing;
+
     [InputParameter("_Color")]
     public Connectable<Color> albedo = new Connectable<Color>(Color.white);
 

@@ -27,11 +27,6 @@ namespace USD.NET.Unity {
     [UsdNamespace("info")]
     public pxr.TfToken id;
 
-    // Note that this is not an input/parameter to be copied, it is a fundamental quality of the
-    // shader that must be handled by the importer.
-    [UsdNamespace("info")]
-    public bool enableGpuInstancing;
-
     // ------------------------------------------------------------------------------------------ //
     // Helper functions.
     // ------------------------------------------------------------------------------------------ //
