@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifdef _WINDOWS
+#if defined(_WIN64)
 #include <Windows.h>
 #endif
 
@@ -97,7 +97,7 @@ CsharpDelegate* CsharpDelegate::m_instance = NULL;
 #include <mutex>
 std::once_flag reg;
 
-#if defined(_WINDOWS)
+#if defined(_WIN64)
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
 #endif
 #if defined(__APPLE__)
