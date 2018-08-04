@@ -108,7 +108,13 @@
             https://graphics.pixar.com/usd/docs/UsdPreviewSurface-Proposal.html
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:USD.NET.Unity.TextureReaderSample.file" -->
+        <member name="F:USD.NET.Unity.TextureReaderSample.file">
+            <summary>
+            Path to the texture.  Following the 1.36 MaterialX spec, Mari UDIM substitution in file
+            values uses the "UDIM" token, so for example in USD, we might see a value
+            @textures/occlusion.UDIM.tex@
+            </summary>
+        </member>
         <member name="F:USD.NET.Unity.TextureReaderSample.st">
             <summary>
             Texture coordinate to use to fetch this texture.  This node defines a mathematical/cartesian
