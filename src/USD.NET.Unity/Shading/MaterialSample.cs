@@ -21,6 +21,18 @@ namespace USD.NET.Unity {
   [UsdSchema("Material")]
   public class MaterialSample : SampleBase {
 
+    public MaterialSample() : base(){
+    }
+
+    public MaterialSample(string surfacePath) : base() {
+      surface.SetConnectedPath(surfacePath);
+    }
+
+    public MaterialSample(string surfacePath, string displacementPath) : base() {
+      surface.SetConnectedPath(surfacePath);
+      displacement.SetConnectedPath(displacementPath);
+    }
+
     [UsdNamespace("outputs")]
     public Connectable<TfToken> surface = new Connectable<TfToken>();
 
