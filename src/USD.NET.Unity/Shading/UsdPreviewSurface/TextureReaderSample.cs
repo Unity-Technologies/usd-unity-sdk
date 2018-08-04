@@ -23,8 +23,17 @@ namespace USD.NET.Unity {
   [UsdSchema("Shader")]
   public class TextureReaderSample : ShaderSample {
 
-    public TextureReaderSample() {
+    public TextureReaderSample() : base() {
       id = new pxr.TfToken("UsdUVTexture");
+    }
+
+    public TextureReaderSample(string filePath) : this() {
+      file.defaultValue = new pxr.SdfAssetPath(filePath);
+    }
+
+    public TextureReaderSample(string filePath, string stConnectionPath) : this() {
+      file.defaultValue = new pxr.SdfAssetPath(filePath);
+      st.SetConnectedPath(stConnectionPath);
     }
 
     public enum WrapMode {
@@ -36,11 +45,12 @@ namespace USD.NET.Unity {
 
     /// <summary>
     /// Path to the texture.  Following the 1.36 MaterialX spec, Mari UDIM substitution in file
-    /// values uses the "<UDIM>" token, so for example in USD, we might see a value
-    /// @textures/occlusion.<UDIM>.tex@
+    /// values uses the "UDIM" token, so for example in USD, we might see a value
+    /// @textures/occlusion.UDIM.tex@
     /// </summary>
     [InputParameter("_File")]
-    public Connectable<pxr.SdfAssetPath> file = new Connectable<pxr.SdfAssetPath>(new pxr.SdfAssetPath(""));
+    public Connectable<pxr.SdfAssetPath> file =
+        new Connectable<pxr.SdfAssetPath>(new pxr.SdfAssetPath(""));
 
     /// <summary>
     /// Texture coordinate to use to fetch this texture.  This node defines a mathematical/cartesian
