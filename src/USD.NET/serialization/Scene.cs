@@ -212,6 +212,52 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// Gets the UsdPrim at the given path, retuns null if the UsdPrim is invalid.
+    /// Therefore, if the return value is not null, IsValid need not be checked.
+    /// </summary>
+    public UsdPrim GetPrimAtPath(string primPath) {
+      var p = Stage.GetPrimAtPath(new SdfPath(primPath));
+      if (p == null || !p.IsValid()) {
+        return null;
+      }
+      return p;
+    }
+
+    /// <summary>
+    /// Gets the UsdAttribute at the given path, retuns null if the UsdAttribute is invalid.
+    /// Therefore, if the return value is not null, IsValid need not be checked.
+    /// </summary>
+    public UsdAttribute GetAttributeAtPath(string attrPath) {
+      var attrSdfPath = new SdfPath(attrPath);
+      var p = Stage.GetPrimAtPath(attrSdfPath.GetPrimPath());
+      if (p == null || !p.IsValid()) {
+        return null;
+      }
+      var a = p.GetAttribute(attrSdfPath.GetNameToken());
+      if (a == null || !a.IsValid()) {
+        return null;
+      }
+      return a;
+    }
+
+    /// <summary>
+    /// Gets the UsdRelationship at the given path, retuns null if the UsdRelationship is invalid.
+    /// Therefore, if the return value is not null, IsValid need not be checked.
+    /// </summary>
+    public UsdRelationship GetRelationshipAtPath(string relPath) {
+      var relSdfPath = new SdfPath(relPath);
+      var p = Stage.GetPrimAtPath(relSdfPath.GetPrimPath());
+      if (p == null || !p.IsValid()) {
+        return null;
+      }
+      var rel = p.GetRelationship(relSdfPath.GetNameToken());
+      if (rel == null || !rel.IsValid()) {
+        return null;
+      }
+      return rel;
+    }
+
+    /// <summary>
     /// Release any open files and stop asynchronous execution.
     /// </summary>
     public void Close() {

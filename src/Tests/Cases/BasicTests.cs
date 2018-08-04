@@ -21,6 +21,7 @@ namespace Tests.Cases {
 
     class MinimalSample : USD.NET.SampleBase {
       public int number;
+      public USD.NET.Relationship rel;
     }
 
     class IntrinsicsSample : USD.NET.SampleBase {
@@ -160,7 +161,7 @@ namespace Tests.Cases {
       sample.number = 42;
       WriteAndRead(ref sample, ref sample2, true);
 
-      if (sample2.number != sample.number) { throw new Exception("Values do not match"); }
+      AssertEqual(sample2.number, sample.number);
     }
 
     public static void IntrinsicTypesTest() {
@@ -407,5 +408,22 @@ namespace Tests.Cases {
       scene.Close();
     }
 
+    public static void GetUsdObjectsTest() {
+      var scene = USD.NET.Scene.Create();
+      var sample = new MinimalSample();
+      sample.number = 45;
+      sample.rel = new USD.NET.Relationship("/Foo");
+      
+      scene.Write("/Foo", sample);
+      PrintScene(scene);
+
+      AssertTrue(scene.GetPrimAtPath("/Foo") != null);
+      AssertTrue(scene.GetAttributeAtPath("/Foo.number") != null);
+      AssertTrue(scene.GetRelationshipAtPath("/Foo.rel") != null);
+
+      AssertTrue(scene.GetPrimAtPath("/Prim/Does/Not/Exist") == null);
+      AssertTrue(scene.GetRelationshipAtPath("/Foo.number") == null);
+      AssertTrue(scene.GetAttributeAtPath("/Foo.rel") == null);
+    }
   }
 }

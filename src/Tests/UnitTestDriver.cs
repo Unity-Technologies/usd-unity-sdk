@@ -46,6 +46,7 @@ namespace Tests {
       Cases.BasicTests.AssetPathTest();
       Cases.BasicTests.PrimvarsTest();
       Cases.BasicTests.SampleBaseTest();
+      Cases.BasicTests.GetUsdObjectsTest();
 
       Cases.UnityIoTests.VectorsTest();
       Cases.UnityIoTests.QuaternionTest();
