@@ -48,8 +48,8 @@ namespace Tests.Cases {
       var shader = new PreviewSurfaceSample();
       scene.Read(material.surface.GetConnectedPath(), shader);
     }
-    public static void MaterialBindTest() {
 
+    public static void MaterialBindTest() {
       // Game plan:
       //   1. Create a cube
       //   2. Create a material
