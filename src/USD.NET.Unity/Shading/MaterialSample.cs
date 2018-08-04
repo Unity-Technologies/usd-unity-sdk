@@ -17,7 +17,7 @@ using pxr;
 
 namespace USD.NET.Unity {
 
-  [System.Serializable]
+  [Serializable]
   [UsdSchema("Material")]
   public class MaterialSample : SampleBase {
 
