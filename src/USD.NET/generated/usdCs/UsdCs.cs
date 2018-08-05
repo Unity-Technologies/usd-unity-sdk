@@ -16,12 +16,6 @@ public class UsdCs {
     return ret;
   }
 
-  public static string TfVStringPrintf(string fmt, SWIGTYPE_p_va_list ap) {
-    string ret = UsdCsPINVOKE.TfVStringPrintf__SWIG_0(fmt, SWIGTYPE_p_va_list.getCPtr(ap));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public static string TfSafeString(string ptr) {
     string ret = UsdCsPINVOKE.TfSafeString(ptr);
     return ret;

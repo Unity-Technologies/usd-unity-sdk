@@ -638,9 +638,6 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfStringPrintf")]
   public static extern string TfStringPrintf(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfVStringPrintf__SWIG_0")]
-  public static extern string TfVStringPrintf__SWIG_0(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfSafeString")]
   public static extern string TfSafeString(string jarg1);
 

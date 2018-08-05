@@ -3569,7 +3569,7 @@ extern unsigned char VtValueTobyte(VtValue const& value) {
   if (value.IsHolding<unsigned char>()) {
     return value.UncheckedGet<unsigned char>();
   }
-  return '0';
+  return (unsigned char)(0);
 }
 extern void VtValueTobyte(VtValue const& value, unsigned char* output) {
   if (value.IsHolding<unsigned char>()) {
@@ -3581,7 +3581,7 @@ extern unsigned int VtValueTouint(VtValue const& value) {
   if (value.IsHolding<unsigned int>()) {
     return value.UncheckedGet<unsigned int>();
   }
-  return 0;
+  return (unsigned int)(0);
 }
 extern void VtValueTouint(VtValue const& value, unsigned int* output) {
   if (value.IsHolding<unsigned int>()) {
@@ -8730,35 +8730,6 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_TfStringPrintf(char * jarg1) {
   result = TfStringPrintf((char const *)arg1,arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_TfVStringPrintf__SWIG_0(char * jarg1, void * jarg2) {
-#if defined(__APPLE__)
-  return 0;
-#else
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  va_list arg2 ;
-  va_list *argp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  argp2 = (va_list *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null va_list", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = TfVStringPrintf((std::string const &)*arg1,arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-#endif
 }
 
 

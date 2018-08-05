@@ -716,7 +716,7 @@ extern unsigned char VtValueTobyte(VtValue const& value) {
   if (value.IsHolding<unsigned char>()) {
     return value.UncheckedGet<unsigned char>();
   }
-  return unsigned char();
+  return (unsigned char)(0);
 }
 extern void VtValueTobyte(VtValue const& value, unsigned char* output) {
   if (value.IsHolding<unsigned char>()) {
@@ -728,7 +728,7 @@ extern unsigned int VtValueTouint(VtValue const& value) {
   if (value.IsHolding<unsigned int>()) {
     return value.UncheckedGet<unsigned int>();
   }
-  return unsigned int();
+  return (unsigned int)(0);
 }
 extern void VtValueTouint(VtValue const& value, unsigned int* output) {
   if (value.IsHolding<unsigned int>()) {
