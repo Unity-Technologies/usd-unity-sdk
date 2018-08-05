@@ -88,8 +88,8 @@ public class SdfValueTypeName : global::System.IDisposable {
     return ret;
   }
 
-  public ulong GetHash() {
-    ulong ret = UsdCsPINVOKE.SdfValueTypeName_GetHash(swigCPtr);
+  public uint GetHash() {
+    uint ret = UsdCsPINVOKE.SdfValueTypeName_GetHash(swigCPtr);
     return ret;
   }
 
