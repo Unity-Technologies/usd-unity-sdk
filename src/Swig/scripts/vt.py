@@ -45,6 +45,22 @@ extern void VtValueTo{csTypeName}(VtValue const& value, {typeName}* output) {{
     *output = value.UncheckedGet<{typeName}>();
   }}
 }}"""
+#
+# accessorAlt is required because some compilers don't see unsigned int() as the type constructor.
+# unsigned int and unsigned byte are the two types known to cause issues.
+#
+accessorAlt = """
+extern {typeName} VtValueTo{csTypeName}(VtValue const& value) {{
+  if (value.IsHolding<{typeName}>()) {{
+    return value.UncheckedGet<{typeName}>();
+  }}
+  return ({typeName})(0);
+}}
+extern void VtValueTo{csTypeName}(VtValue const& value, {typeName}* output) {{
+  if (value.IsHolding<{typeName}>()) {{
+    *output = value.UncheckedGet<{typeName}>();
+  }}
+}}"""
 accessorPost = "%}"
 
 arrayDeclPre =""
@@ -132,7 +148,11 @@ def genVtValue(basePath, copyright):
         print >> f, accessorPre
         for tn in sorted(typeInfos.keys()):
             ti = typeInfos[tn]
-            print >> f, accessor.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName)
+            # unsigned int/char need special handling so they compile on OSX.
+            if tn == "unsigned int" or tn == "unsigned char":
+              print >> f, accessorAlt.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName)
+            else:
+              print >> f, accessor.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName)
         print >> f, accessorPost
 
     with open(vtArrayTypes, "w") as f:
