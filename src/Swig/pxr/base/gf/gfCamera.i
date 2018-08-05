@@ -15,13 +15,9 @@
 %module gfBBox3d
 
 %{
-#include "pxr/base/gf/bBox3d.h"
+#include "pxr/base/gf/camera.h"
 %}
 
 WRAP_EQUAL(GfCamera)
 
-namespace std {
-  %template (GfVec4fVector) vector<GfVec4f>;
-}
-
-%include "pxr/base/gf/bBox3d.h"
+%include "pxr/base/gf/camera.h"
