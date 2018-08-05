@@ -24,7 +24,7 @@ public class UsdBuildPostProcess {
   public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
   {
 #if UNITY_EDITOR_OSX
-	return;
+    return;
 #else
     var source = Application.dataPath + "/UsdUnitySdk/Plugins";
     var destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");

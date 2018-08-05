@@ -53,7 +53,7 @@ namespace USD.NET.Examples {
 #if (UNITY_EDITOR_WIN)
       supPath += @"/UsdUnitySdk/Plugins/x86_64/share/";
 #elif (UNITY_EDITOR_OSX)
-	  supPath += @"/UsdUnitySdk/Plugins/x86_64/UsdCs.bundle/Contents/Resources/share/";
+      supPath += @"/UsdUnitySdk/Plugins/x86_64/UsdCs.bundle/Contents/Resources/share/";
 #elif (UNITY_STANDALONE_WIN)
       supPath += @"/Plugins/share/";
 #elif (UNITY_STANDALONE_OSX)
