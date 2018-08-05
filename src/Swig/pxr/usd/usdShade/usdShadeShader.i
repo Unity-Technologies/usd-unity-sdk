@@ -15,7 +15,7 @@
 %module UsdShadeShader
 %{
 #include "pxr/usd/usdShade/shader.h"
-#include "pxr/usd/usdShade/connectableApi.h"
+#include "pxr/usd/usdShade/connectableAPI.h"
 %}
 
 %include "pxr/usd/usdShade/shader.h"
