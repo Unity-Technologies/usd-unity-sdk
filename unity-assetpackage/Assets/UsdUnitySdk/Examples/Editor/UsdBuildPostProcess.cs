@@ -23,6 +23,9 @@ public class UsdBuildPostProcess {
   [PostProcessBuildAttribute(1)]
   public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
   {
+#if UNITY_EDITOR_OSX
+	return;
+#else
     var source = Application.dataPath + "/UsdUnitySdk/Plugins";
     var destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
 
@@ -34,5 +37,6 @@ public class UsdBuildPostProcess {
     // We need to copy the whole share folder and this one plugInfo.json file
     FileUtil.CopyFileOrDirectory(source+"/x86_64/share", destination+"/share");
     FileUtil.CopyFileOrDirectory(source+"/x86_64/plugInfo.json", destination+"/plugInfo.json");
+#endif
   }
 }
