@@ -106,7 +106,7 @@ __attribute__((constructor)) void DllMain() {
   std::call_once(reg, [] {
     TfDiagnosticMgr::GetInstance().AddDelegate(CsharpDelegate::GetInstance());
   });
-#if defined(_WINDOWS)
+#if defined(_WIN64)
   _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
   return true;
 #endif
