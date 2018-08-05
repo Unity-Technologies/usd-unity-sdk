@@ -1475,146 +1475,74 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PlugRegistry_GetDataFromPluginMetaData")]
   public static extern global::System.IntPtr PlugRegistry_GetDataFromPluginMetaData(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_APERTURE_UNIT_get")]
-  public static extern double GfCamera_APERTURE_UNIT_get();
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_0")]
+  public static extern global::System.IntPtr new_GfBBox3d__SWIG_0();
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_FOCAL_LENGTH_UNIT_get")]
-  public static extern double GfCamera_FOCAL_LENGTH_UNIT_get();
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_1")]
+  public static extern global::System.IntPtr new_GfBBox3d__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_DEFAULT_HORIZONTAL_APERTURE_get")]
-  public static extern double GfCamera_DEFAULT_HORIZONTAL_APERTURE_get();
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_2")]
+  public static extern global::System.IntPtr new_GfBBox3d__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_DEFAULT_VERTICAL_APERTURE_get")]
-  public static extern double GfCamera_DEFAULT_VERTICAL_APERTURE_get();
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_3")]
+  public static extern global::System.IntPtr new_GfBBox3d__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_0")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8, global::System.Runtime.InteropServices.HandleRef jarg9, float jarg10, float jarg11);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Set")]
+  public static extern void GfBBox3d_Set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_1")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8, global::System.Runtime.InteropServices.HandleRef jarg9, float jarg10);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_SetMatrix")]
+  public static extern void GfBBox3d_SetMatrix(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_2")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8, global::System.Runtime.InteropServices.HandleRef jarg9);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_SetRange")]
+  public static extern void GfBBox3d_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_3")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetRange")]
+  public static extern global::System.IntPtr GfBBox3d_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_4")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetBox")]
+  public static extern global::System.IntPtr GfBBox3d_GetBox(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_5")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetMatrix")]
+  public static extern global::System.IntPtr GfBBox3d_GetMatrix(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_6")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetInverseMatrix")]
+  public static extern global::System.IntPtr GfBBox3d_GetInverseMatrix(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_7")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_7(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_SetHasZeroAreaPrimitives")]
+  public static extern void GfBBox3d_SetHasZeroAreaPrimitives(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_8")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_8(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_HasZeroAreaPrimitives")]
+  public static extern bool GfBBox3d_HasZeroAreaPrimitives(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_9")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_9(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetVolume")]
+  public static extern double GfBBox3d_GetVolume(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_10")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_10(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Transform")]
+  public static extern void GfBBox3d_Transform(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_11")]
-  public static extern global::System.IntPtr new_GfCamera__SWIG_11();
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_ComputeAlignedRange")]
+  public static extern global::System.IntPtr GfBBox3d_ComputeAlignedRange(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetTransform")]
-  public static extern void GfCamera_SetTransform(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_ComputeAlignedBox")]
+  public static extern global::System.IntPtr GfBBox3d_ComputeAlignedBox(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetProjection")]
-  public static extern void GfCamera_SetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Combine")]
+  public static extern global::System.IntPtr GfBBox3d_Combine(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetFocalLength")]
-  public static extern void GfCamera_SetFocalLength(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_ComputeCentroid")]
+  public static extern global::System.IntPtr GfBBox3d_ComputeCentroid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetHorizontalAperture")]
-  public static extern void GfCamera_SetHorizontalAperture(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_1")]
+  public static extern uint hash_value__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetVerticalAperture")]
-  public static extern void GfCamera_SetVerticalAperture(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Equals")]
+  public static extern bool GfBBox3d_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetHorizontalApertureOffset")]
-  public static extern void GfCamera_SetHorizontalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetHashCode")]
+  public static extern int GfBBox3d_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetVerticalApertureOffset")]
-  public static extern void GfCamera_SetVerticalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0")]
-  public static extern void GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, int jarg4, float jarg5);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1")]
-  public static extern void GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, int jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetOrthographicFromAspectRatioAndSize")]
-  public static extern void GfCamera_SetOrthographicFromAspectRatioAndSize(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, int jarg4);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetClippingRange")]
-  public static extern void GfCamera_SetClippingRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetClippingPlanes")]
-  public static extern void GfCamera_SetClippingPlanes(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetFStop")]
-  public static extern void GfCamera_SetFStop(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetFocusDistance")]
-  public static extern void GfCamera_SetFocusDistance(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetTransform")]
-  public static extern global::System.IntPtr GfCamera_GetTransform(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetProjection")]
-  public static extern int GfCamera_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetHorizontalAperture")]
-  public static extern float GfCamera_GetHorizontalAperture(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetVerticalAperture")]
-  public static extern float GfCamera_GetVerticalAperture(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetHorizontalApertureOffset")]
-  public static extern float GfCamera_GetHorizontalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetVerticalApertureOffset")]
-  public static extern float GfCamera_GetVerticalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetAspectRatio")]
-  public static extern float GfCamera_GetAspectRatio(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFocalLength")]
-  public static extern float GfCamera_GetFocalLength(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFieldOfView")]
-  public static extern float GfCamera_GetFieldOfView(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetClippingRange")]
-  public static extern global::System.IntPtr GfCamera_GetClippingRange(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetClippingPlanes")]
-  public static extern global::System.IntPtr GfCamera_GetClippingPlanes(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFrustum")]
-  public static extern global::System.IntPtr GfCamera_GetFrustum(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFStop")]
-  public static extern float GfCamera_GetFStop(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFocusDistance")]
-  public static extern float GfCamera_GetFocusDistance(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_Equals")]
-  public static extern bool GfCamera_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetHashCode")]
-  public static extern int GfCamera_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfCamera")]
-  public static extern void delete_GfCamera(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfBBox3d")]
+  public static extern void delete_GfBBox3d(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfInterval__SWIG_0")]
   public static extern global::System.IntPtr new_GfInterval__SWIG_0();
@@ -1634,8 +1562,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfInterval_Hash")]
   public static extern uint GfInterval_Hash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_1")]
-  public static extern uint hash_value__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_2")]
+  public static extern uint hash_value__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfInterval_GetMin")]
   public static extern double GfInterval_GetMin(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -1799,8 +1727,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange1f_IntersectWith")]
   public static extern global::System.IntPtr GfRange1f_IntersectWith(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_2")]
-  public static extern uint hash_value__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_3")]
+  public static extern uint hash_value__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange1f_GetDistanceSquared")]
   public static extern double GfRange1f_GetDistanceSquared(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
@@ -1892,8 +1820,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange1d_IntersectWith")]
   public static extern global::System.IntPtr GfRange1d_IntersectWith(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_3")]
-  public static extern uint hash_value__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_4")]
+  public static extern uint hash_value__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange1d_GetDistanceSquared")]
   public static extern double GfRange1d_GetDistanceSquared(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
@@ -1985,8 +1913,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange2d_IntersectWith")]
   public static extern global::System.IntPtr GfRange2d_IntersectWith(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_4")]
-  public static extern uint hash_value__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_5")]
+  public static extern uint hash_value__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange2d_GetDistanceSquared")]
   public static extern double GfRange2d_GetDistanceSquared(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -2087,8 +2015,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange3d_IntersectWith")]
   public static extern global::System.IntPtr GfRange3d_IntersectWith(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_5")]
-  public static extern uint hash_value__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_6")]
+  public static extern uint hash_value__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRange3d_GetDistanceSquared")]
   public static extern double GfRange3d_GetDistanceSquared(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -2171,8 +2099,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix2f_Get")]
   public static extern global::System.IntPtr GfMatrix2f_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_6")]
-  public static extern uint hash_value__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_7")]
+  public static extern uint hash_value__SWIG_7(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix2f_GetTranspose")]
   public static extern global::System.IntPtr GfMatrix2f_GetTranspose(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -2276,8 +2204,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix3f_Get")]
   public static extern global::System.IntPtr GfMatrix3f_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_7")]
-  public static extern uint hash_value__SWIG_7(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_8")]
+  public static extern uint hash_value__SWIG_8(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix3f_GetTranspose")]
   public static extern global::System.IntPtr GfMatrix3f_GetTranspose(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -2423,8 +2351,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix4f_Get")]
   public static extern global::System.IntPtr GfMatrix4f_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_8")]
-  public static extern uint hash_value__SWIG_8(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_9")]
+  public static extern uint hash_value__SWIG_9(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix4f_GetTranspose")]
   public static extern global::System.IntPtr GfMatrix4f_GetTranspose(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -2633,8 +2561,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix2d_Get")]
   public static extern global::System.IntPtr GfMatrix2d_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_9")]
-  public static extern uint hash_value__SWIG_9(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_10")]
+  public static extern uint hash_value__SWIG_10(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix2d_GetTranspose")]
   public static extern global::System.IntPtr GfMatrix2d_GetTranspose(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -2738,8 +2666,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix3d_Get")]
   public static extern global::System.IntPtr GfMatrix3d_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_10")]
-  public static extern uint hash_value__SWIG_10(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_11")]
+  public static extern uint hash_value__SWIG_11(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix3d_GetTranspose")]
   public static extern global::System.IntPtr GfMatrix3d_GetTranspose(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -2888,8 +2816,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix4d_Get")]
   public static extern global::System.IntPtr GfMatrix4d_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_11")]
-  public static extern uint hash_value__SWIG_11(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_12")]
+  public static extern uint hash_value__SWIG_12(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfMatrix4d_GetTranspose")]
   public static extern global::System.IntPtr GfMatrix4d_GetTranspose(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -3068,8 +2996,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2i_Set")]
   public static extern global::System.IntPtr GfVec2i_Set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_12")]
-  public static extern uint hash_value__SWIG_12(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_13")]
+  public static extern uint hash_value__SWIG_13(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2i_GetProjection")]
   public static extern global::System.IntPtr GfVec2i_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3143,8 +3071,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2h_Set__SWIG_1")]
   public static extern global::System.IntPtr GfVec2h_Set__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_13")]
-  public static extern uint hash_value__SWIG_13(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_14")]
+  public static extern uint hash_value__SWIG_14(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2h_GetProjection")]
   public static extern global::System.IntPtr GfVec2h_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3254,8 +3182,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2f_Set")]
   public static extern global::System.IntPtr GfVec2f_Set(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_14")]
-  public static extern uint hash_value__SWIG_14(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_15")]
+  public static extern uint hash_value__SWIG_15(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2f_GetProjection")]
   public static extern global::System.IntPtr GfVec2f_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3365,8 +3293,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2d_Set")]
   public static extern global::System.IntPtr GfVec2d_Set(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, double jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_15")]
-  public static extern uint hash_value__SWIG_15(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_16")]
+  public static extern uint hash_value__SWIG_16(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec2d_GetProjection")]
   public static extern global::System.IntPtr GfVec2d_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3470,8 +3398,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3i_Set")]
   public static extern global::System.IntPtr GfVec3i_Set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_16")]
-  public static extern uint hash_value__SWIG_16(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_17")]
+  public static extern uint hash_value__SWIG_17(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3i_GetProjection")]
   public static extern global::System.IntPtr GfVec3i_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3548,8 +3476,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3h_Set__SWIG_1")]
   public static extern global::System.IntPtr GfVec3h_Set__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_17")]
-  public static extern uint hash_value__SWIG_17(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_18")]
+  public static extern uint hash_value__SWIG_18(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3h_GetProjection")]
   public static extern global::System.IntPtr GfVec3h_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3692,8 +3620,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3f_Set")]
   public static extern global::System.IntPtr GfVec3f_Set(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_18")]
-  public static extern uint hash_value__SWIG_18(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_19")]
+  public static extern uint hash_value__SWIG_19(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3f_GetProjection")]
   public static extern global::System.IntPtr GfVec3f_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3836,8 +3764,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3d_Set")]
   public static extern global::System.IntPtr GfVec3d_Set(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, double jarg3, double jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_19")]
-  public static extern uint hash_value__SWIG_19(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_20")]
+  public static extern uint hash_value__SWIG_20(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3d_GetProjection")]
   public static extern global::System.IntPtr GfVec3d_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -3974,8 +3902,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4i_Set")]
   public static extern global::System.IntPtr GfVec4i_Set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_20")]
-  public static extern uint hash_value__SWIG_20(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_21")]
+  public static extern uint hash_value__SWIG_21(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4i_GetProjection")]
   public static extern global::System.IntPtr GfVec4i_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -4055,8 +3983,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4h_Set__SWIG_1")]
   public static extern global::System.IntPtr GfVec4h_Set__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_21")]
-  public static extern uint hash_value__SWIG_21(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_22")]
+  public static extern uint hash_value__SWIG_22(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4h_GetProjection")]
   public static extern global::System.IntPtr GfVec4h_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -4130,6 +4058,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfIsClose__SWIG_12")]
   public static extern bool GfIsClose__SWIG_12(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, double jarg3);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Clear")]
+  public static extern void GfVec4fVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Add")]
+  public static extern void GfVec4fVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_size")]
+  public static extern uint GfVec4fVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_capacity")]
+  public static extern uint GfVec4fVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_reserve")]
+  public static extern void GfVec4fVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfVec4fVector__SWIG_0")]
+  public static extern global::System.IntPtr new_GfVec4fVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfVec4fVector__SWIG_1")]
+  public static extern global::System.IntPtr new_GfVec4fVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfVec4fVector__SWIG_2")]
+  public static extern global::System.IntPtr new_GfVec4fVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_getitemcopy")]
+  public static extern global::System.IntPtr GfVec4fVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_getitem")]
+  public static extern global::System.IntPtr GfVec4fVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_setitem")]
+  public static extern void GfVec4fVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_AddRange")]
+  public static extern void GfVec4fVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_GetRange")]
+  public static extern global::System.IntPtr GfVec4fVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Insert")]
+  public static extern void GfVec4fVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_InsertRange")]
+  public static extern void GfVec4fVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_RemoveAt")]
+  public static extern void GfVec4fVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_RemoveRange")]
+  public static extern void GfVec4fVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Repeat")]
+  public static extern global::System.IntPtr GfVec4fVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Reverse__SWIG_0")]
+  public static extern void GfVec4fVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Reverse__SWIG_1")]
+  public static extern void GfVec4fVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_SetRange")]
+  public static extern void GfVec4fVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfVec4fVector")]
+  public static extern void delete_GfVec4fVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4f_dimension_get")]
   public static extern uint GfVec4f_dimension_get();
 
@@ -4172,8 +4166,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4f_Set")]
   public static extern global::System.IntPtr GfVec4f_Set(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_22")]
-  public static extern uint hash_value__SWIG_22(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_23")]
+  public static extern uint hash_value__SWIG_23(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4f_GetProjection")]
   public static extern global::System.IntPtr GfVec4f_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -4289,8 +4283,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4d_Set")]
   public static extern global::System.IntPtr GfVec4d_Set(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, double jarg3, double jarg4, double jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_23")]
-  public static extern uint hash_value__SWIG_23(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_24")]
+  public static extern uint hash_value__SWIG_24(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4d_GetProjection")]
   public static extern global::System.IntPtr GfVec4d_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -4433,8 +4427,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRotation_TransformDir__SWIG_1")]
   public static extern global::System.IntPtr GfRotation_TransformDir__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_24")]
-  public static extern uint hash_value__SWIG_24(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_25")]
+  public static extern uint hash_value__SWIG_25(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfRotation_Equals")]
   public static extern bool GfRotation_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -4487,8 +4481,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfQuaternion_GetInverse")]
   public static extern global::System.IntPtr GfQuaternion_GetInverse(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_25")]
-  public static extern uint hash_value__SWIG_25(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_26")]
+  public static extern uint hash_value__SWIG_26(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfSlerp__SWIG_3")]
   public static extern global::System.IntPtr GfSlerp__SWIG_3(double jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
@@ -4574,8 +4568,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfQuatf_GetInverse")]
   public static extern global::System.IntPtr GfQuatf_GetInverse(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_26")]
-  public static extern uint hash_value__SWIG_26(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_27")]
+  public static extern uint hash_value__SWIG_27(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfQuatf_Equals")]
   public static extern bool GfQuatf_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -4649,8 +4643,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfQuatd_GetInverse")]
   public static extern global::System.IntPtr GfQuatd_GetInverse(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_27")]
-  public static extern uint hash_value__SWIG_27(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_28")]
+  public static extern uint hash_value__SWIG_28(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfQuatd_Equals")]
   public static extern bool GfQuatd_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -5000,8 +4994,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfFrustum__SWIG_4")]
   public static extern global::System.IntPtr new_GfFrustum__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_28")]
-  public static extern uint hash_value__SWIG_28(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_29")]
+  public static extern uint hash_value__SWIG_29(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfFrustum")]
   public static extern void delete_GfFrustum(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -5150,140 +5144,146 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfFrustum_GetHashCode")]
   public static extern int GfFrustum_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Clear")]
-  public static extern void GfVec4fVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_APERTURE_UNIT_get")]
+  public static extern double GfCamera_APERTURE_UNIT_get();
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Add")]
-  public static extern void GfVec4fVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_FOCAL_LENGTH_UNIT_get")]
+  public static extern double GfCamera_FOCAL_LENGTH_UNIT_get();
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_size")]
-  public static extern uint GfVec4fVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_DEFAULT_HORIZONTAL_APERTURE_get")]
+  public static extern double GfCamera_DEFAULT_HORIZONTAL_APERTURE_get();
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_capacity")]
-  public static extern uint GfVec4fVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_DEFAULT_VERTICAL_APERTURE_get")]
+  public static extern double GfCamera_DEFAULT_VERTICAL_APERTURE_get();
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_reserve")]
-  public static extern void GfVec4fVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_0")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8, global::System.Runtime.InteropServices.HandleRef jarg9, float jarg10, float jarg11);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfVec4fVector__SWIG_0")]
-  public static extern global::System.IntPtr new_GfVec4fVector__SWIG_0();
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_1")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8, global::System.Runtime.InteropServices.HandleRef jarg9, float jarg10);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfVec4fVector__SWIG_1")]
-  public static extern global::System.IntPtr new_GfVec4fVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_2")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8, global::System.Runtime.InteropServices.HandleRef jarg9);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfVec4fVector__SWIG_2")]
-  public static extern global::System.IntPtr new_GfVec4fVector__SWIG_2(int jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_3")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, global::System.Runtime.InteropServices.HandleRef jarg8);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_getitemcopy")]
-  public static extern global::System.IntPtr GfVec4fVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_4")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_getitem")]
-  public static extern global::System.IntPtr GfVec4fVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_5")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_setitem")]
-  public static extern void GfVec4fVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_6")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4, float jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_AddRange")]
-  public static extern void GfVec4fVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_7")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_7(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3, float jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_GetRange")]
-  public static extern global::System.IntPtr GfVec4fVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_8")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_8(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, float jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Insert")]
-  public static extern void GfVec4fVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_9")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_9(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_InsertRange")]
-  public static extern void GfVec4fVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_10")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_10(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_RemoveAt")]
-  public static extern void GfVec4fVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfCamera__SWIG_11")]
+  public static extern global::System.IntPtr new_GfCamera__SWIG_11();
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_RemoveRange")]
-  public static extern void GfVec4fVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetTransform")]
+  public static extern void GfCamera_SetTransform(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Repeat")]
-  public static extern global::System.IntPtr GfVec4fVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetProjection")]
+  public static extern void GfCamera_SetProjection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Reverse__SWIG_0")]
-  public static extern void GfVec4fVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetFocalLength")]
+  public static extern void GfCamera_SetFocalLength(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_Reverse__SWIG_1")]
-  public static extern void GfVec4fVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetHorizontalAperture")]
+  public static extern void GfCamera_SetHorizontalAperture(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec4fVector_SetRange")]
-  public static extern void GfVec4fVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetVerticalAperture")]
+  public static extern void GfCamera_SetVerticalAperture(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfVec4fVector")]
-  public static extern void delete_GfVec4fVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetHorizontalApertureOffset")]
+  public static extern void GfCamera_SetHorizontalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_0")]
-  public static extern global::System.IntPtr new_GfBBox3d__SWIG_0();
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetVerticalApertureOffset")]
+  public static extern void GfCamera_SetVerticalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_1")]
-  public static extern global::System.IntPtr new_GfBBox3d__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0")]
+  public static extern void GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, int jarg4, float jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_2")]
-  public static extern global::System.IntPtr new_GfBBox3d__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1")]
+  public static extern void GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, int jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_GfBBox3d__SWIG_3")]
-  public static extern global::System.IntPtr new_GfBBox3d__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetOrthographicFromAspectRatioAndSize")]
+  public static extern void GfCamera_SetOrthographicFromAspectRatioAndSize(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, int jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Set")]
-  public static extern void GfBBox3d_Set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetClippingRange")]
+  public static extern void GfCamera_SetClippingRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_SetMatrix")]
-  public static extern void GfBBox3d_SetMatrix(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetClippingPlanes")]
+  public static extern void GfCamera_SetClippingPlanes(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_SetRange")]
-  public static extern void GfBBox3d_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetFStop")]
+  public static extern void GfCamera_SetFStop(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetRange")]
-  public static extern global::System.IntPtr GfBBox3d_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_SetFocusDistance")]
+  public static extern void GfCamera_SetFocusDistance(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetBox")]
-  public static extern global::System.IntPtr GfBBox3d_GetBox(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetTransform")]
+  public static extern global::System.IntPtr GfCamera_GetTransform(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetMatrix")]
-  public static extern global::System.IntPtr GfBBox3d_GetMatrix(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetProjection")]
+  public static extern int GfCamera_GetProjection(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetInverseMatrix")]
-  public static extern global::System.IntPtr GfBBox3d_GetInverseMatrix(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetHorizontalAperture")]
+  public static extern float GfCamera_GetHorizontalAperture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_SetHasZeroAreaPrimitives")]
-  public static extern void GfBBox3d_SetHasZeroAreaPrimitives(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetVerticalAperture")]
+  public static extern float GfCamera_GetVerticalAperture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_HasZeroAreaPrimitives")]
-  public static extern bool GfBBox3d_HasZeroAreaPrimitives(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetHorizontalApertureOffset")]
+  public static extern float GfCamera_GetHorizontalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetVolume")]
-  public static extern double GfBBox3d_GetVolume(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetVerticalApertureOffset")]
+  public static extern float GfCamera_GetVerticalApertureOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Transform")]
-  public static extern void GfBBox3d_Transform(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetAspectRatio")]
+  public static extern float GfCamera_GetAspectRatio(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_ComputeAlignedRange")]
-  public static extern global::System.IntPtr GfBBox3d_ComputeAlignedRange(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFocalLength")]
+  public static extern float GfCamera_GetFocalLength(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_ComputeAlignedBox")]
-  public static extern global::System.IntPtr GfBBox3d_ComputeAlignedBox(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFieldOfView")]
+  public static extern float GfCamera_GetFieldOfView(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Combine")]
-  public static extern global::System.IntPtr GfBBox3d_Combine(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetClippingRange")]
+  public static extern global::System.IntPtr GfCamera_GetClippingRange(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_ComputeCentroid")]
-  public static extern global::System.IntPtr GfBBox3d_ComputeCentroid(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetClippingPlanes")]
+  public static extern global::System.IntPtr GfCamera_GetClippingPlanes(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_29")]
-  public static extern uint hash_value__SWIG_29(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFrustum")]
+  public static extern global::System.IntPtr GfCamera_GetFrustum(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_Equals")]
-  public static extern bool GfBBox3d_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFStop")]
+  public static extern float GfCamera_GetFStop(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfBBox3d_GetHashCode")]
-  public static extern int GfBBox3d_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetFocusDistance")]
+  public static extern float GfCamera_GetFocusDistance(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfBBox3d")]
-  public static extern void delete_GfBBox3d(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_Equals")]
+  public static extern bool GfCamera_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfCamera_GetHashCode")]
+  public static extern int GfCamera_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfCamera")]
+  public static extern void delete_GfCamera(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_0")]
   public static extern global::System.IntPtr new_Vt_ArrayForeignDataSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
@@ -8397,10 +8397,10 @@ class UsdCsPINVOKE {
   public static extern global::System.IntPtr new_SdfTupleDimensions__SWIG_0();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfTupleDimensions__SWIG_1")]
-  public static extern global::System.IntPtr new_SdfTupleDimensions__SWIG_1(ulong jarg1);
+  public static extern global::System.IntPtr new_SdfTupleDimensions__SWIG_1(uint jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfTupleDimensions__SWIG_2")]
-  public static extern global::System.IntPtr new_SdfTupleDimensions__SWIG_2(ulong jarg1, ulong jarg2);
+  public static extern global::System.IntPtr new_SdfTupleDimensions__SWIG_2(uint jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfTupleDimensions__SWIG_3")]
   public static extern global::System.IntPtr new_SdfTupleDimensions__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8412,10 +8412,10 @@ class UsdCsPINVOKE {
   public static extern global::System.IntPtr SdfTupleDimensions_d_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfTupleDimensions_size_set")]
-  public static extern void SdfTupleDimensions_size_set(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+  public static extern void SdfTupleDimensions_size_set(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfTupleDimensions_size_get")]
-  public static extern ulong SdfTupleDimensions_size_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern uint SdfTupleDimensions_size_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfTupleDimensions")]
   public static extern void delete_SdfTupleDimensions(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8451,7 +8451,7 @@ class UsdCsPINVOKE {
   public static extern bool SdfValueTypeName_IsArray(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfValueTypeName_GetHash")]
-  public static extern ulong SdfValueTypeName_GetHash(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern uint SdfValueTypeName_GetHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfValueTypeName_GetAliasesAsTokens")]
   public static extern global::System.IntPtr SdfValueTypeName_GetAliasesAsTokens(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8472,7 +8472,7 @@ class UsdCsPINVOKE {
   public static extern void delete_SdfValueTypeNameHash(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_36")]
-  public static extern ulong hash_value__SWIG_36(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern uint hash_value__SWIG_36(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfGetValueTypeColor4dArray")]
   public static extern global::System.IntPtr SdfGetValueTypeColor4dArray();

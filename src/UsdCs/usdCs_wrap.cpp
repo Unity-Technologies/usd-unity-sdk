@@ -1436,12 +1436,12 @@ SWIGINTERN void std_vector_Sl_JsValue_Sg__SetRange(std::vector< JsValue > *self,
 #include "pxr/base/plug/registry.h"
 
 
-#include "pxr/base/gf/camera.h"
+#include "pxr/base/gf/bbox3d.h"
 
-SWIGINTERN bool GfCamera_Equals(GfCamera const &lhs,GfCamera const &rhs){
+SWIGINTERN bool GfBBox3d_Equals(GfBBox3d const &lhs,GfBBox3d const &rhs){
     return lhs == rhs;
   }
-SWIGINTERN int GfCamera_GetHashCode(GfCamera *self){
+SWIGINTERN int GfBBox3d_GetHashCode(GfBBox3d *self){
     return (int)TfHash()(self);
   }
 
@@ -1771,6 +1771,97 @@ SWIGINTERN void GfVec4h_SetValue(GfVec4h *self,int index,float value){
 
 #include "pxr/base/gf/vec4f.h"
 
+SWIGINTERN std::vector< GfVec4f > *new_std_vector_Sl_GfVec4f_Sg___SWIG_2(int capacity){
+        std::vector< GfVec4f >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< GfVec4f >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN GfVec4f std_vector_Sl_GfVec4f_Sg__getitemcopy(std::vector< GfVec4f > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN GfVec4f const &std_vector_Sl_GfVec4f_Sg__getitem(std::vector< GfVec4f > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__setitem(std::vector< GfVec4f > *self,int index,GfVec4f const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__AddRange(std::vector< GfVec4f > *self,std::vector< GfVec4f > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< GfVec4f > *std_vector_Sl_GfVec4f_Sg__GetRange(std::vector< GfVec4f > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< GfVec4f >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Insert(std::vector< GfVec4f > *self,int index,GfVec4f const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__InsertRange(std::vector< GfVec4f > *self,int index,std::vector< GfVec4f > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__RemoveAt(std::vector< GfVec4f > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__RemoveRange(std::vector< GfVec4f > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< GfVec4f > *std_vector_Sl_GfVec4f_Sg__Repeat(GfVec4f const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< GfVec4f >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_0(std::vector< GfVec4f > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_1(std::vector< GfVec4f > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_GfVec4f_Sg__SetRange(std::vector< GfVec4f > *self,int index,std::vector< GfVec4f > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
 SWIGINTERN bool GfVec4f_Equals(GfVec4f const &lhs,GfVec4f const &rhs){
     return lhs == rhs;
   }
@@ -1980,103 +2071,12 @@ SWIGINTERN int GfFrustum_GetHashCode(GfFrustum *self){
     return (int)TfHash()(self);
   }
 
-#include "pxr/base/gf/bBox3d.h"
+#include "pxr/base/gf/camera.h"
 
-SWIGINTERN std::vector< GfVec4f > *new_std_vector_Sl_GfVec4f_Sg___SWIG_2(int capacity){
-        std::vector< GfVec4f >* pv = 0;
-        if (capacity >= 0) {
-          pv = new std::vector< GfVec4f >();
-          pv->reserve(capacity);
-       } else {
-          throw std::out_of_range("capacity");
-       }
-       return pv;
-      }
-SWIGINTERN GfVec4f std_vector_Sl_GfVec4f_Sg__getitemcopy(std::vector< GfVec4f > *self,int index){
-        if (index>=0 && index<(int)self->size())
-          return (*self)[index];
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN GfVec4f const &std_vector_Sl_GfVec4f_Sg__getitem(std::vector< GfVec4f > *self,int index){
-        if (index>=0 && index<(int)self->size())
-          return (*self)[index];
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__setitem(std::vector< GfVec4f > *self,int index,GfVec4f const &val){
-        if (index>=0 && index<(int)self->size())
-          (*self)[index] = val;
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__AddRange(std::vector< GfVec4f > *self,std::vector< GfVec4f > const &values){
-        self->insert(self->end(), values.begin(), values.end());
-      }
-SWIGINTERN std::vector< GfVec4f > *std_vector_Sl_GfVec4f_Sg__GetRange(std::vector< GfVec4f > *self,int index,int count){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (count < 0)
-          throw std::out_of_range("count");
-        if (index >= (int)self->size()+1 || index+count > (int)self->size())
-          throw std::invalid_argument("invalid range");
-        return new std::vector< GfVec4f >(self->begin()+index, self->begin()+index+count);
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Insert(std::vector< GfVec4f > *self,int index,GfVec4f const &x){
-        if (index>=0 && index<(int)self->size()+1)
-          self->insert(self->begin()+index, x);
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__InsertRange(std::vector< GfVec4f > *self,int index,std::vector< GfVec4f > const &values){
-        if (index>=0 && index<(int)self->size()+1)
-          self->insert(self->begin()+index, values.begin(), values.end());
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__RemoveAt(std::vector< GfVec4f > *self,int index){
-        if (index>=0 && index<(int)self->size())
-          self->erase(self->begin() + index);
-        else
-          throw std::out_of_range("index");
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__RemoveRange(std::vector< GfVec4f > *self,int index,int count){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (count < 0)
-          throw std::out_of_range("count");
-        if (index >= (int)self->size()+1 || index+count > (int)self->size())
-          throw std::invalid_argument("invalid range");
-        self->erase(self->begin()+index, self->begin()+index+count);
-      }
-SWIGINTERN std::vector< GfVec4f > *std_vector_Sl_GfVec4f_Sg__Repeat(GfVec4f const &value,int count){
-        if (count < 0)
-          throw std::out_of_range("count");
-        return new std::vector< GfVec4f >(count, value);
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_0(std::vector< GfVec4f > *self){
-        std::reverse(self->begin(), self->end());
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_1(std::vector< GfVec4f > *self,int index,int count){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (count < 0)
-          throw std::out_of_range("count");
-        if (index >= (int)self->size()+1 || index+count > (int)self->size())
-          throw std::invalid_argument("invalid range");
-        std::reverse(self->begin()+index, self->begin()+index+count);
-      }
-SWIGINTERN void std_vector_Sl_GfVec4f_Sg__SetRange(std::vector< GfVec4f > *self,int index,std::vector< GfVec4f > const &values){
-        if (index < 0)
-          throw std::out_of_range("index");
-        if (index+values.size() > self->size())
-          throw std::out_of_range("index");
-        std::copy(values.begin(), values.end(), self->begin()+index);
-      }
-SWIGINTERN bool GfBBox3d_Equals(GfBBox3d const &lhs,GfBBox3d const &rhs){
+SWIGINTERN bool GfCamera_Equals(GfCamera const &lhs,GfCamera const &rhs){
     return lhs == rhs;
   }
-SWIGINTERN int GfBBox3d_GetHashCode(GfBBox3d *self){
+SWIGINTERN int GfCamera_GetHashCode(GfCamera *self){
     return (int)TfHash()(self);
   }
 
@@ -13127,746 +13127,326 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_PlugRegistry_GetDataFromPluginMetaData(
 }
 
 
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_APERTURE_UNIT_get() {
-  double jresult ;
-  double result;
-  
-  result = (double)(double)GfCamera::APERTURE_UNIT;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_FOCAL_LENGTH_UNIT_get() {
-  double jresult ;
-  double result;
-  
-  result = (double)(double)GfCamera::FOCAL_LENGTH_UNIT;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_DEFAULT_HORIZONTAL_APERTURE_get() {
-  double jresult ;
-  double result;
-  
-  result = (double)(double)GfCamera::DEFAULT_HORIZONTAL_APERTURE;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_DEFAULT_VERTICAL_APERTURE_get() {
-  double jresult ;
-  double result;
-  
-  result = (double)(double)GfCamera::DEFAULT_VERTICAL_APERTURE;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_0(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9, float jarg10, float jarg11) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_0() {
   void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  float arg7 ;
-  GfRange1f *arg8 = 0 ;
-  std::vector< GfVec4f > *arg9 = 0 ;
-  float arg10 ;
-  float arg11 ;
-  GfCamera *result = 0 ;
+  GfBBox3d *result = 0 ;
   
-  arg1 = (GfMatrix4d *)jarg1;
+  result = (GfBBox3d *)new GfBBox3d();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_1(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = 0 ;
+  GfBBox3d *result = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1;
   if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfBBox3d *)new GfBBox3d((GfBBox3d const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_2(void * jarg1) {
+  void * jresult ;
+  GfRange3d *arg1 = 0 ;
+  GfBBox3d *result = 0 ;
+  
+  arg1 = (GfRange3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_3(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfRange3d *arg1 = 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  GfBBox3d *result = 0 ;
+  
+  arg1 = (GfRange3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
     return 0;
   } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  arg6 = (float)jarg6; 
-  arg7 = (float)jarg7; 
-  arg8 = (GfRange1f *)jarg8;
-  if (!arg8) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
-    return 0;
-  } 
-  arg9 = (std::vector< GfVec4f > *)jarg9;
-  if (!arg9) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
-    return 0;
-  } 
-  arg10 = (float)jarg10; 
-  arg11 = (float)jarg11; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9,arg10,arg11);
+  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1,(GfMatrix4d const &)*arg2);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_1(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9, float jarg10) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  float arg7 ;
-  GfRange1f *arg8 = 0 ;
-  std::vector< GfVec4f > *arg9 = 0 ;
-  float arg10 ;
-  GfCamera *result = 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Set(void * jarg1, void * jarg2, void * jarg3) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *arg2 = 0 ;
+  GfMatrix4d *arg3 = 0 ;
   
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
+    return ;
+  } 
+  arg3 = (GfMatrix4d *)jarg3;
+  if (!arg3) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
+    return ;
   } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  arg6 = (float)jarg6; 
-  arg7 = (float)jarg7; 
-  arg8 = (GfRange1f *)jarg8;
-  if (!arg8) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
-    return 0;
-  } 
-  arg9 = (std::vector< GfVec4f > *)jarg9;
-  if (!arg9) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
-    return 0;
-  } 
-  arg10 = (float)jarg10; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9,arg10);
-  jresult = (void *)result; 
-  return jresult;
+  (arg1)->Set((GfRange3d const &)*arg2,(GfMatrix4d const &)*arg3);
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_2(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  float arg7 ;
-  GfRange1f *arg8 = 0 ;
-  std::vector< GfVec4f > *arg9 = 0 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  arg6 = (float)jarg6; 
-  arg7 = (float)jarg7; 
-  arg8 = (GfRange1f *)jarg8;
-  if (!arg8) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
-    return 0;
-  } 
-  arg9 = (std::vector< GfVec4f > *)jarg9;
-  if (!arg9) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
-    return 0;
-  } 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_3(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  float arg7 ;
-  GfRange1f *arg8 = 0 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  arg6 = (float)jarg6; 
-  arg7 = (float)jarg7; 
-  arg8 = (GfRange1f *)jarg8;
-  if (!arg8) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
-    return 0;
-  } 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_4(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  float arg7 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  arg6 = (float)jarg6; 
-  arg7 = (float)jarg7; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_5(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  arg6 = (float)jarg6; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_6(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_7(void * jarg1, int jarg2, float jarg3, float jarg4) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  float arg4 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_8(void * jarg1, int jarg2, float jarg3) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  float arg3 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  arg3 = (float)jarg3; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_9(void * jarg1, int jarg2) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera::Projection arg2 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera::Projection)jarg2; 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_10(void * jarg1) {
-  void * jresult ;
-  GfMatrix4d *arg1 = 0 ;
-  GfCamera *result = 0 ;
-  
-  arg1 = (GfMatrix4d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_11() {
-  void * jresult ;
-  GfCamera *result = 0 ;
-  
-  result = (GfCamera *)new GfCamera();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetTransform(void * jarg1, void * jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetMatrix(void * jarg1, void * jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
   GfMatrix4d *arg2 = 0 ;
   
-  arg1 = (GfCamera *)jarg1; 
+  arg1 = (GfBBox3d *)jarg1; 
   arg2 = (GfMatrix4d *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
     return ;
   } 
-  (arg1)->SetTransform((GfMatrix4d const &)*arg2);
+  (arg1)->SetMatrix((GfMatrix4d const &)*arg2);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetProjection(void * jarg1, int jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  GfCamera::Projection *arg2 = 0 ;
-  GfCamera::Projection temp2 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetRange(void * jarg1, void * jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *arg2 = 0 ;
   
-  arg1 = (GfCamera *)jarg1; 
-  temp2 = (GfCamera::Projection)jarg2; 
-  arg2 = &temp2; 
-  (arg1)->SetProjection((GfCamera::Projection const &)*arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFocalLength(void * jarg1, float jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  (arg1)->SetFocalLength(arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetHorizontalAperture(void * jarg1, float jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  (arg1)->SetHorizontalAperture(arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetVerticalAperture(void * jarg1, float jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  (arg1)->SetVerticalAperture(arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetHorizontalApertureOffset(void * jarg1, float jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  (arg1)->SetHorizontalApertureOffset(arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetVerticalApertureOffset(void * jarg1, float jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  (arg1)->SetVerticalApertureOffset(arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0(void * jarg1, float jarg2, float jarg3, int jarg4, float jarg5) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  GfCamera::FOVDirection arg4 ;
-  float arg5 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (GfCamera::FOVDirection)jarg4; 
-  arg5 = (float)jarg5; 
-  (arg1)->SetPerspectiveFromAspectRatioAndFieldOfView(arg2,arg3,arg4,arg5);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1(void * jarg1, float jarg2, float jarg3, int jarg4) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  GfCamera::FOVDirection arg4 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (GfCamera::FOVDirection)jarg4; 
-  (arg1)->SetPerspectiveFromAspectRatioAndFieldOfView(arg2,arg3,arg4);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetOrthographicFromAspectRatioAndSize(void * jarg1, float jarg2, float jarg3, int jarg4) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  GfCamera::FOVDirection arg4 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (GfCamera::FOVDirection)jarg4; 
-  (arg1)->SetOrthographicFromAspectRatioAndSize(arg2,arg3,arg4);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetClippingRange(void * jarg1, void * jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  GfRange1f *arg2 = 0 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (GfRange1f *)jarg2;
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = (GfRange3d *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
     return ;
   } 
-  (arg1)->SetClippingRange((GfRange1f const &)*arg2);
+  (arg1)->SetRange((GfRange3d const &)*arg2);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetClippingPlanes(void * jarg1, void * jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  std::vector< GfVec4f > *arg2 = 0 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (std::vector< GfVec4f > *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
-    return ;
-  } 
-  (arg1)->SetClippingPlanes((std::vector< GfVec4f > const &)*arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFStop(void * jarg1, float jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  (arg1)->SetFStop(arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFocusDistance(void * jarg1, float jarg2) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float arg2 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (float)jarg2; 
-  (arg1)->SetFocusDistance(arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetTransform(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetRange(void * jarg1) {
   void * jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  GfMatrix4d result;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *result = 0 ;
   
-  arg1 = (GfCamera *)jarg1; 
-  result = ((GfCamera const *)arg1)->GetTransform();
-  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfCamera_GetProjection(void * jarg1) {
-  int jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  GfCamera::Projection result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (GfCamera::Projection)((GfCamera const *)arg1)->GetProjection();
-  jresult = (int)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetHorizontalAperture(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetHorizontalAperture();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetVerticalAperture(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetVerticalAperture();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetHorizontalApertureOffset(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetHorizontalApertureOffset();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetVerticalApertureOffset(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetVerticalApertureOffset();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetAspectRatio(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetAspectRatio();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFocalLength(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetFocalLength();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFieldOfView(void * jarg1, int jarg2) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  GfCamera::FOVDirection arg2 ;
-  float result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  arg2 = (GfCamera::FOVDirection)jarg2; 
-  result = (float)((GfCamera const *)arg1)->GetFieldOfView(arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetClippingRange(void * jarg1) {
-  void * jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  GfRange1f result;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = ((GfCamera const *)arg1)->GetClippingRange();
-  jresult = new GfRange1f((const GfRange1f &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetClippingPlanes(void * jarg1) {
-  void * jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  std::vector< GfVec4f > *result = 0 ;
-  
-  arg1 = (GfCamera *)jarg1; 
-  result = (std::vector< GfVec4f > *) &((GfCamera const *)arg1)->GetClippingPlanes();
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetRange();
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetFrustum(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetBox(void * jarg1) {
   void * jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  GfFrustum result;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d *result = 0 ;
   
-  arg1 = (GfCamera *)jarg1; 
-  result = ((GfCamera const *)arg1)->GetFrustum();
-  jresult = new GfFrustum((const GfFrustum &)result); 
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetBox();
+  jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFStop(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetMatrix(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfMatrix4d *result = 0 ;
   
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetFStop();
-  jresult = result; 
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetMatrix();
+  jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFocusDistance(void * jarg1) {
-  float jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
-  float result;
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetInverseMatrix(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfMatrix4d *result = 0 ;
   
-  arg1 = (GfCamera *)jarg1; 
-  result = (float)((GfCamera const *)arg1)->GetFocusDistance();
-  jresult = result; 
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetInverseMatrix();
+  jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfCamera_Equals(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetHasZeroAreaPrimitives(void * jarg1, unsigned int jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  (arg1)->SetHasZeroAreaPrimitives(arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_HasZeroAreaPrimitives(void * jarg1) {
   unsigned int jresult ;
-  GfCamera *arg1 = 0 ;
-  GfCamera *arg2 = 0 ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
   bool result;
   
-  arg1 = (GfCamera *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfCamera const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfCamera *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfCamera const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)GfCamera_Equals((GfCamera const &)*arg1,(GfCamera const &)*arg2);
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (bool)((GfBBox3d const *)arg1)->HasZeroAreaPrimitives();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfCamera_GetHashCode(void * jarg1) {
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfBBox3d_GetVolume(void * jarg1) {
+  double jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  double result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (double)((GfBBox3d const *)arg1)->GetVolume();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Transform(void * jarg1, void * jarg2) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return ;
+  } 
+  (arg1)->Transform((GfMatrix4d const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedRange(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = ((GfBBox3d const *)arg1)->ComputeAlignedRange();
+  jresult = new GfRange3d((const GfRange3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedBox(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfRange3d result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = ((GfBBox3d const *)arg1)->ComputeAlignedBox();
+  jresult = new GfRange3d((const GfRange3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_Combine(void * jarg1, void * jarg2) {
+  void * jresult ;
+  GfBBox3d *arg1 = 0 ;
+  GfBBox3d *arg2 = 0 ;
+  GfBBox3d result;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfBBox3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = GfBBox3d::Combine((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
+  jresult = new GfBBox3d((const GfBBox3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeCentroid(void * jarg1) {
+  void * jresult ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfVec3d result;
+  
+  arg1 = (GfBBox3d *)jarg1; 
+  result = ((GfBBox3d const *)arg1)->ComputeCentroid();
+  jresult = new GfVec3d((const GfVec3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_1(void * jarg1) {
+  unsigned long jresult ;
+  GfBBox3d *arg1 = 0 ;
+  size_t result;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = hash_value((GfBBox3d const &)*arg1);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfBBox3d *arg1 = 0 ;
+  GfBBox3d *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfBBox3d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfBBox3d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfBBox3d_Equals((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfBBox3d_GetHashCode(void * jarg1) {
   int jresult ;
-  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
   int result;
   
-  arg1 = (GfCamera *)jarg1; 
-  result = (int)GfCamera_GetHashCode(arg1);
+  arg1 = (GfBBox3d *)jarg1; 
+  result = (int)GfBBox3d_GetHashCode(arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfCamera(void * jarg1) {
-  GfCamera *arg1 = (GfCamera *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfBBox3d(void * jarg1) {
+  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
   
-  arg1 = (GfCamera *)jarg1; 
+  arg1 = (GfBBox3d *)jarg1; 
   delete arg1;
 }
 
@@ -13953,7 +13533,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfInterval_Hash(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_1(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_2(void * jarg1) {
   unsigned long jresult ;
   GfInterval *arg1 = 0 ;
   size_t result;
@@ -14705,7 +14285,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1f_IntersectWith(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_2(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_3(void * jarg1) {
   unsigned long jresult ;
   GfRange1f *arg1 = 0 ;
   size_t result;
@@ -15157,7 +14737,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange1d_IntersectWith(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_3(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_4(void * jarg1) {
   unsigned long jresult ;
   GfRange1d *arg1 = 0 ;
   size_t result;
@@ -15645,7 +15225,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange2d_IntersectWith(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_4(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_5(void * jarg1) {
   unsigned long jresult ;
   GfRange2d *arg1 = 0 ;
   size_t result;
@@ -16175,7 +15755,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRange3d_IntersectWith(void * jarg1, v
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_5(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_6(void * jarg1) {
   unsigned long jresult ;
   GfRange3d *arg1 = 0 ;
   size_t result;
@@ -16575,7 +16155,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2f_Get(void * jarg1, void * jar
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_6(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_7(void * jarg1) {
   unsigned long jresult ;
   GfMatrix2f *arg1 = 0 ;
   size_t result;
@@ -17097,7 +16677,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_Get(void * jarg1, void * jar
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_7(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_8(void * jarg1) {
   unsigned long jresult ;
   GfMatrix3f *arg1 = 0 ;
   size_t result;
@@ -17903,7 +17483,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_Get(void * jarg1, void * jar
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_8(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_9(void * jarg1) {
   unsigned long jresult ;
   GfMatrix4f *arg1 = 0 ;
   size_t result;
@@ -19013,7 +18593,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2d_Get(void * jarg1, void * jar
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_9(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_10(void * jarg1) {
   unsigned long jresult ;
   GfMatrix2d *arg1 = 0 ;
   size_t result;
@@ -19535,7 +19115,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_Get(void * jarg1, void * jar
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_10(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_11(void * jarg1) {
   unsigned long jresult ;
   GfMatrix3d *arg1 = 0 ;
   size_t result;
@@ -20363,7 +19943,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_Get(void * jarg1, void * jar
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_11(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_12(void * jarg1) {
   unsigned long jresult ;
   GfMatrix4d *arg1 = 0 ;
   size_t result;
@@ -21309,7 +20889,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2i_Set(void * jarg1, int jarg2, in
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_12(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_13(void * jarg1) {
   unsigned long jresult ;
   GfVec2i *arg1 = 0 ;
   size_t result;
@@ -21709,7 +21289,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2h_Set__SWIG_1(void * jarg1, void 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_13(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_14(void * jarg1) {
   unsigned long jresult ;
   GfVec2h *arg1 = 0 ;
   size_t result;
@@ -22297,7 +21877,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2f_Set(void * jarg1, float jarg2, 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_14(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_15(void * jarg1) {
   unsigned long jresult ;
   GfVec2f *arg1 = 0 ;
   size_t result;
@@ -22861,7 +22441,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec2d_Set(void * jarg1, double jarg2,
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_15(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_16(void * jarg1) {
   unsigned long jresult ;
   GfVec2d *arg1 = 0 ;
   size_t result;
@@ -23391,7 +22971,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3i_Set(void * jarg1, int jarg2, in
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_16(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_17(void * jarg1) {
   unsigned long jresult ;
   GfVec3i *arg1 = 0 ;
   size_t result;
@@ -23817,7 +23397,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3h_Set__SWIG_1(void * jarg1, void 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_17(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_18(void * jarg1) {
   unsigned long jresult ;
   GfVec3h *arg1 = 0 ;
   size_t result;
@@ -24613,7 +24193,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3f_Set(void * jarg1, float jarg2, 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_18(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_19(void * jarg1) {
   unsigned long jresult ;
   GfVec3f *arg1 = 0 ;
   size_t result;
@@ -25373,7 +24953,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec3d_Set(void * jarg1, double jarg2,
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_19(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_20(void * jarg1) {
   unsigned long jresult ;
   GfVec3d *arg1 = 0 ;
   size_t result;
@@ -26099,7 +25679,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4i_Set(void * jarg1, int jarg2, in
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_20(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_21(void * jarg1) {
   unsigned long jresult ;
   GfVec4i *arg1 = 0 ;
   size_t result;
@@ -26551,7 +26131,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4h_Set__SWIG_1(void * jarg1, void 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_21(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_22(void * jarg1) {
   unsigned long jresult ;
   GfVec4h *arg1 = 0 ;
   size_t result;
@@ -26981,6 +26561,386 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfIsClose__SWIG_12(void * jarg1, 
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Clear(void * jarg1) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Add(void * jarg1, void * jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  GfVec4f *arg2 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (GfVec4f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return ;
+  } 
+  (arg1)->push_back((GfVec4f const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec4fVector_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f >::size_type result;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  result = ((std::vector< GfVec4f > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec4fVector_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f >::size_type result;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  result = ((std::vector< GfVec4f > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f >::size_type arg2 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (std::vector< GfVec4f >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_0() {
+  void * jresult ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  result = (std::vector< GfVec4f > *)new std::vector< GfVec4f >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = 0 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< GfVec4f > *)new std::vector< GfVec4f >((std::vector< GfVec4f > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< GfVec4f > *)new_std_vector_Sl_GfVec4f_Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_getitemcopy(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f result;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = std_vector_Sl_GfVec4f_Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = new GfVec4f((const GfVec4f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_getitem(void * jarg1, int jarg2) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f *result = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (GfVec4f *) &std_vector_Sl_GfVec4f_Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_setitem(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (GfVec4f *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__setitem(arg1,arg2,(GfVec4f const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_AddRange(void * jarg1, void * jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  std::vector< GfVec4f > *arg2 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (std::vector< GfVec4f > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_GfVec4f_Sg__AddRange(arg1,(std::vector< GfVec4f > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< GfVec4f > *)std_vector_Sl_GfVec4f_Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Insert(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  GfVec4f *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (GfVec4f *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__Insert(arg1,arg2,(GfVec4f const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  std::vector< GfVec4f > *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< GfVec4f > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__InsertRange(arg1,arg2,(std::vector< GfVec4f > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_GfVec4f_Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_GfVec4f_Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_Repeat(void * jarg1, int jarg2) {
+  void * jresult ;
+  GfVec4f *arg1 = 0 ;
+  int arg2 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (GfVec4f *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< GfVec4f > *)std_vector_Sl_GfVec4f_Sg__Repeat((GfVec4f const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Reverse__SWIG_0(void * jarg1) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  int arg2 ;
+  std::vector< GfVec4f > *arg3 = 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< GfVec4f > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_GfVec4f_Sg__SetRange(arg1,arg2,(std::vector< GfVec4f > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfVec4fVector(void * jarg1) {
+  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+  
+  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec4f_dimension_get() {
   unsigned long jresult ;
   size_t result;
@@ -27167,7 +27127,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4f_Set(void * jarg1, float jarg2, 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_22(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_23(void * jarg1) {
   unsigned long jresult ;
   GfVec4f *arg1 = 0 ;
   size_t result;
@@ -27759,7 +27719,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4d_Set(void * jarg1, double jarg2,
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_23(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_24(void * jarg1) {
   unsigned long jresult ;
   GfVec4d *arg1 = 0 ;
   size_t result;
@@ -28657,7 +28617,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfRotation_TransformDir__SWIG_1(void * 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_24(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_25(void * jarg1) {
   unsigned long jresult ;
   GfRotation *arg1 = 0 ;
   size_t result;
@@ -28889,7 +28849,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfQuaternion_GetInverse(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_25(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_26(void * jarg1) {
   unsigned long jresult ;
   GfQuaternion *arg1 = 0 ;
   size_t result;
@@ -29297,7 +29257,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfQuatf_GetInverse(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_26(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_27(void * jarg1) {
   unsigned long jresult ;
   GfQuatf *arg1 = 0 ;
   size_t result;
@@ -29653,7 +29613,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfQuatd_GetInverse(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_27(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_28(void * jarg1) {
   unsigned long jresult ;
   GfQuatd *arg1 = 0 ;
   size_t result;
@@ -31950,7 +31910,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfFrustum__SWIG_4(void * jarg1, voi
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_28(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_29(void * jarg1) {
   unsigned long jresult ;
   GfFrustum *arg1 = 0 ;
   size_t result;
@@ -32734,706 +32694,746 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfFrustum_GetHashCode(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Clear(void * jarg1) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_APERTURE_UNIT_get() {
+  double jresult ;
+  double result;
   
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  (arg1)->clear();
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Add(void * jarg1, void * jarg2) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  GfVec4f *arg2 = 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (GfVec4f *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
-    return ;
-  } 
-  (arg1)->push_back((GfVec4f const &)*arg2);
-}
-
-
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec4fVector_size(void * jarg1) {
-  unsigned long jresult ;
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  std::vector< GfVec4f >::size_type result;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  result = ((std::vector< GfVec4f > const *)arg1)->size();
-  jresult = (unsigned long)result; 
+  result = (double)(double)GfCamera::APERTURE_UNIT;
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_GfVec4fVector_capacity(void * jarg1) {
-  unsigned long jresult ;
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  std::vector< GfVec4f >::size_type result;
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_FOCAL_LENGTH_UNIT_get() {
+  double jresult ;
+  double result;
   
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  result = ((std::vector< GfVec4f > const *)arg1)->capacity();
-  jresult = (unsigned long)result; 
+  result = (double)(double)GfCamera::FOCAL_LENGTH_UNIT;
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_reserve(void * jarg1, unsigned long jarg2) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  std::vector< GfVec4f >::size_type arg2 ;
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_DEFAULT_HORIZONTAL_APERTURE_get() {
+  double jresult ;
+  double result;
   
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (std::vector< GfVec4f >::size_type)jarg2; 
-  (arg1)->reserve(arg2);
+  result = (double)(double)GfCamera::DEFAULT_HORIZONTAL_APERTURE;
+  jresult = result; 
+  return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_0() {
+SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfCamera_DEFAULT_VERTICAL_APERTURE_get() {
+  double jresult ;
+  double result;
+  
+  result = (double)(double)GfCamera::DEFAULT_VERTICAL_APERTURE;
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_0(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9, float jarg10, float jarg11) {
   void * jresult ;
-  std::vector< GfVec4f > *result = 0 ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  std::vector< GfVec4f > *arg9 = 0 ;
+  float arg10 ;
+  float arg11 ;
+  GfCamera *result = 0 ;
   
-  result = (std::vector< GfVec4f > *)new std::vector< GfVec4f >();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_1(void * jarg1) {
-  void * jresult ;
-  std::vector< GfVec4f > *arg1 = 0 ;
-  std::vector< GfVec4f > *result = 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1;
+  arg1 = (GfMatrix4d *)jarg1;
   if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg9 = (std::vector< GfVec4f > *)jarg9;
+  if (!arg9) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
     return 0;
   } 
-  result = (std::vector< GfVec4f > *)new std::vector< GfVec4f >((std::vector< GfVec4f > const &)*arg1);
+  arg10 = (float)jarg10; 
+  arg11 = (float)jarg11; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9,arg10,arg11);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfVec4fVector__SWIG_2(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_1(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9, float jarg10) {
   void * jresult ;
-  int arg1 ;
-  std::vector< GfVec4f > *result = 0 ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  std::vector< GfVec4f > *arg9 = 0 ;
+  float arg10 ;
+  GfCamera *result = 0 ;
   
-  arg1 = (int)jarg1; 
-  try {
-    result = (std::vector< GfVec4f > *)new_std_vector_Sl_GfVec4f_Sg___SWIG_2(arg1);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
     return 0;
-  }
-  
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  arg9 = (std::vector< GfVec4f > *)jarg9;
+  if (!arg9) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return 0;
+  } 
+  arg10 = (float)jarg10; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9,arg10);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_getitemcopy(void * jarg1, int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_2(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8, void * jarg9) {
   void * jresult ;
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  GfVec4f result;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  std::vector< GfVec4f > *arg9 = 0 ;
+  GfCamera *result = 0 ;
   
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  try {
-    result = std_vector_Sl_GfVec4f_Sg__getitemcopy(arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
     return 0;
-  }
-  
-  jresult = new GfVec4f((const GfVec4f &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_getitem(void * jarg1, int jarg2) {
-  void * jresult ;
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  GfVec4f *result = 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  try {
-    result = (GfVec4f *) &std_vector_Sl_GfVec4f_Sg__getitem(arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
     return 0;
-  }
-  
+  } 
+  arg9 = (std::vector< GfVec4f > *)jarg9;
+  if (!arg9) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
+    return 0;
+  } 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8,(std::vector< GfVec4f > const &)*arg9);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_setitem(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  GfVec4f *arg3 = 0 ;
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_3(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, void * jarg8) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfRange1f *arg8 = 0 ;
+  GfCamera *result = 0 ;
   
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (GfVec4f *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  arg8 = (GfRange1f *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return 0;
+  } 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7,(GfRange1f const &)*arg8);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_4(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  float arg7 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  arg7 = (float)jarg7; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_5(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  float arg6 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  arg6 = (float)jarg6; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5,arg6);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_6(void * jarg1, int jarg2, float jarg3, float jarg4, float jarg5) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (float)jarg5; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4,arg5);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_7(void * jarg1, int jarg2, float jarg3, float jarg4) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  float arg4 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (float)jarg4; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_8(void * jarg1, int jarg2, float jarg3) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  float arg3 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  arg3 = (float)jarg3; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2,arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_9(void * jarg1, int jarg2) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera::Projection arg2 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera::Projection)jarg2; 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_10(void * jarg1) {
+  void * jresult ;
+  GfMatrix4d *arg1 = 0 ;
+  GfCamera *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
+    return 0;
+  } 
+  result = (GfCamera *)new GfCamera((GfMatrix4d const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfCamera__SWIG_11() {
+  void * jresult ;
+  GfCamera *result = 0 ;
+  
+  result = (GfCamera *)new GfCamera();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetTransform(void * jarg1, void * jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfMatrix4d *arg2 = 0 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (GfMatrix4d *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
     return ;
   } 
-  try {
-    std_vector_Sl_GfVec4f_Sg__setitem(arg1,arg2,(GfVec4f const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
+  (arg1)->SetTransform((GfMatrix4d const &)*arg2);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_AddRange(void * jarg1, void * jarg2) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetProjection(void * jarg1, int jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfCamera::Projection *arg2 = 0 ;
+  GfCamera::Projection temp2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  temp2 = (GfCamera::Projection)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->SetProjection((GfCamera::Projection const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFocalLength(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetFocalLength(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetHorizontalAperture(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetHorizontalAperture(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetVerticalAperture(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetVerticalAperture(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetHorizontalApertureOffset(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetHorizontalApertureOffset(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetVerticalApertureOffset(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetVerticalApertureOffset(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0(void * jarg1, float jarg2, float jarg3, int jarg4, float jarg5) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  GfCamera::FOVDirection arg4 ;
+  float arg5 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (GfCamera::FOVDirection)jarg4; 
+  arg5 = (float)jarg5; 
+  (arg1)->SetPerspectiveFromAspectRatioAndFieldOfView(arg2,arg3,arg4,arg5);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1(void * jarg1, float jarg2, float jarg3, int jarg4) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  GfCamera::FOVDirection arg4 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (GfCamera::FOVDirection)jarg4; 
+  (arg1)->SetPerspectiveFromAspectRatioAndFieldOfView(arg2,arg3,arg4);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetOrthographicFromAspectRatioAndSize(void * jarg1, float jarg2, float jarg3, int jarg4) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  GfCamera::FOVDirection arg4 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  arg4 = (GfCamera::FOVDirection)jarg4; 
+  (arg1)->SetOrthographicFromAspectRatioAndSize(arg2,arg3,arg4);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetClippingRange(void * jarg1, void * jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfRange1f *arg2 = 0 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (GfRange1f *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange1f const & type is null", 0);
+    return ;
+  } 
+  (arg1)->SetClippingRange((GfRange1f const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetClippingPlanes(void * jarg1, void * jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
   std::vector< GfVec4f > *arg2 = 0 ;
   
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
+  arg1 = (GfCamera *)jarg1; 
   arg2 = (std::vector< GfVec4f > *)jarg2;
   if (!arg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
     return ;
   } 
-  std_vector_Sl_GfVec4f_Sg__AddRange(arg1,(std::vector< GfVec4f > const &)*arg2);
+  (arg1)->SetClippingPlanes((std::vector< GfVec4f > const &)*arg2);
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_GetRange(void * jarg1, int jarg2, int jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFStop(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetFStop(arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfCamera_SetFocusDistance(void * jarg1, float jarg2) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float arg2 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetFocusDistance(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetTransform(void * jarg1) {
   void * jresult ;
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  std::vector< GfVec4f > *result = 0 ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfMatrix4d result;
   
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  try {
-    result = (std::vector< GfVec4f > *)std_vector_Sl_GfVec4f_Sg__GetRange(arg1,arg2,arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return 0;
-  }
-  catch(std::invalid_argument &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
-    return 0;
-  }
-  
-  jresult = (void *)result; 
+  arg1 = (GfCamera *)jarg1; 
+  result = ((GfCamera const *)arg1)->GetTransform();
+  jresult = new GfMatrix4d((const GfMatrix4d &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Insert(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  GfVec4f *arg3 = 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (GfVec4f *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
-    return ;
-  } 
-  try {
-    std_vector_Sl_GfVec4f_Sg__Insert(arg1,arg2,(GfVec4f const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_InsertRange(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  std::vector< GfVec4f > *arg3 = 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (std::vector< GfVec4f > *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
-    return ;
-  } 
-  try {
-    std_vector_Sl_GfVec4f_Sg__InsertRange(arg1,arg2,(std::vector< GfVec4f > const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_RemoveAt(void * jarg1, int jarg2) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  try {
-    std_vector_Sl_GfVec4f_Sg__RemoveAt(arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_RemoveRange(void * jarg1, int jarg2, int jarg3) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  try {
-    std_vector_Sl_GfVec4f_Sg__RemoveRange(arg1,arg2,arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  catch(std::invalid_argument &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfVec4fVector_Repeat(void * jarg1, int jarg2) {
-  void * jresult ;
-  GfVec4f *arg1 = 0 ;
-  int arg2 ;
-  std::vector< GfVec4f > *result = 0 ;
-  
-  arg1 = (GfVec4f *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfVec4f const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (int)jarg2; 
-  try {
-    result = (std::vector< GfVec4f > *)std_vector_Sl_GfVec4f_Sg__Repeat((GfVec4f const &)*arg1,arg2);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return 0;
-  }
-  
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Reverse__SWIG_0(void * jarg1) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_0(arg1);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  try {
-    std_vector_Sl_GfVec4f_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  catch(std::invalid_argument &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec4fVector_SetRange(void * jarg1, int jarg2, void * jarg3) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  int arg2 ;
-  std::vector< GfVec4f > *arg3 = 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (std::vector< GfVec4f > *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec4f > const & type is null", 0);
-    return ;
-  } 
-  try {
-    std_vector_Sl_GfVec4f_Sg__SetRange(arg1,arg2,(std::vector< GfVec4f > const &)*arg3);
-  }
-  catch(std::out_of_range &_e) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
-    return ;
-  }
-  
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfVec4fVector(void * jarg1) {
-  std::vector< GfVec4f > *arg1 = (std::vector< GfVec4f > *) 0 ;
-  
-  arg1 = (std::vector< GfVec4f > *)jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_0() {
-  void * jresult ;
-  GfBBox3d *result = 0 ;
-  
-  result = (GfBBox3d *)new GfBBox3d();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_1(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = 0 ;
-  GfBBox3d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  result = (GfBBox3d *)new GfBBox3d((GfBBox3d const &)*arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_2(void * jarg1) {
-  void * jresult ;
-  GfRange3d *arg1 = 0 ;
-  GfBBox3d *result = 0 ;
-  
-  arg1 = (GfRange3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return 0;
-  } 
-  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_GfBBox3d__SWIG_3(void * jarg1, void * jarg2) {
-  void * jresult ;
-  GfRange3d *arg1 = 0 ;
-  GfMatrix4d *arg2 = 0 ;
-  GfBBox3d *result = 0 ;
-  
-  arg1 = (GfRange3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfMatrix4d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return 0;
-  } 
-  result = (GfBBox3d *)new GfBBox3d((GfRange3d const &)*arg1,(GfMatrix4d const &)*arg2);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Set(void * jarg1, void * jarg2, void * jarg3) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *arg2 = 0 ;
-  GfMatrix4d *arg3 = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = (GfRange3d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return ;
-  } 
-  arg3 = (GfMatrix4d *)jarg3;
-  if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return ;
-  } 
-  (arg1)->Set((GfRange3d const &)*arg2,(GfMatrix4d const &)*arg3);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetMatrix(void * jarg1, void * jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfMatrix4d *arg2 = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return ;
-  } 
-  (arg1)->SetMatrix((GfMatrix4d const &)*arg2);
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetRange(void * jarg1, void * jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *arg2 = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = (GfRange3d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfRange3d const & type is null", 0);
-    return ;
-  } 
-  (arg1)->SetRange((GfRange3d const &)*arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetRange(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetRange();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetBox(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfRange3d *) &((GfBBox3d const *)arg1)->GetBox();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetMatrix(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfMatrix4d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetMatrix();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_GetInverseMatrix(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfMatrix4d *result = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (GfMatrix4d *) &((GfBBox3d const *)arg1)->GetInverseMatrix();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_SetHasZeroAreaPrimitives(void * jarg1, unsigned int jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  bool arg2 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = jarg2 ? true : false; 
-  (arg1)->SetHasZeroAreaPrimitives(arg2);
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_HasZeroAreaPrimitives(void * jarg1) {
-  unsigned int jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  bool result;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (bool)((GfBBox3d const *)arg1)->HasZeroAreaPrimitives();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_pxr_GfBBox3d_GetVolume(void * jarg1) {
-  double jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  double result;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (double)((GfBBox3d const *)arg1)->GetVolume();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfBBox3d_Transform(void * jarg1, void * jarg2) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfMatrix4d *arg2 = 0 ;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfMatrix4d const & type is null", 0);
-    return ;
-  } 
-  (arg1)->Transform((GfMatrix4d const &)*arg2);
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedRange(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d result;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = ((GfBBox3d const *)arg1)->ComputeAlignedRange();
-  jresult = new GfRange3d((const GfRange3d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeAlignedBox(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfRange3d result;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = ((GfBBox3d const *)arg1)->ComputeAlignedBox();
-  jresult = new GfRange3d((const GfRange3d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_Combine(void * jarg1, void * jarg2) {
-  void * jresult ;
-  GfBBox3d *arg1 = 0 ;
-  GfBBox3d *arg2 = 0 ;
-  GfBBox3d result;
-  
-  arg1 = (GfBBox3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfBBox3d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  result = GfBBox3d::Combine((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
-  jresult = new GfBBox3d((const GfBBox3d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfBBox3d_ComputeCentroid(void * jarg1) {
-  void * jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
-  GfVec3d result;
-  
-  arg1 = (GfBBox3d *)jarg1; 
-  result = ((GfBBox3d const *)arg1)->ComputeCentroid();
-  jresult = new GfVec3d((const GfVec3d &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_29(void * jarg1) {
-  unsigned long jresult ;
-  GfBBox3d *arg1 = 0 ;
-  size_t result;
-  
-  arg1 = (GfBBox3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  result = hash_value((GfBBox3d const &)*arg1);
-  jresult = (unsigned long)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfBBox3d_Equals(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  GfBBox3d *arg1 = 0 ;
-  GfBBox3d *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (GfBBox3d *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfBBox3d *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfBBox3d const & type is null", 0);
-    return 0;
-  } 
-  result = (bool)GfBBox3d_Equals((GfBBox3d const &)*arg1,(GfBBox3d const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfBBox3d_GetHashCode(void * jarg1) {
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfCamera_GetProjection(void * jarg1) {
   int jresult ;
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfCamera::Projection result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (GfCamera::Projection)((GfCamera const *)arg1)->GetProjection();
+  jresult = (int)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetHorizontalAperture(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetHorizontalAperture();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetVerticalAperture(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetVerticalAperture();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetHorizontalApertureOffset(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetHorizontalApertureOffset();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetVerticalApertureOffset(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetVerticalApertureOffset();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetAspectRatio(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetAspectRatio();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFocalLength(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetFocalLength();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFieldOfView(void * jarg1, int jarg2) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfCamera::FOVDirection arg2 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  arg2 = (GfCamera::FOVDirection)jarg2; 
+  result = (float)((GfCamera const *)arg1)->GetFieldOfView(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetClippingRange(void * jarg1) {
+  void * jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfRange1f result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = ((GfCamera const *)arg1)->GetClippingRange();
+  jresult = new GfRange1f((const GfRange1f &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetClippingPlanes(void * jarg1) {
+  void * jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  std::vector< GfVec4f > *result = 0 ;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (std::vector< GfVec4f > *) &((GfCamera const *)arg1)->GetClippingPlanes();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfCamera_GetFrustum(void * jarg1) {
+  void * jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  GfFrustum result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = ((GfCamera const *)arg1)->GetFrustum();
+  jresult = new GfFrustum((const GfFrustum &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFStop(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetFStop();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_GfCamera_GetFocusDistance(void * jarg1) {
+  float jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
+  float result;
+  
+  arg1 = (GfCamera *)jarg1; 
+  result = (float)((GfCamera const *)arg1)->GetFocusDistance();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfCamera_Equals(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  GfCamera *arg1 = 0 ;
+  GfCamera *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (GfCamera *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfCamera const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfCamera *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfCamera const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)GfCamera_Equals((GfCamera const &)*arg1,(GfCamera const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_GfCamera_GetHashCode(void * jarg1) {
+  int jresult ;
+  GfCamera *arg1 = (GfCamera *) 0 ;
   int result;
   
-  arg1 = (GfBBox3d *)jarg1; 
-  result = (int)GfBBox3d_GetHashCode(arg1);
+  arg1 = (GfCamera *)jarg1; 
+  result = (int)GfCamera_GetHashCode(arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfBBox3d(void * jarg1) {
-  GfBBox3d *arg1 = (GfBBox3d *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfCamera(void * jarg1) {
+  GfCamera *arg1 = (GfCamera *) 0 ;
   
-  arg1 = (GfBBox3d *)jarg1; 
+  arg1 = (GfCamera *)jarg1; 
   delete arg1;
 }
 
@@ -47444,26 +47444,26 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_1(unsigned long long jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_1(unsigned long jarg1) {
   void * jresult ;
-  uint64_t arg1 ;
+  size_t arg1 ;
   SdfTupleDimensions *result = 0 ;
   
-  arg1 = (uint64_t)jarg1; 
+  arg1 = (size_t)jarg1; 
   result = (SdfTupleDimensions *)new SdfTupleDimensions(arg1);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_2(unsigned long long jarg1, unsigned long long jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_2(unsigned long jarg1, unsigned long jarg2) {
   void * jresult ;
-  uint64_t arg1 ;
-  uint64_t arg2 ;
+  size_t arg1 ;
+  size_t arg2 ;
   SdfTupleDimensions *result = 0 ;
   
-  arg1 = (uint64_t)jarg1; 
-  arg2 = (uint64_t)jarg2; 
+  arg1 = (size_t)jarg1; 
+  arg2 = (size_t)jarg2; 
   result = (SdfTupleDimensions *)new SdfTupleDimensions(arg1,arg2);
   jresult = (void *)result; 
   return jresult;
@@ -47472,35 +47472,30 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_2(unsigned
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_3(void * jarg1) {
   void * jresult ;
-  uint64_t (*arg1)[2] = 0 ;
+  size_t (*arg1)[2] = 0 ;
   SdfTupleDimensions *result = 0 ;
   
-  arg1 = (uint64_t (*)[2])jarg1;
+  arg1 = (size_t (*)[2])jarg1;
   if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "uint64_t const (&)[2] type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "size_t const (&)[2] type is null", 0);
     return 0;
-  }
-#if defined(__APPLE__)
+  } 
   result = (SdfTupleDimensions *)new SdfTupleDimensions((size_t const (&)[2])*arg1);
-#else
-  result = (SdfTupleDimensions *)new SdfTupleDimensions((uint64_t const (&)[2])*arg1);
-#endif
-  
-  jresult = (void *)result;
+  jresult = (void *)result; 
   return jresult;
 }
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfTupleDimensions_d_set(void * jarg1, void * jarg2) {
   SdfTupleDimensions *arg1 = (SdfTupleDimensions *) 0 ;
-  uint64_t *arg2 ;
+  size_t *arg2 ;
   
   arg1 = (SdfTupleDimensions *)jarg1; 
-  arg2 = (uint64_t *)jarg2; 
+  arg2 = (size_t *)jarg2; 
   {
     size_t ii;
-    uint64_t *b = (uint64_t *) arg1->d;
-    for (ii = 0; ii < (size_t)2; ii++) b[ii] = *((uint64_t *) arg2 + ii);
+    size_t *b = (size_t *) arg1->d;
+    for (ii = 0; ii < (size_t)2; ii++) b[ii] = *((size_t *) arg2 + ii);
   }
 }
 
@@ -47508,33 +47503,33 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfTupleDimensions_d_set(void * jarg1, vo
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfTupleDimensions_d_get(void * jarg1) {
   void * jresult ;
   SdfTupleDimensions *arg1 = (SdfTupleDimensions *) 0 ;
-  uint64_t *result = 0 ;
+  size_t *result = 0 ;
   
   arg1 = (SdfTupleDimensions *)jarg1; 
-  result = (uint64_t *)(uint64_t *) ((arg1)->d);
+  result = (size_t *)(size_t *) ((arg1)->d);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfTupleDimensions_size_set(void * jarg1, unsigned long long jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfTupleDimensions_size_set(void * jarg1, unsigned long jarg2) {
   SdfTupleDimensions *arg1 = (SdfTupleDimensions *) 0 ;
-  uint64_t arg2 ;
+  size_t arg2 ;
   
   arg1 = (SdfTupleDimensions *)jarg1; 
-  arg2 = (uint64_t)jarg2; 
+  arg2 = (size_t)jarg2; 
   if (arg1) (arg1)->size = arg2;
 }
 
 
-SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_SdfTupleDimensions_size_get(void * jarg1) {
-  unsigned long long jresult ;
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfTupleDimensions_size_get(void * jarg1) {
+  unsigned long jresult ;
   SdfTupleDimensions *arg1 = (SdfTupleDimensions *) 0 ;
-  uint64_t result;
+  size_t result;
   
   arg1 = (SdfTupleDimensions *)jarg1; 
-  result = (uint64_t) ((arg1)->size);
-  jresult = result; 
+  result =  ((arg1)->size);
+  jresult = (unsigned long)result; 
   return jresult;
 }
 
@@ -47665,14 +47660,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfValueTypeName_IsArray(void * j
 }
 
 
-SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_SdfValueTypeName_GetHash(void * jarg1) {
-  unsigned long long jresult ;
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfValueTypeName_GetHash(void * jarg1) {
+  unsigned long jresult ;
   SdfValueTypeName *arg1 = (SdfValueTypeName *) 0 ;
-  uint64_t result;
+  size_t result;
   
   arg1 = (SdfValueTypeName *)jarg1; 
-  result = (uint64_t)((SdfValueTypeName const *)arg1)->GetHash();
-  jresult = result; 
+  result = ((SdfValueTypeName const *)arg1)->GetHash();
+  jresult = (unsigned long)result; 
   return jresult;
 }
 
@@ -47749,18 +47744,18 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfValueTypeNameHash(void * jarg1)
 }
 
 
-SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
-  unsigned long long jresult ;
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
+  unsigned long jresult ;
   SdfValueTypeName *arg1 = 0 ;
-  uint64_t result;
+  size_t result;
   
   arg1 = (SdfValueTypeName *)jarg1;
   if (!arg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfValueTypeName const & type is null", 0);
     return 0;
   } 
-  result = (uint64_t)hash_value((SdfValueTypeName const &)*arg1);
-  jresult = result; 
+  result = hash_value((SdfValueTypeName const &)*arg1);
+  jresult = (unsigned long)result; 
   return jresult;
 }
 
