@@ -76,6 +76,7 @@ namespace Tests.Cases {
       var shader = new StandardShaderSample();
       shader.albedo.defaultValue = Color.white;
       shader.albedo.SetConnectedPath(texturePath, "outputs:out");
+      AssertEqual(shader.albedo.connectedPath, texturePath + ".outputs:out");
 
       var texture = new Texture2DSample();
       texture.sourceFile.defaultValue = @"C:\A\Bogus\Texture\Path.png";

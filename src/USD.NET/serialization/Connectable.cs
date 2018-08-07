@@ -93,9 +93,7 @@ namespace USD.NET {
     /// form a valid SdfPath.
     /// </summary>
     public void SetConnectedPath(string path, string attribute) {
-      var p = new SdfPath(path);
-      p.AppendProperty(new TfToken(attribute));
-      connectedPath = p.ToString();
+      connectedPath = new SdfPath(path).AppendProperty(new TfToken(attribute)).ToString();
     }
   }
 }
