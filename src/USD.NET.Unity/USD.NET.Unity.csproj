@@ -74,7 +74,7 @@
     <Compile Include="Shading\MaterialBindingSample.cs" />
     <Compile Include="Shading\MaterialSample.cs" />
     <Compile Include="Shading\ParameterInfo.cs" />
-    <Compile Include="Shading\UsdPreviewSurface\PrimvarReaderFloat2Sample.cs" />
+    <Compile Include="Shading\UsdPreviewSurface\PrimvarReaderSample.cs" />
     <Compile Include="Shading\UsdPreviewSurface\TextureReaderSample.cs" />
     <Compile Include="Shading\ShaderAttributes.cs" />
     <Compile Include="Shading\ShaderSample.cs" />
