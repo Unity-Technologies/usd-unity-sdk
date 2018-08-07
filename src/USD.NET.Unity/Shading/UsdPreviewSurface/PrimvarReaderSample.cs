@@ -66,12 +66,18 @@ namespace USD.NET.Unity {
     [InputParameter("_Fallback")]
     public Connectable<T> fallback = new Connectable<T>();
 
+    // TODO(jcowles): outputs in the UsdPreviewSurface cannot have values assigned to them, however
+    //                USD .NET has no way to stop this from happening for value types currently. 
+    //                https://github.com/googlevr/usd-unity-sdk/issues/12
+
+    /*
     public class Outputs : SampleBase {
       public T result;
     }
 
     [UsdNamespace("outputs")]
     public Outputs outputs = new Outputs();
+    */
   }
 
 }
