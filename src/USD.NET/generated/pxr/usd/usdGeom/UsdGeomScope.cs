@@ -73,8 +73,6 @@ public class UsdGeomScope : global::System.IDisposable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomScope_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomScope_IsTyped_get();
 }
 
 }

@@ -72,6 +72,10 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
+  public UsdShadeNodeGraph(UsdShadeConnectableAPI connectable) : this(UsdCsPINVOKE.new_UsdShadeNodeGraph__SWIG_3(UsdShadeConnectableAPI.getCPtr(connectable)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public UsdShadeConnectableAPI ConnectableAPI() {
     UsdShadeConnectableAPI ret = new UsdShadeConnectableAPI(UsdCsPINVOKE.UsdShadeNodeGraph_ConnectableAPI(swigCPtr), true);
     return ret;
@@ -202,8 +206,6 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeNodeGraph_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeNodeGraph_IsTyped_get();
 }
 
 }

@@ -53,14 +53,14 @@ public class UsdSkelCache : global::System.IDisposable {
     return ret;
   }
 
-  public UsdSkelSkeletonQuery GetSkelQuery(UsdPrim prim) {
-    UsdSkelSkeletonQuery ret = new UsdSkelSkeletonQuery(UsdCsPINVOKE.UsdSkelCache_GetSkelQuery(swigCPtr, UsdPrim.getCPtr(prim)), true);
+  public UsdSkelSkeletonQuery GetSkelQuery(UsdSkelSkeleton skel) {
+    UsdSkelSkeletonQuery ret = new UsdSkelSkeletonQuery(UsdCsPINVOKE.UsdSkelCache_GetSkelQuery(swigCPtr, UsdSkelSkeleton.getCPtr(skel)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdSkelSkeletonQuery GetInheritedSkelQuery(UsdPrim prim) {
-    UsdSkelSkeletonQuery ret = new UsdSkelSkeletonQuery(UsdCsPINVOKE.UsdSkelCache_GetInheritedSkelQuery(swigCPtr, UsdPrim.getCPtr(prim)), true);
+  public UsdSkelAnimQuery GetAnimQuery(UsdPrim prim) {
+    UsdSkelAnimQuery ret = new UsdSkelAnimQuery(UsdCsPINVOKE.UsdSkelCache_GetAnimQuery(swigCPtr, UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -71,8 +71,14 @@ public class UsdSkelCache : global::System.IDisposable {
     return ret;
   }
 
-  public UsdSkelAnimQuery GetAnimQuery(UsdPrim prim) {
-    UsdSkelAnimQuery ret = new UsdSkelAnimQuery(UsdCsPINVOKE.UsdSkelCache_GetAnimQuery(swigCPtr, UsdPrim.getCPtr(prim)), true);
+  public bool ComputeSkelBindings(UsdSkelRoot skelRoot, SWIGTYPE_p_std__vectorT_UsdSkelBinding_t bindings) {
+    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBindings(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), SWIGTYPE_p_std__vectorT_UsdSkelBinding_t.getCPtr(bindings));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ComputeSkelBinding(UsdSkelRoot skelRoot, UsdSkelSkeleton skel, UsdSkelBinding binding) {
+    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBinding(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), UsdSkelSkeleton.getCPtr(skel), UsdSkelBinding.getCPtr(binding));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

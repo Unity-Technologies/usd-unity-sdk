@@ -133,8 +133,6 @@ public class UsdGeomCurves : UsdGeomPointBased {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomCurves_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomCurves_IsTyped_get();
 }
 
 }

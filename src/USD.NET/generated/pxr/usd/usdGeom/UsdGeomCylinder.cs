@@ -172,8 +172,6 @@ public class UsdGeomCylinder : UsdGeomGprim {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomCylinder_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomCylinder_IsTyped_get();
 }
 
 }

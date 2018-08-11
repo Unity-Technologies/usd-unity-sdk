@@ -78,8 +78,6 @@ public class UsdSkelRoot : UsdGeomBoundable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdSkelRoot_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdSkelRoot_IsTyped_get();
 }
 
 }

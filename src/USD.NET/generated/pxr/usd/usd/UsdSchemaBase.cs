@@ -46,6 +46,36 @@ public class UsdSchemaBase : global::System.IDisposable {
   }
 
 
+  public bool IsConcrete() {
+    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsConcrete(swigCPtr);
+    return ret;
+  }
+
+  public bool IsTyped() {
+    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsTyped(swigCPtr);
+    return ret;
+  }
+
+  public bool IsAPISchema() {
+    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsAPISchema(swigCPtr);
+    return ret;
+  }
+
+  public bool IsAppliedAPISchema() {
+    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsAppliedAPISchema(swigCPtr);
+    return ret;
+  }
+
+  public bool IsMultipleApplyAPISchema() {
+    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsMultipleApplyAPISchema(swigCPtr);
+    return ret;
+  }
+
+  public UsdSchemaType GetSchemaType() {
+    UsdSchemaType ret = (UsdSchemaType)UsdCsPINVOKE.UsdSchemaBase_GetSchemaType(swigCPtr);
+    return ret;
+  }
+
   public UsdSchemaBase(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdSchemaBase__SWIG_0(UsdPrim.getCPtr(prim)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -116,8 +146,6 @@ public class UsdSchemaBase : global::System.IDisposable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdSchemaBase_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdSchemaBase_IsTyped_get();
 }
 
 }

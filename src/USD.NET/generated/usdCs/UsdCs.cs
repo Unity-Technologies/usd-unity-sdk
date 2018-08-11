@@ -2201,8 +2201,14 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint hash_value(SdfHumanReadableValue hrval) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_35(SdfHumanReadableValue.getCPtr(hrval));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static uint hash_value(SdfValueTypeName typeName) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_36(SdfValueTypeName.getCPtr(typeName));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_37(SdfValueTypeName.getCPtr(typeName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2728,7 +2734,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(SdfAssetPath ap) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_37(SdfAssetPath.getCPtr(ap));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_38(SdfAssetPath.getCPtr(ap));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2749,19 +2755,19 @@ public class UsdCs {
   }
 
   public static uint hash_value(SdfPath path) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_38(SdfPath.getCPtr(path));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_39(SdfPath.getCPtr(path));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfLayerOffset offset) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_39(SdfLayerOffset.getCPtr(offset));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_40(SdfLayerOffset.getCPtr(offset));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(SdfPayload p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_40(SdfPayload.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_41(SdfPayload.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2822,13 +2828,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdTimeCode time) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_41(UsdTimeCode.getCPtr(time));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_42(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(Usd_PrimFlagsPredicate p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_42(Usd_PrimFlagsPredicate.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_43(Usd_PrimFlagsPredicate.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2942,7 +2948,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdObject obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_43(UsdObject.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_44(UsdObject.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2970,13 +2976,25 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdSkelAnimQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_44(UsdSkelAnimQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_45(UsdSkelAnimQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(UsdSkelSkeletonQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_45(UsdSkelSkeletonQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_46(UsdSkelSkeletonQuery.getCPtr(query));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelIsSkelAnimationPrim(UsdPrim prim) {
+    bool ret = UsdCsPINVOKE.UsdSkelIsSkelAnimationPrim(UsdPrim.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelIsSkinnablePrim(UsdPrim prim) {
+    bool ret = UsdCsPINVOKE.UsdSkelIsSkinnablePrim(UsdPrim.getCPtr(prim));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3044,6 +3062,16 @@ public class UsdCs {
   public static bool UsdSkelComputeJointsExtent(VtMatrix4dArray joints, VtVec3fArray extent) {
     bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_2(VtMatrix4dArray.getCPtr(joints), VtVec3fArray.getCPtr(extent));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointsExtent(GfMatrix4d xforms, uint numXforms, VtVec3fArray extent, float pad, GfMatrix4d rootXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_3(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent), pad, GfMatrix4d.getCPtr(rootXform));
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointsExtent(GfMatrix4d xforms, uint numXforms, VtVec3fArray extent, float pad) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_4(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent), pad);
     return ret;
   }
 
@@ -3153,14 +3181,26 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool UsdSkelBakeSkinningLBS(UsdSkelRoot root, GfInterval interval) {
-    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinningLBS__SWIG_0(UsdSkelRoot.getCPtr(root), GfInterval.getCPtr(interval));
+  public static bool UsdSkelBakeSkinning(UsdSkelRoot root, GfInterval interval) {
+    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_0(UsdSkelRoot.getCPtr(root), GfInterval.getCPtr(interval));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool UsdSkelBakeSkinningLBS(UsdSkelRoot root) {
-    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinningLBS__SWIG_1(UsdSkelRoot.getCPtr(root));
+  public static bool UsdSkelBakeSkinning(UsdSkelRoot root) {
+    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_1(UsdSkelRoot.getCPtr(root));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelBakeSkinning(UsdPrimRange range, GfInterval interval) {
+    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_2(UsdPrimRange.getCPtr(range), GfInterval.getCPtr(interval));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelBakeSkinning(UsdPrimRange range) {
+    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_3(UsdPrimRange.getCPtr(range));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

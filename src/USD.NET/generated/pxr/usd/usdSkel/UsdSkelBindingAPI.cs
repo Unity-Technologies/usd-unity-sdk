@@ -161,6 +161,28 @@ public class UsdSkelBindingAPI : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetBlendShapesAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBindingAPI_GetBlendShapesAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateBlendShapesAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBindingAPI_CreateBlendShapesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateBlendShapesAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBindingAPI_CreateBlendShapesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateBlendShapesAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBindingAPI_CreateBlendShapesAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdRelationship GetAnimationSourceRel() {
     UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdSkelBindingAPI_GetAnimationSourceRel(swigCPtr), true);
     return ret;
@@ -178,6 +200,16 @@ public class UsdSkelBindingAPI : global::System.IDisposable {
 
   public UsdRelationship CreateSkeletonRel() {
     UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdSkelBindingAPI_CreateSkeletonRel(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdRelationship GetBlendShapeTargetsRel() {
+    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdSkelBindingAPI_GetBlendShapeTargetsRel(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdRelationship CreateBlendShapeTargetsRel() {
+    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdSkelBindingAPI_CreateBlendShapeTargetsRel(swigCPtr), true);
     return ret;
   }
 
@@ -221,10 +253,26 @@ public class UsdSkelBindingAPI : global::System.IDisposable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdSkelBindingAPI_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdSkelBindingAPI_IsTyped_get();
-  public static readonly bool IsApplied = UsdCsPINVOKE.UsdSkelBindingAPI_IsApplied_get();
-  public static readonly bool IsMultipleApply = UsdCsPINVOKE.UsdSkelBindingAPI_IsMultipleApply_get();
+  public bool GetSkeleton(UsdSkelSkeleton skel) {
+    bool ret = UsdCsPINVOKE.UsdSkelBindingAPI_GetSkeleton(swigCPtr, UsdSkelSkeleton.getCPtr(skel));
+    return ret;
+  }
+
+  public bool GetAnimationSource(UsdPrim prim) {
+    bool ret = UsdCsPINVOKE.UsdSkelBindingAPI_GetAnimationSource(swigCPtr, UsdPrim.getCPtr(prim));
+    return ret;
+  }
+
+  public UsdSkelSkeleton GetInheritedSkeleton() {
+    UsdSkelSkeleton ret = new UsdSkelSkeleton(UsdCsPINVOKE.UsdSkelBindingAPI_GetInheritedSkeleton(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdPrim GetInheritedAnimationSource() {
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelBindingAPI_GetInheritedAnimationSource(swigCPtr), true);
+    return ret;
+  }
+
 }
 
 }

@@ -446,8 +446,6 @@ public class UsdGeomNurbsPatch : UsdGeomPointBased {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomNurbsPatch_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomNurbsPatch_IsTyped_get();
 }
 
 }

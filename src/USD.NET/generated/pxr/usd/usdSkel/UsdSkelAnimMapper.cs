@@ -47,6 +47,9 @@ public class UsdSkelAnimMapper : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public UsdSkelAnimMapper(TfToken sourceOrder, uint sourceOrderSize, TfToken targetOrder, uint targetOrderSize) : this(UsdCsPINVOKE.new_UsdSkelAnimMapper__SWIG_2(TfToken.getCPtr(sourceOrder), sourceOrderSize, TfToken.getCPtr(targetOrder), targetOrderSize), true) {
+  }
+
   public bool Remap(VtValue source, VtValue target, int elementSize, VtValue defaultValue) {
     bool ret = UsdCsPINVOKE.UsdSkelAnimMapper_Remap__SWIG_3(swigCPtr, VtValue.getCPtr(source), VtValue.getCPtr(target), elementSize, VtValue.getCPtr(defaultValue));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

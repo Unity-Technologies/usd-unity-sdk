@@ -340,8 +340,6 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomImageable_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomImageable_IsTyped_get();
 }
 
 }

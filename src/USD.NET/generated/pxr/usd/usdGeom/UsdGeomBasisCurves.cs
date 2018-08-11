@@ -168,8 +168,6 @@ public class UsdGeomBasisCurves : UsdGeomCurves {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomBasisCurves_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomBasisCurves_IsTyped_get();
 }
 
 }

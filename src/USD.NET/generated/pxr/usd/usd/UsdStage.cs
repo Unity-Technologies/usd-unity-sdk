@@ -464,6 +464,12 @@ public class UsdStage : global::System.IDisposable {
     return ret;
   }
 
+  public UsdObject GetObjectAtPath(SdfPath path) {
+    UsdObject ret = new UsdObject(UsdCsPINVOKE.UsdStage_GetObjectAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdPrimRange Traverse() {
     UsdPrimRange ret = new UsdPrimRange(UsdCsPINVOKE.UsdStage_Traverse__SWIG_0(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

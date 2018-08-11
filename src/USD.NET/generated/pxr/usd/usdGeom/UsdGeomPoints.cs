@@ -116,6 +116,17 @@ public class UsdGeomPoints : UsdGeomPointBased {
     return ret;
   }
 
+  public TfToken GetWidthsInterpolation() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomPoints_GetWidthsInterpolation(swigCPtr), true);
+    return ret;
+  }
+
+  public bool SetWidthsInterpolation(TfToken interpolation) {
+    bool ret = UsdCsPINVOKE.UsdGeomPoints_SetWidthsInterpolation(swigCPtr, TfToken.getCPtr(interpolation));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool ComputeExtent(VtVec3fArray points, VtFloatArray widths, VtVec3fArray extent) {
     bool ret = UsdCsPINVOKE.UsdGeomPoints_ComputeExtent__SWIG_0(VtVec3fArray.getCPtr(points), VtFloatArray.getCPtr(widths), VtVec3fArray.getCPtr(extent));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -128,8 +139,6 @@ public class UsdGeomPoints : UsdGeomPointBased {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomPoints_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomPoints_IsTyped_get();
 }
 
 }

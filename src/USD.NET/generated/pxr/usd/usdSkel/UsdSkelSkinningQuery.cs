@@ -43,16 +43,17 @@ public class UsdSkelSkinningQuery : global::System.IDisposable {
   public UsdSkelSkinningQuery() : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_0(), true) {
   }
 
-  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, VtTokenArray jointOrder) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), VtTokenArray.getCPtr(jointOrder)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_2(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform)), true) {
+  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, UsdAttribute joints) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), UsdAttribute.getCPtr(joints)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool IsValid() {
     bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_IsValid(swigCPtr);
+    return ret;
+  }
+
+  public UsdPrim GetPrim() {
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelSkinningQuery_GetPrim(swigCPtr), false);
     return ret;
   }
 

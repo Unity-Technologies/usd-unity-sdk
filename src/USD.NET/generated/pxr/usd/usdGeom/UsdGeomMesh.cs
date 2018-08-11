@@ -360,8 +360,6 @@ public class UsdGeomMesh : UsdGeomPointBased {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomMesh_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomMesh_IsTyped_get();
 }
 
 }

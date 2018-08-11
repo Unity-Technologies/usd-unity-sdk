@@ -72,6 +72,28 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
+  public UsdAttribute GetImplementationSourceAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeShader_GetImplementationSourceAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateImplementationSourceAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeShader_CreateImplementationSourceAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateImplementationSourceAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeShader_CreateImplementationSourceAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateImplementationSourceAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeShader_CreateImplementationSourceAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetIdAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeShader_GetIdAttr(swigCPtr), true);
     return ret;
@@ -92,6 +114,10 @@ public class UsdShadeShader : UsdTyped {
   public UsdAttribute CreateIdAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeShader_CreateIdAttr__SWIG_2(swigCPtr), true);
     return ret;
+  }
+
+  public UsdShadeShader(UsdShadeConnectableAPI connectable) : this(UsdCsPINVOKE.new_UsdShadeShader__SWIG_3(UsdShadeConnectableAPI.getCPtr(connectable)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public UsdShadeConnectableAPI ConnectableAPI() {
@@ -133,8 +159,116 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeShader_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeShader_IsTyped_get();
+  public TfToken GetImplementationSource() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeShader_GetImplementationSource(swigCPtr), true);
+    return ret;
+  }
+
+  public bool SetShaderId(TfToken id) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_SetShaderId(swigCPtr, TfToken.getCPtr(id));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetShaderId(TfToken id) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_GetShaderId(swigCPtr, TfToken.getCPtr(id));
+    return ret;
+  }
+
+  public bool SetSourceAsset(SdfAssetPath sourceAsset, TfToken sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_SetSourceAsset__SWIG_0(swigCPtr, SdfAssetPath.getCPtr(sourceAsset), TfToken.getCPtr(sourceType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool SetSourceAsset(SdfAssetPath sourceAsset) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_SetSourceAsset__SWIG_1(swigCPtr, SdfAssetPath.getCPtr(sourceAsset));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetSourceAsset(SdfAssetPath sourceAsset, TfToken sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_GetSourceAsset__SWIG_0(swigCPtr, SdfAssetPath.getCPtr(sourceAsset), TfToken.getCPtr(sourceType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetSourceAsset(SdfAssetPath sourceAsset) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_GetSourceAsset__SWIG_1(swigCPtr, SdfAssetPath.getCPtr(sourceAsset));
+    return ret;
+  }
+
+  public bool SetSourceCode(string sourceCode, TfToken sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_SetSourceCode__SWIG_0(swigCPtr, sourceCode, TfToken.getCPtr(sourceType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool SetSourceCode(string sourceCode) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_SetSourceCode__SWIG_1(swigCPtr, sourceCode);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetSourceCode(/*cstype*/ out string sourceCode, TfToken sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_GetSourceCode__SWIG_0(swigCPtr, out sourceCode, TfToken.getCPtr(sourceType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetSourceCode(/*cstype*/ out string sourceCode) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_GetSourceCode__SWIG_1(swigCPtr, out sourceCode);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_NdrTokenMap GetShaderMetadata() {
+    SWIGTYPE_p_NdrTokenMap ret = new SWIGTYPE_p_NdrTokenMap(UsdCsPINVOKE.UsdShadeShader_GetShaderMetadata(swigCPtr), true);
+    return ret;
+  }
+
+  public string GetShaderMetadataByKey(TfToken key) {
+    string ret = UsdCsPINVOKE.UsdShadeShader_GetShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void SetShaderMetadata(SWIGTYPE_p_NdrTokenMap shaderMetadata) {
+    UsdCsPINVOKE.UsdShadeShader_SetShaderMetadata(swigCPtr, SWIGTYPE_p_NdrTokenMap.getCPtr(shaderMetadata));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetShaderMetadataByKey(TfToken key, string value) {
+    UsdCsPINVOKE.UsdShadeShader_SetShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key), value);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public bool HasShaderMetadata() {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_HasShaderMetadata(swigCPtr);
+    return ret;
+  }
+
+  public bool HasShaderMetadataByKey(TfToken key) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_HasShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void ClearShaderMetadata() {
+    UsdCsPINVOKE.UsdShadeShader_ClearShaderMetadata(swigCPtr);
+  }
+
+  public void ClearShaderMetadataByKey(TfToken key) {
+    UsdCsPINVOKE.UsdShadeShader_ClearShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SWIGTYPE_p_SdrShaderNodeConstPtr GetShaderNodeForSourceType(TfToken sourceType) {
+    SWIGTYPE_p_SdrShaderNodeConstPtr ret = new SWIGTYPE_p_SdrShaderNodeConstPtr(UsdCsPINVOKE.UsdShadeShader_GetShaderNodeForSourceType(swigCPtr, TfToken.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
 }
 
 }

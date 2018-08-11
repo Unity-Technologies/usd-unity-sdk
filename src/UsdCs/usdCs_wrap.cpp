@@ -5836,7 +5836,13 @@ SWIGINTERN void std_vector_Sl_UsdShadeShader_Sg__SetRange(std::vector< UsdShadeS
 #include "pxr/usd/usdSkel/animQuery.h"
 
 
+#include "pxr/usd/usdSkel/blendShape.h"
+
+
 #include "pxr/usd/usdSkel/cache.h"
+
+
+#include "pxr/usd/usdSkel/inbetweenShape.h"
 
 
 #include "pxr/usd/usdSkel/packedJointAnimation.h"
@@ -5858,6 +5864,9 @@ SWIGINTERN void std_vector_Sl_UsdShadeShader_Sg__SetRange(std::vector< UsdShadeS
 
 
 #include "pxr/usd/usdSkel/utils.h"
+
+
+#include "pxr/usd/usdSkel/binding.h"
 
 
 #include "pxr/usd/usdSkel/bindingAPI.h"
@@ -47405,6 +47414,69 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfValueBlock(void * jarg1) {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfHumanReadableValue__SWIG_0() {
+  void * jresult ;
+  SdfHumanReadableValue *result = 0 ;
+  
+  result = (SdfHumanReadableValue *)new SdfHumanReadableValue();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfHumanReadableValue__SWIG_1(char * jarg1) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  SdfHumanReadableValue *result = 0 ;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (SdfHumanReadableValue *)new SdfHumanReadableValue((std::string const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfHumanReadableValue_GetText(void * jarg1) {
+  char * jresult ;
+  SdfHumanReadableValue *arg1 = (SdfHumanReadableValue *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (SdfHumanReadableValue *)jarg1; 
+  result = (std::string *) &((SdfHumanReadableValue const *)arg1)->GetText();
+  jresult = SWIG_csharp_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfHumanReadableValue(void * jarg1) {
+  SdfHumanReadableValue *arg1 = (SdfHumanReadableValue *) 0 ;
+  
+  arg1 = (SdfHumanReadableValue *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_35(void * jarg1) {
+  unsigned long jresult ;
+  SdfHumanReadableValue *arg1 = 0 ;
+  size_t result;
+  
+  arg1 = (SdfHumanReadableValue *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfHumanReadableValue const & type is null", 0);
+    return 0;
+  } 
+  result = hash_value((SdfHumanReadableValue const &)*arg1);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_0() {
   void * jresult ;
   SdfTupleDimensions *result = 0 ;
@@ -47715,7 +47787,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfValueTypeNameHash(void * jarg1)
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_36(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_37(void * jarg1) {
   unsigned long jresult ;
   SdfValueTypeName *arg1 = 0 ;
   size_t result;
@@ -48834,7 +48906,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfAssetPath_GetHash(void * jarg
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_37(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_38(void * jarg1) {
   unsigned long jresult ;
   SdfAssetPath *arg1 = 0 ;
   size_t result;
@@ -50774,7 +50846,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfPath(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_38(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_39(void * jarg1) {
   unsigned long jresult ;
   SdfPath *arg1 = 0 ;
   size_t result;
@@ -51316,7 +51388,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfLayerOffset_Hash(void * jarg1) 
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_39(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_40(void * jarg1) {
   unsigned long jresult ;
   SdfLayerOffset *arg1 = 0 ;
   size_t result;
@@ -51443,7 +51515,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfPayload_SetPrimPath(void * jarg1, void
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_40(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_41(void * jarg1) {
   unsigned long jresult ;
   SdfPayload *arg1 = 0 ;
   size_t result;
@@ -53768,6 +53840,31 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateAnonymous__SWIG_1(
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_CreateAnonymous__SWIG_2(void * jarg1, char * jarg2, void * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  std::string *arg2 = 0 ;
+  SdfFileFormatConstPtr *arg3 = 0 ;
+  SdfLayerRefPtr result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (SdfFileFormatConstPtr *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->CreateAnonymous((std::string const &)*arg2,(SdfFileFormatConstPtr const &)*arg3);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_IsAnonymous(void * jarg1) {
   unsigned int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
@@ -53837,7 +53934,21 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ComputeRealPath(void * j
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Save(void * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Save__SWIG_0(void * jarg1, unsigned int jarg2) {
+  unsigned int jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  bool arg2 ;
+  bool result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = jarg2 ? true : false; 
+  result = (bool)(*arg1)->Save(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayerHandle_Save__SWIG_1(void * jarg1) {
   unsigned int jresult ;
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
   bool result;
@@ -54290,6 +54401,54 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ComputeAbsolutePath(void
   arg2 = &arg2_str; 
   result = (*arg1)->ComputeAbsolutePath((std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFieldTypeid__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfAbstractDataSpecId *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  std::type_info *result = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfAbstractDataSpecId *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAbstractDataSpecId const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (std::type_info *) &(*arg1)->GetFieldTypeid((SdfAbstractDataSpecId const &)*arg2,(TfToken const &)*arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetFieldTypeid__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SdfPath *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  std::type_info *result = 0 ;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (std::type_info *) &(*arg1)->GetFieldTypeid((SdfPath const &)*arg2,(TfToken const &)*arg3);
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -56436,6 +56595,29 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateAnonymous__SWIG_1() {
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_CreateAnonymous__SWIG_2(char * jarg1, void * jarg2) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  SdfFileFormatConstPtr *arg2 = 0 ;
+  SdfLayerRefPtr result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (SdfFileFormatConstPtr *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfFileFormatConstPtr const & type is null", 0);
+    return 0;
+  } 
+  result = SdfLayer::CreateAnonymous((std::string const &)*arg1,(TfDeclarePtrs< SdfFileFormat >::ConstPtr const &)*arg2);
+  jresult = result ? new TfRefPtr< SdfLayer>(result) : 0; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_IsAnonymous(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
@@ -56502,7 +56684,24 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_ComputeRealPath(char * jarg1) 
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Save(void * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Save__SWIG_0(void * jarg1, unsigned int jarg2) {
+  unsigned int jresult ;
+  SdfLayer *arg1 = (SdfLayer *) 0 ;
+  bool arg2 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
+  bool result;
+  
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
+  arg2 = jarg2 ? true : false; 
+  result = (bool)((SdfLayer const *)arg1)->Save(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_Save__SWIG_1(void * jarg1) {
   unsigned int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
   TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
@@ -57023,6 +57222,33 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_SdfLayer_ComputeAbsolutePath(void * jar
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetFieldTypeid__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  SdfLayer *arg1 = (SdfLayer *) 0 ;
+  SdfAbstractDataSpecId *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
+  std::type_info *result = 0 ;
+  
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
+  arg2 = (SdfAbstractDataSpecId *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAbstractDataSpecId const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (std::type_info *) &((SdfLayer const *)arg1)->GetFieldTypeid((SdfAbstractDataSpecId const &)*arg2,(TfToken const &)*arg3);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT int SWIGSTDCALL CSharp_pxr_SdfLayer_GetSpecType(void * jarg1, void * jarg2) {
   int jresult ;
   SdfLayer *arg1 = (SdfLayer *) 0 ;
@@ -57109,6 +57335,33 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfLayer_HasField(void * jarg1, v
   } 
   result = (bool)((SdfLayer const *)arg1)->HasField((SdfPath const &)*arg2,(TfToken const &)*arg3);
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetFieldTypeid__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  void * jresult ;
+  SdfLayer *arg1 = (SdfLayer *) 0 ;
+  SdfPath *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
+  std::type_info *result = 0 ;
+  
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (std::type_info *) &((SdfLayer const *)arg1)->GetFieldTypeid((SdfPath const &)*arg2,(TfToken const &)*arg3);
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -59020,6 +59273,24 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageWeakPtr_GetPrimAtPath(void * ja
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageWeakPtr_GetObjectAtPath(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStageWeakPtr *arg1 = (UsdStageWeakPtr *) 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdObject result;
+  
+  arg1 = (UsdStageWeakPtr *)jarg1; 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = (*arg1)->GetObjectAtPath((SdfPath const &)*arg2);
+  jresult = new UsdObject((const UsdObject &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStageWeakPtr_GetSessionLayer(void * jarg1) {
   void * jresult ;
   UsdStageWeakPtr *arg1 = (UsdStageWeakPtr *) 0 ;
@@ -59964,7 +60235,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_pxr_UsdTimeCode_GetValue(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_41(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_42(void * jarg1) {
   unsigned long jresult ;
   UsdTimeCode *arg1 = 0 ;
   size_t result;
@@ -60445,7 +60716,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_Usd_PrimFlagsPredicate_IncludeIns
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_42(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_43(void * jarg1) {
   unsigned long jresult ;
   Usd_PrimFlagsPredicate *arg1 = 0 ;
   size_t result;
@@ -62788,6 +63059,27 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetPrimAtPath(void * jarg1, vo
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetObjectAtPath(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStage *arg1 = (UsdStage *) 0 ;
+  SdfPath *arg2 = 0 ;
+  TfRefPtr< UsdStage const > *smartarg1 = 0 ;
+  UsdObject result;
+  
+  
+  smartarg1 = (TfRefPtr< const UsdStage > *)jarg1;
+  arg1 = (UsdStage *)(smartarg1 ? smartarg1->operator->() : 0); 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdStage const *)arg1)->GetObjectAtPath((SdfPath const &)*arg2);
+  jresult = new UsdObject((const UsdObject &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_Traverse__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
@@ -64914,7 +65206,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdObject_IsValid(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_43(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_44(void * jarg1) {
   unsigned long jresult ;
   UsdObject *arg1 = 0 ;
   size_t result;
@@ -71094,22 +71386,74 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdSpecializes(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsConcrete_get() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsConcrete(void * jarg1) {
   unsigned int jresult ;
+  UsdSchemaBase *arg1 = (UsdSchemaBase *) 0 ;
   bool result;
   
-  result = (bool)UsdSchemaBase::IsConcrete;
+  arg1 = (UsdSchemaBase *)jarg1; 
+  result = (bool)((UsdSchemaBase const *)arg1)->IsConcrete();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsTyped_get() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsTyped(void * jarg1) {
   unsigned int jresult ;
+  UsdSchemaBase *arg1 = (UsdSchemaBase *) 0 ;
   bool result;
   
-  result = (bool)UsdSchemaBase::IsTyped;
+  arg1 = (UsdSchemaBase *)jarg1; 
+  result = (bool)((UsdSchemaBase const *)arg1)->IsTyped();
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsAPISchema(void * jarg1) {
+  unsigned int jresult ;
+  UsdSchemaBase *arg1 = (UsdSchemaBase *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSchemaBase *)jarg1; 
+  result = (bool)((UsdSchemaBase const *)arg1)->IsAPISchema();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsAppliedAPISchema(void * jarg1) {
+  unsigned int jresult ;
+  UsdSchemaBase *arg1 = (UsdSchemaBase *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSchemaBase *)jarg1; 
+  result = (bool)((UsdSchemaBase const *)arg1)->IsAppliedAPISchema();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_IsMultipleApplyAPISchema(void * jarg1) {
+  unsigned int jresult ;
+  UsdSchemaBase *arg1 = (UsdSchemaBase *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSchemaBase *)jarg1; 
+  result = (bool)((UsdSchemaBase const *)arg1)->IsMultipleApplyAPISchema();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_pxr_UsdSchemaBase_GetSchemaType(void * jarg1) {
+  int jresult ;
+  UsdSchemaBase *arg1 = (UsdSchemaBase *) 0 ;
+  UsdSchemaType result;
+  
+  arg1 = (UsdSchemaBase *)jarg1; 
+  result = (UsdSchemaType)((UsdSchemaBase const *)arg1)->GetSchemaType();
+  jresult = (int)result; 
   return jresult;
 }
 
@@ -72467,46 +72811,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomFaceSetAPIVector(void * jar
   
   arg1 = (std::vector< UsdGeomFaceSetAPI > *)jarg1; 
   delete arg1;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomMotionAPI::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomMotionAPI::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsApplied_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomMotionAPI::IsApplied;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMotionAPI_IsMultipleApply_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomMotionAPI::IsMultipleApply;
-  jresult = result; 
-  return jresult;
 }
 
 
@@ -74668,6 +74972,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomPrimvar_GetIndicesAttr(void * ja
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomPrimvar_CreateIndicesAttr(void * jarg1) {
+  void * jresult ;
+  UsdGeomPrimvar *arg1 = (UsdGeomPrimvar *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdGeomPrimvar *)jarg1; 
+  result = ((UsdGeomPrimvar const *)arg1)->CreateIndicesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPrimvar_SetUnauthoredValuesIndex(void * jarg1, int jarg2) {
   unsigned int jresult ;
   UsdGeomPrimvar *arg1 = (UsdGeomPrimvar *) 0 ;
@@ -74765,26 +75081,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomPrimvar(void * jarg1) {
   
   arg1 = (UsdGeomPrimvar *)jarg1; 
   delete arg1;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomScope::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomScope_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomScope::IsTyped;
-  jresult = result; 
-  return jresult;
 }
 
 
@@ -74900,26 +75196,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomScope_Define(void * jarg1, void 
   } 
   result = UsdGeomScope::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomScope((const UsdGeomScope &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomImageable::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomImageable_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomImageable::IsTyped;
-  jresult = result; 
   return jresult;
 }
 
@@ -76866,26 +77142,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomXformOp(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformable_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomXformable::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformable_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomXformable::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXformable__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -78441,26 +78697,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXformable_IsTransformation
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXform_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomXform::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomXform_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomXform::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomXform__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -78573,26 +78809,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomXform_Define(void * jarg1, void 
   } 
   result = UsdGeomXform::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdGeomXform((const UsdGeomXform &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCamera_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCamera::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCamera_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCamera::IsTyped;
-  jresult = result; 
   return jresult;
 }
 
@@ -79554,26 +79770,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdGeomCamera_SetFromCamera(void * jarg1,
     return ;
   } 
   (arg1)->SetFromCamera((GfCamera const &)*arg2,(UsdTimeCode const &)*arg3);
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBoundable_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomBoundable::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBoundable_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomBoundable::IsTyped;
-  jresult = result; 
-  return jresult;
 }
 
 
@@ -80656,26 +80852,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomLongVector(void * jarg1) {
   
   arg1 = (std::vector< int64_t > *)jarg1; 
   delete arg1;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomPointInstancer::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancer_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomPointInstancer::IsTyped;
-  jresult = result; 
-  return jresult;
 }
 
 
@@ -82075,26 +82251,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointInstancerSetOrMergeOv
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomGprim_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomGprim::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomGprim_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomGprim::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomGprim__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -82561,26 +82717,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomGprim_CreateDisplayOpacityPrimva
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCapsule::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCapsule::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCapsule__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -82990,26 +83126,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCapsule_ComputeExtent__SWI
   } 
   arg5 = (VtVec3fArray *)jarg5; 
   result = (bool)UsdGeomCapsule::ComputeExtent(arg1,arg2,(TfToken const &)*arg3,(GfMatrix4d const &)*arg4,arg5);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCone_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCone::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCone_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCone::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -83429,26 +83545,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCone_ComputeExtent__SWIG_1
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCube_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCube::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCube_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCube::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomCube__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -83718,26 +83814,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCube_ComputeExtent__SWIG_1
   } 
   arg3 = (VtVec3fArray *)jarg3; 
   result = (bool)UsdGeomCube::ComputeExtent(arg1,(GfMatrix4d const &)*arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCylinder::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCylinder_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCylinder::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -84167,26 +84243,6 @@ SWIGEXPORT int SWIGSTDCALL CSharp_pxr_USDGEOM_CYLINDER_API_VERSION_get() {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomSphere_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomSphere::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomSphere_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomSphere::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomSphere__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -84456,26 +84512,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomSphere_ComputeExtent__SWIG
   } 
   arg3 = (VtVec3fArray *)jarg3; 
   result = (bool)UsdGeomSphere::ComputeExtent(arg1,(GfMatrix4d const &)*arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomPointBased::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomPointBased::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -84833,26 +84869,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPointBased_ComputeExtent__
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPoints_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomPoints::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPoints_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomPoints::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomPoints__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -85093,6 +85109,36 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomPoints_CreateIdsAttr__SWIG_2(voi
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomPoints_GetWidthsInterpolation(void * jarg1) {
+  void * jresult ;
+  UsdGeomPoints *arg1 = (UsdGeomPoints *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdGeomPoints *)jarg1; 
+  result = ((UsdGeomPoints const *)arg1)->GetWidthsInterpolation();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPoints_SetWidthsInterpolation(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdGeomPoints *arg1 = (UsdGeomPoints *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdGeomPoints *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)(arg1)->SetWidthsInterpolation((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPoints_ComputeExtent__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
   unsigned int jresult ;
   VtVec3fArray *arg1 = 0 ;
@@ -85142,26 +85188,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomPoints_ComputeExtent__SWIG
   } 
   arg4 = (VtVec3fArray *)jarg4; 
   result = (bool)UsdGeomPoints::ComputeExtent((VtArray< GfVec3f > const &)*arg1,(VtArray< float > const &)*arg2,(GfMatrix4d const &)*arg3,arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCurves::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomCurves::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -85464,26 +85490,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomCurves_ComputeExtent__SWIG
   } 
   arg4 = (VtVec3fArray *)jarg4; 
   result = (bool)UsdGeomCurves::ComputeExtent((VtArray< GfVec3f > const &)*arg1,(VtArray< float > const &)*arg2,(GfMatrix4d const &)*arg3,arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomBasisCurves::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomBasisCurves_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomBasisCurves::IsTyped;
   jresult = result; 
   return jresult;
 }
@@ -86365,26 +86371,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomBasisCurvesComputeInterpola
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomNurbsCurves_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomNurbsCurves::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomNurbsCurves_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomNurbsCurves::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomNurbsCurves__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -86683,26 +86669,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsCurves_CreateRangesAttr__SW
   arg1 = (UsdGeomNurbsCurves *)jarg1; 
   result = ((UsdGeomNurbsCurves const *)arg1)->CreateRangesAttr();
   jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomNurbsPatch::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomNurbsPatch::IsTyped;
-  jresult = result; 
   return jresult;
 }
 
@@ -87873,26 +87839,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdGeomNurbsPatch_CreateTrimCurvePoints
   arg1 = (UsdGeomNurbsPatch *)jarg1; 
   result = ((UsdGeomNurbsPatch const *)arg1)->CreateTrimCurvePointsAttr();
   jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMesh_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomMesh::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomMesh_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomMesh::IsTyped;
-  jresult = result; 
   return jresult;
 }
 
@@ -89837,46 +89783,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdGeomBBoxCache(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomModelAPI::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomModelAPI::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsApplied_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomModelAPI::IsApplied;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdGeomModelAPI_IsMultipleApply_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdGeomModelAPI::IsMultipleApply;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdGeomModelAPI__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -91223,26 +91129,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeUtils(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeNodeGraph::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeNodeGraph::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeNodeGraph__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -91355,6 +91241,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_Define(void * jarg1, 
   } 
   result = UsdShadeNodeGraph::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdShadeNodeGraph((const UsdShadeNodeGraph &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeNodeGraph__SWIG_3(void * jarg1) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = 0 ;
+  UsdShadeNodeGraph *result = 0 ;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeNodeGraph *)new UsdShadeNodeGraph((UsdShadeConnectableAPI const &)*arg1);
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -91571,26 +91473,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeNodeGraph_ComputeInterfaceInput
   arg1 = (UsdShadeNodeGraph *)jarg1; 
   result = ((UsdShadeNodeGraph const *)arg1)->ComputeInterfaceInputConsumersMap();
   jresult = new UsdShadeNodeGraph::InterfaceInputConsumersMap((const UsdShadeNodeGraph::InterfaceInputConsumersMap &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeMaterial::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeMaterial::IsTyped;
-  jresult = result; 
   return jresult;
 }
 
@@ -92637,26 +92519,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeMaterial_HasMaterialFaceS
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeShader::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeShader::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeShader__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -92773,6 +92635,68 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_Define(void * jarg1, voi
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetImplementationSourceAttr(void * jarg1) {
+  void * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  result = ((UsdShadeShader const *)arg1)->GetImplementationSourceAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_CreateImplementationSourceAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdShadeShader const *)arg1)->CreateImplementationSourceAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_CreateImplementationSourceAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeShader const *)arg1)->CreateImplementationSourceAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_CreateImplementationSourceAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  result = ((UsdShadeShader const *)arg1)->CreateImplementationSourceAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetIdAttr(void * jarg1) {
   void * jresult ;
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
@@ -92831,6 +92755,22 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_CreateIdAttr__SWIG_2(voi
   arg1 = (UsdShadeShader *)jarg1; 
   result = ((UsdShadeShader const *)arg1)->CreateIdAttr();
   jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeShader__SWIG_3(void * jarg1) {
+  void * jresult ;
+  UsdShadeConnectableAPI *arg1 = 0 ;
+  UsdShadeShader *result = 0 ;
+  
+  arg1 = (UsdShadeConnectableAPI *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdShadeConnectableAPI const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdShadeShader *)new UsdShadeShader((UsdShadeConnectableAPI const &)*arg1);
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -92951,6 +92891,355 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetInputs(void * jarg1) 
   arg1 = (UsdShadeShader *)jarg1; 
   result = ((UsdShadeShader const *)arg1)->GetInputs();
   jresult = new std::vector< UsdShadeInput >((const std::vector< UsdShadeInput > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetImplementationSource(void * jarg1) {
+  void * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  result = ((UsdShadeShader const *)arg1)->GetImplementationSource();
+  jresult = new TfToken((const TfToken &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetShaderId(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeShader const *)arg1)->SetShaderId((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetShaderId(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken *arg2 = (TfToken *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (TfToken *)jarg2; 
+  result = (bool)((UsdShadeShader const *)arg1)->GetShaderId(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetSourceAsset__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  SdfAssetPath *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (SdfAssetPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeShader const *)arg1)->SetSourceAsset((SdfAssetPath const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetSourceAsset__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  SdfAssetPath *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (SdfAssetPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfAssetPath const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeShader const *)arg1)->SetSourceAsset((SdfAssetPath const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetSourceAsset__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  SdfAssetPath *arg2 = (SdfAssetPath *) 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (SdfAssetPath *)jarg2; 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeShader const *)arg1)->GetSourceAsset(arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetSourceAsset__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  SdfAssetPath *arg2 = (SdfAssetPath *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (SdfAssetPath *)jarg2; 
+  result = (bool)((UsdShadeShader const *)arg1)->GetSourceAsset(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetSourceCode__SWIG_0(void * jarg1, char * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  std::string *arg2 = 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeShader const *)arg1)->SetSourceCode((std::string const &)*arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetSourceCode__SWIG_1(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)((UsdShadeShader const *)arg1)->SetSourceCode((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetSourceCode__SWIG_0(void * jarg1, char** jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  std::string *arg2 = (std::string *) 0 ;
+  TfToken *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  //typemap in
+  std::string temp;
+  arg2 = &temp; 
+  
+  arg3 = (TfToken *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeShader const *)arg1)->GetSourceCode(arg2,(TfToken const &)*arg3);
+  jresult = result; 
+  
+  //Typemap argout in c++ file.
+  //This will convert c++ string to c# string
+  *jarg2 = SWIG_csharp_string_callback(arg2->c_str());
+  
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetSourceCode__SWIG_1(void * jarg1, char** jarg2) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  std::string *arg2 = (std::string *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  //typemap in
+  std::string temp;
+  arg2 = &temp; 
+  
+  result = (bool)((UsdShadeShader const *)arg1)->GetSourceCode(arg2);
+  jresult = result; 
+  
+  //Typemap argout in c++ file.
+  //This will convert c++ string to c# string
+  *jarg2 = SWIG_csharp_string_callback(arg2->c_str());
+  
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetShaderMetadata(void * jarg1) {
+  void * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  NdrTokenMap result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  result = ((UsdShadeShader const *)arg1)->GetShaderMetadata();
+  jresult = new NdrTokenMap((const NdrTokenMap &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetShaderMetadataByKey(void * jarg1, void * jarg2) {
+  char * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeShader const *)arg1)->GetShaderMetadataByKey((TfToken const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetShaderMetadata(void * jarg1, void * jarg2) {
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  NdrTokenMap *arg2 = 0 ;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (NdrTokenMap *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "NdrTokenMap const & type is null", 0);
+    return ;
+  } 
+  ((UsdShadeShader const *)arg1)->SetShaderMetadata((NdrTokenMap const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetShaderMetadataByKey(void * jarg1, void * jarg2, char * jarg3) {
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  ((UsdShadeShader const *)arg1)->SetShaderMetadataByKey((TfToken const &)*arg2,(std::string const &)*arg3);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_HasShaderMetadata(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  result = (bool)((UsdShadeShader const *)arg1)->HasShaderMetadata();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_HasShaderMetadataByKey(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeShader const *)arg1)->HasShaderMetadataByKey((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_ClearShaderMetadata(void * jarg1) {
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  ((UsdShadeShader const *)arg1)->ClearShaderMetadata();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_ClearShaderMetadataByKey(void * jarg1, void * jarg2) {
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  ((UsdShadeShader const *)arg1)->ClearShaderMetadataByKey((TfToken const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetShaderNodeForSourceType(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
+  TfToken *arg2 = 0 ;
+  SdrShaderNodeConstPtr result;
+  
+  arg1 = (UsdShadeShader *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeShader const *)arg1)->GetShaderNodeForSourceType((TfToken const &)*arg2);
+  jresult = new SdrShaderNodeConstPtr((const SdrShaderNodeConstPtr &)result); 
   return jresult;
 }
 
@@ -94506,46 +94795,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdShadeOutput(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeConnectableAPI::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeConnectableAPI::IsTyped;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsApplied_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeConnectableAPI::IsApplied;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeConnectableAPI_IsMultipleApply_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdShadeConnectableAPI::IsMultipleApply;
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdShadeConnectableAPI__SWIG_0(void * jarg1) {
   void * jresult ;
   UsdPrim *arg1 = 0 ;
@@ -95782,6 +96031,24 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelAnimMapper__SWIG_1(void * ja
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelAnimMapper__SWIG_2(void * jarg1, unsigned long jarg2, void * jarg3, unsigned long jarg4) {
+  void * jresult ;
+  TfToken *arg1 = (TfToken *) 0 ;
+  size_t arg2 ;
+  TfToken *arg3 = (TfToken *) 0 ;
+  size_t arg4 ;
+  UsdSkelAnimMapper *result = 0 ;
+  
+  arg1 = (TfToken *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  arg3 = (TfToken *)jarg3; 
+  arg4 = (size_t)jarg4; 
+  result = (UsdSkelAnimMapper *)new UsdSkelAnimMapper((TfToken const *)arg1,arg2,(TfToken const *)arg3,arg4);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimMapper_Remap__SWIG_3(void * jarg1, void * jarg2, void * jarg3, int jarg4, void * jarg5) {
   unsigned int jresult ;
   UsdSkelAnimMapper *arg1 = (UsdSkelAnimMapper *) 0 ;
@@ -95972,7 +96239,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_IsValid(void * j
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_44(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_45(void * jarg1) {
   unsigned long jresult ;
   UsdSkelAnimQuery *arg1 = 0 ;
   size_t result;
@@ -95996,42 +96263,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_GetPrim(void * jarg1) 
   arg1 = (UsdSkelAnimQuery *)jarg1; 
   result = ((UsdSkelAnimQuery const *)arg1)->GetPrim();
   jresult = new UsdPrim((const UsdPrim &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_ComputeTransform__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
-  GfMatrix4d *arg2 = (GfMatrix4d *) 0 ;
-  UsdTimeCode arg3 ;
-  UsdTimeCode *argp3 ;
-  bool result;
-  
-  arg1 = (UsdSkelAnimQuery *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2; 
-  argp3 = (UsdTimeCode *)jarg3; 
-  if (!argp3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (bool)((UsdSkelAnimQuery const *)arg1)->ComputeTransform(arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_ComputeTransform__SWIG_1(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
-  GfMatrix4d *arg2 = (GfMatrix4d *) 0 ;
-  bool result;
-  
-  arg1 = (UsdSkelAnimQuery *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2; 
-  result = (bool)((UsdSkelAnimQuery const *)arg1)->ComputeTransform(arg2);
-  jresult = result; 
   return jresult;
 }
 
@@ -96116,6 +96347,42 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_ComputeJointLoca
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_ComputeBlendShapeWeights__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
+  VtFloatArray *arg2 = (VtFloatArray *) 0 ;
+  UsdTimeCode arg3 ;
+  UsdTimeCode *argp3 ;
+  bool result;
+  
+  arg1 = (UsdSkelAnimQuery *)jarg1; 
+  arg2 = (VtFloatArray *)jarg2; 
+  argp3 = (UsdTimeCode *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = (bool)((UsdSkelAnimQuery const *)arg1)->ComputeBlendShapeWeights(arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_ComputeBlendShapeWeights__SWIG_1(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
+  VtFloatArray *arg2 = (VtFloatArray *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelAnimQuery *)jarg1; 
+  arg2 = (VtFloatArray *)jarg2; 
+  result = (bool)((UsdSkelAnimQuery const *)arg1)->ComputeBlendShapeWeights(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_GetJointTransformTimeSamples(void * jarg1, void * jarg2) {
   unsigned int jresult ;
   UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
@@ -96176,18 +96443,6 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_JointTransformsM
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_TransformMightBeTimeVarying(void * jarg1) {
-  unsigned int jresult ;
-  UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
-  bool result;
-  
-  arg1 = (UsdSkelAnimQuery *)jarg1; 
-  result = (bool)((UsdSkelAnimQuery const *)arg1)->TransformMightBeTimeVarying();
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_GetJointOrder(void * jarg1) {
   void * jresult ;
   UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
@@ -96195,6 +96450,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_GetJointOrder(void * j
   
   arg1 = (UsdSkelAnimQuery *)jarg1; 
   result = ((UsdSkelAnimQuery const *)arg1)->GetJointOrder();
+  jresult = new VtTokenArray((const VtTokenArray &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelAnimQuery_GetBlendShapeOrder(void * jarg1) {
+  void * jresult ;
+  UsdSkelAnimQuery *arg1 = (UsdSkelAnimQuery *) 0 ;
+  VtTokenArray result;
+  
+  arg1 = (UsdSkelAnimQuery *)jarg1; 
+  result = ((UsdSkelAnimQuery const *)arg1)->GetBlendShapeOrder();
   jresult = new VtTokenArray((const VtTokenArray &)result); 
   return jresult;
 }
@@ -96217,6 +96484,324 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdSkelAnimQuery(void * jarg1) {
   
   arg1 = (UsdSkelAnimQuery *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelBlendShape__SWIG_0(void * jarg1) {
+  void * jresult ;
+  UsdPrim *arg1 = 0 ;
+  UsdSkelBlendShape *result = 0 ;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdSkelBlendShape *)new UsdSkelBlendShape((UsdPrim const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelBlendShape__SWIG_1() {
+  void * jresult ;
+  UsdSkelBlendShape *result = 0 ;
+  
+  result = (UsdSkelBlendShape *)new UsdSkelBlendShape();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelBlendShape__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSchemaBase *arg1 = 0 ;
+  UsdSkelBlendShape *result = 0 ;
+  
+  arg1 = (UsdSchemaBase *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSchemaBase const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdSkelBlendShape *)new UsdSkelBlendShape((UsdSchemaBase const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdSkelBlendShape(void * jarg1) {
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_GetSchemaAttributeNames__SWIG_0(unsigned int jarg1) {
+  void * jresult ;
+  bool arg1 ;
+  TfTokenVector *result = 0 ;
+  
+  arg1 = jarg1 ? true : false; 
+  result = (TfTokenVector *) &UsdSkelBlendShape::GetSchemaAttributeNames(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_GetSchemaAttributeNames__SWIG_1() {
+  void * jresult ;
+  TfTokenVector *result = 0 ;
+  
+  result = (TfTokenVector *) &UsdSkelBlendShape::GetSchemaAttributeNames();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_Get(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdSkelBlendShape result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdSkelBlendShape::Get((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdSkelBlendShape((const UsdSkelBlendShape &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_Define(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdStagePtr *arg1 = 0 ;
+  SdfPath *arg2 = 0 ;
+  UsdSkelBlendShape result;
+  
+  arg1 = (UsdStagePtr *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdStagePtr const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (SdfPath *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "SdfPath const & type is null", 0);
+    return 0;
+  } 
+  result = UsdSkelBlendShape::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
+  jresult = new UsdSkelBlendShape((const UsdSkelBlendShape &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_GetOffsetsAttr(void * jarg1) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  result = ((UsdSkelBlendShape const *)arg1)->GetOffsetsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_CreateOffsetsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdSkelBlendShape const *)arg1)->CreateOffsetsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_CreateOffsetsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdSkelBlendShape const *)arg1)->CreateOffsetsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_CreateOffsetsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  result = ((UsdSkelBlendShape const *)arg1)->CreateOffsetsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_GetPointIndicesAttr(void * jarg1) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  result = ((UsdSkelBlendShape const *)arg1)->GetPointIndicesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_CreatePointIndicesAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdSkelBlendShape const *)arg1)->CreatePointIndicesAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_CreatePointIndicesAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdSkelBlendShape const *)arg1)->CreatePointIndicesAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_CreatePointIndicesAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  result = ((UsdSkelBlendShape const *)arg1)->CreatePointIndicesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_CreateInbetween(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdSkelInbetweenShape result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdSkelBlendShape const *)arg1)->CreateInbetween((TfToken const &)*arg2);
+  jresult = new UsdSkelInbetweenShape((const UsdSkelInbetweenShape &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_GetInbetween(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  TfToken *arg2 = 0 ;
+  UsdSkelInbetweenShape result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdSkelBlendShape const *)arg1)->GetInbetween((TfToken const &)*arg2);
+  jresult = new UsdSkelInbetweenShape((const UsdSkelInbetweenShape &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_HasInbetween(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdSkelBlendShape const *)arg1)->HasInbetween((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_GetInbetweens(void * jarg1) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  SwigValueWrapper< std::vector< UsdSkelInbetweenShape > > result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  result = ((UsdSkelBlendShape const *)arg1)->GetInbetweens();
+  jresult = new std::vector< UsdSkelInbetweenShape >((const std::vector< UsdSkelInbetweenShape > &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_GetAuthoredInbetweens(void * jarg1) {
+  void * jresult ;
+  UsdSkelBlendShape *arg1 = (UsdSkelBlendShape *) 0 ;
+  SwigValueWrapper< std::vector< UsdSkelInbetweenShape > > result;
+  
+  arg1 = (UsdSkelBlendShape *)jarg1; 
+  result = ((UsdSkelBlendShape const *)arg1)->GetAuthoredInbetweens();
+  jresult = new std::vector< UsdSkelInbetweenShape >((const std::vector< UsdSkelInbetweenShape > &)result); 
+  return jresult;
 }
 
 
@@ -96259,26 +96844,26 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelCache_Populate(void * jarg
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelCache_GetSkelQuery(void * jarg1, void * jarg2) {
   void * jresult ;
   UsdSkelCache *arg1 = (UsdSkelCache *) 0 ;
-  UsdPrim *arg2 = 0 ;
+  UsdSkelSkeleton *arg2 = 0 ;
   UsdSkelSkeletonQuery result;
   
   arg1 = (UsdSkelCache *)jarg1; 
-  arg2 = (UsdPrim *)jarg2;
+  arg2 = (UsdSkelSkeleton *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSkelSkeleton const & type is null", 0);
     return 0;
   } 
-  result = ((UsdSkelCache const *)arg1)->GetSkelQuery((UsdPrim const &)*arg2);
+  result = ((UsdSkelCache const *)arg1)->GetSkelQuery((UsdSkelSkeleton const &)*arg2);
   jresult = new UsdSkelSkeletonQuery((const UsdSkelSkeletonQuery &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelCache_GetInheritedSkelQuery(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelCache_GetAnimQuery(void * jarg1, void * jarg2) {
   void * jresult ;
   UsdSkelCache *arg1 = (UsdSkelCache *) 0 ;
   UsdPrim *arg2 = 0 ;
-  UsdSkelSkeletonQuery result;
+  UsdSkelAnimQuery result;
   
   arg1 = (UsdSkelCache *)jarg1; 
   arg2 = (UsdPrim *)jarg2;
@@ -96286,8 +96871,8 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelCache_GetInheritedSkelQuery(void
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
     return 0;
   } 
-  result = ((UsdSkelCache const *)arg1)->GetInheritedSkelQuery((UsdPrim const &)*arg2);
-  jresult = new UsdSkelSkeletonQuery((const UsdSkelSkeletonQuery &)result); 
+  result = ((UsdSkelCache const *)arg1)->GetAnimQuery((UsdPrim const &)*arg2);
+  jresult = new UsdSkelAnimQuery((const UsdSkelAnimQuery &)result); 
   return jresult;
 }
 
@@ -96310,20 +96895,48 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelCache_GetSkinningQuery(void * ja
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelCache_GetAnimQuery(void * jarg1, void * jarg2) {
-  void * jresult ;
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelCache_ComputeSkelBindings(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
   UsdSkelCache *arg1 = (UsdSkelCache *) 0 ;
-  UsdPrim *arg2 = 0 ;
-  UsdSkelAnimQuery result;
+  UsdSkelRoot *arg2 = 0 ;
+  std::vector< UsdSkelBinding > *arg3 = (std::vector< UsdSkelBinding > *) 0 ;
+  bool result;
   
   arg1 = (UsdSkelCache *)jarg1; 
-  arg2 = (UsdPrim *)jarg2;
+  arg2 = (UsdSkelRoot *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSkelRoot const & type is null", 0);
     return 0;
   } 
-  result = (arg1)->GetAnimQuery((UsdPrim const &)*arg2);
-  jresult = new UsdSkelAnimQuery((const UsdSkelAnimQuery &)result); 
+  arg3 = (std::vector< UsdSkelBinding > *)jarg3; 
+  result = (bool)((UsdSkelCache const *)arg1)->ComputeSkelBindings((UsdSkelRoot const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelCache_ComputeSkelBinding(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+  unsigned int jresult ;
+  UsdSkelCache *arg1 = (UsdSkelCache *) 0 ;
+  UsdSkelRoot *arg2 = 0 ;
+  UsdSkelSkeleton *arg3 = 0 ;
+  UsdSkelBinding *arg4 = (UsdSkelBinding *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelCache *)jarg1; 
+  arg2 = (UsdSkelRoot *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSkelRoot const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (UsdSkelSkeleton *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSkelSkeleton const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (UsdSkelBinding *)jarg4; 
+  result = (bool)((UsdSkelCache const *)arg1)->ComputeSkelBinding((UsdSkelRoot const &)*arg2,(UsdSkelSkeleton const &)*arg3,arg4);
+  jresult = result; 
   return jresult;
 }
 
@@ -96336,23 +96949,147 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdSkelCache(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelInbetweenShape__SWIG_0() {
+  void * jresult ;
+  UsdSkelInbetweenShape *result = 0 ;
   
-  result = (bool)UsdSkelPackedJointAnimation::IsConcrete;
+  result = (UsdSkelInbetweenShape *)new UsdSkelInbetweenShape();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelInbetweenShape__SWIG_1(void * jarg1) {
+  void * jresult ;
+  UsdAttribute *arg1 = 0 ;
+  UsdSkelInbetweenShape *result = 0 ;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdSkelInbetweenShape *)new UsdSkelInbetweenShape((UsdAttribute const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT float SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_GetWeight(void * jarg1) {
+  float jresult ;
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  float result;
+  
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  result = (float)((UsdSkelInbetweenShape const *)arg1)->GetWeight();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_IsTyped_get() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_SetWeight(void * jarg1, float jarg2) {
   unsigned int jresult ;
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  float arg2 ;
   bool result;
   
-  result = (bool)UsdSkelPackedJointAnimation::IsTyped;
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  arg2 = (float)jarg2; 
+  result = (bool)(arg1)->SetWeight(arg2);
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_HasAuthoredWeight(void * jarg1) {
+  unsigned int jresult ;
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  result = (bool)((UsdSkelInbetweenShape const *)arg1)->HasAuthoredWeight();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_GetOffsets(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  VtVec3fArray *arg2 = (VtVec3fArray *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  arg2 = (VtVec3fArray *)jarg2; 
+  result = (bool)((UsdSkelInbetweenShape const *)arg1)->GetOffsets(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_SetOffsets(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  VtVec3fArray *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  arg2 = (VtVec3fArray *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtVec3fArray const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdSkelInbetweenShape const *)arg1)->SetOffsets((VtVec3fArray const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_IsInbetween(void * jarg1) {
+  unsigned int jresult ;
+  UsdAttribute *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdAttribute *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdSkelInbetweenShape::IsInbetween((UsdAttribute const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_GetAttr(void * jarg1) {
+  void * jresult ;
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  UsdAttribute *result = 0 ;
+  
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  result = (UsdAttribute *) &((UsdSkelInbetweenShape const *)arg1)->GetAttr();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelInbetweenShape_IsDefined(void * jarg1) {
+  unsigned int jresult ;
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  result = (bool)((UsdSkelInbetweenShape const *)arg1)->IsDefined();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdSkelInbetweenShape(void * jarg1) {
+  UsdSkelInbetweenShape *arg1 = (UsdSkelInbetweenShape *) 0 ;
+  
+  arg1 = (UsdSkelInbetweenShape *)jarg1; 
+  delete arg1;
 }
 
 
@@ -96468,274 +97205,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_Define(void
   } 
   result = UsdSkelPackedJointAnimation::Define((UsdStageWeakPtr const &)*arg1,(SdfPath const &)*arg2);
   jresult = new UsdSkelPackedJointAnimation((const UsdSkelPackedJointAnimation &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_GetJointsAttr(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->GetJointsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateJointsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  bool arg3 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateJointsAttr((VtValue const &)*arg2,arg3);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateJointsAttr__SWIG_1(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateJointsAttr((VtValue const &)*arg2);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateJointsAttr__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateJointsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_GetTranslationsAttr(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->GetTranslationsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateTranslationsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  bool arg3 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateTranslationsAttr((VtValue const &)*arg2,arg3);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateTranslationsAttr__SWIG_1(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateTranslationsAttr((VtValue const &)*arg2);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateTranslationsAttr__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateTranslationsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_GetRotationsAttr(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->GetRotationsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateRotationsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  bool arg3 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateRotationsAttr((VtValue const &)*arg2,arg3);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateRotationsAttr__SWIG_1(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateRotationsAttr((VtValue const &)*arg2);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateRotationsAttr__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateRotationsAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_GetScalesAttr(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->GetScalesAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateScalesAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  bool arg3 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  arg3 = jarg3 ? true : false; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateScalesAttr((VtValue const &)*arg2,arg3);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateScalesAttr__SWIG_1(void * jarg1, void * jarg2) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  VtValue *arg2 = 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  arg2 = (VtValue *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
-    return 0;
-  } 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateScalesAttr((VtValue const &)*arg2);
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_CreateScalesAttr__SWIG_2(void * jarg1) {
-  void * jresult ;
-  UsdSkelPackedJointAnimation *arg1 = (UsdSkelPackedJointAnimation *) 0 ;
-  UsdAttribute result;
-  
-  arg1 = (UsdSkelPackedJointAnimation *)jarg1; 
-  result = ((UsdSkelPackedJointAnimation const *)arg1)->CreateScalesAttr();
-  jresult = new UsdAttribute((const UsdAttribute &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelRoot_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdSkelRoot::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelRoot_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdSkelRoot::IsTyped;
-  jresult = result; 
   return jresult;
 }
 
@@ -96868,26 +97337,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelRoot_Find(void * jarg1) {
   } 
   result = UsdSkelRoot::Find((UsdPrim const &)*arg1);
   jresult = new UsdSkelRoot((const UsdSkelRoot &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_IsConcrete_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdSkelSkeleton::IsConcrete;
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_IsTyped_get() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)UsdSkelSkeleton::IsTyped;
-  jresult = result; 
   return jresult;
 }
 
@@ -97070,6 +97519,68 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_CreateJointsAttr__SWIG_
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_GetBindTransformsAttr(void * jarg1) {
+  void * jresult ;
+  UsdSkelSkeleton *arg1 = (UsdSkelSkeleton *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelSkeleton *)jarg1; 
+  result = ((UsdSkelSkeleton const *)arg1)->GetBindTransformsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_CreateBindTransformsAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdSkelSkeleton *arg1 = (UsdSkelSkeleton *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelSkeleton *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdSkelSkeleton const *)arg1)->CreateBindTransformsAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_CreateBindTransformsAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSkelSkeleton *arg1 = (UsdSkelSkeleton *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelSkeleton *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdSkelSkeleton const *)arg1)->CreateBindTransformsAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_CreateBindTransformsAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSkelSkeleton *arg1 = (UsdSkelSkeleton *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelSkeleton *)jarg1; 
+  result = ((UsdSkelSkeleton const *)arg1)->CreateBindTransformsAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_GetRestTransformsAttr(void * jarg1) {
   void * jresult ;
   UsdSkelSkeleton *arg1 = (UsdSkelSkeleton *) 0 ;
@@ -97154,7 +97665,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_IsValid(void
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_45(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_46(void * jarg1) {
   unsigned long jresult ;
   UsdSkelSkeletonQuery *arg1 = 0 ;
   size_t result;
@@ -97173,11 +97684,11 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_45(void * jarg1
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_GetPrim(void * jarg1) {
   void * jresult ;
   UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
-  UsdPrim *result = 0 ;
+  UsdPrim result;
   
   arg1 = (UsdSkelSkeletonQuery *)jarg1; 
-  result = (UsdPrim *) &((UsdSkelSkeletonQuery const *)arg1)->GetPrim();
-  jresult = (void *)result; 
+  result = ((UsdSkelSkeletonQuery const *)arg1)->GetPrim();
+  jresult = new UsdPrim((const UsdPrim &)result); 
   return jresult;
 }
 
@@ -97226,58 +97737,6 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_GetJointOrder(void
   arg1 = (UsdSkelSkeletonQuery *)jarg1; 
   result = ((UsdSkelSkeletonQuery const *)arg1)->GetJointOrder();
   jresult = new VtTokenArray((const VtTokenArray &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeAnimTransform__SWIG_0(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
-  GfMatrix4d *arg2 = (GfMatrix4d *) 0 ;
-  UsdTimeCode arg3 ;
-  UsdTimeCode *argp3 ;
-  bool result;
-  
-  arg1 = (UsdSkelSkeletonQuery *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2; 
-  argp3 = (UsdTimeCode *)jarg3; 
-  if (!argp3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null UsdTimeCode", 0);
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (bool)((UsdSkelSkeletonQuery const *)arg1)->ComputeAnimTransform(arg2,arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeAnimTransform__SWIG_1(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
-  GfMatrix4d *arg2 = (GfMatrix4d *) 0 ;
-  bool result;
-  
-  arg1 = (UsdSkelSkeletonQuery *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2; 
-  result = (bool)((UsdSkelSkeletonQuery const *)arg1)->ComputeAnimTransform(arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeLocalToWorldTransform(void * jarg1, void * jarg2, void * jarg3) {
-  unsigned int jresult ;
-  UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
-  GfMatrix4d *arg2 = (GfMatrix4d *) 0 ;
-  UsdGeomXformCache *arg3 = (UsdGeomXformCache *) 0 ;
-  bool result;
-  
-  arg1 = (UsdSkelSkeletonQuery *)jarg1; 
-  arg2 = (GfMatrix4d *)jarg2; 
-  arg3 = (UsdGeomXformCache *)jarg3; 
-  result = (bool)((UsdSkelSkeletonQuery const *)arg1)->ComputeLocalToWorldTransform(arg2,arg3);
-  jresult = result; 
   return jresult;
 }
 
@@ -97374,6 +97833,40 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeJoint
 }
 
 
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeJointWorldTransforms__SWIG_0(void * jarg1, void * jarg2, void * jarg3, unsigned int jarg4) {
+  unsigned int jresult ;
+  UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
+  VtMatrix4dArray *arg2 = (VtMatrix4dArray *) 0 ;
+  UsdGeomXformCache *arg3 = (UsdGeomXformCache *) 0 ;
+  bool arg4 ;
+  bool result;
+  
+  arg1 = (UsdSkelSkeletonQuery *)jarg1; 
+  arg2 = (VtMatrix4dArray *)jarg2; 
+  arg3 = (UsdGeomXformCache *)jarg3; 
+  arg4 = jarg4 ? true : false; 
+  result = (bool)((UsdSkelSkeletonQuery const *)arg1)->ComputeJointWorldTransforms(arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeJointWorldTransforms__SWIG_1(void * jarg1, void * jarg2, void * jarg3) {
+  unsigned int jresult ;
+  UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
+  VtMatrix4dArray *arg2 = (VtMatrix4dArray *) 0 ;
+  UsdGeomXformCache *arg3 = (UsdGeomXformCache *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelSkeletonQuery *)jarg1; 
+  arg2 = (VtMatrix4dArray *)jarg2; 
+  arg3 = (UsdGeomXformCache *)jarg3; 
+  result = (bool)((UsdSkelSkeletonQuery const *)arg1)->ComputeJointWorldTransforms(arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeSkinningTransforms(void * jarg1, void * jarg2, void * jarg3) {
   unsigned int jresult ;
   UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
@@ -97391,6 +97884,20 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_ComputeSkinn
   }
   arg3 = *argp3; 
   result = (bool)((UsdSkelSkeletonQuery const *)arg1)->ComputeSkinningTransforms(arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkeletonQuery_GetJointWorldBindTransforms(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdSkelSkeletonQuery *arg1 = (UsdSkelSkeletonQuery *) 0 ;
+  VtMatrix4dArray *arg2 = (VtMatrix4dArray *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelSkeletonQuery *)jarg1; 
+  arg2 = (VtMatrix4dArray *)jarg2; 
+  result = (bool)((UsdSkelSkeletonQuery const *)arg1)->GetJointWorldBindTransforms(arg2);
   jresult = result; 
   return jresult;
 }
@@ -97433,7 +97940,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelSkinningQuery__SWIG_1(void *
   UsdAttribute *arg3 = 0 ;
   UsdAttribute *arg4 = 0 ;
   UsdAttribute *arg5 = 0 ;
-  VtTokenArray *arg6 = (VtTokenArray *) 0 ;
+  UsdAttribute *arg6 = 0 ;
   UsdSkelSkinningQuery *result = 0 ;
   
   arg1 = (UsdPrim *)jarg1;
@@ -97461,48 +97968,12 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelSkinningQuery__SWIG_1(void *
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
     return 0;
   } 
-  arg6 = (VtTokenArray *)jarg6; 
-  result = (UsdSkelSkinningQuery *)new UsdSkelSkinningQuery((UsdPrim const &)*arg1,(VtTokenArray const &)*arg2,(UsdAttribute const &)*arg3,(UsdAttribute const &)*arg4,(UsdAttribute const &)*arg5,(VtTokenArray const *)arg6);
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelSkinningQuery__SWIG_2(void * jarg1, void * jarg2, void * jarg3, void * jarg4, void * jarg5) {
-  void * jresult ;
-  UsdPrim *arg1 = 0 ;
-  VtTokenArray *arg2 = 0 ;
-  UsdAttribute *arg3 = 0 ;
-  UsdAttribute *arg4 = 0 ;
-  UsdAttribute *arg5 = 0 ;
-  UsdSkelSkinningQuery *result = 0 ;
-  
-  arg1 = (UsdPrim *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (VtTokenArray *)jarg2;
-  if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtTokenArray const & type is null", 0);
-    return 0;
-  } 
-  arg3 = (UsdAttribute *)jarg3;
-  if (!arg3) {
+  arg6 = (UsdAttribute *)jarg6;
+  if (!arg6) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
     return 0;
   } 
-  arg4 = (UsdAttribute *)jarg4;
-  if (!arg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
-    return 0;
-  } 
-  arg5 = (UsdAttribute *)jarg5;
-  if (!arg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdAttribute const & type is null", 0);
-    return 0;
-  } 
-  result = (UsdSkelSkinningQuery *)new UsdSkelSkinningQuery((UsdPrim const &)*arg1,(VtTokenArray const &)*arg2,(UsdAttribute const &)*arg3,(UsdAttribute const &)*arg4,(UsdAttribute const &)*arg5);
+  result = (UsdSkelSkinningQuery *)new UsdSkelSkinningQuery((UsdPrim const &)*arg1,(VtTokenArray const &)*arg2,(UsdAttribute const &)*arg3,(UsdAttribute const &)*arg4,(UsdAttribute const &)*arg5,(UsdAttribute const &)*arg6);
   jresult = (void *)result; 
   return jresult;
 }
@@ -97516,6 +97987,18 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkinningQuery_IsValid(void
   arg1 = (UsdSkelSkinningQuery *)jarg1; 
   result = (bool)((UsdSkelSkinningQuery const *)arg1)->IsValid();
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelSkinningQuery_GetPrim(void * jarg1) {
+  void * jresult ;
+  UsdSkelSkinningQuery *arg1 = (UsdSkelSkinningQuery *) 0 ;
+  UsdPrim *result = 0 ;
+  
+  arg1 = (UsdSkelSkinningQuery *)jarg1; 
+  result = (UsdPrim *) &((UsdSkelSkinningQuery const *)arg1)->GetPrim();
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -97902,7 +98385,21 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_1(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_2(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_2(void * jarg1, unsigned long jarg2) {
+  void * jresult ;
+  TfToken *arg1 = (TfToken *) 0 ;
+  size_t arg2 ;
+  UsdSkelTopology *result = 0 ;
+  
+  arg1 = (TfToken *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  result = (UsdSkelTopology *)new UsdSkelTopology((TfToken const *)arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_3(void * jarg1) {
   void * jresult ;
   SdfPathVector *arg1 = 0 ;
   UsdSkelTopology *result = 0 ;
@@ -97918,7 +98415,21 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_2(void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_3(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_4(void * jarg1, unsigned long jarg2) {
+  void * jresult ;
+  SdfPath *arg1 = (SdfPath *) 0 ;
+  size_t arg2 ;
+  UsdSkelTopology *result = 0 ;
+  
+  arg1 = (SdfPath *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  result = (UsdSkelTopology *)new UsdSkelTopology((SdfPath const *)arg1,arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelTopology__SWIG_5(void * jarg1) {
   void * jresult ;
   VtIntArray *arg1 = 0 ;
   UsdSkelTopology *result = 0 ;
@@ -98011,6 +98522,38 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdSkelTopology(void * jarg1) {
   
   arg1 = (UsdSkelTopology *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelIsSkelAnimationPrim(void * jarg1) {
+  unsigned int jresult ;
+  UsdPrim *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdSkelIsSkelAnimationPrim((UsdPrim const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelIsSkinnablePrim(void * jarg1) {
+  unsigned int jresult ;
+  UsdPrim *arg1 = 0 ;
+  bool result;
+  
+  arg1 = (UsdPrim *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrim const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdSkelIsSkinnablePrim((UsdPrim const &)*arg1);
+  jresult = result; 
+  return jresult;
 }
 
 
@@ -98269,6 +98812,44 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelComputeJointsExtent__SWIG_
   } 
   arg2 = (VtVec3fArray *)jarg2; 
   result = (bool)UsdSkelComputeJointsExtent((VtArray< GfMatrix4d > const &)*arg1,arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelComputeJointsExtent__SWIG_3(void * jarg1, unsigned long jarg2, void * jarg3, float jarg4, void * jarg5) {
+  unsigned int jresult ;
+  GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
+  size_t arg2 ;
+  VtVec3fArray *arg3 = (VtVec3fArray *) 0 ;
+  float arg4 ;
+  GfMatrix4d *arg5 = (GfMatrix4d *) 0 ;
+  bool result;
+  
+  arg1 = (GfMatrix4d *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  arg3 = (VtVec3fArray *)jarg3; 
+  arg4 = (float)jarg4; 
+  arg5 = (GfMatrix4d *)jarg5; 
+  result = (bool)UsdSkelComputeJointsExtent((GfMatrix4d const *)arg1,arg2,arg3,arg4,(GfMatrix4d const *)arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelComputeJointsExtent__SWIG_4(void * jarg1, unsigned long jarg2, void * jarg3, float jarg4) {
+  unsigned int jresult ;
+  GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
+  size_t arg2 ;
+  VtVec3fArray *arg3 = (VtVec3fArray *) 0 ;
+  float arg4 ;
+  bool result;
+  
+  arg1 = (GfMatrix4d *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  arg3 = (VtVec3fArray *)jarg3; 
+  arg4 = (float)jarg4; 
+  result = (bool)UsdSkelComputeJointsExtent((GfMatrix4d const *)arg1,arg2,arg3,arg4);
   jresult = result; 
   return jresult;
 }
@@ -98724,7 +99305,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelSkinTransformLBS__SWIG_1(v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinningLBS__SWIG_0(void * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinning__SWIG_0(void * jarg1, void * jarg2) {
   unsigned int jresult ;
   UsdSkelRoot *arg1 = 0 ;
   GfInterval *arg2 = 0 ;
@@ -98740,13 +99321,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinningLBS__SWIG_0(vo
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfInterval const & type is null", 0);
     return 0;
   } 
-  result = (bool)UsdSkelBakeSkinningLBS((UsdSkelRoot const &)*arg1,(GfInterval const &)*arg2);
+  result = (bool)UsdSkelBakeSkinning((UsdSkelRoot const &)*arg1,(GfInterval const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinningLBS__SWIG_1(void * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinning__SWIG_1(void * jarg1) {
   unsigned int jresult ;
   UsdSkelRoot *arg1 = 0 ;
   bool result;
@@ -98756,49 +99337,111 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinningLBS__SWIG_1(vo
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSkelRoot const & type is null", 0);
     return 0;
   } 
-  result = (bool)UsdSkelBakeSkinningLBS((UsdSkelRoot const &)*arg1);
+  result = (bool)UsdSkelBakeSkinning((UsdSkelRoot const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_IsConcrete_get() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinning__SWIG_2(void * jarg1, void * jarg2) {
   unsigned int jresult ;
+  UsdPrimRange *arg1 = 0 ;
+  GfInterval *arg2 = 0 ;
   bool result;
   
-  result = (bool)UsdSkelBindingAPI::IsConcrete;
+  arg1 = (UsdPrimRange *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimRange const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfInterval *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "GfInterval const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdSkelBakeSkinning((UsdPrimRange const &)*arg1,(GfInterval const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_IsTyped_get() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBakeSkinning__SWIG_3(void * jarg1) {
   unsigned int jresult ;
+  UsdPrimRange *arg1 = 0 ;
   bool result;
   
-  result = (bool)UsdSkelBindingAPI::IsTyped;
+  arg1 = (UsdPrimRange *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdPrimRange const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)UsdSkelBakeSkinning((UsdPrimRange const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_IsApplied_get() {
-  unsigned int jresult ;
-  bool result;
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelBinding__SWIG_0() {
+  void * jresult ;
+  UsdSkelBinding *result = 0 ;
   
-  result = (bool)UsdSkelBindingAPI::IsApplied;
-  jresult = result; 
+  result = (UsdSkelBinding *)new UsdSkelBinding();
+  jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_IsMultipleApply_get() {
-  unsigned int jresult ;
-  bool result;
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_UsdSkelBinding__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSkelSkeleton *arg1 = 0 ;
+  VtArray< UsdSkelSkinningQuery > *arg2 = 0 ;
+  UsdSkelBinding *result = 0 ;
   
-  result = (bool)UsdSkelBindingAPI::IsMultipleApply;
-  jresult = result; 
+  arg1 = (UsdSkelSkeleton *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "UsdSkelSkeleton const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (VtArray< UsdSkelSkinningQuery > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtArray< UsdSkelSkinningQuery > const & type is null", 0);
+    return 0;
+  } 
+  result = (UsdSkelBinding *)new UsdSkelBinding((UsdSkelSkeleton const &)*arg1,(VtArray< UsdSkelSkinningQuery > const &)*arg2);
+  jresult = (void *)result; 
   return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBinding_GetSkeleton(void * jarg1) {
+  void * jresult ;
+  UsdSkelBinding *arg1 = (UsdSkelBinding *) 0 ;
+  UsdSkelSkeleton *result = 0 ;
+  
+  arg1 = (UsdSkelBinding *)jarg1; 
+  result = (UsdSkelSkeleton *) &((UsdSkelBinding const *)arg1)->GetSkeleton();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBinding_GetSkinningTargets(void * jarg1) {
+  void * jresult ;
+  UsdSkelBinding *arg1 = (UsdSkelBinding *) 0 ;
+  VtArray< UsdSkelSkinningQuery > *result = 0 ;
+  
+  arg1 = (UsdSkelBinding *)jarg1; 
+  result = (VtArray< UsdSkelSkinningQuery > *) &((UsdSkelBinding const *)arg1)->GetSkinningTargets();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_UsdSkelBinding(void * jarg1) {
+  UsdSkelBinding *arg1 = (UsdSkelBinding *) 0 ;
+  
+  arg1 = (UsdSkelBinding *)jarg1; 
+  delete arg1;
 }
 
 
@@ -99160,6 +99803,68 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_CreateJointWeightsAtt
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_GetBlendShapesAttr(void * jarg1) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  result = ((UsdSkelBindingAPI const *)arg1)->GetBlendShapesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_CreateBlendShapesAttr__SWIG_0(void * jarg1, void * jarg2, unsigned int jarg3) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  bool arg3 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  result = ((UsdSkelBindingAPI const *)arg1)->CreateBlendShapesAttr((VtValue const &)*arg2,arg3);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_CreateBlendShapesAttr__SWIG_1(void * jarg1, void * jarg2) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  VtValue *arg2 = 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  arg2 = (VtValue *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "VtValue const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdSkelBindingAPI const *)arg1)->CreateBlendShapesAttr((VtValue const &)*arg2);
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_CreateBlendShapesAttr__SWIG_2(void * jarg1) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdAttribute result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  result = ((UsdSkelBindingAPI const *)arg1)->CreateBlendShapesAttr();
+  jresult = new UsdAttribute((const UsdAttribute &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_GetAnimationSourceRel(void * jarg1) {
   void * jresult ;
   UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
@@ -99203,6 +99908,30 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_CreateSkeletonRel(voi
   
   arg1 = (UsdSkelBindingAPI *)jarg1; 
   result = ((UsdSkelBindingAPI const *)arg1)->CreateSkeletonRel();
+  jresult = new UsdRelationship((const UsdRelationship &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_GetBlendShapeTargetsRel(void * jarg1) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdRelationship result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  result = ((UsdSkelBindingAPI const *)arg1)->GetBlendShapeTargetsRel();
+  jresult = new UsdRelationship((const UsdRelationship &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_CreateBlendShapeTargetsRel(void * jarg1) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdRelationship result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  result = ((UsdSkelBindingAPI const *)arg1)->CreateBlendShapeTargetsRel();
   jresult = new UsdRelationship((const UsdRelationship &)result); 
   return jresult;
 }
@@ -99318,6 +100047,58 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_SetRigidJointIn
   arg2 = (int)jarg2; 
   result = (bool)((UsdSkelBindingAPI const *)arg1)->SetRigidJointInfluence(arg2);
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_GetSkeleton(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdSkelSkeleton *arg2 = (UsdSkelSkeleton *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  arg2 = (UsdSkelSkeleton *)jarg2; 
+  result = (bool)((UsdSkelBindingAPI const *)arg1)->GetSkeleton(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_GetAnimationSource(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdPrim *arg2 = (UsdPrim *) 0 ;
+  bool result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  arg2 = (UsdPrim *)jarg2; 
+  result = (bool)((UsdSkelBindingAPI const *)arg1)->GetAnimationSource(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_GetInheritedSkeleton(void * jarg1) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdSkelSkeleton result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  result = ((UsdSkelBindingAPI const *)arg1)->GetInheritedSkeleton();
+  jresult = new UsdSkelSkeleton((const UsdSkelSkeleton &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdSkelBindingAPI_GetInheritedAnimationSource(void * jarg1) {
+  void * jresult ;
+  UsdSkelBindingAPI *arg1 = (UsdSkelBindingAPI *) 0 ;
+  UsdPrim result;
+  
+  arg1 = (UsdSkelBindingAPI *)jarg1; 
+  result = ((UsdSkelBindingAPI const *)arg1)->GetInheritedAnimationSource();
+  jresult = new UsdPrim((const UsdPrim &)result); 
   return jresult;
 }
 
@@ -100260,16 +101041,16 @@ SWIGEXPORT UsdTyped * SWIGSTDCALL CSharp_pxr_UsdShadeShader_SWIGUpcast(UsdShadeS
     return (UsdTyped *)jarg1;
 }
 
-SWIGEXPORT UsdGeomXformable * SWIGSTDCALL CSharp_pxr_UsdSkelPackedJointAnimation_SWIGUpcast(UsdSkelPackedJointAnimation *jarg1) {
-    return (UsdGeomXformable *)jarg1;
+SWIGEXPORT UsdTyped * SWIGSTDCALL CSharp_pxr_UsdSkelBlendShape_SWIGUpcast(UsdSkelBlendShape *jarg1) {
+    return (UsdTyped *)jarg1;
 }
 
 SWIGEXPORT UsdGeomBoundable * SWIGSTDCALL CSharp_pxr_UsdSkelRoot_SWIGUpcast(UsdSkelRoot *jarg1) {
     return (UsdGeomBoundable *)jarg1;
 }
 
-SWIGEXPORT UsdGeomImageable * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_SWIGUpcast(UsdSkelSkeleton *jarg1) {
-    return (UsdGeomImageable *)jarg1;
+SWIGEXPORT UsdGeomBoundable * SWIGSTDCALL CSharp_pxr_UsdSkelSkeleton_SWIGUpcast(UsdSkelSkeleton *jarg1) {
+    return (UsdGeomBoundable *)jarg1;
 }
 
 #ifdef __cplusplus

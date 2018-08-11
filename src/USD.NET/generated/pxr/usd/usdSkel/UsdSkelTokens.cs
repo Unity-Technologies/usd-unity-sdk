@@ -36,7 +36,12 @@ public class UsdSkelTokens : global::System.IDisposable {
     }
   }
 
+  public static TfToken bindTransforms = new TfToken("bindTransforms");
+  public static TfToken blendShapeWeights = new TfToken("blendShapeWeights");
+  public static TfToken blendShapes = new TfToken("blendShapes");
   public static TfToken joints = new TfToken("joints");
+  public static TfToken offsets = new TfToken("offsets");
+  public static TfToken pointIndices = new TfToken("pointIndices");
   public static TfToken primvarsSkelGeomBindTransform = new TfToken("primvars:skel:geomBindTransform");
   public static TfToken primvarsSkelJointIndices = new TfToken("primvars:skel:jointIndices");
   public static TfToken primvarsSkelJointWeights = new TfToken("primvars:skel:jointWeights");
@@ -44,9 +49,12 @@ public class UsdSkelTokens : global::System.IDisposable {
   public static TfToken rotations = new TfToken("rotations");
   public static TfToken scales = new TfToken("scales");
   public static TfToken skelAnimationSource = new TfToken("skel:animationSource");
+  public static TfToken skelBlendShapeTargets = new TfToken("skel:blendShapeTargets");
+  public static TfToken skelBlendShapes = new TfToken("skel:blendShapes");
   public static TfToken skelJoints = new TfToken("skel:joints");
   public static TfToken skelSkeleton = new TfToken("skel:skeleton");
   public static TfToken translations = new TfToken("translations");
+  public static TfToken weight = new TfToken("weight");
 
 }
 

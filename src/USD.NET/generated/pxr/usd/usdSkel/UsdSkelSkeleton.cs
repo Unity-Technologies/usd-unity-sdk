@@ -10,7 +10,7 @@
 
 namespace pxr {
 
-public class UsdSkelSkeleton : UsdGeomImageable {
+public class UsdSkelSkeleton : UsdGeomBoundable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal UsdSkelSkeleton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdSkelSkeleton_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -94,6 +94,28 @@ public class UsdSkelSkeleton : UsdGeomImageable {
     return ret;
   }
 
+  public UsdAttribute GetBindTransformsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_GetBindTransformsAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateBindTransformsAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_CreateBindTransformsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateBindTransformsAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_CreateBindTransformsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateBindTransformsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_CreateBindTransformsAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetRestTransformsAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_GetRestTransformsAttr(swigCPtr), true);
     return ret;
@@ -116,8 +138,6 @@ public class UsdSkelSkeleton : UsdGeomImageable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdSkelSkeleton_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdSkelSkeleton_IsTyped_get();
 }
 
 }

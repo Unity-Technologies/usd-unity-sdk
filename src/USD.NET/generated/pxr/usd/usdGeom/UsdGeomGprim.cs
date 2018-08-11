@@ -198,8 +198,6 @@ public class UsdGeomGprim : UsdGeomBoundable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomGprim_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomGprim_IsTyped_get();
 }
 
 }

@@ -49,7 +49,7 @@ public class UsdSkelSkeletonQuery : global::System.IDisposable {
   }
 
   public UsdPrim GetPrim() {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelSkeletonQuery_GetPrim(swigCPtr), false);
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelSkeletonQuery_GetPrim(swigCPtr), true);
     return ret;
   }
 
@@ -70,22 +70,6 @@ public class UsdSkelSkeletonQuery : global::System.IDisposable {
 
   public VtTokenArray GetJointOrder() {
     VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.UsdSkelSkeletonQuery_GetJointOrder(swigCPtr), true);
-    return ret;
-  }
-
-  public bool ComputeAnimTransform(GfMatrix4d xform, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_ComputeAnimTransform__SWIG_0(swigCPtr, GfMatrix4d.getCPtr(xform), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeAnimTransform(GfMatrix4d xform) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_ComputeAnimTransform__SWIG_1(swigCPtr, GfMatrix4d.getCPtr(xform));
-    return ret;
-  }
-
-  public bool ComputeLocalToWorldTransform(GfMatrix4d xform, UsdGeomXformCache xfCache) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_ComputeLocalToWorldTransform(swigCPtr, GfMatrix4d.getCPtr(xform), UsdGeomXformCache.getCPtr(xfCache));
     return ret;
   }
 
@@ -113,9 +97,24 @@ public class UsdSkelSkeletonQuery : global::System.IDisposable {
     return ret;
   }
 
+  public bool ComputeJointWorldTransforms(VtMatrix4dArray xforms, UsdGeomXformCache xfCache, bool atRest) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_ComputeJointWorldTransforms__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdGeomXformCache.getCPtr(xfCache), atRest);
+    return ret;
+  }
+
+  public bool ComputeJointWorldTransforms(VtMatrix4dArray xforms, UsdGeomXformCache xfCache) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_ComputeJointWorldTransforms__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdGeomXformCache.getCPtr(xfCache));
+    return ret;
+  }
+
   public bool ComputeSkinningTransforms(VtMatrix4dArray xforms, UsdTimeCode time) {
     bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_ComputeSkinningTransforms(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetJointWorldBindTransforms(VtMatrix4dArray xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_GetJointWorldBindTransforms(swigCPtr, VtMatrix4dArray.getCPtr(xforms));
     return ret;
   }
 

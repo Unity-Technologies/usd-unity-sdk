@@ -171,6 +171,7 @@
     <Compile Include="generated\pxr\usd\sdf\SdfAssetPath.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfAssetPathArray.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfBatchNamespaceEdit.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfHumanReadableValue.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfLayer.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfLayerBase.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfLayerHandle.cs" />
@@ -247,8 +248,11 @@
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeUtils.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelAnimMapper.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelAnimQuery.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelBinding.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelBindingAPI.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelBlendShape.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelCache.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelInbetweenShape.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelPackedJointAnimation.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelRoot.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkeleton.cs" />
@@ -281,6 +285,7 @@
     <Compile Include="generated\pxr\usd\usd\UsdResolveInfo.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdResolveInfoSource.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdSchemaBase.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdSchemaType.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdSpecializes.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStage.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdStageCache.cs" />
@@ -316,11 +321,13 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_int.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_long_long.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_NdrTokenMap.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpMapFunction.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpNodeRef.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpPrimIndex.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpVariantFallbackMap.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_p_char.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdfAbstractDataSpecId.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfAttributeSpecHandle.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfLayerHandleSet.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfPrimSpecHandle.cs" />
@@ -334,6 +341,7 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfSchemaBase.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfSpec.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfSpecHandle.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_SdrShaderNodeConstPtr.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_size_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.cs" />
@@ -353,6 +361,8 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdGeomSubset_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdShadeInput_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdShadeOutput_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdSkelBinding_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdSkelInbetweenShape_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdTimeCode_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_VtArrayT_GfVec3f_t_t.cs" />
@@ -366,8 +376,8 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_unsigned_int.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_unsigned_long_long.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_UsdShadeAttributeType.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_va_list.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_void.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_VtArrayT_UsdSkelSkinningQuery_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t.cs" />
     <Compile Include="generated\UsdCs\DiagnosticHandler.cs" />
     <Compile Include="generated\UsdCs\TaskCallback.cs" />

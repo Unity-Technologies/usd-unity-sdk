@@ -76,6 +76,12 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     return ret;
   }
 
+  public UsdObject GetObjectAtPath(SdfPath path) {
+    UsdObject ret = new UsdObject(UsdCsPINVOKE.UsdStageWeakPtr_GetObjectAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public SdfLayerHandle GetSessionLayer() {
     SdfLayerHandle ret = new SdfLayerHandle(UsdCsPINVOKE.UsdStageWeakPtr_GetSessionLayer(swigCPtr), true);
     return ret;

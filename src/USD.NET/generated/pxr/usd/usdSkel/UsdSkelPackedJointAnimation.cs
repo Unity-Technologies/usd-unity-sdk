@@ -10,10 +10,12 @@
 
 namespace pxr {
 
-public class UsdSkelPackedJointAnimation : UsdGeomXformable {
+public class UsdSkelPackedJointAnimation : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+  protected bool swigCMemOwn;
 
-  internal UsdSkelPackedJointAnimation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdSkelPackedJointAnimation_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal UsdSkelPackedJointAnimation(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -25,7 +27,7 @@ public class UsdSkelPackedJointAnimation : UsdGeomXformable {
     Dispose();
   }
 
-  public override void Dispose() {
+  public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -35,7 +37,6 @@ public class UsdSkelPackedJointAnimation : UsdGeomXformable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 
@@ -50,17 +51,17 @@ public class UsdSkelPackedJointAnimation : UsdGeomXformable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
+  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
-  public new static TfTokenVector GetSchemaAttributeNames() {
+  public static TfTokenVector GetSchemaAttributeNames() {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetSchemaAttributeNames__SWIG_1(), false);
     return ret;
   }
 
-  public new static UsdSkelPackedJointAnimation Get(UsdStageWeakPtr stage, SdfPath path) {
+  public static UsdSkelPackedJointAnimation Get(UsdStageWeakPtr stage, SdfPath path) {
     UsdSkelPackedJointAnimation ret = new UsdSkelPackedJointAnimation(UsdCsPINVOKE.UsdSkelPackedJointAnimation_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -72,96 +73,6 @@ public class UsdSkelPackedJointAnimation : UsdGeomXformable {
     return ret;
   }
 
-  public UsdAttribute GetJointsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetJointsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateJointsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateJointsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateJointsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateJointsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateJointsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateJointsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetTranslationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetTranslationsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateTranslationsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateTranslationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateTranslationsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateTranslationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateTranslationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateTranslationsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetRotationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetRotationsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateRotationsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateRotationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateRotationsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateRotationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateRotationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateRotationsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetScalesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetScalesAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateScalesAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateScalesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateScalesAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateScalesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateScalesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelPackedJointAnimation_CreateScalesAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdSkelPackedJointAnimation_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdSkelPackedJointAnimation_IsTyped_get();
 }
 
 }

@@ -391,8 +391,6 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeMaterial_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeMaterial_IsTyped_get();
 }
 
 }

@@ -155,8 +155,6 @@ public class UsdGeomPointBased : UsdGeomGprim {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomPointBased_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomPointBased_IsTyped_get();
 }
 
 }

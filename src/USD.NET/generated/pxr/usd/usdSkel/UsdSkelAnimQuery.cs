@@ -53,17 +53,6 @@ public class UsdSkelAnimQuery : global::System.IDisposable {
     return ret;
   }
 
-  public bool ComputeTransform(GfMatrix4d xform, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeTransform__SWIG_0(swigCPtr, GfMatrix4d.getCPtr(xform), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeTransform(GfMatrix4d xform) {
-    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeTransform__SWIG_1(swigCPtr, GfMatrix4d.getCPtr(xform));
-    return ret;
-  }
-
   public bool ComputeJointLocalTransforms(VtMatrix4dArray xforms, UsdTimeCode time) {
     bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeJointLocalTransforms__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -83,6 +72,17 @@ public class UsdSkelAnimQuery : global::System.IDisposable {
 
   public bool ComputeJointLocalTransformComponents(VtVec3fArray translations, VtQuatfArray rotations, VtVec3hArray scales) {
     bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeJointLocalTransformComponents__SWIG_1(swigCPtr, VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales));
+    return ret;
+  }
+
+  public bool ComputeBlendShapeWeights(VtFloatArray weights, UsdTimeCode time) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeBlendShapeWeights__SWIG_0(swigCPtr, VtFloatArray.getCPtr(weights), UsdTimeCode.getCPtr(time));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ComputeBlendShapeWeights(VtFloatArray weights) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeBlendShapeWeights__SWIG_1(swigCPtr, VtFloatArray.getCPtr(weights));
     return ret;
   }
 
@@ -107,13 +107,13 @@ public class UsdSkelAnimQuery : global::System.IDisposable {
     return ret;
   }
 
-  public bool TransformMightBeTimeVarying() {
-    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_TransformMightBeTimeVarying(swigCPtr);
+  public VtTokenArray GetJointOrder() {
+    VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.UsdSkelAnimQuery_GetJointOrder(swigCPtr), true);
     return ret;
   }
 
-  public VtTokenArray GetJointOrder() {
-    VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.UsdSkelAnimQuery_GetJointOrder(swigCPtr), true);
+  public VtTokenArray GetBlendShapeOrder() {
+    VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.UsdSkelAnimQuery_GetBlendShapeOrder(swigCPtr), true);
     return ret;
   }
 

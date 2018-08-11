@@ -172,8 +172,6 @@ public class UsdGeomCone : UsdGeomGprim {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomCone_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomCone_IsTyped_get();
 }
 
 }

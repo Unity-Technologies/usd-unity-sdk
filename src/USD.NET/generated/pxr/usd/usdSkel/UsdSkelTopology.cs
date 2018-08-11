@@ -47,11 +47,17 @@ public class UsdSkelTopology : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdSkelTopology(SdfPathVector paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_2(SdfPathVector.getCPtr(paths)), true) {
+  public UsdSkelTopology(TfToken paths, uint size) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_2(TfToken.getCPtr(paths), size), true) {
+  }
+
+  public UsdSkelTopology(SdfPathVector paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_3(SdfPathVector.getCPtr(paths)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdSkelTopology(VtIntArray parentIndices) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_3(VtIntArray.getCPtr(parentIndices)), true) {
+  public UsdSkelTopology(SdfPath paths, uint size) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_4(SdfPath.getCPtr(paths), size), true) {
+  }
+
+  public UsdSkelTopology(VtIntArray parentIndices) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_5(VtIntArray.getCPtr(parentIndices)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

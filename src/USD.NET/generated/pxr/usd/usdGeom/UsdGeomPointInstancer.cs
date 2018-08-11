@@ -399,8 +399,6 @@ public class UsdGeomPointInstancer : UsdGeomBoundable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomPointInstancer_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomPointInstancer_IsTyped_get();
   public enum ProtoXformInclusion {
     IncludeProtoXform,
     ExcludeProtoXform
