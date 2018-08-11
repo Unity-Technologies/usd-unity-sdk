@@ -285,18 +285,24 @@ namespace USD.NET {
 
       bool isCustomData = Reflect.IsCustomData(memberInfo);
       bool isPrimvar = Reflect.IsPrimvar(memberInfo);
+      int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
 
       UsdTypeBinding binding;
 
       var conn = csValue as Connectable;
       if (conn != null) {
-        csType = conn.GetValue().GetType();
+        csType = conn.GetValueType();
         csValue = conn.GetValue();
       }
 
       if (!sm_bindings.GetBinding(csType, out binding) && !csType.IsEnum) {
         if (string.IsNullOrEmpty(ns)) {
           return false;
+        }
+
+        var sample = csValue as SampleBase;
+        if (sample == null && csValue != null) {
+          throw new ArgumentException("Type does not inherit from SampleBase: " + attrName);
         }
 
         Serialize(csValue, prim, usdTime, usdNamespace: ns);
@@ -330,10 +336,12 @@ namespace USD.NET {
           }
         }
       } else {
-        // Primvars do not support additional namespaces.
         lock (m_stageLock) {
-          attr = imgble.CreatePrimvar(sdfAttrName, sdfTypeName,
-              VertexDataAttribute.Interpolation).GetAttr();
+          var fullAttrName = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName);
+          var primvar = imgble.CreatePrimvar(new pxr.TfToken(fullAttrName), sdfTypeName,
+              VertexDataAttribute.Interpolation);
+          primvar.SetElementSize(primvarElementSize);
+          attr = primvar.GetAttr();
         }
       }
 
@@ -345,6 +353,13 @@ namespace USD.NET {
           paths.Add(new pxr.SdfPath(conn.GetConnectedPath()));
         }
         attr.SetConnections(paths);
+      }
+
+      // This may happen when a connection is present, but has a null default value.
+      // Because the connection is applied just before this point, this is the earliest possible
+      // exit point.
+      if (csValue == null) {
+        return true;
       }
 
       pxr.VtValue vtValue = binding.toVtValue(csValue);
@@ -478,9 +493,15 @@ namespace USD.NET {
         }
 
         var sample = csValue as SampleBase;
-        if (sample == null) {
-          throw new Exception("Could not deserialize: Prim: " + prim.GetPath() + " namespace: " + ns);
+        if (csValue == null) {
+          // This could attempt to automatically constuct the needed object, then nullable objects
+          // could be used instead to drive deserialization.
+          return false;
+        } else if (sample == null) {
+          // In this case, csValue is not null, but also cannot be converted to SampleBase.
+          throw new ArgumentException("Type does not inherit from SampleBase: " + attrName);
         }
+
         Deserialize((SampleBase)csValue, prim, usdTime, usdNamespace: ns);
         return true;
       }
@@ -491,12 +512,9 @@ namespace USD.NET {
 
       pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
 
-      // Note that namespaced primvars are not supported, so "primvars" will replace the incoming
-      // namespace. This will happen if a nested/namespaced object has a member declared as a
-      // primvar.
       if (isPrimvar) {
-        System.Diagnostics.Debug.Assert(string.IsNullOrEmpty(ns));
-        sdfAttrName = sm_tokenCache["primvars", attrName];
+        var joinedName = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
+        sdfAttrName = sm_tokenCache["primvars", joinedName];
       }
 
       pxr.UsdTimeCode time = variability == pxr.SdfVariability.SdfVariabilityUniform

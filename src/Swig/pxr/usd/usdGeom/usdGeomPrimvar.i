@@ -24,7 +24,7 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(UsdGeomPrimvarVector) vector<UsdGeomPrimvar>;
+  %template(UsdGeomPrimvarVector) vector<UsdGeomPrimvar>;
 }
 typedef std::vector<UsdGeomPrimvar> UsdGeomPrimvarVector;
 

@@ -369,8 +369,6 @@ public class UsdGeomCamera : UsdGeomXformable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomCamera_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomCamera_IsTyped_get();
 }
 
 }

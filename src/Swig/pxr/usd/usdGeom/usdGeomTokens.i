@@ -24,7 +24,7 @@
 
 class UsdGeomTokens {
 private:
-	UsdGeomTokens();
-	~UsdGeomTokens();
+  UsdGeomTokens();
+  ~UsdGeomTokens();
 public:
 };

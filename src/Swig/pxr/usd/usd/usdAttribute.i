@@ -20,24 +20,24 @@
 
 %extend UsdAttribute {
   std::vector<double> GetTimeSamples() const {
-	std::vector<double> v;
-	self->GetTimeSamples(&v);
-	return v;
+  std::vector<double> v;
+  self->GetTimeSamples(&v);
+  return v;
   }
   std::vector<double> GetTimeSamplesInInterval(const GfInterval& interval) const {
-	std::vector<double> v;
-	self->GetTimeSamplesInInterval(interval, &v);
-	return v;
+  std::vector<double> v;
+  self->GetTimeSamplesInInterval(interval, &v);
+  return v;
   }
   VtValue Get() const {
-	VtValue v;
-	self->Get(&v);
-	return v;
+  VtValue v;
+  self->Get(&v);
+  return v;
   }
   VtValue Get(UsdTimeCode time) const {
-	VtValue v;
-	self->Get(&v, time);
-	return v;
+  VtValue v;
+  self->Get(&v, time);
+  return v;
   }
 }
 
@@ -48,7 +48,7 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(UsdAttributeVector) vector<UsdAttribute>;
+  %template(UsdAttributeVector) vector<UsdAttribute>;
 }
 typedef std::vector<UsdAttribute> UsdAttributeVector;
 

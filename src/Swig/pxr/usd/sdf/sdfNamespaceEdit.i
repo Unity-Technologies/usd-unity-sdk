@@ -20,8 +20,8 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(SdfNamespaceEditVector) vector<SdfNamespaceEdit>;
-	%template(SdfNamespaceEditDetailVector) vector<SdfNamespaceEditDetail>;
+  %template(SdfNamespaceEditVector) vector<SdfNamespaceEdit>;
+  %template(SdfNamespaceEditDetailVector) vector<SdfNamespaceEditDetail>;
 }
 typedef std::vector<SdfNamespaceEdit> SdfNamespaceEditVector;
 typedef std::vector<SdfNamespaceEditDetail> SdfNamespaceEditDetailVector;

@@ -16,6 +16,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
+  [System.Serializable]
   [UsdSchema("BasisCurves")]
   public class BasisCurvesSample : CurvesSample {
 

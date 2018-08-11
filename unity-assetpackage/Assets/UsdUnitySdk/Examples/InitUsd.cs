@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -50,10 +50,14 @@ namespace USD.NET.Examples {
     private static void SetupUsdPath() {
       var supPath = UnityEngine.Application.dataPath.Replace("\\", "/");
 
-#if (UNITY_EDITOR)
+#if (UNITY_EDITOR_WIN)
       supPath += @"/UsdUnitySdk/Plugins/x86_64/share/";
-#else
-    supPath += @"/Plugins/share/";
+#elif (UNITY_EDITOR_OSX)
+      supPath += @"/UsdUnitySdk/Plugins/x86_64/UsdCs.bundle/Contents/Resources/share/";
+#elif (UNITY_STANDALONE_WIN)
+      supPath += @"/Plugins/share/";
+#elif (UNITY_STANDALONE_OSX)
+      supPath += @"/Plugins/UsdCs.bundle/Contents/Resources/share/";
 #endif
 
       SetupUsdSysPath();
@@ -67,8 +71,13 @@ namespace USD.NET.Examples {
       var pathVar = "PATH";
       var target = System.EnvironmentVariableTarget.Process;
       var pathvar = System.Environment.GetEnvironmentVariable(pathVar, target);
+#if (UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
       var supPath = UnityEngine.Application.dataPath + @"\Plugins;";
       supPath += UnityEngine.Application.dataPath + @"\UsdUnitySdk\Plugins\x86_64;";
+#elif (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
+      var supPath = UnityEngine.Application.dataPath + @"\Plugins;";
+      supPath += UnityEngine.Application.dataPath + @"\UsdUnitySdk\Plugins\x86_64/Contents/Resources/share;";
+#endif
       var value = pathvar + @";" + supPath;
       Debug.LogFormat("Adding to sys path: {0}", supPath);
       System.Environment.SetEnvironmentVariable(pathVar, value, target);

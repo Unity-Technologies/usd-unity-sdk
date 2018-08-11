@@ -20,7 +20,7 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(UsdGeomXformOpVector) vector<UsdGeomXformOp>;
+  %template(UsdGeomXformOpVector) vector<UsdGeomXformOp>;
 }
 typedef std::vector<UsdGeomXformOp> UsdGeomXformOpVector;
 

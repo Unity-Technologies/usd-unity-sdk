@@ -29,45 +29,45 @@
 
 
 %extend VtArray {
-	static bool Equals(VtArray<ELEM> const& lhs, VtArray<ELEM> const& rhs) {
-		return lhs == rhs;
-	}
+  static bool Equals(VtArray<ELEM> const& lhs, VtArray<ELEM> const& rhs) {
+    return lhs == rhs;
+  }
 
-	%csmethodmodifiers ToString() "public override";
+  %csmethodmodifiers ToString() "public override";
     std::string ToString() {
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
-	%apply ELEM OUTPUT[] { ELEM* dest }
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
+  %apply ELEM OUTPUT[] { ELEM* dest }
     void CopyToArray(ELEM* dest) { 
-		memcpy(dest, self->data(), self->size() * sizeof(ELEM));
-	}
-	%apply ELEM INPUT[] { ELEM* src }
-	void CopyFromArray(ELEM* src) { 
-		memcpy(self->data(), src, self->size() * sizeof(ELEM));
-	}
+    memcpy(dest, self->data(), self->size() * sizeof(ELEM));
+  }
+  %apply ELEM INPUT[] { ELEM* src }
+  void CopyFromArray(ELEM* src) { 
+    memcpy(self->data(), src, self->size() * sizeof(ELEM));
+  }
 
-	%typemap(ctype)  void* "void *"
-	%typemap(imtype) void* "System.IntPtr"
-	%typemap(cstype) void* "System.IntPtr"
-	%typemap(csin)   void* "$csinput"
-	void CopyToArray(void* dest) { 
-		memcpy(dest, self->data(), self->size() * sizeof(ELEM));
-	}
-	void CopyFromArray(void* src) { 
-		memcpy(self->data(), src, self->size() * sizeof(ELEM));
-	}
+  %typemap(ctype)  void* "void *"
+  %typemap(imtype) void* "System.IntPtr"
+  %typemap(cstype) void* "System.IntPtr"
+  %typemap(csin)   void* "$csinput"
+  void CopyToArray(void* dest) { 
+    memcpy(dest, self->data(), self->size() * sizeof(ELEM));
+  }
+  void CopyFromArray(void* src) { 
+    memcpy(self->data(), src, self->size() * sizeof(ELEM));
+  }
 
-	%csmethodmodifiers GetValue(int index) "protected";
-	ELEM const& GetValue(int index) {
-		return (*self)[index];
-	}
-	
-	%csmethodmodifiers SetValue(int index, ELEM const& value) "protected";
-	void SetValue(int index, ELEM const& value) {
-		(*self)[index] = value;
-	}
+  %csmethodmodifiers GetValue(int index) "protected";
+  ELEM const& GetValue(int index) {
+    return (*self)[index];
+  }
+  
+  %csmethodmodifiers SetValue(int index, ELEM const& value) "protected";
+  void SetValue(int index, ELEM const& value) {
+    (*self)[index] = value;
+  }
 }
 
 %include "vtArray_Types.i"

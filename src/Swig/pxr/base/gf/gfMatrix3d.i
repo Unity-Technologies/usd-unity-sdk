@@ -32,20 +32,20 @@ WRAP_EQUAL(GfMatrix3d)
 %include "pxr/base/gf/matrix3d.h"
 
 %extend GfMatrix3d {
-	%csmethodmodifiers ToString() "public override";
+  %csmethodmodifiers ToString() "public override";
     std::string ToString() {
-	    std::stringstream s;
-		s << *self;
-		return s.str();
-	}
+      std::stringstream s;
+    s << *self;
+    return s.str();
+  }
 
-	%apply double OUTPUT[] { double* dest }
+  %apply double OUTPUT[] { double* dest }
     void CopyToArray(double* dest) {
-		memcpy(dest, self->GetArray(), 9 * sizeof(double)); 
-	}
+    memcpy(dest, self->GetArray(), 9 * sizeof(double)); 
+  }
 
-	%apply double INPUT[] { double* src }
-	void CopyFromArray(double* src) { 
-		memcpy(self->GetArray(), src, 9 * sizeof(double));
-	}
+  %apply double INPUT[] { double* src }
+  void CopyFromArray(double* src) { 
+    memcpy(self->GetArray(), src, 9 * sizeof(double));
+  }
 }

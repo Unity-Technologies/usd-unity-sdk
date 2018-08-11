@@ -21,22 +21,22 @@
 %}
 
 %extend UsdMetadataValueMap {
-	%csmethodmodifiers GetValue(TfToken const& key) "protected";
-	VtValue const& GetValue(TfToken const& key) const {
-		return self->at(key);
-	}
-	
-	%csmethodmodifiers SetValue(TfToken const& key, VtValue const& value) "protected";
-	void SetValue(TfToken const& key, VtValue const& value) {
-		(*self)[key] = value;
-	}
+  %csmethodmodifiers GetValue(TfToken const& key) "protected";
+  VtValue const& GetValue(TfToken const& key) const {
+    return self->at(key);
+  }
+  
+  %csmethodmodifiers SetValue(TfToken const& key, VtValue const& value) "protected";
+  void SetValue(TfToken const& key, VtValue const& value) {
+    (*self)[key] = value;
+  }
 }
 
 class UsdMetadataValueMap {
-	%typemap(cscode) VtArray %{
+  %typemap(cscode) VtArray %{
   public $typemap(cstype, VtValue) this[$typemap(cstype, TfToken) index] {
-	get { return GetValue(index); }
-	set { SetValue(index, value); }
+  get { return GetValue(index); }
+  set { SetValue(index, value); }
   }
-	%}
+  %}
 };

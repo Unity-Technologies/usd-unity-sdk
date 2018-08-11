@@ -72,8 +72,6 @@ public class UsdGeomXform : UsdGeomXformable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomXform_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomXform_IsTyped_get();
 }
 
 }

@@ -32,7 +32,7 @@
 }
 
 namespace std {
-	%template(UsdPrimVector) vector<UsdPrim>;
+  %template(UsdPrimVector) vector<UsdPrim>;
 }
 
 typedef std::vector<UsdPrim> UsdPrimVector;

@@ -18,4 +18,6 @@
 #include "pxr/usd/sdf/assetPath.h"
 %}
 
+WRAP_EQUAL(SdfAssetPath)
+
 %include "pxr/usd/sdf/assetPath.h"

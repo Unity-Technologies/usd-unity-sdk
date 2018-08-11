@@ -17,4 +17,6 @@
 #include "pxr/usd/usdGeom/scope.h"
 %}
 
+%ignore UsdGeomScope::schemaType;
+
 %include "pxr/usd/usdGeom/scope.h"

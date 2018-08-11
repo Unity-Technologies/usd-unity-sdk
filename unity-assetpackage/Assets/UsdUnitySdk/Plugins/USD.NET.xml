@@ -47,6 +47,17 @@
             the prim declaring the attribute.
             </summary>
         </member>
+        <member name="M:USD.NET.Relationship.GetTarget(System.Int32)">
+            <summary>
+            Returns the i_th target or null if fewer than i+1 targets are specified.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Relationship.GetOnlyTarget">
+            <summary>
+            Returns the first target path. If there is not exactly one target path, an exception is
+            thrown.
+            </summary>
+        </member>
         <member name="T:USD.NET.IntrinsicTypeConverter">
             <summary>
             Converts intrinsic C# types to/from USD. This is serializaiton infrastructure and should only
@@ -167,6 +178,12 @@
             Primvars in USD (and RenderMan) are a generalization of vertex attributes. The can be 
             constant (one value per object), per vertex, per face, or per-vertex-per-face. The use
             here is limited to per vertex only.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Reflect.GetPrimvarElementSize(System.Reflection.MemberInfo)">
+            <summary>
+            When this member info represents a Primvar (see IsPrimvar), the element size indicates the
+            number of array elements to be aggregated per element on the primitive surface.
             </summary>
         </member>
         <member name="M:USD.NET.Reflect.IsFusedDisplayColor(System.Reflection.MemberInfo)">
@@ -342,12 +359,57 @@
             Visits all arrays held by this object and returns them to the associated allocator.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:USD.NET.Connectable" -->
+        <member name="T:USD.NET.Connectable">
+            <summary>
+            An interface for type-erased access to a Connectable T.
+            </summary>
+        </member>
         <member name="T:USD.NET.Connectable`1">
             <summary>
             A USD attribute which can have a value or be connected to another attribute of matching type.
+            Conceptually, the targeted attribute value will flow into this attribute. The default value
+            is the value which will be specified when the attribute is not connected or the connection is
+            broken. The default value is only stored when the Connectable object is serialized and may be
+            time varying or uniform.
             </summary>
             <typeparam name="T">The underlying type held by the attribute.</typeparam>
+        </member>
+        <member name="M:USD.NET.Connectable`1.IsConnected">
+            <summary>
+            Returns true when a path has been specified, but does not check is this is a valid path in
+            the scene.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Connectable`1.GetValueType">
+            <summary>
+            Returns the C# type of this connectable object.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Connectable`1.GetValue">
+            <summary>
+            Gets the local value of the attribute, for use when no connection is established.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Connectable`1.SetValue(System.Object)">
+            <summary>
+            Sets the local value of the attribute, for use when no connection is established.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Connectable`1.GetConnectedPath">
+            <summary>
+            Gets the connection path, which may or may not be a valid connection.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Connectable`1.SetConnectedPath(System.String)">
+            <summary>
+            Connects this attribute to the targeted path.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Connectable`1.SetConnectedPath(System.String,System.String)">
+            <summary>
+            Connects this attribute to the targeted attribute. Note that the path and attribute must
+            form a valid SdfPath.
+            </summary>
         </member>
         <member name="T:USD.NET.Scene">
             <summary>
@@ -372,12 +434,6 @@
             <remarks>
             These values are defined by USD, thus are limited to Y and Z.
             </remarks>
-        </member>
-        <member name="F:USD.NET.Scene.kVersion">
-            <summary>
-            Declares the file format version of the serializer, written with all serialized data on the
-            UsdPrim of the serialized object as customData metadata.
-            </summary>
         </member>
         <member name="P:USD.NET.Scene.Stage">
             <summary>
@@ -453,6 +509,24 @@
             An exception is thrown if the filePath cannot be opened.
             </summary>
         </member>
+        <member name="M:USD.NET.Scene.GetPrimAtPath(System.String)">
+            <summary>
+            Gets the UsdPrim at the given path, retuns null if the UsdPrim is invalid.
+            Therefore, if the return value is not null, IsValid need not be checked.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Scene.GetAttributeAtPath(System.String)">
+            <summary>
+            Gets the UsdAttribute at the given path, retuns null if the UsdAttribute is invalid.
+            Therefore, if the return value is not null, IsValid need not be checked.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Scene.GetRelationshipAtPath(System.String)">
+            <summary>
+            Gets the UsdRelationship at the given path, retuns null if the UsdRelationship is invalid.
+            Therefore, if the return value is not null, IsValid need not be checked.
+            </summary>
+        </member>
         <member name="M:USD.NET.Scene.Close">
             <summary>
             Release any open files and stop asynchronous execution.
@@ -476,7 +550,7 @@
         </member>
         <member name="M:USD.NET.Scene.WaitForReads">
             <summary>
-            Wait until all asynchronous writes complete.
+            Wait until all asynchronous reads complete.
             </summary>
         </member>
         <member name="M:USD.NET.Scene.Save">
@@ -492,7 +566,7 @@
         </member>
         <member name="M:USD.NET.Scene.FlattenAs(System.String)">
             <summary>
-            Writes the current scene to the given file path, flattneing all references.
+            Writes the current scene to the given file path, flattening all references.
             </summary>
             
             <remarks>

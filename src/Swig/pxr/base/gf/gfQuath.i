@@ -21,7 +21,7 @@
 IGNORE_OPERATORS(GfMatrix2d)
 WRAP_EQUAL(GfQuath)
 
-// Error	LNK2019	unresolved external symbol "public: __cdecl GfQuath::GfQuath(class GfQuatd const &)" (??0GfQuath@@QEAA@AEBVGfQuatd@@@Z) referenced in function CSharp_pxr_new_GfQuath__SWIG_4	UsdCs	C:\src\usd\UsdBindings\vs2015\UsdCs\usdCs_wrap.obj
+// Error  LNK2019  unresolved external symbol "public: __cdecl GfQuath::GfQuath(class GfQuatd const &)" (??0GfQuath@@QEAA@AEBVGfQuatd@@@Z) referenced in function CSharp_pxr_new_GfQuath__SWIG_4  UsdCs  C:\src\usd\UsdBindings\vs2015\UsdCs\usdCs_wrap.obj
 //%include "pxr/base/gf/quath.h"
 
 class GfQuath { };

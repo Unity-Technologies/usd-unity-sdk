@@ -21,7 +21,7 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(TfTypeVector) vector<TfType>;
+  %template(TfTypeVector) vector<TfType>;
 }
 typedef std::vector<TfType> TfTypeVector;
 typedef std::set<TfType> TfTypeSet;

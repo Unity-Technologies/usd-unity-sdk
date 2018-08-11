@@ -40,21 +40,21 @@ public class SdfPath : global::System.IDisposable {
     }
   }
 
-	public override int GetHashCode() {
-	  return (int)GetHash();
-	}
+  public override int GetHashCode() {
+    return (int)GetHash();
+  }
     public static implicit operator string (SdfPath value) {
         return value.GetText();
     }
-	public override string ToString()
-	{
-		return (string)this;
-	}
-	public static bool operator==(SdfPath lhs, SdfPath rhs){
-	    // The Swig binding glew will re-enter this operator comparing to null, so 
-		// that case must be handled explicitly to avoid an infinite loop. This is still
-		// not great, since it crosses the C#/C++ barrier twice. A better approache might
-		// be to return a simple value from C++ that can be compared in C#.
+  public override string ToString()
+  {
+    return (string)this;
+  }
+  public static bool operator==(SdfPath lhs, SdfPath rhs){
+      // The Swig binding glew will re-enter this operator comparing to null, so 
+    // that case must be handled explicitly to avoid an infinite loop. This is still
+    // not great, since it crosses the C#/C++ barrier twice. A better approache might
+    // be to return a simple value from C++ that can be compared in C#.
         bool lnull = lhs as object == null;
         bool rnull = rhs as object == null;
         return (lnull == rnull) && ((lnull && rnull) || SdfPath.Equals(lhs, rhs));
@@ -62,9 +62,9 @@ public class SdfPath : global::System.IDisposable {
     public static bool operator !=(SdfPath lhs, SdfPath rhs) {
         return !(lhs == rhs);
     }
-	override public bool Equals(object rhs) {
-		return SdfPath.Equals(this, rhs as SdfPath);
-	}
+  override public bool Equals(object rhs) {
+    return SdfPath.Equals(this, rhs as SdfPath);
+  }
 
   public static SdfPath EmptyPath() {
     SdfPath ret = new SdfPath(UsdCsPINVOKE.SdfPath_EmptyPath(), false);

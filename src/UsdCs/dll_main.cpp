@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if defined(_WIN64)
 #include <Windows.h>
+#endif
+
 #include <iostream>
 
 #include "diagnosticHandler.h"
@@ -94,10 +97,17 @@ CsharpDelegate* CsharpDelegate::m_instance = NULL;
 #include <mutex>
 std::once_flag reg;
 
+#if defined(_WIN64)
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
+#endif
+#if defined(__APPLE__)
+__attribute__((constructor)) void DllMain() {
+#endif
   std::call_once(reg, [] {
-     TfDiagnosticMgr::GetInstance().AddDelegate(CsharpDelegate::GetInstance());
+    TfDiagnosticMgr::GetInstance().AddDelegate(CsharpDelegate::GetInstance());
   });
+#if defined(_WIN64)
   _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
   return true;
+#endif
 }

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace Tests {
   class UnitTest {
@@ -61,12 +62,67 @@ namespace Tests {
       }
     }
 
+    static protected void AssertEqual(Array first, Array second) {
+      if (first == null && second == null) {
+        return;
+      }
+      if (first.Length != second.Length) {
+        throw new Exception("Length of arrays do not match");
+      }
+
+      for (int i = 0; i < first.Length; i++) {
+        AssertEqual(first.GetValue(i), second.GetValue(i));
+      }
+    }
+
+    static protected void AssertEqual<T>(List<T> first, List<T> second) {
+      if (first == null && second == null) {
+        return;
+      }
+      if (first.Count != second.Count) {
+        throw new Exception("Length of arrays do not match");
+      }
+
+      for (int i = 0; i < first.Count; i++) {
+        AssertEqual(first[i], second[i]);
+      }
+    }
+
+    static protected void AssertEqual<T,Q>(Dictionary<T,Q> first, Dictionary<T,Q> second) {
+      if (first == null && second == null) {
+        return;
+      }
+      if (first.Count != second.Count) {
+        throw new Exception("Length of arrays do not match");
+      }
+
+      foreach (var kvp in first) {
+        if (!second.ContainsKey(kvp.Key)) {
+          throw new Exception("Key in first not found in second: " + kvp.Key);
+        }
+        AssertEqual(kvp.Value, second[kvp.Key]);
+      }
+    }
+
     static protected void AssertEqual<T>(T first, T second) {
       if (first == null && second == null) {
         return;
       }
+      if (first.GetType().IsArray) {
+        AssertEqual(first as Array, second as Array);
+        return;
+      }
       if (!first.Equals(second)) {
         throw new Exception("Values do not match for " + typeof(T).Name);
+      }
+    }
+
+    static protected void AssertNotEqual<T>(T first, T second) {
+      if (first == null && second == null) {
+        throw new Exception("Both values are null for " + typeof(T).Name);
+      }
+      if (first.Equals(second)) {
+        throw new Exception("Values do match for " + typeof(T).Name);
       }
     }
 

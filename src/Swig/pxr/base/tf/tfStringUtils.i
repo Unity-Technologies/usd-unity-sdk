@@ -25,6 +25,8 @@
 
 %apply bool * INOUT { bool * outOfRange };
 
+%ignore TfVStringPrintf;
+
 %include "pxr/base/tf/stringUtils.h";
 
 // XXX: unhack

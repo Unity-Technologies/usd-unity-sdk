@@ -377,10 +377,6 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdShadeConnectableAPI_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdShadeConnectableAPI_IsTyped_get();
-  public static readonly bool IsApplied = UsdCsPINVOKE.UsdShadeConnectableAPI_IsApplied_get();
-  public static readonly bool IsMultipleApply = UsdCsPINVOKE.UsdShadeConnectableAPI_IsMultipleApply_get();
 }
 
 }

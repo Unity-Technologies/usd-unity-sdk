@@ -127,8 +127,6 @@ public class UsdGeomCube : UsdGeomGprim {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomCube_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomCube_IsTyped_get();
 }
 
 }

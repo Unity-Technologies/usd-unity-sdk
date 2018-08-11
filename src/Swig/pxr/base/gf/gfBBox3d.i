@@ -15,9 +15,9 @@
 %module gfCamera
 
 %{
-#include "pxr/base/gf/camera.h"
+#include "pxr/base/gf/bbox3d.h"
 %}
 
 WRAP_EQUAL(GfBBox3d)
 
-%include "pxr/base/gf/camera.h"
+%include "pxr/base/gf/bbox3d.h"

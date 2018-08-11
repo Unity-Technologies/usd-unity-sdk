@@ -16,6 +16,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
+  [System.Serializable]
   [UsdSchema("Curves")]
   public class CurvesSample : XformSample {
 

@@ -138,8 +138,6 @@ public class UsdGeomNurbsCurves : UsdGeomCurves {
     return ret;
   }
 
-  public static readonly bool IsConcrete = UsdCsPINVOKE.UsdGeomNurbsCurves_IsConcrete_get();
-  public static readonly bool IsTyped = UsdCsPINVOKE.UsdGeomNurbsCurves_IsTyped_get();
 }
 
 }

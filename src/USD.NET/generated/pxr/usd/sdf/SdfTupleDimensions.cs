@@ -43,33 +43,33 @@ public class SdfTupleDimensions : global::System.IDisposable {
   public SdfTupleDimensions() : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_0(), true) {
   }
 
-  public SdfTupleDimensions(ulong m) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_1(m), true) {
+  public SdfTupleDimensions(uint m) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_1(m), true) {
   }
 
-  public SdfTupleDimensions(ulong m, ulong n) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_2(m, n), true) {
+  public SdfTupleDimensions(uint m, uint n) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_2(m, n), true) {
   }
 
-  public SdfTupleDimensions(SWIGTYPE_p_a_2__unsigned_long_long s) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_3(SWIGTYPE_p_a_2__unsigned_long_long.getCPtr(s)), true) {
+  public SdfTupleDimensions(SWIGTYPE_p_a_2__size_t s) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_3(SWIGTYPE_p_a_2__size_t.getCPtr(s)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_unsigned_long_long d {
+  public SWIGTYPE_p_size_t d {
     set {
-      UsdCsPINVOKE.SdfTupleDimensions_d_set(swigCPtr, SWIGTYPE_p_unsigned_long_long.getCPtr(value));
+      UsdCsPINVOKE.SdfTupleDimensions_d_set(swigCPtr, SWIGTYPE_p_size_t.getCPtr(value));
     } 
     get {
       global::System.IntPtr cPtr = UsdCsPINVOKE.SdfTupleDimensions_d_get(swigCPtr);
-      SWIGTYPE_p_unsigned_long_long ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_long_long(cPtr, false);
+      SWIGTYPE_p_size_t ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_size_t(cPtr, false);
       return ret;
     } 
   }
 
-  public ulong size {
+  public uint size {
     set {
       UsdCsPINVOKE.SdfTupleDimensions_size_set(swigCPtr, value);
     } 
     get {
-      ulong ret = UsdCsPINVOKE.SdfTupleDimensions_size_get(swigCPtr);
+      uint ret = UsdCsPINVOKE.SdfTupleDimensions_size_get(swigCPtr);
       return ret;
     } 
   }

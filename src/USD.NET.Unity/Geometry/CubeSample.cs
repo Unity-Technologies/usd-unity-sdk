@@ -14,8 +14,16 @@
 
 namespace USD.NET.Unity {
 
+  [System.Serializable]
   [UsdSchema("Cube")]
   public class CubeSample : XformSample {
+    public CubeSample() : base() {
+    }
+
+    public CubeSample(double size) : base() {
+      m_size = size;
+    }
+
     // Indicates the length of each side of the cube.
     public double size {
       get { return m_size; }

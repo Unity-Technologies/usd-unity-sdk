@@ -44,7 +44,7 @@ public class TfToken : global::System.IDisposable {
         return value.GetText();
     }
 
-	  public override string ToString() {
+    public override string ToString() {
         return GetText();
     }
 
@@ -186,10 +186,10 @@ public class TfToken : global::System.IDisposable {
   }
 
     public static bool operator==(TfToken lhs, TfToken rhs){
-	    // The Swig binding glue will re-enter this operator comparing to null, so 
-	    // that case must be handled explicitly to avoid an infinite loop. This is still
-	    // not great, since it crosses the C#/C++ barrier twice. A better approache might
-	    // be to return a simple value from C++ that can be compared in C#.
+      // The Swig binding glue will re-enter this operator comparing to null, so 
+      // that case must be handled explicitly to avoid an infinite loop. This is still
+      // not great, since it crosses the C#/C++ barrier twice. A better approache might
+      // be to return a simple value from C++ that can be compared in C#.
       bool lnull = lhs as object == null;
       bool rnull = rhs as object == null;
       return (lnull == rnull) && ((lnull && rnull) || TfToken.Equals(lhs, rhs));
@@ -199,9 +199,9 @@ public class TfToken : global::System.IDisposable {
         return !(lhs == rhs);
     }
 
-	  override public bool Equals(object rhs) {
-		  return TfToken.Equals(this, rhs as TfToken);
-	  }
+    override public bool Equals(object rhs) {
+      return TfToken.Equals(this, rhs as TfToken);
+    }
   
   public enum _ImmortalTag {
     Immortal

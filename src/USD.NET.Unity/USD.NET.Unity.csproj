@@ -71,6 +71,16 @@
     <Compile Include="Geometry\MeshSample.cs" />
     <Compile Include="Geometry\MeshSampleBase.cs" />
     <Compile Include="Geometry\XformSample.cs" />
+    <Compile Include="Shading\MaterialBindingSample.cs" />
+    <Compile Include="Shading\MaterialSample.cs" />
+    <Compile Include="Shading\ParameterInfo.cs" />
+    <Compile Include="Shading\UsdPreviewSurface\PrimvarReaderFloat2Sample.cs" />
+    <Compile Include="Shading\UsdPreviewSurface\TextureReaderSample.cs" />
+    <Compile Include="Shading\ShaderAttributes.cs" />
+    <Compile Include="Shading\ShaderSample.cs" />
+    <Compile Include="Shading\UsdPreviewSurface\PreviewSurfaceSample.cs" />
+    <Compile Include="Shading\UnityNative\StandardShaderSample.cs" />
+    <Compile Include="Shading\UnityNative\Texture2DSample.cs" />
     <Compile Include="DiagnosticHandler.cs" />
     <Compile Include="UnityTypeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

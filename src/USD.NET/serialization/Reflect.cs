@@ -78,6 +78,14 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// When this member info represents a Primvar (see IsPrimvar), the element size indicates the
+    /// number of array elements to be aggregated per element on the primitive surface.
+    /// </summary>
+    public static int GetPrimvarElementSize(MemberInfo info) {
+      return GetCacheEntry(info).primvarElementSize;
+    }
+
+    /// <summary>
     /// Indicates DisplayColor and DisplayOpacity have been fused into a single object in Unity.
     /// </summary>
     public static bool IsFusedDisplayColor(MemberInfo info) {
@@ -189,6 +197,7 @@ namespace USD.NET {
     /// </summary>
     private struct InfoEntry {
       public bool isPrimvar;
+      public int primvarElementSize;
       public bool isCustomData;
       public pxr.SdfVariability sdfVariability;
       public bool isNonSerialized;
@@ -237,6 +246,7 @@ namespace USD.NET {
       var attrs2 = (VertexDataAttribute[])info.
                           GetCustomAttributes(typeof(VertexDataAttribute), true);
       cachedInfo.isPrimvar = attrs2.Length > 0;
+      cachedInfo.primvarElementSize = cachedInfo.isPrimvar ? attrs2[0].ElementSize : 1;
 
       //
       // IsFusedDisplayColor

@@ -18,6 +18,7 @@ namespace USD.NET.Unity {
   // out as a separate class because in the common read case, this data is not needed. Rather than
   // splitting the class, the values could also be read individually, though with a performance hit.
 
+  [System.Serializable]
   [UsdSchema("Mesh")]
   public class MeshSample : MeshSampleBase {
     public Visibility visibility;

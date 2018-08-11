@@ -88,8 +88,8 @@ public class SdfValueTypeName : global::System.IDisposable {
     return ret;
   }
 
-  public ulong GetHash() {
-    ulong ret = UsdCsPINVOKE.SdfValueTypeName_GetHash(swigCPtr);
+  public uint GetHash() {
+    uint ret = UsdCsPINVOKE.SdfValueTypeName_GetHash(swigCPtr);
     return ret;
   }
 
@@ -110,10 +110,10 @@ public class SdfValueTypeName : global::System.IDisposable {
   }
 
     public static bool operator==(SdfValueTypeName lhs, SdfValueTypeName rhs){
-	    // The Swig binding glue will re-enter this operator comparing to null, so 
-	    // that case must be handled explicitly to avoid an infinite loop. This is still
-	    // not great, since it crosses the C#/C++ barrier twice. A better approache might
-	    // be to return a simple value from C++ that can be compared in C#.
+      // The Swig binding glue will re-enter this operator comparing to null, so 
+      // that case must be handled explicitly to avoid an infinite loop. This is still
+      // not great, since it crosses the C#/C++ barrier twice. A better approache might
+      // be to return a simple value from C++ that can be compared in C#.
       bool lnull = lhs as object == null;
       bool rnull = rhs as object == null;
       return (lnull == rnull) && ((lnull && rnull) || SdfValueTypeName.Equals(lhs, rhs));
@@ -123,9 +123,9 @@ public class SdfValueTypeName : global::System.IDisposable {
         return !(lhs == rhs);
     }
 
-	  override public bool Equals(object rhs) {
-		  return SdfValueTypeName.Equals(this, rhs as SdfValueTypeName);
-	  }
+    override public bool Equals(object rhs) {
+      return SdfValueTypeName.Equals(this, rhs as SdfValueTypeName);
+    }
   
 }
 

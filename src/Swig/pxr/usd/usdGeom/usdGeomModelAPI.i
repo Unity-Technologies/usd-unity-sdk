@@ -18,6 +18,8 @@
 #include "pxr/usd/usdGeom/modelAPI.h"
 %}
 
+%ignore UsdGeomModelAPI::schemaType;
+
 %include "pxr/usd/usdGeom/modelAPI.h"
 
 %template(UsdGeomConstraintTargetVector) std::vector<UsdGeomConstraintTarget>;

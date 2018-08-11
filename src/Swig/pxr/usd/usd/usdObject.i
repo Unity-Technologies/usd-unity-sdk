@@ -23,10 +23,10 @@
 
 %typemap(cscode) UsdObject %{
   public static bool operator==(UsdObject lhs, UsdObject rhs){
-	  // The Swig binding glew will re-enter this operator comparing to null, so 
-	  // that case must be handled explicitly to avoid an infinite loop. This is still
-	  // not great, since it crosses the C#/C++ barrier twice. A better approache might
-	  // be to return a simple value from C++ that can be compared in C#.
+    // The Swig binding glew will re-enter this operator comparing to null, so 
+    // that case must be handled explicitly to avoid an infinite loop. This is still
+    // not great, since it crosses the C#/C++ barrier twice. A better approache might
+    // be to return a simple value from C++ that can be compared in C#.
     bool lnull = lhs as object == null;
     bool rnull = rhs as object == null;
     return (lnull == rnull) && ((lnull && rnull) || UsdObject.Equals(lhs, rhs));
@@ -34,35 +34,35 @@
   public static bool operator !=(UsdObject lhs, UsdObject rhs) {
       return !(lhs == rhs);
   }
-	override public bool Equals(object rhs) {
-		return UsdObject.Equals(this, rhs as UsdObject);
-	}
+  override public bool Equals(object rhs) {
+    return UsdObject.Equals(this, rhs as UsdObject);
+  }
 
-	public static implicit operator bool(UsdObject obj) {
-		return obj._IsValid();
-	}
+  public static implicit operator bool(UsdObject obj) {
+    return obj._IsValid();
+  }
 %}
 
 %ignore UsdPrim::_UnspecifiedBoolType() const;
 
 %extend UsdObject {
   static bool Equals(UsdObject const& lhs, UsdObject const& rhs) {
-	return lhs == rhs;
+  return lhs == rhs;
   }
 
   bool _IsValid() {
-	return bool(*self);
+  return bool(*self);
   }
 
   VtValue GetMetadata(TfToken key) const {
-	VtValue v;
-	self->GetMetadata(key, &v);
-	return v;
+  VtValue v;
+  self->GetMetadata(key, &v);
+  return v;
   }
   VtValue GetMetadataByDictKey(const TfToken& key, const TfToken &keyPath) const {
-	VtValue v;
-	self->GetMetadataByDictKey(key, keyPath, &v);
-	return v;
+  VtValue v;
+  self->GetMetadataByDictKey(key, keyPath, &v);
+  return v;
   }
 }
 %ignore UsdObject::GetMetadata(const TfToken& key, VtValue* value) const;

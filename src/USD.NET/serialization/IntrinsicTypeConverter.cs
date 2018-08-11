@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using pxr;
 
 namespace USD.NET {
@@ -59,8 +60,12 @@ namespace USD.NET {
       return output;
     }
 
-    static public VtTokenArray ToVtArray(List<string> input) {
+    static public VtTokenArray ListToVtArray(List<string> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<string> ListFromVtArray(VtTokenArray input) {
+      return FromVtArray(input).ToList();
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
@@ -73,6 +78,43 @@ namespace USD.NET {
     static public void FromVtArray(VtTokenArray input, ref string[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<string>(input.size());
+      }
+      // PERFORMANCE: this is super inefficient.
+      for (int i = 0; i < input.size(); i++) {
+        output[i] = input[i];
+      }
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // SdfAssetPath[], List<SdfAssetPath> <--> SdfAssetPath
+    // ----------------------------------------------------------------------------------------- //
+    static public SdfAssetPathArray ToVtArray(SdfAssetPath[] input) {
+      var output = new SdfAssetPathArray((uint)input.Length);
+      // PERFORMANCE: this is super inefficient.
+      for (int i = 0; i < input.Length; i++) {
+        output[i] = new SdfAssetPath(input[i].GetAssetPath());
+      }
+      return output;
+    }
+
+    static public SdfAssetPathArray ListToVtArray(List<SdfAssetPath> input) {
+      return ToVtArray(input.ToArray());
+    }
+
+    static public List<SdfAssetPath> ListFromVtArray(SdfAssetPathArray input) {
+      return FromVtArray(input).ToList();
+    }
+
+    // Convenience API: generates garbage, do not use when performance matters.
+    static public SdfAssetPath[] FromVtArray(SdfAssetPathArray input) {
+      var output = UsdIo.ArrayAllocator.Malloc<SdfAssetPath>(input.size());
+      FromVtArray(input, ref output);
+      return output;
+    }
+
+    static public void FromVtArray(SdfAssetPathArray input, ref SdfAssetPath[] output) {
+      if (output.Length != input.size()) {
+        output = UsdIo.ArrayAllocator.Malloc<SdfAssetPath>(input.size());
       }
       // PERFORMANCE: this is super inefficient.
       for (int i = 0; i < input.size(); i++) {
@@ -94,10 +136,6 @@ namespace USD.NET {
       return output;
     }
 
-    static public VtBoolArray ToVtArray(List<bool> input) {
-      return ToVtArray(input.ToArray());
-    }
-
     // Convenience API: generates garbage, do not use when performance matters.
     static public bool[] FromVtArray(VtBoolArray input) {
       bool[] output = UsdIo.ArrayAllocator.Malloc<bool>(input.size());
@@ -117,7 +155,11 @@ namespace USD.NET {
       }
     }
 
-    static public void FromVtArray(VtBoolArray input, ref List<bool> output) {
+    static public VtBoolArray ListToVtArray(List<bool> input) {
+      return ToVtArray(input.ToArray());
+    }
+
+    static public List<bool> ListFromVtArray(VtBoolArray input) {
       bool[] tmp = UsdIo.ArrayAllocator.Malloc<bool>(input.size());
       unsafe
       {
@@ -125,8 +167,7 @@ namespace USD.NET {
           input.CopyToArray((IntPtr)p);
         }
       }
-      output.Clear();
-      output.InsertRange(0, tmp);
+      return tmp.ToList();
     }
 
     // ----------------------------------------------------------------------------------------- //
@@ -143,8 +184,12 @@ namespace USD.NET {
       return output;
     }
 
-    static public VtUCharArray ToVtArray(List<byte> input) {
+    static public VtUCharArray ListToVtArray(List<byte> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<byte> ListFromVtArray(VtUCharArray input) {
+      return FromVtArray(input).ToList();
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
@@ -169,8 +214,13 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // int[], List<int> <--> IntArray
     // ----------------------------------------------------------------------------------------- //
-    static public VtIntArray ToVtArray(List<int> input) {
+
+    static public VtIntArray ListToVtArray(List<int> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<int> ListFromVtArray(VtIntArray input) {
+      return FromVtArray(input).ToList();
     }
 
     static public VtIntArray ToVtArray(int[] input) {
@@ -206,8 +256,12 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // uint[], List<uint> <--> UIntArray
     // ----------------------------------------------------------------------------------------- //
-    static public VtUIntArray ToVtArray(List<uint> input) {
+    static public VtUIntArray ListToVtArray(List<uint> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<uint> ListFromVtArray(VtUIntArray input) {
+      return FromVtArray(input).ToList();
     }
 
     static public VtUIntArray ToVtArray(uint[] input) {
@@ -243,8 +297,12 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // long[], List<long> <--> Int64Array
     // ----------------------------------------------------------------------------------------- //
-    static public VtInt64Array ToVtArray(List<long> input) {
+    static public VtInt64Array ListToVtArray(List<long> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<long> ListFromVtArray(VtInt64Array input) {
+      return FromVtArray(input).ToList();
     }
 
     static public VtInt64Array ToVtArray(long[] input) {
@@ -280,8 +338,12 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // ulong[], List<ulong> <--> UInt64Array
     // ----------------------------------------------------------------------------------------- //
-    static public VtUInt64Array ToVtArray(List<ulong> input) {
+    static public VtUInt64Array ListToVtArray(List<ulong> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<ulong> ListFromVtArray(VtUInt64Array input) {
+      return FromVtArray(input).ToList();
     }
 
     static public VtUInt64Array ToVtArray(ulong[] input) {
@@ -317,8 +379,12 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // float[], List<float> <--> FloatArray
     // ----------------------------------------------------------------------------------------- //
-    static public VtFloatArray ToVtArray(List<float> input) {
+    static public VtFloatArray ListToVtArray(List<float> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<float> ListFromVtArray(VtFloatArray input) {
+      return FromVtArray(input).ToList();
     }
 
     static public VtFloatArray ToVtArray(float[] input) {
@@ -346,8 +412,12 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // double[], List<double> <--> DoubleArray
     // ----------------------------------------------------------------------------------------- //
-    static public VtDoubleArray ToVtArray(List<double> input) {
+    static public VtDoubleArray ListToVtArray(List<double> input) {
       return ToVtArray(input.ToArray());
+    }
+
+    static public List<double> ListFromVtArray(VtDoubleArray input) {
+      return FromVtArray(input).ToList();
     }
 
     static public VtDoubleArray ToVtArray(double[] input) {

@@ -20,7 +20,7 @@
 
 %include "std_vector.i"
 namespace std {
-	%template(UsdPropertyVector) vector<UsdProperty>;
+  %template(UsdPropertyVector) vector<UsdProperty>;
 }
 typedef std::vector<UsdProperty> UsdPropertyVector;
 

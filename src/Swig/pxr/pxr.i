@@ -27,32 +27,32 @@
 %include "std_string.i"
 
 namespace std {
-	%template(StdStringVector) vector<std::string>;
+  %template(StdStringVector) vector<std::string>;
 }
 typedef std::vector<std::string> StdStringVector;
 
 namespace std {
-	%template(StdIntVector) vector<int>;
+  %template(StdIntVector) vector<int>;
 }
 typedef std::vector<int> StdIntVector;
 
 namespace std {
-	%template(StdFloatVector) vector<float>;
+  %template(StdFloatVector) vector<float>;
 }
 typedef std::vector<float> StdFloatVector;
 
 namespace std {
-	%template(StdFloatVectorVector) vector< vector<float> >;
+  %template(StdFloatVectorVector) vector< vector<float> >;
 }
 typedef vector< vector<float> > StdFloatVectorVector;
 
 namespace std {
-	%template(StdDoubleVector) vector<double>;
+  %template(StdDoubleVector) vector<double>;
 }
 typedef std::vector<double> StdDoubleVector;
 
 namespace std {
-	%template(StdDoubleVectorVector) vector< vector<double> >;
+  %template(StdDoubleVectorVector) vector< vector<double> >;
 }
 typedef std::vector< vector<double> > StdDoubleVectorVector;
 
@@ -84,7 +84,7 @@ typedef std::vector< vector<double> > StdDoubleVectorVector;
 %inline %{
 
 void SetEnv(std::string name, std::string value) {
-	ArchSetEnv(name, value, true);
+  ArchSetEnv(name, value, true);
 }
 
 VtValue GetFusedTransform(UsdPrim prim, UsdTimeCode time) {

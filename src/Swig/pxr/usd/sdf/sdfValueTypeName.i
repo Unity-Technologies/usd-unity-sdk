@@ -23,11 +23,6 @@ WRAP_EQUAL(SdfValueTypeName)
 %rename (GetTfType) SdfValueTypeName::GetType;
 %ignore SdfValueTypeName::GetDefaultUnit;
 
-// Hack for SdfTupleDimensions, why isn't size_t a known type?
-#define size_t uint64_t
-
 %ignore SdfValueTypeName::GetDimensions;
 
 %include "pxr/usd/sdf/valueTypeName.h"
-
-#undef size_t

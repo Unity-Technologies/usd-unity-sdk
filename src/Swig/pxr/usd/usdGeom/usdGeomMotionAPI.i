@@ -18,5 +18,7 @@
 #include "pxr/usd/usdGeom/motionAPI.h"
 %}
 
+%ignore UsdGeomMotionAPI::schemaType;
+
 %include "pxr/usd/usdGeom/motionAPI.h"
 

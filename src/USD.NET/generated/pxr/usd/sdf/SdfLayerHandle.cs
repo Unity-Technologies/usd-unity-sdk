@@ -205,6 +205,13 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public SdfLayer CreateAnonymous(string tag, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr format) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateAnonymous__SWIG_2(swigCPtr, tag, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(format));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool IsAnonymous() {
     bool ret = UsdCsPINVOKE.SdfLayerHandle_IsAnonymous(swigCPtr);
     return ret;
@@ -228,8 +235,13 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public bool Save(bool force) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_Save__SWIG_0(swigCPtr, force);
+    return ret;
+  }
+
   public bool Save() {
-    bool ret = UsdCsPINVOKE.SdfLayerHandle_Save(swigCPtr);
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_Save__SWIG_1(swigCPtr);
     return ret;
   }
 
@@ -374,6 +386,18 @@ public class SdfLayerHandle : global::System.IDisposable {
 
   public string ComputeAbsolutePath(string relativePath) {
     string ret = UsdCsPINVOKE.SdfLayerHandle_ComputeAbsolutePath(swigCPtr, relativePath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_std__type_info GetFieldTypeid(SWIGTYPE_p_SdfAbstractDataSpecId id, TfToken name) {
+    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(UsdCsPINVOKE.SdfLayerHandle_GetFieldTypeid__SWIG_0(swigCPtr, SWIGTYPE_p_SdfAbstractDataSpecId.getCPtr(id), TfToken.getCPtr(name)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_std__type_info GetFieldTypeid(SdfPath path, TfToken fieldName) {
+    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(UsdCsPINVOKE.SdfLayerHandle_GetFieldTypeid__SWIG_1(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
