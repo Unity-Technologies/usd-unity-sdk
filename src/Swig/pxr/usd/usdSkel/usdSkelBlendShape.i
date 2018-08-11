@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2018 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdGeomMotionAPI
-
+%module UsdSkelBlendShape
 %{
-#include "pxr/usd/usdGeom/motionAPI.h"
+#include "pxr/usd/usdSkel/blendShape.h"
 %}
 
-%ignore UsdGeomMotionAPI::schemaType;
+// Declared but not defined:
+// https://github.com/PixarAnimationStudios/USD/issues/587
+%ignore UsdSkelBlendShape::ComputeInbetweenKeys;
 
-%include "pxr/usd/usdGeom/motionAPI.h"
-
+%include "pxr/usd/usdSkel/blendShape.h"

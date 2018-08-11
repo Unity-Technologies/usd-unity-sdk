@@ -165,6 +165,9 @@
     <Content Include="pxr\usd\usdShade\usdShade.i" />
     <Content Include="pxr\usd\usdSkel\usdSkelAnimMapper.i" />
     <Content Include="pxr\usd\usdSkel\UsdSkelAnimQuery.i" />
+    <Content Include="pxr\usd\usdSkel\usdSkelBinding.i" />
+    <Content Include="pxr\usd\usdSkel\usdSkelBlendShape.i" />
+    <Content Include="pxr\usd\usdSkel\usdSkelInbetweenShape.i" />
     <Content Include="pxr\usd\usdSkel\usdSkelCache.i" />
     <Content Include="pxr\usd\usdSkel\usdSkelPackedJointAnimation.i" />
     <Content Include="pxr\usd\usdSkel\usdSkelTokens_Tokens.i" />

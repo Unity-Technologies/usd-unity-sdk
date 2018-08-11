@@ -17,4 +17,6 @@
 #include "pxr/usd/usdSkel/packedJointAnimation.h"
 %}
 
+%ignore UsdSkelPackedJointAnimation::schemaType;
+
 %include "pxr/usd/usdSkel/packedJointAnimation.h"

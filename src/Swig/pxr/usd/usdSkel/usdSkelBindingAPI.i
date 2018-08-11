@@ -17,4 +17,6 @@
 #include "pxr/usd/usdSkel/bindingAPI.h"
 %}
 
+%ignore UsdSkelBindingAPI::schemaType;
+
 %include "pxr/usd/usdSkel/bindingAPI.h"

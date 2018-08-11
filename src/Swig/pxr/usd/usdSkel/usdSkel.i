@@ -18,7 +18,9 @@
 
 %include "usdSkelAnimMapper.i"
 %include "usdSkelAnimQuery.i"
+%include "usdSkelBlendShape.i"
 %include "usdSkelCache.i"
+%include "usdSkelInbetweenShape.i"
 %include "usdSkelPackedJointAnimation.i"
 %include "usdSkelRoot.i"
 %include "usdSkelSkeleton.i"
@@ -27,6 +29,7 @@
 %include "usdSkelTopology.i"
 %include "usdSkelUtils.i"
 
+%include "usdSkelBinding.i"
 %include "usdSkelBindingAPI.i"
 
 %include "usdSkelTokens.i"
