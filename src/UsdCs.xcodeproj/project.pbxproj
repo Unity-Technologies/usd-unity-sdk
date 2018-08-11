@@ -10,8 +10,8 @@
 		46964DED21168BEC005EFA10 /* dll_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46964DE821168BEB005EFA10 /* dll_main.cpp */; };
 		46964DEE21168BEC005EFA10 /* usdCs_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46964DE921168BEB005EFA10 /* usdCs_wrap.cpp */; };
 		46964DEF21168BEC005EFA10 /* diagnosticHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46964DEA21168BEC005EFA10 /* diagnosticHandler.cpp */; };
-		46C280DF2117592500770DCB /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C280DD2117592500770DCB /* libtbb.dylib */; };
-		46C280E02117592500770DCB /* libusd_ms.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C280DE2117592500770DCB /* libusd_ms.dylib */; };
+		46C280E2211F744400770DCB /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C280E1211F744400770DCB /* libtbb.dylib */; };
+		46C280E4211F745800770DCB /* libusd_ms.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C280E3211F745800770DCB /* libusd_ms.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +23,8 @@
 		46964DEA21168BEC005EFA10 /* diagnosticHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = diagnosticHandler.cpp; path = UsdCs/diagnosticHandler.cpp; sourceTree = "<group>"; };
 		46964DEB21168BEC005EFA10 /* usdCs_wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = usdCs_wrap.h; path = UsdCs/usdCs_wrap.h; sourceTree = "<group>"; };
 		46964DEC21168BEC005EFA10 /* diagnosticHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = diagnosticHandler.h; path = UsdCs/diagnosticHandler.h; sourceTree = "<group>"; };
-		46C280DD2117592500770DCB /* libtbb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbb.dylib; path = "../../usd_monolith_nopy-v0.8.5/lib/libtbb.dylib"; sourceTree = "<group>"; };
-		46C280DE2117592500770DCB /* libusd_ms.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libusd_ms.dylib; path = "../../usd_monolith_nopy-v0.8.5/lib/libusd_ms.dylib"; sourceTree = "<group>"; };
+		46C280E1211F744400770DCB /* libtbb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbb.dylib; path = "../../usd_monolith_nopy-v18.09/lib/libtbb.dylib"; sourceTree = "<group>"; };
+		46C280E3211F745800770DCB /* libusd_ms.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libusd_ms.dylib; path = "../../usd_monolith_nopy-v18.09/lib/libusd_ms.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,8 +32,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46C280DF2117592500770DCB /* libtbb.dylib in Frameworks */,
-				46C280E02117592500770DCB /* libusd_ms.dylib in Frameworks */,
+				46C280E2211F744400770DCB /* libtbb.dylib in Frameworks */,
+				46C280E4211F745800770DCB /* libusd_ms.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,8 +74,8 @@
 		46964DDD20A8F74F005EFA10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				46C280DD2117592500770DCB /* libtbb.dylib */,
-				46C280DE2117592500770DCB /* libusd_ms.dylib */,
+				46C280E1211F744400770DCB /* libtbb.dylib */,
+				46C280E3211F745800770DCB /* libusd_ms.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v0.8.5/include";
+				"HEADER_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v18.09/include";
 				INFOPLIST_FILE = UsdCs/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = (
@@ -291,7 +291,7 @@
 					"@loader_path/../../../",
 					"@loader_path/../Frameworks/",
 				);
-				"LIBRARY_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v0.8.5/lib";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v18.09/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.UsdCs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
