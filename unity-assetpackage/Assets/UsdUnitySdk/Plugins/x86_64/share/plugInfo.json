@@ -1,3 +1,5 @@
 {
-    "Includes": [ "*/resources/" ]
+    "Includes": [
+        "*/resources/"
+    ]
 }
