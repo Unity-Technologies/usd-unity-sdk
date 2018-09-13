@@ -82,11 +82,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\Program Files\Unity544f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Unity2018.2.7f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cases\BasicTests.cs" />
+    <Compile Include="Cases\InstancingTests.cs" />
     <Compile Include="Cases\MeshTests.cs" />
     <Compile Include="Cases\StageTests.cs" />
     <Compile Include="Cases\TimeSampleTests.cs" />

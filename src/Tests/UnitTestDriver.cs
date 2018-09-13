@@ -66,6 +66,8 @@ namespace Tests {
 
       Cases.UsdPreviewSurfaceTests.ReadWriteTest();
 
+      Cases.InstancingTests.TraversalTest();
+
       Console.ReadKey();
     }
 

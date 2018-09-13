@@ -28,7 +28,7 @@ namespace Tests {
       if (printLayer) {
         PrintScene(scene);
       }
-
+      
       scene.Save();
       scene.Close();
 
