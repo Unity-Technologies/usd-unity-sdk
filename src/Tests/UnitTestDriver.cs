@@ -26,6 +26,7 @@ namespace Tests {
     }
 
     static void RunTestCases() {
+
       Cases.MeshTests.TriangulationTest();
       Cases.MeshTests.VisibilityTest();
 
@@ -67,6 +68,8 @@ namespace Tests {
       Cases.UsdPreviewSurfaceTests.ReadWriteTest();
 
       Cases.InstancingTests.TraversalTest();
+      Cases.InstancingTests.CreatePointInstancerManualTest();
+      Cases.InstancingTests.PointInstancerTest();
 
       Console.ReadKey();
     }
