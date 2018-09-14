@@ -24,6 +24,21 @@ namespace USD.NET {
   public class Scene {
 
     /// <summary>
+    /// Dictates how data is written to the scene.
+    /// </summary>
+    public enum WriteModes {
+      /// <summary>
+      /// Every call to Write() also ensures the Prim is defined.
+      /// </summary>
+      Define,
+
+      /// <summary>
+      /// Calls to Write() will not define the Prim.
+      /// </summary>
+      Over,
+    }
+
+    /// <summary>
     /// Indicates how to interpolate values when requesting a value which lies between two key
     /// frames.
     /// </summary>
@@ -56,6 +71,12 @@ namespace USD.NET {
     /// for common use.
     /// </remarks>
     public UsdStage Stage { get { return m_stage; } }
+
+    /// <summary>
+    /// Dicatates how calls to Write() are handled. When set to Define (the default), every write
+    /// will ensure the prim is also defined.
+    /// </summary>
+    public WriteModes WriteMode { get; set; }
 
     /// <summary>
     /// The time at which key frames should be read and written.
@@ -316,6 +337,48 @@ namespace USD.NET {
       return keys;
     }
 
+    public void AddSubLayer(Scene over) {
+      SdfLayerHandle rootLayer = Stage.GetRootLayer();
+      var overLayer = over.Stage.GetRootLayer();
+      StdStringVector subLayers;
+
+      // TODO: add to existing layers if present.
+#if false
+      var vtValue = new VtValue();
+      over.Stage.GetMetadata(new TfToken("subLayers"), vtValue);
+      if (!vtValue.IsEmpty()) {
+        var vtArray = pxr.UsdCs.VtValueToVtStringArray(vtValue);
+        vtArray.push_back(overLayer.GetIdentifier());
+        var strings = new string[vtArray.size()];
+        vtArray.CopyToArray(strings);
+        subLayers = new StdStringVector(strings);
+      } else {
+#endif
+
+      subLayers = new StdStringVector(new string[] { overLayer.GetIdentifier() });
+
+      /*
+      var vtValue = new VtValue();
+      over.Stage.GetMetadata(new TfToken("subLayers"), vtValue);
+      if (!vtValue.IsEmpty()) {
+        var vtArray = pxr.UsdCs.VtValueToVtStringArray(vtValue);
+        vtArray.push_back(overLayer.GetIdentifier());
+        var strings = new string[vtArray.size()];
+        vtArray.CopyToArray(strings);
+        subLayers = new StdStringVector(strings);
+      }
+      */
+
+      rootLayer.SetSubLayerPaths(subLayers);
+    }
+
+    public void SetEditTarget(Scene over) {
+      SdfLayerHandle rootLayer = over.Stage.GetRootLayer();
+      var editTarget = Stage.GetEditTargetForLocalLayer(rootLayer);
+      Stage.SetEditTarget(editTarget);
+      m_primMap.Clear();
+    }
+
     /// <summary>
     /// Wait until all asynchronous writes complete.
     /// </summary>
@@ -462,7 +525,11 @@ namespace USD.NET {
         // underlying USD scene. The correct fix is to listen for change processing events and
         // clear the cache accordingly.
         if (!m_primMap.TryGetValue(path, out prim)) {
-          prim = m_stage.DefinePrim(path, new TfToken(Reflect.GetSchema(typeof(T))));
+          if (WriteMode == WriteModes.Define) {
+            prim = m_stage.DefinePrim(path, new TfToken(Reflect.GetSchema(typeof(T))));
+          } else {
+            prim = m_stage.OverridePrim(path);
+          }
           if (!prim) {
             return;
           }
@@ -481,7 +548,7 @@ namespace USD.NET {
       return s;
     }
 
-    #region "Private API"
+#region "Private API"
     // ----------------------------------------------------------------------------------------- //
     // Private API
     // ----------------------------------------------------------------------------------------- //
@@ -538,7 +605,7 @@ namespace USD.NET {
       set;
     }
 
-    #endregion
+#endregion
 
     private Dictionary<string, pxr.SdfPath> m_pathMap = new Dictionary<string, SdfPath>();
     private Dictionary<SdfPath, pxr.UsdPrim> m_primMap = new Dictionary<SdfPath, UsdPrim>();

@@ -71,6 +71,10 @@ namespace Tests {
       Cases.InstancingTests.CreatePointInstancerManualTest();
       Cases.InstancingTests.PointInstancerTest();
 
+      Cases.OverrideTests.WriteToOverTest();
+      Cases.OverrideTests.WriteToUnderTest();
+      Cases.OverrideTests.WriteOverOnlyTest();
+
       Console.ReadKey();
     }
 
