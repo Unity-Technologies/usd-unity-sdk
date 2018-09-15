@@ -22,6 +22,7 @@
 
 %include "sdfTypes.i"
 %include "sdfListOp.i"
+%include "sdfListProxy.i"
 %include "sdfValueTypeName.i"
 %include "sdfValueTypeNames.i"
 %include "sdfAssetPath.i"

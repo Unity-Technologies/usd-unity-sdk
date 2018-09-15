@@ -195,6 +195,7 @@
     <Compile Include="generated\pxr\usd\sdf\SdfPermission.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfSpecifier.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfSpecType.cs" />
+    <Compile Include="generated\pxr\usd\sdf\SdfSubLayerProxy.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfTupleDimensions.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfValueBlock.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfValueTypeName.cs" />

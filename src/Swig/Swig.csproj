@@ -118,6 +118,7 @@
     <Content Include="pxr\usd\ar\ar.i" />
     <Content Include="pxr\usd\ar\arResolverContext.i" />
     <Content Include="pxr\usd\sdf\sdfAssetPath.i" />
+    <Content Include="pxr\usd\sdf\sdfListProxy.i" />
     <Content Include="pxr\usd\sdf\sdfListOp.i" />
     <Content Include="pxr\usd\sdf\sdfLayerBase.i" />
     <Content Include="pxr\usd\sdf\sdfLayer.i" />

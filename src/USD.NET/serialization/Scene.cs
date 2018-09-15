@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -360,36 +360,7 @@ namespace USD.NET {
     public void AddSubLayer(Scene over) {
       SdfLayerHandle rootLayer = Stage.GetRootLayer();
       var overLayer = over.Stage.GetRootLayer();
-      StdStringVector subLayers;
-
-      // TODO: add to existing layers if present.
-#if false
-      var vtValue = new VtValue();
-      over.Stage.GetMetadata(new TfToken("subLayers"), vtValue);
-      if (!vtValue.IsEmpty()) {
-        var vtArray = pxr.UsdCs.VtValueToVtStringArray(vtValue);
-        vtArray.push_back(overLayer.GetIdentifier());
-        var strings = new string[vtArray.size()];
-        vtArray.CopyToArray(strings);
-        subLayers = new StdStringVector(strings);
-      } else {
-#endif
-
-      subLayers = new StdStringVector(new string[] { overLayer.GetIdentifier() });
-
-      /*
-      var vtValue = new VtValue();
-      over.Stage.GetMetadata(new TfToken("subLayers"), vtValue);
-      if (!vtValue.IsEmpty()) {
-        var vtArray = pxr.UsdCs.VtValueToVtStringArray(vtValue);
-        vtArray.push_back(overLayer.GetIdentifier());
-        var strings = new string[vtArray.size()];
-        vtArray.CopyToArray(strings);
-        subLayers = new StdStringVector(strings);
-      }
-      */
-
-      rootLayer.SetSubLayerPaths(subLayers);
+      rootLayer.GetSubLayerPaths().push_back(overLayer.GetIdentifier());
     }
 
     public void SetEditTarget(Scene over) {

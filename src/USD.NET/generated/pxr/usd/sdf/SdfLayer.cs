@@ -816,6 +816,12 @@ public class SdfLayer : SdfLayerBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public SdfSubLayerProxy GetSubLayerPaths() {
+    SdfSubLayerProxy ret = new SdfSubLayerProxy(UsdCsPINVOKE.SdfLayer_GetSubLayerPaths(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public void SetSubLayerPaths(StdStringVector newPaths) {
     UsdCsPINVOKE.SdfLayer_SetSubLayerPaths(swigCPtr, StdStringVector.getCPtr(newPaths));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -761,6 +761,11 @@ public class SdfLayerHandle : global::System.IDisposable {
     UsdCsPINVOKE.SdfLayerHandle_ApplyRootPrimOrder(swigCPtr, TfTokenVector.getCPtr(vec));
   }
 
+  public SdfSubLayerProxy GetSubLayerPaths() {
+    SdfSubLayerProxy ret = new SdfSubLayerProxy(UsdCsPINVOKE.SdfLayerHandle_GetSubLayerPaths(swigCPtr), true);
+    return ret;
+  }
+
   public void SetSubLayerPaths(StdStringVector newPaths) {
     UsdCsPINVOKE.SdfLayerHandle_SetSubLayerPaths(swigCPtr, StdStringVector.getCPtr(newPaths));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -3608,6 +3608,10 @@ SWIGINTERN int VtValue_GetHashCode(VtValue *self){
 #include "pxr/usd/sdf/listOp.h"
 
 
+#include "pxr/usd/sdf/listProxy.h"
+#include "pxr/usd/sdf/proxyTypes.h"
+
+
 #include "pxr/usd/sdf/valueTypeName.h"
 
 SWIGINTERN bool SdfValueTypeName_Equals(SdfValueTypeName const &lhs,SdfValueTypeName const &rhs){
@@ -47506,6 +47510,167 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_35(void * jarg1
 }
 
 
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_push_back(void * jarg1, char * jarg2) {
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  SdfSubLayerProxy::value_type *arg2 = 0 ;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  SdfSubLayerProxy::value_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->push_back((SdfSubLayerProxy::value_type const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_size(void * jarg1) {
+  unsigned long jresult ;
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  size_t result;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  result = (arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_GetPath(void * jarg1) {
+  void * jresult ;
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  SdfPath result;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  result = ((SdfSubLayerProxy const *)arg1)->GetPath();
+  jresult = new SdfPath((const SdfPath &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_Count(void * jarg1, char * jarg2) {
+  unsigned long jresult ;
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  SdfSubLayerProxy::value_type *arg2 = 0 ;
+  size_t result;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  SdfSubLayerProxy::value_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = ((SdfSubLayerProxy const *)arg1)->Count((SdfSubLayerProxy::value_type const &)*arg2);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_Find(void * jarg1, char * jarg2) {
+  unsigned long jresult ;
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  SdfSubLayerProxy::value_type *arg2 = 0 ;
+  size_t result;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  SdfSubLayerProxy::value_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = ((SdfSubLayerProxy const *)arg1)->Find((SdfSubLayerProxy::value_type const &)*arg2);
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_Insert(void * jarg1, int jarg2, char * jarg3) {
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  int arg2 ;
+  SdfSubLayerProxy::value_type *arg3 = 0 ;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  arg2 = (int)jarg2; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  SdfSubLayerProxy::value_type arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  (arg1)->Insert(arg2,(SdfSubLayerProxy::value_type const &)*arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_Remove(void * jarg1, char * jarg2) {
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  SdfSubLayerProxy::value_type *arg2 = 0 ;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  SdfSubLayerProxy::value_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->Remove((SdfSubLayerProxy::value_type const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_Replace(void * jarg1, char * jarg2, char * jarg3) {
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  SdfSubLayerProxy::value_type *arg2 = 0 ;
+  SdfSubLayerProxy::value_type *arg3 = 0 ;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  SdfSubLayerProxy::value_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  SdfSubLayerProxy::value_type arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  (arg1)->Replace((SdfSubLayerProxy::value_type const &)*arg2,(SdfSubLayerProxy::value_type const &)*arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_Erase(void * jarg1, unsigned long jarg2) {
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  size_t arg2 ;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  (arg1)->Erase(arg2);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_SdfSubLayerProxy_IsExpired(void * jarg1) {
+  unsigned int jresult ;
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  bool result;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  result = (bool)((SdfSubLayerProxy const *)arg1)->IsExpired();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_SdfSubLayerProxy(void * jarg1) {
+  SdfSubLayerProxy *arg1 = (SdfSubLayerProxy *) 0 ;
+  
+  arg1 = (SdfSubLayerProxy *)jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_SdfTupleDimensions__SWIG_0() {
   void * jresult ;
   SdfTupleDimensions *result = 0 ;
@@ -55464,6 +55629,18 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_ApplyRootPrimOrder(void * 
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayerHandle_GetSubLayerPaths(void * jarg1) {
+  void * jresult ;
+  SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
+  SwigValueWrapper< SdfSubLayerProxy > result;
+  
+  arg1 = (SdfLayerHandle *)jarg1; 
+  result = (*arg1)->GetSubLayerPaths();
+  jresult = new SdfSubLayerProxy((const SdfSubLayerProxy &)result); 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayerHandle_SetSubLayerPaths(void * jarg1, void * jarg2) {
   SdfLayerHandle *arg1 = (SdfLayerHandle *) 0 ;
   std::vector< std::string > *arg2 = 0 ;
@@ -58506,6 +58683,21 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_SdfLayer_ApplyRootPrimOrder(void * jarg1,
   arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
   arg2 = (std::vector< TfToken > *)jarg2; 
   ((SdfLayer const *)arg1)->ApplyRootPrimOrder(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_SdfLayer_GetSubLayerPaths(void * jarg1) {
+  void * jresult ;
+  SdfLayer *arg1 = (SdfLayer *) 0 ;
+  TfRefPtr< SdfLayer const > *smartarg1 = 0 ;
+  SwigValueWrapper< SdfSubLayerProxy > result;
+  
+  
+  smartarg1 = (TfRefPtr< const SdfLayer > *)jarg1;
+  arg1 = (SdfLayer *)(smartarg1 ? smartarg1->operator->() : 0); 
+  result = ((SdfLayer const *)arg1)->GetSubLayerPaths();
+  jresult = new SdfSubLayerProxy((const SdfSubLayerProxy &)result); 
+  return jresult;
 }
 
 

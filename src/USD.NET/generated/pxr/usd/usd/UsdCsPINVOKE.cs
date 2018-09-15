@@ -4910,9 +4910,6 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfPlane")]
   public static extern void delete_GfPlane(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfFitPlaneToPoints")]
-  public static extern bool GfFitPlaneToPoints(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3dVector_Clear")]
   public static extern void GfVec3dVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -8408,6 +8405,39 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_35")]
   public static extern uint hash_value__SWIG_35(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_push_back")]
+  public static extern void SdfSubLayerProxy_push_back(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_size")]
+  public static extern void SdfSubLayerProxy_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_GetPath")]
+  public static extern global::System.IntPtr SdfSubLayerProxy_GetPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_Count")]
+  public static extern uint SdfSubLayerProxy_Count(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_Find")]
+  public static extern uint SdfSubLayerProxy_Find(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_Insert")]
+  public static extern void SdfSubLayerProxy_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_Remove")]
+  public static extern void SdfSubLayerProxy_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_Replace")]
+  public static extern void SdfSubLayerProxy_Replace(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_Erase")]
+  public static extern void SdfSubLayerProxy_Erase(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfSubLayerProxy_IsExpired")]
+  public static extern bool SdfSubLayerProxy_IsExpired(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfSubLayerProxy")]
+  public static extern void delete_SdfSubLayerProxy(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfTupleDimensions__SWIG_0")]
   public static extern global::System.IntPtr new_SdfTupleDimensions__SWIG_0();
 
@@ -10076,6 +10106,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_ApplyRootPrimOrder")]
   public static extern void SdfLayerHandle_ApplyRootPrimOrder(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_GetSubLayerPaths")]
+  public static extern global::System.IntPtr SdfLayerHandle_GetSubLayerPaths(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandle_SetSubLayerPaths")]
   public static extern void SdfLayerHandle_SetSubLayerPaths(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
@@ -10606,6 +10639,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayer_ApplyRootPrimOrder")]
   public static extern void SdfLayer_ApplyRootPrimOrder(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayer_GetSubLayerPaths")]
+  public static extern global::System.IntPtr SdfLayer_GetSubLayerPaths(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayer_SetSubLayerPaths")]
   public static extern void SdfLayer_SetSubLayerPaths(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

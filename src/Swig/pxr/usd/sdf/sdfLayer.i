@@ -79,7 +79,6 @@ public:
 %ignore SdfLayer::GetSpecType(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::ListFields(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::ListTimeSamplesForPath(const SdfAbstractDataSpecId& id) const;
-%ignore SdfLayer::GetSubLayerPaths() const;
 %ignore SdfLayer::GetRootPrimOrder;
 %ignore SdfLayer::QueryTimeSample(const SdfAbstractDataSpecId& id, double time, 
                          VtValue *value=NULL) const;
