@@ -45,7 +45,11 @@ namespace Tests.Cases {
       scene.Write("/Root/Mesh2", meshSample);
 
       foreach (var mesh in scene.ReadAll<XformableQuery>(rootPath:"/Root")) {
-        Console.WriteLine("Query Test: " + mesh.path);
+        Console.WriteLine("ReadAll Test: " + mesh.path);
+      }
+
+      foreach (var path in scene.Find<XformableQuery>(rootPath: "/Root")) {
+        Console.WriteLine("Find Test: " + path);
       }
 
       try {
