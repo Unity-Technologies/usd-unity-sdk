@@ -842,8 +842,8 @@ public class UsdStage : global::System.IDisposable {
     return ret;
   }
 
-  public SdfPathVector GetAllPathsByType(string typeName) {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.UsdStage_GetAllPathsByType(swigCPtr, typeName), true);
+  public SdfPathVector GetAllPathsByType(string typeName, SdfPath rootPath) {
+    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.UsdStage_GetAllPathsByType(swigCPtr, typeName, SdfPath.getCPtr(rootPath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

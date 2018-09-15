@@ -180,7 +180,7 @@ namespace USD.NET {
     /// </summary>
     public PathCollection AllMeshes {
       get {
-        return new PathCollection(Stage.GetAllPathsByType("Mesh"));
+        return new PathCollection(Stage.GetAllPathsByType("Mesh", SdfPath.AbsoluteRootPath()));
       }
     }
 
@@ -189,7 +189,7 @@ namespace USD.NET {
     /// </summary>
     public PathCollection AllXforms {
       get {
-        return new PathCollection(Stage.GetAllPathsByType("Xform"));
+        return new PathCollection(Stage.GetAllPathsByType("Xform", SdfPath.AbsoluteRootPath()));
       }
     }
 
@@ -276,6 +276,38 @@ namespace USD.NET {
         return null;
       }
       return rel;
+    }
+
+    public PathCollection Find<T>(string rootPath) where T : SampleBase, new() {
+      var attrs = typeof(T).GetCustomAttributes(typeof(USD.NET.UsdSchemaAttribute), true);
+      if (attrs.Length == 0) {
+        throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
+      }
+      var name = ((UsdSchemaAttribute)attrs[0]).Name;
+
+      // TODO: move this to C++.
+
+      var vec = new SdfPathVector();
+      var rootPrim = GetPrimAtPath(rootPath);
+
+      foreach (var prim in rootPrim.GetAllDescendants()) {
+        if (prim.GetTypeName() == name) {
+          vec.Add(prim.GetPath());
+        }
+      }
+
+      return new PathCollection(vec);
+    }
+
+    public SampleCollection<T> ReadAll<T>(string rootPath) where T : SampleBase, new() {
+      var attrs = typeof(T).GetCustomAttributes(typeof(UsdSchemaAttribute), true);
+      if (attrs.Length == 0) {
+        throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
+      }
+      var name = ((UsdSchemaAttribute)attrs[0]).Name;
+
+      var vec = Stage.GetAllPathsByType(name, new SdfPath(rootPath));
+      return new SampleCollection<T>(this, vec);
     }
 
     /// <summary>

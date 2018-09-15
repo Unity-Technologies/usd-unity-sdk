@@ -4,6 +4,26 @@
         <name>USD.NET</name>
     </assembly>
     <members>
+        <member name="T:USD.NET.SampleCollection`1">
+            <summary>
+            Provides custom enumeration over an SdfPathVector to avoid generation of garbage.
+            </summary>
+        </member>
+        <member name="T:USD.NET.PathCollection">
+            <summary>
+            Provides custom enumeration over an SdfPathVector to avoid generation of garbage.
+            </summary>
+        </member>
+        <member name="T:USD.NET.SampleEnumerator`1">
+            <summary>
+            Enumerates all SdfPaths in an SdfPathVector without generating garbage from temp SdfPaths.
+            </summary>
+        </member>
+        <member name="T:USD.NET.PathEnumerator">
+            <summary>
+            Enumerates all SdfPaths in an SdfPathVector without generating garbage from temp SdfPaths.
+            </summary>
+        </member>
         <member name="T:USD.NET.RangeIterator">
             <summary>
             Convenience class to convert a UsdPrimRange into something easily enumerable. Note that
@@ -127,16 +147,6 @@
             Note that objects returned to the allocator pool will not be garbage collected and will not
             be disposed.
             </remarks>
-        </member>
-        <member name="T:USD.NET.PathCollection">
-            <summary>
-            Provides custom enumeration over an SdfPathVector to avoid generation of garbage.
-            </summary>
-        </member>
-        <member name="T:USD.NET.PathEnumerator">
-            <summary>
-            Enumerates all SdfPaths in an SdfPathVector without generating garbage from temp SdfPaths.
-            </summary>
         </member>
         <member name="T:USD.NET.PooledArray`1">
             <summary>
@@ -416,6 +426,21 @@
             A Scene object represents a UsdStage and enables USD serialization and deserialization.
             </summary>
         </member>
+        <member name="T:USD.NET.Scene.WriteModes">
+            <summary>
+            Dictates how data is written to the scene.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Scene.WriteModes.Define">
+            <summary>
+            Every call to Write() also ensures the Prim is defined.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Scene.WriteModes.Over">
+            <summary>
+            Calls to Write() will not define the Prim.
+            </summary>
+        </member>
         <member name="T:USD.NET.Scene.InterpolationMode">
             <summary>
             Indicates how to interpolate values when requesting a value which lies between two key
@@ -443,6 +468,12 @@
             This is exposed only for low level, direct access to the underlying stage, not intended
             for common use.
             </remarks>
+        </member>
+        <member name="P:USD.NET.Scene.WriteMode">
+            <summary>
+            Dicatates how calls to Write() are handled. When set to Define (the default), every write
+            will ensure the prim is also defined.
+            </summary>
         </member>
         <member name="F:USD.NET.Scene.m_time">
             <summary>

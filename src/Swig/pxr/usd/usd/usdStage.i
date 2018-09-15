@@ -87,13 +87,42 @@ class string;
     return targets;
   }
 
-  std::vector<SdfPath> GetAllPathsByType(std::string typeName) {
+  std::vector<SdfPath> GetAllPathsByType(std::string typeName, SdfPath rootPath) {
     std::vector<SdfPath> targets;
-    for (auto&& p : self->Traverse()) {
-      if (p.GetTypeName() == typeName) {
+
+    // Required so type aliases work (e.g. "Mesh" vs "UsdGeomMesh");
+    TfType schemaBaseType = TfType::Find<UsdSchemaBase>();
+
+    TfType baseType = schemaBaseType.FindDerivedByName(typeName);
+    
+    if (schemaBaseType == TfType::GetUnknownType()) {
+      TF_RUNTIME_ERROR("Schema base type is unknown. This should never happen.");
+      return targets;
+    }
+
+    if (baseType == TfType::GetUnknownType()) {
+      TF_CODING_ERROR("Base type '%s' was not known to the TfType system", typeName.c_str());
+      return targets;
+    }
+
+    UsdPrim rootPrim = self->GetPrimAtPath(rootPath);
+    if (!rootPrim.IsValid()) {
+      TF_CODING_ERROR("Invalid root path <%s>", rootPath.GetText());
+      return targets;
+    }
+
+    for (auto&& p : rootPrim.GetAllDescendants()) {
+      TfType curType = schemaBaseType.FindDerivedByName(p.GetTypeName().GetString());
+      if (curType == TfType::GetUnknownType()) {
+        targets.push_back(SdfPath(p.GetPath().GetString() + "/curType-unknownType/" + p.GetTypeName().GetString()));
+      }
+      if (curType.IsA(baseType)) {
         targets.push_back(p.GetPath());
+      } else {
+        targets.push_back(SdfPath(p.GetPath().GetString() + "/" + curType.GetTypeName() + "/isNotA/" + baseType.GetTypeName()));
       }
     }
+
     return targets;
   }
 }

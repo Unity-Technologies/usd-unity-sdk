@@ -4299,13 +4299,42 @@ SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPaths(UsdStage *self){
     }
     return targets;
   }
-SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std::string typeName){
+SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std::string typeName,SdfPath rootPath){
     std::vector<SdfPath> targets;
-    for (auto&& p : self->Traverse()) {
-      if (p.GetTypeName() == typeName) {
+
+    // Required so type aliases work (e.g. "Mesh" vs "UsdGeomMesh");
+    TfType schemaBaseType = TfType::Find<UsdSchemaBase>();
+
+    TfType baseType = schemaBaseType.FindDerivedByName(typeName);
+    
+    if (schemaBaseType == TfType::GetUnknownType()) {
+      TF_RUNTIME_ERROR("Schema base type is unknown. This should never happen.");
+      return targets;
+    }
+
+    if (baseType == TfType::GetUnknownType()) {
+      TF_CODING_ERROR("Base type '%s' was not known to the TfType system", typeName.c_str());
+      return targets;
+    }
+
+    UsdPrim rootPrim = self->GetPrimAtPath(rootPath);
+    if (!rootPrim.IsValid()) {
+      TF_CODING_ERROR("Invalid root path <%s>", rootPath.GetText());
+      return targets;
+    }
+
+    for (auto&& p : rootPrim.GetAllDescendants()) {
+      TfType curType = schemaBaseType.FindDerivedByName(p.GetTypeName().GetString());
+      if (curType == TfType::GetUnknownType()) {
+        targets.push_back(SdfPath(p.GetPath().GetString() + "/curType-unknownType/" + p.GetTypeName().GetString()));
+      }
+      if (curType.IsA(baseType)) {
         targets.push_back(p.GetPath());
+      } else {
+        targets.push_back(SdfPath(p.GetPath().GetString() + "/" + curType.GetTypeName() + "/isNotA/" + baseType.GetTypeName()));
       }
     }
+
     return targets;
   }
 
@@ -31361,6 +31390,24 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfPlane(void * jarg1) {
   
   arg1 = (GfPlane *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFitPlaneToPoints(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  std::vector< GfVec3d > *arg1 = 0 ;
+  GfPlane *arg2 = (GfPlane *) 0 ;
+  bool result;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec3d > const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfPlane *)jarg2; 
+  result = (bool)GfFitPlaneToPoints((std::vector< GfVec3d > const &)*arg1,arg2);
+  jresult = result; 
+  return jresult;
 }
 
 
@@ -64289,11 +64336,13 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPaths(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPathsByType(void * jarg1, char * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPathsByType(void * jarg1, char * jarg2, void * jarg3) {
   void * jresult ;
   UsdStage *arg1 = (UsdStage *) 0 ;
   std::string arg2 ;
+  SdfPath arg3 ;
   TfRefPtr< UsdStage > *smartarg1 = 0 ;
+  SdfPath *argp3 ;
   std::vector< SdfPath > result;
   
   
@@ -64304,7 +64353,13 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdStage_GetAllPathsByType(void * jarg1
     return 0;
   }
   (&arg2)->assign(jarg2); 
-  result = UsdStage_GetAllPathsByType(arg1,arg2);
+  argp3 = (SdfPath *)jarg3; 
+  if (!argp3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null SdfPath", 0);
+    return 0;
+  }
+  arg3 = *argp3; 
+  result = UsdStage_GetAllPathsByType(arg1,arg2,arg3);
   jresult = new std::vector< SdfPath >((const std::vector< SdfPath > &)result); 
   return jresult;
 }

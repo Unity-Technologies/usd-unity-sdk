@@ -27,10 +27,14 @@ namespace Tests {
 
     static void RunTestCases() {
 
+
       Cases.MeshTests.TriangulationTest();
       Cases.MeshTests.VisibilityTest();
 
       Cases.StageTests.BadPrimTest();
+
+      Cases.QueryTests.BasicTest();
+
       Cases.StageTests.OpenFailTest();
       Cases.StageTests.PointerTest();
       Cases.StageTests.MemoryTest();
