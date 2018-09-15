@@ -175,18 +175,14 @@ namespace USD.NET {
       }
     }
 
-    /// <summary>
-    /// A list of all mesh paths in the scene.
-    /// </summary>
+    [Obsolete("Use Find<MeshSample>() instead. This API will be removed in a future release.")]
     public PathCollection AllMeshes {
       get {
         return new PathCollection(Stage.GetAllPathsByType("Mesh", SdfPath.AbsoluteRootPath()));
       }
     }
 
-    /// <summary>
-    /// A list of all Xform paths in the scene.
-    /// </summary>
+    [Obsolete("Use Find<XformSample>() instead. This API will be removed in a future release.")]
     public PathCollection AllXforms {
       get {
         return new PathCollection(Stage.GetAllPathsByType("Xform", SdfPath.AbsoluteRootPath()));
