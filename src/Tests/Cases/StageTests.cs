@@ -60,17 +60,12 @@ namespace Tests.Cases {
         Console.WriteLine("Caught expected exception: " + ex.Message);
       }
 
-      /*
-       * Currently causes a stack overflow, issue filed:
-       * https://github.com/PixarAnimationStudios/USD/issues/364
-       * 
       try {
-        var scene = USD.NET.Scene.Create(@"C:\This\Doesnt\Exist.usd");
+        var scene = USD.NET.Scene.Create(@"W:\This\Doesnt\Exist.usd");
         throw new Exception("Expected exception opening non-existing file");
       } catch (ApplicationException ex) {
         Console.WriteLine("Caught expected exception: " + ex.Message);
       }
-      */
     }
 
     public static void TraverseTest() {
