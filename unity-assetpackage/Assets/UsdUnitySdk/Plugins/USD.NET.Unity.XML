@@ -4,6 +4,12 @@
         <name>USD.NET.Unity</name>
     </assembly>
     <members>
+        <member name="M:USD.NET.Unity.XformableSample.ConvertTransform">
+            <summary>
+            Converts the transform from Unity to USD or vice versa. This is required after reading
+            values from USD or before writing values to USD.
+            </summary>
+        </member>
         <member name="M:USD.NET.Unity.CameraSample.CopyFromCamera(UnityEngine.Camera,System.Boolean)">
             <summary>
             Copys all relevant values of the given camera to the current camera sample.
@@ -24,11 +30,36 @@
             Sets the faceVertexIndicies and faceVertexCounts from triangle indices alone.
             </summary>
         </member>
-        <member name="M:USD.NET.Unity.XformSample.ConvertTransform">
+        <member name="T:USD.NET.Unity.PrimMap">
             <summary>
-            Converts the transform from Unity to USD or vice versa. This is required after reading
-            values from USD or before writing values to USD.
+            Maps from UsdPrim paths to Unity GameObjects.
             </summary>
+        </member>
+        <member name="M:USD.NET.Unity.PrimMap.DestroyAll">
+            <summary>
+            Destroy all GameObjects and clear the map.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.PrimMap.Clear">
+            <summary>
+            Clear the map without destroying game objects.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.PrimMap.MapAllPrims(USD.NET.Scene,UnityEngine.GameObject)">
+            <summary>
+            Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
+            </summary>
+            <param name="scene">The Scene to map</param>
+            <param name="unityRoot">The root game object under which all prims will be parented</param>
+            <returns></returns>
+        </member>
+        <member name="M:USD.NET.Unity.PrimMap.MapAllPrims(USD.NET.Scene,UnityEngine.GameObject,pxr.SdfPath)">
+            <summary>
+            Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
+            </summary>
+            <param name="scene">The Scene to map</param>
+            <param name="unityRoot">The root game object under which all prims will be parented</param>
+            <param name="rootPath">The path at which to begin mapping paths.</param>
         </member>
         <member name="T:USD.NET.Unity.MaterialBindingSample">
             <summary>

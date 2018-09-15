@@ -509,16 +509,6 @@
             A list of all Prim paths present in the scene.
             </summary>
         </member>
-        <member name="P:USD.NET.Scene.AllMeshes">
-            <summary>
-            A list of all mesh paths in the scene.
-            </summary>
-        </member>
-        <member name="P:USD.NET.Scene.AllXforms">
-            <summary>
-            A list of all Xform paths in the scene.
-            </summary>
-        </member>
         <member name="M:USD.NET.Scene.Create(System.String)">
             <summary>
             Constructs a new scene at the given file path. If the file exists, it is erased, if
@@ -557,6 +547,75 @@
             Gets the UsdRelationship at the given path, retuns null if the UsdRelationship is invalid.
             Therefore, if the return value is not null, IsValid need not be checked.
             </summary>
+        </member>
+        <member name="M:USD.NET.Scene.Find``1">
+            <summary>
+            Searches the USD Stage to find prims which either match the schema type name declared
+            for the given sample type, or those which derive from it.
+            </summary>
+            <typeparam name="T">
+            A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+            </typeparam>
+            <returns>
+            An iterable collection of the paths discovered
+            </returns>
+        </member>
+        <member name="M:USD.NET.Scene.Find``1(System.String)">
+            <summary>
+            Searches the USD Stage to find prims which either match the schema type name declared
+            for the given sample type, or those which derive from it.
+            </summary>
+            <typeparam name="T">
+            A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+            </typeparam>
+            <param name="rootPath">The root path at which to begin the search.</param>
+            <returns>
+            An iterable collection of the paths discovered
+            </returns>
+        </member>
+        <member name="M:USD.NET.Scene.Find(System.String,System.String)">
+            <summary>
+            Searches the USD Stage to find prims which either match the schema type name or those
+            which are derived from it.
+            </summary>
+            <param name="rootPath"></param>
+            <param name="usdSchemaTypeName">
+            The USD schema type name (e.g. UsdGeomMesh) or its alias (e.g. Mesh).
+            </param>
+            <returns>
+            Returns an iterable collection of UsdPrim paths.
+            </returns>
+        </member>
+        <member name="M:USD.NET.Scene.ReadAll``1">
+            <summary>
+            Searches the USD Stage to find prims which either match the schema type name or those
+            which are derived from it.
+            </summary>
+            <typeparam name="T">
+            A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+            </typeparam>
+            <returns>
+            Returns a collection which will read each prim found and return the requested SampleBase
+            object type.
+            </returns>
+            <remarks>Internally, this method reuses a single object while reading to minimize garbage
+            generated during iteration.</remarks>
+        </member>
+        <member name="M:USD.NET.Scene.ReadAll``1(System.String)">
+            <summary>
+            Searches the USD Stage to find prims which either match the schema type name or those
+            which are derived from it.
+            </summary>
+            <typeparam name="T">
+            A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+            </typeparam>
+            <param name="rootPath">The root path at which to begin the search.</param>
+            <returns>
+            Returns a collection which will read each prim found and return the requested SampleBase
+            object type.
+            </returns>
+            <remarks>Internally, this method reuses a single object while reading to minimize garbage
+            generated during iteration.</remarks>
         </member>
         <member name="M:USD.NET.Scene.Close">
             <summary>
