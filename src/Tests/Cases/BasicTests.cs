@@ -385,6 +385,7 @@ namespace Tests.Cases {
       try {
         s1.nonSampleBase = new InheritNonSampleBaseSample.NonSampleBaseSample();
         scene.Write("/Foo", s1);
+        throw new Exception("Expected exception");
       } catch (ArgumentException) {
         Console.WriteLine("Non-SampleBase sample successfully threw exception on Write");
       }
@@ -392,6 +393,7 @@ namespace Tests.Cases {
       try {
         s2.nonSampleBase = new InheritNonSampleBaseSample.NonSampleBaseSample();
         scene.Read("/Foo", s2);
+        throw new Exception("Expected exception");
       } catch (ArgumentException) {
         Console.WriteLine("Non-SampleBase sample successfully threw exception on Read\n");
       }
