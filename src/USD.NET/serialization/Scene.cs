@@ -274,6 +274,17 @@ namespace USD.NET {
       return rel;
     }
 
+    /// <summary>
+    /// Searches the USD Stage to find prims which either match the schema type name declared
+    /// for the given sample type, or those which derive from it.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+    /// </typeparam>
+    /// <param name="rootPath">The root path at which to begin the search.</param>
+    /// <returns>
+    /// An iterable collection of the paths discovered
+    /// </returns>
     public PathCollection Find<T>(string rootPath) where T : SampleBase, new() {
       var attrs = typeof(T).GetCustomAttributes(typeof(USD.NET.UsdSchemaAttribute), true);
       if (attrs.Length == 0) {
@@ -284,6 +295,36 @@ namespace USD.NET {
       return new PathCollection(vec);
     }
 
+    /// <summary>
+    /// Searches the USD Stage to find prims which either match the schema type name or those
+    /// which are derived from it.
+    /// </summary>
+    /// <param name="rootPath"></param>
+    /// <param name="usdSchemaTypeName">
+    /// The USD schema type name (e.g. UsdGeomMesh) or its alias (e.g. Mesh).
+    /// </param>
+    /// <returns>
+    /// Returns an iterable collection of UsdPrim paths.
+    /// </returns>
+    public PathCollection Find(string rootPath, string usdSchemaTypeName) {
+      var vec = Stage.GetAllPathsByType(usdSchemaTypeName, new SdfPath(rootPath));
+      return new PathCollection(vec);
+    }
+
+    /// <summary>
+    /// Searches the USD Stage to find prims which either match the schema type name or those
+    /// which are derived from it.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+    /// </typeparam>
+    /// <param name="rootPath">The root path at which to begin the search.</param>
+    /// <returns>
+    /// Returns a collection which will read each prim found and return the requested SampleBase
+    /// object type.
+    /// </returns>
+    /// <remarks>Internally, this method reuses a single object while reading to minimize garbage
+    /// generated during iteration.</remarks>
     public SampleCollection<T> ReadAll<T>(string rootPath) where T : SampleBase, new() {
       var attrs = typeof(T).GetCustomAttributes(typeof(UsdSchemaAttribute), true);
       if (attrs.Length == 0) {
