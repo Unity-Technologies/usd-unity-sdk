@@ -76,33 +76,27 @@ namespace USD.NET.Unity.Extensions.Player {
       m_primMap.Add("/", rootXf);
 
       // Load transforms.
-      foreach (var path in m_scene.AllXforms) {
-        var xf = new USD.NET.Unity.XformSample();
-        m_scene.Read(path, xf);
-        var go = new GameObject(path.GetName());
-        AssignTransform(xf, go);
-        AssignParent(path, go);
+      foreach (var pathAndXf in m_scene.ReadAll<XformSample>()) {
+        var go = new GameObject(pathAndXf.path.GetName());
+        AssignTransform(pathAndXf.sample, go);
+        AssignParent(new pxr.SdfPath(pathAndXf.path), go);
       }
 
       // Load meshes.
-      foreach (var path in m_scene.AllMeshes) {
-        var mesh = new USD.NET.Unity.MeshSample();
-        m_scene.Read(path, mesh);
-        var go = new GameObject(path.GetName());
-        AssignTransform(mesh, go);
-        AssignParent(path, go);
-        BuildMesh(mesh, go);
+      foreach (var pathAndMesh in m_scene.ReadAll<MeshSample>()) {
+        var go = new GameObject(pathAndMesh.path.GetName());
+        AssignTransform(pathAndMesh.sample, go);
+        AssignParent(new pxr.SdfPath(pathAndMesh.path), go);
+        BuildMesh(pathAndMesh.sample, go);
       }
 
       // Load cameras.
-      foreach (var prim in m_scene.Stage.GetAllPrimsByType("Camera")) {
-        pxr.UsdGeomCamera camera = new pxr.UsdGeomCamera(prim);
-        var go = new GameObject(prim.GetName());
-        var xf = new USD.NET.Unity.XformSample();
-        m_scene.Read(prim.GetPath(), xf);
-        AssignTransform(xf, go);
-        BuildCamera(camera, go);
-        AssignParent(prim.GetPath(), go);
+      foreach (var pathAndCam in m_scene.ReadAll<CameraSample>()) {
+        var go = new GameObject(pathAndCam.path.GetName());
+        m_scene.Read(pathAndCam.path, pathAndCam.sample);
+        AssignTransform(pathAndCam.sample, go);
+        BuildCamera(pathAndCam.sample, go);
+        AssignParent(new pxr.SdfPath(pathAndCam.path), go);
       }
 
       // Ensure the file and the identifier match.
@@ -125,7 +119,7 @@ namespace USD.NET.Unity.Extensions.Player {
     }
 
     // Convert Matrix4x4 into TSR components.
-    void AssignTransform(Unity.XformSample xf, GameObject go) {
+    void AssignTransform(Unity.XformableSample xf, GameObject go) {
       go.transform.localPosition = ExtractPosition(xf.transform);
       go.transform.localScale = ExtractScale(xf.transform);
       go.transform.localRotation = ExtractRotation(xf.transform);
@@ -137,12 +131,9 @@ namespace USD.NET.Unity.Extensions.Player {
       go.transform.SetParent(m_primMap[path.GetParentPath()].transform, worldPositionStays: false);
     }
 
-    void BuildCamera(pxr.UsdGeomCamera usdCamera, GameObject go) {
+    void BuildCamera(CameraSample usdCamera, GameObject go) {
       var cam = go.AddComponent<Camera>();
-      var cameraSample = usdCamera.GetCamera(m_scene.Time);
-      cam.fieldOfView = cameraSample.GetFieldOfView(pxr.GfCamera.FOVDirection.FOVHorizontal);
-      cam.nearClipPlane = cameraSample.GetClippingRange().GetMin();
-      cam.farClipPlane = cameraSample.GetClippingRange().GetMax();
+      usdCamera.CopyToCamera(cam);
     }
 
     // Copy mesh data to Unity and assign mesh with material.

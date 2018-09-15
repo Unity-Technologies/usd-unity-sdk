@@ -13,12 +13,9 @@
 // limitations under the License.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
-using USD.NET;
 
 namespace USD.NET.Examples {
 
@@ -37,10 +34,14 @@ namespace USD.NET.Examples {
     private Scene m_scene;
 
     // Keep track of all objects loaded.
-    private Dictionary<string, GameObject> m_primMap = new Dictionary<string, GameObject>();
+    private USD.NET.Unity.PrimMap m_primMap;
 
     void Start() {
       InitUsd.Initialize();
+    }
+
+    GameObject GetGameObject(pxr.SdfPath path) {
+      return m_primMap[path];
     }
 
     void Update() {
@@ -85,28 +86,33 @@ namespace USD.NET.Examples {
 
       // Convert from right-handed (USD) to left-handed (Unity).
       // The math below works out to either (1, -1, 1) or (1, 1, -1), depending on up.
+      // TODO: this is not robust. The points should be converted instead.
       rootXf.transform.localScale = -1 * up + -1 * (Vector3.one - up);
 
-      // Assign this transform as the root.
-      m_primMap.Add("/", rootXf);
+      // Map all USD prims to Unity GameObjects and reconstruct the hierarchy.
+      m_primMap = USD.NET.Unity.PrimMap.MapAllPrims(m_scene, rootXf);
 
-      // Import transforms.
-      foreach (var path in m_scene.AllXforms) {
-        var xf = new USD.NET.Unity.XformSample();
-        m_scene.Read(path, xf);
-        var go = new GameObject(path.GetName());
-        AssignTransform(xf, go);
-        AssignParent(path, go);
+      //
+      // Import known prim types.
+      //
+
+      // Xforms.
+      //
+      // Note (1) that we are specifically filtering on XformSample, not Xformable, this way only
+      // Xforms are processed to avoid doing that work redundantly.
+      //
+      // Note (2) that Find/ReadAll guarantee that the parent is found before the child, though
+      // we don't rely on that here.
+      foreach (var pathAndSample in m_scene.ReadAll<USD.NET.Unity.XformSample>()) {
+        GameObject go = GetGameObject(pathAndSample.path);
+        AssignTransform(pathAndSample.sample, go);
       }
 
-      // Import meshes.
-      foreach (var path in m_scene.AllMeshes) {
-        var mesh = new USD.NET.Unity.MeshSample();
-        m_scene.Read(path, mesh);
-        var go = new GameObject(path.GetName());
-        AssignTransform(mesh, go);
-        AssignParent(path, go);
-        BuildMesh(mesh, go);
+      // Meshes.
+      foreach (var pathAndSample in m_scene.ReadAll<USD.NET.Unity.MeshSample>()) {
+        GameObject go = GetGameObject(pathAndSample.path);
+        AssignTransform(pathAndSample.sample, go);
+        BuildMesh(pathAndSample.sample, go);
       }
 
       // Ensure the file and the identifier match.
@@ -129,16 +135,10 @@ namespace USD.NET.Examples {
     }
 
     // Convert Matrix4x4 into TSR components.
-    void AssignTransform(USD.NET.Unity.XformSample xf, GameObject go) {
+    void AssignTransform(USD.NET.Unity.XformableSample xf, GameObject go) {
       go.transform.localPosition = ExtractPosition(xf.transform);
       go.transform.localScale = ExtractScale(xf.transform);
       go.transform.localRotation = ExtractRotation(xf.transform);
-    }
-
-    // Recreate hierarchy.
-    void AssignParent(pxr.SdfPath path, GameObject go) {
-      m_primMap.Add(path, go);
-      go.transform.SetParent(m_primMap[path.GetParentPath()].transform, worldPositionStays: false);
     }
 
     // Copy mesh data to Unity and assign mesh with material.
@@ -230,10 +230,9 @@ namespace USD.NET.Examples {
 
     // Destroy all previously created objects.
     void UnloadGameObjects() {
-      foreach (var kvp in m_primMap) {
-        Destroy(kvp.Value);
+      if (m_primMap != null) {
+        m_primMap.DestroyAll();
       }
-      m_primMap.Clear();
     }
 
     // ------------------------------------------------------------------------------------------ //
