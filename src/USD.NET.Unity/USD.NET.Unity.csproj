@@ -78,6 +78,7 @@
     <Compile Include="Geometry\GprimSample.cs" />
     <Compile Include="Geometry\ScopeSample.cs" />
     <Compile Include="Geometry\XformSample.cs" />
+    <Compile Include="IO\PrimMap.cs" />
     <Compile Include="Shading\MaterialBindingSample.cs" />
     <Compile Include="Shading\MaterialSample.cs" />
     <Compile Include="Shading\ParameterInfo.cs" />
