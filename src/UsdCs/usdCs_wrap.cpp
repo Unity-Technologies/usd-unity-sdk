@@ -4330,12 +4330,10 @@ SWIGINTERN std::vector< SdfPath > UsdStage_GetAllPathsByType(UsdStage *self,std:
     for (auto&& p : rootPrim.GetAllDescendants()) {
       TfType curType = schemaBaseType.FindDerivedByName(p.GetTypeName().GetString());
       if (curType == TfType::GetUnknownType()) {
-        targets.push_back(SdfPath(p.GetPath().GetString() + "/curType-unknownType/" + p.GetTypeName().GetString()));
+        continue;
       }
       if (curType.IsA(baseType)) {
         targets.push_back(p.GetPath());
-      } else {
-        targets.push_back(SdfPath(p.GetPath().GetString() + "/" + curType.GetTypeName() + "/isNotA/" + baseType.GetTypeName()));
       }
     }
 
