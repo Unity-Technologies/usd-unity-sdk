@@ -16,7 +16,8 @@ namespace USD.NET.Unity {
 
   [System.Serializable]
   [UsdSchema("Cube")]
-  public class CubeSample : XformSample {
+  public class CubeSample : GprimSample {
+
     public CubeSample() : base() {
     }
 
@@ -35,9 +36,7 @@ namespace USD.NET.Unity {
                                         UnityEngine.Vector3.one * (float)m_size);
       }
     }
-    private double m_size;
 
-    // TODO(jcowles): should derive from boundable.
-    public UnityEngine.Bounds extent;
+    private double m_size;
   }
 }

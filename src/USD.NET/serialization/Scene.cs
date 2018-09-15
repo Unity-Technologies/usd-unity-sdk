@@ -182,7 +182,7 @@ namespace USD.NET {
       }
     }
 
-    [Obsolete("Use Find<XformSample>() instead. This API will be removed in a future release.")]
+    [Obsolete("Use Find<XformableSample>() instead. This API will be removed in a future release.")]
     public PathCollection AllXforms {
       get {
         return new PathCollection(Stage.GetAllPathsByType("Xform", SdfPath.AbsoluteRootPath()));

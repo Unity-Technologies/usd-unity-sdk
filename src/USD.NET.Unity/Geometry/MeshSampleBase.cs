@@ -18,8 +18,7 @@ namespace USD.NET.Unity {
 
   [System.Serializable]
   [UsdSchema("Mesh")]
-  public class MeshSampleBase : XformSample {
-    public Bounds extent;
+  public class MeshSampleBase : PointBasedSample {
     public int[] faceVertexIndices;
     public Vector3[] points;
     public Vector3[] normals;
