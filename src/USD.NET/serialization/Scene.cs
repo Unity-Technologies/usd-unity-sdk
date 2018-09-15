@@ -283,19 +283,8 @@ namespace USD.NET {
       if (attrs.Length == 0) {
         throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
       }
-      var name = ((UsdSchemaAttribute)attrs[0]).Name;
-
-      // TODO: move this to C++.
-
-      var vec = new SdfPathVector();
-      var rootPrim = GetPrimAtPath(rootPath);
-
-      foreach (var prim in rootPrim.GetAllDescendants()) {
-        if (prim.GetTypeName() == name) {
-          vec.Add(prim.GetPath());
-        }
-      }
-
+      var schemaTypeName = ((UsdSchemaAttribute)attrs[0]).Name;
+      var vec = Stage.GetAllPathsByType(schemaTypeName, new SdfPath(rootPath));
       return new PathCollection(vec);
     }
 
@@ -304,9 +293,8 @@ namespace USD.NET {
       if (attrs.Length == 0) {
         throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
       }
-      var name = ((UsdSchemaAttribute)attrs[0]).Name;
-
-      var vec = Stage.GetAllPathsByType(name, new SdfPath(rootPath));
+      var schemaTypeName = ((UsdSchemaAttribute)attrs[0]).Name;
+      var vec = Stage.GetAllPathsByType(schemaTypeName, new SdfPath(rootPath));
       return new SampleCollection<T>(this, vec);
     }
 
