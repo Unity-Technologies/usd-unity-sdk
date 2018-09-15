@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using pxr;
 using UnityEngine;
@@ -21,7 +23,7 @@ namespace USD.NET.Unity {
   /// <summary>
   /// Maps from UsdPrim paths to Unity GameObjects.
   /// </summary>
-  public class PrimMap {
+  public class PrimMap : IEnumerable, IEnumerable<KeyValuePair<SdfPath, GameObject>> {
 
     private Dictionary<SdfPath, GameObject> m_map = new Dictionary<SdfPath, GameObject>();
 
@@ -38,6 +40,33 @@ namespace USD.NET.Unity {
         throw new KeyNotFoundException("The path <" + path + "> does not exist in the PrimMap");
       }
       set { m_map[path] = value; }
+    }
+
+    public IEnumerator GetEnumerator() {
+      return m_map.GetEnumerator();
+    }
+
+    IEnumerator<KeyValuePair<SdfPath, GameObject>>
+        IEnumerable<KeyValuePair<SdfPath, GameObject>>.GetEnumerator() {
+      return m_map.GetEnumerator();
+    }
+
+    /// <summary>
+    /// Destroy all GameObjects and clear the map.
+    /// </summary>
+    public void DestroyAll() {
+      foreach (var go in m_map.Values) {
+        // When running in-editor DestroyImmediate must be used.
+        GameObject.DestroyImmediate(go);
+      }
+      m_map.Clear();
+    }
+
+    /// <summary>
+    /// Clear the map without destroying game objects.
+    /// </summary>
+    public void Clear() {
+      m_map.Clear();
     }
 
     /// <summary>
