@@ -1467,12 +1467,6 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool GfFitPlaneToPoints(GfVec3dVector points, GfPlane fitPlane) {
-    bool ret = UsdCsPINVOKE.GfFitPlaneToPoints(GfVec3dVector.getCPtr(points), GfPlane.getCPtr(fitPlane));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public static uint hash_value(GfFrustum f) {
     uint ret = UsdCsPINVOKE.hash_value__SWIG_29(GfFrustum.getCPtr(f));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

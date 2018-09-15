@@ -31393,24 +31393,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfPlane(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFitPlaneToPoints(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  std::vector< GfVec3d > *arg1 = 0 ;
-  GfPlane *arg2 = (GfPlane *) 0 ;
-  bool result;
-  
-  arg1 = (std::vector< GfVec3d > *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec3d > const & type is null", 0);
-    return 0;
-  } 
-  arg2 = (GfPlane *)jarg2; 
-  result = (bool)GfFitPlaneToPoints((std::vector< GfVec3d > const &)*arg1,arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_GfVec3dVector_Clear(void * jarg1) {
   std::vector< GfVec3d > *arg1 = (std::vector< GfVec3d > *) 0 ;
   

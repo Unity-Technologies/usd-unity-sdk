@@ -4910,9 +4910,6 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_GfPlane")]
   public static extern void delete_GfPlane(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfFitPlaneToPoints")]
-  public static extern bool GfFitPlaneToPoints(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_GfVec3dVector_Clear")]
   public static extern void GfVec3dVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
