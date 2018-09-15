@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+﻿// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -281,11 +281,25 @@ namespace USD.NET {
     /// <typeparam name="T">
     /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
     /// </typeparam>
+    /// <returns>
+    /// An iterable collection of the paths discovered
+    /// </returns>
+    public PathCollection Find<T>() where T : SampleBase, new() {
+      return Find<T>(rootPath: SdfPath.AbsoluteRootPath());
+    }
+
+    /// <summary>
+    /// Searches the USD Stage to find prims which either match the schema type name declared
+    /// for the given sample type, or those which derive from it.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+    /// </typeparam>
     /// <param name="rootPath">The root path at which to begin the search.</param>
     /// <returns>
     /// An iterable collection of the paths discovered
     /// </returns>
-    public PathCollection Find<T>(string rootPath) where T : SampleBase, new() {
+    public PathCollection Find<T>(string rootPath = "/") where T : SampleBase, new() {
       var attrs = typeof(T).GetCustomAttributes(typeof(USD.NET.UsdSchemaAttribute), true);
       if (attrs.Length == 0) {
         throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
@@ -309,6 +323,24 @@ namespace USD.NET {
     public PathCollection Find(string rootPath, string usdSchemaTypeName) {
       var vec = Stage.GetAllPathsByType(usdSchemaTypeName, new SdfPath(rootPath));
       return new PathCollection(vec);
+    }
+
+
+    /// <summary>
+    /// Searches the USD Stage to find prims which either match the schema type name or those
+    /// which are derived from it.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+    /// </typeparam>
+    /// <returns>
+    /// Returns a collection which will read each prim found and return the requested SampleBase
+    /// object type.
+    /// </returns>
+    /// <remarks>Internally, this method reuses a single object while reading to minimize garbage
+    /// generated during iteration.</remarks>
+    public SampleCollection<T> ReadAll<T>() where T : SampleBase, new() {
+      return ReadAll<T>(rootPath: SdfPath.AbsoluteRootPath());
     }
 
     /// <summary>
