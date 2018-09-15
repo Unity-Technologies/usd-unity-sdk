@@ -237,7 +237,67 @@ namespace Tests.Cases {
       AssertEqual(sample.ulong_, sample2.ulong_);
     }
 
-    public static void EqualityTest() {
+    public static void SdfPathEqualityTest() {
+      var A = new pxr.SdfPath("/Foo");
+      var B = new pxr.SdfPath("/Foo");
+      var C = new pxr.SdfPath("/Foo/Bar");
+
+      AssertEqual(A, A);
+      AssertEqual(B, B);
+      AssertEqual(C, C);
+      AssertEqual(A, B);
+      AssertEqual(A, C.GetParentPath());
+      AssertEqual(C.GetParentPath(), A);
+
+      AssertEqual(A.GetHashCode(), A.GetHashCode());
+      AssertEqual(B.GetHashCode(), B.GetHashCode());
+      AssertEqual(C.GetHashCode(), C.GetHashCode());
+      AssertEqual(A.GetHashCode(), B.GetHashCode());
+      AssertEqual(A.GetHashCode(), C.GetParentPath().GetHashCode());
+      AssertEqual(C.GetParentPath().GetHashCode(), A.GetHashCode());
+
+      AssertEqual(A.GetHash(), A.GetHash());
+      AssertEqual(B.GetHash(), B.GetHash());
+      AssertEqual(C.GetHash(), C.GetHash());
+      AssertEqual(A.GetHash(), B.GetHash());
+      AssertEqual(A.GetHash(), C.GetParentPath().GetHash());
+      AssertEqual(C.GetParentPath().GetHash(), A.GetHash());
+
+      AssertEqual(A.ToString(), A.ToString());
+      AssertEqual(B.ToString(), B.ToString());
+      AssertEqual(C.ToString(), C.ToString());
+      AssertEqual(A.ToString(), B.ToString());
+      AssertEqual(A.ToString(), C.GetParentPath().ToString());
+      AssertEqual(C.GetParentPath().ToString(), A.ToString());
+
+      var hashSet = new HashSet<pxr.SdfPath>();
+      hashSet.Add(A);
+      AssertTrue(hashSet.Contains(A));
+      AssertTrue(hashSet.Contains(B));
+      AssertTrue(hashSet.Contains(C.GetParentPath()));
+      AssertTrue(hashSet.Remove(B));
+
+      hashSet.Add(B);
+      AssertTrue(hashSet.Contains(A));
+      AssertTrue(hashSet.Contains(B));
+      AssertTrue(hashSet.Contains(C.GetParentPath()));
+      AssertTrue(hashSet.Remove(C.GetParentPath()));
+
+      var dict = new Dictionary<pxr.SdfPath, string>();
+      dict.Add(A, A.GetString());
+      AssertTrue(dict.ContainsKey(A));
+      AssertTrue(dict.ContainsKey(B));
+      AssertTrue(dict.ContainsKey(C.GetParentPath()));
+      AssertTrue(dict.Remove(B));
+
+      dict.Add(B, B.GetString());
+      AssertTrue(dict.ContainsKey(A));
+      AssertTrue(dict.ContainsKey(B));
+      AssertTrue(dict.ContainsKey(C.GetParentPath()));
+      AssertTrue(dict.Remove(C.GetParentPath()));
+    }
+
+    public static void VtValueEqualityTest() {
       var A = new pxr.VtValue(1);
       var B = new pxr.VtValue(1);
       var C = new pxr.VtValue(2);

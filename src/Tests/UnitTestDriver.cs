@@ -47,7 +47,8 @@ namespace Tests {
 
       Cases.BasicTests.SmokeTest();
       Cases.BasicTests.IntrinsicTypesTest();
-      Cases.BasicTests.EqualityTest();
+      Cases.BasicTests.SdfPathEqualityTest();
+      Cases.BasicTests.VtValueEqualityTest();
       Cases.BasicTests.AssetPathTest();
       Cases.BasicTests.PrimvarsTest();
       Cases.BasicTests.SampleBaseTest();
