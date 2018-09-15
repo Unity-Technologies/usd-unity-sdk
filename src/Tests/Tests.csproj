@@ -130,7 +130,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /d $(SolutionDir)\UsdCs\x64\$(ConfigurationName)\UsdCs.dll $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>echo "copy $(SolutionDir)\UsdCs\x64\$(ConfigurationName)\UsdCs.dll &gt; $(TargetDir)"
+xcopy /y /d $(SolutionDir)\UsdCs\x64\$(ConfigurationName)\UsdCs.dll $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
