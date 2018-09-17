@@ -299,13 +299,28 @@ namespace USD.NET {
     /// <returns>
     /// An iterable collection of the paths discovered
     /// </returns>
-    public PathCollection Find<T>(string rootPath = "/") where T : SampleBase, new() {
+    public PathCollection Find<T>(string rootPath) where T : SampleBase, new() {
+      return Find<T>(new SdfPath(rootPath));
+    }
+
+    /// <summary>
+    /// Searches the USD Stage to find prims which either match the schema type name declared
+    /// for the given sample type, or those which derive from it.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+    /// </typeparam>
+    /// <param name="rootPath">The root path at which to begin the search.</param>
+    /// <returns>
+    /// An iterable collection of the paths discovered
+    /// </returns>
+    public PathCollection Find<T>(SdfPath rootPath) where T : SampleBase, new() {
       var attrs = typeof(T).GetCustomAttributes(typeof(USD.NET.UsdSchemaAttribute), true);
       if (attrs.Length == 0) {
         throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
       }
       var schemaTypeName = ((UsdSchemaAttribute)attrs[0]).Name;
-      var vec = Stage.GetAllPathsByType(schemaTypeName, new SdfPath(rootPath));
+      var vec = Stage.GetAllPathsByType(schemaTypeName, rootPath);
       return new PathCollection(vec);
     }
 
@@ -358,12 +373,30 @@ namespace USD.NET {
     /// <remarks>Internally, this method reuses a single object while reading to minimize garbage
     /// generated during iteration.</remarks>
     public SampleCollection<T> ReadAll<T>(string rootPath) where T : SampleBase, new() {
+      return ReadAll<T>(new SdfPath(rootPath));
+    }
+
+    /// <summary>
+    /// Searches the USD Stage to find prims which either match the schema type name or those
+    /// which are derived from it.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+    /// </typeparam>
+    /// <param name="rootPath">The root path at which to begin the search.</param>
+    /// <returns>
+    /// Returns a collection which will read each prim found and return the requested SampleBase
+    /// object type.
+    /// </returns>
+    /// <remarks>Internally, this method reuses a single object while reading to minimize garbage
+    /// generated during iteration.</remarks>
+    public SampleCollection<T> ReadAll<T>(SdfPath rootPath) where T : SampleBase, new() {
       var attrs = typeof(T).GetCustomAttributes(typeof(UsdSchemaAttribute), true);
       if (attrs.Length == 0) {
         throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
       }
       var schemaTypeName = ((UsdSchemaAttribute)attrs[0]).Name;
-      var vec = Stage.GetAllPathsByType(schemaTypeName, new SdfPath(rootPath));
+      var vec = Stage.GetAllPathsByType(schemaTypeName, rootPath);
       return new SampleCollection<T>(this, vec);
     }
 
