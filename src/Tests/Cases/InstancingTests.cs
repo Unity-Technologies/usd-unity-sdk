@@ -22,8 +22,8 @@ namespace Tests.Cases {
 
     public static void TraversalTest() {
       var scene = USD.NET.Scene.Open(@"D:\usd\Kitchen_set.usd");
+      
       foreach (pxr.UsdPrim prim in scene.Stage.Traverse()) {
-
         var mesh = new pxr.UsdGeomMesh(prim);
         if (mesh) {
           Console.WriteLine("Non-instanced mesh: " + prim.GetPath());
