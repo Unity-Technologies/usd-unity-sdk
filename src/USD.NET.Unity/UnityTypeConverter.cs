@@ -41,6 +41,12 @@ namespace USD.NET.Unity {
       return basisChange * input * basisChangeInverse;
     }
 
+    public static UnityEngine.Vector3 ChangeBasis(UnityEngine.Vector3 point) {
+      UnityEngine.Matrix4x4 mat = UnityEngine.Matrix4x4.identity;
+      mat[2, 2] = -1;
+      return mat.MultiplyPoint3x4(point);
+    }
+
     /// <summary>
     /// Sets the local transform matrix on the given Unity Transform given a Matrix4x4.
     /// </summary>
