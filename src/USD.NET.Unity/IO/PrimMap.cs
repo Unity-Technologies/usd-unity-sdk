@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using pxr;
@@ -25,7 +24,21 @@ namespace USD.NET.Unity {
   /// </summary>
   public class PrimMap : IEnumerable, IEnumerable<KeyValuePair<SdfPath, GameObject>> {
 
-    private Dictionary<SdfPath, GameObject> m_map = new Dictionary<SdfPath, GameObject>();
+    public struct InstanceRoot {
+      public GameObject gameObject;
+      public SdfPath masterPath;
+    }
+
+    // Normal objects in the hierarchy.
+    private Dictionary<SdfPath, GameObject> m_prims = new Dictionary<SdfPath, GameObject>();
+
+    // Objects at the root of an instanced sub-tree.
+    // Instances may be found in masters as well.
+    private Dictionary<SdfPath, InstanceRoot> m_instanceRoots = new Dictionary<SdfPath, InstanceRoot>();
+    private HashSet<GameObject> m_instances = new HashSet<GameObject>();
+
+    // Objects which exist only as source of instances.
+    private Dictionary<SdfPath, GameObject> m_masterRoots = new Dictionary<SdfPath, GameObject>();
 
     public PrimMap() {
     }
@@ -34,73 +47,73 @@ namespace USD.NET.Unity {
     {
       get {
         GameObject go;
-        if (m_map.TryGetValue(path, out go)) {
+        if (m_prims.TryGetValue(path, out go)) {
           return go;
         }
         throw new KeyNotFoundException("The path <" + path + "> does not exist in the PrimMap");
       }
-      set { m_map[path] = value; }
+      set { m_prims[path] = value; }
     }
 
     public IEnumerator GetEnumerator() {
-      return m_map.GetEnumerator();
+      return m_prims.GetEnumerator();
     }
 
     IEnumerator<KeyValuePair<SdfPath, GameObject>>
         IEnumerable<KeyValuePair<SdfPath, GameObject>>.GetEnumerator() {
-      return m_map.GetEnumerator();
+      return m_prims.GetEnumerator();
+    }
+
+    public void AddInstance(GameObject goInst) {
+      m_instances.Add(goInst);
+    }
+
+    public void AddMasterRoot(SdfPath path, GameObject go) {
+      m_masterRoots[path] = go;
+      this[path] = go;
+    }
+
+    public void AddInstanceRoot(SdfPath instancePath, GameObject go, SdfPath masterPath) {
+      m_instanceRoots[instancePath] = new InstanceRoot { gameObject = go, masterPath = masterPath };
+    }
+
+    public Dictionary<SdfPath, GameObject>.KeyCollection GetMasterRootPaths() {
+      return m_masterRoots.Keys;
+    }
+
+    public Dictionary<SdfPath, InstanceRoot>.ValueCollection GetInstanceRoots() {
+      return m_instanceRoots.Values;
     }
 
     /// <summary>
     /// Destroy all GameObjects and clear the map.
     /// </summary>
     public void DestroyAll() {
-      foreach (var go in m_map.Values) {
-        // When running in-editor DestroyImmediate must be used.
+      // When running in-editor DestroyImmediate must be used.
+      foreach (var go in m_prims.Values) {
         GameObject.DestroyImmediate(go);
       }
-      m_map.Clear();
+      foreach (var instance in m_instanceRoots.Values) {
+        GameObject.DestroyImmediate(instance.gameObject);
+      }
+      foreach (var go in m_instances) {
+        GameObject.DestroyImmediate(go);
+      }
+      foreach (var go in m_masterRoots.Values) {
+        GameObject.DestroyImmediate(go);
+      }
+      m_prims.Clear();
     }
 
     /// <summary>
     /// Clear the map without destroying game objects.
     /// </summary>
     public void Clear() {
-      m_map.Clear();
+      m_prims.Clear();
+      m_masterRoots.Clear();
+      m_instances.Clear();
+      m_instanceRoots.Clear();
     }
 
-    /// <summary>
-    /// Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
-    /// </summary>
-    /// <param name="scene">The Scene to map</param>
-    /// <param name="unityRoot">The root game object under which all prims will be parented</param>
-    /// <returns></returns>
-    static public PrimMap MapAllPrims(Scene scene, GameObject unityRoot) {
-      return MapAllPrims(scene, unityRoot, scene.AllPaths);
-    }
-
-    /// <summary>
-    /// Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
-    /// </summary>
-    /// <param name="scene">The Scene to map</param>
-    /// <param name="unityRoot">The root game object under which all prims will be parented</param>
-    /// <param name="rootPath">The path at which to begin mapping paths.</param>
-    static public PrimMap MapAllPrims(Scene scene, GameObject unityRoot, SdfPath rootPath) {
-      // TODO: add an API for finding paths.
-      return MapAllPrims(scene, unityRoot, scene.Find(rootPath.ToString(), "UsdSchemaBase"));
-    }
-
-    static private PrimMap MapAllPrims(Scene scene, GameObject unityRoot, IEnumerable<SdfPath> paths) {
-      var map = new PrimMap();
-      map[SdfPath.AbsoluteRootPath()] = unityRoot;
-
-      foreach (var path in paths) {
-        var go = new GameObject(path.GetName());
-        map[new SdfPath(path)] = go;
-        go.transform.SetParent(map[path.GetParentPath()].transform, worldPositionStays: false);
-      }
-
-      return map;
-    }
   }
 }
