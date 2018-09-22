@@ -30,6 +30,151 @@
             Sets the faceVertexIndicies and faceVertexCounts from triangle indices alone.
             </summary>
         </member>
+        <member name="T:USD.NET.Unity.InstanceImporter">
+            <summary>
+            A collection of methods used for translating USD instances into Unity instances (CPU or GPU).
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.InstanceImporter.BuildSceneInstances(USD.NET.Unity.PrimMap)">
+            <summary>
+            Given a PrimMap, finds all instanced objects and their respective master objects and
+            instantiates Unity clones using GameObject.Instantiate. Note that this does not result
+            in GPU instancing.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.IO.MaterialImporter">
+            <summary>
+            A collection of methods used for importing USD Material data into Unity.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.IO.MaterialImporter.GetSurfaceShaderPrim(USD.NET.Scene,System.String)">
+            <summary>
+            Reads and returns the UsdPreviewSurface data for the prim at the given path, if present.
+            </summary>
+            <param name="scene">The USD scene object.</param>
+            <param name="primPath">The path to the object in the USD scene.</param>
+            <returns>A PreviewSurfaceSample if found, otherwise null.</returns>
+        </member>
+        <member name="T:USD.NET.Unity.MaterialMap">
+            <summary>
+            A mapping from USD shader ID to Unity Material.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.MaterialMap.m_map">
+            <summary>
+            A mapping from USD shader ID to Unity material.
+            </summary>
+        </member>
+        <member name="P:USD.NET.Unity.MaterialMap.SolidColorMasterMaterial">
+            <summary>
+            A material to use for solid colors. Note that accessing this material
+            does not create a new instance.
+            </summary>
+        </member>
+        <member name="P:USD.NET.Unity.MaterialMap.FallbackMasterMaterial">
+            <summary>
+            A material to use when no material could be found.
+            </summary>
+        </member>
+        <member name="P:USD.NET.Unity.MaterialMap.Item(System.String)">
+            <summary>
+            Returns a shared instance of the mapped material, else null. Does not throw exceptions.
+            </summary>
+            <param name="shaderId">The USD shader ID</param>
+        </member>
+        <member name="M:USD.NET.Unity.MaterialMap.InstantiateSolidColor(UnityEngine.Color)">
+            <summary>
+            Returns an instance of the solid color material, setting the color. If the same color is
+            requested multiple times, a shared material is returned.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.ImportMode">
+            <summary>
+            Indicates how an attribute should be imported.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.ImportMode.Import">
+            <summary>
+            The value is imported if authored, otherwise null/default.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.ImportMode.ImportOrCompute">
+            <summary>
+            The value is imported if authored, else the value is computed (if possible).
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.ImportMode.Compute">
+            <summary>
+            The value is only computed (if possible), authored values are ignored.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.ImportMode.Ignore">
+            <summary>
+            The authored value is ignored and no value is computed.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.MeshImportOptions">
+            <summary>
+            Indicates how values are imported from the given scene into a UnityEngine.Mesh object.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.MeshImportOptions.triangulateMesh">
+            <summary>
+            If true, triangulates the mesh. Should only be set to false if the mesh is guaranteed
+            to be a valid triangle mesh before import.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.MeshImporter">
+            <summary>
+            A collection of methods used for importing USD Mesh data into Unity.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MeshImporter.BuildMesh(USD.NET.Unity.MeshSample,UnityEngine.GameObject,USD.NET.Unity.SceneImportOptions)">
+            <summary>
+            Copy mesh data from USD to Unity with the given import options.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MeshImporter.ImportUv(UnityEngine.Mesh,System.Int32,System.Object,USD.NET.Unity.ImportMode)">
+            <summary>
+            Imports UV data from USD into the unityMesh at the given index with the given import rules.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MeshImporter.ShouldImport(USD.NET.Unity.ImportMode)">
+            <summary>
+            Returns true if the mode is Import or ImportOrCompute.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.MeshImporter.ShouldCompute(USD.NET.Unity.ImportMode)">
+            <summary>
+            Returns true if the mode is Compute or ImportOrCompute.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.HierarchyBuilder">
+            <summary>
+            A collection of methods for building the USD scene hierarchy in Unity.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.HierarchyBuilder.BuildGameObjects(USD.NET.Scene,UnityEngine.GameObject)">
+            <summary>
+            Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
+            </summary>
+            <param name="scene">The Scene to map</param>
+            <param name="unityRoot">The root game object under which all prims will be parented</param>
+            <returns></returns>
+        </member>
+        <member name="M:USD.NET.Unity.HierarchyBuilder.BuildGameObjects(USD.NET.Scene,UnityEngine.GameObject,pxr.SdfPath)">
+            <summary>
+            Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
+            </summary>
+            <param name="scene">The Scene to map</param>
+            <param name="unityRoot">The root game object under which all prims will be parented</param>
+            <param name="rootPath">The path at which to begin mapping paths.</param>
+        </member>
+        <member name="M:USD.NET.Unity.HierarchyBuilder.BuildGameObjects(USD.NET.Scene,UnityEngine.GameObject,System.Collections.Generic.IEnumerable{pxr.SdfPath})">
+            <summary>
+            Private implementation of BuildGameObjects.
+            </summary>
+        </member>
         <member name="T:USD.NET.Unity.PrimMap">
             <summary>
             Maps from UsdPrim paths to Unity GameObjects.
@@ -45,21 +190,92 @@
             Clear the map without destroying game objects.
             </summary>
         </member>
-        <member name="M:USD.NET.Unity.PrimMap.MapAllPrims(USD.NET.Scene,UnityEngine.GameObject)">
+        <member name="T:USD.NET.Unity.BasisTransformation">
             <summary>
-            Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
+            How to transform from the USD basis (typically right-handed) to Unity (left-handed).
             </summary>
-            <param name="scene">The Scene to map</param>
-            <param name="unityRoot">The root game object under which all prims will be parented</param>
-            <returns></returns>
         </member>
-        <member name="M:USD.NET.Unity.PrimMap.MapAllPrims(USD.NET.Scene,UnityEngine.GameObject,pxr.SdfPath)">
+        <member name="F:USD.NET.Unity.BasisTransformation.FastAndDangerous">
             <summary>
-            Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
+            Apply a single negative scale and rotation at the root of the scene hierarchy.
+            Fastest, but may introduce additional complications when later exporting.
             </summary>
-            <param name="scene">The Scene to map</param>
-            <param name="unityRoot">The root game object under which all prims will be parented</param>
-            <param name="rootPath">The path at which to begin mapping paths.</param>
+        </member>
+        <member name="F:USD.NET.Unity.BasisTransformation.SlowAndSafe">
+            <summary>
+            Transform to left-handed basis by processing all positions, triangles, transforms, and
+            primvar data. While slower, this is the safest option.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.BasisTransformation.None">
+            <summary>
+            Preform no transformation; should only be used when the USD file is known to contain
+            data which was (non-portably) stored in a left-handed basis.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.SceneImportOptions">
+            <summary>
+            Indicates how the scene should be imported from USD to Unity.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.SceneImportOptions.changeHandedness">
+            <summary>
+            Typically USD data is right-handed and Unity is left handed; this option indicates how
+            that conversion should be handled.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.SceneImportOptions.scale">
+            <summary>
+            A uniform scale to apply to the entire imported scene.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.SceneImportOptions.interpolate">
+            <summary>
+            Apply linear interpolation when requesting values between time samples.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.SceneImportOptions.materialMap">
+            <summary>
+            A set of registered mappings from USD shader ID to Unity material.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.SceneImportOptions.meshOptions">
+            <summary>
+            The default options for how to import meshes.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.SceneImporter">
+            <summary>
+            Root entry point for importing an entire USD scene.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.SceneImporter.BuildScene(USD.NET.Scene,UnityEngine.GameObject,USD.NET.Unity.SceneImportOptions)">
+            <summary>
+            Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
+            </summary>
+        </member>
+        <member name="T:USD.NET.Unity.XformImporter">
+            <summary>
+            A collection of methods used for importing USD Xform data into Unity.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.XformImporter.BuildXform(USD.NET.Unity.XformableSample,UnityEngine.GameObject,USD.NET.Unity.SceneImportOptions)">
+            <summary>
+            Copies the transform value from USD to Unity, optionally changing handedness in the
+            process.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.XformImporter.BuildSceneRoot(USD.NET.Scene,UnityEngine.Transform,USD.NET.Unity.SceneImportOptions)">
+            <summary>
+            Build the root of a scene under which more USD data will be imported. If the handedness
+            is changed here, no subsequent changes are required below, however the root will contain
+            a negative scale.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Unity.XformImporter.GetUpVector(USD.NET.Scene)">
+            <summary>
+            Returns the up vector for the USD scene, which may be Y or Z.
+            </summary>
         </member>
         <member name="T:USD.NET.Unity.MaterialBindingSample">
             <summary>

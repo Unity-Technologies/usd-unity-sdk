@@ -279,10 +279,10 @@
             </summary>
             
             <remarks>
-            A setting the value to Variability.Uniform indicates the UsdAttribute may not have
+            Setting the value to Variability.Uniform indicates the UsdAttribute may not have
             time samples and can only hold a single value. By default, UsdAttributes will be
-            declared as Varying unless writing to a scheme which previously declared the attribute to be
-            Uniform.
+            declared as Varying unless writing to a schema that previously declared the attribute
+            to be Uniform.
             </remarks>
         </member>
         <member name="T:USD.NET.UsdNamespaceAttribute">
@@ -322,6 +322,11 @@
             Declares a string value member to be serialized as an SdfAssetPath.
             </summary>
         </member>
+        <member name="T:USD.NET.CustomDataAttribute">
+            <summary>
+            Declares the attribute should be stored as metadata under the "customData" key.
+            </summary>
+        </member>
         <member name="T:USD.NET.VertexDataAttribute">
             <summary>
             Declares the attribute as vertex data which can be made available to the shader at render
@@ -339,8 +344,7 @@
             </summary>
             <remarks>
             This special case is entirely for performance. The cost of iterating over display color and 
-            opacity in C# to fuse them back into a single vector is too great (138ms in one test), this
-            avoids that cost.
+            opacity in C# to fuse them back into a single vector is too great, this avoids that cost.
             </remarks>
         </member>
         <member name="T:USD.NET.FusedTransformAttribute">
@@ -353,11 +357,6 @@
             designed for ease of use and performance. In this case, all component operations are
             collapsed into a single 4x4 matrix.
             </remarks>
-        </member>
-        <member name="T:USD.NET.CustomDataAttribute">
-            <summary>
-            Declares the attribute should be stored as metadata under the "customData" key.
-            </summary>
         </member>
         <member name="T:USD.NET.SampleBase">
             <summary>
@@ -573,6 +572,19 @@
             An iterable collection of the paths discovered
             </returns>
         </member>
+        <member name="M:USD.NET.Scene.Find``1(pxr.SdfPath)">
+            <summary>
+            Searches the USD Stage to find prims which either match the schema type name declared
+            for the given sample type, or those which derive from it.
+            </summary>
+            <typeparam name="T">
+            A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+            </typeparam>
+            <param name="rootPath">The root path at which to begin the search.</param>
+            <returns>
+            An iterable collection of the paths discovered
+            </returns>
+        </member>
         <member name="M:USD.NET.Scene.Find(System.String,System.String)">
             <summary>
             Searches the USD Stage to find prims which either match the schema type name or those
@@ -602,6 +614,22 @@
             generated during iteration.</remarks>
         </member>
         <member name="M:USD.NET.Scene.ReadAll``1(System.String)">
+            <summary>
+            Searches the USD Stage to find prims which either match the schema type name or those
+            which are derived from it.
+            </summary>
+            <typeparam name="T">
+            A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+            </typeparam>
+            <param name="rootPath">The root path at which to begin the search.</param>
+            <returns>
+            Returns a collection which will read each prim found and return the requested SampleBase
+            object type.
+            </returns>
+            <remarks>Internally, this method reuses a single object while reading to minimize garbage
+            generated during iteration.</remarks>
+        </member>
+        <member name="M:USD.NET.Scene.ReadAll``1(pxr.SdfPath)">
             <summary>
             Searches the USD Stage to find prims which either match the schema type name or those
             which are derived from it.
