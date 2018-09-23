@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +22,7 @@ namespace USD.NET.Unity {
   /// <summary>
   /// A mapping from USD shader ID to Unity Material.
   /// </summary>
-  public class MaterialMap {
+  public class MaterialMap : IEnumerable<KeyValuePair<string, Material>> {
 
     /// <summary>
     /// A mapping from USD shader ID to Unity material.
@@ -87,5 +89,13 @@ namespace USD.NET.Unity {
       return material;
     }
 
+    public IEnumerator GetEnumerator() {
+      return ((IEnumerable)m_map).GetEnumerator();
+    }
+
+    IEnumerator<KeyValuePair<string, Material>>
+        IEnumerable<KeyValuePair<string, Material>>.GetEnumerator() {
+      return m_map.GetEnumerator();
+    }
   }
 }
