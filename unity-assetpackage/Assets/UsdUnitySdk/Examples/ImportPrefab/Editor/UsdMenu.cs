@@ -13,9 +13,9 @@
 // limitations under the License.
 using System.Collections.Generic;
 using System.IO;
-
 using UnityEngine;
 using UnityEditor;
+using USD.NET.Unity;
 
 public class UsdMenu : MonoBehaviour {
 
@@ -25,17 +25,60 @@ public class UsdMenu : MonoBehaviour {
     if (path.Length == 0) {
       return;
     }
-    var go = UsdAssetImporter.ImportUsd(path, "");
-    if (go == null) { return; }
+
+    var solidColorMat = new Material(Shader.Find("Standard"));
+    solidColorMat.SetFloat("_Glossiness", 0.2f);
+
+    // Time-varying data is not supported and often scenes are written without "Default" time
+    // values, which makes setting an arbitrary time safer (because if only default was authored
+    // the time will be ignored and values will resolve to default time automatically).
+    double time = 1.0;
+
+    var importOptions = new SceneImportOptions();
+    importOptions.changeHandedness = BasisTransformation.FastAndDangerous;
+    importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
+
     var invalidChars = Path.GetInvalidFileNameChars();
-    var prefabName = string.Join("_", go.name.Split(invalidChars,
+    var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
         System.StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
-    SaveAsSinglePrefab(go, "Assets/" + prefabName + ".prefab");
+    string prefabPath = "Assets/" + prefabName + ".prefab";
+
+    ImportUsdFile(path, prefabPath, time, importOptions);
+  }
+
+  private static string GetPrefabName(string path) {
+    var fileName = UnityTypeConverter.MakeValidIdentifier(Path.GetFileNameWithoutExtension(path));
+    return fileName + "_prefab";
+  }
+
+  public static GameObject ImportUsdFile(string path, double time, SceneImportOptions importOptions) {
+    var go = new GameObject(GetPrefabName(path));
+
+    UsdAssetImporter.ImportUsd(go, path, time, importOptions);
+
+    var usdImporter = go.AddComponent<UsdAssetImporter>();
+    usdImporter.m_usdFile = path;
+    usdImporter.m_time = time;
+    usdImporter.OptionsToState(importOptions);
+
+    return go;
+  }
+
+  public static void ImportUsdFile(string path, string prefabPath, double time, SceneImportOptions importOptions) {
+    var go = ImportUsdFile(path, time, importOptions);
+
+    SaveAsSinglePrefab(go, prefabPath, importOptions);
+
     GameObject.DestroyImmediate(go);
   }
 
-  static void SaveAsSinglePrefab(GameObject rootObject,
-                                 string prefabPath) {
+  /// <summary>
+  /// Custom importer. This works almost exactly as the ScriptedImporter, but does not require
+  /// the new API.
+  /// </summary>
+  public static void SaveAsSinglePrefab(GameObject rootObject,
+                                        string prefabPath,
+                                        SceneImportOptions importOptions) {
     Directory.CreateDirectory(Path.GetDirectoryName(prefabPath));
 
     GameObject oldPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
@@ -45,7 +88,7 @@ public class UsdMenu : MonoBehaviour {
       // Create the prefab. At this point, the meshes do not yet exist and will be
       // dangling references
       prefab = PrefabUtility.CreatePrefab(prefabPath, rootObject);
-      AddObjectsToAsset(rootObject, prefab);
+      AddObjectsToAsset(rootObject, prefab, importOptions);
 
       // Fix the dangling references.
       prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
@@ -55,11 +98,23 @@ public class UsdMenu : MonoBehaviour {
       // The main difference between LoadAllAssetRepresentations and LoadAllAssets
       // is that the former returns MonoBehaviours and the latter does not.
       foreach (var obj in AssetDatabase.LoadAllAssetRepresentationsAtPath(prefabPath)) {
-        if (!(obj is GameObject)) {
-          Object.DestroyImmediate(obj, allowDestroyingAssets: true);
+        if (obj is GameObject) {
+          continue;
         }
+        if (obj == importOptions.materialMap.FallbackMasterMaterial) {
+          continue;
+        }
+        if (obj == importOptions.materialMap.SolidColorMasterMaterial) {
+          continue;
+        }
+        foreach (KeyValuePair<string, Material> kvp in importOptions.materialMap) {
+          if (obj == kvp.Value) {
+            continue;
+          }
+        }
+        Object.DestroyImmediate(obj, allowDestroyingAssets: true);
       }
-      AddObjectsToAsset(rootObject, oldPrefab);
+      AddObjectsToAsset(rootObject, oldPrefab, importOptions);
       prefab = PrefabUtility.ReplacePrefab(
           rootObject, oldPrefab, ReplacePrefabOptions.ReplaceNameBased);
     }
@@ -67,17 +122,33 @@ public class UsdMenu : MonoBehaviour {
     AssetDatabase.ImportAsset(prefabPath);
   }
 
-  static void AddObjectsToAsset(GameObject rootObject, Object asset) {
+  static void AddObjectsToAsset(GameObject rootObject,
+                                Object asset,
+                                SceneImportOptions importOptions) {
     var meshes = new HashSet<Mesh>();
     var materials = new HashSet<Material>();
+
+    var tempMat = importOptions.materialMap.FallbackMasterMaterial;
+    if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+      materials.Add(tempMat);
+      AssetDatabase.AddObjectToAsset(tempMat, asset);
+    }
+
+    tempMat = importOptions.materialMap.SolidColorMasterMaterial;
+    if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+      materials.Add(tempMat);
+      AssetDatabase.AddObjectToAsset(tempMat, asset);
+    }
+
     foreach (var mf in rootObject.GetComponentsInChildren<MeshFilter>()) {
-      if (meshes.Add(mf.sharedMesh)) {
+      if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
         AssetDatabase.AddObjectToAsset(mf.sharedMesh, asset);
       }
     }
+
     foreach (var mf in rootObject.GetComponentsInChildren<MeshRenderer>()) {
       foreach (var mat in mf.sharedMaterials) {
-        if (!materials.Add(mat)) {
+        if (mat == null || !materials.Add(mat)) {
           continue;
         }
         AssetDatabase.AddObjectToAsset(mat, asset);
