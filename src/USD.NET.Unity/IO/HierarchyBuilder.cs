@@ -60,6 +60,7 @@ namespace USD.NET.Unity {
 
         goMaster.hideFlags = HideFlags.HideInHierarchy;
         goMaster.SetActive(false);
+        goMaster.transform.SetParent(unityRoot.transform, worldPositionStays: false);
         map.AddMasterRoot(masterRootPrim.GetPath(), goMaster);
 
         foreach (var usdPrim in masterRootPrim.GetDescendants()) {
