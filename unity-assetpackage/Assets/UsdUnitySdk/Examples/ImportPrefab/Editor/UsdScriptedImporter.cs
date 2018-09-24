@@ -16,6 +16,9 @@ using UnityEngine;
 using UnityEditor.Experimental.AssetImporters;
 using USD.NET.Unity;
 
+#if false
+// This is not yet fully working.
+
 [ScriptedImporter(1, new string[] { "usd", "usda", "usdc", "abc" }, 0)]
 public class UsdScriptedImporter : ScriptedImporter {
 
@@ -62,3 +65,4 @@ public class UsdScriptedImporter : ScriptedImporter {
     DestroyImmediate(go);
   }
 }
+#endif
