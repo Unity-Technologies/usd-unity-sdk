@@ -35,7 +35,7 @@
             A collection of methods used for translating USD instances into Unity instances (CPU or GPU).
             </summary>
         </member>
-        <member name="M:USD.NET.Unity.InstanceImporter.BuildSceneInstances(USD.NET.Unity.PrimMap)">
+        <member name="M:USD.NET.Unity.InstanceImporter.BuildSceneInstances(USD.NET.Unity.PrimMap,USD.NET.Unity.SceneImportOptions)">
             <summary>
             Given a PrimMap, finds all instanced objects and their respective master objects and
             instantiates Unity clones using GameObject.Instantiate. Note that this does not result
@@ -232,6 +232,12 @@
         <member name="F:USD.NET.Unity.SceneImportOptions.interpolate">
             <summary>
             Apply linear interpolation when requesting values between time samples.
+            </summary>
+        </member>
+        <member name="F:USD.NET.Unity.SceneImportOptions.enableGpuInstancing">
+            <summary>
+            Enable GPU instancing on materials for point and scene instances. Note this may negatively
+            impact framerate in some cases.
             </summary>
         </member>
         <member name="F:USD.NET.Unity.SceneImportOptions.materialMap">

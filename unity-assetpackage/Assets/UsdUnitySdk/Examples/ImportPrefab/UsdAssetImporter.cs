@@ -36,6 +36,7 @@ public class UsdAssetImporter : MonoBehaviour {
   }
 
   [Header("Materials")]
+  public bool m_enableGpuInstancing;
   public Material m_solidColorMaterial;
   public Material m_fallbackMaterial;
   public MappedMaterial[] m_materialMap;
@@ -65,6 +66,7 @@ public class UsdAssetImporter : MonoBehaviour {
     m_texcoord2 = options.meshOptions.texcoord2;
     m_texcoord3 = options.meshOptions.texcoord3;
 
+    m_enableGpuInstancing = options.enableGpuInstancing;
     m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
     m_solidColorMaterial = options.materialMap.SolidColorMasterMaterial;
 
@@ -79,6 +81,7 @@ public class UsdAssetImporter : MonoBehaviour {
     options.changeHandedness = m_changeHandedness;
     options.scale = m_scale;
     options.interpolate = m_interpolation == Scene.InterpolationMode.Linear;
+
     options.meshOptions.boundingBox = m_boundingBox;
     options.meshOptions.color = m_color;
     options.meshOptions.normals = m_normals;
@@ -88,6 +91,7 @@ public class UsdAssetImporter : MonoBehaviour {
     options.meshOptions.texcoord2 = m_texcoord2;
     options.meshOptions.texcoord3 = m_texcoord3;
 
+    options.enableGpuInstancing = m_enableGpuInstancing;
     options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
     options.materialMap.SolidColorMasterMaterial = m_solidColorMaterial;
     foreach (MappedMaterial mm in m_materialMap) {

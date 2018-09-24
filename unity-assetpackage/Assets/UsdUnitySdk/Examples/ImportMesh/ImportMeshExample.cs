@@ -32,6 +32,9 @@ namespace USD.NET.Examples {
 
     public BasisTransformation m_changeHandedness = BasisTransformation.FastAndDangerous;
 
+    [Tooltip("Enable GPU instancing on materials for USD point or scene instances.")]
+    public bool m_enableGpuInstancing = false;
+
     private float m_lastTime;
     private Scene m_scene;
 
@@ -88,6 +91,7 @@ namespace USD.NET.Examples {
       var importOptions = new SceneImportOptions();
       importOptions.changeHandedness = m_changeHandedness;
       importOptions.materialMap.FallbackMasterMaterial = m_material;
+      importOptions.enableGpuInstancing = m_enableGpuInstancing;
 
       // The root object at which the USD scene will be reconstructed.
       // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
