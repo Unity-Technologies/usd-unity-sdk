@@ -18,8 +18,13 @@ namespace USD.NET.Unity {
 
   [System.Serializable]
   [USD.NET.UsdSchema("PointInstancer")]
-  class PointInstancerSample : BoundableSample {
+  public class PointInstancerPrototypesSample : BoundableSample {
     public USD.NET.Relationship prototypes = new USD.NET.Relationship();
+  }
+
+  [System.Serializable]
+  [USD.NET.UsdSchema("PointInstancer")]
+  public class PointInstancerSample : PointInstancerPrototypesSample {
     public int[] protoIndices;
     public long[] ids;
     public long[] invisibleIds;
