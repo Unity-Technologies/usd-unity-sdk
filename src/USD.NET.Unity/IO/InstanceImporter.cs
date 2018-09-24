@@ -26,7 +26,14 @@ namespace USD.NET.Unity {
     /// instantiates Unity clones using GameObject.Instantiate. Note that this does not result
     /// in GPU instancing.
     /// </summary>
-    public static void BuildSceneInstances(PrimMap primMap) {
+    public static void BuildSceneInstances(PrimMap primMap, SceneImportOptions options) {
+
+      if (options.enableGpuInstancing) {
+        foreach (var masterPath in primMap.GetMasterRootPaths()) {
+          EnableGpuInstancing(primMap[masterPath]);
+        }
+      }
+
       foreach (var instance in primMap.GetInstanceRoots()) {
         GameObject goInstance = instance.gameObject;
         GameObject goMaster = primMap[instance.masterPath];
@@ -36,7 +43,59 @@ namespace USD.NET.Unity {
           primMap.AddInstance(newChild);
         }
       }
-
     }
+
+    public static void BuildPointInstances(Scene scene,
+                                           PrimMap primMap,
+                                           string pointInstancerPath,
+                                           PointInstancerSample sample,
+                                           GameObject root,
+                                           SceneImportOptions options) {
+      Matrix4x4[] transforms = sample.ComputeInstanceMatrices(scene, pointInstancerPath);
+      int i = 0;
+
+      foreach (var protoRoot in sample.prototypes.targetPaths) {
+        var go = primMap[new pxr.SdfPath(protoRoot)];
+        go.SetActive(false);
+        if (options.enableGpuInstancing) {
+          EnableGpuInstancing(go);
+        }
+      }
+
+      foreach (var index in sample.protoIndices) {
+        var targetPath = sample.prototypes.targetPaths[index];
+
+        var goMaster = primMap[new pxr.SdfPath(targetPath)];
+        var xf = transforms[i];
+
+        var goInstance = GameObject.Instantiate(goMaster, root.transform);
+        goInstance.SetActive(true);
+        goInstance.name = goMaster.name + "_" + i;
+        XformImporter.BuildXform(xf, goInstance, options);
+
+        // Safety net.
+        if (i > 100000) {
+          break;
+        }
+
+        i++;
+      }
+    }
+
+    private static void EnableGpuInstancing(GameObject go) {
+      foreach (MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>()) {
+        if (mr.sharedMaterial != null && !mr.sharedMaterial.enableInstancing) {
+          mr.sharedMaterial = Material.Instantiate(mr.sharedMaterial);
+          mr.sharedMaterial.enableInstancing = true;
+        }
+        for (int i = 0; i < mr.sharedMaterials.Length; i++) {
+          var im = mr.sharedMaterials[i];
+          if (im == null || im.enableInstancing == true) { continue; }
+          mr.sharedMaterials[i] = Material.Instantiate(im);
+          mr.sharedMaterials[i].enableInstancing = true;
+        }
+      }
+    }
+
   }
 }

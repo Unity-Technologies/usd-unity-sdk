@@ -71,8 +71,22 @@ namespace USD.NET.Unity {
         }
       }
 
-      // Build instances.
-      InstanceImporter.BuildSceneInstances(primMap);
+      // Build scene instances.
+      InstanceImporter.BuildSceneInstances(primMap, importOptions);
+
+      // Build point instances.
+      // TODO: right now all point instancer data is read, but we only need prototypes and indices.
+      foreach (var pathAndSample in scene.ReadAll<PointInstancerSample>()) {
+        GameObject instancerGo = primMap[pathAndSample.path];
+
+        // Now build the point instances.
+        InstanceImporter.BuildPointInstances(scene,
+                                             primMap,
+                                             pathAndSample.path,
+                                             pathAndSample.sample,
+                                             instancerGo,
+                                             importOptions);
+      }
 
       return primMap;
     }

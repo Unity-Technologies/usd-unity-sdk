@@ -57,7 +57,13 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Apply linear interpolation when requesting values between time samples.
     /// </summary>
-    public bool interpolate;
+    public bool interpolate = true;
+
+    /// <summary>
+    /// Enable GPU instancing on materials for point and scene instances. Note this may negatively
+    /// impact framerate in some cases.
+    /// </summary>
+    public bool enableGpuInstancing = false;
 
     /// <summary>
     /// A set of registered mappings from USD shader ID to Unity material.

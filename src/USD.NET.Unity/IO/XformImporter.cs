@@ -37,6 +37,17 @@ namespace USD.NET.Unity {
       go.transform.localRotation = ExtractRotation(usdXf.transform);
     }
 
+    public static void BuildXform(Matrix4x4 xf,
+                                  GameObject go,
+                                  SceneImportOptions options) {
+      if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
+        xf = UnityTypeConverter.ChangeBasis(xf);
+      }
+      go.transform.localPosition = ExtractPosition(xf);
+      go.transform.localScale = ExtractScale(xf);
+      go.transform.localRotation = ExtractRotation(xf);
+    }
+
     /// <summary>
     /// Build the root of a scene under which more USD data will be imported. If the handedness
     /// is changed here, no subsequent changes are required below, however the root will contain
@@ -52,16 +63,17 @@ namespace USD.NET.Unity {
 
       if (options.changeHandedness == BasisTransformation.FastAndDangerous) {
         // Convert from right-handed (USD) to left-handed (Unity).
-        // The math below works out to either (1, -1, 1) or (1, 1, -1), depending on up.
-        // TODO: this is not robust. The points should be converted instead.
         Vector3 up = GetUpVector(scene);
         if (scene.UpAxis == Scene.UpAxes.Z) {
           root.localScale = new Vector3(1, -1, 1);
         } else {
           root.localScale = new Vector3(1, 1, -1);
         }
+      }
 
-        //root.localScale = -1 * up + -1 * (Vector3.one - up);
+      if (Mathf.Abs(options.scale - 1.0f) > 0.0001) {
+        var ls = root.localScale;
+        root.localScale = ls * options.scale;
       }
     }
 
