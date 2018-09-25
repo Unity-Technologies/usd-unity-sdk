@@ -22,7 +22,7 @@ namespace USD.NET.Unity {
   /// <summary>
   /// Maps from UsdPrim paths to Unity GameObjects.
   /// </summary>
-  public class PrimMap : IEnumerable, IEnumerable<KeyValuePair<SdfPath, GameObject>> {
+  public class PrimMap : IEnumerable<KeyValuePair<SdfPath, GameObject>>, IEnumerable {
 
     public struct InstanceRoot {
       public GameObject gameObject;
@@ -53,6 +53,10 @@ namespace USD.NET.Unity {
         throw new KeyNotFoundException("The path <" + path + "> does not exist in the PrimMap");
       }
       set { m_prims[path] = value; }
+    }
+
+    public bool TryGetValue(SdfPath key, out GameObject obj) {
+      return m_prims.TryGetValue(key, out obj);
     }
 
     public IEnumerator GetEnumerator() {

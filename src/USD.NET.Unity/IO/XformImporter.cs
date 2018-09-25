@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
+using pxr;
 using UnityEngine;
 
 namespace USD.NET.Unity {
@@ -21,6 +23,8 @@ namespace USD.NET.Unity {
   /// A collection of methods used for importing USD Xform data into Unity.
   /// </summary>
   public static class XformImporter {
+
+    #region "Import API"
 
     /// <summary>
     /// Copies the transform value from USD to Unity, optionally changing handedness in the
@@ -77,6 +81,56 @@ namespace USD.NET.Unity {
       }
     }
 
+    #endregion
+
+    #region "Export API"
+
+    public static void WriteSparseOverrides(Scene scene,
+                                            PrimMap primMap,
+                                            BasisTransformation changeHandedness,
+                                            float tolerance = 0.0001f) {
+      var oldMode = scene.WriteMode;
+      scene.WriteMode = Scene.WriteModes.Over;
+
+      try {
+        foreach (var path in scene.Find<XformableSample>()) {
+          GameObject go;
+          if (!primMap.TryGetValue(path, out go)) {
+            continue;
+          }
+
+          var tx = go.transform;
+          var xfNew = XformSample.FromTransform(tx);
+          var xfOld = new XformSample();
+
+          scene.Read(path, xfOld);
+
+          bool areClose = true;
+          for (int i = 0; i < 16; i++) {
+            if (Mathf.Abs(xfNew.transform[i] - xfOld.transform[i]) > tolerance) {
+              areClose = false;
+              break;
+            }
+          }
+
+          if (areClose) {
+            continue;
+          }
+
+          if (changeHandedness == BasisTransformation.SlowAndSafe) {
+            xfNew.ConvertTransform();
+          }
+
+          scene.Write(path, xfNew);
+        }
+      } finally {
+        scene.WriteMode = oldMode;
+      }
+    }
+
+    #endregion
+
+    #region "Private API"
     // ------------------------------------------------------------------------------------------ //
     // Private helpers.
     // ------------------------------------------------------------------------------------------ //
@@ -126,6 +180,8 @@ namespace USD.NET.Unity {
       scale.z = new Vector4(mat4.m02, mat4.m12, mat4.m22, mat4.m32).magnitude;
       return scale;
     }
+    
+    #endregion
 
   }
 }

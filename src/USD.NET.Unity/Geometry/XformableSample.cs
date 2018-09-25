@@ -22,6 +22,15 @@ namespace USD.NET.Unity {
     private readonly string[] kXformOpTransform = new string[] { "xformOp:transform" };
     private Matrix4x4 m_xf;
 
+    public static XformableSample FromTransform(UnityEngine.Transform transform) {
+      var xf = new XformSample();
+      var mx = Matrix4x4.TRS(transform.localPosition,
+                             transform.localRotation,
+                             transform.localScale);
+      xf.transform = mx;
+      return xf;
+    }
+
     public XformableSample() : base() {
       transform = Matrix4x4.identity;
     }
