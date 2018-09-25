@@ -41,6 +41,9 @@ namespace USD.NET.Examples {
     // Keep track of all objects loaded.
     private PrimMap m_primMap;
 
+    public Scene UsdScene { get { return m_scene; } }
+    public PrimMap PrimMap { get { return m_primMap; } }
+
     void Start() {
       InitUsd.Initialize();
       m_lastTime = m_usdTime;
