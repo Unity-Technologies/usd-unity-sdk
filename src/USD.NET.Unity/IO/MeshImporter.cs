@@ -81,25 +81,11 @@ namespace USD.NET.Unity {
         }
       }
 
-      if (usdMesh.faceVertexIndices.Length < 65535) {
-        unityMesh.SetTriangles(usdMesh.faceVertexIndices, 0);
-      } else {
-        int size = 65535;
-        int count = (int)Mathf.Ceil(usdMesh.faceVertexIndices.Length / (float)size);
-
-        unityMesh.subMeshCount = count;
-        int[] chunk = new int[size];
-        for (int i = 0; i < count - 1; i++) {
-          Array.Copy(usdMesh.faceVertexIndices, i * size, chunk, 0, size);
-          unityMesh.SetTriangles(chunk, i);
-        }
-
-        int leftOver = usdMesh.faceVertexIndices.Length - (count - 1) * size;
-        chunk = new int[leftOver];
-        Array.Copy(usdMesh.faceVertexIndices, (count - 1) * size, chunk, 0, leftOver);
-        unityMesh.SetTriangles(chunk, count - 1);
-
+      if (usdMesh.faceVertexIndices.Length > 65535) {
+        unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
       }
+
+      unityMesh.SetTriangles(usdMesh.faceVertexIndices, 0);
 
       bool hasBounds = usdMesh.extent.size.x > 0
                     || usdMesh.extent.size.y > 0
