@@ -40,7 +40,11 @@ public class UsdImportEditor : ScriptedImporterEditor {
       switch (prefabType) {
       case PrefabType.ModelPrefabInstance:
       case PrefabType.PrefabInstance:
+#if UNITY_2017 || UNITY_5
+        prefab = PrefabUtility.GetPrefabParent(importer.gameObject);
+#else
         prefab = PrefabUtility.GetCorrespondingObjectFromSource(importer.gameObject);
+#endif
         prefab = PrefabUtility.GetPrefabObject(prefab);
         break;
       case PrefabType.ModelPrefab:
