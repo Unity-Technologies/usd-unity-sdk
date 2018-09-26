@@ -213,6 +213,11 @@
             field.
             </summary>
         </member>
+        <member name="M:USD.NET.Reflect.IsMetaData(System.Reflection.MemberInfo)">
+            <summary>
+            Returns true if the MemberInfo is intened to be serialized as metadata.
+            </summary>
+        </member>
         <member name="M:USD.NET.Reflect.IsRelationship(System.Reflection.MemberInfo)">
             <summary>
             Returns true if the MemberInfo is inteneded to represent a relationship.
@@ -325,6 +330,12 @@
         <member name="T:USD.NET.CustomDataAttribute">
             <summary>
             Declares the attribute should be stored as metadata under the "customData" key.
+            </summary>
+        </member>
+        <member name="T:USD.NET.MetaDataAttribute">
+            <summary>
+            Declares the attribute should be stored as metadata. Note that the field must be registered
+            with USD.
             </summary>
         </member>
         <member name="T:USD.NET.VertexDataAttribute">
@@ -925,6 +936,18 @@
             collection but not when one of the elements of the collection is modified as it is a bit
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
+        <member name="T:pxr.SdfInt64ListOpVector.SdfInt64ListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.SdfIntListOpVector.SdfIntListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
         <member name="T:pxr.SdfLayerHandleVector.SdfLayerHandleVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
@@ -949,7 +972,49 @@
             collection but not when one of the elements of the collection is modified as it is a bit
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
+        <member name="T:pxr.SdfPathListOpVector.SdfPathListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
         <member name="T:pxr.SdfPathVector.SdfPathVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.SdfReferenceListOpVector.SdfReferenceListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.SdfStringListOpVector.SdfStringListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.SdfTfTokenListOpVector.SdfTfTokenListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.SdfUInt64ListOpVector.SdfUInt64ListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.SdfUIntListOpVector.SdfUIntListOpVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.SdfUnregisteredValueListOpVector.SdfUnregisteredValueListOpVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit
@@ -1063,7 +1128,31 @@
             collection but not when one of the elements of the collection is modified as it is a bit
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
+        <member name="T:pxr.StdReferenceVector.StdReferenceVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
         <member name="T:pxr.StdStringVector.StdStringVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.StdUInt64Vector.StdUInt64VectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.StdUIntVector.StdUIntVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
+        <member name="T:pxr.StdUnregisteredValueVector.StdUnregisteredValueVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit
