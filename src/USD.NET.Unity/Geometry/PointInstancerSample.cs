@@ -12,19 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using UnityEngine;
 
 namespace USD.NET.Unity {
 
-  [System.Serializable]
-  [USD.NET.UsdSchema("PointInstancer")]
+  [Serializable]
+  [UsdSchema("PointInstancer")]
   public class PointInstancerPrototypesSample : BoundableSample {
-    public USD.NET.Relationship prototypes = new USD.NET.Relationship();
+    public Relationship prototypes = new Relationship();
   }
 
-  [System.Serializable]
-  [USD.NET.UsdSchema("PointInstancer")]
+  [Serializable]
+  [UsdSchema("PointInstancer")]
   public class PointInstancerSample : PointInstancerPrototypesSample {
+
+    // TODO(jcowles): This data type cannot currently be serialized due to this bug:
+    // https://github.com/PixarAnimationStudios/USD/issues/639
+    //[MetaData]
+    //public pxr.SdfInt64ListOp inactiveIds = new pxr.SdfInt64ListOp();
+
     public int[] protoIndices;
     public long[] ids;
     public long[] invisibleIds;
@@ -34,7 +41,7 @@ namespace USD.NET.Unity {
     public Vector3[] velocities;
     public Vector3[] angularVelocities;
 
-    public Matrix4x4[] ComputeInstanceMatrices(USD.NET.Scene scene, string primPath) {
+    public Matrix4x4[] ComputeInstanceMatrices(Scene scene, string primPath) {
       var prim = scene.GetPrimAtPath(primPath);
       var pi = new pxr.UsdGeomPointInstancer(prim);
       var xforms = new pxr.VtMatrix4dArray();
@@ -42,7 +49,7 @@ namespace USD.NET.Unity {
       pi.ComputeInstanceTransformsAtTime(xforms, scene.Time == null ? pxr.UsdTimeCode.Default() : scene.Time, 0);
 
       // Slow, but works.
-      var matrices = new UnityEngine.Matrix4x4[xforms.size()];
+      var matrices = new Matrix4x4[xforms.size()];
       for (int i = 0; i < xforms.size(); i++) {
         matrices[i] = UnityTypeConverter.FromMatrix(xforms[i]);
       }

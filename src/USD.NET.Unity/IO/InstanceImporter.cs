@@ -55,28 +55,58 @@ namespace USD.NET.Unity {
       int i = 0;
 
       foreach (var protoRoot in sample.prototypes.targetPaths) {
-        var go = primMap[new pxr.SdfPath(protoRoot)];
+        GameObject go;
+        if (!primMap.TryGetValue(new pxr.SdfPath(protoRoot), out go)) {
+          Debug.LogWarning("Proto not found in PrimMap: " + protoRoot);
+          continue;
+        }
         go.SetActive(false);
         if (options.enableGpuInstancing) {
           EnableGpuInstancing(go);
         }
       }
 
+      var inactiveIds = new System.Collections.Generic.HashSet<long>();
+      /*
+       * Disabled until this bug is resolved:
+       * https://github.com/PixarAnimationStudios/USD/issues/639
+       *
+      if (sample.inactiveIds != null) {
+        foreach (long id in sample.inactiveIds.GetExplicitItems()) {
+          inactiveIds.Add(id);
+        }
+      }
+      */
+      
       foreach (var index in sample.protoIndices) {
+        if (inactiveIds.Contains(index)) {
+          continue;
+        }
+
+        if (index >= sample.prototypes.targetPaths.Length) {
+          Debug.LogWarning("ProtoIndex out of bounds: [" + index + "] " +
+                           "for instancer: " + pointInstancerPath);
+          continue;
+        }
         var targetPath = sample.prototypes.targetPaths[index];
 
-        var goMaster = primMap[new pxr.SdfPath(targetPath)];
-        var xf = transforms[i];
+        GameObject goMaster;
+        if (!primMap.TryGetValue(new pxr.SdfPath(targetPath), out goMaster)) {
+          Debug.LogWarning("Proto not found in PrimMap: " + targetPath);
+          continue;
+        }
 
+        if (i >= transforms.Length) {
+          Debug.LogWarning("No transform for instance index [" + i + "] " +
+                           "for instancer: " + pointInstancerPath);
+          break;
+        }
+
+        var xf = transforms[i];
         var goInstance = GameObject.Instantiate(goMaster, root.transform);
         goInstance.SetActive(true);
         goInstance.name = goMaster.name + "_" + i;
         XformImporter.BuildXform(xf, goInstance, options);
-
-        // Safety net.
-        if (i > 100000) {
-          break;
-        }
 
         i++;
       }

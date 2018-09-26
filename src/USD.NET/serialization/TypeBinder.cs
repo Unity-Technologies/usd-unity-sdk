@@ -192,7 +192,7 @@ namespace USD.NET {
           new Type[] { typeof(pxr.VtValue) });
 
       if (converter == null) {
-        throw new ArgumentException(string.Format("No VtValueTo{...} converter found for type {0}",
+        throw new ArgumentException(string.Format("No VtValueTo... converter found for type {0}",
           csType.ToString()));
       }
       bindings[csType] = new UsdTypeBinding(DefaultConversions.ToVtValue,
@@ -278,6 +278,20 @@ namespace USD.NET {
 
       //bindings[typeof(Guid)] = new UsdTypeBinding(GuidToVt_Bytes, GuidToCs_Bytes, SdfValueTypeNames.UCharArray);
       bindings[typeof(Guid)] = new UsdTypeBinding(GuidToVt_String, GuidToCs_String, SdfValueTypeNames.String);
+
+      /*
+       * These throw exceptions because there is no VtValueTo...ListOp, because those types are not declared in
+       * SdfValueTypeNames. Bug filed: https://github.com/PixarAnimationStudios/USD/issues/639
+       * 
+      BindNativeType(typeof(pxr.SdfInt64ListOp), SdfValueTypeNames.Int64);
+      BindNativeType(typeof(pxr.SdfUInt64ListOp), SdfValueTypeNames.UInt64);
+      BindNativeType(typeof(pxr.SdfIntListOp), SdfValueTypeNames.Int);
+      BindNativeType(typeof(pxr.SdfUIntListOp), SdfValueTypeNames.UInt);
+      BindNativeType(typeof(pxr.SdfStringListOp), SdfValueTypeNames.String);
+      BindNativeType(typeof(pxr.SdfTokenListOp), SdfValueTypeNames.Token);
+      BindNativeType(typeof(pxr.SdfReferenceListOp), SdfValueTypeNames.Asset);
+      BindNativeType(typeof(pxr.SdfPathListOp), SdfValueTypeNames.String);
+      */
 
       //
       // Bool
