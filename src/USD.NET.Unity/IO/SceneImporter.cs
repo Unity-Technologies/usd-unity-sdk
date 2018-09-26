@@ -43,31 +43,51 @@ namespace USD.NET.Unity {
       // Note that we are specifically filtering on XformSample, not Xformable, this way only
       // Xforms are processed to avoid doing that work redundantly.
       foreach (var pathAndSample in scene.ReadAll<XformSample>()) {
-        GameObject go = primMap[pathAndSample.path];
-        XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+        try {
+          GameObject go = primMap[pathAndSample.path];
+          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+        } catch (System.Exception ex) {
+          Debug.LogError("Error processing xform <" + pathAndSample.path + ">: " + ex.Message);
+        }
       }
 
       // Meshes.
       foreach (var pathAndSample in scene.ReadAll<MeshSample>()) {
-        GameObject go = primMap[pathAndSample.path];
-        XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-        MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
+        try {
+          GameObject go = primMap[pathAndSample.path];
+          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+          MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
+        } catch (System.Exception ex) {
+          Debug.LogError("Error processing mesh <" + pathAndSample.path + ">: " + ex.Message);
+        }
       }
 
       // Build out masters for instancing.
       foreach (var masterRootPath in primMap.GetMasterRootPaths()) {
-        Transform masterRootXf = primMap[masterRootPath].transform;
+        try {
+          Transform masterRootXf = primMap[masterRootPath].transform;
 
-        foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
-          GameObject go = primMap[pathAndSample.path];
-          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-        }
+          foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
+            try {
+              GameObject go = primMap[pathAndSample.path];
+              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+            } catch (System.Exception ex) {
+              Debug.LogError("Error processing master xform <" + masterRootPath + ">: " + ex.Message);
+            }
+          }
 
-        // Meshes.
-        foreach (var pathAndSample in scene.ReadAll<MeshSample>(masterRootPath)) {
-          GameObject go = primMap[pathAndSample.path];
-          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-          MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
+          // Meshes.
+          foreach (var pathAndSample in scene.ReadAll<MeshSample>(masterRootPath)) {
+            try {
+              GameObject go = primMap[pathAndSample.path];
+              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+              MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
+            } catch (System.Exception ex) {
+              Debug.LogError("Error processing master mesh <" + masterRootPath + ">: " + ex.Message);
+            }
+          }
+        } catch (System.Exception ex) {
+          Debug.LogError("Error processing master root <" + masterRootPath + ">: " + ex.Message);
         }
       }
 
@@ -77,15 +97,19 @@ namespace USD.NET.Unity {
       // Build point instances.
       // TODO: right now all point instancer data is read, but we only need prototypes and indices.
       foreach (var pathAndSample in scene.ReadAll<PointInstancerSample>()) {
-        GameObject instancerGo = primMap[pathAndSample.path];
+        try {
+          GameObject instancerGo = primMap[pathAndSample.path];
 
-        // Now build the point instances.
-        InstanceImporter.BuildPointInstances(scene,
-                                             primMap,
-                                             pathAndSample.path,
-                                             pathAndSample.sample,
-                                             instancerGo,
-                                             importOptions);
+          // Now build the point instances.
+          InstanceImporter.BuildPointInstances(scene,
+                                               primMap,
+                                               pathAndSample.path,
+                                               pathAndSample.sample,
+                                               instancerGo,
+                                               importOptions);
+        } catch (System.Exception ex) {
+          Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
+        }
       }
 
       return primMap;
