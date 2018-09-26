@@ -25,6 +25,9 @@ namespace USD.NET.Examples {
       if (m_usdInitialized) {
         return true;
       }
+
+      m_usdInitialized = true;
+
       try {
         // Initializes native USD plugins and ensures plugins are discoverable on the system path. 
         SetupUsdPath();
@@ -40,7 +43,6 @@ namespace USD.NET.Examples {
         Debug.LogException(ex);
         return false;
       }
-      m_usdInitialized = true;
       return true;
     }
 
