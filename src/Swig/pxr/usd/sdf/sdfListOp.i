@@ -16,6 +16,43 @@
 
 %{
 #include "pxr/usd/sdf/listOp.h"
+#include "pxr/usd/sdf/reference.h"
 %}
 
+// boost::optional and boost::function need to be wrapped, though it's not clear that these methods
+// need to be called from C++.
+%ignore SdfListOp::ApplyOperations;
+%ignore SdfListOp::ModifyOperations;
+
 %include "pxr/usd/sdf/listOp.h"
+
+%template (SdfIntListOpVector) std::vector< SdfIntListOp >;
+%template (SdfIntListOp) SdfListOp<int>;
+
+%template (SdfUIntListOpVector) std::vector< SdfUIntListOp >;
+%template (SdfUIntListOp) SdfListOp<unsigned int>;
+
+%template (SdfInt64ListOpVector) std::vector< SdfInt64ListOp >;
+%template (SdfInt64ListOp) SdfListOp<int64_t>;
+
+%template (SdfUInt64ListOpVector) std::vector< SdfUInt64ListOp >;
+%template (SdfUInt64ListOp) SdfListOp<uint64_t>;
+
+%template (SdfTfTokenListOpVector) std::vector< SdfTokenListOp >;
+%template (SdfTokenListOp) SdfListOp<TfToken>;
+
+%template (SdfStringListOpVector) std::vector< SdfStringListOp >;
+%template (SdfStringListOp) SdfListOp<std::string>;
+
+%template (SdfPathListOpVector) std::vector< SdfPathListOp >;
+%template (SdfPathListOp) SdfListOp<SdfPath>;
+
+%template (StdReferenceVector) std::vector< SdfReference >;
+%template (SdfReferenceListOpVector) std::vector< SdfReferenceListOp >;
+%template (SdfReferenceListOp) SdfListOp<SdfReference>;
+
+class SdfUnregisteredValue {};
+%template (StdUnregisteredValueVector) std::vector< SdfUnregisteredValue >;
+%template (SdfUnregisteredValueListOpVector) std::vector< SdfUnregisteredValueListOp >;
+%template (SdfUnregisteredValueListOp) SdfListOp<SdfUnregisteredValue>;
+

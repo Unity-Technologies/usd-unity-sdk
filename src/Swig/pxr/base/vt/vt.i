@@ -16,9 +16,6 @@
 
 #define VT_API
 
-// for uint64_t
-%include "stdint.i"
-
 // For VtValueTo output parameter.
 %apply bool    * INOUT { bool    * output };
 %apply float   * INOUT { float   * output };

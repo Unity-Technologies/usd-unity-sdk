@@ -26,6 +26,9 @@
 %include "std_vector.i"
 %include "std_string.i"
 
+// for uint64_t
+%include "stdint.i"
+
 namespace std {
   %template(StdStringVector) vector<std::string>;
 }
@@ -35,6 +38,16 @@ namespace std {
   %template(StdIntVector) vector<int>;
 }
 typedef std::vector<int> StdIntVector;
+
+namespace std {
+  %template(StdUIntVector) vector<unsigned int>;
+}
+typedef std::vector<unsigned int> StdUIntVector;
+
+namespace std {
+  %template(StdUInt64Vector) vector<uint64_t>;
+}
+typedef std::vector<uint64_t> StdUInt64Vector;
 
 namespace std {
   %template(StdFloatVector) vector<float>;
