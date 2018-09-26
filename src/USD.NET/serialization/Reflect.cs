@@ -109,6 +109,13 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// Returns true if the MemberInfo is intened to be serialized as metadata.
+    /// </summary>
+    public static bool IsMetaData(MemberInfo info) {
+      return GetCacheEntry(info).isMetaData;
+    }
+
+    /// <summary>
     /// Returns true if the MemberInfo is inteneded to represent a relationship.
     /// </summary>
     public static bool IsRelationship(MemberInfo info) {
@@ -199,6 +206,7 @@ namespace USD.NET {
       public bool isPrimvar;
       public int primvarElementSize;
       public bool isCustomData;
+      public bool isMetaData;
       public pxr.SdfVariability sdfVariability;
       public bool isNonSerialized;
       public string usdNamespace;
@@ -270,6 +278,13 @@ namespace USD.NET {
       cachedInfo.isCustomData = attrs6.Length > 0;
 
       //
+      // IsMetaData
+      //
+      var attrs9 = (MetaDataAttribute[])info.
+                          GetCustomAttributes(typeof(MetaDataAttribute), true);
+      cachedInfo.isMetaData = attrs9.Length > 0;
+
+      //
       // IsNonSerialized
       //
       var attrs3 = (NonSerializedAttribute[])info.
@@ -286,7 +301,7 @@ namespace USD.NET {
       //
       // IsRelationship
       //
-      var attrs9 = (UsdRelationshipAttribute[])info.
+      var attrs11 = (UsdRelationshipAttribute[])info.
                           GetCustomAttributes(typeof(UsdRelationshipAttribute), true);
       cachedInfo.isRelationship = attrs9.Length > 0;
 

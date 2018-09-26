@@ -80,7 +80,7 @@ namespace USD.NET {
         PropertyInfo csProp = properties[i];
         Type csType = csProp.PropertyType;
         if (csType == typeof(object)) {
-          if (Reflect.IsCustomData(csProp)) {
+          if (Reflect.IsCustomData(csProp) || Reflect.IsMetaData(csProp)) {
             throw new ArgumentException("Writing metadata/customdata with type of object is not currently allowed");
           }
           object o = csProp.GetValue(t, index:null);
@@ -98,7 +98,7 @@ namespace USD.NET {
         FieldInfo csField = fields[i];
         Type csType = csField.FieldType;
         if (csType == typeof(object)) {
-          if (Reflect.IsCustomData(csField)) {
+          if (Reflect.IsCustomData(csField) || Reflect.IsMetaData(csField)) {
             throw new ArgumentException("Writing metadata/customdata with type of object is not currently allowed");
           }
           object o = csField.GetValue(t);
@@ -284,6 +284,7 @@ namespace USD.NET {
       if (csValue == null) { return true; }
 
       bool isCustomData = Reflect.IsCustomData(memberInfo);
+      bool isMetaData = Reflect.IsMetaData(memberInfo);
       bool isPrimvar = Reflect.IsPrimvar(memberInfo);
       int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
 
@@ -317,7 +318,7 @@ namespace USD.NET {
 
       bool custom = false;
       pxr.UsdAttribute attr;
-      if (isCustomData) {
+      if (isCustomData || isMetaData) {
         // no-op
         attr = null;
       } else if (!isPrimvar) {
@@ -364,7 +365,9 @@ namespace USD.NET {
 
       pxr.VtValue vtValue = binding.toVtValue(csValue);
       lock (m_stageLock) {
-        if (isCustomData) {
+        if (isMetaData) {
+          prim.SetMetadata(sdfAttrName, vtValue);
+        } else if (isCustomData) {
           prim.SetCustomDataByKey(sdfAttrName, vtValue);
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           pxr.UsdCs.SetFusedDisplayColor(prim, vtValue, time);
@@ -533,7 +536,9 @@ namespace USD.NET {
           }
         }
 
-        if (Reflect.IsCustomData(memberInfo)) {
+        if (Reflect.IsMetaData(memberInfo)) {
+          vtValue = prim.GetMetadata(sdfAttrName);
+        } else if (Reflect.IsCustomData(memberInfo)) {
           vtValue = prim.GetCustomDataByKey(sdfAttrName);
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           vtValue = pxr.UsdCs.GetFusedDisplayColor(prim, time);

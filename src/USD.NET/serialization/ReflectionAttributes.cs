@@ -98,6 +98,15 @@ namespace USD.NET {
   }
 
   /// <summary>
+  /// Declares the attribute should be stored as metadata. Note that the field must be registered
+  /// with USD.
+  /// </summary>
+  public class MetaDataAttribute : Attribute {
+    public MetaDataAttribute() {
+    }
+  }
+
+  /// <summary>
   /// Declares the attribute as vertex data which can be made available to the shader at render
   /// time and enables repteated value compression.
   /// </summary>
