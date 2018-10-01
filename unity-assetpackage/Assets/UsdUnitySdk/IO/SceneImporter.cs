@@ -62,6 +62,17 @@ namespace USD.NET.Unity {
         }
       }
 
+      // Cubes.
+      foreach (var pathAndSample in scene.ReadAll<CubeSample>()) {
+        try {
+          GameObject go = primMap[pathAndSample.path];
+          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+          CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
+        } catch (System.Exception ex) {
+          Debug.LogError("Error processing cube <" + pathAndSample.path + ">: " + ex.Message);
+        }
+      }
+
       // Build out masters for instancing.
       foreach (var masterRootPath in primMap.GetMasterRootPaths()) {
         try {
@@ -82,6 +93,17 @@ namespace USD.NET.Unity {
               GameObject go = primMap[pathAndSample.path];
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
+            } catch (System.Exception ex) {
+              Debug.LogError("Error processing master mesh <" + masterRootPath + ">: " + ex.Message);
+            }
+          }
+
+          // Cubes.
+          foreach (var pathAndSample in scene.ReadAll<CubeSample>(masterRootPath)) {
+            try {
+              GameObject go = primMap[pathAndSample.path];
+              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+              CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
               Debug.LogError("Error processing master mesh <" + masterRootPath + ">: " + ex.Message);
             }
