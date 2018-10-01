@@ -50,6 +50,8 @@ namespace USD.NET.Examples {
     }
 
     void Update() {
+      m_usdFile = m_usdFile.Replace("\"", "");
+
       if (string.IsNullOrEmpty(m_usdFile)) {
         if (m_scene == null) {
           return;
@@ -65,45 +67,50 @@ namespace USD.NET.Examples {
         return;
       }
 
-      // Does the path exist?
-      if (!System.IO.File.Exists(m_usdFile)) {
-        return;
+      try {
+        // Does the path exist?
+        if (!System.IO.File.Exists(m_usdFile)) {
+          throw new System.IO.FileNotFoundException(m_usdFile);
+        }
+
+        m_lastTime = m_usdTime;
+
+        // Clear out the old scene.
+        UnloadGameObjects();
+
+        // Import the new scene.
+        m_scene = Scene.Open(m_usdFile);
+        if (m_scene == null) {
+          throw new Exception("Failed to import");
+        }
+
+        // Set the time at which to read samples from USD.
+        m_scene.Time = m_usdTime;
+
+        // When converting right handed (USD) to left handed (Unity), there are two options:
+        //
+        //  1) Add an inversion at the root of the scene, leaving the points right-handed.
+        //  2) Convert all transforms and points to left-handed (deep change of basis).
+        //
+        // Option (2) is more computationally expensive, but results in fewer down stream
+        // surprises.
+        var importOptions = new SceneImportOptions();
+        importOptions.changeHandedness = m_changeHandedness;
+        importOptions.materialMap.FallbackMasterMaterial = m_material;
+        importOptions.enableGpuInstancing = m_enableGpuInstancing;
+
+        // The root object at which the USD scene will be reconstructed.
+        // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
+        var rootXf = new GameObject("root");
+        rootXf.transform.SetParent(this.transform, worldPositionStays: false);
+        m_primMap = SceneImporter.BuildScene(m_scene, rootXf, importOptions);
+
+        // Ensure the file and the identifier match.
+        m_usdFile = m_scene.Stage.GetRootLayer().GetIdentifier();
+      } catch {
+        enabled = false;
+        throw;
       }
-
-      m_lastTime = m_usdTime;
-
-      // Clear out the old scene.
-      UnloadGameObjects();
-
-      // Import the new scene.
-      m_scene = Scene.Open(m_usdFile);
-      if (m_scene == null) {
-        throw new Exception("Failed to import");
-      }
-
-      // Set the time at which to read samples from USD.
-      m_scene.Time = m_usdTime;
-
-      // When converting right handed (USD) to left handed (Unity), there are two options:
-      //
-      //  1) Add an inversion at the root of the scene, leaving the points right-handed.
-      //  2) Convert all transforms and points to left-handed (deep change of basis).
-      //
-      // Option (2) is more computationally expensive, but results in fewer down stream
-      // surprises.
-      var importOptions = new SceneImportOptions();
-      importOptions.changeHandedness = m_changeHandedness;
-      importOptions.materialMap.FallbackMasterMaterial = m_material;
-      importOptions.enableGpuInstancing = m_enableGpuInstancing;
-
-      // The root object at which the USD scene will be reconstructed.
-      // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
-      var rootXf = new GameObject("root");
-      rootXf.transform.SetParent(this.transform, worldPositionStays: false);
-      m_primMap = SceneImporter.BuildScene(m_scene, rootXf, importOptions);
-
-      // Ensure the file and the identifier match.
-      m_usdFile = m_scene.Stage.GetRootLayer().GetIdentifier();
     }
 
     // Destroy all previously created objects.
