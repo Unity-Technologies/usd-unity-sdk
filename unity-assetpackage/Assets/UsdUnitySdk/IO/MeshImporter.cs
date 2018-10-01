@@ -31,7 +31,7 @@ namespace USD.NET.Unity {
                                  GameObject go,
                                  SceneImportOptions options) {
 
-      // TODO: Because this method operates on a GameOBject, it must be single threaded. For this
+      // TODO: Because this method operates on a GameObject, it must be single threaded. For this
       // reason, it should be extremely light weight. All computation should be completed prior to
       // this step, allowing heavy computations to happen in parallel. This is not currently the
       // case, triangulation and change of basis are non-trivial operations. Computing the mesh
