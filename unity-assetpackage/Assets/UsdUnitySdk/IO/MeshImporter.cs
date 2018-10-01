@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -148,10 +148,10 @@ namespace USD.NET.Unity {
         }
       }
 
-      ImportUv(unityMesh, 0, usdMesh.uv, options.meshOptions.texcoord0);
-      ImportUv(unityMesh, 1, usdMesh.uv2, options.meshOptions.texcoord1);
-      ImportUv(unityMesh, 2, usdMesh.uv3, options.meshOptions.texcoord2);
-      ImportUv(unityMesh, 3, usdMesh.uv4, options.meshOptions.texcoord3);
+      ImportUv(unityMesh, 0, usdMesh.uv, options.meshOptions.texcoord0, go);
+      ImportUv(unityMesh, 1, usdMesh.uv2, options.meshOptions.texcoord1, go);
+      ImportUv(unityMesh, 2, usdMesh.uv3, options.meshOptions.texcoord2, go);
+      ImportUv(unityMesh, 3, usdMesh.uv4, options.meshOptions.texcoord3, go);
 
       if (mat == null) {
         mat = options.materialMap.InstantiateSolidColor(Color.white);
@@ -175,7 +175,8 @@ namespace USD.NET.Unity {
     private static void ImportUv(Mesh unityMesh,
                                  int uvSetIndex,
                                  object uv,
-                                 ImportMode texcoordImportMode) {
+                                 ImportMode texcoordImportMode,
+                                 GameObject go) {
       // As in Unity, UVs are a dynamic type which can be vec2, vec3, or vec4.
       if (uv == null || !ShouldImport(texcoordImportMode)) {
         return;
@@ -183,7 +184,20 @@ namespace USD.NET.Unity {
 
       Type uvType = uv.GetType();
       if (uvType == typeof(Vector2[])) {
-        unityMesh.SetUVs(0, ((Vector2[])uv).ToList());
+        var uvVec = (Vector2[])uv;
+        if (uvVec.Length > unityMesh.vertexCount) {
+          Debug.LogWarning("Mesh UVs are face varying, but are being imported as vertex varying" +
+            " " + UnityTypeConverter.GetPath(go.transform));
+          var tmp = new Vector2[unityMesh.vertexCount];
+          Array.Copy(uvVec, tmp, tmp.Length);
+          uvVec = tmp;
+        }
+        if (uvVec.Length < unityMesh.vertexCount) {
+          Debug.LogWarning("Mesh UVs are constant or uniform, ignored "
+            + UnityTypeConverter.GetPath(go.transform));
+          return;
+        }
+        unityMesh.SetUVs(0, uvVec.ToList());
       } else if (uvType == typeof(Vector3[])) {
         unityMesh.SetUVs(0, ((Vector3[])uv).ToList());
       } else if (uvType == typeof(Vector4[])) {

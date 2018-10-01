@@ -78,16 +78,6 @@
     <Compile Include="Geometry\GprimSample.cs" />
     <Compile Include="Geometry\ScopeSample.cs" />
     <Compile Include="Geometry\XformSample.cs" />
-    <Compile Include="IO\InstanceImporter.cs" />
-    <Compile Include="IO\MaterialImporter.cs" />
-    <Compile Include="IO\MaterialMap.cs" />
-    <Compile Include="IO\MeshImportOptions.cs" />
-    <Compile Include="IO\MeshImporter.cs" />
-    <Compile Include="IO\HierarchyBuilder.cs" />
-    <Compile Include="IO\PrimMap.cs" />
-    <Compile Include="IO\SceneImportOptions.cs" />
-    <Compile Include="IO\SceneImporter.cs" />
-    <Compile Include="IO\XformImporter.cs" />
     <Compile Include="Shading\MaterialBindingSample.cs" />
     <Compile Include="Shading\MaterialSample.cs" />
     <Compile Include="Shading\ParameterInfo.cs" />
