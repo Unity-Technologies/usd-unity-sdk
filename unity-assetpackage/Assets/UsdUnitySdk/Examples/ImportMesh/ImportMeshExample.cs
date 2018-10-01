@@ -51,7 +51,9 @@ namespace USD.NET.Examples {
 
     void Update() {
       m_usdFile = m_usdFile.Replace("\"", "");
-
+      if (!System.IO.Path.IsPathRooted(m_usdFile)) {
+        m_usdFile = Application.dataPath + "/" + m_usdFile;
+      }
       if (string.IsNullOrEmpty(m_usdFile)) {
         if (m_scene == null) {
           return;
