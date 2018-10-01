@@ -37,7 +37,6 @@ public class UsdAssetImporter : MonoBehaviour {
 
   [Header("Materials")]
   public bool m_enableGpuInstancing;
-  public Material m_solidColorMaterial;
   public Material m_fallbackMaterial;
   public MappedMaterial[] m_materialMap;
 
@@ -68,7 +67,6 @@ public class UsdAssetImporter : MonoBehaviour {
 
     m_enableGpuInstancing = options.enableGpuInstancing;
     m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
-    m_solidColorMaterial = options.materialMap.SolidColorMasterMaterial;
 
     var materials = new List<MappedMaterial>();
     foreach (KeyValuePair<string, Material> kvp in options.materialMap) {
@@ -93,7 +91,6 @@ public class UsdAssetImporter : MonoBehaviour {
 
     options.enableGpuInstancing = m_enableGpuInstancing;
     options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
-    options.materialMap.SolidColorMasterMaterial = m_solidColorMaterial;
     foreach (MappedMaterial mm in m_materialMap) {
       options.materialMap[mm.name] = mm.material;
     }

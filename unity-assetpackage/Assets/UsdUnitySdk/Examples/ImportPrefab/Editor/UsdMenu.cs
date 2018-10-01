@@ -104,9 +104,6 @@ public class UsdMenu : MonoBehaviour {
         if (obj == importOptions.materialMap.FallbackMasterMaterial) {
           continue;
         }
-        if (obj == importOptions.materialMap.SolidColorMasterMaterial) {
-          continue;
-        }
         foreach (KeyValuePair<string, Material> kvp in importOptions.materialMap) {
           if (obj == kvp.Value) {
             continue;
@@ -129,12 +126,6 @@ public class UsdMenu : MonoBehaviour {
     var materials = new HashSet<Material>();
 
     var tempMat = importOptions.materialMap.FallbackMasterMaterial;
-    if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-      materials.Add(tempMat);
-      AssetDatabase.AddObjectToAsset(tempMat, asset);
-    }
-
-    tempMat = importOptions.materialMap.SolidColorMasterMaterial;
     if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
       materials.Add(tempMat);
       AssetDatabase.AddObjectToAsset(tempMat, asset);
