@@ -32,12 +32,6 @@ namespace USD.NET.Unity {
     private Dictionary<Color, Material> m_colorMap = new Dictionary<Color, Material>();
 
     /// <summary>
-    /// A material to use for solid colors. Note that accessing this material
-    /// does not create a new instance.
-    /// </summary>
-    public Material SolidColorMasterMaterial { get; set; }
-
-    /// <summary>
     /// A material to use when no material could be found.
     /// </summary>
     public Material FallbackMasterMaterial { get; set; }
@@ -46,7 +40,6 @@ namespace USD.NET.Unity {
     }
 
     public MaterialMap(Material solidColorMaterial, Material fallbackMaterial) {
-      SolidColorMasterMaterial = solidColorMaterial;
       FallbackMasterMaterial = fallbackMaterial;
     }
 
@@ -82,11 +75,20 @@ namespace USD.NET.Unity {
         return material;
       }
 
-      material = Material.Instantiate(SolidColorMasterMaterial);
-      material.color = color;
+      material = Material.Instantiate(FallbackMasterMaterial);
+      AssignColor(material, color);
       m_colorMap[color] = material;
 
       return material;
+    }
+
+    public static void AssignColor(Material material, Color color) {
+      if (material.HasProperty("_Color")) {
+        material.color = color;
+      }
+      if (material.HasProperty("_BaseColor")) {
+        material.SetColor("_BaseColor", color);
+      }
     }
 
     public IEnumerator GetEnumerator() {

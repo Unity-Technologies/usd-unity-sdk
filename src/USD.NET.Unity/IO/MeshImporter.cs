@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ namespace USD.NET.Unity {
       var mf = go.AddComponent<MeshFilter>();
       var mr = go.AddComponent<MeshRenderer>();
       var unityMesh = new Mesh();
-      var mat = Material.Instantiate(options.materialMap.FallbackMasterMaterial);
+      Material mat = null;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
 
       if (changeHandedness) {
@@ -131,7 +131,7 @@ namespace USD.NET.Unity {
 
         if (usdMesh.colors.Length == 1) {
           // Constant color can just be set on the material.
-          mat.color = usdMesh.colors[0].gamma;
+          mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0].gamma);
         } else if (usdMesh.colors.Length == usdMesh.points.Length) {
           // Vertex colors map on to verts.
           // TODO: move the conversion to C++ and use the color management API.
@@ -152,6 +152,10 @@ namespace USD.NET.Unity {
       ImportUv(unityMesh, 1, usdMesh.uv2, options.meshOptions.texcoord1);
       ImportUv(unityMesh, 2, usdMesh.uv3, options.meshOptions.texcoord2);
       ImportUv(unityMesh, 3, usdMesh.uv4, options.meshOptions.texcoord3);
+
+      if (mat == null) {
+        mat = options.materialMap.InstantiateSolidColor(Color.white);
+      }
 
       if (unityMesh.subMeshCount == 1) {
         mr.sharedMaterial = mat;
