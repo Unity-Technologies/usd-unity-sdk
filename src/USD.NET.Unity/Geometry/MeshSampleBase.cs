@@ -25,12 +25,6 @@ namespace USD.NET.Unity {
     [VertexData]
     public Vector4[] tangents;
 
-    // USD splits display color from opacity, which allows opacity to be overridden without
-    // writing color, however the cost of recombining these in C# is too great (time/memory), so
-    // instead, they are fused during serialization in C++.
-    [VertexData, FusedDisplayColor]
-    public Color[] colors;
-
     // UV object types should be Vector{2,3,4}[], List<Vector{2,3,4}>, or null.
     [VertexData]
     public object uv;
