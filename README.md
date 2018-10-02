@@ -151,5 +151,3 @@ python build_scripts\build_usd.py --build-monolithic --no-tests --no-docs --no-p
 
 UsdBindings is licensed under the terms of the Apache
 license. See [LICENSE](LICENSE) for more information.
-
-This is not an official Google product.
