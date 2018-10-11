@@ -17,9 +17,4 @@
 #include "pxr/usd/usdSkel/skeletonQuery.h"
 %}
 
-// Apparent private type in a public constructor.
-%ignore UsdSkelSkeletonQuery(const UsdPrim& prim,
-    const UsdSkel_SkelDefinitionRefPtr& definition,
-    const UsdSkelAnimQuery& anim=UsdSkelAnimQuery());
-
 %include "pxr/usd/usdSkel/skeletonQuery.h"

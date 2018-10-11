@@ -36,7 +36,7 @@
   public static TfToken outputsSurface = new TfToken("outputs:surface");
   public static TfToken outputsVolume = new TfToken("outputs:volume");
   public static TfToken preview = new TfToken("preview");
-  public static TfToken shaderMetadata = new TfToken("shaderMetadata");
+  public static TfToken sdrMetadata = new TfToken("sdrMetadata");
   public static TfToken sourceAsset = new TfToken("sourceAsset");
   public static TfToken sourceCode = new TfToken("sourceCode");
   public static TfToken strongerThanDescendants = new TfToken("strongerThanDescendants");

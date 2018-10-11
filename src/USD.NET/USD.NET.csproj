@@ -125,7 +125,6 @@
     <Compile Include="generated\pxr\base\gf\GfVec4i.cs" />
     <Compile Include="generated\pxr\base\js\JsObject.cs" />
     <Compile Include="generated\pxr\base\js\JsObjectVector.cs" />
-    <Compile Include="generated\pxr\base\js\JsParseError.cs" />
     <Compile Include="generated\pxr\base\js\JsValue.cs" />
     <Compile Include="generated\pxr\base\plug\PlugPlugin.cs" />
     <Compile Include="generated\pxr\base\plug\PlugRegistry.cs" />

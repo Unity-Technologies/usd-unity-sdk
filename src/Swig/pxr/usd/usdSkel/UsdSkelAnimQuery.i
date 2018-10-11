@@ -17,7 +17,4 @@
 #include "pxr/usd/usdSkel/animQuery.h"
 %}
 
-// Apparent private type in public API.
-%ignore UsdSkelAnimQuery(const UsdSkel_AnimQueryImplRefPtr& impl);
-
 %include "pxr/usd/usdSkel/animQuery.h"

@@ -14608,147 +14608,6 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_JsObjectVector(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_new_JsParseError() {
-  void * jresult ;
-  JsParseError *result = 0 ;
-  
-  result = (JsParseError *)new JsParseError();
-  jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_JsParseError_line_set(void * jarg1, unsigned int jarg2) {
-  JsParseError *arg1 = (JsParseError *) 0 ;
-  unsigned int arg2 ;
-  
-  arg1 = (JsParseError *)jarg1; 
-  arg2 = (unsigned int)jarg2; 
-  if (arg1) (arg1)->line = arg2;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_JsParseError_line_get(void * jarg1) {
-  unsigned int jresult ;
-  JsParseError *arg1 = (JsParseError *) 0 ;
-  unsigned int result;
-  
-  arg1 = (JsParseError *)jarg1; 
-  result = (unsigned int) ((arg1)->line);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_JsParseError_column_set(void * jarg1, unsigned int jarg2) {
-  JsParseError *arg1 = (JsParseError *) 0 ;
-  unsigned int arg2 ;
-  
-  arg1 = (JsParseError *)jarg1; 
-  arg2 = (unsigned int)jarg2; 
-  if (arg1) (arg1)->column = arg2;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_JsParseError_column_get(void * jarg1) {
-  unsigned int jresult ;
-  JsParseError *arg1 = (JsParseError *) 0 ;
-  unsigned int result;
-  
-  arg1 = (JsParseError *)jarg1; 
-  result = (unsigned int) ((arg1)->column);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_JsParseError_reason_set(void * jarg1, char * jarg2) {
-  JsParseError *arg1 = (JsParseError *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  arg1 = (JsParseError *)jarg1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return ;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (arg1) (arg1)->reason = *arg2;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_JsParseError_reason_get(void * jarg1) {
-  char * jresult ;
-  JsParseError *arg1 = (JsParseError *) 0 ;
-  std::string *result = 0 ;
-  
-  arg1 = (JsParseError *)jarg1; 
-  result = (std::string *) & ((arg1)->reason);
-  jresult = SWIG_csharp_string_callback(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_JsParseError(void * jarg1) {
-  JsParseError *arg1 = (JsParseError *) 0 ;
-  
-  arg1 = (JsParseError *)jarg1; 
-  delete arg1;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_JsParseString__SWIG_0(char * jarg1, void * jarg2) {
-  void * jresult ;
-  std::string *arg1 = 0 ;
-  JsParseError *arg2 = (JsParseError *) 0 ;
-  JsValue result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  arg2 = (JsParseError *)jarg2; 
-  result = JsParseString((std::string const &)*arg1,arg2);
-  jresult = new JsValue((const JsValue &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_JsParseString__SWIG_1(char * jarg1) {
-  void * jresult ;
-  std::string *arg1 = 0 ;
-  JsValue result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = JsParseString((std::string const &)*arg1);
-  jresult = new JsValue((const JsValue &)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_JsWriteToString(void * jarg1) {
-  char * jresult ;
-  JsValue *arg1 = 0 ;
-  std::string result;
-  
-  arg1 = (JsValue *)jarg1;
-  if (!arg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "JsValue const & type is null", 0);
-    return 0;
-  } 
-  result = JsWriteToString((JsValue const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
 SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_PlugPlugin(void * jarg1) {
   PlugPlugin *arg1 = (PlugPlugin *) 0 ;
   
@@ -18272,6 +18131,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2f_Get(void * jarg1, void * jar
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2f_data__SWIG_0(void * jarg1) {
+  void * jresult ;
+  GfMatrix2f *arg1 = (GfMatrix2f *) 0 ;
+  float *result = 0 ;
+  
+  arg1 = (GfMatrix2f *)jarg1; 
+  result = (float *)(arg1)->data();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_7(void * jarg1) {
   unsigned long jresult ;
   GfMatrix2f *arg1 = 0 ;
@@ -18789,6 +18660,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_Get(void * jarg1, void * jar
   arg1 = (GfMatrix3f *)jarg1; 
   arg2 = (float (*)[3])jarg2; 
   result = (float *)((GfMatrix3f const *)arg1)->Get((float (*)[3])arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3f_data__SWIG_0(void * jarg1) {
+  void * jresult ;
+  GfMatrix3f *arg1 = (GfMatrix3f *) 0 ;
+  float *result = 0 ;
+  
+  arg1 = (GfMatrix3f *)jarg1; 
+  result = (float *)(arg1)->data();
   jresult = (void *)result; 
   return jresult;
 }
@@ -19595,6 +19478,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_Get(void * jarg1, void * jar
   arg1 = (GfMatrix4f *)jarg1; 
   arg2 = (float (*)[4])jarg2; 
   result = (float *)((GfMatrix4f const *)arg1)->Get((float (*)[4])arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4f_data__SWIG_0(void * jarg1) {
+  void * jresult ;
+  GfMatrix4f *arg1 = (GfMatrix4f *) 0 ;
+  float *result = 0 ;
+  
+  arg1 = (GfMatrix4f *)jarg1; 
+  result = (float *)(arg1)->data();
   jresult = (void *)result; 
   return jresult;
 }
@@ -20710,6 +20605,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2d_Get(void * jarg1, void * jar
 }
 
 
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix2d_data(void * jarg1) {
+  void * jresult ;
+  GfMatrix2d *arg1 = (GfMatrix2d *) 0 ;
+  double *result = 0 ;
+  
+  arg1 = (GfMatrix2d *)jarg1; 
+  result = (double *)((GfMatrix2d const *)arg1)->data();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned long SWIGSTDCALL CSharp_pxr_hash_value__SWIG_10(void * jarg1) {
   unsigned long jresult ;
   GfMatrix2d *arg1 = 0 ;
@@ -21227,6 +21134,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_Get(void * jarg1, void * jar
   arg1 = (GfMatrix3d *)jarg1; 
   arg2 = (double (*)[3])jarg2; 
   result = (double *)((GfMatrix3d const *)arg1)->Get((double (*)[3])arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix3d_data__SWIG_0(void * jarg1) {
+  void * jresult ;
+  GfMatrix3d *arg1 = (GfMatrix3d *) 0 ;
+  double *result = 0 ;
+  
+  arg1 = (GfMatrix3d *)jarg1; 
+  result = (double *)(arg1)->data();
   jresult = (void *)result; 
   return jresult;
 }
@@ -22055,6 +21974,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_Get(void * jarg1, void * jar
   arg1 = (GfMatrix4d *)jarg1; 
   arg2 = (double (*)[4])jarg2; 
   result = (double *)((GfMatrix4d const *)arg1)->Get((double (*)[4])arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_GfMatrix4d_data__SWIG_0(void * jarg1) {
+  void * jresult ;
+  GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
+  double *result = 0 ;
+  
+  arg1 = (GfMatrix4d *)jarg1; 
+  result = (double *)(arg1)->data();
   jresult = (void *)result; 
   return jresult;
 }
@@ -33498,6 +33429,24 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_delete_GfPlane(void * jarg1) {
   
   arg1 = (GfPlane *)jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_GfFitPlaneToPoints(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  std::vector< GfVec3d > *arg1 = 0 ;
+  GfPlane *arg2 = (GfPlane *) 0 ;
+  bool result;
+  
+  arg1 = (std::vector< GfVec3d > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< GfVec3d > const & type is null", 0);
+    return 0;
+  } 
+  arg2 = (GfPlane *)jarg2; 
+  result = (bool)GfFitPlaneToPoints((std::vector< GfVec3d > const &)*arg1,arg2);
+  jresult = result; 
+  return jresult;
 }
 
 
@@ -102466,19 +102415,19 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetSourceCode__SWI
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetShaderMetadata(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetSdrMetadata(void * jarg1) {
   void * jresult ;
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   NdrTokenMap result;
   
   arg1 = (UsdShadeShader *)jarg1; 
-  result = ((UsdShadeShader const *)arg1)->GetShaderMetadata();
+  result = ((UsdShadeShader const *)arg1)->GetSdrMetadata();
   jresult = new NdrTokenMap((const NdrTokenMap &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetShaderMetadataByKey(void * jarg1, void * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetSdrMetadataByKey(void * jarg1, void * jarg2) {
   char * jresult ;
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   TfToken *arg2 = 0 ;
@@ -102490,13 +102439,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeShader_GetShaderMetadataByKey(v
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
     return 0;
   } 
-  result = ((UsdShadeShader const *)arg1)->GetShaderMetadataByKey((TfToken const &)*arg2);
+  result = ((UsdShadeShader const *)arg1)->GetSdrMetadataByKey((TfToken const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetShaderMetadata(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetSdrMetadata(void * jarg1, void * jarg2) {
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   NdrTokenMap *arg2 = 0 ;
   
@@ -102506,11 +102455,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetShaderMetadata(void * j
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "NdrTokenMap const & type is null", 0);
     return ;
   } 
-  ((UsdShadeShader const *)arg1)->SetShaderMetadata((NdrTokenMap const &)*arg2);
+  ((UsdShadeShader const *)arg1)->SetSdrMetadata((NdrTokenMap const &)*arg2);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetShaderMetadataByKey(void * jarg1, void * jarg2, char * jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetSdrMetadataByKey(void * jarg1, void * jarg2, char * jarg3) {
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   TfToken *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -102527,23 +102476,23 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_SetShaderMetadataByKey(voi
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  ((UsdShadeShader const *)arg1)->SetShaderMetadataByKey((TfToken const &)*arg2,(std::string const &)*arg3);
+  ((UsdShadeShader const *)arg1)->SetSdrMetadataByKey((TfToken const &)*arg2,(std::string const &)*arg3);
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_HasShaderMetadata(void * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_HasSdrMetadata(void * jarg1) {
   unsigned int jresult ;
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   bool result;
   
   arg1 = (UsdShadeShader *)jarg1; 
-  result = (bool)((UsdShadeShader const *)arg1)->HasShaderMetadata();
+  result = (bool)((UsdShadeShader const *)arg1)->HasSdrMetadata();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_HasShaderMetadataByKey(void * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_HasSdrMetadataByKey(void * jarg1, void * jarg2) {
   unsigned int jresult ;
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   TfToken *arg2 = 0 ;
@@ -102555,21 +102504,21 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeShader_HasShaderMetadataB
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
     return 0;
   } 
-  result = (bool)((UsdShadeShader const *)arg1)->HasShaderMetadataByKey((TfToken const &)*arg2);
+  result = (bool)((UsdShadeShader const *)arg1)->HasSdrMetadataByKey((TfToken const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_ClearShaderMetadata(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_ClearSdrMetadata(void * jarg1) {
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   
   arg1 = (UsdShadeShader *)jarg1; 
-  ((UsdShadeShader const *)arg1)->ClearShaderMetadata();
+  ((UsdShadeShader const *)arg1)->ClearSdrMetadata();
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_ClearShaderMetadataByKey(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_ClearSdrMetadataByKey(void * jarg1, void * jarg2) {
   UsdShadeShader *arg1 = (UsdShadeShader *) 0 ;
   TfToken *arg2 = 0 ;
   
@@ -102579,7 +102528,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeShader_ClearShaderMetadataByKey(v
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
     return ;
   } 
-  ((UsdShadeShader const *)arg1)->ClearShaderMetadataByKey((TfToken const &)*arg2);
+  ((UsdShadeShader const *)arg1)->ClearSdrMetadataByKey((TfToken const &)*arg2);
 }
 
 
@@ -103176,6 +103125,123 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_HasRenderType(void 
   result = (bool)((UsdShadeInput const *)arg1)->HasRenderType();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetSdrMetadata(void * jarg1) {
+  void * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  NdrTokenMap result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = ((UsdShadeInput const *)arg1)->GetSdrMetadata();
+  jresult = new NdrTokenMap((const NdrTokenMap &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeInput_GetSdrMetadataByKey(void * jarg1, void * jarg2) {
+  char * jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeInput const *)arg1)->GetSdrMetadataByKey((TfToken const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeInput_SetSdrMetadata(void * jarg1, void * jarg2) {
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  NdrTokenMap *arg2 = 0 ;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (NdrTokenMap *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "NdrTokenMap const & type is null", 0);
+    return ;
+  } 
+  ((UsdShadeInput const *)arg1)->SetSdrMetadata((NdrTokenMap const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeInput_SetSdrMetadataByKey(void * jarg1, void * jarg2, char * jarg3) {
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  ((UsdShadeInput const *)arg1)->SetSdrMetadataByKey((TfToken const &)*arg2,(std::string const &)*arg3);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_HasSdrMetadata(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  result = (bool)((UsdShadeInput const *)arg1)->HasSdrMetadata();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeInput_HasSdrMetadataByKey(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeInput const *)arg1)->HasSdrMetadataByKey((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeInput_ClearSdrMetadata(void * jarg1) {
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  ((UsdShadeInput const *)arg1)->ClearSdrMetadata();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeInput_ClearSdrMetadataByKey(void * jarg1, void * jarg2) {
+  UsdShadeInput *arg1 = (UsdShadeInput *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (UsdShadeInput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  ((UsdShadeInput const *)arg1)->ClearSdrMetadataByKey((TfToken const &)*arg2);
 }
 
 
@@ -103777,6 +103843,123 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_HasRenderType(void
   result = (bool)((UsdShadeOutput const *)arg1)->HasRenderType();
   jresult = result; 
   return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetSdrMetadata(void * jarg1) {
+  void * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  NdrTokenMap result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = ((UsdShadeOutput const *)arg1)->GetSdrMetadata();
+  jresult = new NdrTokenMap((const NdrTokenMap &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_pxr_UsdShadeOutput_GetSdrMetadataByKey(void * jarg1, void * jarg2) {
+  char * jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = ((UsdShadeOutput const *)arg1)->GetSdrMetadataByKey((TfToken const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeOutput_SetSdrMetadata(void * jarg1, void * jarg2) {
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  NdrTokenMap *arg2 = 0 ;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (NdrTokenMap *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "NdrTokenMap const & type is null", 0);
+    return ;
+  } 
+  ((UsdShadeOutput const *)arg1)->SetSdrMetadata((NdrTokenMap const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeOutput_SetSdrMetadataByKey(void * jarg1, void * jarg2, char * jarg3) {
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  ((UsdShadeOutput const *)arg1)->SetSdrMetadataByKey((TfToken const &)*arg2,(std::string const &)*arg3);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_HasSdrMetadata(void * jarg1) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  result = (bool)((UsdShadeOutput const *)arg1)->HasSdrMetadata();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdShadeOutput_HasSdrMetadataByKey(void * jarg1, void * jarg2) {
+  unsigned int jresult ;
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return 0;
+  } 
+  result = (bool)((UsdShadeOutput const *)arg1)->HasSdrMetadataByKey((TfToken const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ClearSdrMetadata(void * jarg1) {
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  ((UsdShadeOutput const *)arg1)->ClearSdrMetadata();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_pxr_UsdShadeOutput_ClearSdrMetadataByKey(void * jarg1, void * jarg2) {
+  UsdShadeOutput *arg1 = (UsdShadeOutput *) 0 ;
+  TfToken *arg2 = 0 ;
+  
+  arg1 = (UsdShadeOutput *)jarg1; 
+  arg2 = (TfToken *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "TfToken const & type is null", 0);
+    return ;
+  } 
+  ((UsdShadeOutput const *)arg1)->ClearSdrMetadataByKey((TfToken const &)*arg2);
 }
 
 
@@ -108207,6 +108390,22 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelComputeJointsExtent__SWIG_
   arg3 = (VtVec3fArray *)jarg3; 
   arg4 = (float)jarg4; 
   result = (bool)UsdSkelComputeJointsExtent((GfMatrix4d const *)arg1,arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_pxr_UsdSkelComputeJointsExtent__SWIG_5(void * jarg1, unsigned long jarg2, void * jarg3) {
+  unsigned int jresult ;
+  GfMatrix4d *arg1 = (GfMatrix4d *) 0 ;
+  size_t arg2 ;
+  VtVec3fArray *arg3 = (VtVec3fArray *) 0 ;
+  bool result;
+  
+  arg1 = (GfMatrix4d *)jarg1; 
+  arg2 = (size_t)jarg2; 
+  arg3 = (VtVec3fArray *)jarg3; 
+  result = (bool)UsdSkelComputeJointsExtent((GfMatrix4d const *)arg1,arg2,arg3);
   jresult = result; 
   return jresult;
 }

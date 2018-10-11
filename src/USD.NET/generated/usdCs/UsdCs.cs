@@ -408,24 +408,6 @@ public class UsdCs {
     return ret;
   }
 
-  public static JsValue JsParseString(string data, JsParseError error) {
-    JsValue ret = new JsValue(UsdCsPINVOKE.JsParseString__SWIG_0(data, JsParseError.getCPtr(error)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static JsValue JsParseString(string data) {
-    JsValue ret = new JsValue(UsdCsPINVOKE.JsParseString__SWIG_1(data), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static string JsWriteToString(JsValue value) {
-    string ret = UsdCsPINVOKE.JsWriteToString(JsValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public static string PlugFindPluginResource(SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr plugin, string path, bool verify) {
     string ret = UsdCsPINVOKE.PlugFindPluginResource__SWIG_0(SWIGTYPE_p_TfDeclarePtrsT_PlugPlugin_t__Ptr.getCPtr(plugin), path, verify);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -1463,6 +1445,12 @@ public class UsdCs {
 
   public static bool GfFindClosestPoints(GfRay ray, GfLineSeg seg) {
     bool ret = UsdCsPINVOKE.GfFindClosestPoints__SWIG_9(GfRay.getCPtr(ray), GfLineSeg.getCPtr(seg));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool GfFitPlaneToPoints(GfVec3dVector points, GfPlane fitPlane) {
+    bool ret = UsdCsPINVOKE.GfFitPlaneToPoints(GfVec3dVector.getCPtr(points), GfPlane.getCPtr(fitPlane));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3126,6 +3114,11 @@ public class UsdCs {
 
   public static bool UsdSkelComputeJointsExtent(GfMatrix4d xforms, uint numXforms, VtVec3fArray extent, float pad) {
     bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_4(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent), pad);
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointsExtent(GfMatrix4d xforms, uint numXforms, VtVec3fArray extent) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointsExtent__SWIG_5(GfMatrix4d.getCPtr(xforms), numXforms, VtVec3fArray.getCPtr(extent));
     return ret;
   }
 

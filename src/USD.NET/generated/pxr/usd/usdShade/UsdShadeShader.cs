@@ -222,44 +222,44 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_NdrTokenMap GetShaderMetadata() {
-    SWIGTYPE_p_NdrTokenMap ret = new SWIGTYPE_p_NdrTokenMap(UsdCsPINVOKE.UsdShadeShader_GetShaderMetadata(swigCPtr), true);
+  public SWIGTYPE_p_NdrTokenMap GetSdrMetadata() {
+    SWIGTYPE_p_NdrTokenMap ret = new SWIGTYPE_p_NdrTokenMap(UsdCsPINVOKE.UsdShadeShader_GetSdrMetadata(swigCPtr), true);
     return ret;
   }
 
-  public string GetShaderMetadataByKey(TfToken key) {
-    string ret = UsdCsPINVOKE.UsdShadeShader_GetShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+  public string GetSdrMetadataByKey(TfToken key) {
+    string ret = UsdCsPINVOKE.UsdShadeShader_GetSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void SetShaderMetadata(SWIGTYPE_p_NdrTokenMap shaderMetadata) {
-    UsdCsPINVOKE.UsdShadeShader_SetShaderMetadata(swigCPtr, SWIGTYPE_p_NdrTokenMap.getCPtr(shaderMetadata));
+  public void SetSdrMetadata(SWIGTYPE_p_NdrTokenMap sdrMetadata) {
+    UsdCsPINVOKE.UsdShadeShader_SetSdrMetadata(swigCPtr, SWIGTYPE_p_NdrTokenMap.getCPtr(sdrMetadata));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void SetShaderMetadataByKey(TfToken key, string value) {
-    UsdCsPINVOKE.UsdShadeShader_SetShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key), value);
+  public void SetSdrMetadataByKey(TfToken key, string value) {
+    UsdCsPINVOKE.UsdShadeShader_SetSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key), value);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public bool HasShaderMetadata() {
-    bool ret = UsdCsPINVOKE.UsdShadeShader_HasShaderMetadata(swigCPtr);
+  public bool HasSdrMetadata() {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_HasSdrMetadata(swigCPtr);
     return ret;
   }
 
-  public bool HasShaderMetadataByKey(TfToken key) {
-    bool ret = UsdCsPINVOKE.UsdShadeShader_HasShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+  public bool HasSdrMetadataByKey(TfToken key) {
+    bool ret = UsdCsPINVOKE.UsdShadeShader_HasSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void ClearShaderMetadata() {
-    UsdCsPINVOKE.UsdShadeShader_ClearShaderMetadata(swigCPtr);
+  public void ClearSdrMetadata() {
+    UsdCsPINVOKE.UsdShadeShader_ClearSdrMetadata(swigCPtr);
   }
 
-  public void ClearShaderMetadataByKey(TfToken key) {
-    UsdCsPINVOKE.UsdShadeShader_ClearShaderMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+  public void ClearSdrMetadataByKey(TfToken key) {
+    UsdCsPINVOKE.UsdShadeShader_ClearSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

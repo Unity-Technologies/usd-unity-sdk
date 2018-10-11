@@ -137,6 +137,47 @@ public class UsdShadeInput : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_NdrTokenMap GetSdrMetadata() {
+    SWIGTYPE_p_NdrTokenMap ret = new SWIGTYPE_p_NdrTokenMap(UsdCsPINVOKE.UsdShadeInput_GetSdrMetadata(swigCPtr), true);
+    return ret;
+  }
+
+  public string GetSdrMetadataByKey(TfToken key) {
+    string ret = UsdCsPINVOKE.UsdShadeInput_GetSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void SetSdrMetadata(SWIGTYPE_p_NdrTokenMap sdrMetadata) {
+    UsdCsPINVOKE.UsdShadeInput_SetSdrMetadata(swigCPtr, SWIGTYPE_p_NdrTokenMap.getCPtr(sdrMetadata));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetSdrMetadataByKey(TfToken key, string value) {
+    UsdCsPINVOKE.UsdShadeInput_SetSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key), value);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public bool HasSdrMetadata() {
+    bool ret = UsdCsPINVOKE.UsdShadeInput_HasSdrMetadata(swigCPtr);
+    return ret;
+  }
+
+  public bool HasSdrMetadataByKey(TfToken key) {
+    bool ret = UsdCsPINVOKE.UsdShadeInput_HasSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void ClearSdrMetadata() {
+    UsdCsPINVOKE.UsdShadeInput_ClearSdrMetadata(swigCPtr);
+  }
+
+  public void ClearSdrMetadataByKey(TfToken key) {
+    UsdCsPINVOKE.UsdShadeInput_ClearSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public UsdShadeInput(UsdAttribute attr) : this(UsdCsPINVOKE.new_UsdShadeInput__SWIG_1(UsdAttribute.getCPtr(attr)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
