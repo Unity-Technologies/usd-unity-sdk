@@ -123,18 +123,19 @@ The full build process is:
  4. Build USD to a different directory with python disabled (to minimize runtime dependencies)
  5. Set the environment variable USD_LOCATION_PYTHON to the path used in step (3)
  6. Set the environment variable USD_LOCATION to the path used in step (4)
- 7. If upgrading USD to a newer version, run bin\diff-src.bat to merge modified header files. The "generated" source folder should also be deleted so it can be regenerated in the next step
- 8. Run bin\build.bat to generate Swig bindings
- 9. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
- 10. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
- 11. Build the solution
- 12. Hit play to run tests
- 13. Run bin\install to copy USD.NET DLLs to the Unity asset package
- 14. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
- 15. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
- 14. Test the asset package
- 15. Export a new Unity asset package
- 16. Test the exported asset package
+ 7. If upgrading USD to a newer version, diff third_party includes vs newly distributed header files. 
+ 8. The "generated" source folder should also be deleted so it can be regenerated in the next step.
+ 9. Run bin\build.bat to generate Swig bindings
+ 10. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
+ 11. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
+ 12. Build the solution
+ 13. Hit play to run tests
+ 14. Run bin\install to copy USD.NET DLLs to the Unity asset package
+ 15. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
+ 16. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
+ 17. Test the asset package
+ 18. Export a new Unity asset package
+ 19. Test the exported asset package
 
 The following is an example of valid environment variables:
 
