@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2016 Pixar
 //
 // Licensed under the Apache License, Version 2.0 (the "Apache License")
