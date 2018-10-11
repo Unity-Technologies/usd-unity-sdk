@@ -67,7 +67,6 @@ namespace USD.NET.Unity {
 
       if (options.changeHandedness == BasisTransformation.FastAndDangerous) {
         // Convert from right-handed (USD) to left-handed (Unity).
-        Vector3 up = GetUpVector(scene);
         if (scene.UpAxis == Scene.UpAxes.Z) {
           root.localScale = new Vector3(1, -1, 1);
         } else {
