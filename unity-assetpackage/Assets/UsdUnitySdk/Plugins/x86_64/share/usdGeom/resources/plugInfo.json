@@ -266,7 +266,7 @@
                     }
                 }
             }, 
-            "LibraryPath": "../../libusd_ms.dll", 
+            "LibraryPath": "", 
             "Name": "usdGeom", 
             "ResourcePath": "resources", 
             "Root": "..", 

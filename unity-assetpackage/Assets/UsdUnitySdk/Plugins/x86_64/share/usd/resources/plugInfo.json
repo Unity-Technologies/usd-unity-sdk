@@ -175,7 +175,7 @@
                     }
                 }
             }, 
-            "LibraryPath": "../../libusd_ms.dll", 
+            "LibraryPath": "", 
             "Name": "usd", 
             "ResourcePath": "resources", 
             "Root": "..", 

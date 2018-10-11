@@ -26,7 +26,7 @@
                     }
                 }
             },
-            "LibraryPath": "../../libusd_ms.dll",
+            "LibraryPath": "",
             "Name": "sdf",
             "ResourcePath": "resources",
             "Root": "..",
