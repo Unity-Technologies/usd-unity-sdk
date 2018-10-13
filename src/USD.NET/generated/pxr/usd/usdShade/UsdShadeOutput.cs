@@ -91,8 +91,8 @@ public class UsdShadeOutput : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_NdrTokenMap GetSdrMetadata() {
-    SWIGTYPE_p_NdrTokenMap ret = new SWIGTYPE_p_NdrTokenMap(UsdCsPINVOKE.UsdShadeOutput_GetSdrMetadata(swigCPtr), true);
+  public SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t GetSdrMetadata() {
+    SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t ret = new SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t(UsdCsPINVOKE.UsdShadeOutput_GetSdrMetadata(swigCPtr), true);
     return ret;
   }
 
@@ -102,8 +102,8 @@ public class UsdShadeOutput : global::System.IDisposable {
     return ret;
   }
 
-  public void SetSdrMetadata(SWIGTYPE_p_NdrTokenMap sdrMetadata) {
-    UsdCsPINVOKE.UsdShadeOutput_SetSdrMetadata(swigCPtr, SWIGTYPE_p_NdrTokenMap.getCPtr(sdrMetadata));
+  public void SetSdrMetadata(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t sdrMetadata) {
+    UsdCsPINVOKE.UsdShadeOutput_SetSdrMetadata(swigCPtr, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(sdrMetadata));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

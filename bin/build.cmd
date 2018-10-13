@@ -49,12 +49,33 @@ md src\USD.NET\generated\pxr\usd\usd 2> nul
 md src\USD.NET\generated\pxr\usd\usdGeom 2> nul
 md src\USD.NET\generated\pxr\usd\usdShade 2> nul
 md src\USD.NET\generated\pxr\usd\usdSkel 2> nul
+
+md src\USD.NET\generated\pxr\usd\kind 2> nul
+md src\USD.NET\generated\pxr\usd\ndr 2> nul
+md src\USD.NET\generated\pxr\usd\pcp 2> nul
+md src\USD.NET\generated\pxr\usd\sdr 2> nul
+md src\USD.NET\generated\pxr\usd\usdLux 2> nul
+md src\USD.NET\generated\pxr\usd\usdRi 2> nul
+md src\USD.NET\generated\pxr\usd\usdVol 2> nul
+md src\USD.NET\generated\pxr\usd\usdUtils 2> nul
+
 move src\USD.NET\Ar*.cs        .\src\USD.NET\generated\pxr\usd\ar
 move src\USD.NET\Sdf*.cs       .\src\USD.NET\generated\pxr\usd\sdf
 move src\USD.NET\UsdCs*.cs     .\src\USD.NET\generated\usdCs
 move src\USD.NET\UsdGeom*.cs   .\src\USD.NET\generated\pxr\usd\usdGeom
 move src\USD.NET\UsdShade*.cs  .\src\USD.NET\generated\pxr\usd\usdShade
 move src\USD.NET\UsdSkel*.cs  .\src\USD.NET\generated\pxr\usd\usdSkel
+
+move src\USD.NET\Kind*.cs  .\src\USD.NET\generated\pxr\usd\kind
+move src\USD.NET\_Ndr*.cs  .\src\USD.NET\generated\pxr\usd\ndr
+move src\USD.NET\Ndr*.cs  .\src\USD.NET\generated\pxr\usd\ndr
+move src\USD.NET\Pcp*.cs  .\src\USD.NET\generated\pxr\usd\pcp
+move src\USD.NET\Sdr*.cs  .\src\USD.NET\generated\pxr\usd\sdr
+move src\USD.NET\UsdLux*.cs  .\src\USD.NET\generated\pxr\usd\usdLux
+move src\USD.NET\UsdRi*.cs  .\src\USD.NET\generated\pxr\usd\usdRi
+move src\USD.NET\UsdUtils*.cs  .\src\USD.NET\generated\pxr\usd\usdUtils
+move src\USD.NET\UsdVol*.cs  .\src\USD.NET\generated\pxr\usd\usdVol
+
 move src\USD.NET\Usd*.cs       .\src\USD.NET\generated\pxr\usd\usd
 
 md src\USD.NET\generated\SWIG 2> nul

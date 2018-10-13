@@ -545,13 +545,13 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpPrimIndex GetPrimIndex() {
-    SWIGTYPE_p_PcpPrimIndex ret = new SWIGTYPE_p_PcpPrimIndex(UsdCsPINVOKE.UsdPrim_GetPrimIndex(swigCPtr), false);
+  public PcpPrimIndex GetPrimIndex() {
+    PcpPrimIndex ret = new PcpPrimIndex(UsdCsPINVOKE.UsdPrim_GetPrimIndex(swigCPtr), false);
     return ret;
   }
 
-  public SWIGTYPE_p_PcpPrimIndex ComputeExpandedPrimIndex() {
-    SWIGTYPE_p_PcpPrimIndex ret = new SWIGTYPE_p_PcpPrimIndex(UsdCsPINVOKE.UsdPrim_ComputeExpandedPrimIndex(swigCPtr), true);
+  public PcpPrimIndex ComputeExpandedPrimIndex() {
+    PcpPrimIndex ret = new PcpPrimIndex(UsdCsPINVOKE.UsdPrim_ComputeExpandedPrimIndex(swigCPtr), true);
     return ret;
   }
 
