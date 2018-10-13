@@ -20,12 +20,12 @@ using pxr;
 namespace USD.NET.Unity {
 
   /// <summary>
-  /// A collection of methods used for importing USD Mesh data into Unity.
+  /// A collection of methods used for importing USD Cube data into Unity.
   /// </summary>
   public static class CubeImporter {
 
     /// <summary>
-    /// Copy mesh data from USD to Unity with the given import options.
+    /// Copy cube data from USD to Unity with the given import options.
     /// </summary>
     public static void BuildCube(CubeSample usdCube,
                                  GameObject go,

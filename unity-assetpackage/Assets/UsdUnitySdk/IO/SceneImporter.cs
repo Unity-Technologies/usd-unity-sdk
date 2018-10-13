@@ -73,6 +73,17 @@ namespace USD.NET.Unity {
         }
       }
 
+      // Cameras.
+      foreach (var pathAndSample in scene.ReadAll<CameraSample>()) {
+        try {
+          GameObject go = primMap[pathAndSample.path];
+          // Xform is included in BuildCamera.
+          CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
+        } catch (System.Exception ex) {
+          Debug.LogError("Error processing cube <" + pathAndSample.path + ">: " + ex.Message);
+        }
+      }
+
       // Build out masters for instancing.
       foreach (var masterRootPath in primMap.GetMasterRootPaths()) {
         try {
@@ -105,7 +116,18 @@ namespace USD.NET.Unity {
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
-              Debug.LogError("Error processing master mesh <" + masterRootPath + ">: " + ex.Message);
+              Debug.LogError("Error processing master cube <" + masterRootPath + ">: " + ex.Message);
+            }
+          }
+
+          // Cameras.
+          foreach (var pathAndSample in scene.ReadAll<CameraSample>(masterRootPath)) {
+            try {
+              GameObject go = primMap[pathAndSample.path];
+              // Xform is included in BuildCamera.
+              CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
+            } catch (System.Exception ex) {
+              Debug.LogError("Error processing master camera <" + masterRootPath + ">: " + ex.Message);
             }
           }
         } catch (System.Exception ex) {
