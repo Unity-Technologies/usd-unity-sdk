@@ -63,13 +63,17 @@ namespace USD.NET.Examples {
 
     // The export function allows for dispatch to different export functions without knowing what
     // type of data they export (e.g. mesh vs. transform).
-    delegate void ExportFunction(Scene scene, GameObject go, ExportPlan exportPlan);
+    public delegate void ExportFunction(
+        Scene scene,
+        GameObject go,
+        ExportPlan exportPlan,
+        Dictionary<Material, string> matMap);
 
     // An export plan will be created for each path in the scene. Each ExportPlan will use one of
     // the fixed export functions. For example, when setting up export for a mesh, an ExportPlan
     // will be created for that path in the scenegraph and the ExportFunction will the one which is
     // capable of exporting a mesh.
-    struct ExportPlan {
+    public struct ExportPlan {
       // The USD path at which the Unity data will be written.
       public string path;
       
@@ -129,7 +133,7 @@ namespace USD.NET.Examples {
         // For simplicity in this example, adding game objects while recording is not supported.
         Debug.Log("Init hierarchy");
         m_primMap.Clear();
-        InitHierarchy(m_exportRoot);
+        InitHierarchy(m_exportRoot, m_materialMap, m_primMap);
 
         // Do this last, in case an exception is thrown above.
         IsRecording = true;
@@ -188,7 +192,7 @@ namespace USD.NET.Examples {
         foreach (var kvp in m_primMap) {
           ExportPlan exportPlan = kvp.Value;
           GameObject go = kvp.Key;
-          exportPlan.exportFunc(m_usdScene, go, exportPlan);
+          exportPlan.exportFunc(m_usdScene, go, exportPlan, m_materialMap);
         }
       }
 
@@ -207,7 +211,33 @@ namespace USD.NET.Examples {
       foreach (var kvp in m_primMap) {
         ExportPlan exportPlan = kvp.Value;
         GameObject go = kvp.Key;
-        exportPlan.exportFunc(m_usdScene, go, exportPlan);
+        exportPlan.exportFunc(m_usdScene, go, exportPlan, m_materialMap);
+      }
+    }
+
+    public static void Export(GameObject root, USD.NET.Scene scene) {
+      var primMap = new Dictionary<GameObject, ExportPlan>();
+      var matMap = new Dictionary<Material, string>();
+      InitHierarchy(root, matMap, primMap);
+      var oldTime = scene.Time;
+
+      foreach (var kvp in matMap) {
+        scene.Time = null;
+        ExportMaterial(scene, kvp.Key, kvp.Value);
+      }
+
+      foreach (var kvp in primMap) {
+        ExportPlan exportPlan = kvp.Value;
+        GameObject go = kvp.Key;
+
+        scene.Time = null;
+        exportPlan.exportFunc(scene, go, exportPlan, matMap);
+        scene.Time = oldTime;
+        exportPlan.exportFunc(scene, go, exportPlan, matMap);
+
+        if (!go.activeSelf) {
+          scene.GetPrimAtPath(exportPlan.path).SetActive(false);
+        }
       }
     }
 
@@ -215,30 +245,48 @@ namespace USD.NET.Examples {
     // Init Hierarchy.
     // ------------------------------------------------------------------------------------------ //
 
-    delegate void ObjectProcessor(GameObject go);
+    delegate void ObjectProcessor(GameObject go,
+                                  Dictionary<Material, string> matMap,
+                                  Dictionary<GameObject, ExportPlan> primMap);
 
-    void Traverse(GameObject obj, ObjectProcessor processor) {
-      processor(obj);
+    static void Traverse(GameObject obj,
+                         ObjectProcessor processor,
+                         Dictionary<Material, string> matMap,
+                         Dictionary<GameObject, ExportPlan> primMap) {
+      processor(obj, matMap, primMap);
       foreach (Transform child in obj.transform) {
-        Traverse(child.gameObject, processor);
+        Traverse(child.gameObject, processor, matMap, primMap);
       }
     }
 
-    void InitHierarchy(GameObject exportRoot) {
-      Traverse(exportRoot, InitExportableObjects);
+    static void InitHierarchy(GameObject exportRoot,
+                              Dictionary<Material, string> matMap,
+                              Dictionary<GameObject, ExportPlan> primMap) {
+      Traverse(exportRoot, InitExportableObjects, matMap, primMap);
     }
 
-    void InitExportableObjects(GameObject go) {
+    static void InitExportableObjects(GameObject go,
+                                      Dictionary<Material, string> matMap,
+                                      Dictionary<GameObject, ExportPlan> primMap) {
       SampleBase sample = null;
       ExportFunction exportFunc = null;
 
-      if (go.GetComponent<MeshFilter>() != null && go.GetComponent<MeshRenderer>() != null) {
+      if (go.GetComponent<SkinnedMeshRenderer>() != null) {
+        sample = new MeshSample();
+        exportFunc = ExportSkinnedMesh;
+        foreach (var mat in go.GetComponent<SkinnedMeshRenderer>().sharedMaterials) {
+          if (!matMap.ContainsKey(mat)) {
+            string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name);
+            matMap.Add(mat, usdPath);
+          }
+        }
+      } else if (go.GetComponent<MeshFilter>() != null && go.GetComponent<MeshRenderer>() != null) {
         sample = new MeshSample();
         exportFunc = ExportMesh;
-        foreach (var mat in go.GetComponent<MeshRenderer>().materials) {
-          if (!m_materialMap.ContainsKey(mat)) {
+        foreach (var mat in go.GetComponent<MeshRenderer>().sharedMaterials) {
+          if (!matMap.ContainsKey(mat)) {
             string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name);
-            m_materialMap.Add(mat, usdPath);
+            matMap.Add(mat, usdPath);
           }
         }
       } else if (go.GetComponent<Camera>()) {
@@ -250,23 +298,23 @@ namespace USD.NET.Examples {
 
       // This is an exportable object.
       string path = Unity.UnityTypeConverter.GetPath(go.transform);
-      m_primMap.Add(go, new ExportPlan { path=path, sample=sample, exportFunc=exportFunc });
-      Debug.Log(path + " " + sample.GetType().Name);
+      primMap.Add(go, new ExportPlan { path=path, sample=sample, exportFunc=exportFunc });
 
       // Include the parent xform hierarchy.
       // Note that the parent hierarchy is memoised, so despite looking expensive, the time
       // complexity is linear.
       Transform xf = go.transform.parent;
       while (xf) {
-        if (!InitExportableParents(xf.gameObject)) {
+        if (!InitExportableParents(xf.gameObject, primMap)) {
           break;
         }
         xf = xf.parent;
       }
     }
 
-    bool InitExportableParents(GameObject go) {
-      if (m_primMap.ContainsKey(go)) {
+    static bool InitExportableParents(GameObject go,
+                           Dictionary<GameObject, ExportPlan> primMap) {
+      if (primMap.ContainsKey(go)) {
         // Stop processing parents, this keeps the performance of the traversal linear.
         return false;
       }
@@ -274,8 +322,7 @@ namespace USD.NET.Examples {
       // Any object we add will only be exported as an Xform.
       string path = UnityTypeConverter.GetPath(go.transform);
       SampleBase sample = new XformSample();
-      m_primMap.Add(go, new ExportPlan { path = path, sample = sample, exportFunc = ExportXform });
-      Debug.Log(path + " " + sample.GetType().Name);
+      primMap.Add(go, new ExportPlan { path = path, sample = sample, exportFunc = ExportXform });
 
       // Continue processing parents.
       return true;
@@ -284,23 +331,43 @@ namespace USD.NET.Examples {
     // ------------------------------------------------------------------------------------------ //
     // Type-Specific (Mesh, Xform, Camera) Exporters.
     // ------------------------------------------------------------------------------------------ //
-    void ExportMaterial(Scene scene, Material mat, string usdMaterialPath) {
-      string shaderPath = usdMaterialPath + "/StandardShader";
+    static void ExportMaterial(Scene scene, Material mat, string usdMaterialPath) {
+      string shaderPath = usdMaterialPath + "/PreviewSurface";
 
       var material = new USD.NET.Unity.MaterialSample();
-      material.surface.SetConnectedPath(shaderPath, "outputs:out");
-
-      var shader = new StandardShaderSample();
-      shader.id = new pxr.TfToken("Unity.Standard");
-      shader.albedo.defaultValue = mat.color;
+      material.surface.SetConnectedPath(shaderPath, "outputs:surface");
 
       scene.Write(usdMaterialPath, material);
-      scene.Write(shaderPath, shader);
+
+      if (false) {
+        var shader = new StandardShaderSample();
+        shader.id = new pxr.TfToken("Unity.Standard");
+        shader.albedo.defaultValue = mat.color;
+        scene.Write(shaderPath, shader);
+      } else {
+        var shader = new PreviewSurfaceSample();
+        var c = mat.color.linear;
+
+        shader.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
+        shader.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
+        shader.metallic.defaultValue = .5f;
+
+        scene.Write(shaderPath, shader);
+        scene.GetPrimAtPath(shaderPath).CreateAttribute(
+            new pxr.TfToken("outputs:surface"),
+            SdfValueTypeNames.Token,
+            false, pxr.SdfVariability.SdfVariabilityUniform);
+      }
+
     }
 
-    void ExportMesh(Scene scene, GameObject go, ExportPlan exportPlan) {
-      MeshFilter mf = go.GetComponent<MeshFilter>();
-      Mesh mesh = mf.mesh;
+    static void ExportSkinnedMesh(Scene scene,
+                       GameObject go,
+                       ExportPlan exportPlan,
+                       Dictionary<Material, string> matMap) {
+      var smr = go.GetComponent<SkinnedMeshRenderer>();
+      Mesh mesh = new Mesh(); //smr.sharedMesh;
+      smr.BakeMesh(mesh);
       bool unvarying = scene.Time == null;
 
       if (unvarying) {
@@ -326,9 +393,10 @@ namespace USD.NET.Examples {
 
         scene.Write(exportPlan.path, sample);
 
-        var mr = go.GetComponent<MeshRenderer>();
         string usdMaterialPath;
-        if (!m_materialMap.TryGetValue(mr.material, out usdMaterialPath)) {
+
+        // TODO: export multiple materials per mesh.
+        if (!matMap.TryGetValue(smr.sharedMaterial, out usdMaterialPath)) {
           Debug.LogError("Invalid material bound for: " + exportPlan.path);
         } else {
           MaterialSample.Bind(scene, exportPlan.path, usdMaterialPath);
@@ -349,25 +417,93 @@ namespace USD.NET.Examples {
       //ExportXform(scene, go, exportPlan, unvarying: false);
     }
 
-    void ExportCamera(Scene scene, GameObject go, ExportPlan exportPlan) {
+    static void ExportMesh(Scene scene,
+                           GameObject go,
+                           ExportPlan exportPlan,
+                           Dictionary<Material, string> matMap) {
+      MeshFilter mf = go.GetComponent<MeshFilter>();
+      Mesh mesh = mf.sharedMesh;
+      bool unvarying = scene.Time == null;
+
+      if (unvarying) {
+        // Only export the mesh topology on the first frame.
+        var sample = (MeshSample)exportPlan.sample;
+        sample.transform = GetLocalTransformMatrix(go.transform);
+
+        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
+        // basis is required. There are shortcuts, but this is fully general.
+        //sample.ConvertTransform();
+
+        sample.normals = mesh.normals;
+        sample.points = mesh.vertices;
+        sample.tangents = mesh.tangents;
+        sample.extent = mesh.bounds;
+        sample.colors = mesh.colors;
+        if (sample.colors != null && sample.colors.Length != sample.points.Length) {
+          sample.colors = null;
+        }
+
+        // Set face vertex counts and indices.
+        sample.SetTriangles(mesh.triangles);
+
+        scene.Write(exportPlan.path, sample);
+
+        var mr = go.GetComponent<MeshRenderer>();
+        string usdMaterialPath;
+        if (!matMap.TryGetValue(mr.sharedMaterial, out usdMaterialPath)) {
+          Debug.LogError("Invalid material bound for: " + exportPlan.path);
+        } else {
+          MaterialSample.Bind(scene, exportPlan.path, usdMaterialPath);
+        }
+      } else {
+        var sample = new XformSample();
+        sample.transform = GetLocalTransformMatrix(go.transform);
+
+        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
+        // basis is required. There are shortcuts, but this is fully general.
+        sample.ConvertTransform();
+
+        scene.Write(exportPlan.path, sample);
+      }
+
+      // On all other frames, we just export the mesh transform data.
+      // TODO(jcowles): cant currently do this because the USD prim typeName is overwritten.
+      //ExportXform(scene, go, exportPlan, unvarying: false);
+    }
+
+    static void ExportCamera(Scene scene,
+                           GameObject go,
+                           ExportPlan exportPlan,
+                           Dictionary<Material, string> matMap) {
       CameraSample sample = (CameraSample)exportPlan.sample;
       Camera camera = go.GetComponent<Camera>();
       sample.CopyFromCamera(camera);
       scene.Write(exportPlan.path, sample);
     }
 
-    void ExportXform(Scene scene, GameObject go, ExportPlan exportPlan) {
+    static void ExportXform(Scene scene,
+                           GameObject go,
+                           ExportPlan exportPlan,
+                           Dictionary<Material, string> matMap) {
       XformSample sample = (XformSample)exportPlan.sample;
       sample.transform = GetLocalTransformMatrix(go.transform);
 
       // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
       // basis is required. There are shortcuts, but this is fully general.
+      var path = new pxr.SdfPath(exportPlan.path);
       sample.ConvertTransform();
+      if (false && path.IsRootPrimPath()) {
+        Matrix4x4 m = sample.transform;
+        m[0,0] *= -1;
+        var basisChange = UnityEngine.Matrix4x4.identity;
+        basisChange[2, 2] = -1;
+        sample.transform = m * basisChange;
+      }
 
       scene.Write(exportPlan.path, sample);
     }
 
-    Matrix4x4 GetLocalTransformMatrix(Transform tr) {
+    static Matrix4x4 GetLocalTransformMatrix(Transform tr) {
       return Matrix4x4.TRS(tr.localPosition, tr.localRotation, tr.localScale);
     }
 
