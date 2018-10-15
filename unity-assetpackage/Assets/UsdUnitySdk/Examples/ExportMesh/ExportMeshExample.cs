@@ -354,11 +354,53 @@ namespace USD.NET.Examples {
         scene.Write(shaderPath, shader);
       } else {
         var shader = new PreviewSurfaceSample();
-        var c = mat.color.linear;
+        Color c;
 
+        if (mat.HasProperty("_Color")) {
+          // Standard.
+          c = mat.GetColor("_Color").linear;
+        } else if (mat.HasProperty("_BaseColor")) {
+          // HDRP Lit.
+          c = mat.GetColor("_BaseColor").linear;
+        } else if (mat.HasProperty("_BaseColor0")) {
+          // HDRP Layered Lit.
+          c = mat.GetColor("_BaseColor").linear;
+        } else {
+          c = Color.white;
+        }
         shader.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
+
+        if (mat.HasProperty("_SpecColor")) {
+          // If there is a spec color, then this is not metallic workflow.
+          c = mat.GetColor("_SpecColor");
+          shader.useSpecularWorkflow.defaultValue = 1;
+        } else {
+          c = new Color(.4f, .4f, .4f);
+        }
         shader.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
-        shader.metallic.defaultValue = .5f;
+
+        /* TODO: some materials have emission set to (1,1,1) when disabled.
+        if (mat.HasProperty("_EmissionColor")) {
+          c = mat.GetColor("_EmissionColor").linear;
+          shader.emissiveColor.defaultValue = new Vector3(c.r, c.g, c.b);
+        }
+        */
+
+        if (mat.HasProperty("_Metallic")) {
+          shader.metallic.defaultValue = mat.GetFloat("_Metallic");
+        } else {
+          shader.metallic.defaultValue = .5f;
+        }
+
+        if (mat.HasProperty("_Smoothness")) {
+          shader.roughness.defaultValue = 1 - mat.GetFloat("_Smoothness");
+        } else if (mat.HasProperty("_Glossiness")) {
+          shader.roughness.defaultValue = 1 - mat.GetFloat("_Glossiness");
+        } else if (mat.HasProperty("_Roughness")) {
+          shader.roughness.defaultValue = mat.GetFloat("_Roughness");
+        } else {
+          shader.roughness.defaultValue = 0.5f;
+        }
 
         scene.Write(shaderPath, shader);
         scene.GetPrimAtPath(shaderPath).CreateAttribute(
