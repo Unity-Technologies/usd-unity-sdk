@@ -82,6 +82,9 @@ namespace USD.NET.Examples {
 
       // The export function which implements the logic to populate the sample.
       public ExportFunction exportFunc;
+
+      // Do a deep/safe conversion or a fast/dangerous conversion.
+      public BasisTransformation convertHandedness;
     }
 
     // A map from Unity GameObject to an export plan, which indicates where and how the GameObject
@@ -298,7 +301,12 @@ namespace USD.NET.Examples {
 
       // This is an exportable object.
       string path = Unity.UnityTypeConverter.GetPath(go.transform);
-      primMap.Add(go, new ExportPlan { path=path, sample=sample, exportFunc=exportFunc });
+      primMap.Add(go, new ExportPlan {
+          path =path,
+          sample =sample,
+          exportFunc =exportFunc,
+          convertHandedness =BasisTransformation.FastAndDangerous
+      });
 
       // Include the parent xform hierarchy.
       // Note that the parent hierarchy is memoised, so despite looking expensive, the time
@@ -366,109 +374,92 @@ namespace USD.NET.Examples {
                        ExportPlan exportPlan,
                        Dictionary<Material, string> matMap) {
       var smr = go.GetComponent<SkinnedMeshRenderer>();
-      Mesh mesh = new Mesh(); //smr.sharedMesh;
+      Mesh mesh = new Mesh();
+      // TODO: export smr.sharedMesh when unvarying.
+      // Ugh. Note that BakeMesh bakes the parent transform into the points, which results in
+      // compounded transforms on export. The way Unity handles this is to apply a scale as part
+      // of the importer, which bakes the scale into the points.
       smr.BakeMesh(mesh);
+      ExportMesh(scene, go, exportPlan, matMap, mesh, smr.sharedMaterial);
+    }
+
+    static void ExportMesh(Scene scene,
+                       GameObject go,
+                       ExportPlan exportPlan,
+                       Dictionary<Material, string> matMap) {
+      MeshFilter mf = go.GetComponent<MeshFilter>();
+      MeshRenderer mr = go.GetComponent<MeshRenderer>();
+      Mesh mesh = mf.sharedMesh;
+      ExportMesh(scene, go, exportPlan, matMap, mesh, mr.sharedMaterial);
+    }
+
+    static void ExportMesh(Scene scene,
+                   GameObject go,
+                   ExportPlan exportPlan,
+                   Dictionary<Material, string> matMap,
+                   Mesh mesh,
+                   Material sharedMaterial) {
       bool unvarying = scene.Time == null;
+      bool slowAndSafeConversion = exportPlan.convertHandedness == BasisTransformation.SlowAndSafe;
+      var sample = (MeshSample)exportPlan.sample;
 
-      if (unvarying) {
-        // Only export the mesh topology on the first frame.
-        var sample = (MeshSample)exportPlan.sample;
-        sample.transform = GetLocalTransformMatrix(go.transform);
-
+      if (slowAndSafeConversion) {
         // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
         // basis is required. There are shortcuts, but this is fully general.
         sample.ConvertTransform();
+      }
 
+      if (unvarying) {
+        // Only export the mesh topology on the first frame.
+        sample.transform = GetLocalTransformMatrix(go.transform);
         sample.normals = mesh.normals;
         sample.points = mesh.vertices;
         sample.tangents = mesh.tangents;
         sample.extent = mesh.bounds;
         sample.colors = mesh.colors;
+
         if (sample.colors != null && sample.colors.Length != sample.points.Length) {
           sample.colors = null;
         }
 
         // Set face vertex counts and indices.
-        sample.SetTriangles(mesh.triangles);
+        var tris = mesh.triangles;
 
+        if (slowAndSafeConversion) {
+          // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
+          // of basis is required. There are shortcuts, but this is fully general.
+          var c = sample.extent.center; c.z *= -1;
+          sample.extent.center = c;
+
+          for (int i = 0; i < sample.points.Length; i++) {
+            sample.points[i] = new Vector3(sample.points[i].x, sample.points[i].y, -sample.points[i].z);
+            if (sample.normals != null && sample.normals.Length == sample.points.Length) {
+              sample.normals[i] = new Vector3(sample.normals[i].x, sample.normals[i].y, -sample.normals[i].z);
+            }
+          }
+
+          for (int i = 0; i < tris.Length; i += 3) {
+            var t = tris[i];
+            tris[i] = tris[i + 1];
+            tris[i + 1] = t;
+          }
+        }
+
+        sample.SetTriangles(tris);
         scene.Write(exportPlan.path, sample);
 
         string usdMaterialPath;
 
         // TODO: export multiple materials per mesh.
-        if (!matMap.TryGetValue(smr.sharedMaterial, out usdMaterialPath)) {
+        if (!matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
           Debug.LogError("Invalid material bound for: " + exportPlan.path);
         } else {
           MaterialSample.Bind(scene, exportPlan.path, usdMaterialPath);
         }
       } else {
-        var sample = new XformSample();
         sample.transform = GetLocalTransformMatrix(go.transform);
-
-        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
-        // basis is required. There are shortcuts, but this is fully general.
-        sample.ConvertTransform();
-
         scene.Write(exportPlan.path, sample);
       }
-
-      // On all other frames, we just export the mesh transform data.
-      // TODO(jcowles): cant currently do this because the USD prim typeName is overwritten.
-      //ExportXform(scene, go, exportPlan, unvarying: false);
-    }
-
-    static void ExportMesh(Scene scene,
-                           GameObject go,
-                           ExportPlan exportPlan,
-                           Dictionary<Material, string> matMap) {
-      MeshFilter mf = go.GetComponent<MeshFilter>();
-      Mesh mesh = mf.sharedMesh;
-      bool unvarying = scene.Time == null;
-
-      if (unvarying) {
-        // Only export the mesh topology on the first frame.
-        var sample = (MeshSample)exportPlan.sample;
-        sample.transform = GetLocalTransformMatrix(go.transform);
-
-        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
-        // basis is required. There are shortcuts, but this is fully general.
-        //sample.ConvertTransform();
-
-        sample.normals = mesh.normals;
-        sample.points = mesh.vertices;
-        sample.tangents = mesh.tangents;
-        sample.extent = mesh.bounds;
-        sample.colors = mesh.colors;
-        if (sample.colors != null && sample.colors.Length != sample.points.Length) {
-          sample.colors = null;
-        }
-
-        // Set face vertex counts and indices.
-        sample.SetTriangles(mesh.triangles);
-
-        scene.Write(exportPlan.path, sample);
-
-        var mr = go.GetComponent<MeshRenderer>();
-        string usdMaterialPath;
-        if (!matMap.TryGetValue(mr.sharedMaterial, out usdMaterialPath)) {
-          Debug.LogError("Invalid material bound for: " + exportPlan.path);
-        } else {
-          MaterialSample.Bind(scene, exportPlan.path, usdMaterialPath);
-        }
-      } else {
-        var sample = new XformSample();
-        sample.transform = GetLocalTransformMatrix(go.transform);
-
-        // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
-        // basis is required. There are shortcuts, but this is fully general.
-        sample.ConvertTransform();
-
-        scene.Write(exportPlan.path, sample);
-      }
-
-      // On all other frames, we just export the mesh transform data.
-      // TODO(jcowles): cant currently do this because the USD prim typeName is overwritten.
-      //ExportXform(scene, go, exportPlan, unvarying: false);
     }
 
     static void ExportCamera(Scene scene,
@@ -477,7 +468,22 @@ namespace USD.NET.Examples {
                            Dictionary<Material, string> matMap) {
       CameraSample sample = (CameraSample)exportPlan.sample;
       Camera camera = go.GetComponent<Camera>();
-      sample.CopyFromCamera(camera);
+      bool fastConvert = exportPlan.convertHandedness == BasisTransformation.FastAndDangerous;
+
+      // If doing a fast conversion, do not let the constructor do the change of basis for us.
+      sample.CopyFromCamera(camera, convertTransformToUsd: !fastConvert);
+
+      if (fastConvert) {
+        // Partial change of basis.
+        var basisChange = UnityEngine.Matrix4x4.identity;
+        // Invert the forward vector.
+        basisChange[2, 2] = -1;
+        // Full change of basis would be b*t*b-1, but here we're placing only a single inversion
+        // at the root of the hierarchy, so all we need to do is get the camera into the same
+        // space.
+        sample.transform = basisChange * sample.transform;
+      }
+
       scene.Write(exportPlan.path, sample);
     }
 
@@ -486,18 +492,42 @@ namespace USD.NET.Examples {
                            ExportPlan exportPlan,
                            Dictionary<Material, string> matMap) {
       XformSample sample = (XformSample)exportPlan.sample;
+      var localRot = go.transform.localRotation;
+      var localScale = go.transform.localScale;
+      var path = new pxr.SdfPath(exportPlan.path);
+      bool fastConvert = exportPlan.convertHandedness == BasisTransformation.FastAndDangerous;
+
+      // If exporting for Z-Up, rotate the world.
+      if (path.IsRootPrimPath()) {
+        float invert = fastConvert ? -1 : 1;
+        if (scene.UpAxis == Scene.UpAxes.Z) {
+          go.transform.transform.localRotation = localRot * Quaternion.AngleAxis(invert * 90, Vector3.right);
+        }
+      }
+
       sample.transform = GetLocalTransformMatrix(go.transform);
 
       // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
       // basis is required. There are shortcuts, but this is fully general.
-      var path = new pxr.SdfPath(exportPlan.path);
-      sample.ConvertTransform();
-      if (false && path.IsRootPrimPath()) {
-        Matrix4x4 m = sample.transform;
-        m[0,0] *= -1;
+      //
+      // Here we can either put a partial conversion at the root (fast & dangerous) or convert the
+      // entire hierarchy, along with the points, normals and triangle winding. The benefit of the
+      // full conversion is that there are no negative scales left in the hierarchy.
+      //
+      if (fastConvert && path.IsRootPrimPath()) {
+        // Partial change of basis.
         var basisChange = UnityEngine.Matrix4x4.identity;
+        // Invert the forward vector.
         basisChange[2, 2] = -1;
-        sample.transform = m * basisChange;
+        sample.transform = basisChange * sample.transform;
+      } else if (!fastConvert) {
+        // Full change of basis.
+        sample.ConvertTransform();
+      }
+
+      if (path.IsRootPrimPath()) {
+        go.transform.localRotation = localRot;
+        go.transform.localScale = localScale;
       }
 
       scene.Write(exportPlan.path, sample);
@@ -505,97 +535,6 @@ namespace USD.NET.Examples {
 
     static Matrix4x4 GetLocalTransformMatrix(Transform tr) {
       return Matrix4x4.TRS(tr.localPosition, tr.localRotation, tr.localScale);
-    }
-
-    // ------------------------------------------------------------------------------------------ //
-    // General Export Helpers.
-    // ------------------------------------------------------------------------------------------ //
-
-    // Copy mesh data to Unity and assign mesh with material.
-    void BuildMesh(USD.NET.Unity.MeshSample usdMesh, GameObject go) {
-      var mf = go.AddComponent<MeshFilter>();
-      var mr = go.AddComponent<MeshRenderer>();
-      var unityMesh = new UnityEngine.Mesh();
-      Material mat = null;// = Material.Instantiate(m_material);
-
-      unityMesh.vertices = usdMesh.points;
-
-      // Triangulate n-gons.
-      // For best performance, triangulate off-line and skip conversion.
-      var indices = USD.NET.Unity.UnityTypeConverter.ToVtArray(usdMesh.faceVertexIndices);
-      var counts = USD.NET.Unity.UnityTypeConverter.ToVtArray(usdMesh.faceVertexCounts);
-      pxr.UsdGeomMesh.Triangulate(indices, counts);
-      USD.NET.Unity.UnityTypeConverter.FromVtArray(indices, ref usdMesh.faceVertexIndices);
-
-      if (usdMesh.orientation == Orientation.LeftHanded) {
-        // USD is right-handed, so the mesh needs to be flipped.
-        // Unity is left-handed, but that doesn't matter here.
-        for (int i = 0; i < usdMesh.faceVertexIndices.Length; i += 3) {
-          int tmp = usdMesh.faceVertexIndices[i];
-          usdMesh.faceVertexIndices[i] = usdMesh.faceVertexIndices[i + 1];
-          usdMesh.faceVertexIndices[i + 1] = tmp;
-        }
-      }
-
-      unityMesh.triangles = usdMesh.faceVertexIndices;
-
-      if (usdMesh.extent.size.x > 0 || usdMesh.extent.size.y > 0 || usdMesh.extent.size.z > 0) {
-        unityMesh.bounds = usdMesh.extent;
-      } else {
-        unityMesh.RecalculateBounds();
-      }
-
-      if (usdMesh.normals != null) {
-        unityMesh.normals = usdMesh.normals;
-      } else {
-        unityMesh.RecalculateNormals();
-      }
-
-      if (usdMesh.tangents != null) {
-        unityMesh.tangents = usdMesh.tangents;
-      } else {
-        unityMesh.RecalculateTangents();
-      }
-
-      if (usdMesh.colors != null) {
-        // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
-        // For best performance, convert color space to linear off-line and skip conversion.
-
-        if (usdMesh.colors.Length == 1) {
-          // Constant color can just be set on the material.
-          mat.color = usdMesh.colors[0].gamma;
-        } else if (usdMesh.colors.Length == usdMesh.points.Length) {
-          // Vertex colors map on to verts.
-          // TODO: move the conversion to C++ and use the color management API.
-          for (int i = 0; i < usdMesh.colors.Length; i++) {
-            usdMesh.colors[i] = usdMesh.colors[i].gamma;
-          }
-
-          unityMesh.colors = usdMesh.colors;
-        } else {
-          // FaceVarying and uniform both require breaking up the mesh and are not yet handled in
-          // this example.
-          Debug.LogWarning("Uniform (color per face) and FaceVarying (color per vert per face) "
-                         + "display color not supported in this example");
-        }
-      }
-
-      // As in Unity, UVs are a dynamic type which can be vec2, vec3, or vec4.
-      if (usdMesh.uv != null) {
-        Type uvType = usdMesh.uv.GetType();
-        if (uvType == typeof(Vector2[])) {
-          unityMesh.SetUVs(0, ((Vector2[])usdMesh.uv).ToList());
-        } else if (uvType == typeof(Vector3[])) {
-          unityMesh.SetUVs(0, ((Vector3[])usdMesh.uv).ToList());
-        } else if (uvType == typeof(Vector4[])) {
-          unityMesh.SetUVs(0, ((Vector4[])usdMesh.uv).ToList());
-        } else {
-          throw new Exception("Unexpected UV type: " + usdMesh.uv.GetType());
-        }
-      }
-
-      mr.material = mat;
-      mf.mesh = unityMesh;
     }
   }
 }
