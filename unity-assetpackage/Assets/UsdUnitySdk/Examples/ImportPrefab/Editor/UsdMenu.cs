@@ -77,7 +77,12 @@ public class UsdMenu : MonoBehaviour {
         }
       }
 
-      USD.NET.Examples.ExportMeshExample.Export(go, scene);
+      try {
+        USD.NET.Examples.ExportMeshExample.Export(go, scene);
+      } catch (System.Exception ex) {
+        Debug.LogException(ex);
+        continue;
+      }
     }
 
     if (scene != null) {
