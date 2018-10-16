@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -346,7 +346,6 @@ namespace USD.NET.Examples {
       material.surface.SetConnectedPath(shaderPath, "outputs:surface");
 
       scene.Write(usdMaterialPath, material);
-
       if (false) {
         var shader = new StandardShaderSample();
         shader.id = new pxr.TfToken("Unity.Standard");
@@ -354,6 +353,33 @@ namespace USD.NET.Examples {
         scene.Write(shaderPath, shader);
       } else {
         var shader = new PreviewSurfaceSample();
+        var texPath = /*TODO: this should be explicit*/
+              System.IO.Path.GetDirectoryName(scene.Stage.GetRootLayer().GetIdentifier());
+
+        // HDRenderPipeline/Lit
+        if (mat.shader.name == "Standard (Specular setup)") {
+          StandardShaderIo.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);
+          scene.Write(shaderPath, shader);
+          return;
+        }
+        if (mat.shader.name == "Standard (Roughness setup)") {
+          StandardShaderIo.ExportStandardRoughness(scene, shaderPath, mat, shader, texPath);
+          scene.Write(shaderPath, shader);
+          return;
+        }
+
+        if (mat.shader.name == "Standard") {
+          StandardShaderIo.ExportStandard(scene, shaderPath, mat, shader, texPath);
+          scene.Write(shaderPath, shader);
+          return;
+        }
+
+        if (mat.shader.name == "HDRenderPipeline/Lit") {
+          HdrpShaderIo.ExportLit(scene, shaderPath, mat, shader, texPath);
+          scene.Write(shaderPath, shader);
+          return;
+        }
+
         Color c;
 
         if (mat.HasProperty("_Color")) {
