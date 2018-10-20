@@ -49,3 +49,7 @@ packages.config
 
 # OSX
 .DS_Store
+
+unity-assetpackage/Assets/Tmp/
+
+unity-assetpackage/Assets/Tmp\.meta
