@@ -137,8 +137,8 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeOutput_t GetOutputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeOutput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeOutput_t(UsdCsPINVOKE.UsdShadeShader_GetOutputs(swigCPtr), true);
+  public UsdShadeOutputVector GetOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeShader_GetOutputs(swigCPtr), true);
     return ret;
   }
 
@@ -154,8 +154,8 @@ public class UsdShadeShader : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeInput_t GetInputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeInput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeInput_t(UsdCsPINVOKE.UsdShadeShader_GetInputs(swigCPtr), true);
+  public UsdShadeInputVector GetInputs() {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdShadeShader_GetInputs(swigCPtr), true);
     return ret;
   }
 

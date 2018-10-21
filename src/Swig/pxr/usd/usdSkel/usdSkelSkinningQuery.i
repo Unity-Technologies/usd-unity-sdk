@@ -15,6 +15,7 @@
 %module UsdSkelSkinningQuery
 %{
 #include "pxr/usd/usdSkel/skinningQuery.h"
+#include "pxr/base/vt/array.h"
 %}
 
 // TODO: Need type AnimMapperRefPtr.

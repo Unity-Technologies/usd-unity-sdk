@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class UsdShadeConnectableAPI : global::System.IDisposable {
+public class UsdShadeConnectableAPI : UsdAPISchemaBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal UsdShadeConnectableAPI(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal UsdShadeConnectableAPI(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdShadeConnectableAPI_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -51,12 +50,12 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
+  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
-  public static TfTokenVector GetSchemaAttributeNames() {
+  public new static TfTokenVector GetSchemaAttributeNames() {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdShadeConnectableAPI_GetSchemaAttributeNames__SWIG_1(), false);
     return ret;
   }
@@ -355,8 +354,8 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeOutput_t GetOutputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeOutput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeOutput_t(UsdCsPINVOKE.UsdShadeConnectableAPI_GetOutputs(swigCPtr), true);
+  public UsdShadeOutputVector GetOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeConnectableAPI_GetOutputs(swigCPtr), true);
     return ret;
   }
 
@@ -372,8 +371,8 @@ public class UsdShadeConnectableAPI : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeInput_t GetInputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeInput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeInput_t(UsdCsPINVOKE.UsdShadeConnectableAPI_GetInputs(swigCPtr), true);
+  public UsdShadeInputVector GetInputs() {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdShadeConnectableAPI_GetInputs(swigCPtr), true);
     return ret;
   }
 

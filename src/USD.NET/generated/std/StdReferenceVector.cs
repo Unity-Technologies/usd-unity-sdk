@@ -11,7 +11,7 @@
 namespace pxr {
 
 public class StdReferenceVector : global::System.IDisposable, global::System.Collections.IEnumerable
-    , global::System.Collections.Generic.IEnumerable<SWIGTYPE_p_SdfReference>
+    , global::System.Collections.Generic.IEnumerable<SdfReference>
  {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
@@ -45,7 +45,7 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
   public StdReferenceVector(global::System.Collections.ICollection c) : this() {
     if (c == null)
       throw new global::System.ArgumentNullException("c");
-    foreach (SWIGTYPE_p_SdfReference element in c) {
+    foreach (SdfReference element in c) {
       this.Add(element);
     }
   }
@@ -62,7 +62,7 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
     }
   }
 
-  public SWIGTYPE_p_SdfReference this[int index]  {
+  public SdfReference this[int index]  {
     get {
       return getitem(index);
     }
@@ -94,17 +94,17 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
     }
   }
 
-  public void CopyTo(SWIGTYPE_p_SdfReference[] array)
+  public void CopyTo(SdfReference[] array)
   {
     CopyTo(0, array, 0, this.Count);
   }
 
-  public void CopyTo(SWIGTYPE_p_SdfReference[] array, int arrayIndex)
+  public void CopyTo(SdfReference[] array, int arrayIndex)
   {
     CopyTo(0, array, arrayIndex, this.Count);
   }
 
-  public void CopyTo(int index, SWIGTYPE_p_SdfReference[] array, int arrayIndex, int count)
+  public void CopyTo(int index, SdfReference[] array, int arrayIndex, int count)
   {
     if (array == null)
       throw new global::System.ArgumentNullException("array");
@@ -122,7 +122,7 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
       array.SetValue(getitemcopy(index+i), arrayIndex+i);
   }
 
-  global::System.Collections.Generic.IEnumerator<SWIGTYPE_p_SdfReference> global::System.Collections.Generic.IEnumerable<SWIGTYPE_p_SdfReference>.GetEnumerator() {
+  global::System.Collections.Generic.IEnumerator<SdfReference> global::System.Collections.Generic.IEnumerable<SdfReference>.GetEnumerator() {
     return new StdReferenceVectorEnumerator(this);
   }
 
@@ -140,7 +140,7 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
   /// collection but not when one of the elements of the collection is modified as it is a bit
   /// tricky to detect unmanaged code that modifies the collection under our feet.
   public sealed class StdReferenceVectorEnumerator : global::System.Collections.IEnumerator
-    , global::System.Collections.Generic.IEnumerator<SWIGTYPE_p_SdfReference>
+    , global::System.Collections.Generic.IEnumerator<SdfReference>
   {
     private StdReferenceVector collectionRef;
     private int currentIndex;
@@ -155,7 +155,7 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
     }
 
     // Type-safe iterator Current
-    public SWIGTYPE_p_SdfReference Current {
+    public SdfReference Current {
       get {
         if (currentIndex == -1)
           throw new global::System.InvalidOperationException("Enumeration not started.");
@@ -163,7 +163,7 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
           throw new global::System.InvalidOperationException("Enumeration finished.");
         if (currentObject == null)
           throw new global::System.InvalidOperationException("Collection modified.");
-        return (SWIGTYPE_p_SdfReference)currentObject;
+        return (SdfReference)currentObject;
       }
     }
 
@@ -204,8 +204,8 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
     UsdCsPINVOKE.StdReferenceVector_Clear(swigCPtr);
   }
 
-  public void Add(SWIGTYPE_p_SdfReference x) {
-    UsdCsPINVOKE.StdReferenceVector_Add(swigCPtr, SWIGTYPE_p_SdfReference.getCPtr(x));
+  public void Add(SdfReference x) {
+    UsdCsPINVOKE.StdReferenceVector_Add(swigCPtr, SdfReference.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -234,20 +234,20 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  private SWIGTYPE_p_SdfReference getitemcopy(int index) {
-    SWIGTYPE_p_SdfReference ret = new SWIGTYPE_p_SdfReference(UsdCsPINVOKE.StdReferenceVector_getitemcopy(swigCPtr, index), true);
+  private SdfReference getitemcopy(int index) {
+    SdfReference ret = new SdfReference(UsdCsPINVOKE.StdReferenceVector_getitemcopy(swigCPtr, index), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  private SWIGTYPE_p_SdfReference getitem(int index) {
-    SWIGTYPE_p_SdfReference ret = new SWIGTYPE_p_SdfReference(UsdCsPINVOKE.StdReferenceVector_getitem(swigCPtr, index), false);
+  private SdfReference getitem(int index) {
+    SdfReference ret = new SdfReference(UsdCsPINVOKE.StdReferenceVector_getitem(swigCPtr, index), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  private void setitem(int index, SWIGTYPE_p_SdfReference val) {
-    UsdCsPINVOKE.StdReferenceVector_setitem(swigCPtr, index, SWIGTYPE_p_SdfReference.getCPtr(val));
+  private void setitem(int index, SdfReference val) {
+    UsdCsPINVOKE.StdReferenceVector_setitem(swigCPtr, index, SdfReference.getCPtr(val));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -263,8 +263,8 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
     return ret;
   }
 
-  public void Insert(int index, SWIGTYPE_p_SdfReference x) {
-    UsdCsPINVOKE.StdReferenceVector_Insert(swigCPtr, index, SWIGTYPE_p_SdfReference.getCPtr(x));
+  public void Insert(int index, SdfReference x) {
+    UsdCsPINVOKE.StdReferenceVector_Insert(swigCPtr, index, SdfReference.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -283,8 +283,8 @@ public class StdReferenceVector : global::System.IDisposable, global::System.Col
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static StdReferenceVector Repeat(SWIGTYPE_p_SdfReference value, int count) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.StdReferenceVector_Repeat(SWIGTYPE_p_SdfReference.getCPtr(value), count);
+  public static StdReferenceVector Repeat(SdfReference value, int count) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.StdReferenceVector_Repeat(SdfReference.getCPtr(value), count);
     StdReferenceVector ret = (cPtr == global::System.IntPtr.Zero) ? null : new StdReferenceVector(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;

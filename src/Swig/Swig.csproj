@@ -120,6 +120,7 @@
     <Content Include="pxr\usd\kind\kindRegistry.i" />
     <Content Include="pxr\usd\kind\kind.i" />
     <Content Include="pxr\usd\ndr\ndr.i" />
+    <Content Include="pxr\usd\sdf\sdfReference.i" />
     <Content Include="pxr\usd\sdr\declare.i" />
     <Content Include="pxr\usd\ndr\ndrDeclare.i" />
     <Content Include="pxr\usd\ndr\ndrDiscoveryPlugin.i" />
@@ -284,6 +285,10 @@
     <Content Include="pxr\usd\usdVol\fieldBase.i" />
     <Content Include="pxr\usd\usdVol\openVDBAsset.i" />
     <Content Include="pxr\usd\usdVol\volume.i" />
+    <Content Include="pxr\usd\usd\usdApiSchemaBase.i" />
+    <Content Include="pxr\usd\usd\usdAttributeQuery.i" />
+    <Content Include="pxr\usd\usd\usdCollectionAPI.i" />
+    <Content Include="pxr\usd\usd\usdClipsAPI.i" />
     <Content Include="pxr\usd\usd\usdResolveInfo.i" />
     <Content Include="pxr\usd\usd\usdStagePopulationMask.i" />
     <Content Include="pxr\usd\usd\usdStageCache.i" />
@@ -296,7 +301,7 @@
     <Content Include="pxr\usd\usd\usdAttribute.i" />
     <Content Include="pxr\usd\usd\usdProperty.i" />
     <Content Include="pxr\usd\usd\usdMetadataValueMap.i" />
-    <Content Include="pxr\unique_ptr.i" />
+    <Content Include="pxr\usd\usd\usdZipFile.i" />
     <Content Include="scripts\gen.py" />
     <Content Include="scripts\usdLux.py" />
     <Content Include="scripts\usdRi.py" />

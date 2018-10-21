@@ -134,13 +134,13 @@ public class UsdSkelBlendShape : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdSkelInbetweenShape_t GetInbetweens() {
-    SWIGTYPE_p_std__vectorT_UsdSkelInbetweenShape_t ret = new SWIGTYPE_p_std__vectorT_UsdSkelInbetweenShape_t(UsdCsPINVOKE.UsdSkelBlendShape_GetInbetweens(swigCPtr), true);
+  public UsdSkelInbetweenShapeVector GetInbetweens() {
+    UsdSkelInbetweenShapeVector ret = new UsdSkelInbetweenShapeVector(UsdCsPINVOKE.UsdSkelBlendShape_GetInbetweens(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdSkelInbetweenShape_t GetAuthoredInbetweens() {
-    SWIGTYPE_p_std__vectorT_UsdSkelInbetweenShape_t ret = new SWIGTYPE_p_std__vectorT_UsdSkelInbetweenShape_t(UsdCsPINVOKE.UsdSkelBlendShape_GetAuthoredInbetweens(swigCPtr), true);
+  public UsdSkelInbetweenShapeVector GetAuthoredInbetweens() {
+    UsdSkelInbetweenShapeVector ret = new UsdSkelInbetweenShapeVector(UsdCsPINVOKE.UsdSkelBlendShape_GetAuthoredInbetweens(swigCPtr), true);
     return ret;
   }
 

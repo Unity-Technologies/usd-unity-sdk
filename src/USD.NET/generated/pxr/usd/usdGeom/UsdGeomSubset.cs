@@ -174,26 +174,26 @@ public class UsdGeomSubset : UsdTyped {
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdGeomSubset_t GetAllGeomSubsets(UsdGeomImageable geom) {
-    SWIGTYPE_p_std__vectorT_UsdGeomSubset_t ret = new SWIGTYPE_p_std__vectorT_UsdGeomSubset_t(UsdCsPINVOKE.UsdGeomSubset_GetAllGeomSubsets(UsdGeomImageable.getCPtr(geom)), true);
+  public static UsdGeomSubsetVector GetAllGeomSubsets(UsdGeomImageable geom) {
+    UsdGeomSubsetVector ret = new UsdGeomSubsetVector(UsdCsPINVOKE.UsdGeomSubset_GetAllGeomSubsets(UsdGeomImageable.getCPtr(geom)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdGeomSubset_t GetGeomSubsets(UsdGeomImageable geom, TfToken elementType, TfToken familyName) {
-    SWIGTYPE_p_std__vectorT_UsdGeomSubset_t ret = new SWIGTYPE_p_std__vectorT_UsdGeomSubset_t(UsdCsPINVOKE.UsdGeomSubset_GetGeomSubsets__SWIG_0(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(elementType), TfToken.getCPtr(familyName)), true);
+  public static UsdGeomSubsetVector GetGeomSubsets(UsdGeomImageable geom, TfToken elementType, TfToken familyName) {
+    UsdGeomSubsetVector ret = new UsdGeomSubsetVector(UsdCsPINVOKE.UsdGeomSubset_GetGeomSubsets__SWIG_0(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(elementType), TfToken.getCPtr(familyName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdGeomSubset_t GetGeomSubsets(UsdGeomImageable geom, TfToken elementType) {
-    SWIGTYPE_p_std__vectorT_UsdGeomSubset_t ret = new SWIGTYPE_p_std__vectorT_UsdGeomSubset_t(UsdCsPINVOKE.UsdGeomSubset_GetGeomSubsets__SWIG_1(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(elementType)), true);
+  public static UsdGeomSubsetVector GetGeomSubsets(UsdGeomImageable geom, TfToken elementType) {
+    UsdGeomSubsetVector ret = new UsdGeomSubsetVector(UsdCsPINVOKE.UsdGeomSubset_GetGeomSubsets__SWIG_1(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(elementType)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdGeomSubset_t GetGeomSubsets(UsdGeomImageable geom) {
-    SWIGTYPE_p_std__vectorT_UsdGeomSubset_t ret = new SWIGTYPE_p_std__vectorT_UsdGeomSubset_t(UsdCsPINVOKE.UsdGeomSubset_GetGeomSubsets__SWIG_2(UsdGeomImageable.getCPtr(geom)), true);
+  public static UsdGeomSubsetVector GetGeomSubsets(UsdGeomImageable geom) {
+    UsdGeomSubsetVector ret = new UsdGeomSubsetVector(UsdCsPINVOKE.UsdGeomSubset_GetGeomSubsets__SWIG_2(UsdGeomImageable.getCPtr(geom)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -216,20 +216,20 @@ public class UsdGeomSubset : UsdTyped {
     return ret;
   }
 
-  public static VtIntArray GetUnassignedIndices(SWIGTYPE_p_std__vectorT_UsdGeomSubset_t subsets, uint elementCount, UsdTimeCode time) {
-    VtIntArray ret = new VtIntArray(UsdCsPINVOKE.UsdGeomSubset_GetUnassignedIndices__SWIG_0(SWIGTYPE_p_std__vectorT_UsdGeomSubset_t.getCPtr(subsets), elementCount, UsdTimeCode.getCPtr(time)), true);
+  public static VtIntArray GetUnassignedIndices(UsdGeomSubsetVector subsets, uint elementCount, UsdTimeCode time) {
+    VtIntArray ret = new VtIntArray(UsdCsPINVOKE.UsdGeomSubset_GetUnassignedIndices__SWIG_0(UsdGeomSubsetVector.getCPtr(subsets), elementCount, UsdTimeCode.getCPtr(time)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static VtIntArray GetUnassignedIndices(SWIGTYPE_p_std__vectorT_UsdGeomSubset_t subsets, uint elementCount) {
-    VtIntArray ret = new VtIntArray(UsdCsPINVOKE.UsdGeomSubset_GetUnassignedIndices__SWIG_1(SWIGTYPE_p_std__vectorT_UsdGeomSubset_t.getCPtr(subsets), elementCount), true);
+  public static VtIntArray GetUnassignedIndices(UsdGeomSubsetVector subsets, uint elementCount) {
+    VtIntArray ret = new VtIntArray(UsdCsPINVOKE.UsdGeomSubset_GetUnassignedIndices__SWIG_1(UsdGeomSubsetVector.getCPtr(subsets), elementCount), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool ValidateSubsets(SWIGTYPE_p_std__vectorT_UsdGeomSubset_t subsets, uint elementCount, TfToken familyType, /*cstype*/ out string reason) {
-    bool ret = UsdCsPINVOKE.UsdGeomSubset_ValidateSubsets(SWIGTYPE_p_std__vectorT_UsdGeomSubset_t.getCPtr(subsets), elementCount, TfToken.getCPtr(familyType), out reason);
+  public static bool ValidateSubsets(UsdGeomSubsetVector subsets, uint elementCount, TfToken familyType, /*cstype*/ out string reason) {
+    bool ret = UsdCsPINVOKE.UsdGeomSubset_ValidateSubsets(UsdGeomSubsetVector.getCPtr(subsets), elementCount, TfToken.getCPtr(familyType), out reason);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

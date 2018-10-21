@@ -17,6 +17,11 @@
 #include "pxr/usd/usdShade/input.h"
 %}
 
+%include "std_vector.i"
+namespace std {
+  %template(UsdShadeInputVector) vector<UsdShadeInput>;
+}
+
 %apply UsdShadeAttributeType *OUTPUT { UsdShadeAttributeType *sourceType };
 
 %include "pxr/usd/usdShade/input.h"

@@ -257,13 +257,13 @@ public class UsdLuxLight : UsdGeomXformable {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdCollectionAPI GetLightLinkCollectionAPI() {
-    SWIGTYPE_p_UsdCollectionAPI ret = new SWIGTYPE_p_UsdCollectionAPI(UsdCsPINVOKE.UsdLuxLight_GetLightLinkCollectionAPI(swigCPtr), true);
+  public UsdCollectionAPI GetLightLinkCollectionAPI() {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdLuxLight_GetLightLinkCollectionAPI(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_UsdCollectionAPI GetShadowLinkCollectionAPI() {
-    SWIGTYPE_p_UsdCollectionAPI ret = new SWIGTYPE_p_UsdCollectionAPI(UsdCsPINVOKE.UsdLuxLight_GetShadowLinkCollectionAPI(swigCPtr), true);
+  public UsdCollectionAPI GetShadowLinkCollectionAPI() {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdLuxLight_GetShadowLinkCollectionAPI(swigCPtr), true);
     return ret;
   }
 

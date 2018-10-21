@@ -10,12 +10,10 @@
 
 namespace pxr {
 
-public class UsdRiMaterialAPI : global::System.IDisposable {
+public class UsdRiMaterialAPI : UsdAPISchemaBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
 
-  internal UsdRiMaterialAPI(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+  internal UsdRiMaterialAPI(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdRiMaterialAPI_SWIGUpcast(cPtr), cMemoryOwn) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -27,7 +25,7 @@ public class UsdRiMaterialAPI : global::System.IDisposable {
     Dispose();
   }
 
-  public virtual void Dispose() {
+  public override void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -37,6 +35,7 @@ public class UsdRiMaterialAPI : global::System.IDisposable {
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
+      base.Dispose();
     }
   }
 
@@ -51,12 +50,12 @@ public class UsdRiMaterialAPI : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
+  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdRiMaterialAPI_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
-  public static TfTokenVector GetSchemaAttributeNames() {
+  public new static TfTokenVector GetSchemaAttributeNames() {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdRiMaterialAPI_GetSchemaAttributeNames__SWIG_1(), false);
     return ret;
   }
@@ -222,8 +221,8 @@ public class UsdRiMaterialAPI : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeInput_t GetInterfaceInputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeInput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeInput_t(UsdCsPINVOKE.UsdRiMaterialAPI_GetInterfaceInputs(swigCPtr), true);
+  public UsdShadeInputVector GetInterfaceInputs() {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdRiMaterialAPI_GetInterfaceInputs(swigCPtr), true);
     return ret;
   }
 

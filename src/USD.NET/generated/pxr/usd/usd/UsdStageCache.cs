@@ -113,8 +113,8 @@ public class UsdStageCache : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t GetAllStages() {
-    SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t ret = new SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t(UsdCsPINVOKE.UsdStageCache_GetAllStages(swigCPtr), true);
+  public UsdStageRefPtrVector GetAllStages() {
+    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_GetAllStages(swigCPtr), true);
     return ret;
   }
 
@@ -169,26 +169,26 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t FindAllMatching(SdfLayerHandle rootLayer) {
-    SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t ret = new SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_0(swigCPtr, SdfLayerHandle.getCPtr(rootLayer)), true);
+  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer) {
+    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_0(swigCPtr, SdfLayerHandle.getCPtr(rootLayer)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t FindAllMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer) {
-    SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t ret = new SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_1(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer)), true);
+  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer) {
+    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_1(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t FindAllMatching(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext) {
-    SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t ret = new SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext) {
+    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t FindAllMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t ret = new SWIGTYPE_p_std__vectorT_TfRefPtrT_UsdStage_t_t(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_3(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
+    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_3(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

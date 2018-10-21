@@ -72,8 +72,8 @@ public class UsdLuxLightFilter : UsdGeomXformable {
     return ret;
   }
 
-  public SWIGTYPE_p_UsdCollectionAPI GetFilterLinkCollectionAPI() {
-    SWIGTYPE_p_UsdCollectionAPI ret = new SWIGTYPE_p_UsdCollectionAPI(UsdCsPINVOKE.UsdLuxLightFilter_GetFilterLinkCollectionAPI(swigCPtr), true);
+  public UsdCollectionAPI GetFilterLinkCollectionAPI() {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdLuxLightFilter_GetFilterLinkCollectionAPI(swigCPtr), true);
     return ret;
   }
 

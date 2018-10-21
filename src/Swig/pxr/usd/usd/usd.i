@@ -49,6 +49,8 @@ typedef TfRefPtr<UsdStage> UsdStageRefPtr;
 
 %include "usdMetadataValueMap.i"
 %include "usdCommon.i"
+%include "usdApiSchemaBase.i"
+
 %include "usdTimeCode.i"
 %include "usdEditTarget.i"
 %include "usdInterpolation.i"
@@ -65,12 +67,17 @@ typedef TfRefPtr<UsdStage> UsdStageRefPtr;
 %include "usdProperty.i"
 %include "usdRelationship.i"
 %include "usdAttribute.i"
+%include "usdAttributeQuery.i"
 
 %include "usdVariantSets.i"
 %include "usdInherits.i"
 %include "usdReferences.i"
 %include "usdSpecializes.i"
 
+%include "usdClipsAPI.i"
+%include "usdCollectionAPI.i"
 %include "usdSchemaBase.i"
 %include "usdTyped.i"
+
+%include "usdZipFile.i"
 

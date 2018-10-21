@@ -17,4 +17,7 @@
 #include "pxr/usd/usdSkel/binding.h"
 %}
 
+%include "std_vector.i"
+%template(UsdSkelBindingVector) std::vector<UsdSkelBinding>;
+
 %include "pxr/usd/usdSkel/binding.h"

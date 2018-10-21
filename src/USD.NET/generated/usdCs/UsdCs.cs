@@ -2184,20 +2184,20 @@ public class UsdCs {
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions, bool followSymlinks, NdrDiscoveryPluginContext context) {
-    SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t ret = new SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_0(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions), followSymlinks, NdrDiscoveryPluginContext.getCPtr(context)), true);
+  public static NdrNodeDiscoveryResultVector NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions, bool followSymlinks, NdrDiscoveryPluginContext context) {
+    NdrNodeDiscoveryResultVector ret = new NdrNodeDiscoveryResultVector(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_0(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions), followSymlinks, NdrDiscoveryPluginContext.getCPtr(context)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions, bool followSymlinks) {
-    SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t ret = new SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_1(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions), followSymlinks), true);
+  public static NdrNodeDiscoveryResultVector NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions, bool followSymlinks) {
+    NdrNodeDiscoveryResultVector ret = new NdrNodeDiscoveryResultVector(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_1(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions), followSymlinks), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions) {
-    SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t ret = new SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_2(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions)), true);
+  public static NdrNodeDiscoveryResultVector NdrFsHelpersDiscoverNodes(StdStringVector searchPaths, StdStringVector allowedExtensions) {
+    NdrNodeDiscoveryResultVector ret = new NdrNodeDiscoveryResultVector(UsdCsPINVOKE.NdrFsHelpersDiscoverNodes__SWIG_2(StdStringVector.getCPtr(searchPaths), StdStringVector.getCPtr(allowedExtensions)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2838,6 +2838,18 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint hash_value(SdfReference r) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_51(SdfReference.getCPtr(r));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static int SdfFindReferenceByIdentity(StdReferenceVector references, SdfReference referenceId) {
+    int ret = UsdCsPINVOKE.SdfFindReferenceByIdentity(StdReferenceVector.getCPtr(references), SdfReference.getCPtr(referenceId));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static SdfNamespaceEditDetail.Result CombineResult(SdfNamespaceEditDetail.Result lhs, SdfNamespaceEditDetail.Result rhs) {
     SdfNamespaceEditDetail.Result ret = (SdfNamespaceEditDetail.Result)UsdCsPINVOKE.CombineResult((int)lhs, (int)rhs);
     return ret;
@@ -2914,7 +2926,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(PcpLayerStackIdentifier x) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_51(PcpLayerStackIdentifier.getCPtr(x));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_52(PcpLayerStackIdentifier.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3013,13 +3025,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdTimeCode time) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_52(UsdTimeCode.getCPtr(time));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_53(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(Usd_PrimFlagsPredicate p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_53(Usd_PrimFlagsPredicate.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(Usd_PrimFlagsPredicate.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3133,7 +3145,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdObject obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(UsdObject.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(UsdObject.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3161,13 +3173,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdSkelAnimQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(UsdSkelAnimQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(UsdSkelAnimQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(UsdSkelSkeletonQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(UsdSkelSkeletonQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(UsdSkelSkeletonQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3597,38 +3609,38 @@ public class UsdCs {
     return ret;
   }
 
-  public static SWIGTYPE_p_UsdCollectionAPI UsdUtilsAuthorCollection(TfToken collectionName, UsdPrim usdPrim, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude) {
-    SWIGTYPE_p_UsdCollectionAPI ret = new SWIGTYPE_p_UsdCollectionAPI(UsdCsPINVOKE.UsdUtilsAuthorCollection__SWIG_0(TfToken.getCPtr(collectionName), UsdPrim.getCPtr(usdPrim), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude)), true);
+  public static UsdCollectionAPI UsdUtilsAuthorCollection(TfToken collectionName, UsdPrim usdPrim, SdfPathVector pathsToInclude, SdfPathVector pathsToExclude) {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdUtilsAuthorCollection__SWIG_0(TfToken.getCPtr(collectionName), UsdPrim.getCPtr(usdPrim), SdfPathVector.getCPtr(pathsToInclude), SdfPathVector.getCPtr(pathsToExclude)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_UsdCollectionAPI UsdUtilsAuthorCollection(TfToken collectionName, UsdPrim usdPrim, SdfPathVector pathsToInclude) {
-    SWIGTYPE_p_UsdCollectionAPI ret = new SWIGTYPE_p_UsdCollectionAPI(UsdCsPINVOKE.UsdUtilsAuthorCollection__SWIG_1(TfToken.getCPtr(collectionName), UsdPrim.getCPtr(usdPrim), SdfPathVector.getCPtr(pathsToInclude)), true);
+  public static UsdCollectionAPI UsdUtilsAuthorCollection(TfToken collectionName, UsdPrim usdPrim, SdfPathVector pathsToInclude) {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdUtilsAuthorCollection__SWIG_1(TfToken.getCPtr(collectionName), UsdPrim.getCPtr(usdPrim), SdfPathVector.getCPtr(pathsToInclude)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio, uint maxNumExcludesBelowInclude, uint minIncludeExcludeCollectionSize) {
-    SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t ret = new SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_0(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio, maxNumExcludesBelowInclude, minIncludeExcludeCollectionSize), true);
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio, uint maxNumExcludesBelowInclude, uint minIncludeExcludeCollectionSize) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_0(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio, maxNumExcludesBelowInclude, minIncludeExcludeCollectionSize), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio, uint maxNumExcludesBelowInclude) {
-    SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t ret = new SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_1(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio, maxNumExcludesBelowInclude), true);
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio, uint maxNumExcludesBelowInclude) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_1(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio, maxNumExcludesBelowInclude), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio) {
-    SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t ret = new SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_2(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio), true);
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim, double minInclusionRatio) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_2(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim), minInclusionRatio), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim) {
-    SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t ret = new SWIGTYPE_p_std__vectorT_UsdCollectionAPI_t(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_3(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim)), true);
+  public static UsdCollectionAPIVector UsdUtilsCreateCollections(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t assignments, UsdPrim usdPrim) {
+    UsdCollectionAPIVector ret = new UsdCollectionAPIVector(UsdCsPINVOKE.UsdUtilsCreateCollections__SWIG_3(SWIGTYPE_p_std__vectorT_std__pairT_TfToken_std__setT_SdfPath_t_t_t.getCPtr(assignments), UsdPrim.getCPtr(usdPrim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -18,4 +18,6 @@
 #include "pxr/usd/ndr/nodeDiscoveryResult.h"
 %}
 
+%template(NdrNodeDiscoveryResultVector) std::vector<NdrNodeDiscoveryResult>;
+
 %include "pxr/usd/ndr/nodeDiscoveryResult.h"

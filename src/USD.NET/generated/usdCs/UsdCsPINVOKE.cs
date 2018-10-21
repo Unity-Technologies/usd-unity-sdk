@@ -8663,6 +8663,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNode_GetMetadata")]
   public static extern global::System.IntPtr NdrNode_GetMetadata(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_Clear")]
+  public static extern void NdrNodeDiscoveryResultVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_Add")]
+  public static extern void NdrNodeDiscoveryResultVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_size")]
+  public static extern uint NdrNodeDiscoveryResultVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_capacity")]
+  public static extern uint NdrNodeDiscoveryResultVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_reserve")]
+  public static extern void NdrNodeDiscoveryResultVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_NdrNodeDiscoveryResultVector__SWIG_0")]
+  public static extern global::System.IntPtr new_NdrNodeDiscoveryResultVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_NdrNodeDiscoveryResultVector__SWIG_1")]
+  public static extern global::System.IntPtr new_NdrNodeDiscoveryResultVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_NdrNodeDiscoveryResultVector__SWIG_2")]
+  public static extern global::System.IntPtr new_NdrNodeDiscoveryResultVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_getitemcopy")]
+  public static extern global::System.IntPtr NdrNodeDiscoveryResultVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_getitem")]
+  public static extern global::System.IntPtr NdrNodeDiscoveryResultVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_setitem")]
+  public static extern void NdrNodeDiscoveryResultVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_AddRange")]
+  public static extern void NdrNodeDiscoveryResultVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_GetRange")]
+  public static extern global::System.IntPtr NdrNodeDiscoveryResultVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_Insert")]
+  public static extern void NdrNodeDiscoveryResultVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_InsertRange")]
+  public static extern void NdrNodeDiscoveryResultVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_RemoveAt")]
+  public static extern void NdrNodeDiscoveryResultVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_RemoveRange")]
+  public static extern void NdrNodeDiscoveryResultVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_Repeat")]
+  public static extern global::System.IntPtr NdrNodeDiscoveryResultVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_Reverse__SWIG_0")]
+  public static extern void NdrNodeDiscoveryResultVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_Reverse__SWIG_1")]
+  public static extern void NdrNodeDiscoveryResultVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrNodeDiscoveryResultVector_SetRange")]
+  public static extern void NdrNodeDiscoveryResultVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_NdrNodeDiscoveryResultVector")]
+  public static extern void delete_NdrNodeDiscoveryResultVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_NdrNodeDiscoveryResult__SWIG_0")]
   public static extern global::System.IntPtr new_NdrNodeDiscoveryResult__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, string jarg7, string jarg8, string jarg9, global::System.Runtime.InteropServices.HandleRef jarg10, string jarg11);
 
@@ -11261,6 +11327,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfPayload")]
   public static extern void delete_SdfPayload(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfReference__SWIG_0")]
+  public static extern global::System.IntPtr new_SdfReference__SWIG_0(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfReference__SWIG_1")]
+  public static extern global::System.IntPtr new_SdfReference__SWIG_1(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfReference__SWIG_2")]
+  public static extern global::System.IntPtr new_SdfReference__SWIG_2(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfReference__SWIG_3")]
+  public static extern global::System.IntPtr new_SdfReference__SWIG_3(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfReference__SWIG_4")]
+  public static extern global::System.IntPtr new_SdfReference__SWIG_4();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_GetAssetPath")]
+  public static extern string SdfReference_GetAssetPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_SetAssetPath")]
+  public static extern void SdfReference_SetAssetPath(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_GetPrimPath")]
+  public static extern global::System.IntPtr SdfReference_GetPrimPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_SetPrimPath")]
+  public static extern void SdfReference_SetPrimPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_GetLayerOffset")]
+  public static extern global::System.IntPtr SdfReference_GetLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_SetLayerOffset")]
+  public static extern void SdfReference_SetLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_GetCustomData")]
+  public static extern global::System.IntPtr SdfReference_GetCustomData(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_SetCustomData__SWIG_0")]
+  public static extern void SdfReference_SetCustomData__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_SetCustomData__SWIG_1")]
+  public static extern void SdfReference_SetCustomData__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfReference_SwapCustomData")]
+  public static extern void SdfReference_SwapCustomData(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_51")]
+  public static extern uint hash_value__SWIG_51(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfReference_IdentityEqual")]
+  public static extern global::System.IntPtr new_SdfReference_IdentityEqual();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfReference_IdentityEqual")]
+  public static extern void delete_SdfReference_IdentityEqual(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfReference_IdentityLessThan")]
+  public static extern global::System.IntPtr new_SdfReference_IdentityLessThan();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfReference_IdentityLessThan")]
+  public static extern void delete_SdfReference_IdentityLessThan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfReference")]
+  public static extern void delete_SdfReference(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfFindReferenceByIdentity")]
+  public static extern int SdfFindReferenceByIdentity(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfNamespaceEditVector_Clear")]
   public static extern void SdfNamespaceEditVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -12944,8 +13076,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_PcpLayerStackIdentifier")]
   public static extern void delete_PcpLayerStackIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_51")]
-  public static extern uint hash_value__SWIG_51(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_52")]
+  public static extern uint hash_value__SWIG_52(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpIdentifierFormatBaseName")]
   public static extern global::System.IntPtr PcpIdentifierFormatBaseName(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -13427,6 +13559,81 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrepLayerOffset")]
   public static extern global::System.IntPtr UsdPrepLayerOffset(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdAPISchemaBase")]
+  public static extern void delete_UsdAPISchemaBase(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_Clear")]
+  public static extern void UsdTimeCodeVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_Add")]
+  public static extern void UsdTimeCodeVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_size")]
+  public static extern uint UsdTimeCodeVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_capacity")]
+  public static extern uint UsdTimeCodeVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_reserve")]
+  public static extern void UsdTimeCodeVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdTimeCodeVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdTimeCodeVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdTimeCodeVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdTimeCodeVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdTimeCodeVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdTimeCodeVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdTimeCodeVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_getitem")]
+  public static extern global::System.IntPtr UsdTimeCodeVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_setitem")]
+  public static extern void UsdTimeCodeVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_AddRange")]
+  public static extern void UsdTimeCodeVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_GetRange")]
+  public static extern global::System.IntPtr UsdTimeCodeVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_Insert")]
+  public static extern void UsdTimeCodeVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_InsertRange")]
+  public static extern void UsdTimeCodeVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_RemoveAt")]
+  public static extern void UsdTimeCodeVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_RemoveRange")]
+  public static extern void UsdTimeCodeVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_Repeat")]
+  public static extern global::System.IntPtr UsdTimeCodeVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_Reverse__SWIG_0")]
+  public static extern void UsdTimeCodeVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_Reverse__SWIG_1")]
+  public static extern void UsdTimeCodeVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_SetRange")]
+  public static extern void UsdTimeCodeVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdTimeCodeVector")]
+  public static extern void delete_UsdTimeCodeVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdTimeCode__SWIG_0")]
   public static extern global::System.IntPtr new_UsdTimeCode__SWIG_0(double jarg1);
 
@@ -13457,8 +13664,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCode_GetValue")]
   public static extern double UsdTimeCode_GetValue(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_52")]
-  public static extern uint hash_value__SWIG_52(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_53")]
+  public static extern uint hash_value__SWIG_53(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdTimeCode")]
   public static extern void delete_UsdTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -13559,8 +13766,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_Usd_PrimFlagsPredicate_IncludeInstanceProxiesInTraversal")]
   public static extern bool Usd_PrimFlagsPredicate_IncludeInstanceProxiesInTraversal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_53")]
-  public static extern uint hash_value__SWIG_53(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_54")]
+  public static extern uint hash_value__SWIG_54(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_Usd_PrimFlagsPredicate")]
   public static extern void delete_Usd_PrimFlagsPredicate(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -14186,6 +14393,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdStageCacheResultPair")]
   public static extern void delete_UsdStageCacheResultPair(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_Clear")]
+  public static extern void UsdStageRefPtrVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_Add")]
+  public static extern void UsdStageRefPtrVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_size")]
+  public static extern uint UsdStageRefPtrVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_capacity")]
+  public static extern uint UsdStageRefPtrVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_reserve")]
+  public static extern void UsdStageRefPtrVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageRefPtrVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdStageRefPtrVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageRefPtrVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdStageRefPtrVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageRefPtrVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdStageRefPtrVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdStageRefPtrVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_getitem")]
+  public static extern global::System.IntPtr UsdStageRefPtrVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_setitem")]
+  public static extern void UsdStageRefPtrVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_AddRange")]
+  public static extern void UsdStageRefPtrVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_GetRange")]
+  public static extern global::System.IntPtr UsdStageRefPtrVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_Insert")]
+  public static extern void UsdStageRefPtrVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_InsertRange")]
+  public static extern void UsdStageRefPtrVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_RemoveAt")]
+  public static extern void UsdStageRefPtrVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_RemoveRange")]
+  public static extern void UsdStageRefPtrVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_Repeat")]
+  public static extern global::System.IntPtr UsdStageRefPtrVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_Reverse__SWIG_0")]
+  public static extern void UsdStageRefPtrVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_Reverse__SWIG_1")]
+  public static extern void UsdStageRefPtrVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageRefPtrVector_SetRange")]
+  public static extern void UsdStageRefPtrVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdStageRefPtrVector")]
+  public static extern void delete_UsdStageRefPtrVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageCache_Id")]
   public static extern global::System.IntPtr new_UsdStageCache_Id();
 
@@ -14342,8 +14615,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_IsValid")]
   public static extern bool UsdObject_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_54")]
-  public static extern uint hash_value__SWIG_54(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_55")]
+  public static extern uint hash_value__SWIG_55(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_GetStage")]
   public static extern global::System.IntPtr UsdObject_GetStage(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -15362,6 +15635,126 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdAttribute")]
   public static extern void delete_UsdAttribute(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_Clear")]
+  public static extern void UsdAttributeQueryVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_Add")]
+  public static extern void UsdAttributeQueryVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_size")]
+  public static extern uint UsdAttributeQueryVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_capacity")]
+  public static extern uint UsdAttributeQueryVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_reserve")]
+  public static extern void UsdAttributeQueryVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdAttributeQueryVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdAttributeQueryVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdAttributeQueryVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdAttributeQueryVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdAttributeQueryVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdAttributeQueryVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdAttributeQueryVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_getitem")]
+  public static extern global::System.IntPtr UsdAttributeQueryVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_setitem")]
+  public static extern void UsdAttributeQueryVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_AddRange")]
+  public static extern void UsdAttributeQueryVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_GetRange")]
+  public static extern global::System.IntPtr UsdAttributeQueryVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_Insert")]
+  public static extern void UsdAttributeQueryVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_InsertRange")]
+  public static extern void UsdAttributeQueryVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_RemoveAt")]
+  public static extern void UsdAttributeQueryVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_RemoveRange")]
+  public static extern void UsdAttributeQueryVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_Repeat")]
+  public static extern global::System.IntPtr UsdAttributeQueryVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_Reverse__SWIG_0")]
+  public static extern void UsdAttributeQueryVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_Reverse__SWIG_1")]
+  public static extern void UsdAttributeQueryVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQueryVector_SetRange")]
+  public static extern void UsdAttributeQueryVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdAttributeQueryVector")]
+  public static extern void delete_UsdAttributeQueryVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdAttributeQuery__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdAttributeQuery__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdAttributeQuery__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdAttributeQuery__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdAttributeQuery__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdAttributeQuery__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_CreateQueries")]
+  public static extern global::System.IntPtr UsdAttributeQuery_CreateQueries(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_GetAttribute")]
+  public static extern global::System.IntPtr UsdAttributeQuery_GetAttribute(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_IsValid")]
+  public static extern bool UsdAttributeQuery_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_Get__SWIG_2")]
+  public static extern bool UsdAttributeQuery_Get__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_Get__SWIG_3")]
+  public static extern bool UsdAttributeQuery_Get__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_GetTimeSamples")]
+  public static extern bool UsdAttributeQuery_GetTimeSamples(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_GetUnionedTimeSamples")]
+  public static extern bool UsdAttributeQuery_GetUnionedTimeSamples(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_GetUnionedTimeSamplesInInterval")]
+  public static extern bool UsdAttributeQuery_GetUnionedTimeSamplesInInterval(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_GetNumTimeSamples")]
+  public static extern uint UsdAttributeQuery_GetNumTimeSamples(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_GetBracketingTimeSamples")]
+  public static extern bool UsdAttributeQuery_GetBracketingTimeSamples(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, out double jarg3, out double jarg4, out double jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_HasValue")]
+  public static extern bool UsdAttributeQuery_HasValue(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_HasAuthoredValueOpinion")]
+  public static extern bool UsdAttributeQuery_HasAuthoredValueOpinion(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_HasFallbackValue")]
+  public static extern bool UsdAttributeQuery_HasFallbackValue(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttributeQuery_ValueMightBeTimeVarying")]
+  public static extern bool UsdAttributeQuery_ValueMightBeTimeVarying(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdAttributeQuery")]
+  public static extern void delete_UsdAttributeQuery(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdVariantSet_AddVariant__SWIG_0")]
   public static extern bool UsdVariantSet_AddVariant__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
 
@@ -15533,6 +15926,453 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSpecializes")]
   public static extern void delete_UsdSpecializes(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdClipsAPI__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdClipsAPI__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdClipsAPI__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdClipsAPI__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdClipsAPI__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdClipsAPI__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdClipsAPI")]
+  public static extern void delete_UsdClipsAPI(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdClipsAPI_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdClipsAPI_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_Get")]
+  public static extern global::System.IntPtr UsdClipsAPI_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClips")]
+  public static extern bool UsdClipsAPI_GetClips(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClips")]
+  public static extern bool UsdClipsAPI_SetClips(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipSets")]
+  public static extern bool UsdClipsAPI_GetClipSets(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipSets")]
+  public static extern bool UsdClipsAPI_SetClipSets(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipAssetPaths__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipAssetPaths__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipAssetPaths__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipAssetPaths__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipAssetPaths__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipAssetPaths__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipAssetPaths__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipAssetPaths__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipPrimPath__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipPrimPath__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, /*imtype*/ out string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipPrimPath__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipPrimPath__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, /*imtype*/ out string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipPrimPath__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipPrimPath__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipPrimPath__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipPrimPath__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipActive__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipActive__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipActive__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipActive__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipActive__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipActive__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipActive__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipActive__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTimes__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipTimes__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTimes__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipTimes__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTimes__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipTimes__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTimes__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipTimes__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipManifestAssetPath__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipManifestAssetPath__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipManifestAssetPath__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipManifestAssetPath__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipManifestAssetPath__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipManifestAssetPath__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipManifestAssetPath__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipManifestAssetPath__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateAssetPath__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipTemplateAssetPath__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, /*imtype*/ out string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateAssetPath__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipTemplateAssetPath__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, /*imtype*/ out string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateAssetPath__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipTemplateAssetPath__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateAssetPath__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipTemplateAssetPath__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateStride__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipTemplateStride__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateStride__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipTemplateStride__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateActiveOffset__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipTemplateActiveOffset__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateActiveOffset__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipTemplateActiveOffset__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateActiveOffset__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipTemplateActiveOffset__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateActiveOffset__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipTemplateActiveOffset__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateStride__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipTemplateStride__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateStride__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipTemplateStride__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateStartTime__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipTemplateStartTime__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateStartTime__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipTemplateStartTime__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateStartTime__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipTemplateStartTime__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateStartTime__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipTemplateStartTime__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateEndTime__SWIG_0")]
+  public static extern bool UsdClipsAPI_GetClipTemplateEndTime__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_GetClipTemplateEndTime__SWIG_1")]
+  public static extern bool UsdClipsAPI_GetClipTemplateEndTime__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateEndTime__SWIG_0")]
+  public static extern bool UsdClipsAPI_SetClipTemplateEndTime__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SetClipTemplateEndTime__SWIG_1")]
+  public static extern bool UsdClipsAPI_SetClipTemplateEndTime__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_IsAuthoringLegacyClipMetadata")]
+  public static extern bool UsdClipsAPI_IsAuthoringLegacyClipMetadata();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_Clear")]
+  public static extern void UsdObjectVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_Add")]
+  public static extern void UsdObjectVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_size")]
+  public static extern uint UsdObjectVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_capacity")]
+  public static extern uint UsdObjectVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_reserve")]
+  public static extern void UsdObjectVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdObjectVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdObjectVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdObjectVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdObjectVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdObjectVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdObjectVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdObjectVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_getitem")]
+  public static extern global::System.IntPtr UsdObjectVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_setitem")]
+  public static extern void UsdObjectVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_AddRange")]
+  public static extern void UsdObjectVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_GetRange")]
+  public static extern global::System.IntPtr UsdObjectVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_Insert")]
+  public static extern void UsdObjectVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_InsertRange")]
+  public static extern void UsdObjectVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_RemoveAt")]
+  public static extern void UsdObjectVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_RemoveRange")]
+  public static extern void UsdObjectVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_Repeat")]
+  public static extern global::System.IntPtr UsdObjectVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_Reverse__SWIG_0")]
+  public static extern void UsdObjectVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_Reverse__SWIG_1")]
+  public static extern void UsdObjectVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObjectVector_SetRange")]
+  public static extern void UsdObjectVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdObjectVector")]
+  public static extern void delete_UsdObjectVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_Clear")]
+  public static extern void UsdCollectionAPIVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_Add")]
+  public static extern void UsdCollectionAPIVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_size")]
+  public static extern uint UsdCollectionAPIVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_capacity")]
+  public static extern uint UsdCollectionAPIVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_reserve")]
+  public static extern void UsdCollectionAPIVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPIVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdCollectionAPIVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPIVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdCollectionAPIVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPIVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdCollectionAPIVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdCollectionAPIVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_getitem")]
+  public static extern global::System.IntPtr UsdCollectionAPIVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_setitem")]
+  public static extern void UsdCollectionAPIVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_AddRange")]
+  public static extern void UsdCollectionAPIVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_GetRange")]
+  public static extern global::System.IntPtr UsdCollectionAPIVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_Insert")]
+  public static extern void UsdCollectionAPIVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_InsertRange")]
+  public static extern void UsdCollectionAPIVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_RemoveAt")]
+  public static extern void UsdCollectionAPIVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_RemoveRange")]
+  public static extern void UsdCollectionAPIVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_Repeat")]
+  public static extern global::System.IntPtr UsdCollectionAPIVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_Reverse__SWIG_0")]
+  public static extern void UsdCollectionAPIVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_Reverse__SWIG_1")]
+  public static extern void UsdCollectionAPIVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPIVector_SetRange")]
+  public static extern void UsdCollectionAPIVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdCollectionAPIVector")]
+  public static extern void delete_UsdCollectionAPIVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPI__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdCollectionAPI__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPI__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdCollectionAPI__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPI__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdCollectionAPI__SWIG_2();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPI__SWIG_3")]
+  public static extern global::System.IntPtr new_UsdCollectionAPI__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdCollectionAPI")]
+  public static extern void delete_UsdCollectionAPI(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetSchemaAttributeNames__SWIG_0(bool jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetSchemaAttributeNames__SWIG_1(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetSchemaAttributeNames__SWIG_2")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetSchemaAttributeNames__SWIG_2();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetName")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_Get__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_Get__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_Get__SWIG_1")]
+  public static extern global::System.IntPtr UsdCollectionAPI_Get__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_IsSchemaPropertyBaseName")]
+  public static extern bool UsdCollectionAPI_IsSchemaPropertyBaseName(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_IsCollectionAPIPath")]
+  public static extern bool UsdCollectionAPI_IsCollectionAPIPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetExpansionRuleAttr")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetExpansionRuleAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateExpansionRuleAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateExpansionRuleAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateExpansionRuleAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateExpansionRuleAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateExpansionRuleAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateExpansionRuleAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetIncludeRootAttr")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetIncludeRootAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateIncludeRootAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateIncludeRootAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateIncludeRootAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateIncludeRootAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateIncludeRootAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateIncludeRootAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetIncludesRel")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetIncludesRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateIncludesRel")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateIncludesRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetExcludesRel")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetExcludesRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_CreateExcludesRel")]
+  public static extern global::System.IntPtr UsdCollectionAPI_CreateExcludesRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ApplyCollection__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_ApplyCollection__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ApplyCollection__SWIG_1")]
+  public static extern global::System.IntPtr UsdCollectionAPI_ApplyCollection__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetCollection__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetCollection__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetCollection__SWIG_1")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetCollection__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetAllCollections")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetAllCollections(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPI_MembershipQuery")]
+  public static extern global::System.IntPtr new_UsdCollectionAPI_MembershipQuery();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_0")]
+  public static extern bool UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_1")]
+  public static extern bool UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_2")]
+  public static extern bool UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_MembershipQuery_HasExcludes")]
+  public static extern bool UsdCollectionAPI_MembershipQuery_HasExcludes(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdCollectionAPI_MembershipQuery_Hash")]
+  public static extern global::System.IntPtr new_UsdCollectionAPI_MembershipQuery_Hash();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdCollectionAPI_MembershipQuery_Hash")]
+  public static extern void delete_UsdCollectionAPI_MembershipQuery_Hash(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_MembershipQuery_GetHash")]
+  public static extern uint UsdCollectionAPI_MembershipQuery_GetHash(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_MembershipQuery_GetAsPathExpansionRuleMap")]
+  public static extern global::System.IntPtr UsdCollectionAPI_MembershipQuery_GetAsPathExpansionRuleMap(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdCollectionAPI_MembershipQuery")]
+  public static extern void delete_UsdCollectionAPI_MembershipQuery(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetCollectionPath")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetCollectionPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_GetNamedCollectionPath")]
+  public static extern global::System.IntPtr UsdCollectionAPI_GetNamedCollectionPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ComputeMembershipQuery__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_ComputeMembershipQuery__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ComputeMembershipQuery__SWIG_1")]
+  public static extern void UsdCollectionAPI_ComputeMembershipQuery__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_HasNoIncludedPaths")]
+  public static extern bool UsdCollectionAPI_HasNoIncludedPaths(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ComputeIncludedPaths__SWIG_0")]
+  public static extern global::System.IntPtr UsdCollectionAPI_ComputeIncludedPaths__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ComputeIncludedPaths__SWIG_1")]
+  public static extern global::System.IntPtr UsdCollectionAPI_ComputeIncludedPaths__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_IncludePath")]
+  public static extern bool UsdCollectionAPI_IncludePath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ExcludePath")]
+  public static extern bool UsdCollectionAPI_ExcludePath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_Validate")]
+  public static extern bool UsdCollectionAPI_Validate(global::System.Runtime.InteropServices.HandleRef jarg1, /*imtype*/ out string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ResetCollection")]
+  public static extern bool UsdCollectionAPI_ResetCollection(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_BlockCollection")]
+  public static extern bool UsdCollectionAPI_BlockCollection(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_ComputeIncludedObjects")]
+  public static extern global::System.IntPtr UsdCollectionAPI_ComputeIncludedObjects(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSchemaBase_IsConcrete")]
   public static extern bool UsdSchemaBase_IsConcrete(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -15607,6 +16447,66 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTyped_Get")]
   public static extern global::System.IntPtr UsdTyped_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_Open__SWIG_0")]
+  public static extern global::System.IntPtr UsdZipFile_Open__SWIG_0(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_Open__SWIG_1")]
+  public static extern global::System.IntPtr UsdZipFile_Open__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdZipFile")]
+  public static extern global::System.IntPtr new_UsdZipFile();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdZipFile")]
+  public static extern void delete_UsdZipFile(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_dataOffset_set")]
+  public static extern void UsdZipFile_FileInfo_dataOffset_set(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_dataOffset_get")]
+  public static extern uint UsdZipFile_FileInfo_dataOffset_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_size_set")]
+  public static extern void UsdZipFile_FileInfo_size_set(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_size_get")]
+  public static extern uint UsdZipFile_FileInfo_size_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_uncompressedSize_set")]
+  public static extern void UsdZipFile_FileInfo_uncompressedSize_set(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_uncompressedSize_get")]
+  public static extern uint UsdZipFile_FileInfo_uncompressedSize_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_compressionMethod_set")]
+  public static extern void UsdZipFile_FileInfo_compressionMethod_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_compressionMethod_get")]
+  public static extern ushort UsdZipFile_FileInfo_compressionMethod_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdZipFile_FileInfo")]
+  public static extern global::System.IntPtr new_UsdZipFile_FileInfo();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdZipFile_FileInfo")]
+  public static extern void delete_UsdZipFile_FileInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_begin")]
+  public static extern global::System.IntPtr UsdZipFile_begin(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_cbegin")]
+  public static extern global::System.IntPtr UsdZipFile_cbegin(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_end")]
+  public static extern global::System.IntPtr UsdZipFile_end(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_cend")]
+  public static extern global::System.IntPtr UsdZipFile_cend(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_Find")]
+  public static extern global::System.IntPtr UsdZipFile_Find(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_DumpContents")]
+  public static extern void UsdZipFile_DumpContents(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomFaceSetAPI__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomFaceSetAPI__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -16228,6 +17128,72 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomScope_Define")]
   public static extern global::System.IntPtr UsdGeomScope_Define(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_Clear")]
+  public static extern void UsdGeomSubsetVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_Add")]
+  public static extern void UsdGeomSubsetVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_size")]
+  public static extern uint UsdGeomSubsetVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_capacity")]
+  public static extern uint UsdGeomSubsetVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_reserve")]
+  public static extern void UsdGeomSubsetVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomSubsetVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdGeomSubsetVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomSubsetVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdGeomSubsetVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomSubsetVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdGeomSubsetVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdGeomSubsetVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_getitem")]
+  public static extern global::System.IntPtr UsdGeomSubsetVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_setitem")]
+  public static extern void UsdGeomSubsetVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_AddRange")]
+  public static extern void UsdGeomSubsetVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_GetRange")]
+  public static extern global::System.IntPtr UsdGeomSubsetVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_Insert")]
+  public static extern void UsdGeomSubsetVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_InsertRange")]
+  public static extern void UsdGeomSubsetVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_RemoveAt")]
+  public static extern void UsdGeomSubsetVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_RemoveRange")]
+  public static extern void UsdGeomSubsetVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_Repeat")]
+  public static extern global::System.IntPtr UsdGeomSubsetVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_Reverse__SWIG_0")]
+  public static extern void UsdGeomSubsetVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_Reverse__SWIG_1")]
+  public static extern void UsdGeomSubsetVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSubsetVector_SetRange")]
+  public static extern void UsdGeomSubsetVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomSubsetVector")]
+  public static extern void delete_UsdGeomSubsetVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomSubset__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomSubset__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -17356,6 +18322,138 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomLongVector")]
   public static extern void delete_UsdGeomLongVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_Clear")]
+  public static extern void VtMatrix4dArrayVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_Add")]
+  public static extern void VtMatrix4dArrayVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_size")]
+  public static extern uint VtMatrix4dArrayVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_capacity")]
+  public static extern uint VtMatrix4dArrayVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_reserve")]
+  public static extern void VtMatrix4dArrayVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtMatrix4dArrayVector__SWIG_0")]
+  public static extern global::System.IntPtr new_VtMatrix4dArrayVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtMatrix4dArrayVector__SWIG_1")]
+  public static extern global::System.IntPtr new_VtMatrix4dArrayVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtMatrix4dArrayVector__SWIG_2")]
+  public static extern global::System.IntPtr new_VtMatrix4dArrayVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_getitemcopy")]
+  public static extern global::System.IntPtr VtMatrix4dArrayVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_getitem")]
+  public static extern global::System.IntPtr VtMatrix4dArrayVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_setitem")]
+  public static extern void VtMatrix4dArrayVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_AddRange")]
+  public static extern void VtMatrix4dArrayVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_GetRange")]
+  public static extern global::System.IntPtr VtMatrix4dArrayVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_Insert")]
+  public static extern void VtMatrix4dArrayVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_InsertRange")]
+  public static extern void VtMatrix4dArrayVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_RemoveAt")]
+  public static extern void VtMatrix4dArrayVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_RemoveRange")]
+  public static extern void VtMatrix4dArrayVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_Repeat")]
+  public static extern global::System.IntPtr VtMatrix4dArrayVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_Reverse__SWIG_0")]
+  public static extern void VtMatrix4dArrayVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_Reverse__SWIG_1")]
+  public static extern void VtMatrix4dArrayVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtMatrix4dArrayVector_SetRange")]
+  public static extern void VtMatrix4dArrayVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_VtMatrix4dArrayVector")]
+  public static extern void delete_VtMatrix4dArrayVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_Clear")]
+  public static extern void VtVec3fArrayVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_Add")]
+  public static extern void VtVec3fArrayVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_size")]
+  public static extern uint VtVec3fArrayVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_capacity")]
+  public static extern uint VtVec3fArrayVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_reserve")]
+  public static extern void VtVec3fArrayVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtVec3fArrayVector__SWIG_0")]
+  public static extern global::System.IntPtr new_VtVec3fArrayVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtVec3fArrayVector__SWIG_1")]
+  public static extern global::System.IntPtr new_VtVec3fArrayVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_VtVec3fArrayVector__SWIG_2")]
+  public static extern global::System.IntPtr new_VtVec3fArrayVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_getitemcopy")]
+  public static extern global::System.IntPtr VtVec3fArrayVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_getitem")]
+  public static extern global::System.IntPtr VtVec3fArrayVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_setitem")]
+  public static extern void VtVec3fArrayVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_AddRange")]
+  public static extern void VtVec3fArrayVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_GetRange")]
+  public static extern global::System.IntPtr VtVec3fArrayVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_Insert")]
+  public static extern void VtVec3fArrayVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_InsertRange")]
+  public static extern void VtVec3fArrayVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_RemoveAt")]
+  public static extern void VtVec3fArrayVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_RemoveRange")]
+  public static extern void VtVec3fArrayVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_Repeat")]
+  public static extern global::System.IntPtr VtVec3fArrayVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_Reverse__SWIG_0")]
+  public static extern void VtVec3fArrayVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_Reverse__SWIG_1")]
+  public static extern void VtVec3fArrayVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_VtVec3fArrayVector_SetRange")]
+  public static extern void VtVec3fArrayVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_VtVec3fArrayVector")]
+  public static extern void delete_VtVec3fArrayVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomPointInstancer__SWIG_0")]
   public static extern global::System.IntPtr new_UsdGeomPointInstancer__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -19715,6 +20813,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeShaderVector")]
   public static extern void delete_UsdShadeShaderVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_Clear")]
+  public static extern void UsdShadeInputVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_Add")]
+  public static extern void UsdShadeInputVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_size")]
+  public static extern uint UsdShadeInputVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_capacity")]
+  public static extern uint UsdShadeInputVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_reserve")]
+  public static extern void UsdShadeInputVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeInputVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeInputVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeInputVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeInputVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeInputVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdShadeInputVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdShadeInputVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_getitem")]
+  public static extern global::System.IntPtr UsdShadeInputVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_setitem")]
+  public static extern void UsdShadeInputVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_AddRange")]
+  public static extern void UsdShadeInputVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_GetRange")]
+  public static extern global::System.IntPtr UsdShadeInputVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_Insert")]
+  public static extern void UsdShadeInputVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_InsertRange")]
+  public static extern void UsdShadeInputVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_RemoveAt")]
+  public static extern void UsdShadeInputVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_RemoveRange")]
+  public static extern void UsdShadeInputVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_Repeat")]
+  public static extern global::System.IntPtr UsdShadeInputVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_Reverse__SWIG_0")]
+  public static extern void UsdShadeInputVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_Reverse__SWIG_1")]
+  public static extern void UsdShadeInputVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_SetRange")]
+  public static extern void UsdShadeInputVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeInputVector")]
+  public static extern void delete_UsdShadeInputVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeInput__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeInput__SWIG_0();
 
@@ -19864,6 +21028,72 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeInput")]
   public static extern void delete_UsdShadeInput(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_Clear")]
+  public static extern void UsdShadeOutputVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_Add")]
+  public static extern void UsdShadeOutputVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_size")]
+  public static extern uint UsdShadeOutputVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_capacity")]
+  public static extern uint UsdShadeOutputVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_reserve")]
+  public static extern void UsdShadeOutputVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeOutputVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeOutputVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeOutputVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeOutputVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeOutputVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdShadeOutputVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdShadeOutputVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_getitem")]
+  public static extern global::System.IntPtr UsdShadeOutputVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_setitem")]
+  public static extern void UsdShadeOutputVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_AddRange")]
+  public static extern void UsdShadeOutputVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_GetRange")]
+  public static extern global::System.IntPtr UsdShadeOutputVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_Insert")]
+  public static extern void UsdShadeOutputVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_InsertRange")]
+  public static extern void UsdShadeOutputVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_RemoveAt")]
+  public static extern void UsdShadeOutputVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_RemoveRange")]
+  public static extern void UsdShadeOutputVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_Repeat")]
+  public static extern global::System.IntPtr UsdShadeOutputVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_Reverse__SWIG_0")]
+  public static extern void UsdShadeOutputVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_Reverse__SWIG_1")]
+  public static extern void UsdShadeOutputVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeOutputVector_SetRange")]
+  public static extern void UsdShadeOutputVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeOutputVector")]
+  public static extern void delete_UsdShadeOutputVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeOutput__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeOutput__SWIG_0();
@@ -20213,8 +21443,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimQuery_IsValid")]
   public static extern bool UsdSkelAnimQuery_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_55")]
-  public static extern uint hash_value__SWIG_55(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_56")]
+  public static extern uint hash_value__SWIG_56(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimQuery_GetPrim")]
   public static extern global::System.IntPtr UsdSkelAnimQuery_GetPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -20350,6 +21580,72 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelCache")]
   public static extern void delete_UsdSkelCache(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_Clear")]
+  public static extern void UsdSkelInbetweenShapeVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_Add")]
+  public static extern void UsdSkelInbetweenShapeVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_size")]
+  public static extern uint UsdSkelInbetweenShapeVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_capacity")]
+  public static extern uint UsdSkelInbetweenShapeVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_reserve")]
+  public static extern void UsdSkelInbetweenShapeVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelInbetweenShapeVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdSkelInbetweenShapeVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelInbetweenShapeVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdSkelInbetweenShapeVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelInbetweenShapeVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdSkelInbetweenShapeVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdSkelInbetweenShapeVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_getitem")]
+  public static extern global::System.IntPtr UsdSkelInbetweenShapeVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_setitem")]
+  public static extern void UsdSkelInbetweenShapeVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_AddRange")]
+  public static extern void UsdSkelInbetweenShapeVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_GetRange")]
+  public static extern global::System.IntPtr UsdSkelInbetweenShapeVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_Insert")]
+  public static extern void UsdSkelInbetweenShapeVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_InsertRange")]
+  public static extern void UsdSkelInbetweenShapeVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_RemoveAt")]
+  public static extern void UsdSkelInbetweenShapeVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_RemoveRange")]
+  public static extern void UsdSkelInbetweenShapeVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_Repeat")]
+  public static extern global::System.IntPtr UsdSkelInbetweenShapeVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_Reverse__SWIG_0")]
+  public static extern void UsdSkelInbetweenShapeVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_Reverse__SWIG_1")]
+  public static extern void UsdSkelInbetweenShapeVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelInbetweenShapeVector_SetRange")]
+  public static extern void UsdSkelInbetweenShapeVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelInbetweenShapeVector")]
+  public static extern void delete_UsdSkelInbetweenShapeVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelInbetweenShape__SWIG_0")]
   public static extern global::System.IntPtr new_UsdSkelInbetweenShape__SWIG_0();
@@ -20501,8 +21797,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkeletonQuery_IsValid")]
   public static extern bool UsdSkelSkeletonQuery_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_56")]
-  public static extern uint hash_value__SWIG_56(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_57")]
+  public static extern uint hash_value__SWIG_57(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkeletonQuery_GetPrim")]
   public static extern global::System.IntPtr UsdSkelSkeletonQuery_GetPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -20776,6 +22072,72 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBakeSkinning__SWIG_3")]
   public static extern bool UsdSkelBakeSkinning__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_Clear")]
+  public static extern void UsdSkelBindingVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_Add")]
+  public static extern void UsdSkelBindingVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_size")]
+  public static extern uint UsdSkelBindingVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_capacity")]
+  public static extern uint UsdSkelBindingVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_reserve")]
+  public static extern void UsdSkelBindingVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelBindingVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdSkelBindingVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelBindingVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdSkelBindingVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelBindingVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdSkelBindingVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdSkelBindingVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_getitem")]
+  public static extern global::System.IntPtr UsdSkelBindingVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_setitem")]
+  public static extern void UsdSkelBindingVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_AddRange")]
+  public static extern void UsdSkelBindingVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_GetRange")]
+  public static extern global::System.IntPtr UsdSkelBindingVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_Insert")]
+  public static extern void UsdSkelBindingVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_InsertRange")]
+  public static extern void UsdSkelBindingVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_RemoveAt")]
+  public static extern void UsdSkelBindingVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_RemoveRange")]
+  public static extern void UsdSkelBindingVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_Repeat")]
+  public static extern global::System.IntPtr UsdSkelBindingVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_Reverse__SWIG_0")]
+  public static extern void UsdSkelBindingVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_Reverse__SWIG_1")]
+  public static extern void UsdSkelBindingVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingVector_SetRange")]
+  public static extern void UsdSkelBindingVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelBindingVector")]
+  public static extern void delete_UsdSkelBindingVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelBinding__SWIG_0")]
   public static extern global::System.IntPtr new_UsdSkelBinding__SWIG_0();
@@ -24590,6 +25952,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdrShaderProperty_SWIGUpcast")]
   public static extern global::System.IntPtr SdrShaderProperty_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAPISchemaBase_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdAPISchemaBase_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_Usd_PrimFlagsConjunction_SWIGUpcast")]
   public static extern global::System.IntPtr Usd_PrimFlagsConjunction_SWIGUpcast(global::System.IntPtr jarg1);
 
@@ -24608,11 +25973,20 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAttribute_SWIGUpcast")]
   public static extern global::System.IntPtr UsdAttribute_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdClipsAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdClipsAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdCollectionAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdCollectionAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTyped_SWIGUpcast")]
   public static extern global::System.IntPtr UsdTyped_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomFaceSetAPI_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomFaceSetAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMotionAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdGeomMotionAPI_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomCollectionAPI_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomCollectionAPI_SWIGUpcast(global::System.IntPtr jarg1);
@@ -24677,6 +26051,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomMesh_SWIGUpcast")]
   public static extern global::System.IntPtr UsdGeomMesh_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomModelAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdGeomModelAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeNodeGraph_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeNodeGraph_SWIGUpcast(global::System.IntPtr jarg1);
 
@@ -24685,6 +26062,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShader_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeShader_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdShadeConnectableAPI_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShape_SWIGUpcast")]
   public static extern global::System.IntPtr UsdSkelBlendShape_SWIGUpcast(global::System.IntPtr jarg1);
@@ -24695,14 +26075,35 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkeleton_SWIGUpcast")]
   public static extern global::System.IntPtr UsdSkelSkeleton_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBindingAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdSkelBindingAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdLuxLightFilter_SWIGUpcast")]
   public static extern global::System.IntPtr UsdLuxLightFilter_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdLuxLightPortal_SWIGUpcast")]
   public static extern global::System.IntPtr UsdLuxLightPortal_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdLuxListAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdLuxListAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdLuxShadowAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdLuxShadowAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdLuxShapingAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdLuxShapingAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdLuxLight_SWIGUpcast")]
   public static extern global::System.IntPtr UsdLuxLight_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiLightFilterAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdRiLightFilterAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiLightPortalAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdRiLightPortalAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiMaterialAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdRiMaterialAPI_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiPxrAovLight_SWIGUpcast")]
   public static extern global::System.IntPtr UsdRiPxrAovLight_SWIGUpcast(global::System.IntPtr jarg1);
@@ -24736,6 +26137,18 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiRslShader_SWIGUpcast")]
   public static extern global::System.IntPtr UsdRiRslShader_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiSplineAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdRiSplineAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiStatementsAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdRiStatementsAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiTextureAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdRiTextureAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdRiLightAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdRiLightAPI_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdVolVolume_SWIGUpcast")]
   public static extern global::System.IntPtr UsdVolVolume_SWIGUpcast(global::System.IntPtr jarg1);

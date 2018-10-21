@@ -40,8 +40,8 @@ public class NdrDiscoveryPlugin : global::System.IDisposable {
     }
   }
 
-  public virtual SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t DiscoverNodes(NdrDiscoveryPluginContext arg0) {
-    SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t ret = new SWIGTYPE_p_std__vectorT_NdrNodeDiscoveryResult_t(UsdCsPINVOKE.NdrDiscoveryPlugin_DiscoverNodes(swigCPtr, NdrDiscoveryPluginContext.getCPtr(arg0)), true);
+  public virtual NdrNodeDiscoveryResultVector DiscoverNodes(NdrDiscoveryPluginContext arg0) {
+    NdrNodeDiscoveryResultVector ret = new NdrNodeDiscoveryResultVector(UsdCsPINVOKE.NdrDiscoveryPlugin_DiscoverNodes(swigCPtr, NdrDiscoveryPluginContext.getCPtr(arg0)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

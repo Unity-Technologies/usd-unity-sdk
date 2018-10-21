@@ -93,8 +93,8 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeOutput_t GetOutputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeOutput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeOutput_t(UsdCsPINVOKE.UsdShadeNodeGraph_GetOutputs(swigCPtr), true);
+  public UsdShadeOutputVector GetOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetOutputs(swigCPtr), true);
     return ret;
   }
 
@@ -116,8 +116,8 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeInput_t GetInputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeInput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeInput_t(UsdCsPINVOKE.UsdShadeNodeGraph_GetInputs(swigCPtr), true);
+  public UsdShadeInputVector GetInputs() {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetInputs(swigCPtr), true);
     return ret;
   }
 
@@ -191,8 +191,8 @@ public class UsdShadeNodeGraph : UsdTyped {
   
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdShadeInput_t GetInterfaceInputs() {
-    SWIGTYPE_p_std__vectorT_UsdShadeInput_t ret = new SWIGTYPE_p_std__vectorT_UsdShadeInput_t(UsdCsPINVOKE.UsdShadeNodeGraph_GetInterfaceInputs(swigCPtr), true);
+  public UsdShadeInputVector GetInterfaceInputs() {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetInterfaceInputs(swigCPtr), true);
     return ret;
   }
 

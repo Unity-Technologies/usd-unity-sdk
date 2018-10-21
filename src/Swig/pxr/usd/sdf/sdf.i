@@ -30,6 +30,7 @@
 
 %include "sdfLayerOffset.i"
 %include "sdfPayload.i"
+%include "sdfReference.i"
 %include "sdfNamespaceEdit.i"
 
 //%include "sdfAttributeSpecHandle.i"
