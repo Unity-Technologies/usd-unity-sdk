@@ -41,7 +41,7 @@ namespace USD.NET.Unity {
       throw new System.Exception("Not supported at run-time");
 #endif
       var uvReader = new PrimvarReaderSample<Vector2>();
-      uvReader.varname.defaultValue = new TfToken("uv");
+      uvReader.varname.defaultValue = new TfToken("st");
       scene.Write(usdShaderPath + "/uvReader", uvReader);
       var tex = new USD.NET.Unity.TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
       scene.Write(usdShaderPath + "/" + textureName, tex);
