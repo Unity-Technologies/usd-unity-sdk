@@ -47,7 +47,8 @@ namespace USD.NET.Unity {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
         } catch (System.Exception ex) {
-          Debug.LogError("Error processing xform <" + pathAndSample.path + ">: " + ex.Message);
+          Debug.LogException(
+              new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
         }
       }
 
@@ -58,7 +59,8 @@ namespace USD.NET.Unity {
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
           MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
         } catch (System.Exception ex) {
-          Debug.LogError("Error processing mesh <" + pathAndSample.path + ">: " + ex.Message);
+          Debug.LogException(
+              new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
         }
       }
 
@@ -69,7 +71,8 @@ namespace USD.NET.Unity {
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
           CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
         } catch (System.Exception ex) {
-          Debug.LogError("Error processing cube <" + pathAndSample.path + ">: " + ex.Message);
+          Debug.LogException(
+              new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
         }
       }
 
@@ -80,7 +83,8 @@ namespace USD.NET.Unity {
           // Xform is included in BuildCamera.
           CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
         } catch (System.Exception ex) {
-          Debug.LogError("Error processing cube <" + pathAndSample.path + ">: " + ex.Message);
+          Debug.LogException(
+              new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
         }
       }
 
@@ -94,7 +98,8 @@ namespace USD.NET.Unity {
               GameObject go = primMap[pathAndSample.path];
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
-              Debug.LogError("Error processing master xform <" + masterRootPath + ">: " + ex.Message);
+              Debug.LogException(
+                  new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
             }
           }
 
@@ -105,7 +110,8 @@ namespace USD.NET.Unity {
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
-              Debug.LogError("Error processing master mesh <" + masterRootPath + ">: " + ex.Message);
+              Debug.LogException(
+                  new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
             }
           }
 
@@ -116,7 +122,8 @@ namespace USD.NET.Unity {
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
-              Debug.LogError("Error processing master cube <" + masterRootPath + ">: " + ex.Message);
+              Debug.LogException(
+                  new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
             }
           }
 
@@ -127,11 +134,13 @@ namespace USD.NET.Unity {
               // Xform is included in BuildCamera.
               CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
-              Debug.LogError("Error processing master camera <" + masterRootPath + ">: " + ex.Message);
+              Debug.LogException(
+                  new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
             }
           }
         } catch (System.Exception ex) {
-          Debug.LogError("Error processing master root <" + masterRootPath + ">: " + ex.Message);
+          Debug.LogException(
+              new System.Exception("Error processing master <" + masterRootPath + ">", ex));
         }
       }
 
