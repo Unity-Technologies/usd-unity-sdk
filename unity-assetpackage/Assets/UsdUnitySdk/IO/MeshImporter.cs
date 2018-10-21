@@ -51,7 +51,11 @@ namespace USD.NET.Unity {
       }
 
       unityMesh.vertices = usdMesh.points;
-      
+      int[] originalIndices = new int[usdMesh.faceVertexIndices.Length];
+
+      // Optimization: only do this when there are face varying primvars.
+      Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
+
       if (options.meshOptions.triangulateMesh) {
         // Triangulate n-gons.
         // For best performance, triangulate off-line and skip conversion.
@@ -138,20 +142,26 @@ namespace USD.NET.Unity {
           for (int i = 0; i < usdMesh.colors.Length; i++) {
             usdMesh.colors[i] = usdMesh.colors[i].gamma;
           }
-
+          unityMesh.colors = usdMesh.colors;
+        } else if (usdMesh.colors.Length > usdMesh.points.Length) {
+          usdMesh.colors = UnrollFaceVarying(unityMesh.vertexCount,
+                                             usdMesh.colors,
+                                             usdMesh.faceVertexCounts,
+                                             originalIndices);
+          for (int i = 0; i < usdMesh.colors.Length; i++) {
+            usdMesh.colors[i] = usdMesh.colors[i].gamma;
+          }
           unityMesh.colors = usdMesh.colors;
         } else {
-          // FaceVarying and uniform both require breaking up the mesh and are not yet handled in
-          // this example.
-          Debug.LogWarning("Uniform (color per face) and FaceVarying (color per vert per face) "
-                         + "display color not supported in this example");
+          Debug.LogWarning("Uniform (color per face) display color not supported");
         }
       }
 
-      ImportUv(unityMesh, 0, usdMesh.uv, options.meshOptions.texcoord0, go);
-      ImportUv(unityMesh, 1, usdMesh.uv2, options.meshOptions.texcoord1, go);
-      ImportUv(unityMesh, 2, usdMesh.uv3, options.meshOptions.texcoord2, go);
-      ImportUv(unityMesh, 3, usdMesh.uv4, options.meshOptions.texcoord3, go);
+      ImportUv(unityMesh, 0, usdMesh.st, usdMesh.indices, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
+      ImportUv(unityMesh, 0, usdMesh.uv, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
+      ImportUv(unityMesh, 1, usdMesh.uv2, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord1, go);
+      ImportUv(unityMesh, 2, usdMesh.uv3, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord2, go);
+      ImportUv(unityMesh, 3, usdMesh.uv4, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord3, go);
 
       if (mat == null) {
         mat = options.materialMap.InstantiateSolidColor(Color.white);
@@ -170,11 +180,101 @@ namespace USD.NET.Unity {
     }
 
     /// <summary>
+    /// Fast approximate unrolling of face varying UVs into vertices.
+    /// </summary>
+    /// <remarks>
+    /// Strictly speaking, this is not correct because bordering faces with different UV values
+    /// (i.e. seams) will share UV values. This artifact will appear as seams on the object that
+    /// would otherwise be seamless. The correct solution is to compare UV values at every vertex
+    /// and un-weld vertices which do not share a common value.
+    /// 
+    /// Still, this approximation is useful since often values are only incorrect at the seam and
+    /// for fast iteration loops, such a seam may be preferred over a long load time.
+    /// </remarks>
+    static T[] UnrollFaceVarying<T>(int vertCount,
+                                    T[] uvs,
+                                    int[] faceVertexCounts,
+                                    int[] faceVertexIndices) {
+      var newUvs = new T[vertCount];
+      int faceVaryingIndex = 0;
+      int vertexVaryingIndex = 0;
+
+      // Since face-varying UVs have one value per vertex, per face, this is the same number of
+      // values as the mesh indices.
+      Debug.Assert(faceVertexIndices.Length == uvs.Length);
+
+      foreach (var count in faceVertexCounts) {
+        for (int i = 0; i < count; i++) {
+          // Find the associated mesh vertex for each vertex of the face.
+          vertexVaryingIndex = faceVertexIndices[faceVaryingIndex];
+          Debug.Assert(vertexVaryingIndex < vertCount);
+          // Set the UV value into the same vertex as the position.
+          newUvs[vertexVaryingIndex] = uvs[faceVaryingIndex];
+          faceVaryingIndex++;
+        }
+      }
+      return newUvs;
+    }
+
+    /// <summary>
+    /// Attempts to build a valid per-vertex UV set from the given object. If the type T is not
+    /// the held type of the object "uv" argument, null is returned. If there is an error such
+    /// that the type is correct, but the uv values are somehow incompatible, error messages
+    /// will be generated and an empty array will be returned.
+    /// </summary>
+    /// <returns>
+    /// An array of size > 0 on succes, an array of size 0 on failure, or null if the given object
+    /// is not of the desired type T.
+    /// </returns>
+    private static T[] TryGetUVSet<T>(object uv,
+                                      int[] uvIndices,
+                                      int[] faceVertexCounts,
+                                      int[] faceVertexIndices,
+                                      int vertexCount,
+                                      GameObject go) {
+      if (uv.GetType() != typeof(T[])) {
+        return null;
+      }
+
+      var uvVec = (T[])uv;
+
+      // Unroll UV indices if specified.
+      if (uvIndices != null && uvIndices.Length > 0) {
+        var newUvs = new T[uvIndices.Length];
+        for (int i = 0; i < uvIndices.Length; i++) {
+          newUvs[i] = uvVec[uvIndices[i]];
+        }
+        uvVec = newUvs;
+      }
+
+      // If there are more UVs than verts, the UVs must be face varying, e.g. each vertex for
+      // each face has a unique UV value. These values must be collapsed such that verts shared
+      // between faces also share a single UV value.
+      if (uvVec.Length > vertexCount) {
+        uvVec = UnrollFaceVarying(vertexCount, uvVec, faceVertexCounts, faceVertexIndices);
+        Debug.Assert(uvVec.Length == vertexCount);
+      }
+
+      // If there are fewer values, these must be "varying" / one value per face.
+      // This is not yet supported.
+      if (uvVec.Length < vertexCount) {
+        Debug.LogWarning("Mesh UVs are constant or uniform, ignored "
+          + UnityTypeConverter.GetPath(go.transform));
+        return new T[0];
+      }
+
+      return uvVec;
+    }
+
+    /// <summary>
     /// Imports UV data from USD into the unityMesh at the given index with the given import rules.
     /// </summary>
     private static void ImportUv(Mesh unityMesh,
                                  int uvSetIndex,
                                  object uv,
+                                 int[] uvIndices,
+                                 int[] faceVertexCounts,
+                                 int[] faceVertexIndices,
                                  ImportMode texcoordImportMode,
                                  GameObject go) {
       // As in Unity, UVs are a dynamic type which can be vec2, vec3, or vec4.
@@ -183,28 +283,33 @@ namespace USD.NET.Unity {
       }
 
       Type uvType = uv.GetType();
-      if (uvType == typeof(Vector2[])) {
-        var uvVec = (Vector2[])uv;
-        if (uvVec.Length > unityMesh.vertexCount) {
-          Debug.LogWarning("Mesh UVs are face varying, but are being imported as vertex varying" +
-            " " + UnityTypeConverter.GetPath(go.transform));
-          var tmp = new Vector2[unityMesh.vertexCount];
-          Array.Copy(uvVec, tmp, tmp.Length);
-          uvVec = tmp;
+      int vertCount = unityMesh.vertexCount;
+
+      var uv2 = TryGetUVSet<Vector2>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+      if (uv2 != null) {
+        if (uv2.Length > 0) {
+          unityMesh.SetUVs(uvSetIndex, uv2.ToList());
         }
-        if (uvVec.Length < unityMesh.vertexCount) {
-          Debug.LogWarning("Mesh UVs are constant or uniform, ignored "
-            + UnityTypeConverter.GetPath(go.transform));
-          return;
-        }
-        unityMesh.SetUVs(0, uvVec.ToList());
-      } else if (uvType == typeof(Vector3[])) {
-        unityMesh.SetUVs(0, ((Vector3[])uv).ToList());
-      } else if (uvType == typeof(Vector4[])) {
-        unityMesh.SetUVs(0, ((Vector4[])uv).ToList());
-      } else {
-        throw new Exception("Unexpected uv type: " + uv.GetType());
+        return;
       }
+
+      var uv3 = TryGetUVSet<Vector3>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+      if (uv3 != null) {
+        if (uv3.Length > 0) {
+          unityMesh.SetUVs(uvSetIndex, uv3.ToList());
+        }
+        return;
+      }
+
+      var uv4 = TryGetUVSet<Vector4>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+      if (uv4 != null) {
+        if (uv4.Length > 0) {
+          unityMesh.SetUVs(uvSetIndex, uv4.ToList());
+        }
+        return;
+      }
+
+      throw new Exception("Unexpected uv type: " + uv.GetType());
     }
 
     /// <summary>
