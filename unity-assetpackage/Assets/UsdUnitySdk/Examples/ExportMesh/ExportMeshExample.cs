@@ -440,7 +440,7 @@ namespace USD.NET.Examples {
       // compounded transforms on export. The way Unity handles this is to apply a scale as part
       // of the importer, which bakes the scale into the points.
       smr.BakeMesh(mesh);
-      ExportMesh(scene, go, exportPlan, matMap, mesh, smr.sharedMaterial);
+      ExportMesh(scene, go, exportPlan, matMap, mesh, smr.sharedMaterial, smr.sharedMaterials);
     }
 
     static void ExportMesh(Scene scene,
@@ -450,7 +450,7 @@ namespace USD.NET.Examples {
       MeshFilter mf = go.GetComponent<MeshFilter>();
       MeshRenderer mr = go.GetComponent<MeshRenderer>();
       Mesh mesh = mf.sharedMesh;
-      ExportMesh(scene, go, exportPlan, matMap, mesh, mr.sharedMaterial);
+      ExportMesh(scene, go, exportPlan, matMap, mesh, mr.sharedMaterial, mr.sharedMaterials);
     }
 
     static void ExportMesh(Scene scene,
@@ -458,7 +458,8 @@ namespace USD.NET.Examples {
                    ExportPlan exportPlan,
                    Dictionary<Material, string> matMap,
                    Mesh mesh,
-                   Material sharedMaterial) {
+                   Material sharedMaterial,
+                   Material[] sharedMaterials) {
       bool unvarying = scene.Time == null;
       bool slowAndSafeConversion = exportPlan.convertHandedness == BasisTransformation.SlowAndSafe;
       var sample = (MeshSample)exportPlan.sample;
@@ -477,6 +478,9 @@ namespace USD.NET.Examples {
         sample.tangents = mesh.tangents;
         sample.extent = mesh.bounds;
         sample.colors = mesh.colors;
+
+        // Gah. There is no way to inspect a meshes UVs.
+        sample.st = mesh.uv;
 
         if (sample.colors != null && sample.colors.Length != sample.points.Length) {
           sample.colors = null;
@@ -510,11 +514,53 @@ namespace USD.NET.Examples {
 
         string usdMaterialPath;
 
-        // TODO: export multiple materials per mesh.
         if (!matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
           Debug.LogError("Invalid material bound for: " + exportPlan.path);
         } else {
           MaterialSample.Bind(scene, exportPlan.path, usdMaterialPath);
+        }
+
+        // In USD subMeshes are represented as UsdGeomSubsets.
+        // When there are multiple subMeshes, convert them into UsdGeomSubsets.
+        if (mesh.subMeshCount > 1) {
+          // Build a table of face indices, used to convert the subMesh triangles to face indices.
+          var faceTable = new Dictionary<Vector3, int>();
+          for (int i = 0; i < tris.Length; i += 3) {
+            if (!slowAndSafeConversion) {
+              faceTable.Add(new Vector3(tris[i], tris[i + 1], tris[i + 2]), i / 3);
+            } else {
+              // Under slow and safe export, index 0 and 1 are swapped.
+              // This swap will not be present in the subMesh indices, so must be undone here.
+              faceTable.Add(new Vector3(tris[i + 1], tris[i], tris[i + 2]), i / 3);
+            }
+          }
+
+          var usdPrim = scene.GetPrimAtPath(exportPlan.path);
+          var usdGeomMesh = new pxr.UsdGeomMesh(usdPrim);
+          // Process each subMesh and create a UsdGeomSubset of faces this subMesh targets.
+          for (int si = 0; si < mesh.subMeshCount; si++) {
+            int[] indices = mesh.GetTriangles(si);
+            int[] faceIndices = new int[indices.Length / 3];
+
+            for (int i = 0; i < indices.Length; i += 3) {
+              faceIndices[i / 3] = faceTable[new Vector3(indices[i], indices[i + 1], indices[i + 2])];
+            }
+
+            var vtIndices = UnityTypeConverter.ToVtArray(faceIndices);
+            var subset = pxr.UsdGeomSubset.CreateUniqueGeomSubset(
+                usdGeomMesh,                // The object of which this subset belongs.
+                "subMeshes",                // An arbitrary name for the subset.
+                pxr.UsdGeomTokens.face,     // Indicator that these represent face indices
+                vtIndices,                  // The actual face indices.
+                pxr.UsdGeomTokens.partition // Each face index must appear once and only once.
+                );
+
+            if (!matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
+              Debug.LogError("Invalid material bound for: " + exportPlan.path);
+            } else {
+              MaterialSample.Bind(scene, subset.GetPath(), usdMaterialPath);
+            }
+          }
         }
       } else {
         sample.transform = GetLocalTransformMatrix(go.transform);
