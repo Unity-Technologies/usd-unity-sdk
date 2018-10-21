@@ -279,7 +279,7 @@ namespace USD.NET.Examples {
         exportFunc = ExportSkinnedMesh;
         foreach (var mat in go.GetComponent<SkinnedMeshRenderer>().sharedMaterials) {
           if (!matMap.ContainsKey(mat)) {
-            string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name);
+            string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
             matMap.Add(mat, usdPath);
           }
         }
@@ -288,7 +288,7 @@ namespace USD.NET.Examples {
         exportFunc = ExportMesh;
         foreach (var mat in go.GetComponent<MeshRenderer>().sharedMaterials) {
           if (!matMap.ContainsKey(mat)) {
-            string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name);
+            string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
             matMap.Add(mat, usdPath);
           }
         }
@@ -546,14 +546,14 @@ namespace USD.NET.Examples {
             for (int i = 0; i < indices.Length; i += 3) {
               faceIndices[i / 3] = faceTable[new Vector3(indices[i], indices[i + 1], indices[i + 2])];
             }
-
+            var materialBindToken = new pxr.TfToken("materialBind");
             var vtIndices = UnityTypeConverter.ToVtArray(faceIndices);
             var subset = pxr.UsdGeomSubset.CreateUniqueGeomSubset(
-                usdGeomMesh,                // The object of which this subset belongs.
-                "subMeshes",                // An arbitrary name for the subset.
-                pxr.UsdGeomTokens.face,     // Indicator that these represent face indices
-                vtIndices,                  // The actual face indices.
-                pxr.UsdGeomTokens.partition // Each face index must appear once and only once.
+                usdGeomMesh,            // The object of which this subset belongs.
+                "subMeshes",            // An arbitrary name for the subset.
+                pxr.UsdGeomTokens.face, // Indicator that these represent face indices
+                vtIndices,              // The actual face indices.
+                materialBindToken       // familyName = "materialBind"
                 );
 
             if (!matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
