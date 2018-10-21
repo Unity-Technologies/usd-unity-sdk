@@ -53,6 +53,33 @@ namespace USD.NET.Unity {
     /// </summary>
     public bool triangulateMesh = true;
 
+    /// <summary>
+    /// If true, a secondary UV set will be generated automatically for lightmapping.
+    /// </summary>
+    public bool generateLightmapUVs = false;
+
+    #region "Advanced Unwrapping Options"
+    /// <summary>
+    /// Maximum allowed angle distortion (0..1).
+    /// </summary>
+    public float unwrapAngleError = .08f;
+
+    /// <summary>
+    /// Maximum allowed area distortion (0..1).
+    /// </summary>
+    public float unwrapAreaError = .15f;
+
+    /// <summary>
+    /// This angle (in degrees) or greater between triangles will cause seam to be created.
+    /// </summary>
+    public float unwrapHardAngle = 88;
+
+    /// <summary>
+    /// How much uv-islands will be padded.
+    /// </summary>
+    public float unwrapPackMargin = 4;
+    #endregion
+
     public ImportMode color = ImportMode.Import;
     public ImportMode normals = ImportMode.ImportOrCompute;
     public ImportMode tangents = ImportMode.ImportOrCompute;
