@@ -479,12 +479,13 @@ namespace USD.NET.Examples {
         sample.extent = mesh.bounds;
         sample.colors = mesh.colors;
 
+        if (sample.colors == null || sample.colors.Length == 0) {
+          sample.colors = new Color[1];
+          sample.colors[0] = sharedMaterial.color.linear;
+        }
+
         // Gah. There is no way to inspect a meshes UVs.
         sample.st = mesh.uv;
-
-        if (sample.colors != null && sample.colors.Length != sample.points.Length) {
-          sample.colors = null;
-        }
 
         // Set face vertex counts and indices.
         var tris = mesh.triangles;

@@ -129,7 +129,7 @@ namespace USD.NET.Unity {
         unityMesh.RecalculateTangents();
       }
 
-      if (usdMesh.colors != null && ShouldImport(options.meshOptions.color)) {
+      if (usdMesh.colors != null && usdMesh.colors.Length > 0 && ShouldImport(options.meshOptions.color)) {
         // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
         // For best performance, convert color space to linear off-line and skip conversion.
 
@@ -237,6 +237,10 @@ namespace USD.NET.Unity {
       }
 
       var uvVec = (T[])uv;
+
+      if (uvVec.Length == 0) {
+        return uvVec;
+      }
 
       // Unroll UV indices if specified.
       if (uvIndices != null && uvIndices.Length > 0) {
