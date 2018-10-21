@@ -273,6 +273,7 @@
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomPrimvarVector.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomScope.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomSphere.cs" />
+    <Compile Include="generated\pxr\usd\usdGeom\UsdGeomSubset.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomTokens.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomXform.cs" />
     <Compile Include="generated\pxr\usd\usdGeom\UsdGeomXformable.cs" />
@@ -412,7 +413,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_f_p_Vt_ArrayForeignDataSource__void.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_int.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_long_long.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_PcpArc.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpCacheChanges.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpChanges.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpDependencyFlags.cs" />
@@ -451,7 +451,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfSpecHandle.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_SdfVariantSelectionMap.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_size_t.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_std__functionT_bool_fSdfPath_const_RF_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__functionT_bool_fTfToken_const_RF_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__mapT_SdfPath_std__vectorT_std__string_t_SdfPath__FastLessThan_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.cs" />
@@ -466,6 +465,7 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_SdfLayerHandle_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_SdfPath_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_std__string_t.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_TfToken_TfToken__LTTokenFunctor_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_TfType_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__setT_UsdUtilsRegisteredVariantSet_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__string.cs" />
@@ -490,7 +490,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_UsdTimeCode_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_std__vectorT_VtArrayT_GfVec3f_t_t.cs" />
-    <Compile Include="generated\SWIG\SWIGTYPE_p_tbb__spin_rw_mutex.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_TfDeclarePtrsT_NdrDiscoveryPlugin_t__RefPtr.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_TfDeclarePtrsT_NdrDiscoveryPlugin_t__RefPtrVector.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr.cs" />

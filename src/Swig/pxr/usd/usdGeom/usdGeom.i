@@ -24,6 +24,7 @@
 
 %include "usdGeomPrimvar.i"
 %include "usdGeomScope.i"
+%include "usdGeomSubset.i"
 
 %include "usdGeomImageable.i"
 %include "usdGeomXformOp.i"
