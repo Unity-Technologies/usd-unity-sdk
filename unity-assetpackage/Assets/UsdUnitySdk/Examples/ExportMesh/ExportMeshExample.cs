@@ -76,7 +76,7 @@ namespace USD.NET.Examples {
     public struct ExportPlan {
       // The USD path at which the Unity data will be written.
       public string path;
-      
+
       // The sample which will hold the data to export.
       public SampleBase sample;
 
@@ -104,7 +104,7 @@ namespace USD.NET.Examples {
     // ------------------------------------------------------------------------------------------ //
     // Recording Control.
     // ------------------------------------------------------------------------------------------ //
-    
+
     public void StartRecording() {
       if (IsRecording) { return; }
 
@@ -175,7 +175,7 @@ namespace USD.NET.Examples {
     // ------------------------------------------------------------------------------------------ //
     // Unity Behavior Events.
     // ------------------------------------------------------------------------------------------ //
-    
+
     void Awake() {
       // Init USD.
       InitUsd.Initialize();
@@ -302,10 +302,10 @@ namespace USD.NET.Examples {
       // This is an exportable object.
       string path = Unity.UnityTypeConverter.GetPath(go.transform);
       primMap.Add(go, new ExportPlan {
-          path =path,
-          sample =sample,
-          exportFunc =exportFunc,
-          convertHandedness =BasisTransformation.FastAndDangerous
+        path = path,
+        sample = sample,
+        exportFunc = exportFunc,
+        convertHandedness = BasisTransformation.FastAndDangerous
       });
 
       // Include the parent xform hierarchy.
