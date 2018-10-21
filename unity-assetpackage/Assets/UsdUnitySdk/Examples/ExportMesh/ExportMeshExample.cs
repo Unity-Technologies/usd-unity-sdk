@@ -346,94 +346,86 @@ namespace USD.NET.Examples {
       material.surface.SetConnectedPath(shaderPath, "outputs:surface");
 
       scene.Write(usdMaterialPath, material);
-      if (false) {
-        var shader = new StandardShaderSample();
-        shader.id = new pxr.TfToken("Unity.Standard");
-        shader.albedo.defaultValue = mat.color;
+
+      var shader = new PreviewSurfaceSample();
+      var texPath = /*TODO: this should be explicit*/
+            System.IO.Path.GetDirectoryName(scene.Stage.GetRootLayer().GetIdentifier());
+
+      // HDRenderPipeline/Lit
+      if (mat.shader.name == "Standard (Specular setup)") {
+        StandardShaderIo.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);
         scene.Write(shaderPath, shader);
-      } else {
-        var shader = new PreviewSurfaceSample();
-        var texPath = /*TODO: this should be explicit*/
-              System.IO.Path.GetDirectoryName(scene.Stage.GetRootLayer().GetIdentifier());
-
-        // HDRenderPipeline/Lit
-        if (mat.shader.name == "Standard (Specular setup)") {
-          StandardShaderIo.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);
-          scene.Write(shaderPath, shader);
-          return;
-        }
-        if (mat.shader.name == "Standard (Roughness setup)") {
-          StandardShaderIo.ExportStandardRoughness(scene, shaderPath, mat, shader, texPath);
-          scene.Write(shaderPath, shader);
-          return;
-        }
-
-        if (mat.shader.name == "Standard") {
-          StandardShaderIo.ExportStandard(scene, shaderPath, mat, shader, texPath);
-          scene.Write(shaderPath, shader);
-          return;
-        }
-
-        if (mat.shader.name == "HDRenderPipeline/Lit") {
-          HdrpShaderIo.ExportLit(scene, shaderPath, mat, shader, texPath);
-          scene.Write(shaderPath, shader);
-          return;
-        }
-
-        Color c;
-
-        if (mat.HasProperty("_Color")) {
-          // Standard.
-          c = mat.GetColor("_Color").linear;
-        } else if (mat.HasProperty("_BaseColor")) {
-          // HDRP Lit.
-          c = mat.GetColor("_BaseColor").linear;
-        } else if (mat.HasProperty("_BaseColor0")) {
-          // HDRP Layered Lit.
-          c = mat.GetColor("_BaseColor").linear;
-        } else {
-          c = Color.white;
-        }
-        shader.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
-
-        if (mat.HasProperty("_SpecColor")) {
-          // If there is a spec color, then this is not metallic workflow.
-          c = mat.GetColor("_SpecColor");
-          shader.useSpecularWorkflow.defaultValue = 1;
-        } else {
-          c = new Color(.4f, .4f, .4f);
-        }
-        shader.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
-
-        /* TODO: some materials have emission set to (1,1,1) when disabled.
-        if (mat.HasProperty("_EmissionColor")) {
-          c = mat.GetColor("_EmissionColor").linear;
-          shader.emissiveColor.defaultValue = new Vector3(c.r, c.g, c.b);
-        }
-        */
-
-        if (mat.HasProperty("_Metallic")) {
-          shader.metallic.defaultValue = mat.GetFloat("_Metallic");
-        } else {
-          shader.metallic.defaultValue = .5f;
-        }
-
-        if (mat.HasProperty("_Smoothness")) {
-          shader.roughness.defaultValue = 1 - mat.GetFloat("_Smoothness");
-        } else if (mat.HasProperty("_Glossiness")) {
-          shader.roughness.defaultValue = 1 - mat.GetFloat("_Glossiness");
-        } else if (mat.HasProperty("_Roughness")) {
-          shader.roughness.defaultValue = mat.GetFloat("_Roughness");
-        } else {
-          shader.roughness.defaultValue = 0.5f;
-        }
-
-        scene.Write(shaderPath, shader);
-        scene.GetPrimAtPath(shaderPath).CreateAttribute(
-            new pxr.TfToken("outputs:surface"),
-            SdfValueTypeNames.Token,
-            false, pxr.SdfVariability.SdfVariabilityUniform);
+        return;
       }
+      if (mat.shader.name == "Standard (Roughness setup)") {
+        StandardShaderIo.ExportStandardRoughness(scene, shaderPath, mat, shader, texPath);
+        scene.Write(shaderPath, shader);
+        return;
+      }
+
+      if (mat.shader.name == "Standard") {
+        StandardShaderIo.ExportStandard(scene, shaderPath, mat, shader, texPath);
+        scene.Write(shaderPath, shader);
+        return;
+      }
+
+      if (mat.shader.name == "HDRenderPipeline/Lit") {
+        HdrpShaderIo.ExportLit(scene, shaderPath, mat, shader, texPath);
+        scene.Write(shaderPath, shader);
+        return;
+      }
+
+      Color c;
+
+      if (mat.HasProperty("_Color")) {
+        // Standard.
+        c = mat.GetColor("_Color").linear;
+      } else if (mat.HasProperty("_BaseColor")) {
+        // HDRP Lit.
+        c = mat.GetColor("_BaseColor").linear;
+      } else if (mat.HasProperty("_BaseColor0")) {
+        // HDRP Layered Lit.
+        c = mat.GetColor("_BaseColor").linear;
+      } else {
+        c = Color.white;
+      }
+      shader.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
+
+      if (mat.HasProperty("_SpecColor")) {
+        // If there is a spec color, then this is not metallic workflow.
+        c = mat.GetColor("_SpecColor");
+        shader.useSpecularWorkflow.defaultValue = 1;
+      } else {
+        c = new Color(.4f, .4f, .4f);
+      }
+      shader.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
+
+      if (mat.HasProperty("_EmissionColor")) {
+        c = mat.GetColor("_EmissionColor").linear;
+        shader.emissiveColor.defaultValue = new Vector3(c.r, c.g, c.b);
+      }
+
+      if (mat.HasProperty("_Metallic")) {
+        shader.metallic.defaultValue = mat.GetFloat("_Metallic");
+      } else {
+        shader.metallic.defaultValue = .5f;
+      }
+
+      if (mat.HasProperty("_Smoothness")) {
+        shader.roughness.defaultValue = 1 - mat.GetFloat("_Smoothness");
+      } else if (mat.HasProperty("_Glossiness")) {
+        shader.roughness.defaultValue = 1 - mat.GetFloat("_Glossiness");
+      } else if (mat.HasProperty("_Roughness")) {
+        shader.roughness.defaultValue = mat.GetFloat("_Roughness");
+      } else {
+        shader.roughness.defaultValue = 0.5f;
+      }
+
+      scene.Write(shaderPath, shader);
+      scene.GetPrimAtPath(shaderPath).CreateAttribute(
+          new pxr.TfToken("outputs:surface"),
+          SdfValueTypeNames.Token,
+          false, pxr.SdfVariability.SdfVariabilityUniform);
 
     }
 
