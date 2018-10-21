@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity.IO {
+namespace USD.NET.Unity {
 
   /// <summary>
   /// A collection of methods used for importing USD Material data into Unity.
@@ -27,7 +27,7 @@ namespace USD.NET.Unity.IO {
     /// <param name="scene">The USD scene object.</param>
     /// <param name="primPath">The path to the object in the USD scene.</param>
     /// <returns>A PreviewSurfaceSample if found, otherwise null.</returns>
-    private static PreviewSurfaceSample GetSurfaceShaderPrim(Scene scene, string primPath) {
+    public static PreviewSurfaceSample GetSurfaceShaderPrim(Scene scene, string primPath) {
       var materialBinding = new MaterialBindingSample();
       scene.Read(primPath, materialBinding);
 
