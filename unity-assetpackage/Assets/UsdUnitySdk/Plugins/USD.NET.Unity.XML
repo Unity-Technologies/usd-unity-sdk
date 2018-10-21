@@ -30,6 +30,20 @@
             Sets the faceVertexIndicies and faceVertexCounts from triangle indices alone.
             </summary>
         </member>
+        <member name="F:USD.NET.Unity.MeshSampleBase.st">
+            <summary>
+            When not explicitly specified by the shader, "st" should be considered the default uv set.
+            </summary>
+            <remarks>
+            UV object types should be Vector{2,3,4}[], List of Vector{2,3,4}, or null.
+            </remarks>
+        </member>
+        <member name="F:USD.NET.Unity.MeshSampleBase.indices">
+            <summary>
+            When primvars:st:indices are specified, the st texture coordinates are indexed like
+            vertex positions.
+            </summary>
+        </member>
         <member name="T:USD.NET.Unity.MaterialBindingSample">
             <summary>
             Provides access to the material binding (if any) on the UsdPrim.
