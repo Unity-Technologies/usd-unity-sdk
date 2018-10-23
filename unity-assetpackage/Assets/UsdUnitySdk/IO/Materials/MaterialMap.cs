@@ -25,11 +25,22 @@ namespace USD.NET.Unity {
   public class MaterialMap : IEnumerable<KeyValuePair<string, Material>> {
 
     /// <summary>
+    /// A callback to preform the material binding when requesting bindings.
+    /// </summary>
+    /// <param name="mat">The new material to bind.</param>
+    public delegate void MaterialBinder(Material mat);
+
+    /// <summary>
     /// A mapping from USD shader ID to Unity material.
     /// </summary>
     private Dictionary<string, Material> m_map = new Dictionary<string, Material>();
 
     private Dictionary<Color, Material> m_colorMap = new Dictionary<Color, Material>();
+
+    /// <summary>
+    /// Bindings requested, to be processed in bulk.
+    /// </summary>
+    private Dictionary<string, MaterialBinder> m_requestedBindings = new Dictionary<string, MaterialBinder>();
 
     /// <summary>
     /// A material to use when no material could be found.
@@ -44,15 +55,35 @@ namespace USD.NET.Unity {
     }
 
     /// <summary>
+    /// Clears the requested bindings, returning the current queue.
+    /// </summary>
+    public Dictionary<string, MaterialBinder> ClearRequestedBindings() {
+      var bindings = m_requestedBindings;
+      m_requestedBindings = new Dictionary<string, MaterialBinder>();
+      return bindings;
+    }
+
+    /// <summary>
+    /// Request an object to be bound at a later time in a vectorized request.
+    /// </summary>
+    /// <param name="usdPath">The USD path to the object.</param>
+    /// <param name="binder">
+    /// A callback which will accept the material and bind it to a Unity object
+    /// </param>
+    public void RequestBinding(string usdPath, MaterialBinder binder) {
+      m_requestedBindings.Add(usdPath, binder);
+    }
+
+    /// <summary>
     /// Returns a shared instance of the mapped material, else null. Does not throw exceptions.
     /// </summary>
-    /// <param name="shaderId">The USD shader ID</param>
-    public Material this[string shaderId]
+    /// <param name="shaderId">The USD path to the material</param>
+    public Material this[string path]
     {
       get
       {
         Material mat;
-        if (m_map.TryGetValue(shaderId, out mat)) {
+        if (m_map.TryGetValue(path, out mat)) {
           return mat;
         }
 
@@ -61,7 +92,7 @@ namespace USD.NET.Unity {
       }
       set
       {
-        m_map[shaderId] = value;
+        m_map[path] = value;
       }
     }
 

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using pxr;
@@ -24,10 +25,58 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class MeshImporter {
 
+    public class GeometrySubsets {
+      public Dictionary<string, int[]> Subsets { get; set; }
+      public GeometrySubsets() {
+        Subsets = new Dictionary<string, int[]>();
+      }
+    }
+
+    /// <summary>
+    /// Reads geometry subsets if authored. If not authored, returns an empty dictionary.
+    /// </summary>
+    public static GeometrySubsets ReadGeomSubsets(Scene scene, string path) {
+      var result = new GeometrySubsets();
+
+      var prim = scene.GetPrimAtPath(path);
+      if (prim == null || prim.IsValid() == false) { return result; }
+
+      var im = new pxr.UsdGeomImageable(prim);
+      if (im._IsValid() == false) { return result; }
+
+      pxr.UsdGeomSubsetVector subsets =
+          pxr.UsdGeomSubset.GetGeomSubsets(im, pxr.UsdGeomTokens.face,
+                                           new pxr.TfToken("materialBind"));
+
+      // Cache these values to minimize garbage collector churn.
+      var value = new pxr.VtValue();
+      int[] intValue = new int[0];
+      var defaultTime = pxr.UsdTimeCode.Default();
+
+      foreach (var subset in subsets) {
+        if (!subset._IsValid()) { continue; }
+
+        var indices = subset.GetIndicesAttr();
+        if (!indices.IsValid()) { continue; }
+
+        if (!indices.Get(value, defaultTime)) {
+          continue;
+        }
+
+        UnityTypeConverter.FromVtArray(value, ref intValue);
+        result.Subsets.Add(subset.GetPath(), intValue);
+      }
+
+      return result;
+    }
+
+
     /// <summary>
     /// Copy mesh data from USD to Unity with the given import options.
     /// </summary>
-    public static void BuildMesh(MeshSample usdMesh,
+    public static void BuildMesh(string path,
+                                 MeshSample usdMesh,
+                                 GeometrySubsets geomSubsets,
                                  GameObject go,
                                  SceneImportOptions options) {
 
@@ -89,7 +138,29 @@ namespace USD.NET.Unity {
         unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
       }
 
-      unityMesh.SetTriangles(usdMesh.faceVertexIndices, 0);
+      if (geomSubsets.Subsets.Count == 0) {
+        unityMesh.triangles = usdMesh.faceVertexIndices;
+      } else {
+        unityMesh.subMeshCount = geomSubsets.Subsets.Count;
+        int subsetIndex = 0;
+        foreach (var kvp in geomSubsets.Subsets) {
+          int[] faceIndices = kvp.Value;
+          int[] triangleIndices = new int[faceIndices.Length * 3];
+
+          for (int i = 0; i < faceIndices.Length; i++) {
+            triangleIndices[i * 3 + 0] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 0];
+            triangleIndices[i * 3 + 1] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 1];
+            triangleIndices[i * 3 + 2] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 2];
+          }
+          
+          unityMesh.SetTriangles(triangleIndices, subsetIndex);
+          subsetIndex++;
+        }
+
+        for (int i = 0; i < unityMesh.subMeshCount; i++) {
+          Debug.Log("i: " + unityMesh.GetTriangles(i)[0]);
+        }
+      }
 
       bool hasBounds = usdMesh.extent.size.x > 0
                     || usdMesh.extent.size.y > 0
@@ -128,7 +199,7 @@ namespace USD.NET.Unity {
       } else if (ShouldCompute(options.meshOptions.tangents)) {
         unityMesh.RecalculateTangents();
       }
-
+      
       if (usdMesh.colors != null && usdMesh.colors.Length > 0 && ShouldImport(options.meshOptions.color)) {
         // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
         // For best performance, convert color space to linear off-line and skip conversion.
@@ -169,14 +240,46 @@ namespace USD.NET.Unity {
 
       if (unityMesh.subMeshCount == 1) {
         mr.sharedMaterial = mat;
+        options.materialMap.RequestBinding(path, boundMat => mr.sharedMaterial = boundMat);
       } else {
         var mats = new Material[unityMesh.subMeshCount];
         for (int i = 0; i < mats.Length; i++) {
           mats[i] = mat;
         }
         mr.sharedMaterials = mats;
+        Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
+        var subIndex = 0;
+        foreach (var kvp in geomSubsets.Subsets) {
+          int idx = subIndex;
+          options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, mr, idx, path));
+          Debug.Log("SubIndex: " + subIndex);
+          subIndex++;
+        }
       }
+
+#if UNITY_EDITOR
+      if (options.meshOptions.generateLightmapUVs) {
+        var unwrapSettings = new UnityEditor.UnwrapParam();
+        unwrapSettings.angleError = options.meshOptions.unwrapAngleError;
+        unwrapSettings.areaError = options.meshOptions.unwrapAngleError;
+        unwrapSettings.hardAngle = options.meshOptions.unwrapHardAngle;
+        unwrapSettings.packMargin = options.meshOptions.unwrapPackMargin;
+        UnityEditor.Unwrapping.GenerateSecondaryUVSet(unityMesh, unwrapSettings);
+      }
+#else
+      if (options.meshOptions.generateLightmapUVs) {
+        Debug.LogWarning("Lightmap UVs were requested to be generated, but cannot be generated outside of the editor");
+      }
+#endif
+
       mf.sharedMesh = unityMesh;
+    }
+
+    static void BindMat(Material mat, MeshRenderer mr, int index, string path) {
+      Debug.Log(path + " -> " + index + " -> C: " + mat.color.ToString());
+      var sharedMats = mr.sharedMaterials;
+      sharedMats[index] = mat;
+      mr.sharedMaterials = sharedMats;
     }
 
     /// <summary>
@@ -286,7 +389,6 @@ namespace USD.NET.Unity {
         return;
       }
 
-      Type uvType = uv.GetType();
       int vertCount = unityMesh.vertexCount;
 
       var uv2 = TryGetUVSet<Vector2>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);

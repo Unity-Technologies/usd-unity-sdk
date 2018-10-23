@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace USD.NET.Unity {
@@ -20,6 +21,67 @@ namespace USD.NET.Unity {
   /// A collection of methods used for importing USD Material data into Unity.
   /// </summary>
   public static class MaterialImporter {
+
+    public static void ProcessMaterialBindings(Scene scene, SceneImportOptions importOptions) {
+      var requests = importOptions.materialMap.ClearRequestedBindings();
+      var prims = new pxr.UsdPrimVector();
+      foreach (var pathAndRequest in requests) {
+        var prim = scene.GetPrimAtPath(pathAndRequest.Key);
+        if (prim == null) { continue; }
+        prims.Add(prim);
+      }
+
+      var matBindTok = new pxr.TfToken("materialBind");
+      var matVector = pxr.UsdShadeMaterialBindingAPI.ComputeBoundMaterials(prims, matBindTok);
+      var materialSample = new MaterialSample();
+      var matIndex = -1;
+
+      foreach (var usdMat in matVector) {
+        matIndex++;
+        scene.Read(usdMat.GetPath(), materialSample);
+        var unityMat = BuildMaterial(scene, materialSample, importOptions);
+
+        if (unityMat == null) {
+          continue;
+        }
+
+        // PERF: this is slow and garbage-y.
+        string path = prims[matIndex].GetPath();
+
+        if (!requests.ContainsKey(path)) {
+          Debug.LogError("Source object key not found: " + path);
+          continue;
+        }
+        requests[path](unityMat);
+      }
+    }
+
+    public static Material BuildMaterial(Scene scene,
+                                         MaterialSample sample,
+                                         SceneImportOptions options) {
+      if (string.IsNullOrEmpty(sample.surface.connectedPath)) {
+        return null;
+      }
+      var previewSurf = new PreviewSurfaceSample();
+      scene.Read(new pxr.SdfPath(sample.surface.connectedPath).GetPrimPath(), previewSurf);
+
+      // Currently, only UsdPreviewSurface is supported.
+      if (previewSurf.id == null || previewSurf.id != "UsdPreviewSurface") {
+        return null;
+      }
+
+      var mat = Material.Instantiate(options.materialMap.FallbackMasterMaterial);
+
+      if (previewSurf.diffuseColor.IsConnected()) {
+        // TODO: look for the expected texture/primvar reader pair.
+      } else {
+        // TODO: this should delegate to a material mapper.
+        var rgb = previewSurf.diffuseColor.defaultValue;
+        mat.color = new Color(rgb.x, rgb.y, rgb.z).gamma;
+      }
+
+      return mat;
+    }
 
     /// <summary>
     /// Reads and returns the UsdPreviewSurface data for the prim at the given path, if present.

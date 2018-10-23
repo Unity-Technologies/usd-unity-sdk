@@ -38,6 +38,20 @@ namespace USD.NET.Unity {
       // Import known prim types.
       //
 
+      // Materials.
+      foreach (var pathAndSample in scene.ReadAll<MaterialSample>()) {
+        try {
+          GameObject go = primMap[pathAndSample.path];
+          var mat = MaterialImporter.BuildMaterial(scene, pathAndSample.sample, importOptions);
+          if (mat != null) {
+            importOptions.materialMap[pathAndSample.path] = mat;
+          }
+        } catch (System.Exception ex) {
+          Debug.LogException(
+              new System.Exception("Error processing material <" + pathAndSample.path + ">", ex));
+        }
+      }
+
       // Xforms.
       //
       // Note that we are specifically filtering on XformSample, not Xformable, this way only
@@ -57,7 +71,8 @@ namespace USD.NET.Unity {
         try {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-          MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
+          var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+          MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
         } catch (System.Exception ex) {
           Debug.LogException(
               new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
@@ -108,7 +123,8 @@ namespace USD.NET.Unity {
             try {
               GameObject go = primMap[pathAndSample.path];
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-              MeshImporter.BuildMesh(pathAndSample.sample, go, importOptions);
+              var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+              MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
             } catch (System.Exception ex) {
               Debug.LogException(
                   new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
@@ -144,6 +160,9 @@ namespace USD.NET.Unity {
         }
       }
 
+      // Process all material bindings in a single vectorized request.
+      MaterialImporter.ProcessMaterialBindings(scene, importOptions);
+
       // Build scene instances.
       InstanceImporter.BuildSceneInstances(primMap, importOptions);
 
@@ -167,5 +186,6 @@ namespace USD.NET.Unity {
 
       return primMap;
     }
+
   }
 }
