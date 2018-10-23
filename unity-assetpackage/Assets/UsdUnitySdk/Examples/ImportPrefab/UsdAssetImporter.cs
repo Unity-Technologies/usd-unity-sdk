@@ -29,16 +29,9 @@ public class UsdAssetImporter : MonoBehaviour {
   public float m_scale;
   public BasisTransformation m_changeHandedness;
 
-  [Serializable]
-  public struct MappedMaterial {
-    public string name;
-    public Material material;
-  }
-
   [Header("Materials")]
   public bool m_enableGpuInstancing;
   public Material m_fallbackMaterial;
-  public MappedMaterial[] m_materialMap;
 
   [Header("Mesh Options")]
   public ImportMode m_boundingBox;
@@ -67,12 +60,6 @@ public class UsdAssetImporter : MonoBehaviour {
 
     m_enableGpuInstancing = options.enableGpuInstancing;
     m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
-
-    var materials = new List<MappedMaterial>();
-    foreach (KeyValuePair<string, Material> kvp in options.materialMap) {
-      materials.Add(new MappedMaterial { name = kvp.Key, material = kvp.Value });
-    }
-    m_materialMap = materials.ToArray();
   }
 
   public void StateToOptions(ref SceneImportOptions options) {
@@ -91,9 +78,6 @@ public class UsdAssetImporter : MonoBehaviour {
 
     options.enableGpuInstancing = m_enableGpuInstancing;
     options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
-    foreach (MappedMaterial mm in m_materialMap) {
-      options.materialMap[mm.name] = mm.material;
-    }
   }
 
   #region "Static API"

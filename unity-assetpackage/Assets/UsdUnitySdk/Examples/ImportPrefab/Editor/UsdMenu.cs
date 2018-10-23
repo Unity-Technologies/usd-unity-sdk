@@ -51,23 +51,6 @@ public class UsdMenu : MonoBehaviour {
   [MenuItem("USD/Export Selected with Children")]
   static void ExportSelected() {
     USD.NET.Scene scene = null;
-    var m = Matrix4x4.identity;
-
-    // TODO(jcowles): the change of basis matrix should probably be cached.
-    var basisChange = UnityEngine.Matrix4x4.identity;
-    // Invert the forward vector.
-    basisChange[2, 2] = -1;
-
-    // Note that the fully general solution is basisChange * m * basisChange.inverse, however
-    // basisChange and basisChange.inverse are identical. Just aliasing here so the math below
-    // reads correctly.
-    var basisChangeInverse = basisChange;
-
-    // Furthermore, this could be simplified to multiplying -1 by input elements [2,6,8,9,11,14].
-    var mmm = basisChange * m * basisChangeInverse;
-
-    var mm = UnityTypeConverter.ChangeBasis(m);
-
 
     foreach (GameObject go in Selection.gameObjects) {
       if (scene == null) {
