@@ -330,7 +330,12 @@ namespace USD.NET.Examples {
       // Any object we add will only be exported as an Xform.
       string path = UnityTypeConverter.GetPath(go.transform);
       SampleBase sample = new XformSample();
-      primMap.Add(go, new ExportPlan { path = path, sample = sample, exportFunc = ExportXform });
+      primMap.Add(go, new ExportPlan {
+        path = path,
+        sample = sample,
+        exportFunc = ExportXform,
+        convertHandedness = BasisTransformation.FastAndDangerous
+      });
 
       // Continue processing parents.
       return true;
