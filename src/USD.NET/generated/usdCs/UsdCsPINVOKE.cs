@@ -20420,6 +20420,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeNodeGraph_ComputeInterfaceInputConsumersMap__SWIG_1")]
   public static extern global::System.IntPtr UsdShadeNodeGraph_ComputeInterfaceInputConsumersMap__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_Clear")]
+  public static extern void UsdShadeMaterialVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_Add")]
+  public static extern void UsdShadeMaterialVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_size")]
+  public static extern uint UsdShadeMaterialVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_capacity")]
+  public static extern uint UsdShadeMaterialVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_reserve")]
+  public static extern void UsdShadeMaterialVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdShadeMaterialVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_getitem")]
+  public static extern global::System.IntPtr UsdShadeMaterialVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_setitem")]
+  public static extern void UsdShadeMaterialVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_AddRange")]
+  public static extern void UsdShadeMaterialVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_GetRange")]
+  public static extern global::System.IntPtr UsdShadeMaterialVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_Insert")]
+  public static extern void UsdShadeMaterialVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_InsertRange")]
+  public static extern void UsdShadeMaterialVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_RemoveAt")]
+  public static extern void UsdShadeMaterialVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_RemoveRange")]
+  public static extern void UsdShadeMaterialVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_Repeat")]
+  public static extern global::System.IntPtr UsdShadeMaterialVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_Reverse__SWIG_0")]
+  public static extern void UsdShadeMaterialVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_Reverse__SWIG_1")]
+  public static extern void UsdShadeMaterialVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialVector_SetRange")]
+  public static extern void UsdShadeMaterialVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeMaterialVector")]
+  public static extern void delete_UsdShadeMaterialVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterial__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeMaterial__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -20614,6 +20680,255 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_HasMaterialFaceSet")]
   public static extern bool UsdShadeMaterial_HasMaterialFaceSet(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_Clear")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_Add")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_size")]
+  public static extern uint UsdShadeMaterialBindingAPICollectionBindingVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_capacity")]
+  public static extern uint UsdShadeMaterialBindingAPICollectionBindingVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_reserve")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPICollectionBindingVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPICollectionBindingVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPICollectionBindingVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPICollectionBindingVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPICollectionBindingVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPICollectionBindingVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPICollectionBindingVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_getitem")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPICollectionBindingVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_setitem")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_AddRange")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_GetRange")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPICollectionBindingVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_Insert")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_InsertRange")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_RemoveAt")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_RemoveRange")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_Repeat")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPICollectionBindingVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_Reverse__SWIG_0")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_Reverse__SWIG_1")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPICollectionBindingVector_SetRange")]
+  public static extern void UsdShadeMaterialBindingAPICollectionBindingVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeMaterialBindingAPICollectionBindingVector")]
+  public static extern void delete_UsdShadeMaterialBindingAPICollectionBindingVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPI__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPI__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPI__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPI__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPI__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPI__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeMaterialBindingAPI")]
+  public static extern void delete_UsdShadeMaterialBindingAPI(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Get")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Apply")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_Apply(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetDirectBindingRel__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetDirectBindingRel__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetDirectBindingRel__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetDirectBindingRel__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetCollectionBindingRel__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetCollectionBindingRel__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetCollectionBindingRel__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetCollectionBindingRel__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetCollectionBindingRels__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetCollectionBindingRels__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetCollectionBindingRels__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetCollectionBindingRels__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPI_DirectBinding__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPI_DirectBinding__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPI_DirectBinding__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPI_DirectBinding__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_DirectBinding_GetMaterial")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_DirectBinding_GetMaterial(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_DirectBinding_GetMaterialPath")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_DirectBinding_GetMaterialPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_DirectBinding_GetBindingRel")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_DirectBinding_GetBindingRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_DirectBinding_GetMaterialPurpose")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_DirectBinding_GetMaterialPurpose(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeMaterialBindingAPI_DirectBinding")]
+  public static extern void delete_UsdShadeMaterialBindingAPI_DirectBinding(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPI_CollectionBinding__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPI_CollectionBinding__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeMaterialBindingAPI_CollectionBinding__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdShadeMaterialBindingAPI_CollectionBinding__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CollectionBinding_GetMaterial")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_CollectionBinding_GetMaterial(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CollectionBinding_GetCollection")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_CollectionBinding_GetCollection(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CollectionBinding_IsValid")]
+  public static extern bool UsdShadeMaterialBindingAPI_CollectionBinding_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CollectionBinding_GetCollectionPath")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_CollectionBinding_GetCollectionPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CollectionBinding_GetMaterialPath")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_CollectionBinding_GetMaterialPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CollectionBinding_GetBindingRel")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_CollectionBinding_GetBindingRel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeMaterialBindingAPI_CollectionBinding")]
+  public static extern void delete_UsdShadeMaterialBindingAPI_CollectionBinding(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetDirectBinding__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetDirectBinding__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetDirectBinding__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetDirectBinding__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetCollectionBindings__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetCollectionBindings__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetCollectionBindings__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetCollectionBindings__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetMaterialBindingStrength")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetMaterialBindingStrength(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_SetMaterialBindingStrength")]
+  public static extern bool UsdShadeMaterialBindingAPI_SetMaterialBindingStrength(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Bind__SWIG_0")]
+  public static extern bool UsdShadeMaterialBindingAPI_Bind__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Bind__SWIG_1")]
+  public static extern bool UsdShadeMaterialBindingAPI_Bind__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Bind__SWIG_2")]
+  public static extern bool UsdShadeMaterialBindingAPI_Bind__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Bind__SWIG_3")]
+  public static extern bool UsdShadeMaterialBindingAPI_Bind__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, global::System.Runtime.InteropServices.HandleRef jarg6);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Bind__SWIG_4")]
+  public static extern bool UsdShadeMaterialBindingAPI_Bind__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Bind__SWIG_5")]
+  public static extern bool UsdShadeMaterialBindingAPI_Bind__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_Bind__SWIG_6")]
+  public static extern bool UsdShadeMaterialBindingAPI_Bind__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_UnbindDirectBinding__SWIG_0")]
+  public static extern bool UsdShadeMaterialBindingAPI_UnbindDirectBinding__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_UnbindDirectBinding__SWIG_1")]
+  public static extern bool UsdShadeMaterialBindingAPI_UnbindDirectBinding__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_UnbindCollectionBinding__SWIG_0")]
+  public static extern bool UsdShadeMaterialBindingAPI_UnbindCollectionBinding__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_UnbindCollectionBinding__SWIG_1")]
+  public static extern bool UsdShadeMaterialBindingAPI_UnbindCollectionBinding__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_UnbindAllBindings")]
+  public static extern bool UsdShadeMaterialBindingAPI_UnbindAllBindings(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_RemovePrimFromBindingCollection")]
+  public static extern bool UsdShadeMaterialBindingAPI_RemovePrimFromBindingCollection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_AddPrimToBindingCollection")]
+  public static extern bool UsdShadeMaterialBindingAPI_AddPrimToBindingCollection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_ComputeBoundMaterial__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_ComputeBoundMaterial__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_ComputeBoundMaterial__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_ComputeBoundMaterial__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_ComputeBoundMaterial__SWIG_2")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_ComputeBoundMaterial__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_ComputeBoundMaterials__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_ComputeBoundMaterials__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_ComputeBoundMaterials__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_ComputeBoundMaterials__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_ComputeBoundMaterials__SWIG_2")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_ComputeBoundMaterials__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CreateMaterialBindSubset__SWIG_0")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_CreateMaterialBindSubset__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_CreateMaterialBindSubset__SWIG_1")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_CreateMaterialBindSubset__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetMaterialBindSubsets")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetMaterialBindSubsets(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_SetMaterialBindSubsetsFamilyType")]
+  public static extern bool UsdShadeMaterialBindingAPI_SetMaterialBindSubsetsFamilyType(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_GetMaterialBindSubsetsFamilyType")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_GetMaterialBindSubsetsFamilyType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeShader__SWIG_0")]
   public static extern global::System.IntPtr new_UsdShadeShader__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -20812,6 +21127,30 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeShaderVector")]
   public static extern void delete_UsdShadeShaderVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeShaderDefParserPlugin")]
+  public static extern global::System.IntPtr new_UsdShadeShaderDefParserPlugin();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeShaderDefParserPlugin")]
+  public static extern void delete_UsdShadeShaderDefParserPlugin(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShaderDefParserPlugin_GetDiscoveryTypes")]
+  public static extern global::System.IntPtr UsdShadeShaderDefParserPlugin_GetDiscoveryTypes(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShaderDefParserPlugin_GetSourceType")]
+  public static extern global::System.IntPtr UsdShadeShaderDefParserPlugin_GetSourceType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShaderDefUtils_SplitShaderIdentifier")]
+  public static extern bool UsdShadeShaderDefUtils_SplitShaderIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShaderDefUtils_GetNodeDiscoveryResults")]
+  public static extern global::System.IntPtr UsdShadeShaderDefUtils_GetNodeDiscoveryResults(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdShadeShaderDefUtils")]
+  public static extern global::System.IntPtr new_UsdShadeShaderDefUtils();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdShadeShaderDefUtils")]
+  public static extern void delete_UsdShadeShaderDefUtils(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeInputVector_Clear")]
   public static extern void UsdShadeInputVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -26060,8 +26399,14 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterial_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeMaterial_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeMaterialBindingAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdShadeMaterialBindingAPI_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShader_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeShader_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeShaderDefParserPlugin_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdShadeShaderDefParserPlugin_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeConnectableAPI_SWIGUpcast(global::System.IntPtr jarg1);

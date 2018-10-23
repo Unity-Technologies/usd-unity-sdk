@@ -323,10 +323,15 @@
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeInput.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeInputVector.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeMaterial.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeMaterialBindingAPI.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeMaterialBindingAPICollectionBindingVector.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeMaterialVector.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeNodeGraph.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeOutput.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeOutputVector.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeShader.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeShaderDefParserPlugin.cs" />
+    <Compile Include="generated\pxr\usd\usdShade\UsdShadeShaderDefUtils.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeShaderVector.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeTokens.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeUtils.cs" />

@@ -240,6 +240,9 @@
     <Content Include="pxr\usd\usdRi\statementsAPI.i" />
     <Content Include="pxr\usd\usdRi\textureAPI.i" />
     <Content Include="pxr\usd\usdShade\usdShadeConnectableAPI.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeMaterialBindingApi.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeShaderDefUtils.i" />
+    <Content Include="pxr\usd\usdShade\usdShadeShaderDefParser.i" />
     <Content Include="pxr\usd\usdShade\usdShadeUtils.i" />
     <Content Include="pxr\usd\usdShade\usdShadeOutput.i" />
     <Content Include="pxr\usd\usdShade\usdShadeInput.i" />
