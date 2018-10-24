@@ -156,10 +156,6 @@ namespace USD.NET.Unity {
           unityMesh.SetTriangles(triangleIndices, subsetIndex);
           subsetIndex++;
         }
-
-        for (int i = 0; i < unityMesh.subMeshCount; i++) {
-          Debug.Log("i: " + unityMesh.GetTriangles(i)[0]);
-        }
       }
 
       bool hasBounds = usdMesh.extent.size.x > 0
@@ -252,7 +248,6 @@ namespace USD.NET.Unity {
         foreach (var kvp in geomSubsets.Subsets) {
           int idx = subIndex;
           options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, mr, idx, path));
-          Debug.Log("SubIndex: " + subIndex);
           subIndex++;
         }
       }
