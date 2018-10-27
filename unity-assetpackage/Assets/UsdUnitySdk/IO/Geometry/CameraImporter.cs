@@ -27,13 +27,11 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Copy camera data from USD to Unity with the given import options.
     /// </summary>
-    public static void BuildCamera(CameraSample usdCube,
+    public static void BuildCamera(CameraSample usdCamera,
                                  GameObject go,
                                  SceneImportOptions options) {
-
-
       var cam = go.AddComponent<Camera>();
-      usdCube.CopyToCamera(cam);
+      usdCamera.CopyToCamera(cam, setTransform: false);
     }
   }
 }

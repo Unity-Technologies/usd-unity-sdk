@@ -33,12 +33,7 @@ namespace USD.NET.Unity {
     public static void BuildXform(XformableSample usdXf,
                                   GameObject go,
                                   SceneImportOptions options) {
-      if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
-        usdXf.ConvertTransform();
-      }
-      go.transform.localPosition = ExtractPosition(usdXf.transform);
-      go.transform.localScale = ExtractScale(usdXf.transform);
-      go.transform.localRotation = ExtractRotation(usdXf.transform);
+      BuildXform(usdXf.transform, go, options);
     }
 
     public static void BuildXform(Matrix4x4 xf,
@@ -47,9 +42,19 @@ namespace USD.NET.Unity {
       if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
         xf = UnityTypeConverter.ChangeBasis(xf);
       }
-      go.transform.localPosition = ExtractPosition(xf);
-      go.transform.localScale = ExtractScale(xf);
-      go.transform.localRotation = ExtractRotation(xf);
+
+      Vector3 localPos;
+      Quaternion localRot;
+      Vector3 localScale;
+
+      if(!UnityTypeConverter.Decompose(xf, out localPos, out localRot, out localScale)) {
+        Debug.LogError("Non-decomposable transform matrix for " + go.name);
+        return;
+      }
+
+      go.transform.localPosition = localPos;
+      go.transform.localScale = localScale;
+      go.transform.localRotation = localRot;
     }
 
     /// <summary>
@@ -128,59 +133,5 @@ namespace USD.NET.Unity {
     }
 
     #endregion
-
-    #region "Private API"
-    // ------------------------------------------------------------------------------------------ //
-    // Private helpers.
-    // ------------------------------------------------------------------------------------------ //
-
-    /// <summary>
-    /// Returns the up vector for the USD scene, which may be Y or Z.
-    /// </summary>
-    static Vector3 GetUpVector(Scene scene) {
-      // Note: currently Y and Z are the only valid values.
-      // https://graphics.pixar.com/usd/docs/api/group___usd_geom_up_axis__group.html
-
-      switch (scene.UpAxis) {
-      case Scene.UpAxes.Y:
-        // Note, this is also Unity's default up vector.
-        return Vector3.up;
-      case Scene.UpAxes.Z:
-        return new Vector3(0, 0, 1);
-      default:
-        throw new Exception("Invalid upAxis value: " + scene.UpAxis.ToString());
-      }
-    }
-
-    static Quaternion ExtractRotation(Matrix4x4 mat4) {
-      Vector3 forward;
-      forward.x = mat4.m02;
-      forward.y = mat4.m12;
-      forward.z = mat4.m22;
-      Vector3 up;
-      up.x = mat4.m01;
-      up.y = mat4.m11;
-      up.z = mat4.m21;
-      return Quaternion.LookRotation(forward, up);
-    }
-
-    static Vector3 ExtractPosition(Matrix4x4 mat4) {
-      Vector3 position;
-      position.x = mat4.m03;
-      position.y = mat4.m13;
-      position.z = mat4.m23;
-      return position;
-    }
-
-    static Vector3 ExtractScale(Matrix4x4 mat4) {
-      Vector3 scale;
-      scale.x = new Vector4(mat4.m00, mat4.m10, mat4.m20, mat4.m30).magnitude;
-      scale.y = new Vector4(mat4.m01, mat4.m11, mat4.m21, mat4.m31).magnitude;
-      scale.z = new Vector4(mat4.m02, mat4.m12, mat4.m22, mat4.m32).magnitude;
-      return scale;
-    }
-    
-    #endregion
-
   }
 }

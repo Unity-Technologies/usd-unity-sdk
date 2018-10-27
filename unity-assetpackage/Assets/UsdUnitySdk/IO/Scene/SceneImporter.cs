@@ -95,7 +95,7 @@ namespace USD.NET.Unity {
       foreach (var pathAndSample in scene.ReadAll<CameraSample>()) {
         try {
           GameObject go = primMap[pathAndSample.path];
-          // Xform is included in BuildCamera.
+          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
           CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
         } catch (System.Exception ex) {
           Debug.LogException(
@@ -147,7 +147,7 @@ namespace USD.NET.Unity {
           foreach (var pathAndSample in scene.ReadAll<CameraSample>(masterRootPath)) {
             try {
               GameObject go = primMap[pathAndSample.path];
-              // Xform is included in BuildCamera.
+              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
               Debug.LogException(

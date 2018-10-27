@@ -133,7 +133,7 @@ namespace USD.NET.Unity.Extensions.Player {
 
     void BuildCamera(CameraSample usdCamera, GameObject go) {
       var cam = go.AddComponent<Camera>();
-      usdCamera.CopyToCamera(cam);
+      usdCamera.CopyToCamera(cam, setTransform: true);
     }
 
     // Copy mesh data to Unity and assign mesh with material.
