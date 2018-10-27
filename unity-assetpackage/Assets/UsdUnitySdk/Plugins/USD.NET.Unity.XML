@@ -20,7 +20,7 @@
               you're unsure about this parameter, it should be left to the default value of true.
             </param>
         </member>
-        <member name="M:USD.NET.Unity.CameraSample.CopyToCamera(UnityEngine.Camera)">
+        <member name="M:USD.NET.Unity.CameraSample.CopyToCamera(UnityEngine.Camera,System.Boolean)">
             <summary>
             Copyies the current sample values to the given camera.
             </summary>
@@ -336,6 +336,17 @@
             <summary>
             Sets the local transform matrix on the given Unity Transform given a Matrix4x4.
             </summary>
+        </member>
+        <member name="M:USD.NET.Unity.UnityTypeConverter.Decompose(UnityEngine.Matrix4x4,UnityEngine.Vector3@,UnityEngine.Quaternion@,UnityEngine.Vector3@)">
+            <summary>
+            Decompose the given matrix into translation, rotation, and scale, accounting for potential
+            handedness changes in the matrix. Returns false if the matrix is singular.
+            </summary>
+            <remarks>
+            Note that for a change of handedness, all scales will invert and a corrective rotation will
+            be aded, which will not match the original TSR values, but will be correct in terms of
+            orientation, position and scale.
+            </remarks>
         </member>
         <member name="M:USD.NET.Unity.UnityTypeConverter.ExtractTrs(UnityEngine.Matrix4x4,UnityEngine.Vector3@,UnityEngine.Quaternion@,UnityEngine.Vector3@)">
             <summary>
