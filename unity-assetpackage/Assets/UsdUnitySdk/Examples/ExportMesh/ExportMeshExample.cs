@@ -518,6 +518,16 @@ namespace USD.NET.Examples {
         sample.SetTriangles(tris);
         scene.Write(exportPlan.path, sample);
 
+        // TODO: this is a bit of a half-measure, we need real support for primvar interpolation.
+        // Set interpolation based on color count.
+        if (sample.colors != null && sample.colors.Length == 1) {
+          pxr.UsdPrim usdPrim = scene.GetPrimAtPath(exportPlan.path);
+          var colorPrimvar = new pxr.UsdGeomPrimvar(usdPrim.GetAttribute(pxr.UsdGeomTokens.primvarsDisplayColor));
+          colorPrimvar.SetInterpolation(pxr.UsdGeomTokens.constant);
+          var opacityPrimvar = new pxr.UsdGeomPrimvar(usdPrim.GetAttribute(pxr.UsdGeomTokens.primvarsDisplayOpacity));
+          opacityPrimvar.SetInterpolation(pxr.UsdGeomTokens.constant);
+        }
+
         string usdMaterialPath;
 
         if (!matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
@@ -551,6 +561,7 @@ namespace USD.NET.Examples {
             for (int i = 0; i < indices.Length; i += 3) {
               faceIndices[i / 3] = faceTable[new Vector3(indices[i], indices[i + 1], indices[i + 2])];
             }
+
             var materialBindToken = new pxr.TfToken("materialBind");
             var vtIndices = UnityTypeConverter.ToVtArray(faceIndices);
             var subset = pxr.UsdGeomSubset.CreateUniqueGeomSubset(
@@ -569,8 +580,10 @@ namespace USD.NET.Examples {
           }
         }
       } else {
-        sample.transform = GetLocalTransformMatrix(go.transform);
-        scene.Write(exportPlan.path, sample);
+        // Only write the transform when animating.
+        var xfSample = new XformSample();
+        xfSample.transform = GetLocalTransformMatrix(go.transform);
+        scene.Write(exportPlan.path, xfSample);
       }
     }
 
