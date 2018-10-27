@@ -83,15 +83,22 @@ namespace USD.NET.Unity {
       pxr.GfCamera c = new pxr.GfCamera();
 
       // Setup focalLength & apertures.
-      c.SetPerspectiveFromAspectRatioAndFieldOfView(camera.aspect, camera.fieldOfView,
-                                                    pxr.GfCamera.FOVDirection.FOVVertical);
+      if (camera.orthographic) {
+        projection = ProjectionType.Orthographic;
+        c.SetOrthographicFromAspectRatioAndSize(camera.aspect,
+                                                camera.orthographicSize,
+                                                pxr.GfCamera.FOVDirection.FOVVertical);
+      } else {
+        projection = ProjectionType.Perspective;
+        c.SetPerspectiveFromAspectRatioAndFieldOfView(camera.aspect,
+                                                      camera.fieldOfView,
+                                                      pxr.GfCamera.FOVDirection.FOVVertical);
+      }
+
       clippingRange = new UnityEngine.Vector2(camera.nearClipPlane, camera.farClipPlane);
       focalLength = c.GetFocalLength();
       horizontalAperture = c.GetHorizontalAperture();
       verticalAperture = c.GetVerticalAperture();
-      projection = camera.orthographic
-                        ? ProjectionType.Orthographic
-                        : ProjectionType.Perspective;
 
       var tr = camera.transform;
       transform = UnityEngine.Matrix4x4.TRS(tr.localPosition,
@@ -121,6 +128,10 @@ namespace USD.NET.Unity {
       camera.aspect = c.GetAspectRatio();
       camera.nearClipPlane = clippingRange.x;
       camera.farClipPlane = clippingRange.y;
+      if (camera.orthographic) {
+        // Note that USD default scale is cm and aperture is in mm.
+        camera.orthographicSize = horizontalAperture / 10.0f;
+      }
 
       if (setTransform) {
         var tr = camera.transform;
