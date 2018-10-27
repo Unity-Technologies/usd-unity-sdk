@@ -85,8 +85,9 @@ namespace USD.NET.Unity {
       // Setup focalLength & apertures.
       if (camera.orthographic) {
         projection = ProjectionType.Orthographic;
+        // USD Orthographic size is 2x the Unity size (Unity uses half aperture for ortho size).
         c.SetOrthographicFromAspectRatioAndSize(camera.aspect,
-                                                camera.orthographicSize,
+                                                camera.orthographicSize * 2,
                                                 pxr.GfCamera.FOVDirection.FOVVertical);
       } else {
         projection = ProjectionType.Perspective;
@@ -128,9 +129,11 @@ namespace USD.NET.Unity {
       camera.aspect = c.GetAspectRatio();
       camera.nearClipPlane = clippingRange.x;
       camera.farClipPlane = clippingRange.y;
+
       if (camera.orthographic) {
         // Note that USD default scale is cm and aperture is in mm.
-        camera.orthographicSize = horizontalAperture / 10.0f;
+        // Also Unity ortho size is the half aperture, so divide USD by 2.
+        camera.orthographicSize = (verticalAperture / 10.0f) / 2.0f;
       }
 
       if (setTransform) {
