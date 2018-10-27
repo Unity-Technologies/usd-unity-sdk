@@ -593,7 +593,7 @@ namespace USD.NET.Examples {
         // Full change of basis would be b*t*b-1, but here we're placing only a single inversion
         // at the root of the hierarchy, so all we need to do is get the camera into the same
         // space.
-        sample.transform = basisChange * sample.transform;
+        sample.transform = sample.transform * basisChange;
       }
 
       scene.Write(exportPlan.path, sample);
