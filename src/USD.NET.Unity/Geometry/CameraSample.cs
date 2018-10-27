@@ -107,13 +107,20 @@ namespace USD.NET.Unity {
     /// </summary>
     public void CopyToCamera(UnityEngine.Camera camera, bool setTransform) {
       // GfCamera is a gold mine of camera math.
-      pxr.GfCamera c = new pxr.GfCamera(UnityTypeConverter.ToGfMatrix(transform));
-
+      pxr.GfCamera c = new pxr.GfCamera(UnityTypeConverter.ToGfMatrix(transform),
+          projection == ProjectionType.Perspective ? pxr.GfCamera.Projection.Perspective
+                                                   : pxr.GfCamera.Projection.Orthographic,
+          this.horizontalAperture,
+          this.verticalAperture,
+          this.horizontalApertureOffset,
+          this.verticalApertureOffset,
+          this.focalLength);
+      
       camera.orthographic = c.GetProjection() == pxr.GfCamera.Projection.Orthographic;
       camera.fieldOfView = c.GetFieldOfView(pxr.GfCamera.FOVDirection.FOVVertical);
       camera.aspect = c.GetAspectRatio();
-      camera.nearClipPlane = c.GetClippingRange().GetMin();
-      camera.farClipPlane = c.GetClippingRange().GetMax();
+      camera.nearClipPlane = clippingRange.x;
+      camera.farClipPlane = clippingRange.y;
 
       if (setTransform) {
         var tr = camera.transform;
