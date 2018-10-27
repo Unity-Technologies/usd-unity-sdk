@@ -105,7 +105,7 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Copyies the current sample values to the given camera.
     /// </summary>
-    public void CopyToCamera(UnityEngine.Camera camera) {
+    public void CopyToCamera(UnityEngine.Camera camera, bool setTransform) {
       // GfCamera is a gold mine of camera math.
       pxr.GfCamera c = new pxr.GfCamera(UnityTypeConverter.ToGfMatrix(transform));
 
@@ -115,10 +115,11 @@ namespace USD.NET.Unity {
       camera.nearClipPlane = c.GetClippingRange().GetMin();
       camera.farClipPlane = c.GetClippingRange().GetMax();
 
-      var tr = camera.transform;
-      var xf = transform;
-
-      UnityTypeConverter.SetTransform(xf, tr);
+      if (setTransform) {
+        var tr = camera.transform;
+        var xf = transform;
+        UnityTypeConverter.SetTransform(xf, tr);
+      }
     }
   }
 }
