@@ -118,6 +118,8 @@ namespace USD.NET.Unity {
           (pxr.VtValue vtVal) => UnityTypeConverter.FromMatrix((pxr.GfMatrix4d)vtVal),
           SdfValueTypeNames.Matrix4d));
 
+      binder.BindArrayType<UnityTypeConverter>(typeof(Matrix4x4[]), typeof(pxr.VtMatrix4dArray), SdfValueTypeNames.Matrix4dArray);
+      binder.BindArrayType<UnityTypeConverter>(typeof(List<Matrix4x4>), typeof(pxr.VtMatrix4dArray), SdfValueTypeNames.Matrix4dArray, "List");
     }
   }
 }

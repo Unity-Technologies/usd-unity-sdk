@@ -333,6 +333,46 @@ namespace USD.NET.Unity {
     }
 
     // ----------------------------------------------------------------------------------------- //
+    // Matrix4x4[] / VtArray<GfMatrix4d>
+    // ----------------------------------------------------------------------------------------- //
+    static public VtMatrix4dArray ToVtArray(UnityEngine.Matrix4x4[] input) {
+      var output = new VtMatrix4dArray((uint)input.Length);
+      for (int i = 0; i < input.Length; i++) {
+        output[i] = ToGfMatrix(input[i]);
+      }
+      return output;
+    }
+
+    static public UnityEngine.Matrix4x4[] FromVtArray(VtMatrix4dArray input) {
+      var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Matrix4x4>(input.size());
+      for (int i = 0; i < output.Length; i++) {
+        output[i] = FromMatrix(input[i]);
+      }
+      /* This doesn't work because we're converting double/float.
+       * Should add a specialized C++ function to do this conversion.
+      unsafe
+      {
+        fixed (UnityEngine.Matrix4x4* p = output) {
+          input.CopyToArray((IntPtr)p);
+        }
+      }
+      */
+      return output;
+    }
+
+    static public VtMatrix4dArray ListToVtArray(List<UnityEngine.Matrix4x4> input) {
+      return ToVtArray(input.ToArray());
+    }
+
+    static public List<UnityEngine.Matrix4x4> ListFromVtArray(VtMatrix4dArray input) {
+      var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Matrix4x4>(input.size());
+      for (int i = 0; i < output.Length; i++) {
+        output[i] = FromMatrix(input[i]);
+      }
+      return output.ToList();
+    }
+
+    // ----------------------------------------------------------------------------------------- //
     // Color32 direct conversion
     // ----------------------------------------------------------------------------------------- //
     static public GfVec4f Color32ToVec4f(UnityEngine.Color32 c) {
