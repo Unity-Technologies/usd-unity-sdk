@@ -39,6 +39,33 @@ namespace USD.NET.Unity {
   }
 
   /// <summary>
+  /// Indicates how to handle import materials.
+  /// </summary>
+  [System.Serializable]
+  public enum MaterialImportMode {
+    /// <summary>
+    /// Imports the bound material with parameters, but does not import bound textures.
+    /// This mode trades off fidelity (no textures) for speed.
+    /// </summary>
+    ImportParameters,
+
+    /// <summary>
+    /// Fully imports the material, parameters, and textures (may be slow).
+    /// </summary>
+    ImportParametersAndTextures,
+
+    /// <summary>
+    /// Ignores the bound material and only uses the object's displayColor.
+    /// </summary>
+    ImportDisplayColor,
+
+    /// <summary>
+    /// Do not assign materials to imported objects.
+    /// </summary>
+    None,
+  }
+
+  /// <summary>
   /// Indicates how the scene should be imported from USD to Unity.
   /// </summary>
   public class SceneImportOptions {
@@ -51,6 +78,8 @@ namespace USD.NET.Unity {
 
     /// <summary>
     /// A uniform scale to apply to the entire imported scene.
+    /// Note that this scale is baked into every object, which is required for the Unity skinned
+    /// mesh renderer, since it uses a parent-relative mesh baking scheme.
     /// </summary>
     public float scale = 1.0f;
 
@@ -66,6 +95,17 @@ namespace USD.NET.Unity {
     public bool enableGpuInstancing = false;
 
     /// <summary>
+    /// When no material is bound, setup a default material to consume the display color.
+    /// If the object color is not imported, a default white material will be assigned.
+    /// </summary>
+    public bool useDisplayColorAsFallbackMaterial = true;
+
+    /// <summary>
+    /// Indicates how materials are handled, see enum for details.
+    /// </summary>
+    public MaterialImportMode materialImportMode = MaterialImportMode.ImportParameters;
+
+    /// <summary>
     /// A set of registered mappings from USD shader ID to Unity material.
     /// </summary>
     public MaterialMap materialMap = new MaterialMap();
@@ -74,6 +114,16 @@ namespace USD.NET.Unity {
     /// The default options for how to import meshes.
     /// </summary>
     public MeshImportOptions meshOptions = new MeshImportOptions();
+
+    /// <summary>
+    /// Indicates if the importer should attempt to bind materials.
+    /// </summary>
+    public bool ShouldBindMaterials {
+      get {
+        return materialImportMode == MaterialImportMode.ImportParameters
+            || materialImportMode == MaterialImportMode.ImportParametersAndTextures;
+      }
+    }
   }
 
 }
