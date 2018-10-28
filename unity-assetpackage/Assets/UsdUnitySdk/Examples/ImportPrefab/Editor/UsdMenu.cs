@@ -54,7 +54,7 @@ public class UsdMenu : MonoBehaviour {
 
     foreach (GameObject go in Selection.gameObjects) {
       if (scene == null) {
-        scene = InitForSave("world");
+        scene = InitForSave(go.name);
         if (scene == null) {
           return;
         }
@@ -76,7 +76,7 @@ public class UsdMenu : MonoBehaviour {
 
   [MenuItem("USD/Import as GameObjects")]
   public static void ImportUsdToScene() {
-    string path = EditorUtility.OpenFilePanel("Import USD File", "", "usd;usda;usdc;abc");
+    string path = EditorUtility.OpenFilePanel("Import USD File", "", "usd,usda,usdc,abc");
     if (path.Length == 0) {
       return;
     }
@@ -92,6 +92,8 @@ public class UsdMenu : MonoBehaviour {
     var importOptions = new SceneImportOptions();
     importOptions.changeHandedness = BasisTransformation.FastAndDangerous;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
+    importOptions.meshOptions.generateLightmapUVs = false;
+
     GameObject parent = null;
     if (Selection.gameObjects.Length > 0) {
       parent = Selection.gameObjects[0];
