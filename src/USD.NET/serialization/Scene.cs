@@ -623,8 +623,9 @@ namespace USD.NET {
           } else {
             prim = m_stage.OverridePrim(path);
           }
-          if (!prim) {
-            return;
+          if (prim == null || !prim) {
+            throw new Exception("Failed to "
+              + (WriteMode == WriteModes.Define ? "define" : "override") + " prim: " + path);
           }
           m_primMap.Add(path, prim);
         }
