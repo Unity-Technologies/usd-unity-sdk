@@ -72,6 +72,7 @@ namespace USD.NET.Examples {
       public GameObject gameObject;
       public string path;
       public SampleBase sample;
+      public object additionalData;
     }
 
     public class ExportContext {
@@ -87,11 +88,17 @@ namespace USD.NET.Examples {
     }
 
     public class Exporter {
+      // The USD path at which the Unity data will be written.
+      public string path;
+
       // The sample type to be used when exporting.
       public SampleBase sample;
 
       // The export function which implements the logic to populate the sample.
       public ExportFunction exportFunc;
+
+      // Additional arguments required for export.
+      public object data;
     }
 
     // An export plan will be created for each path in the scene. Each ExportPlan will use one of
@@ -99,9 +106,6 @@ namespace USD.NET.Examples {
     // will be created for that path in the scenegraph and the ExportFunction will the one which is
     // capable of exporting a mesh.
     public class ExportPlan {
-      // The USD path at which the Unity data will be written.
-      public string path;
-
       // The functions to run when exporting this object.
       public List<Exporter> exporters = new List<Exporter>();
     }
@@ -212,9 +216,12 @@ namespace USD.NET.Examples {
           GameObject go = kvp.Key;
           foreach (var exporter in kvp.Value.exporters) {
             exporter.exportFunc(
-                new ObjectContext { gameObject=go,
-                                    path = kvp.Value.path,
-                                    sample = exporter.sample },
+                new ObjectContext {
+                  gameObject = go,
+                  path = exporter.path,
+                  sample = exporter.sample,
+                  additionalData = exporter.data,
+                },
                 m_context);
           }
         }
@@ -239,8 +246,9 @@ namespace USD.NET.Examples {
           exporter.exportFunc(
               new ObjectContext {
                 gameObject = go,
-                path = kvp.Value.path,
-                sample = exporter.sample
+                path = exporter.path,
+                sample = exporter.sample,
+                additionalData = exporter.data,
               },
               m_context);
         }
@@ -266,19 +274,24 @@ namespace USD.NET.Examples {
       foreach (var kvp in context.plans) {
         ExportPlan exportPlan = kvp.Value;
         GameObject go = kvp.Key;
-        string path = exportPlan.path;
 
         foreach (Exporter exporter in exportPlan.exporters) {
+        string path = exporter.path;
           scene.Time = null;
           SampleBase sample = exporter.sample;
-          var objCtx = new ObjectContext { gameObject = go, path = exportPlan.path, sample = sample };
+          var objCtx = new ObjectContext {
+            gameObject = go,
+            path = path,
+            sample = sample,
+            additionalData = exporter.data
+          };
 
           exporter.exportFunc(objCtx, context);
           context.scene.Time = oldTime;
           exporter.exportFunc(objCtx, context);
 
           if (!go.gameObject.activeSelf) {
-            var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(exportPlan.path));
+            var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(path));
             if (im) {
               im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
             }
@@ -326,19 +339,62 @@ namespace USD.NET.Examples {
                               ExportContext context) {
       Traverse(exportRoot, InitExportableObjects, context);
 
+      var foundAnimators = new List<Transform>();
       foreach (Transform rootBone in context.skelMap.Keys.ToList()) {
-        var children = new List<Transform>();
-        var meshes = new List<GameObject>();
-        CreateExportPlan(rootBone.gameObject, CreateOne<SkeletonSample>(context), ExportSkeleton, context);
-        //CreateExportPlan(rootBone.gameObject, new SkeletonSample(), ExportSkeletonAnimation, context.plans);
-        AccumNestedBones(rootBone, children, context);
-        context.skelMap[rootBone] = children.ToArray();
+        foreach (var xf in foundAnimators) {
+          if (rootBone.IsChildOf(xf)) {
+            continue;
+          }
+        }
+        var parentXf = rootBone;
+        while (parentXf != null) {
+          var anim = parentXf.GetComponent<Animator>();
+          if (anim != null && anim.avatar != null) {
+            // Assume this is the root of the rig.
+
+            CreateExportPlan(
+                parentXf.gameObject,
+                CreateOne<SkelRootSample>(context),
+                ExportSkelRoot,
+                context,
+                insertFirst: true,
+                data: UnityTypeConverter.GetPath(parentXf) + "/_skeleton");
+
+            CreateExportPlan(
+                parentXf.gameObject,
+                CreateOne<SkeletonSample>(context),
+                ExportSkeleton,
+                context,
+                insertFirst: true,
+                pathSuffix: "/_skeleton");
+
+            foundAnimators.Add(anim.transform);
+            Debug.LogWarning("FOUND: " + UnityTypeConverter.GetPath(parentXf));
+
+            var children = new List<Transform>();
+            var meshes = new List<GameObject>();
+            AccumNestedBones(parentXf, children, context);
+            context.skelMap[parentXf] = children.ToArray();
+            context.skelMap.Remove(rootBone);
+            break;
+          }
+          parentXf = parentXf.parent;
+        }
       }
     }
 
     static void InitExportableObjects(GameObject go,
                                       ExportContext context) {
       var smr = go.GetComponent<SkinnedMeshRenderer>();
+      var mr = go.GetComponent<MeshRenderer>();
+      var mf = go.GetComponent<MeshFilter>();
+      var cam = go.GetComponent<Camera>();
+      var anim = go.GetComponent<Animator>();
+
+      if (anim != null && anim.avatar != null && anim.avatar.isValid) {
+        // Assume any animator that has an avitar is a skeleton root.
+      }
+
       if (smr != null) {
         foreach (var mat in smr.sharedMaterials) {
           if (!context.matMap.ContainsKey(mat)) {
@@ -354,8 +410,7 @@ namespace USD.NET.Examples {
         } else {
           MergeBones(smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
         }
-      } else if (go.GetComponent<MeshFilter>() != null && go.GetComponent<MeshRenderer>() != null) {
-        var mr = go.GetComponent<MeshRenderer>();
+      } else if (mf != null && mr != null) {
         foreach (var mat in mr.sharedMaterials) {
           if (mat == null) {
             continue;
@@ -366,7 +421,7 @@ namespace USD.NET.Examples {
           }
         }
         CreateExportPlan(go, CreateOne<MeshSample>(context), ExportMesh, context);
-      } else if (go.GetComponent<Camera>()) {
+      } else if (cam) {
         CreateExportPlan(go, CreateOne<CameraSample>(context), ExportCamera, context);
       }
     }
@@ -390,14 +445,25 @@ namespace USD.NET.Examples {
     static void CreateExportPlan(GameObject go,
                                  SampleBase sample,
                                  ExportFunction exportFunc,
-                                 ExportContext context) {
+                                 ExportContext context,
+                                 string pathSuffix = null,
+                                 object data = null,
+                                 bool insertFirst = true) {
       // This is an exportable object.
       string path = Unity.UnityTypeConverter.GetPath(go.transform);
+      if (!string.IsNullOrEmpty(pathSuffix)) {
+        path += pathSuffix;
+      }
       if (!context.plans.ContainsKey(go)) {
-        context.plans.Add(go, new ExportPlan { path = path });
+        context.plans.Add(go, new ExportPlan());
       }
 
-      context.plans[go].exporters.Add(new Exporter { exportFunc = exportFunc, sample = sample });
+      var exp = new Exporter { exportFunc = exportFunc, sample = sample, path = path, data = data };
+      if (insertFirst) {
+        context.plans[go].exporters.Insert(0, exp);
+      } else {
+        context.plans[go].exporters.Add(exp);
+      }
 
       // Include the parent xform hierarchy.
       // Note that the parent hierarchy is memoised, so despite looking expensive, the time
@@ -484,12 +550,24 @@ namespace USD.NET.Examples {
       Debug.Log(sb.ToString());
       scene.Write(objContext.path, sample);
 
-      //var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(exportPlan.path));
-      //im.CreatePurposeAttr().Set(pxr.UsdGeomTokens.guide);
+      // Stop Skeleton from rendering bones in usdview by default.
+      var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(objContext.path));
+      im.CreatePurposeAttr().Set(pxr.UsdGeomTokens.guide);
+    }
 
-      var parent = scene.GetPrimAtPath(new pxr.SdfPath(objContext.path).GetParentPath());
-      parent.CreateRelationship(new pxr.TfToken("skel:skeleton")).AddTarget(new pxr.SdfPath(objContext.path));
-      parent.SetTypeName(new pxr.TfToken("SkelRoot"));
+    static void ExportSkelRoot(ObjectContext objContext, ExportContext exportContext) {
+      var sample = (SkelRootSample)objContext.sample;
+
+      sample.extent = new Bounds(objContext.gameObject.transform.position, Vector3.zero);
+      foreach (var r in objContext.gameObject.GetComponentsInChildren<Renderer>()) {
+        sample.extent.Encapsulate(r.bounds);
+      }
+
+      exportContext.scene.Write(objContext.path, objContext.sample);
+
+      var rootPrim = exportContext.scene.GetPrimAtPath(objContext.path);
+      rootPrim.CreateRelationship(new pxr.TfToken("skel:skeleton")).AddTarget(new pxr.SdfPath((string)objContext.additionalData));
+      rootPrim.SetTypeName(new pxr.TfToken("SkelRoot"));
       //scene.Write(new pxr.SdfPath(exportPlan.path).GetParentPath(), new SkelRootSample());
     }
 
@@ -672,8 +750,6 @@ namespace USD.NET.Examples {
         }
 
         sample.SetTriangles(tris);
-
-        Debug.Log("Write unvarying: " + path);
         scene.Write(path, sample);
 
         // TODO: this is a bit of a half-measure, we need real support for primvar interpolation.
