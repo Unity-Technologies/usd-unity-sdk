@@ -63,40 +63,54 @@ namespace USD.NET.Examples {
 
     // The export function allows for dispatch to different export functions without knowing what
     // type of data they export (e.g. mesh vs. transform).
-    public delegate void ExportFunction(
-        Scene scene,
-        GameObject go,
-        ExportPlan exportPlan,
-        Dictionary<Material, string> matMap);
+    public delegate void ExportFunction(ObjectContext objContext, ExportContext exportContext);
+
+    delegate void ObjectProcessor(GameObject go,
+                                  ExportContext context);
+
+    public struct ObjectContext {
+      public GameObject gameObject;
+      public string path;
+      public SampleBase sample;
+    }
+
+    public class ExportContext {
+      public Scene scene;
+      public BasisTransformation basisTransform = BasisTransformation.FastAndDangerous;
+      public Dictionary<GameObject, ExportPlan> plans = new Dictionary<GameObject, ExportPlan>();
+      public Dictionary<Material, string> matMap = new Dictionary<Material, string>();
+      public Dictionary<Transform, Transform[]> skelMap = new Dictionary<Transform, Transform[]>();
+      public Dictionary<Transform, Matrix4x4> bones = new Dictionary<Transform, Matrix4x4>();
+
+      // Sample object instances, shared across multiple export methods.
+      public Dictionary<Type, SampleBase> samples = new Dictionary<Type, SampleBase>();
+    }
+
+    public class Exporter {
+      // The sample type to be used when exporting.
+      public SampleBase sample;
+
+      // The export function which implements the logic to populate the sample.
+      public ExportFunction exportFunc;
+    }
 
     // An export plan will be created for each path in the scene. Each ExportPlan will use one of
     // the fixed export functions. For example, when setting up export for a mesh, an ExportPlan
     // will be created for that path in the scenegraph and the ExportFunction will the one which is
     // capable of exporting a mesh.
-    public struct ExportPlan {
+    public class ExportPlan {
       // The USD path at which the Unity data will be written.
       public string path;
 
-      // The sample which will hold the data to export.
-      public SampleBase sample;
-
-      // The export function which implements the logic to populate the sample.
-      public ExportFunction exportFunc;
-
-      // Do a deep/safe conversion or a fast/dangerous conversion.
-      public BasisTransformation convertHandedness;
+      // The functions to run when exporting this object.
+      public List<Exporter> exporters = new List<Exporter>();
     }
 
-    // A map from Unity GameObject to an export plan, which indicates where and how the GameObject
-    // should be written to USD.
-    private Dictionary<GameObject, ExportPlan> m_primMap
-      = new Dictionary<GameObject, ExportPlan>();
-
-    private Dictionary<Material, string> m_materialMap
-      = new Dictionary<Material, string>();
+    ExportContext m_context = new ExportContext();
 
     // Used by the custom editor to determine recording state.
-    public bool IsRecording {
+    public bool IsRecording
+    {
       get;
       private set;
     }
@@ -135,8 +149,9 @@ namespace USD.NET.Examples {
 
         // For simplicity in this example, adding game objects while recording is not supported.
         Debug.Log("Init hierarchy");
-        m_primMap.Clear();
-        InitHierarchy(m_exportRoot, m_materialMap, m_primMap);
+        m_context = new ExportContext();
+        m_context.scene = m_usdScene;
+        InitHierarchy(m_exportRoot, m_context);
 
         // Do this last, in case an exception is thrown above.
         IsRecording = true;
@@ -156,7 +171,7 @@ namespace USD.NET.Examples {
     public void StopRecording() {
       if (!IsRecording) { return; }
 
-      m_primMap.Clear();
+      m_context = new ExportContext();
 
       // In a real exporter, additional error handling should be added here.
       if (!string.IsNullOrEmpty(m_usdFile)) {
@@ -188,14 +203,20 @@ namespace USD.NET.Examples {
       // On subsequent frames, skip unvarying data to avoid writing redundant data.
       if (Time.frameCount == m_startFrame) {
         // First write materials.
-        foreach (var kvp in m_materialMap) {
+        foreach (var kvp in m_context.matMap) {
           ExportMaterial(m_usdScene, kvp.Key, kvp.Value);
         }
         // Next, write geometry, which may also bind to materials written above.
-        foreach (var kvp in m_primMap) {
+        foreach (var kvp in m_context.plans) {
           ExportPlan exportPlan = kvp.Value;
           GameObject go = kvp.Key;
-          exportPlan.exportFunc(m_usdScene, go, exportPlan, m_materialMap);
+          foreach (var exporter in kvp.Value.exporters) {
+            exporter.exportFunc(
+                new ObjectContext { gameObject=go,
+                                    path = kvp.Value.path,
+                                    sample = exporter.sample },
+                m_context);
+          }
         }
       }
 
@@ -211,35 +232,57 @@ namespace USD.NET.Examples {
       }
 
       // Record the time varying data that changes from frame to frame.
-      foreach (var kvp in m_primMap) {
+      foreach (var kvp in m_context.plans) {
         ExportPlan exportPlan = kvp.Value;
         GameObject go = kvp.Key;
-        exportPlan.exportFunc(m_usdScene, go, exportPlan, m_materialMap);
+        foreach (var exporter in kvp.Value.exporters) {
+          exporter.exportFunc(
+              new ObjectContext {
+                gameObject = go,
+                path = kvp.Value.path,
+                sample = exporter.sample
+              },
+              m_context);
+        }
       }
     }
 
-    public static void Export(GameObject root, USD.NET.Scene scene) {
-      var primMap = new Dictionary<GameObject, ExportPlan>();
-      var matMap = new Dictionary<Material, string>();
-      InitHierarchy(root, matMap, primMap);
+    public static void Export(GameObject root,
+                              USD.NET.Scene scene,
+                              BasisTransformation basisTransform) {
+      var context = new ExportContext();
+
+      context.scene = scene;
+      context.basisTransform = basisTransform;
+
+      InitHierarchy(root, context);
       var oldTime = scene.Time;
 
-      foreach (var kvp in matMap) {
+      foreach (var kvp in context.matMap) {
         scene.Time = null;
         ExportMaterial(scene, kvp.Key, kvp.Value);
       }
 
-      foreach (var kvp in primMap) {
+      foreach (var kvp in context.plans) {
         ExportPlan exportPlan = kvp.Value;
         GameObject go = kvp.Key;
+        string path = exportPlan.path;
 
-        scene.Time = null;
-        exportPlan.exportFunc(scene, go, exportPlan, matMap);
-        scene.Time = oldTime;
-        exportPlan.exportFunc(scene, go, exportPlan, matMap);
+        foreach (Exporter exporter in exportPlan.exporters) {
+          scene.Time = null;
+          SampleBase sample = exporter.sample;
+          var objCtx = new ObjectContext { gameObject = go, path = exportPlan.path, sample = sample };
 
-        if (!go.activeSelf) {
-          scene.GetPrimAtPath(exportPlan.path).SetActive(false);
+          exporter.exportFunc(objCtx, context);
+          context.scene.Time = oldTime;
+          exporter.exportFunc(objCtx, context);
+
+          if (!go.gameObject.activeSelf) {
+            var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(exportPlan.path));
+            if (im) {
+              im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
+            }
+          }
         }
       }
     }
@@ -248,97 +291,122 @@ namespace USD.NET.Examples {
     // Init Hierarchy.
     // ------------------------------------------------------------------------------------------ //
 
-    delegate void ObjectProcessor(GameObject go,
-                                  Dictionary<Material, string> matMap,
-                                  Dictionary<GameObject, ExportPlan> primMap);
-
     static void Traverse(GameObject obj,
                          ObjectProcessor processor,
-                         Dictionary<Material, string> matMap,
-                         Dictionary<GameObject, ExportPlan> primMap) {
-      processor(obj, matMap, primMap);
+                         ExportContext context) {
+      processor(obj, context);
       foreach (Transform child in obj.transform) {
-        Traverse(child.gameObject, processor, matMap, primMap);
+        Traverse(child.gameObject, processor, context);
       }
+    }
+
+    static void AccumNestedBones(Transform curXf,
+                                 List<Transform> children,
+                                 ExportContext ctx) {
+      if (ctx.bones.ContainsKey(curXf)) {
+        children.Add(curXf);
+      }
+      foreach (Transform child in curXf.transform) {
+        AccumNestedBones(child, children, ctx);
+      }
+    }
+
+    static SampleBase CreateOne<T>(ExportContext context) where T: SampleBase, new() {
+      SampleBase sb;
+      if (context.samples.TryGetValue(typeof(T), out sb)) {
+        return sb;
+      }
+
+      sb = (new T());
+      context.samples[typeof(T)] = sb;
+      return sb;
     }
 
     static void InitHierarchy(GameObject exportRoot,
-                              Dictionary<Material, string> matMap,
-                              Dictionary<GameObject, ExportPlan> primMap) {
-      Traverse(exportRoot, InitExportableObjects, matMap, primMap);
+                              ExportContext context) {
+      Traverse(exportRoot, InitExportableObjects, context);
+
+      foreach (Transform rootBone in context.skelMap.Keys.ToList()) {
+        var children = new List<Transform>();
+        var meshes = new List<GameObject>();
+        CreateExportPlan(rootBone.gameObject, CreateOne<SkeletonSample>(context), ExportSkeleton, context);
+        //CreateExportPlan(rootBone.gameObject, new SkeletonSample(), ExportSkeletonAnimation, context.plans);
+        AccumNestedBones(rootBone, children, context);
+        context.skelMap[rootBone] = children.ToArray();
+      }
     }
 
     static void InitExportableObjects(GameObject go,
-                                      Dictionary<Material, string> matMap,
-                                      Dictionary<GameObject, ExportPlan> primMap) {
-      SampleBase sample = null;
-      ExportFunction exportFunc = null;
-
-      if (go.GetComponent<SkinnedMeshRenderer>() != null) {
-        sample = new MeshSample();
-        exportFunc = ExportSkinnedMesh;
-        foreach (var mat in go.GetComponent<SkinnedMeshRenderer>().sharedMaterials) {
-          if (!matMap.ContainsKey(mat)) {
+                                      ExportContext context) {
+      var smr = go.GetComponent<SkinnedMeshRenderer>();
+      if (smr != null) {
+        foreach (var mat in smr.sharedMaterials) {
+          if (!context.matMap.ContainsKey(mat)) {
             string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
-            matMap.Add(mat, usdPath);
+            context.matMap.Add(mat, usdPath);
           }
+        }
+        CreateExportPlan(go, CreateOne<MeshSample>(context), ExportSkinnedMesh, context);
+        if (smr.rootBone == null) {
+          Debug.LogWarning("No root bone at: " + UnityTypeConverter.GetPath(go.transform));
+        } else if (smr.bones == null || smr.bones.Length == 0) {
+          Debug.LogWarning("No bones at: " + UnityTypeConverter.GetPath(go.transform));
+        } else {
+          MergeBones(smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
         }
       } else if (go.GetComponent<MeshFilter>() != null && go.GetComponent<MeshRenderer>() != null) {
-        sample = new MeshSample();
-        exportFunc = ExportMesh;
-        foreach (var mat in go.GetComponent<MeshRenderer>().sharedMaterials) {
-          if (!matMap.ContainsKey(mat)) {
+        var mr = go.GetComponent<MeshRenderer>();
+        foreach (var mat in mr.sharedMaterials) {
+          if (mat == null) {
+            continue;
+          }
+          if (!context.matMap.ContainsKey(mat)) {
             string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
-            matMap.Add(mat, usdPath);
+            context.matMap.Add(mat, usdPath);
           }
         }
+        CreateExportPlan(go, CreateOne<MeshSample>(context), ExportMesh, context);
       } else if (go.GetComponent<Camera>()) {
-        sample = new CameraSample();
-        exportFunc = ExportCamera;
-      } else {
-        return;
+        CreateExportPlan(go, CreateOne<CameraSample>(context), ExportCamera, context);
       }
+    }
 
+    static void MergeBones(Transform rootBone, Transform[] bones, Matrix4x4[] bindPoses, ExportContext context) {
+      if (!context.bones.ContainsKey(rootBone) && !context.skelMap.ContainsKey(rootBone)) {
+        context.skelMap.Add(rootBone, bones);
+      }
+      for (int i = 0; i < bones.Length; i++) {
+        Transform bone = bones[i];
+        context.bones[bone] = bindPoses[i];
+        if (bone == rootBone) {
+          continue;
+        }
+        if (context.skelMap.ContainsKey(bone)) {
+          context.skelMap.Remove(bone);
+        }
+      }
+    }
+
+    static void CreateExportPlan(GameObject go,
+                                 SampleBase sample,
+                                 ExportFunction exportFunc,
+                                 ExportContext context) {
       // This is an exportable object.
       string path = Unity.UnityTypeConverter.GetPath(go.transform);
-      primMap.Add(go, new ExportPlan {
-        path = path,
-        sample = sample,
-        exportFunc = exportFunc,
-        convertHandedness = BasisTransformation.FastAndDangerous
-      });
+      if (!context.plans.ContainsKey(go)) {
+        context.plans.Add(go, new ExportPlan { path = path });
+      }
+
+      context.plans[go].exporters.Add(new Exporter { exportFunc = exportFunc, sample = sample });
 
       // Include the parent xform hierarchy.
       // Note that the parent hierarchy is memoised, so despite looking expensive, the time
       // complexity is linear.
       Transform xf = go.transform.parent;
-      while (xf) {
-        if (!InitExportableParents(xf.gameObject, primMap)) {
-          break;
-        }
-        xf = xf.parent;
+      if (xf != null && !context.plans.ContainsKey(xf.gameObject)) {
+        // Since all GameObjects have a Transform, export all un-exported parents as transform.
+        CreateExportPlan(xf.gameObject, CreateOne<XformSample>(context), ExportXform, context);
       }
-    }
-
-    static bool InitExportableParents(GameObject go,
-                           Dictionary<GameObject, ExportPlan> primMap) {
-      if (primMap.ContainsKey(go)) {
-        // Stop processing parents, this keeps the performance of the traversal linear.
-        return false;
-      }
-
-      // Any object we add will only be exported as an Xform.
-      string path = UnityTypeConverter.GetPath(go.transform);
-      SampleBase sample = new XformSample();
-      primMap.Add(go, new ExportPlan {
-        path = path,
-        sample = sample,
-        exportFunc = ExportXform,
-        convertHandedness = BasisTransformation.FastAndDangerous
-      });
-
-      // Continue processing parents.
-      return true;
     }
 
     // ------------------------------------------------------------------------------------------ //
@@ -356,118 +424,197 @@ namespace USD.NET.Examples {
       var texPath = /*TODO: this should be explicit*/
             System.IO.Path.GetDirectoryName(scene.Stage.GetRootLayer().GetIdentifier());
 
-      // HDRenderPipeline/Lit
       if (mat.shader.name == "Standard (Specular setup)") {
         StandardShaderIo.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);
-        scene.Write(shaderPath, shader);
-        return;
-      }
-      if (mat.shader.name == "Standard (Roughness setup)") {
+      } else if (mat.shader.name == "Standard (Roughness setup)") {
         StandardShaderIo.ExportStandardRoughness(scene, shaderPath, mat, shader, texPath);
-        scene.Write(shaderPath, shader);
-        return;
-      }
-
-      if (mat.shader.name == "Standard") {
+      } else if (mat.shader.name == "Standard") {
         StandardShaderIo.ExportStandard(scene, shaderPath, mat, shader, texPath);
-        scene.Write(shaderPath, shader);
-        return;
-      }
-
-      if (mat.shader.name == "HDRenderPipeline/Lit") {
+      } else if (mat.shader.name == "HDRenderPipeline/Lit") {
         HdrpShaderIo.ExportLit(scene, shaderPath, mat, shader, texPath);
-        scene.Write(shaderPath, shader);
-        return;
-      }
-
-      Color c;
-
-      if (mat.HasProperty("_Color")) {
-        // Standard.
-        c = mat.GetColor("_Color").linear;
-      } else if (mat.HasProperty("_BaseColor")) {
-        // HDRP Lit.
-        c = mat.GetColor("_BaseColor").linear;
-      } else if (mat.HasProperty("_BaseColor0")) {
-        // HDRP Layered Lit.
-        c = mat.GetColor("_BaseColor").linear;
       } else {
-        c = Color.white;
-      }
-      shader.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
-
-      if (mat.HasProperty("_SpecColor")) {
-        // If there is a spec color, then this is not metallic workflow.
-        c = mat.GetColor("_SpecColor");
-        shader.useSpecularWorkflow.defaultValue = 1;
-      } else {
-        c = new Color(.4f, .4f, .4f);
-      }
-      shader.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
-
-      if (mat.HasProperty("_EmissionColor")) {
-        c = mat.GetColor("_EmissionColor").linear;
-        shader.emissiveColor.defaultValue = new Vector3(c.r, c.g, c.b);
-      }
-
-      if (mat.HasProperty("_Metallic")) {
-        shader.metallic.defaultValue = mat.GetFloat("_Metallic");
-      } else {
-        shader.metallic.defaultValue = .5f;
-      }
-
-      if (mat.HasProperty("_Smoothness")) {
-        shader.roughness.defaultValue = 1 - mat.GetFloat("_Smoothness");
-      } else if (mat.HasProperty("_Glossiness")) {
-        shader.roughness.defaultValue = 1 - mat.GetFloat("_Glossiness");
-      } else if (mat.HasProperty("_Roughness")) {
-        shader.roughness.defaultValue = mat.GetFloat("_Roughness");
-      } else {
-        shader.roughness.defaultValue = 0.5f;
+        StandardShaderIo.ExportGeneric(scene, shaderPath, mat, shader, texPath);
       }
 
       scene.Write(shaderPath, shader);
-      scene.GetPrimAtPath(shaderPath).CreateAttribute(
-          new pxr.TfToken("outputs:surface"),
-          SdfValueTypeNames.Token,
-          false, pxr.SdfVariability.SdfVariabilityUniform);
-
+      scene.GetPrimAtPath(shaderPath).CreateAttribute(pxr.UsdShadeTokens.outputsSurface,
+                                                      SdfValueTypeNames.Token,
+                                                      false,
+                                                      pxr.SdfVariability.SdfVariabilityUniform);
     }
 
-    static void ExportSkinnedMesh(Scene scene,
-                       GameObject go,
-                       ExportPlan exportPlan,
-                       Dictionary<Material, string> matMap) {
-      var smr = go.GetComponent<SkinnedMeshRenderer>();
-      Mesh mesh = new Mesh();
+    static Matrix4x4 ComputeWorldXf(Transform curBone, ExportContext context) {
+      if (!context.bones.ContainsKey(curBone)) {
+        return curBone.parent.localToWorldMatrix;
+      }
+      return context.bones[curBone] * ComputeWorldXf(curBone.parent, context);
+    }
+
+    static void ExportSkeleton(ObjectContext objContext, ExportContext exportContext) {
+      var scene = exportContext.scene;
+      var sample = (SkeletonSample)objContext.sample;
+      var bones = exportContext.skelMap[objContext.gameObject.transform];
+      sample.joints = new string[bones.Length];
+      sample.bindTransforms = new Matrix4x4[bones.Length];
+      sample.restTransforms = new Matrix4x4[bones.Length];
+
+      var sb = new System.Text.StringBuilder();
+      string rootPath = UnityTypeConverter.GetPath(objContext.gameObject.transform);
+      sb.AppendLine(rootPath);
+
+      int i = 0;
+      foreach (Transform bone in bones) {
+        var bonePath = UnityTypeConverter.GetPath(bone);
+        sb.AppendLine(bonePath);
+        sb.AppendLine(exportContext.bones[bone].ToString());
+        sb.AppendLine();
+
+        sample.joints[i] = bonePath;
+        sample.bindTransforms[i] = exportContext.bones[bone].inverse;
+        sample.restTransforms[i] = GetLocalTransformMatrix(bone, false, false, exportContext.basisTransform);
+
+        if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
+          sample.bindTransforms[i] = UnityTypeConverter.ChangeBasis(sample.bindTransforms[i]);
+          // The restTransforms will get a change of basis from GetLocalTransformMatrix().
+        }
+
+        i++;
+      }
+
+      Debug.Log(sb.ToString());
+      scene.Write(objContext.path, sample);
+
+      //var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(exportPlan.path));
+      //im.CreatePurposeAttr().Set(pxr.UsdGeomTokens.guide);
+
+      var parent = scene.GetPrimAtPath(new pxr.SdfPath(objContext.path).GetParentPath());
+      parent.CreateRelationship(new pxr.TfToken("skel:skeleton")).AddTarget(new pxr.SdfPath(objContext.path));
+      parent.SetTypeName(new pxr.TfToken("SkelRoot"));
+      //scene.Write(new pxr.SdfPath(exportPlan.path).GetParentPath(), new SkelRootSample());
+    }
+
+    static void ExportSkelAnimation(ObjectContext objContext, ExportContext exportContext) {
+      var scene = exportContext.scene;
+      var sample = (SkeletonSample)objContext.sample;
+      var go = objContext.gameObject;
+      var bones = exportContext.skelMap[go.transform];
+      sample.joints = new string[bones.Length];
+      sample.bindTransforms = new Matrix4x4[bones.Length];
+      sample.restTransforms = new Matrix4x4[bones.Length];
+
+      var sb = new System.Text.StringBuilder();
+      string rootPath = UnityTypeConverter.GetPath(go.transform);
+      sb.AppendLine(rootPath);
+      int i = 0;
+      foreach (Transform b in bones) {
+        var bonePath = UnityTypeConverter.GetPath(b);
+        sb.AppendLine(bonePath);
+        sample.joints[i] = bonePath;
+        if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
+          sample.bindTransforms[i] = UnityTypeConverter.ChangeBasis(b.localToWorldMatrix);
+        } else {
+          sample.bindTransforms[i] = b.localToWorldMatrix;
+        }
+        sample.restTransforms[i] = GetLocalTransformMatrix(b, false, false, exportContext.basisTransform);
+        i++;
+      }
+
+      Debug.Log(sb.ToString());
+      scene.Write(objContext.path, sample);
+      var parent = scene.GetPrimAtPath(new pxr.SdfPath(objContext.path).GetParentPath());
+      parent.CreateRelationship(new pxr.TfToken("skel:skeleton")).AddTarget(new pxr.SdfPath(objContext.path));
+      parent.SetTypeName(new pxr.TfToken("SkelRoot"));
+      //scene.Write(new pxr.SdfPath(exportPlan.path).GetParentPath(), new SkelRootSample());
+    }
+
+    static void ExportSkinnedMesh(ObjectContext objContext, ExportContext exportContext) {
+      var smr = objContext.gameObject.GetComponent<SkinnedMeshRenderer>();
+      Mesh mesh = smr.sharedMesh;
+
       // TODO: export smr.sharedMesh when unvarying.
       // Ugh. Note that BakeMesh bakes the parent transform into the points, which results in
       // compounded transforms on export. The way Unity handles this is to apply a scale as part
       // of the importer, which bakes the scale into the points.
+#if false
+      mesh = new Mesh();
       smr.BakeMesh(mesh);
-      ExportMesh(scene, go, exportPlan, matMap, mesh, smr.sharedMaterial, smr.sharedMaterials);
+#endif
+      ExportMesh(objContext, exportContext, mesh, smr.sharedMaterial, smr.sharedMaterials);
+
+      // Note that the baked mesh no longer has the bone weights, so here we switch back to the
+      // shared SkinnedMeshRenderer mesh.
+      ExportSkelWeights(exportContext.scene, objContext.path, smr.sharedMesh, smr.bones);
     }
 
-    static void ExportMesh(Scene scene,
-                       GameObject go,
-                       ExportPlan exportPlan,
-                       Dictionary<Material, string> matMap) {
-      MeshFilter mf = go.GetComponent<MeshFilter>();
-      MeshRenderer mr = go.GetComponent<MeshRenderer>();
+    static void ExportSkelWeights(Scene scene, string path, Mesh unityMesh, Transform[] bones) {
+      var sample = new SkelBindingSample();
+      sample.jointIndices = new int[unityMesh.boneWeights.Length * 4];
+      sample.jointWeights = new float[unityMesh.boneWeights.Length * 4];
+      sample.geomBindTransform = Matrix4x4.identity;
+      sample.joints = new string[bones.Length];
+
+      int b = 0;
+      foreach (Transform bone in bones) {
+        sample.joints[b++] = UnityTypeConverter.GetPath(bone);
+      }
+
+      int i = 0;
+      int w = 0;
+      foreach (var bone in unityMesh.boneWeights) {
+        sample.jointIndices[i++] = bone.boneIndex0;
+        sample.jointIndices[i++] = bone.boneIndex1;
+        sample.jointIndices[i++] = bone.boneIndex2;
+        sample.jointIndices[i++] = bone.boneIndex3;
+        sample.jointWeights[w++] = bone.weight0;
+        sample.jointWeights[w++] = bone.weight1;
+        sample.jointWeights[w++] = bone.weight2;
+        sample.jointWeights[w++] = bone.weight3;
+      }
+
+      scene.Write(path, sample);
+      var prim = scene.GetPrimAtPath(path);
+
+      var attrIndices = new pxr.UsdGeomPrimvar(
+                            prim.CreateAttribute(
+                                pxr.UsdSkelTokens.primvarsSkelJointIndices,
+                                SdfValueTypeNames.IntArray));
+      attrIndices.SetElementSize(4);
+
+      var attrWeights = new pxr.UsdGeomPrimvar(
+                            prim.CreateAttribute(
+                                pxr.UsdSkelTokens.primvarsSkelJointWeights,
+                                SdfValueTypeNames.FloatArray));
+      attrWeights.SetElementSize(4);
+
+      var attrGeomBindXf = new pxr.UsdGeomPrimvar(
+                      prim.CreateAttribute(
+                          pxr.UsdSkelTokens.primvarsSkelGeomBindTransform,
+                          SdfValueTypeNames.Matrix4d));
+      attrGeomBindXf.SetInterpolation(pxr.UsdGeomTokens.constant);
+    }
+
+    static void ExportMesh(ObjectContext objContext, ExportContext exportContext) {
+      MeshFilter mf = objContext.gameObject.GetComponent<MeshFilter>();
+      MeshRenderer mr = objContext.gameObject.GetComponent<MeshRenderer>();
       Mesh mesh = mf.sharedMesh;
-      ExportMesh(scene, go, exportPlan, matMap, mesh, mr.sharedMaterial, mr.sharedMaterials);
+      ExportMesh(objContext, exportContext, mesh, mr.sharedMaterial, mr.sharedMaterials);
     }
 
-    static void ExportMesh(Scene scene,
-                   GameObject go,
-                   ExportPlan exportPlan,
-                   Dictionary<Material, string> matMap,
+    static void ExportMesh(ObjectContext objContext,
+                   ExportContext exportContext,
                    Mesh mesh,
                    Material sharedMaterial,
                    Material[] sharedMaterials) {
+      string path = objContext.path;
+      if (mesh == null) {
+        Debug.LogWarning("Null mesh for: " + path);
+        return;
+      }
+      var scene = exportContext.scene;
       bool unvarying = scene.Time == null;
-      bool slowAndSafeConversion = exportPlan.convertHandedness == BasisTransformation.SlowAndSafe;
-      var sample = (MeshSample)exportPlan.sample;
+      bool slowAndSafeConversion = exportContext.basisTransform == BasisTransformation.SlowAndSafe;
+      var sample = (MeshSample)objContext.sample;
+      var go = objContext.gameObject;
 
       if (slowAndSafeConversion) {
         // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
@@ -475,16 +622,26 @@ namespace USD.NET.Examples {
         sample.ConvertTransform();
       }
 
+      // Only export the mesh topology on the first frame.
       if (unvarying) {
-        // Only export the mesh topology on the first frame.
-        sample.transform = GetLocalTransformMatrix(go.transform);
+        // TODO: Technically a mesh could be the root transform, which is not handled correctly here.
+        // It should ahve the same logic for root prims as in ExportXform.
+        sample.transform = GetLocalTransformMatrix(go.transform,
+                                                   scene.UpAxis == Scene.UpAxes.Z,
+                                                   new pxr.SdfPath(path).IsRootPrimPath(),
+                                                   exportContext.basisTransform);
+
         sample.normals = mesh.normals;
         sample.points = mesh.vertices;
         sample.tangents = mesh.tangents;
         sample.extent = mesh.bounds;
+        if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
+          mesh.RecalculateBounds();
+          sample.extent = mesh.bounds;
+        }
         sample.colors = mesh.colors;
 
-        if (sample.colors == null || sample.colors.Length == 0) {
+        if (sample.colors == null || sample.colors.Length == 0 && sharedMaterial.HasProperty("_Color")) {
           sample.colors = new Color[1];
           sample.colors[0] = sharedMaterial.color.linear;
         }
@@ -498,13 +655,12 @@ namespace USD.NET.Examples {
         if (slowAndSafeConversion) {
           // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
           // of basis is required. There are shortcuts, but this is fully general.
-          var c = sample.extent.center; c.z *= -1;
-          sample.extent.center = c;
+          sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
 
           for (int i = 0; i < sample.points.Length; i++) {
-            sample.points[i] = new Vector3(sample.points[i].x, sample.points[i].y, -sample.points[i].z);
+            sample.points[i] = UnityTypeConverter.ChangeBasis(sample.points[i]);
             if (sample.normals != null && sample.normals.Length == sample.points.Length) {
-              sample.normals[i] = new Vector3(sample.normals[i].x, sample.normals[i].y, -sample.normals[i].z);
+              sample.normals[i] = UnityTypeConverter.ChangeBasis(sample.normals[i]);
             }
           }
 
@@ -516,12 +672,14 @@ namespace USD.NET.Examples {
         }
 
         sample.SetTriangles(tris);
-        scene.Write(exportPlan.path, sample);
+
+        Debug.Log("Write unvarying: " + path);
+        scene.Write(path, sample);
 
         // TODO: this is a bit of a half-measure, we need real support for primvar interpolation.
         // Set interpolation based on color count.
         if (sample.colors != null && sample.colors.Length == 1) {
-          pxr.UsdPrim usdPrim = scene.GetPrimAtPath(exportPlan.path);
+          pxr.UsdPrim usdPrim = scene.GetPrimAtPath(path);
           var colorPrimvar = new pxr.UsdGeomPrimvar(usdPrim.GetAttribute(pxr.UsdGeomTokens.primvarsDisplayColor));
           colorPrimvar.SetInterpolation(pxr.UsdGeomTokens.constant);
           var opacityPrimvar = new pxr.UsdGeomPrimvar(usdPrim.GetAttribute(pxr.UsdGeomTokens.primvarsDisplayOpacity));
@@ -530,10 +688,10 @@ namespace USD.NET.Examples {
 
         string usdMaterialPath;
 
-        if (!matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
-          Debug.LogError("Invalid material bound for: " + exportPlan.path);
+        if (!exportContext.matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
+          Debug.LogError("Invalid material bound for: " + path);
         } else {
-          MaterialSample.Bind(scene, exportPlan.path, usdMaterialPath);
+          MaterialSample.Bind(scene, path, usdMaterialPath);
         }
 
         // In USD subMeshes are represented as UsdGeomSubsets.
@@ -551,7 +709,7 @@ namespace USD.NET.Examples {
             }
           }
 
-          var usdPrim = scene.GetPrimAtPath(exportPlan.path);
+          var usdPrim = scene.GetPrimAtPath(path);
           var usdGeomMesh = new pxr.UsdGeomMesh(usdPrim);
           // Process each subMesh and create a UsdGeomSubset of faces this subMesh targets.
           for (int si = 0; si < mesh.subMeshCount; si++) {
@@ -572,8 +730,8 @@ namespace USD.NET.Examples {
                 materialBindToken       // familyName = "materialBind"
                 );
 
-            if (!matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
-              Debug.LogError("Invalid material bound for: " + exportPlan.path);
+            if (si >= sharedMaterials.Length || !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
+              Debug.LogError("Invalid material bound for: " + path);
             } else {
               MaterialSample.Bind(scene, subset.GetPath(), usdMaterialPath);
             }
@@ -582,18 +740,21 @@ namespace USD.NET.Examples {
       } else {
         // Only write the transform when animating.
         var xfSample = new XformSample();
-        xfSample.transform = GetLocalTransformMatrix(go.transform);
-        scene.Write(exportPlan.path, xfSample);
+        xfSample.transform = GetLocalTransformMatrix(go.transform,
+                                                     scene.UpAxis == Scene.UpAxes.Z,
+                                                     new pxr.SdfPath(path).IsRootPrimPath(),
+                                                     exportContext.basisTransform);
+        Debug.Log("Write varying: " + path);
+        scene.Write(path, xfSample);
       }
     }
 
-    static void ExportCamera(Scene scene,
-                           GameObject go,
-                           ExportPlan exportPlan,
-                           Dictionary<Material, string> matMap) {
-      CameraSample sample = (CameraSample)exportPlan.sample;
-      Camera camera = go.GetComponent<Camera>();
-      bool fastConvert = exportPlan.convertHandedness == BasisTransformation.FastAndDangerous;
+    static void ExportCamera(ObjectContext objContext, ExportContext exportContext) {
+      CameraSample sample = (CameraSample)objContext.sample;
+      Camera camera = objContext.gameObject.GetComponent<Camera>();
+      var path = objContext.path;
+      var scene = exportContext.scene;
+      bool fastConvert = exportContext.basisTransform == BasisTransformation.FastAndDangerous;
 
       // If doing a fast conversion, do not let the constructor do the change of basis for us.
       sample.CopyFromCamera(camera, convertTransformToUsd: !fastConvert);
@@ -607,30 +768,45 @@ namespace USD.NET.Examples {
         // at the root of the hierarchy, so all we need to do is get the camera into the same
         // space.
         sample.transform = sample.transform * basisChange;
-      }
 
-      scene.Write(exportPlan.path, sample);
-    }
-
-    static void ExportXform(Scene scene,
-                           GameObject go,
-                           ExportPlan exportPlan,
-                           Dictionary<Material, string> matMap) {
-      XformSample sample = (XformSample)exportPlan.sample;
-      var localRot = go.transform.localRotation;
-      var localScale = go.transform.localScale;
-      var path = new pxr.SdfPath(exportPlan.path);
-      bool fastConvert = exportPlan.convertHandedness == BasisTransformation.FastAndDangerous;
-
-      // If exporting for Z-Up, rotate the world.
-      if (path.IsRootPrimPath()) {
-        float invert = fastConvert ? -1 : 1;
-        if (scene.UpAxis == Scene.UpAxes.Z) {
-          go.transform.transform.localRotation = localRot * Quaternion.AngleAxis(invert * 90, Vector3.right);
+        // Is this also a root path?
+        // If so the partial basis conversion must be completed on the camera itself.
+        if (path.LastIndexOf("/") == 0) {
+          sample.transform = basisChange * sample.transform;
         }
       }
 
-      sample.transform = GetLocalTransformMatrix(go.transform);
+      scene.Write(path, sample);
+    }
+
+    static void ExportXform(ObjectContext objContext, ExportContext exportContext) {
+      XformSample sample = (XformSample)objContext.sample;
+      var localRot = objContext.gameObject.transform.localRotation;
+      var localScale = objContext.gameObject.transform.localScale;
+      var path = new pxr.SdfPath(objContext.path);
+
+      // If exporting for Z-Up, rotate the world.
+      bool correctZUp = exportContext.scene.UpAxis == Scene.UpAxes.Z;
+      sample.transform = GetLocalTransformMatrix(objContext.gameObject.transform,
+                                                 correctZUp,
+                                                 path.IsRootPrimPath(),
+                                                 exportContext.basisTransform);
+      exportContext.scene.Write(objContext.path, sample);
+    }
+
+    static Matrix4x4 GetLocalTransformMatrix(Transform tr,
+                                             bool correctZUp,
+                                             bool isRootPrim,
+                                             BasisTransformation conversionType) {
+      var localRot = tr.localRotation;
+      bool fastConvert = conversionType == BasisTransformation.FastAndDangerous;
+
+      if (correctZUp && isRootPrim) {
+        float invert = fastConvert ? 1 : -1;
+        localRot = localRot * Quaternion.AngleAxis(invert * 90, Vector3.right);
+      }
+
+      var mat = Matrix4x4.TRS(tr.localPosition, localRot, tr.localScale);
 
       // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
       // basis is required. There are shortcuts, but this is fully general.
@@ -639,27 +815,21 @@ namespace USD.NET.Examples {
       // entire hierarchy, along with the points, normals and triangle winding. The benefit of the
       // full conversion is that there are no negative scales left in the hierarchy.
       //
-      if (fastConvert && path.IsRootPrimPath()) {
+      // Note that this is the correct partial conversion for the root transforms, however the
+      // camera and light matrices must contain the other half of the conversion
+      // (e.g. mat * basisChangeInverse).
+      if (fastConvert && isRootPrim) {
         // Partial change of basis.
-        var basisChange = UnityEngine.Matrix4x4.identity;
+        var basisChange = Matrix4x4.identity;
         // Invert the forward vector.
         basisChange[2, 2] = -1;
-        sample.transform = basisChange * sample.transform;
+        mat = basisChange * mat;
       } else if (!fastConvert) {
         // Full change of basis.
-        sample.ConvertTransform();
+        mat = UnityTypeConverter.ChangeBasis(mat);
       }
 
-      if (path.IsRootPrimPath()) {
-        go.transform.localRotation = localRot;
-        go.transform.localScale = localScale;
-      }
-
-      scene.Write(exportPlan.path, sample);
-    }
-
-    static Matrix4x4 GetLocalTransformMatrix(Transform tr) {
-      return Matrix4x4.TRS(tr.localPosition, tr.localRotation, tr.localScale);
+      return mat;
     }
   }
 }

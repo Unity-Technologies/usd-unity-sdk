@@ -55,7 +55,7 @@ namespace USD.NET.Unity {
                                               string destTexturePath) {
       Color c;
 
-      ImportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
+      ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
       surface.useSpecularWorkflow.defaultValue = 1;
 
       if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
@@ -82,7 +82,7 @@ namespace USD.NET.Unity {
                                           Material material,
                                           PreviewSurfaceSample surface,
                                           string destTexturePath) {
-      ImportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
+      ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
       surface.useSpecularWorkflow.defaultValue = 0;
 
       if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
@@ -109,7 +109,7 @@ namespace USD.NET.Unity {
                                       Material material,
                                       PreviewSurfaceSample surface,
                                       string destTexturePath) {
-      ImportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
+      ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
       surface.useSpecularWorkflow.defaultValue = 0;
 
       if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
@@ -128,7 +128,78 @@ namespace USD.NET.Unity {
       }
     }
 
-    private static void ImportStandardCommon(Scene scene,
+    public static void ExportGeneric(Scene scene,
+                                      string usdShaderPath,
+                                      Material material,
+                                      PreviewSurfaceSample surface,
+                                      string destTexturePath) {
+      Color c;
+      ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
+
+      if (material.HasProperty("_SpecColor")) {
+        // If there is a spec color, then this is not metallic workflow.
+        c = material.GetColor("_SpecColor");
+      } else {
+        c = new Color(.4f, .4f, .4f);
+      }
+      surface.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
+
+      if (material.HasProperty("_Metallic")) {
+        surface.metallic.defaultValue = material.GetFloat("_Metallic");
+      } else {
+        surface.metallic.defaultValue = .5f;
+      }
+
+      if (material.IsKeywordEnabled("_SPECGLOSSMAP")
+          || material.name.ToLower().Contains("specular")) {
+        if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_SpecGlossMap", "rgb");
+          surface.specularColor.SetConnectedPath(newTex);
+        } else if (material.HasProperty("_SpecColor")) {
+          // If there is a spec color, then this is not metallic workflow.
+          c = material.GetColor("_SpecColor");
+          surface.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
+        } else {
+          c = new Color(.5f, .5f, .5f);
+          surface.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
+        }
+
+        if (material.HasProperty("_Glossiness")) {
+          surface.roughness.defaultValue = 1 - material.GetFloat("_Glossiness");
+        } else {
+          surface.roughness.defaultValue = 0.5f;
+        }
+        surface.useSpecularWorkflow.defaultValue = 1;
+      } else {
+        surface.useSpecularWorkflow.defaultValue = 0;
+        if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_MetallicGlossMap", "r");
+          surface.metallic.SetConnectedPath(newTex);
+        } else if (material.HasProperty("_Metallic")) {
+          surface.metallic.defaultValue = material.GetFloat("_Metallic");
+        } else {
+          surface.metallic.defaultValue = .5f;
+        }
+
+        if (material.HasProperty("_Glossiness")) {
+          surface.roughness.defaultValue = 1 - material.GetFloat("_Glossiness");
+        } else {
+          surface.roughness.defaultValue = 0.5f;
+        }
+      }
+
+      if (material.HasProperty("_Smoothness")) {
+        surface.roughness.defaultValue = 1 - material.GetFloat("_Smoothness");
+      } else if (material.HasProperty("_Glossiness")) {
+        surface.roughness.defaultValue = 1 - material.GetFloat("_Glossiness");
+      } else if (material.HasProperty("_Roughness")) {
+        surface.roughness.defaultValue = material.GetFloat("_Roughness");
+      } else {
+        surface.roughness.defaultValue = 0.5f;
+      }
+    }
+
+    private static void ExportStandardCommon(Scene scene,
                                           string usdShaderPath,
                                           Material mat,
                                           PreviewSurfaceSample surface,
