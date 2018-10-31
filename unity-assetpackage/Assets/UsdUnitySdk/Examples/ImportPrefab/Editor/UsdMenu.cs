@@ -44,12 +44,25 @@ public class UsdMenu : MonoBehaviour {
     return scene;
   }
 
-  [MenuItem("USD/Export Selected with Children", true)]
-  static bool EnableExportSelected() {
+  [MenuItem("USD/Export (Fast) Selected with Children", true)]
+  static bool EnableExportSelectedFast() {
     return Selection.gameObjects.Length > 0;
   }
-  [MenuItem("USD/Export Selected with Children")]
-  static void ExportSelected() {
+  [MenuItem("USD/Export (Fast) Selected with Children")]
+  static void ExportSelectedFast() {
+    ExportSelected(BasisTransformation.FastAndDangerous);
+  }
+
+  [MenuItem("USD/Export (Slow) Selected with Children", true)]
+  static bool EnableExportSelectedSlow() {
+    return Selection.gameObjects.Length > 0;
+  }
+  [MenuItem("USD/Export (Slow) Selected with Children")]
+  static void ExportSelectedSlow() {
+    ExportSelected(BasisTransformation.SlowAndSafe);
+  }
+
+  static void ExportSelected(BasisTransformation basisTransform) {
     USD.NET.Scene scene = null;
 
     foreach (GameObject go in Selection.gameObjects) {
@@ -61,7 +74,7 @@ public class UsdMenu : MonoBehaviour {
       }
 
       try {
-        USD.NET.Examples.ExportMeshExample.Export(go, scene);
+        USD.NET.Examples.ExportMeshExample.Export(go, scene, basisTransform);
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         continue;
@@ -92,7 +105,7 @@ public class UsdMenu : MonoBehaviour {
     var importOptions = new SceneImportOptions();
     importOptions.changeHandedness = BasisTransformation.FastAndDangerous;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
-    importOptions.meshOptions.generateLightmapUVs = false;
+    importOptions.meshOptions.generateLightmapUVs = true;
 
     GameObject parent = null;
     if (Selection.gameObjects.Length > 0) {
