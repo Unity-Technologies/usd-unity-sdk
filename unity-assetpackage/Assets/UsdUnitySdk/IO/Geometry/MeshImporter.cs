@@ -202,7 +202,9 @@ namespace USD.NET.Unity {
 
         if (usdMesh.colors.Length == 1) {
           // Constant color can just be set on the material.
-          mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0].gamma);
+          if (options.useDisplayColorAsFallbackMaterial) {
+            mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0].gamma);
+          }
         } else if (usdMesh.colors.Length == usdMesh.points.Length) {
           // Vertex colors map on to verts.
           // TODO: move the conversion to C++ and use the color management API.
@@ -236,18 +238,22 @@ namespace USD.NET.Unity {
 
       if (unityMesh.subMeshCount == 1) {
         mr.sharedMaterial = mat;
-        options.materialMap.RequestBinding(path, boundMat => mr.sharedMaterial = boundMat);
+        if (options.ShouldBindMaterials) {
+          options.materialMap.RequestBinding(path, boundMat => mr.sharedMaterial = boundMat);
+        }
       } else {
         var mats = new Material[unityMesh.subMeshCount];
         for (int i = 0; i < mats.Length; i++) {
           mats[i] = mat;
         }
         mr.sharedMaterials = mats;
-        Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
-        var subIndex = 0;
-        foreach (var kvp in geomSubsets.Subsets) {
-          int idx = subIndex;
-          options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, mr, idx, path));
+        if (options.ShouldBindMaterials) {
+          Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
+          var subIndex = 0;
+          foreach (var kvp in geomSubsets.Subsets) {
+            int idx = subIndex;
+            options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, mr, idx, path));
+          }
           subIndex++;
         }
       }
