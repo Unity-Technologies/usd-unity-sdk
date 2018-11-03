@@ -364,6 +364,9 @@ namespace USD.NET {
       //
       BindNativeType(typeof(pxr.GfHalf), SdfValueTypeNames.Half);
       BindNativeType(typeof(pxr.VtHalfArray), SdfValueTypeNames.HalfArray);
+      BindNativeType(typeof(pxr.VtVec2hArray), SdfValueTypeNames.Half2Array);
+      BindNativeType(typeof(pxr.VtVec3hArray), SdfValueTypeNames.Half3Array);
+      BindNativeType(typeof(pxr.VtVec4hArray), SdfValueTypeNames.Half4Array);
 
       //
       // Float
