@@ -21737,6 +21737,102 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_GetInputs")]
   public static extern global::System.IntPtr UsdShadeConnectableAPI_GetInputs(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelAnimation__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdSkelAnimation__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelAnimation__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdSkelAnimation__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelAnimation__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdSkelAnimation__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelAnimation")]
+  public static extern void delete_UsdSkelAnimation(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_Get")]
+  public static extern global::System.IntPtr UsdSkelAnimation_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_Define")]
+  public static extern global::System.IntPtr UsdSkelAnimation_Define(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetJointsAttr")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetJointsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateJointsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateJointsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateJointsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateJointsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateJointsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateJointsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetTranslationsAttr")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetTranslationsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateTranslationsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateTranslationsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateTranslationsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateTranslationsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateTranslationsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateTranslationsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetRotationsAttr")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetRotationsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateRotationsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateRotationsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateRotationsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateRotationsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateRotationsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateRotationsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetScalesAttr")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetScalesAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateScalesAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateScalesAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateScalesAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateScalesAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateScalesAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateScalesAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetBlendShapesAttr")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetBlendShapesAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateBlendShapesAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateBlendShapesAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateBlendShapesAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateBlendShapesAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateBlendShapesAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateBlendShapesAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetBlendShapeWeightsAttr")]
+  public static extern global::System.IntPtr UsdSkelAnimation_GetBlendShapeWeightsAttr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_0")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_1")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_2")]
+  public static extern global::System.IntPtr UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelAnimMapper__SWIG_0")]
   public static extern global::System.IntPtr new_UsdSkelAnimMapper__SWIG_0();
 
@@ -26411,8 +26507,14 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdShadeConnectableAPI_SWIGUpcast")]
   public static extern global::System.IntPtr UsdShadeConnectableAPI_SWIGUpcast(global::System.IntPtr jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdSkelAnimation_SWIGUpcast(global::System.IntPtr jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShape_SWIGUpcast")]
   public static extern global::System.IntPtr UsdSkelBlendShape_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelPackedJointAnimation_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdSkelPackedJointAnimation_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelRoot_SWIGUpcast")]
   public static extern global::System.IntPtr UsdSkelRoot_SWIGUpcast(global::System.IntPtr jarg1);

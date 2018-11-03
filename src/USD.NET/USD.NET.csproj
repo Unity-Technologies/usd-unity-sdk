@@ -335,6 +335,7 @@
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeShaderVector.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeTokens.cs" />
     <Compile Include="generated\pxr\usd\usdShade\UsdShadeUtils.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelAnimation.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelAnimMapper.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelAnimQuery.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelBinding.cs" />

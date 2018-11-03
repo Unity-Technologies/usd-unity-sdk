@@ -252,6 +252,7 @@
     <Content Include="pxr\usd\usdShade\usdShadeTokens_Tokens.i" />
     <Content Include="pxr\usd\usdShade\usdShadeTokens.i" />
     <Content Include="pxr\usd\usdShade\usdShade.i" />
+    <Content Include="pxr\usd\usdSkel\usdSkelAnimation.i" />
     <Content Include="pxr\usd\usdSkel\usdSkelAnimMapper.i" />
     <Content Include="pxr\usd\usdSkel\UsdSkelAnimQuery.i" />
     <Content Include="pxr\usd\usdSkel\usdSkelBinding.i" />
