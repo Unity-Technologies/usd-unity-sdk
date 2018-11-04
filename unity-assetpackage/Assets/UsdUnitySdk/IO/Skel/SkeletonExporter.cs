@@ -76,31 +76,57 @@ namespace USD.NET.Unity {
       var sample = (SkelAnimationSample)objContext.sample;
       var go = objContext.gameObject;
       var bones = exportContext.skelMap[go.transform];
+      var skelRoot = go.transform;
       sample.joints = new string[bones.Length];
 
-      var xfs = new Matrix4x4[bones.Length];
+      var worldXf = new Matrix4x4[bones.Length];
+      var worldXfInv = new Matrix4x4[bones.Length];
 
       string rootPath = UnityTypeConverter.GetPath(go.transform);
 
-      int i = 0;
-      foreach (Transform b in bones) {
-        var bonePath = UnityTypeConverter.GetPath(b);
+      var basisChange = Matrix4x4.identity;
+      basisChange[2, 2] = -1;
+
+      for (int i = 0; i < bones.Length; i++) {
+        var bone = bones[i];
+        var bonePath = UnityTypeConverter.GetPath(bone);
         sample.joints[i] = bonePath;
-        xfs[i] = XformExporter.GetLocalTransformMatrix(
-            b, false, false, exportContext.basisTransform);
-        i++;
+        worldXf[i] = bone.localToWorldMatrix;
+        if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
+          worldXf[i] = UnityTypeConverter.ChangeBasis(worldXf[i]);
+        } else if (exportContext.basisTransform == BasisTransformation.FastWithNegativeScale) {
+          // Normally, this would only be applied at the root, but since each matrix is in world
+          // space, it is also required here to put the rig in the same space as the exported world.
+          //worldXf[i] = worldXf[i] * basisChange;
+        }
+        worldXfInv[i] = worldXf[i].inverse;
       }
 
-      pxr.VtMatrix4dArray mats = UnityTypeConverter.ToVtArray(xfs);
+      var rootXf = skelRoot.localToWorldMatrix;
+      if (exportContext.basisTransform == BasisTransformation.FastWithNegativeScale) {
+        //rootXf = rootXf * basisChange;
+      }
+      var skelWorldTransform = UnityTypeConverter.ToGfMatrix(rootXf);
+      pxr.VtMatrix4dArray vtJointsLS = new pxr.VtMatrix4dArray((uint)bones.Length);
+      pxr.VtMatrix4dArray vtJointsWS = UnityTypeConverter.ToVtArray(worldXf);
+      pxr.VtMatrix4dArray vtJointsWSInv = UnityTypeConverter.ToVtArray(worldXfInv);
+
       var translations = new pxr.VtVec3fArray();
       var rotations = new pxr.VtQuatfArray();
       sample.scales = new pxr.VtVec3hArray();
+
+      var topo = new pxr.UsdSkelTopology(UnityTypeConverter.ToVtArray(sample.joints));
+      var localSpaceXforms = pxr.UsdCs.UsdSkelComputeJointLocalTransforms(topo,
+          vtJointsWS,
+          vtJointsWSInv,
+          vtJointsLS,
+          skelWorldTransform);
+
       pxr.UsdCs.UsdSkelDecomposeTransforms(
-          mats,
+          vtJointsLS,
           translations,
           rotations,
           sample.scales);
-
       sample.translations = UnityTypeConverter.FromVtArray(translations);
       sample.rotations = UnityTypeConverter.FromVtArray(rotations);
 
