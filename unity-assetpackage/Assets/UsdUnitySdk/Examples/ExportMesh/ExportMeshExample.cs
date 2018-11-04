@@ -45,9 +45,35 @@ namespace USD.NET.Examples {
   /// </remarks>
   public class ExportMeshExample : MonoBehaviour {
 
+    [Serializable]
+    public enum TimeCode {
+      Frames,
+      Seconds
+    }
+
+    [Serializable]
+    public enum FrameRate {
+      Fps6 = 6,
+      Fps12 = 12,
+      Fps15 = 15,
+      Fps24 = 24,
+      Fps30 = 30,
+      Fps48 = 48,
+      Fps60 = 60,
+      Fps72 = 72,
+      Fps75 = 75,
+      Fps90 = 90,
+    }
+
     // The root GameObject to export to USD.
     public GameObject m_exportRoot;
     public int m_curFrame;
+    
+    // How time is represened in USD.
+    public TimeCode m_timeUnits = TimeCode.Frames;
+
+    // The desired playback rate.
+    public FrameRate m_frameRate = FrameRate.Fps60;
 
     // The number of frames to capture after hitting record;
     [Range(1, 500)]
@@ -63,7 +89,11 @@ namespace USD.NET.Examples {
 
     // The scene object to which the recording will be saved.
     private Scene m_usdScene;
+
+    // Recording start time in frames.
     private int m_startFrame;
+    // Recording start time in seconds.
+    private float m_startTime;
 
     ExportContext m_context = new ExportContext();
 
@@ -100,8 +130,30 @@ namespace USD.NET.Examples {
 
         // USD operates on frames, so the frame rate is required for playback.
         // We could also set this to 1 to indicate that the TimeCode is in seconds.
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = (int)m_frameRate;
+
+        // This forces Unity to use a fixed time step, resulting in evenly spaced
+        // time samples in USD. Unfortunately, non-integer frame rates are not supported.
+        // When non-integer frame rates are needed, time can be manually paused and
+        // and advanced 
+        Time.captureFramerate = Application.targetFrameRate;
+
+        // Set the frame rate in USD  as well.
+        //
+        // This both set the "time samples per second" and the playback rate.
+        // Setting times samples per second allows the authoring code to express samples as integer
+        // values, avoiding floating point error; so by setting FrameRate = 60, the samples written
+        // at time=0 through time=59 represent the first second of playback.
+        //
+        // Stage.TimeCodesPerSecond is set implicitly to 1 / FrameRate.
         m_usdScene.FrameRate = Application.targetFrameRate;
+
+        // When authoring in terms of seconds, at any frame rate the samles written at
+        // time = 0.0 through time = 1.0 represent the first second of playback. The framerate
+        // above will only be used as a target frame rate.
+        if (m_timeUnits == TimeCode.Seconds) {
+          m_usdScene.Stage.SetTimeCodesPerSecond(1);
+        }
 
         m_usdScene.StartTime = 0;
         m_usdScene.EndTime = m_frameCount;
@@ -117,6 +169,7 @@ namespace USD.NET.Examples {
         // Set the start frame and add one because the button event fires after update, so the first
         // frame update sees while recording is (frameCount + 1).
         m_startFrame = Time.frameCount + 1;
+        m_startTime = Time.timeSinceLevelLoad;
       } catch {
         if (m_usdScene != null) {
           m_usdScene.Close();
@@ -172,7 +225,12 @@ namespace USD.NET.Examples {
       // Set the time at which to read samples from USD.
       // If the FramesPerSecond is set to 1 above, this should be Time.time instead of frame count.
       m_curFrame = Time.frameCount - m_startFrame;
-      m_context.scene.Time =  m_curFrame;
+      if (m_timeUnits == TimeCode.Frames) {
+        m_context.scene.Time = m_curFrame;
+      } else {
+        m_context.scene.Time = Time.timeSinceLevelLoad - m_startTime;
+      }
+
       m_context.exportMaterials = false;
 
       // Exit once we've recorded all frames.
