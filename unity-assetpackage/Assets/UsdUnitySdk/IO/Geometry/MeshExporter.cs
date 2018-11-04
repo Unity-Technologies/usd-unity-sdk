@@ -234,7 +234,6 @@ namespace USD.NET.Unity {
             scene.UpAxis == Scene.UpAxes.Z,
             new pxr.SdfPath(path).IsRootPrimPath(),
             exportContext.basisTransform);
-        Debug.Log("Write varying: " + path);
         scene.Write(path, xfSample);
       }
     }
