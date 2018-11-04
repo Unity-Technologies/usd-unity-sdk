@@ -74,7 +74,7 @@ public class UsdMenu : MonoBehaviour {
       }
 
       try {
-        USD.NET.Examples.ExportMeshExample.Export(go, scene, basisTransform);
+        SceneExporter.Export(go, scene, basisTransform);
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         continue;
