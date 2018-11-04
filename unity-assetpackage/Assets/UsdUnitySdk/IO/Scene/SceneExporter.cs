@@ -32,9 +32,28 @@ namespace USD.NET.Unity {
     public object additionalData;
   }
 
+  public enum ActiveExportPolicy {
+    // Inactive GameObjects in Unity become invisible objects in USD, which is actually the
+    // closest semantic mapping.
+    ExportAsVisibility,
+
+    // Inactive GameObjects in Unity become deactivated objects in USD. Caution, this is not truly
+    // an equivalent state because deactivated objects in USD are fully unloaded and their
+    // subtree will not exist after being deactivated.
+    ExportAsActive,
+
+    // Inactive GameObjects will not be exported.
+    DoNotExport,
+
+    // Inactive GameObjects will be exported without special handling.
+    Ignore,
+  }
+
   public class ExportContext {
     public Scene scene;
+    public bool exportMaterials;
     public BasisTransformation basisTransform = BasisTransformation.FastWithNegativeScale;
+    public ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
     public Dictionary<GameObject, ExportPlan> plans = new Dictionary<GameObject, ExportPlan>();
     public Dictionary<Material, string> matMap = new Dictionary<Material, string>();
     public Dictionary<Transform, Transform[]> skelMap = new Dictionary<Transform, Transform[]>();
@@ -70,35 +89,57 @@ namespace USD.NET.Unity {
   /// <summary>
   /// The scene exporter can be used to export data to USD.
   /// </summary>
-  public class SceneExporter {
+  public static class SceneExporter {
 
 
     // ------------------------------------------------------------------------------------------ //
     // Main Export Logic.
     // ------------------------------------------------------------------------------------------ //
+
     public static void Export(GameObject root,
                               Scene scene,
                               BasisTransformation basisTransform) {
       var context = new ExportContext();
-
       context.scene = scene;
       context.basisTransform = basisTransform;
+      SyncExportContext(root, context);
 
-      InitHierarchy(root, context);
-      var oldTime = scene.Time;
-
-      foreach (var kvp in context.matMap) {
+      // Since this is a one-shot convenience function, we will automatically split the export
+      // into varying and unvarying data, unless the user explicitly requested unvarying.
+      if (scene.Time != null) {
+        double? oldTime = scene.Time;
         scene.Time = null;
-        MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
+        Export(root, context);
+        scene.Time = oldTime;
+      }
+
+      // Export data for the requested time.
+      Export(root, context);
+    }
+
+    public static void Export(GameObject root,
+                              ExportContext context) {
+      var scene = context.scene;
+      bool skipInactive = context.activePolicy == ActiveExportPolicy.DoNotExport;
+
+      if (context.exportMaterials) {
+        // TODO: should account for skipped objects and also skip their materials.
+        foreach (var kvp in context.matMap) {
+          MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
+        }
       }
 
       foreach (var kvp in context.plans) {
-        ExportPlan exportPlan = kvp.Value;
         GameObject go = kvp.Key;
+        ExportPlan exportPlan = kvp.Value;
+
+        if (skipInactive && go.activeInHierarchy == false) {
+          continue;
+        }
 
         foreach (Exporter exporter in exportPlan.exporters) {
           string path = exporter.path;
-          scene.Time = null;
+
           SampleBase sample = exporter.sample;
           var objCtx = new ObjectContext {
             gameObject = go,
@@ -108,17 +149,34 @@ namespace USD.NET.Unity {
           };
 
           exporter.exportFunc(objCtx, context);
-          context.scene.Time = oldTime;
-          exporter.exportFunc(objCtx, context);
 
           if (!go.gameObject.activeSelf) {
-            var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(path));
-            if (im) {
-              im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
+            switch (context.activePolicy) {
+              case ActiveExportPolicy.Ignore:
+                // Nothing to see here.
+                break;
+
+              case ActiveExportPolicy.ExportAsVisibility:
+                // Make the prim invisible.
+                var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(path));
+                if (im) {
+                  im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
+                }
+                break;
+
+              case ActiveExportPolicy.ExportAsActive:
+                // TODO: this may actually cause errors because exported prims will not exist in
+                // the USD scene graph. Right now, that's too much responsibility on the caller,
+                // because the error messages will be mysterious.
+
+                // Make the prim inactive.
+                scene.GetPrimAtPath(path).SetActive(false);
+                break;
             }
           }
-        }
-      }
+
+        } // foreach exporter
+      } // foreach plan
     }
 
     // ------------------------------------------------------------------------------------------ //
@@ -159,7 +217,7 @@ namespace USD.NET.Unity {
       */
     }
 
-    static void InitHierarchy(GameObject exportRoot,
+    public static void SyncExportContext(GameObject exportRoot,
                               ExportContext context) {
 
       Traverse(exportRoot, InitExportableObjects, context);
