@@ -80,14 +80,11 @@ namespace USD.NET.Unity {
 
       var xfs = new Matrix4x4[bones.Length];
 
-      var sb = new System.Text.StringBuilder();
       string rootPath = UnityTypeConverter.GetPath(go.transform);
-      sb.AppendLine(rootPath);
 
       int i = 0;
       foreach (Transform b in bones) {
         var bonePath = UnityTypeConverter.GetPath(b);
-        sb.AppendLine(bonePath);
         sample.joints[i] = bonePath;
         xfs[i] = XformExporter.GetLocalTransformMatrix(
             b, false, false, exportContext.basisTransform);
@@ -106,7 +103,6 @@ namespace USD.NET.Unity {
 
       sample.translations = UnityTypeConverter.FromVtArray(translations);
       sample.rotations = UnityTypeConverter.FromVtArray(rotations);
-      Debug.Log(sb.ToString());
 
       scene.Write(objContext.path, sample);
     }

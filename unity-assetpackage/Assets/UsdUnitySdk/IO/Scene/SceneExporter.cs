@@ -51,7 +51,7 @@ namespace USD.NET.Unity {
 
   public class ExportContext {
     public Scene scene;
-    public bool exportMaterials;
+    public bool exportMaterials = true;
     public BasisTransformation basisTransform = BasisTransformation.FastWithNegativeScale;
     public ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
     public Dictionary<GameObject, ExportPlan> plans = new Dictionary<GameObject, ExportPlan>();
@@ -114,6 +114,7 @@ namespace USD.NET.Unity {
       }
 
       // Export data for the requested time.
+      context.exportMaterials = false;
       Export(root, context);
     }
 
@@ -125,6 +126,11 @@ namespace USD.NET.Unity {
       if (context.exportMaterials) {
         // TODO: should account for skipped objects and also skip their materials.
         foreach (var kvp in context.matMap) {
+          Material mat = kvp.Key;
+          string usdPath = kvp.Value;
+          if (!mat || usdPath == null) {
+            continue;
+          }
           MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
         }
       }
@@ -132,6 +138,10 @@ namespace USD.NET.Unity {
       foreach (var kvp in context.plans) {
         GameObject go = kvp.Key;
         ExportPlan exportPlan = kvp.Value;
+
+        if (!go || exportPlan == null) {
+          continue;
+        }
 
         if (skipInactive && go.activeInHierarchy == false) {
           continue;

@@ -176,11 +176,12 @@ namespace USD.NET.Unity {
         }
 
         string usdMaterialPath;
-
-        if (!exportContext.matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
-          Debug.LogError("Invalid material bound for: " + path);
-        } else {
-          MaterialSample.Bind(scene, path, usdMaterialPath);
+        if (exportContext.exportMaterials) {
+          if (!exportContext.matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
+            Debug.LogError("Invalid material bound for: " + path);
+          } else {
+            MaterialSample.Bind(scene, path, usdMaterialPath);
+          }
         }
 
         // In USD subMeshes are represented as UsdGeomSubsets.
@@ -219,10 +220,12 @@ namespace USD.NET.Unity {
                 materialBindToken       // familyName = "materialBind"
                 );
 
-            if (si >= sharedMaterials.Length || !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
-              Debug.LogError("Invalid material bound for: " + path);
-            } else {
-              MaterialSample.Bind(scene, subset.GetPath(), usdMaterialPath);
+            if (exportContext.exportMaterials) {
+              if (si >= sharedMaterials.Length || !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
+                Debug.LogError("Invalid material bound for: " + path);
+              } else {
+                MaterialSample.Bind(scene, subset.GetPath(), usdMaterialPath);
+              }
             }
           }
         }
