@@ -23,7 +23,7 @@ namespace USD.NET.Unity {
     /// Apply a single negative scale and rotation at the root of the scene hierarchy.
     /// Fastest, but may introduce additional complications when later exporting.
     /// </summary>
-    FastAndDangerous,
+    FastWithNegativeScale,
 
     /// <summary>
     /// Transform to left-handed basis by processing all positions, triangles, transforms, and

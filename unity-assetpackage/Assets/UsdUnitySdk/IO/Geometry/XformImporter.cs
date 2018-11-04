@@ -65,12 +65,12 @@ namespace USD.NET.Unity {
     public static void BuildSceneRoot(Scene scene, Transform root, SceneImportOptions options) {
 
       // Handle configurable up-axis (Y or Z).
-      float invert = options.changeHandedness == BasisTransformation.FastAndDangerous ? -1 : 1;
+      float invert = options.changeHandedness == BasisTransformation.FastWithNegativeScale ? -1 : 1;
       if (scene.UpAxis == Scene.UpAxes.Z) {
         root.transform.localRotation = Quaternion.AngleAxis(invert * 90, Vector3.right);
       }
 
-      if (options.changeHandedness == BasisTransformation.FastAndDangerous) {
+      if (options.changeHandedness == BasisTransformation.FastWithNegativeScale) {
         // Convert from right-handed (USD) to left-handed (Unity).
         if (scene.UpAxis == Scene.UpAxes.Z) {
           root.localScale = new Vector3(1, -1, 1);
@@ -87,51 +87,5 @@ namespace USD.NET.Unity {
 
     #endregion
 
-    #region "Export API"
-
-    public static void WriteSparseOverrides(Scene scene,
-                                            PrimMap primMap,
-                                            BasisTransformation changeHandedness,
-                                            float tolerance = 0.0001f) {
-      var oldMode = scene.WriteMode;
-      scene.WriteMode = Scene.WriteModes.Over;
-
-      try {
-        foreach (var path in scene.Find<XformableSample>()) {
-          GameObject go;
-          if (!primMap.TryGetValue(path, out go)) {
-            continue;
-          }
-
-          var tx = go.transform;
-          var xfNew = XformSample.FromTransform(tx);
-          var xfOld = new XformSample();
-
-          scene.Read(path, xfOld);
-
-          bool areClose = true;
-          for (int i = 0; i < 16; i++) {
-            if (Mathf.Abs(xfNew.transform[i] - xfOld.transform[i]) > tolerance) {
-              areClose = false;
-              break;
-            }
-          }
-
-          if (areClose) {
-            continue;
-          }
-
-          if (changeHandedness == BasisTransformation.SlowAndSafe) {
-            xfNew.ConvertTransform();
-          }
-
-          scene.Write(path, xfNew);
-        }
-      } finally {
-        scene.WriteMode = oldMode;
-      }
-    }
-
-    #endregion
   }
 }

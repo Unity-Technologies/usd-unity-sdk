@@ -50,7 +50,7 @@ public class UsdMenu : MonoBehaviour {
   }
   [MenuItem("USD/Export (Fast) Selected with Children")]
   static void ExportSelectedFast() {
-    ExportSelected(BasisTransformation.FastAndDangerous);
+    ExportSelected(BasisTransformation.FastWithNegativeScale);
   }
 
   [MenuItem("USD/Export (Slow) Selected with Children", true)]
@@ -103,7 +103,7 @@ public class UsdMenu : MonoBehaviour {
     double time = 1.0;
 
     var importOptions = new SceneImportOptions();
-    importOptions.changeHandedness = BasisTransformation.FastAndDangerous;
+    importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
     importOptions.meshOptions.generateLightmapUVs = true;
 
@@ -130,7 +130,7 @@ public class UsdMenu : MonoBehaviour {
     double time = 1.0;
 
     var importOptions = new SceneImportOptions();
-    importOptions.changeHandedness = BasisTransformation.FastAndDangerous;
+    importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
 
     var invalidChars = Path.GetInvalidFileNameChars();

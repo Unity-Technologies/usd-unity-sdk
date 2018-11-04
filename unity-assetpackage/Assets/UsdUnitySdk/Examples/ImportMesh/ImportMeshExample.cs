@@ -30,7 +30,7 @@ namespace USD.NET.Examples {
     [Range(0, 100)]
     public float m_usdTime;
 
-    public BasisTransformation m_changeHandedness = BasisTransformation.FastAndDangerous;
+    public BasisTransformation m_changeHandedness = BasisTransformation.FastWithNegativeScale;
 
     [Tooltip("Enable GPU instancing on materials for USD point or scene instances.")]
     public bool m_enableGpuInstancing = false;

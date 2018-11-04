@@ -77,7 +77,7 @@ namespace USD.NET.Examples {
 
     public class ExportContext {
       public Scene scene;
-      public BasisTransformation basisTransform = BasisTransformation.FastAndDangerous;
+      public BasisTransformation basisTransform = BasisTransformation.FastWithNegativeScale;
       public Dictionary<GameObject, ExportPlan> plans = new Dictionary<GameObject, ExportPlan>();
       public Dictionary<Material, string> matMap = new Dictionary<Material, string>();
       public Dictionary<Transform, Transform[]> skelMap = new Dictionary<Transform, Transform[]>();
@@ -152,7 +152,6 @@ namespace USD.NET.Examples {
         m_usdScene.EndTime = m_frameCount;
 
         // For simplicity in this example, adding game objects while recording is not supported.
-        Debug.Log("Init hierarchy");
         m_context = new ExportContext();
         m_context.scene = m_usdScene;
         InitHierarchy(m_exportRoot, m_context);
@@ -324,15 +323,18 @@ namespace USD.NET.Examples {
       }
     }
 
-    static SampleBase CreateOne<T>(ExportContext context) where T: SampleBase, new() {
+    static T CreateOne<T>(ExportContext context) where T: SampleBase, new() {
+      return new T();
+      /*
       SampleBase sb;
       if (context.samples.TryGetValue(typeof(T), out sb)) {
-        return sb;
+        return (T)sb;
       }
 
       sb = (new T());
       context.samples[typeof(T)] = sb;
-      return sb;
+      return (T)sb;
+      */
     }
 
     static void InitHierarchy(GameObject exportRoot,
@@ -348,17 +350,22 @@ namespace USD.NET.Examples {
         }
         var parentXf = rootBone;
         while (parentXf != null) {
+
+          // If there is an animator & avitar, assume this is the root of the rig.
+          // This feels very ad hoc, it would be nice to not use a heuristic.
           var anim = parentXf.GetComponent<Animator>();
           if (anim != null && anim.avatar != null) {
-            // Assume this is the root of the rig.
+
+            SkelRootSample rootSample = CreateOne<SkelRootSample>(context);
+            rootSample.skeleton = UnityTypeConverter.GetPath(parentXf) + "/_skeleton";
+            rootSample.animationSource = UnityTypeConverter.GetPath(parentXf) + "/_anim";
 
             CreateExportPlan(
                 parentXf.gameObject,
-                CreateOne<SkelRootSample>(context),
+                rootSample,
                 ExportSkelRoot,
                 context,
-                insertFirst: true,
-                data: UnityTypeConverter.GetPath(parentXf) + "/_skeleton");
+                insertFirst: true);
 
             CreateExportPlan(
                 parentXf.gameObject,
@@ -368,8 +375,42 @@ namespace USD.NET.Examples {
                 insertFirst: true,
                 pathSuffix: "/_skeleton");
 
+            CreateExportPlan(
+                parentXf.gameObject,
+                CreateOne<SkelAnimationSample>(context),
+                ExportSkelAnimation,
+                context,
+                insertFirst: true,
+                pathSuffix: "/_anim");
+
+            // Exporting animation is only possible while in-editor (in 2018 and earlier).
+#if UNITY_EDITOR
+#if false   // Currently disabled, future work.
+            if (anim.layerCount > 0) {
+              for (int l = 0; l < anim.layerCount; l++) {
+                int clipCount = anim.GetCurrentAnimatorClipInfoCount(l);
+                var clipInfos = anim.GetCurrentAnimatorClipInfo(l);
+                foreach (var clipInfo in clipInfos) {
+                  var bindings = UnityEditor.AnimationUtility.GetCurveBindings(clipInfo.clip);
+                  // Properties are expressed as individual values, for transforms this is:
+                  //   m_LocalPosition.x,y,z
+                  //   m_LocalScale.x,y,z
+                  //   m_LocalRotation.x,y,z,w
+                  // Which means they must be reaggregated into matrices.
+                  foreach (var binding in bindings) {
+                    if (binding.type != typeof(Transform)) {
+                      continue;
+                    }
+                    Debug.Log(binding.path + "." + binding.propertyName);
+                    var knot = UnityEditor.AnimationUtility.GetEditorCurve(clipInfo.clip, binding);
+                  }
+                }
+              }
+            }
+#endif // disabled.
+#endif // Editor only.
+
             foundAnimators.Add(anim.transform);
-            Debug.LogWarning("FOUND: " + UnityTypeConverter.GetPath(parentXf));
 
             var children = new List<Transform>();
             var meshes = new List<GameObject>();
@@ -430,7 +471,10 @@ namespace USD.NET.Examples {
       if (!context.bones.ContainsKey(rootBone) && !context.skelMap.ContainsKey(rootBone)) {
         context.skelMap.Add(rootBone, bones);
       }
+      var sb = new System.Text.StringBuilder();
+      sb.AppendLine("Raw bones");
       for (int i = 0; i < bones.Length; i++) {
+        sb.AppendLine(UnityTypeConverter.GetPath(bones[i]));
         Transform bone = bones[i];
         context.bones[bone] = bindPoses[i];
         if (bone == rootBone) {
@@ -440,6 +484,7 @@ namespace USD.NET.Examples {
           context.skelMap.Remove(bone);
         }
       }
+      Debug.Log(sb.ToString());
     }
 
     static void CreateExportPlan(GameObject go,
@@ -524,16 +569,11 @@ namespace USD.NET.Examples {
       sample.bindTransforms = new Matrix4x4[bones.Length];
       sample.restTransforms = new Matrix4x4[bones.Length];
 
-      var sb = new System.Text.StringBuilder();
       string rootPath = UnityTypeConverter.GetPath(objContext.gameObject.transform);
-      sb.AppendLine(rootPath);
 
       int i = 0;
       foreach (Transform bone in bones) {
         var bonePath = UnityTypeConverter.GetPath(bone);
-        sb.AppendLine(bonePath);
-        sb.AppendLine(exportContext.bones[bone].ToString());
-        sb.AppendLine();
 
         sample.joints[i] = bonePath;
         sample.bindTransforms[i] = exportContext.bones[bone].inverse;
@@ -547,7 +587,6 @@ namespace USD.NET.Examples {
         i++;
       }
 
-      Debug.Log(sb.ToString());
       scene.Write(objContext.path, sample);
 
       // Stop Skeleton from rendering bones in usdview by default.
@@ -557,52 +596,62 @@ namespace USD.NET.Examples {
 
     static void ExportSkelRoot(ObjectContext objContext, ExportContext exportContext) {
       var sample = (SkelRootSample)objContext.sample;
+      var bindings = ((string[])objContext.additionalData);
 
       sample.extent = new Bounds(objContext.gameObject.transform.position, Vector3.zero);
+
+      if (bindings != null) {
+        sample.skeleton = bindings[0];
+        if (bindings.Length > 1) {
+          sample.animationSource = bindings[1];
+        }
+      }
+
+      // Compute bounds for the root, required by USD.
       foreach (var r in objContext.gameObject.GetComponentsInChildren<Renderer>()) {
         sample.extent.Encapsulate(r.bounds);
       }
 
-      exportContext.scene.Write(objContext.path, objContext.sample);
-
-      var rootPrim = exportContext.scene.GetPrimAtPath(objContext.path);
-      rootPrim.CreateRelationship(new pxr.TfToken("skel:skeleton")).AddTarget(new pxr.SdfPath((string)objContext.additionalData));
-      rootPrim.SetTypeName(new pxr.TfToken("SkelRoot"));
-      //scene.Write(new pxr.SdfPath(exportPlan.path).GetParentPath(), new SkelRootSample());
+      exportContext.scene.Write(objContext.path, sample);
     }
 
     static void ExportSkelAnimation(ObjectContext objContext, ExportContext exportContext) {
       var scene = exportContext.scene;
-      var sample = (SkeletonSample)objContext.sample;
+      var sample = (SkelAnimationSample)objContext.sample;
       var go = objContext.gameObject;
       var bones = exportContext.skelMap[go.transform];
       sample.joints = new string[bones.Length];
-      sample.bindTransforms = new Matrix4x4[bones.Length];
-      sample.restTransforms = new Matrix4x4[bones.Length];
+
+      var xfs = new Matrix4x4[bones.Length];
 
       var sb = new System.Text.StringBuilder();
       string rootPath = UnityTypeConverter.GetPath(go.transform);
       sb.AppendLine(rootPath);
+
       int i = 0;
       foreach (Transform b in bones) {
         var bonePath = UnityTypeConverter.GetPath(b);
         sb.AppendLine(bonePath);
         sample.joints[i] = bonePath;
-        if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
-          sample.bindTransforms[i] = UnityTypeConverter.ChangeBasis(b.localToWorldMatrix);
-        } else {
-          sample.bindTransforms[i] = b.localToWorldMatrix;
-        }
-        sample.restTransforms[i] = GetLocalTransformMatrix(b, false, false, exportContext.basisTransform);
+        xfs[i] = GetLocalTransformMatrix(b, false, false, exportContext.basisTransform);
         i++;
       }
 
+      pxr.VtMatrix4dArray mats = UnityTypeConverter.ToVtArray(xfs);
+      var translations = new pxr.VtVec3fArray();
+      var rotations = new pxr.VtQuatfArray();
+      sample.scales = new pxr.VtVec3hArray();
+      pxr.UsdCs.UsdSkelDecomposeTransforms(
+          mats,
+          translations,
+          rotations,
+          sample.scales);
+
+      sample.translations = UnityTypeConverter.FromVtArray(translations);
+      sample.rotations = UnityTypeConverter.FromVtArray(rotations);
       Debug.Log(sb.ToString());
+
       scene.Write(objContext.path, sample);
-      var parent = scene.GetPrimAtPath(new pxr.SdfPath(objContext.path).GetParentPath());
-      parent.CreateRelationship(new pxr.TfToken("skel:skeleton")).AddTarget(new pxr.SdfPath(objContext.path));
-      parent.SetTypeName(new pxr.TfToken("SkelRoot"));
-      //scene.Write(new pxr.SdfPath(exportPlan.path).GetParentPath(), new SkelRootSample());
     }
 
     static void ExportSkinnedMesh(ObjectContext objContext, ExportContext exportContext) {
@@ -820,7 +869,6 @@ namespace USD.NET.Examples {
                                                      scene.UpAxis == Scene.UpAxes.Z,
                                                      new pxr.SdfPath(path).IsRootPrimPath(),
                                                      exportContext.basisTransform);
-        Debug.Log("Write varying: " + path);
         scene.Write(path, xfSample);
       }
     }
@@ -830,7 +878,7 @@ namespace USD.NET.Examples {
       Camera camera = objContext.gameObject.GetComponent<Camera>();
       var path = objContext.path;
       var scene = exportContext.scene;
-      bool fastConvert = exportContext.basisTransform == BasisTransformation.FastAndDangerous;
+      bool fastConvert = exportContext.basisTransform == BasisTransformation.FastWithNegativeScale;
 
       // If doing a fast conversion, do not let the constructor do the change of basis for us.
       sample.CopyFromCamera(camera, convertTransformToUsd: !fastConvert);
@@ -875,7 +923,7 @@ namespace USD.NET.Examples {
                                              bool isRootPrim,
                                              BasisTransformation conversionType) {
       var localRot = tr.localRotation;
-      bool fastConvert = conversionType == BasisTransformation.FastAndDangerous;
+      bool fastConvert = conversionType == BasisTransformation.FastWithNegativeScale;
 
       if (correctZUp && isRootPrim) {
         float invert = fastConvert ? 1 : -1;

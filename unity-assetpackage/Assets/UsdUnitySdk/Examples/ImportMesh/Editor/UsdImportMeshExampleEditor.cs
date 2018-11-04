@@ -43,9 +43,9 @@ namespace USD.NET.Examples {
         oversScene.Time = importMesh.m_usdTime;
         oversScene.AddSubLayer(importMesh.UsdScene);
 
-        USD.NET.Unity.XformImporter.WriteSparseOverrides(oversScene,
-                                                         importMesh.PrimMap,
-                                                         importMesh.m_changeHandedness);
+        Unity.XformExporter.WriteSparseOverrides(oversScene,
+                                                 importMesh.PrimMap,
+                                                 importMesh.m_changeHandedness);
 
         oversScene.Save();
         oversScene.Close();
