@@ -89,7 +89,7 @@ namespace USD.NET.Examples {
 
       try {
         if (string.IsNullOrEmpty(m_usdFile)) {
-          m_usdScene = USD.NET.Scene.Create();
+          m_usdScene = Scene.Create();
         } else {
           m_usdScene = Scene.Create(m_usdFile);
         }
@@ -105,7 +105,6 @@ namespace USD.NET.Examples {
         // For simplicity in this example, adding game objects while recording is not supported.
         m_context = new ExportContext();
         m_context.scene = m_usdScene;
-        SceneExporter.Export(m_exportRoot, m_usdScene, BasisTransformation.FastWithNegativeScale);
 
         // Do this last, in case an exception is thrown above.
         IsRecording = true;
@@ -156,54 +155,29 @@ namespace USD.NET.Examples {
       // On the first frame, export all the unvarying data (e.g. mesh topology).
       // On subsequent frames, skip unvarying data to avoid writing redundant data.
       if (Time.frameCount == m_startFrame) {
-        // First write materials.
-        
-        foreach (var kvp in m_context.matMap) {
-          MaterialExporter.ExportMaterial(m_usdScene, kvp.Key, kvp.Value);
-        }
-        // Next, write geometry, which may also bind to materials written above.
-        foreach (var kvp in m_context.plans) {
-          ExportPlan exportPlan = kvp.Value;
-          GameObject go = kvp.Key;
-          foreach (var exporter in kvp.Value.exporters) {
-            exporter.exportFunc(
-                new ObjectContext {
-                  gameObject = go,
-                  path = exporter.path,
-                  sample = exporter.sample,
-                  additionalData = exporter.data,
-                },
-                m_context);
-          }
-        }
+        // First write materials and unvarying values (mesh topology, etc).
+        m_context.exportMaterials = true;
+        m_context.scene.Time = null;
+        m_context.activePolicy = ActiveExportPolicy.ExportAsVisibility;
+
+        SceneExporter.SyncExportContext(m_exportRoot, m_context);
+        SceneExporter.Export(m_exportRoot, m_context);
       }
 
       // Set the time at which to read samples from USD.
       // If the FramesPerSecond is set to 1 above, this should be Time.time instead of frame count.
-      m_usdScene.Time = Time.frameCount - m_startFrame;
-      m_curFrame = (int)m_usdScene.Time.Value;
+      m_curFrame = Time.frameCount - m_startFrame;
+      m_context.scene.Time =  m_curFrame;
+      m_context.exportMaterials = false;
 
       // Exit once we've recorded all frames.
-      if (m_usdScene.Time > m_frameCount) {
+      if (m_curFrame > m_frameCount) {
         StopRecording();
         return;
       }
 
       // Record the time varying data that changes from frame to frame.
-      foreach (var kvp in m_context.plans) {
-        ExportPlan exportPlan = kvp.Value;
-        GameObject go = kvp.Key;
-        foreach (var exporter in kvp.Value.exporters) {
-          exporter.exportFunc(
-              new ObjectContext {
-                gameObject = go,
-                path = exporter.path,
-                sample = exporter.sample,
-                additionalData = exporter.data,
-              },
-              m_context);
-        }
-      }
+      SceneExporter.Export(m_exportRoot, m_context);
     }
 
     public static void Export(GameObject root,
