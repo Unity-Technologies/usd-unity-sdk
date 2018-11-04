@@ -53,6 +53,10 @@ namespace USD.NET.Examples {
     [Range(1, 500)]
     public int m_frameCount = 100;
 
+    public bool m_exportMaterials = true;
+    public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
+    public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
+
     // The path to where the USD file will be written.
     // If null/empty, the file will be created in memory only.
     public string m_usdFile;
@@ -105,6 +109,7 @@ namespace USD.NET.Examples {
         // For simplicity in this example, adding game objects while recording is not supported.
         m_context = new ExportContext();
         m_context.scene = m_usdScene;
+        m_context.basisTransform = m_convertHandedness;
 
         // Do this last, in case an exception is thrown above.
         IsRecording = true;
@@ -156,7 +161,7 @@ namespace USD.NET.Examples {
       // On subsequent frames, skip unvarying data to avoid writing redundant data.
       if (Time.frameCount == m_startFrame) {
         // First write materials and unvarying values (mesh topology, etc).
-        m_context.exportMaterials = true;
+        m_context.exportMaterials = m_exportMaterials;
         m_context.scene.Time = null;
         m_context.activePolicy = ActiveExportPolicy.ExportAsVisibility;
 
