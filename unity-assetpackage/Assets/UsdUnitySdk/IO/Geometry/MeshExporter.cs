@@ -95,6 +95,10 @@ namespace USD.NET.Unity {
                    Mesh mesh,
                    Material sharedMaterial,
                    Material[] sharedMaterials) {
+      if (mesh.isReadable == false) {
+        Debug.LogWarning("Mesh not readable: " + objContext.path);
+        return;
+      }
       string path = objContext.path;
       if (mesh == null) {
         Debug.LogWarning("Null mesh for: " + path);
@@ -132,7 +136,8 @@ namespace USD.NET.Unity {
         }
         sample.colors = mesh.colors;
 
-        if (sample.colors == null || sample.colors.Length == 0 && sharedMaterial.HasProperty("_Color")) {
+        if ((sample.colors == null || sample.colors.Length == 0)
+            && (sharedMaterial != null && sharedMaterial.HasProperty("_Color"))) {
           sample.colors = new Color[1];
           sample.colors[0] = sharedMaterial.color.linear;
         }
@@ -176,7 +181,7 @@ namespace USD.NET.Unity {
         }
 
         string usdMaterialPath;
-        if (exportContext.exportMaterials) {
+        if (exportContext.exportMaterials && sharedMaterial != null) {
           if (!exportContext.matMap.TryGetValue(sharedMaterial, out usdMaterialPath)) {
             Debug.LogError("Invalid material bound for: " + path);
           } else {
