@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using pxr;
@@ -72,6 +73,11 @@ namespace USD.NET.Unity {
 
         foreach (var usdPrim in masterRootPrim.GetDescendants()) {
           var goPrim = new GameObject(usdPrim.GetName());
+          try {
+            AddModelRoot(goPrim, usdPrim);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
+          }
 
           if (usdPrim.IsInstance()) {
             map.AddInstanceRoot(usdPrim.GetPath(), goPrim, usdPrim.GetMaster().GetPath());
@@ -95,6 +101,11 @@ namespace USD.NET.Unity {
         var parentGo = map[path.GetParentPath()];
         var parent = parentGo ? parentGo.transform : null;
         var go = FindOrCreateGameObject(parent, path.GetName());
+        try {
+          AddModelRoot(go, prim);
+        } catch (Exception ex) {
+          Debug.LogException(new Exception("Error processing " + prim.GetPath(), ex));
+        }
 
         if (prim.IsInstance()) {
           map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
@@ -106,6 +117,65 @@ namespace USD.NET.Unity {
       return map;
     }
 
+    /// <summary>
+    /// Exposes model root and asset metadata. The game object is primarily a tag which is useful
+    /// for smart selection of models instead of geometry.
+    /// </summary>
+    static void AddModelRoot(GameObject go, UsdPrim prim) {
+      if (!prim) {
+        return;
+      }
+
+      var modelApi = new pxr.UsdModelAPI(prim);
+      if (!modelApi) { return; }
+
+      var kindTok = new TfToken();
+      if (!modelApi.GetKind(kindTok)) {
+        return;
+      }
+
+      if (KindRegistry.IsA(kindTok, KindTokens.assembly)) {
+        var asm = go.GetComponent<UsdAssemblyRoot>();
+        if (!asm) {
+          go.AddComponent<UsdAssemblyRoot>();
+        }
+      } else if (modelApi.IsModel() && !modelApi.IsGroup()) {
+        var mdl = go.GetComponent<UsdModelRoot>();
+        if (!mdl) {
+          mdl = go.AddComponent<UsdModelRoot>();
+        }
+        var info = new VtDictionary();
+        if (modelApi.GetAssetInfo(info)) {
+          var valName = info.GetValueAtPath("name");
+          var valVersion = info.GetValueAtPath("version");
+          var valIdentifier = info.GetValueAtPath("identifier");
+          if (valIdentifier != null && !valIdentifier.IsEmpty()) {
+            mdl.m_modelAssetPath = UsdCs.VtValueToSdfAssetPath(valIdentifier).GetAssetPath().ToString();
+          }
+          if (valName != null && !valName.IsEmpty()) {
+            mdl.m_modelName = pxr.UsdCs.VtValueTostring(valName);
+          }
+          if (valVersion != null && !valVersion.IsEmpty()) {
+            mdl.m_modelVersion = pxr.UsdCs.VtValueTostring(valVersion);
+          }
+        }
+      } else {
+        // If these tags were added previously, remove them.
+        var mdl = go.GetComponent<UsdModelRoot>();
+        if (mdl) {
+          Component.DestroyImmediate(mdl);
+        }
+        var asm = go.GetComponent<UsdAssemblyRoot>();
+        if (asm) {
+          Component.DestroyImmediate(asm);
+        }
+      }
+    }
+
+    /// <summary>
+    /// Checks for a child named "name" under the given parent, if it exists it is returned,
+    /// else a new child is created with this name.
+    /// </summary>
     static GameObject FindOrCreateGameObject(Transform parent, string name) {
       Transform root = null;
       GameObject go = null;
