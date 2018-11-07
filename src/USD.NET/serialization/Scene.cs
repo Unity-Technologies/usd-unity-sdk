@@ -671,7 +671,7 @@ namespace USD.NET {
       UsdPrim prim;
       if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
         prim = Stage.GetPrimAtPath(path);
-        m_primMap.Add(path, prim);
+        m_primMap[path] = prim;
       }
       return prim;
     }
