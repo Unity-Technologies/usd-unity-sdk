@@ -126,9 +126,21 @@ namespace USD.NET.Unity {
       // This must be restored before returning from this function.
       var parent = root.transform.parent;
       root.transform.SetParent(null, worldPositionStays: false);
+
+      // Also zero out and restore local rotations on the root.
+      var localPos = root.transform.localPosition;
+      var localRot = root.transform.localRotation;
+      var localScale = root.transform.localScale;
+      root.transform.localPosition = Vector3.zero;
+      root.transform.localRotation = Quaternion.identity;
+      root.transform.localScale = Vector3.one;
+
       try {
         ExportImpl(root, context);
       } finally {
+        root.transform.localPosition = localPos;
+        root.transform.localRotation = localRot;
+        root.transform.localScale = localScale;
         root.transform.SetParent(parent);
       }
     }
