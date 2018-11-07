@@ -17,5 +17,6 @@
 #define KIND_API
 
 %include "kindRegistry.i"
+%include "kindTokens.i"
 
 

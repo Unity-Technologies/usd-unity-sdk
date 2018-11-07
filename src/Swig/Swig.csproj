@@ -119,6 +119,8 @@
     <Content Include="pxr\usd\ar\arResolverContext.i" />
     <Content Include="pxr\usd\kind\kindRegistry.i" />
     <Content Include="pxr\usd\kind\kind.i" />
+    <Content Include="pxr\usd\kind\kindTokens_Tokens.i" />
+    <Content Include="pxr\usd\kind\kindTokens.i" />
     <Content Include="pxr\usd\ndr\ndr.i" />
     <Content Include="pxr\usd\sdf\sdfReference.i" />
     <Content Include="pxr\usd\sdr\declare.i" />
@@ -310,6 +312,7 @@
     <Content Include="scripts\gen.py" />
     <Content Include="scripts\usdLux.py" />
     <Content Include="scripts\usdRi.py" />
+    <Content Include="scripts\kind.py" />
     <Content Include="scripts\usdSkel.py" />
     <Content Include="scripts\usdShade.py" />
     <Content Include="scripts\usdVol.py" />

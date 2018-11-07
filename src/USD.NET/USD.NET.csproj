@@ -174,6 +174,7 @@
     <Compile Include="generated\pxr\base\vt\Vt_ArrayForeignDataSource.cs" />
     <Compile Include="generated\pxr\usd\ar\ArResolverContext.cs" />
     <Compile Include="generated\pxr\usd\kind\KindRegistry.cs" />
+    <Compile Include="generated\pxr\usd\kind\KindTokens.cs" />
     <Compile Include="generated\pxr\usd\ndr\NdrDiscoveryPlugin.cs" />
     <Compile Include="generated\pxr\usd\ndr\NdrDiscoveryPluginContext.cs" />
     <Compile Include="generated\pxr\usd\ndr\NdrDiscoveryPluginFactoryBase.cs" />
