@@ -26,10 +26,6 @@ namespace USD.NET.Unity {
     /// </summary>
     public static PrimMap BuildScene(Scene scene, GameObject root, SceneImportOptions importOptions) {
 
-      // The root object at which the USD scene will be reconstructed.
-      // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
-      XformImporter.BuildSceneRoot(scene, root.transform, importOptions);
-
       // Reconstruct the USD hierarchy as Unity GameObjects.
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       var primMap = HierarchyBuilder.BuildGameObjects(scene, root);
@@ -160,11 +156,19 @@ namespace USD.NET.Unity {
         }
       }
 
-      // Process all material bindings in a single vectorized request.
-      MaterialImporter.ProcessMaterialBindings(scene, importOptions);
+      try {
+        // Process all material bindings in a single vectorized request.
+        MaterialImporter.ProcessMaterialBindings(scene, importOptions);
+      } catch (System.Exception ex) {
+        Debug.LogException(new System.Exception("Failed in ProcessMaterialBindings", ex));
+      }
 
-      // Build scene instances.
-      InstanceImporter.BuildSceneInstances(primMap, importOptions);
+      try {
+        // Build scene instances.
+        InstanceImporter.BuildSceneInstances(primMap, importOptions);
+      } catch (System.Exception ex) {
+        Debug.LogException(new System.Exception("Failed in BuildSceneInstances", ex));
+      }
 
       // Build point instances.
       // TODO: right now all point instancer data is read, but we only need prototypes and indices.
@@ -182,6 +186,19 @@ namespace USD.NET.Unity {
         } catch (System.Exception ex) {
           Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
         }
+      }
+
+      foreach (System.Collections.Generic.KeyValuePair<pxr.SdfPath, GameObject> kvp in primMap) {
+        if (kvp.Key.IsRootPrimPath() && kvp.Value != null) {
+          // The root object at which the USD scene will be reconstructed.
+          // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
+          XformImporter.BuildSceneRoot(scene, kvp.Value.transform, importOptions);
+        }
+      }
+
+      // Destroy all temp masters.
+      foreach (var path in primMap.GetMasterRootPaths()) {
+        GameObject.DestroyImmediate(primMap[path]);
       }
 
       return primMap;
