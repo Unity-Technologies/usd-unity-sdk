@@ -246,7 +246,7 @@ namespace USD.NET.Examples {
     public static void Export(GameObject root,
                               Scene scene,
                               BasisTransformation basisTransform) {
-      SceneExporter.Export(root, scene, basisTransform);
+      SceneExporter.Export(root, scene, basisTransform, exportUnvarying: true);
     }
   }
 }
