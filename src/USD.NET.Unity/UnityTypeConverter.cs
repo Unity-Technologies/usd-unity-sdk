@@ -269,13 +269,30 @@ namespace USD.NET.Unity {
     /// collide in the USD namespace.
     /// </remarks>
     static public string GetPath(UnityEngine.Transform unityObj) {
+      return GetPath(unityObj, null);
+    }
+
+    /// <summary>
+    /// Returns a valid UsdPath for the given Unity GameObject, relative to the given root.
+    /// For example: obj = /Foo/Bar/Baz, root = /Foo the result will be /Bar/Baz
+    /// </summary>
+    /// <remarks>
+    /// Note that illegal characters are converted into legal characters, so invalid names may
+    /// collide in the USD namespace.
+    /// </remarks>
+    static public string GetPath(UnityEngine.Transform unityObj,
+                                 UnityEngine.Transform unityObjRoot) {
       // Base case.
-      if (unityObj == null) {
+      if (unityObjRoot != null && unityObj == null) {
+        throw new Exception("Expected to find root " + unityObjRoot.name + " but did not.");
+      }
+
+      if (unityObj == unityObjRoot) {
         return "";
       }
 
       // Build the path from root to leaf.
-      return GetPath(unityObj.transform.parent)
+      return GetPath(unityObj.transform.parent, unityObjRoot)
            + "/" + UnityTypeConverter.MakeValidIdentifier(unityObj.name);
     }
 
