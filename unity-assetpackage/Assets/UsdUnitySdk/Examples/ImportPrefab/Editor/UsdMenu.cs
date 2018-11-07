@@ -20,13 +20,14 @@ using USD.NET.Unity;
 
 public class UsdMenu : MonoBehaviour {
 
-  static USD.NET.Scene InitForSave(string defaultName) {
+  public static USD.NET.Scene InitForSave(string defaultName) {
     var filePath = EditorUtility.SaveFilePanel("Export USD File", "", defaultName, "usda");
-    var fileDir = Path.GetDirectoryName(filePath);
 
-    if (filePath.Length == 0) {
+    if (filePath == null || filePath.Length == 0) {
       return null;
     }
+
+    var fileDir = Path.GetDirectoryName(filePath);
 
     if (!Directory.Exists(fileDir)) {
       var di = Directory.CreateDirectory(fileDir);
@@ -42,6 +43,15 @@ public class UsdMenu : MonoBehaviour {
     scene.StartTime = 0;
     scene.EndTime = 0;
     return scene;
+  }
+
+  public static USD.NET.Scene InitForOpen() {
+    string path = EditorUtility.OpenFilePanel("Import USD File", "", "usd,usda,usdc,abc");
+    if (path == null || path.Length == 0) {
+      return null;
+    }
+    USD.NET.Examples.InitUsd.Initialize();
+    return USD.NET.Scene.Open(path);
   }
 
   [MenuItem("USD/Export (Fast) Selected with Children", true)]
@@ -74,7 +84,7 @@ public class UsdMenu : MonoBehaviour {
       }
 
       try {
-        SceneExporter.Export(go, scene, basisTransform);
+        SceneExporter.Export(go, scene, basisTransform, exportUnvarying: true);
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         continue;
@@ -89,10 +99,11 @@ public class UsdMenu : MonoBehaviour {
 
   [MenuItem("USD/Import as GameObjects")]
   public static void ImportUsdToScene() {
-    string path = EditorUtility.OpenFilePanel("Import USD File", "", "usd,usda,usdc,abc");
-    if (path.Length == 0) {
+    var scene = InitForOpen();
+    if (scene == null) {
       return;
     }
+    string path = scene.FilePath;
 
     var solidColorMat = new Material(Shader.Find("Standard"));
     solidColorMat.SetFloat("_Glossiness", 0.2f);
@@ -100,26 +111,31 @@ public class UsdMenu : MonoBehaviour {
     // Time-varying data is not supported and often scenes are written without "Default" time
     // values, which makes setting an arbitrary time safer (because if only default was authored
     // the time will be ignored and values will resolve to default time automatically).
-    double time = 1.0;
+    scene.Time = 1.0;
 
     var importOptions = new SceneImportOptions();
     importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
-    importOptions.meshOptions.generateLightmapUVs = true;
+    //importOptions.meshOptions.generateLightmapUVs = true;
 
     GameObject parent = null;
     if (Selection.gameObjects.Length > 0) {
       parent = Selection.gameObjects[0];
     }
-    UsdToGameObject(parent, GetObjectName(path), path, time, importOptions);
+    try {
+      UsdToGameObject(parent, GetObjectName(path), scene, importOptions);
+    } finally {
+      scene.Close();
+    }
   }
 
   [MenuItem("USD/Import as Prefab")]
   public static void ImportUsdToPrefab() {
-    string path = EditorUtility.OpenFilePanel("Import USD File", "", "usd;usda;usdc;abc");
-    if (path.Length == 0) {
+    var scene = InitForOpen();
+    if (scene == null) {
       return;
     }
+    string path = scene.FilePath;
 
     var solidColorMat = new Material(Shader.Find("Standard"));
     solidColorMat.SetFloat("_Glossiness", 0.2f);
@@ -127,7 +143,7 @@ public class UsdMenu : MonoBehaviour {
     // Time-varying data is not supported and often scenes are written without "Default" time
     // values, which makes setting an arbitrary time safer (because if only default was authored
     // the time will be ignored and values will resolve to default time automatically).
-    double time = 1.0;
+    scene.Time = 1.0;
 
     var importOptions = new SceneImportOptions();
     importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
@@ -138,34 +154,36 @@ public class UsdMenu : MonoBehaviour {
         System.StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
     string prefabPath = "Assets/" + prefabName + ".prefab";
 
-    ImportUsdToPrefab(path, prefabPath, time, importOptions);
+    try {
+      ImportUsdToPrefab(scene, prefabPath, importOptions);
+    } finally {
+      scene.Close();
+    }
   }
 
   public static GameObject UsdToGameObject(GameObject parent,
                                            string name,
-                                           string path,
-                                           double time,
+                                           USD.NET.Scene scene,
                                            SceneImportOptions importOptions) {
-    var go = new GameObject(name);
-
-    UsdAssetImporter.ImportUsd(go, path, time, importOptions);
-
-    var usdImporter = go.AddComponent<UsdAssetImporter>();
-    usdImporter.m_usdFile = path;
-    usdImporter.m_time = time;
-    usdImporter.OptionsToState(importOptions);
-
-    if (parent != null) {
-      go.transform.SetParent(parent.transform, worldPositionStays: false);
+    try {
+      UsdAssetImporter.ImportUsd(parent, scene, importOptions);
+    } finally {
+      scene.Close();
     }
-    return go;
+
+    return parent;
   }
 
-  public static void ImportUsdToPrefab(string path, string prefabPath, double time, SceneImportOptions importOptions) {
-    var go = UsdToGameObject(null, GetPrefabName(path), path, time, importOptions);
+  public static void ImportUsdToPrefab(USD.NET.Scene scene, string prefabPath, SceneImportOptions importOptions) {
+    string path = scene.FilePath;
+    var go = UsdToGameObject(null, GetPrefabName(path), scene, importOptions);
+    var usdImporter = go.AddComponent<UsdAssetImporter>();
+
+    usdImporter.m_usdFile = scene.FilePath;
+    usdImporter.m_time = scene.Time.GetValueOrDefault();
+    usdImporter.OptionsToState(importOptions);
 
     SaveAsSinglePrefab(go, prefabPath, importOptions);
-
     GameObject.DestroyImmediate(go);
   }
 

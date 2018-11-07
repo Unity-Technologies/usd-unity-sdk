@@ -62,7 +62,9 @@ public class UsdImportEditor : ScriptedImporterEditor {
 
       var options = new USD.NET.Unity.SceneImportOptions();
       importer.StateToOptions(ref options);
-      UsdMenu.ImportUsdToPrefab(importer.m_usdFile, prefabPath, importer.m_time, options);
+      var scene = USD.NET.Scene.Open(importer.m_usdFile);
+      scene.Time = importer.m_time;
+      UsdMenu.ImportUsdToPrefab(scene, prefabPath, options);
     }
   }
 }
