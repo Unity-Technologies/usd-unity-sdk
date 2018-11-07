@@ -479,6 +479,12 @@
             for common use.
             </remarks>
         </member>
+        <member name="P:USD.NET.Scene.FilePath">
+            <summary>
+            Returns the root layer identifier upon which this scene is operating (the EditTarget
+            identifier). Note that for in-memory layers, this may not be a path on disk.
+            </summary>
+        </member>
         <member name="P:USD.NET.Scene.WriteMode">
             <summary>
             Dicatates how calls to Write() are handled. When set to Define (the default), every write
@@ -544,6 +550,11 @@
             <summary>
             Gets the UsdPrim at the given path, retuns null if the UsdPrim is invalid.
             Therefore, if the return value is not null, IsValid need not be checked.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Scene.GetPath(System.String)">
+            <summary>
+            Translates the given string into an SdfPath, returning a cached value if possible.
             </summary>
         </member>
         <member name="M:USD.NET.Scene.GetAttributeAtPath(System.String)">
@@ -672,6 +683,17 @@
             attribute. Only paths rooted under the given rootPath are considered.
             </summary>
         </member>
+        <member name="M:USD.NET.Scene.AddSubLayer(USD.NET.Scene)">
+            <summary>
+            Adds the root layer of given Scene object as a sublayer of this Scene.
+            Note that this operation triggers recomposition and will invalidate UsdPrim instances.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Scene.SetEditTarget(USD.NET.Scene)">
+            <summary>
+            Set the layer to which this scene will author when writing values.
+            </summary>
+        </member>
         <member name="M:USD.NET.Scene.WaitForWrites">
             <summary>
             Wait until all asynchronous writes complete.
@@ -747,6 +769,16 @@
         <member name="M:USD.NET.Scene.GetSdfPath(System.String)">
             <summary>
             Translates a string path to an SdfPath, caching the result to avoid churn.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Scene.GetUsdPrim(System.String)">
+            <summary>
+            Returns the UsdPrim at the given path, returning null if the path is invalid.
+            </summary>
+        </member>
+        <member name="M:USD.NET.Scene.GetUsdPrim(pxr.SdfPath)">
+            <summary>
+            Returns the UsdPrim at the given path, returning null if the path is invalid.
             </summary>
         </member>
         <member name="M:USD.NET.Scene.#ctor(pxr.UsdStage)">
