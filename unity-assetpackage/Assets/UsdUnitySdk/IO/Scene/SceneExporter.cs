@@ -51,6 +51,7 @@ namespace USD.NET.Unity {
 
   public class ExportContext {
     public Scene scene;
+    public Transform exportRoot;
     public bool exportMaterials = true;
     public BasisTransformation basisTransform = BasisTransformation.FastWithNegativeScale;
     public ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
@@ -98,15 +99,17 @@ namespace USD.NET.Unity {
 
     public static void Export(GameObject root,
                               Scene scene,
-                              BasisTransformation basisTransform) {
+                              BasisTransformation basisTransform,
+                              bool exportUnvarying) {
       var context = new ExportContext();
       context.scene = scene;
       context.basisTransform = basisTransform;
+      context.exportRoot = root.transform.parent;
       SyncExportContext(root, context);
 
       // Since this is a one-shot convenience function, we will automatically split the export
       // into varying and unvarying data, unless the user explicitly requested unvarying.
-      if (scene.Time != null) {
+      if (exportUnvarying && scene.Time != null) {
         double? oldTime = scene.Time;
         scene.Time = null;
         Export(root, context);
@@ -117,8 +120,20 @@ namespace USD.NET.Unity {
       context.exportMaterials = false;
       Export(root, context);
     }
-
     public static void Export(GameObject root,
+                          ExportContext context) {
+      // Remove parent transform effects while exporting.
+      // This must be restored before returning from this function.
+      var parent = root.transform.parent;
+      root.transform.SetParent(null, worldPositionStays: false);
+      try {
+        ExportImpl(root, context);
+      } finally {
+        root.transform.SetParent(parent);
+      }
+    }
+
+    private static void ExportImpl(GameObject root,
                               ExportContext context) {
       var scene = context.scene;
       bool skipInactive = context.activePolicy == ActiveExportPolicy.DoNotExport;
@@ -232,6 +247,7 @@ namespace USD.NET.Unity {
 
       Traverse(exportRoot, InitExportableObjects, context);
 
+      Transform expRoot = context.exportRoot;
       var foundAnimators = new List<Transform>();
       foreach (Transform rootBone in context.skelMap.Keys.ToList()) {
         foreach (var xf in foundAnimators) {
@@ -248,8 +264,8 @@ namespace USD.NET.Unity {
           if (anim != null && anim.avatar != null) {
 
             SkelRootSample rootSample = CreateSample<SkelRootSample>(context);
-            rootSample.skeleton = UnityTypeConverter.GetPath(parentXf) + "/_skeleton";
-            rootSample.animationSource = UnityTypeConverter.GetPath(parentXf) + "/_anim";
+            rootSample.skeleton = UnityTypeConverter.GetPath(parentXf, expRoot) + "/_skeleton";
+            rootSample.animationSource = UnityTypeConverter.GetPath(parentXf, expRoot) + "/_anim";
 
             CreateExportPlan(
                 parentXf.gameObject,
@@ -322,6 +338,7 @@ namespace USD.NET.Unity {
       var mf = go.GetComponent<MeshFilter>();
       var cam = go.GetComponent<Camera>();
       var anim = go.GetComponent<Animator>();
+      Transform expRoot = context.exportRoot;
 
       if (anim != null && anim.avatar != null && anim.avatar.isValid) {
         // Assume any animator that has an avitar is a skeleton root.
@@ -336,9 +353,9 @@ namespace USD.NET.Unity {
         }
         CreateExportPlan(go, CreateSample<MeshSample>(context), MeshExporter.ExportSkinnedMesh, context);
         if (smr.rootBone == null) {
-          Debug.LogWarning("No root bone at: " + UnityTypeConverter.GetPath(go.transform));
+          Debug.LogWarning("No root bone at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
         } else if (smr.bones == null || smr.bones.Length == 0) {
-          Debug.LogWarning("No bones at: " + UnityTypeConverter.GetPath(go.transform));
+          Debug.LogWarning("No bones at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
         } else {
           MergeBones(smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
         }
@@ -382,7 +399,8 @@ namespace USD.NET.Unity {
                                  object data = null,
                                  bool insertFirst = true) {
       // This is an exportable object.
-      string path = Unity.UnityTypeConverter.GetPath(go.transform);
+      Transform expRoot = context.exportRoot;
+      string path = Unity.UnityTypeConverter.GetPath(go.transform, expRoot);
       if (!string.IsNullOrEmpty(pathSuffix)) {
         path += pathSuffix;
       }
@@ -401,7 +419,7 @@ namespace USD.NET.Unity {
       // Note that the parent hierarchy is memoised, so despite looking expensive, the time
       // complexity is linear.
       Transform xf = go.transform.parent;
-      if (xf != null && !context.plans.ContainsKey(xf.gameObject)) {
+      if (xf != context.exportRoot && !context.plans.ContainsKey(xf.gameObject)) {
         // Since all GameObjects have a Transform, export all un-exported parents as transform.
         CreateExportPlan(xf.gameObject, CreateSample<XformSample>(context), XformExporter.ExportXform, context);
       }

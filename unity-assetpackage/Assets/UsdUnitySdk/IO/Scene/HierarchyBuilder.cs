@@ -29,7 +29,8 @@ namespace USD.NET.Unity {
     /// <param name="scene">The Scene to map</param>
     /// <param name="unityRoot">The root game object under which all prims will be parented</param>
     /// <returns></returns>
-    static public PrimMap BuildGameObjects(Scene scene, GameObject unityRoot) {
+    static public PrimMap BuildGameObjects(Scene scene,
+                                           GameObject unityRoot) {
       return BuildGameObjects(scene, unityRoot, scene.AllPaths);
     }
 
@@ -39,9 +40,13 @@ namespace USD.NET.Unity {
     /// <param name="scene">The Scene to map</param>
     /// <param name="unityRoot">The root game object under which all prims will be parented</param>
     /// <param name="rootPath">The path at which to begin mapping paths.</param>
-    static public PrimMap BuildGameObjects(Scene scene, GameObject unityRoot, SdfPath rootPath) {
+    static public PrimMap BuildGameObjects(Scene scene,
+                                           GameObject unityRoot,
+                                           SdfPath rootPath) {
       // TODO: add an API for finding paths.
-      return BuildGameObjects(scene, unityRoot, scene.Find(rootPath.ToString(), "UsdSchemaBase"));
+      return BuildGameObjects(scene,
+                              unityRoot,
+                              scene.Find(rootPath.ToString(), "UsdSchemaBase"));
     }
 
     /// <summary>
@@ -60,7 +65,9 @@ namespace USD.NET.Unity {
 
         goMaster.hideFlags = HideFlags.HideInHierarchy;
         goMaster.SetActive(false);
-        goMaster.transform.SetParent(unityRoot.transform, worldPositionStays: false);
+        if (unityRoot != null) {
+          goMaster.transform.SetParent(unityRoot.transform, worldPositionStays: false);
+        }
         map.AddMasterRoot(masterRootPrim.GetPath(), goMaster);
 
         foreach (var usdPrim in masterRootPrim.GetDescendants()) {
@@ -85,17 +92,38 @@ namespace USD.NET.Unity {
 
       foreach (var path in paths) {
         var prim = scene.GetPrimAtPath(path);
-        var go = new GameObject(path.GetName());
+        var parentGo = map[path.GetParentPath()];
+        var parent = parentGo ? parentGo.transform : null;
+        var go = FindOrCreateGameObject(parent, path.GetName());
 
         if (prim.IsInstance()) {
           map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
         }
 
         map[new SdfPath(path)] = go;
-        go.transform.SetParent(map[path.GetParentPath()].transform, worldPositionStays: false);
       }
 
       return map;
+    }
+
+    static GameObject FindOrCreateGameObject(Transform parent, string name) {
+      Transform root = null;
+      GameObject go = null;
+      if (parent == null) {
+        go = GameObject.Find(name);
+        root = go ? go.transform : null;
+      } else {
+        root = parent.Find(name);
+        go = root ? root.gameObject : null;
+      }
+      
+      if (!go) {
+        go = new GameObject(name);
+      }
+      if (parent != null) {
+        go.transform.SetParent(parent, worldPositionStays: false);
+      }
+      return go;
     }
 
   }
