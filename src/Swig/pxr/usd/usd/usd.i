@@ -50,6 +50,7 @@ typedef TfRefPtr<UsdStage> UsdStageRefPtr;
 %include "usdMetadataValueMap.i"
 %include "usdCommon.i"
 %include "usdApiSchemaBase.i"
+%include "usdModelApi.i"
 
 %include "usdTimeCode.i"
 %include "usdEditTarget.i"

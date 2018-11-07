@@ -293,6 +293,7 @@
     <Content Include="pxr\usd\usd\usdAttributeQuery.i" />
     <Content Include="pxr\usd\usd\usdCollectionAPI.i" />
     <Content Include="pxr\usd\usd\usdClipsAPI.i" />
+    <Content Include="pxr\usd\usd\usdModelApi.i" />
     <Content Include="pxr\usd\usd\usdResolveInfo.i" />
     <Content Include="pxr\usd\usd\usdStagePopulationMask.i" />
     <Content Include="pxr\usd\usd\usdStageCache.i" />

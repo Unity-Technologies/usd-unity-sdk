@@ -376,6 +376,7 @@
     <Compile Include="generated\pxr\usd\usd\UsdListPosition.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdLoadPolicy.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdMetadataValueMap.cs" />
+    <Compile Include="generated\pxr\usd\usd\UsdModelAPI.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdObject.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdObjectVector.cs" />
     <Compile Include="generated\pxr\usd\usd\UsdObjType.cs" />

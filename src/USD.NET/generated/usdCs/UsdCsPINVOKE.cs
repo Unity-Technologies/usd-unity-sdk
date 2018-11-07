@@ -13568,6 +13568,69 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_1")]
   public static extern global::System.IntPtr UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_1();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdModelAPI__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdModelAPI__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdModelAPI__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdModelAPI__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdModelAPI__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdModelAPI__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdModelAPI")]
+  public static extern void delete_UsdModelAPI(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetSchemaAttributeNames__SWIG_0")]
+  public static extern global::System.IntPtr UsdModelAPI_GetSchemaAttributeNames__SWIG_0(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetSchemaAttributeNames__SWIG_1")]
+  public static extern global::System.IntPtr UsdModelAPI_GetSchemaAttributeNames__SWIG_1();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_Get")]
+  public static extern global::System.IntPtr UsdModelAPI_Get(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetKind")]
+  public static extern bool UsdModelAPI_GetKind(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SetKind")]
+  public static extern bool UsdModelAPI_SetKind(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_IsModel")]
+  public static extern bool UsdModelAPI_IsModel(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_IsGroup")]
+  public static extern bool UsdModelAPI_IsGroup(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetAssetIdentifier")]
+  public static extern bool UsdModelAPI_GetAssetIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SetAssetIdentifier")]
+  public static extern void UsdModelAPI_SetAssetIdentifier(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetAssetName")]
+  public static extern bool UsdModelAPI_GetAssetName(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SetAssetName")]
+  public static extern void UsdModelAPI_SetAssetName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetAssetVersion")]
+  public static extern bool UsdModelAPI_GetAssetVersion(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SetAssetVersion")]
+  public static extern void UsdModelAPI_SetAssetVersion(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetPayloadAssetDependencies")]
+  public static extern bool UsdModelAPI_GetPayloadAssetDependencies(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SetPayloadAssetDependencies")]
+  public static extern void UsdModelAPI_SetPayloadAssetDependencies(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_GetAssetInfo")]
+  public static extern bool UsdModelAPI_GetAssetInfo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SetAssetInfo")]
+  public static extern void UsdModelAPI_SetAssetInfo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCodeVector_Clear")]
   public static extern void UsdTimeCodeVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -26389,6 +26452,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdAPISchemaBase_SWIGUpcast")]
   public static extern global::System.IntPtr UsdAPISchemaBase_SWIGUpcast(global::System.IntPtr jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SWIGUpcast")]
+  public static extern global::System.IntPtr UsdModelAPI_SWIGUpcast(global::System.IntPtr jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_Usd_PrimFlagsConjunction_SWIGUpcast")]
   public static extern global::System.IntPtr Usd_PrimFlagsConjunction_SWIGUpcast(global::System.IntPtr jarg1);
