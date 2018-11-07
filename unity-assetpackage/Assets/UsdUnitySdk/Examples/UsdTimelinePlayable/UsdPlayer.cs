@@ -38,7 +38,7 @@ namespace USD.NET.Unity.Extensions.Player {
       InitUsd.Initialize();
 
       // Is the stage already loaded?
-      if (m_scene != null && m_scene.Stage.GetRootLayer().GetIdentifier() == m_usdFile) {
+      if (m_scene != null && m_scene.FilePath == m_usdFile) {
         return;
       }
 
@@ -100,7 +100,7 @@ namespace USD.NET.Unity.Extensions.Player {
       }
 
       // Ensure the file and the identifier match.
-      m_usdFile = m_scene.Stage.GetRootLayer().GetIdentifier();
+      m_usdFile = m_scene.FilePath;
     }
 
     Vector3 GetUpVector(Scene scene) {

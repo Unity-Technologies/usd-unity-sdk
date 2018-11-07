@@ -65,7 +65,7 @@ namespace USD.NET.Examples {
       }
 
       // Is the stage already loaded?
-      if (m_scene != null && m_scene.Stage.GetRootLayer().GetIdentifier() == m_usdFile && m_lastTime == m_usdTime) {
+      if (m_scene != null && m_scene.FilePath == m_usdFile && m_lastTime == m_usdTime) {
         return;
       }
 
@@ -108,7 +108,7 @@ namespace USD.NET.Examples {
         m_primMap = SceneImporter.BuildScene(m_scene, rootXf, importOptions);
 
         // Ensure the file and the identifier match.
-        m_usdFile = m_scene.Stage.GetRootLayer().GetIdentifier();
+        m_usdFile = m_scene.FilePath;
       } catch {
         enabled = false;
         throw;

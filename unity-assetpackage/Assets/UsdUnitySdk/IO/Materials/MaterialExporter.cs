@@ -26,7 +26,7 @@ namespace USD.NET.Unity {
 
       var shader = new PreviewSurfaceSample();
       var texPath = /*TODO: this should be explicit*/
-            System.IO.Path.GetDirectoryName(scene.Stage.GetRootLayer().GetIdentifier());
+            System.IO.Path.GetDirectoryName(scene.FilePath);
 
       if (mat.shader.name == "Standard (Specular setup)") {
         StandardShaderIo.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);

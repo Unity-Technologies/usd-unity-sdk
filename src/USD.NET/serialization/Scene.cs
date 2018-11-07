@@ -73,6 +73,16 @@ namespace USD.NET {
     public UsdStage Stage { get { return m_stage; } }
 
     /// <summary>
+    /// Returns the root layer identifier upon which this scene is operating (the EditTarget
+    /// identifier). Note that for in-memory layers, this may not be a path on disk.
+    /// </summary>
+    public string FilePath {
+      get {
+        return m_stage.GetEditTarget().GetLayer().GetIdentifier();
+      }
+    }
+
+    /// <summary>
     /// Dicatates how calls to Write() are handled. When set to Define (the default), every write
     /// will ensure the prim is also defined.
     /// </summary>
@@ -238,6 +248,13 @@ namespace USD.NET {
         return null;
       }
       return p;
+    }
+
+    /// <summary>
+    /// Translates the given string into an SdfPath, returning a cached value if possible.
+    /// </summary>
+    public SdfPath GetPath(string primPath) {
+      return GetPath(primPath);
     }
 
     /// <summary>
@@ -459,14 +476,21 @@ namespace USD.NET {
       return keys;
     }
 
+    /// <summary>
+    /// Adds the root layer of given Scene object as a sublayer of this Scene.
+    /// Note that this operation triggers recomposition and will invalidate UsdPrim instances.
+    /// </summary>
     public void AddSubLayer(Scene over) {
       SdfLayerHandle rootLayer = Stage.GetRootLayer();
       var overLayer = over.Stage.GetRootLayer();
       rootLayer.GetSubLayerPaths().push_back(overLayer.GetIdentifier());
     }
 
-    public void SetEditTarget(Scene over) {
-      SdfLayerHandle rootLayer = over.Stage.GetRootLayer();
+    /// <summary>
+    /// Set the layer to which this scene will author when writing values.
+    /// </summary>
+    public void SetEditTarget(Scene other) {
+      SdfLayerHandle rootLayer = other.Stage.GetRootLayer();
       var editTarget = Stage.GetEditTargetForLocalLayer(rootLayer);
       Stage.SetEditTarget(editTarget);
       m_primMap.Clear();
@@ -655,7 +679,7 @@ namespace USD.NET {
         return m_pathMap[path];
       }
       var p = new pxr.SdfPath(path);
-      m_pathMap.Add(path, p);
+      m_pathMap[path] = p;
       return p;
     }
 
@@ -663,10 +687,16 @@ namespace USD.NET {
       throw new ApplicationException("TODO: don't allow implicit conversion path -> string");
     }
 
+    /// <summary>
+    /// Returns the UsdPrim at the given path, returning null if the path is invalid.
+    /// </summary>
     private pxr.UsdPrim GetUsdPrim(string path) {
       return GetUsdPrim(GetSdfPath(path));
     }
 
+    /// <summary>
+    /// Returns the UsdPrim at the given path, returning null if the path is invalid.
+    /// </summary>
     private pxr.UsdPrim GetUsdPrim(SdfPath path) {
       UsdPrim prim;
       if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
