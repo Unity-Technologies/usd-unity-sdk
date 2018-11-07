@@ -32,8 +32,8 @@ namespace USD.NET.Unity {
                                  SceneImportOptions options) {
 
 
-      var mf = go.AddComponent<MeshFilter>();
-      var mr = go.AddComponent<MeshRenderer>();
+      var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
+      var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
       Material mat = null;
 
       var cubeGo = GameObject.CreatePrimitive(PrimitiveType.Cube);

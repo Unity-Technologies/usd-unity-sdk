@@ -70,7 +70,6 @@ namespace USD.NET.Unity {
       return result;
     }
 
-
     /// <summary>
     /// Copy mesh data from USD to Unity with the given import options.
     /// </summary>
@@ -87,8 +86,9 @@ namespace USD.NET.Unity {
       // bounds, normals and tangents should similarly be moved out of this function and should not
       // rely on the UnityEngine.Mesh API.
 
-      var mf = go.AddComponent<MeshFilter>();
-      var mr = go.AddComponent<MeshRenderer>();
+      var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
+      var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
+
       var unityMesh = new Mesh();
       Material mat = null;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
@@ -260,6 +260,7 @@ namespace USD.NET.Unity {
 
 #if UNITY_EDITOR
       if (options.meshOptions.generateLightmapUVs) {
+        ShowCrashWarning();
         var unwrapSettings = new UnityEditor.UnwrapParam();
         unwrapSettings.angleError = options.meshOptions.unwrapAngleError;
         unwrapSettings.areaError = options.meshOptions.unwrapAngleError;
@@ -274,6 +275,15 @@ namespace USD.NET.Unity {
 #endif
 
       mf.sharedMesh = unityMesh;
+    }
+
+    static void ShowCrashWarning() {
+#if UNITY_2018_2
+      Debug.LogWarning(
+          "Unity 2018.2.x may generate light maps which result in a crash during light baking. " +
+          "If you experience a crash, it is recommended to upgrade Unity. For details see: " +
+          "https://issuetracker.unity3d.com/issues/crash-in-calculatesurfacearea-after-opening-the-project-with-certain-mesh");
+#endif
     }
 
     static void BindMat(Material mat, MeshRenderer mr, int index, string path) {

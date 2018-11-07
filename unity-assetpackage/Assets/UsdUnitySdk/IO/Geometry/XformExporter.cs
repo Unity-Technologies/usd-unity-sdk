@@ -25,11 +25,13 @@ namespace USD.NET.Unity {
 
       // If exporting for Z-Up, rotate the world.
       bool correctZUp = exportContext.scene.UpAxis == Scene.UpAxes.Z;
+
       sample.transform = GetLocalTransformMatrix(
           objContext.gameObject.transform,
           correctZUp,
           path.IsRootPrimPath(),
           exportContext.basisTransform);
+
       exportContext.scene.Write(objContext.path, sample);
     }
 

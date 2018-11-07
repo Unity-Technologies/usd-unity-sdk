@@ -30,7 +30,7 @@ namespace USD.NET.Unity {
     public static void BuildCamera(CameraSample usdCamera,
                                  GameObject go,
                                  SceneImportOptions options) {
-      var cam = go.AddComponent<Camera>();
+      var cam = ImporterBase.GetOrAddComponent<Camera>(go);
       usdCamera.CopyToCamera(cam, setTransform: false);
     }
   }

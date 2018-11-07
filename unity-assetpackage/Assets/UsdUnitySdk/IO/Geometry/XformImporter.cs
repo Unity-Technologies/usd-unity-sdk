@@ -64,6 +64,13 @@ namespace USD.NET.Unity {
     /// </summary>
     public static void BuildSceneRoot(Scene scene, Transform root, SceneImportOptions options) {
 
+      var stageRoot = root.GetComponent<StageRoot>();
+      if (stageRoot == null) {
+        stageRoot = root.gameObject.AddComponent<StageRoot>();
+        stageRoot.OptionsToState(options);
+        stageRoot.m_usdFile = scene.FilePath;
+      }
+
       // Handle configurable up-axis (Y or Z).
       float invert = options.changeHandedness == BasisTransformation.FastWithNegativeScale ? -1 : 1;
       if (scene.UpAxis == Scene.UpAxes.Z) {
