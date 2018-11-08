@@ -38,9 +38,13 @@ namespace USD.NET.Unity {
         GameObject goInstance = instance.gameObject;
         GameObject goMaster = primMap[instance.masterPath];
         foreach (Transform child in goMaster.transform) {
-          var newChild = GameObject.Instantiate(child.gameObject);
-          newChild.transform.SetParent(goInstance.transform, worldPositionStays: false);
-          primMap.AddInstance(newChild);
+          Transform newChild = goInstance.transform.Find(child.name);
+          if (newChild == null) {
+            newChild = GameObject.Instantiate(child.gameObject).transform;
+            newChild.name = child.name;
+            newChild.transform.SetParent(goInstance.transform, worldPositionStays: false);
+          }
+          primMap.AddInstance(newChild.gameObject);
         }
       }
     }
