@@ -105,7 +105,7 @@ namespace USD.NET.Examples {
         // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
         var rootXf = new GameObject("root");
         rootXf.transform.SetParent(this.transform, worldPositionStays: false);
-        m_primMap = SceneImporter.BuildScene(m_scene, rootXf, importOptions);
+        m_primMap = SceneImporter.BuildScene(m_scene, rootXf,  pxr.SdfPath.AbsoluteRootPath(), importOptions);
 
         // Ensure the file and the identifier match.
         m_usdFile = m_scene.FilePath;
