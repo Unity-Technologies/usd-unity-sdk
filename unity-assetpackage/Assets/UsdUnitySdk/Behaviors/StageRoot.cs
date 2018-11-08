@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace USD.NET.Unity {
@@ -95,6 +96,37 @@ namespace USD.NET.Unity {
       options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
     }
 
+    public void SetVariantSelection(GameObject go,
+                                    string usdPrimPath,
+                                    Dictionary<string, string> selections) {
+      Examples.InitUsd.Initialize();
+      var scene = Scene.Open(m_usdFile);
+      if (scene == null) {
+        throw new Exception("Failed to open: " + m_usdFile);
+      }
+
+      var prim = scene.GetPrimAtPath(usdPrimPath);
+      if (prim == null || !prim) {
+        throw new Exception("Prim not found: " + usdPrimPath);
+      }
+
+      var varSets = prim.GetVariantSets();
+      foreach (var sel in selections) {
+        if (!varSets.HasVariantSet(sel.Key)) {
+          throw new Exception("Unknown varient set: " + sel.Key + " at " + usdPrimPath);
+        }
+        varSets.GetVariantSet(sel.Key).SetVariantSelection(sel.Value);
+      }
+
+      SceneImportOptions importOptions = new SceneImportOptions();
+      this.StateToOptions(ref importOptions);
+      try {
+        ImportUsd(go, scene, usdPrimPath, importOptions);
+      } finally {
+        scene.Close();
+      }
+    }
+
     public static void ImportUsd(GameObject goRoot,
                                  string usdFilePath,
                                  double time,
@@ -123,8 +155,22 @@ namespace USD.NET.Unity {
                              Scene.InterpolationMode.Linear :
                              Scene.InterpolationMode.Held);
 
-      SceneImporter.BuildScene(scene, goRoot, importOptions);
+      SceneImporter.BuildScene(scene, goRoot, pxr.SdfPath.AbsoluteRootPath(), importOptions);
     }
 
+    public static void ImportUsd(GameObject goRoot,
+                                 Scene scene,
+                                 string usdPrimPath,
+                                 SceneImportOptions importOptions) {
+      if (scene == null) {
+        throw new Exception("Null USD Scene");
+      }
+
+      scene.SetInterpolation(importOptions.interpolate ?
+                             Scene.InterpolationMode.Linear :
+                             Scene.InterpolationMode.Held);
+
+      SceneImporter.BuildScene(scene, goRoot, new pxr.SdfPath(usdPrimPath), importOptions);
+    }
   }
 }

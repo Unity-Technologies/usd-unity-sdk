@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ namespace USD.NET.Unity {
     /// <returns></returns>
     static public PrimMap BuildGameObjects(Scene scene,
                                            GameObject unityRoot) {
-      return BuildGameObjects(scene, unityRoot, scene.AllPaths);
+      return BuildGameObjects(scene, unityRoot, pxr.SdfPath.AbsoluteRootPath(), scene.AllPaths);
     }
 
     /// <summary>
@@ -40,14 +40,15 @@ namespace USD.NET.Unity {
     /// </summary>
     /// <param name="scene">The Scene to map</param>
     /// <param name="unityRoot">The root game object under which all prims will be parented</param>
-    /// <param name="rootPath">The path at which to begin mapping paths.</param>
+    /// <param name="usdRoot">The path at which to begin mapping paths.</param>
     static public PrimMap BuildGameObjects(Scene scene,
                                            GameObject unityRoot,
-                                           SdfPath rootPath) {
+                                           SdfPath usdRoot) {
       // TODO: add an API for finding paths.
       return BuildGameObjects(scene,
                               unityRoot,
-                              scene.Find(rootPath.ToString(), "UsdSchemaBase"));
+                              usdRoot,
+                              scene.Find(usdRoot.ToString(), "UsdSchemaBase"));
     }
 
     /// <summary>
@@ -55,9 +56,10 @@ namespace USD.NET.Unity {
     /// </summary>
     static private PrimMap BuildGameObjects(Scene scene,
                                             GameObject unityRoot,
+                                            pxr.SdfPath usdRoot,
                                             IEnumerable<SdfPath> paths) {
       var map = new PrimMap();
-      map[SdfPath.AbsoluteRootPath()] = unityRoot;
+      map[usdRoot] = unityRoot;
 
       // TODO: Should recurse to discover deeply nested instancing.
       // TODO: Generates garbage for every prim, but we expect few masters.
@@ -70,11 +72,18 @@ namespace USD.NET.Unity {
           goMaster.transform.SetParent(unityRoot.transform, worldPositionStays: false);
         }
         map.AddMasterRoot(masterRootPrim.GetPath(), goMaster);
+        try {
+          AddModelRoot(goMaster, masterRootPrim);
+          AddVariantSet(goMaster, masterRootPrim);
+        } catch (Exception ex) {
+          Debug.LogException(new Exception("Error processing " + masterRootPrim.GetPath(), ex));
+        }
 
         foreach (var usdPrim in masterRootPrim.GetDescendants()) {
           var goPrim = new GameObject(usdPrim.GetName());
           try {
             AddModelRoot(goPrim, usdPrim);
+            AddVariantSet(goPrim, usdPrim);
           } catch (Exception ex) {
             Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
           }
@@ -103,6 +112,7 @@ namespace USD.NET.Unity {
         var go = FindOrCreateGameObject(parent, path.GetName());
         try {
           AddModelRoot(go, prim);
+          AddVariantSet(go, prim);
         } catch (Exception ex) {
           Debug.LogException(new Exception("Error processing " + prim.GetPath(), ex));
         }
@@ -170,6 +180,29 @@ namespace USD.NET.Unity {
           Component.DestroyImmediate(asm);
         }
       }
+    }
+
+    /// <summary>
+    /// If there is a variant set authored on this prim, expose it so the user can change the
+    /// variant selection.
+    /// </summary>
+    static void AddVariantSet(GameObject go, UsdPrim prim) {
+      var sets = prim.GetVariantSets();
+      var setNames = sets.GetNames();
+      var vs = go.GetComponent<UsdVariantSet>();
+      
+      if (setNames.Count == 0) {
+        if (vs) {
+          Component.DestroyImmediate(vs);
+        }
+        return;
+      }
+
+      if (!vs) {
+        vs = go.AddComponent<UsdVariantSet>();
+      }
+
+      vs.SyncVariants(prim, sets);
     }
 
     /// <summary>

@@ -24,18 +24,21 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
     /// </summary>
-    public static PrimMap BuildScene(Scene scene, GameObject root, SceneImportOptions importOptions) {
+    public static PrimMap BuildScene(Scene scene,
+                                     GameObject root,
+                                     pxr.SdfPath usdPrimRoot,
+                                     SceneImportOptions importOptions) {
 
       // Reconstruct the USD hierarchy as Unity GameObjects.
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
-      var primMap = HierarchyBuilder.BuildGameObjects(scene, root);
+      var primMap = HierarchyBuilder.BuildGameObjects(scene, root, usdPrimRoot);
 
       //
       // Import known prim types.
       //
 
       // Materials.
-      foreach (var pathAndSample in scene.ReadAll<MaterialSample>()) {
+      foreach (var pathAndSample in scene.ReadAll<MaterialSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
           var mat = MaterialImporter.BuildMaterial(scene, pathAndSample.sample, importOptions);
@@ -52,7 +55,7 @@ namespace USD.NET.Unity {
       //
       // Note that we are specifically filtering on XformSample, not Xformable, this way only
       // Xforms are processed to avoid doing that work redundantly.
-      foreach (var pathAndSample in scene.ReadAll<XformSample>()) {
+      foreach (var pathAndSample in scene.ReadAll<XformSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -63,7 +66,7 @@ namespace USD.NET.Unity {
       }
 
       // Meshes.
-      foreach (var pathAndSample in scene.ReadAll<MeshSample>()) {
+      foreach (var pathAndSample in scene.ReadAll<MeshSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -76,7 +79,7 @@ namespace USD.NET.Unity {
       }
 
       // Cubes.
-      foreach (var pathAndSample in scene.ReadAll<CubeSample>()) {
+      foreach (var pathAndSample in scene.ReadAll<CubeSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -88,7 +91,7 @@ namespace USD.NET.Unity {
       }
 
       // Cameras.
-      foreach (var pathAndSample in scene.ReadAll<CameraSample>()) {
+      foreach (var pathAndSample in scene.ReadAll<CameraSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
