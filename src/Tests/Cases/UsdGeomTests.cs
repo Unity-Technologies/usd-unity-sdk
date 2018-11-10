@@ -10,6 +10,7 @@ namespace Tests.Cases {
     private class PrimvarSample : SampleBase {
       public Primvar<float[]> notSerialized;
 
+      [UsdNamespace("foo:bar")]
       public Primvar<float[]> serialized = new Primvar<float[]>();
 
       public Primvar<UnityEngine.Vector4[]> vector = new Primvar<UnityEngine.Vector4[]>();
