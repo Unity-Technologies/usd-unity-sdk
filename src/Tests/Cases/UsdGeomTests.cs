@@ -1,27 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using pxr;
+using USD.NET;
 using USD.NET.Unity;
 
 namespace Tests.Cases {
   class UsdGeomTests : UnitTest {
 
-    private class PrimvarSample : USD.NET.SampleBase {
-      public USD.NET.Primvar<float[]> notSerialized;
-      public USD.NET.Primvar<float[]> serialized = new USD.NET.Primvar<float[]>();
-      public USD.NET.Primvar<UnityEngine.Vector4[]> vector = new USD.NET.Primvar<UnityEngine.Vector4[]>();
+    private class PrimvarSample : SampleBase {
+      public Primvar<float[]> notSerialized;
+
+      public Primvar<float[]> serialized = new Primvar<float[]>();
+
+      public Primvar<UnityEngine.Vector4[]> vector = new Primvar<UnityEngine.Vector4[]>();
     }
 
-    private class BrokenPrivmarSample : USD.NET.SampleBase {
-      public USD.NET.Primvar<float> notSerialized = new USD.NET.Primvar<float>();
+    private class BrokenPrivmarSample : SampleBase {
+      public Primvar<float> notSerialized = new Primvar<float>();
     }
 
     public static void PrimvarTest() {
-      var scene = USD.NET.Scene.Create();
+      var scene = Scene.Create();
       var sample = new PrimvarSample();
       var sample2 = new PrimvarSample();
       sample.serialized.value = new float[10];
-      sample.serialized.interpolation = USD.NET.PrimvarInterpolation.FaceVarying;
+      sample.serialized.interpolation = PrimvarInterpolation.FaceVarying;
       sample.serialized.elementSize = 3;
       sample.serialized.indices = new int[] { 1, 2, 3, 4, 1 };
 
@@ -43,7 +46,7 @@ namespace Tests.Cases {
       AssertEqual(sample.vector.interpolation, sample2.vector.interpolation);
       AssertEqual(sample.vector.elementSize, sample2.vector.elementSize);
 
-      sample.notSerialized = new USD.NET.Primvar<float[]>();
+      sample.notSerialized = new Primvar<float[]>();
       WriteAndRead(ref sample, ref sample2, true);
 
       try {
@@ -62,7 +65,7 @@ namespace Tests.Cases {
       UsdStage stage = UsdStage.CreateInMemory();
       var path = new SdfPath("/Parent/Curves");
       var curvesGprim = UsdGeomBasisCurves.Define(new UsdStageWeakPtr(stage), path);
-      var vertCounts = USD.NET.IntrinsicTypeConverter.ToVtArray(new int[] { 4 });
+      var vertCounts = IntrinsicTypeConverter.ToVtArray(new int[] { 4 });
       var basisAttr = curvesGprim.CreateBasisAttr(UsdGeomTokens.bezier);
       curvesGprim.CreateCurveVertexCountsAttr(vertCounts);
 
@@ -85,7 +88,7 @@ namespace Tests.Cases {
       basisCurves.widths[2] = .2f;
       basisCurves.widths[3] = 2f;
 
-      basisCurves.orientation = USD.NET.Orientation.RightHanded;
+      basisCurves.orientation = Orientation.RightHanded;
       basisCurves.points = new UnityEngine.Vector3[4];
       basisCurves.points[0] = new UnityEngine.Vector3(1, 2, 3);
       basisCurves.points[3] = new UnityEngine.Vector3(7, 8, 9);
@@ -127,12 +130,12 @@ namespace Tests.Cases {
       sample.horizontalAperture = c.GetHorizontalAperture();
       sample.verticalAperture = c.GetVerticalAperture();
 
-      var scene = USD.NET.Scene.Create();
+      var scene = Scene.Create();
       scene.Write("/Foo/Bar", sample);
     }
 
     public static void CameraTest() {
-      var scene = USD.NET.Scene.Create();
+      var scene = Scene.Create();
       var cam = new CameraSample();
 
       cam.projection = CameraSample.ProjectionType.Perspective;
