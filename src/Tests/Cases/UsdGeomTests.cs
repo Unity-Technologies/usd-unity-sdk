@@ -28,6 +28,7 @@ namespace Tests.Cases {
     }
 
     private class BrokenPrivmarSample : SampleBase {
+      // Non-array types are not allowed in Primvar, should throw an exception on construction.
       public Primvar<float> notSerialized = new Primvar<float>();
     }
 
