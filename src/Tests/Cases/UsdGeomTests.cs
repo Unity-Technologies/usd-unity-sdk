@@ -24,12 +24,9 @@ namespace Tests.Cases {
       [UsdNamespace("foo:bar")]
       public Primvar<float[]> serialized = new Primvar<float[]>();
 
-      public Primvar<UnityEngine.Vector4[]> vector = new Primvar<UnityEngine.Vector4[]>();
-    }
+      public Primvar<float> scalar = new Primvar<float>();
 
-    private class BrokenPrivmarSample : SampleBase {
-      // Non-array types are not allowed in Primvar, should throw an exception on construction.
-      public Primvar<float> notSerialized = new Primvar<float>();
+      public Primvar<UnityEngine.Vector4[]> vector = new Primvar<UnityEngine.Vector4[]>();
     }
 
     public static void PrimvarTest() {
@@ -40,6 +37,10 @@ namespace Tests.Cases {
       sample.serialized.interpolation = PrimvarInterpolation.FaceVarying;
       sample.serialized.elementSize = 3;
       sample.serialized.indices = new int[] { 1, 2, 3, 4, 1 };
+
+      sample.scalar.value = 2.1f;
+      AssertEqual(sample.scalar.interpolation, PrimvarInterpolation.Constant);
+      AssertEqual(sample.scalar.GetInterpolationToken(), UsdGeomTokens.constant);
 
       sample.vector.value = new UnityEngine.Vector4[] {
         new UnityEngine.Vector4(1, 2, 3, 4),
@@ -61,17 +62,6 @@ namespace Tests.Cases {
 
       sample.notSerialized = new Primvar<float[]>();
       WriteAndRead(ref sample, ref sample2, true);
-
-      try {
-        var s = new BrokenPrivmarSample();
-        scene.Write("/Foo/Bar/Baz", s);
-        throw new System.ApplicationException("Expected exception");
-      } catch (System.ApplicationException) {
-        throw;
-      } catch (System.Exception) {
-        // ignore.
-        System.Console.WriteLine("Successfully handled expected exception.");
-      }
     }
 
     public static void CurvesTest() {

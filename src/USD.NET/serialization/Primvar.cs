@@ -37,7 +37,7 @@ namespace USD.NET {
     /// those values are interpolated over the primative surface.
     /// </summary>
     [UsdMetadata]
-    public PrimvarInterpolation interpolation;
+    public PrimvarInterpolation interpolation = PrimvarInterpolation.Constant;
 
     /// <summary>
     /// The number of elements per interpolated value. For example, a mesh with a float4[] primvar
@@ -107,9 +107,6 @@ namespace USD.NET {
   public class Primvar<T> : PrimvarBase, ValueAccessor {
 
     public Primvar() {
-      if (!typeof(T).IsArray) {
-        throw new Exception("Primvars values must always be an array type, even when constant. Type: " + typeof(T).ToString());
-      }
     }
 
     public T value;
