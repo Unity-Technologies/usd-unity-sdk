@@ -59,6 +59,54 @@
             An non-pooled array allocator, to avoid forking logic when pooling is not desired.
             </summary>
         </member>
+        <member name="T:USD.NET.ValueAccessor">
+            <summary>
+            Provides access to a single generic field.
+            </summary>
+        </member>
+        <member name="T:USD.NET.PrimvarBase">
+            <summary>
+            The PrimvarBase class enables strongly typed access to non-generic fields.
+            See the UsdGeom Primvar reference for details:
+            http://graphics.pixar.com/usd/docs/api/class_usd_geom_primvar.html#details
+            </summary>
+        </member>
+        <member name="F:USD.NET.PrimvarBase.interpolation">
+            <summary>
+            Interpolation indicates how many values are present in the primvar value array and how
+            those values are interpolated over the primative surface.
+            </summary>
+        </member>
+        <member name="F:USD.NET.PrimvarBase.elementSize">
+            <summary>
+            The number of elements per interpolated value. For example, a mesh with a float4[] primvar
+            per-vertex, should have an element size of 4. An int[] primvar should have elementSize of
+            1.
+            </summary>
+        </member>
+        <member name="F:USD.NET.PrimvarBase.indices">
+            <summary>
+            A primvar can be indexed, exactly like positions and indices in a mesh. These indices
+            indicate individual values in the value array.
+            </summary>
+        </member>
+        <member name="M:USD.NET.PrimvarBase.GetInterpolationToken">
+            <summary>
+            A convenience method for converting the C# interpolation enum to a USD token.
+            </summary>
+        </member>
+        <member name="M:USD.NET.PrimvarBase.SetInterpolationToken(pxr.TfToken)">
+            <summary>
+            A convenience method for converting a USD token into C# interpolation enum
+            </summary>
+        </member>
+        <member name="T:USD.NET.Primvar`1">
+            <summary>
+            Represents a PrimVar in USD. Since primvars have associated metadata which is often required
+            for I/O, this class enables reading that data in a consistent way. It is implicit that any
+            Primvar object will be in the namespace "primvars".
+            </summary>
+        </member>
         <member name="T:USD.NET.Relationship">
             <summary>
             A UsdRelationship allows a prim to target another object in the scenegraph.
@@ -213,7 +261,7 @@
             field.
             </summary>
         </member>
-        <member name="M:USD.NET.Reflect.IsMetaData(System.Reflection.MemberInfo)">
+        <member name="M:USD.NET.Reflect.IsMetadata(System.Reflection.MemberInfo)">
             <summary>
             Returns true if the MemberInfo is intened to be serialized as metadata.
             </summary>
@@ -332,7 +380,7 @@
             Declares the attribute should be stored as metadata under the "customData" key.
             </summary>
         </member>
-        <member name="T:USD.NET.MetaDataAttribute">
+        <member name="T:USD.NET.UsdMetadataAttribute">
             <summary>
             Declares the attribute should be stored as metadata. Note that the field must be registered
             with USD.

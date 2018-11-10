@@ -5,6 +5,59 @@ using USD.NET.Unity;
 
 namespace Tests.Cases {
   class UsdGeomTests : UnitTest {
+
+    private class PrimvarSample : USD.NET.SampleBase {
+      public USD.NET.Primvar<float[]> notSerialized;
+      public USD.NET.Primvar<float[]> serialized = new USD.NET.Primvar<float[]>();
+      public USD.NET.Primvar<UnityEngine.Vector4[]> vector = new USD.NET.Primvar<UnityEngine.Vector4[]>();
+    }
+
+    private class BrokenPrivmarSample : USD.NET.SampleBase {
+      public USD.NET.Primvar<float> notSerialized = new USD.NET.Primvar<float>();
+    }
+
+    public static void PrimvarTest() {
+      var scene = USD.NET.Scene.Create();
+      var sample = new PrimvarSample();
+      var sample2 = new PrimvarSample();
+      sample.serialized.value = new float[10];
+      sample.serialized.interpolation = USD.NET.PrimvarInterpolation.FaceVarying;
+      sample.serialized.elementSize = 3;
+      sample.serialized.indices = new int[] { 1, 2, 3, 4, 1 };
+
+      sample.vector.value = new UnityEngine.Vector4[] {
+        new UnityEngine.Vector4(1, 2, 3, 4),
+        new UnityEngine.Vector4(4, 5, 6, 7) };
+      sample.vector.elementSize = 4;
+      
+      scene.Write("/Foo/Bar", sample);
+      WriteAndRead(ref sample, ref sample2, true);
+
+      AssertEqual(sample.serialized.value, sample2.serialized.value);
+      AssertEqual(sample.serialized.indices, sample2.serialized.indices);
+      AssertEqual(sample.serialized.interpolation, sample2.serialized.interpolation);
+      AssertEqual(sample.serialized.elementSize, sample2.serialized.elementSize);
+
+      AssertEqual(sample.vector.value, sample2.vector.value);
+      AssertEqual(sample.vector.indices, sample2.vector.indices);
+      AssertEqual(sample.vector.interpolation, sample2.vector.interpolation);
+      AssertEqual(sample.vector.elementSize, sample2.vector.elementSize);
+
+      sample.notSerialized = new USD.NET.Primvar<float[]>();
+      WriteAndRead(ref sample, ref sample2, true);
+
+      try {
+        var s = new BrokenPrivmarSample();
+        scene.Write("/Foo/Bar/Baz", s);
+        throw new System.ApplicationException("Expected exception");
+      } catch (System.ApplicationException) {
+        throw;
+      } catch (System.Exception) {
+        // ignore.
+        System.Console.WriteLine("Successfully handled expected exception.");
+      }
+    }
+
     public static void CurvesTest() {
       UsdStage stage = UsdStage.CreateInMemory();
       var path = new SdfPath("/Parent/Curves");

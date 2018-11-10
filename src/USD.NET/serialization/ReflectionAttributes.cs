@@ -101,8 +101,8 @@ namespace USD.NET {
   /// Declares the attribute should be stored as metadata. Note that the field must be registered
   /// with USD.
   /// </summary>
-  public class MetaDataAttribute : Attribute {
-    public MetaDataAttribute() {
+  public class UsdMetadataAttribute : Attribute {
+    public UsdMetadataAttribute() {
     }
   }
 

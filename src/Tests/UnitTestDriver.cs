@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -62,6 +62,7 @@ namespace Tests {
       Cases.UsdGeomTests.CurvesTest();
       Cases.UsdGeomTests.CameraTest();
       Cases.UsdGeomTests.Camera2Test();
+      Cases.UsdGeomTests.PrimvarTest();
 
       Cases.UsdShadeTests.MaterialBindTest();
       Cases.UsdShadeTests.MaterialIoTest();

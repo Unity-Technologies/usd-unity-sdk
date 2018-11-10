@@ -111,8 +111,8 @@ namespace USD.NET {
     /// <summary>
     /// Returns true if the MemberInfo is intened to be serialized as metadata.
     /// </summary>
-    public static bool IsMetaData(MemberInfo info) {
-      return GetCacheEntry(info).isMetaData;
+    public static bool IsMetadata(MemberInfo info) {
+      return GetCacheEntry(info).isMetadata;
     }
 
     /// <summary>
@@ -206,7 +206,7 @@ namespace USD.NET {
       public bool isPrimvar;
       public int primvarElementSize;
       public bool isCustomData;
-      public bool isMetaData;
+      public bool isMetadata;
       public pxr.SdfVariability sdfVariability;
       public bool isNonSerialized;
       public string usdNamespace;
@@ -280,9 +280,9 @@ namespace USD.NET {
       //
       // IsMetaData
       //
-      var attrs9 = (MetaDataAttribute[])info.
-                          GetCustomAttributes(typeof(MetaDataAttribute), true);
-      cachedInfo.isMetaData = attrs9.Length > 0;
+      var attrs9 = (UsdMetadataAttribute[])info.
+                          GetCustomAttributes(typeof(UsdMetadataAttribute), true);
+      cachedInfo.isMetadata = attrs9.Length > 0;
 
       //
       // IsNonSerialized

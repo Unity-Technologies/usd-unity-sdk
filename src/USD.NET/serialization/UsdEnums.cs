@@ -43,4 +43,11 @@ namespace USD.NET {
     Bilinear,
   }
 
+  public enum PrimvarInterpolation {
+    Constant,
+    Uniform,
+    Varying,
+    Vertex,
+    FaceVarying
+  }
 }
