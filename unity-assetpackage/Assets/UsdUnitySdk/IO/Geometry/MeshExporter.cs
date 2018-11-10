@@ -38,9 +38,15 @@ namespace USD.NET.Unity {
 
     static void ExportSkelWeights(Scene scene, string path, Mesh unityMesh, Transform[] bones) {
       var sample = new SkelBindingSample();
-      sample.jointIndices = new int[unityMesh.boneWeights.Length * 4];
-      sample.jointWeights = new float[unityMesh.boneWeights.Length * 4];
-      sample.geomBindTransform = Matrix4x4.identity;
+      sample.jointIndices.value = new int[unityMesh.boneWeights.Length * 4];
+      sample.jointIndices.elementSize = 4;
+      sample.jointIndices.interpolation = PrimvarInterpolation.Vertex;
+
+      sample.jointWeights.value = new float[unityMesh.boneWeights.Length * 4];
+      sample.jointWeights.elementSize = 4;
+      sample.jointWeights.interpolation = PrimvarInterpolation.Vertex;
+
+      sample.geomBindTransform.value = Matrix4x4.identity;
       sample.joints = new string[bones.Length];
 
       int b = 0;
@@ -51,36 +57,18 @@ namespace USD.NET.Unity {
       int i = 0;
       int w = 0;
       foreach (var bone in unityMesh.boneWeights) {
-        sample.jointIndices[i++] = bone.boneIndex0;
-        sample.jointIndices[i++] = bone.boneIndex1;
-        sample.jointIndices[i++] = bone.boneIndex2;
-        sample.jointIndices[i++] = bone.boneIndex3;
-        sample.jointWeights[w++] = bone.weight0;
-        sample.jointWeights[w++] = bone.weight1;
-        sample.jointWeights[w++] = bone.weight2;
-        sample.jointWeights[w++] = bone.weight3;
+        sample.jointIndices.value[i++] = bone.boneIndex0;
+        sample.jointIndices.value[i++] = bone.boneIndex1;
+        sample.jointIndices.value[i++] = bone.boneIndex2;
+        sample.jointIndices.value[i++] = bone.boneIndex3;
+        sample.jointWeights.value[w++] = bone.weight0;
+        sample.jointWeights.value[w++] = bone.weight1;
+        sample.jointWeights.value[w++] = bone.weight2;
+        sample.jointWeights.value[w++] = bone.weight3;
       }
 
       scene.Write(path, sample);
       var prim = scene.GetPrimAtPath(path);
-
-      var attrIndices = new pxr.UsdGeomPrimvar(
-                            prim.CreateAttribute(
-                                pxr.UsdSkelTokens.primvarsSkelJointIndices,
-                                SdfValueTypeNames.IntArray));
-      attrIndices.SetElementSize(4);
-
-      var attrWeights = new pxr.UsdGeomPrimvar(
-                            prim.CreateAttribute(
-                                pxr.UsdSkelTokens.primvarsSkelJointWeights,
-                                SdfValueTypeNames.FloatArray));
-      attrWeights.SetElementSize(4);
-
-      var attrGeomBindXf = new pxr.UsdGeomPrimvar(
-                      prim.CreateAttribute(
-                          pxr.UsdSkelTokens.primvarsSkelGeomBindTransform,
-                          SdfValueTypeNames.Matrix4d));
-      attrGeomBindXf.SetInterpolation(pxr.UsdGeomTokens.constant);
     }
 
     public static void ExportMesh(ObjectContext objContext, ExportContext exportContext) {

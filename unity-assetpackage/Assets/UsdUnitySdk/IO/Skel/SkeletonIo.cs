@@ -42,17 +42,14 @@ namespace USD.NET.Unity {
     [UsdNamespace("skel")]
     public string[] joints;
 
-    [VertexData]
-    [UsdNamespace("primvars:skel")]
-    public int[] jointIndices;
+    [UsdNamespace("skel")]
+    public Primvar<int[]> jointIndices = new Primvar<int[]>();
 
-    [VertexData]
     [UsdNamespace("primvars:skel")]
-    public Matrix4x4 geomBindTransform;
+    public Primvar<Matrix4x4> geomBindTransform = new Primvar<Matrix4x4>();
 
-    [VertexData]
-    [UsdNamespace("primvars:skel")]
-    public float[] jointWeights;
+    [UsdNamespace("skel")]
+    public Primvar<float[]> jointWeights = new Primvar<float[]>();
   }
 
   [System.Serializable]

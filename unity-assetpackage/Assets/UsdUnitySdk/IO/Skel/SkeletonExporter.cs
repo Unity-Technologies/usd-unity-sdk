@@ -94,17 +94,13 @@ namespace USD.NET.Unity {
         worldXf[i] = bone.localToWorldMatrix;
         if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
           worldXf[i] = UnityTypeConverter.ChangeBasis(worldXf[i]);
-        } else if (exportContext.basisTransform == BasisTransformation.FastWithNegativeScale) {
-          // Normally, this would only be applied at the root, but since each matrix is in world
-          // space, it is also required here to put the rig in the same space as the exported world.
-          //worldXf[i] = worldXf[i] * basisChange;
         }
         worldXfInv[i] = worldXf[i].inverse;
       }
 
-      var rootXf = skelRoot.localToWorldMatrix;
-      if (exportContext.basisTransform == BasisTransformation.FastWithNegativeScale) {
-        //rootXf = rootXf * basisChange;
+      var rootXf = skelRoot.localToWorldMatrix.inverse;
+      if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
+        rootXf = UnityTypeConverter.ChangeBasis(rootXf);
       }
       var skelWorldTransform = UnityTypeConverter.ToGfMatrix(rootXf);
       pxr.VtMatrix4dArray vtJointsLS = new pxr.VtMatrix4dArray((uint)bones.Length);
