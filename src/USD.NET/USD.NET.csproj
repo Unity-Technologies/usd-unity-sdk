@@ -351,6 +351,7 @@
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkeleton.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkeletonQuery.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkinningQuery.cs" />
+    <Compile Include="generated\pxr\usd\usdSkel\UsdSkelSkinningQueryVector.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelTokens.cs" />
     <Compile Include="generated\pxr\usd\usdSkel\UsdSkelTopology.cs" />
     <Compile Include="generated\pxr\usd\usdUtils\UsdUtilsRegisteredVariantSet.cs" />

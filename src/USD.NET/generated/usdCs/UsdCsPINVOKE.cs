@@ -22637,6 +22637,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelBindingVector")]
   public static extern void delete_UsdSkelBindingVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_Clear")]
+  public static extern void UsdSkelSkinningQueryVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_Add")]
+  public static extern void UsdSkelSkinningQueryVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_size")]
+  public static extern uint UsdSkelSkinningQueryVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_capacity")]
+  public static extern uint UsdSkelSkinningQueryVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_reserve")]
+  public static extern void UsdSkelSkinningQueryVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelSkinningQueryVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdSkelSkinningQueryVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelSkinningQueryVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdSkelSkinningQueryVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelSkinningQueryVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdSkelSkinningQueryVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdSkelSkinningQueryVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_getitem")]
+  public static extern global::System.IntPtr UsdSkelSkinningQueryVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_setitem")]
+  public static extern void UsdSkelSkinningQueryVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_AddRange")]
+  public static extern void UsdSkelSkinningQueryVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_GetRange")]
+  public static extern global::System.IntPtr UsdSkelSkinningQueryVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_Insert")]
+  public static extern void UsdSkelSkinningQueryVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_InsertRange")]
+  public static extern void UsdSkelSkinningQueryVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_RemoveAt")]
+  public static extern void UsdSkelSkinningQueryVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_RemoveRange")]
+  public static extern void UsdSkelSkinningQueryVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_Repeat")]
+  public static extern global::System.IntPtr UsdSkelSkinningQueryVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_Reverse__SWIG_0")]
+  public static extern void UsdSkelSkinningQueryVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_Reverse__SWIG_1")]
+  public static extern void UsdSkelSkinningQueryVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelSkinningQueryVector_SetRange")]
+  public static extern void UsdSkelSkinningQueryVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelSkinningQueryVector")]
+  public static extern void delete_UsdSkelSkinningQueryVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelBinding__SWIG_0")]
   public static extern global::System.IntPtr new_UsdSkelBinding__SWIG_0();
 
@@ -22648,6 +22714,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBinding_GetSkinningTargets")]
   public static extern global::System.IntPtr UsdSkelBinding_GetSkinningTargets(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBinding_GetSkinningTargetsAsVector")]
+  public static extern global::System.IntPtr UsdSkelBinding_GetSkinningTargetsAsVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelBinding")]
   public static extern void delete_UsdSkelBinding(global::System.Runtime.InteropServices.HandleRef jarg1);

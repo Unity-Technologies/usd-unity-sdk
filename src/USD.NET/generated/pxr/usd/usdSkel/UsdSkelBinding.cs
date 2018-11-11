@@ -57,6 +57,11 @@ public class UsdSkelBinding : global::System.IDisposable {
     return ret;
   }
 
+  public UsdSkelSkinningQueryVector GetSkinningTargetsAsVector() {
+    UsdSkelSkinningQueryVector ret = new UsdSkelSkinningQueryVector(UsdCsPINVOKE.UsdSkelBinding_GetSkinningTargetsAsVector(swigCPtr), true);
+    return ret;
+  }
+
 }
 
 }
