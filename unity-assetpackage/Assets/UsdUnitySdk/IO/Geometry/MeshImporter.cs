@@ -315,7 +315,10 @@ namespace USD.NET.Unity {
 
       // Since face-varying UVs have one value per vertex, per face, this is the same number of
       // values as the mesh indices.
-      Debug.Assert(faceVertexIndices.Length == uvs.Length);
+      if (faceVertexIndices.Length != uvs.Length) {
+        Debug.LogError("Expected " + faceVertexIndices.Length + " UVs but found " + uvs.Length);
+        return null;
+      }
 
       foreach (var count in faceVertexCounts) {
         for (int i = 0; i < count; i++) {
@@ -370,6 +373,9 @@ namespace USD.NET.Unity {
       // between faces also share a single UV value.
       if (uvVec.Length > vertexCount) {
         uvVec = UnrollFaceVarying(vertexCount, uvVec, faceVertexCounts, faceVertexIndices);
+        if (uvVec == null) {
+          return new T[0];
+        }
         Debug.Assert(uvVec.Length == vertexCount);
       }
 
