@@ -15,7 +15,7 @@ namespace USD.NET.Unity.Extensions.Timeline {
 
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner) {
       var playable = ScriptPlayable<USDPlayableBehaviour>.Create(graph);
-      var behaviour = playable.GetBehaviour();
+      USDPlayableBehaviour behaviour = playable.GetBehaviour();
       player = Player.Resolve(graph.GetResolver());
       behaviour.player = player;
       return playable;
