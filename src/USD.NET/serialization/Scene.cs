@@ -674,23 +674,23 @@ namespace USD.NET {
     /// <summary>
     /// Translates a string path to an SdfPath, caching the result to avoid churn.
     /// </summary>
-    private pxr.SdfPath GetSdfPath(string path) {
+    private SdfPath GetSdfPath(string path) {
       if (m_pathMap.ContainsKey(path)) {
         return m_pathMap[path];
       }
-      var p = new pxr.SdfPath(path);
+      var p = new SdfPath(path);
       m_pathMap[path] = p;
       return p;
     }
 
-    private pxr.SdfPath GetSdfPath(pxr.SdfPath path) {
+    private SdfPath GetSdfPath(pxr.SdfPath path) {
       throw new ApplicationException("TODO: don't allow implicit conversion path -> string");
     }
 
     /// <summary>
     /// Returns the UsdPrim at the given path, returning null if the path is invalid.
     /// </summary>
-    private pxr.UsdPrim GetUsdPrim(string path) {
+    private UsdPrim GetUsdPrim(string path) {
       return GetUsdPrim(GetSdfPath(path));
     }
 
