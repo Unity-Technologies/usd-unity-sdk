@@ -23,7 +23,7 @@ public class UsdImportEditor : ScriptedImporterEditor {
     var prefabType = PrefabUtility.GetPrefabType(importer.gameObject);
     if (prefabType != PrefabType.ModelPrefab && prefabType != PrefabType.Prefab) {
       EditorGUILayout.LabelField("USD Source File: " + importer.m_usdFile);
-      EditorGUILayout.LabelField("USD Time: " + importer.m_time);
+      EditorGUILayout.LabelField("USD Time: " + importer.m_usdTime);
       return;
     }
 
@@ -63,7 +63,7 @@ public class UsdImportEditor : ScriptedImporterEditor {
       var options = new USD.NET.Unity.SceneImportOptions();
       importer.StateToOptions(ref options);
       var scene = USD.NET.Scene.Open(importer.m_usdFile);
-      scene.Time = importer.m_time;
+      scene.Time = importer.m_usdTime;
       UsdMenu.ImportUsdToPrefab(scene, prefabPath, options);
     }
   }
