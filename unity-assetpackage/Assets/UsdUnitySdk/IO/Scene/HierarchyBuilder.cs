@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -222,7 +222,10 @@ namespace USD.NET.Unity {
       
       if (!go) {
         go = new GameObject(name);
+        var ua = go.AddComponent<UsdAttachment>();
+        ua.m_usdPrimPath = path.ToString();
       }
+
       if (parent != null) {
         go.transform.SetParent(parent, worldPositionStays: false);
       }
