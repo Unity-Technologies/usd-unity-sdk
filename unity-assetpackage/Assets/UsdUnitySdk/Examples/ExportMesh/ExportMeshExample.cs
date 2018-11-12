@@ -207,7 +207,9 @@ namespace USD.NET.Examples {
       InitUsd.Initialize();
     }
 
-    void Update() {
+    // Why LateUpdate()?
+    // Because Update fires before the animation system applies computed values.
+    void LateUpdate() {
       if (!IsRecording) { return; }
 
       // On the first frame, export all the unvarying data (e.g. mesh topology).
