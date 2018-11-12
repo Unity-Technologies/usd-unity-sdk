@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -105,11 +105,17 @@ namespace USD.NET.Unity {
         }
       }
 
-      foreach (var path in paths) {
+      foreach (SdfPath path in paths) {
         var prim = scene.GetPrimAtPath(path);
-        var parentGo = map[path.GetParentPath()];
+        GameObject parentGo = null;
+        if (!map.TryGetValue(path.GetParentPath(), out parentGo)) {
+          Debug.LogWarning("Parent path not found for child: " + path.ToString());
+          continue;
+        }
+        
         var parent = parentGo ? parentGo.transform : null;
-        var go = FindOrCreateGameObject(parent, path.GetName());
+        var go = FindOrCreateGameObject(parent, path);
+
         try {
           AddModelRoot(go, prim);
           AddVariantSet(go, prim);
@@ -124,7 +130,58 @@ namespace USD.NET.Unity {
         map[new SdfPath(path)] = go;
       }
 
+      foreach (var path in paths) {
+        var prim = scene.GetPrimAtPath(path);
+        ExpandSkeleton(map[path], prim, map);
+      }
+
       return map;
+    }
+
+    static void ExpandSkeleton(GameObject go, UsdPrim prim, PrimMap map) {
+      if (!prim) { return; }
+
+      var skelRoot = new UsdSkelRoot(prim);
+      if (!skelRoot) { return; }
+
+      var skelRel = prim.GetRelationship(UsdSkelTokens.skelSkeleton);
+      if (!skelRel) { return; }
+
+      SdfPathVector targets = skelRel.GetForwardedTargets();
+      if (targets == null || targets.Count == 0) { return; }
+
+      var skelPrim = prim.GetStage().GetPrimAtPath(targets[0]);
+      if (!skelPrim) { return; }
+
+      var skel = new UsdSkelSkeleton(skelPrim);
+      if (!skel) { return; }
+
+      var jointsAttr = skel.GetJointsAttr();
+      if (!jointsAttr) { return; }
+
+      var vtJoints = jointsAttr.Get();
+      if (vtJoints.IsEmpty()) { return; }
+      var vtStrings = UsdCs.VtValueToVtTokenArray(vtJoints);
+      var joints = UnityTypeConverter.FromVtArray(vtStrings);
+
+      var skelPath = skelPrim.GetPath();
+      foreach (var joint in joints) {
+        var path = skelPath.AppendPath(new SdfPath(joint));
+        GameObject parentGo = null;
+        if (!map.TryGetValue(path.GetParentPath(), out parentGo)) {
+          Debug.LogWarning("Parent joint path not found: " + path.GetParentPath().ToString()
+                         + " for prim: " + path.ToString());
+          continue;
+        }
+
+        Transform child = parentGo.transform.Find(path.GetName());
+        if (!child) {
+          child = new GameObject(path.GetName()).transform;
+          child.SetParent(parentGo.transform, worldPositionStays: false);
+        }
+
+        map[path] = child.gameObject;
+      }
     }
 
     /// <summary>
@@ -136,7 +193,7 @@ namespace USD.NET.Unity {
         return;
       }
 
-      var modelApi = new pxr.UsdModelAPI(prim);
+      var modelApi = new UsdModelAPI(prim);
       if (!modelApi) { return; }
 
       var kindTok = new TfToken();
@@ -209,9 +266,11 @@ namespace USD.NET.Unity {
     /// Checks for a child named "name" under the given parent, if it exists it is returned,
     /// else a new child is created with this name.
     /// </summary>
-    static GameObject FindOrCreateGameObject(Transform parent, string name) {
+    static GameObject FindOrCreateGameObject(Transform parent, SdfPath path) {
       Transform root = null;
       GameObject go = null;
+      string name = path.GetName();
+
       if (parent == null) {
         go = GameObject.Find(name);
         root = go ? go.transform : null;
