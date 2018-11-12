@@ -26,7 +26,7 @@ namespace USD.NET.Unity {
 
     [Header("Source Asset")]
     public string m_usdFile;
-    public double m_time;
+    public float m_usdTime;
     public Scene.InterpolationMode m_interpolation;
 
     [Header("Conversions")]
