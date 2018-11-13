@@ -67,6 +67,8 @@ namespace USD.NET.Examples {
 
     // The root GameObject to export to USD.
     public GameObject m_exportRoot;
+    public GameObject[] m_trackedRoots;
+
     public int m_curFrame;
     
     // How time is represened in USD.
@@ -221,7 +223,7 @@ namespace USD.NET.Examples {
         m_context.activePolicy = ActiveExportPolicy.ExportAsVisibility;
 
         SceneExporter.SyncExportContext(m_exportRoot, m_context);
-        SceneExporter.Export(m_exportRoot, m_context);
+        SceneExporter.Export(m_exportRoot, m_context, zeroRootTransform: true);
       }
 
       // Set the time at which to read samples from USD.
@@ -242,13 +244,20 @@ namespace USD.NET.Examples {
       }
 
       // Record the time varying data that changes from frame to frame.
-      SceneExporter.Export(m_exportRoot, m_context);
+      if (m_trackedRoots != null && m_trackedRoots.Length > 0) {
+        foreach (var root in m_trackedRoots) {
+          SceneExporter.Export(root, m_context, zeroRootTransform: false);
+        }
+      } else {
+        SceneExporter.Export(m_exportRoot, m_context, zeroRootTransform: true);
+      }
     }
 
     public static void Export(GameObject root,
                               Scene scene,
                               BasisTransformation basisTransform) {
-      SceneExporter.Export(root, scene, basisTransform, exportUnvarying: true);
+      SceneExporter.Export(root, scene, basisTransform,
+                           exportUnvarying: true, zeroRootTransform: true);
     }
   }
 }

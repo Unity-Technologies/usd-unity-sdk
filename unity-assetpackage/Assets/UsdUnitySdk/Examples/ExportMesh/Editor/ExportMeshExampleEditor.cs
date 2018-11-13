@@ -37,7 +37,7 @@ namespace USD.NET.Examples {
         GUI.backgroundColor = Color.red;
         if (GUILayout.Button("Record")) {
           EditorApplication.isPaused = false;
-          EditorApplication.isPlaying = true;
+          //EditorApplication.isPlaying = true;
           script.StartRecording();
         }
         GUI.backgroundColor = oldBg;

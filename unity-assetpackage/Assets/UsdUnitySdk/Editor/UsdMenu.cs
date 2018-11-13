@@ -84,7 +84,8 @@ public class UsdMenu : MonoBehaviour {
       }
 
       try {
-        SceneExporter.Export(go, scene, basisTransform, exportUnvarying: true);
+        SceneExporter.Export(go, scene, basisTransform,
+                             exportUnvarying: true, zeroRootTransform: true);
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         continue;
@@ -104,6 +105,7 @@ public class UsdMenu : MonoBehaviour {
       return;
     }
     string path = scene.FilePath;
+    ImportOptionsWindow.Open(path);
 
     var solidColorMat = new Material(Shader.Find("Standard"));
     solidColorMat.SetFloat("_Glossiness", 0.2f);
@@ -161,6 +163,14 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
+  [MenuItem("USD/Show Selected Asset")]
+  public static void ShowSelectedAsset() {
+    Object[] selectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
+    foreach (Object obj in selectedAsset) {
+      Debug.Log("Asset name: " + obj.name + "   Type: " + obj.GetType());
+    }
+  }
+
   public static GameObject UsdToGameObject(GameObject parent,
                                            string name,
                                            USD.NET.Scene scene,
@@ -180,7 +190,7 @@ public class UsdMenu : MonoBehaviour {
     var usdImporter = go.AddComponent<UsdAssetImporter>();
 
     usdImporter.m_usdFile = scene.FilePath;
-    usdImporter.m_time = scene.Time.GetValueOrDefault();
+    usdImporter.m_usdTime = (float)scene.Time.GetValueOrDefault();
     usdImporter.OptionsToState(importOptions);
 
     SaveAsSinglePrefab(go, prefabPath, importOptions);

@@ -100,7 +100,8 @@ namespace USD.NET.Unity {
     public static void Export(GameObject root,
                               Scene scene,
                               BasisTransformation basisTransform,
-                              bool exportUnvarying) {
+                              bool exportUnvarying,
+                              bool zeroRootTransform) {
       var context = new ExportContext();
       context.scene = scene;
       context.basisTransform = basisTransform;
@@ -112,36 +113,44 @@ namespace USD.NET.Unity {
       if (exportUnvarying && scene.Time != null) {
         double? oldTime = scene.Time;
         scene.Time = null;
-        Export(root, context);
+        Export(root, context, zeroRootTransform);
         scene.Time = oldTime;
       }
 
       // Export data for the requested time.
       context.exportMaterials = false;
-      Export(root, context);
+      Export(root, context, zeroRootTransform);
     }
     public static void Export(GameObject root,
-                          ExportContext context) {
+                          ExportContext context,
+                          bool zeroRootTransform) {
       // Remove parent transform effects while exporting.
       // This must be restored before returning from this function.
       var parent = root.transform.parent;
-      root.transform.SetParent(null, worldPositionStays: false);
+      if (zeroRootTransform) {
+        root.transform.SetParent(null, worldPositionStays: false);
+      }
 
       // Also zero out and restore local rotations on the root.
       var localPos = root.transform.localPosition;
       var localRot = root.transform.localRotation;
       var localScale = root.transform.localScale;
-      root.transform.localPosition = Vector3.zero;
-      root.transform.localRotation = Quaternion.identity;
-      root.transform.localScale = Vector3.one;
+      if (zeroRootTransform) {
+        root.transform.localPosition = Vector3.zero;
+        root.transform.localRotation = Quaternion.identity;
+        root.transform.localScale = Vector3.one;
+      }
 
       try {
         ExportImpl(root, context);
       } finally {
-        root.transform.localPosition = localPos;
-        root.transform.localRotation = localRot;
-        root.transform.localScale = localScale;
-        root.transform.SetParent(parent);
+        if (zeroRootTransform) {
+          root.transform.localPosition = localPos;
+          root.transform.localRotation = localRot;
+          root.transform.localScale = localScale;
+          root.transform.SetParent(parent);
+        }
+      
       }
     }
 
@@ -165,8 +174,11 @@ namespace USD.NET.Unity {
       foreach (var kvp in context.plans) {
         GameObject go = kvp.Key;
         ExportPlan exportPlan = kvp.Value;
-
+        
         if (!go || exportPlan == null) {
+          continue;
+        }
+        if (go != root && !go.transform.IsChildOf(root.transform)) {
           continue;
         }
 
@@ -176,7 +188,6 @@ namespace USD.NET.Unity {
 
         foreach (Exporter exporter in exportPlan.exporters) {
           string path = exporter.path;
-
           SampleBase sample = exporter.sample;
           var objCtx = new ObjectContext {
             gameObject = go,

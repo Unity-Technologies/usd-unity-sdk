@@ -159,12 +159,82 @@ namespace USD.NET.Unity {
         }
       }
 
+      //
+      // Post-process dependencies: materials and bones.
+      //
+
       try {
         // Process all material bindings in a single vectorized request.
         MaterialImporter.ProcessMaterialBindings(scene, importOptions);
       } catch (System.Exception ex) {
         Debug.LogException(new System.Exception("Failed in ProcessMaterialBindings", ex));
       }
+
+      var skelCache = new pxr.UsdSkelCache();
+      Debug.Log("Processes skeletons");
+      foreach (var path in scene.Find<SkelRootSample>(usdPrimRoot)) {
+        try {
+          Debug.Log("Root: " + path);
+          var skelRootPrim = scene.GetPrimAtPath(path);
+          if (!skelRootPrim) {
+            Debug.LogWarning("Prim not found: " + path);
+            continue;
+          }
+          var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
+          if (!skelRoot) {
+            Debug.LogWarning("Prim not SkelRoot: " + path);
+            continue;
+          }
+
+          if (!skelCache.Populate(skelRoot)) {
+            Debug.LogWarning("Failed to populate skel cache: " + path);
+            continue;
+          }
+
+          var bindings = new pxr.UsdSkelBindingVector();
+          if (!skelCache.ComputeSkelBindings(skelRoot, bindings)) {
+            Debug.LogWarning("ComputeSkelBindings failed");
+            continue;
+          }
+          if (bindings.Count == 0) {
+            Debug.LogWarning("No bindings found " + path);
+          }
+
+          foreach (var skelBinding in bindings) {
+            var skelSample = new SkeletonSample();
+            var skelPath = skelBinding.GetSkeleton().GetPath();
+            scene.Read(skelPath, skelSample);
+
+            foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector()) {
+              var meshPath = skinningQuery.GetPrim().GetPath();
+              try {
+                var skelBindingSample = new SkelBindingSample();
+                var goMesh = primMap[meshPath];
+                scene.Read(meshPath, skelBindingSample);
+                Debug.LogWarning(" Indices: " + skelBindingSample.jointIndices.value.Length + " path: " + meshPath);
+                SkeletonImporter.BuildSkinnedMesh(
+                    meshPath,
+                    skelPath,
+                    skelSample,
+                    skelBindingSample,
+                    goMesh,
+                    primMap,
+                    importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(new System.Exception("Error skinning mesh: " + meshPath, ex));
+              }
+            }
+          }
+
+        } catch (System.Exception ex) {
+          Debug.LogException(
+              new System.Exception("Error processing SkelRoot <" + path + ">", ex));
+        }
+      }
+
+      //
+      // Apply instancing.
+      //
 
       try {
         // Build scene instances.
@@ -191,6 +261,10 @@ namespace USD.NET.Unity {
         }
       }
 
+      //
+      // Apply root transform corrections to all root prims.
+      //
+
       foreach (System.Collections.Generic.KeyValuePair<pxr.SdfPath, GameObject> kvp in primMap) {
         if (kvp.Key.IsRootPrimPath() && kvp.Value != null) {
           // The root object at which the USD scene will be reconstructed.
@@ -198,6 +272,10 @@ namespace USD.NET.Unity {
           XformImporter.BuildSceneRoot(scene, kvp.Value.transform, importOptions);
         }
       }
+
+      //
+      // Clean up.
+      //
 
       // Destroy all temp masters.
       foreach (var path in primMap.GetMasterRootPaths()) {

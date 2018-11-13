@@ -53,7 +53,7 @@ namespace USD.NET.Unity {
       var parent = stageRoot.gameObject.transform.parent;
       var root = parent ? parent.gameObject : null;
 
-      scene.Time = stageRoot.m_time;
+      scene.Time = stageRoot.m_usdTime;
       try {
         StageRoot.ImportUsd(root, scene, options);
         
@@ -67,7 +67,7 @@ namespace USD.NET.Unity {
       stageRoot.StateToOptions(ref options);
       var parent = stageRoot.gameObject.transform.parent;
       var root = parent ? parent.gameObject : null;
-      StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_time, options);
+      StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
     }
 
     private void ExportOverrides(StageRoot stageRoot) {
@@ -90,7 +90,8 @@ namespace USD.NET.Unity {
         SceneExporter.Export(stageRoot.gameObject,
                               scene,
                               stageRoot.m_changeHandedness,
-                              exportUnvarying: false);
+                              exportUnvarying: false,
+                              zeroRootTransform: true);
 
         var rel = MakeRelativePath(scene.FilePath, stageRoot.m_usdFile);
         GetFirstPrim(scene).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
