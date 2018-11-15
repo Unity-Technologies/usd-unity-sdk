@@ -69,9 +69,9 @@ namespace Tests.Cases {
         var sample = new AssetPathSample();
         sample.assetPath = new pxr.SdfAssetPath(m_path);
         sample.assetPathArray = new pxr.SdfAssetPath[] {
-      new pxr.SdfAssetPath(m_path),
-      new pxr.SdfAssetPath(m_path2)
-    };
+          new pxr.SdfAssetPath(m_path),
+          new pxr.SdfAssetPath(m_path2)
+        };
         sample.assetPathList = sample.assetPathArray.ToList();
         return sample;
       }
