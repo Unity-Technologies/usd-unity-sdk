@@ -19,7 +19,7 @@ using pxr;
 namespace USD.NET {
 
   /// <summary>
-  /// Enumerates all SdfPaths in an SdfPathVector without generating garbage from temp SdfPaths.
+  /// Enumerates all SdfPaths in an SdfPathVector.
   /// </summary>
   internal class PathEnumerator : IEnumerator<SdfPath> {
     private SdfPathVector m_paths;
@@ -54,7 +54,7 @@ namespace USD.NET {
       m_i++;
       bool valid = m_i < m_size;
       if (valid) {
-        UsdCs.GetPathFromVector(m_paths, m_i, m_current);
+        m_current = m_paths[m_i];
       }
       return valid;
     }

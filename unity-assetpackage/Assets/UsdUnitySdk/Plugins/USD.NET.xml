@@ -16,12 +16,12 @@
         </member>
         <member name="T:USD.NET.SampleEnumerator`1">
             <summary>
-            Enumerates all SdfPaths in an SdfPathVector without generating garbage from temp SdfPaths.
+            Enumerates all (SdfPath,Sample) pairs for a given path set and sample type.
             </summary>
         </member>
         <member name="T:USD.NET.PathEnumerator">
             <summary>
-            Enumerates all SdfPaths in an SdfPathVector without generating garbage from temp SdfPaths.
+            Enumerates all SdfPaths in an SdfPathVector.
             </summary>
         </member>
         <member name="T:USD.NET.RangeIterator">

@@ -19,7 +19,7 @@ using pxr;
 namespace USD.NET {
 
   /// <summary>
-  /// Enumerates all SdfPaths in an SdfPathVector without generating garbage from temp SdfPaths.
+  /// Enumerates all (SdfPath,Sample) pairs for a given path set and sample type.
   /// </summary>
   public class SampleEnumerator<T> : IEnumerator<SampleEnumerator<T>.SampleHolder> where T : SampleBase, new() {
     private SdfPathVector m_paths;
@@ -61,7 +61,7 @@ namespace USD.NET {
       m_i++;
       bool valid = m_i < m_size;
       if (valid) {
-        UsdCs.GetPathFromVector(m_paths, m_i, m_currentSample.path);
+        m_currentSample.path = m_paths[m_i];
         m_scene.Read(m_currentSample.path, m_currentSample.sample);
       }
       return valid;
