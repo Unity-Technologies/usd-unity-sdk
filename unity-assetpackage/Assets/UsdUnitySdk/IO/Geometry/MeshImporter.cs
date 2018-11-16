@@ -212,6 +212,24 @@ namespace USD.NET.Unity {
             usdMesh.colors[i] = usdMesh.colors[i].gamma;
           }
           unityMesh.colors = usdMesh.colors;
+        } else if (usdMesh.colors.Length == usdMesh.faceVertexCounts.Length) {
+          // Uniform colors, one per face.
+          // Unroll face colors into vertex colors. This is not strictly correct, but it's much faster
+          // than the fully correct solution.
+          var colors = new Color[unityMesh.vertexCount];
+          int idx = 0;
+          try {
+            for (int faceIndex = 0; faceIndex < usdMesh.colors.Length; faceIndex++) {
+              var faceColor = usdMesh.colors[faceIndex].gamma;
+              for (int f = 0; f < usdMesh.faceVertexCounts[faceIndex]; f++) {
+                int vertexInFaceIdx = originalIndices[idx++];
+                colors[vertexInFaceIdx] = faceColor;
+              }
+            }
+            unityMesh.colors = colors;
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Failed loading uniform/per-face colors at " + path, ex));
+          }
         } else if (usdMesh.colors.Length > usdMesh.points.Length) {
           usdMesh.colors = UnrollFaceVarying(unityMesh.vertexCount,
                                              usdMesh.colors,
