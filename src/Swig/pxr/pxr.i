@@ -139,7 +139,7 @@ VtValue GetFusedDisplayColor(UsdPrim prim, UsdTimeCode time) {
     return value;
   }
 
-  VtVec4fArray fused(n);
+  VtVec4fArray fused(n, GfVec4f(1, 1, 1, 1));
   for (size_t i = 0; i < n; i++) {
     if (i < rgb.size()) {
       fused[i][0] = rgb[i][0];
