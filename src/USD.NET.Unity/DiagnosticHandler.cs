@@ -35,7 +35,7 @@ namespace USD.NET.Unity {
     /// </summary>
     public override void OnFatalError(string msg) {
       // Note: the system is about to abort().
-      throw new Exception("USD FATAL ERROR: " + msg);
+      Debug.LogException(new Exception("USD FATAL ERROR: " + msg));
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace USD.NET.Unity {
     /// </summary>
     public override void OnError(string msg) {
       // An error has occured, but was not fatal.
-      throw new ApplicationException("USD: " + msg);
+      Debug.LogException(new ApplicationException("USD ERROR: " + msg));
     }
 
     /// <summary>
