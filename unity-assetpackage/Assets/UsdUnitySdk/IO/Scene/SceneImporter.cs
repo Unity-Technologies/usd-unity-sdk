@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,10 +28,39 @@ namespace USD.NET.Unity {
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
                                      SceneImportOptions importOptions) {
-
       // Reconstruct the USD hierarchy as Unity GameObjects.
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       var primMap = HierarchyBuilder.BuildGameObjects(scene, root, usdPrimRoot);
+
+      //
+      // Pre-process UsdSkelRoots.
+      //
+      var skelRoots = new System.Collections.Generic.List<pxr.UsdSkelRoot>();
+      var skelCache = new pxr.UsdSkelCache();
+      foreach (var path in scene.Find<SkelRootSample>(usdPrimRoot)) {
+        try {
+          var skelRootPrim = scene.GetPrimAtPath(path);
+          if (!skelRootPrim) {
+            Debug.LogWarning("Prim not found: " + path);
+            continue;
+          }
+          var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
+          if (!skelRoot) {
+            Debug.LogWarning("Prim not SkelRoot: " + path);
+            continue;
+          }
+
+          Debug.Log("Populate: " + path);
+          if (!skelCache.Populate(skelRoot)) {
+            Debug.LogWarning("Failed to populate skel cache: " + path);
+            continue;
+          }
+          skelRoots.Add(skelRoot);
+        } catch (System.Exception ex) {
+          Debug.LogException(
+              new System.Exception("Error pre-processing SkelRoot <" + path + ">", ex));
+        }
+      }
 
       //
       // Import known prim types.
@@ -73,7 +102,12 @@ namespace USD.NET.Unity {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
           var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
-          MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+          var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
+          if (skinningQuery.IsValid()) {
+            MeshImporter.BuildSkinnedMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+          } else {
+            MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+          }
         } catch (System.Exception ex) {
           Debug.LogException(
               new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
@@ -172,34 +206,16 @@ namespace USD.NET.Unity {
         Debug.LogException(new System.Exception("Failed in ProcessMaterialBindings", ex));
       }
 
-      var skelCache = new pxr.UsdSkelCache();
-      Debug.Log("Processes skeletons");
-      foreach (var path in scene.Find<SkelRootSample>(usdPrimRoot)) {
+      foreach (var skelRoot in skelRoots) {
         try {
-          Debug.Log("Root: " + path);
-          var skelRootPrim = scene.GetPrimAtPath(path);
-          if (!skelRootPrim) {
-            Debug.LogWarning("Prim not found: " + path);
-            continue;
-          }
-          var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
-          if (!skelRoot) {
-            Debug.LogWarning("Prim not SkelRoot: " + path);
-            continue;
-          }
-
-          if (!skelCache.Populate(skelRoot)) {
-            Debug.LogWarning("Failed to populate skel cache: " + path);
-            continue;
-          }
-
           var bindings = new pxr.UsdSkelBindingVector();
           if (!skelCache.ComputeSkelBindings(skelRoot, bindings)) {
             Debug.LogWarning("ComputeSkelBindings failed");
             continue;
           }
+
           if (bindings.Count == 0) {
-            Debug.LogWarning("No bindings found " + path);
+            Debug.LogWarning("No bindings found skelRoot: " + skelRoot.GetPath());
           }
 
           foreach (var skelBinding in bindings) {
@@ -213,7 +229,6 @@ namespace USD.NET.Unity {
                 var skelBindingSample = new SkelBindingSample();
                 var goMesh = primMap[meshPath];
                 scene.Read(meshPath, skelBindingSample);
-                Debug.LogWarning(" Indices: " + skelBindingSample.jointIndices.value.Length + " path: " + meshPath);
                 SkeletonImporter.BuildSkinnedMesh(
                     meshPath,
                     skelPath,
@@ -230,7 +245,7 @@ namespace USD.NET.Unity {
 
         } catch (System.Exception ex) {
           Debug.LogException(
-              new System.Exception("Error processing SkelRoot <" + path + ">", ex));
+              new System.Exception("Error processing SkelRoot <" + skelRoot.GetPath() + ">", ex));
         }
       }
 

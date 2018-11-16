@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -71,13 +71,46 @@ namespace USD.NET.Unity {
     }
 
     /// <summary>
+    /// Copy mesh data from USD to Unity with the given import options, setup for skinning.
+    /// </summary>
+    public static void BuildSkinnedMesh(string path,
+                             MeshSample usdMesh,
+                             GeometrySubsets geomSubsets,
+                             GameObject go,
+                             SceneImportOptions options) {
+      var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
+      smr.sharedMesh = BuildMesh_(path,
+                                  usdMesh,
+                                  geomSubsets,
+                                  go,
+                                  smr,
+                                  options);
+    }
+
+    /// <summary>
     /// Copy mesh data from USD to Unity with the given import options.
     /// </summary>
     public static void BuildMesh(string path,
-                                 MeshSample usdMesh,
-                                 GeometrySubsets geomSubsets,
-                                 GameObject go,
-                                 SceneImportOptions options) {
+                             MeshSample usdMesh,
+                             GeometrySubsets geomSubsets,
+                             GameObject go,
+                             SceneImportOptions options) {
+      var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
+      var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
+      mf.sharedMesh = BuildMesh_(path,
+                                 usdMesh,
+                                 geomSubsets,
+                                 go,
+                                 mr,
+                                 options);
+    }
+
+    private static Mesh BuildMesh_(string path,
+                                   MeshSample usdMesh,
+                                   GeometrySubsets geomSubsets,
+                                   GameObject go,
+                                   Renderer renderer,
+                                   SceneImportOptions options) {
 
       // TODO: Because this method operates on a GameObject, it must be single threaded. For this
       // reason, it should be extremely light weight. All computation should be completed prior to
@@ -85,9 +118,6 @@ namespace USD.NET.Unity {
       // case, triangulation and change of basis are non-trivial operations. Computing the mesh
       // bounds, normals and tangents should similarly be moved out of this function and should not
       // rely on the UnityEngine.Mesh API.
-
-      var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
-      var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
 
       var unityMesh = new Mesh();
       Material mat = null;
@@ -110,11 +140,11 @@ namespace USD.NET.Unity {
         // For best performance, triangulate off-line and skip conversion.
         if (usdMesh.faceVertexIndices == null) {
           Debug.LogWarning("Mesh had no face indices: " + UnityTypeConverter.GetPath(go.transform));
-          return;
+          return null;
         }
         if (usdMesh.faceVertexCounts == null) {
           Debug.LogWarning("Mesh had no face counts: " + UnityTypeConverter.GetPath(go.transform));
-          return;
+          return null;
         }
         var indices = UnityTypeConverter.ToVtArray(usdMesh.faceVertexIndices);
         var counts = UnityTypeConverter.ToVtArray(usdMesh.faceVertexCounts);
@@ -152,7 +182,7 @@ namespace USD.NET.Unity {
             triangleIndices[i * 3 + 1] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 1];
             triangleIndices[i * 3 + 2] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 2];
           }
-          
+
           unityMesh.SetTriangles(triangleIndices, subsetIndex);
           subsetIndex++;
         }
@@ -260,22 +290,22 @@ namespace USD.NET.Unity {
       }
 
       if (unityMesh.subMeshCount == 1) {
-        mr.sharedMaterial = mat;
+        renderer.sharedMaterial = mat;
         if (options.ShouldBindMaterials) {
-          options.materialMap.RequestBinding(path, boundMat => mr.sharedMaterial = boundMat);
+          options.materialMap.RequestBinding(path, boundMat => renderer.sharedMaterial = boundMat);
         }
       } else {
         var mats = new Material[unityMesh.subMeshCount];
         for (int i = 0; i < mats.Length; i++) {
           mats[i] = mat;
         }
-        mr.sharedMaterials = mats;
+        renderer.sharedMaterials = mats;
         if (options.ShouldBindMaterials) {
           Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
           var subIndex = 0;
           foreach (var kvp in geomSubsets.Subsets) {
             int idx = subIndex;
-            options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, mr, idx, path));
+            options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, renderer, idx, path));
           }
           subIndex++;
         }
@@ -305,23 +335,23 @@ namespace USD.NET.Unity {
       }
 #endif
 
-      mf.sharedMesh = unityMesh;
+      return unityMesh;
     }
 
     static void ShowCrashWarning() {
 #if UNITY_2018_2
       Debug.LogWarning(
           "Unity 2018.2.x may generate light maps which result in a crash during light baking. " +
-          "If you experience a crash, it is recommended to upgrade Unity. For details see: " +
+          "If you experience a crash, it is recommended to upgrade. For details see: " +
           "https://issuetracker.unity3d.com/issues/crash-in-calculatesurfacearea-after-opening-the-project-with-certain-mesh");
 #endif
     }
 
-    static void BindMat(Material mat, MeshRenderer mr, int index, string path) {
+    static void BindMat(Material mat, Renderer renderer, int index, string path) {
       Debug.Log(path + " -> " + index + " -> C: " + mat.color.ToString());
-      var sharedMats = mr.sharedMaterials;
+      var sharedMats = renderer.sharedMaterials;
       sharedMats[index] = mat;
-      mr.sharedMaterials = sharedMats;
+      renderer.sharedMaterials = sharedMats;
     }
 
     /// <summary>
