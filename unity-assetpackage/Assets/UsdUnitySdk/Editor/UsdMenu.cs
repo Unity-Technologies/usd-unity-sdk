@@ -107,7 +107,7 @@ public class UsdMenu : MonoBehaviour {
     string path = scene.FilePath;
     ImportOptionsWindow.Open(path);
 
-    var solidColorMat = new Material(Shader.Find("Standard"));
+    var solidColorMat = new Material(Shader.Find("USD/StandardVertexColor"));
     solidColorMat.SetFloat("_Glossiness", 0.2f);
 
     // Time-varying data is not supported and often scenes are written without "Default" time
