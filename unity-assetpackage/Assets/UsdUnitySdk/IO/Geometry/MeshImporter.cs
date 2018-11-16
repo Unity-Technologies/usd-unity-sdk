@@ -195,8 +195,8 @@ namespace USD.NET.Unity {
       } else if (ShouldCompute(options.meshOptions.tangents)) {
         unityMesh.RecalculateTangents();
       }
-      
-      if (usdMesh.colors != null && usdMesh.colors.Length > 0 && ShouldImport(options.meshOptions.color)) {
+
+      if (ShouldImport(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0) {
         // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
         // For best performance, convert color space to linear off-line and skip conversion.
 
@@ -247,7 +247,7 @@ namespace USD.NET.Unity {
         } else {
           Debug.LogWarning("Uniform (color per face) display color not supported");
         }
-      }
+      } // should import color
 
       ImportUv(path, unityMesh, 0, usdMesh.st, usdMesh.indices, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
       ImportUv(path, unityMesh, 0, usdMesh.uv, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);

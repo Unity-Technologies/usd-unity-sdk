@@ -38,8 +38,7 @@ namespace USD.NET.Unity {
 
       foreach (var usdMat in matVector) {
         matIndex++;
-        scene.Read(usdMat.GetPath(), materialSample);
-        var unityMat = BuildMaterial(scene, materialSample, importOptions);
+        Material unityMat = importOptions.materialMap[usdMat.GetPath()];
 
         if (unityMat == null) {
           continue;
@@ -57,9 +56,11 @@ namespace USD.NET.Unity {
     }
 
     public static Material BuildMaterial(Scene scene,
+                                         string materialPath,
                                          MaterialSample sample,
                                          SceneImportOptions options) {
       if (string.IsNullOrEmpty(sample.surface.connectedPath)) {
+        Debug.LogWarning("Material has no connected surface: <" + materialPath + ">");
         return null;
       }
       var previewSurf = new PreviewSurfaceSample();
@@ -67,9 +68,10 @@ namespace USD.NET.Unity {
 
       // Currently, only UsdPreviewSurface is supported.
       if (previewSurf.id == null || previewSurf.id != "UsdPreviewSurface") {
+        Debug.LogWarning("Unknown surface type: <" + sample.surface.connectedPath + ">"
+                         + "Surface ID: " + previewSurf.id);
         return null;
       }
-
       var mat = Material.Instantiate(options.materialMap.FallbackMasterMaterial);
 
       if (previewSurf.diffuseColor.IsConnected()) {
