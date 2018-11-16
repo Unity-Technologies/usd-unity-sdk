@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -266,7 +266,15 @@ namespace USD.NET.Unity {
         unwrapSettings.areaError = options.meshOptions.unwrapAngleError;
         unwrapSettings.hardAngle = options.meshOptions.unwrapHardAngle;
         unwrapSettings.packMargin = options.meshOptions.unwrapPackMargin;
+
+        var vertCount = unityMesh.vertexCount;
         UnityEditor.Unwrapping.GenerateSecondaryUVSet(unityMesh, unwrapSettings);
+
+        // Work around a bug where the unity Mesh can be corrupted by the unwrapping logic.
+        if (vertCount != unityMesh.vertexCount) {
+          Debug.LogError("Light map unwrapping failed, disabling game object for prim: " + path);
+          go.SetActive(false);
+        }
       }
 #else
       if (options.meshOptions.generateLightmapUVs) {
