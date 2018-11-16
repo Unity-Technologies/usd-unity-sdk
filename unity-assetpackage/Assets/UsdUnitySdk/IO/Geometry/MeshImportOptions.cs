@@ -77,7 +77,7 @@ namespace USD.NET.Unity {
     /// <summary>
     /// How much uv-islands will be padded.
     /// </summary>
-    public float unwrapPackMargin = 4;
+    public float unwrapPackMargin = 1/256.0f;
     #endregion
 
     public ImportMode color = ImportMode.Import;
