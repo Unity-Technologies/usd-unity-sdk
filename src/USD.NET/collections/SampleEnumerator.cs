@@ -62,6 +62,7 @@ namespace USD.NET {
       bool valid = m_i < m_size;
       if (valid) {
         m_currentSample.path = m_paths[m_i];
+        m_currentSample.sample = new T();
         m_scene.Read(m_currentSample.path, m_currentSample.sample);
       }
       return valid;
