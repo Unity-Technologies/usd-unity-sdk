@@ -231,24 +231,29 @@ namespace USD.NET.Unity {
             Debug.LogException(new Exception("Failed loading uniform/per-face colors at " + path, ex));
           }
         } else if (usdMesh.colors.Length > usdMesh.points.Length) {
-          usdMesh.colors = UnrollFaceVarying(unityMesh.vertexCount,
-                                             usdMesh.colors,
-                                             usdMesh.faceVertexCounts,
-                                             originalIndices);
-          for (int i = 0; i < usdMesh.colors.Length; i++) {
-            usdMesh.colors[i] = usdMesh.colors[i].gamma;
+          try {
+            usdMesh.colors = UnrollFaceVarying(unityMesh.vertexCount,
+                                   usdMesh.colors,
+                                   usdMesh.faceVertexCounts,
+                                   originalIndices);
+            for (int i = 0; i < usdMesh.colors.Length; i++) {
+              usdMesh.colors[i] = usdMesh.colors[i].gamma;
+            }
+            unityMesh.colors = usdMesh.colors;
+          } catch (Exception ex) {
+            Debug.LogException(
+                new Exception("Error unrolling Face-Varying colors at <" + path + ">", ex));
           }
-          unityMesh.colors = usdMesh.colors;
         } else {
           Debug.LogWarning("Uniform (color per face) display color not supported");
         }
       }
 
-      ImportUv(unityMesh, 0, usdMesh.st, usdMesh.indices, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
-      ImportUv(unityMesh, 0, usdMesh.uv, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
-      ImportUv(unityMesh, 1, usdMesh.uv2, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord1, go);
-      ImportUv(unityMesh, 2, usdMesh.uv3, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord2, go);
-      ImportUv(unityMesh, 3, usdMesh.uv4, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord3, go);
+      ImportUv(path, unityMesh, 0, usdMesh.st, usdMesh.indices, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
+      ImportUv(path, unityMesh, 0, usdMesh.uv, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
+      ImportUv(path, unityMesh, 1, usdMesh.uv2, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord1, go);
+      ImportUv(path, unityMesh, 2, usdMesh.uv3, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord2, go);
+      ImportUv(path, unityMesh, 3, usdMesh.uv4, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord3, go);
 
       if (mat == null) {
         mat = options.materialMap.InstantiateSolidColor(Color.white);
@@ -342,8 +347,7 @@ namespace USD.NET.Unity {
       // Since face-varying UVs have one value per vertex, per face, this is the same number of
       // values as the mesh indices.
       if (faceVertexIndices.Length != uvs.Length) {
-        Debug.LogError("Expected " + faceVertexIndices.Length + " UVs but found " + uvs.Length);
-        return null;
+        throw new Exception("Expected " + faceVertexIndices.Length + " UVs but found " + uvs.Length);
       }
 
       foreach (var count in faceVertexCounts) {
@@ -419,7 +423,8 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Imports UV data from USD into the unityMesh at the given index with the given import rules.
     /// </summary>
-    private static void ImportUv(Mesh unityMesh,
+    private static void ImportUv(string path,
+                                 Mesh unityMesh,
                                  int uvSetIndex,
                                  object uv,
                                  int[] uvIndices,
@@ -432,33 +437,36 @@ namespace USD.NET.Unity {
         return;
       }
 
-      int vertCount = unityMesh.vertexCount;
+      try {
+        int vertCount = unityMesh.vertexCount;
 
-      var uv2 = TryGetUVSet<Vector2>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
-      if (uv2 != null) {
-        if (uv2.Length > 0) {
-          unityMesh.SetUVs(uvSetIndex, uv2.ToList());
+        var uv2 = TryGetUVSet<Vector2>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+        if (uv2 != null) {
+          if (uv2.Length > 0) {
+            unityMesh.SetUVs(uvSetIndex, uv2.ToList());
+          }
+          return;
         }
-        return;
-      }
 
-      var uv3 = TryGetUVSet<Vector3>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
-      if (uv3 != null) {
-        if (uv3.Length > 0) {
-          unityMesh.SetUVs(uvSetIndex, uv3.ToList());
+        var uv3 = TryGetUVSet<Vector3>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+        if (uv3 != null) {
+          if (uv3.Length > 0) {
+            unityMesh.SetUVs(uvSetIndex, uv3.ToList());
+          }
+          return;
         }
-        return;
-      }
 
-      var uv4 = TryGetUVSet<Vector4>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
-      if (uv4 != null) {
-        if (uv4.Length > 0) {
-          unityMesh.SetUVs(uvSetIndex, uv4.ToList());
+        var uv4 = TryGetUVSet<Vector4>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+        if (uv4 != null) {
+          if (uv4.Length > 0) {
+            unityMesh.SetUVs(uvSetIndex, uv4.ToList());
+          }
+          return;
         }
-        return;
+        throw new Exception("Unexpected uv type: " + uv.GetType());
+      } catch (Exception ex) {
+        Debug.LogError(new Exception("Error reading UVs at <" + path + "> uv-index: " + uvSetIndex, ex));
       }
-
-      throw new Exception("Unexpected uv type: " + uv.GetType());
     }
 
     /// <summary>
