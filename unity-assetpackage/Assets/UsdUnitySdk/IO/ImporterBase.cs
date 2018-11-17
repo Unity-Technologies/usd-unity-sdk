@@ -20,6 +20,14 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class ImporterBase {
 
+    public static bool ApproximatelyEqual(Matrix4x4 lhs, Matrix4x4 rhs) {
+      bool equal = true;
+      for (int i = 0; i < 16; i++) {
+        equal = equal && (Mathf.Approximately(lhs[i], rhs[i]));
+      }
+      return equal;
+    }
+
     /// <summary>
     /// Moves the given component to be first in the list on the GameObject.
     /// If not in editor, this function is a no-op.
