@@ -20,10 +20,38 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class ImporterBase {
 
-    public static T GetOrAddComponent<T>(GameObject go) where T : Component {
+    /// <summary>
+    /// Moves the given component to be first in the list on the GameObject.
+    /// If not in editor, this function is a no-op.
+    /// </summary>
+    public static void MoveComponentFirst(Component comp) {
+#if UNITY_EDITOR
+      while (UnityEditorInternal.ComponentUtility.MoveComponentUp(comp)) {}
+#else
+      Debug.LogWarning("Cannot reorder component, not in editor");
+#endif
+    }
+
+    /// <summary>
+    /// Moves the given component to be last in the list on the GameObject.
+    /// If not in editor, this function is a no-op.
+    /// </summary>
+    public static void MoveComponentLast(Component comp) {
+#if UNITY_EDITOR
+      while (UnityEditorInternal.ComponentUtility.MoveComponentDown(comp)) { }
+
+#else
+      Debug.LogWarning("Cannot reorder component, not in editor");
+#endif
+    }
+
+    public static T GetOrAddComponent<T>(GameObject go, bool insertFirst = false) where T : Component {
       T comp = go.GetComponent<T>();
       if (!comp) {
         comp = go.AddComponent<T>();
+      }
+      if (insertFirst) {
+        MoveComponentFirst(comp);
       }
       return comp;
     }

@@ -70,6 +70,7 @@ namespace USD.NET.Unity {
         stageRoot.OptionsToState(options);
         stageRoot.m_usdFile = scene.FilePath;
       }
+      ImporterBase.MoveComponentFirst(stageRoot);
 
       // Handle configurable up-axis (Y or Z).
       float invert = options.changeHandedness == BasisTransformation.FastWithNegativeScale ? -1 : 1;
