@@ -45,7 +45,7 @@ namespace USD.NET.Unity {
     [UsdNamespace("skel")]
     public Primvar<int[]> jointIndices = new Primvar<int[]>();
 
-    [UsdNamespace("primvars:skel")]
+    [UsdNamespace("skel")]
     public Primvar<Matrix4x4> geomBindTransform = new Primvar<Matrix4x4>();
 
     [UsdNamespace("skel")]
