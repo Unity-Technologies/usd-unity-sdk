@@ -131,8 +131,13 @@ namespace USD.NET.Unity {
       }
 
       foreach (var path in paths) {
-        var prim = scene.GetPrimAtPath(path);
-        ExpandSkeleton(map[path], prim, map);
+        try {
+          var prim = scene.GetPrimAtPath(path);
+          ExpandSkeleton(map[path], prim, map);
+        } catch (Exception ex) {
+          Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
+        }
+
       }
 
       return map;

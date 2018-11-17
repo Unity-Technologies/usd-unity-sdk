@@ -24,6 +24,90 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class SkeletonImporter {
 
+    public static void BuildSkeletonBone(string skelPath,
+                                         GameObject go,
+                                         Matrix4x4 restXform,
+                                         VtTokenArray joints,
+                                         SceneImportOptions importOptions) {
+      Vector3 pos = Vector3.zero;
+      Quaternion rot = Quaternion.identity;
+      Vector3 scale = Vector3.one;
+      if (!UnityTypeConverter.Decompose(restXform, out pos, out rot, out scale)) {
+        throw new Exception("Failed to decompose bind trnsforms for <" + skelPath + ">");
+      }
+      go.transform.localScale = scale;
+      go.transform.localRotation = rot;
+      go.transform.localPosition = pos;
+
+      var cubeDebugName = "usdSkel_restPose_debug_cube";
+      if (importOptions.meshOptions.debugShowSkeletonRestPose) {
+        var cube = go.transform.Find(cubeDebugName);
+        if (!cube) {
+          cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+          cube.name = cubeDebugName;
+          cube.SetParent(go.transform, worldPositionStays: false);
+          cube.localScale = Vector3.one * 2;
+        }
+      } else {
+        var existing = go.transform.Find(cubeDebugName);
+        if (existing) {
+          GameObject.DestroyImmediate(existing.gameObject);
+        }
+      }
+    }
+
+    public static void BuildDebugBindTransforms(SkeletonSample skelSample,
+                                                GameObject goSkeleton,
+                                                SceneImportOptions options) {
+      var debugPrefix = "usdSkel_bindPose_debug_cube";
+      if (options.meshOptions.debugShowSkeletonBindPose) {
+        
+        int i = 0;
+        foreach (var bindXf in skelSample.bindTransforms) {
+          // Undo the bindXf inversion for visualization.
+          var mat = bindXf.inverse;
+          var cubeName = debugPrefix + i++;
+          var cube = goSkeleton.transform.Find(cubeName);
+          if (!cube) {
+            cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+            cube.SetParent(goSkeleton.transform, worldPositionStays: false);
+            cube.name = cubeName;
+          }
+          Vector3 t, s;
+          Quaternion r;
+          UnityTypeConverter.Decompose(mat, out t, out r, out s);
+          cube.localPosition = t;
+          cube.localScale = s;
+          cube.localRotation = r;
+        }
+      } else {
+        var zero = goSkeleton.transform.Find(debugPrefix + 0);
+        if (zero) {
+          var toDelete = new List<GameObject>();
+          foreach (Transform child in goSkeleton.transform) {
+            if (child.name.StartsWith(debugPrefix)) {
+              toDelete.Add(child.gameObject);
+            }
+          }
+          foreach (var child in toDelete) {
+            GameObject.DestroyImmediate(child);
+          }
+        }
+      }
+    }
+
+    public static void BuildBindTransforms(string path,
+                                           SkeletonSample skelSample,
+                                           SceneImportOptions options) {
+      for (int i = 0; i < skelSample.bindTransforms.Length; i++) {
+        var xf = skelSample.bindTransforms[i];
+        if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
+          xf = UnityTypeConverter.ChangeBasis(xf);
+        }
+        skelSample.bindTransforms[i] = xf.inverse;
+      }
+    }
+
     public static void BuildSkinnedMesh(string meshPath,
                                         string skelPath,
                                         SkeletonSample skeleton,
@@ -34,7 +118,8 @@ namespace USD.NET.Unity {
       int[] indices   = meshBinding.jointIndices.value;
       float[] weights = meshBinding.jointWeights.value;
       string[] joints = meshBinding.joints;
-      var bindPoses = skeleton.bindTransforms;
+
+      // WARNING: Do not mutate skeleton values.
       string[] skelJoints = skeleton.joints;
       bool isConstant = meshBinding.jointWeights.interpolation == PrimvarInterpolation.Constant;
 
@@ -49,38 +134,39 @@ namespace USD.NET.Unity {
       // The mesh renderer must already exist, since hte mesh also must already exist.
       var smr = go.GetComponent<SkinnedMeshRenderer>();
       if (!smr) {
-        Debug.LogWarning(meshPath);
-        // TODO: copying these after the fact is not great, they should be constructed as skinned
-        // mesh renderers from creation.
-        var mr = go.GetComponent<MeshRenderer>();
-        var mf = go.GetComponent<MeshFilter>();
-        if (!mr) {
-          throw new Exception("Error importing " + meshPath
-              + " MeshRenderer not present on GameObject");
-        }
-        if (!mf) {
-          throw new Exception("Error importing " + meshPath
-              + " MeshFilter not present on GameObject");
-        }
-        smr = go.AddComponent<SkinnedMeshRenderer>();
-        smr.sharedMesh = mf.sharedMesh;
-        smr.sharedMaterial = mr.sharedMaterial;
-        smr.sharedMaterials = mr.sharedMaterials;
-
-        Component.DestroyImmediate(mf);
-        Component.DestroyImmediate(mr);
+        throw new Exception("Error importing " + meshPath
+            + " SkinnnedMeshRenderer not present on GameObject");
       }
 
       var bones = new Transform[joints.Length];
       var mesh = smr.sharedMesh;
       var boneWeights = new BoneWeight[mesh.vertexCount];
 
-      for (int i = 0; i < bindPoses.Length; i++) {
-        bindPoses[i] = bindPoses[i].inverse;
-        if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
-          bindPoses[i] = UnityTypeConverter.ChangeBasis(bindPoses[i]);
+      var geomXf = meshBinding.geomBindTransform.value;
+
+      // When geomXf is identity, we can take a shortcut and just use the exact skeleton bindPoses.
+      if (ImporterBase.ApproximatelyEqual(geomXf, Matrix4x4.identity)) {
+        mesh.bindposes = skeleton.bindTransforms;
+      } else {
+        // Why not put the geometry transorm into the same space as the bind poses?
+        // It depends on the rest poses of the bones. If they are in a converted space, then the 
+        // bind poses must be as well and the geom bind transform must be converted here as well.
+
+        //if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
+        //  geomXf = UnityTypeConverter.ChangeBasis(geomXf);
+        //}
+
+        // Concatenate the geometry bind transform with the skeleton bind poses.
+        var bindPoses = new Matrix4x4[skeleton.bindTransforms.Length];
+        Array.Copy(skeleton.bindTransforms, bindPoses, bindPoses.Length);
+        for (int i = 0; i < bindPoses.Length; i++) {
+          // The geometry transform should be applied to the points before any other transform,
+          // hence the right hand multiply here.
+          bindPoses[i] = bindPoses[i] * geomXf;
         }
+        mesh.bindposes = bindPoses;
       }
+
 
       var sdfSkelPath = new SdfPath(skelPath);
       for (int i = 0; i < joints.Length; i++) {
@@ -99,7 +185,7 @@ namespace USD.NET.Unity {
           // When non-constant, the offset is the index times the number of weights per vertex.
         int usdIndex = isConstant
                      ? 0
-                     : usdIndex = i * meshBinding.jointWeights.elementSize;
+                     : i * meshBinding.jointWeights.elementSize;
 
         var boneWeight = boneWeights[i];
 
@@ -113,19 +199,30 @@ namespace USD.NET.Unity {
         boneWeight.weight0 = weights[usdIndex];
 
         if (meshBinding.jointIndices.elementSize == 2) {
-          boneWeight.boneIndex0 = indices[usdIndex + 1];
-          boneWeight.weight0 = weights[usdIndex + 1];
+          boneWeight.boneIndex1 = indices[usdIndex + 1];
+          boneWeight.weight1 = weights[usdIndex + 1];
         }
         if (meshBinding.jointIndices.elementSize == 3) {
-          boneWeight.boneIndex0 = indices[usdIndex + 2];
-          boneWeight.weight0 = weights[usdIndex + 2];
+          boneWeight.boneIndex2 = indices[usdIndex + 2];
+          boneWeight.weight2 = weights[usdIndex + 2];
         }
         if (meshBinding.jointIndices.elementSize >=4) {
-          boneWeight.boneIndex0 = indices[usdIndex + 3];
-          boneWeight.weight0 = weights[usdIndex + 3];
+          boneWeight.boneIndex3 = indices[usdIndex + 3];
+          boneWeight.weight3 = weights[usdIndex + 3];
         }
-      }
-    }
 
+        float sum = boneWeight.weight0 + boneWeight.weight1 + boneWeight.weight2 + boneWeight.weight3;
+        if (sum > 0) {
+          boneWeight.weight0 /= sum;
+          boneWeight.weight1 /= sum;
+          boneWeight.weight2 /= sum;
+          boneWeight.weight3 /= sum;
+        }
+
+        boneWeights[i] = boneWeight;
+      }
+
+      mesh.boneWeights = boneWeights;
+    }
   } // class
 } // namespace
