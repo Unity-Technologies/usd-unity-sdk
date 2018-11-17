@@ -49,6 +49,10 @@ namespace USD.NET.Unity {
     public ImportMode m_texcoord2;
     public ImportMode m_texcoord3;
 
+    [Header("Debug Options")]
+    public bool m_debugShowSkeletonBindPose;
+    public bool m_debugShowSkeletonRestPose;
+
     /// <summary>
     /// Convert the SceneImportOptions into a serializable form.
     /// </summary>
@@ -67,6 +71,9 @@ namespace USD.NET.Unity {
       m_texcoord2 = options.meshOptions.texcoord2;
       m_texcoord3 = options.meshOptions.texcoord3;
       m_generateLightmapUVs = options.meshOptions.generateLightmapUVs;
+
+      m_debugShowSkeletonBindPose = options.meshOptions.debugShowSkeletonBindPose;
+      m_debugShowSkeletonRestPose = options.meshOptions.debugShowSkeletonRestPose;
 
       m_materialImportMode = options.materialImportMode;
       m_enableGpuInstancing = options.enableGpuInstancing;
@@ -90,6 +97,9 @@ namespace USD.NET.Unity {
       options.meshOptions.texcoord2 = m_texcoord2;
       options.meshOptions.texcoord3 = m_texcoord3;
       options.meshOptions.generateLightmapUVs = m_generateLightmapUVs;
+
+      options.meshOptions.debugShowSkeletonBindPose = m_debugShowSkeletonBindPose;
+      options.meshOptions.debugShowSkeletonRestPose = m_debugShowSkeletonRestPose;
 
       options.materialImportMode = m_materialImportMode;
       options.enableGpuInstancing = m_enableGpuInstancing;

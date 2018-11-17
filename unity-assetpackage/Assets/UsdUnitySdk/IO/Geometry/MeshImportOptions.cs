@@ -48,6 +48,17 @@ namespace USD.NET.Unity {
   public class MeshImportOptions {
 
     /// <summary>
+    /// When true, instance cubes onto each joint of the rest pose.
+    /// </summary>
+    public bool debugShowSkeletonRestPose = false;
+
+    /// <summary>
+    /// When true, instance cubes onto each joint of the bind pose.
+    /// These cubes will be presented in world space, the inverse of the actual bind pose.
+    /// </summary>
+    public bool debugShowSkeletonBindPose = false;
+
+    /// <summary>
     /// If true, triangulates the mesh. Should only be set to false if the mesh is guaranteed
     /// to be a valid triangle mesh before import.
     /// </summary>
