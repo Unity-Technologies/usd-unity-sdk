@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -121,68 +121,72 @@ namespace USD.NET.Unity {
       Material mat = null;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
 
-      if (changeHandedness) {
-        for (int i = 0; i < usdMesh.points.Length; i++) {
-          usdMesh.points[i] = UnityTypeConverter.ChangeBasis(usdMesh.points[i]);
+      if (options.meshOptions.points == ImportMode.Import) {
+        if (changeHandedness) {
+          for (int i = 0; i < usdMesh.points.Length; i++) {
+            usdMesh.points[i] = UnityTypeConverter.ChangeBasis(usdMesh.points[i]);
+          }
         }
+
+        unityMesh.vertices = usdMesh.points;
       }
 
-      unityMesh.vertices = usdMesh.points;
       int[] originalIndices = new int[usdMesh.faceVertexIndices.Length];
 
       // Optimization: only do this when there are face varying primvars.
       Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
-
-      if (options.meshOptions.triangulateMesh) {
-        // Triangulate n-gons.
-        // For best performance, triangulate off-line and skip conversion.
-        if (usdMesh.faceVertexIndices == null) {
-          Debug.LogWarning("Mesh had no face indices: " + UnityTypeConverter.GetPath(go.transform));
-          return null;
-        }
-        if (usdMesh.faceVertexCounts == null) {
-          Debug.LogWarning("Mesh had no face counts: " + UnityTypeConverter.GetPath(go.transform));
-          return null;
-        }
-        var indices = UnityTypeConverter.ToVtArray(usdMesh.faceVertexIndices);
-        var counts = UnityTypeConverter.ToVtArray(usdMesh.faceVertexCounts);
-        UsdGeomMesh.Triangulate(indices, counts);
-        UnityTypeConverter.FromVtArray(indices, ref usdMesh.faceVertexIndices);
-      }
-
-      bool isLeftHanded = usdMesh.orientation == Orientation.LeftHanded;
-
-      if (changeHandedness && !isLeftHanded || !changeHandedness && isLeftHanded) {
-        // USD is right-handed, so the mesh needs to be flipped.
-        // Unity is left-handed, but that doesn't matter here.
-        for (int i = 0; i < usdMesh.faceVertexIndices.Length; i += 3) {
-          int tmp = usdMesh.faceVertexIndices[i];
-          usdMesh.faceVertexIndices[i] = usdMesh.faceVertexIndices[i + 1];
-          usdMesh.faceVertexIndices[i + 1] = tmp;
-        }
-      }
-
-      if (usdMesh.faceVertexIndices.Length > 65535) {
-        unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
-      }
-
-      if (geomSubsets.Subsets.Count == 0) {
-        unityMesh.triangles = usdMesh.faceVertexIndices;
-      } else {
-        unityMesh.subMeshCount = geomSubsets.Subsets.Count;
-        int subsetIndex = 0;
-        foreach (var kvp in geomSubsets.Subsets) {
-          int[] faceIndices = kvp.Value;
-          int[] triangleIndices = new int[faceIndices.Length * 3];
-
-          for (int i = 0; i < faceIndices.Length; i++) {
-            triangleIndices[i * 3 + 0] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 0];
-            triangleIndices[i * 3 + 1] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 1];
-            triangleIndices[i * 3 + 2] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 2];
+      if (options.meshOptions.topology == ImportMode.Import) {
+        if (options.meshOptions.triangulateMesh) {
+          // Triangulate n-gons.
+          // For best performance, triangulate off-line and skip conversion.
+          if (usdMesh.faceVertexIndices == null) {
+            Debug.LogWarning("Mesh had no face indices: " + UnityTypeConverter.GetPath(go.transform));
+            return;
           }
+          if (usdMesh.faceVertexCounts == null) {
+            Debug.LogWarning("Mesh had no face counts: " + UnityTypeConverter.GetPath(go.transform));
+            return;
+          }
+          var indices = UnityTypeConverter.ToVtArray(usdMesh.faceVertexIndices);
+          var counts = UnityTypeConverter.ToVtArray(usdMesh.faceVertexCounts);
+          UsdGeomMesh.Triangulate(indices, counts);
+          UnityTypeConverter.FromVtArray(indices, ref usdMesh.faceVertexIndices);
+        }
 
-          unityMesh.SetTriangles(triangleIndices, subsetIndex);
-          subsetIndex++;
+        bool isLeftHanded = usdMesh.orientation == Orientation.LeftHanded;
+
+        if (changeHandedness && !isLeftHanded || !changeHandedness && isLeftHanded) {
+          // USD is right-handed, so the mesh needs to be flipped.
+          // Unity is left-handed, but that doesn't matter here.
+          for (int i = 0; i < usdMesh.faceVertexIndices.Length; i += 3) {
+            int tmp = usdMesh.faceVertexIndices[i];
+            usdMesh.faceVertexIndices[i] = usdMesh.faceVertexIndices[i + 1];
+            usdMesh.faceVertexIndices[i + 1] = tmp;
+          }
+        }
+
+        if (usdMesh.faceVertexIndices.Length > 65535) {
+          unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        }
+
+        if (geomSubsets.Subsets.Count == 0) {
+          unityMesh.triangles = usdMesh.faceVertexIndices;
+        } else {
+          unityMesh.subMeshCount = geomSubsets.Subsets.Count;
+          int subsetIndex = 0;
+          foreach (var kvp in geomSubsets.Subsets) {
+            int[] faceIndices = kvp.Value;
+            int[] triangleIndices = new int[faceIndices.Length * 3];
+
+            for (int i = 0; i < faceIndices.Length; i++) {
+              triangleIndices[i * 3 + 0] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 0];
+              triangleIndices[i * 3 + 1] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 1];
+              triangleIndices[i * 3 + 2] = usdMesh.faceVertexIndices[faceIndices[i] * 3 + 2];
+            }
+
+            unityMesh.SetTriangles(triangleIndices, subsetIndex);
+            subsetIndex++;
+          }
         }
       }
 
@@ -336,8 +340,6 @@ namespace USD.NET.Unity {
         Debug.LogWarning("Lightmap UVs were requested to be generated, but cannot be generated outside of the editor");
       }
 #endif
-
-      return unityMesh;
     }
 
     static void ShowCrashWarning() {
