@@ -22,6 +22,7 @@ namespace USD.NET.Unity {
   /// Represents the point at which a UsdStage has been imported into the Unity scene.
   /// The goal is to make it easy to re-import the data in the future or export sparse overrides.
   /// </summary>
+  [ExecuteInEditMode]
   public class StageRoot : MonoBehaviour {
 
     [Header("Source Asset")]
@@ -39,6 +40,8 @@ namespace USD.NET.Unity {
     public Material m_fallbackMaterial;
 
     [Header("Mesh Options")]
+    public ImportMode m_points;
+    public ImportMode m_topology;
     public bool m_generateLightmapUVs;
     public ImportMode m_boundingBox;
     public ImportMode m_color;
@@ -53,6 +56,49 @@ namespace USD.NET.Unity {
     public bool m_debugShowSkeletonBindPose;
     public bool m_debugShowSkeletonRestPose;
 
+    private float m_lastTime;
+    private Scene m_lastScene;
+
+    private Scene GetScene() {
+      USD.NET.Examples.InitUsd.Initialize();
+      if (m_lastScene == null || m_lastScene.FilePath != m_usdFile) {
+        m_lastScene = Scene.Open(m_usdFile);
+      }
+      m_lastScene.Time = m_usdTime;
+      return m_lastScene;
+    }
+
+    private void Update() {
+      if (m_lastTime == m_usdTime) {
+        return;
+      }
+      m_lastTime = m_usdTime;
+      var scene = GetScene();
+      var options = new SceneImportOptions();
+      StateToOptions(ref options);
+      var parent = transform.parent;
+      var root = parent ? parent.gameObject : null;
+
+      try {
+        options.materialImportMode = MaterialImportMode.None;
+        options.meshOptions.debugShowSkeletonBindPose = false;
+        options.meshOptions.debugShowSkeletonRestPose = false;
+        options.meshOptions.generateLightmapUVs = false;
+
+        options.meshOptions.topology = ImportMode.Ignore;
+        options.meshOptions.normals = ImportMode.Ignore;
+        options.meshOptions.tangents = ImportMode.Ignore;
+        options.meshOptions.texcoord0 = ImportMode.Ignore;
+        options.meshOptions.texcoord1 = ImportMode.Ignore;
+        options.meshOptions.texcoord2 = ImportMode.Ignore;
+        options.meshOptions.texcoord3 = ImportMode.Ignore;
+        StageRoot.ImportUsd(root, scene, options);
+      } finally {
+        scene.Close();
+        m_lastScene = null;
+      }
+    }
+
     /// <summary>
     /// Convert the SceneImportOptions into a serializable form.
     /// </summary>
@@ -62,6 +108,10 @@ namespace USD.NET.Unity {
       m_interpolation = options.interpolate ?
                         Scene.InterpolationMode.Linear :
                         Scene.InterpolationMode.Held;
+
+      // Mesh options.
+      m_points = options.meshOptions.points;
+      m_topology = options.meshOptions.topology;
       m_boundingBox = options.meshOptions.boundingBox;
       m_color = options.meshOptions.color;
       m_normals = options.meshOptions.normals;
@@ -75,6 +125,7 @@ namespace USD.NET.Unity {
       m_debugShowSkeletonBindPose = options.meshOptions.debugShowSkeletonBindPose;
       m_debugShowSkeletonRestPose = options.meshOptions.debugShowSkeletonRestPose;
 
+      // Materials & instancing.
       m_materialImportMode = options.materialImportMode;
       m_enableGpuInstancing = options.enableGpuInstancing;
       m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
@@ -88,6 +139,9 @@ namespace USD.NET.Unity {
       options.scale = m_scale;
       options.interpolate = m_interpolation == Scene.InterpolationMode.Linear;
 
+      // Mesh options.
+      options.meshOptions.points = m_points;
+      options.meshOptions.topology = m_topology;
       options.meshOptions.boundingBox = m_boundingBox;
       options.meshOptions.color = m_color;
       options.meshOptions.normals = m_normals;
@@ -101,6 +155,7 @@ namespace USD.NET.Unity {
       options.meshOptions.debugShowSkeletonBindPose = m_debugShowSkeletonBindPose;
       options.meshOptions.debugShowSkeletonRestPose = m_debugShowSkeletonRestPose;
 
+      // Materials & Instancing.
       options.materialImportMode = m_materialImportMode;
       options.enableGpuInstancing = m_enableGpuInstancing;
       options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
