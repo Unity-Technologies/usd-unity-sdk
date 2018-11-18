@@ -32,7 +32,7 @@ namespace USD.NET.Unity {
     /// <returns></returns>
     static public PrimMap BuildGameObjects(Scene scene,
                                            GameObject unityRoot) {
-      return BuildGameObjects(scene, unityRoot, pxr.SdfPath.AbsoluteRootPath(), scene.AllPaths);
+      return BuildGameObjects(scene, unityRoot, SdfPath.AbsoluteRootPath(), scene.AllPaths);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ namespace USD.NET.Unity {
     /// </summary>
     static private PrimMap BuildGameObjects(Scene scene,
                                             GameObject unityRoot,
-                                            pxr.SdfPath usdRoot,
+                                            SdfPath usdRoot,
                                             IEnumerable<SdfPath> paths) {
       var map = new PrimMap();
       map[usdRoot] = unityRoot;
@@ -225,10 +225,10 @@ namespace USD.NET.Unity {
             mdl.m_modelAssetPath = UsdCs.VtValueToSdfAssetPath(valIdentifier).GetAssetPath().ToString();
           }
           if (valName != null && !valName.IsEmpty()) {
-            mdl.m_modelName = pxr.UsdCs.VtValueTostring(valName);
+            mdl.m_modelName = UsdCs.VtValueTostring(valName);
           }
           if (valVersion != null && !valVersion.IsEmpty()) {
-            mdl.m_modelVersion = pxr.UsdCs.VtValueTostring(valVersion);
+            mdl.m_modelVersion = UsdCs.VtValueTostring(valVersion);
           }
         }
       } else {
