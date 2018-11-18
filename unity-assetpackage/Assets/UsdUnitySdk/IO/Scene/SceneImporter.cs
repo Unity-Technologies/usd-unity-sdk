@@ -125,8 +125,7 @@ namespace USD.NET.Unity {
 
       // Meshes.
       Profiler.BeginSample("USD: Build Meshes");
-      MeshSample meshSample = new MeshSample();
-      foreach (var pathAndSample in scene.ReadAll<LimitedMeshSample>(usdPrimRoot)) {
+      foreach (var pathAndSample in scene.ReadAll<MeshSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -138,14 +137,13 @@ namespace USD.NET.Unity {
           // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
           // have the data required to setup a skinned mesh.
           var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
-          meshSample.points = pathAndSample.sample.points;
           if (skinningQuery.IsValid()) {
             Profiler.BeginSample("USD: Build Skinned Mesh");
-            MeshImporter.BuildSkinnedMesh(pathAndSample.path, meshSample, subsets, go, importOptions);
+            MeshImporter.BuildSkinnedMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
             Profiler.EndSample();
           } else {
             Profiler.BeginSample("USD: Build Mesh");
-            MeshImporter.BuildMesh(pathAndSample.path, meshSample, subsets, go, importOptions);
+            MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
             Profiler.EndSample();
           }
         } catch (System.Exception ex) {
