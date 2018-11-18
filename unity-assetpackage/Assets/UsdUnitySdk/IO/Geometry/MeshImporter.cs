@@ -208,6 +208,10 @@ namespace USD.NET.Unity {
             usdMesh.normals[i] = UnityTypeConverter.ChangeBasis(usdMesh.normals[i]);
           }
         }
+        // If more normals than verts, assume face-varying.
+        if (usdMesh.normals.Length > usdMesh.points.Length) {
+          usdMesh.normals = UnrollFaceVarying(usdMesh.points.Length, usdMesh.normals, usdMesh.faceVertexCounts, originalIndices);
+        }
         unityMesh.normals = usdMesh.normals;
       } else if (ShouldCompute(options.meshOptions.normals)) {
         unityMesh.RecalculateNormals();
