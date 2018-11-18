@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 using pxr;
 
 namespace USD.NET.Unity {
@@ -63,6 +64,7 @@ namespace USD.NET.Unity {
 
       // TODO: Should recurse to discover deeply nested instancing.
       // TODO: Generates garbage for every prim, but we expect few masters.
+      Profiler.BeginSample("Build Temp Masters");
       foreach (var masterRootPrim in scene.Stage.GetMasters()) {
         var goMaster = new GameObject(masterRootPrim.GetPath().GetName());
 
@@ -104,7 +106,9 @@ namespace USD.NET.Unity {
           goPrim.transform.SetParent(parentXf);
         }
       }
+      Profiler.EndSample();
 
+      Profiler.BeginSample("Process all paths");
       foreach (SdfPath path in paths) {
         var prim = scene.GetPrimAtPath(path);
         GameObject parentGo = null;
@@ -129,7 +133,9 @@ namespace USD.NET.Unity {
 
         map[new SdfPath(path)] = go;
       }
+      Profiler.EndSample();
 
+      Profiler.BeginSample("Expand Skeletons");
       foreach (var path in paths) {
         try {
           var prim = scene.GetPrimAtPath(path);
@@ -137,8 +143,8 @@ namespace USD.NET.Unity {
         } catch (Exception ex) {
           Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
         }
-
       }
+      Profiler.EndSample();
 
       return map;
     }

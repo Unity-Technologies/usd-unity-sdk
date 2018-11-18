@@ -14,8 +14,14 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace USD.NET.Unity {
+
+  [UsdSchema("Mesh")]
+  class LimitedMeshSample : XformableSample {
+    public Vector3[] points;
+  }
 
   /// <summary>
   /// Root entry point for importing an entire USD scene.
@@ -26,18 +32,33 @@ namespace USD.NET.Unity {
     /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
     /// </summary>
     public static PrimMap BuildScene(Scene scene,
+                                 GameObject root,
+                                 pxr.SdfPath usdPrimRoot,
+                                 SceneImportOptions importOptions) {
+      try {
+        Profiler.BeginSample("USD: Build Scene");
+        return BuildScene_(scene, root, usdPrimRoot, importOptions);
+      } finally {
+        Profiler.EndSample();
+      }
+    }
+    private static PrimMap BuildScene_(Scene scene,
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
                                      SceneImportOptions importOptions) {
       // Reconstruct the USD hierarchy as Unity GameObjects.
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
+      Profiler.BeginSample("USD: Build Hierarchy");
       var primMap = HierarchyBuilder.BuildGameObjects(scene, root, usdPrimRoot);
+      Profiler.EndSample();
 
       //
       // Pre-process UsdSkelRoots.
       //
       var skelRoots = new List<pxr.UsdSkelRoot>();
       var skelCache = new pxr.UsdSkelCache();
+
+      Profiler.BeginSample("USD: Process UsdSkelRoots");
       foreach (var path in scene.Find<SkelRootSample>(usdPrimRoot)) {
         try {
           var skelRootPrim = scene.GetPrimAtPath(path);
@@ -62,12 +83,14 @@ namespace USD.NET.Unity {
               new System.Exception("Error pre-processing SkelRoot <" + path + ">", ex));
         }
       }
+      Profiler.EndSample();
 
       //
       // Import known prim types.
       //
 
       // Materials.
+      Profiler.BeginSample("USD: Build Materials");
       if (importOptions.ShouldBindMaterials) {
         foreach (var pathAndSample in scene.ReadAll<MaterialSample>(usdPrimRoot)) {
           try {
@@ -82,11 +105,13 @@ namespace USD.NET.Unity {
           }
         }
       }
+      Profiler.EndSample();
 
       // Xforms.
       //
       // Note that we are specifically filtering on XformSample, not Xformable, this way only
       // Xforms are processed to avoid doing that work redundantly.
+      Profiler.BeginSample("USD: Build Xforms");
       foreach (var pathAndSample in scene.ReadAll<XformSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
@@ -96,30 +121,42 @@ namespace USD.NET.Unity {
               new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
         }
       }
+      Profiler.EndSample();
 
       // Meshes.
-      foreach (var pathAndSample in scene.ReadAll<MeshSample>(usdPrimRoot)) {
+      Profiler.BeginSample("USD: Build Meshes");
+      MeshSample meshSample = new MeshSample();
+      foreach (var pathAndSample in scene.ReadAll<LimitedMeshSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
           XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+
+          Profiler.BeginSample("USD: Read Mesh Subsets");
           var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+          Profiler.EndSample();
 
           // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
           // have the data required to setup a skinned mesh.
           var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
-
+          meshSample.points = pathAndSample.sample.points;
           if (skinningQuery.IsValid()) {
-            MeshImporter.BuildSkinnedMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+            Profiler.BeginSample("USD: Build Skinned Mesh");
+            MeshImporter.BuildSkinnedMesh(pathAndSample.path, meshSample, subsets, go, importOptions);
+            Profiler.EndSample();
           } else {
-            MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+            Profiler.BeginSample("USD: Build Mesh");
+            MeshImporter.BuildMesh(pathAndSample.path, meshSample, subsets, go, importOptions);
+            Profiler.EndSample();
           }
         } catch (System.Exception ex) {
           Debug.LogException(
               new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
         }
       }
+      Profiler.EndSample();
 
       // Cubes.
+      Profiler.BeginSample("USD: Build Cubes");
       foreach (var pathAndSample in scene.ReadAll<CubeSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
@@ -130,8 +167,10 @@ namespace USD.NET.Unity {
               new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
         }
       }
+      Profiler.EndSample();
 
       // Cameras.
+      Profiler.BeginSample("USD: Cameras");
       foreach (var pathAndSample in scene.ReadAll<CameraSample>(usdPrimRoot)) {
         try {
           GameObject go = primMap[pathAndSample.path];
@@ -142,12 +181,15 @@ namespace USD.NET.Unity {
               new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
         }
       }
+      Profiler.EndSample();
 
       // Build out masters for instancing.
+      Profiler.BeginSample("USD: Build Instances");
       foreach (var masterRootPath in primMap.GetMasterRootPaths()) {
         try {
           Transform masterRootXf = primMap[masterRootPath].transform;
 
+          Profiler.BeginSample("USD: Build Xforms");
           foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
             try {
               GameObject go = primMap[pathAndSample.path];
@@ -157,8 +199,10 @@ namespace USD.NET.Unity {
                   new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
             }
           }
+          Profiler.EndSample();
 
           // Meshes.
+          Profiler.BeginSample("USD: Build Meshes");
           foreach (var pathAndSample in scene.ReadAll<MeshSample>(masterRootPath)) {
             try {
               GameObject go = primMap[pathAndSample.path];
@@ -170,8 +214,10 @@ namespace USD.NET.Unity {
                   new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
             }
           }
+          Profiler.EndSample();
 
           // Cubes.
+          Profiler.BeginSample("USD: Build Cubes");
           foreach (var pathAndSample in scene.ReadAll<CubeSample>(masterRootPath)) {
             try {
               GameObject go = primMap[pathAndSample.path];
@@ -182,8 +228,10 @@ namespace USD.NET.Unity {
                   new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
             }
           }
+          Profiler.EndSample();
 
           // Cameras.
+          Profiler.BeginSample("USD: Build Cameras");
           foreach (var pathAndSample in scene.ReadAll<CameraSample>(masterRootPath)) {
             try {
               GameObject go = primMap[pathAndSample.path];
@@ -194,30 +242,35 @@ namespace USD.NET.Unity {
                   new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
             }
           }
+          Profiler.EndSample();
+
         } catch (System.Exception ex) {
           Debug.LogException(
               new System.Exception("Error processing master <" + masterRootPath + ">", ex));
         }
-      }
+      } // Instances.
+      Profiler.EndSample();
 
       //
       // Post-process dependencies: materials and bones.
       //
 
+      Profiler.BeginSample("USD: Process Material Bindings");
       try {
         // Process all material bindings in a single vectorized request.
         MaterialImporter.ProcessMaterialBindings(scene, importOptions);
       } catch (System.Exception ex) {
         Debug.LogException(new System.Exception("Failed in ProcessMaterialBindings", ex));
       }
+      Profiler.EndSample();
 
       //
       // SkinnedMesh bone bindings.
       //
+      Profiler.BeginSample("USD: Build Skeletons");
       var skeletonSamples = new Dictionary<pxr.SdfPath, SkeletonSample>();
       var skeletonBindPoses = new Dictionary<pxr.SdfPath, Dictionary<pxr.TfToken, Matrix4x4>>();
       var skeletonJoints = new Dictionary<pxr.SdfPath, pxr.VtTokenArray>();
-
       foreach (var skelRoot in skelRoots) {
         try {
           var bindings = new pxr.UsdSkelBindingVector();
@@ -318,11 +371,13 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error processing SkelRoot <" + skelRoot.GetPath() + ">", ex));
         }
-      }
+      } // foreach SkelRoot
+      Profiler.EndSample();
 
       //
       // Bone transforms.
       //
+      Profiler.BeginSample("USD: Pose Bones");
       foreach (var pathAndSample in skeletonSamples) {
         var skelPath = pathAndSample.Key;
 
@@ -348,19 +403,22 @@ namespace USD.NET.Unity {
               new System.Exception("Error processing SkelRoot <" + skelPath + ">", ex));
         }
       }
+      Profiler.EndSample();
 
       //
       // Apply instancing.
       //
-
+      Profiler.BeginSample("USD: Build Scene-Instances");
       try {
         // Build scene instances.
         InstanceImporter.BuildSceneInstances(primMap, importOptions);
       } catch (System.Exception ex) {
         Debug.LogException(new System.Exception("Failed in BuildSceneInstances", ex));
       }
+      Profiler.EndSample();
 
       // Build point instances.
+      Profiler.BeginSample("USD: Build Point-Instances");
       // TODO: right now all point instancer data is read, but we only need prototypes and indices.
       foreach (var pathAndSample in scene.ReadAll<PointInstancerSample>()) {
         try {
@@ -377,11 +435,12 @@ namespace USD.NET.Unity {
           Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
         }
       }
+      Profiler.EndSample();
 
       //
       // Apply root transform corrections to all root prims.
       //
-
+      Profiler.BeginSample("USD: Build Root Transforms");
       foreach (KeyValuePair<pxr.SdfPath, GameObject> kvp in primMap) {
         if (kvp.Key.IsRootPrimPath() && kvp.Value != null) {
           // The root object at which the USD scene will be reconstructed.
@@ -389,15 +448,17 @@ namespace USD.NET.Unity {
           XformImporter.BuildSceneRoot(scene, kvp.Value.transform, importOptions);
         }
       }
+      Profiler.EndSample();
 
       //
       // Clean up.
       //
-
+      Profiler.BeginSample("USD: Cleanup Masters");
       // Destroy all temp masters.
       foreach (var path in primMap.GetMasterRootPaths()) {
         GameObject.DestroyImmediate(primMap[path]);
       }
+      Profiler.EndSample();
 
       return primMap;
     }

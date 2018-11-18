@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Profiling;
 using pxr;
 
 namespace USD.NET.Unity {
@@ -118,7 +119,7 @@ namespace USD.NET.Unity {
       // bounds, normals and tangents should similarly be moved out of this function and should not
       // rely on the UnityEngine.Mesh API.
 
-      Material mat = null;
+      Material mat = renderer.sharedMaterial;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
 
       if (options.meshOptions.points == ImportMode.Import) {
@@ -131,11 +132,13 @@ namespace USD.NET.Unity {
         unityMesh.vertices = usdMesh.points;
       }
 
-      int[] originalIndices = new int[usdMesh.faceVertexIndices.Length];
-
-      // Optimization: only do this when there are face varying primvars.
-      Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
+      int[] originalIndices = new int[usdMesh.faceVertexIndices == null ? 0 : usdMesh.faceVertexIndices.Length];
+      
       if (options.meshOptions.topology == ImportMode.Import) {
+        // Optimization: only do this when there are face varying primvars.
+        Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
+
+        Profiler.BeginSample("Triangulate Mesh");
         if (options.meshOptions.triangulateMesh) {
           // Triangulate n-gons.
           // For best performance, triangulate off-line and skip conversion.
@@ -152,9 +155,10 @@ namespace USD.NET.Unity {
           UsdGeomMesh.Triangulate(indices, counts);
           UnityTypeConverter.FromVtArray(indices, ref usdMesh.faceVertexIndices);
         }
+        Profiler.EndSample();
 
+        Profiler.BeginSample("Convert LeftHanded");
         bool isLeftHanded = usdMesh.orientation == Orientation.LeftHanded;
-
         if (changeHandedness && !isLeftHanded || !changeHandedness && isLeftHanded) {
           // USD is right-handed, so the mesh needs to be flipped.
           // Unity is left-handed, but that doesn't matter here.
@@ -164,11 +168,13 @@ namespace USD.NET.Unity {
             usdMesh.faceVertexIndices[i + 1] = tmp;
           }
         }
+        Profiler.EndSample();
 
         if (usdMesh.faceVertexIndices.Length > 65535) {
           unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
         }
 
+        Profiler.BeginSample("Breakdown triangles for Mesh Subsets");
         if (geomSubsets.Subsets.Count == 0) {
           unityMesh.triangles = usdMesh.faceVertexIndices;
         } else {
@@ -188,6 +194,7 @@ namespace USD.NET.Unity {
             subsetIndex++;
           }
         }
+        Profiler.EndSample();
       }
 
       bool hasBounds = usdMesh.extent.size.x > 0
@@ -195,16 +202,21 @@ namespace USD.NET.Unity {
                     || usdMesh.extent.size.z > 0;
 
       if (ShouldImport(options.meshOptions.boundingBox) && hasBounds) {
+        Profiler.BeginSample("Import Bounds");
         if (changeHandedness) {
           usdMesh.extent.center = UnityTypeConverter.ChangeBasis(usdMesh.extent.center);
           usdMesh.extent.extents = UnityTypeConverter.ChangeBasis(usdMesh.extent.extents);
         }
         unityMesh.bounds = usdMesh.extent;
+        Profiler.EndSample();
       } else if (ShouldCompute(options.meshOptions.boundingBox)) {
+        Profiler.BeginSample("Calculate Bounds");
         unityMesh.RecalculateBounds();
+        Profiler.EndSample();
       }
 
       if (usdMesh.normals != null && ShouldImport(options.meshOptions.normals)) {
+        Profiler.BeginSample("Import Normals");
         if (changeHandedness) {
           for (int i = 0; i < usdMesh.points.Length; i++) {
             usdMesh.normals[i] = UnityTypeConverter.ChangeBasis(usdMesh.normals[i]);
@@ -215,11 +227,15 @@ namespace USD.NET.Unity {
           usdMesh.normals = UnrollFaceVarying(usdMesh.points.Length, usdMesh.normals, usdMesh.faceVertexCounts, originalIndices);
         }
         unityMesh.normals = usdMesh.normals;
+        Profiler.EndSample();
       } else if (ShouldCompute(options.meshOptions.normals)) {
+        Profiler.BeginSample("Calculate Normals");
         unityMesh.RecalculateNormals();
+        Profiler.EndSample();
       }
 
       if (usdMesh.tangents != null && ShouldImport(options.meshOptions.tangents)) {
+        Profiler.BeginSample("Import Tangents");
         if (changeHandedness) {
           for (int i = 0; i < usdMesh.points.Length; i++) {
             var w = usdMesh.tangents[i].w;
@@ -228,11 +244,15 @@ namespace USD.NET.Unity {
           }
         }
         unityMesh.tangents = usdMesh.tangents;
+        Profiler.EndSample();
       } else if (ShouldCompute(options.meshOptions.tangents)) {
+        Profiler.BeginSample("Calculate Tangents");
         unityMesh.RecalculateTangents();
+        Profiler.EndSample();
       }
 
       if (ShouldImport(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0) {
+        Profiler.BeginSample("Import Display Color");
         // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
         // For best performance, convert color space to linear off-line and skip conversion.
 
@@ -283,14 +303,18 @@ namespace USD.NET.Unity {
         } else {
           Debug.LogWarning("Uniform (color per face) display color not supported");
         }
+        Profiler.EndSample();
       } // should import color
 
+      Profiler.BeginSample("Import UV Sets");
       ImportUv(path, unityMesh, 0, usdMesh.st, usdMesh.indices, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
       ImportUv(path, unityMesh, 0, usdMesh.uv, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
       ImportUv(path, unityMesh, 1, usdMesh.uv2, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord1, go);
       ImportUv(path, unityMesh, 2, usdMesh.uv3, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord2, go);
       ImportUv(path, unityMesh, 3, usdMesh.uv4, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord3, go);
+      Profiler.EndSample();
 
+      Profiler.BeginSample("Request Material Bindings");
       if (mat == null) {
         mat = options.materialMap.InstantiateSolidColor(Color.white);
       }
@@ -316,9 +340,11 @@ namespace USD.NET.Unity {
           subIndex++;
         }
       }
+      Profiler.EndSample();
 
 #if UNITY_EDITOR
       if (options.meshOptions.generateLightmapUVs) {
+        Profiler.BeginSample("Unwrap Lightmap UVs");
         ShowCrashWarning();
         var unwrapSettings = new UnityEditor.UnwrapParam();
         unwrapSettings.angleError = options.meshOptions.unwrapAngleError;
@@ -334,6 +360,7 @@ namespace USD.NET.Unity {
           Debug.LogError("Light map unwrapping failed, disabling game object for prim: " + path);
           go.SetActive(false);
         }
+        Profiler.EndSample();
       }
 #else
       if (options.meshOptions.generateLightmapUVs) {
@@ -388,7 +415,7 @@ namespace USD.NET.Unity {
         for (int i = 0; i < count; i++) {
           // Find the associated mesh vertex for each vertex of the face.
           vertexVaryingIndex = faceVertexIndices[faceVaryingIndex];
-          Debug.Assert(vertexVaryingIndex < vertCount);
+          //Debug.Assert(vertexVaryingIndex < vertCount);
           // Set the UV value into the same vertex as the position.
           newUvs[vertexVaryingIndex] = uvs[faceVaryingIndex];
           faceVaryingIndex++;
