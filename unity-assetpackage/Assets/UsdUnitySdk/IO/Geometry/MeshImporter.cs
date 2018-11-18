@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -79,12 +79,11 @@ namespace USD.NET.Unity {
                              GameObject go,
                              SceneImportOptions options) {
       var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
-      smr.sharedMesh = BuildMesh_(path,
-                                  usdMesh,
-                                  geomSubsets,
-                                  go,
-                                  smr,
-                                  options);
+      if (smr.sharedMesh == null) {
+        smr.sharedMesh = new Mesh();
+      }
+
+      BuildMesh_(path, usdMesh, smr.sharedMesh, geomSubsets, go, smr, options);
     }
 
     /// <summary>
@@ -97,16 +96,16 @@ namespace USD.NET.Unity {
                              SceneImportOptions options) {
       var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
       var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
-      mf.sharedMesh = BuildMesh_(path,
-                                 usdMesh,
-                                 geomSubsets,
-                                 go,
-                                 mr,
-                                 options);
+      if (mf.sharedMesh == null) {
+        mf.sharedMesh = new Mesh();
+      }
+
+      BuildMesh_(path, usdMesh, mf.sharedMesh, geomSubsets, go, mr, options);
     }
 
-    private static Mesh BuildMesh_(string path,
+    private static void BuildMesh_(string path,
                                    MeshSample usdMesh,
+                                   Mesh unityMesh,
                                    GeometrySubsets geomSubsets,
                                    GameObject go,
                                    Renderer renderer,
@@ -119,7 +118,6 @@ namespace USD.NET.Unity {
       // bounds, normals and tangents should similarly be moved out of this function and should not
       // rely on the UnityEngine.Mesh API.
 
-      var unityMesh = new Mesh();
       Material mat = null;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
 
