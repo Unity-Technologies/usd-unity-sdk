@@ -59,6 +59,16 @@ namespace USD.NET.Unity {
     public bool debugShowSkeletonBindPose = false;
 
     /// <summary>
+    /// If true, the vertex positions of the mesh will be imported.
+    /// </summary>
+    public ImportMode points = ImportMode.Import;
+
+    /// <summary>
+    /// If true, the topology (triangles/faces) of the mesh will be imported.
+    /// </summary>
+    public ImportMode topology = ImportMode.Import;
+
+    /// <summary>
     /// If true, triangulates the mesh. Should only be set to false if the mesh is guaranteed
     /// to be a valid triangle mesh before import.
     /// </summary>
