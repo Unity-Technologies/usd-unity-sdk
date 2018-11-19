@@ -281,10 +281,10 @@ namespace USD.NET.Unity {
         var parentXf = rootBone;
         while (parentXf != null) {
 
-          // If there is an animator & avitar, assume this is the root of the rig.
+          // If there is an animator, assume this is the root of the rig.
           // This feels very ad hoc, it would be nice to not use a heuristic.
           var anim = parentXf.GetComponent<Animator>();
-          if (anim != null && anim.avatar != null) {
+          if (anim != null) {
 
             SkelRootSample rootSample = CreateSample<SkelRootSample>(context);
             rootSample.skeleton = UnityTypeConverter.GetPath(parentXf, expRoot) + "/_skeleton";
@@ -362,10 +362,6 @@ namespace USD.NET.Unity {
       var cam = go.GetComponent<Camera>();
       var anim = go.GetComponent<Animator>();
       Transform expRoot = context.exportRoot;
-
-      if (anim != null && anim.avatar != null && anim.avatar.isValid) {
-        // Assume any animator that has an avitar is a skeleton root.
-      }
 
       if (smr != null) {
         foreach (var mat in smr.sharedMaterials) {
