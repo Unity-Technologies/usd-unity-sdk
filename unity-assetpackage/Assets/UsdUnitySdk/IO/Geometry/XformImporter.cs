@@ -39,9 +39,7 @@ namespace USD.NET.Unity {
     public static void BuildXform(Matrix4x4 xf,
                                   GameObject go,
                                   SceneImportOptions options) {
-      if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
-        xf = UnityTypeConverter.ChangeBasis(xf);
-      }
+      ImportXform(ref xf, options);
 
       Vector3 localPos;
       Quaternion localRot;
@@ -55,6 +53,16 @@ namespace USD.NET.Unity {
       go.transform.localPosition = localPos;
       go.transform.localScale = localScale;
       go.transform.localRotation = localRot;
+    }
+
+    /// <summary>
+    /// Imports a matrix transform, correctly handling the change of basis.
+    /// </summary>
+    public static void ImportXform(ref Matrix4x4 mat, SceneImportOptions options) {
+      if (options.changeHandedness == BasisTransformation.FastWithNegativeScale) {
+        return;
+      }
+      mat = UnityTypeConverter.ChangeBasis(mat);
     }
 
     /// <summary>

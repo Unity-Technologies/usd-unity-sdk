@@ -29,6 +29,10 @@ namespace USD.NET.Unity {
                                          Matrix4x4 restXform,
                                          VtTokenArray joints,
                                          SceneImportOptions importOptions) {
+      // Perform change of basis, if needed.
+      XformImporter.ImportXform(ref restXform, importOptions);
+
+      // Decompose into TSR.
       Vector3 pos = Vector3.zero;
       Quaternion rot = Quaternion.identity;
       Vector3 scale = Vector3.one;
@@ -61,7 +65,7 @@ namespace USD.NET.Unity {
                                                 SceneImportOptions options) {
       var debugPrefix = "usdSkel_bindPose_debug_cube";
       if (options.meshOptions.debugShowSkeletonBindPose) {
-        
+
         int i = 0;
         foreach (var bindXf in skelSample.bindTransforms) {
           // Undo the bindXf inversion for visualization.
@@ -101,9 +105,7 @@ namespace USD.NET.Unity {
                                            SceneImportOptions options) {
       for (int i = 0; i < skelSample.bindTransforms.Length; i++) {
         var xf = skelSample.bindTransforms[i];
-        if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
-          xf = UnityTypeConverter.ChangeBasis(xf);
-        }
+        XformImporter.ImportXform(ref xf, options);
         skelSample.bindTransforms[i] = xf.inverse;
       }
     }
@@ -115,7 +117,7 @@ namespace USD.NET.Unity {
                                         GameObject go,
                                         PrimMap primMap,
                                         SceneImportOptions options) {
-      int[] indices   = meshBinding.jointIndices.value;
+      int[] indices = meshBinding.jointIndices.value;
       float[] weights = meshBinding.jointWeights.value;
       string[] joints = meshBinding.joints;
 
@@ -148,13 +150,10 @@ namespace USD.NET.Unity {
       if (ImporterBase.ApproximatelyEqual(geomXf, Matrix4x4.identity)) {
         mesh.bindposes = skeleton.bindTransforms;
       } else {
-        // Why not put the geometry transorm into the same space as the bind poses?
-        // It depends on the rest poses of the bones. If they are in a converted space, then the 
-        // bind poses must be as well and the geom bind transform must be converted here as well.
-
-        //if (options.changeHandedness == BasisTransformation.SlowAndSafe) {
-        //  geomXf = UnityTypeConverter.ChangeBasis(geomXf);
-        //}
+        // Note that the bind poses were transformed when the skeleton was imported, but the
+        // geomBindTransform is per-mesh, so it must be transformed here so it is in the same space
+        // as the bind pose.
+        XformImporter.ImportXform(ref geomXf, options);
 
         // Concatenate the geometry bind transform with the skeleton bind poses.
         var bindPoses = new Matrix4x4[skeleton.bindTransforms.Length];
@@ -166,7 +165,6 @@ namespace USD.NET.Unity {
         }
         mesh.bindposes = bindPoses;
       }
-
 
       var sdfSkelPath = new SdfPath(skelPath);
       for (int i = 0; i < joints.Length; i++) {
@@ -182,7 +180,7 @@ namespace USD.NET.Unity {
 
       for (int i = 0; i < boneWeights.Length; i++) {
         // When interpolation is constant, the base usdIndex should always be zero.
-          // When non-constant, the offset is the index times the number of weights per vertex.
+        // When non-constant, the offset is the index times the number of weights per vertex.
         int usdIndex = isConstant
                      ? 0
                      : i * meshBinding.jointWeights.elementSize;
@@ -206,7 +204,7 @@ namespace USD.NET.Unity {
           boneWeight.boneIndex2 = indices[usdIndex + 2];
           boneWeight.weight2 = weights[usdIndex + 2];
         }
-        if (meshBinding.jointIndices.elementSize >=4) {
+        if (meshBinding.jointIndices.elementSize >= 4) {
           boneWeight.boneIndex3 = indices[usdIndex + 3];
           boneWeight.weight3 = weights[usdIndex + 3];
         }
