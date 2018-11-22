@@ -363,10 +363,18 @@ namespace USD.NET.Unity {
       var anim = go.GetComponent<Animator>();
       Transform expRoot = context.exportRoot;
 
+      var tmpPath = new pxr.SdfPath(UnityTypeConverter.GetPath(go.transform, expRoot));
+      while (!tmpPath.IsRootPrimPath()) {
+        tmpPath = tmpPath.GetParentPath();
+      }
+
+      // TODO: What if this path is in use?
+      string materialBasePath = tmpPath.ToString() + "/Materials/";
+
       if (smr != null) {
         foreach (var mat in smr.sharedMaterials) {
           if (!context.matMap.ContainsKey(mat)) {
-            string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
+            string usdPath = materialBasePath + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
             context.matMap.Add(mat, usdPath);
           }
         }
@@ -384,7 +392,7 @@ namespace USD.NET.Unity {
             continue;
           }
           if (!context.matMap.ContainsKey(mat)) {
-            string usdPath = "/World/Materials/" + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
+            string usdPath = materialBasePath + pxr.UsdCs.TfMakeValidIdentifier(mat.name + "_" + mat.GetInstanceID().ToString());
             context.matMap.Add(mat, usdPath);
           }
         }
