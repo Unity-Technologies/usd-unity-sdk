@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -70,40 +70,40 @@ namespace USD.NET.Unity {
       StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
     }
 
-    private void ExportOverrides(StageRoot stageRoot) {
-      Scene scene = UsdMenu.InitForSave(
-          Path.GetFileNameWithoutExtension(stageRoot.m_usdFile) + "_overs.usda");
+    private void ExportOverrides(StageRoot sceneToReference) {
+      Scene overs = UsdMenu.InitForSave(
+          Path.GetFileNameWithoutExtension(sceneToReference.m_usdFile) + "_overs.usda");
 
-      if (scene == null) {
+      if (overs == null) {
         return;
       }
 
-      var baseLayer = Scene.Open(stageRoot.m_usdFile);
+      var baseLayer = Scene.Open(sceneToReference.m_usdFile);
       if (baseLayer == null) {
-        throw new System.Exception("Could not open base layer: " + stageRoot.m_usdFile);
+        throw new System.Exception("Could not open base layer: " + sceneToReference.m_usdFile);
       }
 
-      scene.WriteMode = Scene.WriteModes.Over;
-      scene.UpAxis = baseLayer.UpAxis;
+      overs.WriteMode = Scene.WriteModes.Over;
+      overs.UpAxis = baseLayer.UpAxis;
 
       try {
-        SceneExporter.Export(stageRoot.gameObject,
-                              scene,
-                              stageRoot.m_changeHandedness,
-                              exportUnvarying: false,
-                              zeroRootTransform: true);
+        SceneExporter.Export(sceneToReference.gameObject,
+                             overs,
+                             sceneToReference.m_changeHandedness,
+                             exportUnvarying: false,
+                             zeroRootTransform: true);
 
-        var rel = MakeRelativePath(scene.FilePath, stageRoot.m_usdFile);
-        GetFirstPrim(scene).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
+        var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.m_usdFile);
+        GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
         baseLayer.Close();
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         return;
       }
 
-      if (scene != null) {
-        scene.Save();
-        scene.Close();
+      if (overs != null) {
+        overs.Save();
+        overs.Close();
       }
     }
 
@@ -113,34 +113,6 @@ namespace USD.NET.Unity {
         return null;
       }
       return children.Current;
-    }
-
-    /// <summary>
-    /// Creates a relative path from one file or folder to another.
-    /// </summary>
-    /// <param name="fromPath">Contains the directory that defines the start of the relative path.</param>
-    /// <param name="toPath">Contains the path that defines the endpoint of the relative path.</param>
-    /// <returns>The relative path from the start directory to the end path or <c>toPath</c> if the paths are not related.</returns>
-    /// <exception cref="ArgumentNullException"></exception>
-    /// <exception cref="UriFormatException"></exception>
-    /// <exception cref="InvalidOperationException"></exception>
-    public static String MakeRelativePath(String fromPath, String toPath) {
-      if (String.IsNullOrEmpty(fromPath)) throw new ArgumentNullException("fromPath");
-      if (String.IsNullOrEmpty(toPath)) throw new ArgumentNullException("toPath");
-
-      Uri fromUri = new Uri(fromPath);
-      Uri toUri = new Uri(toPath);
-
-      if (fromUri.Scheme != toUri.Scheme) { return toPath; } // path can't be made relative.
-
-      Uri relativeUri = fromUri.MakeRelativeUri(toUri);
-      String relativePath = Uri.UnescapeDataString(relativeUri.ToString());
-
-      if (toUri.Scheme.Equals("file", StringComparison.InvariantCultureIgnoreCase)) {
-        relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
-      }
-
-      return relativePath;
     }
 
   }

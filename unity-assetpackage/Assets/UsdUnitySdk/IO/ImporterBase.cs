@@ -11,7 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+using System;
+using System.IO;
 using UnityEngine;
 
 namespace USD.NET.Unity {
@@ -19,6 +20,29 @@ namespace USD.NET.Unity {
   /// Basic functionality shared among Importers.
   /// </summary>
   public static class ImporterBase {
+
+    /// <summary>
+    /// Creates a relative path from one file or folder to another.
+    /// </summary>
+    public static String MakeRelativePath(string anchorPath, string pathToMakeRelative) {
+      if (string.IsNullOrEmpty(anchorPath)) throw new ArgumentNullException("pathToMakeRelative");
+      if (string.IsNullOrEmpty(pathToMakeRelative)) throw new ArgumentNullException("anchorPath");
+
+      Uri fromUri = new Uri(anchorPath);
+      Uri toUri = new Uri(pathToMakeRelative);
+
+      // path can't be made relative.
+      if (fromUri.Scheme != toUri.Scheme) { return pathToMakeRelative; }
+
+      Uri relativeUri = fromUri.MakeRelativeUri(toUri);
+      String relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+
+      if (toUri.Scheme.Equals("file", StringComparison.InvariantCultureIgnoreCase)) {
+        relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+      }
+
+      return relativePath;
+    }
 
     public static bool ApproximatelyEqual(Matrix4x4 lhs, Matrix4x4 rhs) {
       bool equal = true;
