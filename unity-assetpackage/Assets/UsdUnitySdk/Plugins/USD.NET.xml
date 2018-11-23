@@ -600,7 +600,7 @@
             Therefore, if the return value is not null, IsValid need not be checked.
             </summary>
         </member>
-        <member name="M:USD.NET.Scene.GetPath(System.String)">
+        <member name="M:USD.NET.Scene.GetSdfPath(System.String)">
             <summary>
             Translates the given string into an SdfPath, returning a cached value if possible.
             </summary>
@@ -812,11 +812,6 @@
         <member name="M:USD.NET.Scene.ToString">
             <summary>
             Returns the entire scene serialized as a string. Expensive for large scenes.
-            </summary>
-        </member>
-        <member name="M:USD.NET.Scene.GetSdfPath(System.String)">
-            <summary>
-            Translates a string path to an SdfPath, caching the result to avoid churn.
             </summary>
         </member>
         <member name="M:USD.NET.Scene.GetUsdPrim(System.String)">
