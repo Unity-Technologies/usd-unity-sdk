@@ -267,7 +267,7 @@ namespace USD.NET.Unity {
       var sets = prim.GetVariantSets();
       var setNames = sets.GetNames();
       var vs = go.GetComponent<UsdVariantSet>();
-      
+
       if (setNames.Count == 0) {
         if (vs) {
           Component.DestroyImmediate(vs);
