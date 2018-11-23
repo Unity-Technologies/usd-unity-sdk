@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -159,7 +159,10 @@ namespace USD.NET.Unity {
         foreach (var pathAndSample in scene.ReadAll<MaterialSample>(usdPrimRoot)) {
           try {
             GameObject go = primMap[pathAndSample.path];
-            var mat = MaterialImporter.BuildMaterial(scene, pathAndSample.path, pathAndSample.sample, importOptions);
+            var mat = MaterialImporter.BuildMaterial(scene,
+                                                     pathAndSample.path,
+                                                     pathAndSample.sample,
+                                                     importOptions);
             if (mat != null) {
               importOptions.materialMap[pathAndSample.path] = mat;
             }
