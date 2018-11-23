@@ -30,6 +30,10 @@ namespace USD.NET.Unity {
         ReloadFromUsd(stageRoot);
       }
 
+      if (Application.isPlaying && GUILayout.Button("Reload from USD (Coroutine)")) {
+        ReloadFromUsdAsCoroutine(stageRoot);
+      }
+
       if (GUILayout.Button("Export Transform Overrides")) {
         ExportOverrides(stageRoot);
       }
@@ -70,6 +74,14 @@ namespace USD.NET.Unity {
       StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
     }
 
+    private void ReloadFromUsdAsCoroutine(StageRoot stageRoot) {
+      var options = new SceneImportOptions();
+      stageRoot.StateToOptions(ref options);
+      var parent = stageRoot.gameObject.transform.parent;
+      var root = parent ? parent.gameObject : null;
+      stageRoot.ImportUsdAsCoroutine(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options, targetFrameMilliseconds: 5);
+    }
+
     private void ExportOverrides(StageRoot sceneToReference) {
       Scene overs = UsdMenu.InitForSave(
           Path.GetFileNameWithoutExtension(sceneToReference.m_usdFile) + "_overs.usda");
@@ -80,7 +92,7 @@ namespace USD.NET.Unity {
 
       var baseLayer = Scene.Open(sceneToReference.m_usdFile);
       if (baseLayer == null) {
-        throw new System.Exception("Could not open base layer: " + sceneToReference.m_usdFile);
+        throw new Exception("Could not open base layer: " + sceneToReference.m_usdFile);
       }
 
       overs.WriteMode = Scene.WriteModes.Over;

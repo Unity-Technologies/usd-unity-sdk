@@ -32,8 +32,9 @@ namespace USD.NET.Unity {
     /// <param name="unityRoot">The root game object under which all prims will be parented</param>
     /// <returns></returns>
     static public PrimMap BuildGameObjects(Scene scene,
-                                           GameObject unityRoot) {
-      return BuildGameObjects(scene, unityRoot, SdfPath.AbsoluteRootPath(), scene.AllPaths);
+                                           GameObject unityRoot,
+                                           PrimMap primMap) {
+      return BuildGameObjects(scene, unityRoot, SdfPath.AbsoluteRootPath(), scene.AllPaths, primMap);
     }
 
     /// <summary>
@@ -44,12 +45,14 @@ namespace USD.NET.Unity {
     /// <param name="usdRoot">The path at which to begin mapping paths.</param>
     static public PrimMap BuildGameObjects(Scene scene,
                                            GameObject unityRoot,
-                                           SdfPath usdRoot) {
+                                           SdfPath usdRoot,
+                                           PrimMap primMap) {
       // TODO: add an API for finding paths.
       return BuildGameObjects(scene,
                               unityRoot,
                               usdRoot,
-                              scene.Find(usdRoot.ToString(), "UsdSchemaBase"));
+                              scene.Find(usdRoot.ToString(), "UsdSchemaBase"),
+                              primMap);
     }
 
     /// <summary>
@@ -58,8 +61,8 @@ namespace USD.NET.Unity {
     static private PrimMap BuildGameObjects(Scene scene,
                                             GameObject unityRoot,
                                             SdfPath usdRoot,
-                                            IEnumerable<SdfPath> paths) {
-      var map = new PrimMap();
+                                            IEnumerable<SdfPath> paths,
+                                            PrimMap map) {
       map[usdRoot] = unityRoot;
 
       // TODO: Should recurse to discover deeply nested instancing.

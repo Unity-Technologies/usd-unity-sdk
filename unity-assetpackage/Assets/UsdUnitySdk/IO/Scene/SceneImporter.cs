@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -28,29 +29,86 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class SceneImporter {
 
+    public delegate void ProcessPrimMap(PrimMap primMap);
+
+    /// <summary>
+    /// Executes after the PrimMap has been constructed and before import.
+    /// </summary>
+    public static event ProcessPrimMap AfterBuildPrimMap;
+
     /// <summary>
     /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
     /// </summary>
     public static PrimMap BuildScene(Scene scene,
-                                 GameObject root,
-                                 pxr.SdfPath usdPrimRoot,
-                                 SceneImportOptions importOptions) {
+                                     GameObject root,
+                                     pxr.SdfPath usdPrimRoot,
+                                     SceneImportOptions importOptions) {
       try {
         Profiler.BeginSample("USD: Build Scene");
-        return BuildScene_(scene, root, usdPrimRoot, importOptions);
+        var primMap = new PrimMap();
+        var builder = BuildScene_(scene, root, usdPrimRoot, importOptions, primMap, 0);
+        while (builder.MoveNext()) { }
+        return primMap;
       } finally {
         Profiler.EndSample();
       }
     }
-    private static PrimMap BuildScene_(Scene scene,
+
+    public static IEnumerator BuildScene(Scene scene,
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
-                                     SceneImportOptions importOptions) {
+                                     SceneImportOptions importOptions,
+                                     PrimMap primMap,
+                                     float targetFrameMilliseconds) {
+      return BuildScene_(scene,
+                         root,
+                         usdPrimRoot,
+                         importOptions,
+                         primMap,
+                         targetFrameMilliseconds);
+    }
+
+    private static bool ShouldYield(float targetTime, System.Diagnostics.Stopwatch timer) {
+      return timer.ElapsedMilliseconds > targetTime;
+    }
+
+    private static void ResetTimer(System.Diagnostics.Stopwatch timer) {
+      timer.Stop();
+      timer.Reset();
+      timer.Start();
+    }
+
+    private static IEnumerator BuildScene_(Scene scene,
+                                           GameObject root,
+                                           pxr.SdfPath usdPrimRoot,
+                                           SceneImportOptions importOptions,
+                                           PrimMap primMap,
+                                           float targetFrameMilliseconds) {
+      var timer = new System.Diagnostics.Stopwatch();
+
+      // Setting an arbitrary fudge factor of 20% is very non-scientific, however it's better than
+      // nothing. The correct way to hit a deadline is to predict how long each iteration actually
+      // takes and then return early if the estimated time is over budget.
+      float targetTime = targetFrameMilliseconds * .8f;
+
+      timer.Start();
+
       // Reconstruct the USD hierarchy as Unity GameObjects.
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       Profiler.BeginSample("USD: Build Hierarchy");
-      var primMap = HierarchyBuilder.BuildGameObjects(scene, root, usdPrimRoot);
+      primMap.Clear();
+      HierarchyBuilder.BuildGameObjects(scene, root, usdPrimRoot, primMap);
       Profiler.EndSample();
+
+      if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+
+      Profiler.BeginSample("USD: AfterBuildPrimMap");
+      if (AfterBuildPrimMap != null) {
+        AfterBuildPrimMap(primMap);
+      }
+      Profiler.EndSample();
+
+      if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
 
       //
       // Pre-process UsdSkelRoots.
@@ -82,6 +140,8 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error pre-processing SkelRoot <" + path + ">", ex));
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
@@ -103,6 +163,8 @@ namespace USD.NET.Unity {
             Debug.LogException(
                 new System.Exception("Error processing material <" + pathAndSample.path + ">", ex));
           }
+
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
       }
       Profiler.EndSample();
@@ -120,6 +182,8 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
@@ -150,6 +214,8 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
@@ -164,6 +230,8 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
@@ -178,6 +246,8 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
@@ -246,6 +316,8 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error processing master <" + masterRootPath + ">", ex));
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       } // Instances.
       Profiler.EndSample();
 
@@ -255,12 +327,18 @@ namespace USD.NET.Unity {
 
       Profiler.BeginSample("USD: Process Material Bindings");
       try {
+        // TODO: Currently ProcessMaterialBindings runs too long and will go over budget for any
+        // large scene. However, pulling the loop into this code feels wrong in terms of
+        // responsibilities.
+        
         // Process all material bindings in a single vectorized request.
         MaterialImporter.ProcessMaterialBindings(scene, importOptions);
       } catch (System.Exception ex) {
         Debug.LogException(new System.Exception("Failed in ProcessMaterialBindings", ex));
       }
       Profiler.EndSample();
+
+      if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
 
       //
       // SkinnedMesh bone bindings.
@@ -372,6 +450,8 @@ namespace USD.NET.Unity {
       } // foreach SkelRoot
       Profiler.EndSample();
 
+      if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+
       //
       // Bone transforms.
       //
@@ -400,6 +480,8 @@ namespace USD.NET.Unity {
           Debug.LogException(
               new System.Exception("Error processing SkelRoot <" + skelPath + ">", ex));
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
@@ -414,6 +496,8 @@ namespace USD.NET.Unity {
         Debug.LogException(new System.Exception("Failed in BuildSceneInstances", ex));
       }
       Profiler.EndSample();
+
+      if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
 
       // Build point instances.
       Profiler.BeginSample("USD: Build Point-Instances");
@@ -432,6 +516,8 @@ namespace USD.NET.Unity {
         } catch (System.Exception ex) {
           Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
         }
+
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
@@ -455,10 +541,9 @@ namespace USD.NET.Unity {
       // Destroy all temp masters.
       foreach (var path in primMap.GetMasterRootPaths()) {
         GameObject.DestroyImmediate(primMap[path]);
+        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
-
-      return primMap;
     }
 
   }

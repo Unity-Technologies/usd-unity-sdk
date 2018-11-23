@@ -161,6 +161,35 @@ namespace USD.NET.Unity {
       options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
     }
 
+    public void ImportUsdAsCoroutine(GameObject goRoot,
+                                     string usdFilePath,
+                                     double time,
+                                     SceneImportOptions importOptions,
+                                     float targetFrameMilliseconds) {
+      Examples.InitUsd.Initialize();
+      var scene = Scene.Open(usdFilePath);
+      if (scene == null) {
+        throw new Exception("Failed to open: " + usdFilePath);
+      }
+
+      scene.Time = time;
+      if (scene == null) {
+        throw new Exception("Null USD Scene");
+      }
+
+      scene.SetInterpolation(importOptions.interpolate ?
+                             Scene.InterpolationMode.Linear :
+                             Scene.InterpolationMode.Held);
+      var primMap = new PrimMap();
+      var importer = SceneImporter.BuildScene(scene,
+                                              goRoot,
+                                              pxr.SdfPath.AbsoluteRootPath(),
+                                              importOptions,
+                                              primMap,
+                                              targetFrameMilliseconds);
+      StartCoroutine(importer);
+    }
+
     public void SetVariantSelection(GameObject go,
                                     string usdPrimPath,
                                     Dictionary<string, string> selections) {
