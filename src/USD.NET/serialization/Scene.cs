@@ -253,8 +253,13 @@ namespace USD.NET {
     /// <summary>
     /// Translates the given string into an SdfPath, returning a cached value if possible.
     /// </summary>
-    public SdfPath GetPath(string primPath) {
-      return GetPath(primPath);
+    public SdfPath GetSdfPath(string path) {
+      SdfPath sdfPath;
+      if (!m_pathMap.TryGetValue(path, out sdfPath)) {
+        sdfPath = new SdfPath(path);
+        m_pathMap[path] = sdfPath;
+      }
+      return sdfPath;
     }
 
     /// <summary>
@@ -670,18 +675,6 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // Private API
     // ----------------------------------------------------------------------------------------- //
-
-    /// <summary>
-    /// Translates a string path to an SdfPath, caching the result to avoid churn.
-    /// </summary>
-    private SdfPath GetSdfPath(string path) {
-      if (m_pathMap.ContainsKey(path)) {
-        return m_pathMap[path];
-      }
-      var p = new SdfPath(path);
-      m_pathMap[path] = p;
-      return p;
-    }
 
     private SdfPath GetSdfPath(pxr.SdfPath path) {
       throw new ApplicationException("TODO: don't allow implicit conversion path -> string");
