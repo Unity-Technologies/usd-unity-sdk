@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,7 +29,11 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class SceneImporter {
 
-    public delegate void ProcessPrimMap(PrimMap primMap);
+    public delegate void ProcessPrimMap(PrimMap primMap,
+                                        Scene usdScene,
+                                        pxr.SdfPath usdPrimRoot,
+                                        GameObject unityRoot,
+                                        SceneImportOptions importOptions);
 
     /// <summary>
     /// Executes after the PrimMap has been constructed and before import.
@@ -104,7 +108,7 @@ namespace USD.NET.Unity {
 
       Profiler.BeginSample("USD: AfterBuildPrimMap");
       if (AfterBuildPrimMap != null) {
-        AfterBuildPrimMap(primMap);
+        AfterBuildPrimMap(primMap, scene, usdPrimRoot, root, importOptions);
       }
       Profiler.EndSample();
 
