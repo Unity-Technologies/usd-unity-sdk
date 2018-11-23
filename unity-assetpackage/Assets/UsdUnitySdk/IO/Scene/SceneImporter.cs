@@ -29,16 +29,17 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class SceneImporter {
 
-    public delegate void ProcessPrimMap(PrimMap primMap,
-                                        Scene usdScene,
-                                        pxr.SdfPath usdPrimRoot,
-                                        GameObject unityRoot,
-                                        SceneImportOptions importOptions);
+    public delegate void ImportNotice(PrimMap primMap,
+                                      Scene usdScene,
+                                      pxr.SdfPath usdPrimRoot,
+                                      GameObject unityRoot,
+                                      SceneImportOptions importOptions);
 
     /// <summary>
     /// Executes after the PrimMap has been constructed and before import.
     /// </summary>
-    public static event ProcessPrimMap AfterBuildPrimMap;
+    public static event ImportNotice AfterBuildPrimMap;
+    public static event ImportNotice AfterImport;
 
     /// <summary>
     /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
@@ -549,6 +550,15 @@ namespace USD.NET.Unity {
       foreach (var path in primMap.GetMasterRootPaths()) {
         GameObject.DestroyImmediate(primMap[path]);
         if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+      }
+      Profiler.EndSample();
+
+      //
+      // AfterImport callback.
+      //
+      Profiler.BeginSample("AfterImport callback");
+      if (AfterImport != null) {
+        AfterImport(primMap, scene, usdPrimRoot, root, importOptions);
       }
       Profiler.EndSample();
     }
