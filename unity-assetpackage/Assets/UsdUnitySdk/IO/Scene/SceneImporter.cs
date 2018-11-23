@@ -353,7 +353,7 @@ namespace USD.NET.Unity {
                 var bones = new Transform[jointOrder.size()];
                 for (int i = 0; i < bindPoses.Length; i++) {
                   bindPoses[i] = skeletonBindPoses[skelPath][jointOrder[i]].inverse;
-                  var bonePath = new pxr.SdfPath(jointOrder[i]);
+                  var bonePath = scene.GetSdfPath(jointOrder[i]);
                   var boneGo = primMap[skelPath.AppendPath(bonePath)];
                   bones[i] = boneGo.transform;
                 }
@@ -392,7 +392,7 @@ namespace USD.NET.Unity {
           }
 
           for (int i = 0; i < joints.size(); i++) {
-            var goBone = primMap[skelPath.AppendPath(new pxr.SdfPath(joints[i]))];
+            var goBone = primMap[skelPath.AppendPath(scene.GetSdfPath(joints[i]))];
             var restXform = UnityTypeConverter.FromMatrix(restXforms[i]);
             SkeletonImporter.BuildSkeletonBone(skelPath, goBone, restXform, joints, importOptions);
           }
