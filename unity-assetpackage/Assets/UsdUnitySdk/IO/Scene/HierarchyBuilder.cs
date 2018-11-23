@@ -121,25 +121,34 @@ namespace USD.NET.Unity {
         var go = FindOrCreateGameObject(parent, path);
 
         try {
+          Profiler.BeginSample("Add Model Root");
           AddModelRoot(go, prim);
+          Profiler.EndSample();
+
+          Profiler.BeginSample("Add Variant Set");
           AddVariantSet(go, prim);
+          Profiler.EndSample();
         } catch (Exception ex) {
           Debug.LogException(new Exception("Error processing " + prim.GetPath(), ex));
         }
 
+        Profiler.BeginSample("Add Instance Root");
         if (prim.IsInstance()) {
           map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
         }
+        Profiler.EndSample();
 
-        map[new SdfPath(path)] = go;
+        Profiler.BeginSample("Add to Map");
+        map[scene.GetSdfPath(path)] = go;
+        Profiler.EndSample();
       }
       Profiler.EndSample();
 
       Profiler.BeginSample("Expand Skeletons");
-      foreach (var path in paths) {
+      foreach (var path in scene.Find<SkelRootSample>()) {
         try {
           var prim = scene.GetPrimAtPath(path);
-          ExpandSkeleton(map[path], prim, map);
+          ExpandSkeleton(map[path], prim, map, scene);
         } catch (Exception ex) {
           Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
         }
@@ -149,7 +158,7 @@ namespace USD.NET.Unity {
       return map;
     }
 
-    static void ExpandSkeleton(GameObject go, UsdPrim prim, PrimMap map) {
+    static void ExpandSkeleton(GameObject go, UsdPrim prim, PrimMap map, Scene scene) {
       if (!prim) { return; }
 
       var skelRoot = new UsdSkelRoot(prim);
@@ -177,7 +186,7 @@ namespace USD.NET.Unity {
 
       var skelPath = skelPrim.GetPath();
       foreach (var joint in joints) {
-        var path = skelPath.AppendPath(new SdfPath(joint));
+        var path = skelPath.AppendPath(scene.GetSdfPath(joint));
         GameObject parentGo = null;
         if (!map.TryGetValue(path.GetParentPath(), out parentGo)) {
           Debug.LogWarning("Parent joint path not found: " + path.GetParentPath().ToString()
