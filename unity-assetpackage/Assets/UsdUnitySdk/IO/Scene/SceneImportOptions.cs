@@ -71,6 +71,11 @@ namespace USD.NET.Unity {
   public class SceneImportOptions {
 
     /// <summary>
+    /// The root location in the Unity project where imported files will be created.
+    /// </summary>
+    public string assetImportPath = "Tmp/Test/";
+
+    /// <summary>
     /// Typically USD data is right-handed and Unity is left handed; this option indicates how
     /// that conversion should be handled.
     /// </summary>

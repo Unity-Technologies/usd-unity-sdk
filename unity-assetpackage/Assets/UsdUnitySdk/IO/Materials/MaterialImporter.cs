@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace USD.NET.Unity {
@@ -22,6 +22,28 @@ namespace USD.NET.Unity {
   /// </summary>
   public static class MaterialImporter {
 
+    // Cache the token so we don't create a new one on every use.
+    // This value should come from USD, however it's currently only a defacto standard.
+    private static readonly pxr.TfToken materialBindToken = new pxr.TfToken("materialBind");
+
+    public delegate Texture TextureResolver(pxr.SdfAssetPath textureAssetPath,
+                                            SceneImportOptions importOptions);
+
+    /// <summary>
+    /// A callback that allows custom texture resolution logic.
+    /// </summary>
+    /// <remarks>
+    /// Note that this method is only called when texture import is enabled. If this event is wired
+    /// up, it must return a value, returning null will cause the texture to be skipped. The same
+    /// texture may be resolved multiple times as needed.
+    /// </remarks>
+    public static TextureResolver OnResolveTexture;
+
+    /// <summary>
+    /// Computes the bound material using UsdShade's inherited binding logic.
+    /// If a material is bound, the request callback is executed to enable the caller to bind the
+    /// material to the Unity geometry.
+    /// </summary>
     public static void ProcessMaterialBindings(Scene scene, SceneImportOptions importOptions) {
       var requests = importOptions.materialMap.ClearRequestedBindings();
       var prims = new pxr.UsdPrimVector();
@@ -31,8 +53,7 @@ namespace USD.NET.Unity {
         prims.Add(prim);
       }
 
-      var matBindTok = new pxr.TfToken("materialBind");
-      var matVector = pxr.UsdShadeMaterialBindingAPI.ComputeBoundMaterials(prims, matBindTok);
+      var matVector = pxr.UsdShadeMaterialBindingAPI.ComputeBoundMaterials(prims, materialBindToken);
       var materialSample = new MaterialSample();
       var matIndex = -1;
 
@@ -55,6 +76,9 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Builds a Unity Material from the given USD material sample.
+    /// </summary>
     public static Material BuildMaterial(Scene scene,
                                          string materialPath,
                                          MaterialSample sample,
@@ -76,6 +100,18 @@ namespace USD.NET.Unity {
 
       if (previewSurf.diffuseColor.IsConnected()) {
         // TODO: look for the expected texture/primvar reader pair.
+        var textureSample = new TextureReaderSample();
+        var connectedPrimPath = scene.GetSdfPath(previewSurf.diffuseColor.connectedPath).GetPrimPath();
+        scene.Read(connectedPrimPath, textureSample);
+        if (textureSample.file.defaultValue != null &&
+            !string.IsNullOrEmpty(textureSample.file.defaultValue.GetResolvedPath())) {
+
+          if (OnResolveTexture != null) {
+            mat.mainTexture = OnResolveTexture(textureSample.file.defaultValue, options);
+          } else {
+            mat.mainTexture = DefaultTextureResolver(textureSample.file.defaultValue, options);
+          }
+        }
       } else {
         // TODO: this should delegate to a material mapper.
         var rgb = previewSurf.diffuseColor.defaultValue;
@@ -84,6 +120,41 @@ namespace USD.NET.Unity {
 
       return mat;
     }
+
+    /// <summary>
+    /// Private default texture resolver. Copies the given texture into the asset database.
+    /// </summary>
+    private static Texture DefaultTextureResolver(pxr.SdfAssetPath textureAssetPath,
+                                                  SceneImportOptions options) {
+      if (!File.Exists(textureAssetPath.GetResolvedPath())) {
+        return null;
+      }
+
+      string sourcePath = textureAssetPath.GetResolvedPath();
+      string destPath = Path.Combine(options.assetImportPath, Path.GetFileName(sourcePath));
+      string assetPath = options.assetImportPath + Path.GetFileName(sourcePath);
+
+      string fullPath = destPath;
+      if (fullPath.StartsWith("Assets/")) {
+        fullPath = fullPath.Substring("Assets/".Length);
+      }
+      
+      if (!File.Exists(destPath)) {
+        UnityEditor.FileUtil.CopyFileOrDirectory(sourcePath, destPath);
+        UnityEditor.AssetDatabase.ImportAsset(assetPath);
+        UnityEditor.TextureImporter texImporter = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(assetPath);
+        if (texImporter == null) {
+          Debug.LogError("Failed to load asset: " + assetPath);
+          return null;
+        } else {
+          UnityEditor.EditorUtility.SetDirty(texImporter);
+          texImporter.SaveAndReimport();
+        }
+      }
+
+      return (Texture)UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture));
+    }
+
 
     /// <summary>
     /// Reads and returns the UsdPreviewSurface data for the prim at the given path, if present.

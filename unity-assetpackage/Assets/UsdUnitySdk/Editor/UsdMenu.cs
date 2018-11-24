@@ -116,6 +116,7 @@ public class UsdMenu : MonoBehaviour {
     scene.Time = 1.0;
 
     var importOptions = new SceneImportOptions();
+    importOptions.assetImportPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
     //importOptions.meshOptions.generateLightmapUVs = true;
@@ -148,13 +149,14 @@ public class UsdMenu : MonoBehaviour {
     scene.Time = 1.0;
 
     var importOptions = new SceneImportOptions();
+    importOptions.assetImportPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
 
     var invalidChars = Path.GetInvalidFileNameChars();
     var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
         System.StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
-    string prefabPath = "Assets/" + prefabName + ".prefab";
+    string prefabPath = GetSelectedAssetPath() + prefabName + ".prefab";
 
     try {
       ImportUsdToPrefab(scene, prefabPath, importOptions);
@@ -163,12 +165,25 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
-  [MenuItem("USD/Show Selected Asset")]
-  public static void ShowSelectedAsset() {
+  /// <summary>
+  /// Returns the selected object path or the empty string if no object is selected.
+  /// </summary>
+  public static string GetSelectedAssetPath() {
     Object[] selectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
     foreach (Object obj in selectedAsset) {
-      Debug.Log("Asset name: " + obj.name + "   Type: " + obj.GetType());
+      var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
+      if (string.IsNullOrEmpty(path)) {
+        continue;
+      }
+      if (File.Exists(path)) {
+        path = Path.GetDirectoryName(path);
+      }
+      if (!path.EndsWith("/")) {
+        path += "/";
+      }
+      return path;
     }
+    return "Assets/";
   }
 
   public static GameObject UsdToGameObject(GameObject parent,
