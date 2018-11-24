@@ -38,4 +38,5 @@
 
 %include "sdfLayerBase.i"
 %include "sdfLayer.i"
+%include "sdfLayerTree.i"
 

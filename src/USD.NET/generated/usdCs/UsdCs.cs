@@ -2949,6 +2949,12 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint hash_value(PcpNodeRef x) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_53(PcpNodeRef.getCPtr(x));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static void swap(PcpPrimIndex l, PcpPrimIndex r) {
     UsdCsPINVOKE.swap__SWIG_5(PcpPrimIndex.getCPtr(l), PcpPrimIndex.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -2959,13 +2965,13 @@ public class UsdCs {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void PcpComputePrimIndex(SdfPath primPath, SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr layerStack, SWIGTYPE_p_PcpPrimIndexInputs inputs, SWIGTYPE_p_PcpPrimIndexOutputs outputs, SWIGTYPE_p_ArResolver pathResolver) {
-    UsdCsPINVOKE.PcpComputePrimIndex__SWIG_0(SdfPath.getCPtr(primPath), SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr.getCPtr(layerStack), SWIGTYPE_p_PcpPrimIndexInputs.getCPtr(inputs), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(outputs), SWIGTYPE_p_ArResolver.getCPtr(pathResolver));
+  public static void PcpComputePrimIndex(SdfPath primPath, PcpLayerStackPtr layerStack, SWIGTYPE_p_PcpPrimIndexInputs inputs, SWIGTYPE_p_PcpPrimIndexOutputs outputs, SWIGTYPE_p_ArResolver pathResolver) {
+    UsdCsPINVOKE.PcpComputePrimIndex__SWIG_0(SdfPath.getCPtr(primPath), PcpLayerStackPtr.getCPtr(layerStack), SWIGTYPE_p_PcpPrimIndexInputs.getCPtr(inputs), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(outputs), SWIGTYPE_p_ArResolver.getCPtr(pathResolver));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void PcpComputePrimIndex(SdfPath primPath, SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr layerStack, SWIGTYPE_p_PcpPrimIndexInputs inputs, SWIGTYPE_p_PcpPrimIndexOutputs outputs) {
-    UsdCsPINVOKE.PcpComputePrimIndex__SWIG_1(SdfPath.getCPtr(primPath), SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr.getCPtr(layerStack), SWIGTYPE_p_PcpPrimIndexInputs.getCPtr(inputs), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(outputs));
+  public static void PcpComputePrimIndex(SdfPath primPath, PcpLayerStackPtr layerStack, SWIGTYPE_p_PcpPrimIndexInputs inputs, SWIGTYPE_p_PcpPrimIndexOutputs outputs) {
+    UsdCsPINVOKE.PcpComputePrimIndex__SWIG_1(SdfPath.getCPtr(primPath), PcpLayerStackPtr.getCPtr(layerStack), SWIGTYPE_p_PcpPrimIndexInputs.getCPtr(inputs), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(outputs));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -2982,6 +2988,33 @@ public class UsdCs {
   public static void PcpBuildPrimPropertyIndex(SdfPath propertyPath, PcpCache cache, PcpPrimIndex owningPrimIndex, PcpPropertyIndex propertyIndex, SWIGTYPE_p_PcpErrorVector allErrors) {
     UsdCsPINVOKE.PcpBuildPrimPropertyIndex(SdfPath.getCPtr(propertyPath), PcpCache.getCPtr(cache), PcpPrimIndex.getCPtr(owningPrimIndex), PcpPropertyIndex.getCPtr(propertyIndex), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static bool PcpIsInheritArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsInheritArc((int)arcType);
+    return ret;
+  }
+
+  public static bool PcpIsSpecializesArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsSpecializesArc((int)arcType);
+    return ret;
+  }
+
+  public static bool PcpIsClassBasedArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsClassBasedArc((int)arcType);
+    return ret;
+  }
+
+  public static bool PcpIsLocalClassBasedArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsLocalClassBasedArc((int)arcType);
+    return ret;
+  }
+
+  public static uint PCP_INVALID_INDEX {
+    get {
+      uint ret = UsdCsPINVOKE.PCP_INVALID_INDEX_get();
+      return ret;
+    } 
   }
 
   public static string UsdDescribe(UsdObject arg0) {
@@ -3025,13 +3058,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdTimeCode time) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_53(UsdTimeCode.getCPtr(time));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(Usd_PrimFlagsPredicate p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(Usd_PrimFlagsPredicate.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(Usd_PrimFlagsPredicate.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3145,7 +3178,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdObject obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(UsdObject.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(UsdObject.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3173,13 +3206,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdSkelAnimQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(UsdSkelAnimQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(UsdSkelAnimQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(UsdSkelSkeletonQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(UsdSkelSkeletonQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_58(UsdSkelSkeletonQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3686,8 +3719,8 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool UsdUtilsComputeAllDependencies(SdfAssetPath assetPath, SWIGTYPE_p_std__vectorT_TfRefPtrT_SdfLayer_t_t layers, StdStringVector assets, StdStringVector unresolvedPaths) {
-    bool ret = UsdCsPINVOKE.UsdUtilsComputeAllDependencies(SdfAssetPath.getCPtr(assetPath), SWIGTYPE_p_std__vectorT_TfRefPtrT_SdfLayer_t_t.getCPtr(layers), StdStringVector.getCPtr(assets), StdStringVector.getCPtr(unresolvedPaths));
+  public static bool UsdUtilsComputeAllDependencies(SdfAssetPath assetPath, SdfLayerRefPtrVector layers, StdStringVector assets, StdStringVector unresolvedPaths) {
+    bool ret = UsdCsPINVOKE.UsdUtilsComputeAllDependencies(SdfAssetPath.getCPtr(assetPath), SdfLayerRefPtrVector.getCPtr(layers), StdStringVector.getCPtr(assets), StdStringVector.getCPtr(unresolvedPaths));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

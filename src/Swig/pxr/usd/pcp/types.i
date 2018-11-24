@@ -17,5 +17,12 @@
 #include "pxr/usd/pcp/types.h"
 %}
 
+%ignore Pcp_SdSiteRef;
+%ignore Pcp_CompressedSdSite;
+
+// Uses PcpLayerStackSite, disabled until API is fixed:
+// https://github.com/PixarAnimationStudios/USD/issues/703
+%ignore PcpSiteTrackerSegment;
+
 %include "pxr/usd/pcp/types.h"
 

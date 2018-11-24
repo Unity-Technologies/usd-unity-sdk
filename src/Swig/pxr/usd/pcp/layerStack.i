@@ -17,6 +17,20 @@
 #include "pxr/usd/pcp/layerStack.h"
 %}
 
+%TfRefPtr(PcpLayerStack);
+class PcpLayerStackPtr{
+public:
+    PcpLayerStackPtr(PcpLayerStack* ptr);
+    PcpLayerStack const* operator->();
+};
+
+typedef TfWeakPtr<PcpLayerStack> PcpLayerStackPtr;
+typedef TfRefPtr<PcpLayerStack> PcpLayerStackRefPtr;
+
+%include <std_vector.i>
+%template(PcpLayerStackPtrVector) std::vector< PcpLayerStackPtr >;
+typedef std::vector< PcpLayerStackPtr > PcpLayerStackPtrVector;
+
 %ignore Pcp_ComputeRelocationsForLayerStack(
     const SdfLayerRefPtrVector & layers,
     SdfRelocatesMap *relocatesSourceToTarget,

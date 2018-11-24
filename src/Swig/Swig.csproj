@@ -122,6 +122,7 @@
     <Content Include="pxr\usd\kind\kindTokens_Tokens.i" />
     <Content Include="pxr\usd\kind\kindTokens.i" />
     <Content Include="pxr\usd\ndr\ndr.i" />
+    <Content Include="pxr\usd\sdf\sdfLayerTree.i" />
     <Content Include="pxr\usd\sdf\sdfReference.i" />
     <Content Include="pxr\usd\sdr\declare.i" />
     <Content Include="pxr\usd\ndr\ndrDeclare.i" />

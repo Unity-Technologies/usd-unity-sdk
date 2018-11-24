@@ -61,8 +61,8 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr GetLayerStack() {
-    SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr ret = new SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr(UsdCsPINVOKE.PcpCache_GetLayerStack(swigCPtr), true);
+  public PcpLayerStackPtr GetLayerStack() {
+    PcpLayerStackPtr ret = new PcpLayerStackPtr(UsdCsPINVOKE.PcpCache_GetLayerStack(swigCPtr), true);
     return ret;
   }
 
@@ -82,18 +82,18 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpVariantFallbackMap GetVariantFallbacks() {
-    SWIGTYPE_p_PcpVariantFallbackMap ret = new SWIGTYPE_p_PcpVariantFallbackMap(UsdCsPINVOKE.PcpCache_GetVariantFallbacks(swigCPtr), true);
+  public SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t GetVariantFallbacks() {
+    SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t ret = new SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t(UsdCsPINVOKE.PcpCache_GetVariantFallbacks(swigCPtr), true);
     return ret;
   }
 
-  public void SetVariantFallbacks(SWIGTYPE_p_PcpVariantFallbackMap map, SWIGTYPE_p_PcpChanges changes) {
-    UsdCsPINVOKE.PcpCache_SetVariantFallbacks__SWIG_0(swigCPtr, SWIGTYPE_p_PcpVariantFallbackMap.getCPtr(map), SWIGTYPE_p_PcpChanges.getCPtr(changes));
+  public void SetVariantFallbacks(SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t map, SWIGTYPE_p_PcpChanges changes) {
+    UsdCsPINVOKE.PcpCache_SetVariantFallbacks__SWIG_0(swigCPtr, SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t.getCPtr(map), SWIGTYPE_p_PcpChanges.getCPtr(changes));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void SetVariantFallbacks(SWIGTYPE_p_PcpVariantFallbackMap map) {
-    UsdCsPINVOKE.PcpCache_SetVariantFallbacks__SWIG_1(swigCPtr, SWIGTYPE_p_PcpVariantFallbackMap.getCPtr(map));
+  public void SetVariantFallbacks(SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t map) {
+    UsdCsPINVOKE.PcpCache_SetVariantFallbacks__SWIG_1(swigCPtr, SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t.getCPtr(map));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -156,14 +156,15 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__RefPtr ComputeLayerStack(PcpLayerStackIdentifier identifier, SWIGTYPE_p_PcpErrorVector allErrors) {
-    SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__RefPtr ret = new SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__RefPtr(UsdCsPINVOKE.PcpCache_ComputeLayerStack(swigCPtr, PcpLayerStackIdentifier.getCPtr(identifier), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors)), true);
+  public PcpLayerStack ComputeLayerStack(PcpLayerStackIdentifier identifier, SWIGTYPE_p_PcpErrorVector allErrors) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.PcpCache_ComputeLayerStack(swigCPtr, PcpLayerStackIdentifier.getCPtr(identifier), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
+    PcpLayerStack ret = (cPtr == global::System.IntPtr.Zero) ? null : new PcpLayerStack(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr FindLayerStack(PcpLayerStackIdentifier identifier) {
-    SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr ret = new SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr(UsdCsPINVOKE.PcpCache_FindLayerStack(swigCPtr, PcpLayerStackIdentifier.getCPtr(identifier)), true);
+  public PcpLayerStackPtr FindLayerStack(PcpLayerStackIdentifier identifier) {
+    PcpLayerStackPtr ret = new PcpLayerStackPtr(UsdCsPINVOKE.PcpCache_FindLayerStack(swigCPtr, PcpLayerStackIdentifier.getCPtr(identifier)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -214,14 +215,14 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__PtrVector FindAllLayerStacksUsingLayer(SdfLayerHandle layer) {
-    SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__PtrVector ret = new SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__PtrVector(UsdCsPINVOKE.PcpCache_FindAllLayerStacksUsingLayer(swigCPtr, SdfLayerHandle.getCPtr(layer)), false);
+  public PcpLayerStackPtrVector FindAllLayerStacksUsingLayer(SdfLayerHandle layer) {
+    PcpLayerStackPtrVector ret = new PcpLayerStackPtrVector(UsdCsPINVOKE.PcpCache_FindAllLayerStacksUsingLayer(swigCPtr, SdfLayerHandle.getCPtr(layer)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_PcpDependencyVector FindSiteDependencies(SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr siteLayerStack, SdfPath sitePath, SWIGTYPE_p_PcpDependencyFlags depMask, bool recurseOnSite, bool recurseOnIndex, bool filterForExistingCachesOnly) {
-    SWIGTYPE_p_PcpDependencyVector ret = new SWIGTYPE_p_PcpDependencyVector(UsdCsPINVOKE.PcpCache_FindSiteDependencies__SWIG_0(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_PcpLayerStack_t__Ptr.getCPtr(siteLayerStack), SdfPath.getCPtr(sitePath), SWIGTYPE_p_PcpDependencyFlags.getCPtr(depMask), recurseOnSite, recurseOnIndex, filterForExistingCachesOnly), true);
+  public SWIGTYPE_p_PcpDependencyVector FindSiteDependencies(PcpLayerStackPtr siteLayerStack, SdfPath sitePath, SWIGTYPE_p_PcpDependencyFlags depMask, bool recurseOnSite, bool recurseOnIndex, bool filterForExistingCachesOnly) {
+    SWIGTYPE_p_PcpDependencyVector ret = new SWIGTYPE_p_PcpDependencyVector(UsdCsPINVOKE.PcpCache_FindSiteDependencies__SWIG_0(swigCPtr, PcpLayerStackPtr.getCPtr(siteLayerStack), SdfPath.getCPtr(sitePath), SWIGTYPE_p_PcpDependencyFlags.getCPtr(depMask), recurseOnSite, recurseOnIndex, filterForExistingCachesOnly), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

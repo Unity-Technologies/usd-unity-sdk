@@ -31,9 +31,7 @@
 // SMART POINTERS
 // ---------------------------------------------------------------------------------------------- //
 
-namespace std {
-  %template(SdfLayerHandleVector) vector<SdfLayerHandle>;
-}
+%template(SdfLayerHandleVector) std::vector<SdfLayerHandle>;
 typedef std::vector<SdfLayerHandle> SdfLayerHandleVector;
 
 // Must be defined before interfaces to which it applies
@@ -50,6 +48,9 @@ typedef std::vector<SdfLayerHandle> SdfLayerHandleVector;
 %TfRefPtr(SdfLayerBase);
 
 typedef TfRefPtr<SdfLayer> SdfLayerRefPtr;
+
+%template(SdfLayerRefPtrVector) std::vector<SdfLayerRefPtr>;
+typedef std::vector<SdfLayerRefPtr> SdfLayerRefPtrVector;
 
 class SdfLayerBase;
 

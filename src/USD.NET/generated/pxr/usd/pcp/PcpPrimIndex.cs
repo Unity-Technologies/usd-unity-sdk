@@ -72,8 +72,8 @@ public class PcpPrimIndex : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpNodeRef GetRootNode() {
-    SWIGTYPE_p_PcpNodeRef ret = new SWIGTYPE_p_PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetRootNode(swigCPtr), true);
+  public PcpNodeRef GetRootNode() {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetRootNode(swigCPtr), true);
     return ret;
   }
 
@@ -102,9 +102,8 @@ public class PcpPrimIndex : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpNodeRange GetNodeRange(SWIGTYPE_p_PcpRangeType rangeType) {
-    SWIGTYPE_p_PcpNodeRange ret = new SWIGTYPE_p_PcpNodeRange(UsdCsPINVOKE.PcpPrimIndex_GetNodeRange__SWIG_0(swigCPtr, SWIGTYPE_p_PcpRangeType.getCPtr(rangeType)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public SWIGTYPE_p_PcpNodeRange GetNodeRange(PcpRangeType rangeType) {
+    SWIGTYPE_p_PcpNodeRange ret = new SWIGTYPE_p_PcpNodeRange(UsdCsPINVOKE.PcpPrimIndex_GetNodeRange__SWIG_0(swigCPtr, (int)rangeType), true);
     return ret;
   }
 
@@ -113,9 +112,8 @@ public class PcpPrimIndex : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpPrimRange GetPrimRange(SWIGTYPE_p_PcpRangeType rangeType) {
-    SWIGTYPE_p_PcpPrimRange ret = new SWIGTYPE_p_PcpPrimRange(UsdCsPINVOKE.PcpPrimIndex_GetPrimRange__SWIG_0(swigCPtr, SWIGTYPE_p_PcpRangeType.getCPtr(rangeType)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public SWIGTYPE_p_PcpPrimRange GetPrimRange(PcpRangeType rangeType) {
+    SWIGTYPE_p_PcpPrimRange ret = new SWIGTYPE_p_PcpPrimRange(UsdCsPINVOKE.PcpPrimIndex_GetPrimRange__SWIG_0(swigCPtr, (int)rangeType), true);
     return ret;
   }
 
@@ -124,20 +122,20 @@ public class PcpPrimIndex : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpPrimRange GetPrimRangeForNode(SWIGTYPE_p_PcpNodeRef node) {
-    SWIGTYPE_p_PcpPrimRange ret = new SWIGTYPE_p_PcpPrimRange(UsdCsPINVOKE.PcpPrimIndex_GetPrimRangeForNode(swigCPtr, SWIGTYPE_p_PcpNodeRef.getCPtr(node)), true);
+  public SWIGTYPE_p_PcpPrimRange GetPrimRangeForNode(PcpNodeRef node) {
+    SWIGTYPE_p_PcpPrimRange ret = new SWIGTYPE_p_PcpPrimRange(UsdCsPINVOKE.PcpPrimIndex_GetPrimRangeForNode(swigCPtr, PcpNodeRef.getCPtr(node)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_PcpNodeRef GetNodeProvidingSpec(SWIGTYPE_p_SdfPrimSpecHandle primSpec) {
-    SWIGTYPE_p_PcpNodeRef ret = new SWIGTYPE_p_PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetNodeProvidingSpec__SWIG_0(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(primSpec)), true);
+  public PcpNodeRef GetNodeProvidingSpec(SWIGTYPE_p_SdfPrimSpecHandle primSpec) {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetNodeProvidingSpec__SWIG_0(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(primSpec)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_PcpNodeRef GetNodeProvidingSpec(SdfLayerHandle layer, SdfPath path) {
-    SWIGTYPE_p_PcpNodeRef ret = new SWIGTYPE_p_PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetNodeProvidingSpec__SWIG_1(swigCPtr, SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(path)), true);
+  public PcpNodeRef GetNodeProvidingSpec(SdfLayerHandle layer, SdfPath path) {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetNodeProvidingSpec__SWIG_1(swigCPtr, SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -181,8 +179,8 @@ public class PcpPrimIndex : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void ComputePrimChildNames(TfTokenVector nameOrder, SWIGTYPE_p_PcpTokenSet prohibitedNameSet) {
-    UsdCsPINVOKE.PcpPrimIndex_ComputePrimChildNames(swigCPtr, TfTokenVector.getCPtr(nameOrder), SWIGTYPE_p_PcpTokenSet.getCPtr(prohibitedNameSet));
+  public void ComputePrimChildNames(TfTokenVector nameOrder, SWIGTYPE_p_TfDenseHashSetT_TfToken_TfToken__HashFunctor_t prohibitedNameSet) {
+    UsdCsPINVOKE.PcpPrimIndex_ComputePrimChildNames(swigCPtr, TfTokenVector.getCPtr(nameOrder), SWIGTYPE_p_TfDenseHashSetT_TfToken_TfToken__HashFunctor_t.getCPtr(prohibitedNameSet));
   }
 
   public void ComputePrimPropertyNames(TfTokenVector nameOrder) {

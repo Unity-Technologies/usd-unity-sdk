@@ -15,9 +15,50 @@
 %module pcpnode
 %{
 #include "pxr/usd/pcp/node.h"
+
+// Ultra hacky fix for:
+// https://github.com/PixarAnimationStudios/USD/issues/704
+
+// Hack part 1: include this private header to get sizeof(Graph).
+#include "../../third_party/include/pxr/usd/pcp/primIndex_Graph.h"
+
+// Hack part 2: in-line the implementation of GetUniqueIdentifier.
+void* 
+PcpNodeRef::GetUniqueIdentifier() const
+{
+    return _graph + _nodeIdx;
+}
+
 %}
 
+%include <std_vector.i>
+%template(PcpNodeRefVector) std::vector<PcpNodeRef>;
+
 %ignore PcpNodeRef::GetUniqueIdentifier;
+%ignore PcpNodeRef::GetOwningGraph;
+%ignore PcpNodeRef::GetUniqueIdentifier;
+%ignore PcpNodeRef::GetChildrenRange;
+
+// Disabled until PcpLayerStackSite API is fixed:
+// https://github.com/PixarAnimationStudios/USD/issues/703
+%ignore PcpNodeRef::InsertChild;
+%ignore PcpNodeRef::GetSite;
+
+// Disabled until PcpNodeRef::Hash no longer references a missing external function:
+// https://github.com/PixarAnimationStudios/USD/issues/704#L104
+%ignore PcpNodeRef::Hash;
+
+%ignore PcpNode_GetNonVariantPathElementCount;
+
+%extend PcpNodeRef {
+  std::vector<PcpNodeRef> GetChildren() {
+    std::vector<PcpNodeRef> result;
+    TF_FOR_ALL(child, self->GetChildrenRange()) {
+      result.push_back(*child);
+    }
+    return result;
+  }
+}
 
 %include "pxr/usd/pcp/node.h"
 

@@ -12,10 +12,10 @@ namespace pxr {
 
 public class PcpLayerStack : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
+  private bool swigCMemOwnBase;
 
   internal PcpLayerStack(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
+    swigCMemOwnBase = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
@@ -30,8 +30,8 @@ public class PcpLayerStack : global::System.IDisposable {
   public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
+        if (swigCMemOwnBase) {
+          swigCMemOwnBase = false;
           UsdCsPINVOKE.delete_PcpLayerStack(swigCPtr);
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
@@ -42,21 +42,25 @@ public class PcpLayerStack : global::System.IDisposable {
 
   public PcpLayerStackIdentifier GetIdentifier() {
     PcpLayerStackIdentifier ret = new PcpLayerStackIdentifier(UsdCsPINVOKE.PcpLayerStack_GetIdentifier(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_TfDeclarePtrsT_SdfLayer_t__RefPtrVector GetLayers() {
-    SWIGTYPE_p_TfDeclarePtrsT_SdfLayer_t__RefPtrVector ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfLayer_t__RefPtrVector(UsdCsPINVOKE.PcpLayerStack_GetLayers(swigCPtr), false);
+  public SdfLayerRefPtrVector GetLayers() {
+    SdfLayerRefPtrVector ret = new SdfLayerRefPtrVector(UsdCsPINVOKE.PcpLayerStack_GetLayers(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SdfLayerHandleVector GetSessionLayers() {
     SdfLayerHandleVector ret = new SdfLayerHandleVector(UsdCsPINVOKE.PcpLayerStack_GetSessionLayers(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfLayerTreeHandle GetLayerTree() {
-    SWIGTYPE_p_SdfLayerTreeHandle ret = new SWIGTYPE_p_SdfLayerTreeHandle(UsdCsPINVOKE.PcpLayerStack_GetLayerTree(swigCPtr), false);
+  public SdfLayerTreeHandle GetLayerTree() {
+    SdfLayerTreeHandle ret = new SdfLayerTreeHandle(UsdCsPINVOKE.PcpLayerStack_GetLayerTree(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -77,21 +81,25 @@ public class PcpLayerStack : global::System.IDisposable {
   public SdfLayerOffset GetLayerOffsetForLayer(uint layerIdx) {
     global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStack_GetLayerOffsetForLayer__SWIG_2(swigCPtr, layerIdx);
     SdfLayerOffset ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayerOffset(cPtr, false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_std__setT_std__string_t GetResolvedAssetPaths() {
     SWIGTYPE_p_std__setT_std__string_t ret = new SWIGTYPE_p_std__setT_std__string_t(UsdCsPINVOKE.PcpLayerStack_GetResolvedAssetPaths(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_std__setT_std__string_t GetMutedLayers() {
     SWIGTYPE_p_std__setT_std__string_t ret = new SWIGTYPE_p_std__setT_std__string_t(UsdCsPINVOKE.PcpLayerStack_GetMutedLayers(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_PcpErrorVector GetLocalErrors() {
     SWIGTYPE_p_PcpErrorVector ret = new SWIGTYPE_p_PcpErrorVector(UsdCsPINVOKE.PcpLayerStack_GetLocalErrors(swigCPtr), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -109,26 +117,31 @@ public class PcpLayerStack : global::System.IDisposable {
 
   public SWIGTYPE_p_SdfRelocatesMap GetRelocatesSourceToTarget() {
     SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetRelocatesSourceToTarget(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_SdfRelocatesMap GetRelocatesTargetToSource() {
     SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetRelocatesTargetToSource(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_SdfRelocatesMap GetIncrementalRelocatesSourceToTarget() {
     SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetIncrementalRelocatesSourceToTarget(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_SdfRelocatesMap GetIncrementalRelocatesTargetToSource() {
     SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetIncrementalRelocatesTargetToSource(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SdfPathVector GetPathsToPrimsWithRelocates() {
     SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.PcpLayerStack_GetPathsToPrimsWithRelocates(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

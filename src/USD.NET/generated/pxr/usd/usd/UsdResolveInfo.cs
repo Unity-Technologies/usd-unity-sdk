@@ -53,8 +53,8 @@ public class UsdResolveInfo : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpNodeRef GetNode() {
-    SWIGTYPE_p_PcpNodeRef ret = new SWIGTYPE_p_PcpNodeRef(UsdCsPINVOKE.UsdResolveInfo_GetNode(swigCPtr), true);
+  public PcpNodeRef GetNode() {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.UsdResolveInfo_GetNode(swigCPtr), true);
     return ret;
   }
 

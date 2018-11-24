@@ -59,11 +59,11 @@ public class UsdEditTarget : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdEditTarget(SdfLayerHandle layer, SWIGTYPE_p_PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_5(SdfLayerHandle.getCPtr(layer), SWIGTYPE_p_PcpNodeRef.getCPtr(node)), true) {
+  public UsdEditTarget(SdfLayerHandle layer, PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_5(SdfLayerHandle.getCPtr(layer), PcpNodeRef.getCPtr(node)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdEditTarget(SdfLayer layer, SWIGTYPE_p_PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_6(SdfLayer.getCPtr(layer), SWIGTYPE_p_PcpNodeRef.getCPtr(node)), true) {
+  public UsdEditTarget(SdfLayer layer, PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_6(SdfLayer.getCPtr(layer), PcpNodeRef.getCPtr(node)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
