@@ -107,7 +107,11 @@ namespace USD.NET.Unity {
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       Profiler.BeginSample("USD: Build Hierarchy");
       primMap.Clear();
-      HierarchyBuilder.BuildGameObjects(scene, root, usdPrimRoot, primMap);
+      HierarchyBuilder.BuildGameObjects(scene,
+                                        root,
+                                        usdPrimRoot,
+                                        primMap,
+                                        importOptions.forceRebuild);
       Profiler.EndSample();
 
       if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }

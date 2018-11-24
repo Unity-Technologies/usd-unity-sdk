@@ -33,8 +33,14 @@ namespace USD.NET.Unity {
     /// <returns></returns>
     static public PrimMap BuildGameObjects(Scene scene,
                                            GameObject unityRoot,
-                                           PrimMap primMap) {
-      return BuildGameObjects(scene, unityRoot, SdfPath.AbsoluteRootPath(), scene.AllPaths, primMap);
+                                           PrimMap primMap,
+                                           bool forceRebuild) {
+      return BuildGameObjects(scene,
+                              unityRoot,
+                              SdfPath.AbsoluteRootPath(),
+                              scene.AllPaths,
+                              primMap,
+                              forceRebuild);
     }
 
     /// <summary>
@@ -46,13 +52,15 @@ namespace USD.NET.Unity {
     static public PrimMap BuildGameObjects(Scene scene,
                                            GameObject unityRoot,
                                            SdfPath usdRoot,
-                                           PrimMap primMap) {
+                                           PrimMap primMap,
+                                           bool forceRebuild) {
       // TODO: add an API for finding paths.
       return BuildGameObjects(scene,
                               unityRoot,
                               usdRoot,
                               scene.Find(usdRoot.ToString(), "UsdSchemaBase"),
-                              primMap);
+                              primMap,
+                              forceRebuild);
     }
 
     /// <summary>
@@ -62,7 +70,8 @@ namespace USD.NET.Unity {
                                             GameObject unityRoot,
                                             SdfPath usdRoot,
                                             IEnumerable<SdfPath> paths,
-                                            PrimMap map) {
+                                            PrimMap map,
+                                            bool forceRebuild) {
       map[usdRoot] = unityRoot;
 
       // TODO: Should recurse to discover deeply nested instancing.
@@ -121,7 +130,7 @@ namespace USD.NET.Unity {
         }
         
         var parent = parentGo ? parentGo.transform : null;
-        var go = FindOrCreateGameObject(parent, path);
+        var go = FindOrCreateGameObject(parent, path, parent != unityRoot && forceRebuild);
 
         try {
           Profiler.BeginSample("Add Model Root");
@@ -289,7 +298,7 @@ namespace USD.NET.Unity {
     /// Checks for a child named "name" under the given parent, if it exists it is returned,
     /// else a new child is created with this name.
     /// </summary>
-    static GameObject FindOrCreateGameObject(Transform parent, SdfPath path) {
+    static GameObject FindOrCreateGameObject(Transform parent, SdfPath path, bool forceRebuild) {
       Transform root = null;
       GameObject go = null;
       string name = path.GetName();
@@ -300,6 +309,11 @@ namespace USD.NET.Unity {
       } else {
         root = parent.Find(name);
         go = root ? root.gameObject : null;
+      }
+
+      if (forceRebuild && go) {
+        GameObject.DestroyImmediate(go);
+        go = null;
       }
       
       if (!go) {

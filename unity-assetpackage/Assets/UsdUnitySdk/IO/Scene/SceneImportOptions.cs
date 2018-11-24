@@ -76,6 +76,11 @@ namespace USD.NET.Unity {
     public string assetImportPath = "Tmp/Test/";
 
     /// <summary>
+    /// Force components and objects to be rebuilt, instead of reusing existing objects.
+    /// </summary>
+    public bool forceRebuild = false;
+
+    /// <summary>
     /// Typically USD data is right-handed and Unity is left handed; this option indicates how
     /// that conversion should be handled.
     /// </summary>

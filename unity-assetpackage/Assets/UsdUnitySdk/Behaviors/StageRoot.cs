@@ -31,6 +31,10 @@ namespace USD.NET.Unity {
     public string m_assetImportPath;
     public Scene.InterpolationMode m_interpolation;
 
+    [Header("Scenegraph")]
+    [Tooltip("Forces all GameObjects to be destroyed, instead of reusing existing objects")]
+    public bool m_forceRebuild;
+
     [Header("Conversions")]
     public float m_scale;
     public BasisTransformation m_changeHandedness;
@@ -81,6 +85,7 @@ namespace USD.NET.Unity {
       var root = parent ? parent.gameObject : null;
 
       try {
+        options.forceRebuild = false;
         options.materialImportMode = MaterialImportMode.None;
         options.meshOptions.debugShowSkeletonBindPose = false;
         options.meshOptions.debugShowSkeletonRestPose = false;
@@ -104,6 +109,7 @@ namespace USD.NET.Unity {
     /// Convert the SceneImportOptions into a serializable form.
     /// </summary>
     public void OptionsToState(SceneImportOptions options) {
+      m_forceRebuild = options.forceRebuild;
       m_assetImportPath = options.assetImportPath;
       m_changeHandedness = options.changeHandedness;
       m_scale = options.scale;
@@ -137,6 +143,7 @@ namespace USD.NET.Unity {
     /// Converts the current component state into import options.
     /// </summary>
     public void StateToOptions(ref SceneImportOptions options) {
+      options.forceRebuild = m_forceRebuild;
       options.assetImportPath = m_assetImportPath;
       options.changeHandedness = m_changeHandedness;
       options.scale = m_scale;
