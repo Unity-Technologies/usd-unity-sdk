@@ -132,6 +132,11 @@ namespace USD.NET.Unity {
         unityMesh.vertices = usdMesh.points;
       }
 
+      // Deactivate non-geometry prims.
+      if (usdMesh.purpose != Purpose.Default) {
+        go.SetActive(false);
+      }
+
       int[] originalIndices = new int[usdMesh.faceVertexIndices == null ? 0 : usdMesh.faceVertexIndices.Length];
       
       if (options.meshOptions.topology == ImportMode.Import) {
