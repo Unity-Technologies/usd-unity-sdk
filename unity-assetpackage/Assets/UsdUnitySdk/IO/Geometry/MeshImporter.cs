@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -122,6 +122,10 @@ namespace USD.NET.Unity {
       Material mat = renderer.sharedMaterial;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
 
+      //
+      // Points.
+      //
+
       if (options.meshOptions.points == ImportMode.Import) {
         if (changeHandedness) {
           for (int i = 0; i < usdMesh.points.Length; i++) {
@@ -132,12 +136,25 @@ namespace USD.NET.Unity {
         unityMesh.vertices = usdMesh.points;
       }
 
-      // Deactivate non-geometry prims.
+      //
+      // Purpose.
+      //
+
+      // Deactivate non-geometry prims (e.g. guides, render, etc).
       if (usdMesh.purpose != Purpose.Default) {
         go.SetActive(false);
       }
 
-      int[] originalIndices = new int[usdMesh.faceVertexIndices == null ? 0 : usdMesh.faceVertexIndices.Length];
+      //
+      // Mesh Topology.
+      //
+
+      // TODO: indices should not be accessed if topology is not requested, however it may be
+      // needed for facevarying primvars; that special case should throw a warning, rather than
+      // reading the value.
+      int[] originalIndices = new int[usdMesh.faceVertexIndices == null
+                                      ? 0
+                                      : usdMesh.faceVertexIndices.Length];
       
       if (options.meshOptions.topology == ImportMode.Import) {
         // Optimization: only do this when there are face varying primvars.
@@ -202,6 +219,10 @@ namespace USD.NET.Unity {
         Profiler.EndSample();
       }
 
+      //
+      // Extent / Bounds.
+      //
+
       bool hasBounds = usdMesh.extent.size.x > 0
                     || usdMesh.extent.size.y > 0
                     || usdMesh.extent.size.z > 0;
@@ -219,6 +240,10 @@ namespace USD.NET.Unity {
         unityMesh.RecalculateBounds();
         Profiler.EndSample();
       }
+
+      //
+      // Normals.
+      //
 
       if (usdMesh.normals != null && ShouldImport(options.meshOptions.normals)) {
         Profiler.BeginSample("Import Normals");
@@ -239,6 +264,10 @@ namespace USD.NET.Unity {
         Profiler.EndSample();
       }
 
+      //
+      // Tangents.
+      //
+
       if (usdMesh.tangents != null && ShouldImport(options.meshOptions.tangents)) {
         Profiler.BeginSample("Import Tangents");
         if (changeHandedness) {
@@ -255,6 +284,10 @@ namespace USD.NET.Unity {
         unityMesh.RecalculateTangents();
         Profiler.EndSample();
       }
+
+      //
+      // Display Color.
+      //
 
       if (ShouldImport(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0) {
         Profiler.BeginSample("Import Display Color");
@@ -311,6 +344,11 @@ namespace USD.NET.Unity {
         Profiler.EndSample();
       } // should import color
 
+      //
+      // UVs / Texture Coordinates.
+      //
+
+      // TODO: these should also be driven by the UV privmars required by the bound shader.
       Profiler.BeginSample("Import UV Sets");
       ImportUv(path, unityMesh, 0, usdMesh.st, usdMesh.indices, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
       ImportUv(path, unityMesh, 0, usdMesh.uv, null, usdMesh.faceVertexCounts, originalIndices, options.meshOptions.texcoord0, go);
