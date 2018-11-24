@@ -39,6 +39,11 @@ namespace USD.NET.Unity {
     /// Executes after the PrimMap has been constructed and before import.
     /// </summary>
     public static event ImportNotice AfterBuildPrimMap;
+
+    /// <summary>
+    /// Executes after the entire import process (BuildScene) completes. Note that this event may
+    /// fire after several frames, when the coroutine overload of BuildScene is used.
+    /// </summary>
     public static event ImportNotice AfterImport;
 
     /// <summary>
@@ -338,7 +343,7 @@ namespace USD.NET.Unity {
         // TODO: Currently ProcessMaterialBindings runs too long and will go over budget for any
         // large scene. However, pulling the loop into this code feels wrong in terms of
         // responsibilities.
-        
+
         // Process all material bindings in a single vectorized request.
         MaterialImporter.ProcessMaterialBindings(scene, importOptions);
       } catch (System.Exception ex) {
