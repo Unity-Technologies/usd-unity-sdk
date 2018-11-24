@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using pxr;
 using UnityEngine;
+using Unity.Collections;
 
 namespace USD.NET.Unity {
 
@@ -117,8 +118,6 @@ namespace USD.NET.Unity {
                                         GameObject go,
                                         PrimMap primMap,
                                         SceneImportOptions options) {
-      int[] indices = meshBinding.jointIndices.value;
-      float[] weights = meshBinding.jointWeights.value;
       string[] joints = meshBinding.joints;
 
       // WARNING: Do not mutate skeleton values.
@@ -140,9 +139,7 @@ namespace USD.NET.Unity {
             + " SkinnnedMeshRenderer not present on GameObject");
       }
 
-      var bones = new Transform[joints.Length];
       var mesh = smr.sharedMesh;
-      var boneWeights = new BoneWeight[mesh.vertexCount];
 
       var geomXf = meshBinding.geomBindTransform.value;
 
@@ -166,6 +163,7 @@ namespace USD.NET.Unity {
         mesh.bindposes = bindPoses;
       }
 
+      var bones = new Transform[joints.Length];
       var sdfSkelPath = new SdfPath(skelPath);
       for (int i = 0; i < joints.Length; i++) {
         var jointGo = primMap[sdfSkelPath.AppendPath(new SdfPath(joints[i]))];
@@ -178,6 +176,32 @@ namespace USD.NET.Unity {
       }
       smr.bones = bones;
 
+      int[] indices = meshBinding.jointIndices.value;
+      float[] weights = meshBinding.jointWeights.value;
+
+#if false && UNITY_2019
+      var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
+      var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * meshBinding.jointWeights.elementSize, Allocator.Persistent);
+      for (int i = 0; i < mesh.vertexCount; i++) {
+        int unityIndex = i * meshBinding.jointWeights.elementSize;
+        int usdIndex = isConstant
+                     ? 0
+                     : unityIndex;
+
+        bonesPerVertex[i] = (byte)meshBinding.jointWeights.elementSize;
+
+        for (int wi = 0; wi < meshBinding.jointWeights.elementSize; wi++) {
+          var bw = boneWeights1[unityIndex + wi];
+          bw.boneIndex = indices[usdIndex + wi];
+          bw.weight = weights[usdIndex + wi];
+          boneWeights1[wi] = bw;
+        }
+      }
+      mesh.SetBoneWeights(bonesPerVertex, boneWeights1);
+      bonesPerVertex.Dispose();
+      boneWeights1.Dispose();
+#else
+      var boneWeights = new BoneWeight[mesh.vertexCount];
       for (int i = 0; i < boneWeights.Length; i++) {
         // When interpolation is constant, the base usdIndex should always be zero.
         // When non-constant, the offset is the index times the number of weights per vertex.
@@ -221,6 +245,7 @@ namespace USD.NET.Unity {
       }
 
       mesh.boneWeights = boneWeights;
+#endif
     }
   } // class
 } // namespace
