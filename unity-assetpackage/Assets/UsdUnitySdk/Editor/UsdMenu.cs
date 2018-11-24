@@ -202,7 +202,6 @@ public class UsdMenu : MonoBehaviour {
   public static void ImportUsdToPrefab(USD.NET.Scene scene, string prefabPath, SceneImportOptions importOptions) {
     string filePath = scene.FilePath;
     var go = new GameObject();
-    var usdTime = (float)scene.Time.GetValueOrDefault();
     UsdToGameObject(go, GetPrefabName(filePath), scene, importOptions);
     SaveAsSinglePrefab(go, prefabPath, importOptions);
     GameObject.DestroyImmediate(go);
