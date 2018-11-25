@@ -2865,6 +2865,18 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint hash_value(SdfSpec x) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_52(SdfSpec.getCPtr(x));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfPrimSpecHandle SdfCreatePrimInLayer(SdfLayerHandle layer, SdfPath primPath) {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.SdfCreatePrimInLayer(SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(primPath)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool IsTruthy(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
     bool ret = UsdCsPINVOKE.IsTruthy(TfToken.getCPtr(propName), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -2926,7 +2938,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(PcpLayerStackIdentifier x) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_52(PcpLayerStackIdentifier.getCPtr(x));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_53(PcpLayerStackIdentifier.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -2950,7 +2962,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(PcpNodeRef x) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_53(PcpNodeRef.getCPtr(x));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(PcpNodeRef.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3058,13 +3070,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdTimeCode time) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(UsdTimeCode.getCPtr(time));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(Usd_PrimFlagsPredicate p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(Usd_PrimFlagsPredicate.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(Usd_PrimFlagsPredicate.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3178,7 +3190,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdObject obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(UsdObject.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(UsdObject.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3206,13 +3218,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdSkelAnimQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(UsdSkelAnimQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_58(UsdSkelAnimQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(UsdSkelSkeletonQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_58(UsdSkelSkeletonQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_59(UsdSkelSkeletonQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3535,8 +3547,8 @@ public class UsdCs {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void UsdUtilsStitchInfo(SWIGTYPE_p_SdfSpecHandle strongObj, SWIGTYPE_p_SdfSpecHandle weakObj) {
-    UsdCsPINVOKE.UsdUtilsStitchInfo(SWIGTYPE_p_SdfSpecHandle.getCPtr(strongObj), SWIGTYPE_p_SdfSpecHandle.getCPtr(weakObj));
+  public static void UsdUtilsStitchInfo(SdfSpecHandle strongObj, SdfSpecHandle weakObj) {
+    UsdCsPINVOKE.UsdUtilsStitchInfo(SdfSpecHandle.getCPtr(strongObj), SdfSpecHandle.getCPtr(weakObj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

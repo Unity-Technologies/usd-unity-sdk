@@ -42,8 +42,8 @@ public class UsdPrim : UsdObject {
   public UsdPrim() : this(UsdCsPINVOKE.new_UsdPrim(), true) {
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandle GetPrimDefinition() {
-    SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.UsdPrim_GetPrimDefinition(swigCPtr), true);
+  public SdfPrimSpecHandle GetPrimDefinition() {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.UsdPrim_GetPrimDefinition(swigCPtr), true);
     return ret;
   }
 
@@ -52,8 +52,8 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandleVector GetPrimStack() {
-    SWIGTYPE_p_SdfPrimSpecHandleVector ret = new SWIGTYPE_p_SdfPrimSpecHandleVector(UsdCsPINVOKE.UsdPrim_GetPrimStack(swigCPtr), true);
+  public SdfPrimSpecHandleVector GetPrimStack() {
+    SdfPrimSpecHandleVector ret = new SdfPrimSpecHandleVector(UsdCsPINVOKE.UsdPrim_GetPrimStack(swigCPtr), true);
     return ret;
   }
 

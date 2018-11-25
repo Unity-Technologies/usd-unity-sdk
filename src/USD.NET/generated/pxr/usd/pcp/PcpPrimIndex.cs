@@ -128,8 +128,8 @@ public class PcpPrimIndex : global::System.IDisposable {
     return ret;
   }
 
-  public PcpNodeRef GetNodeProvidingSpec(SWIGTYPE_p_SdfPrimSpecHandle primSpec) {
-    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetNodeProvidingSpec__SWIG_0(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(primSpec)), true);
+  public PcpNodeRef GetNodeProvidingSpec(SdfPrimSpecHandle primSpec) {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpPrimIndex_GetNodeProvidingSpec__SWIG_0(swigCPtr, SdfPrimSpecHandle.getCPtr(primSpec)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

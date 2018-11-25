@@ -123,6 +123,11 @@
     <Content Include="pxr\usd\kind\kindTokens.i" />
     <Content Include="pxr\usd\ndr\ndr.i" />
     <Content Include="pxr\usd\sdf\sdfLayerTree.i" />
+    <Content Include="pxr\usd\sdf\sdfPropertySpec.i" />
+    <Content Include="pxr\usd\sdf\sdfAttributeSpec.i" />
+    <Content Include="pxr\usd\sdf\sdfRelationshipSpec.i" />
+    <Content Include="pxr\usd\sdf\sdfPrimSpec.i" />
+    <Content Include="pxr\usd\sdf\sdfSpec.i" />
     <Content Include="pxr\usd\sdf\sdfReference.i" />
     <Content Include="pxr\usd\sdr\declare.i" />
     <Content Include="pxr\usd\ndr\ndrDeclare.i" />

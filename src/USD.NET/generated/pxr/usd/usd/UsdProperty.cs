@@ -42,14 +42,14 @@ public class UsdProperty : UsdObject {
   public UsdProperty() : this(UsdCsPINVOKE.new_UsdProperty(), true) {
   }
 
-  public SWIGTYPE_p_SdfPropertySpecHandleVector GetPropertyStack(UsdTimeCode time) {
-    SWIGTYPE_p_SdfPropertySpecHandleVector ret = new SWIGTYPE_p_SdfPropertySpecHandleVector(UsdCsPINVOKE.UsdProperty_GetPropertyStack__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time)), true);
+  public SdfPropertySpecHandleVector GetPropertyStack(UsdTimeCode time) {
+    SdfPropertySpecHandleVector ret = new SdfPropertySpecHandleVector(UsdCsPINVOKE.UsdProperty_GetPropertyStack__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPropertySpecHandleVector GetPropertyStack() {
-    SWIGTYPE_p_SdfPropertySpecHandleVector ret = new SWIGTYPE_p_SdfPropertySpecHandleVector(UsdCsPINVOKE.UsdProperty_GetPropertyStack__SWIG_1(swigCPtr), true);
+  public SdfPropertySpecHandleVector GetPropertyStack() {
+    SdfPropertySpecHandleVector ret = new SdfPropertySpecHandleVector(UsdCsPINVOKE.UsdProperty_GetPropertyStack__SWIG_1(swigCPtr), true);
     return ret;
   }
 

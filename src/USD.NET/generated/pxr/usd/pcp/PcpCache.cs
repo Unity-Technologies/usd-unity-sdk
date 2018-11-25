@@ -195,13 +195,13 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public void ComputeRelationshipTargetPaths(SdfPath relationshipPath, SdfPathVector paths, bool localOnly, SWIGTYPE_p_SdfSpecHandle stopProperty, bool includeStopProperty, SWIGTYPE_p_PcpErrorVector allErrors) {
-    UsdCsPINVOKE.PcpCache_ComputeRelationshipTargetPaths(swigCPtr, SdfPath.getCPtr(relationshipPath), SdfPathVector.getCPtr(paths), localOnly, SWIGTYPE_p_SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
+  public void ComputeRelationshipTargetPaths(SdfPath relationshipPath, SdfPathVector paths, bool localOnly, SdfSpecHandle stopProperty, bool includeStopProperty, SWIGTYPE_p_PcpErrorVector allErrors) {
+    UsdCsPINVOKE.PcpCache_ComputeRelationshipTargetPaths(swigCPtr, SdfPath.getCPtr(relationshipPath), SdfPathVector.getCPtr(paths), localOnly, SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void ComputeAttributeConnectionPaths(SdfPath attributePath, SdfPathVector paths, bool localOnly, SWIGTYPE_p_SdfSpecHandle stopProperty, bool includeStopProperty, SWIGTYPE_p_PcpErrorVector allErrors) {
-    UsdCsPINVOKE.PcpCache_ComputeAttributeConnectionPaths(swigCPtr, SdfPath.getCPtr(attributePath), SdfPathVector.getCPtr(paths), localOnly, SWIGTYPE_p_SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
+  public void ComputeAttributeConnectionPaths(SdfPath attributePath, SdfPathVector paths, bool localOnly, SdfSpecHandle stopProperty, bool includeStopProperty, SWIGTYPE_p_PcpErrorVector allErrors) {
+    UsdCsPINVOKE.PcpCache_ComputeAttributeConnectionPaths(swigCPtr, SdfPath.getCPtr(attributePath), SdfPathVector.getCPtr(paths), localOnly, SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
