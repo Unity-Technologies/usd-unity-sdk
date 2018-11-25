@@ -16478,6 +16478,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageWeakPtr_GetMasters")]
   public static extern global::System.IntPtr UsdStageWeakPtr_GetMasters(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdMetadataValueMap_GetKeys")]
+  public static extern global::System.IntPtr UsdMetadataValueMap_GetKeys(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdMetadataValueMap_GetValue")]
   public static extern global::System.IntPtr UsdMetadataValueMap_GetValue(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 

@@ -40,6 +40,11 @@ public class UsdMetadataValueMap : global::System.IDisposable {
     }
   }
 
+  public TfTokenVector GetKeys() {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdMetadataValueMap_GetKeys(swigCPtr), true);
+    return ret;
+  }
+
   public VtValue GetValue(TfToken key) {
     VtValue ret = new VtValue(UsdCsPINVOKE.UsdMetadataValueMap_GetValue(swigCPtr, TfToken.getCPtr(key)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

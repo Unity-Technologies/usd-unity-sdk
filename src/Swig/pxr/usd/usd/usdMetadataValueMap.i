@@ -21,6 +21,15 @@
 %}
 
 %extend UsdMetadataValueMap {
+
+  std::vector<TfToken> GetKeys() {
+    std::vector<TfToken> ret;
+    TF_FOR_ALL(kvp, *self) {
+      ret.push_back(kvp->first);
+    }
+    return ret;
+  }
+
   %csmethodmodifiers GetValue(TfToken const& key) "protected";
   VtValue const& GetValue(TfToken const& key) const {
     return self->at(key);
