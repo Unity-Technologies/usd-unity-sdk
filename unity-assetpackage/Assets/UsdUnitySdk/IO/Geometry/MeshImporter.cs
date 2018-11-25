@@ -295,7 +295,7 @@ namespace USD.NET.Unity {
 
         if (usdMesh.colors.Length == 1) {
           // Constant color can just be set on the material.
-          if (options.useDisplayColorAsFallbackMaterial) {
+          if (options.useDisplayColorAsFallbackMaterial && options.materialImportMode != MaterialImportMode.None) {
             mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0].gamma);
           }
         } else if (usdMesh.colors.Length == usdMesh.points.Length) {
@@ -357,32 +357,45 @@ namespace USD.NET.Unity {
       Profiler.EndSample();
 
       Profiler.BeginSample("Request Material Bindings");
-      if (mat == null) {
-        mat = options.materialMap.InstantiateSolidColor(Color.white);
-      }
 
-      if (unityMesh.subMeshCount == 1) {
-        renderer.sharedMaterial = mat;
-        if (options.ShouldBindMaterials) {
-          options.materialMap.RequestBinding(path, boundMat => renderer.sharedMaterial = boundMat);
+      //
+      // Materials.
+      //
+
+      if (options.materialImportMode != MaterialImportMode.None) {
+        if (mat == null) {
+          mat = options.materialMap.InstantiateSolidColor(Color.white);
         }
-      } else {
-        var mats = new Material[unityMesh.subMeshCount];
-        for (int i = 0; i < mats.Length; i++) {
-          mats[i] = mat;
-        }
-        renderer.sharedMaterials = mats;
-        if (options.ShouldBindMaterials) {
-          Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
-          var subIndex = 0;
-          foreach (var kvp in geomSubsets.Subsets) {
-            int idx = subIndex;
-            options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, renderer, idx, path));
+
+        if (unityMesh.subMeshCount == 1) {
+          renderer.sharedMaterial = mat;
+          if (options.ShouldBindMaterials) {
+            options.materialMap.RequestBinding(path, boundMat => renderer.sharedMaterial = boundMat);
           }
-          subIndex++;
+        } else {
+          var mats = new Material[unityMesh.subMeshCount];
+          for (int i = 0; i < mats.Length; i++) {
+            mats[i] = mat;
+          }
+          renderer.sharedMaterials = mats;
+          if (options.ShouldBindMaterials) {
+            Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
+            var subIndex = 0;
+            foreach (var kvp in geomSubsets.Subsets) {
+              int idx = subIndex;
+              Renderer renderLocal = renderer;
+              options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, renderLocal, idx, path));
+            }
+            subIndex++;
+          }
         }
+
       }
       Profiler.EndSample();
+
+      //
+      // Lightmap UV Unwrapping.
+      //
 
 #if UNITY_EDITOR
       if (options.meshOptions.generateLightmapUVs) {
