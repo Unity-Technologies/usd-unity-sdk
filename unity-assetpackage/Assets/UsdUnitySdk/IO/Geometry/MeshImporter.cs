@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -434,7 +434,6 @@ namespace USD.NET.Unity {
     }
 
     static void BindMat(Material mat, Renderer renderer, int index, string path) {
-      Debug.Log(path + " -> " + index + " -> C: " + mat.color.ToString());
       var sharedMats = renderer.sharedMaterials;
       sharedMats[index] = mat;
       renderer.sharedMaterials = sharedMats;
