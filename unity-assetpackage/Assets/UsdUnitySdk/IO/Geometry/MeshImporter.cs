@@ -155,11 +155,10 @@ namespace USD.NET.Unity {
       int[] originalIndices = new int[usdMesh.faceVertexIndices == null
                                       ? 0
                                       : usdMesh.faceVertexIndices.Length];
-      
-      if (options.meshOptions.topology == ImportMode.Import) {
-        // Optimization: only do this when there are face varying primvars.
-        Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
+      // Optimization: only do this when there are face varying primvars.
+      Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
 
+      if (options.meshOptions.topology == ImportMode.Import) {
         Profiler.BeginSample("Triangulate Mesh");
         if (options.meshOptions.triangulateMesh) {
           // Triangulate n-gons.
