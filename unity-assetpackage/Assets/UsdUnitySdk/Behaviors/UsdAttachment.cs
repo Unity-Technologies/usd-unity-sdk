@@ -20,7 +20,5 @@ namespace USD.NET.Unity {
 
   public class UsdAttachment : MonoBehaviour {
     public string m_usdPrimPath;
-    public bool m_exportXforms;
-    public bool m_exportMeshData;
   }
 }

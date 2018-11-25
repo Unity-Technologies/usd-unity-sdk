@@ -64,7 +64,7 @@ namespace USD.NET.Unity {
     private float m_lastTime;
     private Scene m_lastScene;
 
-    private Scene GetScene() {
+    public Scene GetScene() {
       USD.NET.Examples.InitUsd.Initialize();
       if (m_lastScene == null || m_lastScene.FilePath != m_usdFile) {
         m_lastScene = Scene.Open(m_usdFile);
