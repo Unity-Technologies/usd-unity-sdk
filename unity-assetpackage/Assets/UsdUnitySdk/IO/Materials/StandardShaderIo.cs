@@ -70,6 +70,9 @@ namespace USD.NET.Unity {
         surface.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
       }
 
+      // TODO: Specular and roughness are combined and the shader configuration dictates
+      // where the glossiness comes from (albedo or spec alpha).
+
       if (material.HasProperty("_Glossiness")) {
         surface.roughness.defaultValue = 1 - material.GetFloat("_Glossiness");
       } else {
