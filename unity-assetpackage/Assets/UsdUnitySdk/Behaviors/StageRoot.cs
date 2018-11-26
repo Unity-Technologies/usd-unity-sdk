@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -93,9 +93,9 @@ namespace USD.NET.Unity {
         options.meshOptions.debugShowSkeletonRestPose = false;
         options.meshOptions.generateLightmapUVs = false;
 
+        // Note that tangent and Normals must be updated when the mesh deforms.
+
         options.meshOptions.topology = ImportMode.Ignore;
-        options.meshOptions.normals = ImportMode.Ignore;
-        options.meshOptions.tangents = ImportMode.Ignore;
         options.meshOptions.texcoord0 = ImportMode.Ignore;
         options.meshOptions.texcoord1 = ImportMode.Ignore;
         options.meshOptions.texcoord2 = ImportMode.Ignore;
