@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -26,8 +27,10 @@ namespace USD.NET.Unity {
     // This value should come from USD, however it's currently only a defacto standard.
     private static readonly pxr.TfToken materialBindToken = new pxr.TfToken("materialBind");
 
-    public delegate Texture TextureResolver(pxr.SdfAssetPath textureAssetPath,
-                                            SceneImportOptions importOptions);
+    private static Material AlbedoGlossCombiner;
+
+    public delegate Texture2D TextureResolver(pxr.SdfAssetPath textureAssetPath,
+                                              SceneImportOptions importOptions);
 
     /// <summary>
     /// A callback that allows custom texture resolution logic.
@@ -96,36 +99,50 @@ namespace USD.NET.Unity {
                          + "Surface ID: " + previewSurf.id);
         return null;
       }
-      var mat = Material.Instantiate(options.materialMap.FallbackMasterMaterial);
 
-      if (previewSurf.diffuseColor.IsConnected()) {
-        // TODO: look for the expected texture/primvar reader pair.
-        var textureSample = new TextureReaderSample();
-        var connectedPrimPath = scene.GetSdfPath(previewSurf.diffuseColor.connectedPath).GetPrimPath();
-        scene.Read(connectedPrimPath, textureSample);
-        if (textureSample.file.defaultValue != null &&
-            !string.IsNullOrEmpty(textureSample.file.defaultValue.GetResolvedPath())) {
-
-          if (OnResolveTexture != null) {
-            mat.mainTexture = OnResolveTexture(textureSample.file.defaultValue, options);
-          } else {
-            mat.mainTexture = DefaultTextureResolver(textureSample.file.defaultValue, options);
-          }
-        }
+      Material mat = null;
+      if (previewSurf.useSpecularWorkflow.defaultValue == 1) {
+        // Metallic workflow.
+        mat = Material.Instantiate(options.materialMap.SpecularWorkflowMaterial);
       } else {
-        // TODO: this should delegate to a material mapper.
-        var rgb = previewSurf.diffuseColor.defaultValue;
-        mat.color = new Color(rgb.x, rgb.y, rgb.z).gamma;
+        // Metallic workflow.
+        mat = Material.Instantiate(options.materialMap.MetallicWorkflowMaterial);
       }
 
+      StandardShaderImporter.BuildMaterial(scene, mat, sample, previewSurf, options);
+
       return mat;
+    }
+
+    public static Texture2D ImportConnectedTexture<T>(Scene scene,
+                                                    Connectable<T> connection,
+                                                    SceneImportOptions options) {
+      // TODO: look for the expected texture/primvar reader pair.
+      var textureSample = new TextureReaderSample();
+      var connectedPrimPath = scene.GetSdfPath(connection.connectedPath).GetPrimPath();
+      Texture2D result = null;
+
+      scene.Read(connectedPrimPath, textureSample);
+
+      if (textureSample.file.defaultValue != null &&
+          !string.IsNullOrEmpty(textureSample.file.defaultValue.GetResolvedPath())) {
+
+        if (OnResolveTexture != null) {
+          result = OnResolveTexture(textureSample.file.defaultValue, options);
+        } else {
+          result = DefaultTextureResolver(textureSample.file.defaultValue, options);
+        }
+      }
+
+      return result;
     }
 
     /// <summary>
     /// Private default texture resolver. Copies the given texture into the asset database.
     /// </summary>
-    private static Texture DefaultTextureResolver(pxr.SdfAssetPath textureAssetPath,
+    private static Texture2D DefaultTextureResolver(pxr.SdfAssetPath textureAssetPath,
                                                   SceneImportOptions options) {
+#if UNITY_EDITOR
       if (!File.Exists(textureAssetPath.GetResolvedPath())) {
         return null;
       }
@@ -138,7 +155,7 @@ namespace USD.NET.Unity {
       if (fullPath.StartsWith("Assets/")) {
         fullPath = fullPath.Substring("Assets/".Length);
       }
-      
+
       if (!File.Exists(destPath)) {
         UnityEditor.FileUtil.CopyFileOrDirectory(sourcePath, destPath);
         UnityEditor.AssetDatabase.ImportAsset(assetPath);
@@ -147,14 +164,53 @@ namespace USD.NET.Unity {
           Debug.LogError("Failed to load asset: " + assetPath);
           return null;
         } else {
+          texImporter.isReadable = true;
           UnityEditor.EditorUtility.SetDirty(texImporter);
           texImporter.SaveAndReimport();
         }
       }
 
-      return (Texture)UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture));
+      return (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath(assetPath, typeof(Texture2D));
+#else
+      return null;
+#endif
     }
 
+    /// <summary>
+    /// Copies the roughness texture into the alpha channel fo the rgb texture, inverting it to
+    /// convert roughness into gloss.
+    /// </summary>
+    public static Texture2D CombineRoughnessToGloss(Texture2D rgbTex, Texture2D roughnessTex) {
+      if (!AlbedoGlossCombiner) {
+        AlbedoGlossCombiner = new Material(Shader.Find("Hidden/USD/CombineAndConvertRoughness"));
+      }
+      
+      var newTex = new Texture2D(rgbTex.width, rgbTex.height,
+                                 TextureFormat.ARGB32, mipChain: true);
+      AlbedoGlossCombiner.SetTexture("_RoughnessTex", roughnessTex);
+      var tmp = RenderTexture.GetTemporary(rgbTex.width, rgbTex.height, 0,
+                                           RenderTextureFormat.ARGB32);
+      Graphics.Blit(rgbTex, tmp, AlbedoGlossCombiner);
+      RenderTexture.active = tmp;
+      newTex.ReadPixels(new Rect(0, 0, tmp.width, tmp.height), 0, 0);
+      newTex.Apply();
+      RenderTexture.ReleaseTemporary(tmp);
+
+#if UNITY_EDITOR
+      Texture2D mainTex = rgbTex != null ? rgbTex : roughnessTex;
+      var assetPath = UnityEditor.AssetDatabase.GetAssetPath(mainTex.GetInstanceID());
+
+      var bytes = newTex.EncodeToPNG();
+      var newAssetPath = assetPath + "-specGloss.png";
+      File.WriteAllBytes(newAssetPath, bytes);
+      UnityEditor.AssetDatabase.ImportAsset(newAssetPath);
+      var texImporter = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(newAssetPath);
+      UnityEditor.EditorUtility.SetDirty(texImporter);
+      texImporter.SaveAndReimport();
+#endif
+
+      return newTex;
+    }
 
     /// <summary>
     /// Reads and returns the UsdPreviewSurface data for the prim at the given path, if present.
