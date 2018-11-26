@@ -47,6 +47,9 @@ namespace USD.NET.Unity {
     /// </summary>
     public Material FallbackMasterMaterial { get; set; }
 
+    public Material SpecularWorkflowMaterial { get; set; }
+    public Material MetallicWorkflowMaterial { get; set; }
+
     public MaterialMap() {
     }
 

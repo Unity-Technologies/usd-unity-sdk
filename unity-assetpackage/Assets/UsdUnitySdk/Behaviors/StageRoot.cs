@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,8 @@ namespace USD.NET.Unity {
     public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportParameters;
     public bool m_enableGpuInstancing;
     public Material m_fallbackMaterial;
+    public Material m_specularWorkflowMaterial;
+    public Material m_metallicWorkflowMaterial;
 
     [Header("Mesh Options")]
     public ImportMode m_points;
@@ -137,6 +139,8 @@ namespace USD.NET.Unity {
       m_materialImportMode = options.materialImportMode;
       m_enableGpuInstancing = options.enableGpuInstancing;
       m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
+      m_specularWorkflowMaterial = options.materialMap.SpecularWorkflowMaterial;
+      m_metallicWorkflowMaterial = options.materialMap.MetallicWorkflowMaterial;
     }
 
     /// <summary>
@@ -169,6 +173,8 @@ namespace USD.NET.Unity {
       options.materialImportMode = m_materialImportMode;
       options.enableGpuInstancing = m_enableGpuInstancing;
       options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
+      options.materialMap.SpecularWorkflowMaterial = m_specularWorkflowMaterial;
+      options.materialMap.MetallicWorkflowMaterial = m_metallicWorkflowMaterial;
     }
 
     public void ImportUsdAsCoroutine(GameObject goRoot,
