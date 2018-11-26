@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ public class UsdMenu : MonoBehaviour {
     return USD.NET.Scene.Open(path);
   }
 
+#if false
   [MenuItem("USD/Export (Fast) Selected with Children", true)]
   static bool EnableExportSelectedFast() {
     return Selection.gameObjects.Length > 0;
@@ -62,12 +63,13 @@ public class UsdMenu : MonoBehaviour {
   static void ExportSelectedFast() {
     ExportSelected(BasisTransformation.FastWithNegativeScale);
   }
+#endif
 
-  [MenuItem("USD/Export (Slow) Selected with Children", true)]
+  [MenuItem("USD/Export Selected with Children", true)]
   static bool EnableExportSelectedSlow() {
     return Selection.gameObjects.Length > 0;
   }
-  [MenuItem("USD/Export (Slow) Selected with Children")]
+  [MenuItem("USD/Export Selected with Children")]
   static void ExportSelectedSlow() {
     ExportSelected(BasisTransformation.SlowAndSafe);
   }
@@ -117,7 +119,7 @@ public class UsdMenu : MonoBehaviour {
 
     var importOptions = new SceneImportOptions();
     importOptions.assetImportPath = GetSelectedAssetPath();
-    importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
+    importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
     //importOptions.meshOptions.generateLightmapUVs = true;
 
