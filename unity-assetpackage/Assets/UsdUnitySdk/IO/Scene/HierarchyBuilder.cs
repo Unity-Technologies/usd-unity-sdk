@@ -318,7 +318,7 @@ namespace USD.NET.Unity {
       
       if (!go) {
         go = new GameObject(name);
-        var ua = go.AddComponent<UsdAttachment>();
+        var ua = go.AddComponent<UsdPrimSource>();
         ua.m_usdPrimPath = path.ToString();
       }
 

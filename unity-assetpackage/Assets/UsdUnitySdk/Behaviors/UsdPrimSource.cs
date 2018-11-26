@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
-  public class UsdAttachment : MonoBehaviour {
+  public class UsdPrimSource : MonoBehaviour {
     public string m_usdPrimPath;
   }
 }

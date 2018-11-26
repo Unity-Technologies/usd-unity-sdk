@@ -11,19 +11,20 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using pxr;
 
 namespace USD.NET.Unity {
 
-  [CustomEditor(typeof(UsdAttachment))]
-  public class UsdAttachmentEditor : Editor {
+  [CustomEditor(typeof(UsdPrimSource))]
+  public class UsdPrimSourceEditor : Editor {
 
     UsdAttribute selectedAttribute;
 
     public override void OnInspectorGUI() {
-      var attachment = (UsdAttachment)target;
+      var attachment = (UsdPrimSource)target;
       var stageRoot = attachment.GetComponentInParent<StageRoot>();
 
       if (!stageRoot) {
@@ -76,44 +77,53 @@ namespace USD.NET.Unity {
       // visualization can be extremely helpful.
       WalkNodes(prim.GetPrimIndex().GetRootNode());
 
-      //
-      // Attribute Composition.
-      //
       if (selectedAttribute != null && selectedAttribute.IsValid()) {
-        // Separator.
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        EditorGUILayout.LabelField("Property Opinions", EditorStyles.boldLabel);
-
-        EditorGUILayout.LabelField("Name: " + selectedAttribute.GetName());
-        EditorGUILayout.LabelField("Type: " + selectedAttribute.GetTypeName().GetTfType().GetTypeName());
-        EditorGUILayout.LabelField("IsArray: " + selectedAttribute.GetTypeName().IsArray());
-        EditorGUILayout.LabelField("Composed Path: " + selectedAttribute.GetPath());
-        EditorGUILayout.LabelField("Variability: " + selectedAttribute.GetVariability());
-        EditorGUILayout.LabelField("Is Custom: " + selectedAttribute.IsCustom());
-
-        // Spec are the low level API  in Sdf, the enable one to read and write a layer without
-        // going through the composition graph. This is the fastest way to write USD data, but
-        // also the most complicated.
-        //
-        // A property stack is an ordered list of all opinions about what this value should be.
-        // The visualization below is a great debugging aid in production when something looks
-        // wrong, but you have no idea why your value (opinion) isn't winning. It lets the user
-        // understand how composition is working and shows them exactly what files are contributing
-        // the final result.
-
-        var specs = selectedAttribute.GetPropertyStack();
-        if (specs.Count == 0) {
-          EditorGUILayout.LabelField("[ Attribute has no authored opinions ]", EditorStyles.boldLabel);
-        }
-        foreach (var propSpec in specs) {
-          EditorGUILayout.LabelField("<" + propSpec.GetPath() + ">");
-          GUILayout.BeginHorizontal();
-          GUILayout.Space(20);
-          EditorGUILayout.LabelField(propSpec.GetLayer().GetIdentifier());
-          GUILayout.EndHorizontal();
-        }
-        
+        DrawAttributeInfo(scene);
       }
+    }
+
+    void DrawAttributeInfo(Scene scene) {
+      // Separator.
+      EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+      EditorGUILayout.LabelField("Property Opinions", EditorStyles.boldLabel);
+      EditorGUILayout.LabelField("Name: " + selectedAttribute.GetName());
+      EditorGUILayout.LabelField("Type: " + selectedAttribute.GetTypeName().GetTfType().GetTypeName());
+      EditorGUILayout.LabelField("IsArray: " + selectedAttribute.GetTypeName().IsArray());
+      EditorGUILayout.LabelField("Composed Path: " + selectedAttribute.GetPath());
+      EditorGUILayout.LabelField("Variability: " + selectedAttribute.GetVariability());
+      EditorGUILayout.LabelField("Is Custom: " + selectedAttribute.IsCustom());
+      double upper, lower, hasSamples;
+      selectedAttribute.GetBracketingTimeSamples(scene.Time.GetValueOrDefault(), out lower, out upper, out hasSamples);
+      if (hasSamples > 0) {
+        EditorGUILayout.LabelField("Braketing TimeSamples: [ " + lower + ", " + upper + " ]");
+      } else {
+        EditorGUILayout.LabelField("Braketing TimeSamples: [ ]");
+      }
+      EditorGUILayout.LabelField("TimeSamples: ");
+      GUILayout.TextArea(string.Join(",", selectedAttribute.GetTimeSamples().Select(p => p.ToString()).ToArray()));
+
+      // Spec are the low level API  in Sdf, the enable one to read and write a layer without
+      // going through the composition graph. This is the fastest way to write USD data, but
+      // also the most complicated.
+      //
+      // A property stack is an ordered list of all opinions about what this value should be.
+      // The visualization below is a great debugging aid in production when something looks
+      // wrong, but you have no idea why your value (opinion) isn't winning. It lets the user
+      // understand how composition is working and shows them exactly what files are contributing
+      // the final result.
+      
+      EditorGUILayout.LabelField("Authored Values: ");
+      var specs = selectedAttribute.GetPropertyStack();
+      if (specs.Count == 0) {
+        EditorGUILayout.LabelField("[ Attribute has no authored opinions ]", EditorStyles.boldLabel);
+      }
+      foreach (var propSpec in specs) {
+        EditorGUILayout.LabelField(propSpec.GetLayer().GetIdentifier());
+      }
+
+      // Separator.
+      EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
     }
 
     #region "Composition Graph"
@@ -142,19 +152,29 @@ namespace USD.NET.Unity {
     void DrawAttributeGui(UsdPrim prim, Scene usdScene) {
       double usdTime = usdScene.Time.GetValueOrDefault();
 
+      var boldBlue = new GUIStyle(EditorStyles.boldLabel);
+      boldBlue.normal.textColor = Color.blue;
+
       foreach (UsdAttribute attr in prim.GetAttributes()) {
         bool hasAuthoredValue = attr.HasAuthoredValueOpinion();
         bool hasValue = attr.HasValue();
+        bool isSelected = GUI.GetNameOfFocusedControl() == attr.GetName();
         var displayName = attr.GetDisplayName();
         displayName = !string.IsNullOrEmpty(displayName) ? displayName : attr.GetName();
 
         GUILayout.BeginHorizontal();
         EditorGUIUtility.labelWidth = 100;
 
+        GUI.SetNextControlName(attr.GetName());
         if (hasAuthoredValue) {
-          EditorGUILayout.LabelField(displayName, EditorStyles.boldLabel);
+          EditorGUILayout.SelectableLabel(displayName, isSelected ?
+                                                       boldBlue : EditorStyles.boldLabel);
         } else {
-          EditorGUILayout.LabelField(displayName);
+          EditorGUILayout.SelectableLabel(displayName);
+        }
+        
+        if (isSelected) {
+          selectedAttribute = attr;
         }
 
         EditorGUIUtility.labelWidth = 10;
@@ -166,18 +186,27 @@ namespace USD.NET.Unity {
         EditorGUILayout.LabelField(attr.GetTypeName().GetTfType().GetTypeName() + suffix);
         GUI.enabled = true;
 
+        GUI.enabled = hasAuthoredValue;
+        if (isSelected) {
+          var csValue = GetCSharpValue(attr, usdTime);
+          if (csValue != null) {
+            var stringVal = csValue.ToString();
+            EditorGUILayout.LabelField(stringVal.Substring(0, Mathf.Min(stringVal.Length, 100)));
+          } else {
+            EditorGUILayout.LabelField("");
+          }
+        } else {
+          EditorGUILayout.LabelField("");
+        }
+
+        GUI.enabled = true;
+
         GUI.enabled = hasValue;
-        if (GUILayout.Button("Value")) {
+        GUILayout.Width(40);
+        if (GUILayout.Button("Print")) {
           DebugPrintAttr(usdScene, attr, usdTime);
         }
 
-        if (GUILayout.Button("Compostion")) {
-          if (selectedAttribute == attr) {
-            selectedAttribute = null;
-          } else {
-            selectedAttribute = attr;
-          }
-        }
         GUI.enabled = true;
 
         GUILayout.EndHorizontal();
@@ -207,8 +236,12 @@ namespace USD.NET.Unity {
       var valAtTime = attr.Get(time);
 
       // Copy them to the new attribute.
-      tmpAttr.Set(defaultVal);
-      tmpAttr.Set(valAtTime, time);
+      if (!defaultVal.IsEmpty()) {
+        tmpAttr.Set(defaultVal);
+      }
+      if (attr.ValueMightBeTimeVarying()) {
+        tmpAttr.Set(valAtTime, time);
+      }
 
       // If this is an array, get the size.
       var arraySize = -1;
