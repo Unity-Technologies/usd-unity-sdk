@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -107,8 +107,9 @@ public class UsdMenu : MonoBehaviour {
       return;
     }
     string path = scene.FilePath;
-    ImportOptionsWindow.Open(path);
 
+    var specMat = new Material(Shader.Find("Standard (Specular setup)"));
+    var metallicMat = new Material(Shader.Find("Standard (Roughness setup)"));
     var solidColorMat = new Material(Shader.Find("USD/StandardVertexColor"));
     solidColorMat.SetFloat("_Glossiness", 0.2f);
 
@@ -121,6 +122,8 @@ public class UsdMenu : MonoBehaviour {
     importOptions.assetImportPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
     importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
+    importOptions.materialMap.SpecularWorkflowMaterial = specMat;
+    importOptions.materialMap.MetallicWorkflowMaterial = metallicMat;
     //importOptions.meshOptions.generateLightmapUVs = true;
 
     GameObject parent = null;
