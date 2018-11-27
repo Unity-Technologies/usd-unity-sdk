@@ -18,7 +18,7 @@ using UnityEditor.Experimental.AssetImporters;
 using USD.NET;
 using USD.NET.Unity;
 
-#if true
+#if false
 [ScriptedImporter(1, new string[] { "usd-hook" }, 0)]
 public class UsdScriptedImporter : ScriptedImporter {
 

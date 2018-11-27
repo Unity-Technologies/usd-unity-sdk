@@ -18,7 +18,7 @@ using UnityEditor;
 using UnityEditor.Experimental.AssetImporters;
 using USD.NET.Unity;
 
-#if true
+#if false
 [CustomEditor(typeof(UsdScriptedImporter))]
 public class UsdScriptedImporterEditor : ScriptedImporterEditor {
 

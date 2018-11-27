@@ -137,6 +137,7 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
+#if false
   [MenuItem("USD/Scripted Import")]
   public static void ImportUsdScripted() {
     var scene = InitForOpen();
@@ -148,6 +149,7 @@ public class UsdMenu : MonoBehaviour {
     File.WriteAllText(assetPath, path);
     AssetDatabase.ImportAsset(assetPath);
   }
+#endif
 
   [MenuItem("USD/Import as Prefab")]
   public static void ImportUsdToPrefab() {
