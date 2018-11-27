@@ -284,6 +284,19 @@ public class UsdMenu : MonoBehaviour {
         AssetDatabase.AddObjectToAsset(mat, asset);
       }
     }
+
+    foreach (var mf in rootObject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+      if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
+        AssetDatabase.AddObjectToAsset(mf.sharedMesh, asset);
+      }
+      foreach (var mat in mf.sharedMaterials) {
+        if (mat == null || !materials.Add(mat)) {
+          continue;
+        }
+        AssetDatabase.AddObjectToAsset(mat, asset);
+      }
+    }
+
   }
 
   private static string GetObjectName(string path) {
