@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -141,7 +141,7 @@ namespace USD.NET.Unity {
     /// Private default texture resolver. Copies the given texture into the asset database.
     /// </summary>
     private static Texture2D DefaultTextureResolver(pxr.SdfAssetPath textureAssetPath,
-                                                  SceneImportOptions options) {
+                                                    SceneImportOptions options) {
 #if UNITY_EDITOR
       if (!File.Exists(textureAssetPath.GetResolvedPath())) {
         return null;
