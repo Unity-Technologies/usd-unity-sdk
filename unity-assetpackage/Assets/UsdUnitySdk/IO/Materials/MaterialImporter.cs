@@ -208,8 +208,9 @@ namespace USD.NET.Unity {
       UnityEditor.EditorUtility.SetDirty(texImporter);
       texImporter.SaveAndReimport();
 #endif
-
-      return newTex;
+      // To get the correct file ID, the texture must be reloaded from the asset path.
+      Texture2D.DestroyImmediate(newTex);
+      return (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath(newAssetPath, typeof(Texture2D));
     }
 
     /// <summary>
