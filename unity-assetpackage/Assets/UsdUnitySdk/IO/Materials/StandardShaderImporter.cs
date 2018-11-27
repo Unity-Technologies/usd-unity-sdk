@@ -22,10 +22,10 @@ namespace USD.NET.Unity {
                                          PreviewSurfaceSample previewSurf,
                                          SceneImportOptions options) {
       Material mat = unityMaterial;
-
+      Texture2D mainTex = null;
       if (previewSurf.diffuseColor.IsConnected()) {
-        mat.SetTexture("_MainTex",
-            MaterialImporter.ImportConnectedTexture(scene, previewSurf.diffuseColor, options));
+        mainTex = MaterialImporter.ImportConnectedTexture(scene, previewSurf.diffuseColor, options);
+        mat.SetTexture("_MainTex", mainTex);
       } else {
         // TODO: this should delegate to a material mapper.
         var rgb = previewSurf.diffuseColor.defaultValue;
@@ -83,11 +83,17 @@ namespace USD.NET.Unity {
           // but isn't the albedo or spec map).
           // Roughness also needs to be converted to glossiness.
           var roughTex = MaterialImporter.ImportConnectedTexture(scene, previewSurf.roughness, options);
-          if (roughTex != null && roughTex != specTex) {
+          if (roughTex != null && roughTex != specTex && specTex != null) {
             var specGlossTex = MaterialImporter.CombineRoughnessToGloss(specTex, roughTex);
             mat.SetTexture("_SpecGlossMap", specGlossTex);
+            mat.EnableKeyword("_SPECGLOSSMAP");
+          } else if (specTex == null && roughTex != null && roughTex != mainTex) {
+            var mainGlossTex = MaterialImporter.CombineRoughnessToGloss(mainTex, roughTex);
+            mat.SetTexture("_SpecGlossMap", mainGlossTex);
+            mat.EnableKeyword("_SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A");
+          } else {
+            // TODO: create a new texture with constant spec value, combined with roughness texture.
           }
-          mat.EnableKeyword("_SPECGLOSSMAP");
         } else {
           mat.SetFloat("_Glossiness", 1 - previewSurf.roughness.defaultValue);
         }
