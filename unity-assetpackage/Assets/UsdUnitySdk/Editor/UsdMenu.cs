@@ -170,7 +170,7 @@ public class UsdMenu : MonoBehaviour {
   }
 
   /// <summary>
-  /// Returns the selected object path or the empty string if no object is selected.
+  /// Returns the selected object path or "Assets/" if no object is selected.
   /// </summary>
   public static string GetSelectedAssetPath() {
     Object[] selectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
