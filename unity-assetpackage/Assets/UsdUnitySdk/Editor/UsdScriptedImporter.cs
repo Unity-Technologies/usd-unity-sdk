@@ -11,15 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Experimental.AssetImporters;
+using USD.NET;
 using USD.NET.Unity;
 
-#if false
-// This is not yet fully working.
-
-[ScriptedImporter(1, new string[] { "usd", "usda", "usdc", "abc" }, 0)]
+#if true
+[ScriptedImporter(1, new string[] { "usd-hook" }, 0)]
 public class UsdScriptedImporter : ScriptedImporter {
 
   /// <summary>
@@ -27,42 +27,62 @@ public class UsdScriptedImporter : ScriptedImporter {
   /// https://docs.unity3d.com/Manual/ScriptedImporters.html
   /// </summary>
   public override void OnImportAsset(AssetImportContext ctx) {
-    var solidColorMat = new Material(Shader.Find("Standard"));
-    solidColorMat.SetFloat("_Glossiness", 0.2f);
-
+    var usdFilePath = File.ReadAllText(ctx.assetPath);
     var importOptions = new SceneImportOptions();
-    importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
-    importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
 
-    var time = 1.0;
+    importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+    importOptions.assetImportPath = Path.GetDirectoryName(ctx.assetPath);
+    importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
+    importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
+    importOptions.materialMap.MetallicWorkflowMaterial = new Material(Shader.Find("Standard (Roughness setup)"));
+    importOptions.materialMap.FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
+
+    var time = 1.0f;
     var go = new GameObject();
-    UsdAssetImporter.ImportUsd(go, ctx.assetPath, time, importOptions);
+    UsdAssetImporter.ImportUsd(go, usdFilePath, time, importOptions);
 
     var usdImporter = go.AddComponent<UsdAssetImporter>();
-    usdImporter.m_usdFile = ctx.assetPath;
-    usdImporter.m_time = time;
+    usdImporter.m_usdFile = usdFilePath;
+    usdImporter.m_usdTime = time;
     usdImporter.OptionsToState(importOptions);
 
     var meshes = new HashSet<Mesh>();
     var materials = new HashSet<Material>();
 
+    ctx.AddObjectToAsset(go.GetInstanceID().ToString(), go);
+    ctx.SetMainObject(go);
+
+    int objIndex = 0;
+
     foreach (var mf in go.GetComponentsInChildren<MeshFilter>()) {
       if (meshes.Add(mf.sharedMesh)) {
-        ctx.AddObjectToAsset(go.name, mf.sharedMesh);
+        ctx.AddObjectToAsset(mf.name + "_mesh_" + objIndex++, mf.sharedMesh);
       }
     }
 
     foreach (var mf in go.GetComponentsInChildren<MeshRenderer>()) {
-      int matIndex = 0;
       foreach (var mat in mf.sharedMaterials) {
         if (!materials.Add(mat)) {
           continue;
         }
-        ctx.AddObjectToAsset(mf.gameObject.name + "_mat_" + matIndex, mat);
+        ctx.AddObjectToAsset(mf.name + "_mat_" + objIndex++, mat);
       }
     }
 
-    DestroyImmediate(go);
+    foreach (var mf in go.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+      if (meshes.Add(mf.sharedMesh)) {
+        ctx.AddObjectToAsset(mf.name + "_mesh_" + objIndex++, mf.sharedMesh);
+      }
+    }
+
+    foreach (var mf in go.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+      foreach (var mat in mf.sharedMaterials) {
+        if (!materials.Add(mat)) {
+          continue;
+        }
+        ctx.AddObjectToAsset(mf.name + "_mat_" + objIndex++, mat);
+      }
+    }
   }
 }
 #endif
