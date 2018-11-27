@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
+
+#if UNITY_EDITOR
+using UnityEditor;
+using System.IO;
+#endif
 
 namespace USD.NET.Unity {
 
@@ -45,6 +50,138 @@ namespace USD.NET.Unity {
     /// fire after several frames, when the coroutine overload of BuildScene is used.
     /// </summary>
     public static event ImportNotice AfterImport;
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Custom importer. This works almost exactly as the ScriptedImporter, but does not require
+    /// the new API.
+    /// </summary>
+    public static void SaveAsSinglePrefab(GameObject rootObject,
+                                          string prefabPath,
+                                          SceneImportOptions importOptions) {
+      Directory.CreateDirectory(Path.GetDirectoryName(prefabPath));
+
+      GameObject oldPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+      GameObject prefab = null;
+
+      if (oldPrefab == null) {
+        // Create the prefab. At this point, the meshes do not yet exist and will be
+        // dangling references
+        prefab = PrefabUtility.CreatePrefab(prefabPath, rootObject);
+        HashSet<Mesh> meshes;
+        HashSet<Material> materials;
+        AddObjectsToAsset(rootObject, prefab, importOptions, out meshes, out materials);
+
+        foreach (var mesh in meshes) {
+          AssetDatabase.AddObjectToAsset(mesh, prefab);
+        }
+
+        foreach (var mat in materials) {
+          AssetDatabase.AddObjectToAsset(mat, prefab);
+        }
+
+        // Fix the dangling references.
+        prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
+      } else {
+        HashSet<Mesh> meshes;
+        HashSet<Material> materials;
+        AddObjectsToAsset(rootObject, oldPrefab, importOptions, out meshes, out materials);
+
+        // ReplacePrefab only removes the GameObjects from the asset.
+        // Clear out all non-prefab junk (ie, meshes), because otherwise it piles up.
+        // The main difference between LoadAllAssetRepresentations and LoadAllAssets
+        // is that the former returns MonoBehaviours and the latter does not.
+        foreach (var obj in AssetDatabase.LoadAllAssetRepresentationsAtPath(prefabPath)) {
+          if (obj is GameObject) {
+            continue;
+          }
+          if (obj is Mesh && meshes.Contains((Mesh)obj)) {
+            if (true || !importOptions.forceRebuild) {
+              meshes.Remove((Mesh)obj);
+            }
+            continue;
+          }
+          if (obj is Material && materials.Contains((Material)obj)) {
+            if (true || !importOptions.forceRebuild) {
+              materials.Remove((Material)obj);
+            }
+            continue;
+          }
+          Object.DestroyImmediate(obj, allowDestroyingAssets: true);
+        }
+
+        foreach (var mesh in meshes) {
+          AssetDatabase.AddObjectToAsset(mesh, oldPrefab);
+        }
+
+        foreach (var mat in materials) {
+          AssetDatabase.AddObjectToAsset(mat, oldPrefab);
+        }
+
+        if (oldPrefab != rootObject) {
+          prefab = PrefabUtility.ReplacePrefab(
+              rootObject, oldPrefab, ReplacePrefabOptions.ReplaceNameBased);
+        }
+      }
+
+      AssetDatabase.ImportAsset(prefabPath, ImportAssetOptions.ForceUpdate);
+      AssetDatabase.SaveAssets();
+    }
+
+    static void AddObjectsToAsset(GameObject rootObject,
+                                  Object asset,
+                                  SceneImportOptions importOptions,
+                                  out HashSet<Mesh> usedMeshes,
+                                  out HashSet<Material> usedMaterials) {
+      var meshes = new HashSet<Mesh>();
+      var materials = new HashSet<Material>();
+
+      materials.Add(importOptions.materialMap.FallbackMasterMaterial);
+      materials.Add(importOptions.materialMap.MetallicWorkflowMaterial);
+      materials.Add(importOptions.materialMap.SpecularWorkflowMaterial);
+
+      var tempMat = importOptions.materialMap.FallbackMasterMaterial;
+      if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+        materials.Add(tempMat);
+      }
+
+      tempMat = importOptions.materialMap.MetallicWorkflowMaterial;
+      if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+        materials.Add(tempMat);
+      }
+
+      tempMat = importOptions.materialMap.SpecularWorkflowMaterial;
+      if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+        materials.Add(tempMat);
+      }
+
+      foreach (var mf in rootObject.GetComponentsInChildren<MeshFilter>()) {
+        if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
+        }
+      }
+
+      foreach (var mf in rootObject.GetComponentsInChildren<MeshRenderer>()) {
+        foreach (var mat in mf.sharedMaterials) {
+          if (mat == null || !materials.Add(mat)) {
+            continue;
+          }
+        }
+      }
+
+      foreach (var mf in rootObject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+        if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
+        }
+        foreach (var mat in mf.sharedMaterials) {
+          if (mat == null || !materials.Add(mat)) {
+            continue;
+          }
+        }
+      }
+
+      usedMeshes = meshes;
+      usedMaterials = materials;
+    }
+#endif
 
     /// <summary>
     /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
@@ -539,16 +676,24 @@ namespace USD.NET.Unity {
       Profiler.EndSample();
 
       //
-      // Apply root transform corrections to all root prims.
+      // Apply root transform corrections.
       //
       Profiler.BeginSample("USD: Build Root Transforms");
-      foreach (KeyValuePair<pxr.SdfPath, GameObject> kvp in primMap) {
-        if (kvp.Key.IsRootPrimPath() && kvp.Value != null) {
-          // The root object at which the USD scene will be reconstructed.
-          // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
-          XformImporter.BuildSceneRoot(scene, kvp.Value.transform, importOptions);
+      if (!root) {
+        // There is no single root,
+        // Apply root transform corrections to all imported root prims.
+        foreach (KeyValuePair<pxr.SdfPath, GameObject> kvp in primMap) {
+          if (kvp.Key.IsRootPrimPath() && kvp.Value != null) {
+            // The root object at which the USD scene will be reconstructed.
+            // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
+            XformImporter.BuildSceneRoot(scene, kvp.Value.transform, importOptions);
+          }
         }
+      } else {
+        // There is only one root, apply a single transform correction.
+        XformImporter.BuildSceneRoot(scene, root.transform, importOptions);
       }
+
       Profiler.EndSample();
 
       //

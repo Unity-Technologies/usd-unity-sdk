@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -221,96 +221,8 @@ public class UsdMenu : MonoBehaviour {
     string filePath = scene.FilePath;
     var go = new GameObject();
     UsdToGameObject(go, GetPrefabName(filePath), scene, importOptions);
-    SaveAsSinglePrefab(go, prefabPath, importOptions);
+    SceneImporter.SaveAsSinglePrefab(go, prefabPath, importOptions);
     GameObject.DestroyImmediate(go);
-  }
-
-  /// <summary>
-  /// Custom importer. This works almost exactly as the ScriptedImporter, but does not require
-  /// the new API.
-  /// </summary>
-  public static void SaveAsSinglePrefab(GameObject rootObject,
-                                        string prefabPath,
-                                        SceneImportOptions importOptions) {
-    Directory.CreateDirectory(Path.GetDirectoryName(prefabPath));
-
-    GameObject oldPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-    GameObject prefab = null;
-
-    if (oldPrefab == null) {
-      // Create the prefab. At this point, the meshes do not yet exist and will be
-      // dangling references
-      prefab = PrefabUtility.CreatePrefab(prefabPath, rootObject);
-      AddObjectsToAsset(rootObject, prefab, importOptions);
-
-      // Fix the dangling references.
-      prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
-    } else {
-      // ReplacePrefab only removes the GameObjects from the asset.
-      // Clear out all non-prefab junk (ie, meshes), because otherwise it piles up.
-      // The main difference between LoadAllAssetRepresentations and LoadAllAssets
-      // is that the former returns MonoBehaviours and the latter does not.
-      foreach (var obj in AssetDatabase.LoadAllAssetRepresentationsAtPath(prefabPath)) {
-        if (obj is GameObject) {
-          continue;
-        }
-        if (obj == importOptions.materialMap.FallbackMasterMaterial) {
-          continue;
-        }
-        foreach (KeyValuePair<string, Material> kvp in importOptions.materialMap) {
-          if (obj == kvp.Value) {
-            continue;
-          }
-        }
-        Object.DestroyImmediate(obj, allowDestroyingAssets: true);
-      }
-      AddObjectsToAsset(rootObject, oldPrefab, importOptions);
-      prefab = PrefabUtility.ReplacePrefab(
-          rootObject, oldPrefab, ReplacePrefabOptions.ReplaceNameBased);
-    }
-    
-    AssetDatabase.ImportAsset(prefabPath);
-  }
-
-  static void AddObjectsToAsset(GameObject rootObject,
-                                Object asset,
-                                SceneImportOptions importOptions) {
-    var meshes = new HashSet<Mesh>();
-    var materials = new HashSet<Material>();
-
-    var tempMat = importOptions.materialMap.FallbackMasterMaterial;
-    if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-      materials.Add(tempMat);
-      AssetDatabase.AddObjectToAsset(tempMat, asset);
-    }
-
-    foreach (var mf in rootObject.GetComponentsInChildren<MeshFilter>()) {
-      if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
-        AssetDatabase.AddObjectToAsset(mf.sharedMesh, asset);
-      }
-    }
-
-    foreach (var mf in rootObject.GetComponentsInChildren<MeshRenderer>()) {
-      foreach (var mat in mf.sharedMaterials) {
-        if (mat == null || !materials.Add(mat)) {
-          continue;
-        }
-        AssetDatabase.AddObjectToAsset(mat, asset);
-      }
-    }
-
-    foreach (var mf in rootObject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
-      if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
-        AssetDatabase.AddObjectToAsset(mf.sharedMesh, asset);
-      }
-      foreach (var mat in mf.sharedMaterials) {
-        if (mat == null || !materials.Add(mat)) {
-          continue;
-        }
-        AssetDatabase.AddObjectToAsset(mat, asset);
-      }
-    }
-
   }
 
   private static string GetObjectName(string path) {

@@ -83,8 +83,6 @@ namespace USD.NET.Unity {
       var scene = GetScene();
       var options = new SceneImportOptions();
       StateToOptions(ref options);
-      var parent = transform.parent;
-      var root = parent ? parent.gameObject : null;
 
       try {
         options.forceRebuild = false;
@@ -100,7 +98,7 @@ namespace USD.NET.Unity {
         options.meshOptions.texcoord1 = ImportMode.Ignore;
         options.meshOptions.texcoord2 = ImportMode.Ignore;
         options.meshOptions.texcoord3 = ImportMode.Ignore;
-        StageRoot.ImportUsd(root, scene, options);
+        StageRoot.ImportUsd(this.gameObject, scene, options);
       } finally {
         scene.Close();
         m_lastScene = null;
