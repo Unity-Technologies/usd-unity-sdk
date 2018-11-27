@@ -266,7 +266,7 @@
                     }
                 }
             }, 
-            "LibraryPath": "../../../Frameworks/libusd_ms.dylib", 
+            "LibraryPath": "", 
             "Name": "usdGeom", 
             "ResourcePath": "resources", 
             "Root": "..", 

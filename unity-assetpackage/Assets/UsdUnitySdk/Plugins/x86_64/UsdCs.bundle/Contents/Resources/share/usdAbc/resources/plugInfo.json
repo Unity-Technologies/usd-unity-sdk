@@ -17,7 +17,7 @@
                     }
                 }
             },
-            "LibraryPath": "../../../Frameworks/libusd_ms.dylib",
+            "LibraryPath": "../../libusd_ms.dll",
             "Name": "usdAbc",
             "ResourcePath": "resources",
             "Root": "..",
