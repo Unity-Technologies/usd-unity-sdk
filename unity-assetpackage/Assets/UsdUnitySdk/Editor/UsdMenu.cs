@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -135,6 +135,18 @@ public class UsdMenu : MonoBehaviour {
     } finally {
       scene.Close();
     }
+  }
+
+  [MenuItem("USD/Scripted Import")]
+  public static void ImportUsdScripted() {
+    var scene = InitForOpen();
+    if (scene == null) {
+      return;
+    }
+    string path = scene.FilePath;
+    string assetPath = "Assets/Test.usd-hook";
+    File.WriteAllText(assetPath, path);
+    AssetDatabase.ImportAsset(assetPath);
   }
 
   [MenuItem("USD/Import as Prefab")]
