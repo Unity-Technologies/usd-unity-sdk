@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -201,7 +201,7 @@ namespace USD.NET.Unity {
       var assetPath = UnityEditor.AssetDatabase.GetAssetPath(mainTex.GetInstanceID());
 
       var bytes = newTex.EncodeToPNG();
-      var newAssetPath = assetPath + "-specGloss.png";
+      var newAssetPath = Path.ChangeExtension(assetPath, "specGloss.png");
       File.WriteAllBytes(newAssetPath, bytes);
       UnityEditor.AssetDatabase.ImportAsset(newAssetPath);
       var texImporter = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(newAssetPath);
