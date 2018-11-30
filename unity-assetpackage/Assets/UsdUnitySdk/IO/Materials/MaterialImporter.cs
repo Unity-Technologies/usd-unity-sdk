@@ -186,7 +186,7 @@ namespace USD.NET.Unity {
       }
       
       var newTex = new Texture2D(rgbTex.width, rgbTex.height,
-                                 TextureFormat.ARGB32, mipChain: true);
+                                 TextureFormat.ARGB32, true);
       AlbedoGlossCombiner.SetTexture("_RoughnessTex", roughnessTex);
       var tmp = RenderTexture.GetTemporary(rgbTex.width, rgbTex.height, 0,
                                            RenderTextureFormat.ARGB32);
