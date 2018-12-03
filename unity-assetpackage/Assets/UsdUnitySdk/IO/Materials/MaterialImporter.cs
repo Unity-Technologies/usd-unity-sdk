@@ -109,7 +109,10 @@ namespace USD.NET.Unity {
         mat = Material.Instantiate(options.materialMap.MetallicWorkflowMaterial);
       }
 
-      StandardShaderImporter.BuildMaterial(scene, mat, sample, previewSurf, options);
+      var matAdapter = new StandardShaderAdapter(mat);
+
+      matAdapter.ImportParametersFromUsd(scene, sample, previewSurf, options);
+      matAdapter.ImportFromUsd();
 
       return mat;
     }
