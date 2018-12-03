@@ -108,11 +108,6 @@ public class UsdMenu : MonoBehaviour {
     }
     string path = scene.FilePath;
 
-    var specMat = new Material(Shader.Find("Standard (Specular setup)"));
-    var metallicMat = new Material(Shader.Find("Standard (Roughness setup)"));
-    var solidColorMat = new Material(Shader.Find("USD/StandardVertexColor"));
-    solidColorMat.SetFloat("_Glossiness", 0.2f);
-
     // Time-varying data is not supported and often scenes are written without "Default" time
     // values, which makes setting an arbitrary time safer (because if only default was authored
     // the time will be ignored and values will resolve to default time automatically).
@@ -121,9 +116,10 @@ public class UsdMenu : MonoBehaviour {
     var importOptions = new SceneImportOptions();
     importOptions.assetImportPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
-    importOptions.materialMap.FallbackMasterMaterial = solidColorMat;
-    importOptions.materialMap.SpecularWorkflowMaterial = specMat;
-    importOptions.materialMap.MetallicWorkflowMaterial = metallicMat;
+    importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
+    importOptions.materialMap.MetallicWorkflowMaterial = new Material(Shader.Find("Standard (Roughness setup)"));
+    importOptions.materialMap.FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
+
     //importOptions.meshOptions.generateLightmapUVs = true;
 
     GameObject parent = null;
