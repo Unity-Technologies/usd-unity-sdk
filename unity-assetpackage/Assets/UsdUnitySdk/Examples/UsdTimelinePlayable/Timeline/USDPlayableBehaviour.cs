@@ -1,14 +1,15 @@
 ﻿using UnityEngine.Playables;
-using USD.NET.Unity.Extensions.Player;
+using UnityEngine;
 
 namespace USD.NET.Unity.Extensions.Timeline {
   // A behaviour that is attached to a playable
   public class USDPlayableBehaviour : PlayableBehaviour {
-    public UsdPlayer player;
+    public StageRoot player;
+    public GameObject root;
 
     // Called when the owning graph starts playing
     public override void OnGraphStart(Playable playable) {
-      player.SetupScene();
+      USD.NET.Examples.InitUsd.Initialize();
     }
 
     // Called when the owning graph stops playing

@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,6 +24,9 @@ namespace USD.NET.Unity {
   /// </summary>
   [ExecuteInEditMode]
   public class StageRoot : MonoBehaviour {
+
+    // Length of the USD playback time, exposed for Timeline.
+    public double Length { get { return ComputeLength(); } }
 
     [Header("Source Asset")]
     public string m_usdFile;
@@ -74,6 +77,20 @@ namespace USD.NET.Unity {
       m_lastScene.Time = m_usdTime;
       return m_lastScene;
     }
+
+    #region "Timeline Support"
+    private double ComputeLength() {
+      var scene = GetScene();
+      if (scene == null) { return 0; }
+      return (scene.EndTime - scene.StartTime) / (scene.Stage.GetFramesPerSecond());
+    }
+
+    public void SetTime(double time) {
+      var scene = GetScene();
+      if (scene == null) { return; }
+      m_usdTime = (float)(scene.StartTime + time * scene.Stage.GetFramesPerSecond());
+    }
+    #endregion
 
     private void Update() {
       if (m_lastTime == m_usdTime) {
