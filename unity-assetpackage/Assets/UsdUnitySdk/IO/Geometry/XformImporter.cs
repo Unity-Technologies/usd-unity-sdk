@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ namespace USD.NET.Unity {
       Quaternion localRot;
       Vector3 localScale;
 
-      if(!UnityTypeConverter.Decompose(xf, out localPos, out localRot, out localScale)) {
+      if (!UnityTypeConverter.Decompose(xf, out localPos, out localRot, out localScale)) {
         Debug.LogError("Non-decomposable transform matrix for " + go.name);
         return;
       }
