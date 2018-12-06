@@ -138,7 +138,7 @@ The full build process is:
 
 The following is an example of valid environment variables:
 
-SET USD_LOCAITON=C:\src\usd\builds\v0.8.4\monolithic_no-python\
+SET USD_LOCATION=C:\src\usd\builds\v0.8.4\monolithic_no-python\
 SET USD_LOCATION_PYTHON=C:\src\usd\builds\v0.8.4\monolithic\
 
 The following are the USD build commands used to generate the two build paths noted above:
