@@ -109,10 +109,14 @@ namespace USD.NET.Unity {
         return;
       }
 
-      var baseLayer = Scene.Open(sceneToReference.m_usdFile);
+      var baseLayer = sceneToReference.GetScene();
       if (baseLayer == null) {
         throw new Exception("Could not open base layer: " + sceneToReference.m_usdFile);
       }
+
+      overs.Time = baseLayer.Time;
+      overs.StartTime = baseLayer.StartTime;
+      overs.EndTime = baseLayer.EndTime;
 
       overs.WriteMode = Scene.WriteModes.Over;
       overs.UpAxis = baseLayer.UpAxis;
@@ -120,22 +124,23 @@ namespace USD.NET.Unity {
       try {
         SceneExporter.Export(sceneToReference.gameObject,
                              overs,
-                             sceneToReference.m_changeHandedness,
+                             BasisTransformation.SlowAndSafe,
                              exportUnvarying: false,
                              zeroRootTransform: true);
 
         var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.m_usdFile);
         GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
-        baseLayer.Close();
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         return;
+      } finally {
+        baseLayer.Close();
+        if (overs != null) {
+          overs.Save();
+          overs.Close();
+        }
       }
 
-      if (overs != null) {
-        overs.Save();
-        overs.Close();
-      }
     }
 
     pxr.UsdPrim GetFirstPrim(Scene scene) {
