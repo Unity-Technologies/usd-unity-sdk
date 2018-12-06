@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ namespace USD.NET.Unity {
 
     public Scene GetScene() {
       USD.NET.Examples.InitUsd.Initialize();
-      if (m_lastScene == null || m_lastScene.FilePath != m_usdFile) {
+      if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != m_usdFile) {
         m_lastScene = Scene.Open(m_usdFile);
       }
       m_lastScene.Time = m_usdTime;
