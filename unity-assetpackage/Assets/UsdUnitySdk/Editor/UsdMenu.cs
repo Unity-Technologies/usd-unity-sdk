@@ -122,12 +122,13 @@ public class UsdMenu : MonoBehaviour {
 
     //importOptions.meshOptions.generateLightmapUVs = true;
 
-    GameObject parent = null;
+    GameObject root = new GameObject("USD Object");
+
     if (Selection.gameObjects.Length > 0) {
-      parent = Selection.gameObjects[0];
+      root.transform.SetParent(Selection.gameObjects[0].transform);
     }
     try {
-      UsdToGameObject(parent, GetObjectName(path), scene, importOptions);
+      UsdToGameObject(root, GetObjectName(path), scene, importOptions);
     } finally {
       scene.Close();
     }
