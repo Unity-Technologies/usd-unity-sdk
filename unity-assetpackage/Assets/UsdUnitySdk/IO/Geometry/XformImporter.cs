@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,34 +73,76 @@ namespace USD.NET.Unity {
     public static void BuildSceneRoot(Scene scene, Transform root, SceneImportOptions options) {
 
       var stageRoot = root.GetComponent<StageRoot>();
+      bool newStageRoot = false;
+
       if (stageRoot == null) {
         stageRoot = root.gameObject.AddComponent<StageRoot>();
-        stageRoot.OptionsToState(options);
         stageRoot.m_usdFile = scene.FilePath;
-      }
-      ImporterBase.MoveComponentFirst(stageRoot);
-
-      // Handle configurable up-axis (Y or Z).
-      float invert = options.changeHandedness == BasisTransformation.FastWithNegativeScale ? -1 : 1;
-      if (scene.UpAxis == Scene.UpAxes.Z) {
-        root.transform.localRotation = Quaternion.AngleAxis(invert * 90, Vector3.right);
+        newStageRoot = true;
+        ImporterBase.MoveComponentFirst(stageRoot);
+        stageRoot.OptionsToState(options);
       }
 
-      if (options.changeHandedness == BasisTransformation.FastWithNegativeScale) {
-        // Convert from right-handed (USD) to left-handed (Unity).
-        if (scene.UpAxis == Scene.UpAxes.Z) {
-          root.localScale = new Vector3(1, -1, 1);
-        } else {
-          root.localScale = new Vector3(1, 1, -1);
+      if (newStageRoot
+          || options.changeHandedness != stageRoot.LastHandedness
+          || options.scale != stageRoot.LastScale) {
+        stageRoot.LastScale = options.scale;
+        stageRoot.LastHandedness = options.changeHandedness;
+
+        var localScale = root.transform.localScale;
+        var localRotation = root.transform.localRotation;
+
+        if (!newStageRoot) {
+          // Undo the previous transforms.
+          UndoRootTransform(scene, stageRoot, ref localScale, ref localRotation);
         }
-      }
 
-      if (Mathf.Abs(options.scale - 1.0f) > 0.0001) {
-        var ls = root.localScale;
-        root.localScale = ls * options.scale;
+        // Handle configurable up-axis (Y or Z).
+        float invert = options.changeHandedness == BasisTransformation.FastWithNegativeScale ? -1 : 1;
+        if (scene.UpAxis == Scene.UpAxes.Z) {
+          localRotation *= Quaternion.AngleAxis(invert * 90, Vector3.right);
+        }
+
+        if (options.changeHandedness == BasisTransformation.FastWithNegativeScale) {
+          // Convert from right-handed (USD) to left-handed (Unity).
+          if (scene.UpAxis == Scene.UpAxes.Z) {
+            localScale.y *= -1;
+          } else {
+            localScale.z *= -1;
+          }
+        }
+
+        if (Mathf.Abs(options.scale - 1.0f) > 0.0001) {
+          // Unilaterally setting the scale here is a little wrong, since it will stomp the root
+          // object scale if set in Unity.
+          localScale *= options.scale;
+        }
+
+        root.transform.localScale = localScale;
+        root.transform.localRotation = localRotation;
       }
     }
 
+    public static void UndoRootTransform(Scene scene,
+                                         StageRoot stageRoot,
+                                         ref Vector3 localScale,
+                                         ref Quaternion localRotation) {
+      localScale /= stageRoot.LastScale;
+
+      float invertPrev = stageRoot.LastHandedness == BasisTransformation.FastWithNegativeScale ? -1 : 1;
+      if (scene.UpAxis == Scene.UpAxes.Z) {
+        localRotation *= Quaternion.AngleAxis(-1 * invertPrev * 90, Vector3.right);
+      }
+
+      if (stageRoot.LastHandedness == BasisTransformation.FastWithNegativeScale) {
+        // Convert from right-handed (USD) to left-handed (Unity).
+        if (scene.UpAxis == Scene.UpAxes.Z) {
+          localScale.y *= -1;
+        } else {
+          localScale.z *= -1;
+        }
+      }
+    }
     #endregion
 
   }

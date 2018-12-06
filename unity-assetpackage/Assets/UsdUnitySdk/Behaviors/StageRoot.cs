@@ -66,6 +66,11 @@ namespace USD.NET.Unity {
     public bool m_debugShowSkeletonBindPose;
     public bool m_debugShowSkeletonRestPose;
 
+    [HideInInspector]
+    public BasisTransformation LastHandedness;
+    [HideInInspector]
+    public float LastScale;
+
     private float m_lastTime;
     private Scene m_lastScene;
 
