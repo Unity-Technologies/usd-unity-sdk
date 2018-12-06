@@ -189,11 +189,18 @@ namespace USD.NET.Unity {
     public static PrimMap BuildScene(Scene scene,
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
+                                     bool composingSubtree,
                                      SceneImportOptions importOptions) {
       try {
         Profiler.BeginSample("USD: Build Scene");
         var primMap = new PrimMap();
-        var builder = BuildScene_(scene, root, usdPrimRoot, importOptions, primMap, 0);
+        var builder = BuildScene_(scene,
+                                  root,
+                                  usdPrimRoot,
+                                  composingSubtree,
+                                  importOptions,
+                                  primMap,
+                                  0);
         while (builder.MoveNext()) { }
         return primMap;
       } finally {
@@ -204,12 +211,14 @@ namespace USD.NET.Unity {
     public static IEnumerator BuildScene(Scene scene,
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
+                                     bool composingSubtree,
                                      SceneImportOptions importOptions,
                                      PrimMap primMap,
                                      float targetFrameMilliseconds) {
       return BuildScene_(scene,
                          root,
                          usdPrimRoot,
+                         composingSubtree,
                          importOptions,
                          primMap,
                          targetFrameMilliseconds);
@@ -228,6 +237,7 @@ namespace USD.NET.Unity {
     private static IEnumerator BuildScene_(Scene scene,
                                            GameObject root,
                                            pxr.SdfPath usdPrimRoot,
+                                           bool composingSubtree,
                                            SceneImportOptions importOptions,
                                            PrimMap primMap,
                                            float targetFrameMilliseconds) {
@@ -679,21 +689,22 @@ namespace USD.NET.Unity {
       // Apply root transform corrections.
       //
       Profiler.BeginSample("USD: Build Root Transforms");
-      if (!root) {
-        // There is no single root,
-        // Apply root transform corrections to all imported root prims.
-        foreach (KeyValuePair<pxr.SdfPath, GameObject> kvp in primMap) {
-          if (kvp.Key.IsRootPrimPath() && kvp.Value != null) {
-            // The root object at which the USD scene will be reconstructed.
-            // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
-            XformImporter.BuildSceneRoot(scene, kvp.Value.transform, importOptions);
+      if (!composingSubtree) {
+        if (!root) {
+          // There is no single root,
+          // Apply root transform corrections to all imported root prims.
+          foreach (KeyValuePair<pxr.SdfPath, GameObject> kvp in primMap) {
+            if (kvp.Key.IsRootPrimPath() && kvp.Value != null) {
+              // The root object at which the USD scene will be reconstructed.
+              // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
+              XformImporter.BuildSceneRoot(scene, kvp.Value.transform, importOptions);
+            }
           }
+        } else {
+          // There is only one root, apply a single transform correction.
+          XformImporter.BuildSceneRoot(scene, root.transform, importOptions);
         }
-      } else {
-        // There is only one root, apply a single transform correction.
-        XformImporter.BuildSceneRoot(scene, root.transform, importOptions);
       }
-
       Profiler.EndSample();
 
       //

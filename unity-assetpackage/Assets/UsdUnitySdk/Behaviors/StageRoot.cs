@@ -215,6 +215,7 @@ namespace USD.NET.Unity {
       var importer = SceneImporter.BuildScene(scene,
                                               goRoot,
                                               pxr.SdfPath.AbsoluteRootPath(),
+                                              /*composingSubtree*/false,
                                               importOptions,
                                               primMap,
                                               targetFrameMilliseconds);
@@ -241,6 +242,11 @@ namespace USD.NET.Unity {
           throw new Exception("Unknown varient set: " + sel.Key + " at " + usdPrimPath);
         }
         varSets.GetVariantSet(sel.Key).SetVariantSelection(sel.Value);
+      }
+
+      // TODO: sparsely remove prims, rather than blowing away all the children.
+      foreach (Transform child in go.transform) {
+        GameObject.DestroyImmediate(child.gameObject);
       }
 
       SceneImportOptions importOptions = new SceneImportOptions();
@@ -280,7 +286,11 @@ namespace USD.NET.Unity {
                              Scene.InterpolationMode.Linear :
                              Scene.InterpolationMode.Held);
 
-      SceneImporter.BuildScene(scene, goRoot, pxr.SdfPath.AbsoluteRootPath(), importOptions);
+      SceneImporter.BuildScene(scene,
+                               goRoot,
+                               pxr.SdfPath.AbsoluteRootPath(),
+                               /*composingSubtree*/false,
+                               importOptions);
     }
 
     public static void ImportUsd(GameObject goRoot,
@@ -295,7 +305,11 @@ namespace USD.NET.Unity {
                              Scene.InterpolationMode.Linear :
                              Scene.InterpolationMode.Held);
 
-      SceneImporter.BuildScene(scene, goRoot, new pxr.SdfPath(usdPrimPath), importOptions);
+      SceneImporter.BuildScene(scene,
+                               goRoot,
+                               new pxr.SdfPath(usdPrimPath),
+                               /*composingSubtree*/true,
+                               importOptions);
     }
   }
 }
