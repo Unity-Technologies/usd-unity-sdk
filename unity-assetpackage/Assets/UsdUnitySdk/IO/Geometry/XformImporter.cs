@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -85,14 +85,18 @@ namespace USD.NET.Unity {
 
       if (newStageRoot
           || options.changeHandedness != stageRoot.LastHandedness
-          || options.scale != stageRoot.LastScale) {
+          || options.scale != stageRoot.LastScale
+          || options.forceRebuild) {
         stageRoot.LastScale = options.scale;
         stageRoot.LastHandedness = options.changeHandedness;
 
         var localScale = root.transform.localScale;
         var localRotation = root.transform.localRotation;
 
-        if (!newStageRoot) {
+        if (options.forceRebuild) {
+          localScale = Vector3.one;
+          localRotation = Quaternion.identity;
+        } else if (!newStageRoot) {
           // Undo the previous transforms.
           UndoRootTransform(scene, stageRoot, ref localScale, ref localRotation);
         }
