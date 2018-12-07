@@ -168,9 +168,10 @@ namespace USD.NET.Unity {
         GUI.SetNextControlName(attr.GetName());
         if (hasAuthoredValue) {
           EditorGUILayout.SelectableLabel(displayName, isSelected ?
-                                                       boldBlue : EditorStyles.boldLabel);
+                                                       boldBlue : EditorStyles.boldLabel,
+                                                       GUILayout.MaxHeight(20));
         } else {
-          EditorGUILayout.SelectableLabel(displayName);
+          EditorGUILayout.SelectableLabel(displayName, GUILayout.MaxHeight(20));
         }
         
         if (isSelected) {
