@@ -66,11 +66,11 @@ public class UsdMenu : MonoBehaviour {
 #endif
 
   [MenuItem("USD/Export Selected with Children", true)]
-  static bool EnableExportSelectedSlow() {
+  static bool EnableMenuExportSelectedWithChildren() {
     return Selection.gameObjects.Length > 0;
   }
   [MenuItem("USD/Export Selected with Children")]
-  static void ExportSelectedSlow() {
+  static void MenuExportSelectedWithChildren() {
     ExportSelected(BasisTransformation.SlowAndSafe);
   }
 
@@ -101,7 +101,7 @@ public class UsdMenu : MonoBehaviour {
   }
 
   [MenuItem("USD/Import as GameObjects")]
-  public static void ImportUsdToScene() {
+  public static void MenuImportAsGameObjects() {
     var scene = InitForOpen();
     if (scene == null) {
       return;
@@ -149,7 +149,7 @@ public class UsdMenu : MonoBehaviour {
 #endif
 
   [MenuItem("USD/Import as Prefab")]
-  public static void ImportUsdToPrefab() {
+  public static void MenuImportAsPrefab() {
     var scene = InitForOpen();
     if (scene == null) {
       return;
