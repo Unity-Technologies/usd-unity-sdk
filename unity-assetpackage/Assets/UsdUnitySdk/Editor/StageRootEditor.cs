@@ -26,8 +26,12 @@ namespace USD.NET.Unity {
 
       EditorGUILayout.LabelField("Asset Actions", EditorStyles.boldLabel);
 
-      if (GUILayout.Button("Reload from USD")) {
-        ReloadFromUsd(stageRoot);
+      if (GUILayout.Button("Refresh from USD")) {
+        ReloadFromUsd(stageRoot, forceRebuild: false);
+      }
+
+      if (GUILayout.Button("Full Rebuild from USD")) {
+        ReloadFromUsd(stageRoot, forceRebuild: true);
       }
 
       if (Application.isPlaying && GUILayout.Button("Reload from USD (Coroutine)")) {
@@ -66,19 +70,23 @@ namespace USD.NET.Unity {
       }
     }
 
-    private void ReloadFromUsd(StageRoot stageRoot) {
+    private void ReloadFromUsd(StageRoot stageRoot, bool forceRebuild) {
       var options = new SceneImportOptions();
       stageRoot.StateToOptions(ref options);
-      var root = stageRoot.gameObject;
 
+      options.forceRebuild = forceRebuild;
+
+      var root = stageRoot.gameObject;
       var prefab = PrefabUtility.GetPrefabObject(root);
       var assetPath = AssetDatabase.GetAssetPath(prefab);
+
+      // The prefab asset path will be null for prefab instances.
+      // When the assetPath is not null, the object is the prefab itself.
       if (!string.IsNullOrEmpty(assetPath)) {
-        // The prefab asset path will be null for prefab instances.
-        // So we're now dealing with the prefab asset itself.
         if (options.forceRebuild) {
           root = new GameObject();
         }
+
         StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
         SceneImporter.SaveAsSinglePrefab(root, assetPath, options);
         if (options.forceRebuild) {
@@ -86,7 +94,7 @@ namespace USD.NET.Unity {
         }
         Repaint();
       } else {
-        // An instance of the prefab.
+        // An instance of a prefab.
         // Just reload the scene into memory and let the user decide if they want to send those
         // changes back to the prefab or not.
         StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
