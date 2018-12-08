@@ -84,7 +84,6 @@ namespace USD.NET.Unity {
     public bool importCameras = true;
     public bool importMeshes = true;
     public bool importSkinning = true;
-    public bool importSkinningAnimation = true;
     public bool importTransforms = true;
     public bool importSceneInstances = true;
     public bool importPointInstances = true;
