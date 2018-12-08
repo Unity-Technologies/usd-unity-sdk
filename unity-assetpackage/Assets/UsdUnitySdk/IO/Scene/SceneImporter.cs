@@ -305,7 +305,6 @@ namespace USD.NET.Unity {
         Profiler.EndSample();
       }
 
-
       //
       // Import known prim types.
       //
