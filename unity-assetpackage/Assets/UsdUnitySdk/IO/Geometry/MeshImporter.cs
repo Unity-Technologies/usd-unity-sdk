@@ -133,6 +133,10 @@ namespace USD.NET.Unity {
           }
         }
 
+        // Annoyingly, there is a circular dependency between vertices and triangles, which makes
+        // it impossible to have a fixed update order in this function. As a result, we must clear
+        // the triangles before setting the points, to break that dependency.
+        unityMesh.SetTriangles(new int[0] { }, 0);
         unityMesh.vertices = usdMesh.points;
       }
 
