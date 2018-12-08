@@ -63,8 +63,7 @@ namespace USD.NET.Unity {
 
       scene.Time = stageRoot.m_usdTime;
       try {
-        StageRoot.ImportUsd(root, scene, options);
-
+        SceneImporter.ImportUsd(root, scene, options);
       } finally {
         scene.Close();
       }
@@ -87,7 +86,7 @@ namespace USD.NET.Unity {
           root = new GameObject();
         }
 
-        StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
+        SceneImporter.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
         SceneImporter.SaveAsSinglePrefab(root, assetPath, options);
         if (options.forceRebuild) {
           GameObject.DestroyImmediate(root);
@@ -97,7 +96,7 @@ namespace USD.NET.Unity {
         // An instance of a prefab.
         // Just reload the scene into memory and let the user decide if they want to send those
         // changes back to the prefab or not.
-        StageRoot.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
+        SceneImporter.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
       }
     }
 

@@ -208,7 +208,7 @@ public class UsdMenu : MonoBehaviour {
                                            USD.NET.Scene scene,
                                            SceneImportOptions importOptions) {
     try {
-      UsdAssetImporter.ImportUsd(parent, scene, importOptions);
+      SceneImporter.ImportUsd(parent, scene, importOptions);
     } finally {
       scene.Close();
     }

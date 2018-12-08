@@ -116,7 +116,7 @@ namespace USD.NET.Unity {
 
       try {
         PrepOptionsForTimeChange(ref options);
-        StageRoot.ImportUsd(foreignRoot.gameObject, scene, options);
+        SceneImporter.ImportUsd(foreignRoot.gameObject, scene, options);
       } finally {
         scene.Close();
         m_lastScene = null;
@@ -135,7 +135,7 @@ namespace USD.NET.Unity {
 
       try {
         PrepOptionsForTimeChange(ref options);
-        StageRoot.ImportUsd(this.gameObject, scene, options);
+        SceneImporter.ImportUsd(this.gameObject, scene, options);
       } finally {
         scene.Close();
         m_lastScene = null;
@@ -304,64 +304,10 @@ namespace USD.NET.Unity {
       SceneImportOptions importOptions = new SceneImportOptions();
       this.StateToOptions(ref importOptions);
       try {
-        ImportUsd(go, scene, usdPrimPath, importOptions);
+        SceneImporter.ImportUsd(go, scene, usdPrimPath, importOptions);
       } finally {
         scene.Close();
       }
-    }
-
-    public static void ImportUsd(GameObject goRoot,
-                                 string usdFilePath,
-                                 double time,
-                                 SceneImportOptions importOptions) {
-      Examples.InitUsd.Initialize();
-      var scene = Scene.Open(usdFilePath);
-      if (scene == null) {
-        throw new Exception("Failed to open: " + usdFilePath);
-      }
-      scene.Time = time;
-      try {
-        ImportUsd(goRoot, scene, importOptions);
-      } finally {
-        scene.Close();
-      }
-    }
-
-    public static void ImportUsd(GameObject goRoot,
-                                 Scene scene,
-                                 SceneImportOptions importOptions) {
-      if (scene == null) {
-        throw new Exception("Null USD Scene");
-      }
-
-      scene.SetInterpolation(importOptions.interpolate ?
-                             Scene.InterpolationMode.Linear :
-                             Scene.InterpolationMode.Held);
-
-      SceneImporter.BuildScene(scene,
-                               goRoot,
-                               pxr.SdfPath.AbsoluteRootPath(),
-                               importOptions,
-                               composingSubtree: false);
-    }
-
-    public static void ImportUsd(GameObject goRoot,
-                                 Scene scene,
-                                 string usdPrimPath,
-                                 SceneImportOptions importOptions) {
-      if (scene == null) {
-        throw new Exception("Null USD Scene");
-      }
-
-      scene.SetInterpolation(importOptions.interpolate ?
-                             Scene.InterpolationMode.Linear :
-                             Scene.InterpolationMode.Held);
-
-      SceneImporter.BuildScene(scene,
-                               goRoot,
-                               new pxr.SdfPath(usdPrimPath),
-                               importOptions,
-                               composingSubtree: true);
     }
   }
 }

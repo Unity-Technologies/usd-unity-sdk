@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,6 +33,18 @@ namespace USD.NET.Unity {
   /// Root entry point for importing an entire USD scene.
   /// </summary>
   public static class SceneImporter {
+    public class ImportException : System.Exception {
+      public ImportException() : base() {
+      }
+
+      public ImportException(string message) : base(message) {
+      }
+
+      public ImportException(string message, System.Exception innerException)
+          : base(message, innerException)
+      {
+      }
+    }
 
     public delegate void ImportNotice(PrimMap primMap,
                                       Scene usdScene,
@@ -190,6 +202,62 @@ namespace USD.NET.Unity {
     }
 #endif
 
+    public static void ImportUsd(GameObject goRoot,
+                             Scene scene,
+                             SceneImportOptions importOptions) {
+      if (scene == null) {
+        throw new ImportException("Null USD Scene");
+      }
+
+      scene.SetInterpolation(importOptions.interpolate ?
+                             Scene.InterpolationMode.Linear :
+                             Scene.InterpolationMode.Held);
+
+      SceneImporter.BuildScene(scene,
+                               goRoot,
+                               pxr.SdfPath.AbsoluteRootPath(),
+                               importOptions,
+                               new PrimMap(),
+                               composingSubtree: false);
+    }
+
+    public static void ImportUsd(GameObject goRoot,
+                                 Scene scene,
+                                 string usdPrimPath,
+                                 SceneImportOptions importOptions) {
+      if (scene == null) {
+        throw new ImportException("Null USD Scene");
+      }
+
+      scene.SetInterpolation(importOptions.interpolate ?
+                             Scene.InterpolationMode.Linear :
+                             Scene.InterpolationMode.Held);
+
+      SceneImporter.BuildScene(scene,
+                               goRoot,
+                               new pxr.SdfPath(usdPrimPath),
+                               importOptions,
+                               new PrimMap(),
+                               composingSubtree: true);
+    }
+
+    public static void ImportUsd(GameObject goRoot,
+                             string usdFilePath,
+                             double time,
+                             SceneImportOptions importOptions) {
+      Examples.InitUsd.Initialize();
+      var scene = Scene.Open(usdFilePath);
+      if (scene == null) {
+        throw new ImportException("Failed to open: " + usdFilePath);
+      }
+      scene.Time = time;
+      try {
+        SceneImporter.ImportUsd(goRoot, scene, importOptions);
+      } finally {
+        scene.Close();
+      }
+    }
+
     /// <summary>
     /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
     /// </summary>
@@ -197,17 +265,17 @@ namespace USD.NET.Unity {
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
                                      SceneImportOptions importOptions,
+                                     PrimMap primMap,
                                      bool composingSubtree) {
       try {
         Profiler.BeginSample("USD: Build Scene");
-        var primMap = new PrimMap();
-        var builder = BuildScene_(scene,
-                                  root,
-                                  usdPrimRoot,
-                                  importOptions,
-                                  primMap,
-                                  0,
-                                  composingSubtree);
+        var builder = BuildScene(scene,
+                                 root,
+                                 usdPrimRoot,
+                                 importOptions,
+                                 primMap,
+                                 0,
+                                 composingSubtree);
         while (builder.MoveNext()) { }
         return primMap;
       } finally {
@@ -215,39 +283,16 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Rebuilds the USD scene as Unity GameObjects, with a limited budget per update.
+    /// </summary>
     public static IEnumerator BuildScene(Scene scene,
-                                     GameObject root,
-                                     pxr.SdfPath usdPrimRoot,
-                                     SceneImportOptions importOptions,
-                                     PrimMap primMap,
-                                     float targetFrameMilliseconds,
-                                     bool composingSubtree) {
-      return BuildScene_(scene,
-                         root,
-                         usdPrimRoot,
-                         importOptions,
-                         primMap,
-                         targetFrameMilliseconds,
-                         composingSubtree);
-    }
-
-    private static bool ShouldYield(float targetTime, System.Diagnostics.Stopwatch timer) {
-      return timer.ElapsedMilliseconds > targetTime;
-    }
-
-    private static void ResetTimer(System.Diagnostics.Stopwatch timer) {
-      timer.Stop();
-      timer.Reset();
-      timer.Start();
-    }
-
-    private static IEnumerator BuildScene_(Scene scene,
-                                           GameObject root,
-                                           pxr.SdfPath usdPrimRoot,
-                                           SceneImportOptions importOptions,
-                                           PrimMap primMap,
-                                           float targetFrameMilliseconds,
-                                           bool composingSubtree) {
+                                         GameObject root,
+                                         pxr.SdfPath usdPrimRoot,
+                                         SceneImportOptions importOptions,
+                                         PrimMap primMap,
+                                         float targetFrameMilliseconds,
+                                         bool composingSubtree) {
       var timer = new System.Diagnostics.Stopwatch();
 
       // Setting an arbitrary fudge factor of 20% is very non-scientific, however it's better than
@@ -308,7 +353,7 @@ namespace USD.NET.Unity {
             ImporterBase.GetOrAddComponent<Animator>(go, true);
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error pre-processing SkelRoot <" + path + ">", ex));
+                new ImportException("Error pre-processing SkelRoot <" + path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -335,7 +380,7 @@ namespace USD.NET.Unity {
             }
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error processing material <" + pathAndSample.path + ">", ex));
+                new ImportException("Error processing material <" + pathAndSample.path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -355,7 +400,7 @@ namespace USD.NET.Unity {
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
+                new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -390,7 +435,7 @@ namespace USD.NET.Unity {
             }
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
+                new ImportException("Error processing mesh <" + pathAndSample.path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -406,7 +451,7 @@ namespace USD.NET.Unity {
             CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
+                new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -424,7 +469,7 @@ namespace USD.NET.Unity {
             CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
+                new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -447,7 +492,7 @@ namespace USD.NET.Unity {
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {
                 Debug.LogException(
-                    new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
+                    new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
               }
             }
             Profiler.EndSample();
@@ -464,7 +509,7 @@ namespace USD.NET.Unity {
                 MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
               } catch (System.Exception ex) {
                 Debug.LogException(
-                    new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
+                    new ImportException("Error processing mesh <" + pathAndSample.path + ">", ex));
               }
             }
             Profiler.EndSample();
@@ -478,7 +523,7 @@ namespace USD.NET.Unity {
                 CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {
                 Debug.LogException(
-                    new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
+                    new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
               }
             }
             Profiler.EndSample();
@@ -494,7 +539,7 @@ namespace USD.NET.Unity {
                 CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {
                 Debug.LogException(
-                    new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
+                    new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
               }
             }
             Profiler.EndSample();
@@ -502,7 +547,7 @@ namespace USD.NET.Unity {
 
         } catch (System.Exception ex) {
           Debug.LogException(
-              new System.Exception("Error processing master <" + masterRootPath + ">", ex));
+              new ImportException("Error processing master <" + masterRootPath + ">", ex));
         }
 
         if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -522,7 +567,7 @@ namespace USD.NET.Unity {
         // Process all material bindings in a single vectorized request.
         MaterialImporter.ProcessMaterialBindings(scene, importOptions);
       } catch (System.Exception ex) {
-        Debug.LogException(new System.Exception("Failed in ProcessMaterialBindings", ex));
+        Debug.LogException(new ImportException("Failed in ProcessMaterialBindings", ex));
       }
       Profiler.EndSample();
 
@@ -572,7 +617,7 @@ namespace USD.NET.Unity {
                 pxr.UsdSkelSkeletonQuery skelQuery = skelCache.GetSkelQuery(skel);
 
                 if (!skelQuery.GetJointWorldBindTransforms(bindXforms)) {
-                  throw new System.Exception("Failed to compute binding trnsforms for <" + skelPath + ">");
+                  throw new ImportException("Failed to compute binding trnsforms for <" + skelPath + ">");
                 }
 
                 var dict = new Dictionary<pxr.TfToken, Matrix4x4>();
@@ -609,7 +654,7 @@ namespace USD.NET.Unity {
 
                   var jointOrder = new pxr.VtTokenArray();
                   if (!skinningQuery.GetJointOrder(jointOrder)) {
-                    throw new System.Exception("Failed to read joint order for <" + meshPath + ">");
+                    throw new ImportException("Failed to read joint order for <" + meshPath + ">");
                   }
 
                   if (jointOrder.size() == 0) {
@@ -627,14 +672,14 @@ namespace USD.NET.Unity {
 
                   goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform;
                 } catch (System.Exception ex) {
-                  Debug.LogException(new System.Exception("Error skinning mesh: " + meshPath, ex));
+                  Debug.LogException(new ImportException("Error skinning mesh: " + meshPath, ex));
                 }
               }
             }
 
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error processing SkelRoot <" + skelRoot.GetPath() + ">", ex));
+                new ImportException("Error processing SkelRoot <" + skelRoot.GetPath() + ">", ex));
           }
         } // foreach SkelRoot
         Profiler.EndSample();
@@ -657,7 +702,7 @@ namespace USD.NET.Unity {
             var restXforms = new pxr.VtMatrix4dArray();
             var time = scene.Time.HasValue ? scene.Time.Value : pxr.UsdTimeCode.Default();
             if (!skelQuery.ComputeJointLocalTransforms(restXforms, time, atRest: false)) {
-              throw new System.Exception("Failed to compute bind trnsforms for <" + skelPath + ">");
+              throw new ImportException("Failed to compute bind trnsforms for <" + skelPath + ">");
             }
 
             for (int i = 0; i < joints.size(); i++) {
@@ -667,7 +712,7 @@ namespace USD.NET.Unity {
             }
           } catch (System.Exception ex) {
             Debug.LogException(
-                new System.Exception("Error processing SkelRoot <" + skelPath + ">", ex));
+                new ImportException("Error processing SkelRoot <" + skelPath + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -684,7 +729,7 @@ namespace USD.NET.Unity {
           // Build scene instances.
           InstanceImporter.BuildSceneInstances(primMap, importOptions);
         } catch (System.Exception ex) {
-          Debug.LogException(new System.Exception("Failed in BuildSceneInstances", ex));
+          Debug.LogException(new ImportException("Failed in BuildSceneInstances", ex));
         }
         Profiler.EndSample();
       }
@@ -758,5 +803,14 @@ namespace USD.NET.Unity {
       Profiler.EndSample();
     }
 
+    private static bool ShouldYield(float targetTime, System.Diagnostics.Stopwatch timer) {
+      return timer.ElapsedMilliseconds > targetTime;
+    }
+
+    private static void ResetTimer(System.Diagnostics.Stopwatch timer) {
+      timer.Stop();
+      timer.Reset();
+      timer.Start();
+    }
   }
 }

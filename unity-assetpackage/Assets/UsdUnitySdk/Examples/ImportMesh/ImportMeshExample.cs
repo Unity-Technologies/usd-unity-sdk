@@ -109,6 +109,7 @@ namespace USD.NET.Examples {
                                              rootXf,
                                              pxr.SdfPath.AbsoluteRootPath(),
                                              importOptions,
+                                             new PrimMap(),
                                              composingSubtree: false);
 
         // Ensure the file and the identifier match.
