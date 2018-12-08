@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -100,6 +100,24 @@ namespace USD.NET.Unity {
         var parent = parentGo ? parentGo.transform : null;
         var go = FindOrCreateGameObject(parent, path, unityRoot.transform, options);
 
+        if (go) {
+          if (options.importSceneInstances) {
+            Profiler.BeginSample("Add Scene Instance Root");
+            if (prim.IsInstance()) {
+              map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
+            }
+            Profiler.EndSample();
+          }
+
+          Profiler.BeginSample("Add to Map");
+          map[scene.GetSdfPath(path)] = go;
+          Profiler.EndSample();
+        }
+
+        if (!options.importHierarchy) {
+          continue;
+        }
+
         try {
           Profiler.BeginSample("Add Model Root");
           AddModelRoot(go, prim);
@@ -111,16 +129,6 @@ namespace USD.NET.Unity {
         } catch (Exception ex) {
           Debug.LogException(new Exception("Error processing " + prim.GetPath(), ex));
         }
-
-        Profiler.BeginSample("Add Instance Root");
-        if (prim.IsInstance()) {
-          map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
-        }
-        Profiler.EndSample();
-
-        Profiler.BeginSample("Add to Map");
-        map[scene.GetSdfPath(path)] = go;
-        Profiler.EndSample();
       }
       Profiler.EndSample();
 
@@ -290,6 +298,10 @@ namespace USD.NET.Unity {
       }
       
       if (!go) {
+        // TODO: this should really not construct a game object if ImportHierarchy is false,
+        // but it requires all downstream code be driven by the primMap instead of finding prims
+        // via the usd scene. In addition, this requies the prim map to store lists of prims by
+        // type, e.g. cameras, meshes, cubes, etc.
         go = new GameObject(name);
         var ua = go.AddComponent<UsdPrimSource>();
         ua.m_usdPrimPath = path.ToString();
