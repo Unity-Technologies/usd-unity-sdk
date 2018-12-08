@@ -28,9 +28,10 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
     /// </summary>
-    /// <param name="scene">The Scene to map</param>
-    /// <param name="unityRoot">The root game object under which all prims will be parented</param>
-    /// <param name="usdRoot">The path at which to begin mapping paths.</param>
+    /// <remarks>
+    /// When forceRebuild is true, game objects will be destroyed and recreated. If buildHierarchy
+    /// is false, the primMap will be populated, but missing game objects will not be created.
+    /// </remarks>
     static public PrimMap BuildGameObjects(Scene scene,
                                             GameObject unityRoot,
                                             SdfPath usdRoot,
