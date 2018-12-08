@@ -26,11 +26,11 @@ namespace USD.NET.Unity {
 
       EditorGUILayout.LabelField("Asset Actions", EditorStyles.boldLabel);
 
-      if (GUILayout.Button("Refresh from USD")) {
+      if (GUILayout.Button("Refresh Values from USD")) {
         ReloadFromUsd(stageRoot, forceRebuild: false);
       }
 
-      if (GUILayout.Button("Full Rebuild from USD")) {
+      if (GUILayout.Button("Reimport")) {
         ReloadFromUsd(stageRoot, forceRebuild: true);
       }
 
