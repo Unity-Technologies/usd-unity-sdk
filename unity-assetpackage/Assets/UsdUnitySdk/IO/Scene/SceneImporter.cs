@@ -337,83 +337,90 @@ namespace USD.NET.Unity {
       //
       // Note that we are specifically filtering on XformSample, not Xformable, this way only
       // Xforms are processed to avoid doing that work redundantly.
-      Profiler.BeginSample("USD: Build Xforms");
-      foreach (var pathAndSample in scene.ReadAll<XformSample>(usdPrimRoot)) {
-        try {
-          GameObject go = primMap[pathAndSample.path];
-          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-        } catch (System.Exception ex) {
-          Debug.LogException(
-              new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
-        }
+      if (importOptions.importTransforms) {
+        Profiler.BeginSample("USD: Build Xforms");
+        foreach (var pathAndSample in scene.ReadAll<XformSample>(usdPrimRoot)) {
+          try {
+            GameObject go = primMap[pathAndSample.path];
+            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+          } catch (System.Exception ex) {
+            Debug.LogException(
+                new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
+          }
 
-        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        }
+        Profiler.EndSample();
       }
-      Profiler.EndSample();
 
       // Meshes.
-      Profiler.BeginSample("USD: Build Meshes");
-      foreach (var pathAndSample in scene.ReadAll<MeshSample>(usdPrimRoot)) {
-        try {
-          GameObject go = primMap[pathAndSample.path];
-          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+      if (importOptions.importMeshes) {
 
-          Profiler.BeginSample("USD: Read Mesh Subsets");
-          var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
-          Profiler.EndSample();
+        Profiler.BeginSample("USD: Build Meshes");
+        foreach (var pathAndSample in scene.ReadAll<MeshSample>(usdPrimRoot)) {
+          try {
+            GameObject go = primMap[pathAndSample.path];
+            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
 
-          // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
-          // have the data required to setup a skinned mesh.
-          var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
-          if (skinningQuery.IsValid()) {
-            Profiler.BeginSample("USD: Build Skinned Mesh");
-            MeshImporter.BuildSkinnedMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+            Profiler.BeginSample("USD: Read Mesh Subsets");
+            var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
             Profiler.EndSample();
-          } else {
-            Profiler.BeginSample("USD: Build Mesh");
-            MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
-            Profiler.EndSample();
+
+            // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
+            // have the data required to setup a skinned mesh.
+            var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
+            if (skinningQuery.IsValid()) {
+              Profiler.BeginSample("USD: Build Skinned Mesh");
+              MeshImporter.BuildSkinnedMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+              Profiler.EndSample();
+            } else {
+              Profiler.BeginSample("USD: Build Mesh");
+              MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+              Profiler.EndSample();
+            }
+          } catch (System.Exception ex) {
+            Debug.LogException(
+                new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
           }
-        } catch (System.Exception ex) {
-          Debug.LogException(
-              new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
+
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
+        Profiler.EndSample();
 
-        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
-      }
-      Profiler.EndSample();
+        // Cubes.
+        Profiler.BeginSample("USD: Build Cubes");
+        foreach (var pathAndSample in scene.ReadAll<CubeSample>(usdPrimRoot)) {
+          try {
+            GameObject go = primMap[pathAndSample.path];
+            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+            CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
+          } catch (System.Exception ex) {
+            Debug.LogException(
+                new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
+          }
 
-      // Cubes.
-      Profiler.BeginSample("USD: Build Cubes");
-      foreach (var pathAndSample in scene.ReadAll<CubeSample>(usdPrimRoot)) {
-        try {
-          GameObject go = primMap[pathAndSample.path];
-          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-          CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
-        } catch (System.Exception ex) {
-          Debug.LogException(
-              new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
-
-        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        Profiler.EndSample();
       }
-      Profiler.EndSample();
 
       // Cameras.
-      Profiler.BeginSample("USD: Cameras");
-      foreach (var pathAndSample in scene.ReadAll<CameraSample>(usdPrimRoot)) {
-        try {
-          GameObject go = primMap[pathAndSample.path];
-          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-          CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
-        } catch (System.Exception ex) {
-          Debug.LogException(
-              new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
-        }
+      if (importOptions.importCameras) {
+        Profiler.BeginSample("USD: Cameras");
+        foreach (var pathAndSample in scene.ReadAll<CameraSample>(usdPrimRoot)) {
+          try {
+            GameObject go = primMap[pathAndSample.path];
+            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+            CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
+          } catch (System.Exception ex) {
+            Debug.LogException(
+                new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
+          }
 
-        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        }
+        Profiler.EndSample();
       }
-      Profiler.EndSample();
 
       // Build out masters for instancing.
       Profiler.BeginSample("USD: Build Instances");
@@ -421,60 +428,67 @@ namespace USD.NET.Unity {
         try {
           Transform masterRootXf = primMap[masterRootPath].transform;
 
-          Profiler.BeginSample("USD: Build Xforms");
-          foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
-            try {
-              GameObject go = primMap[pathAndSample.path];
-              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-            } catch (System.Exception ex) {
-              Debug.LogException(
-                  new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
+          // Transforms
+          if (importOptions.importTransforms) {
+            Profiler.BeginSample("USD: Build Xforms");
+            foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new System.Exception("Error processing xform <" + pathAndSample.path + ">", ex));
+              }
             }
+            Profiler.EndSample();
           }
-          Profiler.EndSample();
 
           // Meshes.
-          Profiler.BeginSample("USD: Build Meshes");
-          foreach (var pathAndSample in scene.ReadAll<MeshSample>(masterRootPath)) {
-            try {
-              GameObject go = primMap[pathAndSample.path];
-              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-              var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
-              MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
-            } catch (System.Exception ex) {
-              Debug.LogException(
-                  new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
+          if (importOptions.importMeshes) {
+            Profiler.BeginSample("USD: Build Meshes");
+            foreach (var pathAndSample in scene.ReadAll<MeshSample>(masterRootPath)) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+                var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+                MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new System.Exception("Error processing mesh <" + pathAndSample.path + ">", ex));
+              }
             }
-          }
-          Profiler.EndSample();
+            Profiler.EndSample();
 
-          // Cubes.
-          Profiler.BeginSample("USD: Build Cubes");
-          foreach (var pathAndSample in scene.ReadAll<CubeSample>(masterRootPath)) {
-            try {
-              GameObject go = primMap[pathAndSample.path];
-              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-              CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
-            } catch (System.Exception ex) {
-              Debug.LogException(
-                  new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
+            // Cubes.
+            Profiler.BeginSample("USD: Build Cubes");
+            foreach (var pathAndSample in scene.ReadAll<CubeSample>(masterRootPath)) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+                CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new System.Exception("Error processing cube <" + pathAndSample.path + ">", ex));
+              }
             }
+            Profiler.EndSample();
           }
-          Profiler.EndSample();
 
           // Cameras.
-          Profiler.BeginSample("USD: Build Cameras");
-          foreach (var pathAndSample in scene.ReadAll<CameraSample>(masterRootPath)) {
-            try {
-              GameObject go = primMap[pathAndSample.path];
-              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-              CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
-            } catch (System.Exception ex) {
-              Debug.LogException(
-                  new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
+          if (importOptions.importCameras) {
+            Profiler.BeginSample("USD: Build Cameras");
+            foreach (var pathAndSample in scene.ReadAll<CameraSample>(masterRootPath)) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+                CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new System.Exception("Error processing camera <" + pathAndSample.path + ">", ex));
+              }
             }
+            Profiler.EndSample();
           }
-          Profiler.EndSample();
 
         } catch (System.Exception ex) {
           Debug.LogException(
