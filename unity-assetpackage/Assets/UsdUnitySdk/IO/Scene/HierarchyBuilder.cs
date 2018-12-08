@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,11 +37,12 @@ namespace USD.NET.Unity {
                                             SdfPath usdRoot,
                                             IEnumerable<SdfPath> paths,
                                             PrimMap map,
-                                            bool forceRebuild) {
+                                            SceneImportOptions options) {
       map[usdRoot] = unityRoot;
 
       // TODO: Should recurse to discover deeply nested instancing.
       // TODO: Generates garbage for every prim, but we expect few masters.
+      if (options.importPointInstances || options.importSceneInstances) {
       Profiler.BeginSample("Build Temp Masters");
       foreach (var masterRootPrim in scene.Stage.GetMasters()) {
         var goMaster = new GameObject(masterRootPrim.GetPath().GetName());
@@ -85,6 +86,7 @@ namespace USD.NET.Unity {
         }
       }
       Profiler.EndSample();
+      }
 
       Profiler.BeginSample("Process all paths");
       foreach (SdfPath path in paths) {
@@ -122,6 +124,7 @@ namespace USD.NET.Unity {
       }
       Profiler.EndSample();
 
+      if (options.importSkinning) {
       Profiler.BeginSample("Expand Skeletons");
       foreach (var path in scene.Find<SkelRootSample>()) {
         try {
@@ -132,6 +135,7 @@ namespace USD.NET.Unity {
         }
       }
       Profiler.EndSample();
+      }
 
       return map;
     }
