@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -95,10 +95,32 @@ namespace USD.NET.Unity {
       return (scene.EndTime - scene.StartTime) / (scene.Stage.GetFramesPerSecond());
     }
 
-    public void SetTime(double time) {
+    /// <summary>
+    /// Applies the contents of this USD file to a foreign root object.
+    /// </summary>
+    /// <remarks>
+    /// The idea here is that one may have many animation clips, but only a single GameObject in
+    /// the Unity scenegraph.
+    /// </remarks>
+    public void SetTime(double time, StageRoot foreignRoot) {
       var scene = GetScene();
       if (scene == null) { return; }
-      m_usdTime = (float)(scene.StartTime + time * scene.Stage.GetFramesPerSecond());
+
+      // Careful not to update any local members here, if this data is driven from a prefab, we
+      // dont want those changes to be baked back into the asset.
+
+      float usdTime = (float)(scene.StartTime + time * scene.Stage.GetFramesPerSecond());
+      scene.Time = usdTime;
+      var options = new SceneImportOptions();
+      foreignRoot.StateToOptions(ref options);
+
+      try {
+        PrepOptionsForTimeChange(ref options);
+        StageRoot.ImportUsd(foreignRoot.gameObject, scene, options);
+      } finally {
+        scene.Close();
+        m_lastScene = null;
+      }
     }
     #endregion
 
@@ -112,24 +134,28 @@ namespace USD.NET.Unity {
       StateToOptions(ref options);
 
       try {
-        options.forceRebuild = false;
-        options.materialImportMode = MaterialImportMode.None;
-        options.meshOptions.debugShowSkeletonBindPose = false;
-        options.meshOptions.debugShowSkeletonRestPose = false;
-        options.meshOptions.generateLightmapUVs = false;
-
-        // Note that tangent and Normals must be updated when the mesh deforms.
-
-        options.meshOptions.topology = ImportMode.Ignore;
-        options.meshOptions.texcoord0 = ImportMode.Ignore;
-        options.meshOptions.texcoord1 = ImportMode.Ignore;
-        options.meshOptions.texcoord2 = ImportMode.Ignore;
-        options.meshOptions.texcoord3 = ImportMode.Ignore;
+        PrepOptionsForTimeChange(ref options);
         StageRoot.ImportUsd(this.gameObject, scene, options);
       } finally {
         scene.Close();
         m_lastScene = null;
       }
+    }
+
+    public static void PrepOptionsForTimeChange(ref SceneImportOptions options) {
+      options.forceRebuild = false;
+      options.materialImportMode = MaterialImportMode.None;
+      options.meshOptions.debugShowSkeletonBindPose = false;
+      options.meshOptions.debugShowSkeletonRestPose = false;
+      options.meshOptions.generateLightmapUVs = false;
+
+      // Note that tangent and Normals must be updated when the mesh deforms.
+
+      options.meshOptions.topology = ImportMode.Ignore;
+      options.meshOptions.texcoord0 = ImportMode.Ignore;
+      options.meshOptions.texcoord1 = ImportMode.Ignore;
+      options.meshOptions.texcoord2 = ImportMode.Ignore;
+      options.meshOptions.texcoord3 = ImportMode.Ignore;
     }
 
     /// <summary>

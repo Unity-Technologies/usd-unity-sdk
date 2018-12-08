@@ -5,7 +5,7 @@ namespace USD.NET.Unity.Extensions.Timeline {
   // A behaviour that is attached to a playable
   public class USDPlayableBehaviour : PlayableBehaviour {
     public StageRoot player;
-    public GameObject root;
+    private bool m_errorOnce = true;
 
     // Called when the owning graph starts playing
     public override void OnGraphStart(Playable playable) {
@@ -29,7 +29,25 @@ namespace USD.NET.Unity.Extensions.Timeline {
 
     // Called each frame while the state is set to Play
     public override void PrepareFrame(Playable playable, FrameData info) {
-      player.SetTime(playable.GetTime());
+      //player.SetTime(playable.GetTime(), player);
     }
+
+    public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
+      var root = playerData as StageRoot;
+      if (root == null) {
+        if (m_errorOnce) {
+          Debug.LogError("Error: track data has no target UsdStageRoot");
+          m_errorOnce = false;
+        }
+        return;
+      }
+
+      m_errorOnce = false;
+      player.SetTime(playable.GetTime(), root);
+    }
+
+    public override void PrepareData(Playable playable, FrameData info) {
+    }
+
   }
 }
