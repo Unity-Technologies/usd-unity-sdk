@@ -668,38 +668,42 @@ namespace USD.NET.Unity {
       //
       // Apply instancing.
       //
-      Profiler.BeginSample("USD: Build Scene-Instances");
-      try {
-        // Build scene instances.
-        InstanceImporter.BuildSceneInstances(primMap, importOptions);
-      } catch (System.Exception ex) {
-        Debug.LogException(new System.Exception("Failed in BuildSceneInstances", ex));
+      if (importOptions.importSceneInstances) {
+        Profiler.BeginSample("USD: Build Scene-Instances");
+        try {
+          // Build scene instances.
+          InstanceImporter.BuildSceneInstances(primMap, importOptions);
+        } catch (System.Exception ex) {
+          Debug.LogException(new System.Exception("Failed in BuildSceneInstances", ex));
+        }
+        Profiler.EndSample();
       }
-      Profiler.EndSample();
 
       if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
 
       // Build point instances.
-      Profiler.BeginSample("USD: Build Point-Instances");
-      // TODO: right now all point instancer data is read, but we only need prototypes and indices.
-      foreach (var pathAndSample in scene.ReadAll<PointInstancerSample>()) {
-        try {
-          GameObject instancerGo = primMap[pathAndSample.path];
+      if (importOptions.importPointInstances) {
+        Profiler.BeginSample("USD: Build Point-Instances");
+        // TODO: right now all point instancer data is read, but we only need prototypes and indices.
+        foreach (var pathAndSample in scene.ReadAll<PointInstancerSample>()) {
+          try {
+            GameObject instancerGo = primMap[pathAndSample.path];
 
-          // Now build the point instances.
-          InstanceImporter.BuildPointInstances(scene,
-                                               primMap,
-                                               pathAndSample.path,
-                                               pathAndSample.sample,
-                                               instancerGo,
-                                               importOptions);
-        } catch (System.Exception ex) {
-          Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
+            // Now build the point instances.
+            InstanceImporter.BuildPointInstances(scene,
+                                                 primMap,
+                                                 pathAndSample.path,
+                                                 pathAndSample.sample,
+                                                 instancerGo,
+                                                 importOptions);
+          } catch (System.Exception ex) {
+            Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
+          }
+
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
-
-        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        Profiler.EndSample();
       }
-      Profiler.EndSample();
 
       //
       // Apply root transform corrections.
