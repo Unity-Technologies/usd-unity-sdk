@@ -43,49 +43,49 @@ namespace USD.NET.Unity {
       // TODO: Should recurse to discover deeply nested instancing.
       // TODO: Generates garbage for every prim, but we expect few masters.
       if (options.importPointInstances || options.importSceneInstances) {
-      Profiler.BeginSample("Build Temp Masters");
-      foreach (var masterRootPrim in scene.Stage.GetMasters()) {
-        var goMaster = new GameObject(masterRootPrim.GetPath().GetName());
+        Profiler.BeginSample("Build Temp Masters");
+        foreach (var masterRootPrim in scene.Stage.GetMasters()) {
+          var goMaster = new GameObject(masterRootPrim.GetPath().GetName());
 
-        goMaster.hideFlags = HideFlags.HideInHierarchy;
-        goMaster.SetActive(false);
-        if (unityRoot != null) {
-          goMaster.transform.SetParent(unityRoot.transform, worldPositionStays: false);
-        }
-        map.AddMasterRoot(masterRootPrim.GetPath(), goMaster);
-        try {
-          AddModelRoot(goMaster, masterRootPrim);
-          AddVariantSet(goMaster, masterRootPrim);
-        } catch (Exception ex) {
-          Debug.LogException(new Exception("Error processing " + masterRootPrim.GetPath(), ex));
-        }
-
-        foreach (var usdPrim in masterRootPrim.GetDescendants()) {
-          var goPrim = new GameObject(usdPrim.GetName());
+          goMaster.hideFlags = HideFlags.HideInHierarchy;
+          goMaster.SetActive(false);
+          if (unityRoot != null) {
+            goMaster.transform.SetParent(unityRoot.transform, worldPositionStays: false);
+          }
+          map.AddMasterRoot(masterRootPrim.GetPath(), goMaster);
           try {
-            AddModelRoot(goPrim, usdPrim);
-            AddVariantSet(goPrim, usdPrim);
+            AddModelRoot(goMaster, masterRootPrim);
+            AddVariantSet(goMaster, masterRootPrim);
           } catch (Exception ex) {
-            Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
+            Debug.LogException(new Exception("Error processing " + masterRootPrim.GetPath(), ex));
           }
 
-          if (usdPrim.IsInstance()) {
-            map.AddInstanceRoot(usdPrim.GetPath(), goPrim, usdPrim.GetMaster().GetPath());
-          }
+          foreach (var usdPrim in masterRootPrim.GetDescendants()) {
+            var goPrim = new GameObject(usdPrim.GetName());
+            try {
+              AddModelRoot(goPrim, usdPrim);
+              AddVariantSet(goPrim, usdPrim);
+            } catch (Exception ex) {
+              Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
+            }
 
-          var parentPath = usdPrim.GetPath().GetParentPath();
-          Transform parentXf = null;
-          if (parentPath == masterRootPrim.GetPath()) {
-            parentXf = goMaster.transform;
-          } else {
-            parentXf = map[parentPath].transform;
-          }
+            if (usdPrim.IsInstance()) {
+              map.AddInstanceRoot(usdPrim.GetPath(), goPrim, usdPrim.GetMaster().GetPath());
+            }
 
-          map[usdPrim.GetPath()] = goPrim;
-          goPrim.transform.SetParent(parentXf, worldPositionStays: false);
+            var parentPath = usdPrim.GetPath().GetParentPath();
+            Transform parentXf = null;
+            if (parentPath == masterRootPrim.GetPath()) {
+              parentXf = goMaster.transform;
+            } else {
+              parentXf = map[parentPath].transform;
+            }
+
+            map[usdPrim.GetPath()] = goPrim;
+            goPrim.transform.SetParent(parentXf, worldPositionStays: false);
+          }
         }
-      }
-      Profiler.EndSample();
+        Profiler.EndSample();
       }
 
       Profiler.BeginSample("Process all paths");
@@ -98,7 +98,7 @@ namespace USD.NET.Unity {
         }
         
         var parent = parentGo ? parentGo.transform : null;
-        var go = FindOrCreateGameObject(parent, path, parent != unityRoot && forceRebuild);
+        var go = FindOrCreateGameObject(parent, path, unityRoot.transform, options);
 
         try {
           Profiler.BeginSample("Add Model Root");
@@ -125,16 +125,16 @@ namespace USD.NET.Unity {
       Profiler.EndSample();
 
       if (options.importSkinning) {
-      Profiler.BeginSample("Expand Skeletons");
-      foreach (var path in scene.Find<SkelRootSample>()) {
-        try {
-          var prim = scene.GetPrimAtPath(path);
-          ExpandSkeleton(map[path], prim, map, scene);
-        } catch (Exception ex) {
-          Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
+        Profiler.BeginSample("Expand Skeletons");
+        foreach (var path in scene.Find<SkelRootSample>()) {
+          try {
+            var prim = scene.GetPrimAtPath(path);
+            ExpandSkeleton(map[path], prim, map, scene);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
+          }
         }
-      }
-      Profiler.EndSample();
+        Profiler.EndSample();
       }
 
       return map;
@@ -268,7 +268,10 @@ namespace USD.NET.Unity {
     /// Checks for a child named "name" under the given parent, if it exists it is returned,
     /// else a new child is created with this name.
     /// </summary>
-    static GameObject FindOrCreateGameObject(Transform parent, SdfPath path, bool forceRebuild) {
+    static GameObject FindOrCreateGameObject(Transform parent,
+                                             SdfPath path,
+                                             Transform unityRoot,
+                                             SceneImportOptions options) {
       Transform root = null;
       GameObject go = null;
       string name = path.GetName();
@@ -281,7 +284,7 @@ namespace USD.NET.Unity {
         go = root ? root.gameObject : null;
       }
 
-      if (forceRebuild && go) {
+      if (parent != unityRoot && options.forceRebuild && go) {
         GameObject.DestroyImmediate(go);
         go = null;
       }
