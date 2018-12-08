@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -82,6 +82,11 @@ namespace USD.NET.Unity {
 
         // Fix the dangling references.
         prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
+
+        var playable = ScriptableObject.CreateInstance<Extensions.Timeline.USDPlayableAsset>();
+
+        playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
+        AssetDatabase.AddObjectToAsset(playable, prefab);
       } else {
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
@@ -117,7 +122,13 @@ namespace USD.NET.Unity {
         if (oldPrefab != rootObject) {
           prefab = PrefabUtility.ReplacePrefab(
               rootObject, oldPrefab, ReplacePrefabOptions.ReplaceNameBased);
+        } else {
+          prefab = oldPrefab;
         }
+
+        var playable = new USD.NET.Unity.Extensions.Timeline.USDPlayableAsset();
+        playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
+        AssetDatabase.AddObjectToAsset(playable, prefab);
       }
 
       AssetDatabase.ImportAsset(prefabPath, ImportAssetOptions.ForceUpdate);
@@ -255,7 +266,7 @@ namespace USD.NET.Unity {
                                         usdPrimRoot,
                                         scene.Find(usdPrimRoot.ToString(), "UsdSchemaBase"),
                                         primMap,
-                                          importOptions);
+                                        importOptions);
       Profiler.EndSample();
 
       if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
