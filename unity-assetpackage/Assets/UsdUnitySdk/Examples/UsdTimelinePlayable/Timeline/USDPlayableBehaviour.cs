@@ -1,4 +1,4 @@
-﻿using UnityEngine.Playables;
+using UnityEngine.Playables;
 using UnityEngine;
 
 namespace USD.NET.Unity.Extensions.Timeline {
@@ -42,7 +42,10 @@ namespace USD.NET.Unity.Extensions.Timeline {
         return;
       }
 
-      m_errorOnce = false;
+      if (!root.isActiveAndEnabled) {
+        return;
+      }
+
       player.SetTime(playable.GetTime(), root);
     }
 
