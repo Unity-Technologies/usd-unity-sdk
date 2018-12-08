@@ -150,8 +150,8 @@ namespace USD.NET.Unity {
       options.meshOptions.generateLightmapUVs = false;
 
       // Note that tangent and Normals must be updated when the mesh deforms.
+      options.importHierarchy = false;
 
-      options.meshOptions.topology = ImportMode.Ignore;
       options.meshOptions.texcoord0 = ImportMode.Ignore;
       options.meshOptions.texcoord1 = ImportMode.Ignore;
       options.meshOptions.texcoord2 = ImportMode.Ignore;
