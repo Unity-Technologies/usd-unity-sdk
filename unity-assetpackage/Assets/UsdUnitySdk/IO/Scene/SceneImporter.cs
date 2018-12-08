@@ -96,15 +96,11 @@ namespace USD.NET.Unity {
             continue;
           }
           if (obj is Mesh && meshes.Contains((Mesh)obj)) {
-            if (true || !importOptions.forceRebuild) {
-              meshes.Remove((Mesh)obj);
-            }
+            meshes.Remove((Mesh)obj);
             continue;
           }
           if (obj is Material && materials.Contains((Material)obj)) {
-            if (true || !importOptions.forceRebuild) {
-              materials.Remove((Material)obj);
-            }
+            materials.Remove((Material)obj);
             continue;
           }
           Object.DestroyImmediate(obj, allowDestroyingAssets: true);
