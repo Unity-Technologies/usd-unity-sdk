@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,24 +24,6 @@ namespace USD.NET.Unity {
   /// A collection of methods for building the USD scene hierarchy in Unity.
   /// </summary>
   public static class HierarchyBuilder {
-
-    /// <summary>
-    /// Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
-    /// </summary>
-    /// <param name="scene">The Scene to map</param>
-    /// <param name="unityRoot">The root game object under which all prims will be parented</param>
-    /// <returns></returns>
-    static public PrimMap BuildGameObjects(Scene scene,
-                                           GameObject unityRoot,
-                                           PrimMap primMap,
-                                           bool forceRebuild) {
-      return BuildGameObjects(scene,
-                              unityRoot,
-                              SdfPath.AbsoluteRootPath(),
-                              scene.AllPaths,
-                              primMap,
-                              forceRebuild);
-    }
 
     /// <summary>
     /// Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
