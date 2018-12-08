@@ -80,6 +80,15 @@ namespace USD.NET.Unity {
     /// </summary>
     public bool forceRebuild = false;
 
+    public bool importHierarchy = true;
+    public bool importCameras = true;
+    public bool importMeshes = true;
+    public bool importSkinning = true;
+    public bool importSkinningAnimation = true;
+    public bool importTransforms = true;
+    public bool importSceneInstances = true;
+    public bool importPointInstances = true;
+
     /// <summary>
     /// Typically USD data is right-handed and Unity is left handed; this option indicates how
     /// that conversion should be handled.

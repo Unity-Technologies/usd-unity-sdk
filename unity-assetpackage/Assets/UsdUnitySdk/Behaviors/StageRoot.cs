@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,8 +35,13 @@ namespace USD.NET.Unity {
     public Scene.InterpolationMode m_interpolation;
 
     [Header("Scenegraph")]
-    [Tooltip("Forces all GameObjects to be destroyed, instead of reusing existing objects")]
-    public bool m_forceRebuild;
+    public bool m_importCameras = true;
+    public bool m_importMeshes = true;
+    public bool m_importSkinning = true;
+    public bool m_importHierarchy = true;
+    public bool m_importTransforms = true;
+    public bool m_importSceneInstances = true;
+    public bool m_importPointInstances = true;
 
     [Header("Conversions")]
     public float m_scale;
@@ -131,13 +136,21 @@ namespace USD.NET.Unity {
     /// Convert the SceneImportOptions into a serializable form.
     /// </summary>
     public void OptionsToState(SceneImportOptions options) {
-      m_forceRebuild = options.forceRebuild;
       m_assetImportPath = options.assetImportPath;
       m_changeHandedness = options.changeHandedness;
       m_scale = options.scale;
       m_interpolation = options.interpolate ?
                         Scene.InterpolationMode.Linear :
                         Scene.InterpolationMode.Held;
+
+      // Scenegraph options.
+      m_importCameras = options.importCameras;
+      m_importMeshes = options.importMeshes;
+      m_importSkinning = options.importSkinning;
+      m_importHierarchy = options.importHierarchy;
+      m_importTransforms = options.importTransforms;
+      m_importSceneInstances = options.importSceneInstances;
+      m_importPointInstances = options.importPointInstances;
 
       // Mesh options.
       m_points = options.meshOptions.points;
@@ -167,11 +180,19 @@ namespace USD.NET.Unity {
     /// Converts the current component state into import options.
     /// </summary>
     public void StateToOptions(ref SceneImportOptions options) {
-      options.forceRebuild = m_forceRebuild;
       options.assetImportPath = m_assetImportPath;
       options.changeHandedness = m_changeHandedness;
       options.scale = m_scale;
       options.interpolate = m_interpolation == Scene.InterpolationMode.Linear;
+
+      // Scenegraph options.
+      options.importCameras = m_importCameras;
+      options.importMeshes = m_importMeshes;
+      options.importSkinning = m_importSkinning;
+      options.importHierarchy = m_importHierarchy;
+      options.importTransforms = m_importTransforms;
+      options.importSceneInstances = m_importSceneInstances;
+      options.importPointInstances = m_importPointInstances;
 
       // Mesh options.
       options.meshOptions.points = m_points;
