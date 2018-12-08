@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -97,7 +97,7 @@ namespace USD.NET.Unity {
           }
 
           map[usdPrim.GetPath()] = goPrim;
-          goPrim.transform.SetParent(parentXf);
+          goPrim.transform.SetParent(parentXf, worldPositionStays: false);
         }
       }
       Profiler.EndSample();
