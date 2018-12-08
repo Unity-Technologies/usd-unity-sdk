@@ -255,7 +255,7 @@ namespace USD.NET.Unity {
                                         usdPrimRoot,
                                         scene.Find(usdPrimRoot.ToString(), "UsdSchemaBase"),
                                         primMap,
-                                        importOptions.forceRebuild);
+                                          importOptions);
       Profiler.EndSample();
 
       if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
