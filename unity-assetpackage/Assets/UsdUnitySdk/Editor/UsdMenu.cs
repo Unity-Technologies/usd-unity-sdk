@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -123,7 +123,8 @@ public class UsdMenu : MonoBehaviour {
 
     //importOptions.meshOptions.generateLightmapUVs = true;
 
-    GameObject root = new GameObject("USD Object");
+    GameObject root = new GameObject(
+      UnityTypeConverter.MakeValidIdentifier(Path.GetFileNameWithoutExtension(path)));
 
     if (Selection.gameObjects.Length > 0) {
       root.transform.SetParent(Selection.gameObjects[0].transform);
