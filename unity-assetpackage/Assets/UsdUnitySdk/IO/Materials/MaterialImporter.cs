@@ -151,8 +151,8 @@ namespace USD.NET.Unity {
       }
 
       string sourcePath = textureAssetPath.GetResolvedPath();
-      string destPath = Path.Combine(options.assetImportPath, Path.GetFileName(sourcePath));
-      string assetPath = options.assetImportPath + Path.GetFileName(sourcePath);
+      string destPath = Path.Combine(options.projectAssetPath, Path.GetFileName(sourcePath));
+      string assetPath = options.projectAssetPath + Path.GetFileName(sourcePath);
 
       string fullPath = destPath;
       if (fullPath.StartsWith("Assets/")) {

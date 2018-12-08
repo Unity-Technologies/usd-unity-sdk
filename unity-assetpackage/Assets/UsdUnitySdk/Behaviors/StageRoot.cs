@@ -30,8 +30,10 @@ namespace USD.NET.Unity {
 
     [Header("Source Asset")]
     public string m_usdFile;
+    public string m_projectAssetPath;
+
+    [Header("Playback")]
     public float m_usdTime;
-    public string m_assetImportPath;
     public Scene.InterpolationMode m_interpolation;
 
     [Header("Scenegraph")]
@@ -162,7 +164,7 @@ namespace USD.NET.Unity {
     /// Convert the SceneImportOptions into a serializable form.
     /// </summary>
     public void OptionsToState(SceneImportOptions options) {
-      m_assetImportPath = options.assetImportPath;
+      m_projectAssetPath = options.projectAssetPath;
       m_changeHandedness = options.changeHandedness;
       m_scale = options.scale;
       m_interpolation = options.interpolate ?
@@ -206,7 +208,7 @@ namespace USD.NET.Unity {
     /// Converts the current component state into import options.
     /// </summary>
     public void StateToOptions(ref SceneImportOptions options) {
-      options.assetImportPath = m_assetImportPath;
+      options.projectAssetPath = m_projectAssetPath;
       options.changeHandedness = m_changeHandedness;
       options.scale = m_scale;
       options.interpolate = m_interpolation == Scene.InterpolationMode.Linear;

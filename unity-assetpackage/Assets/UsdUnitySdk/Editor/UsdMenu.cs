@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ public class UsdMenu : MonoBehaviour {
     scene.Time = 1.0;
 
     var importOptions = new SceneImportOptions();
-    importOptions.assetImportPath = GetSelectedAssetPath();
+    importOptions.projectAssetPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
     importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
@@ -163,7 +163,7 @@ public class UsdMenu : MonoBehaviour {
     scene.Time = 1.0;
 
     var importOptions = new SceneImportOptions();
-    importOptions.assetImportPath = GetSelectedAssetPath();
+    importOptions.projectAssetPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
     importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
@@ -173,7 +173,7 @@ public class UsdMenu : MonoBehaviour {
     var invalidChars = Path.GetInvalidFileNameChars();
     var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
         System.StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
-    string prefabPath = importOptions.assetImportPath + prefabName + ".prefab";
+    string prefabPath = importOptions.projectAssetPath + prefabName + ".prefab";
 
     try {
       ImportUsdToPrefab(scene, prefabPath, importOptions);

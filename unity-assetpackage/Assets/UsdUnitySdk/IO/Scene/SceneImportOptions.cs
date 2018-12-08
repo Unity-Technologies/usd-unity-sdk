@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ namespace USD.NET.Unity {
     /// <summary>
     /// The root location in the Unity project where imported files will be created.
     /// </summary>
-    public string assetImportPath = "Tmp/Test/";
+    public string projectAssetPath = "Assets/";
 
     /// <summary>
     /// Force components and objects to be rebuilt, instead of reusing existing objects.

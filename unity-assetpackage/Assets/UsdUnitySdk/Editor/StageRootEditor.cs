@@ -75,6 +75,11 @@ namespace USD.NET.Unity {
 
       options.forceRebuild = forceRebuild;
 
+      if (string.IsNullOrEmpty(options.projectAssetPath)) {
+        options.projectAssetPath = "Assets/";
+        stageRoot.OptionsToState(options);
+      }
+
       var root = stageRoot.gameObject;
       var prefab = PrefabUtility.GetPrefabObject(root);
       var assetPath = AssetDatabase.GetAssetPath(prefab);
