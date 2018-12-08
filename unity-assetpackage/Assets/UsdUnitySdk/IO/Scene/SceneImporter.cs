@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -196,18 +196,18 @@ namespace USD.NET.Unity {
     public static PrimMap BuildScene(Scene scene,
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
-                                     bool composingSubtree,
-                                     SceneImportOptions importOptions) {
+                                     SceneImportOptions importOptions,
+                                     bool composingSubtree) {
       try {
         Profiler.BeginSample("USD: Build Scene");
         var primMap = new PrimMap();
         var builder = BuildScene_(scene,
                                   root,
                                   usdPrimRoot,
-                                  composingSubtree,
                                   importOptions,
                                   primMap,
-                                  0);
+                                  0,
+                                  composingSubtree);
         while (builder.MoveNext()) { }
         return primMap;
       } finally {
@@ -218,17 +218,17 @@ namespace USD.NET.Unity {
     public static IEnumerator BuildScene(Scene scene,
                                      GameObject root,
                                      pxr.SdfPath usdPrimRoot,
-                                     bool composingSubtree,
                                      SceneImportOptions importOptions,
                                      PrimMap primMap,
-                                     float targetFrameMilliseconds) {
+                                     float targetFrameMilliseconds,
+                                     bool composingSubtree) {
       return BuildScene_(scene,
                          root,
                          usdPrimRoot,
-                         composingSubtree,
                          importOptions,
                          primMap,
-                         targetFrameMilliseconds);
+                         targetFrameMilliseconds,
+                         composingSubtree);
     }
 
     private static bool ShouldYield(float targetTime, System.Diagnostics.Stopwatch timer) {
@@ -244,10 +244,10 @@ namespace USD.NET.Unity {
     private static IEnumerator BuildScene_(Scene scene,
                                            GameObject root,
                                            pxr.SdfPath usdPrimRoot,
-                                           bool composingSubtree,
                                            SceneImportOptions importOptions,
                                            PrimMap primMap,
-                                           float targetFrameMilliseconds) {
+                                           float targetFrameMilliseconds,
+                                           bool composingSubtree) {
       var timer = new System.Diagnostics.Stopwatch();
 
       // Setting an arbitrary fudge factor of 20% is very non-scientific, however it's better than

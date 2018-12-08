@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -267,10 +267,10 @@ namespace USD.NET.Unity {
       var importer = SceneImporter.BuildScene(scene,
                                               goRoot,
                                               pxr.SdfPath.AbsoluteRootPath(),
-                                              /*composingSubtree*/false,
                                               importOptions,
                                               primMap,
-                                              targetFrameMilliseconds);
+                                              targetFrameMilliseconds,
+                                              composingSubtree: false);
       StartCoroutine(importer);
     }
 
@@ -341,8 +341,8 @@ namespace USD.NET.Unity {
       SceneImporter.BuildScene(scene,
                                goRoot,
                                pxr.SdfPath.AbsoluteRootPath(),
-                               /*composingSubtree*/false,
-                               importOptions);
+                               importOptions,
+                               composingSubtree: false);
     }
 
     public static void ImportUsd(GameObject goRoot,
@@ -360,8 +360,8 @@ namespace USD.NET.Unity {
       SceneImporter.BuildScene(scene,
                                goRoot,
                                new pxr.SdfPath(usdPrimPath),
-                               /*composingSubtree*/true,
-                               importOptions);
+                               importOptions,
+                               composingSubtree: true);
     }
   }
 }

@@ -108,8 +108,8 @@ namespace USD.NET.Examples {
         m_primMap = SceneImporter.BuildScene(m_scene,
                                              rootXf,
                                              pxr.SdfPath.AbsoluteRootPath(),
-                                             /*composingSubtree*/ false,
-                                             importOptions);
+                                             importOptions,
+                                             composingSubtree: false);
 
         // Ensure the file and the identifier match.
         m_usdFile = m_scene.FilePath;
