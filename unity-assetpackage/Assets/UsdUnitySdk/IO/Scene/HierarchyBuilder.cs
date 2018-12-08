@@ -32,23 +32,6 @@ namespace USD.NET.Unity {
     /// <param name="unityRoot">The root game object under which all prims will be parented</param>
     /// <param name="usdRoot">The path at which to begin mapping paths.</param>
     static public PrimMap BuildGameObjects(Scene scene,
-                                           GameObject unityRoot,
-                                           SdfPath usdRoot,
-                                           PrimMap primMap,
-                                           bool forceRebuild) {
-      // TODO: add an API for finding paths.
-      return BuildGameObjects(scene,
-                              unityRoot,
-                              usdRoot,
-                              scene.Find(usdRoot.ToString(), "UsdSchemaBase"),
-                              primMap,
-                              forceRebuild);
-    }
-
-    /// <summary>
-    /// Private implementation of BuildGameObjects.
-    /// </summary>
-    static private PrimMap BuildGameObjects(Scene scene,
                                             GameObject unityRoot,
                                             SdfPath usdRoot,
                                             IEnumerable<SdfPath> paths,

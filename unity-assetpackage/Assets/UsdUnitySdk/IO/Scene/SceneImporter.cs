@@ -257,6 +257,7 @@ namespace USD.NET.Unity {
       HierarchyBuilder.BuildGameObjects(scene,
                                         root,
                                         usdPrimRoot,
+                                        scene.Find(usdPrimRoot.ToString(), "UsdSchemaBase"),
                                         primMap,
                                         importOptions.forceRebuild);
       Profiler.EndSample();
