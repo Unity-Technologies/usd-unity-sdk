@@ -1,4 +1,4 @@
-using UnityEngine.Playables;
+﻿using UnityEngine.Playables;
 using UnityEngine;
 
 namespace USD.NET.Unity.Extensions.Timeline {
@@ -40,6 +40,8 @@ namespace USD.NET.Unity.Extensions.Timeline {
           m_errorOnce = false;
         }
         return;
+      } else {
+        m_errorOnce = true;
       }
 
       if (!root.isActiveAndEnabled) {
