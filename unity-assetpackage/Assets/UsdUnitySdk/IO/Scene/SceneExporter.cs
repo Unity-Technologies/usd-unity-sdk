@@ -370,6 +370,9 @@ namespace USD.NET.Unity {
       // TODO: What if this path is in use?
       string materialBasePath = tmpPath.ToString() + "/Materials/";
 
+      // Ensure the "Materials" prim is defined with a valid prim type.
+      context.scene.Write(materialBasePath.TrimEnd('/'), new ScopeSample());
+
       if (smr != null) {
         foreach (var mat in smr.sharedMaterials) {
           if (!context.matMap.ContainsKey(mat)) {
