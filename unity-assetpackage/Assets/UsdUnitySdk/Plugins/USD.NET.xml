@@ -715,6 +715,18 @@
             <remarks>Internally, this method reuses a single object while reading to minimize garbage
             generated during iteration.</remarks>
         </member>
+        <member name="M:USD.NET.Scene.ReadAll``1(System.Collections.Generic.List{pxr.SdfPath})">
+            <summary>
+            At each path, reads the given sample type from t he USD Stage.
+            </summary>
+            <typeparam name="T">
+            A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+            </typeparam>
+            <returns>
+            Returns a collection which will read each prim found and return the requested SampleBase
+            object type.
+            </returns>
+        </member>
         <member name="M:USD.NET.Scene.Close">
             <summary>
             Release any open files and stop asynchronous execution.

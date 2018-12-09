@@ -423,6 +423,24 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// At each path, reads the given sample type from t he USD Stage.
+    /// </summary>
+    /// <typeparam name="T">
+    /// A type which inherits from SampleBase, adorned with a UsdSchemaAttribute.
+    /// </typeparam>
+    /// <returns>
+    /// Returns a collection which will read each prim found and return the requested SampleBase
+    /// object type.
+    /// </returns>
+    public SampleCollection<T> ReadAll<T>(List<SdfPath> paths) where T : SampleBase, new() {
+      var vec = new SdfPathVector();
+      foreach (SdfPath path in paths) {
+        vec.Add(path);
+      }
+      return new SampleCollection<T>(this, vec);
+    }
+
+    /// <summary>
     /// Release any open files and stop asynchronous execution.
     /// </summary>
     public void Close() {
