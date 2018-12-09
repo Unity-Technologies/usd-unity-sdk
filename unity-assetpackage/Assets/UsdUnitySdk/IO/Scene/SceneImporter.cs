@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,6 +30,15 @@ namespace USD.NET.Unity {
   }
 
   /// <summary>
+  /// An interface for delegating import behavior to a third party.
+  /// </summary>
+  public interface IImporter {
+    IEnumerator Import(Scene scene,
+                       PrimMap primMap,
+                       SceneImportOptions importOptions);
+  }
+
+  /// <summary>
   /// Root entry point for importing an entire USD scene.
   /// </summary>
   public static class SceneImporter {
@@ -45,6 +54,21 @@ namespace USD.NET.Unity {
       {
       }
     }
+
+    /// <summary>
+    /// The active mesh importer to be used when ImportUsd is called.
+    /// </summary>
+    public static IImporter ActiveMeshImporter;
+
+    /// <summary>
+    /// The mesh importer to be used when importing all data.
+    /// </summary>
+    public static IImporter FullMeshImporter;
+
+    /// <summary>
+    /// The mesh importer to be used when streaming data from disk.
+    /// </summary>
+    public static IImporter StreamingMeshImporter;
 
     public delegate void ImportNotice(PrimMap primMap,
                                       Scene usdScene,
@@ -62,6 +86,16 @@ namespace USD.NET.Unity {
     /// fire after several frames, when the coroutine overload of BuildScene is used.
     /// </summary>
     public static event ImportNotice AfterImport;
+
+    static SceneImporter() {
+      SceneImporter.FullMeshImporter = new MeshImportStrategy<MeshSample>(
+          MeshImporter.BuildMesh,
+          MeshImporter.BuildSkinnedMesh);
+      SceneImporter.StreamingMeshImporter = new MeshImportStrategy<StreamingMeshSample>(
+          MeshImporter.BuildStreamingMesh,
+          MeshImporter.BuildStreamingSkinnedMesh);
+      SceneImporter.ActiveMeshImporter = SceneImporter.FullMeshImporter;
+    }
 
 #if UNITY_EDITOR
     /// <summary>
@@ -410,34 +444,9 @@ namespace USD.NET.Unity {
 
       // Meshes.
       if (importOptions.importMeshes) {
-
         Profiler.BeginSample("USD: Build Meshes");
-        foreach (var pathAndSample in scene.ReadAll<MeshSample>(usdPrimRoot)) {
-          try {
-            GameObject go = primMap[pathAndSample.path];
-            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-
-            Profiler.BeginSample("USD: Read Mesh Subsets");
-            var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
-            Profiler.EndSample();
-
-            // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
-            // have the data required to setup a skinned mesh.
-            var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
-            if (skinningQuery.IsValid()) {
-              Profiler.BeginSample("USD: Build Skinned Mesh");
-              MeshImporter.BuildSkinnedMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
-              Profiler.EndSample();
-            } else {
-              Profiler.BeginSample("USD: Build Mesh");
-              MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
-              Profiler.EndSample();
-            }
-          } catch (System.Exception ex) {
-            Debug.LogException(
-                new ImportException("Error processing mesh <" + pathAndSample.path + ">", ex));
-          }
-
+        IEnumerator it = ActiveMeshImporter.Import(scene, primMap, importOptions);
+        while (it.MoveNext()) {
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
         Profiler.EndSample();

@@ -22,6 +22,108 @@ using pxr;
 namespace USD.NET.Unity {
 
   /// <summary>
+  /// A specialized MeshSample class, optimized for streaming data over time.
+  /// </summary>
+  public class StreamingMeshSample : XformableSample {
+    public Bounds extent;
+    public int[] faceVertexCounts;
+    public int[] faceVertexIndices;
+    public Vector3[] points;
+    public Vector3[] normals;
+    public Orientation orientation;
+
+    [VertexData, FusedDisplayColor]
+    public Color[] colors;
+
+    public static explicit operator MeshSample(StreamingMeshSample streaming) {
+      var mesh = new MeshSample();
+      mesh.orientation = streaming.orientation;
+      mesh.points = streaming.points;
+      mesh.faceVertexCounts = streaming.faceVertexCounts;
+      mesh.faceVertexIndices = streaming.faceVertexIndices;
+      mesh.extent = streaming.extent;
+      mesh.colors = streaming.colors;
+      mesh.transform = streaming.transform;
+      return mesh;
+    }
+  }
+
+  /// <summary>
+  /// A callback function wich integrates the given sample into the given GameObject.
+  /// </summary>
+  public delegate void MeshImportFunction<T>(string path,
+                                             T sample,
+                                             MeshImporter.GeometrySubsets subsets,
+                                             GameObject go,
+                                             SceneImportOptions option) where T : SampleBase, new();
+
+  /// <summary>
+  /// This class is responsible for importing mesh samples into Unity. By swapping out the
+  /// MeshImportFunctions, the import behavior can be customized.
+  /// </summary>
+  /// <typeparam name="MeshSampleT">The MeshSample type to read from USD</typeparam>
+  public class MeshImportStrategy<MeshSampleT> : IImporter
+      where MeshSampleT : XformableSample, new()
+  {
+    private MeshImportFunction<MeshSampleT> m_meshImporter;
+    private MeshImportFunction<MeshSampleT> m_skinnedMeshImporter;
+
+    public MeshImportStrategy(MeshImportFunction<MeshSampleT> meshImporter,
+                            MeshImportFunction<MeshSampleT> skinnedMeshImporter) {
+      m_meshImporter = meshImporter;
+      m_skinnedMeshImporter = skinnedMeshImporter;
+    }
+
+    public System.Collections.IEnumerator Import(Scene scene,
+                             PrimMap primMap,
+                             SceneImportOptions importOptions) {
+      UsdSkelCache skelCache = new UsdSkelCache();
+
+      Profiler.BeginSample("USD: Build Meshes");
+      foreach (var pathAndSample in scene.ReadAll<MeshSampleT>(primMap.Meshes)) {
+        try {
+          GameObject go = primMap[pathAndSample.path];
+
+          Profiler.BeginSample("Build Mesh Xform");
+          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+          Profiler.EndSample();
+
+          Profiler.BeginSample("Read Mesh Subsets");
+          var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+          Profiler.EndSample();
+
+          // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
+          // have the data required to setup a skinned mesh.
+          Profiler.BeginSample("Get Skinning Query");
+          var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
+          Profiler.EndSample();
+
+          if (skinningQuery.IsValid()) {
+            Profiler.BeginSample("USD: Build Skinned Mesh");
+            m_skinnedMeshImporter(pathAndSample.path,
+                                  pathAndSample.sample,
+                                  subsets, go, importOptions);
+            Profiler.EndSample();
+          } else {
+            Profiler.BeginSample("USD: Build Mesh");
+            m_meshImporter(pathAndSample.path,
+                           pathAndSample.sample,
+                           subsets, go, importOptions);
+            Profiler.EndSample();
+          }
+        } catch (Exception ex) {
+          Debug.LogException(
+              new SceneImporter.ImportException(
+                  "Error processing mesh <" + pathAndSample.path + ">", ex));
+        }
+
+        yield return null;
+      }
+      Profiler.EndSample();
+    }
+  }
+
+  /// <summary>
   /// A collection of methods used for importing USD Mesh data into Unity.
   /// </summary>
   public static class MeshImporter {
@@ -69,6 +171,37 @@ namespace USD.NET.Unity {
       }
 
       return result;
+    }
+
+    /// <summary>
+    /// Similar to BuildSkinnedMesh, but operates on a StreamingMeshSample instead.
+    /// </summary>
+    public static void BuildStreamingSkinnedMesh(string path,
+                         StreamingMeshSample usdMesh,
+                         GeometrySubsets geomSubsets,
+                         GameObject go,
+                         SceneImportOptions options) {
+      var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
+      if (smr.sharedMesh == null) {
+        smr.sharedMesh = new Mesh();
+      }
+      MeshImporter.BuildMesh_(path, (MeshSample)usdMesh, smr.sharedMesh, geomSubsets, go, smr, options);
+    }
+
+    /// <summary>
+    /// Similar to BuildMesh, but operates on a StreamingMeshSample instead.
+    /// </summary>
+    public static void BuildStreamingMesh(string path,
+                         StreamingMeshSample usdMesh,
+                         GeometrySubsets geomSubsets,
+                         GameObject go,
+                         SceneImportOptions options) {
+      var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
+      var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
+      if (mf.sharedMesh == null) {
+        mf.sharedMesh = new Mesh();
+      }
+      MeshImporter.BuildMesh_(path, (MeshSample)usdMesh, mf.sharedMesh, geomSubsets, go, mr, options);
     }
 
     /// <summary>

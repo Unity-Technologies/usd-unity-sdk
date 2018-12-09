@@ -118,7 +118,9 @@ namespace USD.NET.Unity {
 
       try {
         PrepOptionsForTimeChange(ref options);
+        SceneImporter.ActiveMeshImporter = SceneImporter.StreamingMeshImporter;
         SceneImporter.ImportUsd(foreignRoot.gameObject, scene, options);
+        SceneImporter.ActiveMeshImporter = SceneImporter.FullMeshImporter;
       } finally {
         scene.Close();
         m_lastScene = null;
