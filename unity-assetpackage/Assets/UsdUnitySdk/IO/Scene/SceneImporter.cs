@@ -138,7 +138,7 @@ namespace USD.NET.Unity {
           prefab = oldPrefab;
         }
 
-        var playable = new USD.NET.Unity.Extensions.Timeline.USDPlayableAsset();
+        var playable = ScriptableObject.CreateInstance<Extensions.Timeline.USDPlayableAsset>();
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
         AssetDatabase.AddObjectToAsset(playable, prefab);
       }
