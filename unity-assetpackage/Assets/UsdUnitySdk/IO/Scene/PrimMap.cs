@@ -29,6 +29,13 @@ namespace USD.NET.Unity {
       public SdfPath masterPath;
     }
 
+    public List<SdfPath> Cameras { get; set; }
+    public List<SdfPath> Meshes { get; set; }
+    public List<SdfPath> Cubes { get; set; }
+    public List<SdfPath> Xforms { get; set; }
+    public List<SdfPath> SkelRoots { get; set; }
+    public List<SdfPath> Materials { get; set; }
+
     // Normal objects in the hierarchy.
     private Dictionary<SdfPath, GameObject> m_prims = new Dictionary<SdfPath, GameObject>();
 

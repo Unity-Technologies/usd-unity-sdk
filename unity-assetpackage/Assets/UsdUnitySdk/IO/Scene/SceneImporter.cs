@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -332,7 +332,7 @@ namespace USD.NET.Unity {
 
       if (importOptions.importSkinning) {
         Profiler.BeginSample("USD: Process UsdSkelRoots");
-        foreach (var path in scene.Find<SkelRootSample>(usdPrimRoot)) {
+        foreach (var path in primMap.SkelRoots) {
           try {
             var skelRootPrim = scene.GetPrimAtPath(path);
             if (!skelRootPrim) {
@@ -368,7 +368,7 @@ namespace USD.NET.Unity {
       // Materials.
       Profiler.BeginSample("USD: Build Materials");
       if (importOptions.ShouldBindMaterials) {
-        foreach (var pathAndSample in scene.ReadAll<MaterialSample>(usdPrimRoot)) {
+        foreach (var pathAndSample in scene.ReadAll<MaterialSample>(primMap.Materials)) {
           try {
             GameObject go = primMap[pathAndSample.path];
             var mat = MaterialImporter.BuildMaterial(scene,
@@ -394,7 +394,7 @@ namespace USD.NET.Unity {
       // Xforms are processed to avoid doing that work redundantly.
       if (importOptions.importTransforms) {
         Profiler.BeginSample("USD: Build Xforms");
-        foreach (var pathAndSample in scene.ReadAll<XformSample>(usdPrimRoot)) {
+        foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Xforms)) {
           try {
             GameObject go = primMap[pathAndSample.path];
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -444,7 +444,7 @@ namespace USD.NET.Unity {
 
         // Cubes.
         Profiler.BeginSample("USD: Build Cubes");
-        foreach (var pathAndSample in scene.ReadAll<CubeSample>(usdPrimRoot)) {
+        foreach (var pathAndSample in scene.ReadAll<CubeSample>(primMap.Cubes)) {
           try {
             GameObject go = primMap[pathAndSample.path];
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -462,7 +462,7 @@ namespace USD.NET.Unity {
       // Cameras.
       if (importOptions.importCameras) {
         Profiler.BeginSample("USD: Cameras");
-        foreach (var pathAndSample in scene.ReadAll<CameraSample>(usdPrimRoot)) {
+        foreach (var pathAndSample in scene.ReadAll<CameraSample>(primMap.Cameras)) {
           try {
             GameObject go = primMap[pathAndSample.path];
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);

@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 using pxr;
+using System.Linq;
 
 namespace USD.NET.Unity {
 
@@ -24,6 +25,36 @@ namespace USD.NET.Unity {
   /// A collection of methods for building the USD scene hierarchy in Unity.
   /// </summary>
   public static class HierarchyBuilder {
+    static readonly SdfPath kAbsoluteRootPath = SdfPath.AbsoluteRootPath();
+
+    public static void BuildObjectLists(Scene scene,
+                                        GameObject unityRoot,
+                                        SdfPath usdRoot,
+                                        PrimMap map,
+                                        SceneImportOptions options) {
+      // PERFORMANCE: Internally, these collections are converted to SdfPathVectors,
+      // so some time and garbage churn could be saved by using that type instead.
+      if (options.importCameras) {
+        map.Cameras = scene.Find<CameraSample>(usdRoot).ToList();
+        ProcessPaths(map.Cameras, scene, unityRoot, usdRoot, map, options);
+      }
+      if (options.importMeshes) {
+        map.Meshes = scene.Find<MeshSample>(usdRoot).ToList();
+        ProcessPaths(map.Meshes, scene, unityRoot, usdRoot, map, options);
+      }
+      if (options.importMeshes) {
+        map.Cubes = scene.Find<CubeSample>(usdRoot).ToList();
+        ProcessPaths(map.Cubes, scene, unityRoot, usdRoot, map, options);
+      }
+      if (options.importSkinning) {
+        map.SkelRoots = scene.Find<SkelRootSample>(usdRoot).ToList();
+        ProcessPaths(map.SkelRoots, scene, unityRoot, usdRoot, map, options);
+      }
+      if (options.importTransforms) {
+        map.Xforms = scene.Find<XformSample>(usdRoot).ToList();
+        ProcessPaths(map.Xforms, scene, unityRoot, usdRoot, map, options);
+      }
+    }
 
     /// <summary>
     /// Map all UsdPrims and build Unity GameObjects, reconstructing the parent relationship.
@@ -39,6 +70,8 @@ namespace USD.NET.Unity {
                                             PrimMap map,
                                             SceneImportOptions options) {
       map[usdRoot] = unityRoot;
+
+      BuildObjectLists(scene, unityRoot, usdRoot, map, options);
 
       // TODO: Should recurse to discover deeply nested instancing.
       // TODO: Generates garbage for every prim, but we expect few masters.
@@ -88,17 +121,80 @@ namespace USD.NET.Unity {
         Profiler.EndSample();
       }
 
+      if (options.importSkinning) {
+        Profiler.BeginSample("Expand Skeletons");
+        foreach (var path in scene.Find<SkelRootSample>()) {
+          try {
+            var prim = scene.GetPrimAtPath(path);
+            ExpandSkeleton(map[path], prim, map, scene);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
+          }
+        }
+        Profiler.EndSample();
+      }
+
+      return map;
+    }
+
+    static void CreateAncestors(SdfPath path,
+                                PrimMap map,
+                                GameObject unityRoot,
+                                SdfPath usdRoot,
+                                SceneImportOptions options,
+                                out GameObject parentGo) {
+      var parentPath = path.GetParentPath();
+      if (map.TryGetValue(parentPath, out parentGo) && parentGo) {
+        return;
+      }
+
+      // Base case.
+      if (parentPath == usdRoot) {
+        map[parentPath] = unityRoot;
+        return;
+      }
+
+      if (parentPath == kAbsoluteRootPath) {
+        // Something went wrong.
+        Debug.LogException(new Exception(
+            "Error: unexpected path </> creating ancestors for <" + usdRoot.ToString() + ">"));
+      }
+
+      // Recursive case.
+      // First, get the grandparent (parent's parent).
+      GameObject grandparentGo;
+      CreateAncestors(parentPath, map, unityRoot, usdRoot, options, out grandparentGo);
+
+      // Then find/create the current parent.
+      parentGo = FindOrCreateGameObject(grandparentGo.transform,
+                                        parentPath,
+                                        unityRoot.transform,
+                                        options);
+      map[parentPath] = parentGo;
+    }
+
+    static void ProcessPaths(List<SdfPath> paths,
+                             Scene scene,
+                             GameObject unityRoot,
+                             SdfPath usdRoot,
+                             PrimMap map,
+                             SceneImportOptions options) {
       Profiler.BeginSample("Process all paths");
       foreach (SdfPath path in paths) {
         var prim = scene.GetPrimAtPath(path);
         GameObject parentGo = null;
-        if (!map.TryGetValue(path.GetParentPath(), out parentGo)) {
+        CreateAncestors(path, map, unityRoot, usdRoot, options, out parentGo);
+
+        if (!parentGo) {
           Debug.LogWarning("Parent path not found for child: " + path.ToString());
           continue;
         }
-        
+
         var parent = parentGo ? parentGo.transform : null;
-        var go = FindOrCreateGameObject(parent, path, unityRoot.transform, options);
+        GameObject go;
+        if (!map.TryGetValue(path, out go)) {
+          go = FindOrCreateGameObject(parent, path, unityRoot.transform, options);
+        }
 
         if (go) {
           if (options.importSceneInstances) {
@@ -131,21 +227,6 @@ namespace USD.NET.Unity {
         }
       }
       Profiler.EndSample();
-
-      if (options.importSkinning) {
-        Profiler.BeginSample("Expand Skeletons");
-        foreach (var path in scene.Find<SkelRootSample>()) {
-          try {
-            var prim = scene.GetPrimAtPath(path);
-            ExpandSkeleton(map[path], prim, map, scene);
-          } catch (Exception ex) {
-            Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
-          }
-        }
-        Profiler.EndSample();
-      }
-
-      return map;
     }
 
     static void ExpandSkeleton(GameObject go, UsdPrim prim, PrimMap map, Scene scene) {
