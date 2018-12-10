@@ -179,23 +179,23 @@ namespace USD.NET {
     /// <summary>
     /// A list of all Prim paths present in the scene.
     /// </summary>
-    public PathCollection AllPaths {
+    public SdfPath[] AllPaths {
       get {
-        return new PathCollection(Stage.GetAllPaths());
+        return VectorToArray(Stage.GetAllPaths());
       }
     }
 
     [Obsolete("Use Find<MeshSample>() instead. This API will be removed in a future release.")]
-    public PathCollection AllMeshes {
+    public SdfPath[] AllMeshes {
       get {
-        return new PathCollection(Stage.GetAllPathsByType("Mesh", SdfPath.AbsoluteRootPath()));
+        return VectorToArray(Stage.GetAllPathsByType("Mesh", SdfPath.AbsoluteRootPath()));
       }
     }
 
     [Obsolete("Use Find<XformableSample>() instead. This API will be removed in a future release.")]
-    public PathCollection AllXforms {
+    public SdfPath[] AllXforms {
       get {
-        return new PathCollection(Stage.GetAllPathsByType("Xform", SdfPath.AbsoluteRootPath()));
+        return VectorToArray(Stage.GetAllPathsByType("Xform", SdfPath.AbsoluteRootPath()));
       }
     }
 
@@ -306,7 +306,7 @@ namespace USD.NET {
     /// <returns>
     /// An iterable collection of the paths discovered
     /// </returns>
-    public PathCollection Find<T>() where T : SampleBase, new() {
+    public SdfPath[] Find<T>() where T : SampleBase, new() {
       return Find<T>(rootPath: SdfPath.AbsoluteRootPath());
     }
 
@@ -321,7 +321,7 @@ namespace USD.NET {
     /// <returns>
     /// An iterable collection of the paths discovered
     /// </returns>
-    public PathCollection Find<T>(string rootPath) where T : SampleBase, new() {
+    public SdfPath[] Find<T>(string rootPath) where T : SampleBase, new() {
       return Find<T>(new SdfPath(rootPath));
     }
 
@@ -336,14 +336,13 @@ namespace USD.NET {
     /// <returns>
     /// An iterable collection of the paths discovered
     /// </returns>
-    public PathCollection Find<T>(SdfPath rootPath) where T : SampleBase, new() {
+    public SdfPath[] Find<T>(SdfPath rootPath) where T : SampleBase, new() {
       var attrs = typeof(T).GetCustomAttributes(typeof(USD.NET.UsdSchemaAttribute), true);
       if (attrs.Length == 0) {
         throw new ApplicationException("Invalid type T, does not have UsdSchema attribute");
       }
       var schemaTypeName = ((UsdSchemaAttribute)attrs[0]).Name;
-      var vec = Stage.GetAllPathsByType(schemaTypeName, rootPath);
-      return new PathCollection(vec);
+      return VectorToArray(Stage.GetAllPathsByType(schemaTypeName, rootPath));
     }
 
     /// <summary>
@@ -357,9 +356,8 @@ namespace USD.NET {
     /// <returns>
     /// Returns an iterable collection of UsdPrim paths.
     /// </returns>
-    public PathCollection Find(string rootPath, string usdSchemaTypeName) {
-      var vec = Stage.GetAllPathsByType(usdSchemaTypeName, new SdfPath(rootPath));
-      return new PathCollection(vec);
+    public SdfPath[] Find(string rootPath, string usdSchemaTypeName) {
+      return VectorToArray(Stage.GetAllPathsByType(usdSchemaTypeName, new SdfPath(rootPath)));
     }
 
 
@@ -432,7 +430,7 @@ namespace USD.NET {
     /// Returns a collection which will read each prim found and return the requested SampleBase
     /// object type.
     /// </returns>
-    public SampleCollection<T> ReadAll<T>(List<SdfPath> paths) where T : SampleBase, new() {
+    public SampleCollection<T> ReadAll<T>(SdfPath[] paths) where T : SampleBase, new() {
       var vec = new SdfPathVector();
       foreach (SdfPath path in paths) {
         vec.Add(path);
@@ -689,10 +687,22 @@ namespace USD.NET {
       return s;
     }
 
-#region "Private API"
+    #region "Private API"
     // ----------------------------------------------------------------------------------------- //
     // Private API
     // ----------------------------------------------------------------------------------------- //
+
+    /// <remarks>
+    /// Converts an std::vector to an array, but why?
+    /// Swig's current implementation of std::vector returns references to private memory, which
+    /// means any value obtained from it is extremely unsafe and will cause C++ style memory errors
+    /// if used after the vector is disposed. For safety, our API should never return a raw vector.
+    /// </remarks>
+    private SdfPath[] VectorToArray(SdfPathVector vec) {
+      var ret = new SdfPath[vec.Count];
+      vec.CopyTo(ret);
+      return ret;
+    }
 
     private SdfPath GetSdfPath(pxr.SdfPath path) {
       throw new ApplicationException("TODO: don't allow implicit conversion path -> string");

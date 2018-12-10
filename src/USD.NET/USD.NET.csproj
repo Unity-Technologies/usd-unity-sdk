@@ -79,9 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="collections\SampleCollection.cs" />
-    <Compile Include="collections\PathCollection.cs" />
     <Compile Include="collections\SampleEnumerator.cs" />
-    <Compile Include="collections\PathEnumerator.cs" />
     <Compile Include="collections\RangeIterator.cs" />
     <Compile Include="collections\SubtreeIterator.cs" />
     <Compile Include="collections\SiblingIterator.cs" />

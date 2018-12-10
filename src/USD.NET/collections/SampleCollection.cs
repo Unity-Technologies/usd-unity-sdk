@@ -22,11 +22,15 @@ namespace USD.NET {
   /// Provides custom enumeration over an SdfPathVector to avoid generation of garbage.
   /// </summary>
   public class SampleCollection<T> : IEnumerable<SampleEnumerator<T>.SampleHolder> where T : SampleBase, new() {
-    private SdfPathVector m_paths;
+    // CAUTION: Swig's current wrapper for std::vector returns references into the vectors private memory,
+    // which means any item taken from the vector cannot be used long term and should be cloned. For
+    // this reason, the vector is proactively copied into an array for safety.
+    private SdfPath[] m_paths;
     private Scene m_scene;
 
     public SampleCollection(Scene scene, SdfPathVector paths) {
-      m_paths = paths;
+      m_paths = new SdfPath[paths.Count];
+      paths.CopyTo(m_paths);
       m_scene = scene;
     }
 

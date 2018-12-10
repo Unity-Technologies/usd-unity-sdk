@@ -22,9 +22,9 @@ namespace USD.NET {
   /// Enumerates all (SdfPath,Sample) pairs for a given path set and sample type.
   /// </summary>
   public class SampleEnumerator<T> : IEnumerator<SampleEnumerator<T>.SampleHolder> where T : SampleBase, new() {
-    private SdfPathVector m_paths;
+    private SdfPath[] m_paths;
+
     private int m_i = -1;
-    private int m_size = 0;
 
     // Avoid garbage churn.
     private SampleHolder m_currentSample = new SampleHolder();
@@ -35,11 +35,10 @@ namespace USD.NET {
       public SdfPath path = new SdfPath();
     }
 
-    public SampleEnumerator(Scene scene, SdfPathVector paths) {
+    public SampleEnumerator(Scene scene, SdfPath[] paths) {
       m_scene = scene;
       m_paths = paths;
       m_i = -1;
-      m_size = paths.Count;
     }
 
     public SampleHolder Current {
@@ -59,7 +58,7 @@ namespace USD.NET {
 
     public bool MoveNext() {
       m_i++;
-      bool valid = m_i < m_size;
+      bool valid = m_i < m_paths.Length;
       if (valid) {
         m_currentSample.path = m_paths[m_i];
         m_currentSample.sample = new T();

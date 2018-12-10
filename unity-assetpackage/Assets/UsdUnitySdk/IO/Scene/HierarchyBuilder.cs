@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 using pxr;
-using System.Linq;
 
 namespace USD.NET.Unity {
 
@@ -35,23 +34,23 @@ namespace USD.NET.Unity {
       // PERFORMANCE: Internally, these collections are converted to SdfPathVectors,
       // so some time and garbage churn could be saved by using that type instead.
       if (options.importCameras) {
-        map.Cameras = scene.Find<CameraSample>(usdRoot).ToList();
+        map.Cameras = scene.Find<CameraSample>(usdRoot);
         ProcessPaths(map.Cameras, scene, unityRoot, usdRoot, map, options);
       }
       if (options.importMeshes) {
-        map.Meshes = scene.Find<MeshSample>(usdRoot).ToList();
+        map.Meshes = scene.Find<MeshSample>(usdRoot);
         ProcessPaths(map.Meshes, scene, unityRoot, usdRoot, map, options);
       }
       if (options.importMeshes) {
-        map.Cubes = scene.Find<CubeSample>(usdRoot).ToList();
+        map.Cubes = scene.Find<CubeSample>(usdRoot);
         ProcessPaths(map.Cubes, scene, unityRoot, usdRoot, map, options);
       }
       if (options.importSkinning) {
-        map.SkelRoots = scene.Find<SkelRootSample>(usdRoot).ToList();
+        map.SkelRoots = scene.Find<SkelRootSample>(usdRoot);
         ProcessPaths(map.SkelRoots, scene, unityRoot, usdRoot, map, options);
       }
       if (options.importTransforms) {
-        map.Xforms = scene.Find<XformSample>(usdRoot).ToList();
+        map.Xforms = scene.Find<XformSample>(usdRoot);
         ProcessPaths(map.Xforms, scene, unityRoot, usdRoot, map, options);
       }
     }
@@ -173,7 +172,7 @@ namespace USD.NET.Unity {
       map[parentPath] = parentGo;
     }
 
-    static void ProcessPaths(List<SdfPath> paths,
+    static void ProcessPaths(SdfPath[] paths,
                              Scene scene,
                              GameObject unityRoot,
                              SdfPath usdRoot,

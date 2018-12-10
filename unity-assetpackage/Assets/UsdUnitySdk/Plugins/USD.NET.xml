@@ -9,19 +9,9 @@
             Provides custom enumeration over an SdfPathVector to avoid generation of garbage.
             </summary>
         </member>
-        <member name="T:USD.NET.PathCollection">
-            <summary>
-            Provides custom enumeration over an SdfPathVector to avoid generation of garbage.
-            </summary>
-        </member>
         <member name="T:USD.NET.SampleEnumerator`1">
             <summary>
             Enumerates all (SdfPath,Sample) pairs for a given path set and sample type.
-            </summary>
-        </member>
-        <member name="T:USD.NET.PathEnumerator">
-            <summary>
-            Enumerates all SdfPaths in an SdfPathVector.
             </summary>
         </member>
         <member name="T:USD.NET.RangeIterator">
@@ -715,7 +705,7 @@
             <remarks>Internally, this method reuses a single object while reading to minimize garbage
             generated during iteration.</remarks>
         </member>
-        <member name="M:USD.NET.Scene.ReadAll``1(System.Collections.Generic.List{pxr.SdfPath})">
+        <member name="M:USD.NET.Scene.ReadAll``1(pxr.SdfPath[])">
             <summary>
             At each path, reads the given sample type from t he USD Stage.
             </summary>
@@ -825,6 +815,14 @@
             <summary>
             Returns the entire scene serialized as a string. Expensive for large scenes.
             </summary>
+        </member>
+        <member name="M:USD.NET.Scene.VectorToArray(pxr.SdfPathVector)">
+            <remarks>
+            Converts an std::vector to an array, but why?
+            Swig's current implementation of std::vector returns references to private memory, which
+            means any value obtained from it is extremely unsafe and will cause C++ style memory errors
+            if used after the vector is disposed. For safety, our API should never return a raw vector.
+            </remarks>
         </member>
         <member name="M:USD.NET.Scene.GetUsdPrim(System.String)">
             <summary>

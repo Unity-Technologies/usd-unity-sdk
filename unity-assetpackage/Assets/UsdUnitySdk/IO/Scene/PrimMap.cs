@@ -29,12 +29,12 @@ namespace USD.NET.Unity {
       public SdfPath masterPath;
     }
 
-    public List<SdfPath> Cameras { get; set; }
-    public List<SdfPath> Meshes { get; set; }
-    public List<SdfPath> Cubes { get; set; }
-    public List<SdfPath> Xforms { get; set; }
-    public List<SdfPath> SkelRoots { get; set; }
-    public List<SdfPath> Materials { get; set; }
+    public SdfPath[] Cameras { get; set; }
+    public SdfPath[] Meshes { get; set; }
+    public SdfPath[] Cubes { get; set; }
+    public SdfPath[] Xforms { get; set; }
+    public SdfPath[] SkelRoots { get; set; }
+    public SdfPath[] Materials { get; set; }
 
     // Normal objects in the hierarchy.
     private Dictionary<SdfPath, GameObject> m_prims = new Dictionary<SdfPath, GameObject>();
@@ -124,6 +124,12 @@ namespace USD.NET.Unity {
       m_masterRoots.Clear();
       m_instances.Clear();
       m_instanceRoots.Clear();
+      Cameras = null;
+      Meshes = null;
+      Cubes = null;
+      Xforms = null;
+      SkelRoots = null;
+      Materials = null;
     }
 
   }
