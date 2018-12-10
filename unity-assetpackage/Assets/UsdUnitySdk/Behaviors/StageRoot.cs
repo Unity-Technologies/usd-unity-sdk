@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -80,17 +80,87 @@ namespace USD.NET.Unity {
 
     private float m_lastTime;
     private Scene m_lastScene;
+    private PrimMap m_lastPrimMap = null;
 
+    /// <summary>
+    /// Returns the USD.NET.Scene object for this USD file.
+    /// The caller is NOT expected to close the scene.
+    /// </summary>
     public Scene GetScene() {
       USD.NET.Examples.InitUsd.Initialize();
       if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != m_usdFile) {
         m_lastScene = Scene.Open(m_usdFile);
       }
       m_lastScene.Time = m_usdTime;
+      m_lastScene.SetInterpolation(m_interpolation);
       return m_lastScene;
     }
 
-    #region "Timeline Support"
+    private void OnReload() {
+      m_lastPrimMap = null;
+      if (m_lastScene != null) {
+        m_lastScene.Close();
+        m_lastScene = null;
+      }
+    }
+
+    public void OpenScene(Scene scene) {
+      var options = new SceneImportOptions();
+      StateToOptions(ref options);
+      var parent = gameObject.transform.parent;
+      var root = parent ? parent.gameObject : null;
+
+      scene.Time = m_usdTime;
+      try {
+        OnReload();
+        SceneImporter.ImportUsd(root, scene, new PrimMap(), options);
+      } finally {
+        scene.Close();
+      }
+    }
+
+    public void Reload(bool forceRebuild) {
+      var options = new SceneImportOptions();
+      StateToOptions(ref options);
+
+      options.forceRebuild = forceRebuild;
+
+      if (string.IsNullOrEmpty(options.projectAssetPath)) {
+        options.projectAssetPath = "Assets/";
+        OptionsToState(options);
+      }
+
+      var root = gameObject;
+
+      string assetPath =
+#if UNITY_EDITOR
+          UnityEditor.AssetDatabase.GetAssetPath(
+              UnityEditor.PrefabUtility.GetPrefabObject(root));
+#else
+          null;
+#endif
+
+      // The prefab asset path will be null for prefab instances.
+      // When the assetPath is not null, the object is the prefab itself.
+      if (!string.IsNullOrEmpty(assetPath)) {
+        if (options.forceRebuild) {
+          root = new GameObject();
+        }
+
+        SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
+        SceneImporter.SaveAsSinglePrefab(root, assetPath, options);
+        if (options.forceRebuild) {
+          GameObject.DestroyImmediate(root);
+        }
+      } else {
+        // An instance of a prefab.
+        // Just reload the scene into memory and let the user decide if they want to send those
+        // changes back to the prefab or not.
+        SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
+      }
+    }
+
+#region "Timeline Support"
     private double ComputeLength() {
       var scene = GetScene();
       if (scene == null) { return 0; }
@@ -116,34 +186,24 @@ namespace USD.NET.Unity {
       var options = new SceneImportOptions();
       foreignRoot.StateToOptions(ref options);
 
-      try {
-        PrepOptionsForTimeChange(ref options);
-        SceneImporter.ActiveMeshImporter = SceneImporter.StreamingMeshImporter;
-        SceneImporter.ImportUsd(foreignRoot.gameObject, scene, options);
-        SceneImporter.ActiveMeshImporter = SceneImporter.FullMeshImporter;
-      } finally {
-        scene.Close();
-        m_lastScene = null;
+      PrepOptionsForTimeChange(ref options);
+      if (m_lastPrimMap == null) {
+        m_lastPrimMap = new PrimMap();
+        options.importHierarchy = true;
       }
+
+      SceneImporter.ActiveMeshImporter = SceneImporter.StreamingMeshImporter;
+      SceneImporter.ImportUsd(foreignRoot.gameObject, scene, m_lastPrimMap, options);
+      SceneImporter.ActiveMeshImporter = SceneImporter.FullMeshImporter;
     }
-    #endregion
+#endregion
 
     private void Update() {
       if (m_lastTime == m_usdTime) {
         return;
       }
       m_lastTime = m_usdTime;
-      var scene = GetScene();
-      var options = new SceneImportOptions();
-      StateToOptions(ref options);
-
-      try {
-        PrepOptionsForTimeChange(ref options);
-        SceneImporter.ImportUsd(this.gameObject, scene, options);
-      } finally {
-        scene.Close();
-        m_lastScene = null;
-      }
+      SetTime(m_usdTime, this);
     }
 
     public static void PrepOptionsForTimeChange(ref SceneImportOptions options) {
@@ -308,7 +368,7 @@ namespace USD.NET.Unity {
       SceneImportOptions importOptions = new SceneImportOptions();
       this.StateToOptions(ref importOptions);
       try {
-        SceneImporter.ImportUsd(go, scene, usdPrimPath, importOptions);
+        SceneImporter.ImportUsd(go, scene, usdPrimPath, new PrimMap(), true, importOptions);
       } finally {
         scene.Close();
       }

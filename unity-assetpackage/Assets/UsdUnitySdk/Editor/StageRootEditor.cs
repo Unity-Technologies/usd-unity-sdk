@@ -55,54 +55,12 @@ namespace USD.NET.Unity {
       if (scene == null) {
         return;
       }
-
-      var options = new SceneImportOptions();
-      stageRoot.StateToOptions(ref options);
-      var parent = stageRoot.gameObject.transform.parent;
-      var root = parent ? parent.gameObject : null;
-
-      scene.Time = stageRoot.m_usdTime;
-      try {
-        SceneImporter.ImportUsd(root, scene, options);
-      } finally {
-        scene.Close();
-      }
+      stageRoot.OpenScene(scene);
     }
 
     private void ReloadFromUsd(StageRoot stageRoot, bool forceRebuild) {
-      var options = new SceneImportOptions();
-      stageRoot.StateToOptions(ref options);
-
-      options.forceRebuild = forceRebuild;
-
-      if (string.IsNullOrEmpty(options.projectAssetPath)) {
-        options.projectAssetPath = "Assets/";
-        stageRoot.OptionsToState(options);
-      }
-
-      var root = stageRoot.gameObject;
-      var prefab = PrefabUtility.GetPrefabObject(root);
-      var assetPath = AssetDatabase.GetAssetPath(prefab);
-
-      // The prefab asset path will be null for prefab instances.
-      // When the assetPath is not null, the object is the prefab itself.
-      if (!string.IsNullOrEmpty(assetPath)) {
-        if (options.forceRebuild) {
-          root = new GameObject();
-        }
-
-        SceneImporter.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
-        SceneImporter.SaveAsSinglePrefab(root, assetPath, options);
-        if (options.forceRebuild) {
-          GameObject.DestroyImmediate(root);
-        }
-        Repaint();
-      } else {
-        // An instance of a prefab.
-        // Just reload the scene into memory and let the user decide if they want to send those
-        // changes back to the prefab or not.
-        SceneImporter.ImportUsd(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options);
-      }
+      stageRoot.Reload(forceRebuild);
+      Repaint();
     }
 
     private void ReloadFromUsdAsCoroutine(StageRoot stageRoot) {

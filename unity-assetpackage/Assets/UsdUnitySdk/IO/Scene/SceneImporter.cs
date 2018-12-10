@@ -237,27 +237,17 @@ namespace USD.NET.Unity {
 #endif
 
     public static void ImportUsd(GameObject goRoot,
-                             Scene scene,
-                             SceneImportOptions importOptions) {
-      if (scene == null) {
-        throw new ImportException("Null USD Scene");
-      }
-
-      scene.SetInterpolation(importOptions.interpolate ?
-                             Scene.InterpolationMode.Linear :
-                             Scene.InterpolationMode.Held);
-
-      SceneImporter.BuildScene(scene,
-                               goRoot,
-                               pxr.SdfPath.AbsoluteRootPath(),
-                               importOptions,
-                               new PrimMap(),
-                               composingSubtree: false);
+                                 Scene scene,
+                                 PrimMap primMap,
+                                 SceneImportOptions importOptions) {
+      ImportUsd(goRoot, scene, "/", primMap, false, importOptions);
     }
 
     public static void ImportUsd(GameObject goRoot,
                                  Scene scene,
-                                 string usdPrimPath,
+                                 string usdImportRootPath,
+                                 PrimMap primMap,
+                                 bool composingSubtree,
                                  SceneImportOptions importOptions) {
       if (scene == null) {
         throw new ImportException("Null USD Scene");
@@ -269,27 +259,10 @@ namespace USD.NET.Unity {
 
       SceneImporter.BuildScene(scene,
                                goRoot,
-                               new pxr.SdfPath(usdPrimPath),
+                               new pxr.SdfPath(usdImportRootPath),
                                importOptions,
-                               new PrimMap(),
-                               composingSubtree: true);
-    }
-
-    public static void ImportUsd(GameObject goRoot,
-                             string usdFilePath,
-                             double time,
-                             SceneImportOptions importOptions) {
-      Examples.InitUsd.Initialize();
-      var scene = Scene.Open(usdFilePath);
-      if (scene == null) {
-        throw new ImportException("Failed to open: " + usdFilePath);
-      }
-      scene.Time = time;
-      try {
-        SceneImporter.ImportUsd(goRoot, scene, importOptions);
-      } finally {
-        scene.Close();
-      }
+                               primMap,
+                               composingSubtree);
     }
 
     /// <summary>
@@ -339,13 +312,15 @@ namespace USD.NET.Unity {
       // Reconstruct the USD hierarchy as Unity GameObjects.
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       Profiler.BeginSample("USD: Build Hierarchy");
-      primMap.Clear();
-      HierarchyBuilder.BuildGameObjects(scene,
-                                        root,
-                                        usdPrimRoot,
-                                        scene.Find(usdPrimRoot.ToString(), "UsdSchemaBase"),
-                                        primMap,
-                                        importOptions);
+      if (importOptions.importHierarchy || importOptions.forceRebuild) {
+        primMap.Clear();
+        HierarchyBuilder.BuildGameObjects(scene,
+                                          root,
+                                          usdPrimRoot,
+                                          scene.Find(usdPrimRoot.ToString(), "UsdSchemaBase"),
+                                          primMap,
+                                          importOptions);
+      }
       Profiler.EndSample();
 
       if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -446,6 +421,7 @@ namespace USD.NET.Unity {
       if (importOptions.importMeshes) {
         Profiler.BeginSample("USD: Build Meshes");
         IEnumerator it = ActiveMeshImporter.Import(scene, primMap, importOptions);
+
         while (it.MoveNext()) {
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }

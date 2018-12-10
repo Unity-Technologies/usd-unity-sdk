@@ -209,7 +209,7 @@ public class UsdMenu : MonoBehaviour {
                                            USD.NET.Scene scene,
                                            SceneImportOptions importOptions) {
     try {
-      SceneImporter.ImportUsd(parent, scene, importOptions);
+      SceneImporter.ImportUsd(parent, scene, new PrimMap(), importOptions);
     } finally {
       scene.Close();
     }
