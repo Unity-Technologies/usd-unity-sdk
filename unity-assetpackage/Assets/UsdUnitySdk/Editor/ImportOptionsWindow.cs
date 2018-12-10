@@ -15,7 +15,7 @@ namespace USD.NET.Unity {
     public BasisTransformation m_changeHandedness;
 
     [Header("Materials")]
-    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportParameters;
+    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
     public bool m_enableGpuInstancing;
     public Material m_fallbackMaterial;
 

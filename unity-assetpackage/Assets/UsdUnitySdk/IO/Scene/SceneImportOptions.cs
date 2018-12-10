@@ -44,15 +44,9 @@ namespace USD.NET.Unity {
   [System.Serializable]
   public enum MaterialImportMode {
     /// <summary>
-    /// Imports the bound material with parameters, but does not import bound textures.
-    /// This mode trades off fidelity (no textures) for speed.
-    /// </summary>
-    ImportParameters,
-
-    /// <summary>
     /// Fully imports the material, parameters, and textures (may be slow).
     /// </summary>
-    ImportParametersAndTextures,
+    ImportPreviewSurface,
 
     /// <summary>
     /// Ignores the bound material and only uses the object's displayColor.
@@ -121,7 +115,7 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Indicates how materials are handled, see enum for details.
     /// </summary>
-    public MaterialImportMode materialImportMode = MaterialImportMode.ImportParameters;
+    public MaterialImportMode materialImportMode = MaterialImportMode.ImportDisplayColor;
 
     /// <summary>
     /// A set of registered mappings from USD shader ID to Unity material.
@@ -138,8 +132,7 @@ namespace USD.NET.Unity {
     /// </summary>
     public bool ShouldBindMaterials {
       get {
-        return materialImportMode == MaterialImportMode.ImportParameters
-            || materialImportMode == MaterialImportMode.ImportParametersAndTextures;
+        return materialImportMode == MaterialImportMode.ImportPreviewSurface;
       }
     }
   }
