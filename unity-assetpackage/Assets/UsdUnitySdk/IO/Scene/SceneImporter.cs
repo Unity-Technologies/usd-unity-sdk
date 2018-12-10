@@ -102,9 +102,10 @@ namespace USD.NET.Unity {
     /// Custom importer. This works almost exactly as the ScriptedImporter, but does not require
     /// the new API.
     /// </summary>
-    public static void SaveAsSinglePrefab(GameObject rootObject,
-                                          string prefabPath,
-                                          SceneImportOptions importOptions) {
+    public static void SavePrefab(GameObject rootObject,
+                                  string prefabPath,
+                                  string playableClipName,
+                                  SceneImportOptions importOptions) {
       Directory.CreateDirectory(Path.GetDirectoryName(prefabPath));
 
       GameObject oldPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
@@ -132,6 +133,7 @@ namespace USD.NET.Unity {
         var playable = ScriptableObject.CreateInstance<Extensions.Timeline.USDPlayableAsset>();
 
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
+        playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
       } else {
         HashSet<Mesh> meshes;
@@ -174,6 +176,7 @@ namespace USD.NET.Unity {
 
         var playable = ScriptableObject.CreateInstance<Extensions.Timeline.USDPlayableAsset>();
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
+        playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
       }
 
@@ -195,27 +198,32 @@ namespace USD.NET.Unity {
 
       var tempMat = importOptions.materialMap.FallbackMasterMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+        tempMat.name = "Fallback Master Material";
         materials.Add(tempMat);
       }
 
       tempMat = importOptions.materialMap.MetallicWorkflowMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+        tempMat.name = "Metallic Workflow Material";
         materials.Add(tempMat);
       }
 
       tempMat = importOptions.materialMap.SpecularWorkflowMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
+        tempMat.name = "Specular Workflow Material";
         materials.Add(tempMat);
       }
 
       foreach (var mf in rootObject.GetComponentsInChildren<MeshFilter>()) {
         if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
+          mf.sharedMesh.name = mf.name;
         }
       }
 
       foreach (var mf in rootObject.GetComponentsInChildren<MeshRenderer>()) {
         foreach (var mat in mf.sharedMaterials) {
           if (mat == null || !materials.Add(mat)) {
+            mat.name = mf.name;
             continue;
           }
         }
@@ -223,9 +231,11 @@ namespace USD.NET.Unity {
 
       foreach (var mf in rootObject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
         if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
+          mf.sharedMesh.name = mf.name;
         }
         foreach (var mat in mf.sharedMaterials) {
           if (mat == null || !materials.Add(mat)) {
+            mat.name = mf.name;
             continue;
           }
         }
