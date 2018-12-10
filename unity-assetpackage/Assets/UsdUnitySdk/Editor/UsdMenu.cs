@@ -187,8 +187,8 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
-  [MenuItem("USD/Import as Animation Clip")]
-  public static void MenuImportAsAnimationClip() {
+  [MenuItem("USD/Import as Timeline Clip")]
+  public static void MenuImportAsTimelineClip() {
     var scene = InitForOpen();
     if (scene == null) {
       return;
