@@ -166,7 +166,7 @@ public class UsdMenu : MonoBehaviour {
     var importOptions = new SceneImportOptions();
     importOptions.projectAssetPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
-    importOptions.materialImportMode = MaterialImportMode.ImportPreviewSurface;
+    importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
     importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
     importOptions.materialMap.MetallicWorkflowMaterial = new Material(Shader.Find("Standard (Roughness setup)"));
     importOptions.materialMap.FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
