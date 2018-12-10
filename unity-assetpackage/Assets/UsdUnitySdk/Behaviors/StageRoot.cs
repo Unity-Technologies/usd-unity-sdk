@@ -147,9 +147,9 @@ namespace USD.NET.Unity {
         if (options.forceRebuild) {
           root = new GameObject();
         }
-
+        string clipName = System.IO.Path.GetFileNameWithoutExtension(m_usdFile);
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
-        SceneImporter.SaveAsSinglePrefab(root, assetPath, options);
+        SceneImporter.SavePrefab(root, assetPath, clipName, options);
         if (options.forceRebuild) {
           GameObject.DestroyImmediate(root);
         }
