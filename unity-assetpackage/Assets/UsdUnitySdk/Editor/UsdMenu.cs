@@ -175,11 +175,50 @@ public class UsdMenu : MonoBehaviour {
     var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
         System.StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
     string prefabPath = importOptions.projectAssetPath + prefabName + ".prefab";
+    prefabPath = AssetDatabase.GenerateUniqueAssetPath(prefabPath);
+    string clipName = Path.GetFileNameWithoutExtension(path);
+    var go = new GameObject();
+    try {
+      UsdToGameObject(go, GetPrefabName(path), scene, importOptions);
+      SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
+    } finally {
+      GameObject.DestroyImmediate(go);
+      scene.Close();
+    }
+  }
+
+  [MenuItem("USD/Import as Animation Clip")]
+  public static void MenuImportAsAnimationClip() {
+    var scene = InitForOpen();
+    if (scene == null) {
+      return;
+    }
+
+    string path = scene.FilePath;
+    var go = new GameObject();
+
+    var invalidChars = Path.GetInvalidFileNameChars();
+    var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
+        System.StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
+
+    string prefabPath = GetSelectedAssetPath() + prefabName + ".prefab";
+    prefabPath = AssetDatabase.GenerateUniqueAssetPath(prefabPath);
+    string clipName = Path.GetFileNameWithoutExtension(path);
+
+    var importOptions = new SceneImportOptions();
+    importOptions.projectAssetPath = GetSelectedAssetPath();
+    importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
+    importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+    importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
+    importOptions.materialMap.MetallicWorkflowMaterial = new Material(Shader.Find("Standard (Roughness setup)"));
+    importOptions.materialMap.FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
 
     try {
-      ImportUsdToPrefab(scene, prefabPath, importOptions);
+      // Ensure we have at least one GameObject with the import settings.
+      XformImporter.BuildSceneRoot(scene, go.transform, importOptions);
+      SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
     } finally {
-      scene.Close();
+      GameObject.DestroyImmediate(go);
     }
   }
 
@@ -215,14 +254,6 @@ public class UsdMenu : MonoBehaviour {
     }
 
     return parent;
-  }
-
-  public static void ImportUsdToPrefab(USD.NET.Scene scene, string prefabPath, SceneImportOptions importOptions) {
-    string filePath = scene.FilePath;
-    var go = new GameObject();
-    UsdToGameObject(go, GetPrefabName(filePath), scene, importOptions);
-    SceneImporter.SaveAsSinglePrefab(go, prefabPath, importOptions);
-    GameObject.DestroyImmediate(go);
   }
 
   private static string GetObjectName(string path) {
