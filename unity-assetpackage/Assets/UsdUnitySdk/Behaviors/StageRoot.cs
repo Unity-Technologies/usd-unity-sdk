@@ -177,12 +177,13 @@ namespace USD.NET.Unity {
     public void SetTime(double time, StageRoot foreignRoot) {
       var scene = GetScene();
       if (scene == null) { return; }
-
       // Careful not to update any local members here, if this data is driven from a prefab, we
       // dont want those changes to be baked back into the asset.
 
       float usdTime = (float)(scene.StartTime + time * scene.Stage.GetFramesPerSecond());
+      if (usdTime > scene.EndTime) { return; }
       scene.Time = usdTime;
+
       var options = new SceneImportOptions();
       foreignRoot.StateToOptions(ref options);
 
