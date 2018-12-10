@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,10 +37,11 @@ namespace USD.NET.Unity {
     public Scene.InterpolationMode m_interpolation;
 
     [Header("Scenegraph")]
+    public bool m_importHierarchy = true;
+
     public bool m_importCameras = true;
     public bool m_importMeshes = true;
     public bool m_importSkinning = true;
-    public bool m_importHierarchy = true;
     public bool m_importTransforms = true;
     public bool m_importSceneInstances = true;
     public bool m_importPointInstances = true;
