@@ -107,7 +107,6 @@ namespace USD.NET.Examples {
         rootXf.transform.SetParent(this.transform, worldPositionStays: false);
         m_primMap = SceneImporter.BuildScene(m_scene,
                                              rootXf,
-                                             pxr.SdfPath.AbsoluteRootPath(),
                                              importOptions,
                                              new PrimMap(),
                                              composingSubtree: false);

@@ -374,11 +374,6 @@ namespace USD.NET.Unity {
         root = parent.Find(name);
         go = root ? root.gameObject : null;
       }
-
-      if (parent != unityRoot && options.forceRebuild && go) {
-        GameObject.DestroyImmediate(go);
-        go = null;
-      }
       
       if (!go) {
         // TODO: this should really not construct a game object if ImportHierarchy is false,

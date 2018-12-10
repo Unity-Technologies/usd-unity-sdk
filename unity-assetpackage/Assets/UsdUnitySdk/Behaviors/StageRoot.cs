@@ -30,7 +30,8 @@ namespace USD.NET.Unity {
 
     [Header("Source Asset")]
     public string m_usdFile;
-    public string m_projectAssetPath;
+    public string m_projectAssetPath = "Assets/";
+    public string m_usdRootPath = "/";
 
     [Header("Playback")]
     public float m_usdTime;
@@ -154,9 +155,16 @@ namespace USD.NET.Unity {
           GameObject.DestroyImmediate(root);
         }
       } else {
-        // An instance of a prefab.
+        // An instance of a prefab or a vanilla game object.
         // Just reload the scene into memory and let the user decide if they want to send those
         // changes back to the prefab or not.
+        
+        // First, destroy all existing USD game objects.
+        foreach (var src in root.GetComponentsInChildren<UsdPrimSource>()) {
+          if (src) {
+            GameObject.DestroyImmediate(src.gameObject);
+          }
+        }
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
       }
     }
@@ -228,6 +236,7 @@ namespace USD.NET.Unity {
     /// Convert the SceneImportOptions into a serializable form.
     /// </summary>
     public void OptionsToState(SceneImportOptions options) {
+      m_usdRootPath = options.usdRootPath;
       m_projectAssetPath = options.projectAssetPath;
       m_changeHandedness = options.changeHandedness;
       m_scale = options.scale;
@@ -272,6 +281,7 @@ namespace USD.NET.Unity {
     /// Converts the current component state into import options.
     /// </summary>
     public void StateToOptions(ref SceneImportOptions options) {
+      options.usdRootPath = new pxr.SdfPath(m_usdRootPath);
       options.projectAssetPath = m_projectAssetPath;
       options.changeHandedness = m_changeHandedness;
       options.scale = m_scale;
@@ -332,7 +342,6 @@ namespace USD.NET.Unity {
       var primMap = new PrimMap();
       var importer = SceneImporter.BuildScene(scene,
                                               goRoot,
-                                              pxr.SdfPath.AbsoluteRootPath(),
                                               importOptions,
                                               primMap,
                                               targetFrameMilliseconds,
@@ -369,8 +378,9 @@ namespace USD.NET.Unity {
 
       SceneImportOptions importOptions = new SceneImportOptions();
       this.StateToOptions(ref importOptions);
+      importOptions.usdRootPath = prim.GetPath();
       try {
-        SceneImporter.ImportUsd(go, scene, usdPrimPath, new PrimMap(), true, importOptions);
+        SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
       } finally {
         scene.Close();
       }

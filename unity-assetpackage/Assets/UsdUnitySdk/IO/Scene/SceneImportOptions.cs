@@ -70,6 +70,11 @@ namespace USD.NET.Unity {
     public string projectAssetPath = "Assets/";
 
     /// <summary>
+    /// The path in the USD file at which to import/export.
+    /// </summary>
+    public pxr.SdfPath usdRootPath = pxr.SdfPath.AbsoluteRootPath();
+
+    /// <summary>
     /// Force components and objects to be rebuilt, instead of reusing existing objects.
     /// </summary>
     public bool forceRebuild = false;

@@ -250,12 +250,11 @@ namespace USD.NET.Unity {
                                  Scene scene,
                                  PrimMap primMap,
                                  SceneImportOptions importOptions) {
-      ImportUsd(goRoot, scene, "/", primMap, false, importOptions);
+      ImportUsd(goRoot, scene, primMap, false, importOptions);
     }
 
     public static void ImportUsd(GameObject goRoot,
                                  Scene scene,
-                                 string usdImportRootPath,
                                  PrimMap primMap,
                                  bool composingSubtree,
                                  SceneImportOptions importOptions) {
@@ -269,7 +268,6 @@ namespace USD.NET.Unity {
 
       SceneImporter.BuildScene(scene,
                                goRoot,
-                               new pxr.SdfPath(usdImportRootPath),
                                importOptions,
                                primMap,
                                composingSubtree);
@@ -280,7 +278,6 @@ namespace USD.NET.Unity {
     /// </summary>
     public static PrimMap BuildScene(Scene scene,
                                      GameObject root,
-                                     pxr.SdfPath usdPrimRoot,
                                      SceneImportOptions importOptions,
                                      PrimMap primMap,
                                      bool composingSubtree) {
@@ -288,7 +285,6 @@ namespace USD.NET.Unity {
         Profiler.BeginSample("USD: Build Scene");
         var builder = BuildScene(scene,
                                  root,
-                                 usdPrimRoot,
                                  importOptions,
                                  primMap,
                                  0,
@@ -305,12 +301,12 @@ namespace USD.NET.Unity {
     /// </summary>
     public static IEnumerator BuildScene(Scene scene,
                                          GameObject root,
-                                         pxr.SdfPath usdPrimRoot,
                                          SceneImportOptions importOptions,
                                          PrimMap primMap,
                                          float targetFrameMilliseconds,
                                          bool composingSubtree) {
       var timer = new System.Diagnostics.Stopwatch();
+      var usdPrimRoot = new pxr.SdfPath(importOptions.usdRootPath);
 
       // Setting an arbitrary fudge factor of 20% is very non-scientific, however it's better than
       // nothing. The correct way to hit a deadline is to predict how long each iteration actually
