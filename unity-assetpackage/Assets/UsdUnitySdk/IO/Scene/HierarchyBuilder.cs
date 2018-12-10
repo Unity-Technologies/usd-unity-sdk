@@ -33,6 +33,9 @@ namespace USD.NET.Unity {
                                         SceneImportOptions options) {
       // PERFORMANCE: Internally, these collections are converted to SdfPathVectors,
       // so some time and garbage churn could be saved by using that type instead.
+      if (options.ShouldBindMaterials) {
+        map.Materials = scene.Find<MaterialSample>(usdRoot);
+      }
       if (options.importCameras) {
         map.Cameras = scene.Find<CameraSample>(usdRoot);
         ProcessPaths(map.Cameras, scene, unityRoot, usdRoot, map, options);
