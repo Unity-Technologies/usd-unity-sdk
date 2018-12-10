@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ namespace USD.NET.Unity {
     public BasisTransformation m_changeHandedness;
 
     [Header("Materials")]
-    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportParameters;
+    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
     public bool m_enableGpuInstancing;
     public Material m_fallbackMaterial;
     public Material m_specularWorkflowMaterial;
