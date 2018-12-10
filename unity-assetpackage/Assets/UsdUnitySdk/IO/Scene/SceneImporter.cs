@@ -379,7 +379,6 @@ namespace USD.NET.Unity {
       if (importOptions.ShouldBindMaterials) {
         foreach (var pathAndSample in scene.ReadAll<MaterialSample>(primMap.Materials)) {
           try {
-            GameObject go = primMap[pathAndSample.path];
             var mat = MaterialImporter.BuildMaterial(scene,
                                                      pathAndSample.path,
                                                      pathAndSample.sample,
