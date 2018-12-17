@@ -58,7 +58,11 @@ namespace USD.NET.Unity {
     public Dictionary<GameObject, ExportPlan> plans = new Dictionary<GameObject, ExportPlan>();
     public Dictionary<Material, string> matMap = new Dictionary<Material, string>();
     public Dictionary<Transform, Transform[]> skelMap = new Dictionary<Transform, Transform[]>();
-    public Dictionary<Transform, Matrix4x4> bones = new Dictionary<Transform, Matrix4x4>();
+    public Dictionary<Transform, List<string>> skelSortedMap = new Dictionary<Transform, List<string>>();
+    // Dictionary from <oldRoot> to <newRoot>
+    public Dictionary<string, Transform> pathToBone = new Dictionary<string, Transform>();
+    public Dictionary<Transform, Transform> boneToRoot = new Dictionary<Transform, Transform>();
+    public Dictionary<Transform, Matrix4x4> bindPoses = new Dictionary<Transform, Matrix4x4>();
 
     // Sample object instances, shared across multiple export methods.
     public Dictionary<Type, SampleBase> samples = new Dictionary<Type, SampleBase>();
@@ -242,7 +246,7 @@ namespace USD.NET.Unity {
     static void AccumNestedBones(Transform curXf,
                                  List<Transform> children,
                                  ExportContext ctx) {
-      if (ctx.bones.ContainsKey(curXf)) {
+      if (ctx.bindPoses.ContainsKey(curXf)) {
         children.Add(curXf);
       }
       foreach (Transform child in curXf.transform) {
@@ -274,38 +278,38 @@ namespace USD.NET.Unity {
       foreach (Transform rootBone in context.skelMap.Keys.ToList()) {
         foreach (var xf in foundAnimators) {
           if (rootBone.IsChildOf(xf)) {
+            Debug.LogWarning("Disjoint skeletons under a single animator is not supported: "
+                + UnityTypeConverter.GetPath(rootBone));
             continue;
           }
         }
-        var parentXf = rootBone;
-        while (parentXf != null) {
+        var animatorXf = rootBone;
+        while (animatorXf != null) {
 
           // If there is an animator, assume this is the root of the rig.
           // This feels very ad hoc, it would be nice to not use a heuristic.
-          var anim = parentXf.GetComponent<Animator>();
+          var anim = animatorXf.GetComponent<Animator>();
           if (anim != null) {
-
             SkelRootSample rootSample = CreateSample<SkelRootSample>(context);
-            rootSample.skeleton = UnityTypeConverter.GetPath(parentXf, expRoot) + "/_skeleton";
-            rootSample.animationSource = UnityTypeConverter.GetPath(parentXf, expRoot) + "/_anim";
+            rootSample.skeleton = UnityTypeConverter.GetPath(rootBone.parent, expRoot);
+            rootSample.animationSource = UnityTypeConverter.GetPath(rootBone.parent, expRoot) + "/_anim";
 
             CreateExportPlan(
-                parentXf.gameObject,
+                animatorXf.gameObject,
                 rootSample,
                 SkeletonExporter.ExportSkelRoot,
                 context,
                 insertFirst: true);
 
             CreateExportPlan(
-                parentXf.gameObject,
+                rootBone.parent.gameObject,
                 CreateSample<SkeletonSample>(context),
                 SkeletonExporter.ExportSkeleton,
                 context,
-                insertFirst: true,
-                pathSuffix: "/_skeleton");
+                insertFirst: true);
 
             CreateExportPlan(
-                parentXf.gameObject,
+                rootBone.parent.gameObject,
                 CreateSample<SkelAnimationSample>(context),
                 SkeletonExporter.ExportSkelAnimation,
                 context,
@@ -341,14 +345,21 @@ namespace USD.NET.Unity {
 
             foundAnimators.Add(anim.transform);
 
-            var children = new List<Transform>();
-            var meshes = new List<GameObject>();
-            AccumNestedBones(parentXf, children, context);
-            context.skelMap[parentXf] = children.ToArray();
+            //var children = new List<Transform>();
+            //AccumNestedBones(rootBone.parent, children, context);
+            context.skelMap[rootBone.parent] = context.skelMap[rootBone];
+            context.skelSortedMap[rootBone.parent] = context.skelSortedMap[rootBone];
+            context.boneToRoot[rootBone] = rootBone.parent;
+
+            foreach (var bone in context.skelMap[rootBone.parent]) {
+              context.boneToRoot[bone] = rootBone.parent;
+            }
             context.skelMap.Remove(rootBone);
+            context.skelSortedMap.Remove(rootBone);
+
             break;
           }
-          parentXf = parentXf.parent;
+          animatorXf = animatorXf.parent;
         }
       }
     }
@@ -386,6 +397,8 @@ namespace USD.NET.Unity {
         } else if (smr.bones == null || smr.bones.Length == 0) {
           Debug.LogWarning("No bones at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
         } else {
+          // Each mesh in a model may have a different root bone, which now must be merged into a
+          // single skeleton for export to USD.
           MergeBones(smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
         }
       } else if (mf != null && mr != null) {
@@ -405,12 +418,51 @@ namespace USD.NET.Unity {
     }
 
     static void MergeBones(Transform rootBone, Transform[] bones, Matrix4x4[] bindPoses, ExportContext context) {
-      if (!context.bones.ContainsKey(rootBone) && !context.skelMap.ContainsKey(rootBone)) {
-        context.skelMap.Add(rootBone, bones);
+      if (bones == null) {
+        Debug.LogWarning("Null bones for " + UnityTypeConverter.GetPath(rootBone));
+        return;
       }
+      if (rootBone == null) {
+        Debug.LogWarning("Null rootBone");
+        return;
+      }
+      if (!context.bindPoses.ContainsKey(rootBone) && !context.skelMap.ContainsKey(rootBone)) {
+        context.skelMap.Add(rootBone, bones);
+        var sortedBones = new List<string>();
+        foreach (var bone in bones) {
+          var path = UnityTypeConverter.GetPath(bone);
+          context.pathToBone[path] = bone;
+          sortedBones.Add(path);
+        }
+        sortedBones.Sort();
+        context.skelSortedMap[rootBone] = sortedBones;
+      }
+
+      // If the rootBone already has a parent, its children should be under that parent as well.
+      Transform newRoot = null;
+      if (context.boneToRoot.TryGetValue(rootBone, out newRoot)) {
+        var curBones = context.skelMap[newRoot].ToList();
+        var sortedBones = context.skelSortedMap[newRoot];
+        foreach (var newBone in bones) {
+          if (!context.boneToRoot.ContainsKey(newBone)) {
+            var path = UnityTypeConverter.GetPath(newBone);
+            context.pathToBone[path] = newBone;
+            curBones.Add(newBone);
+            sortedBones.Add(path);
+          }
+        }
+        sortedBones.Sort();
+        context.skelSortedMap[newRoot] = sortedBones;
+        context.skelMap[newRoot] = curBones.ToArray();
+      } else {
+        newRoot = rootBone;
+      }
+
       for (int i = 0; i < bones.Length; i++) {
         Transform bone = bones[i];
-        context.bones[bone] = bindPoses[i];
+        context.bindPoses[bone] = bindPoses[i];
+        context.boneToRoot[bone] = newRoot;
+
         if (bone == rootBone) {
           continue;
         }
@@ -455,10 +507,10 @@ namespace USD.NET.Unity {
     }
 
     static Matrix4x4 ComputeWorldXf(Transform curBone, ExportContext context) {
-      if (!context.bones.ContainsKey(curBone)) {
+      if (!context.bindPoses.ContainsKey(curBone)) {
         return curBone.parent.localToWorldMatrix;
       }
-      return context.bones[curBone] * ComputeWorldXf(curBone.parent, context);
+      return context.bindPoses[curBone] * ComputeWorldXf(curBone.parent, context);
     }
 
   }

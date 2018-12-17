@@ -20,22 +20,23 @@ namespace USD.NET.Unity {
     public static void ExportSkeleton(ObjectContext objContext, ExportContext exportContext) {
       var scene = exportContext.scene;
       var sample = (SkeletonSample)objContext.sample;
-      var bones = exportContext.skelMap[objContext.gameObject.transform];
-      sample.joints = new string[bones.Length];
-      sample.bindTransforms = new Matrix4x4[bones.Length];
-      sample.restTransforms = new Matrix4x4[bones.Length];
+      var boneNames = exportContext.skelSortedMap[objContext.gameObject.transform];
+      sample.joints = new string[boneNames.Count];
+      sample.bindTransforms = new Matrix4x4[boneNames.Count];
+      sample.restTransforms = new Matrix4x4[boneNames.Count];
 
       string rootPath = UnityTypeConverter.GetPath(objContext.gameObject.transform);
 
       int i = 0;
-      foreach (Transform bone in bones) {
-        var bonePath = UnityTypeConverter.GetPath(bone);
-        sample.joints[i] = bonePath;
+      foreach (string bonePath in boneNames) {
+        //var bonePath = UnityTypeConverter.GetPath(bone);
+        var bone = exportContext.pathToBone[bonePath];
+        sample.joints[i] = bonePath.Replace(rootPath + "/", "");
 
         // TODO: When the bone bind transform contains the geomBindTransform from USD import, it
         // will be mixed into each bone. This transform should be saved in some way and removed
         // when exported as a skeleton.
-        sample.bindTransforms[i] = exportContext.bones[bone].inverse;
+        sample.bindTransforms[i] = exportContext.bindPoses[bone].inverse;
         sample.restTransforms[i] = XformExporter.GetLocalTransformMatrix(
             bone, false, false, exportContext.basisTransform);
 
@@ -46,7 +47,6 @@ namespace USD.NET.Unity {
 
         i++;
       }
-
       scene.Write(objContext.path, sample);
 
       // Stop Skeleton from rendering bones in usdview by default.
@@ -79,22 +79,23 @@ namespace USD.NET.Unity {
       var scene = exportContext.scene;
       var sample = (SkelAnimationSample)objContext.sample;
       var go = objContext.gameObject;
-      var bones = exportContext.skelMap[go.transform];
+      var boneNames = exportContext.skelSortedMap[go.transform];
       var skelRoot = go.transform;
-      sample.joints = new string[bones.Length];
+      sample.joints = new string[boneNames.Count];
 
-      var worldXf = new Matrix4x4[bones.Length];
-      var worldXfInv = new Matrix4x4[bones.Length];
+      var worldXf = new Matrix4x4[boneNames.Count];
+      var worldXfInv = new Matrix4x4[boneNames.Count];
 
       string rootPath = UnityTypeConverter.GetPath(go.transform);
 
       var basisChange = Matrix4x4.identity;
       basisChange[2, 2] = -1;
 
-      for (int i = 0; i < bones.Length; i++) {
-        var bone = bones[i];
-        var bonePath = UnityTypeConverter.GetPath(bone);
-        sample.joints[i] = bonePath;
+      for (int i = 0; i < boneNames.Count; i++) {
+        var bonePath = boneNames[i];
+        var bone = exportContext.pathToBone[bonePath];
+        sample.joints[i] = bonePath.Replace(rootPath + "/", "");
+
         worldXf[i] = bone.localToWorldMatrix;
         if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
           worldXf[i] = UnityTypeConverter.ChangeBasis(worldXf[i]);
@@ -107,7 +108,7 @@ namespace USD.NET.Unity {
         rootXf = UnityTypeConverter.ChangeBasis(rootXf);
       }
       var skelWorldTransform = UnityTypeConverter.ToGfMatrix(rootXf);
-      pxr.VtMatrix4dArray vtJointsLS = new pxr.VtMatrix4dArray((uint)bones.Length);
+      pxr.VtMatrix4dArray vtJointsLS = new pxr.VtMatrix4dArray((uint)boneNames.Count);
       pxr.VtMatrix4dArray vtJointsWS = UnityTypeConverter.ToVtArray(worldXf);
       pxr.VtMatrix4dArray vtJointsWSInv = UnityTypeConverter.ToVtArray(worldXfInv);
 

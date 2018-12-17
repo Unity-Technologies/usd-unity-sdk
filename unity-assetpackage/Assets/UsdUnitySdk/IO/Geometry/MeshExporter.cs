@@ -33,16 +33,37 @@ namespace USD.NET.Unity {
 
       // Note that the baked mesh no longer has the bone weights, so here we switch back to the
       // shared SkinnedMeshRenderer mesh.
-      ExportSkelWeights(exportContext.scene, objContext.path, smr.sharedMesh, smr.bones);
+      Transform rootBone = null;
+      if (!exportContext.boneToRoot.TryGetValue(smr.rootBone, out rootBone)) {
+        Debug.LogWarning("Root bone not found in export context for " +
+            UnityTypeConverter.GetPath(smr.rootBone));
+        return;
+      }
+      ExportSkelWeights(exportContext.scene,
+                        objContext.path,
+                        smr.sharedMesh,
+                        rootBone,
+                        smr.bones);
     }
 
-    static void ExportSkelWeights(Scene scene, string path, Mesh unityMesh, Transform[] bones) {
+    static void ExportSkelWeights(Scene scene,
+                                  string path,
+                                  Mesh unityMesh,
+                                  Transform rootBone,
+                                  Transform[] bones) {
       var sample = new SkelBindingSample();
-      sample.jointIndices.value = new int[unityMesh.boneWeights.Length * 4];
+      var unityBoneWeights = unityMesh.boneWeights;
+
+      if (unityBoneWeights.Length == 0) {
+        Debug.LogWarning("Found zero bone weights at: " + path);
+        return;
+      }
+
+      sample.jointIndices.value = new int[unityBoneWeights.Length * 4];
       sample.jointIndices.elementSize = 4;
       sample.jointIndices.interpolation = PrimvarInterpolation.Vertex;
 
-      sample.jointWeights.value = new float[unityMesh.boneWeights.Length * 4];
+      sample.jointWeights.value = new float[unityBoneWeights.Length * 4];
       sample.jointWeights.elementSize = 4;
       sample.jointWeights.interpolation = PrimvarInterpolation.Vertex;
 
@@ -50,13 +71,16 @@ namespace USD.NET.Unity {
       sample.joints = new string[bones.Length];
 
       int b = 0;
+      var rootPath = UnityTypeConverter.GetPath(rootBone);
       foreach (Transform bone in bones) {
-        sample.joints[b++] = UnityTypeConverter.GetPath(bone);
+        var bonePath = UnityTypeConverter.GetPath(bone);
+        sample.joints[b++] = bonePath.Replace(rootPath + "/", "");
       }
 
       int i = 0;
       int w = 0;
-      foreach (var bone in unityMesh.boneWeights) {
+
+      foreach (var bone in unityBoneWeights) {
         sample.jointIndices.value[i++] = bone.boneIndex0;
         sample.jointIndices.value[i++] = bone.boneIndex1;
         sample.jointIndices.value[i++] = bone.boneIndex2;
