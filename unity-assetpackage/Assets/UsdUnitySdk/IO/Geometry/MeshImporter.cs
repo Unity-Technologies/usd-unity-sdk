@@ -79,6 +79,18 @@ namespace USD.NET.Unity {
                              SceneImportOptions importOptions) {
       UsdSkelCache skelCache = new UsdSkelCache();
 
+      Profiler.BeginSample("USD: Populate SkelCache");
+      foreach (var path in primMap.SkelRoots) {
+        var prim = scene.GetPrimAtPath(path);
+        if (!prim) { continue; }
+
+        var skelRoot = new UsdSkelRoot(prim);
+        if (!skelRoot) { continue; }
+
+        skelCache.Populate(skelRoot);
+      }
+      Profiler.EndSample();
+
       Profiler.BeginSample("USD: Build Meshes");
       foreach (var pathAndSample in scene.ReadAll<MeshSampleT>(primMap.Meshes)) {
         try {
