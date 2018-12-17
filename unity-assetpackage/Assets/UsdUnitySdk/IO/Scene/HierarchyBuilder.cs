@@ -51,6 +51,9 @@ namespace USD.NET.Unity {
       if (options.importSkinning) {
         map.SkelRoots = scene.Find<SkelRootSample>(usdRoot);
         ProcessPaths(map.SkelRoots, scene, unityRoot, usdRoot, map, options);
+        map.Skeletons = scene.Find<SkeletonSample>(usdRoot);
+        ProcessPaths(map.Skeletons, scene, unityRoot, usdRoot, map, options);
+
       }
       if (options.importTransforms) {
         map.Xforms = scene.Find<XformSample>(usdRoot);

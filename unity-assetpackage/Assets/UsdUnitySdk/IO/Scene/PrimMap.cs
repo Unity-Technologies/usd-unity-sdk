@@ -34,6 +34,7 @@ namespace USD.NET.Unity {
     public SdfPath[] Cubes { get; set; }
     public SdfPath[] Xforms { get; set; }
     public SdfPath[] SkelRoots { get; set; }
+    public SdfPath[] Skeletons { get; set; }
     public SdfPath[] Materials { get; set; }
 
     // Normal objects in the hierarchy.
@@ -129,6 +130,7 @@ namespace USD.NET.Unity {
       Cubes = null;
       Xforms = null;
       SkelRoots = null;
+      Skeletons = null;
       Materials = null;
     }
 
