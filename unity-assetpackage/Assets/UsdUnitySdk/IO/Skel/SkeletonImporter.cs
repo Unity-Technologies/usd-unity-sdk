@@ -179,7 +179,7 @@ namespace USD.NET.Unity {
       int[] indices = meshBinding.jointIndices.value;
       float[] weights = meshBinding.jointWeights.value;
 
-#if false && UNITY_2019
+#if UNITY_2019
       var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
       var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * meshBinding.jointWeights.elementSize, Allocator.Persistent);
       for (int i = 0; i < mesh.vertexCount; i++) {
@@ -194,7 +194,7 @@ namespace USD.NET.Unity {
           var bw = boneWeights1[unityIndex + wi];
           bw.boneIndex = indices[usdIndex + wi];
           bw.weight = weights[usdIndex + wi];
-          boneWeights1[wi] = bw;
+          boneWeights1[unityIndex + wi] = bw;
         }
       }
       mesh.SetBoneWeights(bonesPerVertex, boneWeights1);
