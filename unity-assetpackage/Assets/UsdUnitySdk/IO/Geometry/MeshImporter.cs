@@ -535,37 +535,27 @@ namespace USD.NET.Unity {
 
 #if UNITY_EDITOR
       if (options.meshOptions.generateLightmapUVs) {
+#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
+        if (unityMesh.indexFormat == UnityEngine.Rendering.IndexFormat.UInt32) {
+          Debug.LogWarning("Skipping prim " + path + " due to large IndexFormat (UInt32) bug in older vesrsions of Unity");
+          return;
+        }
+#endif
         Profiler.BeginSample("Unwrap Lightmap UVs");
-        ShowCrashWarning();
         var unwrapSettings = new UnityEditor.UnwrapParam();
+
         unwrapSettings.angleError = options.meshOptions.unwrapAngleError;
         unwrapSettings.areaError = options.meshOptions.unwrapAngleError;
         unwrapSettings.hardAngle = options.meshOptions.unwrapHardAngle;
         unwrapSettings.packMargin = options.meshOptions.unwrapPackMargin;
 
-        var vertCount = unityMesh.vertexCount;
         UnityEditor.Unwrapping.GenerateSecondaryUVSet(unityMesh, unwrapSettings);
-
-        // Work around a bug where the unity Mesh can be corrupted by the unwrapping logic.
-        if (vertCount != unityMesh.vertexCount) {
-          Debug.LogError("Light map unwrapping failed, disabling game object for prim: " + path);
-          go.SetActive(false);
-        }
         Profiler.EndSample();
       }
 #else
       if (options.meshOptions.generateLightmapUVs) {
         Debug.LogWarning("Lightmap UVs were requested to be generated, but cannot be generated outside of the editor");
       }
-#endif
-    }
-
-    static void ShowCrashWarning() {
-#if UNITY_2018_2
-      Debug.LogWarning(
-          "Unity 2018.2.x may generate light maps which result in a crash during light baking. " +
-          "If you experience a crash, it is recommended to upgrade. For details see: " +
-          "https://issuetracker.unity3d.com/issues/crash-in-calculatesurfacearea-after-opening-the-project-with-certain-mesh");
 #endif
     }
 
