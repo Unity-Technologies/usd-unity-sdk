@@ -24,6 +24,24 @@ namespace USD.NET.Unity {
     public override void OnInspectorGUI() {
       var stageRoot = (StageRoot)this.target;
 
+      if (stageRoot.m_fallbackMaterial == null) {
+        Debug.LogWarning("No fallback material set, reverting to default");
+        var matMap = new MaterialMap();
+        stageRoot.m_fallbackMaterial = matMap.FallbackMasterMaterial;
+      }
+
+      if (stageRoot.m_metallicWorkflowMaterial == null) {
+        Debug.LogWarning("No metallic material set, reverting to default");
+        var matMap = new MaterialMap();
+        stageRoot.m_metallicWorkflowMaterial = matMap.MetallicWorkflowMaterial;
+      }
+
+      if (stageRoot.m_specularWorkflowMaterial == null) {
+        Debug.LogWarning("No specular material set, reverting to default");
+        var matMap = new MaterialMap();
+        stageRoot.m_specularWorkflowMaterial = matMap.SpecularWorkflowMaterial;
+      }
+
       EditorGUILayout.LabelField("Asset Actions", EditorStyles.boldLabel);
 
       if (GUILayout.Button("Refresh Values from USD")) {

@@ -51,10 +51,9 @@ namespace USD.NET.Unity {
     public Material MetallicWorkflowMaterial { get; set; }
 
     public MaterialMap() {
-    }
-
-    public MaterialMap(Material solidColorMaterial, Material fallbackMaterial) {
-      FallbackMasterMaterial = fallbackMaterial;
+      SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
+      MetallicWorkflowMaterial = new Material(Shader.Find("Standard"));
+      FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
     }
 
     /// <summary>

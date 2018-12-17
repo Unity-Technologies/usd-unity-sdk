@@ -117,9 +117,6 @@ public class UsdMenu : MonoBehaviour {
     importOptions.projectAssetPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-    importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
-    importOptions.materialMap.MetallicWorkflowMaterial = new Material(Shader.Find("Standard (Roughness setup)"));
-    importOptions.materialMap.FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
 
     //importOptions.meshOptions.generateLightmapUVs = true;
 
@@ -167,9 +164,6 @@ public class UsdMenu : MonoBehaviour {
     importOptions.projectAssetPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-    importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
-    importOptions.materialMap.MetallicWorkflowMaterial = new Material(Shader.Find("Standard (Roughness setup)"));
-    importOptions.materialMap.FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
 
     var invalidChars = Path.GetInvalidFileNameChars();
     var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
@@ -209,9 +203,6 @@ public class UsdMenu : MonoBehaviour {
     importOptions.projectAssetPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-    importOptions.materialMap.SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
-    importOptions.materialMap.MetallicWorkflowMaterial = new Material(Shader.Find("Standard (Roughness setup)"));
-    importOptions.materialMap.FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
 
     try {
       // Ensure we have at least one GameObject with the import settings.
