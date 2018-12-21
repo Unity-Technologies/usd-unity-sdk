@@ -61,7 +61,7 @@ namespace USD.NET.Unity {
 
   [System.Serializable]
   [UsdSchema("Skeleton")]
-  public class SkeletonSample : SampleBase {
+  public class SkeletonSample : XformableSample {
     public string[] joints;
     public Matrix4x4[] bindTransforms;
     public Matrix4x4[] restTransforms;

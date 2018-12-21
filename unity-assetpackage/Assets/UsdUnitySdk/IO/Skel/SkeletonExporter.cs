@@ -27,6 +27,12 @@ namespace USD.NET.Unity {
 
       string rootPath = UnityTypeConverter.GetPath(objContext.gameObject.transform);
 
+      sample.transform = XformExporter.GetLocalTransformMatrix(
+          objContext.gameObject.transform,
+          scene.UpAxis == Scene.UpAxes.Z,
+          new pxr.SdfPath(rootPath).IsRootPrimPath(),
+          exportContext.basisTransform);
+
       int i = 0;
       foreach (string bonePath in boneNames) {
         //var bonePath = UnityTypeConverter.GetPath(bone);
