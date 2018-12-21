@@ -131,7 +131,7 @@ namespace USD.NET.Unity {
         foreach (var path in scene.Find<SkelRootSample>()) {
           try {
             var prim = scene.GetPrimAtPath(path);
-            ExpandSkeleton(map[path], prim, map, scene);
+            ExpandSkeleton(scene, unityRoot, usdRoot, map[path], prim, map, options);
           } catch (Exception ex) {
             Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
           }
@@ -234,7 +234,13 @@ namespace USD.NET.Unity {
       Profiler.EndSample();
     }
 
-    static void ExpandSkeleton(GameObject go, UsdPrim prim, PrimMap map, Scene scene) {
+    static void ExpandSkeleton(Scene scene,
+                               GameObject unityRoot,
+                               SdfPath usdRoot,
+                               GameObject go,
+                               UsdPrim prim,
+                               PrimMap map,
+                               SceneImportOptions options) {
       if (!prim) { return; }
 
       var skelRoot = new UsdSkelRoot(prim);
@@ -265,9 +271,13 @@ namespace USD.NET.Unity {
         var path = skelPath.AppendPath(scene.GetSdfPath(joint));
         GameObject parentGo = null;
         if (!map.TryGetValue(path.GetParentPath(), out parentGo)) {
-          Debug.LogWarning("Parent joint path not found: " + path.GetParentPath().ToString()
-                         + " for prim: " + path.ToString());
-          continue;
+          // This will happen when the joints are discontinuous, for example:
+          //
+          //   Foo/Bar
+          //   Foo/Bar/Baz/Qux
+          //
+          // Baz is implicitly defined, which is allowed by UsdSkel.
+          CreateAncestors(path, map, unityRoot, usdRoot, options, out parentGo);
         }
 
         Transform child = parentGo.transform.Find(path.GetName());
