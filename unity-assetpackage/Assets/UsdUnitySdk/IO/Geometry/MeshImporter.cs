@@ -79,17 +79,20 @@ namespace USD.NET.Unity {
                              SceneImportOptions importOptions) {
       UsdSkelCache skelCache = new UsdSkelCache();
 
-      Profiler.BeginSample("USD: Populate SkelCache");
-      foreach (var path in primMap.SkelRoots) {
-        var prim = scene.GetPrimAtPath(path);
+      if (importOptions.importSkinning) {
+        Profiler.BeginSample("USD: Populate SkelCache");
+        foreach (var path in primMap.SkelRoots) {
+          var prim = scene.GetPrimAtPath(path);
         if (!prim) { continue; }
 
         var skelRoot = new UsdSkelRoot(prim);
         if (!skelRoot) { continue; }
 
-        skelCache.Populate(skelRoot);
+          skelCache.Populate(skelRoot);
+        }
+        Profiler.EndSample();
       }
-      Profiler.EndSample();
+
 
       Profiler.BeginSample("USD: Build Meshes");
       foreach (var pathAndSample in scene.ReadAll<MeshSampleT>(primMap.Meshes)) {
@@ -104,13 +107,16 @@ namespace USD.NET.Unity {
           var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
           Profiler.EndSample();
 
-          // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
-          // have the data required to setup a skinned mesh.
-          Profiler.BeginSample("Get Skinning Query");
-          var skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
-          Profiler.EndSample();
+          var skinningQuery = new UsdSkelSkinningQuery();
+          if (importOptions.importSkinning) {
+            // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
+            // have the data required to setup a skinned mesh.
+            Profiler.BeginSample("Get Skinning Query");
+            skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
+            Profiler.EndSample();
+          }
 
-          if (skinningQuery.IsValid()) {
+          if (importOptions.importSkinning && skinningQuery.IsValid()) {
             Profiler.BeginSample("USD: Build Skinned Mesh");
             m_skinnedMeshImporter(pathAndSample.path,
                                   pathAndSample.sample,

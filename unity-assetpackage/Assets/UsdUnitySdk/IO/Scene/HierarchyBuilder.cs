@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -48,12 +48,15 @@ namespace USD.NET.Unity {
         map.Cubes = scene.Find<CubeSample>(usdRoot);
         ProcessPaths(map.Cubes, scene, unityRoot, usdRoot, map, options);
       }
+
+      // Even though skinning may not be imported, SkelRoot objects must be created since they
+      // may be the root transform of many different prim types.
+      map.SkelRoots = scene.Find<SkelRootSample>(usdRoot);
+      ProcessPaths(map.SkelRoots, scene, unityRoot, usdRoot, map, options);
+
       if (options.importSkinning) {
-        map.SkelRoots = scene.Find<SkelRootSample>(usdRoot);
-        ProcessPaths(map.SkelRoots, scene, unityRoot, usdRoot, map, options);
         map.Skeletons = scene.Find<SkeletonSample>(usdRoot);
         ProcessPaths(map.Skeletons, scene, unityRoot, usdRoot, map, options);
-
       }
       if (options.importTransforms) {
         map.Xforms = scene.Find<XformSample>(usdRoot);

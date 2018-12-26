@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -419,6 +419,18 @@ namespace USD.NET.Unity {
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
+
+        foreach (var pathAndSample in scene.ReadAll<SkelRootSample>(primMap.SkelRoots)) {
+          try {
+            GameObject go = primMap[pathAndSample.path];
+            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+          } catch (System.Exception ex) {
+            Debug.LogException(
+                new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+          }
+
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        }
         Profiler.EndSample();
       }
 
@@ -477,6 +489,16 @@ namespace USD.NET.Unity {
           if (importOptions.importTransforms) {
             Profiler.BeginSample("USD: Build Xforms");
             foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+              }
+            }
+
+            foreach (var pathAndSample in scene.ReadAll<SkelRootSample>(masterRootPath)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
