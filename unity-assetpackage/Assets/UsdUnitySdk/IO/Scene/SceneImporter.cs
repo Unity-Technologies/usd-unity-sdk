@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -673,14 +673,28 @@ namespace USD.NET.Unity {
                     jointOrder = skeletonJoints[skelPath];
                   }
 
+                  /*
                   var bindPoses = new Matrix4x4[jointOrder.size()];
                   var bones = new Transform[jointOrder.size()];
                   for (int i = 0; i < bindPoses.Length; i++) {
-                    bindPoses[i] = skeletonBindPoses[skelPath][jointOrder[i]].inverse;
+                    Dictionary<pxr.TfToken, Matrix4x4> poses = null;
+                    if (!skeletonBindPoses.TryGetValue(skelPath, out poses)) {
+                      Debug.LogError("Skeleton path not found in bind poses: " + skelPath.ToString());
+                      continue;
+                    }
+                    Matrix4x4 pose;
+                    if (!poses.TryGetValue(jointOrder[i], out pose)) {
+                      Debug.LogError("Skeleton pose not found in bind poses," + 
+                          "skeleton: " + skelPath.ToString() + " " +
+                          "pose: " + jointOrder[i]);
+                      continue;
+                    }
+                    bindPoses[i] = pose.inverse;
                     var bonePath = scene.GetSdfPath(jointOrder[i]);
                     var boneGo = primMap[skelPath.AppendPath(bonePath)];
                     bones[i] = boneGo.transform;
                   }
+                  */
 
                   goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform;
                 } catch (System.Exception ex) {
