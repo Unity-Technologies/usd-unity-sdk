@@ -460,11 +460,14 @@ namespace USD.NET {
       if (csType == typeof(Dictionary<string, object>)) {
         string sourceMember;
 
+        // String dictionaries are unrolled directly into the object.
+        // So the namespace is either the incoming namespace or empty, meaning each string value in
+        // the dictionary becomes an attribute on the prim.
+
         if (isPrimvar) {
           ns = "primvars";
           sourceMember = attrName;
         } else {
-          ns = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
           sourceMember = null;
         }
 
@@ -482,7 +485,7 @@ namespace USD.NET {
             // The recursive call will also discover that this is a primvar.
             ns = "";
           }
-          if (ReadAttr(prop.GetBaseName(), typeof(Object), ref value, usdTime, prim, memberInfo, ns, srcObject)) {
+          if (ReadAttr(prop.GetBaseName(), typeof(Object), ref value, usdTime, prim, memberInfo, usdNamespace, srcObject)) {
             if (value != null) {
               dict.Add(prop.GetBaseName(), value);
             }

@@ -54,6 +54,9 @@ namespace Tests.Cases {
       public List<string> stringList_;
       public List<float> floatList_;
       public List<double> doubleList_;
+
+      [USD.NET.UsdNamespace("dict")]
+      public Dictionary<string, object> dict;
     }
 
     class AssetPathSample : USD.NET.SampleBase {
@@ -204,9 +207,16 @@ namespace Tests.Cases {
       sample.ulongList_ = sample.ulongArray_.ToList();
       sample.ulong_ = ulong.MaxValue;
 
+      sample.dict = new Dictionary<string, object>();
+      sample.dict["Foo"] = 1.2;
+
+      sample2.dict = new Dictionary<string, object>();
       WriteAndRead(ref sample, ref sample2, true);
 
-      AssertEqual(sample2.boolArray_, sample2.boolArray_);
+      AssertEqual(sample2.dict, sample2.dict);
+      AssertEqual(sample2.dict["Foo"], sample2.dict["Foo"]);
+
+      AssertEqual(sample.boolArray_, sample2.boolArray_);
       AssertEqual(sample.byteArray_, sample2.byteArray_);
       AssertEqual(sample.doubleArray_, sample2.doubleArray_);
       AssertEqual(sample.floatArray_, sample2.floatArray_);
