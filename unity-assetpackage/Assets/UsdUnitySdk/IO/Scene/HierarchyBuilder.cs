@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -102,18 +102,6 @@ namespace USD.NET.Unity {
           }
 
           foreach (var usdPrim in masterRootPrim.GetDescendants()) {
-            var goPrim = new GameObject(usdPrim.GetName());
-            try {
-              AddModelRoot(goPrim, usdPrim);
-              AddVariantSet(goPrim, usdPrim);
-            } catch (Exception ex) {
-              Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
-            }
-
-            if (usdPrim.IsInstance()) {
-              map.AddInstanceRoot(usdPrim.GetPath(), goPrim, usdPrim.GetMaster().GetPath());
-            }
-
             var parentPath = usdPrim.GetPath().GetParentPath();
             Transform parentXf = null;
             if (parentPath == masterRootPrim.GetPath()) {
@@ -122,8 +110,24 @@ namespace USD.NET.Unity {
               parentXf = map[parentPath].transform;
             }
 
-            map[usdPrim.GetPath()] = goPrim;
-            goPrim.transform.SetParent(parentXf, worldPositionStays: false);
+            var goPrim = FindOrCreateGameObject(parentXf,
+                                                usdPrim.GetPath(),
+                                                unityRoot.transform,
+                                                map,
+                                                options);
+            ApplySelfVisibility(goPrim, usdPrim);
+
+            if (usdPrim.IsInstance()) {
+              map.AddInstanceRoot(usdPrim.GetPath(), goPrim, usdPrim.GetMaster().GetPath());
+            }
+
+            try {
+              AddModelRoot(goPrim, usdPrim);
+              AddVariantSet(goPrim, usdPrim);
+            } catch (Exception ex) {
+              Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
+              continue;
+            }
           }
         }
         Profiler.EndSample();
@@ -145,6 +149,36 @@ namespace USD.NET.Unity {
       return map;
     }
 
+    static void ApplySelfVisibility(GameObject go, UsdPrim usdPrim) {
+      if (!go || !usdPrim) { return; }
+
+      var img = new UsdGeomImageable(usdPrim);
+      if (!img) { return; }
+
+      // Using time=0.0 will enable this to pickup a single animated value by virtue of
+      // interpolation, but correct handling of animated visibility would query it over time.
+
+      // Also note this code is intentionally not using ComputeVisibility(), since Unity will apply
+      // inherited visibility. This is technically incorrect, since USD supports "super vis",
+      // enabling visible children with invisible parents. The goal here is to avoid spamming all
+      // descendent children with active=false. A better implementation would check for visible
+      // children with invisible parents and somehow translate that to the Unity scenegraph, but
+      // is left as a future improvement.
+
+      VtValue visValue = new VtValue();
+      if (!img.GetVisibilityAttr().Get(visValue, 0.0)) {
+        return;
+      }
+
+      if (UsdCs.VtValueToTfToken(visValue) != UsdGeomTokens.invisible) {
+        return;
+      }
+
+      go.SetActive(false);
+    }
+
+    // Creates ancestors, but note that this method does not apply visibility, since it was
+    // designed to create bones, which cannot have visibility opinions in USD.
     static void CreateAncestors(SdfPath path,
                                 PrimMap map,
                                 GameObject unityRoot,
@@ -177,8 +211,8 @@ namespace USD.NET.Unity {
       parentGo = FindOrCreateGameObject(grandparentGo.transform,
                                         parentPath,
                                         unityRoot.transform,
+                                        map,
                                         options);
-      map[parentPath] = parentGo;
     }
 
     static void ProcessPaths(SdfPath[] paths,
@@ -201,26 +235,26 @@ namespace USD.NET.Unity {
         var parent = parentGo ? parentGo.transform : null;
         GameObject go;
         if (!map.TryGetValue(path, out go)) {
-          go = FindOrCreateGameObject(parent, path, unityRoot.transform, options);
+          go = FindOrCreateGameObject(parent,
+                                      path,
+                                      unityRoot.transform,
+                                      map,
+                                      options);
         }
 
-        if (go) {
-          if (options.importSceneInstances) {
-            Profiler.BeginSample("Add Scene Instance Root");
-            if (prim.IsInstance()) {
-              map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
-            }
-            Profiler.EndSample();
+        if (options.importSceneInstances) {
+          Profiler.BeginSample("Add Scene Instance Root");
+          if (prim.IsInstance()) {
+            map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
           }
-
-          Profiler.BeginSample("Add to Map");
-          map[scene.GetSdfPath(path)] = go;
           Profiler.EndSample();
         }
 
         if (!options.importHierarchy) {
           continue;
         }
+
+        ApplySelfVisibility(go, prim);
 
         try {
           Profiler.BeginSample("Add Model Root");
@@ -378,6 +412,7 @@ namespace USD.NET.Unity {
     static GameObject FindOrCreateGameObject(Transform parent,
                                              SdfPath path,
                                              Transform unityRoot,
+                                             PrimMap primMap,
                                              SceneImportOptions options) {
       Transform root = null;
       GameObject go = null;
@@ -404,6 +439,10 @@ namespace USD.NET.Unity {
       if (parent != null) {
         go.transform.SetParent(parent, worldPositionStays: false);
       }
+
+      Profiler.BeginSample("Add to PrimMap");
+      primMap[path] = go;
+      Profiler.EndSample();
       return go;
     }
 
