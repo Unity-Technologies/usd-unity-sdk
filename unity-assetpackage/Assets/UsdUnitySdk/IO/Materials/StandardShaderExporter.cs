@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
-  public static class StandardShaderIo {
+  public static class StandardShaderExporter {
 
     private static string SetupTexture(Scene scene,
                                      string usdShaderPath,

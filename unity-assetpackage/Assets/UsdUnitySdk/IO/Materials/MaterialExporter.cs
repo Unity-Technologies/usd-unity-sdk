@@ -29,15 +29,15 @@ namespace USD.NET.Unity {
             System.IO.Path.GetDirectoryName(scene.FilePath);
 
       if (mat.shader.name == "Standard (Specular setup)") {
-        StandardShaderIo.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);
+        StandardShaderExporter.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);
       } else if (mat.shader.name == "Standard (Roughness setup)") {
-        StandardShaderIo.ExportStandardRoughness(scene, shaderPath, mat, shader, texPath);
+        StandardShaderExporter.ExportStandardRoughness(scene, shaderPath, mat, shader, texPath);
       } else if (mat.shader.name == "Standard") {
-        StandardShaderIo.ExportStandard(scene, shaderPath, mat, shader, texPath);
+        StandardShaderExporter.ExportStandard(scene, shaderPath, mat, shader, texPath);
       } else if (mat.shader.name == "HDRenderPipeline/Lit") {
         HdrpShaderIo.ExportLit(scene, shaderPath, mat, shader, texPath);
       } else {
-        StandardShaderIo.ExportGeneric(scene, shaderPath, mat, shader, texPath);
+        StandardShaderExporter.ExportGeneric(scene, shaderPath, mat, shader, texPath);
       }
 
       scene.Write(shaderPath, shader);
