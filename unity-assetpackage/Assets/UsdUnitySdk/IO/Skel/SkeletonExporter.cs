@@ -35,7 +35,11 @@ namespace USD.NET.Unity {
 
       int i = 0;
       foreach (string bonePath in boneNames) {
-        //var bonePath = UnityTypeConverter.GetPath(bone);
+        if (string.IsNullOrEmpty(bonePath)) {
+          sample.joints[i] = "";
+          i++;
+          continue;
+        }
         var bone = exportContext.pathToBone[bonePath];
         sample.joints[i] = bonePath.Replace(rootPath + "/", "");
 
@@ -99,6 +103,10 @@ namespace USD.NET.Unity {
 
       for (int i = 0; i < boneNames.Count; i++) {
         var bonePath = boneNames[i];
+        if (!exportContext.pathToBone.ContainsKey(bonePath)) {
+          sample.joints[i] = "";
+          continue;
+        }
         var bone = exportContext.pathToBone[bonePath];
         sample.joints[i] = bonePath.Replace(rootPath + "/", "");
 

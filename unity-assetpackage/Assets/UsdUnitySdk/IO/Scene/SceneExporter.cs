@@ -501,6 +501,11 @@ namespace USD.NET.Unity {
       Matrix4x4 existingMatrix;
       for (int i = 0; i < bones.Length; i ++) {
         Transform bone = bones[i];
+        if (bone == null) {
+          var srcPath = UnityTypeConverter.GetPath(source);
+          Debug.LogWarning("Null bone at in bones list at position (" + i + ") " + srcPath);
+          continue;
+        }
         var path = UnityTypeConverter.GetPath(bone);
         context.pathToBone[path] = bone;
         context.boneToRoot[bone] = rootBone;
