@@ -537,10 +537,9 @@ namespace USD.NET.Unity {
             Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
             var subIndex = 0;
             foreach (var kvp in geomSubsets.Subsets) {
-              int idx = subIndex;
+              int idx = subIndex++;
               options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, renderer, idx, path));
             }
-            subIndex++;
           }
         }
 
