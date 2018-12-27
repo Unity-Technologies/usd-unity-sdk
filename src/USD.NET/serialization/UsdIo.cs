@@ -230,6 +230,7 @@ namespace USD.NET {
       // If serializing a Primvar<T>, extract the held value and save it in csValue, allowing the
       // all downstream logic to act as if it's operating on the held value itself.
       PrimvarBase pvBase = null;
+
       if (csType.IsGenericType && csType.GetGenericTypeDefinition() == typeof(Primvar<>)) {
         if (csValue == null) {
           // Object not written, still considered success.
@@ -246,19 +247,38 @@ namespace USD.NET {
         csType = csValue.GetType();
       }
 
+      bool isCustomData = Reflect.IsCustomData(memberInfo);
+      bool isMetaData = Reflect.IsMetadata(memberInfo);
+      bool isPrimvar = Reflect.IsPrimvar(memberInfo);
+      bool isNewPrimvar = pvBase != null;
+      int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
+
+      string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
+          Reflect.GetNamespace(memberInfo));
+
       // If holding a dictionary, immediately recurse and write keys as attributes.
-      if (csType == typeof(Dictionary<string, object>)) {
-        Dictionary<string, object> dict = csValue as Dictionary<string, object>;
-        foreach (var kvp in dict) {
+      if (csValue != null
+          && csType.IsGenericType
+          && csType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+          && csType.GetGenericArguments()[0] == typeof(string)) {
+
+        isNewPrimvar = csType.GetGenericArguments()[1].IsGenericType
+            && csType.GetGenericArguments()[1].GetGenericTypeDefinition() == typeof(Primvar<>);
+
+        // Ensure the immediate dictionary member is always namespaced.
+        if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo))) {
+          usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);
+        }
+
+        var dict = csValue as System.Collections.IDictionary;
+        foreach (System.Collections.DictionaryEntry kvp in dict) {
           object value = kvp.Value;
-          WriteAttr(kvp.Key, value.GetType(), value,
+          WriteAttr((string)kvp.Key, value.GetType(), value,
             usdTime, prim, imgble, memberInfo, usdNamespace, srcObject: attrName);
         }
         return true;
       }
 
-      string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
-          Reflect.GetNamespace(memberInfo));
       pxr.TfToken sdfAttrName = sm_tokenCache[attrName];
 
       if (csType == typeof(Relationship) && csValue != null) {
@@ -302,12 +322,6 @@ namespace USD.NET {
 
       // Object not written, still considered success.
       if (csValue == null) { return true; }
-
-      bool isCustomData = Reflect.IsCustomData(memberInfo);
-      bool isMetaData = Reflect.IsMetadata(memberInfo);
-      bool isPrimvar = Reflect.IsPrimvar(memberInfo);
-      bool isNewPrimvar = pvBase != null;
-      int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
 
       UsdTypeBinding binding;
 
@@ -457,37 +471,50 @@ namespace USD.NET {
           Reflect.GetNamespace(memberInfo));
 
       // If holding a dictionary, immediately recurse and write keys as attributes.
-      if (csType == typeof(Dictionary<string, object>)) {
-        string sourceMember;
+      
+      if (csValue != null
+          && csType.IsGenericType
+          && csType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+          && csType.GetGenericArguments()[0] == typeof(string)) {
+
+        Type genericTypeDef = csType.GetGenericArguments()[1].IsGenericType
+                            ? csType.GetGenericArguments()[1].GetGenericTypeDefinition()
+                            : null;
+
+        isNewPrimvar = genericTypeDef == typeof(Primvar<>);
+        bool isRelationship = csType.GetGenericArguments()[1] == typeof(Relationship);
+        bool isConnection = genericTypeDef == typeof(Connectable<>);
 
         // String dictionaries are unrolled directly into the object.
         // So the namespace is either the incoming namespace or empty, meaning each string value in
         // the dictionary becomes an attribute on the prim.
 
-        if (isPrimvar) {
-          ns = "primvars";
-          sourceMember = attrName;
-        } else {
-          sourceMember = null;
+        // Ensure there is always a namespace immediately around this member.
+        if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo))) {
+          ns = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
+          usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);
         }
 
-        var dict = csValue as Dictionary<string, object>;
+        // Unfortunately, the primvars prefixing logic must be replicated here so we can discover
+        // the dictionary member from USD.
+        if (isPrimvar || isNewPrimvar) {
+          ns = IntrinsicTypeConverter.JoinNamespace("primvars", ns);
+        }
+
+        var dict = csValue as System.Collections.IDictionary;
+        ConstructorInfo ctor = (isNewPrimvar || isConnection || isRelationship)
+                             ? csType.GetGenericArguments()[1].GetConstructor(new Type[0])
+                             : null;
 
         foreach (var prop in prim.GetAuthoredPropertiesInNamespace(ns)) {
           object value = null;
-          if (!string.IsNullOrEmpty(sourceMember)) {
-            pxr.VtValue valSrcMember = prop.GetCustomDataByKey(sm_tokenCache["sourceMember"]);
-            if (valSrcMember.IsEmpty() || sourceMember != (string)valSrcMember) {
-              continue;
-            }
+          if (ctor != null) {
+            value = ctor.Invoke(new object[0]);
           }
-          if (isPrimvar) {
-            // The recursive call will also discover that this is a primvar.
-            ns = "";
-          }
-          if (ReadAttr(prop.GetBaseName(), typeof(Object), ref value, usdTime, prim, memberInfo, usdNamespace, srcObject)) {
+          // The recursive call will also discover that this is a primvar and any associated namespace.
+          if (ReadAttr(prop.GetBaseName(), csType.GetGenericArguments()[1], ref value, usdTime, prim, memberInfo, usdNamespace, srcObject)) {
             if (value != null) {
-              dict.Add(prop.GetBaseName(), value);
+              dict.Add(prop.GetBaseName().ToString(), value);
             }
           }
         }

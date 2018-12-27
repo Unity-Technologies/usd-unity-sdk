@@ -27,9 +27,8 @@ namespace Tests {
 
     static void RunTestCases() {
 
-      Cases.UsdGeomTests.PrimvarTest();
+      Cases.BasicTests.IntrinsicTypesTest();
       Console.ReadKey();
-
 
       Cases.MeshTests.TriangulationTest();
       Cases.MeshTests.VisibilityTest();

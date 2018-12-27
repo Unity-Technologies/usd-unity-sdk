@@ -55,8 +55,16 @@ namespace Tests.Cases {
       public List<float> floatList_;
       public List<double> doubleList_;
 
-      [USD.NET.UsdNamespace("dict")]
+      [USD.NET.UsdNamespace("customNamespace")]
       public Dictionary<string, object> dict;
+
+      [USD.NET.VertexData]
+      public Dictionary<string, float[]> dictVertexData;
+
+      public Dictionary<string, USD.NET.Primvar<float[]>> dictPrimvar;
+
+      public Dictionary<string, string> dictTyped;
+      public Dictionary<string, IntPtr> dictUnknown;
     }
 
     class AssetPathSample : USD.NET.SampleBase {
@@ -100,6 +108,11 @@ namespace Tests.Cases {
         // "nested:foo:bar:garply"
         [USD.NET.UsdNamespace("foo:bar")]
         public int[] garply;
+
+        [USD.NET.UsdNamespace("internal:dict")]
+        public Dictionary<string, USD.NET.Primvar<float[]>> namespacedDict = new Dictionary<string, USD.NET.Primvar<float[]>>();
+
+        public Dictionary<string, USD.NET.Primvar<float[]>> vanillaDict = new Dictionary<string, USD.NET.Primvar<float[]>>();
       }
 
       [USD.NET.VertexData()]
@@ -127,6 +140,14 @@ namespace Tests.Cases {
         sample.nestedSample = new NestedSample();
         sample.nestedSample.baz = new int[] { 9, 8, 7, 1 };
         sample.nestedSample.garply = new int[] { 99, 88, 77 };
+
+        var pv = new USD.NET.Primvar<float[]>();
+        pv.value = new float[] { 123f };
+        sample.nestedSample.namespacedDict["Foo"] = pv;
+
+        pv = new USD.NET.Primvar<float[]>();
+        pv.value = new float[] { 3245f };
+        sample.nestedSample.vanillaDict["Bar"] = pv;
         return sample;
       }
     }
@@ -207,14 +228,53 @@ namespace Tests.Cases {
       sample.ulongList_ = sample.ulongArray_.ToList();
       sample.ulong_ = ulong.MaxValue;
 
+      sample2.dict = new Dictionary<string, object>();
       sample.dict = new Dictionary<string, object>();
       sample.dict["Foo"] = 1.2;
 
-      sample2.dict = new Dictionary<string, object>();
+      sample2.dictTyped = new Dictionary<string, string>();
+      sample.dictTyped = new Dictionary<string, string>();
+      sample.dictTyped["Bar"] = "baz";
+
+      sample2.dictVertexData = new Dictionary<string, float[]>();
+      sample.dictVertexData = new Dictionary<string, float[]>();
+      sample.dictVertexData["VertexData"] = new float[] { 42.3f };
+
+      sample2.dictPrimvar = new Dictionary<string, USD.NET.Primvar<float[]>>();
+      sample.dictPrimvar = new Dictionary<string, USD.NET.Primvar<float[]>>();
+      var pv = new USD.NET.Primvar<float[]>();
+      pv.value = new float[] { 423.2f };
+      pv.interpolation = USD.NET.PrimvarInterpolation.FaceVarying;
+      sample.dictPrimvar["PrimvarValue"] = pv;
+
+      try {
+        // We don't know how to serialize an IntPtr, should throw an exception.
+        sample2.dictUnknown = new Dictionary<string, IntPtr>();
+        sample.dictUnknown = new Dictionary<string, IntPtr>();
+        sample.dictUnknown["Quz"] = new IntPtr(34292);
+        WriteAndRead(ref sample, ref sample2, true);
+        throw new Exception("Expected exception");
+      } catch (ArgumentException) {
+        Console.WriteLine("Caught expected exception");
+      }
+
+      sample2.dictUnknown = null;
+      sample.dictUnknown = null;
+
       WriteAndRead(ref sample, ref sample2, true);
 
-      AssertEqual(sample2.dict, sample2.dict);
-      AssertEqual(sample2.dict["Foo"], sample2.dict["Foo"]);
+      AssertEqual(sample.dict, sample2.dict);
+      AssertEqual(sample.dict["Foo"], sample2.dict["Foo"]);
+
+      AssertEqual(sample.dictTyped, sample2.dictTyped);
+      AssertEqual(sample.dictTyped["Bar"], sample2.dictTyped["Bar"]);
+
+      AssertEqual(sample.dictVertexData, sample2.dictVertexData);
+      AssertEqual(sample.dictVertexData["VertexData"], sample2.dictVertexData["VertexData"]);
+
+      AssertEqual(sample.dictPrimvar["PrimvarValue"].value, sample2.dictPrimvar["PrimvarValue"].value);
+      AssertEqual(sample.dictPrimvar["PrimvarValue"].interpolation, sample2.dictPrimvar["PrimvarValue"].interpolation);
+      AssertEqual(sample.dictPrimvar["PrimvarValue"].indices, sample2.dictPrimvar["PrimvarValue"].indices);
 
       AssertEqual(sample.boolArray_, sample2.boolArray_);
       AssertEqual(sample.byteArray_, sample2.byteArray_);
@@ -422,6 +482,7 @@ namespace Tests.Cases {
           prim.GetAttribute(new pxr.TfToken("primvars:nested:foo:bar:baz")));
       AssertEqual(primvar.GetElementSize(), 4);
 
+
       sample2.nestedSample = new PrimvarSample.NestedSample();
       scene.Read("/Foo", sample2);
 
@@ -431,6 +492,8 @@ namespace Tests.Cases {
       AssertEqual(sample.jointIndices, sample2.jointIndices);
       AssertEqual(sample.nestedSample.baz, sample2.nestedSample.baz);
       AssertEqual(sample.nestedSample.garply, sample2.nestedSample.garply);
+      AssertEqual(sample.nestedSample.namespacedDict["Foo"].value, sample2.nestedSample.namespacedDict["Foo"].value);
+      AssertEqual(sample.nestedSample.vanillaDict["Bar"].value, sample2.nestedSample.vanillaDict["Bar"].value);
 
       //
       // Test deserialization without nested object instantiated.
