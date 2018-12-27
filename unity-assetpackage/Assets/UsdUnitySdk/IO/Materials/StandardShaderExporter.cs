@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ namespace USD.NET.Unity {
         surface.specularColor.SetConnectedPath(newTex);
       } else if (material.HasProperty("_SpecColor")) {
         // If there is a spec color, then this is not metallic workflow.
-        c = material.GetColor("_SpecColor");
+        c = material.GetColor("_SpecColor").linear;
         surface.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
       } else {
         c = new Color(.5f, .5f, .5f);
@@ -141,7 +141,7 @@ namespace USD.NET.Unity {
 
       if (material.HasProperty("_SpecColor")) {
         // If there is a spec color, then this is not metallic workflow.
-        c = material.GetColor("_SpecColor");
+        c = material.GetColor("_SpecColor").linear;
       } else {
         c = new Color(.4f, .4f, .4f);
       }
@@ -160,7 +160,7 @@ namespace USD.NET.Unity {
           surface.specularColor.SetConnectedPath(newTex);
         } else if (material.HasProperty("_SpecColor")) {
           // If there is a spec color, then this is not metallic workflow.
-          c = material.GetColor("_SpecColor");
+          c = material.GetColor("_SpecColor").linear;
           surface.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
         } else {
           c = new Color(.5f, .5f, .5f);
