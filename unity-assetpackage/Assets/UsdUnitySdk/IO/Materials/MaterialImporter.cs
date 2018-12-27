@@ -90,7 +90,7 @@ namespace USD.NET.Unity {
         Debug.LogWarning("Material has no connected surface: <" + materialPath + ">");
         return null;
       }
-      var previewSurf = new PreviewSurfaceSample();
+      var previewSurf = new UnityPreviewSurfaceSample();
       scene.Read(new pxr.SdfPath(sample.surface.connectedPath).GetPrimPath(), previewSurf);
 
       // Currently, only UsdPreviewSurface is supported.
@@ -101,16 +101,40 @@ namespace USD.NET.Unity {
       }
 
       Material mat = null;
-      if (previewSurf.useSpecularWorkflow.defaultValue == 1) {
-        // Metallic workflow.
-        mat = Material.Instantiate(options.materialMap.SpecularWorkflowMaterial);
-      } else {
-        // Metallic workflow.
-        mat = Material.Instantiate(options.materialMap.MetallicWorkflowMaterial);
+      if (!string.IsNullOrEmpty(previewSurf.unity.shaderName)) {
+        // We may or may not have the original shader.
+        var shader = Shader.Find(previewSurf.unity.shaderName);
+        if (shader) {
+          mat = new Material(shader);
+          mat.shaderKeywords = previewSurf.unity.shaderKeywords;
+        } else {
+          Debug.LogWarning("Original shader not found: " + previewSurf.unity.shaderName);
+        }
+      }
+
+      if (mat == null) {
+        if (previewSurf.useSpecularWorkflow.defaultValue == 1) {
+          // Metallic workflow.
+          mat = Material.Instantiate(options.materialMap.SpecularWorkflowMaterial);
+        } else {
+          // Metallic workflow.
+          mat = Material.Instantiate(options.materialMap.MetallicWorkflowMaterial);
+        }
+      }
+
+      foreach (var kvp in previewSurf.unity.colorArgs) {
+        mat.SetColor(kvp.Key, kvp.Value);
+      }
+
+      foreach (var kvp in previewSurf.unity.floatArgs) {
+        mat.SetFloat(kvp.Key, kvp.Value);
+      }
+
+      foreach (var kvp in previewSurf.unity.vectorArgs) {
+        mat.SetVector(kvp.Key, kvp.Value);
       }
 
       var matAdapter = new StandardShaderAdapter(mat);
-
       matAdapter.ImportParametersFromUsd(scene, sample, previewSurf, options);
       matAdapter.ImportFromUsd();
 
@@ -222,7 +246,7 @@ namespace USD.NET.Unity {
     /// <param name="scene">The USD scene object.</param>
     /// <param name="primPath">The path to the object in the USD scene.</param>
     /// <returns>A PreviewSurfaceSample if found, otherwise null.</returns>
-    public static PreviewSurfaceSample GetSurfaceShaderPrim(Scene scene, string primPath) {
+    public static UnityPreviewSurfaceSample GetSurfaceShaderPrim(Scene scene, string primPath) {
       var materialBinding = new MaterialBindingSample();
       scene.Read(primPath, materialBinding);
 
@@ -238,7 +262,7 @@ namespace USD.NET.Unity {
         Debug.LogWarning("Material surface not connected: <" + matPath + ">");
       }
 
-      var exportSurf = new PreviewSurfaceSample();
+      var exportSurf = new UnityPreviewSurfaceSample();
       scene.Read(new pxr.SdfPath(materialSample.surface.connectedPath).GetPrimPath(), exportSurf);
 
       return exportSurf;

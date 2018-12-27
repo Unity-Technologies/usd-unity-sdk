@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,12 +19,32 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
+  public class UnityCustomData : SampleBase {
+
+    public string shaderName;
+    public string[] shaderKeywords;
+
+    [UsdNamespace("floats")]
+    public Dictionary<string, float> floatArgs = new Dictionary<string, float>();
+
+    [UsdNamespace("colors")]
+    public Dictionary<string, Color> colorArgs = new Dictionary<string, Color>();
+
+    [UsdNamespace("vectors")]
+    public Dictionary<string, Vector4> vectorArgs = new Dictionary<string, Vector4>();
+  }
+
+  public class UnityPreviewSurfaceSample : PreviewSurfaceSample {
+    [UsdNamespace("unity")]
+    public UnityCustomData unity = new UnityCustomData();
+  }
+
   public static class StandardShaderExporter {
 
     private static string SetupTexture(Scene scene,
                                      string usdShaderPath,
                                      Material material,
-                                     PreviewSurfaceSample surface,
+                                     UnityPreviewSurfaceSample surface,
                                      string destTexturePath,
                                      string textureName,
                                      string textureOutput) {
@@ -51,7 +71,7 @@ namespace USD.NET.Unity {
     public static void ExportStandardSpecular(Scene scene,
                                               string usdShaderPath,
                                               Material material,
-                                              PreviewSurfaceSample surface,
+                                              UnityPreviewSurfaceSample surface,
                                               string destTexturePath) {
       Color c;
 
@@ -83,7 +103,7 @@ namespace USD.NET.Unity {
     public static void ExportStandardRoughness(Scene scene,
                                           string usdShaderPath,
                                           Material material,
-                                          PreviewSurfaceSample surface,
+                                          UnityPreviewSurfaceSample surface,
                                           string destTexturePath) {
       ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
       surface.useSpecularWorkflow.defaultValue = 0;
@@ -110,7 +130,7 @@ namespace USD.NET.Unity {
     public static void ExportStandard(Scene scene,
                                       string usdShaderPath,
                                       Material material,
-                                      PreviewSurfaceSample surface,
+                                      UnityPreviewSurfaceSample surface,
                                       string destTexturePath) {
       ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
       surface.useSpecularWorkflow.defaultValue = 0;
@@ -134,7 +154,7 @@ namespace USD.NET.Unity {
     public static void ExportGeneric(Scene scene,
                                       string usdShaderPath,
                                       Material material,
-                                      PreviewSurfaceSample surface,
+                                      UnityPreviewSurfaceSample surface,
                                       string destTexturePath) {
       Color c;
       ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
@@ -208,9 +228,36 @@ namespace USD.NET.Unity {
     private static void ExportStandardCommon(Scene scene,
                                           string usdShaderPath,
                                           Material mat,
-                                          PreviewSurfaceSample surface,
+                                          UnityPreviewSurfaceSample surface,
                                           string destTexturePath) {
       Color c;
+
+      // Export all generic parameter.
+      // These are not useful to UsdPreviewSurface, but enable perfect round-tripping.
+      surface.unity.shaderName = mat.shader.name;
+      surface.unity.shaderKeywords = mat.shaderKeywords;
+      
+      // Unfortunately, parameter names can only be discovered generically in-editor.
+#if UNITY_EDITOR
+      for (int i = 0; i < UnityEditor.ShaderUtil.GetPropertyCount(mat.shader); i++) {
+        string name = UnityEditor.ShaderUtil.GetPropertyName(mat.shader, i);
+        if (!mat.HasProperty(name)) {
+          continue;
+        }
+        switch (UnityEditor.ShaderUtil.GetPropertyType(mat.shader, i)) {
+          case UnityEditor.ShaderUtil.ShaderPropertyType.Color:
+            surface.unity.colorArgs.Add(name, mat.GetColor(name).linear);
+            break;
+          case UnityEditor.ShaderUtil.ShaderPropertyType.Float:
+          case UnityEditor.ShaderUtil.ShaderPropertyType.Range:
+            surface.unity.floatArgs.Add(name, mat.GetFloat(name));
+            break;
+          case UnityEditor.ShaderUtil.ShaderPropertyType.Vector:
+            surface.unity.vectorArgs.Add(name, mat.GetVector(name));
+            break;
+        }
+      }
+#endif
 
       if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
         var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "rgb");
@@ -248,7 +295,7 @@ namespace USD.NET.Unity {
         surface.metallic.defaultValue = .5f;
       }
       */
-
+      
       if (mat.IsKeywordEnabled("_EMISSION")) {
         if (mat.HasProperty("_EmissionMap") && mat.GetTexture("_EmissionMap") != null) {
           var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_EmissionMap", "rgb");

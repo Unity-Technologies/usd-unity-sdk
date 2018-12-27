@@ -24,7 +24,7 @@ namespace USD.NET.Unity {
 
       scene.Write(usdMaterialPath, material);
 
-      var shader = new PreviewSurfaceSample();
+      var shader = new UnityPreviewSurfaceSample();
       var texPath = /*TODO: this should be explicit*/
             System.IO.Path.GetDirectoryName(scene.FilePath);
 
