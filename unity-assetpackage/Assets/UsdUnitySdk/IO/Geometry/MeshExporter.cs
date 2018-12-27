@@ -34,7 +34,7 @@ namespace USD.NET.Unity {
       // Note that the baked mesh no longer has the bone weights, so here we switch back to the
       // shared SkinnedMeshRenderer mesh.
       Transform rootBone = null;
-      if (!exportContext.boneToRoot.TryGetValue(smr.rootBone, out rootBone)) {
+      if (smr.rootBone != null && !exportContext.boneToRoot.TryGetValue(smr.rootBone, out rootBone)) {
         Debug.LogWarning("Root bone not found in export context for " +
             UnityTypeConverter.GetPath(smr.rootBone));
         return;
