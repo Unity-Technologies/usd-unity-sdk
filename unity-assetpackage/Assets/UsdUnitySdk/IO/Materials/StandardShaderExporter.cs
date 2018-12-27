@@ -153,8 +153,11 @@ namespace USD.NET.Unity {
         surface.metallic.defaultValue = .5f;
       }
 
+      // Gross heuristics to detect workflow.
       if (material.IsKeywordEnabled("_SPECGLOSSMAP")
-          || material.name.ToLower().Contains("specular")) {
+          || material.HasProperty("_SpecColor")
+          || material.HasProperty("_SpecularColor")
+          || material.shader.name.ToLower().Contains("specular")) {
         if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
           var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_SpecGlossMap", "rgb");
           surface.specularColor.SetConnectedPath(newTex);
