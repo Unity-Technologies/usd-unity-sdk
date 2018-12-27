@@ -250,7 +250,9 @@ namespace USD.NET.Unity {
         if (mat.HasProperty("_EmissionMap") && mat.GetTexture("_EmissionMap") != null) {
           var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_EmissionMap", "rgb");
           surface.emissiveColor.SetConnectedPath(newTex);
-        } else if (mat.HasProperty("_EmissionColor")) {
+        }
+        
+        if (mat.HasProperty("_EmissionColor")) {
           c = mat.GetColor("_EmissionColor").linear;
           surface.emissiveColor.defaultValue = new Vector3(c.r, c.g, c.b);
         }
