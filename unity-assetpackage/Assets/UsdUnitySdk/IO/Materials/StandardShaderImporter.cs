@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace USD.NET.Unity {
@@ -55,57 +56,76 @@ namespace USD.NET.Unity {
                                     Connectable<Vector3> usdParam,
                                     SceneImportOptions options,
                                     ref Texture2D map,
-                                    ref Color? value) {
+                                    ref Color? value,
+                                    out string uvPrimvar) {
+      uvPrimvar = null;
       if (usdParam.IsConnected()) {
-        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, options);
+        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, options, out uvPrimvar);
       } else {
         var rgb = usdParam.defaultValue;
         value = new Color(rgb.x, rgb.y, rgb.z).gamma;
       }
     }
 
-    protected void ImportValueOrMap(Scene scene,
-                                    Connectable<float> usdParam,
+    protected void ImportValueOrMap<T>(Scene scene,
+                                    Connectable<T> usdParam,
                                     SceneImportOptions options,
                                     ref Texture2D map,
-                                    ref float? value) {
+                                    ref T? value,
+                                    out string uvPrimvar) where T: struct {
+      uvPrimvar = null;
       if (usdParam.IsConnected()) {
-        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, options);
+        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, options, out uvPrimvar);
       } else {
         value = usdParam.defaultValue;
       }
     }
 
-    protected void ImportValueOrMap(Scene scene,
-                                Connectable<Vector3> usdParam,
-                                SceneImportOptions options,
-                                ref Texture2D map,
-                                ref Vector3? value) {
-      if (usdParam.IsConnected()) {
-        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, options);
-      } else {
-        value = usdParam.defaultValue;
+    private void MergePrimvars(string newPrimvar, List<string> primvars) {
+      if (string.IsNullOrEmpty(newPrimvar)) {
+        return;
       }
+      string localName = newPrimvar;
+      if (!string.IsNullOrEmpty(primvars.Find(str => str == localName))) {
+        return;
+      }
+      primvars.Add(localName);
     }
 
     public virtual void ImportParametersFromUsd(Scene scene,
+                                                string materialPath,
                                                 MaterialSample materialSample,
                                                 PreviewSurfaceSample previewSurf,
                                                 SceneImportOptions options) {
+      var primvars = new List<string>();
+      string uvPrimvar = null;
+      ImportColorOrMap(scene, previewSurf.diffuseColor, options, ref DiffuseMap, ref Diffuse, out uvPrimvar);
+      MergePrimvars(uvPrimvar, primvars);
 
-      ImportColorOrMap(scene, previewSurf.diffuseColor, options, ref DiffuseMap, ref Diffuse);
-      ImportColorOrMap(scene, previewSurf.emissiveColor, options, ref EmissionMap, ref Emission);
+      ImportColorOrMap(scene, previewSurf.emissiveColor, options, ref EmissionMap, ref Emission, out uvPrimvar);
+      MergePrimvars(uvPrimvar, primvars);
 
-      ImportValueOrMap(scene, previewSurf.normal, options, ref NormalMap, ref Normal);
-      ImportValueOrMap(scene, previewSurf.displacement, options, ref DisplacementMap, ref Displacement);
-      ImportValueOrMap(scene, previewSurf.occlusion, options, ref OcclusionMap, ref Occlusion);
-      ImportValueOrMap(scene, previewSurf.roughness, options, ref RoughnessMap, ref Roughness);
+      ImportValueOrMap(scene, previewSurf.normal, options, ref NormalMap, ref Normal, out uvPrimvar);
+      MergePrimvars(uvPrimvar, primvars);
+
+      ImportValueOrMap(scene, previewSurf.displacement, options, ref DisplacementMap, ref Displacement, out uvPrimvar);
+      MergePrimvars(uvPrimvar, primvars);
+
+      ImportValueOrMap(scene, previewSurf.occlusion, options, ref OcclusionMap, ref Occlusion, out uvPrimvar);
+      MergePrimvars(uvPrimvar, primvars);
+
+      ImportValueOrMap(scene, previewSurf.roughness, options, ref RoughnessMap, ref Roughness, out uvPrimvar);
+      MergePrimvars(uvPrimvar, primvars);
 
       if (previewSurf.useSpecularWorkflow.defaultValue == 1) {
-        ImportColorOrMap(scene, previewSurf.specularColor, options, ref SpecularMap, ref Specular);
+        ImportColorOrMap(scene, previewSurf.specularColor, options, ref SpecularMap, ref Specular, out uvPrimvar);
+        MergePrimvars(uvPrimvar, primvars);
       } else {
-        ImportValueOrMap(scene, previewSurf.metallic, options, ref MetallicMap, ref Metallic);
+        ImportValueOrMap(scene, previewSurf.metallic, options, ref MetallicMap, ref Metallic, out uvPrimvar);
+        MergePrimvars(uvPrimvar, primvars);
       }
+
+      options.materialMap.SetPrimvars(materialPath, primvars);
     }
 
   }

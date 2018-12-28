@@ -196,7 +196,7 @@ namespace USD.NET.Unity {
       int[] indices = meshBinding.jointIndices.value;
       float[] weights = meshBinding.jointWeights.value;
 
-      // Only Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
+      // Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
 #if UNITY_2019
       var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
       var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * meshBinding.jointWeights.elementSize, Allocator.Persistent);

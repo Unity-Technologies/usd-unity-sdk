@@ -60,7 +60,7 @@ namespace USD.NET.Unity {
       var materialSample = new MaterialSample();
       var matIndex = -1;
 
-      foreach (var usdMat in matVector) {
+      foreach (pxr.UsdShadeMaterial usdMat in matVector) {
         matIndex++;
         Material unityMat = importOptions.materialMap[usdMat.GetPath()];
 
@@ -69,13 +69,17 @@ namespace USD.NET.Unity {
         }
 
         // PERF: this is slow and garbage-y.
-        string path = prims[matIndex].GetPath();
+        string meshPath = prims[matIndex].GetPath();
 
-        if (!requests.ContainsKey(path)) {
-          Debug.LogError("Source object key not found: " + path);
+        if (!requests.ContainsKey(meshPath)) {
+          Debug.LogError("Source object key not found: " + meshPath);
           continue;
         }
-        requests[path](unityMat);
+
+        System.Collections.Generic.List<string> primvars
+            = importOptions.materialMap.GetPrimvars(usdMat.GetPath());
+
+        requests[meshPath](scene, unityMat, primvars);
       }
     }
 
@@ -135,7 +139,7 @@ namespace USD.NET.Unity {
       }
 
       var matAdapter = new StandardShaderAdapter(mat);
-      matAdapter.ImportParametersFromUsd(scene, sample, previewSurf, options);
+      matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
       matAdapter.ImportFromUsd();
 
       return mat;
@@ -143,7 +147,10 @@ namespace USD.NET.Unity {
 
     public static Texture2D ImportConnectedTexture<T>(Scene scene,
                                                     Connectable<T> connection,
-                                                    SceneImportOptions options) {
+                                                    SceneImportOptions options,
+                                                    out string uvPrimvar) {
+      uvPrimvar = null;
+
       // TODO: look for the expected texture/primvar reader pair.
       var textureSample = new TextureReaderSample();
       var connectedPrimPath = scene.GetSdfPath(connection.connectedPath).GetPrimPath();
@@ -158,6 +165,19 @@ namespace USD.NET.Unity {
           result = OnResolveTexture(textureSample.file.defaultValue, options);
         } else {
           result = DefaultTextureResolver(textureSample.file.defaultValue, options);
+        }
+      }
+
+      Connectable<Vector2> st = textureSample.st;
+      if (st != null && st.IsConnected() && !string.IsNullOrEmpty(st.connectedPath)) {
+        var pvSrc = new PrimvarReaderSample<Vector2>();
+        scene.Read(new pxr.SdfPath(textureSample.st.connectedPath).GetPrimPath(), pvSrc);
+
+        if (pvSrc.varname != null
+            && pvSrc.varname.defaultValue != null) {
+          // Ask the mesh importer to load the specified texcoord.
+          // This must be a callback, since materials-to-meshes are one-to-many.
+          uvPrimvar = pvSrc.varname.defaultValue;
         }
       }
 

@@ -28,7 +28,9 @@ namespace USD.NET.Unity {
     /// A callback to preform the material binding when requesting bindings.
     /// </summary>
     /// <param name="mat">The new material to bind.</param>
-    public delegate void MaterialBinder(Material mat);
+    public delegate void MaterialBinder(Scene scene,
+                                        Material mat,
+                                        List<string> uvPrimvars);
 
     /// <summary>
     /// A mapping from USD shader ID to Unity material.
@@ -41,6 +43,8 @@ namespace USD.NET.Unity {
     /// Bindings requested, to be processed in bulk.
     /// </summary>
     private Dictionary<string, MaterialBinder> m_requestedBindings = new Dictionary<string, MaterialBinder>();
+
+    private Dictionary<string, List<string>> m_primvars = new Dictionary<string, List<string>>();
 
     /// <summary>
     /// A material to use when no material could be found.
@@ -96,6 +100,16 @@ namespace USD.NET.Unity {
       {
         m_map[path] = value;
       }
+    }
+
+    public List<string> GetPrimvars(string materialPath) {
+      List<string> primvars;
+      m_primvars.TryGetValue(materialPath, out primvars);
+      return primvars;
+    }
+
+    public void SetPrimvars(string materialPath, List<string> primvars) {
+      m_primvars[materialPath] = primvars;
     }
 
     /// <summary>

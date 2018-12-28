@@ -63,8 +63,7 @@ namespace USD.NET.Unity {
   /// </summary>
   /// <typeparam name="MeshSampleT">The MeshSample type to read from USD</typeparam>
   public class MeshImportStrategy<MeshSampleT> : IImporter
-      where MeshSampleT : XformableSample, new()
-  {
+      where MeshSampleT : XformableSample, new() {
     private MeshImportFunction<MeshSampleT> m_meshImporter;
     private MeshImportFunction<MeshSampleT> m_skinnedMeshImporter;
 
@@ -83,10 +82,10 @@ namespace USD.NET.Unity {
         Profiler.BeginSample("USD: Populate SkelCache");
         foreach (var path in primMap.SkelRoots) {
           var prim = scene.GetPrimAtPath(path);
-        if (!prim) { continue; }
+          if (!prim) { continue; }
 
-        var skelRoot = new UsdSkelRoot(prim);
-        if (!skelRoot) { continue; }
+          var skelRoot = new UsdSkelRoot(prim);
+          if (!skelRoot) { continue; }
 
           skelCache.Populate(skelRoot);
         }
@@ -525,7 +524,8 @@ namespace USD.NET.Unity {
         if (unityMesh.subMeshCount == 1) {
           renderer.sharedMaterial = mat;
           if (options.ShouldBindMaterials) {
-            options.materialMap.RequestBinding(path, boundMat => renderer.sharedMaterial = boundMat);
+            options.materialMap.RequestBinding(path,
+              (scene, boundMat, primvars) => BindMat(scene, unityMesh, boundMat, renderer, path, primvars, usdMesh.faceVertexCounts, originalIndices));
           }
         } else {
           var mats = new Material[unityMesh.subMeshCount];
@@ -538,7 +538,8 @@ namespace USD.NET.Unity {
             var subIndex = 0;
             foreach (var kvp in geomSubsets.Subsets) {
               int idx = subIndex++;
-              options.materialMap.RequestBinding(kvp.Key, boundMat => BindMat(boundMat, renderer, idx, path));
+              options.materialMap.RequestBinding(kvp.Key,
+                  (scene, boundMat, primvars) => BindMat(scene, unityMesh, boundMat, renderer, idx, path, primvars, usdMesh.faceVertexCounts, originalIndices));
             }
           }
         }
@@ -576,10 +577,93 @@ namespace USD.NET.Unity {
 #endif
     }
 
-    static void BindMat(Material mat, Renderer renderer, int index, string path) {
+    static void LoadPrimvars(Scene scene,
+                             Mesh unityMesh,
+                             string usdMeshPath,
+                             List<string> primvars,
+                             int[] faceVertexCounts,
+                             int[] faceVertexIndices) {
+      if (primvars == null || primvars.Count == 0) { return; }
+      var prim = scene.GetPrimAtPath(usdMeshPath);
+      for (int i = 0; i < primvars.Count; i++) {
+        var attr = prim.GetAttribute(new TfToken("primvars:" + primvars[i]));
+        if (!attr) continue;
+
+        // Read the raw values.
+        VtValue val = attr.Get(0.0);
+        if (val.IsEmpty()) { continue; }
+        VtVec2fArray vec2fArray = UsdCs.VtValueToVtVec2fArray(val);
+        Vector2[] values = UnityTypeConverter.FromVtArray(vec2fArray);
+
+        // Unroll indexed primvars.
+        var pv = new UsdGeomPrimvar(attr);
+        VtIntArray vtIndices = new VtIntArray();
+        if (pv.GetIndices(vtIndices, 0.0)) {
+          int[] indices = UnityTypeConverter.FromVtArray(vtIndices);
+          values = indices.Select(idx => values[idx]).ToArray();
+        }
+
+        // Handle primvar interpolation modes.
+        TfToken interp = pv.GetInterpolation();
+        if (interp == UsdGeomTokens.constant) {
+          Debug.Assert(values.Length == 1);
+          var newValues = new Vector2[unityMesh.vertexCount];
+          for (int idx = 0; idx < values.Length; idx++) {
+            newValues[idx] = values[0];
+          }
+          values = newValues;
+        } else if (interp == UsdGeomTokens.uniform) {
+          Debug.Assert(values.Length == faceVertexCounts.Length);
+          for (int faceIndex = 0; faceIndex < values.Length; faceIndex++) {
+            var faceColor = values[faceIndex];
+            int idx = 0;
+            var newValues = new Vector2[unityMesh.vertexCount];
+            for (int f = 0; f < faceVertexCounts[faceIndex]; f++) {
+              int vertexInFaceIdx = faceVertexIndices[idx++];
+              newValues[vertexInFaceIdx] = faceColor;
+            }
+            values = newValues;
+          }
+        } else if (interp == UsdGeomTokens.faceVarying) {
+          values = UnrollFaceVarying(unityMesh.vertexCount, values, faceVertexCounts, faceVertexIndices);
+        }
+
+        // Send them to Unity.
+        unityMesh.SetUVs(i, values.ToList());
+      }
+    }
+
+    static void BindMat(Scene scene,
+                        Mesh unityMesh,
+                        Material mat,
+                        Renderer renderer,
+                        string usdMeshPath,
+                        List<string> primvars,
+                        int[] faceVertexCounts,
+                        int[] faceVertexIndices) {
+      renderer.sharedMaterial = mat;
+      LoadPrimvars(scene, unityMesh, usdMeshPath, primvars, faceVertexCounts, faceVertexIndices);
+    }
+
+    // Pass in Unity Mesh from registration.
+    // Pass in scene, meshPath from MaterialImporter.
+    // Lookup material UV primvars by material path.
+    // Read primvars from USD mesh.
+    // Assign to UnityMesh sequentially.
+    // Material must assign both primvar and Unity Mesh texcoord slots.
+    static void BindMat(Scene scene,
+                        Mesh unityMesh,
+                        Material mat,
+                        Renderer renderer,
+                        int index,
+                        string usdMeshPath,
+                        List<string> primvars,
+                        int[] faceVertexCounts,
+                        int[] faceVertexIndices) {
       var sharedMats = renderer.sharedMaterials;
       sharedMats[index] = mat;
       renderer.sharedMaterials = sharedMats;
+      LoadPrimvars(scene, unityMesh, usdMeshPath, primvars, faceVertexCounts, faceVertexIndices);
     }
 
     /// <summary>
