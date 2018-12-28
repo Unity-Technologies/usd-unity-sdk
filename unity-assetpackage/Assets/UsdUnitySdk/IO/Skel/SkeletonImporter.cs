@@ -140,28 +140,45 @@ namespace USD.NET.Unity {
       }
 
       var mesh = smr.sharedMesh;
-
       var geomXf = meshBinding.geomBindTransform.value;
 
+      // If the joints list is a different length than the bind transforms, then this is likely
+      // a mesh using a subset of the total bones in the skeleton and the bindTransforms must be
+      // reconstructed.
+      var bindPoses = skeleton.bindTransforms;
+      if (joints.Length != bindPoses.Length) {
+        var boneToPose = new Dictionary<string, Matrix4x4>();
+        bindPoses = new Matrix4x4[joints.Length];
+        for (int i = 0; i < skelJoints.Length; i++) {
+          boneToPose[skelJoints[i]] = skeleton.bindTransforms[i];
+        }
+        for (int i = 0; i < joints.Length; i++) {
+          bindPoses[i] = boneToPose[joints[i]];
+        }
+      }
+
       // When geomXf is identity, we can take a shortcut and just use the exact skeleton bindPoses.
-      if (ImporterBase.ApproximatelyEqual(geomXf, Matrix4x4.identity)) {
-        mesh.bindposes = skeleton.bindTransforms;
-      } else {
+      if (!ImporterBase.ApproximatelyEqual(geomXf, Matrix4x4.identity)) {
         // Note that the bind poses were transformed when the skeleton was imported, but the
         // geomBindTransform is per-mesh, so it must be transformed here so it is in the same space
         // as the bind pose.
         XformImporter.ImportXform(ref geomXf, options);
 
+        // Make a copy only if we haven't already copied the bind poses earlier.
+        if (bindPoses == skeleton.bindTransforms) {
+          var newBindPoses = new Matrix4x4[skeleton.bindTransforms.Length];
+          Array.Copy(bindPoses, newBindPoses, bindPoses.Length);
+          bindPoses = newBindPoses;
+        }
+
         // Concatenate the geometry bind transform with the skeleton bind poses.
-        var bindPoses = new Matrix4x4[skeleton.bindTransforms.Length];
-        Array.Copy(skeleton.bindTransforms, bindPoses, bindPoses.Length);
         for (int i = 0; i < bindPoses.Length; i++) {
           // The geometry transform should be applied to the points before any other transform,
           // hence the right hand multiply here.
           bindPoses[i] = bindPoses[i] * geomXf;
         }
-        mesh.bindposes = bindPoses;
       }
+      mesh.bindposes = bindPoses;
 
       var bones = new Transform[joints.Length];
       var sdfSkelPath = new SdfPath(skelPath);
@@ -179,6 +196,7 @@ namespace USD.NET.Unity {
       int[] indices = meshBinding.jointIndices.value;
       float[] weights = meshBinding.jointWeights.value;
 
+      // Only Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
 #if UNITY_2019
       var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
       var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * meshBinding.jointWeights.elementSize, Allocator.Persistent);
