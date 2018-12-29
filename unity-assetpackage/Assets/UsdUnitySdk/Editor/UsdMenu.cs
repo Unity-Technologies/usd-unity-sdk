@@ -90,7 +90,7 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
-  [MenuItem("USD/Import as GameObjects")]
+  [MenuItem("USD/Import as GameObjects", priority = 50)]
   public static void MenuImportAsGameObjects() {
     var scene = InitForOpen();
     if (scene == null) {
@@ -137,7 +137,7 @@ public class UsdMenu : MonoBehaviour {
   }
 #endif
 
-  [MenuItem("USD/Import as Prefab")]
+  [MenuItem("USD/Import as Prefab", priority = 51)]
   public static void MenuImportAsPrefab() {
     var scene = InitForOpen();
     if (scene == null) {
@@ -171,7 +171,7 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
-  [MenuItem("USD/Import as Timeline Clip")]
+  [MenuItem("USD/Import as Timeline Clip", priority = 52)]
   public static void MenuImportAsTimelineClip() {
     var scene = InitForOpen();
     if (scene == null) {
