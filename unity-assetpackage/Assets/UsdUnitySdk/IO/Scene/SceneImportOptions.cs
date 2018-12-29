@@ -14,6 +14,11 @@
 
 namespace USD.NET.Unity {
 
+  public enum PayloadPolicy {
+    DontLoadPayloads,
+    LoadAll,
+  }
+
   /// <summary>
   /// How to transform from the USD basis (typically right-handed) to Unity (left-handed).
   /// </summary>
@@ -78,6 +83,8 @@ namespace USD.NET.Unity {
     /// Force components and objects to be rebuilt, instead of reusing existing objects.
     /// </summary>
     public bool forceRebuild = false;
+
+    public PayloadPolicy payloadPolicy = PayloadPolicy.DontLoadPayloads;
 
     public bool importHierarchy = true;
     public bool importCameras = true;
