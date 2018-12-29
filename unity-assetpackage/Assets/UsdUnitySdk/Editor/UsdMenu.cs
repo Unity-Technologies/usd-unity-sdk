@@ -54,17 +54,6 @@ public class UsdMenu : MonoBehaviour {
     return USD.NET.Scene.Open(path);
   }
 
-#if false
-  [MenuItem("USD/Export (Fast) Selected with Children", true)]
-  static bool EnableExportSelectedFast() {
-    return Selection.gameObjects.Length > 0;
-  }
-  [MenuItem("USD/Export (Fast) Selected with Children")]
-  static void ExportSelectedFast() {
-    ExportSelected(BasisTransformation.FastWithNegativeScale);
-  }
-#endif
-
   [MenuItem("USD/Export Selected with Children", true)]
   static bool EnableMenuExportSelectedWithChildren() {
     return Selection.gameObjects.Length > 0;
