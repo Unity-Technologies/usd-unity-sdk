@@ -33,19 +33,11 @@ namespace USD.NET.Unity {
     public string m_projectAssetPath = "Assets/";
     public string m_usdRootPath = "/";
 
-    [Header("Playback")]
     public float m_usdTime;
     public Scene.InterpolationMode m_interpolation;
 
-    [Header("Scenegraph")]
+    [HideInInspector]
     public bool m_importHierarchy = true;
-
-    public bool m_importCameras = true;
-    public bool m_importMeshes = true;
-    public bool m_importSkinning = true;
-    public bool m_importTransforms = true;
-    public bool m_importSceneInstances = true;
-    public bool m_importPointInstances = true;
 
     [Header("Conversions")]
     public float m_scale;
@@ -58,10 +50,18 @@ namespace USD.NET.Unity {
     public Material m_specularWorkflowMaterial;
     public Material m_metallicWorkflowMaterial;
 
+    [Header("Scenegraph")]
+    public bool m_importCameras = true;
+    public bool m_importMeshes = true;
+    public bool m_importSkinning = true;
+    public bool m_importTransforms = true;
+    public bool m_importSceneInstances = true;
+    public bool m_importPointInstances = true;
+
     [Header("Mesh Options")]
+    public bool m_generateLightmapUVs;
     public ImportMode m_points;
     public ImportMode m_topology;
-    public bool m_generateLightmapUVs;
     public ImportMode m_boundingBox;
     public ImportMode m_color;
     public ImportMode m_normals;
@@ -88,6 +88,97 @@ namespace USD.NET.Unity {
     private float m_lastTime;
     private Scene m_lastScene;
     private PrimMap m_lastPrimMap = null;
+
+    /// <summary>
+    /// Convert the SceneImportOptions into a serializable form.
+    /// </summary>
+    public void OptionsToState(SceneImportOptions options) {
+      m_usdRootPath = options.usdRootPath;
+      m_projectAssetPath = options.projectAssetPath;
+      m_changeHandedness = options.changeHandedness;
+      m_scale = options.scale;
+      m_interpolation = options.interpolate ?
+                        Scene.InterpolationMode.Linear :
+                        Scene.InterpolationMode.Held;
+
+      // Scenegraph options.
+      m_payloadPolicy = options.payloadPolicy;
+      m_importCameras = options.importCameras;
+      m_importMeshes = options.importMeshes;
+      m_importSkinning = options.importSkinning;
+      m_importHierarchy = options.importHierarchy;
+      m_importTransforms = options.importTransforms;
+      m_importSceneInstances = options.importSceneInstances;
+      m_importPointInstances = options.importPointInstances;
+
+      // Mesh options.
+      m_points = options.meshOptions.points;
+      m_topology = options.meshOptions.topology;
+      m_boundingBox = options.meshOptions.boundingBox;
+      m_color = options.meshOptions.color;
+      m_normals = options.meshOptions.normals;
+      m_tangents = options.meshOptions.tangents;
+      m_texcoord0 = options.meshOptions.texcoord0;
+      m_texcoord1 = options.meshOptions.texcoord1;
+      m_texcoord2 = options.meshOptions.texcoord2;
+      m_texcoord3 = options.meshOptions.texcoord3;
+      m_generateLightmapUVs = options.meshOptions.generateLightmapUVs;
+
+      m_debugShowSkeletonBindPose = options.meshOptions.debugShowSkeletonBindPose;
+      m_debugShowSkeletonRestPose = options.meshOptions.debugShowSkeletonRestPose;
+
+      // Materials & instancing.
+      m_materialImportMode = options.materialImportMode;
+      m_enableGpuInstancing = options.enableGpuInstancing;
+      m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
+      m_specularWorkflowMaterial = options.materialMap.SpecularWorkflowMaterial;
+      m_metallicWorkflowMaterial = options.materialMap.MetallicWorkflowMaterial;
+    }
+
+    /// <summary>
+    /// Converts the current component state into import options.
+    /// </summary>
+    public void StateToOptions(ref SceneImportOptions options) {
+      options.usdRootPath = new pxr.SdfPath(m_usdRootPath);
+      options.projectAssetPath = m_projectAssetPath;
+      options.changeHandedness = m_changeHandedness;
+      options.scale = m_scale;
+      options.interpolate = m_interpolation == Scene.InterpolationMode.Linear;
+
+      // Scenegraph options.
+      options.payloadPolicy = m_payloadPolicy;
+
+      options.importCameras = m_importCameras;
+      options.importMeshes = m_importMeshes;
+      options.importSkinning = m_importSkinning;
+      options.importHierarchy = m_importHierarchy;
+      options.importTransforms = m_importTransforms;
+      options.importSceneInstances = m_importSceneInstances;
+      options.importPointInstances = m_importPointInstances;
+
+      // Mesh options.
+      options.meshOptions.points = m_points;
+      options.meshOptions.topology = m_topology;
+      options.meshOptions.boundingBox = m_boundingBox;
+      options.meshOptions.color = m_color;
+      options.meshOptions.normals = m_normals;
+      options.meshOptions.tangents = m_tangents;
+      options.meshOptions.texcoord0 = m_texcoord0;
+      options.meshOptions.texcoord1 = m_texcoord1;
+      options.meshOptions.texcoord2 = m_texcoord2;
+      options.meshOptions.texcoord3 = m_texcoord3;
+      options.meshOptions.generateLightmapUVs = m_generateLightmapUVs;
+
+      options.meshOptions.debugShowSkeletonBindPose = m_debugShowSkeletonBindPose;
+      options.meshOptions.debugShowSkeletonRestPose = m_debugShowSkeletonRestPose;
+
+      // Materials & Instancing.
+      options.materialImportMode = m_materialImportMode;
+      options.enableGpuInstancing = m_enableGpuInstancing;
+      options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
+      options.materialMap.SpecularWorkflowMaterial = m_specularWorkflowMaterial;
+      options.materialMap.MetallicWorkflowMaterial = m_metallicWorkflowMaterial;
+    }
 
     /// <summary>
     /// Returns the USD.NET.Scene object for this USD file.
@@ -235,94 +326,6 @@ namespace USD.NET.Unity {
       options.meshOptions.texcoord1 = ImportMode.Ignore;
       options.meshOptions.texcoord2 = ImportMode.Ignore;
       options.meshOptions.texcoord3 = ImportMode.Ignore;
-    }
-
-    /// <summary>
-    /// Convert the SceneImportOptions into a serializable form.
-    /// </summary>
-    public void OptionsToState(SceneImportOptions options) {
-      m_usdRootPath = options.usdRootPath;
-      m_projectAssetPath = options.projectAssetPath;
-      m_changeHandedness = options.changeHandedness;
-      m_scale = options.scale;
-      m_interpolation = options.interpolate ?
-                        Scene.InterpolationMode.Linear :
-                        Scene.InterpolationMode.Held;
-
-      // Scenegraph options.
-      m_importCameras = options.importCameras;
-      m_importMeshes = options.importMeshes;
-      m_importSkinning = options.importSkinning;
-      m_importHierarchy = options.importHierarchy;
-      m_importTransforms = options.importTransforms;
-      m_importSceneInstances = options.importSceneInstances;
-      m_importPointInstances = options.importPointInstances;
-
-      // Mesh options.
-      m_points = options.meshOptions.points;
-      m_topology = options.meshOptions.topology;
-      m_boundingBox = options.meshOptions.boundingBox;
-      m_color = options.meshOptions.color;
-      m_normals = options.meshOptions.normals;
-      m_tangents = options.meshOptions.tangents;
-      m_texcoord0 = options.meshOptions.texcoord0;
-      m_texcoord1 = options.meshOptions.texcoord1;
-      m_texcoord2 = options.meshOptions.texcoord2;
-      m_texcoord3 = options.meshOptions.texcoord3;
-      m_generateLightmapUVs = options.meshOptions.generateLightmapUVs;
-
-      m_debugShowSkeletonBindPose = options.meshOptions.debugShowSkeletonBindPose;
-      m_debugShowSkeletonRestPose = options.meshOptions.debugShowSkeletonRestPose;
-
-      // Materials & instancing.
-      m_materialImportMode = options.materialImportMode;
-      m_enableGpuInstancing = options.enableGpuInstancing;
-      m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
-      m_specularWorkflowMaterial = options.materialMap.SpecularWorkflowMaterial;
-      m_metallicWorkflowMaterial = options.materialMap.MetallicWorkflowMaterial;
-    }
-
-    /// <summary>
-    /// Converts the current component state into import options.
-    /// </summary>
-    public void StateToOptions(ref SceneImportOptions options) {
-      options.usdRootPath = new pxr.SdfPath(m_usdRootPath);
-      options.projectAssetPath = m_projectAssetPath;
-      options.changeHandedness = m_changeHandedness;
-      options.scale = m_scale;
-      options.interpolate = m_interpolation == Scene.InterpolationMode.Linear;
-
-      // Scenegraph options.
-      options.importCameras = m_importCameras;
-      options.importMeshes = m_importMeshes;
-      options.importSkinning = m_importSkinning;
-      options.importHierarchy = m_importHierarchy;
-      options.importTransforms = m_importTransforms;
-      options.importSceneInstances = m_importSceneInstances;
-      options.importPointInstances = m_importPointInstances;
-
-      // Mesh options.
-      options.meshOptions.points = m_points;
-      options.meshOptions.topology = m_topology;
-      options.meshOptions.boundingBox = m_boundingBox;
-      options.meshOptions.color = m_color;
-      options.meshOptions.normals = m_normals;
-      options.meshOptions.tangents = m_tangents;
-      options.meshOptions.texcoord0 = m_texcoord0;
-      options.meshOptions.texcoord1 = m_texcoord1;
-      options.meshOptions.texcoord2 = m_texcoord2;
-      options.meshOptions.texcoord3 = m_texcoord3;
-      options.meshOptions.generateLightmapUVs = m_generateLightmapUVs;
-
-      options.meshOptions.debugShowSkeletonBindPose = m_debugShowSkeletonBindPose;
-      options.meshOptions.debugShowSkeletonRestPose = m_debugShowSkeletonRestPose;
-
-      // Materials & Instancing.
-      options.materialImportMode = m_materialImportMode;
-      options.enableGpuInstancing = m_enableGpuInstancing;
-      options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
-      options.materialMap.SpecularWorkflowMaterial = m_specularWorkflowMaterial;
-      options.materialMap.MetallicWorkflowMaterial = m_metallicWorkflowMaterial;
     }
 
     public void ImportUsdAsCoroutine(GameObject goRoot,
