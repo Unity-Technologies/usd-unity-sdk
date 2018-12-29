@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -264,6 +264,10 @@ namespace USD.NET.Unity {
           Profiler.BeginSample("Add Variant Set");
           AddVariantSet(go, prim);
           Profiler.EndSample();
+
+          Profiler.BeginSample("Add Payload");
+          AddPayload(go, prim, options);
+          Profiler.EndSample();
         } catch (Exception ex) {
           Debug.LogException(new Exception("Error processing " + prim.GetPath(), ex));
         }
@@ -383,6 +387,26 @@ namespace USD.NET.Unity {
     }
 
     /// <summary>
+    /// If there is a Payload authored on this prim, expose it so the user can change the
+    /// load state.
+    /// </summary>
+    static void AddPayload(GameObject go, UsdPrim prim, SceneImportOptions options) {
+      bool hasPayload = prim.GetPrimIndex().HasPayload();
+      var pl = go.GetComponent<UsdPayload>();
+
+      if (!hasPayload) {
+        if (pl) {
+          Component.DestroyImmediate(pl);
+        }
+        return;
+      }
+
+      if (!pl) {
+        pl = go.AddComponent<UsdPayload>();
+      }
+    }
+
+    /// <summary>
     /// If there is a variant set authored on this prim, expose it so the user can change the
     /// variant selection.
     /// </summary>
@@ -402,7 +426,7 @@ namespace USD.NET.Unity {
         vs = go.AddComponent<UsdVariantSet>();
       }
 
-      vs.SyncVariants(prim, sets);
+      vs.LoadFromUsd(prim, sets);
     }
 
     /// <summary>

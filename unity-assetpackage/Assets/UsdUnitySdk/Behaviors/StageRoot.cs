@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +33,7 @@ namespace USD.NET.Unity {
     public string m_usdFile;
     public string m_projectAssetPath = "Assets/";
     public string m_usdRootPath = "/";
-
+    public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
     public float m_usdTime;
     public Scene.InterpolationMode m_interpolation;
 
@@ -187,8 +188,38 @@ namespace USD.NET.Unity {
     public Scene GetScene() {
       USD.NET.Examples.InitUsd.Initialize();
       if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != m_usdFile) {
-        m_lastScene = Scene.Open(m_usdFile);
+        pxr.UsdStage stage = null;
+        if (m_payloadPolicy == PayloadPolicy.DontLoadPayloads) {
+          stage = pxr.UsdStage.Open(m_usdFile, pxr.UsdStage.InitialLoadSet.LoadNone);
+        } else {
+          stage = pxr.UsdStage.Open(m_usdFile, pxr.UsdStage.InitialLoadSet.LoadAll);
+        }
+
+        m_lastScene = Scene.Open(stage);
+        m_lastPrimMap = null;
+
+
+        // TODO: This is potentially horrible in terms of performance, LoadAndUnload should be used
+        // instead, but the binding is not complete.
+        foreach (var payload in GetComponentsInParent<UsdPayload>()) {
+          var primSrc = payload.GetComponent<UsdPrimSource>();
+          if (payload.IsLoaded && m_payloadPolicy == PayloadPolicy.DontLoadPayloads) {
+            var prim = m_lastScene.GetPrimAtPath(primSrc.m_usdPrimPath);
+            if (prim == null || !prim) { continue; }
+            prim.Load();
+          } else {
+            var prim = m_lastScene.GetPrimAtPath(primSrc.m_usdPrimPath);
+            if (prim == null || !prim) { continue; }
+            prim.Unload();
+          }
+        }
+
+        // Re-apply variant selection state, similar to prim load state.
+        foreach (var variants in GetComponentsInChildren<UsdVariantSet>()) {
+          ApplyVariantSelectionState(m_lastScene, variants);
+        }
       }
+
       m_lastScene.Time = m_usdTime;
       m_lastScene.SetInterpolation(m_interpolation);
       return m_lastScene;
@@ -357,6 +388,41 @@ namespace USD.NET.Unity {
       StartCoroutine(importer);
     }
 
+    public void SetPayloadState(GameObject go, bool isLoaded) {
+      var primSrc = go.GetComponent<UsdPrimSource>();
+      if (!primSrc) {
+        throw new Exception("UsdPrimSource not found: " + UnityTypeConverter.GetPath(go.transform));
+      }
+      var usdPrimPath = primSrc.m_usdPrimPath;
+
+      Examples.InitUsd.Initialize();
+      var scene = GetScene();
+      if (scene == null) {
+        throw new Exception("Failed to open: " + m_usdFile);
+      }
+
+      var prim = scene.GetPrimAtPath(usdPrimPath);
+      if (prim == null || !prim) {
+        throw new Exception("Prim not found: " + usdPrimPath);
+      }
+
+      foreach (var child in go.transform.GetComponentsInChildren<UsdPrimSource>().ToList()) {
+        if (!child || child.gameObject == go) { continue; }
+        GameObject.DestroyImmediate(child.gameObject);
+      }
+
+      if (!isLoaded) {
+        prim.Unload();
+        return;
+      } else {
+        prim.Load();
+      }
+
+      SceneImportOptions importOptions = new SceneImportOptions();
+      this.StateToOptions(ref importOptions);
+      importOptions.usdRootPath = prim.GetPath();
+      SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
+    }
 
     private void ApplyVariantSelectionState(Scene scene, UsdVariantSet variants) {
       var selections = variants.GetVariantSelections();
