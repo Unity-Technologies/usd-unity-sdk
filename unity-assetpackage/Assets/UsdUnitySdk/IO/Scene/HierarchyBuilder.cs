@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -84,15 +84,16 @@ namespace USD.NET.Unity {
       // TODO: Should recurse to discover deeply nested instancing.
       // TODO: Generates garbage for every prim, but we expect few masters.
       if (options.importPointInstances || options.importSceneInstances) {
-        Profiler.BeginSample("Build Temp Masters");
+        Profiler.BeginSample("Build Masters");
         foreach (var masterRootPrim in scene.Stage.GetMasters()) {
-          var goMaster = new GameObject(masterRootPrim.GetPath().GetName());
+          var goMaster = FindOrCreateGameObject(unityRoot.transform,
+                                                masterRootPrim.GetPath(),
+                                                unityRoot.transform,
+                                                map,
+                                                options);
 
           goMaster.hideFlags = HideFlags.HideInHierarchy;
           goMaster.SetActive(false);
-          if (unityRoot != null) {
-            goMaster.transform.SetParent(unityRoot.transform, worldPositionStays: false);
-          }
           map.AddMasterRoot(masterRootPrim.GetPath(), goMaster);
           try {
             AddModelRoot(goMaster, masterRootPrim);
@@ -136,12 +137,12 @@ namespace USD.NET.Unity {
       if (options.importSkinning) {
         Profiler.BeginSample("Expand Skeletons");
         foreach (var path in scene.Find<SkelRootSample>()) {
-          try {
-            var prim = scene.GetPrimAtPath(path);
-            ExpandSkeleton(scene, unityRoot, usdRoot, map[path], prim, map, options);
-          } catch (Exception ex) {
-            Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
-          }
+            try {
+              var prim = scene.GetPrimAtPath(path);
+              ExpandSkeleton(scene, unityRoot, usdRoot, map[path], prim, map, options);
+            } catch (Exception ex) {
+              Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
+            }
         }
         Profiler.EndSample();
       }

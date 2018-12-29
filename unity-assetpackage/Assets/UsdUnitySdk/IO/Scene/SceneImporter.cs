@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -805,17 +805,6 @@ namespace USD.NET.Unity {
           // There is only one root, apply a single transform correction.
           XformImporter.BuildSceneRoot(scene, root.transform, importOptions);
         }
-      }
-      Profiler.EndSample();
-
-      //
-      // Clean up.
-      //
-      Profiler.BeginSample("USD: Cleanup Masters");
-      // Destroy all temp masters.
-      foreach (var path in primMap.GetMasterRootPaths()) {
-        GameObject.DestroyImmediate(primMap[path]);
-        if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
       }
       Profiler.EndSample();
 
