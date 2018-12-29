@@ -21,6 +21,20 @@ namespace USD.NET.Unity {
 
   [CustomEditor(typeof(StageRoot))]
   public class StageRootEditor : ScriptedImporterEditor {
+
+    private Texture2D m_usdLogo;
+
+    public override void OnEnable() {
+      base.OnEnable();
+      if (!m_usdLogo) {
+        var script = MonoScript.FromScriptableObject(this);
+        var path = AssetDatabase.GetAssetPath(script);
+        var rootPath = Path.GetDirectoryName(path);
+        m_usdLogo = AssetDatabase.LoadAssetAtPath(rootPath + "/UsdBanner.png",
+                                                         typeof(Texture2D)) as Texture2D;
+      }
+    }
+
     public override void OnInspectorGUI() {
       var stageRoot = (StageRoot)this.target;
 
@@ -42,7 +56,14 @@ namespace USD.NET.Unity {
         stageRoot.m_specularWorkflowMaterial = matMap.SpecularWorkflowMaterial;
       }
 
-      EditorGUILayout.LabelField("Asset Actions", EditorStyles.boldLabel);
+      var gsImageStyle = new GUIStyle();
+      gsImageStyle.alignment = TextAnchor.MiddleCenter;
+      gsImageStyle.normal.background = EditorGUIUtility.whiteTexture;
+      gsImageStyle.padding.bottom = 0;
+      GUILayout.Space(5);
+      GUILayout.BeginHorizontal(gsImageStyle);
+      EditorGUILayout.LabelField(new GUIContent(m_usdLogo), GUILayout.MinHeight(40.0f));
+      GUILayout.EndHorizontal();
 
       if (GUILayout.Button("Refresh Values from USD")) {
         ReloadFromUsd(stageRoot, forceRebuild: false);
