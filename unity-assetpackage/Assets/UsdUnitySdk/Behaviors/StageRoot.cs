@@ -286,12 +286,18 @@ namespace USD.NET.Unity {
         // Just reload the scene into memory and let the user decide if they want to send those
         // changes back to the prefab or not.
         
+        if (forceRebuild) {
         // First, destroy all existing USD game objects.
-        foreach (var src in root.GetComponentsInChildren<UsdPrimSource>()) {
+          foreach (var src in root.GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
           if (src) {
             GameObject.DestroyImmediate(src.gameObject);
           }
         }
+
+          m_lastScene = null;
+          m_lastPrimMap = null;
+        }
+
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
       }
     }
