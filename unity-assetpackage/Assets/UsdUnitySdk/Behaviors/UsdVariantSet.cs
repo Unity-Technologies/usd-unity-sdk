@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace USD.NET.Unity {
     public int[] m_variantCounts;
     public string m_primPath;
 
-    public void SyncVariants(pxr.UsdPrim prim, pxr.UsdVariantSets variantSets) {
+    public void LoadFromUsd(pxr.UsdPrim prim, pxr.UsdVariantSets variantSets) {
       var setNames = variantSets.GetNames();
       m_variantSetNames = setNames.ToArray();
       m_selected = m_variantSetNames.Select(setName => variantSets.GetVariantSelection(setName)).ToArray();
@@ -31,5 +32,19 @@ namespace USD.NET.Unity {
       m_variantCounts = m_variantSetNames.Select(setName => variantSets.GetVariantSet(setName).GetVariantNames().Count).ToArray();
       m_primPath = prim.GetPath();
     }
+
+    public void ApplyVariantSelections() {
+      var stageRoot = GetComponentInParent<StageRoot>();
+      stageRoot.SetVariantSelection(gameObject, m_primPath, GetVariantSelections());
+    }
+
+    public Dictionary<string, string> GetVariantSelections() {
+      var selections = new Dictionary<string, string>();
+      for (int i = 0; i < m_variantSetNames.Length; i++) {
+        selections.Add(m_variantSetNames[i], m_selected[i]);
+      }
+      return selections;
+    }
+
   }
 }

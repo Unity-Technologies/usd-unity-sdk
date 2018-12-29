@@ -22,7 +22,6 @@ namespace USD.NET.Unity {
     public override void OnInspectorGUI() {
 
       var variantSet = (UsdVariantSet)this.target;
-      var stageRoot = variantSet.GetComponentInParent<StageRoot>();
 
       int selectedIndex = 0;
       int varIdx = 0;
@@ -62,12 +61,7 @@ namespace USD.NET.Unity {
         return;
       }
 
-      var selections = new Dictionary<string, string>();
-      for (int i = 0; i < variantSet.m_variantSetNames.Length; i++) {
-        selections.Add(variantSet.m_variantSetNames[i], variantSet.m_selected[i]);
-      }
-
-      stageRoot.SetVariantSelection(variantSet.gameObject, variantSet.m_primPath, selections);
+      variantSet.ApplyVariantSelections();
     }
   }
 }

@@ -357,11 +357,25 @@ namespace USD.NET.Unity {
       StartCoroutine(importer);
     }
 
+
+    private void ApplyVariantSelectionState(Scene scene, UsdVariantSet variants) {
+      var selections = variants.GetVariantSelections();
+      var path = variants.GetComponent<UsdPrimSource>().m_usdPrimPath;
+      var prim = scene.GetPrimAtPath(path);
+      var varSets = prim.GetVariantSets();
+      foreach (var sel in selections) {
+        if (!varSets.HasVariantSet(sel.Key)) {
+          throw new Exception("Unknown varient set: " + sel.Key + " at " + path);
+        }
+        varSets.GetVariantSet(sel.Key).SetVariantSelection(sel.Value);
+      }
+    }
+
     public void SetVariantSelection(GameObject go,
                                     string usdPrimPath,
                                     Dictionary<string, string> selections) {
       Examples.InitUsd.Initialize();
-      var scene = Scene.Open(m_usdFile);
+      var scene = GetScene();
       if (scene == null) {
         throw new Exception("Failed to open: " + m_usdFile);
       }
@@ -387,11 +401,7 @@ namespace USD.NET.Unity {
       SceneImportOptions importOptions = new SceneImportOptions();
       this.StateToOptions(ref importOptions);
       importOptions.usdRootPath = prim.GetPath();
-      try {
         SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
-      } finally {
-        scene.Close();
       }
     }
   }
-}
