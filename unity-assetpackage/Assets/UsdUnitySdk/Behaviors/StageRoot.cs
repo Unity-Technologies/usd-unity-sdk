@@ -343,7 +343,6 @@ namespace USD.NET.Unity {
         Debug.LogException(ex);
         return;
       } finally {
-        baseLayer.Close();
         if (overs != null) {
           overs.Save();
           overs.Close();
