@@ -51,7 +51,8 @@ public class UsdMenu : MonoBehaviour {
       return null;
     }
     USD.NET.Examples.InitUsd.Initialize();
-    return USD.NET.Scene.Open(path);
+    var stage = pxr.UsdStage.Open(path, pxr.UsdStage.InitialLoadSet.LoadNone);
+    return USD.NET.Scene.Open(stage);
   }
 
   [MenuItem("USD/Export Selected with Children", true)]
