@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -211,6 +211,49 @@ public class UsdMenu : MonoBehaviour {
     } finally {
       GameObject.DestroyImmediate(go);
     }
+  }
+
+  [MenuItem("USD/Unload Subtree", true)]
+  static bool EnableMenuUnloadSubtree() {
+    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<StageRoot>();
+  }
+  [MenuItem("USD/Unload Subtree", priority=100)]
+  public static void MenuUnloadSubtree() {
+    var src = Selection.activeGameObject.transform;
+    int count = 0;
+    foreach (var payload in src.GetComponentsInChildren<UsdPayload>()) {
+      payload.Unload();
+      count++;
+    }
+
+    if (count == 0) {
+      Debug.LogWarning("No USD payloads found in subtree.");
+      return;
+    }
+    var root = src.GetComponentInParent<StageRoot>();
+    root.Reload(forceRebuild: false);
+  }
+
+  [MenuItem("USD/Load Subtree", true)]
+  static bool EnableMenuLoadSubtree() {
+    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<StageRoot>();
+  }
+  [MenuItem("USD/Load Subtree", priority = 101)]
+  public static void MenuLoadSubtree() {
+    var src = Selection.activeGameObject.transform;
+    int count = 0;
+    foreach (var payload in src.GetComponentsInChildren<UsdPayload>()) {
+      payload.Load();
+      count++;
+    }
+
+    if (count == 0) {
+      Debug.LogWarning("No USD payloads found in subtree.");
+      return;
+    }
+
+    var root = src.GetComponentInParent<StageRoot>();
+    root.Reload(forceRebuild: false);
   }
 
   /// <summary>
