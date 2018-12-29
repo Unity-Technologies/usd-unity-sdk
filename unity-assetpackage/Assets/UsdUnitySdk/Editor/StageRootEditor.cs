@@ -57,7 +57,7 @@ namespace USD.NET.Unity {
       }
 
       if (GUILayout.Button("Export Transform Overrides")) {
-        ExportOverrides(stageRoot);
+        UsdMenu.MenuExportTransforms();
       }
 
       if (GUILayout.Button("Open USD File")) {
@@ -87,56 +87,6 @@ namespace USD.NET.Unity {
       var parent = stageRoot.gameObject.transform.parent;
       var root = parent ? parent.gameObject : null;
       stageRoot.ImportUsdAsCoroutine(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options, targetFrameMilliseconds: 5);
-    }
-
-    private void ExportOverrides(StageRoot sceneToReference) {
-      Scene overs = UsdMenu.InitForSave(
-          Path.GetFileNameWithoutExtension(sceneToReference.m_usdFile) + "_overs.usda");
-
-      if (overs == null) {
-        return;
-      }
-
-      var baseLayer = sceneToReference.GetScene();
-      if (baseLayer == null) {
-        throw new Exception("Could not open base layer: " + sceneToReference.m_usdFile);
-      }
-
-      overs.Time = baseLayer.Time;
-      overs.StartTime = baseLayer.StartTime;
-      overs.EndTime = baseLayer.EndTime;
-
-      overs.WriteMode = Scene.WriteModes.Over;
-      overs.UpAxis = baseLayer.UpAxis;
-
-      try {
-        SceneExporter.Export(sceneToReference.gameObject,
-                             overs,
-                             BasisTransformation.SlowAndSafe,
-                             exportUnvarying: false,
-                             zeroRootTransform: true);
-
-        var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.m_usdFile);
-        GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
-      } catch (System.Exception ex) {
-        Debug.LogException(ex);
-        return;
-      } finally {
-        baseLayer.Close();
-        if (overs != null) {
-          overs.Save();
-          overs.Close();
-        }
-      }
-
-    }
-
-    pxr.UsdPrim GetFirstPrim(Scene scene) {
-      var children = scene.Stage.GetPseudoRoot().GetAllChildren().GetEnumerator();
-      if (!children.MoveNext()) {
-        return null;
-      }
-      return children.Current;
     }
 
   }

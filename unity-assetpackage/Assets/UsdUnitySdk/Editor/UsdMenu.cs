@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,9 +59,20 @@ public class UsdMenu : MonoBehaviour {
   static bool EnableMenuExportSelectedWithChildren() {
     return Selection.gameObjects.Length > 0;
   }
-  [MenuItem("USD/Export Selected with Children")]
+  [MenuItem("USD/Export Selected with Children", priority = 0)]
   static void MenuExportSelectedWithChildren() {
     ExportSelected(BasisTransformation.SlowAndSafe);
+  }
+
+  [MenuItem("USD/Export Transform Overrides", true)]
+  static bool EnableMenuExportTransforms() {
+    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<StageRoot>();
+  }
+  [MenuItem("USD/Export Transform Overrides", priority = 0)]
+  static public void MenuExportTransforms() {
+    var root = Selection.activeGameObject.GetComponentInParent<StageRoot>();
+    var overs = InitForSave(Path.GetFileNameWithoutExtension(root.m_usdFile) + "_overs.usda");
+    root.ExportOverrides(overs);
   }
 
   static void ExportSelected(BasisTransformation basisTransform) {

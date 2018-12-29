@@ -285,14 +285,14 @@ namespace USD.NET.Unity {
         // An instance of a prefab or a vanilla game object.
         // Just reload the scene into memory and let the user decide if they want to send those
         // changes back to the prefab or not.
-        
+
         if (forceRebuild) {
-        // First, destroy all existing USD game objects.
+          // First, destroy all existing USD game objects.
           foreach (var src in root.GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
-          if (src) {
-            GameObject.DestroyImmediate(src.gameObject);
+            if (src) {
+              GameObject.DestroyImmediate(src.gameObject);
+            }
           }
-        }
 
           m_lastScene = null;
           m_lastPrimMap = null;
@@ -302,7 +302,56 @@ namespace USD.NET.Unity {
       }
     }
 
-#region "Timeline Support"
+    pxr.UsdPrim GetFirstPrim(Scene scene) {
+      var children = scene.Stage.GetPseudoRoot().GetAllChildren().GetEnumerator();
+      if (!children.MoveNext()) {
+        return null;
+      }
+      return children.Current;
+    }
+
+    public void ExportOverrides(Scene sceneInWhichToStoreTransforms) {
+      var sceneToReference = this;
+      var overs = sceneInWhichToStoreTransforms;
+
+      if (overs == null) {
+        return;
+      }
+
+      var baseLayer = sceneToReference.GetScene();
+      if (baseLayer == null) {
+        throw new Exception("Could not open base layer: " + sceneToReference.m_usdFile);
+      }
+
+      overs.Time = baseLayer.Time;
+      overs.StartTime = baseLayer.StartTime;
+      overs.EndTime = baseLayer.EndTime;
+
+      overs.WriteMode = Scene.WriteModes.Over;
+      overs.UpAxis = baseLayer.UpAxis;
+
+      try {
+        SceneExporter.Export(sceneToReference.gameObject,
+                             overs,
+                             BasisTransformation.SlowAndSafe,
+                             exportUnvarying: false,
+                             zeroRootTransform: true);
+
+        var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.m_usdFile);
+        GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
+      } catch (System.Exception ex) {
+        Debug.LogException(ex);
+        return;
+      } finally {
+        baseLayer.Close();
+        if (overs != null) {
+          overs.Save();
+          overs.Close();
+        }
+      }
+    }
+
+    #region "Timeline Support"
     private double ComputeLength() {
       var scene = GetScene();
       if (scene == null) { return 0; }
@@ -341,7 +390,7 @@ namespace USD.NET.Unity {
       SceneImporter.ImportUsd(foreignRoot.gameObject, scene, m_lastPrimMap, options);
       SceneImporter.ActiveMeshImporter = SceneImporter.FullMeshImporter;
     }
-#endregion
+    #endregion
 
     private void Update() {
       if (m_lastTime == m_usdTime) {
@@ -475,7 +524,7 @@ namespace USD.NET.Unity {
       SceneImportOptions importOptions = new SceneImportOptions();
       this.StateToOptions(ref importOptions);
       importOptions.usdRootPath = prim.GetPath();
-        SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
-      }
+      SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
     }
   }
+}
