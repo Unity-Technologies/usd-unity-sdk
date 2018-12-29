@@ -33,6 +33,11 @@ namespace USD.NET.Unity {
       }
 
       var scene = stageRoot.GetScene();
+      if (scene == null) {
+        Debug.LogError("Invalid scene: " + stageRoot.m_usdFile);
+        return;
+      }
+
       var prim = scene.GetPrimAtPath(attachment.m_usdPrimPath);
 
       //
@@ -44,10 +49,12 @@ namespace USD.NET.Unity {
       EditorGUILayout.SelectableLabel(attachment.m_usdPrimPath, EditorStyles.textField, GUILayout.Height(EditorGUIUtility.singleLineHeight));
       GUILayout.EndHorizontal();
 
-      GUILayout.BeginHorizontal();
-      EditorGUILayout.LabelField("Prim Type: ", GUILayout.Width(100));
-      EditorGUILayout.SelectableLabel(prim.GetTypeName(), EditorStyles.textField, GUILayout.Height(EditorGUIUtility.singleLineHeight));
-      GUILayout.EndHorizontal();
+      if (prim != null) {
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Prim Type: ", GUILayout.Width(100));
+        EditorGUILayout.SelectableLabel(prim.GetTypeName(), EditorStyles.textField, GUILayout.Height(EditorGUIUtility.singleLineHeight));
+        GUILayout.EndHorizontal();
+      }
 
       EditorGUILayout.LabelField("USD Time: " + stageRoot.m_usdTime);
 
@@ -56,6 +63,12 @@ namespace USD.NET.Unity {
       //
       // Separator.
       EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+      if (prim == null) {
+        EditorGUILayout.LabelField("(Prim is not valid/loaded in USD file)");
+        return;
+      }
+
       DrawAttributeGui(prim, scene);
 
       //
