@@ -584,6 +584,11 @@
             An exception is thrown if the filePath cannot be opened.
             </summary>
         </member>
+        <member name="M:USD.NET.Scene.Open(pxr.UsdStage)">
+            <summary>
+            Constructs a scene from an existing stage.
+            </summary>
+        </member>
         <member name="M:USD.NET.Scene.GetPrimAtPath(System.String)">
             <summary>
             Gets the UsdPrim at the given path, retuns null if the UsdPrim is invalid.

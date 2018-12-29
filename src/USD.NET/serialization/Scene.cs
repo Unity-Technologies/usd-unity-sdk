@@ -239,6 +239,16 @@ namespace USD.NET {
     }
 
     /// <summary>
+    /// Constructs a scene from an existing stage.
+    /// </summary>
+    public static Scene Open(UsdStage stage) {
+      if (stage == null) {
+        throw new NullReferenceException("Null stage");
+      }
+      return new Scene(stage);
+    }
+
+    /// <summary>
     /// Gets the UsdPrim at the given path, retuns null if the UsdPrim is invalid.
     /// Therefore, if the return value is not null, IsValid need not be checked.
     /// </summary>
