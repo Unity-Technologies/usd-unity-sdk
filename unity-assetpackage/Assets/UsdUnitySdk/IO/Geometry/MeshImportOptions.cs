@@ -105,7 +105,9 @@ namespace USD.NET.Unity {
     public ImportMode normals = ImportMode.ImportOrCompute;
     public ImportMode tangents = ImportMode.ImportOrCompute;
     public ImportMode boundingBox = ImportMode.ImportOrCompute;
-    public ImportMode texcoord0 = ImportMode.Import;
+
+    // Deprecated.
+    public ImportMode texcoord0 = ImportMode.Ignore;
     public ImportMode texcoord1 = ImportMode.Ignore;
     public ImportMode texcoord2 = ImportMode.Ignore;
     public ImportMode texcoord3 = ImportMode.Ignore;

@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -66,9 +66,14 @@ namespace USD.NET.Unity {
     public ImportMode m_color;
     public ImportMode m_normals;
     public ImportMode m_tangents;
+
+    [HideInInspector]
     public ImportMode m_texcoord0;
+    [HideInInspector]
     public ImportMode m_texcoord1;
+    [HideInInspector]
     public ImportMode m_texcoord2;
+    [HideInInspector]
     public ImportMode m_texcoord3;
 
     [Header("Debug Options")]
