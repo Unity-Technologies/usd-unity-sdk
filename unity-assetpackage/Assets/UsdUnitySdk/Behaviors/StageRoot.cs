@@ -324,6 +324,8 @@ namespace USD.NET.Unity {
 
       float usdTime = (float)(scene.StartTime + time * scene.Stage.GetFramesPerSecond());
       if (usdTime > scene.EndTime) { return; }
+      if (usdTime < scene.StartTime) { return; }
+
       scene.Time = usdTime;
 
       var options = new SceneImportOptions();
