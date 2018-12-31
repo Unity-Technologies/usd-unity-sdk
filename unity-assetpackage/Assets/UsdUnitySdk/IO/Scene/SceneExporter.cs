@@ -69,6 +69,8 @@ namespace USD.NET.Unity {
 
     // Sample object instances, shared across multiple export methods.
     public Dictionary<Type, SampleBase> samples = new Dictionary<Type, SampleBase>();
+
+    public List<PendingComponent> pendingComponents = new List<PendingComponent>();
   }
 
   public class Exporter {
@@ -236,6 +238,29 @@ namespace USD.NET.Unity {
 
         } // foreach exporter
       } // foreach plan
+
+
+      //
+      // Process relationships.
+      //
+      foreach (PendingComponent pending in context.pendingComponents) {
+        string path = UnityTypeConverter.GetPath(pending.value.transform);
+        path += "." + NativeExporter.BuildComponentAttrName(pending.value, "", "type");
+        pending.usdRel.AddTarget(new pxr.SdfPath(path));
+      }
+
+#if false
+    //
+    // Process composition arcs.
+    //
+    if (usdPrefab != null) {
+      foreach (var usdRef in usdPrefab.gameObject.GetComponentsInChildren<UsdReference>()) {
+        var prim = context.usdScene.Stage.GetPrimAtPath(
+          new pxr.SdfPath(BuildPath(usdRef.gameObject, context.pathMap).usdPath));
+        AddReferences(prim, usdRef.references, context);
+      }
+    }
+#endif
     }
 
     // ------------------------------------------------------------------------------------------ //
@@ -329,6 +354,12 @@ namespace USD.NET.Unity {
                 SkeletonExporter.ExportSkelRoot,
                 context,
                 insertFirst: true);
+            CreateExportPlan(
+                animatorXf.gameObject,
+                CreateSample<UsdGameObjectSample>(context),
+                NativeExporter.ExportObject,
+                context,
+                insertFirst: false);
 
             CreateExportPlan(
                 skeletonRoot.gameObject,
@@ -336,6 +367,12 @@ namespace USD.NET.Unity {
                 SkeletonExporter.ExportSkeleton,
                 context,
                 insertFirst: true);
+            CreateExportPlan(
+                skeletonRoot.gameObject,
+                CreateSample<UsdGameObjectSample>(context),
+                NativeExporter.ExportObject,
+                context,
+                insertFirst: false);
 
             CreateExportPlan(
                 skeletonRoot.gameObject,
@@ -407,6 +444,7 @@ namespace USD.NET.Unity {
           }
         }
         CreateExportPlan(go, CreateSample<MeshSample>(context), MeshExporter.ExportSkinnedMesh, context);
+        CreateExportPlan(go, CreateSample<UsdGameObjectSample>(context), NativeExporter.ExportObject, context, insertFirst: false);
         if (smr.rootBone == null) {
           Debug.LogWarning("No root bone at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
         } else if (smr.bones == null || smr.bones.Length == 0) {
@@ -427,8 +465,10 @@ namespace USD.NET.Unity {
           }
         }
         CreateExportPlan(go, CreateSample<MeshSample>(context), MeshExporter.ExportMesh, context);
+        CreateExportPlan(go, CreateSample<UsdGameObjectSample>(context), NativeExporter.ExportObject, context, insertFirst: false);
       } else if (cam) {
         CreateExportPlan(go, CreateSample<CameraSample>(context), CameraExporter.ExportCamera, context);
+        CreateExportPlan(go, CreateSample<UsdGameObjectSample>(context), NativeExporter.ExportObject, context, insertFirst: false);
       }
     }
 
@@ -552,6 +592,7 @@ namespace USD.NET.Unity {
       if (xf != context.exportRoot && !context.plans.ContainsKey(xf.gameObject)) {
         // Since all GameObjects have a Transform, export all un-exported parents as transform.
         CreateExportPlan(xf.gameObject, CreateSample<XformSample>(context), XformExporter.ExportXform, context);
+        CreateExportPlan(xf.gameObject, CreateSample<UsdGameObjectSample>(context), NativeExporter.ExportObject, context, insertFirst: false);
       }
     }
 
