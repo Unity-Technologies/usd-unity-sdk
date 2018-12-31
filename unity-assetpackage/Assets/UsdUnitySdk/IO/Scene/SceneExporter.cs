@@ -129,8 +129,8 @@ namespace USD.NET.Unity {
       Export(root, context, zeroRootTransform);
     }
     public static void Export(GameObject root,
-                          ExportContext context,
-                          bool zeroRootTransform) {
+                              ExportContext context,
+                              bool zeroRootTransform) {
       // Remove parent transform effects while exporting.
       // This must be restored before returning from this function.
       var parent = root.transform.parent;
@@ -150,6 +150,11 @@ namespace USD.NET.Unity {
 
       try {
         ExportImpl(root, context);
+        var path = new pxr.SdfPath(UnityTypeConverter.GetPath(root.transform));
+        var prim = context.scene.Stage.GetPrimAtPath(path);
+        if (prim) {
+          context.scene.Stage.SetDefaultPrim(prim);
+        }
       } finally {
         if (zeroRootTransform) {
           root.transform.localPosition = localPos;
