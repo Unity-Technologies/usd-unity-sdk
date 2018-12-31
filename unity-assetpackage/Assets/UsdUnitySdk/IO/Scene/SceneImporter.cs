@@ -420,7 +420,19 @@ namespace USD.NET.Unity {
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
 
-        foreach (var pathAndSample in scene.ReadAll<SkelRootSample>(primMap.SkelRoots)) {
+        foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.SkelRoots)) {
+          try {
+            GameObject go = primMap[pathAndSample.path];
+            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+          } catch (System.Exception ex) {
+            Debug.LogException(
+                new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+          }
+
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        }
+
+        foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Skeletons)) {
           try {
             GameObject go = primMap[pathAndSample.path];
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -498,7 +510,17 @@ namespace USD.NET.Unity {
               }
             }
 
-            foreach (var pathAndSample in scene.ReadAll<SkelRootSample>(masterRootPath)) {
+            foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+              }
+            }
+
+            foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Skeletons)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
