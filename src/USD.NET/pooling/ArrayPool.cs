@@ -42,27 +42,30 @@ namespace USD.NET {
       if (typeof(T[]) == typeof(string[])) {
         return new T[size];
       }
-      Dictionary<uint, List<Array>> pool;
-      List<Array> vec;
-      Type arrayType = typeof(T[]);
+      lock(this) {
+        Dictionary<uint, List<Array>> pool;
+        List<Array> vec;
+        Type arrayType = typeof(T[]);
 
-      if (!m_data.TryGetValue(arrayType, out pool)) {
-        pool = new Dictionary<uint, List<Array>>();
-        m_data.Add(arrayType, pool);
+        if (!m_data.TryGetValue(arrayType, out pool)) {
+          pool = new Dictionary<uint, List<Array>>();
+          m_data.Add(arrayType, pool);
+        }
+
+        if (!pool.TryGetValue(size, out vec)) {
+          vec = new List<Array>();
+          pool.Add(size, vec);
+        }
+
+        if (vec.Count == 0) {
+          return new T[size];
+        } else {
+          Array array = vec[vec.Count - 1];
+          vec.RemoveAt(vec.Count - 1);
+          return (T[])array;
+        }
       }
 
-      if (!pool.TryGetValue(size, out vec)) {
-        vec = new List<Array>();
-        pool.Add(size, vec);
-      }
-
-      if (vec.Count == 0) {
-        return new T[size];
-      } else {
-        Array array = vec[vec.Count - 1];
-        vec.RemoveAt(vec.Count - 1);
-        return (T[])array;
-      }
     }
 
     /// <summary>
@@ -76,18 +79,21 @@ namespace USD.NET {
     virtual public object MallocHandle(Type type) {
       List<object> pool;
 
-      if (!m_hndData.TryGetValue(type, out pool)) {
-        pool = new List<object>();
-        m_hndData.Add(type, pool);
+      lock (this) {
+        if (!m_hndData.TryGetValue(type, out pool)) {
+          pool = new List<object>();
+          m_hndData.Add(type, pool);
+        }
+
+        if (pool.Count == 0) {
+          return type.GetConstructor(sm_defaultCtor).Invoke(sm_noParameters);
+        } else {
+          object array = pool[pool.Count - 1];
+          pool.RemoveAt(pool.Count - 1);
+          return array;
+        }
       }
 
-      if (pool.Count == 0) {
-        return type.GetConstructor(sm_defaultCtor).Invoke(sm_noParameters);
-      } else {
-        object array = pool[pool.Count - 1];
-        pool.RemoveAt(pool.Count - 1);
-        return array;
-      }
     }
 
     /// <summary>
@@ -113,12 +119,14 @@ namespace USD.NET {
     virtual public void FreeHandle(Type type, object handle) {
       List<object> pool;
 
-      if (!m_hndData.TryGetValue(type, out pool)) {
-        pool = new List<object>();
-        m_hndData.Add(type, pool);
+      lock (this) {
+        if (!m_hndData.TryGetValue(type, out pool)) {
+          pool = new List<object>();
+          m_hndData.Add(type, pool);
+        }
+        pool.Add(handle);
       }
 
-      pool.Add(handle);
     }
 
     /// <summary>
@@ -136,17 +144,20 @@ namespace USD.NET {
       Dictionary<uint, List<Array>> pool;
       List<Array> vec;
 
-      if (!m_data.TryGetValue(arrayType, out pool)) {
-        pool = new Dictionary<uint, List<Array>>();
-        m_data.Add(arrayType, pool);
+      lock(this) {
+        if (!m_data.TryGetValue(arrayType, out pool)) {
+          pool = new Dictionary<uint, List<Array>>();
+          m_data.Add(arrayType, pool);
+        }
+
+        if (!pool.TryGetValue(size, out vec)) {
+          vec = new List<Array>();
+          pool.Add(size, vec);
+        }
+
+        vec.Add(array);
       }
 
-      if (!pool.TryGetValue(size, out vec)) {
-        vec = new List<Array>();
-        pool.Add(size, vec);
-      }
-
-      vec.Add(array);
     }
   }
 }
