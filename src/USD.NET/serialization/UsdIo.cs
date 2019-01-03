@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -470,8 +470,11 @@ namespace USD.NET {
       string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
           Reflect.GetNamespace(memberInfo));
 
+
+      // ----------------------------------------- //
+      // Dictionaries, read, early exit, recurse.
+      // ----------------------------------------- //
       // If holding a dictionary, immediately recurse and write keys as attributes.
-      
       if (csValue != null
           && csType.IsGenericType
           && csType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
@@ -523,11 +526,11 @@ namespace USD.NET {
 
       pxr.TfToken sdfAttrName = sm_tokenCache[ns, attrName];
 
-      if (csType == typeof(Relationship)) {
+      // ----------------------------------------- //
+      // Relationship, read + early exit.
+      // ----------------------------------------- //
 
-        //
-        // Read Relationship
-        //
+      if (csType == typeof(Relationship)) {
 
         pxr.UsdRelationship rel = null;
         lock (m_stageLock) {
@@ -551,7 +554,9 @@ namespace USD.NET {
         return true;
       }
 
-      UsdTypeBinding binding;
+      // ----------------------------------------- //
+      // Connection Setup.
+      // ----------------------------------------- //
 
       Connectable conn = null;
       if (csValue != null
@@ -559,23 +564,43 @@ namespace USD.NET {
           && csType.GetGenericTypeDefinition() == typeof(Connectable<>)) {
         conn = csValue as Connectable;
         if (conn != null) {
+          // Since this is a Connectable<T>, the held value T is what's being read from USD,
+          // so replace csValue with the held T value itself. csValue must be restored before
+          // returning.
           csValue = conn.GetValue();
+
+          // Same treatment for the type.
           csType = conn.GetValueType();
         }
       }
+
+      // ----------------------------------------- //
+      // Primvar Setup.
+      // ----------------------------------------- //
 
       ValueAccessor pvAccessor = null;
       PrimvarBase pvBase = null;
       if (isNewPrimvar) {
         pvAccessor = csValue as ValueAccessor;
         pvBase = (PrimvarBase)csValue;
+        // Since this is a Primvar<T>, the held value T is what's being read from USD,
+        // so replace csVAlue with the held T value itself. csValue must be restored before
+        // returning.
         csValue = pvAccessor.GetValue();
+
+        // Same treatment for the type.
         csType = pvAccessor.GetValueType();
       }
+
+      // ----------------------------------------- //
+      // Lookup Type Conversion Delegate.
+      // ----------------------------------------- //
+      UsdTypeBinding binding;
 
       if (!sm_bindings.GetBinding(csType, out binding)
           && !csType.IsEnum
           && csType != typeof(object)) {
+
         if (string.IsNullOrEmpty(ns)) {
           return false;
         }
@@ -594,26 +619,37 @@ namespace USD.NET {
         return true;
       }
 
+      // ----------------------------------------- //
+      // Prep to Read.
+      // ----------------------------------------- //
+
+      // Restore C# value to the actual property value.
       if (conn != null) {
         csValue = conn;
       } else if (pvAccessor != null) {
         csValue = pvAccessor;
       }
 
-      pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
-
+      // Append "primvars:" namespace to primvars.
       if (isPrimvar) {
         var joinedName = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
         sdfAttrName = sm_tokenCache["primvars", joinedName];
       }
 
+      // Adjust time for variability.
+      pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
       pxr.UsdTimeCode time = variability == pxr.SdfVariability.SdfVariabilityUniform
                                           ? kDefaultUsdTime
                                           : usdTime;
 
-      //using (var valWrapper = new PooledHandle<pxr.VtValue>(ArrayAllocator)) {
+      // Allocate a temp VtValue.
       pxr.VtValue vtValue = (pxr.VtValue)ArrayAllocator.MallocHandle(typeof(pxr.VtValue));
+
       try {
+
+        // ----------------------------------------- //
+        // Read Connected Paths.
+        // ----------------------------------------- //
         if (conn != null) {
           var sources = new pxr.SdfPathVector();
           if (prim.GetAttribute(sdfAttrName).GetConnections(sources)) {
@@ -623,6 +659,10 @@ namespace USD.NET {
           }
         }
 
+        // ----------------------------------------- //
+        // Read Associated Primvar Data.
+        // ----------------------------------------- //
+        // If this is a Primvar<T>, read the associated primvar metadata and indices.
         if (pvBase != null) {
           var attr = prim.GetAttribute(sdfAttrName);
           if (attr) {
@@ -639,6 +679,10 @@ namespace USD.NET {
             }
           }
         }
+
+        // ----------------------------------------- //
+        // Read the value of csValue.
+        // ----------------------------------------- //
 
         if (Reflect.IsMetadata(memberInfo)) {
           vtValue = prim.GetMetadata(sdfAttrName);
@@ -660,6 +704,9 @@ namespace USD.NET {
           return true;
         }
 
+        // ------------------------------------------ //
+        // Infer C# type from USD when Type == Object
+        // ------------------------------------------ //
         if (csType == typeof(object)) {
           // Blind object serialization needs special handling, since we won't know the C# type a priori.
           // Instead, do a reverse lookup on the SdfTypeName and let USD dictate the C# type.
@@ -684,7 +731,14 @@ namespace USD.NET {
           }
         }
 
+        // ------------------------------------------ //
+        // Convert USD's VtValue -> Strong C# Type.
+        // ------------------------------------------ //
         csValue = binding.toCsObject(vtValue);
+
+        // ------------------------------------------ //
+        // Restore csValue.
+        // ------------------------------------------ //
         if (conn != null && csValue != null) {
           conn.SetValue(csValue);
           csValue = conn;
@@ -693,15 +747,12 @@ namespace USD.NET {
           pvAccessor.SetValue(csValue);
           csValue = pvAccessor;
         }
+
       } finally {
         // Would prefer RAII handle, but introduces garbage.
         ArrayAllocator.FreeHandle(vtValue);
       }
 
-      // Need to deal with this
-      //if (srcObject != null) {
-      //  attr.SetCustomDataByKey(m_tokenCache["sourceMember"], srcObject);
-      //}
       return true;
     }
   }
