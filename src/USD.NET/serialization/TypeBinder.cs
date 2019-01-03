@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+﻿// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ namespace USD.NET {
 
   public class TypeBinder {
     static Dictionary<Type, UsdTypeBinding> bindings = new Dictionary<Type, UsdTypeBinding>();
-    
+
     // TODO: change these in Python generator to match .NET System types rather than C# types
     Dictionary<string, string> typeNameMapping = new Dictionary<string, string>();
     Dictionary<Type, Dictionary<pxr.TfToken, Enum>> enumMaps = new Dictionary<Type, Dictionary<pxr.TfToken, Enum>>();
@@ -96,22 +96,26 @@ namespace USD.NET {
 
 
     public bool GetBinding(Type key, out UsdTypeBinding binding) {
-      if (bindings.TryGetValue(key, out binding)) {
-        return true;
-      }
-      if (!key.IsEnum) {
-        return false;
-      }
+      lock (UsdIo.Bindings) {
+        if (bindings.TryGetValue(key, out binding)) {
+          return true;
+        }
+      
+        if (!key.IsEnum) {
+          return false;
+        }
 
-      //
-      // Enumerations.
-      // To reduce special cases of client code, all enums are special cased into a single
-      // converter. This converter is only selected if no specific type has been registered.
-      //
-      binding = BindEnum(key);
+        //
+        // Enumerations.
+        // To reduce special cases of client code, all enums are special cased into a single
+        // converter. This converter is only selected if no specific type has been registered.
+        //
+        binding = BindEnum(key);
 
-      // Memoize the binding so it doesn't get regenerated on every call.
-      bindings.Add(key, binding);
+        // Memoize the binding so it doesn't get regenerated on every call.
+      
+        bindings.Add(key, binding);
+      }
 
       return true;
     }
@@ -163,7 +167,7 @@ namespace USD.NET {
 
       var copyConverter = (ToCsCopyConverter)CodeGen.EmitToCs<ToCsCopyConverter>(valToVtArray, vtToCsArray);
       ToCsConverter toCs = (vtValue) => ToCsConvertHelper(vtValue, vtArrayType, copyConverter);
-      ToVtConverter toVt = 
+      ToVtConverter toVt =
           (ToVtConverter)CodeGen.EmitToVt<ToVtConverter>(csToVtArray, csType, vtArrayType);
 
       bindings[csType] = new UsdTypeBinding(toVt, toCs, sdfName);
@@ -217,15 +221,17 @@ namespace USD.NET {
         pxr.UsdCs.VtValueToTfToken(vtValue, t);
         Enum enm;
         Dictionary<pxr.TfToken, Enum> enumMap;
-        if (!enumMaps.TryGetValue(enumType, out enumMap)) {
-          enumMap = new Dictionary<pxr.TfToken, Enum>();
-          enumMaps.Add(enumType, enumMap);
-        }
-        if (!enumMap.TryGetValue(t, out enm)) {
-          string s = t.ToString();
-          System.Diagnostics.Debug.Assert(!string.IsNullOrEmpty(s));
-          enm = (Enum)Enum.Parse(enumType, string.Concat(char.ToUpper(s[0]), s.Substring(1)));
-          enumMap.Add(t, enm);
+        lock (UsdIo.Bindings) {
+          if (!enumMaps.TryGetValue(enumType, out enumMap)) {
+            enumMap = new Dictionary<pxr.TfToken, Enum>();
+            enumMaps.Add(enumType, enumMap);
+          }
+          if (!enumMap.TryGetValue(t, out enm)) {
+            string s = t.ToString();
+            System.Diagnostics.Debug.Assert(!string.IsNullOrEmpty(s));
+            enm = (Enum)Enum.Parse(enumType, string.Concat(char.ToUpper(s[0]), s.Substring(1)));
+            enumMap.Add(t, enm);
+          }
         }
         return enm;
       } finally {
