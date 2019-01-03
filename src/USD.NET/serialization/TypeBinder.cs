@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ namespace USD.NET {
 
     public bool GetReverseBinding(pxr.SdfValueTypeName key, out UsdTypeBinding binding) {
       // TODO: we could keep a reverse mapping, but waiting for deeper performance analysis first.
-      foreach(var kvp in bindings) {
+      foreach (var kvp in bindings) {
         if (kvp.Value.sdfTypeName == key) {
           binding = kvp.Value;
           return true;
@@ -201,7 +201,7 @@ namespace USD.NET {
     }
 
     private UsdTypeBinding BindEnum(Type enumType) {
-      if(!enumType.IsEnum) {
+      if (!enumType.IsEnum) {
         throw new ArgumentException("BindEnum is only applicable to enum types");
       }
       return new UsdTypeBinding(
