@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -730,9 +730,11 @@ namespace USD.NET {
     /// </summary>
     private pxr.UsdPrim GetUsdPrim(SdfPath path) {
       UsdPrim prim;
+      lock(m_stageLock) {
       if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
         prim = Stage.GetPrimAtPath(path);
         m_primMap[path] = prim;
+      }
       }
       return prim;
     }
