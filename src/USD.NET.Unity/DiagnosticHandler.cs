@@ -42,7 +42,14 @@ namespace USD.NET.Unity {
     /// Messages sent when an error occured in the USD API, but was not fatal.
     /// </summary>
     public override void OnError(string msg) {
-      // An error has occured, but was not fatal.
+      // This error comes from UsdAttributeQuery, but there is some debate that it should be an
+      // error at all. UsdSkelCache::Populate triggers it to be spewed and given that it only
+      // functions to confus the user, it's suppressed here.
+      if (msg == "Invalid attribute") {
+        return;
+      }
+
+      // Report all other non-fatal errors.
       Debug.LogException(new ApplicationException("USD ERROR: " + msg));
     }
 
