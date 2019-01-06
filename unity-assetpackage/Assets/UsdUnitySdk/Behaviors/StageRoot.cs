@@ -89,6 +89,24 @@ namespace USD.NET.Unity {
     private float m_lastTime;
     private Scene m_lastScene;
     private PrimMap m_lastPrimMap = null;
+#if UNITY_EDITOR
+    [SerializeField]
+    private int m_instanceId = 0;
+
+    void Awake() {
+      if (m_instanceId != GetInstanceID()) {
+        if (m_instanceId == 0) {
+          m_instanceId = GetInstanceID();
+        } else {
+          m_instanceId = GetInstanceID();
+          if (m_instanceId < 0) {
+            Debug.Log("Reimporting " + name + " after duplicate");
+            Reload(true);
+          }
+        }
+      }
+    }
+#endif
 
     /// <summary>
     /// Convert the SceneImportOptions into a serializable form.
