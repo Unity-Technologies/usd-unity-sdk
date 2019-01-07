@@ -919,7 +919,7 @@
             <param name="usdTime">The tiem at which key frames should be created.</param>
             <param name="usdNamespace">The USD namespace (if any) of the object.</param>
         </member>
-        <member name="M:USD.NET.UsdIo.Deserialize(System.Object@,pxr.UsdPrim,pxr.UsdTimeCode,System.Reflection.FieldInfo,System.String)">
+        <member name="M:USD.NET.UsdIo.Deserialize(System.Object@,pxr.UsdPrim,pxr.UsdTimeCode,System.Reflection.FieldInfo,System.Collections.Generic.HashSet{System.Reflection.MemberInfo},System.Nullable{System.Boolean}@,System.String)">
             <summary>
             Deserialize a single field to a single value.
             </summary>
@@ -929,7 +929,7 @@
             <param name="field">The field to deserialize.</param>
             <param name="usdNamespace">The USD namespace, if any.</param>
         </member>
-        <member name="M:USD.NET.UsdIo.Deserialize(System.Object@,pxr.UsdPrim,pxr.UsdTimeCode,System.Reflection.PropertyInfo,System.String)">
+        <member name="M:USD.NET.UsdIo.Deserialize(System.Object@,pxr.UsdPrim,pxr.UsdTimeCode,System.Reflection.PropertyInfo,System.Collections.Generic.HashSet{System.Reflection.MemberInfo},System.Nullable{System.Boolean}@,System.String)">
             <summary>
             Deserialize a single property to a single value.
             </summary>
@@ -937,9 +937,10 @@
             <param name="prim">The USD prim from which to read the value.</param>
             <param name="usdTime">The time at which to sample key frames.</param>
             <param name="field">The field to deserialize.</param>
+            <param name="mayVary">If non-null, is populated to indicate if the value varies over time.</param>
             <param name="usdNamespace">The USD namespace, if any.</param>
         </member>
-        <member name="M:USD.NET.UsdIo.Deserialize``1(``0,pxr.UsdPrim,pxr.UsdTimeCode,System.String)">
+        <member name="M:USD.NET.UsdIo.Deserialize``1(``0,pxr.UsdPrim,pxr.UsdTimeCode,System.Collections.Generic.HashSet{System.Reflection.MemberInfo},System.Nullable{System.Boolean}@,System.String)">
             <summary>
             Deserializes an arbitrary object descending from SampleBase from USD to C#.
             </summary>
@@ -970,7 +971,7 @@
             fields are an expected state this function may encounter.
             </remarks>
         </member>
-        <member name="M:USD.NET.UsdIo.ReadAttr(System.String,System.Type,System.Object@,pxr.UsdTimeCode,pxr.UsdPrim,System.Reflection.MemberInfo,System.String,System.String)">
+        <member name="M:USD.NET.UsdIo.ReadAttr(System.String,System.Type,System.Object@,pxr.UsdTimeCode,pxr.UsdPrim,System.Reflection.MemberInfo,System.Collections.Generic.HashSet{System.Reflection.MemberInfo},System.Nullable{System.Boolean}@,System.String)">
             <summary>
             Internal helper for reading data from USD.
             </summary>
@@ -981,13 +982,23 @@
             <param name="prim">The USD prim from which to read data.</param>
             <param name="memberInfo">The field/property providing serialization metadata.</param>
             <param name="usdNamespace">The optional USD namespace at which values live.</param>
-            <param name="srcObject">The source object name, used when remapping names.</param>
+            <param name="mayVary">When not null, is populated with variability.</param>
             <returns>True on success.</returns>
             <remarks>
             Note that "success" in the return value does not indicate data was read, rather it
             indicates that no unexpected states were encountered. E.g. calling ReadAttr on a field
             with no value stored in USD will not return false, since that is not considered a failure
             state.
+            </remarks>
+        </member>
+        <member name="T:USD.NET.VariabilityMap">
+            <summary>
+            Records what Prims and Attributes are animated over time.
+            </summary>
+            <remarks>
+            Note that a single animated value
+            is not considered animated, since the value would never need to be updated after the initial
+            import.
             </remarks>
         </member>
         <member name="T:pxr.GfVec3dVector.GfVec3dVectorEnumerator">
