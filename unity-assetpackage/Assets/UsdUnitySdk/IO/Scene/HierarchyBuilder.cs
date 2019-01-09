@@ -14,9 +14,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
 using pxr;
+using Unity.Jobs;
 
 namespace USD.NET.Unity {
 
@@ -26,11 +28,124 @@ namespace USD.NET.Unity {
   public static class HierarchyBuilder {
     static readonly SdfPath kAbsoluteRootPath = SdfPath.AbsoluteRootPath();
 
-    public static void BuildObjectLists(Scene scene,
-                                        GameObject unityRoot,
-                                        SdfPath usdRoot,
-                                        PrimMap map,
-                                        SceneImportOptions options) {
+    struct HierInfo {
+      public bool isVisible;
+      public bool isInstance;
+      public bool isAssembly;
+      public bool isModel;
+      public bool hasPayload;
+      public UsdPrim prim;
+      public SdfPath[] skelJoints;
+      public string modelAssetPath;
+      public string modelName;
+      public string modelVersion;
+    }
+
+    struct ReadHierJob : IJobParallelFor {
+      public static HierInfo[] result;
+      public static Scene scene;
+      public static SdfPath[] paths;
+
+      public void Execute(int index) {
+        HierInfo info = new HierInfo();
+        info.prim = scene.Stage.GetPrimAtPath(paths[index]);
+        if (!info.prim) {
+          info.prim = null;
+          return;
+        }
+
+        info.isVisible = HierarchyBuilder.IsVisible(info.prim);
+        info.isInstance = info.prim.IsInstance();
+        HierarchyBuilder.ReadModelInfo(ref info);
+        HierarchyBuilder.ReadSkeleton(ref info);
+        info.hasPayload = info.prim.GetPrimIndex().HasPayload();
+
+        result[index] = info;
+      }
+    }
+
+    struct FindPathsJob : IJobParallelFor {
+      public interface IQuery {
+        SdfPath[] Find(Scene scene, SdfPath usdRoot);
+      }
+      public struct Query<T> : IQuery where T : SampleBase, new() {
+        public SdfPath[] Find(Scene scene, SdfPath usdRoot) {
+          return scene.Find<T>(usdRoot);
+        }
+      }
+      public static SdfPath usdRoot;
+      public static Scene scene;
+      public static SdfPath[][] results;
+      public static IQuery[] queries;
+
+      public void Execute(int index) {
+        var query = queries[index];
+        if (query == null) { return; }
+        results[index] = query.Find(scene, usdRoot);
+      }
+    }
+
+    static JobHandle BeginReading(Scene scene,
+                                    SdfPath usdRoot,
+                                    PrimMap map,
+                                    SceneImportOptions options) {
+      FindPathsJob.usdRoot = usdRoot;
+      FindPathsJob.scene = scene;
+      FindPathsJob.results = new SdfPath[7][];
+      FindPathsJob.queries = new FindPathsJob.IQuery[7];
+
+      if (options.ShouldBindMaterials) {
+        FindPathsJob.queries[0] = (FindPathsJob.IQuery)new FindPathsJob.Query<MaterialSample>();
+      }
+      if (options.importCameras) {
+        FindPathsJob.queries[1] = (FindPathsJob.IQuery)new FindPathsJob.Query<CameraSample>();
+      }
+      if (options.importMeshes) {
+        FindPathsJob.queries[2] = (FindPathsJob.IQuery)new FindPathsJob.Query<MeshSample>();
+        FindPathsJob.queries[3] = (FindPathsJob.IQuery)new FindPathsJob.Query<CubeSample>();
+      }
+
+      FindPathsJob.queries[4] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkelRootSample>();
+
+      if (options.importSkinning) {
+        FindPathsJob.queries[5] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkeletonSample>();
+      }
+      if (options.importTransforms) {
+        FindPathsJob.queries[6] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
+      }
+
+      var findPathsJob = new FindPathsJob();
+      var findHandle = findPathsJob.Schedule(FindPathsJob.queries.Length, 1);
+      findHandle.Complete();
+
+      map.Materials = FindPathsJob.results[0];
+      map.Cameras = FindPathsJob.results[1];
+      map.Meshes = FindPathsJob.results[2];
+      map.Cubes = FindPathsJob.results[3];
+      map.SkelRoots = FindPathsJob.results[4];
+      map.Skeletons = FindPathsJob.results[5];
+      map.Xforms = FindPathsJob.results[6];
+
+      ReadHierJob.paths = FindPathsJob.results.Where(i => i != null).SelectMany(i => i).ToArray();
+      ReadHierJob.result = new HierInfo[ReadHierJob.paths.Length];
+      ReadHierJob.scene = scene;
+      var readHierInfo = new ReadHierJob();
+      return readHierInfo.Schedule(ReadHierJob.paths.Length, 8, dependsOn: findHandle);
+    }
+
+    static HierInfo[] BuildObjectLists(Scene scene,
+                                       GameObject unityRoot,
+                                       SdfPath usdRoot,
+                                       PrimMap map,
+                                       SceneImportOptions options) {
+
+      BeginReading(scene, usdRoot, map, options).Complete();
+
+      ProcessPaths(ReadHierJob.result, scene, unityRoot, usdRoot, map, options);
+
+      return ReadHierJob.result;
+
+#if false
       // PERFORMANCE: Internally, these collections are converted to SdfPathVectors,
       // so some time and garbage churn could be saved by using that type instead.
       if (options.ShouldBindMaterials) {
@@ -62,6 +177,7 @@ namespace USD.NET.Unity {
         map.Xforms = scene.Find<XformSample>(usdRoot);
         ProcessPaths(map.Xforms, scene, unityRoot, usdRoot, map, options);
       }
+#endif
     }
 
     /// <summary>
@@ -72,14 +188,16 @@ namespace USD.NET.Unity {
     /// is false, the primMap will be populated, but missing game objects will not be created.
     /// </remarks>
     static public PrimMap BuildGameObjects(Scene scene,
-                                            GameObject unityRoot,
-                                            SdfPath usdRoot,
-                                            IEnumerable<SdfPath> paths,
-                                            PrimMap map,
-                                            SceneImportOptions options) {
+                                           GameObject unityRoot,
+                                           SdfPath usdRoot,
+                                           IEnumerable<SdfPath> paths,
+                                           PrimMap map,
+                                           SceneImportOptions options) {
       map[usdRoot] = unityRoot;
 
-      BuildObjectLists(scene, unityRoot, usdRoot, map, options);
+      Profiler.BeginSample("Build Object Lists");
+      var hierInfo = BuildObjectLists(scene, unityRoot, usdRoot, map, options);
+      Profiler.EndSample();
 
       // TODO: Should recurse to discover deeply nested instancing.
       // TODO: Generates garbage for every prim, but we expect few masters.
@@ -96,7 +214,10 @@ namespace USD.NET.Unity {
           goMaster.SetActive(false);
           map.AddMasterRoot(masterRootPrim.GetPath(), goMaster);
           try {
-            AddModelRoot(goMaster, masterRootPrim);
+            var info = new HierInfo();
+            info.prim = masterRootPrim;
+            ReadModelInfo(ref info);
+            AddModelRoot(goMaster, info);
             AddVariantSet(goMaster, masterRootPrim);
           } catch (Exception ex) {
             Debug.LogException(new Exception("Error processing " + masterRootPrim.GetPath(), ex));
@@ -123,7 +244,10 @@ namespace USD.NET.Unity {
             }
 
             try {
-              AddModelRoot(goPrim, usdPrim);
+              var info = new HierInfo();
+              info.prim = usdPrim;
+              ReadModelInfo(ref info);
+              AddModelRoot(goPrim, info);
               AddVariantSet(goPrim, usdPrim);
             } catch (Exception ex) {
               Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
@@ -136,13 +260,18 @@ namespace USD.NET.Unity {
 
       if (options.importSkinning) {
         Profiler.BeginSample("Expand Skeletons");
-        foreach (var path in scene.Find<SkelRootSample>()) {
-            try {
-              var prim = scene.GetPrimAtPath(path);
-              ExpandSkeleton(scene, unityRoot, usdRoot, map[path], prim, map, options);
-            } catch (Exception ex) {
-              Debug.LogException(new Exception("Error expanding skeleton at " + path, ex));
-            }
+        foreach (var info in hierInfo) { 
+          if (info.skelJoints == null || info.skelJoints.Length == 0) {
+            continue;
+          }
+
+          //foreach (var path in scene.Find<SkelRootSample>()) {
+          try {
+            //var prim = scene.GetPrimAtPath(path);
+            ExpandSkeleton(info, unityRoot, usdRoot, info.prim, map, options);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error expanding skeleton at " + info.prim.GetPath(), ex));
+          }
         }
         Profiler.EndSample();
       }
@@ -150,11 +279,11 @@ namespace USD.NET.Unity {
       return map;
     }
 
-    static void ApplySelfVisibility(GameObject go, UsdPrim usdPrim) {
-      if (!go || !usdPrim) { return; }
+    static bool IsVisible(UsdPrim usdPrim) {
+      if (!usdPrim) { return false; }
 
       var img = new UsdGeomImageable(usdPrim);
-      if (!img) { return; }
+      if (!img) { return true; }
 
       // Using time=0.0 will enable this to pickup a single animated value by virtue of
       // interpolation, but correct handling of animated visibility would query it over time.
@@ -168,10 +297,16 @@ namespace USD.NET.Unity {
 
       VtValue visValue = new VtValue();
       if (!img.GetVisibilityAttr().Get(visValue, 0.0)) {
-        return;
+        return true;
       }
 
-      if (UsdCs.VtValueToTfToken(visValue) != UsdGeomTokens.invisible) {
+      return UsdCs.VtValueToTfToken(visValue) != UsdGeomTokens.invisible;
+    }
+
+    static void ApplySelfVisibility(GameObject go, UsdPrim usdPrim) {
+      if (!go) { return; }
+
+      if (IsVisible(usdPrim)) {
         return;
       }
 
@@ -216,15 +351,17 @@ namespace USD.NET.Unity {
                                         options);
     }
 
-    static void ProcessPaths(SdfPath[] paths,
+    static void ProcessPaths(HierInfo[] infos,
                              Scene scene,
                              GameObject unityRoot,
                              SdfPath usdRoot,
                              PrimMap map,
                              SceneImportOptions options) {
       Profiler.BeginSample("Process all paths");
-      foreach (SdfPath path in paths) {
-        var prim = scene.GetPrimAtPath(path);
+      foreach (var info in infos) {
+        var prim = info.prim;
+        var path = info.prim.GetPath();
+
         GameObject parentGo = null;
         CreateAncestors(path, map, unityRoot, usdRoot, options, out parentGo);
 
@@ -259,7 +396,7 @@ namespace USD.NET.Unity {
 
         try {
           Profiler.BeginSample("Add Model Root");
-          AddModelRoot(go, prim);
+          AddModelRoot(go, info);
           Profiler.EndSample();
 
           Profiler.BeginSample("Add Variant Set");
@@ -267,7 +404,7 @@ namespace USD.NET.Unity {
           Profiler.EndSample();
 
           Profiler.BeginSample("Add Payload");
-          AddPayload(go, prim, options);
+          AddPayload(go, info, options);
           Profiler.EndSample();
         } catch (Exception ex) {
           Debug.LogException(new Exception("Error processing " + prim.GetPath(), ex));
@@ -276,25 +413,19 @@ namespace USD.NET.Unity {
       Profiler.EndSample();
     }
 
-    static void ExpandSkeleton(Scene scene,
-                               GameObject unityRoot,
-                               SdfPath usdRoot,
-                               GameObject go,
-                               UsdPrim prim,
-                               PrimMap map,
-                               SceneImportOptions options) {
-      if (!prim) { return; }
+    static void ReadSkeleton(ref HierInfo info) {
+      if (info.prim == null) { return; }
 
-      var skelRoot = new UsdSkelRoot(prim);
+      var skelRoot = new UsdSkelRoot(info.prim);
       if (!skelRoot) { return; }
 
-      var skelRel = prim.GetRelationship(UsdSkelTokens.skelSkeleton);
+      var skelRel = info.prim.GetRelationship(UsdSkelTokens.skelSkeleton);
       if (!skelRel) { return; }
 
       SdfPathVector targets = skelRel.GetForwardedTargets();
       if (targets == null || targets.Count == 0) { return; }
 
-      var skelPrim = prim.GetStage().GetPrimAtPath(targets[0]);
+      var skelPrim = info.prim.GetStage().GetPrimAtPath(targets[0]);
       if (!skelPrim) { return; }
 
       var skel = new UsdSkelSkeleton(skelPrim);
@@ -309,8 +440,21 @@ namespace USD.NET.Unity {
       var joints = UnityTypeConverter.FromVtArray(vtStrings);
 
       var skelPath = skelPrim.GetPath();
-      foreach (var joint in joints) {
-        var path = skelPath.AppendPath(scene.GetSdfPath(joint));
+      info.skelJoints = new SdfPath[joints.Length];
+
+      for (int i = 0; i < joints.Length; i++) {
+        info.skelJoints[i] = skelPath.AppendPath(new SdfPath(joints[i]));
+      }
+    }
+
+    static void ExpandSkeleton(HierInfo info,
+                               GameObject unityRoot,
+                               SdfPath usdRoot,
+                               UsdPrim prim,
+                               PrimMap map,
+                               SceneImportOptions options) {
+      foreach (var joint in info.skelJoints) {
+        var path = joint;
         GameObject parentGo = null;
         if (!map.TryGetValue(path.GetParentPath(), out parentGo)) {
           // This will happen when the joints are discontinuous, for example:
@@ -332,16 +476,12 @@ namespace USD.NET.Unity {
       }
     }
 
-    /// <summary>
-    /// Exposes model root and asset metadata. The game object is primarily a tag which is useful
-    /// for smart selection of models instead of geometry.
-    /// </summary>
-    static void AddModelRoot(GameObject go, UsdPrim prim) {
-      if (!prim) {
+    static void ReadModelInfo(ref HierInfo info) {
+      if (!info.prim) {
         return;
       }
 
-      var modelApi = new UsdModelAPI(prim);
+      var modelApi = new UsdModelAPI(info.prim);
       if (!modelApi) { return; }
 
       var kindTok = new TfToken();
@@ -350,30 +490,54 @@ namespace USD.NET.Unity {
       }
 
       if (KindRegistry.IsA(kindTok, KindTokens.assembly)) {
+        info.isAssembly = true;
+      } else if (!modelApi.IsModel() || modelApi.IsGroup()) {
+        return;
+      }
+
+      var modelInfo = new VtDictionary();
+      if (!modelApi.GetAssetInfo(modelInfo)) {
+        return;
+      }
+
+      info.isModel = true;
+
+      var valName = modelInfo.GetValueAtPath("name");
+      var valVersion = modelInfo.GetValueAtPath("version");
+      var valIdentifier = modelInfo.GetValueAtPath("identifier");
+
+      if (valIdentifier != null && !valIdentifier.IsEmpty()) {
+        info.modelAssetPath = UsdCs.VtValueToSdfAssetPath(valIdentifier).GetAssetPath().ToString();
+      }
+
+      if (valName != null && !valName.IsEmpty()) {
+        info.modelName = UsdCs.VtValueTostring(valName);
+      }
+
+      if (valVersion != null && !valVersion.IsEmpty()) {
+        info.modelVersion = UsdCs.VtValueTostring(valVersion);
+      }
+
+    }
+
+    /// <summary>
+    /// Exposes model root and asset metadata. The game object is primarily a tag which is useful
+    /// for smart selection of models instead of geometry.
+    /// </summary>
+    static void AddModelRoot(GameObject go, HierInfo info) {
+      if (info.isAssembly) {
         var asm = go.GetComponent<UsdAssemblyRoot>();
         if (!asm) {
           go.AddComponent<UsdAssemblyRoot>();
         }
-      } else if (modelApi.IsModel() && !modelApi.IsGroup()) {
+      } else if (info.isModel) {
         var mdl = go.GetComponent<UsdModelRoot>();
         if (!mdl) {
           mdl = go.AddComponent<UsdModelRoot>();
         }
-        var info = new VtDictionary();
-        if (modelApi.GetAssetInfo(info)) {
-          var valName = info.GetValueAtPath("name");
-          var valVersion = info.GetValueAtPath("version");
-          var valIdentifier = info.GetValueAtPath("identifier");
-          if (valIdentifier != null && !valIdentifier.IsEmpty()) {
-            mdl.m_modelAssetPath = UsdCs.VtValueToSdfAssetPath(valIdentifier).GetAssetPath().ToString();
-          }
-          if (valName != null && !valName.IsEmpty()) {
-            mdl.m_modelName = UsdCs.VtValueTostring(valName);
-          }
-          if (valVersion != null && !valVersion.IsEmpty()) {
-            mdl.m_modelVersion = UsdCs.VtValueTostring(valVersion);
-          }
-        }
+        mdl.m_modelAssetPath = info.modelAssetPath;
+        mdl.m_modelName = info.modelName;
+        mdl.m_modelVersion = info.modelVersion;
       } else {
         // If these tags were added previously, remove them.
         var mdl = go.GetComponent<UsdModelRoot>();
@@ -391,11 +555,10 @@ namespace USD.NET.Unity {
     /// If there is a Payload authored on this prim, expose it so the user can change the
     /// load state.
     /// </summary>
-    static void AddPayload(GameObject go, UsdPrim prim, SceneImportOptions options) {
-      bool hasPayload = prim.GetPrimIndex().HasPayload();
+    static void AddPayload(GameObject go, HierInfo info, SceneImportOptions options) {
       var pl = go.GetComponent<UsdPayload>();
 
-      if (!hasPayload) {
+      if (!info.hasPayload) {
         if (pl) {
           Component.DestroyImmediate(pl);
         }
@@ -450,7 +613,7 @@ namespace USD.NET.Unity {
         root = parent.Find(name);
         go = root ? root.gameObject : null;
       }
-      
+
       if (!go) {
         // TODO: this should really not construct a game object if ImportHierarchy is false,
         // but it requires all downstream code be driven by the primMap instead of finding prims

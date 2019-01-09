@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
+using Unity.Jobs;
 using pxr;
 
 namespace USD.NET.Unity {
@@ -44,6 +45,13 @@ namespace USD.NET.Unity {
       m_skinnedMeshImporter = skinnedMeshImporter;
     }
 
+    ReadAllJob<MeshSample> m_readMeshesJob;
+    JobHandle m_readMeshesJobHandle;
+
+    public void BeginReading(Scene scene, PrimMap primMap) {
+      m_readMeshesJob = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
+      m_readMeshesJobHandle = m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
+    }
 
     public System.Collections.IEnumerator Import(Scene scene,
                              PrimMap primMap,
@@ -75,7 +83,7 @@ namespace USD.NET.Unity {
         visibility = meshType.GetMember("visibility")[0];
       }
 
-      foreach (var pathAndSample in scene.ReadAll<MeshSample>(primMap.Meshes)) {
+      foreach (var pathAndSample in m_readMeshesJob) {
         if (scene.AccessMask != null && scene.IsPopulatingAccessMask) {
           HashSet<System.Reflection.MemberInfo> members;
           if (scene.AccessMask.Included.TryGetValue(pathAndSample.path, out members)) {
@@ -98,7 +106,7 @@ namespace USD.NET.Unity {
           }
         }
 
-      Profiler.BeginSample("USD: Build Meshes");
+        Profiler.BeginSample("USD: Build Meshes");
         try {
           GameObject go = primMap[pathAndSample.path];
 
@@ -163,8 +171,8 @@ namespace USD.NET.Unity {
         yield return null;
       } // foreach mesh
 
-      }
     }
+  }
 
   /// <summary>
   /// A collection of methods used for importing USD Mesh data into Unity.

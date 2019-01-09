@@ -16,6 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
+using Unity.Jobs;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -33,6 +34,7 @@ namespace USD.NET.Unity {
   /// An interface for delegating import behavior to a third party.
   /// </summary>
   public interface IImporter {
+    void BeginReading(Scene scene, PrimMap primMap);
     IEnumerator Import(Scene scene,
                        PrimMap primMap,
                        SceneImportOptions importOptions);
@@ -351,10 +353,10 @@ namespace USD.NET.Unity {
           var skelRootPrim = scene.GetPrimAtPath(path);
           if (!skelRootPrim) {
             Debug.LogWarning("SkelRoot prim not found: " + path);
-              continue;
-            }
-            var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
-            if (!skelRoot) {
+            continue;
+          }
+          var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
+          if (!skelRoot) {
             Debug.LogWarning("SkelRoot prim not SkelRoot type: " + path);
             continue;
           }
@@ -432,13 +434,27 @@ namespace USD.NET.Unity {
       }
       Profiler.EndSample();
 
+      //
+      // Start threads.
+      //
+      ReadAllJob<XformSample> readXforms;
+      if (importOptions.importTransforms) {
+        readXforms = new ReadAllJob<XformSample>(scene, primMap.Xforms);
+        var jobHandle = readXforms.Schedule(primMap.Xforms.Length, 4);
+      }
+      if (importOptions.importMeshes) {
+        ActiveMeshImporter.BeginReading(scene, primMap);
+      }
+      JobHandle.ScheduleBatchedJobs();
+
+
       // Xforms.
       //
       // Note that we are specifically filtering on XformSample, not Xformable, this way only
       // Xforms are processed to avoid doing that work redundantly.
       if (importOptions.importTransforms) {
         Profiler.BeginSample("USD: Build Xforms");
-        foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Xforms)) {
+        foreach (var pathAndSample in readXforms) {
           try {
             GameObject go = primMap[pathAndSample.path];
             NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
@@ -726,8 +742,8 @@ namespace USD.NET.Unity {
                 foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector()) {
                   var meshPath = skinningQuery.GetPrim().GetPath();
                   try {
-                  var skelBindingSample = new SkelBindingSample();
-                  var goMesh = primMap[meshPath];
+                    var skelBindingSample = new SkelBindingSample();
+                    var goMesh = primMap[meshPath];
 
                     scene.Read(meshPath, skelBindingSample);
 
