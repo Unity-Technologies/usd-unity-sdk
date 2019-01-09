@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+﻿// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -71,6 +71,20 @@ namespace USD.NET {
     /// for common use.
     /// </remarks>
     public UsdStage Stage { get { return m_stage; } }
+
+    /// <summary>
+    /// When non-null, limits the members which the scene will read during serialization.
+    /// </summary>
+    public AccessMask AccessMask { get; set; }
+
+    /// <summary>
+    /// When true, populates the AccessMask with with values which vary over time.
+    /// </summary>
+    /// <remarks>
+    /// Usage: Set a valid AccessMaks, set the value to true, read all prims, set to false.
+    /// Subsequent reads will only include prims from this set which vary over time.
+    /// </remarks>
+    public bool IsPopulatingAccessMask { get; set; }
 
     /// <summary>
     /// Returns the root layer identifier upon which this scene is operating (the EditTarget
@@ -601,7 +615,8 @@ namespace USD.NET {
       var prim = GetUsdPrim(path);
       // Erase type.
       object o = memberValue;
-      m_usdIo.Deserialize(ref o, prim, TimeCode, fieldInfo);
+      bool? mayVary = null;
+      m_usdIo.Deserialize(ref o, prim, TimeCode, fieldInfo, null, ref mayVary);
 
       // Bring the value back, required for value types.
       memberValue = (T)o;
@@ -622,7 +637,8 @@ namespace USD.NET {
 
       // Erase type.
       object o = memberValue;
-      m_usdIo.Deserialize(ref o, prim, TimeCode, propInfo);
+      bool? mayVary = null;
+      m_usdIo.Deserialize(ref o, prim, TimeCode, propInfo, null, ref mayVary);
 
       // Bring the value back, required for value types.
       memberValue = (T)o;
@@ -635,12 +651,44 @@ namespace USD.NET {
       m_bgExe.AsyncRead(() => ReadInternal(path, sample, TimeCode));
     }
 
+    static readonly HashSet<System.Reflection.MemberInfo> m_empty = new HashSet<System.Reflection.MemberInfo>();
     private void ReadInternal<T>(SdfPath path,
                                  T sample,
                                  UsdTimeCode timeCode) where T: SampleBase {
       var prim = GetUsdPrim(path);
       if (!prim) { return; }
-      m_usdIo.Deserialize(sample, prim, timeCode);
+
+      var accessMap = AccessMask;
+      bool? mayVary = false;
+      HashSet<System.Reflection.MemberInfo> dynamicMembers = null;
+
+      if (accessMap != null) {
+        lock (m_stageLock) {
+          if (!accessMap.Included.TryGetValue(path, out dynamicMembers)
+              && IsPopulatingAccessMask) {
+            dynamicMembers = new HashSet<System.Reflection.MemberInfo>();
+            accessMap.Included.Add(path, dynamicMembers);
+          }
+        }
+
+        if (!IsPopulatingAccessMask) {
+          mayVary = null;
+          dynamicMembers = dynamicMembers ?? m_empty;
+        }
+      }
+
+      m_usdIo.Deserialize(sample, prim, timeCode, dynamicMembers, ref mayVary);
+
+      lock (m_stageLock) {
+        if (accessMap != null && mayVary != null) {
+          if (!mayVary.Value) {
+            if (accessMap.Included.ContainsKey(path)) {
+              accessMap.Included.Remove(path);
+            }
+          }
+        }
+      }
+
     }
 
     /// <summary>

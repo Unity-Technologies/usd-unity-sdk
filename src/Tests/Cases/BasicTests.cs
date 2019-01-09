@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -262,6 +262,7 @@ namespace Tests.Cases {
       sample.dictUnknown = null;
 
       WriteAndRead(ref sample, ref sample2, true);
+      TestVariability(sample);
 
       AssertEqual(sample.dict, sample2.dict);
       AssertEqual(sample.dict["Foo"], sample2.dict["Foo"]);
@@ -454,6 +455,7 @@ namespace Tests.Cases {
       var scene = USD.NET.Scene.Create();
 
       scene.Write("/Foo", sample);
+      TestVariability(sample);
 
       PrintScene(scene);
 
@@ -485,6 +487,8 @@ namespace Tests.Cases {
 
       sample2.nestedSample = new PrimvarSample.NestedSample();
       scene.Read("/Foo", sample2);
+
+      TestVariability(sample2);
 
       AssertEqual(sample.somePrimvar, sample2.somePrimvar);
       AssertEqual(sample.somePrimvar1, sample2.somePrimvar1);

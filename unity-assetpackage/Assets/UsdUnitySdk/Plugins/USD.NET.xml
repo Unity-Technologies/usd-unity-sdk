@@ -517,6 +517,20 @@
             for common use.
             </remarks>
         </member>
+        <member name="P:USD.NET.Scene.AccessMask">
+            <summary>
+            When non-null, limits the members which the scene will read during serialization.
+            </summary>
+        </member>
+        <member name="P:USD.NET.Scene.IsPopulatingAccessMask">
+            <summary>
+            When true, populates the AccessMask with with values which vary over time.
+            </summary>
+            <remarks>
+            Usage: Set a valid AccessMaks, set the value to true, read all prims, set to false.
+            Subsequent reads will only include prims from this set which vary over time.
+            </remarks>
+        </member>
         <member name="P:USD.NET.Scene.FilePath">
             <summary>
             Returns the root layer identifier upon which this scene is operating (the EditTarget
@@ -927,6 +941,8 @@
             <param name="prim">The USD prim from which to read the value.</param>
             <param name="usdTime">The time at which to sample key frames.</param>
             <param name="field">The field to deserialize.</param>
+            <param name="accessMap">A list of members to include when reading.</param>
+            <param name="mayVary">Indicates if any of the members read from this prim were time-varying.</param>
             <param name="usdNamespace">The USD namespace, if any.</param>
         </member>
         <member name="M:USD.NET.UsdIo.Deserialize(System.Object@,pxr.UsdPrim,pxr.UsdTimeCode,System.Reflection.PropertyInfo,System.Collections.Generic.HashSet{System.Reflection.MemberInfo},System.Nullable{System.Boolean}@,System.String)">
@@ -937,6 +953,7 @@
             <param name="prim">The USD prim from which to read the value.</param>
             <param name="usdTime">The time at which to sample key frames.</param>
             <param name="field">The field to deserialize.</param>
+            <param name="accessMap">A list of members to includ when reading.</param>
             <param name="mayVary">If non-null, is populated to indicate if the value varies over time.</param>
             <param name="usdNamespace">The USD namespace, if any.</param>
         </member>
@@ -948,6 +965,8 @@
             <param name="t">The object to to populate.</param>
             <param name="prim">The USD prim from which to read data.</param>
             <param name="usdTime">The time at which to read key frames.</param>
+            <param name="accessMap">A list of memebers to include when reading.</param>
+            <param name="mayVary">Indicates if this prim had any time-varying members.</param>
             <param name="usdNamespace">The object namespace, if any.</param>
         </member>
         <member name="M:USD.NET.UsdIo.WriteAttr(System.String,System.Type,System.Object,pxr.UsdTimeCode,pxr.UsdPrim,pxr.UsdGeomImageable,System.Reflection.MemberInfo,System.String,System.String)">
@@ -982,6 +1001,7 @@
             <param name="prim">The USD prim from which to read data.</param>
             <param name="memberInfo">The field/property providing serialization metadata.</param>
             <param name="usdNamespace">The optional USD namespace at which values live.</param>
+            <param name="accessMap">A map of members to include when reading.</param>
             <param name="mayVary">When not null, is populated with variability.</param>
             <returns>True on success.</returns>
             <remarks>
@@ -991,14 +1011,13 @@
             state.
             </remarks>
         </member>
-        <member name="T:USD.NET.VariabilityMap">
+        <member name="T:USD.NET.AccessMask">
             <summary>
-            Records what Prims and Attributes are animated over time.
+            Records what Prims and Attributes should be read over time.
             </summary>
             <remarks>
-            Note that a single animated value
-            is not considered animated, since the value would never need to be updated after the initial
-            import.
+            Used, for example, when tracking what prims are animated. By adding the dynamic prims to an
+            AccessMask, only the dynamic prims are loaded and downstream logic need not know why.
             </remarks>
         </member>
         <member name="T:pxr.GfVec3dVector.GfVec3dVectorEnumerator">

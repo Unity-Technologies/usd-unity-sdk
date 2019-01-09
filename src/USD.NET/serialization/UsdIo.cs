@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+﻿// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -120,17 +120,29 @@ namespace USD.NET {
     /// <param name="prim">The USD prim from which to read the value.</param>
     /// <param name="usdTime">The time at which to sample key frames.</param>
     /// <param name="field">The field to deserialize.</param>
+    /// <param name="accessMap">A list of members to include when reading.</param>
+    /// <param name="mayVary">Indicates if any of the members read from this prim were time-varying.</param>
     /// <param name="usdNamespace">The USD namespace, if any.</param>
     public void Deserialize(ref object fieldValue,
                      pxr.UsdPrim prim,
                      pxr.UsdTimeCode usdTime,
                      FieldInfo field,
+                     HashSet<MemberInfo> accessMap,
+                     ref bool? mayVary,
                      string usdNamespace = null) {
       if (Reflect.IsNonSerialized(field)) {
         return;
       }
-
-      if (!ReadAttr(field.Name, field.FieldType, ref fieldValue, usdTime, prim, field, usdNamespace)) {
+      
+      if (!ReadAttr(field.Name,
+                    field.FieldType,
+                    ref fieldValue,
+                    usdTime,
+                    prim,
+                    field,
+                    accessMap,
+                    ref mayVary,
+                    usdNamespace)) {
         // TODO: add options to dictate behavior here
       }
     }
@@ -142,17 +154,29 @@ namespace USD.NET {
     /// <param name="prim">The USD prim from which to read the value.</param>
     /// <param name="usdTime">The time at which to sample key frames.</param>
     /// <param name="field">The field to deserialize.</param>
+    /// <param name="accessMap">A list of members to includ when reading.</param>
+    /// <param name="mayVary">If non-null, is populated to indicate if the value varies over time.</param>
     /// <param name="usdNamespace">The USD namespace, if any.</param>
     public void Deserialize(ref object propValue,
                  pxr.UsdPrim prim,
                  pxr.UsdTimeCode usdTime,
                  PropertyInfo field,
+                 HashSet<MemberInfo> accessMap,
+                 ref bool? mayVary,
                  string usdNamespace = null) {
       if (Reflect.IsNonSerialized(field)) {
         return;
       }
 
-      if (!ReadAttr(field.Name, field.PropertyType, ref propValue, usdTime, prim, field, usdNamespace)) {
+      if (!ReadAttr(field.Name,
+                    field.PropertyType,
+                    ref propValue,
+                    usdTime,
+                    prim,
+                    field,
+                    accessMap,
+                    ref mayVary,
+                    usdNamespace)) {
         // TODO: add options to dictate behavior here
       }
     }
@@ -164,10 +188,14 @@ namespace USD.NET {
     /// <param name="t">The object to to populate.</param>
     /// <param name="prim">The USD prim from which to read data.</param>
     /// <param name="usdTime">The time at which to read key frames.</param>
+    /// <param name="accessMap">A list of memebers to include when reading.</param>
+    /// <param name="mayVary">Indicates if this prim had any time-varying members.</param>
     /// <param name="usdNamespace">The object namespace, if any.</param>
     public void Deserialize<T>(T t,
                          pxr.UsdPrim prim,
                          pxr.UsdTimeCode usdTime,
+                         HashSet<MemberInfo> accessMap,
+                         ref bool? mayVary,
                          string usdNamespace = null) where T : SampleBase {
       if (t == null) {
         return;
@@ -176,15 +204,26 @@ namespace USD.NET {
       PropertyInfo[] properties = Reflect.GetCachedProperties(t.GetType());
       FieldInfo[] fields = Reflect.GetCachedFields(t.GetType());
       object value = t;
+      var localVarMap = accessMap;
+      bool mayVaryWasNull = mayVary == null;
+      if (mayVary == null) {
+        localVarMap = null;
+      }
 
       for (int i = 0; i < properties.Length; i++) {
         PropertyInfo csProp = properties[i];
         if (Reflect.IsNonSerialized(csProp)) {
           continue;
         }
+        if (accessMap != null && mayVary == null && !accessMap.Contains(csProp)) {
+          continue;
+        }
         object propValue = csProp.GetValue(t, null);
-        Deserialize(ref propValue, prim, usdTime, csProp, usdNamespace);
+        Deserialize(ref propValue, prim, usdTime, csProp, localVarMap, ref mayVary, usdNamespace);
         csProp.SetValue(t, propValue, index: null);
+        if ((mayVary == null) != mayVaryWasNull) {
+          throw new ApplicationException("Deserialize modified mayVary to be non-null");
+        }
       }
 
       for (int i = 0; i < fields.Length; i++) {
@@ -192,9 +231,15 @@ namespace USD.NET {
         if (Reflect.IsNonSerialized(csField)) {
           continue;
         }
+        if (accessMap != null && mayVary == null && !accessMap.Contains(csField)) {
+          continue;
+        }
         object fieldValue = csField.GetValue(t);
-        Deserialize(ref fieldValue, prim, usdTime, csField, usdNamespace);
+        Deserialize(ref fieldValue, prim, usdTime, csField, localVarMap, ref mayVary, usdNamespace);
         csField.SetValue(t, fieldValue);
+        if ((mayVary == null) != mayVaryWasNull) {
+          throw new ApplicationException("Deserialize modified mayVary to be non-null");
+        }
       }
 
       t = (T)value;
@@ -452,7 +497,8 @@ namespace USD.NET {
     /// <param name="prim">The USD prim from which to read data.</param>
     /// <param name="memberInfo">The field/property providing serialization metadata.</param>
     /// <param name="usdNamespace">The optional USD namespace at which values live.</param>
-    /// <param name="srcObject">The source object name, used when remapping names.</param>
+    /// <param name="accessMap">A map of members to include when reading.</param>
+    /// <param name="mayVary">When not null, is populated with variability.</param>
     /// <returns>True on success.</returns>
     /// <remarks>
     /// Note that "success" in the return value does not indicate data was read, rather it
@@ -462,7 +508,8 @@ namespace USD.NET {
     /// </remarks>
     bool ReadAttr(string attrName, Type csType, ref object csValue, pxr.UsdTimeCode usdTime,
                       pxr.UsdPrim prim, MemberInfo memberInfo,
-                      string usdNamespace, string srcObject = null) {
+                      HashSet<MemberInfo> accessMap, ref bool? mayVary,
+                      string usdNamespace) {
       bool isNewPrimvar = csValue != null
                        && csType.IsGenericType
                        && csType.GetGenericTypeDefinition() == typeof(Primvar<>);
@@ -508,14 +555,22 @@ namespace USD.NET {
         ConstructorInfo ctor = (isNewPrimvar || isConnection || isRelationship)
                              ? csType.GetGenericArguments()[1].GetConstructor(new Type[0])
                              : null;
-
+        dict.Clear();
         foreach (var prop in prim.GetAuthoredPropertiesInNamespace(ns)) {
           object value = null;
           if (ctor != null) {
             value = ctor.Invoke(new object[0]);
           }
           // The recursive call will also discover that this is a primvar and any associated namespace.
-          if (ReadAttr(prop.GetBaseName(), csType.GetGenericArguments()[1], ref value, usdTime, prim, memberInfo, usdNamespace, srcObject)) {
+          if (ReadAttr(prop.GetBaseName(),
+                       csType.GetGenericArguments()[1],
+                       ref value,
+                       usdTime,
+                       prim,
+                       memberInfo,
+                       accessMap,
+                       ref mayVary,
+                       usdNamespace)) {
             if (value != null) {
               dict.Add(prop.GetBaseName().ToString(), value);
             }
@@ -531,6 +586,10 @@ namespace USD.NET {
       // ----------------------------------------- //
 
       if (csType == typeof(Relationship)) {
+        // mayVary is explicitly not set here because it has accumulation semantics:
+        //   mayVary = mayVary || false;
+        // Which is equivalent to the no-op:
+        //   mayVary = mayVary;
 
         pxr.UsdRelationship rel = null;
         lock (m_stageLock) {
@@ -615,7 +674,7 @@ namespace USD.NET {
           throw new ArgumentException("Type does not inherit from SampleBase: " + attrName);
         }
 
-        Deserialize((SampleBase)csValue, prim, usdTime, usdNamespace: ns);
+        Deserialize((SampleBase)csValue, prim, usdTime, accessMap, ref mayVary, usdNamespace: ns);
         return true;
       }
 
@@ -651,6 +710,7 @@ namespace USD.NET {
         // Read Connected Paths.
         // ----------------------------------------- //
         if (conn != null) {
+          // Connection paths cannot be animated, so mayVary is not affected.
           var sources = new pxr.SdfPathVector();
           if (prim.GetAttribute(sdfAttrName).GetConnections(sources)) {
             if (sources.Count > 0) {
@@ -667,10 +727,20 @@ namespace USD.NET {
           var attr = prim.GetAttribute(sdfAttrName);
           if (attr) {
             var pv = new pxr.UsdGeomPrimvar(attr);
+            // ElementSize and Interpolation are not animatable, so they do not affect mayVary.
             pvBase.elementSize = pv.GetElementSize();
             pvBase.SetInterpolationToken(pv.GetInterpolation());
+
+            // Indices are a first class attribute and may vary over time.
             var indices = pv.GetIndicesAttr();
             if (indices) {
+              if (accessMap != null) {
+                if (indices.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                    || indices.ValueMightBeTimeVarying()) {
+                  accessMap.Add(memberInfo);
+                  mayVary |= true;
+                }
+              }
               indices.Get(vtValue, time);
               if (!vtValue.IsEmpty()) {
                 var vtIntArray = pxr.UsdCs.VtValueToVtIntArray(vtValue);
@@ -686,13 +756,63 @@ namespace USD.NET {
 
         if (Reflect.IsMetadata(memberInfo)) {
           vtValue = prim.GetMetadata(sdfAttrName);
+          // Metadata cannot vary over time.
+
         } else if (Reflect.IsCustomData(memberInfo)) {
           vtValue = prim.GetCustomDataByKey(sdfAttrName);
+          // Custom data is metadata, which cannot vary over time.
+
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           vtValue = pxr.UsdCs.GetFusedDisplayColor(prim, time);
+
+          if (accessMap != null) {
+            // Display color is actually two attributes, primvars:displayColor and
+            // primvars:displayOpacity.
+            var gprim = new pxr.UsdGeomGprim(prim);
+            if (gprim && gprim.GetDisplayColorAttr().ValueMightBeTimeVarying()) {
+              accessMap.Add(memberInfo);
+              mayVary |= true;
+            }
+          }
+
         } else if (Reflect.IsFusedTransform(memberInfo)) {
           vtValue = pxr.UsdCs.GetFusedTransform(prim, time);
+
+          if (accessMap != null) {
+            // Transforms are complicated :/
+            var xformable = new pxr.UsdGeomXformable(prim);
+            if (xformable) {
+              bool dummy;
+              var orderAttr = xformable.GetXformOpOrderAttr();
+              if (orderAttr) {
+                if (orderAttr.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                    && orderAttr.ValueMightBeTimeVarying()) {
+                  mayVary |= true;
+                  accessMap.Add(memberInfo);
+                } else {
+                  foreach (var op in xformable.GetOrderedXformOps(out dummy)) {
+                    var opAttr = op.GetAttr();
+                    if (!opAttr) { continue; }
+                    if (opAttr.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                            && opAttr.ValueMightBeTimeVarying()) {
+                      mayVary |= true;
+                      accessMap.Add(memberInfo);
+                      break;
+                    }
+                  } // foreach
+                }
+              } // orderAttr
+            } // xformable
+          } // mayVary
         } else {
+          if (accessMap != null) {
+            var attr = prim.GetAttribute(sdfAttrName);
+            if (attr.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                    && attr.ValueMightBeTimeVarying()) {
+              accessMap.Add(memberInfo);
+              mayVary |= true;
+            }
+          }
           if (!prim.GetAttributeValue(sdfAttrName, vtValue, time)) {
             // Object has no value, still considered success.
             return true;
