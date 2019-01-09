@@ -257,7 +257,7 @@ namespace USD.NET.Examples {
                               Scene scene,
                               BasisTransformation basisTransform) {
       SceneExporter.Export(root, scene, basisTransform,
-                           exportUnvarying: true, zeroRootTransform: true);
+                           exportUnvarying: true, zeroRootTransform: false);
     }
   }
 }

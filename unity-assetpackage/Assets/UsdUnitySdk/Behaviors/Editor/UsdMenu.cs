@@ -88,7 +88,7 @@ public class UsdMenu : MonoBehaviour {
 
       try {
         SceneExporter.Export(go, scene, basisTransform,
-                             exportUnvarying: true, zeroRootTransform: true);
+                             exportUnvarying: true, zeroRootTransform: false);
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         continue;

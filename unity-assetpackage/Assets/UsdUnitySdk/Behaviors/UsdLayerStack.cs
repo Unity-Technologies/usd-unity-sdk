@@ -90,7 +90,7 @@ namespace USD.NET.Unity {
                               subLayerScene,
                               stageRoot.m_changeHandedness,
                               exportUnvarying: false,
-                              zeroRootTransform: true);
+                              zeroRootTransform: false);
       } catch (Exception ex) {
         Debug.LogException(ex);
         return;
