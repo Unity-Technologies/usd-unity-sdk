@@ -54,13 +54,14 @@ namespace USD.NET.Unity {
 
     protected void ImportColorOrMap(Scene scene,
                                     Connectable<Vector3> usdParam,
+                                    bool isNormalMap,
                                     SceneImportOptions options,
                                     ref Texture2D map,
                                     ref Color? value,
                                     out string uvPrimvar) {
       uvPrimvar = null;
       if (usdParam.IsConnected()) {
-        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, options, out uvPrimvar);
+        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, isNormalMap, options, out uvPrimvar);
       } else {
         var rgb = usdParam.defaultValue;
         value = new Color(rgb.x, rgb.y, rgb.z).gamma;
@@ -69,13 +70,14 @@ namespace USD.NET.Unity {
 
     protected void ImportValueOrMap<T>(Scene scene,
                                     Connectable<T> usdParam,
+                                    bool isNormalMap,
                                     SceneImportOptions options,
                                     ref Texture2D map,
                                     ref T? value,
                                     out string uvPrimvar) where T: struct {
       uvPrimvar = null;
       if (usdParam.IsConnected()) {
-        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, options, out uvPrimvar);
+        map = MaterialImporter.ImportConnectedTexture(scene, usdParam, isNormalMap, options, out uvPrimvar);
       } else {
         value = usdParam.defaultValue;
       }
@@ -99,29 +101,29 @@ namespace USD.NET.Unity {
                                                 SceneImportOptions options) {
       var primvars = new List<string>();
       string uvPrimvar = null;
-      ImportColorOrMap(scene, previewSurf.diffuseColor, options, ref DiffuseMap, ref Diffuse, out uvPrimvar);
+      ImportColorOrMap(scene, previewSurf.diffuseColor, false, options, ref DiffuseMap, ref Diffuse, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
 
-      ImportColorOrMap(scene, previewSurf.emissiveColor, options, ref EmissionMap, ref Emission, out uvPrimvar);
+      ImportColorOrMap(scene, previewSurf.emissiveColor, false, options, ref EmissionMap, ref Emission, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
 
-      ImportValueOrMap(scene, previewSurf.normal, options, ref NormalMap, ref Normal, out uvPrimvar);
+      ImportValueOrMap(scene, previewSurf.normal, true, options, ref NormalMap, ref Normal, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
 
-      ImportValueOrMap(scene, previewSurf.displacement, options, ref DisplacementMap, ref Displacement, out uvPrimvar);
+      ImportValueOrMap(scene, previewSurf.displacement, false, options, ref DisplacementMap, ref Displacement, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
 
-      ImportValueOrMap(scene, previewSurf.occlusion, options, ref OcclusionMap, ref Occlusion, out uvPrimvar);
+      ImportValueOrMap(scene, previewSurf.occlusion, false, options, ref OcclusionMap, ref Occlusion, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
 
-      ImportValueOrMap(scene, previewSurf.roughness, options, ref RoughnessMap, ref Roughness, out uvPrimvar);
+      ImportValueOrMap(scene, previewSurf.roughness, false, options, ref RoughnessMap, ref Roughness, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
 
       if (previewSurf.useSpecularWorkflow.defaultValue == 1) {
-        ImportColorOrMap(scene, previewSurf.specularColor, options, ref SpecularMap, ref Specular, out uvPrimvar);
+        ImportColorOrMap(scene, previewSurf.specularColor, false, options, ref SpecularMap, ref Specular, out uvPrimvar);
         MergePrimvars(uvPrimvar, primvars);
       } else {
-        ImportValueOrMap(scene, previewSurf.metallic, options, ref MetallicMap, ref Metallic, out uvPrimvar);
+        ImportValueOrMap(scene, previewSurf.metallic, false, options, ref MetallicMap, ref Metallic, out uvPrimvar);
         MergePrimvars(uvPrimvar, primvars);
       }
 

@@ -30,6 +30,7 @@ namespace USD.NET.Unity {
     private static Material AlbedoGlossCombiner;
 
     public delegate Texture2D TextureResolver(pxr.SdfAssetPath textureAssetPath,
+                                              bool isNormalMap,
                                               SceneImportOptions importOptions);
 
     /// <summary>
@@ -147,6 +148,7 @@ namespace USD.NET.Unity {
 
     public static Texture2D ImportConnectedTexture<T>(Scene scene,
                                                     Connectable<T> connection,
+                                                    bool isNormalMap,
                                                     SceneImportOptions options,
                                                     out string uvPrimvar) {
       uvPrimvar = null;
@@ -162,9 +164,9 @@ namespace USD.NET.Unity {
           !string.IsNullOrEmpty(textureSample.file.defaultValue.GetResolvedPath())) {
 
         if (OnResolveTexture != null) {
-          result = OnResolveTexture(textureSample.file.defaultValue, options);
+          result = OnResolveTexture(textureSample.file.defaultValue, isNormalMap, options);
         } else {
-          result = DefaultTextureResolver(textureSample.file.defaultValue, options);
+          result = DefaultTextureResolver(textureSample.file.defaultValue, isNormalMap, options);
         }
       }
 
@@ -188,6 +190,7 @@ namespace USD.NET.Unity {
     /// Private default texture resolver. Copies the given texture into the asset database.
     /// </summary>
     private static Texture2D DefaultTextureResolver(pxr.SdfAssetPath textureAssetPath,
+                                                    bool isNormalMap,
                                                     SceneImportOptions options) {
 #if UNITY_EDITOR
       if (!File.Exists(textureAssetPath.GetResolvedPath())) {
@@ -212,6 +215,10 @@ namespace USD.NET.Unity {
           return null;
         } else {
           texImporter.isReadable = true;
+          if (isNormalMap) {
+            texImporter.convertToNormalmap = true;
+            texImporter.textureType = UnityEditor.TextureImporterType.NormalMap;
+          }
           UnityEditor.EditorUtility.SetDirty(texImporter);
           texImporter.SaveAndReimport();
         }
