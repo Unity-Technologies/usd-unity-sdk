@@ -22,33 +22,6 @@ using pxr;
 namespace USD.NET.Unity {
 
   /// <summary>
-  /// A specialized MeshSample class, optimized for streaming data over time.
-  /// </summary>
-  public class StreamingMeshSample : XformableSample {
-    public Bounds extent;
-    public int[] faceVertexCounts;
-    public int[] faceVertexIndices;
-    public Vector3[] points;
-    public Vector3[] normals;
-    public Orientation orientation;
-
-    [VertexData, FusedDisplayColor]
-    public Color[] colors;
-
-    public static explicit operator MeshSample(StreamingMeshSample streaming) {
-      var mesh = new MeshSample();
-      mesh.orientation = streaming.orientation;
-      mesh.points = streaming.points;
-      mesh.faceVertexCounts = streaming.faceVertexCounts;
-      mesh.faceVertexIndices = streaming.faceVertexIndices;
-      mesh.extent = streaming.extent;
-      mesh.colors = streaming.colors;
-      mesh.transform = streaming.transform;
-      return mesh;
-    }
-  }
-
-  /// <summary>
   /// A callback function wich integrates the given sample into the given GameObject.
   /// </summary>
   public delegate void MeshImportFunction<T>(string path,
@@ -61,23 +34,20 @@ namespace USD.NET.Unity {
   /// This class is responsible for importing mesh samples into Unity. By swapping out the
   /// MeshImportFunctions, the import behavior can be customized.
   /// </summary>
-  /// <typeparam name="MeshSampleT">The MeshSample type to read from USD</typeparam>
-  public class MeshImportStrategy<MeshSampleT> : IImporter
-      where MeshSampleT : XformableSample, new() {
-    private MeshImportFunction<MeshSampleT> m_meshImporter;
-    private MeshImportFunction<MeshSampleT> m_skinnedMeshImporter;
+  public class MeshImportStrategy : IImporter {
+    private MeshImportFunction<MeshSample> m_meshImporter;
+    private MeshImportFunction<MeshSample> m_skinnedMeshImporter;
 
-    public MeshImportStrategy(MeshImportFunction<MeshSampleT> meshImporter,
-                            MeshImportFunction<MeshSampleT> skinnedMeshImporter) {
+    public MeshImportStrategy(MeshImportFunction<MeshSample> meshImporter,
+                            MeshImportFunction<MeshSample> skinnedMeshImporter) {
       m_meshImporter = meshImporter;
       m_skinnedMeshImporter = skinnedMeshImporter;
     }
 
+
     public System.Collections.IEnumerator Import(Scene scene,
                              PrimMap primMap,
                              SceneImportOptions importOptions) {
-      UsdSkelCache skelCache = new UsdSkelCache();
-
       if (importOptions.importSkinning) {
         Profiler.BeginSample("USD: Populate SkelCache");
         foreach (var path in primMap.SkelRoots) {
@@ -86,15 +56,49 @@ namespace USD.NET.Unity {
 
           var skelRoot = new UsdSkelRoot(prim);
           if (!skelRoot) { continue; }
-
-          skelCache.Populate(skelRoot);
         }
         Profiler.EndSample();
       }
 
+      System.Reflection.MemberInfo faceVertexCounts = null;
+      System.Reflection.MemberInfo faceVertexIndices = null;
+      System.Reflection.MemberInfo orientation = null;
+      System.Reflection.MemberInfo purpose = null;
+      System.Reflection.MemberInfo visibility = null;
+
+      if (scene.AccessMask != null && scene.IsPopulatingAccessMask) {
+        var meshType = typeof(MeshSample);
+        faceVertexCounts = meshType.GetMember("faceVertexCounts")[0];
+        faceVertexIndices = meshType.GetMember("faceVertexIndices")[0];
+        orientation = meshType.GetMember("orientation")[0];
+        purpose = meshType.GetMember("purpose")[0];
+        visibility = meshType.GetMember("visibility")[0];
+      }
+
+      foreach (var pathAndSample in scene.ReadAll<MeshSample>(primMap.Meshes)) {
+        if (scene.AccessMask != null && scene.IsPopulatingAccessMask) {
+          HashSet<System.Reflection.MemberInfo> members;
+          if (scene.AccessMask.Included.TryGetValue(pathAndSample.path, out members)) {
+            var meshType = typeof(MeshSample);
+            if (members.Contains(faceVertexCounts)
+              || members.Contains(orientation)
+              || members.Contains(faceVertexIndices)) {
+              members.Add(faceVertexCounts);
+              members.Add(faceVertexIndices);
+              members.Add(orientation);
+            }
+
+            if (pathAndSample.sample.purpose != Purpose.Default && !members.Contains(purpose)) {
+              members.Add(purpose);
+            }
+
+            if (pathAndSample.sample.visibility != Visibility.Inherited && !members.Contains(visibility)) {
+              members.Add(visibility);
+            }
+          }
+        }
 
       Profiler.BeginSample("USD: Build Meshes");
-      foreach (var pathAndSample in scene.ReadAll<MeshSampleT>(primMap.Meshes)) {
         try {
           GameObject go = primMap[pathAndSample.path];
 
@@ -103,19 +107,40 @@ namespace USD.NET.Unity {
           Profiler.EndSample();
 
           Profiler.BeginSample("Read Mesh Subsets");
-          var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+          MeshImporter.GeometrySubsets subsets = null;
+          if (primMap == null || !primMap.MeshSubsets.TryGetValue(pathAndSample.path, out subsets)) {
+            subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+          }
           Profiler.EndSample();
 
-          var skinningQuery = new UsdSkelSkinningQuery();
-          if (importOptions.importSkinning) {
-            // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
-            // have the data required to setup a skinned mesh.
-            Profiler.BeginSample("Get Skinning Query");
-            skinningQuery = skelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
-            Profiler.EndSample();
+          UsdSkelSkinningQuery skinningQuery;
+          if (importOptions.importHierarchy) {
+            if (importOptions.importSkinning && primMap.SkelCache != null) {
+              // This is pre-cached as part of calling skelCache.Populate and IsValid indicates if we
+              // have the data required to setup a skinned mesh.
+              Profiler.BeginSample("Get Skinning Query");
+              skinningQuery = new UsdSkelSkinningQuery();
+              primMap.SkinningQueries[pathAndSample.path] = primMap.SkelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
+              Profiler.EndSample();
+            }
+            if (importOptions.importMeshes) {
+              primMap.MeshSubsets[pathAndSample.path] = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
+            }
           }
 
-          if (importOptions.importSkinning && skinningQuery.IsValid()) {
+          if (importOptions.importSkinning) {
+            primMap.SkinningQueries.TryGetValue(pathAndSample.path, out skinningQuery);
+            /*
+            Profiler.BeginSample("Get Skinning Query");
+            skinningQuery = primMap.SkelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
+            Profiler.EndSample();
+            */
+          }
+
+          if (importOptions.importSkinning
+              && primMap.SkelCache != null
+              && primMap.SkinningQueries.TryGetValue(pathAndSample.path, out skinningQuery)
+              && skinningQuery.IsValid()) {
             Profiler.BeginSample("USD: Build Skinned Mesh");
             m_skinnedMeshImporter(pathAndSample.path,
                                   pathAndSample.sample,
@@ -134,11 +159,12 @@ namespace USD.NET.Unity {
                   "Error processing mesh <" + pathAndSample.path + ">", ex));
         }
 
+        Profiler.EndSample();
         yield return null;
+      } // foreach mesh
+
       }
-      Profiler.EndSample();
     }
-  }
 
   /// <summary>
   /// A collection of methods used for importing USD Mesh data into Unity.
@@ -188,37 +214,6 @@ namespace USD.NET.Unity {
       }
 
       return result;
-    }
-
-    /// <summary>
-    /// Similar to BuildSkinnedMesh, but operates on a StreamingMeshSample instead.
-    /// </summary>
-    public static void BuildStreamingSkinnedMesh(string path,
-                         StreamingMeshSample usdMesh,
-                         GeometrySubsets geomSubsets,
-                         GameObject go,
-                         SceneImportOptions options) {
-      var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
-      if (smr.sharedMesh == null) {
-        smr.sharedMesh = new Mesh();
-      }
-      MeshImporter.BuildMesh_(path, (MeshSample)usdMesh, smr.sharedMesh, geomSubsets, go, smr, options);
-    }
-
-    /// <summary>
-    /// Similar to BuildMesh, but operates on a StreamingMeshSample instead.
-    /// </summary>
-    public static void BuildStreamingMesh(string path,
-                         StreamingMeshSample usdMesh,
-                         GeometrySubsets geomSubsets,
-                         GameObject go,
-                         SceneImportOptions options) {
-      var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
-      var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
-      if (mf.sharedMesh == null) {
-        mf.sharedMesh = new Mesh();
-      }
-      MeshImporter.BuildMesh_(path, (MeshSample)usdMesh, mf.sharedMesh, geomSubsets, go, mr, options);
     }
 
     /// <summary>
@@ -276,17 +271,19 @@ namespace USD.NET.Unity {
       // Points.
       //
 
-      if (options.meshOptions.points == ImportMode.Import) {
+      if (options.meshOptions.points == ImportMode.Import && usdMesh.points != null) {
         if (changeHandedness) {
           for (int i = 0; i < usdMesh.points.Length; i++) {
             usdMesh.points[i] = UnityTypeConverter.ChangeBasis(usdMesh.points[i]);
           }
         }
 
-        // Annoyingly, there is a circular dependency between vertices and triangles, which makes
-        // it impossible to have a fixed update order in this function. As a result, we must clear
-        // the triangles before setting the points, to break that dependency.
-        unityMesh.SetTriangles(new int[0] { }, 0);
+        if (usdMesh.faceVertexIndices != null) {
+          // Annoyingly, there is a circular dependency between vertices and triangles, which makes
+          // it impossible to have a fixed update order in this function. As a result, we must clear
+          // the triangles before setting the points, to break that dependency.
+          unityMesh.SetTriangles(new int[0] { }, 0);
+        }
         unityMesh.vertices = usdMesh.points;
       }
 
@@ -310,9 +307,11 @@ namespace USD.NET.Unity {
                                       ? 0
                                       : usdMesh.faceVertexIndices.Length];
       // Optimization: only do this when there are face varying primvars.
-      Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
+      if (usdMesh.faceVertexIndices != null) {
+        Array.Copy(usdMesh.faceVertexIndices, originalIndices, originalIndices.Length);
+      }
 
-      if (options.meshOptions.topology == ImportMode.Import) {
+      if (options.meshOptions.topology == ImportMode.Import && usdMesh.faceVertexIndices != null) {
         Profiler.BeginSample("Triangulate Mesh");
         if (options.meshOptions.triangulateMesh) {
           // Triangulate n-gons.

@@ -36,6 +36,7 @@ namespace USD.NET.Unity {
     public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
     public float m_usdTimeOffset;
     public Scene.InterpolationMode m_interpolation;
+    public bool m_usdVariabilityCache = true;
 
     [HideInInspector]
     public bool m_importHierarchy = true;
@@ -80,6 +81,7 @@ namespace USD.NET.Unity {
     [Header("Debug Options")]
     public bool m_debugShowSkeletonBindPose;
     public bool m_debugShowSkeletonRestPose;
+    public bool m_debugPrintVariabilityCache;
 
     [HideInInspector]
     public BasisTransformation LastHandedness;
@@ -89,6 +91,8 @@ namespace USD.NET.Unity {
     private float m_lastTime;
     private Scene m_lastScene;
     private PrimMap m_lastPrimMap = null;
+    private AccessMask m_lastAccessMask = null;
+
 #if UNITY_EDITOR
     [SerializeField]
     private int m_instanceId = 0;
@@ -215,6 +219,7 @@ namespace USD.NET.Unity {
 
         m_lastScene = Scene.Open(stage);
         m_lastPrimMap = null;
+        m_lastAccessMask = null;
 
 
         // TODO: This is potentially horrible in terms of performance, LoadAndUnload should be used
@@ -245,6 +250,7 @@ namespace USD.NET.Unity {
 
     private void OnReload() {
       m_lastPrimMap = null;
+      m_lastAccessMask = null;
       if (m_lastScene != null) {
         m_lastScene.Close();
         m_lastScene = null;
@@ -311,10 +317,11 @@ namespace USD.NET.Unity {
               GameObject.DestroyImmediate(src.gameObject);
             }
           }
+        }
 
           m_lastScene = null;
           m_lastPrimMap = null;
-        }
+        m_lastAccessMask = null;
 
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
       }
@@ -403,9 +410,38 @@ namespace USD.NET.Unity {
         options.importHierarchy = true;
       }
 
-      SceneImporter.ActiveMeshImporter = SceneImporter.StreamingMeshImporter;
-      SceneImporter.ImportUsd(foreignRoot.gameObject, scene, m_lastPrimMap, options);
-      SceneImporter.ActiveMeshImporter = SceneImporter.FullMeshImporter;
+      if (m_usdVariabilityCache) {
+        if (m_lastAccessMask == null) {
+          m_lastAccessMask = new AccessMask();
+          scene.IsPopulatingAccessMask = true;
+        }
+      } else {
+        m_lastAccessMask = null;
+      }
+
+      if (m_debugPrintVariabilityCache && m_lastAccessMask != null
+          && !scene.IsPopulatingAccessMask) {
+        var sb = new System.Text.StringBuilder();
+        foreach (var kvp in m_lastAccessMask.Included) {
+          sb.AppendLine(kvp.Key);
+          foreach (var member in kvp.Value) {
+            sb.AppendLine("  ." + member.Name);
+          }
+          sb.AppendLine();
+        }
+        Debug.Log(sb.ToString());
+      }
+
+      scene.AccessMask = m_lastAccessMask;
+      SceneImporter.ImportUsd(foreignRoot.gameObject,
+                              scene,
+                              foreignRoot.m_lastPrimMap,
+                              options);
+      scene.AccessMask = null;
+
+      if (m_lastAccessMask != null) {
+        scene.IsPopulatingAccessMask = false;
+      }
     }
     #endregion
 
