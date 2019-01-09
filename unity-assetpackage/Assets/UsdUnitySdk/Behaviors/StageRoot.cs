@@ -398,8 +398,8 @@ namespace USD.NET.Unity {
       foreignRoot.StateToOptions(ref options);
 
       PrepOptionsForTimeChange(ref options);
-      if (m_lastPrimMap == null) {
-        m_lastPrimMap = new PrimMap();
+      if (foreignRoot.m_lastPrimMap == null) {
+        foreignRoot.m_lastPrimMap = new PrimMap();
         options.importHierarchy = true;
       }
 
