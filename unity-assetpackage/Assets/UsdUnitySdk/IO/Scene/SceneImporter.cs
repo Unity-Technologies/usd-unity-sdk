@@ -99,7 +99,11 @@ namespace USD.NET.Unity {
       if (oldPrefab == null) {
         // Create the prefab. At this point, the meshes do not yet exist and will be
         // dangling references
+#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
         prefab = PrefabUtility.CreatePrefab(prefabPath, rootObject);
+#else
+        prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
+#endif
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
         AddObjectsToAsset(rootObject, prefab, importOptions, out meshes, out materials);
@@ -113,13 +117,17 @@ namespace USD.NET.Unity {
         }
 
         // Fix the dangling references.
+#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
         prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
-
+#else
+        prefab = PrefabUtility.SavePrefabAsset(prefab);
+#endif
         var playable = ScriptableObject.CreateInstance<Extensions.Timeline.USDPlayableAsset>();
 
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
+        prefab = PrefabUtility.SavePrefabAsset(prefab);
       } else {
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
@@ -152,17 +160,22 @@ namespace USD.NET.Unity {
           AssetDatabase.AddObjectToAsset(mat, oldPrefab);
         }
 
+#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
         if (oldPrefab != rootObject) {
           prefab = PrefabUtility.ReplacePrefab(
               rootObject, oldPrefab, ReplacePrefabOptions.ReplaceNameBased);
         } else {
           prefab = oldPrefab;
         }
+#else
+        prefab = PrefabUtility.SavePrefabAsset(oldPrefab);
+#endif
 
         var playable = ScriptableObject.CreateInstance<Extensions.Timeline.USDPlayableAsset>();
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
+        PrefabUtility.SavePrefabAsset(prefab);
       }
 
       AssetDatabase.ImportAsset(prefabPath, ImportAssetOptions.ForceUpdate);
