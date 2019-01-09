@@ -39,20 +39,28 @@ namespace USD.NET.Unity {
     public static void BuildXform(Matrix4x4 xf,
                                   GameObject go,
                                   SceneImportOptions options) {
+      UnityEngine.Profiling.Profiler.BeginSample("Change Handedness");
       ImportXform(ref xf, options);
+      UnityEngine.Profiling.Profiler.EndSample();
 
       Vector3 localPos;
       Quaternion localRot;
       Vector3 localScale;
 
-      if (!UnityTypeConverter.Decompose(xf, out localPos, out localRot, out localScale)) {
+      UnityEngine.Profiling.Profiler.BeginSample("Decompose Matrix");
+      bool success = UnityTypeConverter.Decompose(xf, out localPos, out localRot, out localScale);
+      UnityEngine.Profiling.Profiler.EndSample();
+
+      if (!success) {
         Debug.LogError("Non-decomposable transform matrix for " + go.name);
         return;
       }
 
+      UnityEngine.Profiling.Profiler.BeginSample("Assign Values");
       go.transform.localPosition = localPos;
       go.transform.localScale = localScale;
       go.transform.localRotation = localRot;
+      UnityEngine.Profiling.Profiler.EndSample();
     }
 
     /// <summary>
