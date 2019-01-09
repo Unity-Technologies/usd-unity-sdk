@@ -462,7 +462,9 @@ namespace USD.NET.Unity {
       options.materialImportMode = MaterialImportMode.None;
       options.meshOptions.debugShowSkeletonBindPose = false;
       options.meshOptions.debugShowSkeletonRestPose = false;
+
       options.meshOptions.generateLightmapUVs = false;
+      options.importSkinWeights = false;
 
       // Note that tangent and Normals must be updated when the mesh deforms.
       options.importHierarchy = false;
