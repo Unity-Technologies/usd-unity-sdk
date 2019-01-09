@@ -56,7 +56,7 @@ namespace USD.NET.Unity {
         GUILayout.EndHorizontal();
       }
 
-      EditorGUILayout.LabelField("USD Time: " + stageRoot.m_usdTime);
+      EditorGUILayout.LabelField("USD Time: " + stageRoot.m_usdTimeOffset);
 
       //
       // Attribute Grid.

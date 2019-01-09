@@ -34,7 +34,7 @@ namespace USD.NET.Unity {
     public string m_projectAssetPath = "Assets/";
     public string m_usdRootPath = "/";
     public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
-    public float m_usdTime;
+    public float m_usdTimeOffset;
     public Scene.InterpolationMode m_interpolation;
 
     [HideInInspector]
@@ -238,7 +238,7 @@ namespace USD.NET.Unity {
         }
       }
 
-      m_lastScene.Time = m_usdTime;
+      m_lastScene.Time = m_usdTimeOffset;
       m_lastScene.SetInterpolation(m_interpolation);
       return m_lastScene;
     }
@@ -257,7 +257,7 @@ namespace USD.NET.Unity {
       var parent = gameObject.transform.parent;
       var root = parent ? parent.gameObject : null;
 
-      scene.Time = m_usdTime;
+      scene.Time = m_usdTimeOffset;
       try {
         OnReload();
         SceneImporter.ImportUsd(root, scene, new PrimMap(), options);
@@ -387,7 +387,7 @@ namespace USD.NET.Unity {
       if (scene == null) { return; }
       // Careful not to update any local members here, if this data is driven from a prefab, we
       // dont want those changes to be baked back into the asset.
-
+      time += foreignRoot.m_usdTimeOffset;
       float usdTime = (float)(scene.StartTime + time * scene.Stage.GetFramesPerSecond());
       if (usdTime > scene.EndTime) { return; }
       if (usdTime < scene.StartTime) { return; }
@@ -410,11 +410,11 @@ namespace USD.NET.Unity {
     #endregion
 
     private void Update() {
-      if (m_lastTime == m_usdTime) {
+      if (m_lastTime == m_usdTimeOffset) {
         return;
       }
-      m_lastTime = m_usdTime;
-      SetTime(m_usdTime, this);
+      m_lastTime = m_usdTimeOffset;
+      SetTime(m_usdTimeOffset, this);
     }
 
     public static void PrepOptionsForTimeChange(ref SceneImportOptions options) {

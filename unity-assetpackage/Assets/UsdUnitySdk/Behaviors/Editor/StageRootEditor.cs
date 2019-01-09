@@ -107,7 +107,7 @@ namespace USD.NET.Unity {
       stageRoot.StateToOptions(ref options);
       var parent = stageRoot.gameObject.transform.parent;
       var root = parent ? parent.gameObject : null;
-      stageRoot.ImportUsdAsCoroutine(root, stageRoot.m_usdFile, stageRoot.m_usdTime, options, targetFrameMilliseconds: 5);
+      stageRoot.ImportUsdAsCoroutine(root, stageRoot.m_usdFile, stageRoot.m_usdTimeOffset, options, targetFrameMilliseconds: 5);
     }
 
   }
