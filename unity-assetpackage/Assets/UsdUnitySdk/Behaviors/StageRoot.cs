@@ -311,12 +311,14 @@ namespace USD.NET.Unity {
         // changes back to the prefab or not.
 
         if (forceRebuild) {
+#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
           // First, destroy all existing USD game objects.
           foreach (var src in root.GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
             if (src) {
               GameObject.DestroyImmediate(src.gameObject);
             }
           }
+#endif
         }
 
           m_lastScene = null;
