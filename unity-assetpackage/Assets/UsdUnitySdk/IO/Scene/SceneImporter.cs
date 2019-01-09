@@ -50,8 +50,7 @@ namespace USD.NET.Unity {
       }
 
       public ImportException(string message, System.Exception innerException)
-          : base(message, innerException)
-      {
+          : base(message, innerException) {
       }
     }
 
