@@ -391,7 +391,11 @@ namespace USD.NET.Unity {
     /// </remarks>
     public void SetTime(double time, StageRoot foreignRoot) {
       var scene = GetScene();
-      if (scene == null) { return; }
+      if (scene == null) {
+        Debug.LogWarning("Null scene from GetScene() at " + UnityTypeConverter.GetPath(transform));
+        return;
+      }
+
       // Careful not to update any local members here, if this data is driven from a prefab, we
       // dont want those changes to be baked back into the asset.
       time += foreignRoot.m_usdTimeOffset;
