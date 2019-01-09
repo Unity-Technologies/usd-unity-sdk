@@ -29,6 +29,11 @@ namespace USD.NET.Unity {
       public SdfPath masterPath;
     }
 
+    public UsdSkelCache SkelCache = null;
+    public Dictionary<SdfPath, UsdSkelBindingVector> SkelBindings;
+    public Dictionary<SdfPath, UsdSkelSkinningQuery> SkinningQueries = new Dictionary<SdfPath, UsdSkelSkinningQuery>();
+    public Dictionary<SdfPath, MeshImporter.GeometrySubsets> MeshSubsets = new Dictionary<SdfPath, MeshImporter.GeometrySubsets>();
+
     public SdfPath[] Cameras { get; set; }
     public SdfPath[] Meshes { get; set; }
     public SdfPath[] Cubes { get; set; }

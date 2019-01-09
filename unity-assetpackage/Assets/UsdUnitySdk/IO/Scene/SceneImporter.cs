@@ -60,16 +60,6 @@ namespace USD.NET.Unity {
     /// </summary>
     public static IImporter ActiveMeshImporter;
 
-    /// <summary>
-    /// The mesh importer to be used when importing all data.
-    /// </summary>
-    public static IImporter FullMeshImporter;
-
-    /// <summary>
-    /// The mesh importer to be used when streaming data from disk.
-    /// </summary>
-    public static IImporter StreamingMeshImporter;
-
     public delegate void ImportNotice(PrimMap primMap,
                                       Scene usdScene,
                                       pxr.SdfPath usdPrimRoot,
@@ -88,13 +78,9 @@ namespace USD.NET.Unity {
     public static event ImportNotice AfterImport;
 
     static SceneImporter() {
-      SceneImporter.FullMeshImporter = new MeshImportStrategy<MeshSample>(
+      SceneImporter.ActiveMeshImporter = new MeshImportStrategy(
           MeshImporter.BuildMesh,
           MeshImporter.BuildSkinnedMesh);
-      SceneImporter.StreamingMeshImporter = new MeshImportStrategy<StreamingMeshSample>(
-          MeshImporter.BuildStreamingMesh,
-          MeshImporter.BuildStreamingSkinnedMesh);
-      SceneImporter.ActiveMeshImporter = SceneImporter.FullMeshImporter;
     }
 
 #if UNITY_EDITOR
@@ -343,7 +329,42 @@ namespace USD.NET.Unity {
       // Pre-process UsdSkelRoots.
       //
       var skelRoots = new List<pxr.UsdSkelRoot>();
-      var skelCache = new pxr.UsdSkelCache();
+
+      if (primMap.SkelCache == null) {
+        Profiler.BeginSample("USD: Populate SkelCache");
+        primMap.SkelBindings = new Dictionary<pxr.SdfPath, pxr.UsdSkelBindingVector>();
+        primMap.SkelCache = new pxr.UsdSkelCache();
+
+        foreach (var path in primMap.SkelRoots) {
+          var skelRootPrim = scene.GetPrimAtPath(path);
+          if (!skelRootPrim) {
+            Debug.LogWarning("SkelRoot prim not found: " + path);
+              continue;
+            }
+            var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
+            if (!skelRoot) {
+            Debug.LogWarning("SkelRoot prim not SkelRoot type: " + path);
+            continue;
+          }
+          if (!primMap.SkelCache.Populate(skelRoot)) {
+            Debug.LogWarning("Failed to populate skel cache: " + path);
+            continue;
+          }
+
+          try {
+            Profiler.BeginSample("Compute Skel Bindings");
+            var binding = new pxr.UsdSkelBindingVector();
+            if (!primMap.SkelCache.ComputeSkelBindings(skelRoot, binding)) {
+              Debug.LogWarning("ComputeSkelBindings failed");
+              continue;
+            }
+            primMap.SkelBindings.Add(path, binding);
+          } catch {
+            Debug.LogError("Failed to compute binding for SkelRoot: " + path);
+          }
+          Profiler.EndSample();
+        }
+      }
 
       if (importOptions.importSkinning) {
         Profiler.BeginSample("USD: Process UsdSkelRoots");
@@ -359,10 +380,7 @@ namespace USD.NET.Unity {
               Debug.LogWarning("SkelRoot prim not SkelRoot type: " + path);
               continue;
             }
-            if (!skelCache.Populate(skelRoot)) {
-              Debug.LogWarning("Failed to populate skel cache: " + path);
-              continue;
-            }
+
             skelRoots.Add(skelRoot);
             GameObject go = primMap[path];
             ImporterBase.GetOrAddComponent<Animator>(go, true);
@@ -412,6 +430,17 @@ namespace USD.NET.Unity {
           try {
             GameObject go = primMap[pathAndSample.path];
             NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+            bool hasVarMap = scene.AccessMask != null
+                          && scene.IsPopulatingAccessMask == false;
+            if (hasVarMap) {
+              if (!scene.AccessMask.Included.ContainsKey(pathAndSample.path)) {
+                continue;
+              }
+              if (!scene.AccessMask.Included[pathAndSample.path]
+                                  .Contains(pathAndSample.sample.GetType().GetMember("transform")[0])) {
+                continue;
+              }
+            }
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
           } catch (System.Exception ex) {
             Debug.LogException(
@@ -624,14 +653,11 @@ namespace USD.NET.Unity {
       if (importOptions.importSkinning) {
         Profiler.BeginSample("USD: Build Skeletons");
         var skeletonSamples = new Dictionary<pxr.SdfPath, SkeletonSample>();
-        var skeletonBindPoses = new Dictionary<pxr.SdfPath, Dictionary<pxr.TfToken, Matrix4x4>>();
-        var skeletonJoints = new Dictionary<pxr.SdfPath, pxr.VtTokenArray>();
         foreach (var skelRoot in skelRoots) {
           try {
             var bindings = new pxr.UsdSkelBindingVector();
-            if (!skelCache.ComputeSkelBindings(skelRoot, bindings)) {
-              Debug.LogWarning("ComputeSkelBindings failed");
-              continue;
+            if (!primMap.SkelBindings.TryGetValue(skelRoot.GetPath(), out bindings)) {
+              Debug.LogWarning("No bindings found skelRoot: " + skelRoot.GetPath());
             }
 
             if (bindings.Count == 0) {
@@ -644,96 +670,76 @@ namespace USD.NET.Unity {
               // like not to reprocess skeletons redundantly, so skeletons are cached into a
               // dictionary.
 
+              Profiler.BeginSample("Build Bind Transforms");
               var skelPath = skelBinding.GetSkeleton().GetPath();
               SkeletonSample skelSample = null;
               if (!skeletonSamples.TryGetValue(skelPath, out skelSample)) {
                 skelSample = new SkeletonSample();
+
+                Profiler.BeginSample("Read Skeleton");
                 scene.Read(skelPath, skelSample);
+                Profiler.EndSample();
+
                 skeletonSamples.Add(skelPath, skelSample);
 
-                // Unity uses the inverse bindTransform, since that's actually what's needed for skinning.
-                // Do that once here, so each skinned mesh doesn't need to do it redunddantly.
+                // Unity uses the inverse bindTransform, since that's actually what's needed for
+                // skinning. Do that once here, so each skinned mesh doesn't need to do it
+                // redundantly.
                 SkeletonImporter.BuildBindTransforms(skelPath, skelSample, importOptions);
 
                 var bindXforms = new pxr.VtMatrix4dArray();
 
                 var prim = scene.GetPrimAtPath(skelPath);
                 var skel = new pxr.UsdSkelSkeleton(prim);
-                pxr.UsdSkelSkeletonQuery skelQuery = skelCache.GetSkelQuery(skel);
 
+                Profiler.BeginSample("Get SkelQuery");
+                pxr.UsdSkelSkeletonQuery skelQuery = primMap.SkelCache.GetSkelQuery(skel);
+                Profiler.EndSample();
+
+                Profiler.BeginSample("Get JointWorldBind Transforms");
                 if (!skelQuery.GetJointWorldBindTransforms(bindXforms)) {
                   throw new ImportException("Failed to compute binding trnsforms for <" + skelPath + ">");
                 }
-
-                var dict = new Dictionary<pxr.TfToken, Matrix4x4>();
-                var xfs = UnityTypeConverter.FromVtArray(bindXforms);
-                var joints = skelQuery.GetJointOrder();
-                for (int i = 0; i < joints.size(); i++) {
-                  dict[joints[i]] = xfs[i];
-                }
-                skeletonBindPoses.Add(skelPath, dict);
-                skeletonJoints.Add(skelPath, joints);
+                Profiler.EndSample();
 
                 SkeletonImporter.BuildDebugBindTransforms(skelSample, primMap[skelPath], importOptions);
               }
+              Profiler.EndSample();
 
-              //
-              // Apply skinning weights to each skinned mesh.
-              //
-              foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector()) {
-                var meshPath = skinningQuery.GetPrim().GetPath();
-                try {
+              if (importOptions.importSkinWeights) {
+                //
+                // Apply skinning weights to each skinned mesh.
+                //
+                Profiler.BeginSample("Apply Skin Weights");
+                foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector()) {
+                  var meshPath = skinningQuery.GetPrim().GetPath();
+                  try {
                   var skelBindingSample = new SkelBindingSample();
                   var goMesh = primMap[meshPath];
 
-                  scene.Read(meshPath, skelBindingSample);
+                    scene.Read(meshPath, skelBindingSample);
 
-                  SkeletonImporter.BuildSkinnedMesh(
-                      meshPath,
-                      skelPath,
-                      skelSample,
-                      skelBindingSample,
-                      goMesh,
-                      primMap,
-                      importOptions);
+                    Profiler.BeginSample("Build Skinned Mesh");
+                    SkeletonImporter.BuildSkinnedMesh(
+                        meshPath,
+                        skelPath,
+                        skelSample,
+                        skelBindingSample,
+                        goMesh,
+                        primMap,
+                        importOptions);
+                    Profiler.EndSample();
 
-                  var jointOrder = new pxr.VtTokenArray();
-                  if (!skinningQuery.GetJointOrder(jointOrder)) {
-                    throw new ImportException("Failed to read joint order for <" + meshPath + ">");
+                    // In terms of performance, this is almost free.
+                    goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform;
+
+                  } catch (System.Exception ex) {
+                    Debug.LogException(new ImportException("Error skinning mesh: " + meshPath, ex));
                   }
-
-                  if (jointOrder.size() == 0) {
-                    jointOrder = skeletonJoints[skelPath];
-                  }
-
-                  /*
-                  var bindPoses = new Matrix4x4[jointOrder.size()];
-                  var bones = new Transform[jointOrder.size()];
-                  for (int i = 0; i < bindPoses.Length; i++) {
-                    Dictionary<pxr.TfToken, Matrix4x4> poses = null;
-                    if (!skeletonBindPoses.TryGetValue(skelPath, out poses)) {
-                      Debug.LogError("Skeleton path not found in bind poses: " + skelPath.ToString());
-                      continue;
-                    }
-                    Matrix4x4 pose;
-                    if (!poses.TryGetValue(jointOrder[i], out pose)) {
-                      Debug.LogError("Skeleton pose not found in bind poses," + 
-                          "skeleton: " + skelPath.ToString() + " " +
-                          "pose: " + jointOrder[i]);
-                      continue;
-                    }
-                    bindPoses[i] = pose.inverse;
-                    var bonePath = scene.GetSdfPath(jointOrder[i]);
-                    var boneGo = primMap[skelPath.AppendPath(bonePath)];
-                    bones[i] = boneGo.transform;
-                  }
-                  */
-
-                  goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform;
-                } catch (System.Exception ex) {
-                  Debug.LogException(new ImportException("Error skinning mesh: " + meshPath, ex));
                 }
+                Profiler.EndSample();
               }
+
             }
 
           } catch (System.Exception ex) {
@@ -756,19 +762,30 @@ namespace USD.NET.Unity {
             var prim = scene.GetPrimAtPath(skelPath);
             var skel = new pxr.UsdSkelSkeleton(prim);
 
-            pxr.UsdSkelSkeletonQuery skelQuery = skelCache.GetSkelQuery(skel);
+            pxr.UsdSkelSkeletonQuery skelQuery = primMap.SkelCache.GetSkelQuery(skel);
             var joints = skelQuery.GetJointOrder();
             var restXforms = new pxr.VtMatrix4dArray();
             var time = scene.Time.HasValue ? scene.Time.Value : pxr.UsdTimeCode.Default();
+
+            Profiler.BeginSample("Compute Joint Local Transforms");
             if (!skelQuery.ComputeJointLocalTransforms(restXforms, time, atRest: false)) {
               throw new ImportException("Failed to compute bind trnsforms for <" + skelPath + ">");
             }
+            Profiler.EndSample();
 
+            Profiler.BeginSample("Build Bones");
             for (int i = 0; i < joints.size(); i++) {
               var goBone = primMap[skelPath.AppendPath(scene.GetSdfPath(joints[i]))];
+
+              Profiler.BeginSample("Convert Matrix");
               var restXform = UnityTypeConverter.FromMatrix(restXforms[i]);
+              Profiler.EndSample();
+
+              Profiler.BeginSample("Build Bone");
               SkeletonImporter.BuildSkeletonBone(skelPath, goBone, restXform, joints, importOptions);
+              Profiler.EndSample();
             }
+            Profiler.EndSample();
           } catch (System.Exception ex) {
             Debug.LogException(
                 new ImportException("Error processing SkelRoot <" + skelPath + ">", ex));
