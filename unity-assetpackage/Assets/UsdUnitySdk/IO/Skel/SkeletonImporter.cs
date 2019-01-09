@@ -104,6 +104,7 @@ namespace USD.NET.Unity {
     public static void BuildBindTransforms(string path,
                                            SkeletonSample skelSample,
                                            SceneImportOptions options) {
+      if (skelSample.bindTransforms == null) { return; }
       for (int i = 0; i < skelSample.bindTransforms.Length; i++) {
         var xf = skelSample.bindTransforms[i];
         XformImporter.ImportXform(ref xf, options);
