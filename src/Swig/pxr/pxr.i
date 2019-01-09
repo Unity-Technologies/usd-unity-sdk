@@ -117,6 +117,16 @@ VtValue GetFusedTransform(UsdPrim prim, UsdTimeCode time) {
   return VtValue(mat);
 }
 
+bool WriteUsdZip(const std::string& usdzFilePath,
+                 const std::vector<std::string>& filesToArchive) {
+  auto writer = UsdZipFileWriter::CreateNew(usdzFilePath);
+  for (auto filePath : filesToArchive) {
+    // Empty string indicates failure.
+    writer.AddFile(filePath);
+  }
+  return writer.Save();
+}
+
 VtValue GetFusedDisplayColor(UsdPrim prim, UsdTimeCode time) {
   VtValue value;
   
