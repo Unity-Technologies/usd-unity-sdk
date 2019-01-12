@@ -18,6 +18,8 @@ namespace USD.NET.Unity {
   public static class CameraExporter {
 
     public static void ExportCamera(ObjectContext objContext, ExportContext exportContext) {
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Camera Conversion");
+
       CameraSample sample = (CameraSample)objContext.sample;
       Camera camera = objContext.gameObject.GetComponent<Camera>();
       var path = objContext.path;
@@ -43,8 +45,12 @@ namespace USD.NET.Unity {
           sample.transform = basisChange * sample.transform;
         }
       }
+      UnityEngine.Profiling.Profiler.EndSample();
 
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Camera Write");
       scene.Write(path, sample);
+      UnityEngine.Profiling.Profiler.EndSample();
+
     }
 
   }

@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,7 +29,9 @@ namespace USD.NET.Unity {
       mesh = new Mesh();
       smr.BakeMesh(mesh);
 #endif
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Skinned Mesh");
       ExportMesh(objContext, exportContext, mesh, smr.sharedMaterial, smr.sharedMaterials);
+      UnityEngine.Profiling.Profiler.EndSample();
 
       // Note that the baked mesh no longer has the bone weights, so here we switch back to the
       // shared SkinnedMeshRenderer mesh.
@@ -39,11 +41,15 @@ namespace USD.NET.Unity {
             UnityTypeConverter.GetPath(smr.rootBone));
         return;
       }
+
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Skinning Weights");
       ExportSkelWeights(exportContext.scene,
                         objContext.path,
                         smr.sharedMesh,
                         rootBone,
                         smr.bones);
+      UnityEngine.Profiling.Profiler.EndSample();
+
     }
 
     static void ExportSkelWeights(Scene scene,
@@ -99,7 +105,10 @@ namespace USD.NET.Unity {
       MeshFilter mf = objContext.gameObject.GetComponent<MeshFilter>();
       MeshRenderer mr = objContext.gameObject.GetComponent<MeshRenderer>();
       Mesh mesh = mf.sharedMesh;
+
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Mesh");
       ExportMesh(objContext, exportContext, mesh, mr.sharedMaterial, mr.sharedMaterials);
+      UnityEngine.Profiling.Profiler.EndSample();
     }
 
     static void ExportMesh(ObjectContext objContext,
@@ -180,7 +189,10 @@ namespace USD.NET.Unity {
         }
 
         sample.SetTriangles(tris);
+
+        UnityEngine.Profiling.Profiler.BeginSample("USD: Mesh Write");
         scene.Write(path, sample);
+        UnityEngine.Profiling.Profiler.EndSample();
 
         // TODO: this is a bit of a half-measure, we need real support for primvar interpolation.
         // Set interpolation based on color count.

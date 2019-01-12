@@ -150,6 +150,7 @@ namespace USD.NET.Unity {
         root.transform.localScale = Vector3.one;
       }
 
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Export");
       try {
         ExportImpl(root, context);
         var path = new pxr.SdfPath(UnityTypeConverter.GetPath(root.transform));
@@ -164,6 +165,7 @@ namespace USD.NET.Unity {
           root.transform.localScale = localScale;
           root.transform.SetParent(parent, worldPositionStays: false);
         }
+        UnityEngine.Profiling.Profiler.EndSample();
       }
     }
 
@@ -174,6 +176,7 @@ namespace USD.NET.Unity {
 
       if (context.exportMaterials) {
         // TODO: should account for skipped objects and also skip their materials.
+        UnityEngine.Profiling.Profiler.BeginSample("USD: Export Materials");
         foreach (var kvp in context.matMap) {
           Material mat = kvp.Key;
           string usdPath = kvp.Value;
@@ -182,8 +185,10 @@ namespace USD.NET.Unity {
           }
           MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
         }
+        UnityEngine.Profiling.Profiler.EndSample();
       }
 
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Process Export Plans");
       foreach (var kvp in context.plans) {
         GameObject go = kvp.Key;
         ExportPlan exportPlan = kvp.Value;
@@ -211,6 +216,7 @@ namespace USD.NET.Unity {
 
           exporter.exportFunc(objCtx, context);
 
+          UnityEngine.Profiling.Profiler.BeginSample("USD: Process Visibility");
           if (!go.gameObject.activeSelf) {
             switch (context.activePolicy) {
               case ActiveExportPolicy.Ignore:
@@ -235,10 +241,11 @@ namespace USD.NET.Unity {
                 break;
             }
           }
+          UnityEngine.Profiling.Profiler.EndSample();
 
         } // foreach exporter
       } // foreach plan
-
+      UnityEngine.Profiling.Profiler.EndSample();
 
       //
       // Process relationships.

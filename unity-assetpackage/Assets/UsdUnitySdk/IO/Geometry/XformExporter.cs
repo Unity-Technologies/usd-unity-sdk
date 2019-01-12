@@ -18,6 +18,8 @@ namespace USD.NET.Unity {
   public static class XformExporter {
 
     public static void ExportXform(ObjectContext objContext, ExportContext exportContext) {
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Xform Conversion");
+
       XformSample sample = (XformSample)objContext.sample;
       var localRot = objContext.gameObject.transform.localRotation;
       var localScale = objContext.gameObject.transform.localScale;
@@ -32,7 +34,11 @@ namespace USD.NET.Unity {
           path.IsRootPrimPath(),
           exportContext.basisTransform);
 
+      UnityEngine.Profiling.Profiler.EndSample();
+
+      UnityEngine.Profiling.Profiler.BeginSample("USD: Xform Write");
       exportContext.scene.Write(objContext.path, sample);
+      UnityEngine.Profiling.Profiler.EndSample();
     }
 
     public static void WriteSparseOverrides(Scene scene,
