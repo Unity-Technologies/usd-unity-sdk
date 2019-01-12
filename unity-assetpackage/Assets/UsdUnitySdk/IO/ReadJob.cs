@@ -8,11 +8,23 @@ using System.Threading;
 
 namespace USD.NET.Unity {
 
+  /// <summary>
+  /// Uses the C# job system to read all data for the given path list and presents it as an
+  /// enumerator.
+  /// </summary>
+  /// <remarks>
+  /// Internally the reads happen in a background thread while the main thread is unblocked to
+  /// begin processing the data as it arrives.
+  /// 
+  /// Note because this class is templated on T, the static variables are unique to each
+  /// instantiation of T; this is true regardless of whether or not the static uses type T.
+  /// </remarks>
   public struct ReadAllJob<T> :
       IEnumerator<SampleEnumerator<T>.SampleHolder>,
       IEnumerable<SampleEnumerator<T>.SampleHolder>,
       IJobParallelFor
       where T : SampleBase, new() {
+
     static private Scene m_scene;
     static private SdfPath[] m_paths;
     static private T[] m_results;
@@ -45,10 +57,6 @@ namespace USD.NET.Unity {
       m_paths = paths;
     }
 
-    public void WaitOnce() {
-      m_ready.WaitOne(25);
-    }
-
     private bool ShouldReadPath(Scene scene, SdfPath path) {
       return scene.AccessMask == null
           || scene.IsPopulatingAccessMask
@@ -65,6 +73,7 @@ namespace USD.NET.Unity {
       }
       m_results[index] = sample;
       m_written[index] = true;
+      
       m_ready.Set();
     }
 
@@ -82,7 +91,6 @@ namespace USD.NET.Unity {
           return false;
         }
 
-        //m_ready.WaitOne(5);
         for (int i = 0; i < m_done.Length; i++) {
           if (m_done[i] == false && m_written[i] == true) {
             m_current.path = m_paths[i];
@@ -91,12 +99,10 @@ namespace USD.NET.Unity {
             return true;
           }
         }
+
         j++;
-        if (j % 40 == 39) {
-          Thread.Sleep(1);
-        }
-        if (j > 40 * 20) {
-          Debug.LogWarning("Exiting after 20 sleeps");
+        if (!m_ready.WaitOne(1000)) {
+          Debug.LogError("Timed out while waiting for thread read");
           return false;
         }
       }
@@ -111,6 +117,7 @@ namespace USD.NET.Unity {
     }
 
     public void Dispose() {
+      m_ready.Close();
     }
 
     public IEnumerator<SampleEnumerator<T>.SampleHolder> GetEnumerator() {
