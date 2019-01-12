@@ -32,6 +32,15 @@ namespace USD.NET.Unity {
     [Header("Source Asset")]
     public string m_usdFile;
     public string m_projectAssetPath = "Assets/";
+
+#if false
+    [Header("Export Target")]
+    public string m_usdExportFile;
+    public string m_usdMaterialFile;
+    public string m_usdGeometryFile;
+#endif
+
+    [Header("USD Configuration")]
     public string m_usdRootPath = "/";
     public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
     public float m_usdTimeOffset;
@@ -52,14 +61,6 @@ namespace USD.NET.Unity {
     public Material m_specularWorkflowMaterial;
     public Material m_metallicWorkflowMaterial;
 
-    [Header("Scenegraph")]
-    public bool m_importCameras = true;
-    public bool m_importMeshes = true;
-    public bool m_importSkinning = true;
-    public bool m_importTransforms = true;
-    public bool m_importSceneInstances = true;
-    public bool m_importPointInstances = true;
-
     [Header("Mesh Options")]
     public bool m_generateLightmapUVs;
     public ImportMode m_points;
@@ -77,6 +78,26 @@ namespace USD.NET.Unity {
     public ImportMode m_texcoord2;
     [HideInInspector]
     public ImportMode m_texcoord3;
+
+    [Header("Import Settings")]
+    public bool m_importCameras = true;
+    public bool m_importMeshes = true;
+    public bool m_importSkinning = true;
+    public bool m_importTransforms = true;
+    public bool m_importSceneInstances = true;
+    public bool m_importPointInstances = true;
+    public bool m_importMonoBehaviors = true;
+
+#if false
+    [Header("Export Settings")]
+    public bool m_exportCameras = true;
+    public bool m_exportMeshes = true;
+    public bool m_exportSkinning = true;
+    public bool m_exportTransforms = true;
+    public bool m_exportSceneInstances = true;
+    public bool m_exportPointInstances = true;
+    public bool m_exportMonoBehaviors = true;
+#endif
 
     [Header("Debug Options")]
     public bool m_debugShowSkeletonBindPose;
@@ -321,8 +342,8 @@ namespace USD.NET.Unity {
 #endif
         }
 
-          m_lastScene = null;
-          m_lastPrimMap = null;
+        m_lastScene = null;
+        m_lastPrimMap = null;
         m_lastAccessMask = null;
 
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
@@ -377,7 +398,7 @@ namespace USD.NET.Unity {
       }
     }
 
-    #region "Timeline Support"
+#region "Timeline Support"
     private double ComputeLength() {
       var scene = GetScene();
       if (scene == null) { return 0; }
@@ -449,7 +470,7 @@ namespace USD.NET.Unity {
         scene.IsPopulatingAccessMask = false;
       }
     }
-    #endregion
+#endregion
 
     private void Update() {
       if (m_lastTime == m_usdTimeOffset) {
