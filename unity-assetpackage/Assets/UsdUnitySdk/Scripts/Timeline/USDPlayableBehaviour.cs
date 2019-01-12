@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity.Extensions.Timeline {
   // A behaviour that is attached to a playable
-  public class USDPlayableBehaviour : PlayableBehaviour {
+  public class UsdPlayableBehaviour : PlayableBehaviour {
     public StageRoot player;
     private bool m_errorOnce = true;
 

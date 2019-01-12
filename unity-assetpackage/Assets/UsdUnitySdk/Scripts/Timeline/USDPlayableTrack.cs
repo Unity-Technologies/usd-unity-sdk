@@ -8,11 +8,11 @@ namespace USD.NET.Unity.Extensions.Timeline {
 #if UNITY_2017
   [TrackMediaType(TimelineAsset.MediaType.Script)]
 #endif
-  [TrackClipType(typeof(USDPlayableAsset))]
+  [TrackClipType(typeof(UsdPlayableAsset))]
   [TrackBindingType(typeof(StageRoot))]
   [TrackColor(0.1f, 0.2f, 0.8f)]
   [System.Serializable]
-  public class USDPlayableTrack : TrackAsset {
+  public class UsdPlayableTrack : TrackAsset {
 
     protected override void OnAfterTrackDeserialize() {
       base.OnAfterTrackDeserialize();
