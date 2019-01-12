@@ -63,3 +63,5 @@ unity-assetpackage/Assembly-CSharp\.csproj
 unity-assetpackage/unity-assetpackage\.csproj
 
 unity-assetpackage/unity-assetpackage\.Editor\.csproj
+
+inst-dbg/
