@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
   public static class MeshExporter {
+
     public static void ExportSkinnedMesh(ObjectContext objContext, ExportContext exportContext) {
       var smr = objContext.gameObject.GetComponent<SkinnedMeshRenderer>();
       Mesh mesh = smr.sharedMesh;
@@ -260,13 +261,45 @@ namespace USD.NET.Unity {
         }
       } else {
         // Only write the transform when animating.
-        var xfSample = new XformSample();
-        xfSample.transform = XformExporter.GetLocalTransformMatrix(
+        var meshSample = new MeshSampleBase();
+        meshSample.transform = XformExporter.GetLocalTransformMatrix(
             go.transform,
             scene.UpAxis == Scene.UpAxes.Z,
             new pxr.SdfPath(path).IsRootPrimPath(),
             exportContext.basisTransform);
-        scene.Write(path, xfSample);
+        meshSample.points = mesh.vertices;
+
+        // Set face vertex counts and indices.
+        var tris = mesh.triangles;
+
+        meshSample.extent = mesh.bounds;
+        if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
+          mesh.RecalculateBounds();
+          meshSample.extent = mesh.bounds;
+        }
+
+        if (slowAndSafeConversion) {
+          // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
+          // of basis is required. There are shortcuts, but this is fully general.
+          meshSample.extent.center = UnityTypeConverter.ChangeBasis(meshSample.extent.center);
+
+          for (int i = 0; i < meshSample.points.Length; i++) {
+            meshSample.points[i] = UnityTypeConverter.ChangeBasis(meshSample.points[i]);
+          }
+
+          for (int i = 0; i < tris.Length; i += 3) {
+            var t = tris[i];
+            tris[i] = tris[i + 1];
+            tris[i + 1] = t;
+          }
+        }
+
+        sample.SetTriangles(tris);
+
+        UnityEngine.Profiling.Profiler.BeginSample("USD: Mesh Write");
+        scene.Write(path, meshSample);
+        UnityEngine.Profiling.Profiler.EndSample();
+
       }
     }
   }
