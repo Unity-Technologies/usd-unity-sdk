@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
-namespace USD.NET.Unity.Extensions.Timeline {
+namespace USD.NET.Unity {
 
 #if UNITY_2017
   [TrackMediaType(TimelineAsset.MediaType.Script)]

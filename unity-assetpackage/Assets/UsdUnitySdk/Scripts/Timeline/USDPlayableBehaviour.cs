@@ -1,7 +1,7 @@
 ﻿using UnityEngine.Playables;
 using UnityEngine;
 
-namespace USD.NET.Unity.Extensions.Timeline {
+namespace USD.NET.Unity {
   // A behaviour that is attached to a playable
   public class UsdPlayableBehaviour : PlayableBehaviour {
     public StageRoot player;

@@ -124,7 +124,7 @@ namespace USD.NET.Unity {
 #else
         prefab = PrefabUtility.SavePrefabAsset(prefab);
 #endif
-        var playable = ScriptableObject.CreateInstance<Extensions.Timeline.UsdPlayableAsset>();
+        var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
 
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
         playable.name = playableClipName;
@@ -173,7 +173,7 @@ namespace USD.NET.Unity {
         prefab = PrefabUtility.SavePrefabAsset(oldPrefab);
 #endif
 
-        var playable = ScriptableObject.CreateInstance<Extensions.Timeline.UsdPlayableAsset>();
+        var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
