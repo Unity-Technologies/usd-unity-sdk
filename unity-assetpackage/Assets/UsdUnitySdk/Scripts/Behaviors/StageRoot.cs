@@ -402,7 +402,7 @@ namespace USD.NET.Unity {
     private double ComputeLength() {
       var scene = GetScene();
       if (scene == null) { return 0; }
-      return (scene.EndTime - scene.StartTime) / (scene.Stage.GetFramesPerSecond());
+      return (scene.EndTime - scene.StartTime) / (scene.Stage.GetTimeCodesPerSecond());
     }
 
     /// <summary>
@@ -422,7 +422,7 @@ namespace USD.NET.Unity {
       // Careful not to update any local members here, if this data is driven from a prefab, we
       // dont want those changes to be baked back into the asset.
       time += foreignRoot.m_usdTimeOffset;
-      float usdTime = (float)(scene.StartTime + time * scene.Stage.GetFramesPerSecond());
+      float usdTime = (float)(scene.StartTime + time * scene.Stage.GetTimeCodesPerSecond());
       if (usdTime > scene.EndTime) { return; }
       if (usdTime < scene.StartTime) { return; }
 
