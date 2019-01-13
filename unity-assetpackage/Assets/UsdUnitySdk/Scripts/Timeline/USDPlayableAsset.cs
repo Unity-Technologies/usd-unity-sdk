@@ -24,7 +24,13 @@ namespace USD.NET.Unity {
 
     public override double duration {
       get {
-        return m_runtimeRoot == null ? 0 : m_runtimeRoot.Length;
+        double dur = 0;
+        try {
+          dur = m_runtimeRoot == null ? 0 : m_runtimeRoot.Length;
+        } catch (System.Exception ex) {
+          Debug.LogException(new System.Exception("Failed to read clip duration", ex));
+        }
+        return dur;
       }
     }
 
