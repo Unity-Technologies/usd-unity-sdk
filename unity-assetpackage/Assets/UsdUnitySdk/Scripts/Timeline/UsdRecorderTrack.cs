@@ -21,7 +21,7 @@ namespace USD.NET.Unity {
 #if UNITY_2017 || UNITY_2018_2 || UNITY_2018_1
   [TrackMediaType(TimelineAsset.MediaType.Script)]
 #endif
-  [TrackColor(0.33f, 0.0f, 0.08f)]
+  [TrackColor(0.7f, 0.0f, 0.0f)]
   public class UsdRecorderTrack : TrackAsset {
   }
 }
