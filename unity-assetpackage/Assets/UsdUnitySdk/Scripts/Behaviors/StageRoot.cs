@@ -232,6 +232,9 @@ namespace USD.NET.Unity {
       USD.NET.Examples.InitUsd.Initialize();
       if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != m_usdFile) {
         pxr.UsdStage stage = null;
+        if (string.IsNullOrEmpty(m_usdFile)) {
+          return null;
+        }
         if (m_payloadPolicy == PayloadPolicy.DontLoadPayloads) {
           stage = pxr.UsdStage.Open(m_usdFile, pxr.UsdStage.InitialLoadSet.LoadNone);
         } else {
@@ -241,7 +244,6 @@ namespace USD.NET.Unity {
         m_lastScene = Scene.Open(stage);
         m_lastPrimMap = null;
         m_lastAccessMask = null;
-
 
         // TODO: This is potentially horrible in terms of performance, LoadAndUnload should be used
         // instead, but the binding is not complete.
