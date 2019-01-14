@@ -320,6 +320,11 @@ namespace USD.NET.Unity {
                                 SceneImportOptions options,
                                 out GameObject parentGo) {
       var parentPath = path.GetParentPath();
+      if (path == parentPath) {
+        Debug.LogException(new Exception("Parent path was identical to current path: " + path.ToString()));
+        parentGo = null;
+        return;
+      }
       if (map.TryGetValue(parentPath, out parentGo) && parentGo) {
         return;
       }
@@ -340,6 +345,10 @@ namespace USD.NET.Unity {
       // First, get the grandparent (parent's parent).
       GameObject grandparentGo;
       CreateAncestors(parentPath, map, unityRoot, usdRoot, options, out grandparentGo);
+      if (!grandparentGo) {
+        Debug.LogError("Failed to find ancestor for " + parentPath);
+        return;
+      }
 
       // Then find/create the current parent.
       parentGo = FindOrCreateGameObject(grandparentGo.transform,
@@ -462,6 +471,10 @@ namespace USD.NET.Unity {
           //
           // Baz is implicitly defined, which is allowed by UsdSkel.
           CreateAncestors(path, map, unityRoot, usdRoot, options, out parentGo);
+          if (!parentGo) {
+            Debug.LogException(new Exception("Failed to create ancestors for " + path + " for prim: " + prim.GetPath()));
+            continue;
+          }
         }
 
         Transform child = parentGo.transform.Find(path.GetName());
