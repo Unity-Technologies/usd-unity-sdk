@@ -199,6 +199,7 @@
     <Compile Include="generated\pxr\usd\pcp\PcpPrimIndex.cs" />
     <Compile Include="generated\pxr\usd\pcp\PcpPropertyIndex.cs" />
     <Compile Include="generated\pxr\usd\pcp\PcpRangeType.cs" />
+    <Compile Include="generated\pxr\usd\pcp\PcpSiteTrackerSegment.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfAssetPath.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfAssetPathArray.cs" />
     <Compile Include="generated\pxr\usd\sdf\SdfAttributeSpec.cs" />
@@ -473,6 +474,7 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpDependencyVector.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpErrorVector.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpLayerStackChanges.cs" />
+    <Compile Include="generated\SWIG\SWIGTYPE_p_PcpLayerStackSite.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpLifeboat.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpMapExpression.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_PcpMapFunction.cs" />

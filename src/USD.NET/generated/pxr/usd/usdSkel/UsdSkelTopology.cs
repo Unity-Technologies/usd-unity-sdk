@@ -87,6 +87,11 @@ public class UsdSkelTopology : global::System.IDisposable {
     return ret;
   }
 
+  public bool IsRoot(uint index) {
+    bool ret = UsdCsPINVOKE.UsdSkelTopology_IsRoot(swigCPtr, index);
+    return ret;
+  }
+
 }
 
 }

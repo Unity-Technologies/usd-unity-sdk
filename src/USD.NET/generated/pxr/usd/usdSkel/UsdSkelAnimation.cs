@@ -204,6 +204,29 @@ public class UsdSkelAnimation : UsdTyped {
     return ret;
   }
 
+  public bool GetTransforms(VtMatrix4dArray xforms, UsdTimeCode time) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimation_GetTransforms__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetTransforms(VtMatrix4dArray xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimation_GetTransforms__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms));
+    return ret;
+  }
+
+  public bool SetTransforms(VtMatrix4dArray xforms, UsdTimeCode time) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimation_SetTransforms__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool SetTransforms(VtMatrix4dArray xforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimation_SetTransforms__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
 }
 
 }

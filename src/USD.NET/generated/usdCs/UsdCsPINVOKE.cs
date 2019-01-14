@@ -968,6 +968,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfStringify__SWIG_4")]
   public static extern string TfStringify__SWIG_4(double jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_TfDoubleToString")]
+  public static extern bool TfDoubleToString(double jarg1, string jarg2, int jarg3, bool jarg4);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_TfStreamFloat")]
   public static extern global::System.IntPtr new_TfStreamFloat(float jarg1);
 
@@ -15854,11 +15857,20 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_PcpNodeRef")]
   public static extern global::System.IntPtr new_PcpNodeRef();
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_PcpNodeRef_Hash")]
+  public static extern global::System.IntPtr new_PcpNodeRef_Hash();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_PcpNodeRef_Hash")]
+  public static extern void delete_PcpNodeRef_Hash(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpNodeRef_GetArcType")]
   public static extern int PcpNodeRef_GetArcType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpNodeRef_GetParentNode")]
   public static extern global::System.IntPtr PcpNodeRef_GetParentNode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpNodeRef_InsertChild")]
+  public static extern global::System.IntPtr PcpNodeRef_InsertChild(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpNodeRef_InsertChildSubgraph")]
   public static extern global::System.IntPtr PcpNodeRef_InsertChildSubgraph(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
@@ -15892,6 +15904,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpNodeRef_GetIntroPath")]
   public static extern global::System.IntPtr PcpNodeRef_GetIntroPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpNodeRef_GetSite")]
+  public static extern global::System.IntPtr PcpNodeRef_GetSite(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpNodeRef_GetPath")]
   public static extern global::System.IntPtr PcpNodeRef_GetPath(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -16141,6 +16156,24 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpIsLocalClassBasedArc")]
   public static extern bool PcpIsLocalClassBasedArc(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpSiteTrackerSegment_site_set")]
+  public static extern void PcpSiteTrackerSegment_site_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpSiteTrackerSegment_site_get")]
+  public static extern global::System.IntPtr PcpSiteTrackerSegment_site_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpSiteTrackerSegment_arcType_set")]
+  public static extern void PcpSiteTrackerSegment_arcType_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PcpSiteTrackerSegment_arcType_get")]
+  public static extern int PcpSiteTrackerSegment_arcType_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_PcpSiteTrackerSegment")]
+  public static extern global::System.IntPtr new_PcpSiteTrackerSegment();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_PcpSiteTrackerSegment")]
+  public static extern void delete_PcpSiteTrackerSegment(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_PCP_INVALID_INDEX_get")]
   public static extern uint PCP_INVALID_INDEX_get();
@@ -16549,6 +16582,12 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_SetKind")]
   public static extern bool UsdModelAPI_SetKind(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_IsKind__SWIG_0")]
+  public static extern bool UsdModelAPI_IsKind__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_IsKind__SWIG_1")]
+  public static extern bool UsdModelAPI_IsKind__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdModelAPI_IsModel")]
   public static extern bool UsdModelAPI_IsModel(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -18041,6 +18080,15 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_HasProperty")]
   public static extern bool UsdPrim_HasProperty(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_IsA")]
+  public static extern bool UsdPrim_IsA(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_HasAPI__SWIG_2")]
+  public static extern bool UsdPrim_HasAPI__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_HasAPI__SWIG_3")]
+  public static extern bool UsdPrim_HasAPI__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrim_GetChild")]
   public static extern global::System.IntPtr UsdPrim_GetChild(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
@@ -19501,6 +19549,12 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_compressionMethod_get")]
   public static extern ushort UsdZipFile_FileInfo_compressionMethod_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_encrypted_set")]
+  public static extern void UsdZipFile_FileInfo_encrypted_set(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdZipFile_FileInfo_encrypted_get")]
+  public static extern bool UsdZipFile_FileInfo_encrypted_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdZipFile_FileInfo")]
   public static extern global::System.IntPtr new_UsdZipFile_FileInfo();
@@ -23028,13 +23082,16 @@ class UsdCsPINVOKE {
   public static extern int USDGEOM_XFORM_CACHE_API_VERSION_get();
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBBoxCache__SWIG_0")]
-  public static extern global::System.IntPtr new_UsdGeomBBoxCache__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+  public static extern global::System.IntPtr new_UsdGeomBBoxCache__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3, bool jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBBoxCache__SWIG_1")]
-  public static extern global::System.IntPtr new_UsdGeomBBoxCache__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern global::System.IntPtr new_UsdGeomBBoxCache__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBBoxCache__SWIG_2")]
-  public static extern global::System.IntPtr new_UsdGeomBBoxCache__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern global::System.IntPtr new_UsdGeomBBoxCache__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomBBoxCache__SWIG_3")]
+  public static extern global::System.IntPtr new_UsdGeomBBoxCache__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBBoxCache_ComputeWorldBound")]
   public static extern global::System.IntPtr UsdGeomBBoxCache_ComputeWorldBound(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -23086,6 +23143,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBBoxCache_GetUseExtentsHint")]
   public static extern bool UsdGeomBBoxCache_GetUseExtentsHint(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBBoxCache_GetIgnoreVisibility")]
+  public static extern bool UsdGeomBBoxCache_GetIgnoreVisibility(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBBoxCache_SetTime")]
   public static extern void UsdGeomBBoxCache_SetTime(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -23279,8 +23339,11 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomModelAPI_GetConstraintTargets")]
   public static extern global::System.IntPtr UsdGeomModelAPI_GetConstraintTargets(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomModelAPI_ComputeModelDrawMode")]
-  public static extern global::System.IntPtr UsdGeomModelAPI_ComputeModelDrawMode(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomModelAPI_ComputeModelDrawMode__SWIG_0")]
+  public static extern global::System.IntPtr UsdGeomModelAPI_ComputeModelDrawMode__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomModelAPI_ComputeModelDrawMode__SWIG_1")]
+  public static extern global::System.IntPtr UsdGeomModelAPI_ComputeModelDrawMode__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomConstraintTargetVector_Clear")]
   public static extern void UsdGeomConstraintTargetVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -24851,6 +24914,18 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_2")]
   public static extern global::System.IntPtr UsdSkelAnimation_CreateBlendShapeWeightsAttr__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetTransforms__SWIG_0")]
+  public static extern bool UsdSkelAnimation_GetTransforms__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_GetTransforms__SWIG_1")]
+  public static extern bool UsdSkelAnimation_GetTransforms__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_SetTransforms__SWIG_0")]
+  public static extern bool UsdSkelAnimation_SetTransforms__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelAnimation_SetTransforms__SWIG_1")]
+  public static extern bool UsdSkelAnimation_SetTransforms__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelAnimMapper__SWIG_0")]
   public static extern global::System.IntPtr new_UsdSkelAnimMapper__SWIG_0();
 
@@ -25406,6 +25481,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelTopology_GetParent")]
   public static extern int UsdSkelTopology_GetParent(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelTopology_IsRoot")]
+  public static extern bool UsdSkelTopology_IsRoot(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelTopology")]
   public static extern void delete_UsdSkelTopology(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -25422,10 +25500,16 @@ class UsdCsPINVOKE {
   public static extern bool UsdSkelComputeJointLocalTransforms__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelComputeJointLocalTransforms__SWIG_2")]
-  public static extern bool UsdSkelComputeJointLocalTransforms__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+  public static extern bool UsdSkelComputeJointLocalTransforms__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelComputeJointLocalTransforms__SWIG_3")]
-  public static extern bool UsdSkelComputeJointLocalTransforms__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+  public static extern bool UsdSkelComputeJointLocalTransforms__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelComputeJointLocalTransforms__SWIG_4")]
+  public static extern bool UsdSkelComputeJointLocalTransforms__SWIG_4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelComputeJointLocalTransforms__SWIG_5")]
+  public static extern bool UsdSkelComputeJointLocalTransforms__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelConcatJointTransforms__SWIG_0")]
   public static extern bool UsdSkelConcatJointTransforms__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);

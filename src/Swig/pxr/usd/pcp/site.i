@@ -17,9 +17,5 @@
 #include "pxr/usd/pcp/site.h"
 %}
 
-// Disabled until API is fixed:
-// https://github.com/PixarAnimationStudios/USD/issues/703
-%ignore PcpLayerStackSite;
-
 %include "pxr/usd/pcp/site.h"
 

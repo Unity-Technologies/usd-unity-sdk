@@ -43,6 +43,41 @@ public class PcpNodeRef : global::System.IDisposable {
   public PcpNodeRef() : this(UsdCsPINVOKE.new_PcpNodeRef(), true) {
   }
 
+  public class Hash : global::System.IDisposable {
+    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    protected bool swigCMemOwn;
+  
+    internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn) {
+      swigCMemOwn = cMemoryOwn;
+      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+    }
+  
+    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj) {
+      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+    }
+  
+    ~Hash() {
+      Dispose();
+    }
+  
+    public virtual void Dispose() {
+      lock(this) {
+        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+          if (swigCMemOwn) {
+            swigCMemOwn = false;
+            UsdCsPINVOKE.delete_PcpNodeRef_Hash(swigCPtr);
+          }
+          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
+        global::System.GC.SuppressFinalize(this);
+      }
+    }
+  
+    public Hash() : this(UsdCsPINVOKE.new_PcpNodeRef_Hash(), true) {
+    }
+  
+  }
+
   public PcpArcType GetArcType() {
     PcpArcType ret = (PcpArcType)UsdCsPINVOKE.PcpNodeRef_GetArcType(swigCPtr);
     return ret;
@@ -50,6 +85,12 @@ public class PcpNodeRef : global::System.IDisposable {
 
   public PcpNodeRef GetParentNode() {
     PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpNodeRef_GetParentNode(swigCPtr), true);
+    return ret;
+  }
+
+  public PcpNodeRef InsertChild(SWIGTYPE_p_PcpLayerStackSite site, PcpArc arc) {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpNodeRef_InsertChild(swigCPtr, SWIGTYPE_p_PcpLayerStackSite.getCPtr(site), PcpArc.getCPtr(arc)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -106,6 +147,11 @@ public class PcpNodeRef : global::System.IDisposable {
 
   public SdfPath GetIntroPath() {
     SdfPath ret = new SdfPath(UsdCsPINVOKE.PcpNodeRef_GetIntroPath(swigCPtr), true);
+    return ret;
+  }
+
+  public SWIGTYPE_p_PcpLayerStackSite GetSite() {
+    SWIGTYPE_p_PcpLayerStackSite ret = new SWIGTYPE_p_PcpLayerStackSite(UsdCsPINVOKE.PcpNodeRef_GetSite(swigCPtr), true);
     return ret;
   }
 

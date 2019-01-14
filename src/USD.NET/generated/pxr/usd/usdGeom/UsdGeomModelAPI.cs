@@ -343,8 +343,14 @@ public class UsdGeomModelAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public TfToken ComputeModelDrawMode(TfToken parentDrawMode) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomModelAPI_ComputeModelDrawMode__SWIG_0(swigCPtr, TfToken.getCPtr(parentDrawMode)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public TfToken ComputeModelDrawMode() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomModelAPI_ComputeModelDrawMode(swigCPtr), true);
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomModelAPI_ComputeModelDrawMode__SWIG_1(swigCPtr), true);
     return ret;
   }
 

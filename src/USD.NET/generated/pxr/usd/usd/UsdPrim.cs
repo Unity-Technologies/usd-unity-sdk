@@ -234,6 +234,24 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
+  public bool IsA(TfType schemaType) {
+    bool ret = UsdCsPINVOKE.UsdPrim_IsA(swigCPtr, TfType.getCPtr(schemaType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasAPI(TfType schemaType, TfToken instanceName) {
+    bool ret = UsdCsPINVOKE.UsdPrim_HasAPI__SWIG_2(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasAPI(TfType schemaType) {
+    bool ret = UsdCsPINVOKE.UsdPrim_HasAPI__SWIG_3(swigCPtr, TfType.getCPtr(schemaType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdPrim GetChild(TfToken name) {
     UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdPrim_GetChild(swigCPtr, TfToken.getCPtr(name)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

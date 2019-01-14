@@ -345,6 +345,11 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool TfDoubleToString(double d, string buffer, int len, bool emitTrailingZero) {
+    bool ret = UsdCsPINVOKE.TfDoubleToString(d, buffer, len, emitTrailingZero);
+    return ret;
+  }
+
   public static string TfStringGlobToRegex(string s) {
     string ret = UsdCsPINVOKE.TfStringGlobToRegex(s);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -3253,14 +3258,26 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray jointLocalXforms, GfMatrix4d rootInverseXform) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, VtMatrix4dArray xforms, VtMatrix4dArray jointLocalXforms) {
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), VtMatrix4dArray.getCPtr(xforms), VtMatrix4dArray.getCPtr(jointLocalXforms));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, GfMatrix4d xforms, GfMatrix4d inverseXforms, GfMatrix4d jointLocalXforms, GfMatrix4d rootInverseXform) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_2(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_4(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms), GfMatrix4d.getCPtr(rootInverseXform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdSkelComputeJointLocalTransforms(UsdSkelTopology topology, GfMatrix4d xforms, GfMatrix4d inverseXforms, GfMatrix4d jointLocalXforms) {
-    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_3(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms));
+    bool ret = UsdCsPINVOKE.UsdSkelComputeJointLocalTransforms__SWIG_5(UsdSkelTopology.getCPtr(topology), GfMatrix4d.getCPtr(xforms), GfMatrix4d.getCPtr(inverseXforms), GfMatrix4d.getCPtr(jointLocalXforms));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

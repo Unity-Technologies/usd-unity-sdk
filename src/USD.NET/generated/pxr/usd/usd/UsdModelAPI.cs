@@ -77,6 +77,18 @@ public class UsdModelAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public bool IsKind(TfToken baseKind, UsdModelAPI.KindValidation validation) {
+    bool ret = UsdCsPINVOKE.UsdModelAPI_IsKind__SWIG_0(swigCPtr, TfToken.getCPtr(baseKind), (int)validation);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool IsKind(TfToken baseKind) {
+    bool ret = UsdCsPINVOKE.UsdModelAPI_IsKind__SWIG_1(swigCPtr, TfToken.getCPtr(baseKind));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool IsModel() {
     bool ret = UsdCsPINVOKE.UsdModelAPI_IsModel(swigCPtr);
     return ret;
@@ -135,6 +147,11 @@ public class UsdModelAPI : UsdAPISchemaBase {
   public void SetAssetInfo(VtDictionary info) {
     UsdCsPINVOKE.UsdModelAPI_SetAssetInfo(swigCPtr, VtDictionary.getCPtr(info));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public enum KindValidation {
+    KindValidationNone,
+    KindValidationModelHierarchy
   }
 
 }

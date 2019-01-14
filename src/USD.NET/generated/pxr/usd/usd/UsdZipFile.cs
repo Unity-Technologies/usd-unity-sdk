@@ -125,6 +125,16 @@ public class UsdZipFile : global::System.IDisposable {
       } 
     }
   
+    public bool encrypted {
+      set {
+        UsdCsPINVOKE.UsdZipFile_FileInfo_encrypted_set(swigCPtr, value);
+      } 
+      get {
+        bool ret = UsdCsPINVOKE.UsdZipFile_FileInfo_encrypted_get(swigCPtr);
+        return ret;
+      } 
+    }
+  
     public FileInfo() : this(UsdCsPINVOKE.new_UsdZipFile_FileInfo(), true) {
     }
   
