@@ -129,7 +129,9 @@ namespace USD.NET.Unity {
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
+#if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017
         prefab = PrefabUtility.SavePrefabAsset(prefab);
+#endif
       } else {
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
@@ -177,7 +179,9 @@ namespace USD.NET.Unity {
         playable.UsdStageRoot.defaultValue = prefab.GetComponent<StageRoot>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
+#if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017
         PrefabUtility.SavePrefabAsset(prefab);
+#endif
       }
 
       AssetDatabase.ImportAsset(prefabPath, ImportAssetOptions.ForceUpdate);

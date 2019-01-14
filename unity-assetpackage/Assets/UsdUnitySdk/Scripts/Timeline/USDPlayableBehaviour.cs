@@ -33,6 +33,7 @@ namespace USD.NET.Unity {
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
       var root = playerData as StageRoot;
+      if (player == null) { return; }
       if (root == null) {
         if (m_errorOnce) {
           Debug.LogError("Error: track data has no target UsdStageRoot");

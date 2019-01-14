@@ -17,8 +17,10 @@ namespace USD.NET.Unity {
       var usdPlayable = ScriptPlayable<UsdPlayableBehaviour>.Create(graph);
       UsdPlayableBehaviour behaviour = usdPlayable.GetBehaviour();
       m_runtimeRoot = UsdStageRoot.Resolve(graph.GetResolver());
-      behaviour.player = m_runtimeRoot;
-      name = System.IO.Path.GetFileName(m_runtimeRoot.m_usdFile);
+	  if (m_runtimeRoot != null) {
+	    behaviour.player = m_runtimeRoot;
+	    name = System.IO.Path.GetFileName(m_runtimeRoot.m_usdFile);
+	  }
       return usdPlayable;
     }
 

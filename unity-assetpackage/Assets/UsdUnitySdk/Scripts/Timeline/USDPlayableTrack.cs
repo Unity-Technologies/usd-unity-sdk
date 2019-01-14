@@ -22,10 +22,11 @@ namespace USD.NET.Unity {
       base.OnBeforeTrackSerialize();
     }
 
+#if !UNITY_2018_1 && !UNITY_2017
     protected override void OnCreateClip(TimelineClip clip) {
       base.OnCreateClip(clip);
       clip.displayName = clip.asset.name;
     }
-
+#endif
   }
 }
