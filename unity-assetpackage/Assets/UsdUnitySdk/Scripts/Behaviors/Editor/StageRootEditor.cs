@@ -81,9 +81,11 @@ namespace USD.NET.Unity {
         UsdMenu.MenuExportTransforms();
       }
 
+      /*
       if (GUILayout.Button("Open USD File")) {
         OpenUsdFile(stageRoot);
       }
+      */
 
       GUILayout.Space(10);
       base.DrawDefaultInspector();
