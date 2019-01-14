@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -265,9 +265,7 @@ namespace USD.NET.Unity {
             continue;
           }
 
-          //foreach (var path in scene.Find<SkelRootSample>()) {
           try {
-            //var prim = scene.GetPrimAtPath(path);
             ExpandSkeleton(info, unityRoot, usdRoot, info.prim, map, options);
           } catch (Exception ex) {
             Debug.LogException(new Exception("Error expanding skeleton at " + info.prim.GetPath(), ex));
