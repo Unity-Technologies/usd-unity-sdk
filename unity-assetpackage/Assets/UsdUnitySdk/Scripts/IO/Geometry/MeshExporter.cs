@@ -31,8 +31,17 @@ namespace USD.NET.Unity {
       smr.BakeMesh(mesh);
 #endif
       UnityEngine.Profiling.Profiler.BeginSample("USD: Skinned Mesh");
-      ExportMesh(objContext, exportContext, mesh, smr.sharedMaterial, smr.sharedMaterials);
+      ExportMesh(objContext,
+                 exportContext,
+                 mesh,
+                 smr.sharedMaterial,
+                 smr.sharedMaterials,
+                 exportMeshPose: exportContext.scene.Time == null);
       UnityEngine.Profiling.Profiler.EndSample();
+
+      if (exportContext.scene.Time != null) {
+        return;
+      }
 
       // Note that the baked mesh no longer has the bone weights, so here we switch back to the
       // shared SkinnedMeshRenderer mesh.
@@ -120,7 +129,8 @@ namespace USD.NET.Unity {
                    ExportContext exportContext,
                    Mesh mesh,
                    Material sharedMaterial,
-                   Material[] sharedMaterials) {
+                   Material[] sharedMaterials,
+                   bool exportMeshPose = true) {
       if (mesh.isReadable == false) {
         Debug.LogWarning("Mesh not readable: " + objContext.path);
         return;
@@ -271,34 +281,37 @@ namespace USD.NET.Unity {
             scene.UpAxis == Scene.UpAxes.Z,
             new pxr.SdfPath(path).IsRootPrimPath(),
             exportContext.basisTransform);
-        meshSample.points = mesh.vertices;
 
+        if (exportMeshPose) {
+          meshSample.points = mesh.vertices;
+        
         // Set face vertex counts and indices.
         var tris = mesh.triangles;
 
         meshSample.extent = mesh.bounds;
-        if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
-          mesh.RecalculateBounds();
-          meshSample.extent = mesh.bounds;
-        }
-
-        if (slowAndSafeConversion) {
-          // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
-          // of basis is required. There are shortcuts, but this is fully general.
-          meshSample.extent.center = UnityTypeConverter.ChangeBasis(meshSample.extent.center);
-
-          for (int i = 0; i < meshSample.points.Length; i++) {
-            meshSample.points[i] = UnityTypeConverter.ChangeBasis(meshSample.points[i]);
+          if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
+            mesh.RecalculateBounds();
+            meshSample.extent = mesh.bounds;
           }
 
-          for (int i = 0; i < tris.Length; i += 3) {
-            var t = tris[i];
-            tris[i] = tris[i + 1];
-            tris[i + 1] = t;
-          }
-        }
+          if (slowAndSafeConversion) {
+            // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
+            // of basis is required. There are shortcuts, but this is fully general.
+            meshSample.extent.center = UnityTypeConverter.ChangeBasis(meshSample.extent.center);
 
-        sample.SetTriangles(tris);
+            for (int i = 0; i < meshSample.points.Length; i++) {
+              meshSample.points[i] = UnityTypeConverter.ChangeBasis(meshSample.points[i]);
+            }
+
+            for (int i = 0; i < tris.Length; i += 3) {
+              var t = tris[i];
+              tris[i] = tris[i + 1];
+              tris[i + 1] = t;
+            }
+          }
+
+          sample.SetTriangles(tris);
+        }
 
         UnityEngine.Profiling.Profiler.BeginSample("USD: Mesh Write");
         scene.Write(path, meshSample);
