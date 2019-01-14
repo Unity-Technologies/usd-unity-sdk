@@ -450,7 +450,15 @@ namespace USD.NET.Unity {
       info.skelJoints = new SdfPath[joints.Length];
 
       for (int i = 0; i < joints.Length; i++) {
-        info.skelJoints[i] = skelPath.AppendPath(new SdfPath(joints[i]));
+        var jointPath = new SdfPath(joints[i]);
+        if (joints[i] == "/") {
+          info.skelJoints[i] = skelPath;
+          continue;
+        } else if (jointPath.IsAbsolutePath()) {
+          Debug.LogException(new Exception("Unexpected absolute joint path: " + jointPath));
+          jointPath = new SdfPath(joints[i].TrimStart('/'));
+        }
+        info.skelJoints[i] = skelPath.AppendPath(jointPath);
       }
     }
 

@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -81,7 +81,11 @@ namespace USD.NET.Unity {
       var rootPath = UnityTypeConverter.GetPath(rootBone);
       foreach (Transform bone in bones) {
         var bonePath = UnityTypeConverter.GetPath(bone);
-        sample.joints[b++] = bonePath.Replace(rootPath + "/", "");
+        if (bonePath == rootPath) {
+          sample.joints[b++] = "/";
+        } else {
+          sample.joints[b++] = bonePath.Replace(rootPath + "/", "");
+        }
       }
 
       int i = 0;

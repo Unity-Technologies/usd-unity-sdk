@@ -41,7 +41,11 @@ namespace USD.NET.Unity {
           continue;
         }
         var bone = exportContext.pathToBone[bonePath];
-        sample.joints[i] = bonePath.Replace(rootPath + "/", "");
+        if (bonePath == rootPath) {
+          sample.joints[i] = "/";
+        } else {
+          sample.joints[i] = bonePath.Replace(rootPath + "/", "");
+        }
 
         // TODO: When the bone bind transform contains the geomBindTransform from USD import, it
         // will be mixed into each bone. This transform should be saved in some way and removed

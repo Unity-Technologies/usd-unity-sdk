@@ -184,7 +184,18 @@ namespace USD.NET.Unity {
       var bones = new Transform[joints.Length];
       var sdfSkelPath = new SdfPath(skelPath);
       for (int i = 0; i < joints.Length; i++) {
-        var jointGo = primMap[sdfSkelPath.AppendPath(new SdfPath(joints[i]))];
+        var jointPath = new SdfPath(joints[i]);
+
+        if (joints[i] == "/") {
+          jointPath = sdfSkelPath;
+        } else if (jointPath.IsAbsolutePath()) {
+          Debug.LogException(new Exception("Unexpected absolute joint path: " + jointPath));
+          jointPath = new SdfPath(joints[i].TrimStart('/'));
+          jointPath = sdfSkelPath.AppendPath(jointPath);
+        } else {
+          jointPath = sdfSkelPath.AppendPath(jointPath);
+        }
+        var jointGo = primMap[jointPath];
         if (!jointGo) {
           Debug.LogError("Error importing " + meshPath + " "
                        + "Joint not found: " + joints[i]);

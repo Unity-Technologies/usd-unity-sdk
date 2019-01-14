@@ -803,7 +803,17 @@ namespace USD.NET.Unity {
 
             Profiler.BeginSample("Build Bones");
             for (int i = 0; i < joints.size(); i++) {
-              var goBone = primMap[skelPath.AppendPath(scene.GetSdfPath(joints[i]))];
+              var jointPath = scene.GetSdfPath(joints[i]);
+              if (joints[i] == "/") {
+                jointPath = skelPath;
+              } else if (jointPath.IsAbsolutePath()) {
+                Debug.LogException(new System.Exception("Unexpected absolute joint path: " + jointPath));
+                jointPath = new pxr.SdfPath(joints[i].ToString().TrimStart('/'));
+                jointPath = skelPath.AppendPath(jointPath);
+              } else {
+                jointPath = skelPath.AppendPath(jointPath);
+              }
+              var goBone = primMap[jointPath];
 
               Profiler.BeginSample("Convert Matrix");
               var restXform = UnityTypeConverter.FromMatrix(restXforms[i]);
