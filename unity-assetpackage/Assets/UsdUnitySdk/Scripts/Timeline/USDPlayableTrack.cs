@@ -13,15 +13,6 @@ namespace USD.NET.Unity {
   [TrackColor(0.1f, 0.2f, 0.8f)]
   [System.Serializable]
   public class UsdPlayableTrack : TrackAsset {
-
-    protected override void OnAfterTrackDeserialize() {
-      base.OnAfterTrackDeserialize();
-    }
-
-    protected override void OnBeforeTrackSerialize() {
-      base.OnBeforeTrackSerialize();
-    }
-
 #if !UNITY_2018_1 && !UNITY_2017
     protected override void OnCreateClip(TimelineClip clip) {
       base.OnCreateClip(clip);
