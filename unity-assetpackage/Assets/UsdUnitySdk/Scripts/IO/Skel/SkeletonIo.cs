@@ -26,6 +26,7 @@ namespace USD.NET.Unity {
   public class SkelBindingSample : SampleBase {
     // Blend Shapes.
     [UsdNamespace("skel")]
+    [UsdVariability(Variability.Uniform)]
     public string[] blendShapes;
 
     [UsdNamespace("skel")]
@@ -40,15 +41,19 @@ namespace USD.NET.Unity {
 
     // Skeleton Binding Data.
     [UsdNamespace("skel")]
+    [UsdVariability(Variability.Uniform)]
     public string[] joints;
 
     [UsdNamespace("skel")]
+    [UsdVariability(Variability.Uniform)]
     public Primvar<int[]> jointIndices = new Primvar<int[]>();
 
     [UsdNamespace("skel")]
+    [UsdVariability(Variability.Uniform)]
     public Primvar<Matrix4x4> geomBindTransform = new Primvar<Matrix4x4>();
 
     [UsdNamespace("skel")]
+    [UsdVariability(Variability.Uniform)]
     public Primvar<float[]> jointWeights = new Primvar<float[]>();
   }
 
@@ -62,14 +67,20 @@ namespace USD.NET.Unity {
   [System.Serializable]
   [UsdSchema("Skeleton")]
   public class SkeletonSample : XformableSample {
+    [UsdVariability(Variability.Uniform)]
     public string[] joints;
+
+    [UsdVariability(Variability.Uniform)]
     public Matrix4x4[] bindTransforms;
+
+    [UsdVariability(Variability.Uniform)]
     public Matrix4x4[] restTransforms;
   }
 
   [System.Serializable]
   [UsdSchema("SkelAnimation")]
   public class SkelAnimationSample : SampleBase {
+    [UsdVariability(Variability.Uniform)]
     public string[] joints;
 
     // Intended to work with pxr.UsdCs.UsdSkelDecomposeTransforms()
@@ -78,7 +89,10 @@ namespace USD.NET.Unity {
     // TODO: How to support Vector3h?
     public pxr.VtVec3hArray scales;
 
+    [UsdVariability(Variability.Uniform)]
     public string[] blendShapes;
+
+    [UsdVariability(Variability.Uniform)]
     public float[] blendShapeWeights;
   }
 
