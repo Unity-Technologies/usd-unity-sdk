@@ -24,7 +24,7 @@ namespace USD.NET.Unity {
 
     // The root GameObject to export to USD.
     public ExposedReference<GameObject> m_exportRoot;
-    public GameObject[] m_trackedRoots;
+    private GameObject[] m_trackedRoots;
 
     public bool m_exportMaterials = true;
     public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
