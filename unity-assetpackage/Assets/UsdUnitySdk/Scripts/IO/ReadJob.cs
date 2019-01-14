@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if !UNITY_2017
 using Unity.Jobs;
+#endif
+
 using pxr;
 using System.Collections;
 using System.Threading;
@@ -21,8 +25,10 @@ namespace USD.NET.Unity {
   /// </remarks>
   public struct ReadAllJob<T> :
       IEnumerator<SampleEnumerator<T>.SampleHolder>,
-      IEnumerable<SampleEnumerator<T>.SampleHolder>,
-      IJobParallelFor
+      IEnumerable<SampleEnumerator<T>.SampleHolder>
+#if !UNITY_2017
+      , IJobParallelFor
+#endif
       where T : SampleBase, new() {
 
     static private Scene m_scene;
@@ -61,6 +67,12 @@ namespace USD.NET.Unity {
       return scene.AccessMask == null
           || scene.IsPopulatingAccessMask
           || scene.AccessMask.Included.ContainsKey(path);
+    }
+
+    public void Run() {
+      for (int i = 0; i < m_paths.Length; i++) {
+        Execute(i);
+      }
     }
 
     public void Execute(int index) {

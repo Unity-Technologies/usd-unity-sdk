@@ -16,7 +16,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
+
+#if !UNITY_2017
 using Unity.Jobs;
+#endif
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -444,12 +447,18 @@ namespace USD.NET.Unity {
       ReadAllJob<XformSample> readXforms;
       if (importOptions.importTransforms) {
         readXforms = new ReadAllJob<XformSample>(scene, primMap.Xforms);
+#if !UNITY_2017
         var jobHandle = readXforms.Schedule(primMap.Xforms.Length, 4);
+#else
+        readXforms.Run();
+#endif
       }
       if (importOptions.importMeshes) {
         ActiveMeshImporter.BeginReading(scene, primMap);
       }
+#if !UNITY_2017
       JobHandle.ScheduleBatchedJobs();
+#endif
 
 
       // Xforms.

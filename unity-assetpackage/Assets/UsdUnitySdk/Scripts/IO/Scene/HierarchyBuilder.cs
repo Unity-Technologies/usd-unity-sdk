@@ -18,7 +18,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
 using pxr;
+#if !UNITY_2017
 using Unity.Jobs;
+#endif
 
 namespace USD.NET.Unity {
 
@@ -41,10 +43,20 @@ namespace USD.NET.Unity {
       public string modelVersion;
     }
 
-    struct ReadHierJob : IJobParallelFor {
+    struct ReadHierJob
+#if !UNITY_2017
+      : IJobParallelFor
+#endif
+      {
       public static HierInfo[] result;
       public static Scene scene;
       public static SdfPath[] paths;
+
+      public void Run() {
+        for (int i = 0; i < paths.Length; i++) {
+          Execute(i);
+        }
+      }
 
       public void Execute(int index) {
         HierInfo info = new HierInfo();
@@ -64,7 +76,11 @@ namespace USD.NET.Unity {
       }
     }
 
-    struct FindPathsJob : IJobParallelFor {
+    struct FindPathsJob
+#if !UNITY_2017
+      : IJobParallelFor
+#endif
+      {
       public interface IQuery {
         SdfPath[] Find(Scene scene, SdfPath usdRoot);
       }
@@ -78,6 +94,12 @@ namespace USD.NET.Unity {
       public static SdfPath[][] results;
       public static IQuery[] queries;
 
+      public void Run() {
+        for (int i = 0; i < queries.Length; i++) {
+          Execute(i);
+        }
+      }
+
       public void Execute(int index) {
         var query = queries[index];
         if (query == null) { return; }
@@ -85,7 +107,13 @@ namespace USD.NET.Unity {
       }
     }
 
-    static JobHandle BeginReading(Scene scene,
+    static
+#if !UNITY_2017
+      JobHandle
+#else
+      void
+#endif
+      BeginReading(Scene scene,
                                     SdfPath usdRoot,
                                     PrimMap map,
                                     SceneImportOptions options) {
@@ -115,8 +143,12 @@ namespace USD.NET.Unity {
       }
 
       var findPathsJob = new FindPathsJob();
+#if !UNITY_2017
       var findHandle = findPathsJob.Schedule(FindPathsJob.queries.Length, 1);
       findHandle.Complete();
+#else
+      findPathsJob.Run();
+#endif
 
       map.Materials = FindPathsJob.results[0];
       map.Cameras = FindPathsJob.results[1];
@@ -130,7 +162,12 @@ namespace USD.NET.Unity {
       ReadHierJob.result = new HierInfo[ReadHierJob.paths.Length];
       ReadHierJob.scene = scene;
       var readHierInfo = new ReadHierJob();
+#if !UNITY_2017
       return readHierInfo.Schedule(ReadHierJob.paths.Length, 8, dependsOn: findHandle);
+#else
+      readHierInfo.Run();
+      return;
+#endif
     }
 
     static HierInfo[] BuildObjectLists(Scene scene,
@@ -139,7 +176,11 @@ namespace USD.NET.Unity {
                                        PrimMap map,
                                        SceneImportOptions options) {
 
+#if !UNITY_2017
       BeginReading(scene, usdRoot, map, options).Complete();
+#else
+      BeginReading(scene, usdRoot, map, options);
+#endif
 
       ProcessPaths(ReadHierJob.result, scene, unityRoot, usdRoot, map, options);
 

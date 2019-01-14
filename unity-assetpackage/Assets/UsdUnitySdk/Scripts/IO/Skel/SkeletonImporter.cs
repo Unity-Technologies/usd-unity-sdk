@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using pxr;
 using UnityEngine;
-using Unity.Collections;
 
 namespace USD.NET.Unity {
 

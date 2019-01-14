@@ -17,7 +17,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
+#if !UNITY_2017
 using Unity.Jobs;
+#endif
 using pxr;
 
 namespace USD.NET.Unity {
@@ -46,12 +48,18 @@ namespace USD.NET.Unity {
     }
 
     ReadAllJob<MeshSample> m_readMeshesJob;
+#if !UNITY_2017
     JobHandle m_readMeshesJobHandle;
-
     public void BeginReading(Scene scene, PrimMap primMap) {
       m_readMeshesJob = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
       m_readMeshesJobHandle = m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
     }
+#else
+    public void BeginReading(Scene scene, PrimMap primMap) {
+      m_readMeshesJob = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
+      m_readMeshesJob.Run();
+    }
+#endif
 
     public System.Collections.IEnumerator Import(Scene scene,
                              PrimMap primMap,
