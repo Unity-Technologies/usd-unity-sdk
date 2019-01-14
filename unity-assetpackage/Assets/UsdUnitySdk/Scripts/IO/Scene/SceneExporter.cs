@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -537,7 +537,10 @@ namespace USD.NET.Unity {
       }
 
       // Maintain a sorted list of bone names to ensure "parent first" ordering for UsdSkel.
-      var allNames = allBones.Select(boneXf => UnityTypeConverter.GetPath(boneXf)).OrderBy(str => str).Distinct().ToList();
+      var allNames = allBones.Select(boneXf => UnityTypeConverter.GetPath(boneXf))
+                             .OrderBy(str => str)
+                             .Distinct()
+                             .ToList();
       context.skelSortedMap[commonRoot] = allNames;
 
       return commonRoot;
