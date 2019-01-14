@@ -6,10 +6,10 @@ namespace USD.NET.Unity {
 
   [System.Serializable]
   public class UsdPlayableAsset : PlayableAsset {
-    StageRoot m_runtimeRoot;
+    UsdAsset m_runtimeRoot;
 
     [Tooltip("USD Player to Control")]
-    public ExposedReference<StageRoot> UsdStageRoot;
+    public ExposedReference<UsdAsset> UsdStageRoot;
 
     public ClipCaps clipCaps { get { return ClipCaps.Extrapolation | ClipCaps.Looping | ClipCaps.SpeedMultiplier | ClipCaps.ClipIn; } }
 

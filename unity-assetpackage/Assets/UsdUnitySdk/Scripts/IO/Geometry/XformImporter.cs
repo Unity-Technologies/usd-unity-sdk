@@ -80,11 +80,11 @@ namespace USD.NET.Unity {
     /// </summary>
     public static void BuildSceneRoot(Scene scene, Transform root, SceneImportOptions options) {
 
-      var stageRoot = root.GetComponent<StageRoot>();
+      var stageRoot = root.GetComponent<UsdAsset>();
       bool newStageRoot = false;
 
       if (stageRoot == null) {
-        stageRoot = root.gameObject.AddComponent<StageRoot>();
+        stageRoot = root.gameObject.AddComponent<UsdAsset>();
         stageRoot.m_usdFile = scene.FilePath;
         newStageRoot = true;
         ImporterBase.MoveComponentFirst(stageRoot);
@@ -136,7 +136,7 @@ namespace USD.NET.Unity {
     }
 
     public static void UndoRootTransform(Scene scene,
-                                         StageRoot stageRoot,
+                                         UsdAsset stageRoot,
                                          ref Vector3 localScale,
                                          ref Quaternion localRotation) {
       localScale /= stageRoot.LastScale;

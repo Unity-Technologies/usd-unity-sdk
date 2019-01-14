@@ -4,7 +4,7 @@ using UnityEngine;
 namespace USD.NET.Unity {
   // A behaviour that is attached to a playable
   public class UsdPlayableBehaviour : PlayableBehaviour {
-    public StageRoot player;
+    public UsdAsset player;
     private bool m_errorOnce = true;
 
     // Called when the owning graph starts playing
@@ -32,7 +32,7 @@ namespace USD.NET.Unity {
     }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
-      var root = playerData as StageRoot;
+      var root = playerData as UsdAsset;
       if (player == null) { return; }
       if (root == null) {
         if (m_errorOnce) {

@@ -66,11 +66,11 @@ public class UsdMenu : MonoBehaviour {
 
   [MenuItem("USD/Export Transform Overrides", true)]
   static bool EnableMenuExportTransforms() {
-    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<StageRoot>();
+    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<UsdAsset>();
   }
   [MenuItem("USD/Export Transform Overrides", priority = 0)]
   static public void MenuExportTransforms() {
-    var root = Selection.activeGameObject.GetComponentInParent<StageRoot>();
+    var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
     var overs = InitForSave(Path.GetFileNameWithoutExtension(root.m_usdFile) + "_overs.usda");
     root.ExportOverrides(overs);
   }
@@ -216,7 +216,7 @@ public class UsdMenu : MonoBehaviour {
 
   [MenuItem("USD/Unload Subtree", true)]
   static bool EnableMenuUnloadSubtree() {
-    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<StageRoot>();
+    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<UsdAsset>();
   }
   [MenuItem("USD/Unload Subtree", priority=100)]
   public static void MenuUnloadSubtree() {
@@ -231,13 +231,13 @@ public class UsdMenu : MonoBehaviour {
       Debug.LogWarning("No USD payloads found in subtree.");
       return;
     }
-    var root = src.GetComponentInParent<StageRoot>();
+    var root = src.GetComponentInParent<UsdAsset>();
     root.Reload(forceRebuild: false);
   }
 
   [MenuItem("USD/Load Subtree", true)]
   static bool EnableMenuLoadSubtree() {
-    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<StageRoot>();
+    return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<UsdAsset>();
   }
   [MenuItem("USD/Load Subtree", priority = 101)]
   public static void MenuLoadSubtree() {
@@ -253,7 +253,7 @@ public class UsdMenu : MonoBehaviour {
       return;
     }
 
-    var root = src.GetComponentInParent<StageRoot>();
+    var root = src.GetComponentInParent<UsdAsset>();
     root.Reload(forceRebuild: false);
   }
 

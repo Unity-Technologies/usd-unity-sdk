@@ -25,7 +25,7 @@ namespace USD.NET.Unity {
 
     public override void OnInspectorGUI() {
       var attachment = (UsdPrimSource)target;
-      var stageRoot = attachment.GetComponentInParent<StageRoot>();
+      var stageRoot = attachment.GetComponentInParent<UsdAsset>();
 
       if (!stageRoot) {
         Debug.LogError("No stage root found");

@@ -26,7 +26,7 @@ namespace USD.NET.Unity {
     public bool IsLoaded { get { return m_isLoaded; } }
 
     private void Start() {
-      bool loaded = GetComponentInParent<StageRoot>().m_payloadPolicy == PayloadPolicy.LoadAll;
+      bool loaded = GetComponentInParent<UsdAsset>().m_payloadPolicy == PayloadPolicy.LoadAll;
       m_isLoaded = loaded;
       m_wasLoaded = m_isLoaded;
     }
@@ -53,7 +53,7 @@ namespace USD.NET.Unity {
       m_wasLoaded = m_isLoaded;
 
       //Debug.Log("SetPayload: " + GetComponent<UsdPrimSource>().m_usdPrimPath);
-      var stageRoot = transform.GetComponentInParent<StageRoot>();
+      var stageRoot = transform.GetComponentInParent<UsdAsset>();
       stageRoot.SetPayloadState(this.gameObject, m_isLoaded);
     }
 

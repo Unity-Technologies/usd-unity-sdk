@@ -19,8 +19,8 @@ using UnityEditor.Experimental.AssetImporters;
 
 namespace USD.NET.Unity {
 
-  [CustomEditor(typeof(StageRoot))]
-  public class StageRootEditor : ScriptedImporterEditor {
+  [CustomEditor(typeof(UsdAsset))]
+  public class UsdAssetEditor : ScriptedImporterEditor {
 
     private Texture2D m_usdLogo;
 
@@ -36,7 +36,7 @@ namespace USD.NET.Unity {
     }
 
     public override void OnInspectorGUI() {
-      var stageRoot = (StageRoot)this.target;
+      var stageRoot = (UsdAsset)this.target;
 
       if (stageRoot.m_fallbackMaterial == null) {
         Debug.LogWarning("No fallback material set, reverting to default");
@@ -91,7 +91,7 @@ namespace USD.NET.Unity {
       base.DrawDefaultInspector();
     }
 
-    private void OpenUsdFile(StageRoot stageRoot) {
+    private void OpenUsdFile(UsdAsset stageRoot) {
       Scene scene = UsdMenu.InitForOpen();
       if (scene == null) {
         return;
@@ -99,12 +99,12 @@ namespace USD.NET.Unity {
       stageRoot.OpenScene(scene);
     }
 
-    private void ReloadFromUsd(StageRoot stageRoot, bool forceRebuild) {
+    private void ReloadFromUsd(UsdAsset stageRoot, bool forceRebuild) {
       stageRoot.Reload(forceRebuild);
       Repaint();
     }
 
-    private void ReloadFromUsdAsCoroutine(StageRoot stageRoot) {
+    private void ReloadFromUsdAsCoroutine(UsdAsset stageRoot) {
       var options = new SceneImportOptions();
       stageRoot.StateToOptions(ref options);
       var parent = stageRoot.gameObject.transform.parent;

@@ -34,7 +34,7 @@ namespace USD.NET.Unity {
     }
 
     public void ApplyVariantSelections() {
-      var stageRoot = GetComponentInParent<StageRoot>();
+      var stageRoot = GetComponentInParent<UsdAsset>();
       stageRoot.SetVariantSelection(gameObject, m_primPath, GetVariantSelections());
     }
 

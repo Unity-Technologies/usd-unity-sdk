@@ -9,7 +9,7 @@ namespace USD.NET.Unity {
   [TrackMediaType(TimelineAsset.MediaType.Script)]
 #endif
   [TrackClipType(typeof(UsdPlayableAsset))]
-  [TrackBindingType(typeof(StageRoot))]
+  [TrackBindingType(typeof(UsdAsset))]
   [TrackColor(0.1f, 0.2f, 0.8f)]
   [System.Serializable]
   public class UsdPlayableTrack : TrackAsset {

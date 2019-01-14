@@ -20,7 +20,7 @@ namespace USD.NET.Unity {
   /// <summary>
   /// A mechanism for managing USD layers in a multi-layer shot context.
   /// </summary>
-  [RequireComponent(typeof(StageRoot))]
+  [RequireComponent(typeof(UsdAsset))]
   public class UsdLayerStack : MonoBehaviour {
 
     public string m_targetLayer;
@@ -68,7 +68,7 @@ namespace USD.NET.Unity {
     /// Writes overrides to the currently targeted subLayer.
     /// </summary>
     public void SaveToLayer() {
-      var stageRoot = GetComponent<StageRoot>();
+      var stageRoot = GetComponent<UsdAsset>();
 
       Scene subLayerScene = Scene.Create(m_targetLayer);
       if (subLayerScene == null) {

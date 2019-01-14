@@ -24,7 +24,7 @@ namespace USD.NET.Unity {
   /// The goal is to make it easy to re-import the data in the future or export sparse overrides.
   /// </summary>
   [ExecuteInEditMode]
-  public class StageRoot : MonoBehaviour {
+  public class UsdAsset : MonoBehaviour {
 
     // Length of the USD playback time, exposed for Timeline.
     public double Length { get { return ComputeLength(); } }
@@ -414,7 +414,7 @@ namespace USD.NET.Unity {
     /// The idea here is that one may have many animation clips, but only a single GameObject in
     /// the Unity scenegraph.
     /// </remarks>
-    public void SetTime(double time, StageRoot foreignRoot) {
+    public void SetTime(double time, UsdAsset foreignRoot) {
       var scene = GetScene();
       if (scene == null) {
         Debug.LogWarning("Null scene from GetScene() at " + UnityTypeConverter.GetPath(transform));
