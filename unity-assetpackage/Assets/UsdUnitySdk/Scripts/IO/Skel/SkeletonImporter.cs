@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -262,8 +262,12 @@ namespace USD.NET.Unity {
           boneWeight.weight3 = weights[usdIndex + 3];
         }
 
+        // If weights are less than 1, Unity will not automatically renormalize.
+        // If weights are greater than 1, Unity will renormalize.
+        // Only normalize when less than one to make it easier to diff bone weights which were
+        // round-tripped and were being normalized by Unity.
         float sum = boneWeight.weight0 + boneWeight.weight1 + boneWeight.weight2 + boneWeight.weight3;
-        if (sum > 0) {
+        if (sum < 1) {
           boneWeight.weight0 /= sum;
           boneWeight.weight1 /= sum;
           boneWeight.weight2 /= sum;
