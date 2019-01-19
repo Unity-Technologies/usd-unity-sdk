@@ -246,6 +246,7 @@ namespace USD.NET.Unity {
                   + " boneWeights.Length: " + boneWeights.Length
                   + " mesh: " + meshPath);
         }
+
         boneWeight.boneIndex0 = indices[usdIndex];
         boneWeight.weight0 = weights[usdIndex];
 
