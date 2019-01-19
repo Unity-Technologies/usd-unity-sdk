@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -249,11 +249,11 @@ namespace USD.NET.Unity {
         boneWeight.boneIndex0 = indices[usdIndex];
         boneWeight.weight0 = weights[usdIndex];
 
-        if (meshBinding.jointIndices.elementSize == 2) {
+        if (meshBinding.jointIndices.elementSize >= 2) {
           boneWeight.boneIndex1 = indices[usdIndex + 1];
           boneWeight.weight1 = weights[usdIndex + 1];
         }
-        if (meshBinding.jointIndices.elementSize == 3) {
+        if (meshBinding.jointIndices.elementSize >= 3) {
           boneWeight.boneIndex2 = indices[usdIndex + 2];
           boneWeight.weight2 = weights[usdIndex + 2];
         }
