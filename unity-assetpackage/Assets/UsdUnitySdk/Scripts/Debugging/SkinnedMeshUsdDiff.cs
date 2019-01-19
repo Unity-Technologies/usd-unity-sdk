@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Compares a skinned mesh in Unity to a skinned mesh in USD.
+/// </summary>
 [ExecuteInEditMode]
 [RequireComponent(typeof(SkinnedMeshRenderer))]
-public class DebugSkinnedMesh : MonoBehaviour {
+public class SkinnedMeshUsdDiff : MonoBehaviour {
 
   [Tooltip("A path to a USD file for comparing weights")]
   public string m_usdFile;
