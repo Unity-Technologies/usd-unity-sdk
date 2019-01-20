@@ -555,7 +555,12 @@ namespace USD.NET.Unity {
             GameObject go = primMap[pathAndSample.path];
             NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-            CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
+
+            // The camera has many value-type parameters that need to be handled correctly when not
+            // not animated. For now, only the camera transform will animate, until this is fixed.
+            if (scene.AccessMask == null || scene.IsPopulatingAccessMask) {
+              CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
+            }
           } catch (System.Exception ex) {
             Debug.LogException(
                 new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
