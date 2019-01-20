@@ -72,8 +72,8 @@ public class SkinnedMeshUnityDiff : MonoBehaviour {
       for (int i = 0; i < usdMesh.bindposes.Length; i++) {
         if (usdMesh.bindposes[i] != unityMesh.bindposes[i]) {
           Debug.LogWarning("Mesh bind pose does not match at index(" + i + "):\n"
-            + "USD Mesh  : " + usdMesh.bindposes[i].ToString() + " "
-            + "Unity Mesh: " + unityMesh.bindposes[i].ToString());
+            + "USD Pose:\n" + usdMesh.bindposes[i].ToString() + " "
+            + "Unity Pose:\n" + unityMesh.bindposes[i].ToString());
         }
       }
     }
@@ -86,8 +86,8 @@ public class SkinnedMeshUnityDiff : MonoBehaviour {
       for (int i = 0; i < usdSmr.bones.Length; i++) {
         if (pxr.UsdCs.TfMakeValidIdentifier(usdSmr.bones[i].name) != pxr.UsdCs.TfMakeValidIdentifier(unitySmr.bones[i].name)) {
           Debug.LogWarning("Mesh bind pose does not match at index(" + i + "): "
-              + "mesh1 bone: " + usdSmr.bones[i].ToString() + " "
-              + "mesh2 bone: " + unitySmr.bones[i].ToString());
+              + "USD bone: " + usdSmr.bones[i].ToString() + " "
+              + "Unity bone: " + unitySmr.bones[i].ToString());
         }
       }
     }
