@@ -434,6 +434,7 @@ namespace USD.NET.Unity {
       foreignRoot.StateToOptions(ref options);
 
       PrepOptionsForTimeChange(ref options);
+
       if (foreignRoot.m_lastPrimMap == null) {
         foreignRoot.m_lastPrimMap = new PrimMap();
         options.importHierarchy = true;
