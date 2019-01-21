@@ -504,18 +504,21 @@ namespace USD.NET.Unity {
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
         }
 
-        foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Skeletons)) {
-          try {
-            GameObject go = primMap[pathAndSample.path];
-            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
-            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-          } catch (System.Exception ex) {
-            Debug.LogException(
-                new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
-          }
+        if (importOptions.importSkinning) {
+          foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Skeletons)) {
+            try {
+              GameObject go = primMap[pathAndSample.path];
+              NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+              XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+            } catch (System.Exception ex) {
+              Debug.LogException(
+                  new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+            }
 
-          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+            if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+          }
         }
+
         Profiler.EndSample();
       }
 
