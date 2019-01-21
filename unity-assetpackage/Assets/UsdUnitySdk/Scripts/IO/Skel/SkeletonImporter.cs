@@ -111,6 +111,20 @@ namespace USD.NET.Unity {
       }
     }
 
+    static bool JointsMatch(string[] lhs, string[] rhs) {
+      if (lhs == null && rhs == null) { return true; }
+      if (lhs == null || rhs == null) { return false; }
+      if (lhs == rhs) { return true; }
+
+      for (int i = 0; i < lhs.Length; i++) {
+        if (lhs[i] != rhs[i]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
     public static void BuildSkinnedMesh(string meshPath,
                                         string skelPath,
                                         SkeletonSample skeleton,
@@ -146,7 +160,7 @@ namespace USD.NET.Unity {
       // a mesh using a subset of the total bones in the skeleton and the bindTransforms must be
       // reconstructed.
       var bindPoses = skeleton.bindTransforms;
-      if (joints.Length != bindPoses.Length) {
+      if (!JointsMatch(skeleton.joints, joints)) {
         var boneToPose = new Dictionary<string, Matrix4x4>();
         bindPoses = new Matrix4x4[joints.Length];
         for (int i = 0; i < skelJoints.Length; i++) {
