@@ -70,7 +70,7 @@ public class SkinnedMeshUnityDiff : MonoBehaviour {
           + unityMesh.bindposes.Length);
     } else {
       for (int i = 0; i < usdMesh.bindposes.Length; i++) {
-        if (usdMesh.bindposes[i] != unityMesh.bindposes[i]) {
+        if (!Approximately(usdMesh.bindposes[i], unityMesh.bindposes[i])) {
           Debug.LogWarning("Mesh bind pose does not match at index(" + i + "):\n"
             + "USD Pose:\n" + usdMesh.bindposes[i].ToString() + " "
             + "Unity Pose:\n" + unityMesh.bindposes[i].ToString());
@@ -92,6 +92,15 @@ public class SkinnedMeshUnityDiff : MonoBehaviour {
       }
     }
 
+  }
+
+  bool Approximately(Matrix4x4 rhs, Matrix4x4 lhs) {
+    for (int i = 0; i < 16; i++) {
+      if (!Mathf.Approximately(rhs[i], lhs[i])) {
+        return false;
+      }
+    }
+    return true;
   }
 
   bool WeightsMatch(BoneWeight w1, BoneWeight w2) {
