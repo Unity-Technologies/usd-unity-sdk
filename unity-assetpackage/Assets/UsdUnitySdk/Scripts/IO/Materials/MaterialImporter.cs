@@ -58,7 +58,6 @@ namespace USD.NET.Unity {
       }
 
       var matVector = pxr.UsdShadeMaterialBindingAPI.ComputeBoundMaterials(prims, materialBindToken);
-      var materialSample = new MaterialSample();
       var matIndex = -1;
 
       foreach (pxr.UsdShadeMaterial usdMat in matVector) {

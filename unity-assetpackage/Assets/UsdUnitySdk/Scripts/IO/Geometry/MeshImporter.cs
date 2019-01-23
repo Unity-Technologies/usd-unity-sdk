@@ -49,10 +49,9 @@ namespace USD.NET.Unity {
 
     ReadAllJob<MeshSample> m_readMeshesJob;
 #if !UNITY_2017
-    JobHandle m_readMeshesJobHandle;
     public void BeginReading(Scene scene, PrimMap primMap) {
       m_readMeshesJob = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
-      m_readMeshesJobHandle = m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
+      m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
     }
 #else
     public void BeginReading(Scene scene, PrimMap primMap) {
@@ -95,7 +94,6 @@ namespace USD.NET.Unity {
         if (scene.AccessMask != null && scene.IsPopulatingAccessMask) {
           HashSet<System.Reflection.MemberInfo> members;
           if (scene.AccessMask.Included.TryGetValue(pathAndSample.path, out members)) {
-            var meshType = typeof(MeshSample);
             if (members.Contains(faceVertexCounts)
               || members.Contains(orientation)
               || members.Contains(faceVertexIndices)) {

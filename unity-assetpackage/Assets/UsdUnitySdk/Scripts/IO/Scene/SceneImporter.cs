@@ -448,7 +448,7 @@ namespace USD.NET.Unity {
       if (importOptions.importTransforms) {
         readXforms = new ReadAllJob<XformSample>(scene, primMap.Xforms);
 #if !UNITY_2017
-        var jobHandle = readXforms.Schedule(primMap.Xforms.Length, 4);
+        readXforms.Schedule(primMap.Xforms.Length, 4);
 #else
         readXforms.Run();
 #endif

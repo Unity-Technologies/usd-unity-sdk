@@ -112,7 +112,6 @@ namespace USD.NET.Unity {
       }
 
       scene.Write(path, sample);
-      var prim = scene.GetPrimAtPath(path);
     }
 
     public static void ExportMesh(ObjectContext objContext, ExportContext exportContext) {

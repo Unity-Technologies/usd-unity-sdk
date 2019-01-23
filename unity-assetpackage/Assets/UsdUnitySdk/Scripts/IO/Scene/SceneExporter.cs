@@ -429,7 +429,6 @@ namespace USD.NET.Unity {
       var mr = go.GetComponent<MeshRenderer>();
       var mf = go.GetComponent<MeshFilter>();
       var cam = go.GetComponent<Camera>();
-      var anim = go.GetComponent<Animator>();
       Transform expRoot = context.exportRoot;
 
       var tmpPath = new pxr.SdfPath(UnityTypeConverter.GetPath(go.transform, expRoot));
