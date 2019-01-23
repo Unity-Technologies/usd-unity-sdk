@@ -20,8 +20,8 @@ using USD.NET.Unity;
 
 public class UsdMenu : MonoBehaviour {
 
-  public static USD.NET.Scene InitForSave(string defaultName) {
-    var filePath = EditorUtility.SaveFilePanel("Export USD File", "", defaultName, "usda");
+  public static USD.NET.Scene InitForSave(string defaultName, string fileExtension = "usd") {
+    var filePath = EditorUtility.SaveFilePanel("Export USD File", "", defaultName, fileExtension);
 
     if (filePath == null || filePath.Length == 0) {
       return null;
@@ -59,7 +59,7 @@ public class UsdMenu : MonoBehaviour {
   static bool EnableMenuExportSelectedWithChildren() {
     return Selection.gameObjects.Length > 0;
   }
-  [MenuItem("USD/Export Selected with Children", priority = 0)]
+  [MenuItem("USD/Export Selected with Children", priority = 50)]
   static void MenuExportSelectedWithChildren() {
     ExportSelected(BasisTransformation.SlowAndSafe);
   }
@@ -68,19 +68,19 @@ public class UsdMenu : MonoBehaviour {
   static bool EnableMenuExportTransforms() {
     return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<UsdAsset>();
   }
-  [MenuItem("USD/Export Transform Overrides", priority = 0)]
+  [MenuItem("USD/Export Transform Overrides", priority = 50)]
   static public void MenuExportTransforms() {
     var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
     var overs = InitForSave(Path.GetFileNameWithoutExtension(root.m_usdFile) + "_overs.usda");
     root.ExportOverrides(overs);
   }
 
-  static void ExportSelected(BasisTransformation basisTransform) {
+  static void ExportSelected(BasisTransformation basisTransform, string fileExtension = "usd") {
     USD.NET.Scene scene = null;
 
     foreach (GameObject go in Selection.gameObjects) {
       if (scene == null) {
-        scene = InitForSave(go.name);
+        scene = InitForSave(go.name, fileExtension);
         if (scene == null) {
           return;
         }
@@ -101,7 +101,7 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
-  [MenuItem("USD/Import as GameObjects", priority = 50)]
+  [MenuItem("USD/Import as GameObjects", priority = 0)]
   public static void MenuImportAsGameObjects() {
     var scene = InitForOpen();
     if (scene == null) {
@@ -148,7 +148,7 @@ public class UsdMenu : MonoBehaviour {
   }
 #endif
 
-  [MenuItem("USD/Import as Prefab", priority = 51)]
+  [MenuItem("USD/Import as Prefab", priority = 1)]
   public static void MenuImportAsPrefab() {
     var scene = InitForOpen();
     if (scene == null) {
@@ -182,7 +182,7 @@ public class UsdMenu : MonoBehaviour {
     }
   }
 
-  [MenuItem("USD/Import as Timeline Clip", priority = 52)]
+  [MenuItem("USD/Import as Timeline Clip", priority = 2)]
   public static void MenuImportAsTimelineClip() {
     var scene = InitForOpen();
     if (scene == null) {
