@@ -38,9 +38,11 @@ namespace USD.NET {
     /// <returns>A vector of PeropertyInfo for the given type.</returns>
     public static PropertyInfo[] GetCachedProperties(Type type) {
       PropertyInfo[] pi;
-      if (!propertyInfoCache.TryGetValue(type, out pi)) {
-        pi = type.GetProperties(GetPublicBindingFlags());
-        propertyInfoCache[type] = pi;
+      lock (propertyInfoCache) {
+        if (!propertyInfoCache.TryGetValue(type, out pi)) {
+          pi = type.GetProperties(GetPublicBindingFlags());
+          propertyInfoCache[type] = pi;
+        }
       }
       return pi;
     }
@@ -53,9 +55,11 @@ namespace USD.NET {
     /// <returns>A vector of FieldInfo for the given type.</returns>
     public static FieldInfo[] GetCachedFields(Type type) {
       FieldInfo[] fi;
-      if (!fieldInfoCache.TryGetValue(type, out fi)) {
-        fi = type.GetFields(GetPublicBindingFlags());
-        fieldInfoCache[type] = fi;
+      lock (fieldInfoCache) {
+        if (!fieldInfoCache.TryGetValue(type, out fi)) {
+          fi = type.GetFields(GetPublicBindingFlags());
+          fieldInfoCache[type] = fi;
+        }
       }
       return fi;
     }
