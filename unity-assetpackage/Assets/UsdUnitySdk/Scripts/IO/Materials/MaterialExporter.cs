@@ -12,10 +12,43 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace USD.NET.Unity {
   public static class MaterialExporter {
+
+    public delegate void ExportHandler(Scene scene,
+                                       string usdShaderPath,
+                                       Material material,
+                                       UnityPreviewSurfaceSample surface,
+                                       string destTexturePath);
+
+    public static readonly string kStandardFallbackHandler = "USD.NET/Fallback/Standard";
+    public static readonly string kHdrpFallbackHandler = "USD.NET/Fallback/HDRP";
+    public static readonly string kLwrpFallbackHandler = "USD.NET/Fallback/LWRP";
+
+    /// <summary>
+    /// The ExportRegistry is a mapping from Unity shader name (e.g. "Standard") to ExportHandler.
+    /// When exporting a Material, the shader name is used to lookup the export hanlder function
+    /// in this registry.
+    /// </summary>
+    static public Dictionary<string, ExportHandler> ExportRegistry
+        = new Dictionary<string, ExportHandler>();
+
+    static MaterialExporter() {
+      ExportRegistry.Add("Standard",
+                         StandardShaderExporter.ExportStandard);
+      ExportRegistry.Add("Standard (Roughness setup)",
+                         StandardShaderExporter.ExportStandardRoughness);
+      ExportRegistry.Add("Standard (Specular setup)",
+                         StandardShaderExporter.ExportStandardSpecular);
+      ExportRegistry.Add("HDRenderPipeline/Lit",
+                         HdrpShaderIo.ExportLit);
+      ExportRegistry.Add(kStandardFallbackHandler,
+                         StandardShaderExporter.ExportGeneric);
+    }
+
     public static void ExportMaterial(Scene scene, Material mat, string usdMaterialPath) {
       string shaderPath = usdMaterialPath + "/PreviewSurface";
 
@@ -28,17 +61,17 @@ namespace USD.NET.Unity {
       var texPath = /*TODO: this should be explicit*/
             System.IO.Path.GetDirectoryName(scene.FilePath);
 
-      if (mat.shader.name == "Standard (Specular setup)") {
-        StandardShaderExporter.ExportStandardSpecular(scene, shaderPath, mat, shader, texPath);
-      } else if (mat.shader.name == "Standard (Roughness setup)") {
-        StandardShaderExporter.ExportStandardRoughness(scene, shaderPath, mat, shader, texPath);
-      } else if (mat.shader.name == "Standard") {
-        StandardShaderExporter.ExportStandard(scene, shaderPath, mat, shader, texPath);
-      } else if (mat.shader.name == "HDRenderPipeline/Lit") {
-        HdrpShaderIo.ExportLit(scene, shaderPath, mat, shader, texPath);
-      } else {
-        StandardShaderExporter.ExportGeneric(scene, shaderPath, mat, shader, texPath);
+      ExportHandler handler = null;
+      if (!ExportRegistry.TryGetValue(mat.shader.name, out handler)) {
+        handler = ExportRegistry[kStandardFallbackHandler];
       }
+
+      if (handler == null) {
+        Debug.LogException(new System.Exception("Could not find handler to export shader: " + mat.shader.name));
+        return;
+      }
+
+      handler(scene, shaderPath, mat, shader, texPath);
 
       scene.Write(shaderPath, shader);
       scene.GetPrimAtPath(shaderPath).CreateAttribute(pxr.UsdShadeTokens.outputsSurface,
