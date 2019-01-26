@@ -169,7 +169,11 @@ namespace USD.NET.Unity {
           mesh.RecalculateBounds();
           sample.extent = mesh.bounds;
         }
+
         sample.colors = mesh.colors;
+        if (sample.colors != null && sample.colors.Length == 0) {
+          sample.colors = null;
+        }
 
         if ((sample.colors == null || sample.colors.Length == 0)
             && (sharedMaterial != null && sharedMaterial.HasProperty("_Color"))) {
