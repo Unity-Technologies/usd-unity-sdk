@@ -132,7 +132,7 @@ namespace USD.NET.Unity {
     private AccessMask m_lastAccessMask = null;
 
 #if UNITY_EDITOR
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private int m_instanceId = 0;
 
     void Awake() {
