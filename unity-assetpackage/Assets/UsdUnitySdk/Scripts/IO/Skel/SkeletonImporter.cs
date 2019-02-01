@@ -16,6 +16,9 @@ using System;
 using System.Collections.Generic;
 using pxr;
 using UnityEngine;
+#if !UNITY_2017 && !UNITY_2018
+using Unity.Collections;
+#endif
 
 namespace USD.NET.Unity {
 
