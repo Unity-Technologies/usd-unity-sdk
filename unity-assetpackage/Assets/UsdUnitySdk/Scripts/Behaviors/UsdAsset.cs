@@ -62,7 +62,6 @@ namespace USD.NET.Unity {
     public Material m_metallicWorkflowMaterial;
 
     [Header("Mesh Options")]
-    public bool m_generateLightmapUVs;
     public ImportMode m_points;
     public ImportMode m_topology;
     public ImportMode m_boundingBox;
@@ -78,6 +77,24 @@ namespace USD.NET.Unity {
     public ImportMode m_texcoord2;
     [HideInInspector]
     public ImportMode m_texcoord3;
+
+    [Header("Mesh Lightmap UV Unwrapping")]
+    public bool m_generateLightmapUVs;
+
+    [Tooltip("Maximum allowed angle distortion")]
+    [Range(0, 1)]
+    public float m_unwrapAngleError = .08f;
+
+    [Tooltip("Maximum allowed area distortion")]
+    [Range(0, 1)]
+    public float m_unwrapAreaError = .15f;
+
+    [Tooltip("This angle (in degrees) or greater between triangles will cause seam to be created")]
+    [Range(1, 359)]
+    public float m_unwrapHardAngle = 88;
+
+    [Tooltip("How much uv-islands will be padded")]
+    public float m_unwrapPackMargin = 1 / 256.0f;
 
     [Header("Import Settings")]
     public bool m_importCameras = true;
@@ -168,6 +185,11 @@ namespace USD.NET.Unity {
       m_texcoord3 = options.meshOptions.texcoord3;
       m_generateLightmapUVs = options.meshOptions.generateLightmapUVs;
 
+      m_unwrapAngleError = options.meshOptions.unwrapAngleError;
+      m_unwrapAreaError = options.meshOptions.unwrapAreaError;
+      m_unwrapHardAngle = options.meshOptions.unwrapHardAngle;
+      m_unwrapPackMargin = options.meshOptions.unwrapPackMargin;
+
       m_debugShowSkeletonBindPose = options.meshOptions.debugShowSkeletonBindPose;
       m_debugShowSkeletonRestPose = options.meshOptions.debugShowSkeletonRestPose;
 
@@ -212,6 +234,11 @@ namespace USD.NET.Unity {
       options.meshOptions.texcoord2 = m_texcoord2;
       options.meshOptions.texcoord3 = m_texcoord3;
       options.meshOptions.generateLightmapUVs = m_generateLightmapUVs;
+
+      options.meshOptions.unwrapAngleError = m_unwrapAngleError;
+      options.meshOptions.unwrapAreaError = m_unwrapAreaError;
+      options.meshOptions.unwrapHardAngle = m_unwrapHardAngle;
+      options.meshOptions.unwrapPackMargin = m_unwrapPackMargin;
 
       options.meshOptions.debugShowSkeletonBindPose = m_debugShowSkeletonBindPose;
       options.meshOptions.debugShowSkeletonRestPose = m_debugShowSkeletonRestPose;
@@ -400,7 +427,7 @@ namespace USD.NET.Unity {
       }
     }
 
-#region "Timeline Support"
+    #region "Timeline Support"
     private double ComputeLength() {
       var scene = GetScene();
       if (scene == null) { return 0; }
@@ -473,7 +500,7 @@ namespace USD.NET.Unity {
         scene.IsPopulatingAccessMask = false;
       }
     }
-#endregion
+    #endregion
 
     private void Update() {
       if (m_lastTime == m_usdTimeOffset) {
