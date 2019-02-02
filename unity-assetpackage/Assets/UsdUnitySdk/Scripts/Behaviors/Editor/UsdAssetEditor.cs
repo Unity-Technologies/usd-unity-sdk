@@ -102,11 +102,12 @@ namespace USD.NET.Unity {
       }
 
       if (IsPrefabInstance(stageRoot.gameObject)) {
-        GUILayout.EndHorizontal();
         var style = new GUIStyle();
         style.alignment = TextAnchor.MiddleCenter;
         style.fontSize = 12;
+        style.wordWrap = true;
         EditorGUILayout.LabelField("Edit prefab for destructive operations", style);
+        GUILayout.EndHorizontal();
       } else {
         if (GUILayout.Button(new GUIContent(m_reimportButton, "Reimport from USD (destructive)"), buttonStyle)) {
           if (EditorUtility.DisplayDialog("Reimport", "Destroy and rebuild all USD objects?\nAny object with a UsdPrimSource will be destroyed and reimported.", "OK", "Cancel")) {
