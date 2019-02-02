@@ -149,7 +149,6 @@ namespace USD.NET.Unity {
       return GetPrefabObject(root) != null;
     }
 
-
     void Awake() {
       if (IsPrefabInstance(gameObject)) { return; }
 
@@ -166,6 +165,27 @@ namespace USD.NET.Unity {
       }
     }
 #endif
+
+    private string GetPrefabAssetPath(GameObject root) {
+#if UNITY_EDITOR
+#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
+      return UnityEditor.AssetDatabase.GetAssetPath(
+              UnityEditor.PrefabUtility.GetPrefabObject(root));
+#else
+      if (!UnityEditor.EditorUtility.IsPersistent(root)) {
+        var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
+        if (prefabStage != null) {
+          if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root)) {
+            return prefabStage.prefabAssetPath;
+            // This is a great resource for determining object type, but only covers new APIs:
+            // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
+          }
+        }
+      }
+#endif
+#endif
+      return null;
+    }
 
     /// <summary>
     /// Convert the SceneImportOptions into a serializable form.
@@ -380,40 +400,30 @@ namespace USD.NET.Unity {
 
       var root = gameObject;
 
-      string assetPath =
-#if UNITY_EDITOR
-          UnityEditor.AssetDatabase.GetAssetPath(
-              UnityEditor.PrefabUtility.GetPrefabObject(root));
-#else
-          null;
-#endif
+      string assetPath = GetPrefabAssetPath(root);
 
       // The prefab asset path will be null for prefab instances.
       // When the assetPath is not null, the object is the prefab itself.
       if (!string.IsNullOrEmpty(assetPath)) {
         if (options.forceRebuild) {
-          root = new GameObject();
+          DestroyAllImportedObjects();
         }
         string clipName = System.IO.Path.GetFileNameWithoutExtension(m_usdFile);
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
+
+#if UNITY_EDITOR
+        // As an optimization, we could detect if any meshes or materials were created and only
+        // rebuild the prefab in those cases.
         SceneImporter.SavePrefab(root, assetPath, clipName, options);
-        if (options.forceRebuild) {
-          GameObject.DestroyImmediate(root);
-        }
+#endif
       } else {
         // An instance of a prefab or a vanilla game object.
         // Just reload the scene into memory and let the user decide if they want to send those
         // changes back to the prefab or not.
 
         if (forceRebuild) {
-#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
           // First, destroy all existing USD game objects.
-          foreach (var src in root.GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
-            if (src) {
-              GameObject.DestroyImmediate(src.gameObject);
-            }
-          }
-#endif
+          DestroyAllImportedObjects();
         }
 
         m_lastScene = null;
@@ -472,7 +482,6 @@ namespace USD.NET.Unity {
       }
     }
 
-    #region "Timeline Support"
     private double ComputeLength() {
       var scene = GetScene();
       if (scene == null) { return 0; }
@@ -569,7 +578,6 @@ namespace USD.NET.Unity {
         scene.IsPopulatingAccessMask = false;
       }
     }
-    #endregion
 
     private void Update() {
       if (m_lastTime == m_usdTimeOffset) {
