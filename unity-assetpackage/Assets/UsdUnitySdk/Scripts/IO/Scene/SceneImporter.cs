@@ -223,14 +223,16 @@ namespace USD.NET.Unity {
       }
 
       foreach (var mf in rootObject.GetComponentsInChildren<MeshFilter>()) {
+        if (!mf) { continue; }
         if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
           mf.sharedMesh.name = mf.name;
         }
       }
 
       foreach (var mf in rootObject.GetComponentsInChildren<MeshRenderer>()) {
+        if (!mf) { continue; }
         foreach (var mat in mf.sharedMaterials) {
-          if (mat == null || !materials.Add(mat)) {
+          if (mat != null && !materials.Add(mat)) {
             mat.name = mf.name;
             continue;
           }
@@ -238,11 +240,12 @@ namespace USD.NET.Unity {
       }
 
       foreach (var mf in rootObject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+        if (!mf) { continue; }
         if (mf.sharedMesh != null && meshes.Add(mf.sharedMesh)) {
           mf.sharedMesh.name = mf.name;
         }
         foreach (var mat in mf.sharedMaterials) {
-          if (mat == null || !materials.Add(mat)) {
+          if (mat != null && !materials.Add(mat)) {
             mat.name = mf.name;
             continue;
           }
