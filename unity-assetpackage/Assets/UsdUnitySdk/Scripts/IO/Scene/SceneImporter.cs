@@ -125,7 +125,7 @@ namespace USD.NET.Unity {
 #if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
         prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
 #else
-        prefab = PrefabUtility.SavePrefabAsset(prefab);
+        prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
 #endif
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
 
@@ -138,6 +138,7 @@ namespace USD.NET.Unity {
       } else {
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
+        oldPrefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
         AddObjectsToAsset(rootObject, oldPrefab, importOptions, out meshes, out materials);
 
         // ReplacePrefab only removes the GameObjects from the asset.
@@ -175,7 +176,7 @@ namespace USD.NET.Unity {
           prefab = oldPrefab;
         }
 #else
-        prefab = PrefabUtility.SavePrefabAsset(oldPrefab);
+        prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
 #endif
 
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
