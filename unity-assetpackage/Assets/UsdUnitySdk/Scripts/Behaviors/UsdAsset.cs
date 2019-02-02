@@ -21,7 +21,7 @@ namespace USD.NET.Unity {
 
   /// <summary>
   /// Represents the point at which a UsdStage has been imported into the Unity scene.
-  /// The goal is to make it easy to re-import the data in the future or export sparse overrides.
+  /// The goal is to make it easy to re-import the data and to export sparse overrides.
   /// </summary>
   [ExecuteInEditMode]
   public class UsdAsset : MonoBehaviour {
@@ -135,7 +135,24 @@ namespace USD.NET.Unity {
     [SerializeField, HideInInspector]
     private int m_instanceId = 0;
 
+    private GameObject GetPrefabObject(GameObject root) {
+#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
+      return UnityEditor.PrefabUtility.GetPrefabObject(root);
+#else
+      // This is a great resource for determining object type, but only covers new APIs:
+      // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
+      return UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(root);
+#endif
+    }
+
+    private bool IsPrefabInstance(GameObject root) {
+      return GetPrefabObject(root) != null;
+    }
+
+
     void Awake() {
+      if (IsPrefabInstance(gameObject)) { return; }
+
       if (m_instanceId != GetInstanceID()) {
         if (m_instanceId == 0) {
           m_instanceId = GetInstanceID();
@@ -319,6 +336,34 @@ namespace USD.NET.Unity {
         SceneImporter.ImportUsd(root, scene, new PrimMap(), options);
       } finally {
         scene.Close();
+      }
+    }
+
+    private void DestroyComponent(Component comp) {
+      if (!comp) { return; }
+      Component.DestroyImmediate(comp);
+    }
+
+    public void RemoveAllUsdComponents() {
+      foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
+        if (src) {
+          var go = src.gameObject;
+          DestroyComponent(go.GetComponent<UsdAssemblyRoot>());
+          DestroyComponent(go.GetComponent<UsdAsset>());
+          DestroyComponent(go.GetComponent<UsdLayerStack>());
+          DestroyComponent(go.GetComponent<UsdModelRoot>());
+          DestroyComponent(go.GetComponent<UsdPayload>());
+          DestroyComponent(go.GetComponent<UsdVariantSet>());
+          DestroyComponent(go.GetComponent<UsdPrimSource>());
+        }
+      }
+    }
+
+    public void DestroyAllImportedObjects() {
+      foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
+        if (src) {
+          GameObject.DestroyImmediate(src.gameObject);
+        }
       }
     }
 
