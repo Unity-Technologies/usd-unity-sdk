@@ -486,7 +486,7 @@ namespace USD.NET.Unity {
     /// The idea here is that one may have many animation clips, but only a single GameObject in
     /// the Unity scenegraph.
     /// </remarks>
-    public void SetTime(double time, UsdAsset foreignRoot) {
+    public void SetTime(double time, UsdAsset foreignRoot, bool saveMeshUpdates) {
       var scene = GetScene();
       if (scene == null) {
         Debug.LogWarning("Null scene from GetScene() at " + UnityTypeConverter.GetPath(transform));
@@ -534,6 +534,30 @@ namespace USD.NET.Unity {
         Debug.Log(sb.ToString());
       }
 
+      foreach (var meshFilter in gameObject.GetComponentsInChildren<MeshFilter>()) {
+        if (!meshFilter) { continue; }
+        if (!meshFilter.GetComponent<UsdPrimSource>()) {
+          continue;
+        }
+        if (saveMeshUpdates) {
+          meshFilter.sharedMesh.hideFlags &= ~HideFlags.DontSave;
+        } else {
+          meshFilter.sharedMesh.hideFlags |= HideFlags.DontSave;
+        }
+      }
+
+      foreach (var mr in gameObject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+        if (!mr) { continue; }
+        if (!mr.GetComponent<UsdPrimSource>()) {
+          continue;
+        }
+        if (saveMeshUpdates) {
+          mr.sharedMesh.hideFlags &= ~HideFlags.DontSave;
+        } else {
+          mr.sharedMesh.hideFlags |= HideFlags.DontSave;
+        }
+      }
+
       scene.AccessMask = m_lastAccessMask;
       SceneImporter.ImportUsd(foreignRoot.gameObject,
                               scene,
@@ -552,7 +576,7 @@ namespace USD.NET.Unity {
         return;
       }
       m_lastTime = m_usdTimeOffset;
-      SetTime(m_usdTimeOffset, this);
+      SetTime(m_usdTimeOffset, this, saveMeshUpdates: true);
     }
 
     public static void PrepOptionsForTimeChange(ref SceneImportOptions options) {

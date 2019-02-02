@@ -48,7 +48,7 @@ namespace USD.NET.Unity {
         return;
       }
 
-      player.SetTime(playable.GetTime(), root);
+      player.SetTime(playable.GetTime(), root, saveMeshUpdates: false);
     }
 
     public override void PrepareData(Playable playable, FrameData info) {
