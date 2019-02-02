@@ -680,6 +680,9 @@ namespace USD.NET.Unity {
         // via the usd scene. In addition, this requies the prim map to store lists of prims by
         // type, e.g. cameras, meshes, cubes, etc.
         go = new GameObject(name);
+      }
+
+      if (!go.GetComponent<UsdPrimSource>()) {
         var ua = go.AddComponent<UsdPrimSource>();
         ua.m_usdPrimPath = path.ToString();
       }
