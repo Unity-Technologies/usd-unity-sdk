@@ -82,48 +82,66 @@ namespace USD.NET.Unity {
         stageRoot.m_specularWorkflowMaterial = matMap.SpecularWorkflowMaterial;
       }
 
+      var buttonStyle = new GUIStyle(GUI.skin.button);
+      buttonStyle.fixedWidth = 32;
+      buttonStyle.fixedHeight = 32;
+
       var gsImageStyle = new GUIStyle();
       gsImageStyle.alignment = TextAnchor.MiddleCenter;
       gsImageStyle.normal.background = EditorGUIUtility.whiteTexture;
-      
       gsImageStyle.padding.bottom = 0;
+
       GUILayout.Space(5);
       GUILayout.BeginHorizontal(gsImageStyle);
       EditorGUILayout.LabelField(new GUIContent(m_usdLogo), GUILayout.MinHeight(40.0f));
+
+      var refreshStyle = new GUIStyle(buttonStyle);
+      refreshStyle.fixedHeight = 38;
+      refreshStyle.fixedWidth = 38;
+      if (GUILayout.Button(new GUIContent(m_refreshButton, "Refresh values from USD"), refreshStyle)) {
+        if (EditorUtility.DisplayDialog("Refresh from Source", "Refresh values from USD?\n\n"
+              + "Any object set to import will have it's state updated from USD", "OK", "Cancel")) {
+          ReloadFromUsd(stageRoot, forceRebuild: false);
+        }
+      }
       GUILayout.EndHorizontal();
 
       GUILayout.Space(5);
-      GUILayout.BeginHorizontal();
 
-      var buttonStyle = new GUIStyle(GUI.skin.button);
-
-      if (GUILayout.Button(new GUIContent(m_refreshButton, "Refresh values from USD"), buttonStyle)) {
-        ReloadFromUsd(stageRoot, forceRebuild: false);
-      }
-
+      GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
+      GUILayout.FlexibleSpace();
       if (IsPrefabInstance(stageRoot.gameObject)) {
         var style = new GUIStyle();
         style.alignment = TextAnchor.MiddleCenter;
         style.fontSize = 12;
         style.wordWrap = true;
         EditorGUILayout.LabelField("Edit prefab for destructive operations", style);
-        GUILayout.EndHorizontal();
       } else {
         if (GUILayout.Button(new GUIContent(m_reimportButton, "Reimport from USD (destructive)"), buttonStyle)) {
-          if (EditorUtility.DisplayDialog("Reimport", "Destroy and rebuild all USD objects?\nAny object with a UsdPrimSource will be destroyed and reimported.", "OK", "Cancel")) {
+          if (EditorUtility.DisplayDialog("Reimport from Source", "Destroy and rebuild all USD objects?\n\n"
+                  + "Any GameObject with a UsdPrimSource will be destroyed and reimported.",
+                "OK", "Cancel")) {
             ReloadFromUsd(stageRoot, forceRebuild: true);
           }
         }
         if (GUILayout.Button(new GUIContent(m_trashButton, "Remove USD Contents (destructive)"), buttonStyle)) {
-          if (EditorUtility.DisplayDialog("Clear Contents", "Destroy all USD objects?\nAny object with a UsdPrimSource will be destroyed.", "OK", "Cancel")) {
+          if (EditorUtility.DisplayDialog("Clear Contents", "Destroy all USD objects?\n\n" 
+                  + "Any GameObject with a UsdPrimSource will be destroyed. "
+                  + "These objects can be re-imported but any custom components will be lost.",
+                "OK", "Cancel")) {
             DestroyAllImportedObjects(stageRoot);
           }
         }
         if (GUILayout.Button(new GUIContent(m_detachButton, "Detach, remove all USD components"), buttonStyle)) {
-          DetachFromUsd(stageRoot);
+          if (EditorUtility.DisplayDialog("Detach from USD", "Remove all USD components?\n\n"
+              + "USD components will be destroyed (except the UsdAsset root), "
+              + "but can be recreated by refreshing from USD.", "OK", "Cancel")) {
+            DetachFromUsd(stageRoot);
+          }
         }
-        GUILayout.EndHorizontal();
       }
+      GUILayout.FlexibleSpace();
+      GUILayout.EndHorizontal();
 
       if (Application.isPlaying && GUILayout.Button("Reload from USD (Coroutine)")) {
         ReloadFromUsdAsCoroutine(stageRoot);
