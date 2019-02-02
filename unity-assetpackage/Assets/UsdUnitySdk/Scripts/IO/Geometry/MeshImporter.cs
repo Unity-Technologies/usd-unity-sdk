@@ -116,9 +116,11 @@ namespace USD.NET.Unity {
         try {
           GameObject go = primMap[pathAndSample.path];
 
-          Profiler.BeginSample("Build Mesh Xform");
-          XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
-          Profiler.EndSample();
+          if (importOptions.importTransforms) {
+            Profiler.BeginSample("Build Mesh Xform");
+            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+            Profiler.EndSample();
+          }
 
           Profiler.BeginSample("Read Mesh Subsets");
           MeshImporter.GeometrySubsets subsets = null;
