@@ -22,14 +22,6 @@ namespace USD.NET.Unity {
       var smr = objContext.gameObject.GetComponent<SkinnedMeshRenderer>();
       Mesh mesh = smr.sharedMesh;
 
-      // TODO: export smr.sharedMesh when unvarying.
-      // Ugh. Note that BakeMesh bakes the parent transform into the points, which results in
-      // compounded transforms on export. The way Unity handles this is to apply a scale as part
-      // of the importer, which bakes the scale into the points.
-#if false
-      mesh = new Mesh();
-      smr.BakeMesh(mesh);
-#endif
       UnityEngine.Profiling.Profiler.BeginSample("USD: Skinned Mesh");
       ExportMesh(objContext,
                  exportContext,
