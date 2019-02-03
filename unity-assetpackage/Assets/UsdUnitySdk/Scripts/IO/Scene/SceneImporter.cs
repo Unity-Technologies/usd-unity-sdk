@@ -138,7 +138,9 @@ namespace USD.NET.Unity {
       } else {
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
+#if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017
         oldPrefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
+#endif
         AddObjectsToAsset(rootObject, oldPrefab, importOptions, out meshes, out materials);
 
         // ReplacePrefab only removes the GameObjects from the asset.
