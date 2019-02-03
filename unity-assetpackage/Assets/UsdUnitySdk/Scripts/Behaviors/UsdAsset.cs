@@ -543,30 +543,6 @@ namespace USD.NET.Unity {
         Debug.Log(sb.ToString());
       }
 
-      foreach (var meshFilter in gameObject.GetComponentsInChildren<MeshFilter>()) {
-        if (!meshFilter) { continue; }
-        if (!meshFilter.GetComponent<UsdPrimSource>()) {
-          continue;
-        }
-        if (saveMeshUpdates) {
-          meshFilter.sharedMesh.hideFlags &= ~HideFlags.DontSave;
-        } else {
-          meshFilter.sharedMesh.hideFlags |= HideFlags.DontSave;
-        }
-      }
-
-      foreach (var mr in gameObject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
-        if (!mr) { continue; }
-        if (!mr.GetComponent<UsdPrimSource>()) {
-          continue;
-        }
-        if (saveMeshUpdates) {
-          mr.sharedMesh.hideFlags &= ~HideFlags.DontSave;
-        } else {
-          mr.sharedMesh.hideFlags |= HideFlags.DontSave;
-        }
-      }
-
       scene.AccessMask = m_lastAccessMask;
       SceneImporter.ImportUsd(foreignRoot.gameObject,
                               scene,
