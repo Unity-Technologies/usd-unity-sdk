@@ -786,7 +786,7 @@ namespace USD.NET.Unity {
                     Profiler.EndSample();
 
                     // In terms of performance, this is almost free.
-                    goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform;
+                    goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform.GetChild(0);
 
                   } catch (System.Exception ex) {
                     Debug.LogException(new ImportException("Error skinning mesh: " + meshPath, ex));
