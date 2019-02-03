@@ -458,7 +458,11 @@ namespace USD.NET.Unity {
         } else {
           // Each mesh in a model may have a different root bone, which now must be merged into a
           // single skeleton for export to USD.
-          MergeBonesSimple(smr.transform, smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
+          try {
+            MergeBonesSimple(smr.transform, smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Failed to merge bones for " + UnityTypeConverter.GetPath(smr.transform), ex));
+          }
         }
       } else if (mf != null && mr != null) {
         foreach (var mat in mr.sharedMaterials) {
