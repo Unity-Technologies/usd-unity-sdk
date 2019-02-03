@@ -183,6 +183,7 @@ namespace USD.NET.Unity {
           // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
           // of basis is required. There are shortcuts, but this is fully general.
           sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
+          sample.extent.extents = UnityTypeConverter.ChangeBasis(sample.extent.extents);
 
           for (int i = 0; i < sample.points.Length; i++) {
             sample.points[i] = UnityTypeConverter.ChangeBasis(sample.points[i]);
@@ -279,11 +280,11 @@ namespace USD.NET.Unity {
 
         if (exportMeshPose) {
           meshSample.points = mesh.vertices;
-        
-        // Set face vertex counts and indices.
-        var tris = mesh.triangles;
 
-        meshSample.extent = mesh.bounds;
+          // Set face vertex counts and indices.
+          var tris = mesh.triangles;
+
+          meshSample.extent = mesh.bounds;
           if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
             mesh.RecalculateBounds();
             meshSample.extent = mesh.bounds;
@@ -293,6 +294,7 @@ namespace USD.NET.Unity {
             // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
             // of basis is required. There are shortcuts, but this is fully general.
             meshSample.extent.center = UnityTypeConverter.ChangeBasis(meshSample.extent.center);
+            meshSample.extent.extents = UnityTypeConverter.ChangeBasis(meshSample.extent.extents);
 
             for (int i = 0; i < meshSample.points.Length; i++) {
               meshSample.points[i] = UnityTypeConverter.ChangeBasis(meshSample.points[i]);
