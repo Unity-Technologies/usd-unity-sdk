@@ -345,7 +345,6 @@ namespace USD.NET.Unity {
               continue;
             }
 
-            Debug.Log("Creating skeleton: " + UnityTypeConverter.GetPath(skeletonRoot));
             foundAnimators.Add(anim.transform);
 
             // The skeleton is exported at the skeleton root and UsdSkelAnimation is nested under
