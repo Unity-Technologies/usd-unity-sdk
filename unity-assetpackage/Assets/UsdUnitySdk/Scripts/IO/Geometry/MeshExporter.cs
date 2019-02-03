@@ -20,12 +20,11 @@ namespace USD.NET.Unity {
 
     public static void ExportSkinnedMesh(ObjectContext objContext, ExportContext exportContext) {
       var smr = objContext.gameObject.GetComponent<SkinnedMeshRenderer>();
-      Mesh mesh = smr.sharedMesh;
 
       UnityEngine.Profiling.Profiler.BeginSample("USD: Skinned Mesh");
       ExportMesh(objContext,
                  exportContext,
-                 mesh,
+                 smr.sharedMesh,
                  smr.sharedMaterial,
                  smr.sharedMaterials,
                  exportMeshPose: exportContext.scene.Time == null);
@@ -109,10 +108,15 @@ namespace USD.NET.Unity {
     public static void ExportMesh(ObjectContext objContext, ExportContext exportContext) {
       MeshFilter mf = objContext.gameObject.GetComponent<MeshFilter>();
       MeshRenderer mr = objContext.gameObject.GetComponent<MeshRenderer>();
-      Mesh mesh = mf.sharedMesh;
 
       UnityEngine.Profiling.Profiler.BeginSample("USD: Mesh");
-      ExportMesh(objContext, exportContext, mesh, mr.sharedMaterial, mr.sharedMaterials);
+
+      ExportMesh(objContext,
+                 exportContext,
+                 mf.sharedMesh,
+                 mr.sharedMaterial,
+                 mr.sharedMaterials);
+
       UnityEngine.Profiling.Profiler.EndSample();
     }
 
@@ -137,10 +141,18 @@ namespace USD.NET.Unity {
       var sample = (MeshSample)objContext.sample;
       var go = objContext.gameObject;
 
+      if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
+        mesh.RecalculateBounds();
+      }
+      sample.extent = mesh.bounds;
+
       if (slowAndSafeConversion) {
         // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
         // basis is required. There are shortcuts, but this is fully general.
         sample.ConvertTransform();
+
+        sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
+        sample.extent.extents = UnityTypeConverter.ChangeBasis(sample.extent.extents);
       }
 
       // Only export the mesh topology on the first frame.
@@ -156,11 +168,6 @@ namespace USD.NET.Unity {
         sample.normals = mesh.normals;
         sample.points = mesh.vertices;
         sample.tangents = mesh.tangents;
-        sample.extent = mesh.bounds;
-        if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
-          mesh.RecalculateBounds();
-          sample.extent = mesh.bounds;
-        }
 
         sample.colors = mesh.colors;
         if (sample.colors != null && sample.colors.Length == 0) {
@@ -182,8 +189,6 @@ namespace USD.NET.Unity {
         if (slowAndSafeConversion) {
           // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
           // of basis is required. There are shortcuts, but this is fully general.
-          sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
-          sample.extent.extents = UnityTypeConverter.ChangeBasis(sample.extent.extents);
 
           for (int i = 0; i < sample.points.Length; i++) {
             sample.points[i] = UnityTypeConverter.ChangeBasis(sample.points[i]);
@@ -284,18 +289,9 @@ namespace USD.NET.Unity {
           // Set face vertex counts and indices.
           var tris = mesh.triangles;
 
-          meshSample.extent = mesh.bounds;
-          if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
-            mesh.RecalculateBounds();
-            meshSample.extent = mesh.bounds;
-          }
-
           if (slowAndSafeConversion) {
             // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change
             // of basis is required. There are shortcuts, but this is fully general.
-            meshSample.extent.center = UnityTypeConverter.ChangeBasis(meshSample.extent.center);
-            meshSample.extent.extents = UnityTypeConverter.ChangeBasis(meshSample.extent.extents);
-
             for (int i = 0; i < meshSample.points.Length; i++) {
               meshSample.points[i] = UnityTypeConverter.ChangeBasis(meshSample.points[i]);
             }
