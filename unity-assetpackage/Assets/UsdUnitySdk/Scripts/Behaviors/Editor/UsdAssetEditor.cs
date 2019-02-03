@@ -49,7 +49,7 @@ namespace USD.NET.Unity {
 
     private GameObject GetPrefabObject(GameObject root) {
 #if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
-      return PrefabUtility.GetPrefabObject(root);
+      return PrefabUtility.GetPrefabObject(root) as GameObject;
 #else
       // This is a great resource for determining object type, but only covers new APIs:
       // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
