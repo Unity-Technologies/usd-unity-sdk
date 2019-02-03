@@ -277,6 +277,7 @@ namespace USD.NET.Unity {
       } else {
         // Only write the transform when animating.
         var meshSample = new MeshSampleBase();
+        meshSample.extent = sample.extent;
         meshSample.transform = XformExporter.GetLocalTransformMatrix(
             go.transform,
             scene.UpAxis == Scene.UpAxes.Z,
