@@ -72,8 +72,6 @@ namespace USD.NET.Unity {
       var sample = (SkelRootSample)objContext.sample;
       var bindings = ((string[])objContext.additionalData);
 
-      sample.extent = new Bounds(objContext.gameObject.transform.position, Vector3.zero);
-
       if (bindings != null) {
         sample.skeleton = bindings[0];
         if (bindings.Length > 1) {
@@ -82,8 +80,27 @@ namespace USD.NET.Unity {
       }
 
       // Compute bounds for the root, required by USD.
+      bool first = true;
       foreach (var r in objContext.gameObject.GetComponentsInChildren<Renderer>()) {
-        sample.extent.Encapsulate(r.bounds);
+        if (first) {
+          // Ensure the bounds object starts growing from the first valid child bounds.
+          first = false;
+          sample.extent = r.bounds;
+        } else {
+          sample.extent.Encapsulate(r.bounds);
+        }
+      }
+
+
+      // Convert the bounds from worldspace to local space.
+      // This is required because USD expects the extent to be a local bound for the SkelRoot.
+      var xf = objContext.gameObject.transform;
+      sample.extent.min = xf.worldToLocalMatrix.MultiplyPoint(sample.extent.min);
+      sample.extent.max = xf.worldToLocalMatrix.MultiplyPoint(sample.extent.max);
+
+      if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
+        sample.extent.min = UnityTypeConverter.ChangeBasis(sample.extent.min);
+        sample.extent.max = UnityTypeConverter.ChangeBasis(sample.extent.max);
       }
 
       exportContext.scene.Write(objContext.path, sample);
