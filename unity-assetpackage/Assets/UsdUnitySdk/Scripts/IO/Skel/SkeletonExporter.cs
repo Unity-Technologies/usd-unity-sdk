@@ -125,11 +125,22 @@ namespace USD.NET.Unity {
       if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
         rootXf = UnityTypeConverter.ChangeBasis(rootXf);
       }
+
+      var skelWorldTransform = UnityTypeConverter.ToGfMatrix(rootXf);
       pxr.VtMatrix4dArray vtJointsLS = new pxr.VtMatrix4dArray((uint)boneNames.Count);
+      pxr.VtMatrix4dArray vtJointsWS = UnityTypeConverter.ToVtArray(worldXf);
+      pxr.VtMatrix4dArray vtJointsWSInv = UnityTypeConverter.ToVtArray(worldXfInv);
 
       var translations = new pxr.VtVec3fArray();
       var rotations = new pxr.VtQuatfArray();
       sample.scales = new pxr.VtVec3hArray();
+
+      var topo = new pxr.UsdSkelTopology(UnityTypeConverter.ToVtArray(sample.joints));
+      var localSpaceXforms = pxr.UsdCs.UsdSkelComputeJointLocalTransforms(topo,
+          vtJointsWS,
+          vtJointsWSInv,
+          vtJointsLS,
+          skelWorldTransform);
 
       pxr.UsdCs.UsdSkelDecomposeTransforms(
           vtJointsLS,
