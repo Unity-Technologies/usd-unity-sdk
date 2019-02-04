@@ -129,7 +129,7 @@ namespace USD.NET.Unity {
 #endif
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
 
-        playable.UsdStageRoot.defaultValue = prefab.GetComponent<UsdAsset>();
+        playable.SourceUsdAsset.defaultValue = prefab.GetComponent<UsdAsset>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
 #if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017
@@ -182,7 +182,7 @@ namespace USD.NET.Unity {
 #endif
 
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
-        playable.UsdStageRoot.defaultValue = prefab.GetComponent<UsdAsset>();
+        playable.SourceUsdAsset.defaultValue = prefab.GetComponent<UsdAsset>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
 #if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017

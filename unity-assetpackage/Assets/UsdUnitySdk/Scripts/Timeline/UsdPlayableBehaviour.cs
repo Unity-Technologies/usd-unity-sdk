@@ -4,7 +4,8 @@ using UnityEngine;
 namespace USD.NET.Unity {
   // A behaviour that is attached to a playable
   public class UsdPlayableBehaviour : PlayableBehaviour {
-    public UsdAsset player;
+    public UsdPlayableAsset playableAsset;
+
     private bool m_errorOnce = true;
 
     // Called when the owning graph starts playing
@@ -32,9 +33,13 @@ namespace USD.NET.Unity {
     }
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
-      var root = playerData as UsdAsset;
-      if (player == null) { return; }
-      if (root == null) {
+      if (playableAsset == null) { return; }
+
+      var sourceUsdAsset = playableAsset.GetUsdAsset();
+      if (sourceUsdAsset == null) { return; }
+
+      var targetUsdAsset = playerData as UsdAsset;
+      if (targetUsdAsset == null) {
         if (m_errorOnce) {
           Debug.LogError("Error: track data has no target UsdStageRoot");
           m_errorOnce = false;
@@ -44,11 +49,11 @@ namespace USD.NET.Unity {
         m_errorOnce = true;
       }
 
-      if (!root.isActiveAndEnabled) {
+      if (!targetUsdAsset.isActiveAndEnabled) {
         return;
       }
 
-      player.SetTime(playable.GetTime(), root, saveMeshUpdates: false);
+      sourceUsdAsset.SetTime(playable.GetTime(), targetUsdAsset, saveMeshUpdates: false);
     }
 
     public override void PrepareData(Playable playable, FrameData info) {
