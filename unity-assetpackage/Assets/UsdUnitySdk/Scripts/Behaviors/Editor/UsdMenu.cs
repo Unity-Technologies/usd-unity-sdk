@@ -75,6 +75,19 @@ public class UsdMenu : MonoBehaviour {
     root.ExportOverrides(overs);
   }
 
+  static private pxr.SdfPath GetDefaultRoot(USD.NET.Scene scene) {
+    var defPrim = scene.Stage.GetDefaultPrim();
+    if (defPrim) {
+      return defPrim.GetPath();
+    }
+    var children = scene.Stage.GetPseudoRoot().GetChildren().ToList();
+    if (children.Count > 0 ) {
+      return children[0].GetPath();
+    }
+
+    return pxr.SdfPath.AbsoluteRootPath();
+  }
+
   static void ExportSelected(BasisTransformation basisTransform, string fileExtension = "usd") {
     USD.NET.Scene scene = null;
 
@@ -118,35 +131,20 @@ public class UsdMenu : MonoBehaviour {
     importOptions.projectAssetPath = GetSelectedAssetPath();
     importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+    importOptions.usdRootPath = GetDefaultRoot(scene);
 
-    //importOptions.meshOptions.generateLightmapUVs = true;
-
-    GameObject root = new GameObject(
-      UnityTypeConverter.MakeValidIdentifier(Path.GetFileNameWithoutExtension(path)));
+    GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
 
     if (Selection.gameObjects.Length > 0) {
       root.transform.SetParent(Selection.gameObjects[0].transform);
     }
+
     try {
-      UsdToGameObject(root, GetObjectName(path), scene, importOptions);
+      UsdToGameObject(root, scene, importOptions);
     } finally {
       scene.Close();
     }
   }
-
-#if false
-  [MenuItem("USD/Scripted Import")]
-  public static void ImportUsdScripted() {
-    var scene = InitForOpen();
-    if (scene == null) {
-      return;
-    }
-    string path = scene.FilePath;
-    string assetPath = "Assets/Test.usd-hook";
-    File.WriteAllText(assetPath, path);
-    AssetDatabase.ImportAsset(assetPath);
-  }
-#endif
 
   [MenuItem("USD/Import as Prefab", priority = 1)]
   public static void MenuImportAsPrefab() {
@@ -163,8 +161,9 @@ public class UsdMenu : MonoBehaviour {
 
     var importOptions = new SceneImportOptions();
     importOptions.projectAssetPath = GetSelectedAssetPath();
-    importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
+    importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+    importOptions.usdRootPath = GetDefaultRoot(scene);
 
     var invalidChars = Path.GetInvalidFileNameChars();
     var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
@@ -172,9 +171,10 @@ public class UsdMenu : MonoBehaviour {
     string prefabPath = importOptions.projectAssetPath + prefabName + ".prefab";
     prefabPath = AssetDatabase.GenerateUniqueAssetPath(prefabPath);
     string clipName = Path.GetFileNameWithoutExtension(path);
-    var go = new GameObject();
+
+    var go = new GameObject(GetObjectName(importOptions.usdRootPath, path));
     try {
-      UsdToGameObject(go, GetPrefabName(path), scene, importOptions);
+      UsdToGameObject(go, scene, importOptions);
       SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
     } finally {
       GameObject.DestroyImmediate(go);
@@ -190,7 +190,6 @@ public class UsdMenu : MonoBehaviour {
     }
 
     string path = scene.FilePath;
-    var go = new GameObject();
 
     var invalidChars = Path.GetInvalidFileNameChars();
     var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
@@ -202,8 +201,11 @@ public class UsdMenu : MonoBehaviour {
 
     var importOptions = new SceneImportOptions();
     importOptions.projectAssetPath = GetSelectedAssetPath();
-    importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
+    importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
     importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+    importOptions.usdRootPath = GetDefaultRoot(scene);
+
+    var go = new GameObject(GetObjectName(importOptions.usdRootPath, path));
 
     try {
       // Ensure we have at least one GameObject with the import settings.
@@ -279,7 +281,6 @@ public class UsdMenu : MonoBehaviour {
   }
 
   public static GameObject UsdToGameObject(GameObject parent,
-                                           string name,
                                            USD.NET.Scene scene,
                                            SceneImportOptions importOptions) {
     try {
@@ -289,6 +290,12 @@ public class UsdMenu : MonoBehaviour {
     }
 
     return parent;
+  }
+
+  private static string GetObjectName(pxr.SdfPath rootPrimName, string path) {
+    return pxr.UsdCs.TfIsValidIdentifier(rootPrimName.GetName())
+         ? rootPrimName.GetName()
+         : GetObjectName(path);
   }
 
   private static string GetObjectName(string path) {
