@@ -37,9 +37,6 @@ namespace USD.NET.Unity {
         return;
       }
 
-      Debug.Log("Begin");
-
-
       if (Clip.UsdScene != null) {
         Clip.UsdScene.Close();
         Clip.UsdScene = null;
@@ -100,7 +97,6 @@ namespace USD.NET.Unity {
     }
 
     public void StopRecording(double currentTime) {
-      Debug.Log("Stop Recording");
       if (Clip.UsdScene == null) {
         // If an error occured, avoid spewing on every frame.
         return;
@@ -117,7 +113,6 @@ namespace USD.NET.Unity {
       }
 
       // Release memory associated with the scene.
-      Debug.Log("Close: Set scene to null");
       Clip.UsdScene.Close();
       Clip.UsdScene = null;
     }
