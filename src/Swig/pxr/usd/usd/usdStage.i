@@ -111,6 +111,13 @@ class string;
       return targets;
     }
 
+    {
+      TfType curType = schemaBaseType.FindDerivedByName(rootPrim.GetTypeName().GetString());
+      if (curType != TfType::GetUnknownType() && curType.IsA(baseType)) {
+        targets.push_back(rootPrim.GetPath());
+      }
+    }
+
     for (auto&& p : rootPrim.GetAllDescendants()) {
       TfType curType = schemaBaseType.FindDerivedByName(p.GetTypeName().GetString());
       if (curType == TfType::GetUnknownType()) {

@@ -475,6 +475,10 @@ namespace USD.NET.Unity {
         Profiler.BeginSample("USD: Build Xforms");
         foreach (var pathAndSample in readXforms) {
           try {
+            if (pathAndSample.path == usdPrimRoot) {
+              // Never read the xform from the USD root, that will be authored in Unity.
+              continue;
+            }
             GameObject go = primMap[pathAndSample.path];
             NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
             bool hasVarMap = scene.AccessMask != null
@@ -499,6 +503,10 @@ namespace USD.NET.Unity {
 
         foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.SkelRoots)) {
           try {
+            if (pathAndSample.path == usdPrimRoot) {
+              // Never read the xform from the USD root, that will be authored in Unity.
+              continue;
+            }
             GameObject go = primMap[pathAndSample.path];
             NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
@@ -513,6 +521,10 @@ namespace USD.NET.Unity {
         if (importOptions.importSkinning) {
           foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Skeletons)) {
             try {
+              if (pathAndSample.path == usdPrimRoot) {
+                // Never read the xform from the USD root, that will be authored in Unity.
+                continue;
+              }
               GameObject go = primMap[pathAndSample.path];
               NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);

@@ -61,6 +61,7 @@ namespace USD.NET.Unity {
       public void Execute(int index) {
         HierInfo info = new HierInfo();
         info.prim = scene.Stage.GetPrimAtPath(paths[index]);
+
         if (!info.prim) {
           info.prim = null;
           return;
@@ -410,22 +411,26 @@ namespace USD.NET.Unity {
         var prim = info.prim;
         var path = info.prim.GetPath();
 
-        GameObject parentGo = null;
-        CreateAncestors(path, map, unityRoot, usdRoot, options, out parentGo);
+        GameObject go;
+        if (path == usdRoot) {
+          go = unityRoot;
+        } else {
+          GameObject parentGo = null;
+          CreateAncestors(path, map, unityRoot, usdRoot, options, out parentGo);
 
         if (!parentGo) {
           Debug.LogWarning("Parent path not found for child: " + path.ToString());
           continue;
-        }
+          }
 
-        var parent = parentGo ? parentGo.transform : null;
-        GameObject go;
-        if (!map.TryGetValue(path, out go)) {
-          go = FindOrCreateGameObject(parent,
-                                      path,
-                                      unityRoot.transform,
-                                      map,
-                                      options);
+          var parent = parentGo ? parentGo.transform : null;
+          if (!map.TryGetValue(path, out go)) {
+            go = FindOrCreateGameObject(parent,
+                                        path,
+                                        unityRoot.transform,
+                                        map,
+                                        options);
+          }
         }
 
         if (options.importSceneInstances) {
@@ -503,6 +508,9 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Given an array of bone names (HierInfo.skelJoints), creates GameObjects under unityRoot.
+    /// </summary>
     static void ExpandSkeleton(HierInfo info,
                                GameObject unityRoot,
                                SdfPath usdRoot,
