@@ -186,40 +186,6 @@ namespace USD.NET.Unity {
       ProcessPaths(ReadHierJob.result, scene, unityRoot, usdRoot, map, options);
 
       return ReadHierJob.result;
-
-#if false
-      // PERFORMANCE: Internally, these collections are converted to SdfPathVectors,
-      // so some time and garbage churn could be saved by using that type instead.
-      if (options.ShouldBindMaterials) {
-        map.Materials = scene.Find<MaterialSample>(usdRoot);
-      }
-      if (options.importCameras) {
-        map.Cameras = scene.Find<CameraSample>(usdRoot);
-        ProcessPaths(map.Cameras, scene, unityRoot, usdRoot, map, options);
-      }
-      if (options.importMeshes) {
-        map.Meshes = scene.Find<MeshSample>(usdRoot);
-        ProcessPaths(map.Meshes, scene, unityRoot, usdRoot, map, options);
-      }
-      if (options.importMeshes) {
-        map.Cubes = scene.Find<CubeSample>(usdRoot);
-        ProcessPaths(map.Cubes, scene, unityRoot, usdRoot, map, options);
-      }
-
-      // Even though skinning may not be imported, SkelRoot objects must be created since they
-      // may be the root transform of many different prim types.
-      map.SkelRoots = scene.Find<SkelRootSample>(usdRoot);
-      ProcessPaths(map.SkelRoots, scene, unityRoot, usdRoot, map, options);
-
-      if (options.importSkinning) {
-        map.Skeletons = scene.Find<SkeletonSample>(usdRoot);
-        ProcessPaths(map.Skeletons, scene, unityRoot, usdRoot, map, options);
-      }
-      if (options.importTransforms) {
-        map.Xforms = scene.Find<XformSample>(usdRoot);
-        ProcessPaths(map.Xforms, scene, unityRoot, usdRoot, map, options);
-      }
-#endif
     }
 
     /// <summary>
@@ -418,9 +384,9 @@ namespace USD.NET.Unity {
           GameObject parentGo = null;
           CreateAncestors(path, map, unityRoot, usdRoot, options, out parentGo);
 
-        if (!parentGo) {
-          Debug.LogWarning("Parent path not found for child: " + path.ToString());
-          continue;
+          if (!parentGo) {
+            Debug.LogWarning("Parent path not found for child: " + path.ToString());
+            continue;
           }
 
           var parent = parentGo ? parentGo.transform : null;
