@@ -59,20 +59,6 @@ namespace USD.NET.Unity {
                                   Transform rootBone,
                                   Transform[] bones) {
       var sample = new SkelBindingSample();
-      var unityBoneWeights = unityMesh.boneWeights;
-
-      if (unityBoneWeights.Length == 0) {
-        Debug.LogWarning("Found zero bone weights at: " + path);
-        return;
-      }
-
-      sample.jointIndices.value = new int[unityBoneWeights.Length * 4];
-      sample.jointIndices.elementSize = 4;
-      sample.jointIndices.interpolation = PrimvarInterpolation.Vertex;
-
-      sample.jointWeights.value = new float[unityBoneWeights.Length * 4];
-      sample.jointWeights.elementSize = 4;
-      sample.jointWeights.interpolation = PrimvarInterpolation.Vertex;
 
       sample.geomBindTransform.value = Matrix4x4.identity;
       sample.joints = new string[bones.Length];
@@ -90,6 +76,51 @@ namespace USD.NET.Unity {
 
       int i = 0;
       int w = 0;
+      b = 0;
+#if UNITY_2019
+      var bonesPerVertex = unityMesh.GetBonesPerVertex();
+      var unityBoneWeights = unityMesh.GetAllBoneWeights();
+      byte maxWeightCount = 0;
+      foreach (var c in bonesPerVertex) {
+        maxWeightCount = maxWeightCount > c ? maxWeightCount : c;
+      }
+
+      sample.jointIndices.value = new int[bonesPerVertex.Length * maxWeightCount];
+      sample.jointIndices.elementSize = maxWeightCount;
+      sample.jointIndices.interpolation = PrimvarInterpolation.Vertex;
+
+      sample.jointWeights.value = new float[bonesPerVertex.Length * maxWeightCount];
+      sample.jointWeights.elementSize = maxWeightCount;
+      sample.jointWeights.interpolation = PrimvarInterpolation.Vertex;
+
+      foreach (var weightCount in bonesPerVertex) {
+        for (int j = 0; j < weightCount; j++) {
+          var bw = unityBoneWeights[b++];
+          sample.jointIndices.value[i++] = bw.boneIndex;
+          sample.jointWeights.value[w++] = bw.weight;
+        }
+
+        // Unity allows a variable number of weights per bone, but we've made the array square,
+        // which means we may need to skip a few indicies, if this vert doesn't use the max number
+        // of weights.
+        i += maxWeightCount - weightCount;
+        w += maxWeightCount - weightCount;
+      }
+#else
+      var unityBoneWeights = unityMesh.boneWeights;
+
+      if (unityBoneWeights.Length == 0) {
+        Debug.LogWarning("Found zero bone weights at: " + path);
+        return;
+      }
+
+      sample.jointIndices.value = new int[unityBoneWeights.Length * 4];
+      sample.jointIndices.elementSize = 4;
+      sample.jointIndices.interpolation = PrimvarInterpolation.Vertex;
+
+      sample.jointWeights.value = new float[unityBoneWeights.Length * 4];
+      sample.jointWeights.elementSize = 4;
+      sample.jointWeights.interpolation = PrimvarInterpolation.Vertex;
 
       foreach (var bone in unityBoneWeights) {
         sample.jointIndices.value[i++] = bone.boneIndex0;
@@ -101,7 +132,7 @@ namespace USD.NET.Unity {
         sample.jointWeights.value[w++] = bone.weight2;
         sample.jointWeights.value[w++] = bone.weight3;
       }
-
+#endif
       scene.Write(path, sample);
     }
 
