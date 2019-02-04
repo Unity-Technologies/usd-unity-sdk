@@ -36,7 +36,7 @@ namespace USD.NET.Examples {
 
       // Populate Values.
       var value = new MyCustomData();
-      value.aString = "It Worked!";
+      value.aString = "IT'S ALIIIIIIIIIIIIIVE!";
       value.anArrayOfInts = new int[] { 1, 2, 3, 4 };
       value.aBoundingBox = new UnityEngine.Bounds();
 
