@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using pxr;
+using Unity.Collections;
 using UnityEngine;
 #if !UNITY_2017 && !UNITY_2018
 using Unity.Collections;
