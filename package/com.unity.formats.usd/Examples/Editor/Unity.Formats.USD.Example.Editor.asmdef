@@ -1,0 +1,10 @@
+{
+    "name": "Unity.Formats.USD.Examples.Editor",
+  "references": [
+    "Unity.Formats.USD.Examples.Runtime",
+  ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

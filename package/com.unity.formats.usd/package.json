@@ -1,0 +1,20 @@
+{
+    "dependencies": {
+        "com.unity.timeline" : "1.0.0"
+    },
+    "description": "Blah USD.", 
+    "displayName": "USD", 
+    "keywords": [
+        "usd", 
+    ], 
+    "name": "com.unity.formats.usd",
+    "repoPackagePath": "build/install/com.unity.formats.alembic", 
+    "repository": {
+        "type": "git", 
+        "revision": "02da3f2a1167bc44b6124596b9dc58cbfd9b511c",
+        "url": "ssh://git@github.com/unity3d-jp/AlembicForUnity.git"
+    }, 
+    "unity": "2018.3",
+    "unityRelease": "4f1",
+    "version": "1.0.0-preview.19"
+}

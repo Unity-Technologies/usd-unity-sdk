@@ -1,0 +1,9 @@
+{
+    "name": "Unity.Formats.USD.Runtime",
+  "references": [
+  ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
