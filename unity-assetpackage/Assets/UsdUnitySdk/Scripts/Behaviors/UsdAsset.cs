@@ -69,8 +69,8 @@ namespace USD.NET.Unity {
     public ImportMode m_normals;
     public ImportMode m_tangents;
 
-    [HideInInspector]
-    public ImportMode m_texcoord0;
+    public ImportMode m_st;
+
     [HideInInspector]
     public ImportMode m_texcoord1;
     [HideInInspector]
@@ -216,7 +216,7 @@ namespace USD.NET.Unity {
       m_color = options.meshOptions.color;
       m_normals = options.meshOptions.normals;
       m_tangents = options.meshOptions.tangents;
-      m_texcoord0 = options.meshOptions.texcoord0;
+      m_st = options.meshOptions.texcoord0;
       m_texcoord1 = options.meshOptions.texcoord1;
       m_texcoord2 = options.meshOptions.texcoord2;
       m_texcoord3 = options.meshOptions.texcoord3;
@@ -266,7 +266,7 @@ namespace USD.NET.Unity {
       options.meshOptions.color = m_color;
       options.meshOptions.normals = m_normals;
       options.meshOptions.tangents = m_tangents;
-      options.meshOptions.texcoord0 = m_texcoord0;
+      options.meshOptions.texcoord0 = m_st;
       options.meshOptions.texcoord1 = m_texcoord1;
       options.meshOptions.texcoord2 = m_texcoord2;
       options.meshOptions.texcoord3 = m_texcoord3;
