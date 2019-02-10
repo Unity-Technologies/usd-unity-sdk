@@ -55,9 +55,19 @@ namespace USD.NET.Unity {
     public Material MetallicWorkflowMaterial { get; set; }
 
     public MaterialMap() {
-      SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
-      MetallicWorkflowMaterial = new Material(Shader.Find("Standard"));
-      FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
+      var pipeline = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
+
+      if (!pipeline) {
+        // Fallback to the built-in render pipeline, assume Standard PBS shader.
+        SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
+        MetallicWorkflowMaterial = new Material(Shader.Find("Standard"));
+        FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
+      } else {
+        SpecularWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
+        MetallicWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
+        FallbackMasterMaterial = new Material(Shader.Find("USD/SrpVertexColor"));
+      }
+
     }
 
     /// <summary>
@@ -66,6 +76,7 @@ namespace USD.NET.Unity {
     public Dictionary<string, MaterialBinder> ClearRequestedBindings() {
       var bindings = m_requestedBindings;
       m_requestedBindings = new Dictionary<string, MaterialBinder>();
+      
       return bindings;
     }
 
