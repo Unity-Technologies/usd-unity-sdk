@@ -99,8 +99,8 @@ namespace USD.NET.Unity {
     [Range(1, 359)]
     public float m_unwrapHardAngle = 88;
 
-    [Tooltip("How much uv-islands will be padded")]
-    public float m_unwrapPackMargin = 1 / 256.0f;
+    [Tooltip("UV-island padding in pixels")]
+    public int m_unwrapPackMargin = 4;
 
     [Header("Import Settings")]
     public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;

@@ -580,7 +580,9 @@ namespace USD.NET.Unity {
         unwrapSettings.angleError = options.meshOptions.unwrapAngleError;
         unwrapSettings.areaError = options.meshOptions.unwrapAngleError;
         unwrapSettings.hardAngle = options.meshOptions.unwrapHardAngle;
-        unwrapSettings.packMargin = options.meshOptions.unwrapPackMargin;
+
+        // Convert pixels to unitless UV space, which is what unwrapSettings uses internally.
+        unwrapSettings.packMargin = options.meshOptions.unwrapPackMargin / 1024.0f;
 
         UnityEditor.Unwrapping.GenerateSecondaryUVSet(unityMesh, unwrapSettings);
         Profiler.EndSample();

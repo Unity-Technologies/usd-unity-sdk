@@ -96,9 +96,13 @@ namespace USD.NET.Unity {
     public float unwrapHardAngle = 88;
 
     /// <summary>
-    /// How much uv-islands will be padded.
+    /// How much uv-islands will be padded, in pixels.
     /// </summary>
-    public float unwrapPackMargin = 1 / 256.0f;
+    /// <remarks>
+    /// Note that the Unity UnwrapParams API is actually specified in a unitless number. To convert
+    /// pixels to this unitless value, this number is divided by 1024.
+    /// </remarks>
+    public int unwrapPackMargin = 4;
     #endregion
 
     public ImportMode color = ImportMode.Import;
