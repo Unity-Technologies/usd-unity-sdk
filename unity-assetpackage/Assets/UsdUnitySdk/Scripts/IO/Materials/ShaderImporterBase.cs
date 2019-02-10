@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace USD.NET.Unity {
-  public abstract class MaterialImporterBase {
+  public abstract class ShaderImporterBase {
     public Material Material { get; private set; }
     public bool IsMetallicWorkflow { get; private set; }
 
@@ -44,7 +44,7 @@ namespace USD.NET.Unity {
     public float? Metallic;
     public Texture2D MetallicMap;
 
-    public MaterialImporterBase(Material material) {
+    public ShaderImporterBase(Material material) {
       Material = material;
     }
 

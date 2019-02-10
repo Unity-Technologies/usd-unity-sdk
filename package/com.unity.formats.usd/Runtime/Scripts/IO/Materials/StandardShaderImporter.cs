@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
-  public class StandardShaderImporter : MaterialImporterBase {
+  public class StandardShaderImporter : ShaderImporterBase {
 
     public StandardShaderImporter(Material material) : base(material) {
     }
