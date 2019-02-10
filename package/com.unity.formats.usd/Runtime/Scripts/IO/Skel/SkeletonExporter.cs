@@ -153,7 +153,7 @@ namespace USD.NET.Unity {
       sample.scales = new pxr.VtVec3hArray();
 
       var topo = new pxr.UsdSkelTopology(UnityTypeConverter.ToVtArray(sample.joints));
-      var localSpaceXforms = pxr.UsdCs.UsdSkelComputeJointLocalTransforms(topo,
+      pxr.UsdCs.UsdSkelComputeJointLocalTransforms(topo,
           vtJointsWS,
           vtJointsWSInv,
           vtJointsLS,
