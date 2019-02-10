@@ -64,7 +64,7 @@ namespace USD.NET.Unity {
     [Header("Materials")]
     public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
     public bool m_enableGpuInstancing;
-    public Material m_fallbackMaterial;
+    public Material m_displayColorMaterial;
     public Material m_specularWorkflowMaterial;
     public Material m_metallicWorkflowMaterial;
 
@@ -240,7 +240,7 @@ namespace USD.NET.Unity {
       // Materials & instancing.
       m_materialImportMode = options.materialImportMode;
       m_enableGpuInstancing = options.enableGpuInstancing;
-      m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
+      m_displayColorMaterial = options.materialMap.DisplayColorMaterial;
       m_specularWorkflowMaterial = options.materialMap.SpecularWorkflowMaterial;
       m_metallicWorkflowMaterial = options.materialMap.MetallicWorkflowMaterial;
     }
@@ -290,7 +290,7 @@ namespace USD.NET.Unity {
       // Materials & Instancing.
       options.materialImportMode = m_materialImportMode;
       options.enableGpuInstancing = m_enableGpuInstancing;
-      options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
+      options.materialMap.DisplayColorMaterial = m_displayColorMaterial;
       options.materialMap.SpecularWorkflowMaterial = m_specularWorkflowMaterial;
       options.materialMap.MetallicWorkflowMaterial = m_metallicWorkflowMaterial;
     }

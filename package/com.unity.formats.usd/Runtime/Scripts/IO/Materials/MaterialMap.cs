@@ -49,7 +49,7 @@ namespace USD.NET.Unity {
     /// <summary>
     /// A material to use when no material could be found.
     /// </summary>
-    public Material FallbackMasterMaterial { get; set; }
+    public Material DisplayColorMaterial { get; set; }
 
     public Material SpecularWorkflowMaterial { get; set; }
     public Material MetallicWorkflowMaterial { get; set; }
@@ -60,11 +60,11 @@ namespace USD.NET.Unity {
         // Fallback to the built-in render pipeline, assume Standard PBS shader.
         SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
         MetallicWorkflowMaterial = new Material(Shader.Find("Standard"));
-        FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
+        DisplayColorMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
       } else {
         SpecularWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
         MetallicWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
-        FallbackMasterMaterial = new Material(Shader.Find("USD/SrpVertexColor"));
+        DisplayColorMaterial = new Material(Shader.Find("USD/SrpVertexColor"));
       }
     }
 
@@ -131,7 +131,7 @@ namespace USD.NET.Unity {
         return material;
       }
 
-      material = Material.Instantiate(FallbackMasterMaterial);
+      material = Material.Instantiate(DisplayColorMaterial);
       AssignColor(material, color);
       m_colorMap[color] = material;
 

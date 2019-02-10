@@ -202,11 +202,11 @@ namespace USD.NET.Unity {
       var meshes = new HashSet<Mesh>();
       var materials = new HashSet<Material>();
 
-      materials.Add(importOptions.materialMap.FallbackMasterMaterial);
+      materials.Add(importOptions.materialMap.DisplayColorMaterial);
       materials.Add(importOptions.materialMap.MetallicWorkflowMaterial);
       materials.Add(importOptions.materialMap.SpecularWorkflowMaterial);
 
-      var tempMat = importOptions.materialMap.FallbackMasterMaterial;
+      var tempMat = importOptions.materialMap.DisplayColorMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
         tempMat.name = "Fallback Master Material";
         materials.Add(tempMat);
