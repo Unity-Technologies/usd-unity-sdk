@@ -47,7 +47,7 @@ namespace USD.NET.Unity {
     public string m_usdGeometryFile;
 #endif
 
-    [Header("USD Configuration")]
+    [Header("USD Options")]
     public string m_usdRootPath = "/";
     public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
     public float m_usdTimeOffset;
@@ -61,8 +61,7 @@ namespace USD.NET.Unity {
     public float m_scale;
     public BasisTransformation m_changeHandedness;
 
-    [Header("Materials")]
-    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
+    [Header("Material Options")]
     public bool m_enableGpuInstancing;
     public Material m_displayColorMaterial;
     public Material m_specularWorkflowMaterial;
@@ -104,6 +103,7 @@ namespace USD.NET.Unity {
     public float m_unwrapPackMargin = 1 / 256.0f;
 
     [Header("Import Settings")]
+    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
     public bool m_importCameras = true;
     public bool m_importMeshes = true;
     public bool m_importSkinning = true;
