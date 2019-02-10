@@ -62,8 +62,13 @@ namespace USD.NET.Unity {
         MetallicWorkflowMaterial = new Material(Shader.Find("Standard"));
         DisplayColorMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
       } else {
+#if UNITY_2019_1_OR_NEWER
         SpecularWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
         MetallicWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
+#else
+        SpecularWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
+        MetallicWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
+#endif
         DisplayColorMaterial = new Material(Shader.Find("USD/SrpVertexColor"));
       }
     }
