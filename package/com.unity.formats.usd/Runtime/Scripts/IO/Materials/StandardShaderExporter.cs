@@ -17,34 +17,7 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
-  public static class StandardShaderExporter {
-
-    private static string SetupTexture(Scene scene,
-                                     string usdShaderPath,
-                                     Material material,
-                                     UnityPreviewSurfaceSample surface,
-                                     string destTexturePath,
-                                     string textureName,
-                                     string textureOutput) {
-#if UNITY_EDITOR
-      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(material.GetTexture(textureName));
-      srcPath = srcPath.Substring("Assets/".Length);
-      srcPath = Application.dataPath + "/" + srcPath;
-      var fileName = System.IO.Path.GetFileName(srcPath);
-      var filePath = System.IO.Path.Combine(destTexturePath, fileName);
-      System.IO.File.Copy(srcPath, filePath, overwrite: true);
-#else
-      // Not supported at run-time, too many things can go wrong
-      // (can't encode compressed textures, etc).
-      throw new System.Exception("Not supported at run-time");
-#endif
-      var uvReader = new PrimvarReaderSample<Vector2>();
-      uvReader.varname.defaultValue = new TfToken("st");
-      scene.Write(usdShaderPath + "/uvReader", uvReader);
-      var tex = new USD.NET.Unity.TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
-      scene.Write(usdShaderPath + "/" + textureName, tex);
-      return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
-    }
+  public class StandardShaderExporter : ShaderExporterBase {
 
     public static void ExportStandardSpecular(Scene scene,
                                               string usdShaderPath,
