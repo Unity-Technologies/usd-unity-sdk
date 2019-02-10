@@ -174,16 +174,17 @@ namespace USD.NET.Unity {
 #endif
 
     private string GetPrefabAssetPath(GameObject root) {
+      string assetPath = null;
 #if UNITY_EDITOR
-#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
-      return UnityEditor.AssetDatabase.GetAssetPath(
+#if !UNITY_2018_3_OR_NEWER
+      assetPath = UnityEditor.AssetDatabase.GetAssetPath(
               UnityEditor.PrefabUtility.GetPrefabObject(root));
 #else
       if (!UnityEditor.EditorUtility.IsPersistent(root)) {
         var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
         if (prefabStage != null) {
           if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root)) {
-            return prefabStage.prefabAssetPath;
+            assetPath = prefabStage.prefabAssetPath;
             // This is a great resource for determining object type, but only covers new APIs:
             // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
           }
@@ -191,7 +192,7 @@ namespace USD.NET.Unity {
       }
 #endif
 #endif
-      return null;
+      return assetPath;
     }
 
     /// <summary>
