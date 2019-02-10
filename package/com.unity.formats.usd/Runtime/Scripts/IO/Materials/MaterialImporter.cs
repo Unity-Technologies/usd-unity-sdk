@@ -138,7 +138,7 @@ namespace USD.NET.Unity {
         mat.SetVector(kvp.Key, kvp.Value);
       }
 
-      var matAdapter = new StandardShaderAdapter(mat);
+      var matAdapter = new StandardShaderImporter(mat);
       matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
       matAdapter.ImportFromUsd();
 
