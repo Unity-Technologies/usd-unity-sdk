@@ -56,7 +56,6 @@ namespace USD.NET.Unity {
 
     public MaterialMap() {
       var pipeline = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
-
       if (!pipeline) {
         // Fallback to the built-in render pipeline, assume Standard PBS shader.
         SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
@@ -67,7 +66,6 @@ namespace USD.NET.Unity {
         MetallicWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
         FallbackMasterMaterial = new Material(Shader.Find("USD/SrpVertexColor"));
       }
-
     }
 
     /// <summary>
