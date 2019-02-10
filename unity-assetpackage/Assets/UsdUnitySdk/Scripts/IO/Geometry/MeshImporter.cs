@@ -471,7 +471,7 @@ namespace USD.NET.Unity {
           // Vertex colors map on to verts.
           // TODO: move the conversion to C++ and use the color management API.
           for (int i = 0; i < usdMesh.colors.Length; i++) {
-            usdMesh.colors[i] = usdMesh.colors[i].gamma;
+            usdMesh.colors[i] = usdMesh.colors[i];
           }
           unityMesh.colors = usdMesh.colors;
         } else if (usdMesh.colors.Length == usdMesh.faceVertexCounts.Length) {
@@ -482,7 +482,7 @@ namespace USD.NET.Unity {
           int idx = 0;
           try {
             for (int faceIndex = 0; faceIndex < usdMesh.colors.Length; faceIndex++) {
-              var faceColor = usdMesh.colors[faceIndex].gamma;
+              var faceColor = usdMesh.colors[faceIndex];
               for (int f = 0; f < usdMesh.faceVertexCounts[faceIndex]; f++) {
                 int vertexInFaceIdx = originalIndices[idx++];
                 colors[vertexInFaceIdx] = faceColor;
@@ -499,7 +499,7 @@ namespace USD.NET.Unity {
                                    usdMesh.faceVertexCounts,
                                    originalIndices);
             for (int i = 0; i < usdMesh.colors.Length; i++) {
-              usdMesh.colors[i] = usdMesh.colors[i].gamma;
+              usdMesh.colors[i] = usdMesh.colors[i];
             }
             unityMesh.colors = usdMesh.colors;
           } catch (Exception ex) {
