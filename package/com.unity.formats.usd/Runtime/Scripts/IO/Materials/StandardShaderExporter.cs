@@ -12,31 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using pxr;
 using UnityEngine;
 
 namespace USD.NET.Unity {
-
-  public class UnityCustomData : SampleBase {
-
-    public string shaderName;
-    public string[] shaderKeywords;
-
-    [UsdNamespace("floats")]
-    public Dictionary<string, float> floatArgs = new Dictionary<string, float>();
-
-    [UsdNamespace("colors")]
-    public Dictionary<string, Color> colorArgs = new Dictionary<string, Color>();
-
-    [UsdNamespace("vectors")]
-    public Dictionary<string, Vector4> vectorArgs = new Dictionary<string, Vector4>();
-  }
-
-  public class UnityPreviewSurfaceSample : PreviewSurfaceSample {
-    [UsdNamespace("unity")]
-    public UnityCustomData unity = new UnityCustomData();
-  }
 
   public static class StandardShaderExporter {
 
