@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,11 @@ namespace USD.NET.Unity {
 
     public float? Metallic;
     public Texture2D MetallicMap;
+
+    public float? Clearcoat;
+    public Texture2D ClearcoatMap;
+
+    public float? ClearcoatRoughness;
 
     public ShaderImporterBase(Material material) {
       Material = material;
@@ -116,6 +121,11 @@ namespace USD.NET.Unity {
 
       ImportValueOrMap(scene, previewSurf.roughness, false, options, ref RoughnessMap, ref Roughness, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
+
+      ImportValueOrMap(scene, previewSurf.clearcoat, false, options, ref ClearcoatMap, ref Clearcoat, out uvPrimvar);
+      MergePrimvars(uvPrimvar, primvars);
+
+      ClearcoatRoughness = previewSurf.clearcoatRoughness.defaultValue;
 
       if (previewSurf.useSpecularWorkflow.defaultValue == 1) {
         ImportColorOrMap(scene, previewSurf.specularColor, false, options, ref SpecularMap, ref Specular, out uvPrimvar);
