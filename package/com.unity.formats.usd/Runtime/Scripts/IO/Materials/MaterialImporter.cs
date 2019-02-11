@@ -138,9 +138,22 @@ namespace USD.NET.Unity {
         mat.SetVector(kvp.Key, kvp.Value);
       }
 
-      var matAdapter = new StandardShaderImporter(mat);
-      matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
-      matAdapter.ImportFromUsd();
+      var pipeline = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
+      if (!pipeline) {
+        var matAdapter = new StandardShaderImporter(mat);
+        matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
+        matAdapter.ImportFromUsd();
+      } else if (pipeline.GetType().Name == "HDRenderPipelineAsset") {
+        // Robustness: Comparing a strng ^ here is not great, but there is no other option.
+        var matAdapter = new HdrpShaderImporter(mat);
+        matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
+        matAdapter.ImportFromUsd();
+      } else {
+        // Fallback to the Standard importer, which may pickup some attributes by luck.
+        var matAdapter = new StandardShaderImporter(mat);
+        matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
+        matAdapter.ImportFromUsd();
+      }
 
       return mat;
     }
