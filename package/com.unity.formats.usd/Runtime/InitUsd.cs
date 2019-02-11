@@ -49,20 +49,21 @@ namespace USD.NET.Examples {
     // USD has several auxillary C++ plugin discovery files which must be discoverable at run-time
     // We store those libs in Support/ThirdParty/Usd and then set a magic environment variable to let
     // USD's libPlug know where to look to find them.
-    private static void SetupUsdPath() {
-      var supPath = UnityEngine.Application.dataPath.Replace("\\", "/");
+    private static void SetupUsdPath()
+    {
+        var supPath = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
 
 #if (UNITY_EDITOR_WIN)
-      supPath += @"/UsdUnitySdk/Plugins/x86_64/share/";
+      supPath += @"/x86_64/share/";
 #elif (UNITY_EDITOR_OSX)
-      supPath += @"/UsdUnitySdk/Plugins/x86_64/UsdCs.bundle/Contents/Resources/share/";
+      supPath += @"/x86_64/UsdCs.bundle/Contents/Resources/share/";
 #elif (UNITY_STANDALONE_WIN)
-      supPath += @"/Plugins/share/";
+      supPath += @"/share/";
 #elif (UNITY_STANDALONE_OSX)
-      supPath += @"/Plugins/UsdCs.bundle/Contents/Resources/share/";
+      supPath += @"/UsdCs.bundle/Contents/Resources/share/";
 #endif
 
-      SetupUsdSysPath();
+      //SetupUsdSysPath();
 
       Debug.LogFormat("Registering plugins: {0}", supPath);
       pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
