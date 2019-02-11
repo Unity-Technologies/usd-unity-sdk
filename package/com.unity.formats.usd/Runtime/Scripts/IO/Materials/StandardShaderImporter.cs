@@ -22,10 +22,6 @@ namespace USD.NET.Unity {
     public StandardShaderImporter(Material material) : base(material) {
     }
 
-    public override void ExportToUsd() {
-      throw new NotImplementedException();
-    }
-
     public override void ImportFromUsd() {
       Material mat = Material;
 

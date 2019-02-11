@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -49,7 +49,6 @@ namespace USD.NET.Unity {
     }
 
     abstract public void ImportFromUsd();
-    abstract public void ExportToUsd();
 
     protected void ImportColorOrMap(Scene scene,
                                     Connectable<Vector3> usdParam,
