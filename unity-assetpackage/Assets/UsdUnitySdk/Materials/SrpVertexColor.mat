@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SrpVertexColor
-  m_Shader: {fileID: -6465566751694194690, guid: 4362d7f94e6fd4a4aae64458c0f5eeea,
+  m_Shader: {fileID: -6465566751694194690, guid: a42158c4b633a5b4285051ceeaa601ae,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,5 +33,5 @@ Material:
     - _Metallic: 0
     m_Colors:
     - Color_75A4CAF0: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
