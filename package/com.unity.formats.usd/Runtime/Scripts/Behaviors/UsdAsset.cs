@@ -63,6 +63,8 @@ namespace USD.NET.Unity {
 
     [Header("Material Options")]
     public bool m_enableGpuInstancing;
+    [Tooltip("If the original shader name is stored in USD, attempt to find that shader in this project.")]
+    public bool m_useOriginalShaderIfAvailable = true;
     public Material m_displayColorMaterial;
     public Material m_specularWorkflowMaterial;
     public Material m_metallicWorkflowMaterial;
@@ -239,6 +241,7 @@ namespace USD.NET.Unity {
       m_debugShowSkeletonRestPose = options.meshOptions.debugShowSkeletonRestPose;
 
       // Materials & instancing.
+      m_useOriginalShaderIfAvailable = options.materialMap.useOriginalShaderIfAvailable;
       m_materialImportMode = options.materialImportMode;
       m_enableGpuInstancing = options.enableGpuInstancing;
       m_displayColorMaterial = options.materialMap.DisplayColorMaterial;
@@ -289,6 +292,7 @@ namespace USD.NET.Unity {
       options.meshOptions.debugShowSkeletonRestPose = m_debugShowSkeletonRestPose;
 
       // Materials & Instancing.
+      options.materialMap.useOriginalShaderIfAvailable = m_useOriginalShaderIfAvailable;
       options.materialImportMode = m_materialImportMode;
       options.enableGpuInstancing = m_enableGpuInstancing;
       options.materialMap.DisplayColorMaterial = m_displayColorMaterial;

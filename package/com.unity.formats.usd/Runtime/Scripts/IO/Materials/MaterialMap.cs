@@ -47,6 +47,12 @@ namespace USD.NET.Unity {
     private Dictionary<string, List<string>> m_primvars = new Dictionary<string, List<string>>();
 
     /// <summary>
+    /// Looks for additional metadata describing the original shader name, rather than using
+    /// the generic spec/metallic workflow shaders.
+    /// </summary>
+    public bool useOriginalShaderIfAvailable;
+
+    /// <summary>
     /// A material to use when no material could be found.
     /// </summary>
     public Material DisplayColorMaterial { get; set; }

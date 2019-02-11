@@ -105,7 +105,7 @@ namespace USD.NET.Unity {
       }
 
       Material mat = null;
-      if (!string.IsNullOrEmpty(previewSurf.unity.shaderName)) {
+      if (options.materialMap.useOriginalShaderIfAvailable && !string.IsNullOrEmpty(previewSurf.unity.shaderName)) {
         // We may or may not have the original shader.
         var shader = Shader.Find(previewSurf.unity.shaderName);
         if (shader) {
