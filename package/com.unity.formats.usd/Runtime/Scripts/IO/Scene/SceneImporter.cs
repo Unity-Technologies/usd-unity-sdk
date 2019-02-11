@@ -203,19 +203,16 @@ namespace USD.NET.Unity {
 
       var tempMat = importOptions.materialMap.DisplayColorMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-        tempMat.name = "Fallback Master Material";
         materials.Add(tempMat);
       }
 
       tempMat = importOptions.materialMap.MetallicWorkflowMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-        tempMat.name = "Metallic Workflow Material";
         materials.Add(tempMat);
       }
 
       tempMat = importOptions.materialMap.SpecularWorkflowMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-        tempMat.name = "Specular Workflow Material";
         materials.Add(tempMat);
       }
 
