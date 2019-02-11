@@ -45,12 +45,15 @@ namespace USD.NET.Unity {
         mat.SetFloat("_MaterialID", /*Standard Metallic*/ 1);
       } else {
         mat.SetFloat("_MaterialID", /*Spec Color*/ 4);
+        mat.EnableKeyword("_MATERIAL_FEATURE_SPECULAR_COLOR");
+        mat.EnableKeyword("_SPECULARCOLORMAP");
       }
 
       // R=Metallic, G=Occlusion, B=Displacement, A=Roughness(Smoothness)
       var MaskMap = BuildMaskMap(IsMetallicWorkflow ? MetallicMap : null, OcclusionMap, DisplacementMap, RoughnessMap);
       if (MaskMap) {
         mat.SetTexture("_MaskMap", MaskMap);
+        mat.EnableKeyword("_MASKMAP");
       }
 
       if (IsMetallicWorkflow) {
@@ -66,24 +69,34 @@ namespace USD.NET.Unity {
       }
 
       if (!RoughnessMap) {
-        mat.SetFloat("_Smoothness", 1 - Roughness.GetValueOrDefault());
+        var smoothness = 1 - Roughness.GetValueOrDefault();
+        mat.SetFloat("_Smoothness", smoothness);
+        // HDRP Lit does not seem to respect smoothness, so just clamp to the correct value.
+        mat.SetFloat("_SmoothnessRemapMin", smoothness);
+        mat.SetFloat("_SmoothnessRemapMax", smoothness);
+      }
+
+      if (!OcclusionMap) {
+        mat.SetFloat("_AORemapMin", Occlusion.GetValueOrDefault());
+        mat.SetFloat("_AORemapMax", Occlusion.GetValueOrDefault());
       }
 
       // Single displacement scalar value not supported.
-      // Single ocllusion scalar value not supported.
 
       if (ClearcoatMap) {
         mat.SetTexture("_CoatMaskMap", ClearcoatMap);
+        mat.EnableKeyword("_MATERIAL_FEATURE_CLEAR_COAT");
       }
-
       mat.SetFloat("_CoatMask", ClearcoatRoughness.GetValueOrDefault());
 
       if (NormalMap) {
         mat.SetTexture("_NormalMap", NormalMap);
+        mat.EnableKeyword("_NORMALMAP");
       }
 
       if (EmissionMap) {
         mat.SetTexture("_EmissionMap", EmissionMap);
+        mat.EnableKeyword("_EMISSIVE_COLOR_MAP");
       } else {
         mat.SetColor("_EmissionColor", Emission.GetValueOrDefault());
       }
