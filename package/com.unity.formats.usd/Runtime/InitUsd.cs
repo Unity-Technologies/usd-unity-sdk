@@ -63,28 +63,8 @@ namespace USD.NET.Examples {
       supPath += @"/UsdCs.bundle/Contents/Resources/share/";
 #endif
 
-      //SetupUsdSysPath();
-
       Debug.LogFormat("Registering plugins: {0}", supPath);
       pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
     }
-
-    /// Adds the USD plugin paths to the system path.
-    private static void SetupUsdSysPath() {
-      var pathVar = "PATH";
-      var target = System.EnvironmentVariableTarget.Process;
-      var pathvar = System.Environment.GetEnvironmentVariable(pathVar, target);
-#if (UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
-      var supPath = UnityEngine.Application.dataPath + @"\Plugins;";
-      supPath += UnityEngine.Application.dataPath + @"\UsdUnitySdk\Plugins\x86_64;";
-#elif (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
-      var supPath = UnityEngine.Application.dataPath + @"\Plugins;";
-      supPath += UnityEngine.Application.dataPath + @"\UsdUnitySdk\Plugins\x86_64/Contents/Resources/share;";
-#endif
-      var value = pathvar + @";" + supPath;
-      Debug.LogFormat("Adding to sys path: {0}", supPath);
-      System.Environment.SetEnvironmentVariable(pathVar, value, target);
-    }
   }
-
 }
