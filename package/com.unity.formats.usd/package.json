@@ -2,17 +2,16 @@
     "dependencies": {
         "com.unity.timeline" : "1.0.0"
     },
-    "description": "Blah USD.", 
+    "description": "The USD package provides an API to manipulate Universal Scene Description (.usd) files. USD is a 3D Scene format that scales well to large scenes and contains assets of different types (geometry, images, etc).", 
     "displayName": "USD", 
     "keywords": [
         "usd" 
     ], 
     "name": "com.unity.formats.usd",
-    "repoPackagePath": "build/install/com.unity.formats.alembic", 
+    "repoPackagePath": "package/com.unity.formats.usd", 
     "repository": {
         "type": "git", 
-        "revision": "02da3f2a1167bc44b6124596b9dc58cbfd9b511c",
-        "url": "ssh://git@github.com/unity3d-jp/AlembicForUnity.git"
+        "url": "ssh://git@github.com:Unity-Technologies/usd-unity-sdk.git"
     }, 
     "unity": "2018.3",
     "unityRelease": "4f1",
