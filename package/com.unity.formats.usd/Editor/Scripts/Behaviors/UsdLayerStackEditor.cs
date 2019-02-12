@@ -35,7 +35,7 @@ namespace USD.NET.Unity {
 
       if (GUILayout.Button("Save Layer Stack")) {
         Examples.InitUsd.Initialize();
-        Scene scene = Scene.Open(layerStack.GetComponent<UsdAsset>().m_usdFile);
+        Scene scene = Scene.Open(layerStack.GetComponent<UsdAsset>().fullPath);
         try {
           layerStack.SaveLayerStack(scene, layerStack.m_layerStack);
         } finally {

@@ -71,7 +71,7 @@ public class UsdMenu : MonoBehaviour {
   [MenuItem("USD/Export Transform Overrides", priority = 50)]
   static public void MenuExportTransforms() {
     var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
-    var overs = InitForSave(Path.GetFileNameWithoutExtension(root.m_usdFile) + "_overs.usda");
+    var overs = InitForSave(Path.GetFileNameWithoutExtension(root.fullPath) + "_overs.usda");
     root.ExportOverrides(overs);
   }
 

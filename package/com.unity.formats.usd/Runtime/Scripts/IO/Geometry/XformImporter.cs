@@ -85,7 +85,7 @@ namespace USD.NET.Unity {
 
       if (stageRoot == null) {
         stageRoot = root.gameObject.AddComponent<UsdAsset>();
-        stageRoot.m_usdFile = scene.FilePath;
+        stageRoot.fullPath = scene.FilePath;
         newStageRoot = true;
         ImporterBase.MoveComponentFirst(stageRoot);
         stageRoot.OptionsToState(options);

@@ -75,9 +75,9 @@ namespace USD.NET.Unity {
         throw new NullReferenceException("Could not create layer: " + m_targetLayer);
       }
 
-      Scene rootScene = Scene.Open(stageRoot.m_usdFile);
+      Scene rootScene = Scene.Open(stageRoot.fullPath);
       if (rootScene == null) {
-        throw new NullReferenceException("Could not open base layer: " + stageRoot.m_usdFile);
+        throw new NullReferenceException("Could not open base layer: " + stageRoot.fullPath);
       }
 
       SetupNewSubLayer(rootScene, subLayerScene);

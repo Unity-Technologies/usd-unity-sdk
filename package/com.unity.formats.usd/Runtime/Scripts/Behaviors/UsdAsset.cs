@@ -15,6 +15,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace USD.NET.Unity {
@@ -30,9 +31,15 @@ namespace USD.NET.Unity {
     public double Length { get { return ComputeLength(); } }
 
     [Header("Source Asset")]
-    public string m_usdFile;
-    public string m_projectAssetPath = "Assets/";
+    [SerializeField]
+    string m_usdFile;
 
+    public string fullPath
+    {
+      get { return Path.GetFullPath(m_usdFile); }
+      set { m_usdFile = value; }
+    }
+    public string m_projectAssetPath = "Assets/";
 #if false
     [Header("Export Target")]
     public string m_usdExportFile;
@@ -294,15 +301,15 @@ namespace USD.NET.Unity {
     /// </summary>
     public Scene GetScene() {
       USD.NET.Examples.InitUsd.Initialize();
-      if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != m_usdFile) {
+      if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != fullPath) {
         pxr.UsdStage stage = null;
-        if (string.IsNullOrEmpty(m_usdFile)) {
+        if (string.IsNullOrEmpty(fullPath)) {
           return null;
         }
         if (m_payloadPolicy == PayloadPolicy.DontLoadPayloads) {
-          stage = pxr.UsdStage.Open(m_usdFile, pxr.UsdStage.InitialLoadSet.LoadNone);
+          stage = pxr.UsdStage.Open(fullPath, pxr.UsdStage.InitialLoadSet.LoadNone);
         } else {
-          stage = pxr.UsdStage.Open(m_usdFile, pxr.UsdStage.InitialLoadSet.LoadAll);
+          stage = pxr.UsdStage.Open(fullPath, pxr.UsdStage.InitialLoadSet.LoadAll);
         }
 
         m_lastScene = Scene.Open(stage);
@@ -408,7 +415,7 @@ namespace USD.NET.Unity {
         if (options.forceRebuild) {
           DestroyAllImportedObjects();
         }
-        string clipName = System.IO.Path.GetFileNameWithoutExtension(m_usdFile);
+        string clipName = System.IO.Path.GetFileNameWithoutExtension(fullPath);
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
@@ -452,7 +459,7 @@ namespace USD.NET.Unity {
 
       var baseLayer = sceneToReference.GetScene();
       if (baseLayer == null) {
-        throw new Exception("Could not open base layer: " + sceneToReference.m_usdFile);
+        throw new Exception("Could not open base layer: " + sceneToReference.fullPath);
       }
 
       overs.Time = baseLayer.Time;
@@ -469,7 +476,7 @@ namespace USD.NET.Unity {
                              exportUnvarying: false,
                              zeroRootTransform: true);
 
-        var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.m_usdFile);
+        var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.fullPath);
         GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
       } catch (System.Exception ex) {
         Debug.LogException(ex);
@@ -620,7 +627,7 @@ namespace USD.NET.Unity {
       Examples.InitUsd.Initialize();
       var scene = GetScene();
       if (scene == null) {
-        throw new Exception("Failed to open: " + m_usdFile);
+        throw new Exception("Failed to open: " + fullPath);
       }
 
       var prim = scene.GetPrimAtPath(usdPrimPath);
@@ -665,7 +672,7 @@ namespace USD.NET.Unity {
       Examples.InitUsd.Initialize();
       var scene = GetScene();
       if (scene == null) {
-        throw new Exception("Failed to open: " + m_usdFile);
+        throw new Exception("Failed to open: " + fullPath);
       }
 
       var prim = scene.GetPrimAtPath(usdPrimPath);
