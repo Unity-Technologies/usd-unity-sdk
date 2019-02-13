@@ -34,7 +34,7 @@ namespace USD.NET.Unity {
 
       var scene = stageRoot.GetScene();
       if (scene == null) {
-        Debug.LogError("Invalid scene: " + stageRoot.fullPath);
+        Debug.LogError("Invalid scene: " + stageRoot.usdFullPath);
         return;
       }
 

@@ -34,7 +34,7 @@ namespace USD.NET.Unity {
     [SerializeField]
     string m_usdFile;
 
-    public string fullPath
+    public string usdFullPath
     {
       get { return Path.GetFullPath(m_usdFile); }
       set { m_usdFile = value; }
@@ -301,15 +301,15 @@ namespace USD.NET.Unity {
     /// </summary>
     public Scene GetScene() {
       USD.NET.Examples.InitUsd.Initialize();
-      if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != fullPath) {
+      if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != usdFullPath) {
         pxr.UsdStage stage = null;
-        if (string.IsNullOrEmpty(fullPath)) {
+        if (string.IsNullOrEmpty(usdFullPath)) {
           return null;
         }
         if (m_payloadPolicy == PayloadPolicy.DontLoadPayloads) {
-          stage = pxr.UsdStage.Open(fullPath, pxr.UsdStage.InitialLoadSet.LoadNone);
+          stage = pxr.UsdStage.Open(usdFullPath, pxr.UsdStage.InitialLoadSet.LoadNone);
         } else {
-          stage = pxr.UsdStage.Open(fullPath, pxr.UsdStage.InitialLoadSet.LoadAll);
+          stage = pxr.UsdStage.Open(usdFullPath, pxr.UsdStage.InitialLoadSet.LoadAll);
         }
 
         m_lastScene = Scene.Open(stage);
@@ -415,7 +415,7 @@ namespace USD.NET.Unity {
         if (options.forceRebuild) {
           DestroyAllImportedObjects();
         }
-        string clipName = System.IO.Path.GetFileNameWithoutExtension(fullPath);
+        string clipName = System.IO.Path.GetFileNameWithoutExtension(usdFullPath);
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
@@ -459,7 +459,7 @@ namespace USD.NET.Unity {
 
       var baseLayer = sceneToReference.GetScene();
       if (baseLayer == null) {
-        throw new Exception("Could not open base layer: " + sceneToReference.fullPath);
+        throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
       }
 
       overs.Time = baseLayer.Time;
@@ -476,7 +476,7 @@ namespace USD.NET.Unity {
                              exportUnvarying: false,
                              zeroRootTransform: true);
 
-        var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.fullPath);
+        var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.usdFullPath);
         GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
       } catch (System.Exception ex) {
         Debug.LogException(ex);
@@ -627,7 +627,7 @@ namespace USD.NET.Unity {
       Examples.InitUsd.Initialize();
       var scene = GetScene();
       if (scene == null) {
-        throw new Exception("Failed to open: " + fullPath);
+        throw new Exception("Failed to open: " + usdFullPath);
       }
 
       var prim = scene.GetPrimAtPath(usdPrimPath);
@@ -672,7 +672,7 @@ namespace USD.NET.Unity {
       Examples.InitUsd.Initialize();
       var scene = GetScene();
       if (scene == null) {
-        throw new Exception("Failed to open: " + fullPath);
+        throw new Exception("Failed to open: " + usdFullPath);
       }
 
       var prim = scene.GetPrimAtPath(usdPrimPath);

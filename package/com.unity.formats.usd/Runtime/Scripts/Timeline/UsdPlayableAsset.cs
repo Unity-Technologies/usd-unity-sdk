@@ -27,7 +27,7 @@ namespace USD.NET.Unity {
       if (m_sourceUsdAsset != null) {
         behaviour.playableAsset = this;
         UsdRootPath = m_sourceUsdAsset.m_usdRootPath;
-        name = System.IO.Path.GetFileName(m_sourceUsdAsset.fullPath);
+        name = System.IO.Path.GetFileName(m_sourceUsdAsset.usdFullPath);
       }
 
       return usdPlayable;
