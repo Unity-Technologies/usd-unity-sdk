@@ -51,18 +51,10 @@ packages.config
 # OSX
 .DS_Store
 
-unity-assetpackage/Assets/Tmp/
-
-unity-assetpackage/Assets/Tmp\.meta
-
-unity-assetpackage/Assembly-CSharp-Editor\.csproj
-
-unity-assetpackage/Assembly-CSharp-firstpass\.csproj
-
-unity-assetpackage/Assembly-CSharp\.csproj
-
-unity-assetpackage/unity-assetpackage\.csproj
-
-unity-assetpackage/unity-assetpackage\.Editor\.csproj
+TestProject/Library
+TestProject/ProjectSettings
+TestProject/Temp
+Testproject/*.sln
+Testproject/*.csproj
 
 inst-dbg/
