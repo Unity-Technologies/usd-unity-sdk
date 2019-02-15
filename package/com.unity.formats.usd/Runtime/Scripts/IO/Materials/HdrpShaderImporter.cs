@@ -144,8 +144,12 @@ namespace USD.NET.Unity {
 #endif
       // To get the correct file ID, the texture must be reloaded from the asset path.
       Texture2D.DestroyImmediate(newTex);
+#if UNITY_EDITOR
       return (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath(newAssetPath, typeof(Texture2D));
-    }
+#else
+      return null;
+#endif
+        }
 
   }
 }

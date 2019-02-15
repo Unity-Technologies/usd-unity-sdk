@@ -420,10 +420,10 @@ namespace USD.NET.Unity {
         if (options.forceRebuild) {
           DestroyAllImportedObjects();
         }
-        string clipName = System.IO.Path.GetFileNameWithoutExtension(usdFullPath);
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
+        string clipName = System.IO.Path.GetFileNameWithoutExtension(usdFullPath);
         // As an optimization, we could detect if any meshes or materials were created and only
         // rebuild the prefab in those cases.
         SceneImporter.SavePrefab(root, assetPath, clipName, options);
