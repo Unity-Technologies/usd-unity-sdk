@@ -150,5 +150,5 @@ python build_scripts\build_usd.py --build-monolithic --alembic --openimageio C:\
 
 ## License
 
-UsdBindings is licensed under the terms of the Apache
+The USD Unity SDK is licensed under the terms of the Apache
 license. See [LICENSE](LICENSE) for more information.
