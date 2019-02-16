@@ -47,13 +47,13 @@ The use of USD.NET.SampleBase is required and provides the underlying
 support for reflection based serialization. In addition to creating your own
 Sample types, some core USD types have been provided for convenience:
 
- * [XformSample](/src/USD.NET.Unity/XformSample.cs) - Equivalent of UsdGeomXform,
+ * [XformSample](/src/USD.NET.Unity/Geometry/XformSample.cs) - Equivalent of UsdGeomXform,
  provides support for writing a Matrix4x4 as a USD transform.
  
- * [MeshSample](/src/USD.NET.Unity/MeshSample.cs) - Equivalent of UsdGeomMesh and
+ * [MeshSample](/src/USD.NET.Unity/Geometry/MeshSample.cs) - Equivalent of UsdGeomMesh and
  maps directly onto UnityEngine.Mesh.
  
- * [MeshSampleBase](/src/USD.NET.Unity/MeshSampleBase.cs) - Exposes only the 
+ * [MeshSampleBase](/src/USD.NET.Unity/Geometry/MeshSampleBase.cs) - Exposes only the 
  properties required to populate a UnityEngine.Mesh. This sample type can be used
  to improve mesh I/O performance for read-only use cases.
 
@@ -80,7 +80,7 @@ to the current UsdStage can be obtained via USD.NET.Scene.Stage.
  * [/src/Tests](/src/Tests) - unit tests for USD.NET and USD.NET.Unity.
  * [/src/USD.NET](/src/USD.NET) - generated USD bindings and serialization foundation.
  * [/src/USD.NET.Unity](/src/USD.NET.Unity) - Unity-specific support.
- * [/unity-assetpackage](/usd-unity-sdk-assetpackage) - A source project for generating the Unity asset package.
+ * [/package](/package) - The source for the Unity package.
  * [/third_party](/third_party) - code copyrighted by third parties.
  
 
@@ -139,14 +139,14 @@ The full build process is:
 
 The following is an example of valid environment variables:
 
-SET USD_LOCAITON=C:\src\usd\builds\v0.8.4\monolithic_no-python\
-SET USD_LOCATION_PYTHON=C:\src\usd\builds\v0.8.4\monolithic\
+SET USD_LOCATION=C:\src\usd\builds\v19.01\monolithic_no-python\
+SET USD_LOCATION_PYTHON=C:\src\usd\builds\v19.01\monolithic\
 
 The following are the USD build commands used to generate the two build paths noted above:
 
-python build_scripts\build_usd.py --build-monolithic --no-tests --no-docs --no-ptex --no-embree --alembic --no-hdf5 --no-python --no-imaging C:\src\usd\builds\v0.8.4\monolithic_no-python
+python build_scripts\build_usd.py --build-monolithic --alembic --no-python --no-imaging C:\src\usd\builds\v19.01\monolithic_no-python
 
-python build_scripts\build_usd.py --build-monolithic --no-tests --no-docs --no-ptex --no-embree --alembic --no-hdf5 C:\src\usd\builds\v0.8.4\usd_monolithic
+python build_scripts\build_usd.py --build-monolithic --alembic --openimageio C:\src\usd\builds\v19.01\usd_monolithic
 
 ## License
 
