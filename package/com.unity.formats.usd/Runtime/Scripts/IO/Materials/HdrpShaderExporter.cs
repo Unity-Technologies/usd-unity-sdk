@@ -12,41 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
 using pxr;
 using UnityEngine;
 
 namespace USD.NET.Unity {
 
-  public static class HdrpShaderIo {
-
-    private static string SetupTexture(Scene scene,
-                                     string usdShaderPath,
-                                     Material material,
-                                     PreviewSurfaceSample surface,
-                                     string destTexturePath,
-                                     string textureName,
-                                     string textureOutput) {
-#if UNITY_EDITOR
-      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(material.GetTexture(textureName));
-      srcPath = srcPath.Substring("Assets/".Length);
-      srcPath = Application.dataPath + "/" + srcPath;
-      var fileName = System.IO.Path.GetFileName(srcPath);
-      var filePath = System.IO.Path.Combine(destTexturePath, fileName);
-      System.IO.File.Copy(srcPath, filePath, overwrite: true);
-#else
-      // Not supported at run-time, too many things can go wrong
-      // (can't encode compressed textures, etc).
-      throw new System.Exception("Not supported at run-time");
-#endif
-      var uvReader = new PrimvarReaderSample<Vector2>();
-      uvReader.varname.defaultValue = new TfToken("uv");
-      scene.Write(usdShaderPath + "/uvReader", uvReader);
-      var tex = new USD.NET.Unity.TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
-      scene.Write(usdShaderPath + "/" + textureName, tex);
-      return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
-    }
+  public class HdrpShaderExporter : ShaderExporterBase {
 
     public static void ExportLit(Scene scene,
                                  string usdShaderPath,

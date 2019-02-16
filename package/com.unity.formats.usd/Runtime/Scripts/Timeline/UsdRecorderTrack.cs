@@ -18,7 +18,7 @@ using UnityEngine.Timeline;
 namespace USD.NET.Unity {
   [System.Serializable]
   [TrackClipType(typeof(UsdRecorderClip))]
-#if UNITY_2017 || UNITY_2018_2 || UNITY_2018_1
+#if !UNITY_2018_2_OR_NEWER
   [TrackMediaType(TimelineAsset.MediaType.Script)]
 #endif
   [TrackColor(0.7f, 0.0f, 0.0f)]

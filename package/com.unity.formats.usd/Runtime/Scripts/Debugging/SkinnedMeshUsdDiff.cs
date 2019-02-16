@@ -38,6 +38,63 @@ public class SkinnedMeshUsdDiff : MonoBehaviour {
 
     // Process classic four-bone weights first.
     var sb = new System.Text.StringBuilder();
+#if UNITY_2019_1_OR_NEWER
+    var bonesPerVert = mesh.GetBonesPerVertex();
+    int weightsPerBone = 0;
+    foreach (int count in bonesPerVert) {
+      weightsPerBone = weightsPerBone > count ? weightsPerBone : count;
+    }
+    var boneWeights = mesh.GetAllBoneWeights();
+    sb.AppendLine("Many-bone indices: (" + boneWeights.Length + " * 4)");
+    int bone = 0;
+    int bi = 0;
+    int wi = 0;
+    foreach (var weight in boneWeights) {
+      if (wi == 0) {
+        sb.Append("i: " + bone + " [");
+      }
+
+      sb.Append(weight.boneIndex + GetUsdBoneData(bi, wi, binding.jointIndices) + ",");
+
+      wi++;
+      if (wi == weightsPerBone) {
+        sb.Append("]\n");
+        bi++;
+        wi = 0;
+      }
+
+      if (bonesPerVert[bi] != weightsPerBone) {
+        // TODO: Unity supports a variable number of weights per bone, but USD does not.
+        // Therefore, the number of weights may be greater in USD than in Unity. Currently
+        // the way this works does not correctly handle that case.
+        Debug.LogWarning("Unity bone count issue, see code comment for details.");
+      }
+
+      bone++;
+    }
+    Debug.Log(sb.ToString());
+
+    bone = 0;
+    bi = 0;
+    wi = 0;
+    sb = new System.Text.StringBuilder();
+    sb.AppendLine("Many-bone weights: (" + boneWeights.Length + " * 4)");
+    foreach (var weight in boneWeights) {
+      if (wi == 0) {
+        sb.Append("i: " + bone + " [");
+      }
+      sb.Append(weight.weight + GetUsdBoneData(bi, wi, binding.jointWeights) + ",");
+
+      wi++;
+      if (wi == weightsPerBone) {
+        sb.Append("]\n");
+        bi++;
+        wi = 0;
+      }
+      bone++;
+    }
+    Debug.Log(sb.ToString());
+#else
     sb.AppendLine("Legacy 4-bone indices: (" + mesh.boneWeights.Length + " * 4)");
     int bone = 0;
     foreach (var weight in mesh.boneWeights) {
@@ -62,6 +119,8 @@ public class SkinnedMeshUsdDiff : MonoBehaviour {
       bone++;
     }
     Debug.Log(sb.ToString());
+#endif
+
 
     sb = new System.Text.StringBuilder();
     var bones = GetComponent<SkinnedMeshRenderer>().bones;

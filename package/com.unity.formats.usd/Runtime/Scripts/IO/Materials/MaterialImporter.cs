@@ -105,7 +105,7 @@ namespace USD.NET.Unity {
       }
 
       Material mat = null;
-      if (!string.IsNullOrEmpty(previewSurf.unity.shaderName)) {
+      if (options.materialMap.useOriginalShaderIfAvailable && !string.IsNullOrEmpty(previewSurf.unity.shaderName)) {
         // We may or may not have the original shader.
         var shader = Shader.Find(previewSurf.unity.shaderName);
         if (shader) {
@@ -138,9 +138,22 @@ namespace USD.NET.Unity {
         mat.SetVector(kvp.Key, kvp.Value);
       }
 
-      var matAdapter = new StandardShaderAdapter(mat);
-      matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
-      matAdapter.ImportFromUsd();
+      var pipeline = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
+      if (!pipeline) {
+        var matAdapter = new StandardShaderImporter(mat);
+        matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
+        matAdapter.ImportFromUsd();
+      } else if (pipeline.GetType().Name == "HDRenderPipelineAsset") {
+        // Robustness: Comparing a strng ^ here is not great, but there is no other option.
+        var matAdapter = new HdrpShaderImporter(mat);
+        matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
+        matAdapter.ImportFromUsd();
+      } else {
+        // Fallback to the Standard importer, which may pickup some attributes by luck.
+        var matAdapter = new StandardShaderImporter(mat);
+        matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
+        matAdapter.ImportFromUsd();
+      }
 
       return mat;
     }
@@ -263,7 +276,11 @@ namespace USD.NET.Unity {
 #endif
       // To get the correct file ID, the texture must be reloaded from the asset path.
       Texture2D.DestroyImmediate(newTex);
+#if UNITY_EDITOR
       return (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath(newAssetPath, typeof(Texture2D));
+#else
+      return null;
+#endif
     }
 
     /// <summary>

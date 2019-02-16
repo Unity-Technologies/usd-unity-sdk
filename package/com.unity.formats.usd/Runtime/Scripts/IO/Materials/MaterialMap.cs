@@ -47,17 +47,36 @@ namespace USD.NET.Unity {
     private Dictionary<string, List<string>> m_primvars = new Dictionary<string, List<string>>();
 
     /// <summary>
+    /// Looks for additional metadata describing the original shader name, rather than using
+    /// the generic spec/metallic workflow shaders.
+    /// </summary>
+    public bool useOriginalShaderIfAvailable;
+
+    /// <summary>
     /// A material to use when no material could be found.
     /// </summary>
-    public Material FallbackMasterMaterial { get; set; }
+    public Material DisplayColorMaterial { get; set; }
 
     public Material SpecularWorkflowMaterial { get; set; }
     public Material MetallicWorkflowMaterial { get; set; }
 
     public MaterialMap() {
-      SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
-      MetallicWorkflowMaterial = new Material(Shader.Find("Standard"));
-      FallbackMasterMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
+      var pipeline = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
+      if (!pipeline) {
+        // Fallback to the built-in render pipeline, assume Standard PBS shader.
+        SpecularWorkflowMaterial = new Material(Shader.Find("Standard (Specular setup)"));
+        MetallicWorkflowMaterial = new Material(Shader.Find("Standard"));
+        DisplayColorMaterial = new Material(Shader.Find("USD/StandardVertexColor"));
+      } else {
+#if UNITY_2019_1_OR_NEWER
+        SpecularWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
+        MetallicWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
+#else
+        SpecularWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
+        MetallicWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
+#endif
+        DisplayColorMaterial = new Material(Shader.Find("USD/SrpVertexColor"));
+      }
     }
 
     /// <summary>
@@ -66,6 +85,7 @@ namespace USD.NET.Unity {
     public Dictionary<string, MaterialBinder> ClearRequestedBindings() {
       var bindings = m_requestedBindings;
       m_requestedBindings = new Dictionary<string, MaterialBinder>();
+      
       return bindings;
     }
 
@@ -122,7 +142,7 @@ namespace USD.NET.Unity {
         return material;
       }
 
-      material = Material.Instantiate(FallbackMasterMaterial);
+      material = Material.Instantiate(DisplayColorMaterial);
       AssignColor(material, color);
       m_colorMap[color] = material;
 

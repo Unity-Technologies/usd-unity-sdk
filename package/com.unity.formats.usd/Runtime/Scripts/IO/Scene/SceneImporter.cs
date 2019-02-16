@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-#if !UNITY_2017
+#if UNITY_2018_1_OR_NEWER
 using Unity.Jobs;
 #endif
 
@@ -27,11 +27,6 @@ using System.IO;
 #endif
 
 namespace USD.NET.Unity {
-
-  [UsdSchema("Mesh")]
-  class LimitedMeshSample : XformableSample {
-    public Vector3[] points;
-  }
 
   /// <summary>
   /// An interface for delegating import behavior to a third party.
@@ -104,10 +99,10 @@ namespace USD.NET.Unity {
       if (oldPrefab == null) {
         // Create the prefab. At this point, the meshes do not yet exist and will be
         // dangling references
-#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
-        prefab = PrefabUtility.CreatePrefab(prefabPath, rootObject);
-#else
+#if UNITY_2018_3_OR_NEWER
         prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
+#else
+        prefab = PrefabUtility.CreatePrefab(prefabPath, rootObject);
 #endif
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
@@ -122,23 +117,23 @@ namespace USD.NET.Unity {
         }
 
         // Fix the dangling references.
-#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
-        prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
-#else
+#if UNITY_2018_3_OR_NEWER
         prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
+#else
+        prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
 #endif
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
 
         playable.SourceUsdAsset.defaultValue = prefab.GetComponent<UsdAsset>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
-#if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017
+#if UNITY_2018_3_OR_NEWER
         prefab = PrefabUtility.SavePrefabAsset(prefab);
 #endif
       } else {
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
-#if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017
+#if UNITY_2018_3_OR_NEWER
         oldPrefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
 #endif
         AddObjectsToAsset(rootObject, oldPrefab, importOptions, out meshes, out materials);
@@ -170,22 +165,22 @@ namespace USD.NET.Unity {
           AssetDatabase.AddObjectToAsset(mat, oldPrefab);
         }
 
-#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
+#if UNITY_2018_3_OR_NEWER
+        prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
+#else
         if (oldPrefab != rootObject) {
           prefab = PrefabUtility.ReplacePrefab(
               rootObject, oldPrefab, ReplacePrefabOptions.ReplaceNameBased);
         } else {
           prefab = oldPrefab;
         }
-#else
-        prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
 #endif
 
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
         playable.SourceUsdAsset.defaultValue = prefab.GetComponent<UsdAsset>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
-#if !UNITY_2018_2 && !UNITY_2018_1 && !UNITY_2017
+#if UNITY_2018_3_OR_NEWER
         PrefabUtility.SavePrefabAsset(prefab);
 #endif
       }
@@ -202,25 +197,22 @@ namespace USD.NET.Unity {
       var meshes = new HashSet<Mesh>();
       var materials = new HashSet<Material>();
 
-      materials.Add(importOptions.materialMap.FallbackMasterMaterial);
+      materials.Add(importOptions.materialMap.DisplayColorMaterial);
       materials.Add(importOptions.materialMap.MetallicWorkflowMaterial);
       materials.Add(importOptions.materialMap.SpecularWorkflowMaterial);
 
-      var tempMat = importOptions.materialMap.FallbackMasterMaterial;
+      var tempMat = importOptions.materialMap.DisplayColorMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-        tempMat.name = "Fallback Master Material";
         materials.Add(tempMat);
       }
 
       tempMat = importOptions.materialMap.MetallicWorkflowMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-        tempMat.name = "Metallic Workflow Material";
         materials.Add(tempMat);
       }
 
       tempMat = importOptions.materialMap.SpecularWorkflowMaterial;
       if (tempMat != null && AssetDatabase.GetAssetPath(tempMat) == "") {
-        tempMat.name = "Specular Workflow Material";
         materials.Add(tempMat);
       }
 
@@ -453,7 +445,7 @@ namespace USD.NET.Unity {
       ReadAllJob<XformSample> readXforms;
       if (importOptions.importTransforms) {
         readXforms = new ReadAllJob<XformSample>(scene, primMap.Xforms);
-#if !UNITY_2017
+#if UNITY_2018_1_OR_NEWER
         readXforms.Schedule(primMap.Xforms.Length, 4);
 #else
         readXforms.Run();
@@ -462,7 +454,7 @@ namespace USD.NET.Unity {
       if (importOptions.importMeshes) {
         ActiveMeshImporter.BeginReading(scene, primMap);
       }
-#if !UNITY_2017
+#if UNITY_2018_1_OR_NEWER
       JobHandle.ScheduleBatchedJobs();
 #endif
 

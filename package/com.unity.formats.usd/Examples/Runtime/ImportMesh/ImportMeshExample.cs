@@ -98,7 +98,7 @@ namespace USD.NET.Examples {
         // surprises.
         var importOptions = new SceneImportOptions();
         importOptions.changeHandedness = m_changeHandedness;
-        importOptions.materialMap.FallbackMasterMaterial = m_material;
+        importOptions.materialMap.DisplayColorMaterial = m_material;
         importOptions.enableGpuInstancing = m_enableGpuInstancing;
 
         // The root object at which the USD scene will be reconstructed.

@@ -47,7 +47,7 @@ namespace USD.NET.Unity {
     public string m_usdGeometryFile;
 #endif
 
-    [Header("USD Configuration")]
+    [Header("USD Options")]
     public string m_usdRootPath = "/";
     public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
     public float m_usdTimeOffset;
@@ -61,10 +61,11 @@ namespace USD.NET.Unity {
     public float m_scale;
     public BasisTransformation m_changeHandedness;
 
-    [Header("Materials")]
-    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
+    [Header("Material Options")]
     public bool m_enableGpuInstancing;
-    public Material m_fallbackMaterial;
+    [Tooltip("If the original shader name is stored in USD, attempt to find that shader in this project.")]
+    public bool m_useOriginalShaderIfAvailable = true;
+    public Material m_displayColorMaterial;
     public Material m_specularWorkflowMaterial;
     public Material m_metallicWorkflowMaterial;
 
@@ -100,10 +101,11 @@ namespace USD.NET.Unity {
     [Range(1, 359)]
     public float m_unwrapHardAngle = 88;
 
-    [Tooltip("How much uv-islands will be padded")]
-    public float m_unwrapPackMargin = 1 / 256.0f;
+    [Tooltip("UV-island padding in pixels")]
+    public int m_unwrapPackMargin = 4;
 
     [Header("Import Settings")]
+    public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
     public bool m_importCameras = true;
     public bool m_importMeshes = true;
     public bool m_importSkinning = true;
@@ -174,16 +176,17 @@ namespace USD.NET.Unity {
 #endif
 
     private string GetPrefabAssetPath(GameObject root) {
+      string assetPath = null;
 #if UNITY_EDITOR
-#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
-      return UnityEditor.AssetDatabase.GetAssetPath(
+#if !UNITY_2018_3_OR_NEWER
+      assetPath = UnityEditor.AssetDatabase.GetAssetPath(
               UnityEditor.PrefabUtility.GetPrefabObject(root));
 #else
       if (!UnityEditor.EditorUtility.IsPersistent(root)) {
         var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
         if (prefabStage != null) {
           if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root)) {
-            return prefabStage.prefabAssetPath;
+            assetPath = prefabStage.prefabAssetPath;
             // This is a great resource for determining object type, but only covers new APIs:
             // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
           }
@@ -191,7 +194,7 @@ namespace USD.NET.Unity {
       }
 #endif
 #endif
-      return null;
+      return assetPath;
     }
 
     /// <summary>
@@ -238,9 +241,10 @@ namespace USD.NET.Unity {
       m_debugShowSkeletonRestPose = options.meshOptions.debugShowSkeletonRestPose;
 
       // Materials & instancing.
+      m_useOriginalShaderIfAvailable = options.materialMap.useOriginalShaderIfAvailable;
       m_materialImportMode = options.materialImportMode;
       m_enableGpuInstancing = options.enableGpuInstancing;
-      m_fallbackMaterial = options.materialMap.FallbackMasterMaterial;
+      m_displayColorMaterial = options.materialMap.DisplayColorMaterial;
       m_specularWorkflowMaterial = options.materialMap.SpecularWorkflowMaterial;
       m_metallicWorkflowMaterial = options.materialMap.MetallicWorkflowMaterial;
     }
@@ -288,9 +292,10 @@ namespace USD.NET.Unity {
       options.meshOptions.debugShowSkeletonRestPose = m_debugShowSkeletonRestPose;
 
       // Materials & Instancing.
+      options.materialMap.useOriginalShaderIfAvailable = m_useOriginalShaderIfAvailable;
       options.materialImportMode = m_materialImportMode;
       options.enableGpuInstancing = m_enableGpuInstancing;
-      options.materialMap.FallbackMasterMaterial = m_fallbackMaterial;
+      options.materialMap.DisplayColorMaterial = m_displayColorMaterial;
       options.materialMap.SpecularWorkflowMaterial = m_specularWorkflowMaterial;
       options.materialMap.MetallicWorkflowMaterial = m_metallicWorkflowMaterial;
     }
@@ -415,10 +420,10 @@ namespace USD.NET.Unity {
         if (options.forceRebuild) {
           DestroyAllImportedObjects();
         }
-        string clipName = System.IO.Path.GetFileNameWithoutExtension(usdFullPath);
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
+        string clipName = System.IO.Path.GetFileNameWithoutExtension(usdFullPath);
         // As an optimization, we could detect if any meshes or materials were created and only
         // rebuild the prefab in those cases.
         SceneImporter.SavePrefab(root, assetPath, clipName, options);

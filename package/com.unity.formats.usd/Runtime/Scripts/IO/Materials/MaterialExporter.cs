@@ -44,7 +44,7 @@ namespace USD.NET.Unity {
       ExportRegistry.Add("Standard (Specular setup)",
                          StandardShaderExporter.ExportStandardSpecular);
       ExportRegistry.Add("HDRenderPipeline/Lit",
-                         HdrpShaderIo.ExportLit);
+                         HdrpShaderExporter.ExportLit);
       ExportRegistry.Add(kStandardFallbackHandler,
                          StandardShaderExporter.ExportGeneric);
     }

@@ -64,10 +64,10 @@ namespace USD.NET.Unity {
     public override void OnInspectorGUI() {
       var stageRoot = (UsdAsset)this.target;
 
-      if (stageRoot.m_fallbackMaterial == null) {
+      if (stageRoot.m_displayColorMaterial == null) {
         Debug.LogWarning("No fallback material set, reverting to default");
         var matMap = new MaterialMap();
-        stageRoot.m_fallbackMaterial = matMap.FallbackMasterMaterial;
+        stageRoot.m_displayColorMaterial = matMap.DisplayColorMaterial;
       }
 
       if (stageRoot.m_metallicWorkflowMaterial == null) {

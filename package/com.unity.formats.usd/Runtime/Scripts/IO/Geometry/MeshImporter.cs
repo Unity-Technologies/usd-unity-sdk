@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
-#if !UNITY_2017
+#if UNITY_2018_1_OR_NEWER
 using Unity.Jobs;
 #endif
 using pxr;
@@ -48,7 +48,7 @@ namespace USD.NET.Unity {
     }
 
     ReadAllJob<MeshSample> m_readMeshesJob;
-#if !UNITY_2017
+#if UNITY_2018_1_OR_NEWER
     public void BeginReading(Scene scene, PrimMap primMap) {
       m_readMeshesJob = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
       m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
@@ -568,7 +568,7 @@ namespace USD.NET.Unity {
 
 #if UNITY_EDITOR
       if (options.meshOptions.generateLightmapUVs) {
-#if UNITY_2018_2 || UNITY_2018_1 || UNITY_2017
+#if !UNITY_2018_3_OR_NEWER
         if (unityMesh.indexFormat == UnityEngine.Rendering.IndexFormat.UInt32) {
           Debug.LogWarning("Skipping prim " + path + " due to large IndexFormat (UInt32) bug in older vesrsions of Unity");
           return;
@@ -580,7 +580,9 @@ namespace USD.NET.Unity {
         unwrapSettings.angleError = options.meshOptions.unwrapAngleError;
         unwrapSettings.areaError = options.meshOptions.unwrapAngleError;
         unwrapSettings.hardAngle = options.meshOptions.unwrapHardAngle;
-        unwrapSettings.packMargin = options.meshOptions.unwrapPackMargin;
+
+        // Convert pixels to unitless UV space, which is what unwrapSettings uses internally.
+        unwrapSettings.packMargin = options.meshOptions.unwrapPackMargin / 1024.0f;
 
         UnityEditor.Unwrapping.GenerateSecondaryUVSet(unityMesh, unwrapSettings);
         Profiler.EndSample();
