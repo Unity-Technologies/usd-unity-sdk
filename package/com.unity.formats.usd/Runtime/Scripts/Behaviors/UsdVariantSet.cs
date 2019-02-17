@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,11 +53,26 @@ namespace USD.NET.Unity {
       m_primPath = prim.GetPath();
     }
 
+    /// <summary>
+    /// Syncs the current Unity state to USD and reimports any affected GameObjects. Note that this
+    /// may result in the objects being destroyed and recreated.
+    /// </summary>
     public void ApplyVariantSelections() {
       var stageRoot = GetComponentInParent<UsdAsset>();
       stageRoot.SetVariantSelection(gameObject, m_primPath, GetVariantSelections());
     }
 
+    /// <summary>
+    /// Returns a collection of VariantSetName -> ActiveVariantSelectionName, which represents the
+    /// active variant selection at the prim associated with this behaviour.
+    /// </summary>
+    /// <example>
+    /// If two sets with selections are modelingVariant=CupWithHandle and shadingVariant=BrightBlue,
+    /// resulting in a bright blue cup with a handle. In this example, the selections dictionary
+    /// would contain:
+    ///  { "modelingVariant" = "CupWithHandle",
+    ///    "shadingVariant" = "BrightBlue" }
+    /// </example>
     public Dictionary<string, string> GetVariantSelections() {
       var selections = new Dictionary<string, string>();
       for (int i = 0; i < m_variantSetNames.Length; i++) {

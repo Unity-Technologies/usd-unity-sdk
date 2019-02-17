@@ -787,12 +787,15 @@ namespace USD.NET.Unity {
     /// <param name="selections">A collection of (variant set, selection) pairs.</param>
     /// <remarks>
     /// A USD prim can have zero or more variant sets, for example a single prim amy have
-    /// "modelingVariant" and "shadingVariant" sets. Each set can have their own slection, e.g.
-    /// modelingVariant=CupWithHandle and shadingVariant=BrightBlue, resulting in a bright blue
-    /// cup with a handle. In this example, the selections dictionary would contain:
+    /// "modelingVariant" and "shadingVariant" sets. Each set can have their own slection.
+    /// </remarks>
+    /// <example>
+    /// If two sets with selections are modelingVariant=CupWithHandle and shadingVariant=BrightBlue,
+    /// resulting in a bright blue cup with a handle. In this example, the selections dictionary
+    /// would contain:
     ///  { "modelingVariant" = "CupWithHandle",
     ///    "shadingVariant" = "BrightBlue" }
-    /// </remarks>
+    /// </example>
     public void SetVariantSelection(GameObject go,
                                     string usdPrimPath,
                                     Dictionary<string, string> selections) {
