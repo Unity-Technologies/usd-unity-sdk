@@ -40,7 +40,11 @@ namespace USD.NET.Unity {
     public int[] m_variantCounts;
     public string m_primPath;
 
-    public void LoadFromUsd(pxr.UsdPrim prim, pxr.UsdVariantSets variantSets) {
+    /// <summary>
+    /// Loads the variant sets and selection state from USD into the UsdVariantSet behaviour.
+    /// </summary>
+    public void LoadFromUsd(pxr.UsdPrim prim) {
+      var variantSets = prim.GetVariantSets();
       var setNames = variantSets.GetNames();
       m_variantSetNames = setNames.ToArray();
       m_selected = m_variantSetNames.Select(setName => variantSets.GetVariantSelection(setName)).ToArray();

@@ -609,8 +609,7 @@ namespace USD.NET.Unity {
     /// variant selection.
     /// </summary>
     static void AddVariantSet(GameObject go, UsdPrim prim) {
-      var sets = prim.GetVariantSets();
-      var setNames = sets.GetNames();
+      var setNames = prim.GetVariantSets().GetNames();
       var vs = go.GetComponent<UsdVariantSet>();
 
       if (setNames.Count == 0) {
@@ -624,7 +623,7 @@ namespace USD.NET.Unity {
         vs = go.AddComponent<UsdVariantSet>();
       }
 
-      vs.LoadFromUsd(prim, sets);
+      vs.LoadFromUsd(prim);
     }
 
     /// <summary>
