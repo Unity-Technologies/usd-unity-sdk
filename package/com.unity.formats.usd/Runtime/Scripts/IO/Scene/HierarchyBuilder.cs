@@ -601,6 +601,7 @@ namespace USD.NET.Unity {
 
       if (!pl) {
         pl = go.AddComponent<UsdPayload>();
+        pl.SetInitialState(options.payloadPolicy == PayloadPolicy.LoadAll);
       }
     }
 

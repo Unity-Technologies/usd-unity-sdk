@@ -31,17 +31,6 @@ namespace USD.NET.Unity {
     public bool IsLoaded { get { return m_isLoaded; } }
 
     /// <summary>
-    /// Copy loaded state from payload policy.
-    /// </summary>
-    private void Start() {
-      // TODO: This logic seems suspicious; why should the start state override the current
-      // behaviour state, e.g., on entering play mode?
-      bool loaded = GetComponentInParent<UsdAsset>().m_payloadPolicy == PayloadPolicy.LoadAll;
-      m_isLoaded = loaded;
-      m_wasLoaded = m_isLoaded;
-    }
-
-    /// <summary>
     /// Sets the current state to loaded. The actual chagne will be applied on next Update().
     /// </summary>
     public void Load() {
