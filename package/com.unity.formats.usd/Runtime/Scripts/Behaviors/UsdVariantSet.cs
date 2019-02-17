@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,22 @@ using System.Linq;
 using UnityEngine;
 
 namespace USD.NET.Unity {
+
+  /// <summary>
+  /// Represents one or more USD variant sets. This object holds slection state and exposes
+  /// access to the current selection as well as an API to apply selection changes (used by the
+  /// editor).
+  /// </summary>
+  /// <remarks>
+  /// Note that a singe asset can have multiple variant sets and each is independent. For example,
+  /// the modelingVariant set may have two variants: CupWithHandle and CupWithoutHandle, while the
+  /// shadingVariant set may have three variants: Red, Green, Blue. The full outer product of all
+  /// variant selections is possible, e.g. Red, Green, or Blue CupWithHandle and Red, Green, or Blue
+  /// CupWithoutHandle.
+  /// 
+  /// For more details on USD variant sets and selections, see:
+  /// https://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-VariantSet
+  /// </remarks>
   public class UsdVariantSet : MonoBehaviour {
     public string[] m_variantSetNames;
     public string[] m_selected;
