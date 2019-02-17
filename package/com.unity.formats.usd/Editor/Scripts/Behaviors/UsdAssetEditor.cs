@@ -151,14 +151,6 @@ namespace USD.NET.Unity {
       base.DrawDefaultInspector();
     }
 
-    private void OpenUsdFile(UsdAsset stageRoot) {
-      Scene scene = UsdMenu.InitForOpen();
-      if (scene == null) {
-        return;
-      }
-      stageRoot.OpenScene(scene);
-    }
-
     private void ReloadFromUsd(UsdAsset stageRoot, bool forceRebuild) {
       stageRoot.Reload(forceRebuild);
       Repaint();

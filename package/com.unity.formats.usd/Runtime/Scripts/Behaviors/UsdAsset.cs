@@ -27,64 +27,121 @@ namespace USD.NET.Unity {
   [ExecuteInEditMode]
   public class UsdAsset : MonoBehaviour {
 
-    // Length of the USD playback time, exposed for Timeline.
+    /// <summary>
+    /// The length of the USD playback time in seconds.
+    /// </summary>
     public double Length { get { return ComputeLength(); } }
 
-    [Header("Source Asset")]
-    [SerializeField]
-    string m_usdFile;
-
+    /// <summary>
+    /// The absolute file path to the USD file from which this asset was created. This path may
+    /// point to a location outside of the Unity project and may be any file type supported by
+    /// USD (e.g. usd, usda, usdc, abc, ...). Setting this path will not trigger the asset to be
+    /// reimported, Reload must be called explicitly.
+    /// </summary>
     public string usdFullPath
     {
       get { return Path.GetFullPath(m_usdFile); }
       set { m_usdFile = value; }
     }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Source Asset.
+    // ----------------------------------------------------------------------------------------- //
+
+    [Header("Source Asset")]
+    [SerializeField]
+    string m_usdFile;
+
+    [Tooltip("The Unity project path into which imported files (such as textures) will be placed.")]
     public string m_projectAssetPath = "Assets/";
-#if false
-    [Header("Export Target")]
-    public string m_usdExportFile;
-    public string m_usdMaterialFile;
-    public string m_usdGeometryFile;
-#endif
+
+    // ----------------------------------------------------------------------------------------- //
+    // USD Options.
+    // ----------------------------------------------------------------------------------------- //
 
     [Header("USD Options")]
+    [Tooltip("The USD prim path in the USD scene at which to start the import process.")]
     public string m_usdRootPath = "/";
+
+    [Tooltip("For assets with payloads authored, indicates if payloads should be loaded or unloaded by default.")]
     public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
+
+    [Tooltip("An offset applied to all data in the USD file")]
     public float m_usdTimeOffset;
+
+    [Tooltip("Behavior to use when no value was authored at the requested time.")]
     public Scene.InterpolationMode m_interpolation;
+
+    [Tooltip("Memorizes which attributes change over time, to speed up playback (trades time for memory)")]
     public bool m_usdVariabilityCache = true;
 
     [HideInInspector]
     public bool m_importHierarchy = true;
 
+    // ----------------------------------------------------------------------------------------- //
+    // Conversions.
+    // ----------------------------------------------------------------------------------------- //
+
     [Header("Conversions")]
+    [Tooltip("A scale to be applied to the root asset, useful for converting asset units to meters.")]
     public float m_scale;
+
+    // See enum for details.
+    [Tooltip("Conversion method for right-handed (USD) to left-handed conversion (Unity) and vice versa.")]
     public BasisTransformation m_changeHandedness;
 
+    // ----------------------------------------------------------------------------------------- //
+    // Material Options.
+    // ----------------------------------------------------------------------------------------- //
+
     [Header("Material Options")]
+    [Tooltip("When enabled, set the GPU Instancing flag on all materials.")]
     public bool m_enableGpuInstancing;
+
     [Tooltip("If the original shader name is stored in USD, attempt to find that shader in this project.")]
     public bool m_useOriginalShaderIfAvailable = true;
+
+    [Tooltip("The default material to use when importing materials as display color.")]
     public Material m_displayColorMaterial;
+
+    [Tooltip("The default material to use when importing specular workflow USD Preview Surface materials.")]
     public Material m_specularWorkflowMaterial;
+
+    [Tooltip("The default material to use when importing metallic workflow USD Preview Surface materials.")]
     public Material m_metallicWorkflowMaterial;
+
+    // ----------------------------------------------------------------------------------------- //
+    // Mesh Options.
+    // ----------------------------------------------------------------------------------------- //
 
     [Header("Mesh Options")]
     public ImportMode m_points;
     public ImportMode m_topology;
     public ImportMode m_boundingBox;
+
+    [Tooltip("Combined import policy for primvars:displayColor and primvars:displayOpacity")]
     public ImportMode m_color;
+
+    [Tooltip("Import policy for normals, note that the 'normals' attribute is built-in, not a primvar")]
     public ImportMode m_normals;
+
+    [Tooltip("Import policy for primvars:tangent")]
     public ImportMode m_tangents;
 
+    [Tooltip("Import policy for primvars:st")]
     public ImportMode m_st;
 
+    // Obselete, will be removed in the future.
     [HideInInspector]
     public ImportMode m_texcoord1;
     [HideInInspector]
     public ImportMode m_texcoord2;
     [HideInInspector]
     public ImportMode m_texcoord3;
+
+    // ----------------------------------------------------------------------------------------- //
+    // Lightmap UV Unwrapping.
+    // ----------------------------------------------------------------------------------------- //
 
     [Header("Mesh Lightmap UV Unwrapping")]
     public bool m_generateLightmapUVs;
@@ -103,6 +160,10 @@ namespace USD.NET.Unity {
 
     [Tooltip("UV-island padding in pixels")]
     public int m_unwrapPackMargin = 4;
+
+    // ----------------------------------------------------------------------------------------- //
+    // Import Settings.
+    // ----------------------------------------------------------------------------------------- //
 
     [Header("Import Settings")]
     public MaterialImportMode m_materialImportMode = MaterialImportMode.ImportDisplayColor;
@@ -125,6 +186,10 @@ namespace USD.NET.Unity {
     public bool m_exportMonoBehaviors = true;
 #endif
 
+    // ----------------------------------------------------------------------------------------- //
+    // Debug Options.
+    // ----------------------------------------------------------------------------------------- //
+
     [Header("Debug Options")]
     public bool m_debugShowSkeletonBindPose;
     public bool m_debugShowSkeletonRestPose;
@@ -135,15 +200,26 @@ namespace USD.NET.Unity {
     [HideInInspector]
     public float LastScale;
 
+    // ----------------------------------------------------------------------------------------- //
+    // Private fields.
+    // ----------------------------------------------------------------------------------------- //
+
     private float m_lastTime;
     private Scene m_lastScene;
     private PrimMap m_lastPrimMap = null;
     private AccessMask m_lastAccessMask = null;
 
 #if UNITY_EDITOR
+    /// <summary>
+    /// Used to track when a UsdAsset is duplicated. When duplicated, the meshes and materials
+    /// need to be instanced to keep the duplicated object from sharing the underlying assets.
+    /// </summary>
     [SerializeField, HideInInspector]
     private int m_instanceId = 0;
 
+    /// <summary>
+    /// Returns the underlying prefab object, or null.
+    /// </summary>
     private GameObject GetPrefabObject(GameObject root) {
 #if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
       return UnityEditor.PrefabUtility.GetPrefabObject(root) as GameObject;
@@ -175,6 +251,9 @@ namespace USD.NET.Unity {
     }
 #endif
 
+    /// <summary>
+    /// Returns the project path to the prefab, or null. Always returns null in player.
+    /// </summary>
     private string GetPrefabAssetPath(GameObject root) {
       string assetPath = null;
 #if UNITY_EDITOR
@@ -198,7 +277,7 @@ namespace USD.NET.Unity {
     }
 
     /// <summary>
-    /// Convert the SceneImportOptions into a serializable form.
+    /// Convert the SceneImportOptions to a serializable form.
     /// </summary>
     public void OptionsToState(SceneImportOptions options) {
       m_usdRootPath = options.usdRootPath;
@@ -347,6 +426,9 @@ namespace USD.NET.Unity {
       return m_lastScene;
     }
 
+    /// <summary>
+    /// A private event that fires whenever the USD scene was reimported.
+    /// </summary>
     private void OnReload() {
       m_lastPrimMap = null;
       m_lastAccessMask = null;
@@ -356,26 +438,17 @@ namespace USD.NET.Unity {
       }
     }
 
-    public void OpenScene(Scene scene) {
-      var options = new SceneImportOptions();
-      StateToOptions(ref options);
-      var parent = gameObject.transform.parent;
-      var root = parent ? parent.gameObject : null;
-
-      scene.Time = m_usdTimeOffset;
-      try {
-        OnReload();
-        SceneImporter.ImportUsd(root, scene, new PrimMap(), options);
-      } finally {
-        scene.Close();
-      }
-    }
-
+    /// <summary>
+    /// A null-safe way of destroying components.
+    /// </summary>
     private void DestroyComponent(Component comp) {
       if (!comp) { return; }
       Component.DestroyImmediate(comp);
     }
 
+    /// <summary>
+    /// Finds all USD behaviors and destroyes them, ignores the GameObject and other components.
+    /// </summary>
     public void RemoveAllUsdComponents() {
       foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
         if (src) {
@@ -391,6 +464,9 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Finds and destroys all GameObjects that were imported from USD.
+    /// </summary>
     public void DestroyAllImportedObjects() {
       foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
         if (src) {
@@ -399,6 +475,10 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Reimports the USD scene, either fully rebuilding every object or updating them in-place.
+    /// </summary>
+    /// <param name="forceRebuild">Destroys each GameObject before reimporting.</param>
     public void Reload(bool forceRebuild) {
       var options = new SceneImportOptions();
       StateToOptions(ref options);
@@ -423,7 +503,7 @@ namespace USD.NET.Unity {
         SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
-        string clipName = System.IO.Path.GetFileNameWithoutExtension(usdFullPath);
+        string clipName = Path.GetFileNameWithoutExtension(usdFullPath);
         // As an optimization, we could detect if any meshes or materials were created and only
         // rebuild the prefab in those cases.
         SceneImporter.SavePrefab(root, assetPath, clipName, options);
@@ -446,6 +526,9 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Returns the first Prim on the USD stage or null.
+    /// </summary>
     pxr.UsdPrim GetFirstPrim(Scene scene) {
       var children = scene.Stage.GetPseudoRoot().GetAllChildren().GetEnumerator();
       if (!children.MoveNext()) {
@@ -454,6 +537,11 @@ namespace USD.NET.Unity {
       return children.Current;
     }
 
+    /// <summary>
+    /// Writes overrides over the given scene. The given scene is referenced into the override
+    /// scene being exported.
+    /// </summary>
+    /// <param name="sceneInWhichToStoreTransforms"></param>
     public void ExportOverrides(Scene sceneInWhichToStoreTransforms) {
       var sceneToReference = this;
       var overs = sceneInWhichToStoreTransforms;
@@ -494,6 +582,10 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Computes the playback length of the USD scene in seconds.
+    /// </summary>
+    /// <returns></returns>
     private double ComputeLength() {
       var scene = GetScene();
       if (scene == null) { return 0; }
@@ -575,6 +667,10 @@ namespace USD.NET.Unity {
       SetTime(m_usdTimeOffset, this, saveMeshUpdates: true);
     }
 
+    /// <summary>
+    /// Optimizes the given import options for fast playback. This assumes that the asset was
+    /// previously imported, therefore it disables import of the material and scene hierarchy.
+    /// </summary>
     public static void PrepOptionsForTimeChange(ref SceneImportOptions options) {
       options.forceRebuild = false;
       options.materialImportMode = MaterialImportMode.None;
@@ -593,6 +689,10 @@ namespace USD.NET.Unity {
       options.meshOptions.texcoord3 = ImportMode.Ignore;
     }
 
+    /// <summary>
+    /// Imports the USD scene incrementally, setting a fixed time budget per frame for import
+    /// operations. Uses StartCoroutine.
+    /// </summary>
     public void ImportUsdAsCoroutine(GameObject goRoot,
                                      string usdFilePath,
                                      double time,
@@ -622,6 +722,10 @@ namespace USD.NET.Unity {
       StartCoroutine(importer);
     }
 
+    /// <summary>
+    /// Loads or unloads the given payload object. Throws an exception if game object deos not have
+    /// a UsdPrimSource behaviour.
+    /// </summary>
     public void SetPayloadState(GameObject go, bool isLoaded) {
       var primSrc = go.GetComponent<UsdPrimSource>();
       if (!primSrc) {
@@ -658,6 +762,10 @@ namespace USD.NET.Unity {
       SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
     }
 
+    /// <summary>
+    /// Applies changes to the USD variant selection made via UsdVariantSet behaviour. Objects will
+    /// be destroyed and imported as a result.
+    /// </summary>
     private void ApplyVariantSelectionState(Scene scene, UsdVariantSet variants) {
       var selections = variants.GetVariantSelections();
       var path = variants.GetComponent<UsdPrimSource>().m_usdPrimPath;
@@ -671,6 +779,20 @@ namespace USD.NET.Unity {
       }
     }
 
+    /// <summary>
+    /// Sets the variant selections in USD at the given prim path based on the selections parameter.
+    /// </summary>
+    /// <param name="go">The gameObject at the root of the variant set.</param>
+    /// <param name="usdPrimPath">The USD prim at which to set the variant selection.</param>
+    /// <param name="selections">A collection of (variant set, selection) pairs.</param>
+    /// <remarks>
+    /// A USD prim can have zero or more variant sets, for example a single prim amy have
+    /// "modelingVariant" and "shadingVariant" sets. Each set can have their own slection, e.g.
+    /// modelingVariant=CupWithHandle and shadingVariant=BrightBlue, resulting in a bright blue
+    /// cup with a handle. In this example, the selections dictionary would contain:
+    ///  { "modelingVariant" = "CupWithHandle",
+    ///    "shadingVariant" = "BrightBlue" }
+    /// </remarks>
     public void SetVariantSelection(GameObject go,
                                     string usdPrimPath,
                                     Dictionary<string, string> selections) {
