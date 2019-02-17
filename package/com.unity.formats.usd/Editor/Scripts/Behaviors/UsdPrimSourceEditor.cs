@@ -22,6 +22,7 @@ namespace USD.NET.Unity {
   public class UsdPrimSourceEditor : Editor {
 
     UsdAttribute selectedAttribute;
+    bool m_showExpandedUi = false;
 
     public override void OnInspectorGUI() {
       var attachment = (UsdPrimSource)target;
@@ -58,6 +59,11 @@ namespace USD.NET.Unity {
 
       EditorGUILayout.LabelField("USD Time: " + stageRoot.m_usdTimeOffset);
 
+      m_showExpandedUi = GUILayout.Toggle(m_showExpandedUi, "Show USD Inspector");
+      
+      if (!m_showExpandedUi) {
+        return;
+      }
       //
       // Attribute Grid.
       //
