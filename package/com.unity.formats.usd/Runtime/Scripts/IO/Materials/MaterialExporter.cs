@@ -43,8 +43,25 @@ namespace USD.NET.Unity {
                          StandardShaderExporter.ExportStandardRoughness);
       ExportRegistry.Add("Standard (Specular setup)",
                          StandardShaderExporter.ExportStandardSpecular);
+
       ExportRegistry.Add("HDRenderPipeline/Lit",
                          HdrpShaderExporter.ExportLit);
+      ExportRegistry.Add("HDRenderPipeline/LitTessellation",
+                         HdrpShaderExporter.ExportLit);
+      ExportRegistry.Add("HDRenderPipeline/LayeredLit",
+                   HdrpShaderExporter.ExportLit);
+      ExportRegistry.Add("HDRenderPipeline/LayeredLitTessellation",
+                         HdrpShaderExporter.ExportLit);
+
+      ExportRegistry.Add("HDRP/Lit",
+                         HdrpShaderExporter.ExportLit);
+      ExportRegistry.Add("HDRP/LitTessellation",
+                         HdrpShaderExporter.ExportLit);
+      ExportRegistry.Add("HDRP/LayeredLit",
+                   HdrpShaderExporter.ExportLit);
+      ExportRegistry.Add("HDRP/LayeredLitTessellation",
+                         HdrpShaderExporter.ExportLit);
+
       ExportRegistry.Add(kStandardFallbackHandler,
                          StandardShaderExporter.ExportGeneric);
     }
