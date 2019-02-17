@@ -12,10 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using UnityEngine;
 
 namespace USD.NET.Unity {
+
+  /// <summary>
+  /// Indicates that the source was an Assembly in USD. See Kind in USD for details:
+  /// https://graphics.pixar.com/usd/docs/api/kind_page_front.html
+  /// </summary>
+  /// <remarks>
+  /// An assembly is a model made of more models, for example a film set or a game level. It is
+  /// often useful to have special processing behavior for assemblies, so this is actually less of
+  /// a behavior and more of a marker or attribute on the GameObject.
+  /// </remarks>
   public class UsdAssemblyRoot : MonoBehaviour {
   }
+
 }

@@ -17,6 +17,10 @@ using UnityEngine;
 
 namespace USD.NET.Unity {
 
+  /// <summary>
+  /// Represents a Unity GameObject, in USD.
+  /// WARNING: this sample type is highly experimental and subject to change.
+  /// </summary>
   [Serializable]
   public class UsdGameObject : SampleBase {
     // Stores the true Unity name, which may not match USD, due to aliasing and invalid characters.
@@ -31,6 +35,7 @@ namespace USD.NET.Unity {
     public Quaternion localRotation;
   }
 
+  // Serialization class to add 'unity:gameObject' namespace in USD.
   public class UsdGameObjectSample : SampleBase {
     [UsdNamespace("unity:gameObject")]
     public UsdGameObject gameObject = new UsdGameObject();
