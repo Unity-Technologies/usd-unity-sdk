@@ -17,12 +17,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
+using USD.NET;
+using USD.NET.Unity;
+
 #if UNITY_2018_1_OR_NEWER
 using Unity.Jobs;
 #endif
 using pxr;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// A callback function wich integrates the given sample into the given GameObject.

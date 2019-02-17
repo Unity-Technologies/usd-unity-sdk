@@ -14,11 +14,13 @@
 
 using UnityEngine;
 using UnityEngine.Playables;
+using USD.NET;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   public class UsdRecorderBehaviour : PlayableBehaviour {
 
     bool m_isPaused = false;
@@ -29,7 +31,7 @@ namespace USD.NET.Unity {
     // ------------------------------------------------------------------------------------------ //
 
     public void BeginRecording(double currentTime, GameObject root) {
-      Examples.InitUsd.Initialize();
+      InitUsd.Initialize();
 
       if (!root) {
         Debug.LogError("ExportRoot not assigned.");

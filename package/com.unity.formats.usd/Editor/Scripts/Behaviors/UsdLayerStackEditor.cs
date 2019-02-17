@@ -11,13 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-using System;
-using System.IO;
+
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.AssetImporters;
+using USD.NET;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   [CustomEditor(typeof(UsdLayerStack))]
   public class UsdLayerStackEditor : ScriptedImporterEditor {
@@ -29,12 +29,12 @@ namespace USD.NET.Unity {
       GUILayout.Space(10);
 
       if (GUILayout.Button("Save Overrides to Target Layer")) {
-        Examples.InitUsd.Initialize();
+        InitUsd.Initialize();
         layerStack.SaveToLayer();
       }
 
       if (GUILayout.Button("Save Layer Stack")) {
-        Examples.InitUsd.Initialize();
+        InitUsd.Initialize();
         Scene scene = Scene.Open(layerStack.GetComponent<UsdAsset>().usdFullPath);
         try {
           layerStack.SaveLayerStack(scene, layerStack.m_layerStack);

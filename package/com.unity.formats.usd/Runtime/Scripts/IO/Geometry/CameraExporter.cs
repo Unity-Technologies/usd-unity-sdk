@@ -13,8 +13,9 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   public static class CameraExporter {
 
     public static void ExportCamera(ObjectContext objContext, ExportContext exportContext) {

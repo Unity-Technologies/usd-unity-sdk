@@ -15,8 +15,9 @@
 using System;
 using UnityEngine;
 using pxr;
+using Scene = USD.NET.Scene;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// A mechanism for managing USD layers in a multi-layer shot context.

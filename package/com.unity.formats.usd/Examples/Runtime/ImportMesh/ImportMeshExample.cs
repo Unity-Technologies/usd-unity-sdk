@@ -14,9 +14,9 @@
 
 using System;
 using UnityEngine;
-using USD.NET.Unity;
+using USD.NET;
 
-namespace USD.NET.Examples {
+namespace Unity.Formats.USD.Examples {
 
   /// <summary>
   /// Imports meshes and transforms from a USD file into the Unity GameObject hierarchy and

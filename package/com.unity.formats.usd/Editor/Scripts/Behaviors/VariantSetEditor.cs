@@ -11,11 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEditor;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   [CustomEditor(typeof(UsdVariantSet))]
   public class UsdVariantSetEditor : Editor {

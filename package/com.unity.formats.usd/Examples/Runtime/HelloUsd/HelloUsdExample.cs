@@ -12,18 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
 
-namespace USD.NET.Examples {
+namespace Unity.Formats.USD.Examples {
 
   public class HelloUsdExample : MonoBehaviour {
     [System.Serializable]
-    class MyCustomData : USD.NET.SampleBase {
+    class MyCustomData : SampleBase {
       public string aString;
       public int[] anArrayOfInts;
-      public UnityEngine.Bounds aBoundingBox;
+      public Bounds aBoundingBox;
     }
 
     void Start() {
@@ -41,7 +40,7 @@ namespace USD.NET.Examples {
       value.aBoundingBox = new UnityEngine.Bounds();
 
       // Writing the value.
-      var scene = USD.NET.Scene.Create(usdFile);
+      var scene = Scene.Create(usdFile);
       scene.Time = 1.0;
       scene.Write("/someValue", value);
       Debug.Log(scene.Stage.GetRootLayer().ExportToString());
@@ -51,7 +50,7 @@ namespace USD.NET.Examples {
       // Reading the value.
       Debug.Log(usdFile);
       value = new MyCustomData();
-      scene = USD.NET.Scene.Open(usdFile);
+      scene = Scene.Open(usdFile);
       scene.Time = 1.0;
       scene.Read("/someValue", value);
 

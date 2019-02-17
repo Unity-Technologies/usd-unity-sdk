@@ -15,7 +15,7 @@
 using UnityEngine.Playables;
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   // A behaviour that is attached to a playable
   public class UsdPlayableBehaviour : PlayableBehaviour {
     public UsdPlayableAsset playableAsset;
@@ -24,7 +24,7 @@ namespace USD.NET.Unity {
 
     // Called when the owning graph starts playing
     public override void OnGraphStart(Playable playable) {
-      USD.NET.Examples.InitUsd.Initialize();
+      InitUsd.Initialize();
     }
 
     // Called when the owning graph stops playing

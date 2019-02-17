@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   public class HdrpShaderImporter : ShaderImporterBase {
 

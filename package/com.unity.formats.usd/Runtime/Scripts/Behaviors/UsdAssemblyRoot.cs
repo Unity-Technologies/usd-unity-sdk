@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// Indicates that the source was an Assembly in USD. See Kind in USD for details:

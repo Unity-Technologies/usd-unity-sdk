@@ -14,122 +14,126 @@
 
 using UnityEngine;
 
-/// <summary>
-/// Compares two skinned meshes in Unity.
-/// </summary>
-[ExecuteInEditMode]
-public class SkinnedMeshUnityDiff : MonoBehaviour {
+namespace Unity.Formats.USD {
 
-  [Tooltip("The USD skinned mesh to compare")]
-  public SkinnedMeshRenderer m_usdMesh;
+  /// <summary>
+  /// Compares two skinned meshes in Unity.
+  /// </summary>
+  [ExecuteInEditMode]
+  public class SkinnedMeshUnityDiff : MonoBehaviour {
 
-  [Tooltip("The Unity skinned mesh to compare")]
-  public SkinnedMeshRenderer m_unityMesh;
-  
-  void OnEnable() {
-    var usdSmr = m_usdMesh;
-    var unitySmr = m_unityMesh;
+    [Tooltip("The USD skinned mesh to compare")]
+    public SkinnedMeshRenderer m_usdMesh;
 
-    if (!usdSmr || !unitySmr) {
-      return;
-    }
+    [Tooltip("The Unity skinned mesh to compare")]
+    public SkinnedMeshRenderer m_unityMesh;
 
-    var usdMesh = usdSmr.sharedMesh;
-    var unityMesh = unitySmr.sharedMesh;
+    void OnEnable() {
+      var usdSmr = m_usdMesh;
+      var unitySmr = m_unityMesh;
 
-    Debug.Log("Processing legacy 4-bone rig");
-
-    if (usdMesh.boneWeights.Length != unityMesh.boneWeights.Length) {
-      Debug.LogWarning("Bone index/weight counts do not match: USD mesh("
-          + usdMesh.boneWeights.Length + ") != Unity mesh("
-          + unityMesh.boneWeights.Length + ")");
-    } else {
-      for (int i = 0; i < usdMesh.boneWeights.Length; i++) {
-        if (!WeightsMatch(usdMesh.boneWeights[i], unityMesh.boneWeights[i])) {
-          Debug.LogWarning("Bone weights do not match at index(" + i + "):\n"
-              + "USD mesh weights:   "
-              + usdMesh.boneWeights[i].weight0 + ", "
-              + usdMesh.boneWeights[i].weight1 + ", "
-              + usdMesh.boneWeights[i].weight2 + ", "
-              + usdMesh.boneWeights[i].weight3 + "\n"
-
-              + "Unity mesh weights: "
-              + unityMesh.boneWeights[i].weight0 + ", "
-              + unityMesh.boneWeights[i].weight1 + ", "
-              + unityMesh.boneWeights[i].weight2 + ", "
-              + unityMesh.boneWeights[i].weight3 + "\n");
-        }
-        if (!IndicesMatch(usdMesh.boneWeights[i], unityMesh.boneWeights[i])) {
-          Debug.LogWarning("Bone indices do not match at index(" + i + "):\n"
-              + "USD mesh indices:   "
-              + usdMesh.boneWeights[i].boneIndex0 + ", "
-              + usdMesh.boneWeights[i].boneIndex1 + ", "
-              + usdMesh.boneWeights[i].boneIndex2 + ", "
-              + usdMesh.boneWeights[i].boneIndex3 + "\n"
-
-              + "Unity mesh indices: "
-              + unityMesh.boneWeights[i].boneIndex0 + ", "
-              + unityMesh.boneWeights[i].boneIndex1 + ", "
-              + unityMesh.boneWeights[i].boneIndex2 + ", "
-              + unityMesh.boneWeights[i].boneIndex3 + "\n");
-        }
+      if (!usdSmr || !unitySmr) {
+        return;
       }
-    }
 
-    if (usdMesh.bindposes.Length != unityMesh.bindposes.Length) {
-      Debug.LogWarning("Mesh bind pose counts do not match, USD mesh: "
-          + usdMesh.bindposes.Length + " Unity mesh: "
-          + unityMesh.bindposes.Length);
-    } else {
-      for (int i = 0; i < usdMesh.bindposes.Length; i++) {
-        if (!Approximately(usdMesh.bindposes[i], unityMesh.bindposes[i])) {
-          Debug.LogWarning("Mesh bind pose does not match at index(" + i + "):\n"
-            + "USD Pose:\n" + usdMesh.bindposes[i].ToString() + " "
-            + "Unity Pose:\n" + unityMesh.bindposes[i].ToString());
+      var usdMesh = usdSmr.sharedMesh;
+      var unityMesh = unitySmr.sharedMesh;
+
+      Debug.Log("Processing legacy 4-bone rig");
+
+      if (usdMesh.boneWeights.Length != unityMesh.boneWeights.Length) {
+        Debug.LogWarning("Bone index/weight counts do not match: USD mesh("
+            + usdMesh.boneWeights.Length + ") != Unity mesh("
+            + unityMesh.boneWeights.Length + ")");
+      } else {
+        for (int i = 0; i < usdMesh.boneWeights.Length; i++) {
+          if (!WeightsMatch(usdMesh.boneWeights[i], unityMesh.boneWeights[i])) {
+            Debug.LogWarning("Bone weights do not match at index(" + i + "):\n"
+                + "USD mesh weights:   "
+                + usdMesh.boneWeights[i].weight0 + ", "
+                + usdMesh.boneWeights[i].weight1 + ", "
+                + usdMesh.boneWeights[i].weight2 + ", "
+                + usdMesh.boneWeights[i].weight3 + "\n"
+
+                + "Unity mesh weights: "
+                + unityMesh.boneWeights[i].weight0 + ", "
+                + unityMesh.boneWeights[i].weight1 + ", "
+                + unityMesh.boneWeights[i].weight2 + ", "
+                + unityMesh.boneWeights[i].weight3 + "\n");
+          }
+          if (!IndicesMatch(usdMesh.boneWeights[i], unityMesh.boneWeights[i])) {
+            Debug.LogWarning("Bone indices do not match at index(" + i + "):\n"
+                + "USD mesh indices:   "
+                + usdMesh.boneWeights[i].boneIndex0 + ", "
+                + usdMesh.boneWeights[i].boneIndex1 + ", "
+                + usdMesh.boneWeights[i].boneIndex2 + ", "
+                + usdMesh.boneWeights[i].boneIndex3 + "\n"
+
+                + "Unity mesh indices: "
+                + unityMesh.boneWeights[i].boneIndex0 + ", "
+                + unityMesh.boneWeights[i].boneIndex1 + ", "
+                + unityMesh.boneWeights[i].boneIndex2 + ", "
+                + unityMesh.boneWeights[i].boneIndex3 + "\n");
+          }
         }
       }
-    }
 
-    if (usdSmr.bones.Length != unitySmr.bones.Length) {
-      Debug.LogWarning("Mesh bone counts do not match: "
-          + "USD mesh:   " + usdSmr.bones.Length + " "
-          + "Unity mesh: " + unitySmr.bones.Length);
-    } else {
-      for (int i = 0; i < usdSmr.bones.Length; i++) {
-        if (pxr.UsdCs.TfMakeValidIdentifier(usdSmr.bones[i].name) != pxr.UsdCs.TfMakeValidIdentifier(unitySmr.bones[i].name)) {
-          Debug.LogWarning("Mesh bind pose does not match at index(" + i + "): "
-              + "USD bone: " + usdSmr.bones[i].ToString() + " "
-              + "Unity bone: " + unitySmr.bones[i].ToString());
+      if (usdMesh.bindposes.Length != unityMesh.bindposes.Length) {
+        Debug.LogWarning("Mesh bind pose counts do not match, USD mesh: "
+            + usdMesh.bindposes.Length + " Unity mesh: "
+            + unityMesh.bindposes.Length);
+      } else {
+        for (int i = 0; i < usdMesh.bindposes.Length; i++) {
+          if (!Approximately(usdMesh.bindposes[i], unityMesh.bindposes[i])) {
+            Debug.LogWarning("Mesh bind pose does not match at index(" + i + "):\n"
+              + "USD Pose:\n" + usdMesh.bindposes[i].ToString() + " "
+              + "Unity Pose:\n" + unityMesh.bindposes[i].ToString());
+          }
         }
       }
-    }
 
-  }
-
-  bool Approximately(Matrix4x4 rhs, Matrix4x4 lhs) {
-    for (int i = 0; i < 16; i++) {
-      if (!Mathf.Approximately(rhs[i], lhs[i])) {
-        return false;
+      if (usdSmr.bones.Length != unitySmr.bones.Length) {
+        Debug.LogWarning("Mesh bone counts do not match: "
+            + "USD mesh:   " + usdSmr.bones.Length + " "
+            + "Unity mesh: " + unitySmr.bones.Length);
+      } else {
+        for (int i = 0; i < usdSmr.bones.Length; i++) {
+          if (pxr.UsdCs.TfMakeValidIdentifier(usdSmr.bones[i].name) != pxr.UsdCs.TfMakeValidIdentifier(unitySmr.bones[i].name)) {
+            Debug.LogWarning("Mesh bind pose does not match at index(" + i + "): "
+                + "USD bone: " + usdSmr.bones[i].ToString() + " "
+                + "Unity bone: " + unitySmr.bones[i].ToString());
+          }
+        }
       }
+
     }
-    return true;
-  }
 
-  bool WeightsMatch(BoneWeight w1, BoneWeight w2) {
-    return Mathf.Approximately(w1.weight0, w2.weight0)
-        && Mathf.Approximately(w1.weight1, w2.weight1)
-        && Mathf.Approximately(w1.weight2, w2.weight2)
-        && Mathf.Approximately(w1.weight3, w2.weight3);
-  }
+    bool Approximately(Matrix4x4 rhs, Matrix4x4 lhs) {
+      for (int i = 0; i < 16; i++) {
+        if (!Mathf.Approximately(rhs[i], lhs[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
 
-  bool IndicesMatch(BoneWeight w1, BoneWeight w2) {
-    return w1.boneIndex0 == w2.boneIndex0
-        && w1.boneIndex1 == w2.boneIndex1
-        && w1.boneIndex2 == w2.boneIndex2
-        && w1.boneIndex3 == w2.boneIndex3;
-  }
+    bool WeightsMatch(BoneWeight w1, BoneWeight w2) {
+      return Mathf.Approximately(w1.weight0, w2.weight0)
+          && Mathf.Approximately(w1.weight1, w2.weight1)
+          && Mathf.Approximately(w1.weight2, w2.weight2)
+          && Mathf.Approximately(w1.weight3, w2.weight3);
+    }
 
-  private void Update() {
+    bool IndicesMatch(BoneWeight w1, BoneWeight w2) {
+      return w1.boneIndex0 == w2.boneIndex0
+          && w1.boneIndex1 == w2.boneIndex1
+          && w1.boneIndex2 == w2.boneIndex2
+          && w1.boneIndex3 == w2.boneIndex3;
+    }
+
+    private void Update() {
+    }
+
   }
 
 }

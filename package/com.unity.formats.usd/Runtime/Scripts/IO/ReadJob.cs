@@ -22,8 +22,9 @@ using Unity.Jobs;
 using pxr;
 using System.Collections;
 using System.Threading;
+using USD.NET;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// Uses the C# job system to read all data for the given path list and presents it as an

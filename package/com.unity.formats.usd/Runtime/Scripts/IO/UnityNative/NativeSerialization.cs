@@ -15,9 +15,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using USD.NET;
 
 #if UNITY_EDITOR
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   internal static class NativeSerialization {
     static bool m_initialized = false;
 

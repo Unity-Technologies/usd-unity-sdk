@@ -13,15 +13,10 @@
 // limitations under the License.
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-
 using USD.NET;
-using USD.NET.Unity;
 
-namespace USD.NET.Examples {
+namespace Unity.Formats.USD.Examples {
 
   /// <remarks>
   /// Export Mesh Example

@@ -16,11 +16,14 @@ using System;
 using System.Collections.Generic;
 using pxr;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
+
 #if !UNITY_2017 && !UNITY_2018
 using Unity.Collections;
 #endif
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// Import support for UsdSkelSkeleton

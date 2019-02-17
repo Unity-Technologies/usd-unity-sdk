@@ -15,8 +15,9 @@
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using USD.NET;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   [System.ComponentModel.DisplayName("USD Recorder Clip")]
   public class UsdRecorderClip : PlayableAsset, ITimelineClipAsset {

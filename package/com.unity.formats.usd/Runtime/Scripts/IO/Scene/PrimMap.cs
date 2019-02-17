@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using pxr;
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// Maps from UsdPrim paths to Unity GameObjects.
