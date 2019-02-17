@@ -13,8 +13,10 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET;
+using PointInstancerSample = USD.NET.Unity.PointInstancerSample;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// A collection of methods used for translating USD instances into Unity instances (CPU or GPU).

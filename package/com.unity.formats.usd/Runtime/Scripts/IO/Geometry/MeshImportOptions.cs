@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// Indicates how an attribute should be imported.

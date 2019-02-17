@@ -13,8 +13,9 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET.Unity;
 
-namespace USD.NET.Examples {
+namespace Unity.Formats.USD {
 
   public static class InitUsd {
     private static bool m_usdInitialized;
@@ -32,11 +33,11 @@ namespace USD.NET.Examples {
 
         // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
         // Vector3[] -> VtVec3fArray).
-        USD.NET.Unity.UnityTypeBindings.RegisterTypes();
+        UnityTypeBindings.RegisterTypes();
 
         // The DiagnosticHandler propagates USD native errors, warnings and info up to C# exceptions
         // and Debug.Log[Warning] respectively.
-        USD.NET.Unity.DiagnosticHandler.Register();
+        DiagnosticHandler.Register();
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         return false;

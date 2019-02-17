@@ -14,8 +14,10 @@
 
 using pxr;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   public class ShaderExporterBase {
 
@@ -43,7 +45,7 @@ namespace USD.NET.Unity {
       var uvReader = new PrimvarReaderSample<Vector2>();
       uvReader.varname.defaultValue = new TfToken("st");
       scene.Write(usdShaderPath + "/uvReader", uvReader);
-      var tex = new USD.NET.Unity.TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
+      var tex = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
       scene.Write(usdShaderPath + "/" + textureName, tex);
       return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
 #else

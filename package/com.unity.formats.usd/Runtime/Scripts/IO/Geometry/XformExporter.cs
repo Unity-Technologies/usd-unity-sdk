@@ -13,8 +13,10 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   public static class XformExporter {
 
     public static void ExportXform(ObjectContext objContext, ExportContext exportContext) {

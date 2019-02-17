@@ -16,6 +16,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
+using USD.NET;
+using USD.NET.Unity;
 
 #if UNITY_2018_1_OR_NEWER
 using Unity.Jobs;
@@ -26,7 +28,7 @@ using UnityEditor;
 using System.IO;
 #endif
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// An interface for delegating import behavior to a third party.

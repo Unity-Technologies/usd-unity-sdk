@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   [ExecuteInEditMode]
   public class UsdPayload : MonoBehaviour {

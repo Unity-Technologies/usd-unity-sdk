@@ -13,8 +13,10 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// A collection of methods used for importing USD Xform data into Unity.

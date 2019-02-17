@@ -14,8 +14,10 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   public class UnityMaterialData : SampleBase {
 

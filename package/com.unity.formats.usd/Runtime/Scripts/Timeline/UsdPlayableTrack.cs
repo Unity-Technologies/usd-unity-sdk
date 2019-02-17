@@ -14,7 +14,7 @@
 
 using UnityEngine.Timeline;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
 #if UNITY_2017
   [TrackMediaType(TimelineAsset.MediaType.Script)]

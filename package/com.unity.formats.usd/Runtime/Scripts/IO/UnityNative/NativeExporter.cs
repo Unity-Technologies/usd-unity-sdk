@@ -14,8 +14,10 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   // -------------------------------------------------------------------------------------------- //
   // Data Structures
@@ -288,7 +290,7 @@ namespace USD.NET.Unity {
         return;
 
       } else if (csValue.GetType().IsSubclassOf(typeof(UnityEngine.Object))
-              && USD.NET.UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object), out binding)) {
+              && UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object), out binding)) {
 #if false
       Debug.Log(usdPrim.GetPath().ToString() + "." + comp.GetType().Name + "." + compMemberName +
         " IsForeign: " + AssetDatabase.IsForeignAsset(obj) + 
@@ -298,8 +300,8 @@ namespace USD.NET.Unity {
         );
 #endif
       } else if (csValue.GetType().IsSubclassOf(typeof(UnityEngine.Object[]))
-              && USD.NET.UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object[]), out binding)) {
-      } else if (USD.NET.UsdIo.Bindings.GetBinding(expectedType, out binding)) {
+              && UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object[]), out binding)) {
+      } else if (UsdIo.Bindings.GetBinding(expectedType, out binding)) {
       } else {
         Debug.LogWarning("Cannot serialize type: " + expectedType + " " + comp.gameObject.name + "." + comp.GetType().Name + "." + compMemberName);
         return;

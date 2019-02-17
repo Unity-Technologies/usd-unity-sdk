@@ -14,8 +14,10 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   public abstract class ShaderImporterBase {
     public Material Material { get; private set; }
     public bool IsMetallicWorkflow { get; private set; }

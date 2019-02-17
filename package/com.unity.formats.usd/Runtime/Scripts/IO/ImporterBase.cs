@@ -16,7 +16,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   /// <summary>
   /// Basic functionality shared among Importers.
   /// </summary>

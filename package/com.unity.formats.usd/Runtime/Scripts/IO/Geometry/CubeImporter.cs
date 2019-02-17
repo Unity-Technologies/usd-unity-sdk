@@ -13,8 +13,9 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// A collection of methods used for importing USD Cube data into Unity.

@@ -12,13 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
 using USD.NET.Unity;
-using System.Linq;
 
-namespace USD.NET.Examples {
+namespace Unity.Formats.USD.Examples {
 
   public class ImportMaterialsExample : MonoBehaviour {
     private const string kCubePath = "/Model/Geom/Cube";
@@ -31,11 +30,11 @@ namespace USD.NET.Examples {
     // object that can be stored in the shader map.
     public struct ShaderPair {
 
-      public UnityEngine.Shader unityShader;
+      public Shader unityShader;
       public ShaderSample usdShader;
 
-      public ShaderPair(UnityEngine.Shader unityShader,
-                               ShaderSample usdShader) {
+      public ShaderPair(Shader unityShader,
+                        ShaderSample usdShader) {
         this.unityShader = unityShader;
         this.usdShader = usdShader;
       }
@@ -79,7 +78,7 @@ namespace USD.NET.Examples {
     //
     void Start() {
       // Create a scene for this test, but could also be read from disk.
-      USD.NET.Scene usdScene = CreateSceneWithShading();
+      Scene usdScene = CreateSceneWithShading();
 
       // Read the material and shader ID.
       var usdMaterial = new MaterialSample();

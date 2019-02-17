@@ -14,8 +14,9 @@
 
 using System;
 using UnityEngine;
+using USD.NET;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// Represents a Unity GameObject, in USD.

@@ -13,8 +13,9 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   public class StandardShaderExporter : ShaderExporterBase {
 

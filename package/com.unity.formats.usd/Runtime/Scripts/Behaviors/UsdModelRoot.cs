@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   public class UsdModelRoot : MonoBehaviour {
     public string m_modelName;
     public string m_modelVersion;

@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   public class UsdPrimSource : MonoBehaviour {
     public string m_usdPrimPath;

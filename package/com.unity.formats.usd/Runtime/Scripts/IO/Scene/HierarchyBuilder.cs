@@ -18,11 +18,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
 using pxr;
+using USD.NET;
+using USD.NET.Unity;
+
 #if !UNITY_2017
 using Unity.Jobs;
 #endif
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// A collection of methods for building the USD scene hierarchy in Unity.

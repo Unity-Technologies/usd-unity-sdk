@@ -14,8 +14,10 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   public static class MeshExporter {
 
     public static void ExportSkinnedMesh(ObjectContext objContext, ExportContext exportContext) {

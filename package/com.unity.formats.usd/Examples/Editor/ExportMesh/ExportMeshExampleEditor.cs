@@ -13,10 +13,9 @@
 // limitations under the License.
 
 using UnityEngine;
-using System.Collections;
 using UnityEditor;
 
-namespace USD.NET.Examples {
+namespace Unity.Formats.USD.Examples {
 
   [CustomEditor(typeof(ExportMeshExample))]
   public class ExportMeshExampleEditor : Editor {

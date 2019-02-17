@@ -17,7 +17,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   [ExecuteInEditMode]
   class UsdWaitForEndOfFrame : MonoBehaviour {

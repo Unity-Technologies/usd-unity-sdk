@@ -16,8 +16,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   // The export function allows for dispatch to different export functions without knowing what
   // type of data they export (e.g. mesh vs. transform).
   public delegate void ExportFunction(ObjectContext objContext, ExportContext exportContext);
@@ -582,7 +584,7 @@ namespace USD.NET.Unity {
                                  bool insertFirst = true) {
       // This is an exportable object.
       Transform expRoot = context.exportRoot;
-      string path = Unity.UnityTypeConverter.GetPath(go.transform, expRoot);
+      string path = UnityTypeConverter.GetPath(go.transform, expRoot);
       if (!string.IsNullOrEmpty(pathSuffix)) {
         path += pathSuffix;
       }

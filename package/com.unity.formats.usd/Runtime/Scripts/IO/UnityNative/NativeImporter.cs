@@ -14,8 +14,9 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
   public class NativeImporter {
     // -------------------------------------------------------------------------------------------- //
     // Deserialize USD to -> Unity

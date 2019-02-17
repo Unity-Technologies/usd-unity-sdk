@@ -11,10 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using UnityEngine;
 using UnityEditor;
+using USD.NET;
 
-namespace USD.NET.Examples {
+namespace Unity.Formats.USD.Examples {
 
   [CustomEditor(typeof(ImportMeshExample))]
   public class UsdImportMeshEditor : Editor {
@@ -43,9 +45,9 @@ namespace USD.NET.Examples {
         oversScene.Time = importMesh.m_usdTime;
         oversScene.AddSubLayer(importMesh.UsdScene);
 
-        Unity.XformExporter.WriteSparseOverrides(oversScene,
-                                                 importMesh.PrimMap,
-                                                 importMesh.m_changeHandedness);
+        XformExporter.WriteSparseOverrides(oversScene,
+                                            importMesh.PrimMap,
+                                            importMesh.m_changeHandedness);
 
         oversScene.Save();
         oversScene.Close();

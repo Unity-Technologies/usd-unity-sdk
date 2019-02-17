@@ -17,8 +17,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// Represents the point at which a UsdStage has been imported into the Unity scene.
@@ -383,7 +385,7 @@ namespace USD.NET.Unity {
     /// The caller is NOT expected to close the scene.
     /// </summary>
     public Scene GetScene() {
-      USD.NET.Examples.InitUsd.Initialize();
+      InitUsd.Initialize();
       if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != usdFullPath) {
         pxr.UsdStage stage = null;
         if (string.IsNullOrEmpty(usdFullPath)) {
@@ -697,7 +699,7 @@ namespace USD.NET.Unity {
                                      double time,
                                      SceneImportOptions importOptions,
                                      float targetFrameMilliseconds) {
-      Examples.InitUsd.Initialize();
+      InitUsd.Initialize();
       var scene = Scene.Open(usdFilePath);
       if (scene == null) {
         throw new Exception("Failed to open: " + usdFilePath);
@@ -732,7 +734,7 @@ namespace USD.NET.Unity {
       }
       var usdPrimPath = primSrc.m_usdPrimPath;
 
-      Examples.InitUsd.Initialize();
+      InitUsd.Initialize();
       var scene = GetScene();
       if (scene == null) {
         throw new Exception("Failed to open: " + usdFullPath);
@@ -798,7 +800,7 @@ namespace USD.NET.Unity {
     public void SetVariantSelection(GameObject go,
                                     string usdPrimPath,
                                     Dictionary<string, string> selections) {
-      Examples.InitUsd.Initialize();
+      InitUsd.Initialize();
       var scene = GetScene();
       if (scene == null) {
         throw new Exception("Failed to open: " + usdFullPath);

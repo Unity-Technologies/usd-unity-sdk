@@ -15,8 +15,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using USD.NET;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   /// <summary>
   /// A mapping from USD shader ID to Unity Material.

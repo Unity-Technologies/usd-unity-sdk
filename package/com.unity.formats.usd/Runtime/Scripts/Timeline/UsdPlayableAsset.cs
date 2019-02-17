@@ -16,7 +16,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace USD.NET.Unity {
+namespace Unity.Formats.USD {
 
   [System.Serializable]
   public class UsdPlayableAsset : PlayableAsset {
