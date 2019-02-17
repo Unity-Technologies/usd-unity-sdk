@@ -159,6 +159,7 @@ namespace USD.NET.Unity {
     public float m_unwrapHardAngle = 88;
 
     [Tooltip("UV-island padding in pixels")]
+    [Range(0, 32)]
     public int m_unwrapPackMargin = 4;
 
     // ----------------------------------------------------------------------------------------- //
