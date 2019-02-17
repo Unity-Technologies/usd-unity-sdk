@@ -52,26 +52,20 @@ namespace USD.NET.Unity {
     [SerializeField]
     string m_usdFile;
 
+    [HideInInspector]
     [Tooltip("The Unity project path into which imported files (such as textures) will be placed.")]
     public string m_projectAssetPath = "Assets/";
 
-    // ----------------------------------------------------------------------------------------- //
-    // USD Options.
-    // ----------------------------------------------------------------------------------------- //
-
-    [Header("USD Options")]
     [Tooltip("The USD prim path in the USD scene at which to start the import process.")]
     public string m_usdRootPath = "/";
-
-    [Tooltip("For assets with payloads authored, indicates if payloads should be loaded or unloaded by default.")]
-    public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
 
     [Tooltip("An offset applied to all data in the USD file")]
     public float m_usdTimeOffset;
 
-    [Tooltip("Behavior to use when no value was authored at the requested time.")]
-    public Scene.InterpolationMode m_interpolation;
+    [Tooltip("For assets with payloads authored, indicates if payloads should be loaded or unloaded by default.")]
+    public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
 
+    [HideInInspector]
     [Tooltip("Memorizes which attributes change over time, to speed up playback (trades time for memory)")]
     public bool m_usdVariabilityCache = true;
 
@@ -90,14 +84,14 @@ namespace USD.NET.Unity {
     [Tooltip("Conversion method for right-handed (USD) to left-handed conversion (Unity) and vice versa.")]
     public BasisTransformation m_changeHandedness;
 
+    [Tooltip("Behavior to use when no value was authored at the requested time.")]
+    public Scene.InterpolationMode m_interpolation;
+
     // ----------------------------------------------------------------------------------------- //
     // Material Options.
     // ----------------------------------------------------------------------------------------- //
 
     [Header("Material Options")]
-    [Tooltip("When enabled, set the GPU Instancing flag on all materials.")]
-    public bool m_enableGpuInstancing;
-
     [Tooltip("If the original shader name is stored in USD, attempt to find that shader in this project.")]
     public bool m_useOriginalShaderIfAvailable = true;
 
@@ -109,6 +103,10 @@ namespace USD.NET.Unity {
 
     [Tooltip("The default material to use when importing metallic workflow USD Preview Surface materials.")]
     public Material m_metallicWorkflowMaterial;
+
+    [HideInInspector]
+    [Tooltip("When enabled, set the GPU Instancing flag on all materials.")]
+    public bool m_enableGpuInstancing;
 
     // ----------------------------------------------------------------------------------------- //
     // Mesh Options.
