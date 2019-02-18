@@ -84,8 +84,7 @@ namespace Unity.Formats.USD {
     }
     [MenuItem("USD/Export Selected as USDZ", priority = 50)]
     static void MenuExportSelectedAsUsdz() {
-      var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
-      var defaultName = Path.GetFileNameWithoutExtension(root.usdFullPath);
+      var defaultName = Path.GetFileNameWithoutExtension(Selection.activeGameObject.name);
       var filePath = EditorUtility.SaveFilePanel("Export USDZ File", "", defaultName, "usdz");
 
       if (filePath == null || filePath.Length == 0) {
