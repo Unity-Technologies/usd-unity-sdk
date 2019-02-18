@@ -18,15 +18,25 @@ using UnityEditor;
 using UnityEditor.Experimental.AssetImporters;
 
 namespace Unity.Formats.USD {
-
   [CustomEditor(typeof(UsdAsset))]
   public class UsdAssetEditor : ScriptedImporterEditor {
+    private readonly string[] kTabNames = new string[] { "Simple", "Advanced" };
+    private int m_tab;
 
     private Texture2D m_usdLogo;
     private Texture2D m_refreshButton;
     private Texture2D m_trashButton;
     private Texture2D m_reimportButton;
     private Texture2D m_detachButton;
+
+    private enum LinearUnits {
+      Millimeters = -1,
+      Centimeters = 0,
+      Meters = 1,
+      Decimeters = 2,
+      Kilometers = 3,
+      Custom = 4
+    }
 
     public override void OnEnable() {
       base.OnEnable();
@@ -62,24 +72,24 @@ namespace Unity.Formats.USD {
     }
 
     public override void OnInspectorGUI() {
-      var stageRoot = (UsdAsset)this.target;
+      var usdAsset = (UsdAsset)this.target;
 
-      if (stageRoot.m_displayColorMaterial == null) {
+      if (usdAsset.m_displayColorMaterial == null) {
         Debug.LogWarning("No fallback material set, reverting to default");
         var matMap = new MaterialMap();
-        stageRoot.m_displayColorMaterial = matMap.DisplayColorMaterial;
+        usdAsset.m_displayColorMaterial = matMap.DisplayColorMaterial;
       }
 
-      if (stageRoot.m_metallicWorkflowMaterial == null) {
+      if (usdAsset.m_metallicWorkflowMaterial == null) {
         Debug.LogWarning("No metallic material set, reverting to default");
         var matMap = new MaterialMap();
-        stageRoot.m_metallicWorkflowMaterial = matMap.MetallicWorkflowMaterial;
+        usdAsset.m_metallicWorkflowMaterial = matMap.MetallicWorkflowMaterial;
       }
 
-      if (stageRoot.m_specularWorkflowMaterial == null) {
+      if (usdAsset.m_specularWorkflowMaterial == null) {
         Debug.LogWarning("No specular material set, reverting to default");
         var matMap = new MaterialMap();
-        stageRoot.m_specularWorkflowMaterial = matMap.SpecularWorkflowMaterial;
+        usdAsset.m_specularWorkflowMaterial = matMap.SpecularWorkflowMaterial;
       }
 
       var buttonStyle = new GUIStyle(GUI.skin.button);
@@ -101,7 +111,7 @@ namespace Unity.Formats.USD {
       if (GUILayout.Button(new GUIContent(m_refreshButton, "Refresh values from USD"), refreshStyle)) {
         if (EditorUtility.DisplayDialog("Refresh from Source", "Refresh values from USD?\n\n"
               + "Any object set to import will have it's state updated from USD", "OK", "Cancel")) {
-          ReloadFromUsd(stageRoot, forceRebuild: false);
+          ReloadFromUsd(usdAsset, forceRebuild: false);
         }
       }
       GUILayout.EndHorizontal();
@@ -110,7 +120,7 @@ namespace Unity.Formats.USD {
 
       GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
       GUILayout.FlexibleSpace();
-      if (IsPrefabInstance(stageRoot.gameObject)) {
+      if (IsPrefabInstance(usdAsset.gameObject)) {
         var style = new GUIStyle();
         style.alignment = TextAnchor.MiddleCenter;
         style.fontSize = 12;
@@ -121,22 +131,22 @@ namespace Unity.Formats.USD {
           if (EditorUtility.DisplayDialog("Reimport from Source", "Destroy and rebuild all USD objects?\n\n"
                   + "Any GameObject with a UsdPrimSource will be destroyed and reimported.",
                 "OK", "Cancel")) {
-            ReloadFromUsd(stageRoot, forceRebuild: true);
+            ReloadFromUsd(usdAsset, forceRebuild: true);
           }
         }
         if (GUILayout.Button(new GUIContent(m_trashButton, "Remove USD Contents (destructive)"), buttonStyle)) {
-          if (EditorUtility.DisplayDialog("Clear Contents", "Destroy all USD objects?\n\n" 
+          if (EditorUtility.DisplayDialog("Clear Contents", "Destroy all USD objects?\n\n"
                   + "Any GameObject with a UsdPrimSource will be destroyed. "
                   + "These objects can be re-imported but any custom components will be lost.",
                 "OK", "Cancel")) {
-            DestroyAllImportedObjects(stageRoot);
+            DestroyAllImportedObjects(usdAsset);
           }
         }
         if (GUILayout.Button(new GUIContent(m_detachButton, "Detach, remove all USD components"), buttonStyle)) {
           if (EditorUtility.DisplayDialog("Detach from USD", "Remove all USD components?\n\n"
               + "USD components will be destroyed (except the UsdAsset root), "
               + "but can be recreated by refreshing from USD.", "OK", "Cancel")) {
-            DetachFromUsd(stageRoot);
+            DetachFromUsd(usdAsset);
           }
         }
       }
@@ -144,11 +154,95 @@ namespace Unity.Formats.USD {
       GUILayout.EndHorizontal();
 
       if (Application.isPlaying && GUILayout.Button("Reload from USD (Coroutine)")) {
-        ReloadFromUsdAsCoroutine(stageRoot);
+        ReloadFromUsdAsCoroutine(usdAsset);
       }
 
-      GUILayout.Space(10);
-      base.DrawDefaultInspector();
+      GUILayout.Space(5);
+
+      m_tab = GUILayout.Toolbar(m_tab, kTabNames);
+      switch (m_tab) {
+        case 0:
+          DrawSimpleInspector(usdAsset);
+          break;
+        case 1:
+          base.DrawDefaultInspector();
+          break;
+      }
+    }
+
+    private void DrawSimpleInspector(UsdAsset usdAsset) {
+      GUILayout.Label("Source Asset", EditorStyles.boldLabel);
+
+      EditorGUILayout.BeginHorizontal();
+      EditorGUILayout.PrefixLabel("USD File");
+      EditorGUILayout.LabelField(usdAsset.usdFullPath, EditorStyles.textField);
+      EditorGUILayout.EndHorizontal();
+
+      EditorGUILayout.BeginHorizontal();
+      EditorGUILayout.PrefixLabel("USD Root Path");
+      EditorGUILayout.LabelField(usdAsset.m_usdRootPath, EditorStyles.textField);
+      EditorGUILayout.EndHorizontal();
+
+      GUILayout.Label("Import Settings", EditorStyles.boldLabel);
+
+      EditorGUILayout.BeginHorizontal();
+
+      var op = LinearUnits.Custom;
+
+      if (usdAsset.m_scale == 1) {
+        op = LinearUnits.Meters;
+
+      } else if (usdAsset.m_scale == .1f) {
+        op = LinearUnits.Decimeters;
+
+      } else if (usdAsset.m_scale == .01f) {
+        op = LinearUnits.Centimeters;
+
+      } else if (usdAsset.m_scale == .001f) {
+        op = LinearUnits.Millimeters;
+
+      } else if (usdAsset.m_scale == 1000f) {
+        op = LinearUnits.Kilometers;
+      }
+
+      var newOp = (LinearUnits)EditorGUILayout.EnumPopup("Original Scale", op);
+      
+      if (newOp == LinearUnits.Custom) {
+        // Force the UI to stay on the "custom" selection by adding an offset.
+        float offset = op == newOp ? 0 : 0.01f;
+        usdAsset.m_scale = EditorGUILayout.FloatField(usdAsset.m_scale + offset);
+      }
+      op = newOp;
+      EditorGUILayout.EndHorizontal();
+
+      switch (op) {
+        case LinearUnits.Millimeters:
+          usdAsset.m_scale = .001f;
+          break;
+        case LinearUnits.Centimeters:
+          usdAsset.m_scale = .01f;
+          break;
+        case LinearUnits.Decimeters:
+          usdAsset.m_scale = .1f;
+          break;
+        case LinearUnits.Meters:
+          usdAsset.m_scale = 1f;
+          break;
+        case LinearUnits.Kilometers:
+          usdAsset.m_scale = 1000;
+          break;
+      }
+
+      usdAsset.m_materialImportMode = (MaterialImportMode)EditorGUILayout.EnumPopup("Materials", usdAsset.m_materialImportMode);
+      usdAsset.m_payloadPolicy = (PayloadPolicy)EditorGUILayout.EnumPopup("Payload Policy", usdAsset.m_payloadPolicy);
+
+      GUILayout.Label("Object Types", EditorStyles.boldLabel);
+
+      usdAsset.m_importCameras = EditorGUILayout.Toggle("Import Cameras", usdAsset.m_importCameras);
+      usdAsset.m_importMeshes = EditorGUILayout.Toggle("Import Meshes", usdAsset.m_importMeshes);
+      usdAsset.m_importSkinning = EditorGUILayout.Toggle("Import Skinning", usdAsset.m_importSkinning);
+      usdAsset.m_importTransforms = EditorGUILayout.Toggle("Import Transforms", usdAsset.m_importTransforms);
+
     }
 
     private void ReloadFromUsd(UsdAsset stageRoot, bool forceRebuild) {
