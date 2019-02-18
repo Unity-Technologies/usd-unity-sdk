@@ -73,8 +73,14 @@ namespace Unity.Formats.USD {
 
       var material = new MaterialSample();
       material.surface.SetConnectedPath(shaderPath, "outputs:surface");
+      var origTime = scene.Time;
 
-      scene.Write(usdMaterialPath, material);
+      try {
+        scene.Time = null;
+        scene.Write(usdMaterialPath, material);
+      } finally {
+        scene.Time = origTime;
+      }
 
       var shader = new UnityPreviewSurfaceSample();
       var texPath = /*TODO: this should be explicit*/
@@ -90,13 +96,19 @@ namespace Unity.Formats.USD {
         return;
       }
 
-      handler(scene, shaderPath, mat, shader, texPath);
+      try {
+        scene.Time = null;
+        handler(scene, shaderPath, mat, shader, texPath);
 
-      scene.Write(shaderPath, shader);
-      scene.GetPrimAtPath(shaderPath).CreateAttribute(pxr.UsdShadeTokens.outputsSurface,
-                                                      SdfValueTypeNames.Token,
-                                                      false,
-                                                      pxr.SdfVariability.SdfVariabilityUniform);
+        scene.Write(shaderPath, shader);
+        scene.GetPrimAtPath(shaderPath).CreateAttribute(pxr.UsdShadeTokens.outputsSurface,
+                                                        SdfValueTypeNames.Token,
+                                                        false,
+                                                        pxr.SdfVariability.SdfVariabilityUniform);
+      } finally {
+        scene.Time = origTime;
+      }
+
     }
 
   }
