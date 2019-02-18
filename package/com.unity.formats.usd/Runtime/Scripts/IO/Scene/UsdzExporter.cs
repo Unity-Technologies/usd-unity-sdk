@@ -28,6 +28,20 @@ namespace Unity.Formats.USD {
       var tmpUsdFilePath = Path.Combine(tempDirectory, tmpUsdName + ".usd");
       var curDir = Directory.GetCurrentDirectory();
 
+      var supportedExtensions = new System.Collections.Generic.HashSet<string>();
+      supportedExtensions.Add(".usd");
+      supportedExtensions.Add(".usda");
+      supportedExtensions.Add(".usdc");
+
+      supportedExtensions.Add(".jpg");
+      supportedExtensions.Add(".jpeg");
+      supportedExtensions.Add(".jpe");
+      supportedExtensions.Add(".jif");
+      supportedExtensions.Add(".jfif");
+      supportedExtensions.Add(".jfi");
+
+      supportedExtensions.Add(".png");
+
       // Create the temp .usd scene, into which the data will be exported.
       var scene = InitForSave(tmpUsdFilePath);
 
@@ -55,7 +69,11 @@ namespace Unity.Formats.USD {
         var filesToArchive = new pxr.StdStringVector();
         foreach (var fileInfo in di.GetFiles()) {
           var relPath = ImporterBase.MakeRelativePath(tmpUsdFilePath, fileInfo.FullName);
-          Debug.Log(relPath);
+          var ext = Path.GetExtension(relPath).ToLower();
+          if (!supportedExtensions.Contains(ext)) {
+            Debug.LogWarning("Unsupported file type in USDZ: " + relPath);
+            continue;
+          }
           filesToArchive.Add(relPath);
         }
 
