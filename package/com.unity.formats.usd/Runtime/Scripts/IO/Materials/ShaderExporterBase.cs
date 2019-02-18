@@ -40,7 +40,12 @@ namespace Unity.Formats.USD {
       srcPath = Application.dataPath + "/" + srcPath;
       var fileName = System.IO.Path.GetFileName(srcPath);
       var filePath = System.IO.Path.Combine(destTexturePath, fileName);
+
       System.IO.File.Copy(srcPath, filePath, overwrite: true);
+
+      // Make file path baked into USD relative to scene file and use forward slashes.
+      filePath = ImporterBase.MakeRelativePath(scene.FilePath, filePath);
+      filePath = filePath.Replace("\\", "/");
 
       var uvReader = new PrimvarReaderSample<Vector2>();
       uvReader.varname.defaultValue = new TfToken("st");
