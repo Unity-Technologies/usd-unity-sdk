@@ -78,6 +78,33 @@ namespace Unity.Formats.USD {
       root.ExportOverrides(overs);
     }
 
+    [MenuItem("USD/Export Selected as USDZ", true)]
+    static bool EnableMenuExportSelectedAsUsdz() {
+      return Selection.gameObjects.Length == 1;
+    }
+    [MenuItem("USD/Export Selected as USDZ", priority = 50)]
+    static void MenuExportSelectedAsUsdz() {
+      var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
+      var defaultName = Path.GetFileNameWithoutExtension(root.usdFullPath);
+      var filePath = EditorUtility.SaveFilePanel("Export USDZ File", "", defaultName, "usdz");
+
+      if (filePath == null || filePath.Length == 0) {
+        return;
+      }
+
+      var fileDir = Path.GetDirectoryName(filePath);
+
+      if (!Directory.Exists(fileDir)) {
+        var di = Directory.CreateDirectory(fileDir);
+        if (!di.Exists) {
+          Debug.LogError("Failed to create directory: " + fileDir);
+          return;
+        }
+      }
+
+      UsdzExporter.ExportUsdz(filePath, Selection.activeGameObject);
+    }
+
     static private pxr.SdfPath GetDefaultRoot(Scene scene) {
       var defPrim = scene.Stage.GetDefaultPrim();
       if (defPrim) {
