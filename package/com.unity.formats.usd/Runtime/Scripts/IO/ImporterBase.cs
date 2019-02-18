@@ -28,6 +28,9 @@ namespace Unity.Formats.USD {
     public static String MakeRelativePath(string anchorPath, string pathToMakeRelative) {
       if (string.IsNullOrEmpty(anchorPath)) throw new ArgumentNullException("pathToMakeRelative");
       if (string.IsNullOrEmpty(pathToMakeRelative)) throw new ArgumentNullException("anchorPath");
+      if (anchorPath == pathToMakeRelative) {
+        return Path.GetFileName(pathToMakeRelative);
+      }
 
       Uri fromUri = new Uri(anchorPath);
       Uri toUri = new Uri(pathToMakeRelative);
