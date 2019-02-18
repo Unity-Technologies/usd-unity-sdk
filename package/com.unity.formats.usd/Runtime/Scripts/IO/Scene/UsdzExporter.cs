@@ -25,7 +25,7 @@ namespace Unity.Formats.USD {
       string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
       var tmpUsdName = Path.GetFileNameWithoutExtension(usdzFilePath);
       var di = Directory.CreateDirectory(tempDirectory);
-      var tmpUsdFilePath = Path.Combine(tempDirectory, tmpUsdName + ".usd");
+      var tmpUsdFilePath = Path.Combine(tempDirectory, tmpUsdName + ".usdc");
       var curDir = Directory.GetCurrentDirectory();
 
       var supportedExtensions = new System.Collections.Generic.HashSet<string>();
@@ -54,7 +54,7 @@ namespace Unity.Formats.USD {
           // Export the temp scene.
           SceneExporter.Export(root,
                                scene,
-                               BasisTransformation.SlowAndSafe,
+                               BasisTransformation.SlowAndSafe, // Required by ARKit
                                exportUnvarying: true,
                                zeroRootTransform: false,
                                exportMaterials: true);
