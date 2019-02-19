@@ -389,13 +389,24 @@ namespace Unity.Formats.USD {
       options.materialMap.MetallicWorkflowMaterial = m_metallicWorkflowMaterial;
     }
 
+    private bool SceneFileChanged() {
+      if (m_lastScene == null) {
+        return true;
+      }
+
+      return Path.GetFullPath(m_lastScene.FilePath).ToLower().Replace("\\", "/")
+          != usdFullPath.ToLower().Replace("\\", "/");
+    }
+
     /// <summary>
     /// Returns the USD.NET.Scene object for this USD file.
     /// The caller is NOT expected to close the scene.
     /// </summary>
     public Scene GetScene() {
       InitUsd.Initialize();
-      if (m_lastScene == null || m_lastScene.Stage == null || m_lastScene.FilePath != usdFullPath) {
+
+      if (m_lastScene == null || m_lastScene.Stage == null || SceneFileChanged()) {
+
         pxr.UsdStage stage = null;
         if (string.IsNullOrEmpty(usdFullPath)) {
           return null;
