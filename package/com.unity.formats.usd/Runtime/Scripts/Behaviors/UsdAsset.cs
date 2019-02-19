@@ -174,7 +174,7 @@ namespace Unity.Formats.USD {
     public bool m_importTransforms = true;
     public bool m_importSceneInstances = true;
     public bool m_importPointInstances = true;
-    public bool m_importMonoBehaviors = true;
+    public bool m_importMonoBehaviors = false;
 
 #if false
     [Header("Export Settings")]
@@ -305,6 +305,7 @@ namespace Unity.Formats.USD {
       m_importTransforms = options.importTransforms;
       m_importSceneInstances = options.importSceneInstances;
       m_importPointInstances = options.importPointInstances;
+      m_importMonoBehaviors = options.importMonoBehaviours;
 
       // Mesh options.
       m_points = options.meshOptions.points;
@@ -356,6 +357,7 @@ namespace Unity.Formats.USD {
       options.importTransforms = m_importTransforms;
       options.importSceneInstances = m_importSceneInstances;
       options.importPointInstances = m_importPointInstances;
+      options.importMonoBehaviours = m_importMonoBehaviors;
 
       // Mesh options.
       options.meshOptions.points = m_points;

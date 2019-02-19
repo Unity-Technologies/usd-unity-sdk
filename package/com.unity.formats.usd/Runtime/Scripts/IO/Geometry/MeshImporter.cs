@@ -118,6 +118,7 @@ namespace Unity.Formats.USD {
         Profiler.BeginSample("USD: Build Meshes");
         try {
           GameObject go = primMap[pathAndSample.path];
+          NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
 
           if (importOptions.importTransforms) {
             Profiler.BeginSample("Build Mesh Xform");

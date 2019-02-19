@@ -16,202 +16,132 @@ using System.Collections.Generic;
 using UnityEngine;
 using USD.NET;
 
+#if UNITY_EDITOR
+using UnityEditor;
+
 namespace Unity.Formats.USD {
   public class NativeImporter {
+
     // -------------------------------------------------------------------------------------------- //
     // Deserialize USD to -> Unity
     // -------------------------------------------------------------------------------------------- //
 
-    static public void ImportObject(Scene usdScene, GameObject go, pxr.UsdPrim prim) {
-      // TODO: Handle objects correctly that have no native data.
-#if false
-      pxr.UsdPrim rootPrim = usdScene.Stage.GetPseudoRoot();
-      var context = new IoContext(usdScene);
-      PrimToObject(usdScene, go, prim);
-
-      var reverseComp = new Dictionary<string, Component>();
-      foreach (var kvp in context.compPaths) {
-        reverseComp.Add(/*component*/kvp.Value, /*string*/kvp.Key);
-      }
-
-      foreach (var pending in context.pendingConnections) {
-        var targets = pending.usdRel.GetTargets();
-        if (targets == null || targets.Count == 0) {
-          continue;
-        }
-
-        string path = targets[0];
-        Object targetObject;
-
-        if (reverseComp.ContainsKey(path)) {
-          targetObject = reverseComp[path];
-        } else if (context.pathMap.ContainsKey(path)) {
-          targetObject = context.pathMap[path];
-        } else {
-          Debug.LogWarning("Could not find path: " + path);
-          continue;
-        }
-
-        if (pending.fieldInfo != null) {
-          pending.fieldInfo.SetValue(pending.targetObject, targetObject);
-        } else if (pending.propInfo != null) {
-          pending.propInfo.SetValue(pending.targetObject, targetObject, null);
-
-        } else {
-          Debug.LogError("Null member info: " + pending.usdRel.GetPath());
-        }
-      }
-#endif
-    }
-
-    static void PrimToObject(Scene scene, GameObject newObj, pxr.UsdPrim usdPrim) {
-      var usdGameObj = new UsdGameObjectSample();
-      var nsDelim = pxr.UsdProperty.GetNamespaceDelimiter().ToString().ToCharArray();
-
-      if (usdPrim.IsPseudoRoot()) {
+    static public void ImportObject(Scene scene,
+                                    GameObject go,
+                                    pxr.UsdPrim usdPrim,
+                                    SceneImportOptions options) {
+      if (!options.importMonoBehaviours) {
         return;
       }
-      // TODO: Feels like this should return a bool or must throw.
-      scene.Read(usdPrim.GetPath().ToString(), usdGameObj);
 
-      // TODO: collect all component types here.
-      newObj.name = usdGameObj.gameObject.name;
-      newObj.transform.localPosition = usdGameObj.gameObject.localPosition;
-      newObj.transform.localRotation = usdGameObj.gameObject.localRotation;
-      newObj.transform.localScale = usdGameObj.gameObject.localScale;
+      var comps = usdPrim.GetAuthoredPropertiesInNamespace("unity:component");
+      foreach (var compProp in comps) {
+        var compAttr = usdPrim.GetAttribute(compProp.GetName());
+        string assemblyQualifiedName = (string)compAttr.Get(0);
+        var compType = System.Type.GetType(assemblyQualifiedName);
 
-      //context.pathMap.Add(usdPrim.GetPath(), newObj);
-
-      var compMap = new Dictionary<string, Component>();
-
-      pxr.TfTokenVector props = usdPrim.GetPropertyOrder();
-
-      foreach (pxr.TfToken propName in props) {
-        if (!propName.ToString().StartsWith("unity:component:")) {
-          continue;
-        }
-
-        pxr.UsdProperty prop = usdPrim.GetProperty(propName);
-
-        // Yuck. Property should convert to attribute easily.
-        var attr = usdPrim.GetAttribute(prop.GetName());
-        var rel = usdPrim.GetRelationship(prop.GetName());
-
-        if (!attr.IsValid() && !rel.IsValid()) { continue; }
-
-        string[] names = attr.GetName().ToString().Split(nsDelim);
-        
-        string unityPrefix = names[0];
-        string componentPrefix = names[1];
-        string componentName = names[2];
-        string memberName = names[3];
-        string typeAttrName = unityPrefix + ":" + componentPrefix + ":" + componentName + ":type";
-
-        Component comp;
-        compMap.TryGetValue(componentName, out comp);
-
+        // TODO: Handle multiple components of the same type.
+        Component comp = go.GetComponent(compType);
         if (comp == null) {
-          var typeAttr = usdPrim.GetAttribute(new pxr.TfToken(typeAttrName));
-          string assemblyQualifiedName = pxr.UsdCs.VtValueTostring(typeAttr.Get());
-          System.Type.GetTypeFromHandle(new System.RuntimeTypeHandle());
-          var compType = System.Type.GetType(assemblyQualifiedName);
-          comp = newObj.GetComponent(compType);
-          if (comp == null) {
-            comp = newObj.AddComponent(compType);
-          }
-          //context.compPaths.Add(comp, typeAttr.GetPath().ToString());
-          compMap[componentName] = comp;
+          comp = go.AddComponent(compType);
         }
 
-        // TODO: "type" should be namespace protected.
-        //       Alternatively, it could be unity:components:Foo, the Component name itself.
-        if (memberName == "type") {
-          continue;
-        }
+        var so = new SerializedObject(comp);
+        var prop = so.GetIterator();
+        prop.Next(true);
+        var sb = new System.Text.StringBuilder();
 
-        if (comp == null) {
-          var typeAttr = usdPrim.GetAttribute(new pxr.TfToken(typeAttrName));
-          string assemblyQualifiedName = pxr.UsdCs.VtValueTostring(typeAttr.Get());
-          Debug.LogError("Unable to construct component: " + assemblyQualifiedName);
-          continue;
-        }
+        // TODO: Handle multiple components of the same type.
+        PropertyFromUsd(usdPrim, prop, sb, comp.GetType().Name);
 
-        // TODO: handle component is null.
-        var propertyInfo = comp.GetType().GetProperty(memberName);
-        var fieldInfo = comp.GetType().GetField(memberName);
-
-        System.Type memberType = null;
-
-        if (fieldInfo != null) {
-          memberType = fieldInfo.FieldType;
-        } else if (propertyInfo != null) {
-          memberType = propertyInfo.PropertyType;
-        } else {
-          throw new System.Exception("Unexpected - " + prop.GetPath());
-        }
-
-        UsdTypeBinding binding;
-
-        if (rel.IsValid()) {
-          Debug.Log("TODO");
-#if false
-          context.pendingConnections.Add(
-            new PendingConnection {
-              targetObject = comp,
-              fieldInfo = fieldInfo,
-              propInfo = propertyInfo,
-              usdRel = rel
-            });
-#endif
-          continue;
-
-        } else if (memberType.IsSubclassOf(typeof(UnityEngine.Object))
-          && UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object), out binding)) {
-          // Found binding.
-
-        } else if (memberType.IsSubclassOf(typeof(UnityEngine.Object[]))
-          && UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object[]), out binding)) {
-          // Found binding.
-
-        } else if (!UsdIo.Bindings.GetBinding(memberType, out binding)) {
-          Debug.LogWarning("Cannot deserialize type: "
-                           + memberType + " - " + prop.GetPath().ToString());
-          continue;
-        }
-
-        object value = null;
-
-        try {
-          value = binding.toCsObject(attr.Get());
-        } catch {
-          Debug.LogError("Failed: " + attr.GetPath().ToString());
-          continue;
-          // Reverse lookup is causing issues.
-          //throw;
-        }
-
-        try {
-          if (fieldInfo != null) {
-            fieldInfo.SetValue(comp, value);
-          } else if (propertyInfo != null) {
-            propertyInfo.SetValue(comp, value, null);
-          } else {
-            throw new System.Exception("Unexpected");
-          }
-        } catch (System.ArgumentException) {
-          Debug.LogError("Failed to deserialize "
-                         + attr.GetTypeName().ToString()
-                         + " - object(" + value.GetType()
-                         + ") expected(" + memberType.ToString() + ")");
-        }
+        so.ApplyModifiedProperties();
+        Debug.Log(sb.ToString());
       }
+    }
 
-      newObj.SetActive(usdGameObj.gameObject.activeSelf);
-      newObj.hideFlags = usdGameObj.gameObject.hideFlags;
-      newObj.isStatic = usdGameObj.gameObject.isStatic;
-      newObj.layer = usdGameObj.gameObject.layer;
-      newObj.tag = usdGameObj.gameObject.tag;
+    /// <summary>
+    /// Constructs Unity SerializedProperties from USD.
+    /// </summary>
+    static void PropertyFromUsd(pxr.UsdPrim prim,
+                                SerializedProperty prop,
+                                System.Text.StringBuilder sb,
+                                string propPrefix) {
+      if (prim == null) {
+        Debug.LogError("Null prim - " + propPrefix);
+      }
+      if (!prim.IsValid()) {
+        Debug.LogError("Invalid prim: " + prim.GetPath().ToString());
+      }
+      string prefix = "";
+      try {
+        var nameStack = new List<string>();
+        nameStack.Add("unity");
+        if (!string.IsNullOrEmpty(propPrefix)) {
+          nameStack.Add(propPrefix);
+        }
+
+        string lastName = "";
+        int lastDepth = 0;
+
+        while (prop.Next(prop.propertyType == SerializedPropertyType.Generic && !prop.isArray)) {
+          string tabIn = "";
+          for (int i = 0; i < prop.depth; i++) {
+            tabIn += "  ";
+          }
+
+          if (prop.depth > lastDepth) {
+            Debug.Assert(lastName != "");
+            nameStack.Add(lastName);
+          } else if (prop.depth < lastDepth) {
+            nameStack.RemoveRange(nameStack.Count - (lastDepth - prop.depth), lastDepth - prop.depth);
+          }
+          lastDepth = prop.depth;
+          lastName = prop.name;
+
+          if (nameStack.Count > 0) {
+            prefix = string.Join(":", nameStack.ToArray());
+            prefix += ":";
+          } else {
+            prefix = "";
+          }
+
+          sb.Append(tabIn + prefix + prop.name + "[" + prop.propertyType.ToString() + "] = ");
+          if (prop.isArray && prop.propertyType != SerializedPropertyType.String) {
+            // TODO.
+            sb.AppendLine("ARRAY");
+          } else if (prop.propertyType == SerializedPropertyType.Generic) {
+            sb.AppendLine("Generic");
+          } else if (prop.propertyType == SerializedPropertyType.AnimationCurve ||
+                     prop.propertyType == SerializedPropertyType.Gradient) {
+            // TODO.
+            sb.AppendLine(NativeSerialization.ValueToString(prop));
+          } else {
+            sb.AppendLine(NativeSerialization.ValueToString(prop));
+            var attrName = new pxr.TfToken(prefix + prop.name);
+            var attr = prim.GetAttribute(attrName);
+
+            if (attr == null) {
+              Debug.LogError("Null attr: " + prim.GetPath().ToString() + "." + attrName.ToString());
+            }
+            if (!attr.IsValid()) {
+              Debug.LogError("Attribute not found:" + attr.GetPath().ToString());
+            }
+
+            NativeSerialization.VtValueToProp(prop, attr.Get(0));
+          }
+        }
+      } catch {
+        Debug.LogWarning("Failed on: " + prim.GetPath() + "." + prefix + prop.name);
+        throw;
+      }
     }
 
   } // End Class
 } // End Namespace
+#else
+namespace Unity.Formats.USD {
+  public class NativeImporter {
+    static public void ImportObject(Scene scene, GameObject go, pxr.UsdPrim usdPrim) { }
+  }
+}
+#endif

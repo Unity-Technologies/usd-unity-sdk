@@ -17,303 +17,165 @@ using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
 
+#if UNITY_EDITOR
+using UnityEditor;
+
 namespace Unity.Formats.USD {
-
-  // -------------------------------------------------------------------------------------------- //
-  // Data Structures
-  // -------------------------------------------------------------------------------------------- //
-
-  internal struct PathPair {
-    public string usdPath;
-    public string unityPath;
-  }
-
-  public struct PendingComponent {
-    public pxr.UsdRelationship usdRel;
-    public Component value;
-  }
-
-  internal struct PendingConnection {
-    public pxr.UsdRelationship usdRel;
-    public object targetObject;
-    public System.Reflection.PropertyInfo propInfo;
-    public System.Reflection.FieldInfo fieldInfo;
-  }
-
-  internal struct IoContext {
-    public Scene usdScene;
-    //public Dictionary<UsdPrefab, USD.NET.Scene> sceneMap;
-    public Dictionary<string, GameObject> pathMap;
-    public Dictionary<Component, string> compPaths;
-    public List<PendingComponent> pendingComponents;
-    public List<PendingConnection> pendingConnections;
-    public pxr.TfTokenVector propertyOrder;
-
-    public IoContext(Scene scene) {
-      usdScene = scene;
-      //this.sceneMap = sceneMap;
-      compPaths = new Dictionary<Component, string>();
-      pathMap = new Dictionary<string, GameObject>();
-      pendingComponents = new List<PendingComponent>();
-      pendingConnections = new List<PendingConnection>();
-      propertyOrder = new pxr.TfTokenVector();
-    }
-  }
-
   public class NativeExporter {
-    //
-    // Useful reference:
-    // https://docs.unity3d.com/Manual/script-Serialization.html
-    //
-
-    // -------------------------------------------------------------------------------------------- //
-    // Path & Identifier Builders
-    // -------------------------------------------------------------------------------------------- //
-
-    public static string BuildComponentAttrName(Component comp, string nameSuffix, string memberName) {
-      return "unity:component:" + comp.GetType().Name + nameSuffix + ":" + memberName;
-    }
-
-    // -------------------------------------------------------------------------------------------- //
-    // Composition Helpers
-    // -------------------------------------------------------------------------------------------- //
-#if false
-  static private void AddReferences(pxr.UsdPrim usdPrim,
-                                    UsdPrefab[] references,
-                                    IoContext context) {
-    if (references == null || references.Length == 0) {
-      return;
-    }
-    foreach (var refPrefab in references) {
-      USD.NET.Scene refScene;
-      if (!context.sceneMap.TryGetValue(refPrefab, out refScene)) {
-        Debug.LogWarning("Failed to create reference, no USD scene was serialized for UsdPrefab: "
-                         + refPrefab.name);
-        continue;
-      }
-      string identifier = refScene.Stage.GetRootLayer().GetIdentifier();
-      usdPrim.GetReferences().AddReference(identifier);
-    }
-  }
-#endif
 
     // -------------------------------------------------------------------------------------------- //
     // Serialize Unity to -> USD
     // -------------------------------------------------------------------------------------------- //
 
-    static public void ExportObject(ObjectContext objContext,
+    /// <summary>
+    /// Exports the given game object to USD, via Unity SerializedObject.
+    /// Note that this is an experimental work in progress.
+    /// </summary>
+    public static void ExportObject(ObjectContext objContext,
                                     ExportContext exportContext) {
-#if false
-      if (!USD.NET.Examples.InitUsd.Initialize()) {
-        throw new System.ApplicationException("Failed to initialize USD");
+      if (!exportContext.exportNative) {
+        return;
       }
-      NativeSerialization.Init();
-
-      /*
-      string relPath = null;
-      foreach (var elem in usdPrefab.usdFilePath.Split('/')) {
-        if (relPath == null) {
-          // Skip one element.
-          relPath = "";
-          continue;
-        }
-        relPath += "../";
-      }
-      */
-
-      var usdPrim = ExportObject_(objContext, exportContext);
-#endif
-    }
-
-    static pxr.UsdPrim ExportObject_(ObjectContext objContext, ExportContext exportContext) {
-      // Because Unity allows path aliasing and special characters, we need to store both the original
-      // path and the Unity path.
-      var unityObj = objContext.gameObject;
-
-      var ugo = new UsdGameObjectSample();
-      ugo.gameObject.name = unityObj.name;
-      ugo.gameObject.activeSelf = unityObj.activeSelf;
-      ugo.gameObject.layer = unityObj.layer;
-      ugo.gameObject.hideFlags = unityObj.hideFlags;
-      ugo.gameObject.isStatic = unityObj.isStatic;
-      ugo.gameObject.tag = unityObj.tag;
-
-      if (!(new pxr.SdfPath(objContext.path)).IsRootPrimPath()) {
-        ugo.gameObject.localPosition = unityObj.transform.localPosition;
-        ugo.gameObject.localScale = unityObj.transform.localScale;
-        ugo.gameObject.localRotation = unityObj.transform.localRotation;
-      } else {
-        ugo.gameObject.localPosition = Vector3.zero;
-        ugo.gameObject.localScale = Vector3.one;
-        ugo.gameObject.localRotation = Quaternion.identity;
-      }
-
-      exportContext.scene.Write(objContext.path, ugo);
-
-      var dict = new Dictionary<System.Type, int>();
-
-      var usdPrim = exportContext.scene.GetPrimAtPath(new pxr.SdfPath(objContext.path));
-      var propertyOrder = new pxr.TfTokenVector();
-
-      foreach (Component comp in unityObj.GetComponents(typeof(Component))) {
-        if (comp.GetType() == typeof(Transform)) {
-          continue;
-        }
-
-        if (!dict.ContainsKey(comp.GetType())) {
-          dict.Add(comp.GetType(), 0);
-        }
-
-        int count = dict[comp.GetType()] + 1;
-        dict[comp.GetType()] = count;
-
-        string suffix = "";
-        if (count > 1) {
-          suffix = "_" + count.ToString();
-        }
-
-        SerializeComponent(objContext, exportContext, propertyOrder, usdPrim, comp, suffix);
-
-        var attr = usdPrim.CreateAttribute(
-            new pxr.TfToken("unity:component:" + comp.GetType().Name + suffix + ":type"),
-            SdfValueTypeNames.String);
-        attr.Set(comp.GetType().AssemblyQualifiedName);
-
-        // Disabled for now.
-        //context.compPaths.Add(comp, attr.Get().ToString());
-      }
-
-      usdPrim.SetPropertyOrder(propertyOrder);
-
-      return usdPrim;
-    }
-
-    // TODO:
-    // GameObjects & Components
-    //  - Find the path to the object
-    //  - If nested, store a relationship to the relative nested path
-    //  - If absolute, store nothing
-
-    static void SerializeComponent(ObjectContext objContext,
-                                   ExportContext exportContext,
-                                   pxr.TfTokenVector propertyOrder,
-                                   pxr.UsdPrim usdPrim,
-                                   Component comp,
-                                   string suffix) {
-      var fields = comp.GetType().GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      var props = comp.GetType().GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty);
-
-      foreach (System.Reflection.FieldInfo fieldInfo in fields) {
-        if (fieldInfo.IsStatic || fieldInfo.IsNotSerialized || fieldInfo.IsLiteral || fieldInfo.IsInitOnly) {
-          continue;
-        }
-        if (fieldInfo.IsPrivate && fieldInfo.GetCustomAttributes(typeof(UnityEngine.SerializeField), true).Length == 0) {
-          continue;
-        }
-        if (fieldInfo.GetCustomAttributes(typeof(System.ObsoleteAttribute), true).Length != 0) {
-          continue;
-        }
-
-        SerializeType(objContext, exportContext, propertyOrder, usdPrim, fieldInfo.FieldType, fieldInfo.GetValue(comp), comp, fieldInfo.Name, suffix);
-      }
-
-      foreach (var propInfo in props) {
-        // Name and tag are inherited from the game object.
-        if (propInfo.Name == "name") { continue; }
-        if (propInfo.Name == "tag") { continue; }
-
-        // By the Unity serialization rules, read-only members are not serialized.
-        if (!propInfo.CanWrite) {
-          continue;
-        }
-
-        // Skip deprectated and explicitly non-serialized members.
-        if (propInfo.GetCustomAttributes(typeof(System.ObsoleteAttribute), true).Length != 0) {
-          continue;
-        }
-        if (propInfo.GetCustomAttributes(typeof(System.NonSerializedAttribute), true).Length != 0) {
-          continue;
-        }
-
-        // Yuck: special cases for Unity built-in objects that don't play by the rules.
-        if (propInfo.Name == "mesh" && comp.GetType() == typeof(MeshFilter)) { continue; }
-        if (propInfo.Name == "materials" && comp.GetType() == typeof(MeshRenderer)) { continue; }
-        if (propInfo.Name == "material" && comp.GetType() == typeof(MeshRenderer)) { continue; }
-        if (propInfo.Name == "material" && comp.GetType() == typeof(BoxCollider)) { continue; }
-
-        object csValue = propInfo.GetValue(comp, null);
-        SerializeType(objContext, exportContext, propertyOrder, usdPrim,
-                      propInfo.PropertyType, csValue, comp, propInfo.Name, suffix);
+      var prim = exportContext.scene.GetPrimAtPath(objContext.path);
+      ObjectToUsd(objContext.gameObject, prim, exportContext.scene);
+      foreach (Component comp in objContext.gameObject.GetComponents(typeof(Component))) {
+        ComponentToUsd(comp, objContext.path, exportContext.scene);
       }
     }
 
-    static void SerializeType(ObjectContext objContext,
-                              ExportContext exportContext,
-                              pxr.TfTokenVector propertyOrder,
-                              pxr.UsdPrim usdPrim,
-                              System.Type expectedType,
-                              object csValue,
-                              Component comp,
-                              string compMemberName,
-                              string nameSuffix) {
-      UsdTypeBinding binding;
+    /// <summary>
+    /// Exports a single GameObject to USD, does not export components.
+    /// </summary>
+    static void ObjectToUsd(GameObject gameObj, pxr.UsdPrim prim, Scene scene) {
+      var obj = new SerializedObject(gameObj);
+      var sb = new System.Text.StringBuilder();
+      var path = prim.GetPath().ToString();
+      sb.AppendLine("Visited: " + path);
 
-      var attrName = new pxr.TfToken(BuildComponentAttrName(comp, nameSuffix, compMemberName));
+      prim.SetCustomDataByKey(new pxr.TfToken("unity:name"), new pxr.TfToken(gameObj.name));
 
-      if (csValue == null) {
-        return;
-      }
+      var itr = obj.GetIterator();
+      itr.Next(true);
+      PropertyToUsd(path, "", scene, itr, sb);
+    }
 
-      if (expectedType == typeof(Component) || expectedType.IsSubclassOf(typeof(Component))) {
-        var otherComp = csValue as Component;
-        var rel = usdPrim.CreateRelationship(attrName);
-        exportContext.pendingComponents.Add(new PendingComponent { usdRel = rel, value = otherComp });
-        propertyOrder.Add(rel.GetName());
-        return;
+    /// <summary>
+    /// Exports a single component to USD, does not include the parent GameObject.
+    /// </summary>
+    static void ComponentToUsd(Component component, string path, Scene scene) {
+      var obj = new SerializedObject(component);
+      var sb = new System.Text.StringBuilder();
+      var propPrefix = component.GetType().Name;
 
-      } else if (expectedType.IsArray && expectedType.GetElementType().IsSubclassOf(typeof(Component))) {
-        var otherComps = csValue as Component[];
-        var rel = usdPrim.CreateRelationship(attrName);
-        foreach (var otherComp in otherComps) {
-          exportContext.pendingComponents.Add(new PendingComponent { usdRel = rel, value = otherComp });
+      sb.AppendLine("Visited: " + path + "." + propPrefix);
+
+      var itr = obj.GetIterator();
+      itr.Next(true);
+      PropertyToUsd(path, propPrefix, scene, itr, sb);
+
+      Debug.Log(sb.ToString());
+
+      // TODO: Handle multiple components of the same type.
+      var usdPrim = scene.Stage.GetPrimAtPath(new pxr.SdfPath(path));
+      var attr = usdPrim.CreateAttribute(
+          new pxr.TfToken("unity:component:" + component.GetType().Name + ":type"),
+          SdfValueTypeNames.String);
+
+      attr.Set(component.GetType().AssemblyQualifiedName);
+    }
+
+
+    /// <summary>
+    /// Writes SerializedProperty to USD, traversing all nested properties.
+    /// </summary>
+    static void PropertyToUsd(string path,
+                              string propPrefix,
+                              Scene scene,
+                              SerializedProperty prop,
+                              System.Text.StringBuilder sb) {
+      string prefix = "";
+      try {
+        var nameStack = new List<string>();
+        nameStack.Add("unity");
+        if (!string.IsNullOrEmpty(propPrefix)) {
+          nameStack.Add(propPrefix);
         }
-        propertyOrder.Add(rel.GetName());
-        return;
 
-      } else if (expectedType == typeof(GameObject) || expectedType.IsSubclassOf(typeof(GameObject))) {
-        var go = csValue as GameObject;
-        if (!go) { return; }
-        var rel = usdPrim.CreateRelationship(attrName);
-        string path = UnityTypeConverter.GetPath((csValue as GameObject).transform);
-        rel.AddTarget(new pxr.SdfPath(path));
-        propertyOrder.Add(rel.GetName());
-        return;
+        string lastName = "";
+        int lastDepth = 0;
 
-      } else if (csValue.GetType().IsSubclassOf(typeof(UnityEngine.Object))
-              && UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object), out binding)) {
-#if false
-      Debug.Log(usdPrim.GetPath().ToString() + "." + comp.GetType().Name + "." + compMemberName +
-        " IsForeign: " + AssetDatabase.IsForeignAsset(obj) + 
-        " IsMain: " + AssetDatabase.IsMainAsset(obj) + 
-        " IsNative: " + AssetDatabase.IsNativeAsset(obj) + 
-        " IsSubAsset: " + AssetDatabase.IsSubAsset(obj)
-        );
-#endif
-      } else if (csValue.GetType().IsSubclassOf(typeof(UnityEngine.Object[]))
-              && UsdIo.Bindings.GetBinding(typeof(UnityEngine.Object[]), out binding)) {
-      } else if (UsdIo.Bindings.GetBinding(expectedType, out binding)) {
-      } else {
-        Debug.LogWarning("Cannot serialize type: " + expectedType + " " + comp.gameObject.name + "." + comp.GetType().Name + "." + compMemberName);
-        return;
-      }
+        while (prop.Next(prop.propertyType == SerializedPropertyType.Generic && !prop.isArray)) {
+          string tabIn = "";
+          for (int i = 0; i < prop.depth; i++) {
+            tabIn += "  ";
+          }
 
-      var value = binding.toVtValue(csValue);
-      if (!value.IsEmpty()) {
-        var attr = usdPrim.CreateAttribute(attrName, binding.sdfTypeName);
-        attr.Set(value);
-        propertyOrder.Add(attr.GetName());
+          if (prop.depth > lastDepth) {
+            Debug.Assert(lastName != "");
+            nameStack.Add(lastName);
+          } else if (prop.depth < lastDepth) {
+            nameStack.RemoveRange(nameStack.Count - (lastDepth - prop.depth), lastDepth - prop.depth);
+          }
+          lastDepth = prop.depth;
+          lastName = prop.name;
+
+          if (nameStack.Count > 0) {
+            prefix = string.Join(":", nameStack.ToArray());
+            prefix += ":";
+          } else {
+            prefix = "";
+          }
+
+          sb.Append(tabIn + prefix + prop.name + "[" + prop.propertyType.ToString() + "] = ");
+          if (prop.isArray && prop.propertyType != SerializedPropertyType.String) {
+            // TODO.
+            sb.AppendLine("ARRAY");
+          } else if (prop.propertyType == SerializedPropertyType.Generic) {
+            sb.AppendLine("Generic");
+          } else if (prop.propertyType == SerializedPropertyType.AnimationCurve ||
+                     prop.propertyType == SerializedPropertyType.Gradient) {
+            // TODO.
+            sb.AppendLine(NativeSerialization.ValueToString(prop));
+          } else {
+            sb.AppendLine(NativeSerialization.ValueToString(prop));
+            var vtValue = NativeSerialization.PropToVtValue(prop);
+            var primPath = new pxr.SdfPath(path);
+            var attrName = new pxr.TfToken(prefix + prop.name);
+            /*
+            var oldPrim = context.prevScene.Stage.GetPrimAtPath(primPath);
+            pxr.VtValue oldVtValue = null;
+            if (oldPrim.IsValid()) {
+              var oldAttr = oldPrim.GetAttribute(attrName);
+              if (oldAttr.IsValid()) {
+                oldVtValue = oldAttr.Get(0);
+              }
+            }
+
+            if (oldVtValue != null && vtValue == oldVtValue) {
+              Debug.Log("skipping: " + prop.name);
+              continue;
+            }
+            */
+
+            var sdfType = NativeSerialization.GetSdfType(prop);
+            var prim = scene.GetPrimAtPath(primPath);
+            var attr = prim.CreateAttribute(attrName, sdfType);
+            attr.Set(vtValue);
+          }
+        }
+      } catch {
+        Debug.LogWarning("Failed on: " + path + "." + prefix + prop.name);
+        throw;
       }
     }
+
   }
 
 }
+#else
+namespace Unity.Formats.USD {
+  public class NativeExporter {
+    public static void ExportObject(ObjectContext objContext, ExportContext exportContext) {}
+  }
+}
+#endif

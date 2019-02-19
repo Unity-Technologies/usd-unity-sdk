@@ -94,6 +94,7 @@ namespace Unity.Formats.USD {
     public bool importTransforms = true;
     public bool importSceneInstances = true;
     public bool importPointInstances = true;
+    public bool importMonoBehaviours = false;
 
     /// <summary>
     /// Typically USD data is right-handed and Unity is left handed; this option indicates how

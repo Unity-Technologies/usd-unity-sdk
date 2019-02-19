@@ -474,7 +474,7 @@ namespace Unity.Formats.USD {
               continue;
             }
             GameObject go = primMap[pathAndSample.path];
-            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
             bool hasVarMap = scene.AccessMask != null
                           && scene.IsPopulatingAccessMask == false;
             if (hasVarMap) {
@@ -502,7 +502,7 @@ namespace Unity.Formats.USD {
               continue;
             }
             GameObject go = primMap[pathAndSample.path];
-            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
           } catch (System.Exception ex) {
             Debug.LogException(
@@ -520,7 +520,7 @@ namespace Unity.Formats.USD {
                 continue;
               }
               GameObject go = primMap[pathAndSample.path];
-              NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+              NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
               XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
             } catch (System.Exception ex) {
               Debug.LogException(
@@ -549,7 +549,7 @@ namespace Unity.Formats.USD {
         foreach (var pathAndSample in scene.ReadAll<CubeSample>(primMap.Cubes)) {
           try {
             GameObject go = primMap[pathAndSample.path];
-            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
             CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
           } catch (System.Exception ex) {
@@ -568,7 +568,7 @@ namespace Unity.Formats.USD {
         foreach (var pathAndSample in scene.ReadAll<CameraSample>(primMap.Cameras)) {
           try {
             GameObject go = primMap[pathAndSample.path];
-            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
             XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
 
             // The camera has many value-type parameters that need to be handled correctly when not
@@ -598,7 +598,7 @@ namespace Unity.Formats.USD {
             foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
-                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {
                 Debug.LogException(
@@ -609,7 +609,7 @@ namespace Unity.Formats.USD {
             foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
-                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {
                 Debug.LogException(
@@ -620,7 +620,7 @@ namespace Unity.Formats.USD {
             foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Skeletons)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
-                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {
                 Debug.LogException(
@@ -636,7 +636,7 @@ namespace Unity.Formats.USD {
             foreach (var pathAndSample in scene.ReadAll<MeshSample>(masterRootPath)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
-                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
                 var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
                 MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions);
@@ -652,7 +652,7 @@ namespace Unity.Formats.USD {
             foreach (var pathAndSample in scene.ReadAll<CubeSample>(masterRootPath)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
-                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
                 CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {
@@ -669,7 +669,7 @@ namespace Unity.Formats.USD {
             foreach (var pathAndSample in scene.ReadAll<CameraSample>(masterRootPath)) {
               try {
                 GameObject go = primMap[pathAndSample.path];
-                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path));
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
                 CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
               } catch (System.Exception ex) {

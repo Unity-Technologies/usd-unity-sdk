@@ -104,6 +104,50 @@ namespace Unity.Formats.USD {
       UsdzExporter.ExportUsdz(filePath, Selection.activeGameObject);
     }
 
+#if false
+    [MenuItem("USD/Save Unity as USD (Experimental)", true)]
+    static bool EnableMenuSaveAsUsd() {
+      return Selection.gameObjects.Length == 1;
+    }
+    [MenuItem("USD/Save Unity as USD (Experimental)", priority = 170)]
+    static void MenuExportSaveAsUsd() {
+      ExportSelected(BasisTransformation.SlowAndSafe, exportMonoBehaviours: true);
+    }
+
+    [MenuItem("USD/Load Unity from USD (Experimental)", priority = 170)]
+    static void MenuExportLoadFromUsd() {
+      var scene = InitForOpen();
+      if (scene == null) {
+        return;
+      }
+      string path = scene.FilePath;
+
+      // Time-varying data is not supported and often scenes are written without "Default" time
+      // values, which makes setting an arbitrary time safer (because if only default was authored
+      // the time will be ignored and values will resolve to default time automatically).
+      scene.Time = 1.0;
+
+      var importOptions = new SceneImportOptions();
+      importOptions.projectAssetPath = GetSelectedAssetPath();
+      importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
+      importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+      importOptions.usdRootPath = GetDefaultRoot(scene);
+      importOptions.importMonoBehaviours = true;
+
+      GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
+
+      if (Selection.gameObjects.Length > 0) {
+        root.transform.SetParent(Selection.gameObjects[0].transform);
+      }
+
+      try {
+        UsdToGameObject(root, scene, importOptions);
+      } finally {
+        scene.Close();
+      }
+    }
+#endif
+
     static private pxr.SdfPath GetDefaultRoot(Scene scene) {
       var defPrim = scene.Stage.GetDefaultPrim();
       if (defPrim) {
@@ -117,7 +161,9 @@ namespace Unity.Formats.USD {
       return pxr.SdfPath.AbsoluteRootPath();
     }
 
-    static void ExportSelected(BasisTransformation basisTransform, string fileExtension = "usd") {
+    static void ExportSelected(BasisTransformation basisTransform,
+                               string fileExtension = "usd",
+                               bool exportMonoBehaviours = false) {
       Scene scene = null;
 
       foreach (GameObject go in Selection.gameObjects) {
@@ -130,7 +176,8 @@ namespace Unity.Formats.USD {
 
         try {
           SceneExporter.Export(go, scene, basisTransform,
-                               exportUnvarying: true, zeroRootTransform: false);
+                               exportUnvarying: true, zeroRootTransform: false,
+                               exportMonoBehaviours: exportMonoBehaviours);
         } catch (System.Exception ex) {
           Debug.LogException(ex);
           continue;
