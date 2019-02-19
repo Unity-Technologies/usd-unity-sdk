@@ -42,7 +42,7 @@ namespace Unity.Formats.USD {
     /// </summary>
     public string usdFullPath
     {
-      get { return Path.GetFullPath(m_usdFile); }
+      get { return string.IsNullOrEmpty(m_usdFile) ? string.Empty : (Path.GetFullPath(m_usdFile)); }
       set { m_usdFile = value; }
     }
 
