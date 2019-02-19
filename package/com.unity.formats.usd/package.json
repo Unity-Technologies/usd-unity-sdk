@@ -35,6 +35,12 @@
           "displayName" : "HelloUsd",
           "description" : "Some Description",
           "path" : "Samples~/HelloUsd"
+       },
+       {
+          "displayName" : "ExportMesh",
+          "description" : "Some Description",
+          "path" : "Samples~/ExportMesh"
        }
+
     ]
 }
