@@ -50,6 +50,11 @@
           "displayName" : "ImportMesh",
           "description" : "Some Description",
           "path" : "Samples~/ImportMesh"
+       },
+              {
+          "displayName" : "UsdTimelinePlayable",
+          "description" : "Some Description",
+          "path" : "Samples~/UsdTimelinePlayable"
        }
 
     ]
