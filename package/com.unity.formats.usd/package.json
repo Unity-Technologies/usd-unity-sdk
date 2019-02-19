@@ -53,7 +53,7 @@
        },
        {
           "displayName" : "UsdTimelinePlayable",
-          "description" : "Some Description",
+          "description" : "A sample showing how to use the USD integration in Timeline.",
           "path" : "Samples~/UsdTimelinePlayable"
        }
 
