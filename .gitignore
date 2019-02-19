@@ -54,7 +54,10 @@ packages.config
 TestProject/Library
 TestProject/ProjectSettings
 TestProject/Temp
-Testproject/*.sln
-Testproject/*.csproj
-
+TestProject/*.sln*
+TestProject/*.csproj
+TestProject/.idea
+TestProject/Logs
+TestProject/Assets/Plugins
+TestProject/Assets/Samples*
 inst-dbg/
