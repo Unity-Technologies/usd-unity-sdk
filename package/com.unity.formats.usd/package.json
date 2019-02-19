@@ -33,12 +33,12 @@
     "samples":[
        {
           "displayName" : "HelloUsd",
-          "description" : "A sample showing how to write custom data to USDs",
+          "description" : "A sample showing how to write custom data to USDs.",
           "path" : "Samples~/HelloUsd"
        },
        {
           "displayName" : "ExportMesh",
-          "description" : "Some Description",
+          "description" : "A sample showing how to record a scene to a USD file.",
           "path" : "Samples~/ExportMesh"
        },
        {
