@@ -103,7 +103,6 @@ namespace Unity.Formats.USD {
   /// </summary>
   public static class SceneExporter {
 
-
     // ------------------------------------------------------------------------------------------ //
     // Main Export Logic.
     // ------------------------------------------------------------------------------------------ //
@@ -112,7 +111,8 @@ namespace Unity.Formats.USD {
                               Scene scene,
                               BasisTransformation basisTransform,
                               bool exportUnvarying,
-                              bool zeroRootTransform) {
+                              bool zeroRootTransform,
+                              bool exportMaterials = false) {
       var context = new ExportContext();
       context.scene = scene;
       context.basisTransform = basisTransform;
@@ -129,7 +129,7 @@ namespace Unity.Formats.USD {
       }
 
       // Export data for the requested time.
-      context.exportMaterials = false;
+      context.exportMaterials = exportMaterials;
       Export(root, context, zeroRootTransform);
     }
     public static void Export(GameObject root,
