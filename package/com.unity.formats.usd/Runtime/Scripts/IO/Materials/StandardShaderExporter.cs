@@ -28,6 +28,7 @@ namespace Unity.Formats.USD {
 
       ExportStandardCommon(scene, usdShaderPath, material, surface, destTexturePath);
       surface.useSpecularWorkflow.defaultValue = 1;
+      surface.metallic.defaultValue = 0;
 
       if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_SpecGlossMap", "rgb");
@@ -209,6 +210,8 @@ namespace Unity.Formats.USD {
         }
       }
 #endif
+
+      surface.opacity.defaultValue = 1;
 
       if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
         var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "rgb");
