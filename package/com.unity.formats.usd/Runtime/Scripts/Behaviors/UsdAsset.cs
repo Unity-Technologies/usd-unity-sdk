@@ -252,6 +252,13 @@ namespace Unity.Formats.USD {
     }
 #endif
 
+    private void OnDisable() {
+      if (m_lastScene != null) {
+        m_lastScene.Close();
+        m_lastScene = null;
+      }
+    }
+
     /// <summary>
     /// Returns the project path to the prefab, or null. Always returns null in player.
     /// </summary>
