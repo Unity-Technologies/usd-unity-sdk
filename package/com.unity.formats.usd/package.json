@@ -40,6 +40,11 @@
           "displayName" : "ExportMesh",
           "description" : "Some Description",
           "path" : "Samples~/ExportMesh"
+       },
+       {
+          "displayName" : "ImportMaterials",
+          "description" : "Some Description",
+          "path" : "Samples~/ImportMaterials"
        }
 
     ]
