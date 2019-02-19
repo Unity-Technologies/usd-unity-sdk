@@ -252,7 +252,7 @@ namespace Unity.Formats.USD {
     }
 #endif
 
-    private void OnDisable() {
+    private void OnDestroy() {
       if (m_lastScene != null) {
         m_lastScene.Close();
         m_lastScene = null;
