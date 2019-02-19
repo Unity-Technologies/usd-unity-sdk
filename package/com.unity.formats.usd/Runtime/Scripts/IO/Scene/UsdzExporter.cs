@@ -44,9 +44,13 @@ namespace Unity.Formats.USD {
 
       // Create the temp .usd scene, into which the data will be exported.
       var scene = InitForSave(tmpUsdFilePath);
+      var localScale = root.transform.localScale;
 
       try {
         try {
+          // USDZ is in centimeters.
+          root.transform.localScale = localScale * 100;
+
           // Set the current working directory to the USDZ directory so the paths in USD
           // will be relative.
           Directory.SetCurrentDirectory(tempDirectory);
@@ -59,6 +63,9 @@ namespace Unity.Formats.USD {
                                zeroRootTransform: false,
                                exportMaterials: true);
         } finally {
+          // Undo temp scale.
+          root.transform.localScale = localScale;
+
           // Flush any in-flight edits and release the scene so the file can be deleted.
           scene.Save();
           scene.Close();
