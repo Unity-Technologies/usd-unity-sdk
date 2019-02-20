@@ -69,8 +69,9 @@ namespace Unity.Formats.USD.Tests
                 {
                     File.Delete(file);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
+                    // ignored
                 }
             }
         }
