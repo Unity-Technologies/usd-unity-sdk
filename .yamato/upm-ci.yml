@@ -1,7 +1,5 @@
 editors:
-  - version: 2019.1.0b2
-  - version: 2018.3.4f1
-  - version: trunk
+  - version: 2018.3
 platforms:
   - name: win
     type: Unity::VM
@@ -21,9 +19,9 @@ platforms:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-    - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
-    - upm-ci package pack --package-path package/com.unity.formats.usd
-    - upm-ci package test  --package-path package/com.unity.formats.usd  --unity-version {{ editor.version }}
+      - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
+      - upm-ci package pack --package-path package/com.unity.formats.usd
+      - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd
   triggers:
     branches:
        only:
@@ -33,7 +31,12 @@ platforms:
   artifacts:
     logs.zip:
       paths:
+        - "upm-ci~/logs/**/*"
         - "upm-ci~/test-results/**/*"
+    artifacts.zip:
+      paths:
+        - "upm-ci~/packages/**/*"
+        - "upm-ci~/templates/**/*"
 {% endfor %}
 {% endfor %}
 
@@ -45,17 +48,22 @@ run_preview_verified_staging:
     flavor: m1.large
     name: Runner
   commands:
-    - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
-    - upm-ci package pack
-    - upm-ci package publish --registry staging
+    # Install ci tools dependencies
+    - git clone --single-branch --branch feat/PAI-434-template-test git@gitlab.cds.internal.unity3d.com:upm-packages/project-templates/upm-template-utils.git
+    - npm install upm-template-utils
+    - node upm-template-utils/index.js template publish
   triggers:
     tags:
       only:
         - /^(v|V)[0-9].[0-9].[0-9]/
   artifacts:
-    artifacts.zip:
+    logs.zip:
       paths:
-        - "upm-ci~/packages/*.tgz"
+        - "upm-ci~/logs/**/*"
+        - "upm-ci~/test-results/**/*"
+    Package.zip:
+      paths:
+        - "upm-ci~/package/*.tgz"
   dependencies:
   {% for editor in editors %}
   {% for platform in platforms %}
