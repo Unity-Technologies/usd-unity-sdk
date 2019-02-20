@@ -1,6 +1,7 @@
 editors:
   - version: 2019.1.0b2
-
+  - version: 2018.3.4f1
+  - version: trunk
 platforms:
   - name: win
     type: Unity::VM
