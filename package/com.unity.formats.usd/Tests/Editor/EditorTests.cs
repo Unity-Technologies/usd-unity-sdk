@@ -10,3 +10,4 @@ namespace Unity.Formats.USD.Tests
         }
     }
 }
+
