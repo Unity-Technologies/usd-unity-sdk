@@ -29,5 +29,33 @@
     },
     "unity": "2018.3",
     "unityRelease": "4f1",
-    "version": "1.0.0-preview.1"
+    "version": "1.0.0-preview.1",
+    "samples":[
+       {
+          "displayName" : "HelloUsd",
+          "description" : "A sample showing how to write custom data to USDs.",
+          "path" : "Samples~/HelloUsd"
+       },
+       {
+          "displayName" : "ExportMesh",
+          "description" : "A sample showing how to record a scene to a USD file.",
+          "path" : "Samples~/ExportMesh"
+       },
+       {
+          "displayName" : "ImportMaterials",
+          "description" : "A sample showing how to import materials from a USD into Unity.",
+          "path" : "Samples~/ImportMaterials"
+       },
+       {
+          "displayName" : "ImportMesh",
+          "description" : "A sample showing how to import a scene from USD into Unity.",
+          "path" : "Samples~/ImportMesh"
+       },
+       {
+          "displayName" : "UsdTimelinePlayable",
+          "description" : "A sample showing how to use the USD integration in Timeline.",
+          "path" : "Samples~/UsdTimelinePlayable"
+       }
+
+    ]
 }
