@@ -32,12 +32,14 @@ namespace Unity.Formats.USD {
 
       if (NormalMap) {
         mat.SetTexture("_BumpMap", NormalMap);
+        mat.EnableKeyword("_NORMALMAP");
       } else {
         // TODO: Unity has no notion of a constant normal map.
       }
 
       if (DisplacementMap) {
         mat.SetTexture("_ParallaxMap", DisplacementMap);
+        mat.EnableKeyword("_PARALLAXMAP");
       } else {
         // TODO: Unity has no notion of a parallax map.
       }
@@ -62,6 +64,7 @@ namespace Unity.Formats.USD {
       if (!IsMetallicWorkflow) {
         if (SpecularMap) {
           mat.SetTexture("_SpecGlossMap", SpecularMap);
+          mat.EnableKeyword("_SPECGLOSSMAP");
         } else {
           var rgb = Specular.GetValueOrDefault(Color.gray);
           mat.SetColor("_SpecColor", rgb);
@@ -84,11 +87,14 @@ namespace Unity.Formats.USD {
             // TODO: create a new texture with constant spec value, combined with roughness texture.
           }
         } else {
-          mat.SetFloat("_Glossiness", 1 - Roughness.GetValueOrDefault(.5f));
+          float smoothness = 1 - Roughness.GetValueOrDefault(.5f);
+          mat.SetFloat("_Glossiness", smoothness);
+          mat.SetFloat("_GlossMapScale", smoothness);
         }
       } else {
         if (MetallicMap) {
           mat.SetTexture("_MetallicGlossMap", MetallicMap);
+          mat.EnableKeyword("_METALLICGLOSSMAP");
         } else {
           mat.SetFloat("_Metallic", Metallic.GetValueOrDefault(0));
         }
@@ -97,7 +103,9 @@ namespace Unity.Formats.USD {
           // In this case roughness get its own map, but still must be converted to glossiness.
           mat.SetTexture("_SpecGlossMap", RoughnessMap);
         } else {
-          mat.SetFloat("_Glossiness", 1 - Roughness.GetValueOrDefault(.5f));
+          float smoothness = 1 - Roughness.GetValueOrDefault(.5f);
+          mat.SetFloat("_Glossiness", smoothness);
+          mat.SetFloat("_GlossMapScale", smoothness);
         }
       }
     }
