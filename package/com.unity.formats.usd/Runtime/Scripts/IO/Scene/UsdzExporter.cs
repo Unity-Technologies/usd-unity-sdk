@@ -74,7 +74,14 @@ namespace Unity.Formats.USD {
 
         // Copy resulting files into the USDZ archive.
         var filesToArchive = new pxr.StdStringVector();
+
+        // According to the USDZ spec, the first file in the archive must be the primary USD file.
+        filesToArchive.Add(tmpUsdFilePath);
+
         foreach (var fileInfo in di.GetFiles()) {
+          if (fileInfo.Name.ToLower() == Path.GetFileName(tmpUsdFilePath).ToLower()) {
+            continue;
+          }
           var relPath = ImporterBase.MakeRelativePath(tmpUsdFilePath, fileInfo.FullName);
           var ext = Path.GetExtension(relPath).ToLower();
           if (!supportedExtensions.Contains(ext)) {
