@@ -141,7 +141,10 @@ namespace Unity.Formats.USD {
 #else
 namespace Unity.Formats.USD {
   public class NativeImporter {
-    static public void ImportObject(Scene scene, GameObject go, pxr.UsdPrim usdPrim) { }
+    static public void ImportObject(Scene scene,
+                                    GameObject go,
+                                    pxr.UsdPrim usdPrim,
+                                    SceneImportOptions options) {}
   }
 }
 #endif
