@@ -50,7 +50,11 @@ namespace Unity.Formats.USD {
     // USD's libPlug know where to look to find them.
     private static void SetupUsdPath()
     {
-        var supPath = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+#if UNITY_EDITOR
+      var supPath = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+#else
+      var supPath = UnityEngine.Application.dataPath.Replace("\\", "/") + "/Plugins";
+#endif
 
 #if (UNITY_EDITOR_WIN)
       supPath += @"/x86_64/share/";
@@ -61,7 +65,7 @@ namespace Unity.Formats.USD {
 #elif (UNITY_STANDALONE_OSX)
       supPath += @"/UsdCs.bundle/Contents/Resources/share/";
 #endif
-
+      
       Debug.LogFormat("Registering plugins: {0}", supPath);
       pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
     }
