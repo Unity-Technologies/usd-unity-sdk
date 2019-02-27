@@ -183,9 +183,7 @@ namespace Unity.Formats.USD {
         // Unity uses a forward vector that matches DirectX, but USD matches OpenGL, so a change of
         // basis is required. There are shortcuts, but this is fully general.
         sample.ConvertTransform();
-
         sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
-        sample.extent.extents = UnityTypeConverter.ChangeBasis(sample.extent.extents);
       }
 
       // Only export the mesh topology on the first frame.
