@@ -461,15 +461,19 @@ namespace Unity.Formats.USD {
       // Display Color.
       //
 
-      if (ShouldImport(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0) {
+      if (ShouldImportOrCompute(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0) {
         Profiler.BeginSample("Import Display Color");
         // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
         // For best performance, convert color space to linear off-line and skip conversion.
 
+        // If import conversions are succesful, this will be set to false later
+        bool forceVertexColors = ShouldCompute(options.meshOptions.color);
+
         if (usdMesh.colors.Length == 1) {
           // Constant color can just be set on the material.
-          if (options.useDisplayColorAsFallbackMaterial && options.materialImportMode != MaterialImportMode.None) {
+          if ( ShouldImport(options.meshOptions.color) && options.useDisplayColorAsFallbackMaterial && options.materialImportMode != MaterialImportMode.None) {
             mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0].gamma);
+            forceVertexColors = false;
           }
         } else if (usdMesh.colors.Length == usdMesh.points.Length) {
           // Vertex colors map on to verts.
@@ -478,6 +482,7 @@ namespace Unity.Formats.USD {
             usdMesh.colors[i] = usdMesh.colors[i];
           }
           unityMesh.colors = usdMesh.colors;
+          forceVertexColors = false;
         } else if (usdMesh.colors.Length == usdMesh.faceVertexCounts.Length) {
           // Uniform colors, one per face.
           // Unroll face colors into vertex colors. This is not strictly correct, but it's much faster
@@ -493,6 +498,7 @@ namespace Unity.Formats.USD {
               }
             }
             unityMesh.colors = colors;
+            forceVertexColors = false;
           } catch (Exception ex) {
             Debug.LogException(new Exception("Failed loading uniform/per-face colors at " + path, ex));
           }
@@ -506,12 +512,28 @@ namespace Unity.Formats.USD {
               usdMesh.colors[i] = usdMesh.colors[i];
             }
             unityMesh.colors = usdMesh.colors;
+            forceVertexColors = false;
           } catch (Exception ex) {
             Debug.LogException(
                 new Exception("Error unrolling Face-Varying colors at <" + path + ">", ex));
           }
         } else {
           Debug.LogWarning("Uniform (color per face) display color not supported");
+        }
+
+        if (forceVertexColors) {
+            Color [] colors = new Color[usdMesh.points.Length];
+            if (usdMesh.colors.Length != usdMesh.points.Length) {
+              Color color = usdMesh.colors[0].gamma;
+              for (int i = 0; i < usdMesh.points.Length; i++) {
+                  colors[i] = color;
+              }
+            } else {
+              for (int i = 0; i < usdMesh.points.Length; i++) {
+                  colors[i] = usdMesh.colors[i].gamma;
+              }
+            }
+            unityMesh.colors = colors;
         }
         Profiler.EndSample();
       } // should import color
@@ -844,6 +866,10 @@ namespace Unity.Formats.USD {
     /// </summary>
     private static bool ShouldCompute(ImportMode mode) {
       return mode == ImportMode.Compute || mode == ImportMode.ImportOrCompute;
+    }
+
+    private static bool ShouldImportOrCompute(ImportMode mode) {
+      return mode == ImportMode.Import ||  mode == ImportMode.Compute || mode == ImportMode.ImportOrCompute;
     }
   }
 }
