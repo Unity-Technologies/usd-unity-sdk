@@ -1,0 +1,84 @@
+#usda 1.0
+
+def Scope "SomeCubes" {
+	def Cube "ConstantColorRed" {
+	  double size = 1.0
+	  float3[] primvars:displayColor = [ (1.0, 0, 0) ] (interpolation = "constant")
+	}
+
+	def Cube "VertexColor" {
+	  double size = 1.0
+          float3 xformOp:translate:t = (1.1, 0, 0)
+          token[] xformOpOrder = [ "xformOp:translate:t" ]
+	  float3[] primvars:displayColor = [ 
+		(1, 0, 0),
+		(1, 1, 0),
+		(0, 0, 1),
+		(1, 1, 1),
+		(0, 0, 0),
+		(0, 1, 0),
+		(0, 1, 1),
+		(1, 0, 1),
+	  ] (interpolation = "vertex")
+
+          // TODO: shouldn't be required, since the default is 1.0.
+	  float[] primvars:displayOpacity = [ 1,1,1,1,1,1,1,1 ] (interpolation = "vertex")
+	}
+
+	def Cube "FaceVarying" {
+	  double size = 1.0
+          float3 xformOp:translate:t = (-1.1, 0, 0)
+          token[] xformOpOrder = [ "xformOp:translate:t" ]
+	  float3[] primvars:displayColor = [ 
+		(1, 0, 0), // front
+		(0, 1, 0),
+		(0, 0, 1),
+		(1, 0, 1),
+
+		(1, 0, 0), // back
+		(0, 1, 0),
+		(0, 0, 1),
+		(1, 0, 1),
+
+		(1, 0, 0), // top
+		(0, 1, 0),
+		(0, 0, 1),
+		(1, 0, 1),
+
+		(1, 0, 0), // bottom
+		(0, 1, 0),
+		(0, 0, 1),
+		(1, 0, 1),
+
+		(1, 0, 0), // right
+		(0, 1, 0),
+		(0, 0, 1),
+		(1, 0, 1),
+
+		(1, 0, 0), // left
+		(0, 1, 0),
+		(0, 0, 1),
+		(1, 0, 1),
+
+	  ] (interpolation = "faceVarying")
+
+          // TODO: shouldn't be required, since the default is 1.0.
+	  float[] primvars:displayOpacity = [ 1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1  ] (interpolation = "faceVarying")
+	}
+	def Cube "Uniform" {
+	  double size = 1.0
+          float3 xformOp:translate:t = (0, 1.1, 0)
+          token[] xformOpOrder = [ "xformOp:translate:t" ]
+	  float3[] primvars:displayColor = [ 
+		(1, 0, 0), // front
+		(0, 1, 0), // back
+		(0, 0, 1), // top
+		(1, 1, 0), // bottom
+		(1, 0, 1), // right
+		(1, 1, 1), // left
+	  ] (interpolation = "uniform")
+
+          // TODO: shouldn't be required, since the default is 1.0.
+	  float[] primvars:displayOpacity = [ 1,1,1,1,1,1 ] (interpolation = "uniform")
+	}
+}
