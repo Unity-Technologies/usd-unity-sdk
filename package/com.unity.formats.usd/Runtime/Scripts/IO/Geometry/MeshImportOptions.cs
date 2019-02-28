@@ -43,6 +43,7 @@ namespace Unity.Formats.USD {
   /// <summary>
   /// Indicates how values are imported from the given scene into a UnityEngine.Mesh object.
   /// </summary>
+  [System.Serializable]
   public class MeshImportOptions {
 
     /// <summary>
