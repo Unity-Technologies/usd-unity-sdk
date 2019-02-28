@@ -52,15 +52,34 @@ namespace Unity.Formats.USD {
     /// </summary>
     public bool useOriginalShaderIfAvailable;
 
+    Material m_displayColorMaterial, m_specularWorkflowMaterial, m_metallicWorkflowMaterial;
+
     /// <summary>
     /// A material to use when no material could be found.
     /// </summary>
-    public Material DisplayColorMaterial { get; set; }
+    public Material DisplayColorMaterial { 
+      get {
+        if (m_displayColorMaterial == null) InstantiateMaterials();
+        return m_displayColorMaterial;
+      } 
+      set {m_displayColorMaterial = value;} 
+    }
+    public Material SpecularWorkflowMaterial { 
+      get { 
+        if (m_specularWorkflowMaterial == null) InstantiateMaterials();
+        return m_specularWorkflowMaterial;
+      } 
+      set {m_specularWorkflowMaterial = value;}
+    }
+    public Material MetallicWorkflowMaterial { 
+      get { 
+        if (m_metallicWorkflowMaterial == null) InstantiateMaterials();
+        return m_metallicWorkflowMaterial;
+      }
+      set {m_metallicWorkflowMaterial = value;}
+    }
 
-    public Material SpecularWorkflowMaterial { get; set; }
-    public Material MetallicWorkflowMaterial { get; set; }
-
-    public MaterialMap() {
+    void InstantiateMaterials() {
       var pipeline = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
       if (!pipeline) {
         // Fallback to the built-in render pipeline, assume Standard PBS shader.
