@@ -67,6 +67,7 @@ namespace Unity.Formats.USD {
   /// <summary>
   /// Indicates how the scene should be imported from USD to Unity.
   /// </summary>
+  [System.Serializable]
   public class SceneImportOptions {
 
     /// <summary>
@@ -134,6 +135,7 @@ namespace Unity.Formats.USD {
     /// <summary>
     /// A set of registered mappings from USD shader ID to Unity material.
     /// </summary>
+    [System.NonSerialized]
     public MaterialMap materialMap = new MaterialMap();
 
     /// <summary>
