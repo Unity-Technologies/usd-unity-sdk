@@ -175,12 +175,22 @@ namespace Unity.Formats.USD {
 
       EditorGUILayout.BeginHorizontal();
       EditorGUILayout.PrefixLabel("USD File");
-      EditorGUILayout.LabelField(usdAsset.usdFullPath, EditorStyles.textField);
+      usdAsset.usdFullPath = EditorGUILayout.TextField(usdAsset.usdFullPath, EditorStyles.textField);
+      if(GUILayout.Button("...")) {
+          string lastDir;
+          if (string.IsNullOrEmpty(usdAsset.usdFullPath))
+              lastDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+          else
+              lastDir =  Path.GetDirectoryName(usdAsset.usdFullPath);
+          string importFilepath = EditorUtility.OpenFilePanelWithFilters("Usd Asset", lastDir, new string[] { "Usd","us*"});
+          if ( string.IsNullOrEmpty(importFilepath)) return;
+          usdAsset.usdFullPath = importFilepath;    
+      }
       EditorGUILayout.EndHorizontal();
 
       EditorGUILayout.BeginHorizontal();
       EditorGUILayout.PrefixLabel("USD Root Path");
-      EditorGUILayout.LabelField(usdAsset.m_usdRootPath, EditorStyles.textField);
+      usdAsset.m_usdRootPath = EditorGUILayout.TextField(usdAsset.m_usdRootPath, EditorStyles.textField);
       EditorGUILayout.EndHorizontal();
 
       GUILayout.Label("Import Settings", EditorStyles.boldLabel);
