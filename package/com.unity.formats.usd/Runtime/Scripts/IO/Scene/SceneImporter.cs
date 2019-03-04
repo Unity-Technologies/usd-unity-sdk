@@ -61,23 +61,6 @@ namespace Unity.Formats.USD {
     /// </summary>
     public static IImporter ActiveMeshImporter;
 
-    public delegate void ImportNotice(PrimMap primMap,
-                                      Scene usdScene,
-                                      pxr.SdfPath usdPrimRoot,
-                                      GameObject unityRoot,
-                                      SceneImportOptions importOptions);
-
-    /// <summary>
-    /// Executes after the PrimMap has been constructed and before import.
-    /// </summary>
-    public static event ImportNotice AfterBuildPrimMap;
-
-    /// <summary>
-    /// Executes after the entire import process (BuildScene) completes. Note that this event may
-    /// fire after several frames, when the coroutine overload of BuildScene is used.
-    /// </summary>
-    public static event ImportNotice AfterImport;
-
     static SceneImporter() {
       SceneImporter.ActiveMeshImporter = new MeshImportStrategy(
           MeshImporter.BuildMesh,
@@ -338,14 +321,10 @@ namespace Unity.Formats.USD {
 
       if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
 
-      Profiler.BeginSample("USD: AfterBuildPrimMap");
-      if (AfterBuildPrimMap != null) {
-        AfterBuildPrimMap(primMap, scene, usdPrimRoot, root, importOptions);
-      }
-
-      foreach( var processor in root.GetComponents<IImportProcessPrimMap>())
+      Profiler.BeginSample("USD: PostProcessHierarchy");
+      foreach( var processor in root.GetComponents<IImportPostProcessHierarchy>())
       {
-        processor.ProcessPrimMap(primMap);
+        processor.PostProcessHierarchy(primMap);
       }
       Profiler.EndSample();
 
@@ -934,17 +913,10 @@ namespace Unity.Formats.USD {
       }
       Profiler.EndSample();
 
-      //
-      // AfterImport callback.
-      //
-      Profiler.BeginSample("AfterImport callback");
-      if (AfterImport != null) {
-        AfterImport(primMap, scene, usdPrimRoot, root, importOptions);
-      }
-      Debug.LogError("IImportProcessGeometry");
-      foreach( var processor in root.GetComponents<IImportProcessGeometry>())
+      Profiler.BeginSample("USD: PostProcessGeometry");
+      foreach( var processor in root.GetComponents<IImportPostProcessGeometry>())
       {
-        processor.ProcessGeometry(primMap);
+        processor.PostProcessGeometry(primMap);
       }
       Profiler.EndSample();
     }
