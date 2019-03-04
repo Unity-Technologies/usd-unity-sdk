@@ -7,9 +7,9 @@ using pxr;
 namespace Unity.Formats.USD {
 
     // happens while hierarchy is loading
-    public interface IImportProcessSdfPath
+    public interface IImportProcessUsd
     {
-        bool ProcessSdfPath(SdfPath sdfPath);
+        void ProcessUsd(Scene scene);
     }
 
     // happens after GameObject Hierarchy created
