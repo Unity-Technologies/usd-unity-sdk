@@ -127,13 +127,21 @@ namespace Unity.Formats.USD {
         style.wordWrap = true;
         EditorGUILayout.LabelField("Edit prefab for destructive operations", style);
       } else {
-        if (GUILayout.Button(new GUIContent(m_reimportButton, "Reimport from USD (destructive)"), buttonStyle)) {
-          if (EditorUtility.DisplayDialog("Reimport from Source", "Destroy and rebuild all USD objects?\n\n"
-                  + "Any GameObject with a UsdPrimSource will be destroyed and reimported.",
-                "OK", "Cancel")) {
+        if (usdAsset.transform.childCount == 0) {
+          if (GUILayout.Button(new GUIContent(m_reimportButton, "Import from USD"), buttonStyle)) {
             ReloadFromUsd(usdAsset, forceRebuild: true);
           }
+        } else {
+          if (GUILayout.Button(new GUIContent(m_reimportButton, "Reimport from USD (destructive)"), buttonStyle)) {
+            if (EditorUtility.DisplayDialog("Reimport from Source", "Destroy and rebuild all USD objects?\n\n"
+                    + "Any GameObject with a UsdPrimSource will be destroyed and reimported.",
+                  "OK", "Cancel")) {
+              ReloadFromUsd(usdAsset, forceRebuild: true);
+            }
+          }
         }
+
+        EditorGUI.BeginDisabledGroup(usdAsset.transform.childCount == 0);
         if (GUILayout.Button(new GUIContent(m_trashButton, "Remove USD Contents (destructive)"), buttonStyle)) {
           if (EditorUtility.DisplayDialog("Clear Contents", "Destroy all USD objects?\n\n"
                   + "Any GameObject with a UsdPrimSource will be destroyed. "
@@ -149,6 +157,7 @@ namespace Unity.Formats.USD {
             DetachFromUsd(usdAsset);
           }
         }
+        EditorGUI.EndDisabledGroup();
       }
       GUILayout.FlexibleSpace();
       GUILayout.EndHorizontal();
