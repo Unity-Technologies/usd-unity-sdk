@@ -342,6 +342,11 @@ namespace Unity.Formats.USD {
       if (AfterBuildPrimMap != null) {
         AfterBuildPrimMap(primMap, scene, usdPrimRoot, root, importOptions);
       }
+
+      foreach( var processor in root.GetComponents<IImportProcessPrimMap>())
+      {
+        processor.ProcessPrimMap(primMap);
+      }
       Profiler.EndSample();
 
       if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -935,6 +940,11 @@ namespace Unity.Formats.USD {
       Profiler.BeginSample("AfterImport callback");
       if (AfterImport != null) {
         AfterImport(primMap, scene, usdPrimRoot, root, importOptions);
+      }
+      Debug.LogError("IImportProcessGeometry");
+      foreach( var processor in root.GetComponents<IImportProcessGeometry>())
+      {
+        processor.ProcessGeometry(primMap);
       }
       Profiler.EndSample();
     }
