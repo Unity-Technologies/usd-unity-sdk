@@ -7,11 +7,11 @@ using pxr;
 //possibly move this to Examples
 // also not sure how well this will work with reloads or anim..
 namespace Unity.Formats.USD {
-    public class CombineMeshes : RegexImportProcessor, IImportProcessGeometry {
+    public class CombineMeshes : RegexImportProcessor, IImportPostProcessGeometry {
         const int VERTEX_LIMIT = 65534;
         public bool enforceU16VertexLimit;
 
-        public void ProcessGeometry(PrimMap primMap)
+        public void PostProcessGeometry(PrimMap primMap)
         {
             InitRegex();
 
@@ -25,7 +25,7 @@ namespace Unity.Formats.USD {
         
         void Reset()
         {
-            expression = "Geom";
+            matchExpression = "Geom";
             isNot = false;
             matchType = EMatchType.Wildcard;
             compareAgainst = ECompareAgainst.UsdName;

@@ -7,10 +7,10 @@ using pxr;
 //possibly move this to Examples
 namespace Unity.Formats.USD
 {
-    public class SetHideFlags : RegexImportProcessor, IImportProcessPrimMap
+    public class SetHideFlags : RegexImportProcessor, IImportPostProcessHierarchy
     {
         public HideFlags hideFlagsSettings = HideFlags.DontSave;
-        public void ProcessPrimMap(PrimMap primMap)
+        public void PostProcessHierarchy(PrimMap primMap)
         {
             InitRegex();
 
@@ -24,7 +24,7 @@ namespace Unity.Formats.USD
 
         void Reset()
         {
-            expression = "/";
+            matchExpression = "/";
             isNot = true;
             matchType = EMatchType.Wildcard;
             compareAgainst = ECompareAgainst.UsdName;

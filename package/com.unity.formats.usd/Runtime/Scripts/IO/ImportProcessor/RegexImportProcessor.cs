@@ -18,7 +18,7 @@ namespace Unity.Formats.USD
 
         public bool isNot = false;
 
-        public string expression = "*";
+        public string matchExpression = "*";
         private Regex m_regex;
 
         protected bool IsMatch(SdfPath sdfPath)
@@ -32,10 +32,10 @@ namespace Unity.Formats.USD
             switch (matchType)
             {
                 case EMatchType.Wildcard:
-                    m_regex = new Regex(WildcardToRegex(expression));
+                    m_regex = new Regex(WildcardToRegex(matchExpression));
                     break;
                 case EMatchType.Regex:
-                    m_regex = new Regex(expression);
+                    m_regex = new Regex(matchExpression);
                     break;
             }
         }

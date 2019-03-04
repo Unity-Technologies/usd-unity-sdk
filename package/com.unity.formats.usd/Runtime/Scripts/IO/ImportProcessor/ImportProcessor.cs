@@ -6,17 +6,21 @@ using Unity.Formats.USD;
 using pxr;
 namespace Unity.Formats.USD {
 
-    public interface IImportProcessUsd
+    // happens while hierarchy is loading
+    public interface IImportProcessSdfPath
     {
-        void ProcessUsd(PrimMap primMap);
-    }
-    public interface IImportProcessPrimMap
-    {
-        void ProcessPrimMap(PrimMap primMap);
+        bool ProcessSdfPath(SdfPath sdfPath);
     }
 
-    public interface IImportProcessGeometry
+    // happens after GameObject Hierarchy created
+    public interface IImportPostProcessHierarchy
     {
-        void ProcessGeometry(PrimMap primMap);
+        void PostProcessHierarchy(PrimMap primMap);
+    }
+
+    // happens after GameObject Hierarchy created and Geometry created
+    public interface IImportPostProcessGeometry
+    {
+        void PostProcessGeometry(PrimMap primMap);
     }
 }
