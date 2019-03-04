@@ -324,7 +324,7 @@ namespace Unity.Formats.USD {
       Profiler.BeginSample("USD: PostProcessHierarchy");
       foreach( var processor in root.GetComponents<IImportPostProcessHierarchy>())
       {
-        processor.PostProcessHierarchy(primMap);
+        processor.PostProcessHierarchy(primMap, importOptions);
       }
       Profiler.EndSample();
 
@@ -916,7 +916,7 @@ namespace Unity.Formats.USD {
       Profiler.BeginSample("USD: PostProcessGeometry");
       foreach( var processor in root.GetComponents<IImportPostProcessGeometry>())
       {
-        processor.PostProcessGeometry(primMap);
+        processor.PostProcessGeometry(primMap, importOptions);
       }
       Profiler.EndSample();
     }

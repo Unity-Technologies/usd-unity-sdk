@@ -10,7 +10,7 @@ namespace Unity.Formats.USD
     public class SetHideFlags : RegexImportProcessor, IImportPostProcessHierarchy
     {
         public HideFlags hideFlagsSettings = HideFlags.DontSave;
-        public void PostProcessHierarchy(PrimMap primMap)
+        public void PostProcessHierarchy(PrimMap primMap, SceneImportOptions sceneImportOptions)
         {
             InitRegex();
 

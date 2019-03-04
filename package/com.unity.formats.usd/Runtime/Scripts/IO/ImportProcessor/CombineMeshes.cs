@@ -11,7 +11,7 @@ namespace Unity.Formats.USD {
         const int VERTEX_LIMIT = 65534;
         public bool enforceU16VertexLimit;
 
-        public void PostProcessGeometry(PrimMap primMap)
+        public void PostProcessGeometry(PrimMap primMap, SceneImportOptions sceneImportOptions)
         {
             InitRegex();
 
@@ -77,7 +77,7 @@ namespace Unity.Formats.USD {
             }
 
             //build new meshes
-            bool mergeSubMeshes = true; //options.materialAssign == Options.EMaterialAssign.DefaultOnly;
+            bool mergeSubMeshes = true;
 
             foreach (List<CombineInstance> subcis in listcis)
             {
