@@ -17,7 +17,7 @@
                     }
                 }
             },
-            "LibraryPath": "../../libusd_ms.dll",
+            "LibraryPath": "",
             "Name": "usdAbc",
             "ResourcePath": "resources",
             "Root": "..",
