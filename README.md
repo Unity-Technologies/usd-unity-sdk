@@ -4,6 +4,9 @@ This repository contains a set of libraries designed to support the use of
 USD in C#/Unity. The goal of this package is to make it maximally easy to
 integrate and explore Universal Scene Description.
 
+![USD screenshot](Images/USD_global_screenshot.png)
+
+
 # Getting Started
 
 To get started, install USD via the Unity Package manager, either by using
@@ -11,7 +14,34 @@ an official repository, or by browsing for a local package while working with
 source.
 
 Once the USD package is installed, a USD menu will appear, enabling you to
-easily import an export USD files.
+easily import and export USD files.
+
+![USD menu](Images/USD_menu.png)
+
+
+## Requirements
+
+* Windows / OSX
+* Unity version: 2018.3 (2018.3.4f1 and up) and 2019.1 (2019.1.0b2 and up)   
+See ["2017 users" section](#2017-users) if you want to use the plugin in Unity 2017.4
+* To build a standalone, Api Compatibility Level needs to be set to .NET 4.x   
+   In Edit > Project Settings > Player :   
+    ![USD .NET version](Images/USD_.NET_version.png)
+
+## Samples
+
+Unity USD package also includes samples to help getting up to speed.
+Please note, the way to get them varies depending on the Unity version you are using. See below.
+
+### Unity 2019.1 and above
+
+Use Package Manager to import the samples into your Assets folder :
+
+![USD .NET version](Images/USD_samples_import.png)
+
+### Previous versions
+
+Samples package can be downloaded from [Unity film-tv-toolbox repository](https://github.com/Unity-Technologies/film-tv-toolbox/tree/master/UsdSamples).
 
 # Features
 
@@ -53,7 +83,22 @@ Scrubbing through time will now update the USD scene by streaming dat from USD.
 
 Timeline playback is multi-threaded using the C# Job System.
 
-## License
+# 2017 users
+
+The official package is not compatible with 2017.4 but a separate branch is maintained to allow 2017 users to benefit from the last developments.
+
+Here's how to install the plugin from this branch :
+ * Checkout [2017.4 branch](https://github.com/Unity-Technologies/usd-unity-sdk/tree/2017.4) from the github repository
+ * Copy UsdUnitySdk in your Assets folder
+ * Do not rename this folder
+
+# License
 
 The USD Unity SDK is licensed under the terms of the Apache
 license. See [LICENSE](LICENSE) for more information.
+
+# Contribute
+See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+# Build
+See [BUILDING.md](BUILDING.md)
