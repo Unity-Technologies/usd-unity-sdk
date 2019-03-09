@@ -19,7 +19,7 @@ using UnityEditor.Experimental.AssetImporters;
 
 namespace Unity.Formats.USD {
   [CustomEditor(typeof(UsdAsset))]
-  public class UsdAssetEditor : ScriptedImporterEditor {
+  public class UsdAssetEditor : Editor {
     private readonly string[] kTabNames = new string[] { "Simple", "Advanced" };
     private int m_tab;
 
@@ -38,8 +38,8 @@ namespace Unity.Formats.USD {
       Custom = 4
     }
 
-    public override void OnEnable() {
-      base.OnEnable();
+    public void OnEnable() {
+
       if (!m_usdLogo) {
         var script = MonoScript.FromScriptableObject(this);
         var path = AssetDatabase.GetAssetPath(script);

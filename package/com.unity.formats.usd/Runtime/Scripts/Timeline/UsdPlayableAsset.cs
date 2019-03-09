@@ -19,7 +19,7 @@ using UnityEngine.Timeline;
 namespace Unity.Formats.USD {
 
   [System.Serializable]
-  public class UsdPlayableAsset : PlayableAsset {
+  public class UsdPlayableAsset : PlayableAsset, ITimelineClipAsset {
     private UsdAsset m_sourceUsdAsset;
 
     [Tooltip("USD Player to Control")]
