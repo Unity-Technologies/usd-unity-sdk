@@ -4,8 +4,7 @@ This repository contains a set of libraries designed to support the use of
 USD in C#/Unity. The goal of this package is to make it maximally easy to
 integrate and explore Universal Scene Description.
 
-![USD screenshot](Images/USD_global_screenshot.png)
-
+![USD header](Images/USD_header.png)
 
 # Getting Started
 
@@ -18,6 +17,15 @@ easily import and export USD files.
 
 ![USD menu](Images/USD_menu.png)
 
+The USD importer works with linear color space only. To ensure colors are imported correctly,
+set the project color space to "linear" in Edit > Project Settings > Player:
+
+![USD linear](Images/USD_linear.png)
+
+In Unity 2019, the USD importer also supports importing unlimited weights per vertex, however
+this must be enabled in the project settings under Edit > Project Settings > Quality:
+
+![USD unlimited_weights](Images/USD_unlimited_weights.png)
 
 ## Requirements
 
@@ -33,7 +41,7 @@ See ["2017 users" section](#2017-users) if you want to use the plugin in Unity 2
 Unity USD package also includes samples to help getting up to speed.
 Please note, the way to get them varies depending on the Unity version you are using. See below.
 
-### Unity 2019.1 and above
+### Unity 2019.1 and Later
 
 Use Package Manager to import the samples into your Assets folder :
 
@@ -82,6 +90,13 @@ Finally, drag the USD file once more to add a USD clip to the track for plaback.
 Scrubbing through time will now update the USD scene by streaming dat from USD.
 
 Timeline playback is multi-threaded using the C# Job System.
+
+## Variants, Models, & Payloads
+
+Access to variant selection, model details, and payload state are all accessible via
+the inspector on the game object at which these features were authored.
+
+![USD screenshot](Images/USD_global_screenshot.png)
 
 # 2017 users
 
