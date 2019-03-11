@@ -22,8 +22,9 @@ set the project color space to "linear" in Edit > Project Settings > Player:
 
 ![USD linear](Images/USD_linear.png)
 
-In Unity 2019, the USD importer also supports importing unlimited weights per vertex, however
-this must be enabled in the project settings under Edit > Project Settings > Quality:
+In Unity 2019, the USD importer supports importing unlimited weights per vertex. However,
+to see the effect of more than 4 weights per vertex, this must be enabled in the project
+settings under Edit > Project Settings > Quality:
 
 ![USD unlimited_weights](Images/USD_unlimited_weights.png)
 
@@ -31,14 +32,14 @@ this must be enabled in the project settings under Edit > Project Settings > Qua
 
 * Windows / OSX
 * Unity version: 2018.3 (2018.3.4f1 and up) and 2019.1 (2019.1.0b2 and up)   
-See ["2017 users" section](#2017-users) if you want to use the plugin in Unity 2017.4
+See ["2017 users" section](#unity-2017-users) if you want to use the plugin in Unity 2017.4
 * To build a standalone, Api Compatibility Level needs to be set to .NET 4.x   
    In Edit > Project Settings > Player :   
     ![USD .NET version](Images/USD_.NET_version.png)
 
 ## Samples
 
-Unity USD package also includes samples to help getting up to speed.
+The USD package also includes samples to help you get started.
 Please note, the way to get them varies depending on the Unity version you are using. See below.
 
 ### Unity 2019.1 and Later
@@ -98,14 +99,14 @@ the inspector on the game object at which these features were authored.
 
 ![USD screenshot](Images/USD_global_screenshot.png)
 
-# 2017 users
+# Unity 2017 Users
 
 The official package is not compatible with 2017.4 but a separate branch is maintained to allow 2017 users to benefit from the last developments.
 
-Here's how to install the plugin from this branch :
- * Checkout [2017.4 branch](https://github.com/Unity-Technologies/usd-unity-sdk/tree/2017.4) from the github repository
- * Copy UsdUnitySdk in your Assets folder
- * Do not rename this folder
+Here's how to install the plugin from this branch:
+ * Checkout [2017.4 branch](https://github.com/Unity-Technologies/usd-unity-sdk/tree/2017.4) from the GitHub repository.
+ * Copy UsdUnitySdk in your Assets folder.
+ * Do not rename this folder.
 
 # License
 
