@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -29,9 +30,23 @@ namespace Unity.Formats.USD {
     /// Copies the transform value from USD to Unity, optionally changing handedness in the
     /// process.
     /// </summary>
-    public static void BuildXform(XformableSample usdXf,
+    public static void BuildXform(pxr.SdfPath path,
+                                  XformableSample usdXf,
                                   GameObject go,
-                                  SceneImportOptions options) {
+                                  SceneImportOptions options,
+                                  Scene scene) {
+      // If there is an access mask and it's not initially being populated, check to see if the
+      // transform for this object actually varies over time, if not, we can simply return.
+      if (scene.AccessMask != null && !scene.IsPopulatingAccessMask) {
+        System.Reflection.MemberInfo transformMember = null;
+        transformMember = usdXf.GetType().GetMember("transform")[0];
+        HashSet<System.Reflection.MemberInfo> members;
+        if (!scene.AccessMask.Included.TryGetValue(path, out members) ||
+            !members.Contains(transformMember)) {
+          return;
+        }
+      }
+
       BuildXform(usdXf.transform, go, options);
     }
 
