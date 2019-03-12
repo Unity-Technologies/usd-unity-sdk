@@ -49,9 +49,6 @@ namespace Unity.Formats.USD {
     public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
       if (playableAsset == null) { return; }
 
-      var sourceUsdAsset = playableAsset.GetUsdAsset();
-      if (sourceUsdAsset == null) { return; }
-
       var targetUsdAsset = playerData as UsdAsset;
       if (targetUsdAsset == null) {
         if (m_errorOnce) {
@@ -62,6 +59,9 @@ namespace Unity.Formats.USD {
       } else {
         m_errorOnce = true;
       }
+
+      var sourceUsdAsset = playableAsset.GetUsdAsset(targetUsdAsset.m_usdRootPath);
+      if (sourceUsdAsset == null) { return; }
 
       if (!targetUsdAsset.isActiveAndEnabled) {
         return;
