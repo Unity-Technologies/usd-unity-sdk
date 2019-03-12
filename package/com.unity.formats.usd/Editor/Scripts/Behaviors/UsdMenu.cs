@@ -149,15 +149,17 @@ namespace Unity.Formats.USD {
 #endif
 
     static private pxr.SdfPath GetDefaultRoot(Scene scene) {
-      var defPrim = scene.Stage.GetDefaultPrim();
-      if (defPrim) {
-        return defPrim.GetPath();
-      }
+      // We can't safely assume the default prim is the model root, because Alembic files will
+      // always have a default prim set arbitrarily.
+
+      // If there is only one root prim, reference this prim.
       var children = scene.Stage.GetPseudoRoot().GetChildren().ToList();
-      if (children.Count > 0) {
+      if (children.Count == 1) {
         return children[0].GetPath();
       }
 
+      // Otherwise there are 0 or many root prims, in this case the best option is to reference
+      // them all, to avoid confusion.
       return pxr.SdfPath.AbsoluteRootPath();
     }
 
