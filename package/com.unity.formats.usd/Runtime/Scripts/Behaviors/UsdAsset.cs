@@ -68,10 +68,6 @@ namespace Unity.Formats.USD {
     public PayloadPolicy m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
 
     [HideInInspector]
-    [Tooltip("Memorizes which attributes change over time, to speed up playback (trades time for memory)")]
-    public bool m_usdVariabilityCache = true;
-
-    [HideInInspector]
     public bool m_importHierarchy = true;
 
     // ----------------------------------------------------------------------------------------- //
@@ -195,6 +191,9 @@ namespace Unity.Formats.USD {
     public bool m_debugShowSkeletonBindPose;
     public bool m_debugShowSkeletonRestPose;
     public bool m_debugPrintVariabilityCache;
+
+    [Tooltip("Memorizes which attributes change over time, to speed up playback (trades time for memory)")]
+    public bool m_usdVariabilityCache = true;
 
     [HideInInspector]
     public BasisTransformation LastHandedness;
