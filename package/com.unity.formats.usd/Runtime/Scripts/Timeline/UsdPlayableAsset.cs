@@ -24,12 +24,11 @@ namespace Unity.Formats.USD {
 
     [Tooltip("USD Player to Control")]
     public ExposedReference<UsdAsset> SourceUsdAsset;
-    public string UsdRootPath;
 
     public ClipCaps clipCaps { get { return ClipCaps.Extrapolation | ClipCaps.Looping | ClipCaps.SpeedMultiplier | ClipCaps.ClipIn; } }
 
-    public UsdAsset GetUsdAsset() {
-      m_sourceUsdAsset.m_usdRootPath = UsdRootPath;
+    public UsdAsset GetUsdAsset(string usdRootPath) {
+      m_sourceUsdAsset.m_usdRootPath = usdRootPath;
       return m_sourceUsdAsset;
     }
 
@@ -40,7 +39,6 @@ namespace Unity.Formats.USD {
 
       if (m_sourceUsdAsset != null) {
         behaviour.playableAsset = this;
-        UsdRootPath = m_sourceUsdAsset.m_usdRootPath;
         name = System.IO.Path.GetFileName(m_sourceUsdAsset.usdFullPath);
       }
 
