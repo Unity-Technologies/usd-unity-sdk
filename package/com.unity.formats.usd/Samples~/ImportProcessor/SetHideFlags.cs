@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Pixar Animation Studios
+﻿// Copyright 2019 Pixar Animation Studios
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,39 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text.RegularExpressions;
 using pxr;
 
-namespace Unity.Formats.USD.Examples
-{
-    /// <summary>
-    /// For matching Usd Paths, set the HideFlags on the GameObject.
-    /// </summary>
-    /// <seealso cref="UnityEngine.HideFlags"/>
-    public class SetHideFlags : RegexImportProcessor, IImportPostProcessHierarchy
-    {
-        public HideFlags hideFlagsSettings = HideFlags.DontSave;
-        public void PostProcessHierarchy(PrimMap primMap, SceneImportOptions sceneImportOptions)
-        {
-            InitRegex();
+namespace Unity.Formats.USD.Examples {
 
-            foreach (KeyValuePair<SdfPath, GameObject> kvp in primMap)
-            {
-                if (!IsMatch(kvp.Key)) continue;
-                GameObject go = kvp.Value;
-                go.hideFlags = hideFlagsSettings;
-            }
-        }
+  /// <summary>
+  /// For matching Usd Paths, set the HideFlags on the GameObject.
+  /// </summary>
+  /// <seealso cref="UnityEngine.HideFlags"/>
+  public class SetHideFlags : RegexImportProcessor, IImportPostProcessHierarchy {
 
-        void Reset()
-        {
-            matchExpression = "/";
-            isNot = true;
-            matchType = EMatchType.Wildcard;
-            compareAgainst = ECompareAgainst.UsdName;
-        }
+    public HideFlags hideFlagsSettings = HideFlags.DontSave;
+
+    public void PostProcessHierarchy(PrimMap primMap, SceneImportOptions sceneImportOptions) {
+      InitRegex();
+
+      foreach (KeyValuePair<SdfPath, GameObject> kvp in primMap) {
+        if (!IsMatch(kvp.Key)) continue;
+        GameObject go = kvp.Value;
+        go.hideFlags = hideFlagsSettings;
+      }
     }
+
+    void Reset() {
+      matchExpression = "/";
+      isNot = true;
+      matchType = EMatchType.Wildcard;
+      compareAgainst = ECompareAgainst.UsdName;
+    }
+  }
 }
