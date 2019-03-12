@@ -122,7 +122,7 @@ namespace Unity.Formats.USD {
 
           if (importOptions.importTransforms) {
             Profiler.BeginSample("Build Mesh Xform");
-            XformImporter.BuildXform(pathAndSample.sample, go, importOptions);
+            XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
             Profiler.EndSample();
           }
 
