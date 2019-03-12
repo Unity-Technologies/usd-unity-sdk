@@ -30,6 +30,8 @@ namespace Unity.Formats.USD {
                                  SceneImportOptions options) {
       var cam = ImporterBase.GetOrAddComponent<Camera>(go);
       usdCamera.CopyToCamera(cam, setTransform: false);
+      cam.nearClipPlane *= options.scale;
+      cam.farClipPlane *= options.scale;
     }
   }
 }
