@@ -22,6 +22,8 @@ namespace Unity.Formats.USD {
     private bool m_isLoaded = true;
 
     // Variable used to track dirty load state.
+    [SerializeField]
+    [HideInInspector]
     private bool m_wasLoaded = true;
 
     /// <summary>
