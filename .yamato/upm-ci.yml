@@ -50,26 +50,20 @@ run_preview_verified_staging:
     flavor: m1.large
     name: Runner
   commands:
-    # Install ci tools dependencies
-    - git clone --single-branch --branch feat/PAI-434-template-test git@gitlab.cds.internal.unity3d.com:upm-packages/project-templates/upm-template-utils.git
-    - npm install upm-template-utils
-    - node upm-template-utils/index.js template publish
+    - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package pack
+    - upm-ci package publish --registry staging
   triggers:
     tags:
       only:
-        - /^(v|V)[0-9].[0-9].[0-9]/
+        - /^(v|V)[0-9]+.[0-9]+.[0-9]+/
   artifacts:
-    logs.zip:
+    artifacts.zip:
       paths:
-        - "upm-ci~/logs/**/*"
-        - "upm-ci~/test-results/**/*"
-    Package.zip:
-      paths:
-        - "upm-ci~/package/*.tgz"
+        - "upm-ci~/packages/*.tgz"
   dependencies:
   {% for editor in editors %}
   {% for platform in platforms %}
     - .yamato/upm-ci.yml#{{ platform.name }}_{{ editor.version }}
   {% endfor %}  
   {% endfor %}
-
