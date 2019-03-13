@@ -302,8 +302,21 @@ namespace Unity.Formats.USD {
     public static void MenuUnloadSubtree() {
       var src = Selection.activeGameObject.transform;
       int count = 0;
+
+      // Potential payload issue: If the payload policy is set to "Dont Load Payloads" on scene
+      // load, then the policy is switched to "Load All" and the refresh button is hit, the
+      // internal state of the existing payloads will be incorrect because they will have been
+      // loaded by virtue of the UsdStage's payload policy, without a load/unload action.
+      // The real underlying issue is that the system rebuilds the PrimMap on every refresh, which
+      // enables unloaded and deleted prims to come back to life. What should happen is the
+      // PrimMap should be reconstructed from the Unity scene on refresh instead. This would
+      // ensure changing the load policy would not trigger previously unloaded prims to be loaded.
+
       foreach (var payload in src.GetComponentsInChildren<UsdPayload>()) {
-        payload.Unload();
+        if (payload.IsLoaded) {
+          payload.Unload();
+          payload.Update();
+        }
         count++;
       }
 
@@ -311,8 +324,6 @@ namespace Unity.Formats.USD {
         Debug.LogWarning("No USD payloads found in subtree.");
         return;
       }
-      var root = src.GetComponentInParent<UsdAsset>();
-      root.Reload(forceRebuild: false);
     }
 
     [MenuItem("USD/Load Subtree", true)]
@@ -324,7 +335,10 @@ namespace Unity.Formats.USD {
       var src = Selection.activeGameObject.transform;
       int count = 0;
       foreach (var payload in src.GetComponentsInChildren<UsdPayload>()) {
-        payload.Load();
+        if (!payload.IsLoaded) {
+          payload.Load();
+          payload.Update();
+        }
         count++;
       }
 
@@ -332,9 +346,6 @@ namespace Unity.Formats.USD {
         Debug.LogWarning("No USD payloads found in subtree.");
         return;
       }
-
-      var root = src.GetComponentInParent<UsdAsset>();
-      root.Reload(forceRebuild: false);
     }
 
     /// <summary>
