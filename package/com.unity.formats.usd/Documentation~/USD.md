@@ -37,6 +37,10 @@ See ["2017 users" section](#unity-2017-users) if you want to use the plugin in U
    In Edit > Project Settings > Player :   
     ![USD .NET version](Images/USD_.NET_version.png)
 
+## Limitations
+
+* Versions of USD **prior to 19.05** do not handle Alembic playback correctly, resulting significantly slower frame rate than authored in the Alembic cache (24x exactly). This will be fixed with the adoption of the USD 19.05 release and all assets will play back correctly, a priori.
+
 ## Samples
 
 The USD package also includes samples to help you get started.
