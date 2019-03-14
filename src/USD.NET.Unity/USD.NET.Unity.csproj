@@ -60,21 +60,28 @@
     <Reference Include="System.Data" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Unity544f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Unity2018.2.7f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Geometry\BasisCurvesSample.cs" />
+    <Compile Include="Geometry\PointBasedSample.cs" />
+    <Compile Include="Geometry\ImageableSample.cs" />
+    <Compile Include="Geometry\XformableSample.cs" />
     <Compile Include="Geometry\CameraSample.cs" />
     <Compile Include="Geometry\CubeSample.cs" />
     <Compile Include="Geometry\CurvesSample.cs" />
     <Compile Include="Geometry\MeshSample.cs" />
+    <Compile Include="Geometry\PointInstancerSample.cs" />
     <Compile Include="Geometry\MeshSampleBase.cs" />
+    <Compile Include="Geometry\BoundableSample.cs" />
+    <Compile Include="Geometry\GprimSample.cs" />
+    <Compile Include="Geometry\ScopeSample.cs" />
     <Compile Include="Geometry\XformSample.cs" />
     <Compile Include="Shading\MaterialBindingSample.cs" />
     <Compile Include="Shading\MaterialSample.cs" />
     <Compile Include="Shading\ParameterInfo.cs" />
-    <Compile Include="Shading\UsdPreviewSurface\PrimvarReaderFloat2Sample.cs" />
+    <Compile Include="Shading\UsdPreviewSurface\PrimvarReaderSample.cs" />
     <Compile Include="Shading\UsdPreviewSurface\TextureReaderSample.cs" />
     <Compile Include="Shading\ShaderAttributes.cs" />
     <Compile Include="Shading\ShaderSample.cs" />

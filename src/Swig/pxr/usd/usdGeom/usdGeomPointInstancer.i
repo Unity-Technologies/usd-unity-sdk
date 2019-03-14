@@ -20,5 +20,7 @@
 
 %template(UsdGeomBoolVector) std::vector<bool>;
 %template(UsdGeomLongVector) std::vector<int64_t>;
+%template(VtMatrix4dArrayVector) std::vector<VtMatrix4dArray>;
+%template(VtVec3fArrayVector) std::vector<VtVec3fArray>;
 
 %include "pxr/usd/usdGeom/pointInstancer.h"

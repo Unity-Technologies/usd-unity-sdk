@@ -17,11 +17,4 @@
 #include "pxr/usd/usdSkel/utils.h"
 %}
 
-// Definition does not match declaration (link error).
-%ignore UsdSkelComputeJointsExtent(const GfMatrix4d* xforms,
-                           size_t numXforms,
-                           VtVec3fArray* extent,
-                           const GfVec3f& pad=GfVec3f(0,0,0),
-                           const GfMatrix4d* rootXform=nullptr);
-
 %include "pxr/usd/usdSkel/utils.h"

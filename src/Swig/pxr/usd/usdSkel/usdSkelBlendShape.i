@@ -17,8 +17,4 @@
 #include "pxr/usd/usdSkel/blendShape.h"
 %}
 
-// Declared but not defined:
-// https://github.com/PixarAnimationStudios/USD/issues/587
-%ignore UsdSkelBlendShape::ComputeInbetweenKeys;
-
 %include "pxr/usd/usdSkel/blendShape.h"

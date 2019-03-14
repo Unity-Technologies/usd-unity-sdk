@@ -20,5 +20,8 @@
 
 %ignore JsParseStream(std::istream& istr, JsParseError* error = 0);
 %ignore JsWriteToStream(const JsValue& value, std::ostream& ostr);
+%ignore JsParseString(const std::string& data, JsParseError* error = 0);
+%ignore JsParseError;
 
-%include "pxr/base/js/json.h"
+//%include "pxr/base/js/json.h"
+%include "third_party/include/pxr/base/tf/type.h"

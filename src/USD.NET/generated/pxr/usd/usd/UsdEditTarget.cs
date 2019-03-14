@@ -59,11 +59,11 @@ public class UsdEditTarget : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdEditTarget(SdfLayerHandle layer, SWIGTYPE_p_PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_5(SdfLayerHandle.getCPtr(layer), SWIGTYPE_p_PcpNodeRef.getCPtr(node)), true) {
+  public UsdEditTarget(SdfLayerHandle layer, PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_5(SdfLayerHandle.getCPtr(layer), PcpNodeRef.getCPtr(node)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdEditTarget(SdfLayer layer, SWIGTYPE_p_PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_6(SdfLayer.getCPtr(layer), SWIGTYPE_p_PcpNodeRef.getCPtr(node)), true) {
+  public UsdEditTarget(SdfLayer layer, PcpNodeRef node) : this(UsdCsPINVOKE.new_UsdEditTarget__SWIG_6(SdfLayer.getCPtr(layer), PcpNodeRef.getCPtr(node)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -94,20 +94,20 @@ public class UsdEditTarget : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandle GetPrimSpecForScenePath(SdfPath scenePath) {
-    SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.UsdEditTarget_GetPrimSpecForScenePath(swigCPtr, SdfPath.getCPtr(scenePath)), true);
+  public SdfPrimSpecHandle GetPrimSpecForScenePath(SdfPath scenePath) {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.UsdEditTarget_GetPrimSpecForScenePath(swigCPtr, SdfPath.getCPtr(scenePath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPropertySpecHandle GetPropertySpecForScenePath(SdfPath scenePath) {
-    SWIGTYPE_p_SdfPropertySpecHandle ret = new SWIGTYPE_p_SdfPropertySpecHandle(UsdCsPINVOKE.UsdEditTarget_GetPropertySpecForScenePath(swigCPtr, SdfPath.getCPtr(scenePath)), true);
+  public SdfPropertySpecHandle GetPropertySpecForScenePath(SdfPath scenePath) {
+    SdfPropertySpecHandle ret = new SdfPropertySpecHandle(UsdCsPINVOKE.UsdEditTarget_GetPropertySpecForScenePath(swigCPtr, SdfPath.getCPtr(scenePath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfSpecHandle GetSpecForScenePath(SdfPath scenePath) {
-    SWIGTYPE_p_SdfSpecHandle ret = new SWIGTYPE_p_SdfSpecHandle(UsdCsPINVOKE.UsdEditTarget_GetSpecForScenePath(swigCPtr, SdfPath.getCPtr(scenePath)), true);
+  public SdfSpecHandle GetSpecForScenePath(SdfPath scenePath) {
+    SdfSpecHandle ret = new SdfSpecHandle(UsdCsPINVOKE.UsdEditTarget_GetSpecForScenePath(swigCPtr, SdfPath.getCPtr(scenePath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

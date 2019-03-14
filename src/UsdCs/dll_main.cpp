@@ -66,7 +66,7 @@ public:
   virtual void IssueFatalError(TfCallContext const &context, std::string const &msg) {
     DiagnosticHandler* handler = DiagnosticHandler::GetGlobalHandler();
     if (handler != nullptr) {
-      handler->OnError(msg.c_str());
+      handler->OnFatalError(msg.c_str());
     } else {
       fprintf(stderr, "FATAL ERROR: %s\n", msg.c_str());
     }

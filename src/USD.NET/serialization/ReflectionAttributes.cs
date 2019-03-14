@@ -21,14 +21,18 @@ namespace USD.NET {
   /// </summary>
   /// 
   /// <remarks>
-  /// A setting the value to Variability.Uniform indicates the UsdAttribute may not have
+  /// Setting the value to Variability.Uniform indicates the UsdAttribute may not have
   /// time samples and can only hold a single value. By default, UsdAttributes will be
-  /// declared as Varying unless writing to a scheme which previously declared the attribute to be
-  /// Uniform.
+  /// declared as Varying unless writing to a schema that previously declared the attribute
+  /// to be Uniform.
   /// </remarks>
   public class UsdVariabilityAttribute : Attribute {
-    // XXX: Confusion here between this property and type names
-    public pxr.SdfVariability SdfVariability { get; private set; }
+
+    public pxr.SdfVariability SdfVariability {
+      get;
+      private set;
+    }
+
     public UsdVariabilityAttribute(Variability variability) {
       this.SdfVariability = variability == Variability.Uniform
         ? pxr.SdfVariability.SdfVariabilityUniform
@@ -86,6 +90,23 @@ namespace USD.NET {
   }
 
   /// <summary>
+  /// Declares the attribute should be stored as metadata under the "customData" key.
+  /// </summary>
+  public class CustomDataAttribute : Attribute {
+    public CustomDataAttribute() {
+    }
+  }
+
+  /// <summary>
+  /// Declares the attribute should be stored as metadata. Note that the field must be registered
+  /// with USD.
+  /// </summary>
+  public class UsdMetadataAttribute : Attribute {
+    public UsdMetadataAttribute() {
+    }
+  }
+
+  /// <summary>
   /// Declares the attribute as vertex data which can be made available to the shader at render
   /// time and enables repteated value compression.
   /// </summary>
@@ -124,8 +145,7 @@ namespace USD.NET {
   /// </summary>
   /// <remarks>
   /// This special case is entirely for performance. The cost of iterating over display color and 
-  /// opacity in C# to fuse them back into a single vector is too great (138ms in one test), this
-  /// avoids that cost.
+  /// opacity in C# to fuse them back into a single vector is too great, this avoids that cost.
   /// </remarks>
   public class FusedDisplayColorAttribute : Attribute {
     public FusedDisplayColorAttribute() {
@@ -143,14 +163,6 @@ namespace USD.NET {
   /// </remarks>
   public class FusedTransformAttribute : Attribute {
     public FusedTransformAttribute() {
-    }
-  }
-
-  /// <summary>
-  /// Declares the attribute should be stored as metadata under the "customData" key.
-  /// </summary>
-  public class CustomDataAttribute : Attribute {
-    public CustomDataAttribute() {
     }
   }
 

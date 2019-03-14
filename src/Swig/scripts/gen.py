@@ -14,7 +14,7 @@
 
 import sys, os
 import vt, sdf
-import usdGeom, usdShade, usdSkel
+import usdGeom, usdShade, usdSkel, usdLux, usdRi, usdVol, kind
 
 basePath = "src/Swig/pxr/base/"
 usdPath = "src/Swig/pxr/usd/"
@@ -52,8 +52,25 @@ if __name__ == "__main__":
     print "Generating UsdGeom "
     usdGeom.genUsdGeomTokens(usdPath, copyright)
 
+    print "Generating UsdLux "
+    usdLux.genUsdLuxTokens(usdPath, copyright)
+
+    print "Generating UsdRi "
+    usdRi.genUsdRiTokens(usdPath, copyright)
+
     print "Generating UsdShade "
     usdShade.genUsdShadeTokens(usdPath, copyright)
 
     print "Generating UsdSkel "
     usdSkel.genUsdSkelTokens(usdPath, copyright)
+
+    print "Generating Kind "
+    kind.genKindTokens(usdPath, copyright)
+
+    # Disabled until this issue is resolved:
+    # https://github.com/PixarAnimationStudios/USD/issues/658
+    #
+    #print "Generating UsdVol "
+    #usdVol.genUsdVolTokens(usdPath, copyright)
+
+

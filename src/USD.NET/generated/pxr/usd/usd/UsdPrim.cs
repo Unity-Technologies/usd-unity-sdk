@@ -42,8 +42,8 @@ public class UsdPrim : UsdObject {
   public UsdPrim() : this(UsdCsPINVOKE.new_UsdPrim(), true) {
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandle GetPrimDefinition() {
-    SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.UsdPrim_GetPrimDefinition(swigCPtr), true);
+  public SdfPrimSpecHandle GetPrimDefinition() {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.UsdPrim_GetPrimDefinition(swigCPtr), true);
     return ret;
   }
 
@@ -52,8 +52,8 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandleVector GetPrimStack() {
-    SWIGTYPE_p_SdfPrimSpecHandleVector ret = new SWIGTYPE_p_SdfPrimSpecHandleVector(UsdCsPINVOKE.UsdPrim_GetPrimStack(swigCPtr), true);
+  public SdfPrimSpecHandleVector GetPrimStack() {
+    SdfPrimSpecHandleVector ret = new SdfPrimSpecHandleVector(UsdCsPINVOKE.UsdPrim_GetPrimStack(swigCPtr), true);
     return ret;
   }
 
@@ -230,6 +230,24 @@ public class UsdPrim : UsdObject {
 
   public bool HasProperty(TfToken propName) {
     bool ret = UsdCsPINVOKE.UsdPrim_HasProperty(swigCPtr, TfToken.getCPtr(propName));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool IsA(TfType schemaType) {
+    bool ret = UsdCsPINVOKE.UsdPrim_IsA(swigCPtr, TfType.getCPtr(schemaType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasAPI(TfType schemaType, TfToken instanceName) {
+    bool ret = UsdCsPINVOKE.UsdPrim_HasAPI__SWIG_2(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasAPI(TfType schemaType) {
+    bool ret = UsdCsPINVOKE.UsdPrim_HasAPI__SWIG_3(swigCPtr, TfType.getCPtr(schemaType));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -545,13 +563,13 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public SWIGTYPE_p_PcpPrimIndex GetPrimIndex() {
-    SWIGTYPE_p_PcpPrimIndex ret = new SWIGTYPE_p_PcpPrimIndex(UsdCsPINVOKE.UsdPrim_GetPrimIndex(swigCPtr), false);
+  public PcpPrimIndex GetPrimIndex() {
+    PcpPrimIndex ret = new PcpPrimIndex(UsdCsPINVOKE.UsdPrim_GetPrimIndex(swigCPtr), false);
     return ret;
   }
 
-  public SWIGTYPE_p_PcpPrimIndex ComputeExpandedPrimIndex() {
-    SWIGTYPE_p_PcpPrimIndex ret = new SWIGTYPE_p_PcpPrimIndex(UsdCsPINVOKE.UsdPrim_ComputeExpandedPrimIndex(swigCPtr), true);
+  public PcpPrimIndex ComputeExpandedPrimIndex() {
+    PcpPrimIndex ret = new PcpPrimIndex(UsdCsPINVOKE.UsdPrim_ComputeExpandedPrimIndex(swigCPtr), true);
     return ret;
   }
 

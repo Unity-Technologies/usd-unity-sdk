@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Tests {
@@ -28,13 +29,199 @@ namespace Tests {
       if (printLayer) {
         PrintScene(scene);
       }
-
+      
       scene.Save();
       scene.Close();
 
       var scene2 = USD.NET.Scene.Open(filename);
       scene2.Read("/Foo", outputSample);
       scene2.Close();
+
+      System.IO.File.Delete(filename);
+    }
+
+    public static void TestVariability<T>(T inputSample)
+      where T : USD.NET.SampleBase, new() {
+      // ----------------------------------------------- //
+      // Test with default time --> not varying.
+      // ----------------------------------------------- //
+      string filename = GetTempFile();
+      var scene = USD.NET.Scene.Create(filename);
+      var outputSample = new T();
+      scene.Time = null;
+
+      scene.Write("/Foo", inputSample);
+
+      scene.Save();
+      scene.Close();
+
+      var varMap = new USD.NET.AccessMask();
+      var scene2 = USD.NET.Scene.Open(filename);
+      scene2.AccessMask = varMap;
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+      scene2.Close();
+
+      AssertTrue(varMap.Included.Count == 0);
+      Console.WriteLine("Expected zero dynamic prims and members: success.");
+
+      System.IO.File.Delete(filename);
+
+      // ----------------------------------------------- //
+      // Test with time = 1.0 --> not varying.
+      // ----------------------------------------------- //
+      filename = GetTempFile();
+      scene = USD.NET.Scene.Create(filename);
+      scene.Time = 1.0;
+
+      scene.Write("/Foo", inputSample);
+
+      scene.Save();
+      scene.Close();
+
+      varMap = new USD.NET.AccessMask();
+      scene2 = USD.NET.Scene.Open(filename);
+      scene2.AccessMask = varMap;
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+      scene2.Close();
+
+      AssertTrue(varMap.Included.Count == 0);
+      Console.WriteLine("Expected zero dynamic prims and members: success.");
+      System.IO.File.Delete(filename);
+
+      // ----------------------------------------------- //
+      // Test with time = 1.0, 2.0 --> varying.
+      // ----------------------------------------------- //
+      filename = GetTempFile();
+      scene = USD.NET.Scene.Create(filename);
+
+      scene.Time = 1.0;
+      scene.Write("/Foo", inputSample);
+
+      scene.Time = 2.0;
+      scene.Write("/Foo", inputSample);
+
+      scene.Save();
+      scene.Close();
+
+      varMap = new USD.NET.AccessMask();
+      scene2 = USD.NET.Scene.Open(filename);
+      scene2.Time = 1.0;
+      scene2.AccessMask = varMap;
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+
+      // Still expect nothing dynamic, since varMap was never populated.
+      AssertTrue(varMap.Included.Count == 0);
+      Console.WriteLine("Expected zero dynamic prims and members: success.");
+
+      scene2.IsPopulatingAccessMask = true;
+      scene2.AccessMask = varMap;
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+
+      // Extra reads while populating should result in the same map values.
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+      scene2.IsPopulatingAccessMask = false;
+
+      // Reading while not populating should not clear the map.
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+      scene2.Close();
+
+      Console.WriteLine("(Expect only </Foo>)");
+      foreach (var pathAndMembers in varMap.Included) {
+        Console.WriteLine("  Dynamic Members: " + pathAndMembers.Key);
+        foreach (var memberInfo in pathAndMembers.Value) {
+          Console.WriteLine("    ." + memberInfo.Name);
+        }
+      }
+
+      AssertTrue(varMap.Included.Count > 0);
+      AssertTrue(varMap.Included[new pxr.SdfPath("/Foo")].Count > 0);
+
+      foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo")]) {
+        var fi = memberInfo as System.Reflection.FieldInfo;
+        var pi = memberInfo as System.Reflection.PropertyInfo;
+        object vIn = null;
+        object vOut = null;
+        if (fi != null && fi.FieldType.IsClass) {
+          vIn = fi.GetValue(inputSample);
+          vOut = fi.GetValue(outputSample);
+        } else if (pi != null && pi.PropertyType.IsClass) {
+          vIn = pi.GetValue(inputSample, null);
+          vOut = pi.GetValue(outputSample, null);
+        }
+
+        AssertEqual(vIn, vOut);
+      }
+      System.IO.File.Delete(filename);
+
+      // ----------------------------------------------- //
+      // Test that reference values are not populated.
+      // ----------------------------------------------- //
+      filename = GetTempFile();
+      scene = USD.NET.Scene.Create(filename);
+      outputSample = new T();
+
+      scene.Time = null;
+      scene.Write("/Foo", inputSample);
+
+      // Bar IS time varying.
+      scene.Time = 1.0;
+      scene.Write("/Foo/Bar", inputSample);
+      scene.Time = 2.0;
+      scene.Write("/Foo/Bar", inputSample);
+
+      scene.Save();
+      scene.Close();
+
+      scene2 = USD.NET.Scene.Open(filename);
+      scene2.Time = 1.0;
+      varMap = new USD.NET.AccessMask();
+      scene2.IsPopulatingAccessMask = true;
+      scene2.AccessMask = varMap;
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+      scene2.Read(new pxr.SdfPath("/Foo/Bar"), outputSample);
+      scene2.IsPopulatingAccessMask = false;
+
+      // Variability map now has all </Bar> members cached as time-varying.
+      outputSample = new T();
+      var barSample = new T();
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+      scene2.Read(new pxr.SdfPath("/Foo/Bar"), barSample);
+      scene2.Close();
+
+      Console.WriteLine("");
+      Console.WriteLine("(Expect only </Foo/Bar>)");
+      foreach (var pathAndMembers in varMap.Included) {
+        Console.WriteLine("  Dynamic Members: " + pathAndMembers.Key);
+        foreach (var memberInfo in pathAndMembers.Value) {
+          Console.WriteLine("    ." + memberInfo.Name);
+        }
+      }
+
+      // Assert that all </Foo> values are default.
+      var defaultSample = new T();
+      AssertTrue(varMap.Included.ContainsKey(new pxr.SdfPath("/Foo")) == false);
+      var bindFlags = System.Reflection.BindingFlags.Public
+                    | System.Reflection.BindingFlags.Instance;
+      foreach (var memberInfo in typeof(T).GetMembers(bindFlags)) {
+        var fi = memberInfo as System.Reflection.FieldInfo;
+        var pi = memberInfo as System.Reflection.PropertyInfo;
+        if (fi != null && fi.FieldType.IsClass) {
+          AssertEqual(fi.GetValue(outputSample), fi.GetValue(defaultSample));
+        } else if (pi != null && pi.PropertyType.IsClass) {
+          AssertEqual(pi.GetValue(outputSample, null), fi.GetValue(defaultSample));
+        }
+      }
+
+      // Assert that all </Bar> values are non-default.
+      foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo/Bar")]) {
+        var fi = memberInfo as System.Reflection.FieldInfo;
+        var pi = memberInfo as System.Reflection.PropertyInfo;
+        if (fi != null && fi.FieldType.IsClass) {
+          AssertEqual(fi.GetValue(barSample), fi.GetValue(inputSample));
+        } else if (pi != null && pi.PropertyType.IsClass) {
+          AssertEqual(pi.GetValue(barSample, null), fi.GetValue(inputSample));
+        }
+      }
 
       System.IO.File.Delete(filename);
     }
@@ -75,7 +262,7 @@ namespace Tests {
       }
     }
 
-    static protected void AssertEqual<T>(List<T> first, List<T> second) {
+    static protected void AssertEqual(IList first, IList second) {
       if (first == null && second == null) {
         return;
       }
@@ -88,7 +275,7 @@ namespace Tests {
       }
     }
 
-    static protected void AssertEqual<T,Q>(Dictionary<T,Q> first, Dictionary<T,Q> second) {
+    static protected void AssertEqual(IDictionary first, IDictionary second) {
       if (first == null && second == null) {
         return;
       }
@@ -96,8 +283,8 @@ namespace Tests {
         throw new Exception("Length of arrays do not match");
       }
 
-      foreach (var kvp in first) {
-        if (!second.ContainsKey(kvp.Key)) {
+      foreach (System.Collections.DictionaryEntry kvp in first) {
+        if (!second.Contains(kvp.Key)) {
           throw new Exception("Key in first not found in second: " + kvp.Key);
         }
         AssertEqual(kvp.Value, second[kvp.Key]);
@@ -108,11 +295,14 @@ namespace Tests {
       if (first == null && second == null) {
         return;
       }
-      if (first.GetType().IsArray) {
+
+      if ((first as IList) != null) {
+        AssertEqual(first as IList, second as IList);
+      } else if ((first as IDictionary) != null) {
+        AssertEqual(first as IDictionary, second as IDictionary);
+      } else if ((first as Array) != null) {
         AssertEqual(first as Array, second as Array);
-        return;
-      }
-      if (!first.Equals(second)) {
+      } else if (!first.Equals(second)) {
         throw new Exception("Values do not match for " + typeof(T).Name);
       }
     }

@@ -16,6 +16,7 @@
 
 #define USDSKEL_API
 
+%include "usdSkelAnimation.i"
 %include "usdSkelAnimMapper.i"
 %include "usdSkelAnimQuery.i"
 %include "usdSkelBlendShape.i"

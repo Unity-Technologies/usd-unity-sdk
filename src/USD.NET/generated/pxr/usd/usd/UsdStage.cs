@@ -353,13 +353,13 @@ public class UsdStage : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static SWIGTYPE_p_PcpVariantFallbackMap GetGlobalVariantFallbacks() {
-    SWIGTYPE_p_PcpVariantFallbackMap ret = new SWIGTYPE_p_PcpVariantFallbackMap(UsdCsPINVOKE.UsdStage_GetGlobalVariantFallbacks(), true);
+  public static SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t GetGlobalVariantFallbacks() {
+    SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t ret = new SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t(UsdCsPINVOKE.UsdStage_GetGlobalVariantFallbacks(), true);
     return ret;
   }
 
-  public static void SetGlobalVariantFallbacks(SWIGTYPE_p_PcpVariantFallbackMap fallbacks) {
-    UsdCsPINVOKE.UsdStage_SetGlobalVariantFallbacks(SWIGTYPE_p_PcpVariantFallbackMap.getCPtr(fallbacks));
+  public static void SetGlobalVariantFallbacks(SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t fallbacks) {
+    UsdCsPINVOKE.UsdStage_SetGlobalVariantFallbacks(SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t.getCPtr(fallbacks));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -842,8 +842,8 @@ public class UsdStage : global::System.IDisposable {
     return ret;
   }
 
-  public SdfPathVector GetAllPathsByType(string typeName) {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.UsdStage_GetAllPathsByType(swigCPtr, typeName), true);
+  public SdfPathVector GetAllPathsByType(string typeName, SdfPath rootPath) {
+    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.UsdStage_GetAllPathsByType(swigCPtr, typeName, SdfPath.getCPtr(rootPath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

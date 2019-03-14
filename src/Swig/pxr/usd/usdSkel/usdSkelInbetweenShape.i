@@ -17,4 +17,7 @@
 #include "pxr/usd/usdSkel/inbetweenShape.h"
 %}
 
+%include "std_vector.i"
+%template(UsdSkelInbetweenShapeVector) std::vector<UsdSkelInbetweenShape>;
+
 %include "pxr/usd/usdSkel/inbetweenShape.h"

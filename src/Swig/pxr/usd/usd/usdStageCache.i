@@ -19,5 +19,6 @@
 %}
 
 %template(UsdStageCacheResultPair) std::pair<UsdStageRefPtr, bool>;
+%template(UsdStageRefPtrVector) std::vector<UsdStageRefPtr>;
 
 %include "pxr/usd/usd/stageCache.h"

@@ -129,6 +129,12 @@ public class GfMatrix4f : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_float data() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix4f_data__SWIG_0(swigCPtr);
+    SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
+    return ret;
+  }
+
   public GfMatrix4f GetTranspose() {
     GfMatrix4f ret = new GfMatrix4f(UsdCsPINVOKE.GfMatrix4f_GetTranspose(swigCPtr), true);
     return ret;

@@ -83,15 +83,23 @@ namespace USD.NET.Unity {
       pxr.GfCamera c = new pxr.GfCamera();
 
       // Setup focalLength & apertures.
-      c.SetPerspectiveFromAspectRatioAndFieldOfView(camera.aspect, camera.fieldOfView,
-                                                    pxr.GfCamera.FOVDirection.FOVVertical);
+      if (camera.orthographic) {
+        projection = ProjectionType.Orthographic;
+        // USD Orthographic size is 2x the Unity size (Unity uses half aperture for ortho size).
+        c.SetOrthographicFromAspectRatioAndSize(camera.aspect,
+                                                camera.orthographicSize * 2,
+                                                pxr.GfCamera.FOVDirection.FOVVertical);
+      } else {
+        projection = ProjectionType.Perspective;
+        c.SetPerspectiveFromAspectRatioAndFieldOfView(camera.aspect,
+                                                      camera.fieldOfView,
+                                                      pxr.GfCamera.FOVDirection.FOVVertical);
+      }
+
       clippingRange = new UnityEngine.Vector2(camera.nearClipPlane, camera.farClipPlane);
       focalLength = c.GetFocalLength();
       horizontalAperture = c.GetHorizontalAperture();
       verticalAperture = c.GetVerticalAperture();
-      projection = camera.orthographic
-                        ? ProjectionType.Orthographic
-                        : ProjectionType.Perspective;
 
       var tr = camera.transform;
       transform = UnityEngine.Matrix4x4.TRS(tr.localPosition,
@@ -105,20 +113,34 @@ namespace USD.NET.Unity {
     /// <summary>
     /// Copyies the current sample values to the given camera.
     /// </summary>
-    public void CopyToCamera(UnityEngine.Camera camera) {
+    public void CopyToCamera(UnityEngine.Camera camera, bool setTransform) {
       // GfCamera is a gold mine of camera math.
-      pxr.GfCamera c = new pxr.GfCamera(UnityTypeConverter.ToGfMatrix(transform));
-
+      pxr.GfCamera c = new pxr.GfCamera(UnityTypeConverter.ToGfMatrix(transform),
+          projection == ProjectionType.Perspective ? pxr.GfCamera.Projection.Perspective
+                                                   : pxr.GfCamera.Projection.Orthographic,
+          this.horizontalAperture,
+          this.verticalAperture,
+          this.horizontalApertureOffset,
+          this.verticalApertureOffset,
+          this.focalLength);
+      
       camera.orthographic = c.GetProjection() == pxr.GfCamera.Projection.Orthographic;
       camera.fieldOfView = c.GetFieldOfView(pxr.GfCamera.FOVDirection.FOVVertical);
       camera.aspect = c.GetAspectRatio();
-      camera.nearClipPlane = c.GetClippingRange().GetMin();
-      camera.farClipPlane = c.GetClippingRange().GetMax();
+      camera.nearClipPlane = clippingRange.x;
+      camera.farClipPlane = clippingRange.y;
 
-      var tr = camera.transform;
-      var xf = transform;
+      if (camera.orthographic) {
+        // Note that USD default scale is cm and aperture is in mm.
+        // Also Unity ortho size is the half aperture, so divide USD by 2.
+        camera.orthographicSize = (verticalAperture / 10.0f) / 2.0f;
+      }
 
-      UnityTypeConverter.SetTransform(xf, tr);
+      if (setTransform) {
+        var tr = camera.transform;
+        var xf = transform;
+        UnityTypeConverter.SetTransform(xf, tr);
+      }
     }
   }
 }

@@ -22,6 +22,7 @@
 
 %include "sdfTypes.i"
 %include "sdfListOp.i"
+%include "sdfListProxy.i"
 %include "sdfValueTypeName.i"
 %include "sdfValueTypeNames.i"
 %include "sdfAssetPath.i"
@@ -29,11 +30,20 @@
 
 %include "sdfLayerOffset.i"
 %include "sdfPayload.i"
+%include "sdfReference.i"
 %include "sdfNamespaceEdit.i"
 
-//%include "sdfAttributeSpecHandle.i"
 //%include "sdfFileFormatConstPtr.i"
+
+// Order is important, Spec has several levels of inheritance.
+%include "sdfSpec.i"
+%include "sdfPrimSpec.i"
+%include "sdfPropertySpec.i"
+
+%include "sdfAttributeSpec.i"
+%include "sdfRelationshipSpec.i"
 
 %include "sdfLayerBase.i"
 %include "sdfLayer.i"
+%include "sdfLayerTree.i"
 

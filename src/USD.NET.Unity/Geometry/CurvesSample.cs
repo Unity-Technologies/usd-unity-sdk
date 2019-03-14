@@ -18,7 +18,7 @@ namespace USD.NET.Unity {
 
   [System.Serializable]
   [UsdSchema("Curves")]
-  public class CurvesSample : XformSample {
+  public class CurvesSample : PointBasedSample {
 
     // TODO: Split into a base class and share with MeshSample (as defined in the schema).
 

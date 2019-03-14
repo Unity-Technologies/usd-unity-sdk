@@ -66,7 +66,7 @@
 
 #include <tbb/atomic.h>
 
-#include <iostream>
+#include <iosfwd>
 #include <memory>
 #include <typeinfo>
 

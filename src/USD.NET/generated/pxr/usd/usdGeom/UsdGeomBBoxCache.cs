@@ -40,15 +40,19 @@ public class UsdGeomBBoxCache : global::System.IDisposable {
     }
   }
 
-  public UsdGeomBBoxCache(UsdTimeCode time, TfTokenVector includedPurposes, bool useExtentsHint) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_0(UsdTimeCode.getCPtr(time), TfTokenVector.getCPtr(includedPurposes), useExtentsHint), true) {
+  public UsdGeomBBoxCache(UsdTimeCode time, TfTokenVector includedPurposes, bool useExtentsHint, bool ignoreVisibility) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_0(UsdTimeCode.getCPtr(time), TfTokenVector.getCPtr(includedPurposes), useExtentsHint, ignoreVisibility), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdGeomBBoxCache(UsdTimeCode time, TfTokenVector includedPurposes) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_1(UsdTimeCode.getCPtr(time), TfTokenVector.getCPtr(includedPurposes)), true) {
+  public UsdGeomBBoxCache(UsdTimeCode time, TfTokenVector includedPurposes, bool useExtentsHint) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_1(UsdTimeCode.getCPtr(time), TfTokenVector.getCPtr(includedPurposes), useExtentsHint), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdGeomBBoxCache(UsdGeomBBoxCache other) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_2(UsdGeomBBoxCache.getCPtr(other)), true) {
+  public UsdGeomBBoxCache(UsdTimeCode time, TfTokenVector includedPurposes) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_2(UsdTimeCode.getCPtr(time), TfTokenVector.getCPtr(includedPurposes)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public UsdGeomBBoxCache(UsdGeomBBoxCache other) : this(UsdCsPINVOKE.new_UsdGeomBBoxCache__SWIG_3(UsdGeomBBoxCache.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -146,6 +150,11 @@ public class UsdGeomBBoxCache : global::System.IDisposable {
 
   public bool GetUseExtentsHint() {
     bool ret = UsdCsPINVOKE.UsdGeomBBoxCache_GetUseExtentsHint(swigCPtr);
+    return ret;
+  }
+
+  public bool GetIgnoreVisibility() {
+    bool ret = UsdCsPINVOKE.UsdGeomBBoxCache_GetIgnoreVisibility(swigCPtr);
     return ret;
   }
 

@@ -26,10 +26,17 @@ namespace Tests {
     }
 
     static void RunTestCases() {
+
+      Cases.BasicTests.IntrinsicTypesTest();
+      Console.ReadKey();
+
       Cases.MeshTests.TriangulationTest();
       Cases.MeshTests.VisibilityTest();
 
       Cases.StageTests.BadPrimTest();
+
+      Cases.QueryTests.BasicTest();
+
       Cases.StageTests.OpenFailTest();
       Cases.StageTests.PointerTest();
       Cases.StageTests.MemoryTest();
@@ -42,7 +49,8 @@ namespace Tests {
 
       Cases.BasicTests.SmokeTest();
       Cases.BasicTests.IntrinsicTypesTest();
-      Cases.BasicTests.EqualityTest();
+      Cases.BasicTests.SdfPathEqualityTest();
+      Cases.BasicTests.VtValueEqualityTest();
       Cases.BasicTests.AssetPathTest();
       Cases.BasicTests.PrimvarsTest();
       Cases.BasicTests.SampleBaseTest();
@@ -56,6 +64,7 @@ namespace Tests {
       Cases.UsdGeomTests.CurvesTest();
       Cases.UsdGeomTests.CameraTest();
       Cases.UsdGeomTests.Camera2Test();
+      Cases.UsdGeomTests.PrimvarTest();
 
       Cases.UsdShadeTests.MaterialBindTest();
       Cases.UsdShadeTests.MaterialIoTest();
@@ -65,6 +74,14 @@ namespace Tests {
       Cases.UsdShadeTests.MaterialBindTest();
 
       Cases.UsdPreviewSurfaceTests.ReadWriteTest();
+
+      Cases.InstancingTests.TraversalTest();
+      Cases.InstancingTests.CreatePointInstancerManualTest();
+      Cases.InstancingTests.PointInstancerTest();
+
+      Cases.OverrideTests.WriteToOverTest();
+      Cases.OverrideTests.WriteToUnderTest();
+      Cases.OverrideTests.WriteOverOnlyTest();
 
       Console.ReadKey();
     }

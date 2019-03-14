@@ -41,14 +41,182 @@ namespace USD.NET.Unity {
       return basisChange * input * basisChangeInverse;
     }
 
+    public static UnityEngine.Vector3 ChangeBasis(UnityEngine.Vector3 point) {
+      UnityEngine.Matrix4x4 mat = UnityEngine.Matrix4x4.identity;
+      mat[2, 2] = -1;
+      return mat.MultiplyPoint3x4(point);
+    }
+
     /// <summary>
     /// Sets the local transform matrix on the given Unity Transform given a Matrix4x4.
     /// </summary>
     static public void SetTransform(UnityEngine.Matrix4x4 localXf,
                                     UnityEngine.Transform transform) {
-      transform.localPosition = ExtractPosition(localXf);
-      transform.localRotation = ExtractRotation(localXf);
-      transform.localScale = ExtractScale(localXf);
+
+      var T = new UnityEngine.Vector3();
+      var S = new UnityEngine.Vector3();
+      var R = new UnityEngine.Quaternion();
+
+      Decompose(localXf, out T, out R, out S);
+
+      transform.localPosition = T;
+      transform.localRotation = R;
+      transform.localScale = S;
+    }
+
+    /// <summary>
+    /// Decompose the given matrix into translation, rotation, and scale, accounting for potential
+    /// handedness changes in the matrix. Returns false if the matrix is singular.
+    /// </summary>
+    /// <remarks>
+    /// Note that for a change of handedness, all scales will invert and a corrective rotation will
+    /// be aded, which will not match the original TSR values, but will be correct in terms of
+    /// orientation, position and scale.
+    /// </remarks>
+    public static bool Decompose(
+        UnityEngine.Matrix4x4 matrix,
+        out UnityEngine.Vector3 translation,
+        out UnityEngine.Quaternion rotation,
+        out UnityEngine.Vector3 scale) {
+
+      // PERFORMANCE: Move this into C++.
+
+      translation = new UnityEngine.Vector3();
+      rotation = new UnityEngine.Quaternion();
+      scale = new UnityEngine.Vector3();
+
+      if (AreClose(matrix[3, 3], 0)) {
+        return false;
+      }
+
+      // Normalize the matrix.
+      for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+          matrix[i, j] /= matrix[3, 3];
+        }
+      }
+
+      // perspectiveMatrix is used to solve for perspective, but it also provides
+      // an easy way to test for singularity of the upper 3x3 component.
+      UnityEngine.Matrix4x4 persp = matrix;
+
+      for (int i = 0; i < 3; i++) {
+        persp[3, i] = 0;
+      }
+      persp[3, 3] = 1;
+
+      /// TODO: Fixme!
+      if (AreClose(persp.determinant, 0)) {
+        return false;
+      }
+
+      // Next take care of translation (easy).
+      translation = new UnityEngine.Vector3(matrix[0, 3], matrix[1, 3], matrix[2, 3]);
+      matrix[3, 0] = 0;
+      matrix[3, 1] = 0;
+      matrix[3, 2] = 0;
+
+      UnityEngine.Vector3[] rows = new UnityEngine.Vector3[3];
+      UnityEngine.Vector3 Pdum3;
+
+      // Now get scale and shear.
+      for (int i = 0; i < 3; ++i) {
+        rows[i].x = matrix[0, i];
+        rows[i].y = matrix[1, i];
+        rows[i].z = matrix[2, i];
+      }
+
+      // Compute X scale factor and normalize first row.
+      scale.x = rows[0].magnitude;
+      rows[0] = rows[0].normalized;
+
+      // Compute XY shear factor and make 2nd row orthogonal to 1st.
+      UnityEngine.Vector3 Skew;
+      Skew.z = UnityEngine.Vector3.Dot(rows[0], rows[1]);
+      rows[1] = WeightedAvg(rows[1], rows[0], 1, -Skew.z);
+
+      // Now, compute Y scale and normalize 2nd row.
+      scale.y = rows[1].magnitude;
+      rows[1] = rows[1].normalized;
+
+      // Compute XZ and YZ shears, orthogonalize 3rd row.
+      Skew.y = UnityEngine.Vector3.Dot(rows[0], rows[2]);
+      rows[2] = WeightedAvg(rows[2], rows[0], 1, -Skew.y);
+
+      Skew.x = UnityEngine.Vector3.Dot(rows[1], rows[2]);
+      rows[2] = WeightedAvg(rows[2], rows[1], 1, -Skew.x);
+
+      // Next, get Z scale and normalize 3rd row.
+      scale.z = rows[2].magnitude;
+      rows[2] = rows[2].normalized;
+
+      // At this point, the matrix (in rows[]) is orthonormal.
+      // Check for a coordinate system flip.  If the determinant
+      // is -1, then negate the matrix and the scaling factors.
+      Pdum3 = UnityEngine.Vector3.Cross(rows[1], rows[2]);
+      if (UnityEngine.Vector3.Dot(rows[0], Pdum3) < 0) {
+        for (int i = 0; i < 3; i++) {
+          scale[i] *= -1;
+          rows[i] *= -1;
+        }
+      }
+
+      // Now, get the rotations out, as described in the gem.
+
+#if false
+      // Euler Angles.
+      rotation.y = UnityEngine.Mathf.Asin(-rows[0][2]);
+      if (Mathf.Cos(rotation.y) != 0) {
+        rotation.x = UnityEngine.Mathf.Atan2(rows[1][2], rows[2][2]);
+        rotation.z = UnityEngine.Mathf.Atan2(rows[0][1], rows[0][0]);
+      } else {
+        rotation.x = UnityEngine.Mathf.Atan2(-rows[2][0], rows[1][1]);
+        rotation.z = 0;
+      }
+#else
+      // Quaternions.
+      {
+        int i, j, k = 0;
+        float root, trace = rows[0].x + rows[1].y + rows[2].z;
+        if (trace > 0) {
+          root = UnityEngine.Mathf.Sqrt(trace + 1.0f);
+          rotation.w = 0.5f * root;
+          root = 0.5f / root;
+          rotation.x = root * (rows[1].z - rows[2].y);
+          rotation.y = root * (rows[2].x - rows[0].z);
+          rotation.z = root * (rows[0].y - rows[1].x);
+        } // End if > 0
+        else {
+          int[] Next = new int[] { 1, 2, 0 };
+          i = 0;
+          if (rows[1].y > rows[0].x) i = 1;
+          if (rows[2].z > rows[i][i]) i = 2;
+          j = Next[i];
+          k = Next[j];
+
+          root = UnityEngine.Mathf.Sqrt(rows[i][i] - rows[j][j] - rows[k][k] + 1.0f);
+
+          rotation[i] = 0.5f * root;
+          root = 0.5f / root;
+          rotation[j] = root * (rows[i][j] + rows[j][i]);
+          rotation[k] = root * (rows[i][k] + rows[k][i]);
+          rotation.w = root * (rows[j][k] - rows[k][j]);
+        } // End if <= 0
+      }
+#endif
+      return true;
+    }
+
+    private static bool AreClose(float a, float b) {
+      return UnityEngine.Mathf.Abs(a - b) < 0.0001f;
+    }
+
+    private static UnityEngine.Vector3 WeightedAvg(
+                       UnityEngine.Vector3 a,
+                       UnityEngine.Vector3 b,
+                       float aWeight,
+                       float bWeight) {
+      return (a * aWeight) + (b * bWeight);
     }
 
     /// <summary>
@@ -101,13 +269,30 @@ namespace USD.NET.Unity {
     /// collide in the USD namespace.
     /// </remarks>
     static public string GetPath(UnityEngine.Transform unityObj) {
+      return GetPath(unityObj, null);
+    }
+
+    /// <summary>
+    /// Returns a valid UsdPath for the given Unity GameObject, relative to the given root.
+    /// For example: obj = /Foo/Bar/Baz, root = /Foo the result will be /Bar/Baz
+    /// </summary>
+    /// <remarks>
+    /// Note that illegal characters are converted into legal characters, so invalid names may
+    /// collide in the USD namespace.
+    /// </remarks>
+    static public string GetPath(UnityEngine.Transform unityObj,
+                                 UnityEngine.Transform unityObjRoot) {
       // Base case.
-      if (unityObj == null) {
+      if (unityObjRoot != null && unityObj == null) {
+        throw new Exception("Expected to find root " + unityObjRoot.name + " but did not.");
+      }
+
+      if (unityObj == unityObjRoot) {
         return "";
       }
 
       // Build the path from root to leaf.
-      return GetPath(unityObj.transform.parent)
+      return GetPath(unityObj.transform.parent, unityObjRoot)
            + "/" + UnityTypeConverter.MakeValidIdentifier(unityObj.name);
     }
 
@@ -162,6 +347,46 @@ namespace USD.NET.Unity {
       ret[3, 3] = (float)tmp[12 + 3];
       UsdIo.ArrayAllocator.Free(tmp.GetType(), (uint)tmp.Length, tmp);
       return ret;
+    }
+
+    // ----------------------------------------------------------------------------------------- //
+    // Matrix4x4[] / VtArray<GfMatrix4d>
+    // ----------------------------------------------------------------------------------------- //
+    static public VtMatrix4dArray ToVtArray(UnityEngine.Matrix4x4[] input) {
+      var output = new VtMatrix4dArray((uint)input.Length);
+      for (int i = 0; i < input.Length; i++) {
+        output[i] = ToGfMatrix(input[i]);
+      }
+      return output;
+    }
+
+    static public UnityEngine.Matrix4x4[] FromVtArray(VtMatrix4dArray input) {
+      var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Matrix4x4>(input.size());
+      for (int i = 0; i < output.Length; i++) {
+        output[i] = FromMatrix(input[i]);
+      }
+      /* This doesn't work because we're converting double/float.
+       * Should add a specialized C++ function to do this conversion.
+      unsafe
+      {
+        fixed (UnityEngine.Matrix4x4* p = output) {
+          input.CopyToArray((IntPtr)p);
+        }
+      }
+      */
+      return output;
+    }
+
+    static public VtMatrix4dArray ListToVtArray(List<UnityEngine.Matrix4x4> input) {
+      return ToVtArray(input.ToArray());
+    }
+
+    static public List<UnityEngine.Matrix4x4> ListFromVtArray(VtMatrix4dArray input) {
+      var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Matrix4x4>(input.size());
+      for (int i = 0; i < output.Length; i++) {
+        output[i] = FromMatrix(input[i]);
+      }
+      return output.ToList();
     }
 
     // ----------------------------------------------------------------------------------------- //

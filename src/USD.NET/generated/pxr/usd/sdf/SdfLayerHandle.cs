@@ -692,40 +692,40 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
-  public void SetRootPrims(SWIGTYPE_p_SdfPrimSpecHandleVector rootPrims) {
-    UsdCsPINVOKE.SdfLayerHandle_SetRootPrims(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandleVector.getCPtr(rootPrims));
+  public void SetRootPrims(SdfPrimSpecHandleVector rootPrims) {
+    UsdCsPINVOKE.SdfLayerHandle_SetRootPrims(swigCPtr, SdfPrimSpecHandleVector.getCPtr(rootPrims));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public bool InsertRootPrim(SWIGTYPE_p_SdfPrimSpecHandle prim, int index) {
-    bool ret = UsdCsPINVOKE.SdfLayerHandle_InsertRootPrim__SWIG_0(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim), index);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool InsertRootPrim(SWIGTYPE_p_SdfPrimSpecHandle prim) {
-    bool ret = UsdCsPINVOKE.SdfLayerHandle_InsertRootPrim__SWIG_1(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim));
+  public bool InsertRootPrim(SdfPrimSpecHandle prim, int index) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_InsertRootPrim__SWIG_0(swigCPtr, SdfPrimSpecHandle.getCPtr(prim), index);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public void RemoveRootPrim(SWIGTYPE_p_SdfPrimSpecHandle prim) {
-    UsdCsPINVOKE.SdfLayerHandle_RemoveRootPrim(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim));
+  public bool InsertRootPrim(SdfPrimSpecHandle prim) {
+    bool ret = UsdCsPINVOKE.SdfLayerHandle_InsertRootPrim__SWIG_1(swigCPtr, SdfPrimSpecHandle.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void RemoveRootPrim(SdfPrimSpecHandle prim) {
+    UsdCsPINVOKE.SdfLayerHandle_RemoveRootPrim(swigCPtr, SdfPrimSpecHandle.getCPtr(prim));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void ScheduleRemoveIfInert(SWIGTYPE_p_SdfSpec spec) {
-    UsdCsPINVOKE.SdfLayerHandle_ScheduleRemoveIfInert(swigCPtr, SWIGTYPE_p_SdfSpec.getCPtr(spec));
+  public void ScheduleRemoveIfInert(SdfSpec spec) {
+    UsdCsPINVOKE.SdfLayerHandle_ScheduleRemoveIfInert(swigCPtr, SdfSpec.getCPtr(spec));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void RemovePrimIfInert(SWIGTYPE_p_SdfPrimSpecHandle prim) {
-    UsdCsPINVOKE.SdfLayerHandle_RemovePrimIfInert(swigCPtr, SWIGTYPE_p_SdfPrimSpecHandle.getCPtr(prim));
+  public void RemovePrimIfInert(SdfPrimSpecHandle prim) {
+    UsdCsPINVOKE.SdfLayerHandle_RemovePrimIfInert(swigCPtr, SdfPrimSpecHandle.getCPtr(prim));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void RemovePropertyIfHasOnlyRequiredFields(SWIGTYPE_p_SdfPropertySpecHandle prop) {
-    UsdCsPINVOKE.SdfLayerHandle_RemovePropertyIfHasOnlyRequiredFields(swigCPtr, SWIGTYPE_p_SdfPropertySpecHandle.getCPtr(prop));
+  public void RemovePropertyIfHasOnlyRequiredFields(SdfPropertySpecHandle prop) {
+    UsdCsPINVOKE.SdfLayerHandle_RemovePropertyIfHasOnlyRequiredFields(swigCPtr, SdfPropertySpecHandle.getCPtr(prop));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -759,6 +759,11 @@ public class SdfLayerHandle : global::System.IDisposable {
 
   public void ApplyRootPrimOrder(TfTokenVector vec) {
     UsdCsPINVOKE.SdfLayerHandle_ApplyRootPrimOrder(swigCPtr, TfTokenVector.getCPtr(vec));
+  }
+
+  public SdfSubLayerProxy GetSubLayerPaths() {
+    SdfSubLayerProxy ret = new SdfSubLayerProxy(UsdCsPINVOKE.SdfLayerHandle_GetSubLayerPaths(swigCPtr), true);
+    return ret;
   }
 
   public void SetSubLayerPaths(StdStringVector newPaths) {
@@ -830,37 +835,37 @@ public class SdfLayerHandle : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandle GetPseudoRoot() {
-    SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPseudoRoot(swigCPtr), true);
+  public SdfPrimSpecHandle GetPseudoRoot() {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPseudoRoot(swigCPtr), true);
     return ret;
   }
 
-  public SWIGTYPE_p_SdfSpecHandle GetObjectAtPath(SdfPath path) {
-    SWIGTYPE_p_SdfSpecHandle ret = new SWIGTYPE_p_SdfSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetObjectAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+  public SdfSpecHandle GetObjectAtPath(SdfPath path) {
+    SdfSpecHandle ret = new SdfSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetObjectAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandle GetPrimAtPath(SdfPath path) {
-    SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPrimAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+  public SdfPrimSpecHandle GetPrimAtPath(SdfPath path) {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPrimAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPropertySpecHandle GetPropertyAtPath(SdfPath path) {
-    SWIGTYPE_p_SdfPropertySpecHandle ret = new SWIGTYPE_p_SdfPropertySpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPropertyAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+  public SdfPropertySpecHandle GetPropertyAtPath(SdfPath path) {
+    SdfPropertySpecHandle ret = new SdfPropertySpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetPropertyAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfAttributeSpecHandle GetAttributeAtPath(SdfPath path) {
-    SWIGTYPE_p_SdfAttributeSpecHandle ret = new SWIGTYPE_p_SdfAttributeSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetAttributeAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+  public SdfAttributeSpecHandle GetAttributeAtPath(SdfPath path) {
+    SdfAttributeSpecHandle ret = new SdfAttributeSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetAttributeAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfRelationshipSpecHandle GetRelationshipAtPath(SdfPath path) {
-    SWIGTYPE_p_SdfRelationshipSpecHandle ret = new SWIGTYPE_p_SdfRelationshipSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetRelationshipAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+  public SdfRelationshipSpecHandle GetRelationshipAtPath(SdfPath path) {
+    SdfRelationshipSpecHandle ret = new SdfRelationshipSpecHandle(UsdCsPINVOKE.SdfLayerHandle_GetRelationshipAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

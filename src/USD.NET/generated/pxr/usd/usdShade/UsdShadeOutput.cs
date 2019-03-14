@@ -91,6 +91,47 @@ public class UsdShadeOutput : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t GetSdrMetadata() {
+    SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t ret = new SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t(UsdCsPINVOKE.UsdShadeOutput_GetSdrMetadata(swigCPtr), true);
+    return ret;
+  }
+
+  public string GetSdrMetadataByKey(TfToken key) {
+    string ret = UsdCsPINVOKE.UsdShadeOutput_GetSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void SetSdrMetadata(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t sdrMetadata) {
+    UsdCsPINVOKE.UsdShadeOutput_SetSdrMetadata(swigCPtr, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(sdrMetadata));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetSdrMetadataByKey(TfToken key, string value) {
+    UsdCsPINVOKE.UsdShadeOutput_SetSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key), value);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public bool HasSdrMetadata() {
+    bool ret = UsdCsPINVOKE.UsdShadeOutput_HasSdrMetadata(swigCPtr);
+    return ret;
+  }
+
+  public bool HasSdrMetadataByKey(TfToken key) {
+    bool ret = UsdCsPINVOKE.UsdShadeOutput_HasSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void ClearSdrMetadata() {
+    UsdCsPINVOKE.UsdShadeOutput_ClearSdrMetadata(swigCPtr);
+  }
+
+  public void ClearSdrMetadataByKey(TfToken key) {
+    UsdCsPINVOKE.UsdShadeOutput_ClearSdrMetadataByKey(swigCPtr, TfToken.getCPtr(key));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public UsdShadeOutput(UsdAttribute attr) : this(UsdCsPINVOKE.new_UsdShadeOutput__SWIG_1(UsdAttribute.getCPtr(attr)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }

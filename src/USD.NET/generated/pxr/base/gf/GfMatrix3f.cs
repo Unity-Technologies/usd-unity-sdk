@@ -128,6 +128,12 @@ public class GfMatrix3f : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_float data() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix3f_data__SWIG_0(swigCPtr);
+    SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
+    return ret;
+  }
+
   public GfMatrix3f GetTranspose() {
     GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetTranspose(swigCPtr), true);
     return ret;

@@ -345,20 +345,20 @@ public class UsdGeomPointInstancer : UsdGeomBoundable {
     return ret;
   }
 
-  public bool ComputeInstanceTransformsAtTimes(SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t xformsArray, SWIGTYPE_p_std__vectorT_UsdTimeCode_t times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms, UsdGeomPointInstancer.MaskApplication applyMask) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_0(swigCPtr, SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t.getCPtr(xformsArray), SWIGTYPE_p_std__vectorT_UsdTimeCode_t.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms, (int)applyMask);
+  public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms, UsdGeomPointInstancer.MaskApplication applyMask) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_0(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms, (int)applyMask);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool ComputeInstanceTransformsAtTimes(SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t xformsArray, SWIGTYPE_p_std__vectorT_UsdTimeCode_t times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_1(swigCPtr, SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t.getCPtr(xformsArray), SWIGTYPE_p_std__vectorT_UsdTimeCode_t.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms);
+  public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_1(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool ComputeInstanceTransformsAtTimes(SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t xformsArray, SWIGTYPE_p_std__vectorT_UsdTimeCode_t times, UsdTimeCode baseTime) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_2(swigCPtr, SWIGTYPE_p_std__vectorT_VtArrayT_GfMatrix4d_t_t.getCPtr(xformsArray), SWIGTYPE_p_std__vectorT_UsdTimeCode_t.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
+  public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_2(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -387,14 +387,14 @@ public class UsdGeomPointInstancer : UsdGeomBoundable {
     return ret;
   }
 
-  public bool ComputeExtentAtTimes(SWIGTYPE_p_std__vectorT_VtArrayT_GfVec3f_t_t extents, SWIGTYPE_p_std__vectorT_UsdTimeCode_t times, UsdTimeCode baseTime) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_0(swigCPtr, SWIGTYPE_p_std__vectorT_VtArrayT_GfVec3f_t_t.getCPtr(extents), SWIGTYPE_p_std__vectorT_UsdTimeCode_t.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
+  public bool ComputeExtentAtTimes(VtVec3fArrayVector extents, UsdTimeCodeVector times, UsdTimeCode baseTime) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_0(swigCPtr, VtVec3fArrayVector.getCPtr(extents), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool ComputeExtentAtTimes(SWIGTYPE_p_std__vectorT_VtArrayT_GfVec3f_t_t extents, SWIGTYPE_p_std__vectorT_UsdTimeCode_t times, UsdTimeCode baseTime, GfMatrix4d transform) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_1(swigCPtr, SWIGTYPE_p_std__vectorT_VtArrayT_GfVec3f_t_t.getCPtr(extents), SWIGTYPE_p_std__vectorT_UsdTimeCode_t.getCPtr(times), UsdTimeCode.getCPtr(baseTime), GfMatrix4d.getCPtr(transform));
+  public bool ComputeExtentAtTimes(VtVec3fArrayVector extents, UsdTimeCodeVector times, UsdTimeCode baseTime, GfMatrix4d transform) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_1(swigCPtr, VtVec3fArrayVector.getCPtr(extents), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), GfMatrix4d.getCPtr(transform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

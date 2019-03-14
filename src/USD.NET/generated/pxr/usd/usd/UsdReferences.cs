@@ -40,14 +40,14 @@ public class UsdReferences : global::System.IDisposable {
     }
   }
 
-  public bool AddReference(SWIGTYPE_p_SdfReference arg0, UsdListPosition position) {
-    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_0(swigCPtr, SWIGTYPE_p_SdfReference.getCPtr(arg0), (int)position);
+  public bool AddReference(SdfReference arg0, UsdListPosition position) {
+    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_0(swigCPtr, SdfReference.getCPtr(arg0), (int)position);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool AddReference(SWIGTYPE_p_SdfReference arg0) {
-    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_1(swigCPtr, SWIGTYPE_p_SdfReference.getCPtr(arg0));
+  public bool AddReference(SdfReference arg0) {
+    bool ret = UsdCsPINVOKE.UsdReferences_AddReference__SWIG_1(swigCPtr, SdfReference.getCPtr(arg0));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -106,8 +106,8 @@ public class UsdReferences : global::System.IDisposable {
     return ret;
   }
 
-  public bool RemoveReference(SWIGTYPE_p_SdfReference arg0) {
-    bool ret = UsdCsPINVOKE.UsdReferences_RemoveReference(swigCPtr, SWIGTYPE_p_SdfReference.getCPtr(arg0));
+  public bool RemoveReference(SdfReference arg0) {
+    bool ret = UsdCsPINVOKE.UsdReferences_RemoveReference(swigCPtr, SdfReference.getCPtr(arg0));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -117,8 +117,8 @@ public class UsdReferences : global::System.IDisposable {
     return ret;
   }
 
-  public bool SetReferences(SWIGTYPE_p_SdfReferenceVector items) {
-    bool ret = UsdCsPINVOKE.UsdReferences_SetReferences(swigCPtr, SWIGTYPE_p_SdfReferenceVector.getCPtr(items));
+  public bool SetReferences(StdReferenceVector items) {
+    bool ret = UsdCsPINVOKE.UsdReferences_SetReferences(swigCPtr, StdReferenceVector.getCPtr(items));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -18,39 +18,6 @@ namespace USD.NET.Unity {
 
   [System.Serializable]
   [UsdSchema("Xform")]
-  public class XformSample : SampleBase {
-    private readonly string[] kXformOpTransform = new string[] { "xformOp:transform" };
-    private Matrix4x4 m_xf;
-
-    public XformSample() : base() {
-      transform = Matrix4x4.identity;
-    }
-
-    [UsdNamespace("xformOp"), FusedTransform]
-    public Matrix4x4 transform
-    {
-      get { return m_xf; }
-      set
-      {
-        if (value == null) {
-          xformOpOrder = null;
-        } else {
-          xformOpOrder = kXformOpTransform;
-        }
-        m_xf = value;
-      }
-    }
-
-    // Ideally this would be private, but it needs to be serialized.
-    [UsdVariability(Variability.Uniform)]
-    public string[] xformOpOrder;
-
-    /// <summary>
-    /// Converts the transform from Unity to USD or vice versa. This is required after reading
-    /// values from USD or before writing values to USD.
-    /// </summary>
-    public void ConvertTransform() {
-      m_xf = UnityTypeConverter.ChangeBasis(m_xf);
-    }
+  public class XformSample : XformableSample {
   }
 }

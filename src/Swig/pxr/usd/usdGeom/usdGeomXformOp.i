@@ -24,6 +24,9 @@ namespace std {
 }
 typedef std::vector<UsdGeomXformOp> UsdGeomXformOpVector;
 
+%ignore UsdGeomXformOp::UsdGeomXformOp(const UsdAttribute &attr, bool isInverseOp, _ValidAttributeTagType);
+%ignore UsdGeomXformOp::UsdGeomXformOp(UsdAttributeQuery &&query, bool isInverseOp, _ValidAttributeTagType);
+
 #define TF_DECLARE_PUBLIC_TOKENS(UsdGeomXformOpTypes, USDGEOM_API, USDGEOM_XFORM_OP_TYPES)
 
 %include "pxr/usd/usdGeom/xformOp.h"

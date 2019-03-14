@@ -97,8 +97,8 @@ public class UsdSchemaBase : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_SdfPrimSpecHandle GetSchemaClassPrimDefinition() {
-    SWIGTYPE_p_SdfPrimSpecHandle ret = new SWIGTYPE_p_SdfPrimSpecHandle(UsdCsPINVOKE.UsdSchemaBase_GetSchemaClassPrimDefinition(swigCPtr), true);
+  public SdfPrimSpecHandle GetSchemaClassPrimDefinition() {
+    SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.UsdSchemaBase_GetSchemaClassPrimDefinition(swigCPtr), true);
     return ret;
   }
 

@@ -80,7 +80,7 @@ namespace USD.NET {
         PropertyInfo csProp = properties[i];
         Type csType = csProp.PropertyType;
         if (csType == typeof(object)) {
-          if (Reflect.IsCustomData(csProp)) {
+          if (Reflect.IsCustomData(csProp) || Reflect.IsMetadata(csProp)) {
             throw new ArgumentException("Writing metadata/customdata with type of object is not currently allowed");
           }
           object o = csProp.GetValue(t, index:null);
@@ -98,7 +98,7 @@ namespace USD.NET {
         FieldInfo csField = fields[i];
         Type csType = csField.FieldType;
         if (csType == typeof(object)) {
-          if (Reflect.IsCustomData(csField)) {
+          if (Reflect.IsCustomData(csField) || Reflect.IsMetadata(csField)) {
             throw new ArgumentException("Writing metadata/customdata with type of object is not currently allowed");
           }
           object o = csField.GetValue(t);
@@ -120,17 +120,29 @@ namespace USD.NET {
     /// <param name="prim">The USD prim from which to read the value.</param>
     /// <param name="usdTime">The time at which to sample key frames.</param>
     /// <param name="field">The field to deserialize.</param>
+    /// <param name="accessMap">A list of members to include when reading.</param>
+    /// <param name="mayVary">Indicates if any of the members read from this prim were time-varying.</param>
     /// <param name="usdNamespace">The USD namespace, if any.</param>
     public void Deserialize(ref object fieldValue,
                      pxr.UsdPrim prim,
                      pxr.UsdTimeCode usdTime,
                      FieldInfo field,
+                     HashSet<MemberInfo> accessMap,
+                     ref bool? mayVary,
                      string usdNamespace = null) {
       if (Reflect.IsNonSerialized(field)) {
         return;
       }
-
-      if (!ReadAttr(field.Name, field.FieldType, ref fieldValue, usdTime, prim, field, usdNamespace)) {
+      
+      if (!ReadAttr(field.Name,
+                    field.FieldType,
+                    ref fieldValue,
+                    usdTime,
+                    prim,
+                    field,
+                    accessMap,
+                    ref mayVary,
+                    usdNamespace)) {
         // TODO: add options to dictate behavior here
       }
     }
@@ -142,17 +154,29 @@ namespace USD.NET {
     /// <param name="prim">The USD prim from which to read the value.</param>
     /// <param name="usdTime">The time at which to sample key frames.</param>
     /// <param name="field">The field to deserialize.</param>
+    /// <param name="accessMap">A list of members to includ when reading.</param>
+    /// <param name="mayVary">If non-null, is populated to indicate if the value varies over time.</param>
     /// <param name="usdNamespace">The USD namespace, if any.</param>
     public void Deserialize(ref object propValue,
                  pxr.UsdPrim prim,
                  pxr.UsdTimeCode usdTime,
                  PropertyInfo field,
+                 HashSet<MemberInfo> accessMap,
+                 ref bool? mayVary,
                  string usdNamespace = null) {
       if (Reflect.IsNonSerialized(field)) {
         return;
       }
 
-      if (!ReadAttr(field.Name, field.PropertyType, ref propValue, usdTime, prim, field, usdNamespace)) {
+      if (!ReadAttr(field.Name,
+                    field.PropertyType,
+                    ref propValue,
+                    usdTime,
+                    prim,
+                    field,
+                    accessMap,
+                    ref mayVary,
+                    usdNamespace)) {
         // TODO: add options to dictate behavior here
       }
     }
@@ -164,10 +188,14 @@ namespace USD.NET {
     /// <param name="t">The object to to populate.</param>
     /// <param name="prim">The USD prim from which to read data.</param>
     /// <param name="usdTime">The time at which to read key frames.</param>
+    /// <param name="accessMap">A list of memebers to include when reading.</param>
+    /// <param name="mayVary">Indicates if this prim had any time-varying members.</param>
     /// <param name="usdNamespace">The object namespace, if any.</param>
     public void Deserialize<T>(T t,
                          pxr.UsdPrim prim,
                          pxr.UsdTimeCode usdTime,
+                         HashSet<MemberInfo> accessMap,
+                         ref bool? mayVary,
                          string usdNamespace = null) where T : SampleBase {
       if (t == null) {
         return;
@@ -176,15 +204,26 @@ namespace USD.NET {
       PropertyInfo[] properties = Reflect.GetCachedProperties(t.GetType());
       FieldInfo[] fields = Reflect.GetCachedFields(t.GetType());
       object value = t;
+      var localVarMap = accessMap;
+      bool mayVaryWasNull = mayVary == null;
+      if (mayVary == null) {
+        localVarMap = null;
+      }
 
       for (int i = 0; i < properties.Length; i++) {
         PropertyInfo csProp = properties[i];
         if (Reflect.IsNonSerialized(csProp)) {
           continue;
         }
+        if (accessMap != null && mayVary == null && !accessMap.Contains(csProp)) {
+          continue;
+        }
         object propValue = csProp.GetValue(t, null);
-        Deserialize(ref propValue, prim, usdTime, csProp, usdNamespace);
+        Deserialize(ref propValue, prim, usdTime, csProp, localVarMap, ref mayVary, usdNamespace);
         csProp.SetValue(t, propValue, index: null);
+        if ((mayVary == null) != mayVaryWasNull) {
+          throw new ApplicationException("Deserialize modified mayVary to be non-null");
+        }
       }
 
       for (int i = 0; i < fields.Length; i++) {
@@ -192,9 +231,15 @@ namespace USD.NET {
         if (Reflect.IsNonSerialized(csField)) {
           continue;
         }
+        if (accessMap != null && mayVary == null && !accessMap.Contains(csField)) {
+          continue;
+        }
         object fieldValue = csField.GetValue(t);
-        Deserialize(ref fieldValue, prim, usdTime, csField, usdNamespace);
+        Deserialize(ref fieldValue, prim, usdTime, csField, localVarMap, ref mayVary, usdNamespace);
         csField.SetValue(t, fieldValue);
+        if ((mayVary == null) != mayVaryWasNull) {
+          throw new ApplicationException("Deserialize modified mayVary to be non-null");
+        }
       }
 
       t = (T)value;
@@ -223,22 +268,62 @@ namespace USD.NET {
                       pxr.UsdPrim prim, pxr.UsdGeomImageable imgble, MemberInfo memberInfo,
                       string usdNamespace, string srcObject = null) {
       if (Reflect.IsNonSerialized(memberInfo)) {
+        Console.WriteLine("Non serialized");
         return true;
       }
 
+      // If serializing a Primvar<T>, extract the held value and save it in csValue, allowing the
+      // all downstream logic to act as if it's operating on the held value itself.
+      PrimvarBase pvBase = null;
+
+      if (csType.IsGenericType && csType.GetGenericTypeDefinition() == typeof(Primvar<>)) {
+        if (csValue == null) {
+          // Object not written, still considered success.
+          return true;
+        }
+
+        pvBase = (PrimvarBase)csValue;
+        csValue = (csValue as ValueAccessor).GetValue();
+        if (csValue == null) {
+          // Object not written, still considered success.
+          return true;
+        }
+
+        csType = csValue.GetType();
+      }
+
+      bool isCustomData = Reflect.IsCustomData(memberInfo);
+      bool isMetaData = Reflect.IsMetadata(memberInfo);
+      bool isPrimvar = Reflect.IsPrimvar(memberInfo);
+      bool isNewPrimvar = pvBase != null;
+      int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
+
+      string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
+          Reflect.GetNamespace(memberInfo));
+
       // If holding a dictionary, immediately recurse and write keys as attributes.
-      if (csType == typeof(Dictionary<string, object>)) {
-        Dictionary<string, object> dict = csValue as Dictionary<string, object>;
-        foreach (var kvp in dict) {
+      if (csValue != null
+          && csType.IsGenericType
+          && csType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+          && csType.GetGenericArguments()[0] == typeof(string)) {
+
+        isNewPrimvar = csType.GetGenericArguments()[1].IsGenericType
+            && csType.GetGenericArguments()[1].GetGenericTypeDefinition() == typeof(Primvar<>);
+
+        // Ensure the immediate dictionary member is always namespaced.
+        if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo))) {
+          usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);
+        }
+
+        var dict = csValue as System.Collections.IDictionary;
+        foreach (System.Collections.DictionaryEntry kvp in dict) {
           object value = kvp.Value;
-          WriteAttr(kvp.Key, value.GetType(), value,
+          WriteAttr((string)kvp.Key, value.GetType(), value,
             usdTime, prim, imgble, memberInfo, usdNamespace, srcObject: attrName);
         }
         return true;
       }
 
-      string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
-          Reflect.GetNamespace(memberInfo));
       pxr.TfToken sdfAttrName = sm_tokenCache[attrName];
 
       if (csType == typeof(Relationship) && csValue != null) {
@@ -283,18 +368,16 @@ namespace USD.NET {
       // Object not written, still considered success.
       if (csValue == null) { return true; }
 
-      bool isCustomData = Reflect.IsCustomData(memberInfo);
-      bool isPrimvar = Reflect.IsPrimvar(memberInfo);
-      int primvarElementSize = Reflect.GetPrimvarElementSize(memberInfo);
-
       UsdTypeBinding binding;
 
+      // Extract the value and type from the connectable.
       var conn = csValue as Connectable;
       if (conn != null) {
         csType = conn.GetValueType();
         csValue = conn.GetValue();
       }
 
+      // Get the binding for the value about to be serialized.
       if (!sm_bindings.GetBinding(csType, out binding) && !csType.IsEnum) {
         if (string.IsNullOrEmpty(ns)) {
           return false;
@@ -309,6 +392,9 @@ namespace USD.NET {
         return true;
       }
 
+      // Determine metadata for the attribtue, note that in the case of connections and primvars
+      // these will be the attributes on the outter object, e.g. declared on the Connection<T> or
+      // Primvar<T>.
       pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
       pxr.SdfValueTypeName sdfTypeName = binding.sdfTypeName;
       pxr.UsdTimeCode time = variability == pxr.SdfVariability.SdfVariabilityUniform
@@ -317,15 +403,21 @@ namespace USD.NET {
 
       bool custom = false;
       pxr.UsdAttribute attr;
-      if (isCustomData) {
+      if (isCustomData || isMetaData) {
         // no-op
         attr = null;
-      } else if (!isPrimvar) {
+      } else if (!isPrimvar && !isNewPrimvar) {
         if (string.IsNullOrEmpty(ns)) {
+          //
+          // Create non-namespaced attribute.
+          //
           lock (m_stageLock) {
             attr = prim.CreateAttribute(sdfAttrName, csType.IsEnum ? SdfValueTypeNames.Token : sdfTypeName, custom, variability);
           }
         } else {
+          //
+          // Create namespaced attribute.
+          //
           string[] arr = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName).Split(':');
           pxr.StdStringVector elts = new pxr.StdStringVector(arr.Length);
           foreach (var s in arr) {
@@ -336,11 +428,23 @@ namespace USD.NET {
           }
         }
       } else {
+        //
+        // Create Primvar attribute.
+        //
         lock (m_stageLock) {
           var fullAttrName = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName);
           var primvar = imgble.CreatePrimvar(new pxr.TfToken(fullAttrName), sdfTypeName,
               VertexDataAttribute.Interpolation);
-          primvar.SetElementSize(primvarElementSize);
+          if (isNewPrimvar) {
+            primvar.SetElementSize(pvBase.elementSize);
+            if (pvBase.indices != null) {
+              var vtIndices = IntrinsicTypeConverter.ToVtArray(pvBase.indices);
+              primvar.SetIndices(vtIndices, time);
+            }
+            primvar.SetInterpolation(pvBase.GetInterpolationToken());
+          } else {
+            primvar.SetElementSize(primvarElementSize);
+          }
           attr = primvar.GetAttr();
         }
       }
@@ -364,7 +468,9 @@ namespace USD.NET {
 
       pxr.VtValue vtValue = binding.toVtValue(csValue);
       lock (m_stageLock) {
-        if (isCustomData) {
+        if (isMetaData) {
+          prim.SetMetadata(sdfAttrName, vtValue);
+        } else if (isCustomData) {
           prim.SetCustomDataByKey(sdfAttrName, vtValue);
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           pxr.UsdCs.SetFusedDisplayColor(prim, vtValue, time);
@@ -391,7 +497,8 @@ namespace USD.NET {
     /// <param name="prim">The USD prim from which to read data.</param>
     /// <param name="memberInfo">The field/property providing serialization metadata.</param>
     /// <param name="usdNamespace">The optional USD namespace at which values live.</param>
-    /// <param name="srcObject">The source object name, used when remapping names.</param>
+    /// <param name="accessMap">A map of members to include when reading.</param>
+    /// <param name="mayVary">When not null, is populated with variability.</param>
     /// <returns>True on success.</returns>
     /// <remarks>
     /// Note that "success" in the return value does not indicate data was read, rather it
@@ -401,41 +508,71 @@ namespace USD.NET {
     /// </remarks>
     bool ReadAttr(string attrName, Type csType, ref object csValue, pxr.UsdTimeCode usdTime,
                       pxr.UsdPrim prim, MemberInfo memberInfo,
-                      string usdNamespace, string srcObject = null) {
-
-      bool isPrimvar = Reflect.IsPrimvar(memberInfo);
+                      HashSet<MemberInfo> accessMap, ref bool? mayVary,
+                      string usdNamespace) {
+      bool isNewPrimvar = csValue != null
+                       && csType.IsGenericType
+                       && csType.GetGenericTypeDefinition() == typeof(Primvar<>);
+      bool isPrimvar = Reflect.IsPrimvar(memberInfo) || isNewPrimvar;
       string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
           Reflect.GetNamespace(memberInfo));
 
-      // If holding a dictionary, immediately recurse and write keys as attributes.
-      if (csType == typeof(Dictionary<string, object>)) {
-        string sourceMember;
 
-        if (isPrimvar) {
-          ns = "primvars";
-          sourceMember = attrName;
-        } else {
+      // ----------------------------------------- //
+      // Dictionaries, read, early exit, recurse.
+      // ----------------------------------------- //
+      // If holding a dictionary, immediately recurse and write keys as attributes.
+      if (csValue != null
+          && csType.IsGenericType
+          && csType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+          && csType.GetGenericArguments()[0] == typeof(string)) {
+
+        Type genericTypeDef = csType.GetGenericArguments()[1].IsGenericType
+                            ? csType.GetGenericArguments()[1].GetGenericTypeDefinition()
+                            : null;
+
+        isNewPrimvar = genericTypeDef == typeof(Primvar<>);
+        bool isRelationship = csType.GetGenericArguments()[1] == typeof(Relationship);
+        bool isConnection = genericTypeDef == typeof(Connectable<>);
+
+        // String dictionaries are unrolled directly into the object.
+        // So the namespace is either the incoming namespace or empty, meaning each string value in
+        // the dictionary becomes an attribute on the prim.
+
+        // Ensure there is always a namespace immediately around this member.
+        if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo))) {
           ns = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
-          sourceMember = null;
+          usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);
         }
 
-        var dict = csValue as Dictionary<string, object>;
+        // Unfortunately, the primvars prefixing logic must be replicated here so we can discover
+        // the dictionary member from USD.
+        if (isPrimvar || isNewPrimvar) {
+          ns = IntrinsicTypeConverter.JoinNamespace("primvars", ns);
+        }
 
+        var dict = csValue as System.Collections.IDictionary;
+        ConstructorInfo ctor = (isNewPrimvar || isConnection || isRelationship)
+                             ? csType.GetGenericArguments()[1].GetConstructor(new Type[0])
+                             : null;
+        dict.Clear();
         foreach (var prop in prim.GetAuthoredPropertiesInNamespace(ns)) {
           object value = null;
-          if (!string.IsNullOrEmpty(sourceMember)) {
-            pxr.VtValue valSrcMember = prop.GetCustomDataByKey(sm_tokenCache["sourceMember"]);
-            if (valSrcMember.IsEmpty() || sourceMember != (string)valSrcMember) {
-              continue;
-            }
+          if (ctor != null) {
+            value = ctor.Invoke(new object[0]);
           }
-          if (isPrimvar) {
-            // The recursive call will also discover that this is a primvar.
-            ns = "";
-          }
-          if (ReadAttr(prop.GetBaseName(), typeof(Object), ref value, usdTime, prim, memberInfo, ns, srcObject)) {
+          // The recursive call will also discover that this is a primvar and any associated namespace.
+          if (ReadAttr(prop.GetBaseName(),
+                       csType.GetGenericArguments()[1],
+                       ref value,
+                       usdTime,
+                       prim,
+                       memberInfo,
+                       accessMap,
+                       ref mayVary,
+                       usdNamespace)) {
             if (value != null) {
-              dict.Add(prop.GetBaseName(), value);
+              dict.Add(prop.GetBaseName().ToString(), value);
             }
           }
         }
@@ -444,11 +581,15 @@ namespace USD.NET {
 
       pxr.TfToken sdfAttrName = sm_tokenCache[ns, attrName];
 
-      if (csType == typeof(Relationship)) {
+      // ----------------------------------------- //
+      // Relationship, read + early exit.
+      // ----------------------------------------- //
 
-        //
-        // Read Relationship
-        //
+      if (csType == typeof(Relationship)) {
+        // mayVary is explicitly not set here because it has accumulation semantics:
+        //   mayVary = mayVary || false;
+        // Which is equivalent to the no-op:
+        //   mayVary = mayVary;
 
         pxr.UsdRelationship rel = null;
         lock (m_stageLock) {
@@ -472,7 +613,9 @@ namespace USD.NET {
         return true;
       }
 
-      UsdTypeBinding binding;
+      // ----------------------------------------- //
+      // Connection Setup.
+      // ----------------------------------------- //
 
       Connectable conn = null;
       if (csValue != null
@@ -480,14 +623,43 @@ namespace USD.NET {
           && csType.GetGenericTypeDefinition() == typeof(Connectable<>)) {
         conn = csValue as Connectable;
         if (conn != null) {
+          // Since this is a Connectable<T>, the held value T is what's being read from USD,
+          // so replace csValue with the held T value itself. csValue must be restored before
+          // returning.
           csValue = conn.GetValue();
+
+          // Same treatment for the type.
           csType = conn.GetValueType();
         }
       }
 
+      // ----------------------------------------- //
+      // Primvar Setup.
+      // ----------------------------------------- //
+
+      ValueAccessor pvAccessor = null;
+      PrimvarBase pvBase = null;
+      if (isNewPrimvar) {
+        pvAccessor = csValue as ValueAccessor;
+        pvBase = (PrimvarBase)csValue;
+        // Since this is a Primvar<T>, the held value T is what's being read from USD,
+        // so replace csVAlue with the held T value itself. csValue must be restored before
+        // returning.
+        csValue = pvAccessor.GetValue();
+
+        // Same treatment for the type.
+        csType = pvAccessor.GetValueType();
+      }
+
+      // ----------------------------------------- //
+      // Lookup Type Conversion Delegate.
+      // ----------------------------------------- //
+      UsdTypeBinding binding;
+
       if (!sm_bindings.GetBinding(csType, out binding)
           && !csType.IsEnum
           && csType != typeof(object)) {
+
         if (string.IsNullOrEmpty(ns)) {
           return false;
         }
@@ -502,29 +674,43 @@ namespace USD.NET {
           throw new ArgumentException("Type does not inherit from SampleBase: " + attrName);
         }
 
-        Deserialize((SampleBase)csValue, prim, usdTime, usdNamespace: ns);
+        Deserialize((SampleBase)csValue, prim, usdTime, accessMap, ref mayVary, usdNamespace: ns);
         return true;
       }
 
+      // ----------------------------------------- //
+      // Prep to Read.
+      // ----------------------------------------- //
+
+      // Restore C# value to the actual property value.
       if (conn != null) {
         csValue = conn;
+      } else if (pvAccessor != null) {
+        csValue = pvAccessor;
       }
 
-      pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
-
+      // Append "primvars:" namespace to primvars.
       if (isPrimvar) {
         var joinedName = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
         sdfAttrName = sm_tokenCache["primvars", joinedName];
       }
 
+      // Adjust time for variability.
+      pxr.SdfVariability variability = Reflect.GetVariability(memberInfo);
       pxr.UsdTimeCode time = variability == pxr.SdfVariability.SdfVariabilityUniform
                                           ? kDefaultUsdTime
                                           : usdTime;
 
-      //using (var valWrapper = new PooledHandle<pxr.VtValue>(ArrayAllocator)) {
+      // Allocate a temp VtValue.
       pxr.VtValue vtValue = (pxr.VtValue)ArrayAllocator.MallocHandle(typeof(pxr.VtValue));
+
       try {
+
+        // ----------------------------------------- //
+        // Read Connected Paths.
+        // ----------------------------------------- //
         if (conn != null) {
+          // Connection paths cannot be animated, so mayVary is not affected.
           var sources = new pxr.SdfPathVector();
           if (prim.GetAttribute(sdfAttrName).GetConnections(sources)) {
             if (sources.Count > 0) {
@@ -533,13 +719,100 @@ namespace USD.NET {
           }
         }
 
-        if (Reflect.IsCustomData(memberInfo)) {
+        // ----------------------------------------- //
+        // Read Associated Primvar Data.
+        // ----------------------------------------- //
+        // If this is a Primvar<T>, read the associated primvar metadata and indices.
+        if (pvBase != null) {
+          var attr = prim.GetAttribute(sdfAttrName);
+          if (attr) {
+            var pv = new pxr.UsdGeomPrimvar(attr);
+            // ElementSize and Interpolation are not animatable, so they do not affect mayVary.
+            pvBase.elementSize = pv.GetElementSize();
+            pvBase.SetInterpolationToken(pv.GetInterpolation());
+
+            // Indices are a first class attribute and may vary over time.
+            var indices = pv.GetIndicesAttr();
+            if (indices) {
+              if (accessMap != null) {
+                if (indices.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                    || indices.ValueMightBeTimeVarying()) {
+                  accessMap.Add(memberInfo);
+                  mayVary |= true;
+                }
+              }
+              indices.Get(vtValue, time);
+              if (!vtValue.IsEmpty()) {
+                var vtIntArray = pxr.UsdCs.VtValueToVtIntArray(vtValue);
+                pvBase.indices = IntrinsicTypeConverter.FromVtArray(vtIntArray);
+              }
+            }
+          }
+        }
+
+        // ----------------------------------------- //
+        // Read the value of csValue.
+        // ----------------------------------------- //
+
+        if (Reflect.IsMetadata(memberInfo)) {
+          vtValue = prim.GetMetadata(sdfAttrName);
+          // Metadata cannot vary over time.
+
+        } else if (Reflect.IsCustomData(memberInfo)) {
           vtValue = prim.GetCustomDataByKey(sdfAttrName);
+          // Custom data is metadata, which cannot vary over time.
+
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           vtValue = pxr.UsdCs.GetFusedDisplayColor(prim, time);
+
+          if (accessMap != null) {
+            // Display color is actually two attributes, primvars:displayColor and
+            // primvars:displayOpacity.
+            var gprim = new pxr.UsdGeomGprim(prim);
+            if (gprim && gprim.GetDisplayColorAttr().ValueMightBeTimeVarying()) {
+              accessMap.Add(memberInfo);
+              mayVary |= true;
+            }
+          }
+
         } else if (Reflect.IsFusedTransform(memberInfo)) {
           vtValue = pxr.UsdCs.GetFusedTransform(prim, time);
+
+          if (accessMap != null) {
+            // Transforms are complicated :/
+            var xformable = new pxr.UsdGeomXformable(prim);
+            if (xformable) {
+              bool dummy;
+              var orderAttr = xformable.GetXformOpOrderAttr();
+              if (orderAttr) {
+                if (orderAttr.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                    && orderAttr.ValueMightBeTimeVarying()) {
+                  mayVary |= true;
+                  accessMap.Add(memberInfo);
+                } else {
+                  foreach (var op in xformable.GetOrderedXformOps(out dummy)) {
+                    var opAttr = op.GetAttr();
+                    if (!opAttr) { continue; }
+                    if (opAttr.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                            && opAttr.ValueMightBeTimeVarying()) {
+                      mayVary |= true;
+                      accessMap.Add(memberInfo);
+                      break;
+                    }
+                  } // foreach
+                }
+              } // orderAttr
+            } // xformable
+          } // mayVary
         } else {
+          if (accessMap != null) {
+            var attr = prim.GetAttribute(sdfAttrName);
+            if (attr.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
+                    && attr.ValueMightBeTimeVarying()) {
+              accessMap.Add(memberInfo);
+              mayVary |= true;
+            }
+          }
           if (!prim.GetAttributeValue(sdfAttrName, vtValue, time)) {
             // Object has no value, still considered success.
             return true;
@@ -551,6 +824,9 @@ namespace USD.NET {
           return true;
         }
 
+        // ------------------------------------------ //
+        // Infer C# type from USD when Type == Object
+        // ------------------------------------------ //
         if (csType == typeof(object)) {
           // Blind object serialization needs special handling, since we won't know the C# type a priori.
           // Instead, do a reverse lookup on the SdfTypeName and let USD dictate the C# type.
@@ -575,20 +851,28 @@ namespace USD.NET {
           }
         }
 
+        // ------------------------------------------ //
+        // Convert USD's VtValue -> Strong C# Type.
+        // ------------------------------------------ //
         csValue = binding.toCsObject(vtValue);
+
+        // ------------------------------------------ //
+        // Restore csValue.
+        // ------------------------------------------ //
         if (conn != null && csValue != null) {
           conn.SetValue(csValue);
           csValue = conn;
         }
+        if (pvAccessor != null) {
+          pvAccessor.SetValue(csValue);
+          csValue = pvAccessor;
+        }
+
       } finally {
         // Would prefer RAII handle, but introduces garbage.
         ArrayAllocator.FreeHandle(vtValue);
       }
 
-      // Need to deal with this
-      //if (srcObject != null) {
-      //  attr.SetCustomDataByKey(m_tokenCache["sourceMember"], srcObject);
-      //}
       return true;
     }
   }

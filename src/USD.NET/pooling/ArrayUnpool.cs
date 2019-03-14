@@ -35,5 +35,8 @@ namespace USD.NET {
     override public void FreeHandle<T>(T handle) {
     }
 
+    override public void FreeHandle(Type type, object handle) {
+    }
+
   }
 }

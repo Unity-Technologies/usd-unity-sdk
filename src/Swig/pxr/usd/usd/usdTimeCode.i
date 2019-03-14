@@ -18,6 +18,11 @@
 #include "pxr/usd/usd/timeCode.h"
 %}
 
+%include "std_vector.i"
+namespace std {
+  %template(UsdTimeCodeVector) vector<UsdTimeCode>;
+}
+
 %typemap(cscode) UsdTimeCode %{
     public static implicit operator UsdTimeCode (double value) {
         return new UsdTimeCode(value);

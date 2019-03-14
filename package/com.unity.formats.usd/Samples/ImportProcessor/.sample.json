@@ -1,0 +1,4 @@
+{
+    "displayName" : "ImportProcessor",
+    "description" : "A sample showing how to implement pre- and post-import processors."
+}

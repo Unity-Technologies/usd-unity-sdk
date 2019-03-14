@@ -71,8 +71,8 @@ public class UsdSkelCache : global::System.IDisposable {
     return ret;
   }
 
-  public bool ComputeSkelBindings(UsdSkelRoot skelRoot, SWIGTYPE_p_std__vectorT_UsdSkelBinding_t bindings) {
-    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBindings(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), SWIGTYPE_p_std__vectorT_UsdSkelBinding_t.getCPtr(bindings));
+  public bool ComputeSkelBindings(UsdSkelRoot skelRoot, UsdSkelBindingVector bindings) {
+    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBindings(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), UsdSkelBindingVector.getCPtr(bindings));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

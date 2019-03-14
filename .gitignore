@@ -30,6 +30,8 @@
 /swigwin-3.0.10/
 /gen/
 vs2015/Swig/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+src/Tests/bin/
+src/USD.NET.Unity/bin/
 
 # vim
 *.swp
@@ -38,7 +40,6 @@ vs2015/Swig/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 # VS.NET
 *.csproj.user
 *.vcxproj.user
-bin
 obj
 x64
 vs2015/USD.NET/packages
@@ -49,3 +50,14 @@ packages.config
 
 # OSX
 .DS_Store
+
+TestProject/Library
+TestProject/ProjectSettings
+TestProject/Temp
+TestProject/*.sln*
+TestProject/*.csproj
+TestProject/.idea
+TestProject/Logs
+TestProject/Assets/Plugins
+TestProject/Assets/Samples*
+inst-dbg/

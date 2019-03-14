@@ -120,6 +120,12 @@ public class GfMatrix2d : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_double data() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix2d_data(swigCPtr);
+    SWIGTYPE_p_double ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_double(cPtr, false);
+    return ret;
+  }
+
   public GfMatrix2d GetTranspose() {
     GfMatrix2d ret = new GfMatrix2d(UsdCsPINVOKE.GfMatrix2d_GetTranspose(swigCPtr), true);
     return ret;

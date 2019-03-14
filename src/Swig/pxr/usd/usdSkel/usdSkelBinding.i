@@ -17,4 +17,25 @@
 #include "pxr/usd/usdSkel/binding.h"
 %}
 
+%include "std_vector.i"
+%template(UsdSkelBindingVector) std::vector<UsdSkelBinding>;
+%template(UsdSkelSkinningQueryVector) std::vector<UsdSkelSkinningQuery>;
+
+%ignore UsdSkelBindingGetSkinningTargets();
+
 %include "pxr/usd/usdSkel/binding.h"
+
+//
+// This overload of GetSkinningTargets is provided because VtArra<SkinningQuery> seems to have
+// a compiler issue that is triggered by Swig. Issue filed:
+// https://github.com/PixarAnimationStudios/USD/issues/670
+//
+%extend UsdSkelBinding {
+  std::vector<UsdSkelSkinningQuery> GetSkinningTargetsAsVector() {
+    std::vector<UsdSkelSkinningQuery> targets;
+    for (auto&& p : self->GetSkinningTargets()) {
+      targets.push_back(p);
+    }
+    return targets;
+  }
+}

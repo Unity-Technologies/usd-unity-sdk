@@ -1,153 +1,124 @@
 # USD Unity SDK: USD C# Bindings for Unity
 
 This repository contains a set of libraries designed to support the use of
-USD in C#/Unity. The primary goal is to make it maximally easy to integrate USD
-using native Unity & C# data types with a familliar serialization paradigm and
-little prior knowledge of USD.
+USD in C#/Unity. The goal of this package is to make it maximally easy to
+integrate and explore Universal Scene Description.
 
-In addition to the high-level API, the raw USD API has been translated as
-faithfully as possible and is exposed via the convenient API, following Kay's
-adage: "Simple things should be simple, complex things should be possible."
+![USD header](Images/USD_header.png)
 
-## Using the Convenience API
+# Getting Started
 
-The convenience API is accessed via USD.NET.Scene object. The general
-pattern of data access is to define a C# class to represent your data using
-native C# and Unity data types. Once a data structure has been defined,
-serialization works by calling Scene.Read and Scene.Write as follows:
+To get started, install USD via the Unity Package manager, either by using
+an official repository, or by browsing for a local package while working with
+source.
 
-    // Initialize native Unity data type maps.
-    USD.NET.Unity.UnityTypeBindings.RegisterTypes();
-    
-    // Declare the data structure.
-    class MyCustomData : USD.NET.SampleBase {
-      public string aString;
-      public int[] anArrayOfInts;
-      public UnityEngine.Bounds aBoundingBox;
-    }
-  
-    // Populate Values.
-    var value = new MyCustomData();  
-    value.aString = "Foo";
-    value.anArrayOfInts = new int[] { 1, 2, 3, 4 };
-    value.aBoundingBox = new UnityEngine.Bounds();
-    
-    // Write the value.
-    var scene = USD.NET.Scene.Create("C:/path/to/sceneFile.usd");
-    scene.Write("/scenegraph/path/to/data", value); 
-    scene.Close();
-    
-    // Read the value.
-    value = new MyCustomData();
-    scene = USD.NET.Scene.Open("C:/path/to/sceneFile.usd");
-    scene.Read("/scenegraph/path/to/data", value); 
-    scene.Close();
+Once the USD package is installed, a USD menu will appear, enabling you to
+easily import and export USD files.
 
-The use of USD.NET.SampleBase is required and provides the underlying
-support for reflection based serialization. In addition to creating your own
-Sample types, some core USD types have been provided for convenience:
+![USD menu](Images/USD_menu.png)
 
- * [XformSample](/src/USD.NET.Unity/XformSample.cs) - Equivalent of UsdGeomXform,
- provides support for writing a Matrix4x4 as a USD transform.
- 
- * [MeshSample](/src/USD.NET.Unity/MeshSample.cs) - Equivalent of UsdGeomMesh and
- maps directly onto UnityEngine.Mesh.
- 
- * [MeshSampleBase](/src/USD.NET.Unity/MeshSampleBase.cs) - Exposes only the 
- properties required to populate a UnityEngine.Mesh. This sample type can be used
- to improve mesh I/O performance for read-only use cases.
+The USD importer works with linear color space only. To ensure colors are imported correctly,
+set the project color space to "linear" in Edit > Project Settings > Player:
 
-While a reflection based API may seem ineffecient, it has been implemented
-carefully to maximize performance and to minimize main-thread stalls. The
-example above is simple, but can be extended to support asynchronous I/O
-and pooled memory access, in less than 10 additional lines of code.
+![USD linear](Images/USD_linear.png)
 
-## Using the Raw USD API
+In Unity 2019, the USD importer supports importing unlimited weights per vertex. However,
+to see the effect of more than 4 weights per vertex, this must be enabled in the project
+settings under Edit > Project Settings > Quality:
 
-The raw USD API has been exposed as close to the C++ API as possible,
-for example, the C++ pxr.UsdStage class is exposed as pxr.UsdStage. Using
-this API directly requires understanding the C++ Usd library and only the
-native C++ data types are supported.
+![USD unlimited_weights](Images/USD_unlimited_weights.png)
 
-To use a combination of the convenience API and the low level API, a reference
-to the current UsdStage can be obtained via USD.NET.Scene.Stage.
+## Requirements
 
-## Source Map
+* Windows / OSX
+* Unity version: 2018.3 (2018.3.4f1 and up) and 2019.1 (2019.1.0b2 and up)   
+See ["2017 users" section](#unity-2017-users) if you want to use the plugin in Unity 2017.4
+* To build a standalone, Api Compatibility Level needs to be set to .NET 4.x   
+   In Edit > Project Settings > Player :   
+    ![USD .NET version](Images/USD_.NET_version.png)
 
- * [/bin](/bin) - binaries and scripts for maintaining the repo (generating bindings, etc).
- * [/src](/src) - code from which all projects are generated.
- * [/src/Swig](/src/Swig) - hand coded and generated swig inputs.
- * [/src/Tests](/src/Tests) - unit tests for USD.NET and USD.NET.Unity.
- * [/src/USD.NET](/src/USD.NET) - generated USD bindings and serialization foundation.
- * [/src/USD.NET.Unity](/src/USD.NET.Unity) - Unity-specific support.
- * [/unity-assetpackage](/usd-unity-sdk-assetpackage) - A source project for generating the Unity asset package.
- * [/third_party](/third_party) - code copyrighted by third parties.
- 
+## Limitations
 
-## Compiling
+* Versions of USD **prior to 19.05** do not handle Alembic playback correctly, resulting significantly slower frame rate than authored in the Alembic cache (24x exactly). This will be fixed with the adoption of the USD 19.05 release and all assets will play back correctly, a priori.
 
-Note that currently only Windows builds are officially supported.
+## Samples
 
-USD.NET is a Visual Studio solution which includes all projects. The
-primary requirement is to setup the library and include paths for the
-C component of the build (UsdCs):
+The USD package also includes samples to help you get started.
+Please note, the way to get them varies depending on the Unity version you are using. See below.
 
- * Create a new environment variable USD_LOCATION pointing to your USD install root (contains /lib and /include)
+### Unity 2019.1 and Later
 
-## Generating Bindings
+Use Package Manager to import the samples into your Assets folder :
 
-There are two main steps to code generation, the first is a sequence of
-Python scripts which generate type-specific SWIG shims (.i files). The
-second step is the SWIG code generator itself.
+![USD .NET version](Images/USD_samples_import.png)
 
- * The Python step has been tested with Ptyhon 2.7 and requires the USD
-   Python files to be importable via PYTHONPATH.
- * The SWIG step requires the SWIG 3.0.12 executable on your system PATH.
+### Previous versions
 
-By setting USD_LOCATION_PYTHON to the root install directory of a USD
-python build, all scripts will work without setting the system PATH or
-PYTHONPATH. The variable USD_LOCATION should be set to a USD build without
-python, to minimize runtime dependencies of the final plugin.
+Samples package can be downloaded from [Unity film-tv-toolbox repository](https://github.com/Unity-Technologies/film-tv-toolbox/tree/master/UsdSamples).
 
-Once these two requirements are met, [build.cmd](build.cmd) can be run
-from a cmd prompt from the root of the UsdBindings directory. It will
-generate the additional SWIG inputs via Python, run SWIG, and then copy
-the outputs into the correct locations in the source tree. If this script
-fails at any step, execution will stop so the error can be observed.
+# Features
 
-The full build process is:
+The following is a brief listing of currently supported features:
 
- 1. Clone a USD repository
- 2. Check out the desired version to a new branch (e.g. git checkout -b v0.8.4)
- 3. Build USD with python enabled (this is required to generate C# bindings)
- 4. Build USD to a different directory with python disabled (to minimize runtime dependencies)
- 5. Set the environment variable USD_LOCATION_PYTHON to the path used in step (3)
- 6. Set the environment variable USD_LOCATION to the path used in step (4)
- 7. If upgrading USD to a newer version, run bin\diff-src.bat to merge modified header files. The "generated" source folder should also be deleted so it can be regenerated in the next step
- 8. Run bin\build.bat to generate Swig bindings
- 9. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
- 10. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
- 11. Build the solution
- 12. Hit play to run tests
- 13. Run bin\install to copy USD.NET DLLs to the Unity asset package
- 14. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
- 15. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
- 14. Test the asset package
- 15. Export a new Unity asset package
- 16. Test the exported asset package
+ * Import as GameObject, Prefab, or Timeline Clip
+ * USDZ Export
+ * Transform Override Export
+ * Timeline Playback (Vertex Streaming & Skeletal Animation)
+ * Timeline Recording Track
+ * Mesh Import & Export
+ * Material Import & Export (USD Preview Surface or DisplayColor)
+ * Unity Materials: HDRP, Standard and limited LWRP support
+ * Material Export Plugins
+ * Variant Selection
+ * Payload Load/Unload
+ * Automatic Lightmap UV Unwrapping
+ * Skeletal Animation via UsdSkel
+ * Scene Instancing
+ * Point Instancing
+ * Integration with C# Job System
+ * High and Low Level Access to USD API via C#
 
-The following is an example of valid environment variables:
+## Importing Materials
 
-SET USD_LOCAITON=C:\src\usd\builds\v0.8.4\monolithic_no-python\
-SET USD_LOCATION_PYTHON=C:\src\usd\builds\v0.8.4\monolithic\
+To import materials from USD, import the USD file using the USD menu. Next, click
+on the root GameObject and select either DisplayColor or Preview Surface from the
+materials dropdown menu.
 
-The following are the USD build commands used to generate the two build paths noted above:
+## Streaming Playback via Timeline
 
-python build_scripts\build_usd.py --build-monolithic --no-tests --no-docs --no-ptex --no-embree --alembic --no-hdf5 --no-python --no-imaging C:\src\usd\builds\v0.8.4\monolithic_no-python
+After importing a USD file with either skeletal or point cache animation, open
+the Timeline window. Select the root of the USD file.
 
-python build_scripts\build_usd.py --build-monolithic --no-tests --no-docs --no-ptex --no-embree --alembic --no-hdf5 C:\src\usd\builds\v0.8.4\usd_monolithic
+Create a playable director by clicking the "Create" button in the Timeline window.
+Next, drag the root USD file into the Timeline to create a track for this object.
+Finally, drag the USD file once more to add a USD clip to the track for plaback.
+Scrubbing through time will now update the USD scene by streaming dat from USD.
 
-## License
+Timeline playback is multi-threaded using the C# Job System.
 
-UsdBindings is licensed under the terms of the Apache
+## Variants, Models, & Payloads
+
+Access to variant selection, model details, and payload state are all accessible via
+the inspector on the game object at which these features were authored.
+
+![USD screenshot](Images/USD_global_screenshot.png)
+
+# Unity 2017 Users
+
+The official package is not compatible with 2017.4 but a separate branch is maintained to allow 2017 users to benefit from the last developments.
+
+Here's how to install the plugin from this branch:
+ * Checkout [2017.4 branch](https://github.com/Unity-Technologies/usd-unity-sdk/tree/2017.4) from the GitHub repository.
+ * Copy UsdUnitySdk in your Assets folder.
+ * Do not rename this folder.
+
+# License
+
+The USD Unity SDK is licensed under the terms of the Apache
 license. See [LICENSE](LICENSE) for more information.
+
+# Contribute
+See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+# Build
+See [BUILDING.md](BUILDING.md)

@@ -274,6 +274,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.UsdCs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -295,6 +296,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.UsdCs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
