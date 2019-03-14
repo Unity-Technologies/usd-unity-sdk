@@ -51,7 +51,11 @@ run_preview_verified_staging:
     name: Runner
   commands:
     - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
-    - upm-ci package publish
+    - | 
+       cp upm-ci~ package/com.unity.formats.usd
+       cd package/com.unity.formats.usd
+       upm-ci package publish
+
   triggers:
     tags:
       only:
