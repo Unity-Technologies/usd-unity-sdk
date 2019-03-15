@@ -241,7 +241,7 @@ namespace Unity.Formats.USD.Examples {
       var detailNormalMapPath = "/Model/Materials/SimpleMat/DetailNormalMap";
       var detailMaskPath = "/Model/Materials/SimpleMat/DetailMask";
 
-      var textureFilePath = @"Assets/Samples/USD/1.0.0-preview.3/ImportMaterials/Textures/";
+      var textureFilePath = @"Assets/Samples/USD/1.0.0-preview.4/ImportMaterials/Textures/";
 
       var cube = new CubeSample();
       cube.size = 7;
