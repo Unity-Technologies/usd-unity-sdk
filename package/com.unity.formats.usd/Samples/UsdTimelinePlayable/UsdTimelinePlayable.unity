@@ -21113,7 +21113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aff4833db8e2b14aa0f0b6071c41e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_usdFile: Assets/Samples/USD/1.0.0-preview.3/UsdTimelinePlayable/mesh.usd
+  m_usdFile: Assets/Samples/USD/1.0.0-preview.4/UsdTimelinePlayable/mesh.usd
   m_projectAssetPath: Assets/
   m_usdRootPath: /
   m_usdTimeOffset: 0
