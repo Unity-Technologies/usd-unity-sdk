@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9422ac107eb345ba17ec50a29caf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_usdFile: Samples/USD/1.0.0-preview.1/ImportMesh/mesh.usd
+  m_usdFile: Samples/USD/1.0.0-preview.3/ImportMesh/mesh.usd
   m_material: {fileID: 2100000, guid: 5a4399f9b4f4d774dbc7921697839d7e, type: 2}
   m_usdTime: 0
   m_changeHandedness: 0
