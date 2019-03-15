@@ -100,5 +100,3 @@ Timeline playback is multi-threaded using the C# Job System.
 
 Access to variant selection, model details, and payload state are all accessible via
 the inspector on the game object at which these features were authored.
-
-![USD screenshot](Images/USD_global_screenshot.png)
