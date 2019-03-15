@@ -101,8 +101,6 @@ Timeline playback is multi-threaded using the C# Job System.
 Access to variant selection, model details, and payload state are all accessible via
 the inspector on the game object at which these features were authored.
 
-![USD screenshot](Images/USD_global_screenshot.png)
-
 # Unity 2017 Users
 
 The official package is not compatible with 2017.4 but a separate branch is maintained to allow 2017 users to benefit from the last developments.
