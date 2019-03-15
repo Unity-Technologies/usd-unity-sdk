@@ -1,8 +1,8 @@
-editors:
+test_editors:
   - version: 2019.1
   - version: 2018.3
     #  - version: trunk
-platforms:
+test_platforms:
   - name: win
     type: Unity::VM
     image: package-ci/win10:latest
@@ -26,8 +26,8 @@ pack:
      paths:
        - "upm-ci~/packages/*.tgz"
 
-{% for editor in editors %}
-{% for platform in platforms %}
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
 {{ platform.name }}_{{ editor.version }}:
   name : Test {{ editor.version }} on {{ platform.name }}
   agent:
@@ -95,8 +95,8 @@ run_preview_verified_staging:
         - "upm-ci~/packages/*.tgz"
   dependencies:
     - .yamato/upm-ci.yml#pack
-  {% for editor in editors %}
-  {% for platform in platforms %}
+  {% for editor in test_editors %}
+  {% for platform in test_platforms %}
     - .yamato/upm-ci.yml#{{ platform.name }}_{{ editor.version }}
   {% endfor %}  
   {% endfor %}
