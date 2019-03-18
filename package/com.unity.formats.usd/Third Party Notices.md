@@ -688,9 +688,9 @@ as follows (or see any header or implementation file):
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
 
-============================================================
-RapidJSON
-============================================================
+
+##RapidJSON
+
 
 Tencent is pleased to support the open source community by making RapidJSON available. 
  
@@ -702,8 +702,8 @@ A copy of the MIT License is included in this file.
 
 Other dependencies and licenses:
 
-Open Source Software Licensed Under the BSD License:
---------------------------------------------------------------------
+###Open Source Software Licensed Under the BSD License:
+
 
 The msinttypes r29 
 Copyright (c) 2006-2013 Alexander Chemeris 
@@ -717,8 +717,8 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Open Source Software Licensed Under the JSON License:
---------------------------------------------------------------------
+###Open Source Software Licensed Under the JSON License:
+
 
 json.org 
 Copyright (c) 2002 JSON.org
@@ -729,8 +729,8 @@ Copyright (c) 2002 JSON.org
 All Rights Reserved.
 
 	
-Terms of the JSON License:
----------------------------------------------------
+###Terms of the JSON License:
+
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -741,8 +741,8 @@ The Software shall be used for Good, not Evil.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-Terms of the MIT License:
---------------------------------------------------------------------
+###Terms of the MIT License:
+
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -750,9 +750,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-============================================================
-pygilstate_check
-============================================================
+
+##pygilstate_check
+
 
 The MIT License (MIT)
 
@@ -776,9 +776,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-============================================================
-double-conversion
-============================================================
+
+##double-conversion
+
 
 Copyright 2006-2011, the V8 project authors. All rights reserved.
 Redistribution and use in source and binary forms, with or without
@@ -807,9 +807,9 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-============================================================
-OpenEXR/IlmBase/Half
-============================================================
+
+##OpenEXR/IlmBase/Half
+
 
 ///////////////////////////////////////////////////////////////////////////
 //
@@ -845,10 +845,10 @@ OpenEXR/IlmBase/Half
 //
 ///////////////////////////////////////////////////////////////////////////
 
-============================================================
-Apple Technical Q&A QA1361 - Detecting the Debugger
+
+##Apple Technical Q&A QA1361 - Detecting the Debugger
 https://developer.apple.com/library/content/qa/qa1361/_index.html
-============================================================
+
 
 Sample code project: Detecting the Debugger
 Version: 1.0
