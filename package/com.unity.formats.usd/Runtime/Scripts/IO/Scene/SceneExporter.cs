@@ -186,7 +186,11 @@ namespace Unity.Formats.USD {
           if (!mat || usdPath == null) {
             continue;
           }
-          MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
+          try {
+            MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error exporting material: " + kvp.Value, ex));
+          }
         }
         UnityEngine.Profiling.Profiler.EndSample();
       }
@@ -195,7 +199,7 @@ namespace Unity.Formats.USD {
       foreach (var kvp in context.plans) {
         GameObject go = kvp.Key;
         ExportPlan exportPlan = kvp.Value;
-        
+
         if (!go || exportPlan == null) {
           continue;
         }
@@ -217,32 +221,42 @@ namespace Unity.Formats.USD {
             additionalData = exporter.data
           };
 
-          exporter.exportFunc(objCtx, context);
+          try {
+            exporter.exportFunc(objCtx, context);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error exporting: " + path, ex));
+            continue;
+          }
 
           UnityEngine.Profiling.Profiler.BeginSample("USD: Process Visibility");
-          if (!go.gameObject.activeSelf) {
-            switch (context.activePolicy) {
-              case ActiveExportPolicy.Ignore:
-                // Nothing to see here.
-                break;
+          try {
+            if (!go.gameObject.activeSelf) {
+              switch (context.activePolicy) {
+                case ActiveExportPolicy.Ignore:
+                  // Nothing to see here.
+                  break;
 
-              case ActiveExportPolicy.ExportAsVisibility:
-                // Make the prim invisible.
-                var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(path));
-                if (im) {
-                  im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
-                }
-                break;
+                case ActiveExportPolicy.ExportAsVisibility:
+                  // Make the prim invisible.
+                  var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(path));
+                  if (im) {
+                    im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
+                  }
+                  break;
 
-              case ActiveExportPolicy.ExportAsActive:
-                // TODO: this may actually cause errors because exported prims will not exist in
-                // the USD scene graph. Right now, that's too much responsibility on the caller,
-                // because the error messages will be mysterious.
+                case ActiveExportPolicy.ExportAsActive:
+                  // TODO: this may actually cause errors because exported prims will not exist in
+                  // the USD scene graph. Right now, that's too much responsibility on the caller,
+                  // because the error messages will be mysterious.
 
-                // Make the prim inactive.
-                scene.GetPrimAtPath(path).SetActive(false);
-                break;
+                  // Make the prim inactive.
+                  scene.GetPrimAtPath(path).SetActive(false);
+                  break;
+              }
             }
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error setting visibility: " + path, ex));
+            continue;
           }
           UnityEngine.Profiling.Profiler.EndSample();
 
@@ -310,7 +324,7 @@ namespace Unity.Formats.USD {
         }
 
         var animatorXf = rootBoneXf;
-        
+
         while (animatorXf != null) {
 
           // If there is an animator, assume this is the root of the rig.
@@ -464,7 +478,7 @@ namespace Unity.Formats.USD {
     }
 
     static Transform MergeBonesBelowAnimator(Transform animator, ExportContext context) {
-      var toRemove = new Dictionary<Transform,Transform>();
+      var toRemove = new Dictionary<Transform, Transform>();
       Transform commonRoot = null;
 
       foreach (var sourceAndRoot in context.meshToSkelRoot) {
@@ -538,7 +552,7 @@ namespace Unity.Formats.USD {
       context.meshToSkelRoot.Add(source, rootBone);
       context.meshToBones.Add(source, bones);
       Matrix4x4 existingMatrix;
-      for (int i = 0; i < bones.Length; i ++) {
+      for (int i = 0; i < bones.Length; i++) {
         Transform bone = bones[i];
         if (bone == null) {
           var srcPath = UnityTypeConverter.GetPath(source);
