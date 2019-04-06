@@ -159,15 +159,17 @@ namespace Unity.Formats.USD {
                    Material sharedMaterial,
                    Material[] sharedMaterials,
                    bool exportMeshPose = true) {
-      if (mesh.isReadable == false) {
-        Debug.LogWarning("Mesh not readable: " + objContext.path);
-        return;
-      }
       string path = objContext.path;
+
       if (mesh == null) {
         Debug.LogWarning("Null mesh for: " + path);
         return;
       }
+      if (mesh.isReadable == false) {
+        Debug.LogWarning("Mesh not readable: " + objContext.path);
+        return;
+      }
+
       var scene = exportContext.scene;
       bool unvarying = scene.Time == null;
       bool slowAndSafeConversion = exportContext.basisTransform == BasisTransformation.SlowAndSafe;
