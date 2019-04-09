@@ -72,6 +72,7 @@ typedef TfRefPtr<UsdStage> UsdStageRefPtr;
 
 %include "usdVariantSets.i"
 %include "usdInherits.i"
+%include "usdPayloads.i"
 %include "usdReferences.i"
 %include "usdSpecializes.i"
 

@@ -47,8 +47,8 @@ public class UsdSkelInbetweenShape : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public float GetWeight() {
-    float ret = UsdCsPINVOKE.UsdSkelInbetweenShape_GetWeight(swigCPtr);
+  public bool GetWeight(SWIGTYPE_p_float weight) {
+    bool ret = UsdCsPINVOKE.UsdSkelInbetweenShape_GetWeight(swigCPtr, SWIGTYPE_p_float.getCPtr(weight));
     return ret;
   }
 

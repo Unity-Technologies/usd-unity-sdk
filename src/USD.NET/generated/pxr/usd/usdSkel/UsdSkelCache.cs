@@ -59,8 +59,14 @@ public class UsdSkelCache : global::System.IDisposable {
     return ret;
   }
 
+  public UsdSkelAnimQuery GetAnimQuery(UsdSkelAnimation anim) {
+    UsdSkelAnimQuery ret = new UsdSkelAnimQuery(UsdCsPINVOKE.UsdSkelCache_GetAnimQuery__SWIG_0(swigCPtr, UsdSkelAnimation.getCPtr(anim)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdSkelAnimQuery GetAnimQuery(UsdPrim prim) {
-    UsdSkelAnimQuery ret = new UsdSkelAnimQuery(UsdCsPINVOKE.UsdSkelCache_GetAnimQuery(swigCPtr, UsdPrim.getCPtr(prim)), true);
+    UsdSkelAnimQuery ret = new UsdSkelAnimQuery(UsdCsPINVOKE.UsdSkelCache_GetAnimQuery__SWIG_1(swigCPtr, UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -43,7 +43,6 @@
 %include "sdfAttributeSpec.i"
 %include "sdfRelationshipSpec.i"
 
-%include "sdfLayerBase.i"
 %include "sdfLayer.i"
 %include "sdfLayerTree.i"
 

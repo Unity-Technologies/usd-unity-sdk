@@ -94,6 +94,28 @@ public class UsdSkelBlendShape : UsdTyped {
     return ret;
   }
 
+  public UsdAttribute GetNormalOffsetsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBlendShape_GetNormalOffsetsAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateNormalOffsetsAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBlendShape_CreateNormalOffsetsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateNormalOffsetsAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBlendShape_CreateNormalOffsetsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateNormalOffsetsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBlendShape_CreateNormalOffsetsAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetPointIndicesAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelBlendShape_GetPointIndicesAttr(swigCPtr), true);
     return ret;
@@ -141,6 +163,18 @@ public class UsdSkelBlendShape : UsdTyped {
 
   public UsdSkelInbetweenShapeVector GetAuthoredInbetweens() {
     UsdSkelInbetweenShapeVector ret = new UsdSkelInbetweenShapeVector(UsdCsPINVOKE.UsdSkelBlendShape_GetAuthoredInbetweens(swigCPtr), true);
+    return ret;
+  }
+
+  public static bool ValidatePointIndices(SWIGTYPE_p_TfSpanT_int_const_t indices, uint numPoints, /*cstype*/ out string reason) {
+    bool ret = UsdCsPINVOKE.UsdSkelBlendShape_ValidatePointIndices__SWIG_0(SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(indices), numPoints, out reason);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool ValidatePointIndices(SWIGTYPE_p_TfSpanT_int_const_t indices, uint numPoints) {
+    bool ret = UsdCsPINVOKE.UsdSkelBlendShape_ValidatePointIndices__SWIG_1(SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(indices), numPoints);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

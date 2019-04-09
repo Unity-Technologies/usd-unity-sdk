@@ -43,21 +43,15 @@ public class UsdSkelTopology : global::System.IDisposable {
   public UsdSkelTopology() : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_0(), true) {
   }
 
-  public UsdSkelTopology(VtTokenArray paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_1(VtTokenArray.getCPtr(paths)), true) {
+  public UsdSkelTopology(SWIGTYPE_p_TfSpanT_TfToken_const_t paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_1(SWIGTYPE_p_TfSpanT_TfToken_const_t.getCPtr(paths)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdSkelTopology(TfToken paths, uint size) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_2(TfToken.getCPtr(paths), size), true) {
-  }
-
-  public UsdSkelTopology(SdfPathVector paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_3(SdfPathVector.getCPtr(paths)), true) {
+  public UsdSkelTopology(SWIGTYPE_p_TfSpanT_SdfPath_const_t paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_2(SWIGTYPE_p_TfSpanT_SdfPath_const_t.getCPtr(paths)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdSkelTopology(SdfPath paths, uint size) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_4(SdfPath.getCPtr(paths), size), true) {
-  }
-
-  public UsdSkelTopology(VtIntArray parentIndices) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_5(VtIntArray.getCPtr(parentIndices)), true) {
+  public UsdSkelTopology(VtIntArray parentIndices) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_3(VtIntArray.getCPtr(parentIndices)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -82,6 +76,11 @@ public class UsdSkelTopology : global::System.IDisposable {
     return ret;
   }
 
+  public uint size() {
+    uint ret = UsdCsPINVOKE.UsdSkelTopology_size(swigCPtr);
+    return ret;
+  }
+
   public int GetParent(uint index) {
     int ret = UsdCsPINVOKE.UsdSkelTopology_GetParent(swigCPtr, index);
     return ret;
@@ -90,6 +89,10 @@ public class UsdSkelTopology : global::System.IDisposable {
   public bool IsRoot(uint index) {
     bool ret = UsdCsPINVOKE.UsdSkelTopology_IsRoot(swigCPtr, index);
     return ret;
+  }
+
+  public UsdSkelTopology(VtTokenArray topology) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_4(VtTokenArray.getCPtr(topology)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
 }

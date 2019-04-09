@@ -53,17 +53,6 @@ public class UsdSkelAnimQuery : global::System.IDisposable {
     return ret;
   }
 
-  public bool ComputeJointLocalTransforms(VtMatrix4dArray xforms, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeJointLocalTransforms__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeJointLocalTransforms(VtMatrix4dArray xforms) {
-    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeJointLocalTransforms__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms));
-    return ret;
-  }
-
   public bool ComputeJointLocalTransformComponents(VtVec3fArray translations, VtQuatfArray rotations, VtVec3hArray scales, UsdTimeCode time) {
     bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_ComputeJointLocalTransformComponents__SWIG_0(swigCPtr, VtVec3fArray.getCPtr(translations), VtQuatfArray.getCPtr(rotations), VtVec3hArray.getCPtr(scales), UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -104,6 +93,22 @@ public class UsdSkelAnimQuery : global::System.IDisposable {
 
   public bool JointTransformsMightBeTimeVarying() {
     bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_JointTransformsMightBeTimeVarying(swigCPtr);
+    return ret;
+  }
+
+  public bool GetBlendShapeWeightTimeSamples(StdDoubleVector attrs) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_GetBlendShapeWeightTimeSamples(swigCPtr, StdDoubleVector.getCPtr(attrs));
+    return ret;
+  }
+
+  public bool GetBlendShapeWeightTimeSamplesInInterval(GfInterval interval, StdDoubleVector times) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_GetBlendShapeWeightTimeSamplesInInterval(swigCPtr, GfInterval.getCPtr(interval), StdDoubleVector.getCPtr(times));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool BlendShapeWeightsMightBeTimeVarying() {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_BlendShapeWeightsMightBeTimeVarying(swigCPtr);
     return ret;
   }
 

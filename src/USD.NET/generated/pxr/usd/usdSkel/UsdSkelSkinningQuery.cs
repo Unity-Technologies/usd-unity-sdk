@@ -43,7 +43,7 @@ public class UsdSkelSkinningQuery : global::System.IDisposable {
   public UsdSkelSkinningQuery() : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_0(), true) {
   }
 
-  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, UsdAttribute joints) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), UsdAttribute.getCPtr(joints)), true) {
+  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, UsdAttribute joints, UsdAttribute blendShapes, UsdRelationship blendShapeTargets) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), UsdAttribute.getCPtr(joints), UsdAttribute.getCPtr(blendShapes), UsdRelationship.getCPtr(blendShapeTargets)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -54,6 +54,16 @@ public class UsdSkelSkinningQuery : global::System.IDisposable {
 
   public UsdPrim GetPrim() {
     UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelSkinningQuery_GetPrim(swigCPtr), false);
+    return ret;
+  }
+
+  public bool HasBlendShapes() {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_HasBlendShapes(swigCPtr);
+    return ret;
+  }
+
+  public bool HasJointInfluences() {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_HasJointInfluences(swigCPtr);
     return ret;
   }
 
@@ -87,6 +97,16 @@ public class UsdSkelSkinningQuery : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetBlendShapesAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapesAttr(swigCPtr), false);
+    return ret;
+  }
+
+  public UsdRelationship GetBlendShapeTargetsRel() {
+    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeTargetsRel(swigCPtr), false);
+    return ret;
+  }
+
   public bool GetJointOrder(VtTokenArray jointOrder) {
     bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointOrder(swigCPtr, VtTokenArray.getCPtr(jointOrder));
     return ret;
@@ -116,36 +136,6 @@ public class UsdSkelSkinningQuery : global::System.IDisposable {
 
   public bool ComputeVaryingJointInfluences(uint numPoints, VtIntArray indices, VtFloatArray weights) {
     bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeVaryingJointInfluences__SWIG_1(swigCPtr, numPoints, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights));
-    return ret;
-  }
-
-  public bool ComputeSkinnedPoints(VtMatrix4dArray xforms, VtVec3fArray points, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeSkinnedPoints__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), VtVec3fArray.getCPtr(points), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeSkinnedPoints(VtMatrix4dArray xforms, VtVec3fArray points) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeSkinnedPoints__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms), VtVec3fArray.getCPtr(points));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeSkinnedTransform(VtMatrix4dArray xforms, GfMatrix4d xform, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeSkinnedTransform__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), GfMatrix4d.getCPtr(xform), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeSkinnedTransform(VtMatrix4dArray xforms, GfMatrix4d xform) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeSkinnedTransform__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms), GfMatrix4d.getCPtr(xform));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public float ComputeExtentsPadding(VtMatrix4dArray skelRestXforms, UsdGeomBoundable boundable) {
-    float ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeExtentsPadding(swigCPtr, VtMatrix4dArray.getCPtr(skelRestXforms), UsdGeomBoundable.getCPtr(boundable));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

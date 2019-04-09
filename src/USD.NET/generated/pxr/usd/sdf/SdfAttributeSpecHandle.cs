@@ -118,32 +118,6 @@ public class SdfAttributeSpecHandle : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void SetConnectionMarkers(SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t markers) {
-    UsdCsPINVOKE.SdfAttributeSpecHandle_SetConnectionMarkers(swigCPtr, SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t.getCPtr(markers));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetConnectionMarker(SdfPath path) {
-    string ret = UsdCsPINVOKE.SdfAttributeSpecHandle_GetConnectionMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetConnectionMarker(SdfPath path, string marker) {
-    UsdCsPINVOKE.SdfAttributeSpecHandle_SetConnectionMarker(swigCPtr, SdfPath.getCPtr(path), marker);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void ClearConnectionMarker(SdfPath path) {
-    UsdCsPINVOKE.SdfAttributeSpecHandle_ClearConnectionMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPathVector GetConnectionMarkerPaths() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfAttributeSpecHandle_GetConnectionMarkerPaths(swigCPtr), true);
-    return ret;
-  }
-
   public VtTokenArray GetAllowedTokens() {
     VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.SdfAttributeSpecHandle_GetAllowedTokens(swigCPtr), true);
     return ret;
@@ -363,8 +337,8 @@ public class SdfAttributeSpecHandle : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_SdfTimeSampleMap GetTimeSampleMap() {
-    SWIGTYPE_p_SdfTimeSampleMap ret = new SWIGTYPE_p_SdfTimeSampleMap(UsdCsPINVOKE.SdfAttributeSpecHandle_GetTimeSampleMap(swigCPtr), true);
+  public SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t GetTimeSampleMap() {
+    SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t ret = new SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t(UsdCsPINVOKE.SdfAttributeSpecHandle_GetTimeSampleMap(swigCPtr), true);
     return ret;
   }
 

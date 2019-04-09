@@ -19,6 +19,8 @@ using USD.NET.Unity;
 
 namespace Unity.Formats.USD {
   public static class MeshExporter {
+    private static pxr.TfToken m_materialBindToken = new pxr.TfToken("materialBind");
+    private static pxr.TfToken m_subMeshesToken = new pxr.TfToken("subMeshes");
 
     public static void ExportSkinnedMesh(ObjectContext objContext, ExportContext exportContext) {
       var smr = objContext.gameObject.GetComponent<SkinnedMeshRenderer>();
@@ -279,6 +281,7 @@ namespace Unity.Formats.USD {
 
           var usdPrim = scene.GetPrimAtPath(path);
           var usdGeomMesh = new pxr.UsdGeomMesh(usdPrim);
+
           // Process each subMesh and create a UsdGeomSubset of faces this subMesh targets.
           for (int si = 0; si < mesh.subMeshCount; si++) {
             int[] indices = mesh.GetTriangles(si);
@@ -288,14 +291,13 @@ namespace Unity.Formats.USD {
               faceIndices[i / 3] = faceTable[new Vector3(indices[i], indices[i + 1], indices[i + 2])];
             }
 
-            var materialBindToken = new pxr.TfToken("materialBind");
             var vtIndices = UnityTypeConverter.ToVtArray(faceIndices);
             var subset = pxr.UsdGeomSubset.CreateUniqueGeomSubset(
                 usdGeomMesh,            // The object of which this subset belongs.
-                "subMeshes",            // An arbitrary name for the subset.
+                m_subMeshesToken, // An arbitrary name for the subset.
                 pxr.UsdGeomTokens.face, // Indicator that these represent face indices
                 vtIndices,              // The actual face indices.
-                materialBindToken       // familyName = "materialBind"
+                m_materialBindToken       // familyName = "materialBind"
                 );
 
             if (exportContext.exportMaterials) {

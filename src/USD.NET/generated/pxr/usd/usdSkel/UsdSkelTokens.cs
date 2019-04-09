@@ -39,7 +39,9 @@ public class UsdSkelTokens : global::System.IDisposable {
   public static TfToken bindTransforms = new TfToken("bindTransforms");
   public static TfToken blendShapeWeights = new TfToken("blendShapeWeights");
   public static TfToken blendShapes = new TfToken("blendShapes");
+  public static TfToken jointNames = new TfToken("jointNames");
   public static TfToken joints = new TfToken("joints");
+  public static TfToken normalOffsets = new TfToken("normalOffsets");
   public static TfToken offsets = new TfToken("offsets");
   public static TfToken pointIndices = new TfToken("pointIndices");
   public static TfToken primvarsSkelGeomBindTransform = new TfToken("primvars:skel:geomBindTransform");

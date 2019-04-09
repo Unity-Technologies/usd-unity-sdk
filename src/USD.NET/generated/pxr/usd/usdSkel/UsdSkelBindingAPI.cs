@@ -272,6 +272,18 @@ public class UsdSkelBindingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static bool ValidateJointIndices(SWIGTYPE_p_TfSpanT_int_const_t indices, uint numJoints, /*cstype*/ out string reason) {
+    bool ret = UsdCsPINVOKE.UsdSkelBindingAPI_ValidateJointIndices__SWIG_0(SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(indices), numJoints, out reason);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool ValidateJointIndices(SWIGTYPE_p_TfSpanT_int_const_t indices, uint numJoints) {
+    bool ret = UsdCsPINVOKE.UsdSkelBindingAPI_ValidateJointIndices__SWIG_1(SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(indices), numJoints);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
 }
 
 }
