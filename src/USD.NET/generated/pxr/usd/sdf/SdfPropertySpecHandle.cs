@@ -214,8 +214,8 @@ public class SdfPropertySpecHandle : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_SdfTimeSampleMap GetTimeSampleMap() {
-    SWIGTYPE_p_SdfTimeSampleMap ret = new SWIGTYPE_p_SdfTimeSampleMap(UsdCsPINVOKE.SdfPropertySpecHandle_GetTimeSampleMap(swigCPtr), true);
+  public SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t GetTimeSampleMap() {
+    SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t ret = new SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t(UsdCsPINVOKE.SdfPropertySpecHandle_GetTimeSampleMap(swigCPtr), true);
     return ret;
   }
 

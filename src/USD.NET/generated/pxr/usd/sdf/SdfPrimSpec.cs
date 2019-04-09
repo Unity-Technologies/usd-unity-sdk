@@ -465,23 +465,18 @@ public class SdfPrimSpec : SdfSpec {
     UsdCsPINVOKE.SdfPrimSpec_ClearInstanceable(swigCPtr);
   }
 
-  public SdfPayload GetPayload() {
-    SdfPayload ret = new SdfPayload(UsdCsPINVOKE.SdfPrimSpec_GetPayload(swigCPtr), true);
+  public SWIGTYPE_p_SdfPayloadsProxy GetPayloadList() {
+    SWIGTYPE_p_SdfPayloadsProxy ret = new SWIGTYPE_p_SdfPayloadsProxy(UsdCsPINVOKE.SdfPrimSpec_GetPayloadList(swigCPtr), true);
     return ret;
   }
 
-  public void SetPayload(SdfPayload value) {
-    UsdCsPINVOKE.SdfPrimSpec_SetPayload(swigCPtr, SdfPayload.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool HasPayload() {
-    bool ret = UsdCsPINVOKE.SdfPrimSpec_HasPayload(swigCPtr);
+  public bool HasPayloads() {
+    bool ret = UsdCsPINVOKE.SdfPrimSpec_HasPayloads(swigCPtr);
     return ret;
   }
 
-  public void ClearPayload() {
-    UsdCsPINVOKE.SdfPrimSpec_ClearPayload(swigCPtr);
+  public void ClearPayloadList() {
+    UsdCsPINVOKE.SdfPrimSpec_ClearPayloadList(swigCPtr);
   }
 
   public SWIGTYPE_p_SdfInheritsProxy GetInheritPathList() {
@@ -562,8 +557,8 @@ public class SdfPrimSpec : SdfSpec {
     return ret;
   }
 
-  public void SetRelocates(SWIGTYPE_p_SdfRelocatesMap newMap) {
-    UsdCsPINVOKE.SdfPrimSpec_SetRelocates(swigCPtr, SWIGTYPE_p_SdfRelocatesMap.getCPtr(newMap));
+  public void SetRelocates(SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t newMap) {
+    UsdCsPINVOKE.SdfPrimSpec_SetRelocates(swigCPtr, SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t.getCPtr(newMap));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

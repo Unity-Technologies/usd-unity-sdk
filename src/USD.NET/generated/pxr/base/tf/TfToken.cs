@@ -109,41 +109,6 @@ public class TfToken : global::System.IDisposable {
   
   }
 
-  public class LTTokenFunctor : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal LTTokenFunctor(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LTTokenFunctor obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~LTTokenFunctor() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_TfToken_LTTokenFunctor(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-        }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public LTTokenFunctor() : this(UsdCsPINVOKE.new_TfToken_LTTokenFunctor(), true) {
-    }
-  
-  }
-
   public uint size() {
     uint ret = UsdCsPINVOKE.TfToken_size(swigCPtr);
     return ret;
@@ -171,6 +136,11 @@ public class TfToken : global::System.IDisposable {
 
   public bool IsEmpty() {
     bool ret = UsdCsPINVOKE.TfToken_IsEmpty(swigCPtr);
+    return ret;
+  }
+
+  public bool IsImmortal() {
+    bool ret = UsdCsPINVOKE.TfToken_IsImmortal(swigCPtr);
     return ret;
   }
 

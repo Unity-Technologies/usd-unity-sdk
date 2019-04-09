@@ -115,26 +115,26 @@ public class PcpLayerStack : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_SdfRelocatesMap GetRelocatesSourceToTarget() {
-    SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetRelocatesSourceToTarget(swigCPtr), false);
+  public SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t GetRelocatesSourceToTarget() {
+    SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t ret = new SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t(UsdCsPINVOKE.PcpLayerStack_GetRelocatesSourceToTarget(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfRelocatesMap GetRelocatesTargetToSource() {
-    SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetRelocatesTargetToSource(swigCPtr), false);
+  public SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t GetRelocatesTargetToSource() {
+    SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t ret = new SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t(UsdCsPINVOKE.PcpLayerStack_GetRelocatesTargetToSource(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfRelocatesMap GetIncrementalRelocatesSourceToTarget() {
-    SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetIncrementalRelocatesSourceToTarget(swigCPtr), false);
+  public SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t GetIncrementalRelocatesSourceToTarget() {
+    SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t ret = new SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t(UsdCsPINVOKE.PcpLayerStack_GetIncrementalRelocatesSourceToTarget(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_SdfRelocatesMap GetIncrementalRelocatesTargetToSource() {
-    SWIGTYPE_p_SdfRelocatesMap ret = new SWIGTYPE_p_SdfRelocatesMap(UsdCsPINVOKE.PcpLayerStack_GetIncrementalRelocatesTargetToSource(swigCPtr), false);
+  public SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t GetIncrementalRelocatesTargetToSource() {
+    SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t ret = new SWIGTYPE_p_std__mapT_SdfPath_SdfPath_std__lessT_SdfPath_t_t(UsdCsPINVOKE.PcpLayerStack_GetIncrementalRelocatesTargetToSource(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

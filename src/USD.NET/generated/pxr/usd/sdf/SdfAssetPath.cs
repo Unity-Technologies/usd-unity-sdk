@@ -56,6 +56,41 @@ public class SdfAssetPath : global::System.IDisposable {
     return ret;
   }
 
+  public class Hash : global::System.IDisposable {
+    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    protected bool swigCMemOwn;
+  
+    internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn) {
+      swigCMemOwn = cMemoryOwn;
+      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+    }
+  
+    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj) {
+      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+    }
+  
+    ~Hash() {
+      Dispose();
+    }
+  
+    public virtual void Dispose() {
+      lock(this) {
+        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+          if (swigCMemOwn) {
+            swigCMemOwn = false;
+            UsdCsPINVOKE.delete_SdfAssetPath_Hash(swigCPtr);
+          }
+          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
+        global::System.GC.SuppressFinalize(this);
+      }
+    }
+  
+    public Hash() : this(UsdCsPINVOKE.new_SdfAssetPath_Hash(), true) {
+    }
+  
+  }
+
   public string GetAssetPath() {
     string ret = UsdCsPINVOKE.SdfAssetPath_GetAssetPath(swigCPtr);
     return ret;

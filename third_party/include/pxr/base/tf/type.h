@@ -33,7 +33,6 @@
 #include "pxr/base/tf/traits.h"
 #include "pxr/base/tf/typeFunctions.h"
 
-#include <boost/mpl/vector.hpp>
 #include <boost/operators.hpp>
 
 #include <iosfwd>
@@ -690,8 +689,10 @@ private:
     // Construct a TfType with the given _TypeInfo.
     explicit TfType(_TypeInfo *info) : _info(info) {}
 
-    // Add a base type, and link as a derived type of that base.
-    void _AddBase( TfType base ) const;
+    // Adds base type(s), and link as a derived type of that bases.
+    void _AddBases(
+        const std::vector<TfType> &bases,
+        std::vector<std::string> *errorToEmit) const;
 
     // Add the given function for casting to/from the given baseType.
     TF_API

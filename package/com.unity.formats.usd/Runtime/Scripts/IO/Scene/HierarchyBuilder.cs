@@ -74,7 +74,7 @@ namespace Unity.Formats.USD {
         info.isInstance = info.prim.IsInstance();
         HierarchyBuilder.ReadModelInfo(ref info);
         HierarchyBuilder.ReadSkeleton(ref info);
-        info.hasPayload = info.prim.GetPrimIndex().HasPayload();
+        info.hasPayload = info.prim.GetPrimIndex().HasAnyPayloads();
 
         result[index] = info;
       }

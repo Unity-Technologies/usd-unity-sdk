@@ -40,7 +40,24 @@ public class SdfUnregisteredValue : global::System.IDisposable {
     }
   }
 
-  public SdfUnregisteredValue() : this(UsdCsPINVOKE.new_SdfUnregisteredValue(), true) {
+  public SdfUnregisteredValue() : this(UsdCsPINVOKE.new_SdfUnregisteredValue__SWIG_0(), true) {
+  }
+
+  public SdfUnregisteredValue(string value) : this(UsdCsPINVOKE.new_SdfUnregisteredValue__SWIG_1(value), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SdfUnregisteredValue(VtDictionary value) : this(UsdCsPINVOKE.new_SdfUnregisteredValue__SWIG_2(VtDictionary.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SdfUnregisteredValue(SdfUnregisteredValueListOp value) : this(UsdCsPINVOKE.new_SdfUnregisteredValue__SWIG_3(SdfUnregisteredValueListOp.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtValue GetValue() {
+    VtValue ret = new VtValue(UsdCsPINVOKE.SdfUnregisteredValue_GetValue(swigCPtr), false);
+    return ret;
   }
 
 }

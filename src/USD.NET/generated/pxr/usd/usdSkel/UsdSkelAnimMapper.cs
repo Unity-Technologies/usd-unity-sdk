@@ -43,11 +43,14 @@ public class UsdSkelAnimMapper : global::System.IDisposable {
   public UsdSkelAnimMapper() : this(UsdCsPINVOKE.new_UsdSkelAnimMapper__SWIG_0(), true) {
   }
 
-  public UsdSkelAnimMapper(VtTokenArray sourceOrder, VtTokenArray targetOrder) : this(UsdCsPINVOKE.new_UsdSkelAnimMapper__SWIG_1(VtTokenArray.getCPtr(sourceOrder), VtTokenArray.getCPtr(targetOrder)), true) {
+  public UsdSkelAnimMapper(uint size) : this(UsdCsPINVOKE.new_UsdSkelAnimMapper__SWIG_1(size), true) {
+  }
+
+  public UsdSkelAnimMapper(VtTokenArray sourceOrder, VtTokenArray targetOrder) : this(UsdCsPINVOKE.new_UsdSkelAnimMapper__SWIG_2(VtTokenArray.getCPtr(sourceOrder), VtTokenArray.getCPtr(targetOrder)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public UsdSkelAnimMapper(TfToken sourceOrder, uint sourceOrderSize, TfToken targetOrder, uint targetOrderSize) : this(UsdCsPINVOKE.new_UsdSkelAnimMapper__SWIG_2(TfToken.getCPtr(sourceOrder), sourceOrderSize, TfToken.getCPtr(targetOrder), targetOrderSize), true) {
+  public UsdSkelAnimMapper(TfToken sourceOrder, uint sourceOrderSize, TfToken targetOrder, uint targetOrderSize) : this(UsdCsPINVOKE.new_UsdSkelAnimMapper__SWIG_3(TfToken.getCPtr(sourceOrder), sourceOrderSize, TfToken.getCPtr(targetOrder), targetOrderSize), true) {
   }
 
   public bool Remap(VtValue source, VtValue target, int elementSize, VtValue defaultValue) {
@@ -64,18 +67,6 @@ public class UsdSkelAnimMapper : global::System.IDisposable {
 
   public bool Remap(VtValue source, VtValue target) {
     bool ret = UsdCsPINVOKE.UsdSkelAnimMapper_Remap__SWIG_5(swigCPtr, VtValue.getCPtr(source), VtValue.getCPtr(target));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool RemapTransforms(VtMatrix4dArray source, VtMatrix4dArray target, int elementSize) {
-    bool ret = UsdCsPINVOKE.UsdSkelAnimMapper_RemapTransforms__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(source), VtMatrix4dArray.getCPtr(target), elementSize);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool RemapTransforms(VtMatrix4dArray source, VtMatrix4dArray target) {
-    bool ret = UsdCsPINVOKE.UsdSkelAnimMapper_RemapTransforms__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(source), VtMatrix4dArray.getCPtr(target));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

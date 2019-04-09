@@ -154,25 +154,8 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
-  public UsdGeomPrimvarVector FindInheritedPrimvars() {
-    UsdGeomPrimvarVector ret = new UsdGeomPrimvarVector(UsdCsPINVOKE.UsdGeomImageable_FindInheritedPrimvars(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdGeomPrimvar FindInheritedPrimvar(TfToken name) {
-    UsdGeomPrimvar ret = new UsdGeomPrimvar(UsdCsPINVOKE.UsdGeomImageable_FindInheritedPrimvar(swigCPtr, TfToken.getCPtr(name)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public bool HasPrimvar(TfToken name) {
     bool ret = UsdCsPINVOKE.UsdGeomImageable_HasPrimvar(swigCPtr, TfToken.getCPtr(name));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool HasInheritedPrimvar(TfToken name) {
-    bool ret = UsdCsPINVOKE.UsdGeomImageable_HasInheritedPrimvar(swigCPtr, TfToken.getCPtr(name));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -211,8 +194,26 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
+  public TfToken ComputeVisibility(TfToken parentVisibility, UsdTimeCode time) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputeVisibility__SWIG_2(swigCPtr, TfToken.getCPtr(parentVisibility), UsdTimeCode.getCPtr(time)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public TfToken ComputeVisibility(TfToken parentVisibility) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputeVisibility__SWIG_3(swigCPtr, TfToken.getCPtr(parentVisibility)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public TfToken ComputePurpose() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputePurpose(swigCPtr), true);
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputePurpose__SWIG_0(swigCPtr), true);
+    return ret;
+  }
+
+  public TfToken ComputePurpose(TfToken parentPurpose) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputePurpose__SWIG_1(swigCPtr, TfToken.getCPtr(parentPurpose)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

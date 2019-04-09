@@ -104,6 +104,16 @@ public class UsdGeomPrimvar : global::System.IDisposable {
     return ret;
   }
 
+  public bool HasValue() {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_HasValue(swigCPtr);
+    return ret;
+  }
+
+  public bool HasAuthoredValue() {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_HasAuthoredValue(swigCPtr);
+    return ret;
+  }
+
   public TfToken GetName() {
     TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomPrimvar_GetName(swigCPtr), false);
     return ret;

@@ -471,6 +471,16 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
+  public UsdPayloads GetPayloads() {
+    UsdPayloads ret = new UsdPayloads(UsdCsPINVOKE.UsdPrim_GetPayloads(swigCPtr), true);
+    return ret;
+  }
+
+  public bool HasAuthoredPayloads() {
+    bool ret = UsdCsPINVOKE.UsdPrim_HasAuthoredPayloads(swigCPtr);
+    return ret;
+  }
+
   public void Load(UsdLoadPolicy policy) {
     UsdCsPINVOKE.UsdPrim_Load__SWIG_0(swigCPtr, (int)policy);
   }

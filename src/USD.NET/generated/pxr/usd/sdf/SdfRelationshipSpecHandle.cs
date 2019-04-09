@@ -164,37 +164,6 @@ public class SdfRelationshipSpecHandle : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t GetTargetMarkers() {
-    SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t ret = new SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t(UsdCsPINVOKE.SdfRelationshipSpecHandle_GetTargetMarkers(swigCPtr), true);
-    return ret;
-  }
-
-  public void SetTargetMarkers(SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t markers) {
-    UsdCsPINVOKE.SdfRelationshipSpecHandle_SetTargetMarkers(swigCPtr, SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t.getCPtr(markers));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetTargetMarker(SdfPath path) {
-    string ret = UsdCsPINVOKE.SdfRelationshipSpecHandle_GetTargetMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetTargetMarker(SdfPath path, string marker) {
-    UsdCsPINVOKE.SdfRelationshipSpecHandle_SetTargetMarker(swigCPtr, SdfPath.getCPtr(path), marker);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void ClearTargetMarker(SdfPath path) {
-    UsdCsPINVOKE.SdfRelationshipSpecHandle_ClearTargetMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPathVector GetTargetMarkerPaths() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfRelationshipSpecHandle_GetTargetMarkerPaths(swigCPtr), true);
-    return ret;
-  }
-
   public bool GetNoLoadHint() {
     bool ret = UsdCsPINVOKE.SdfRelationshipSpecHandle_GetNoLoadHint(swigCPtr);
     return ret;
@@ -361,8 +330,8 @@ public class SdfRelationshipSpecHandle : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_SdfTimeSampleMap GetTimeSampleMap() {
-    SWIGTYPE_p_SdfTimeSampleMap ret = new SWIGTYPE_p_SdfTimeSampleMap(UsdCsPINVOKE.SdfRelationshipSpecHandle_GetTimeSampleMap(swigCPtr), true);
+  public SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t GetTimeSampleMap() {
+    SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t ret = new SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t(UsdCsPINVOKE.SdfRelationshipSpecHandle_GetTimeSampleMap(swigCPtr), true);
     return ret;
   }
 

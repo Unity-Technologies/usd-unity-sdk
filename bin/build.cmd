@@ -19,6 +19,7 @@ ECHO.
 ECHO Running SWIG code generation...
 swig.exe -w401 -w516 -w503 -namespace pxr -I%USD_LOCATION%\include -I.\src\UsdCs\ -I.\ -c++ -csharp -outdir .\src\USD.NET -o .\src\UsdCs\usdCs_wrap.cpp .\src\Swig\usdCs.i
 IF NOT %ERRORLEVEL% == 0 (
+  echo swig exited with non-zero error code %ERRORLEVEL%
   EXIT /B
 )
 

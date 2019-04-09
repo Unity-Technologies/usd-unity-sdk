@@ -18,3 +18,6 @@
 %}
 
 %include "pxr/usd/usdSkel/skeletonQuery.h"
+
+%template(ComputeJointLocalTransforms) UsdSkelSkeletonQuery::ComputeJointLocalTransforms<GfMatrix4d>;
+%template(GetJointWorldBindTransforms) UsdSkelSkeletonQuery::GetJointWorldBindTransforms<GfMatrix4d>;

@@ -167,7 +167,6 @@
     <Content Include="pxr\usd\sdf\sdfAssetPath.i" />
     <Content Include="pxr\usd\sdf\sdfListProxy.i" />
     <Content Include="pxr\usd\sdf\sdfListOp.i" />
-    <Content Include="pxr\usd\sdf\sdfLayerBase.i" />
     <Content Include="pxr\usd\sdf\sdfLayer.i" />
     <Content Include="pxr\usd\sdf\sdfNamespaceEdit.i" />
     <Content Include="pxr\usd\sdf\sdfPayload.i" />
@@ -188,7 +187,6 @@
     <Content Include="pxr\usd\usdGeom\usdGeomMotionAPI.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomModelAPI.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomNurbsPatch.i" />
-    <Content Include="pxr\usd\usdGeom\usdGeomCollectionAPI.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomSubset.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomSphere.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCylinder.i" />
@@ -197,7 +195,6 @@
     <Content Include="pxr\usd\usdGeom\usdGeomCone.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomNurbsCurves.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomCurves.i" />
-    <Content Include="pxr\usd\usdGeom\usdGeomFaceSetAPI.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomPointInstancer.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomPoints.i" />
     <Content Include="pxr\usd\usdGeom\usdGeomPrimvar.i" />
@@ -302,6 +299,7 @@
     <Content Include="pxr\usd\usd\usdCollectionAPI.i" />
     <Content Include="pxr\usd\usd\usdClipsAPI.i" />
     <Content Include="pxr\usd\usd\usdModelApi.i" />
+    <Content Include="pxr\usd\usd\usdPayloads.i" />
     <Content Include="pxr\usd\usd\usdResolveInfo.i" />
     <Content Include="pxr\usd\usd\usdStagePopulationMask.i" />
     <Content Include="pxr\usd\usd\usdStageCache.i" />

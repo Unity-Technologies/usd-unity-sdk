@@ -100,32 +100,6 @@ public class SdfAttributeSpec : SdfPropertySpec {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void SetConnectionMarkers(SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t markers) {
-    UsdCsPINVOKE.SdfAttributeSpec_SetConnectionMarkers(swigCPtr, SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t.getCPtr(markers));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetConnectionMarker(SdfPath path) {
-    string ret = UsdCsPINVOKE.SdfAttributeSpec_GetConnectionMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetConnectionMarker(SdfPath path, string marker) {
-    UsdCsPINVOKE.SdfAttributeSpec_SetConnectionMarker(swigCPtr, SdfPath.getCPtr(path), marker);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void ClearConnectionMarker(SdfPath path) {
-    UsdCsPINVOKE.SdfAttributeSpec_ClearConnectionMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPathVector GetConnectionMarkerPaths() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfAttributeSpec_GetConnectionMarkerPaths(swigCPtr), true);
-    return ret;
-  }
-
   public VtTokenArray GetAllowedTokens() {
     VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.SdfAttributeSpec_GetAllowedTokens(swigCPtr), true);
     return ret;
