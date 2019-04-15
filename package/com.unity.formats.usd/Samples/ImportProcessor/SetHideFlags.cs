@@ -37,24 +37,24 @@ namespace Unity.Formats.USD.Examples {
         switch (operation) {
           case Operation.LogicalAND:
             go.hideFlags &= hideFlagsSettings;
-            return;
+            continue;
           case Operation.LogicalOR:
             go.hideFlags |= hideFlagsSettings;
-            return;
+            continue;
           case Operation.LogicalXOR:
             go.hideFlags ^= hideFlagsSettings;
-            return;
+            continue;
           default:
             go.hideFlags = hideFlagsSettings;
-            return;
+            continue;
         }
       }
     }
 
     void Reset() {
-      matchExpression = "/World";
-      isNot = true;
-      matchType = EMatchType.Wildcard;
+      matchExpression = @"^\/.+";
+      isNot = false;
+      matchType = EMatchType.Regex;
       compareAgainst = ECompareAgainst.UsdPath;
     }
   }
