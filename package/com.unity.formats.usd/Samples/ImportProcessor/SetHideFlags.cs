@@ -25,7 +25,7 @@ namespace Unity.Formats.USD.Examples {
     public HideFlags hideFlagsSettings = HideFlags.DontSave;
 
     public enum Operation {Overwrite, LogicalAND, LogicalOR, LogicalXOR}
-    [Tooltip("The logical operator to use when setting the flags. In most cases Or will produce expectd results")]
+    [Tooltip("The logical operator to use when setting the flags. In most cases Or will produce expected results")]
     public Operation operation = Operation.LogicalOR;
 
     public void PostProcessHierarchy(PrimMap primMap, SceneImportOptions sceneImportOptions) {
