@@ -14,6 +14,9 @@
 
 %module vtValue
 
+// CSharp compilation throws `CS0121 ambiguous` with the copy constructor
+%ignore VtValue::VtValue(const VtValue &other);
+
 %{
 #include "pxr/base/vt/value.h"
 %}
