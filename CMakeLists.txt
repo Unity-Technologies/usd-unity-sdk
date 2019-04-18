@@ -20,20 +20,9 @@ include_directories(
     ${TBB_INCLUDE_DIRS}
 )
 
-add_custom_target(
-    generate_swig_scripts
-    DEPENDS swig_scripts_gen
-)
 
 message(STATUS "PATH: ${PXR_CMAKE_DIR}/lib/python")
 message(STATUS "Python ${Python_EXECUTABLE}")
-
-add_custom_command(
-    OUTPUT swig_scripts_gen
-    COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${PXR_CMAKE_DIR}/lib/python
-    ${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/src/Swig/scripts/gen.py
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-)
 
 set(usd_swig_library UsdCs)
 set_source_files_properties(
@@ -54,21 +43,36 @@ swig_add_library(
     src/UsdCs/dll_main.cpp
 )
 
-add_dependencies(
-    ${usd_swig_library}
-    generate_swig_scripts
-)
-
 set_target_properties(
     ${usd_swig_library}
     PROPERTIES
     PREFIX lib
     CXX_STANDARD_REQUIRED 11
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/Linux
 )
 
 swig_link_libraries(
     ${usd_swig_library}
     ${PXR_LIBRARIES}
 )
+
+if (NOT UNIX)
+    add_custom_target(
+        generate_swig_scripts
+        DEPENDS swig_scripts_gen
+    )
+
+    add_dependencies(
+        ${usd_swig_library}
+        generate_swig_scripts
+    )
+
+    add_custom_command(
+        OUTPUT swig_scripts_gen
+        COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${PXR_CMAKE_DIR}/lib/python
+        ${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/src/Swig/scripts/gen.py
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
+endif()
 
 
