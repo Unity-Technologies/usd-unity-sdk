@@ -24,7 +24,7 @@ pack:
  artifacts:
    packages:
      paths:
-       - "upm-ci~/packages/*.tgz"
+       - "upm-ci~/packages/**/*"
 
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
@@ -66,7 +66,7 @@ test_trigger:
         - "upm-ci~/test-results/**/*"
     packages:
       paths:
-        - "upm-ci~/packages/*.tgz"
+        - "upm-ci~/packages/**/*"
   dependencies:
     - .yamato/upm-ci.yml#pack
     {% for editor in test_editors %}
@@ -92,7 +92,7 @@ run_preview_verified_staging:
   artifacts:
     artifacts.zip:
       paths:
-        - "upm-ci~/packages/*.tgz"
+        - "upm-ci~/packages/**/*"
   dependencies:
     - .yamato/upm-ci.yml#pack
   {% for editor in test_editors %}
