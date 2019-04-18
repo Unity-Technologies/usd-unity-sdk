@@ -9,6 +9,8 @@ find_package(SWIG 3.0.12 REQUIRED)
 find_package(Boost REQUIRED)
 find_package(Python COMPONENTS Development Interpreter)
 find_package(TBB REQUIRED)
+find_package(Unity REQUIRED)
+find_package(CSharpCompiler REQUIRED)
 include(${SWIG_USE_FILE})
 
 include_directories(
@@ -19,10 +21,6 @@ include_directories(
     ${Python_INCLUDE_DIRS}
     ${TBB_INCLUDE_DIRS}
 )
-
-
-message(STATUS "PATH: ${PXR_CMAKE_DIR}/lib/python")
-message(STATUS "Python ${Python_EXECUTABLE}")
 
 set(usd_swig_library UsdCs)
 set_source_files_properties(
@@ -36,7 +34,7 @@ swig_add_library(
     ${usd_swig_library}
     TYPE SHARED
     LANGUAGE csharp
-    OUTPUT_DIR ${CMAKE_SOURCE_DIR}/src/USD.NET
+    OUTPUT_DIR ${CMAKE_SOURCE_DIR}/src/USD.NET/generated
     SOURCES
     src/Swig/usdCs.i
     src/UsdCs/diagnosticHandler.cpp
@@ -48,7 +46,8 @@ set_target_properties(
     PROPERTIES
     PREFIX lib
     CXX_STANDARD_REQUIRED 11
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/Linux
+    LIBRARY_OUTPUT_DIRECTORY
+        ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/Linux
 )
 
 swig_link_libraries(
@@ -69,10 +68,72 @@ if (NOT UNIX)
 
     add_custom_command(
         OUTPUT swig_scripts_gen
-        COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${PXR_CMAKE_DIR}/lib/python
-        ${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/src/Swig/scripts/gen.py
+        COMMAND
+            ${CMAKE_COMMAND} -E env PYTHONPATH=${PXR_CMAKE_DIR}/lib/python
+            ${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/src/Swig/scripts/gen.py
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
 endif()
+
+set(usd_net_dll "${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/USD.NET.dll")
+compile_csharp(
+    OUTPUT
+        ${usd_net_dll}
+    EXTRA_ARGS
+        "/target:library"
+        "/unsafe"
+    SOURCES
+        "${CMAKE_SOURCE_DIR}/src/USD.NET/collections/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET/pooling/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET/serialization/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET/Properties/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET/sdf/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET/generated/*.cs"
+    REFERENCES
+        ${CSHARP_MSCORLIB_LIBRARY}
+        ${CSHARP_SYSTEM_CORE_LIBRARY}
+        ${CSHARP_SYSTEM_LIBRARY}
+    DEPENDS
+        ${usd_swig_library}
+)
+add_custom_target(
+    usd_net
+    ALL DEPENDS
+    ${usd_net_dll}
+)
+
+set(usd_net_unity_dll "${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/USD.NET.Unity.dll")
+compile_csharp(
+    OUTPUT
+        ${usd_net_unity_dll}
+    EXTRA_ARGS
+        "/target:library"
+        "/unsafe"
+    SOURCES
+        "${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Geometry/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Properties/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Shading/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Shading/UsdPreviewSurface/*.cs"
+        "${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Shading/UnityNative/*.cs"
+    REFERENCES
+        ${CSHARP_MSCORLIB_LIBRARY}
+        ${CSHARP_SYSTEM_CORE_LIBRARY}
+        ${CSHARP_SYSTEM_LIBRARY}
+        ${CSHARP_UNITYEDITOR_LIBRARY}
+        ${CSHARP_UNITYENGINE_LIBRARY}
+        ${usd_net_dll}
+    DEPENDS
+        ${usd_net_dll}
+)
+add_custom_target(
+    usd_net_unity
+    ALL DEPENDS
+    ${usd_net_unity_dll}
+)
+
+
+
+
 
 
