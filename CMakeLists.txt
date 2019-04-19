@@ -7,11 +7,15 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 find_package(pxr REQUIRED)
 find_package(SWIG 3.0.12 REQUIRED)
 find_package(Boost REQUIRED)
-find_package(Python COMPONENTS Development Interpreter)
+find_package(Python COMPONENTS Development)
 find_package(TBB REQUIRED)
 find_package(Unity REQUIRED)
 find_package(CSharpCompiler REQUIRED)
 include(${SWIG_USE_FILE})
+
+if(WIN32)
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX /bigobj /EHsc")
+endif()
 
 include_directories(
     ${PXR_INCLUDE_DIRS}
@@ -51,13 +55,22 @@ swig_add_library(
     src/UsdCs/dll_main.cpp
 )
 
+set(swig_output_dir ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+   set(swig_output_dir ${swig_output_dir}/MacOS)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+   set(swig_output_dir ${swig_output_dir}/Linux)
+else()
+   set(swig_output_dir ${swig_output_dir}/Windows)
+endif()
+
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set_target_properties(
         ${usd_swig_library}
         PROPERTIES
         CXX_STANDARD_REQUIRED 11
         LIBRARY_OUTPUT_DIRECTORY
-        ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/MacOS
+        ${swig_output_dir}
         BUNDLE TRUE
     )
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -67,16 +80,17 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         PREFIX lib
         CXX_STANDARD_REQUIRED 11
         LIBRARY_OUTPUT_DIRECTORY
-        ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/Linux
+        ${swig_output_dir}
     )
 else()
     set_target_properties(
         ${usd_swig_library}
         PROPERTIES
-        PREFIX lib
         CXX_STANDARD_REQUIRED 11
-        LIBRARY_OUTPUT_DIRECTORY
-        ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/Windows
+        LIBRARY_OUTPUT_DIRECTORY_RELEASE
+        ${swig_output_dir}
+        LIBRARY_OUTPUT_DIRECTORY_DEBUG
+        ${swig_output_dir}
     )
 endif()
 
@@ -86,7 +100,22 @@ swig_link_libraries(
     ${PXR_LIBRARIES}
 )
 
-if (NOT UNIX)
+if(WIN32)
+    set(win32_dependencies "")
+    string(REPLACE " " ";" PXR_LIBRARIES "${PXR_LIBRARIES}")
+    foreach(lib ${PXR_LIBRARIES})
+	list(APPEND win32_dependencies "${PXR_${lib}_LIBRARY}")
+    endforeach()
+    foreach(dep ${win32_dependencies})
+        add_custom_command(
+            TARGET ${usd_swig_library}
+            POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy ${dep} ${swig_output_dir}
+        )
+    endforeach()
+endif()
+
+if(0)
     add_custom_target(
         generate_swig_scripts
         DEPENDS swig_scripts_gen
@@ -127,6 +156,7 @@ compile_csharp(
     DEPENDS
         ${usd_swig_library}
 )
+
 add_custom_target(
     usd_net
     ALL DEPENDS
@@ -157,6 +187,7 @@ compile_csharp(
     DEPENDS
         ${usd_net_dll}
 )
+
 add_custom_target(
     usd_net_unity
     ALL DEPENDS

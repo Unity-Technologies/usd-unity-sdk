@@ -1,4 +1,4 @@
-# The MIT License (MIT)
+﻿# The MIT License (MIT)
 #
 # Copyright (c) 2015 Justus Calvin
 # 
@@ -108,7 +108,6 @@ if(NOT TBB_FOUND)
     set(TBB_DEFAULT_SEARCH_DIR "C:/Program Files/Intel/TBB"
                                "C:/Program Files (x86)/Intel/TBB")
     # TODO: Set the proper suffix paths based on compiler introspection.
-  
   elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     # OS X
     set(TBB_DEFAULT_SEARCH_DIR "/opt/intel/tbb")
@@ -151,16 +150,15 @@ if(NOT TBB_FOUND)
   foreach(_comp tbb_preview tbbmalloc tbb)
     # Search for the libraries
     find_library(TBB_${_comp}_LIBRARY_RELEASE ${_comp}
-        HINTS ${TBB_LIBRARY} ${TBB_SEARCH_DIR}
+        HINTS ${TBB_LIBRARY} ${TBB_SEARCH_DIR} ${TBB_LIBRARIES}
         PATHS ${TBB_DEFAULT_SEARCH_DIR}
         PATH_SUFFIXES "${TBB_LIB_PATH_SUFFIX}")
 
     find_library(TBB_${_comp}_LIBRARY_DEBUG ${_comp}_debug
-        HINTS ${TBB_LIBRARY} ${TBB_SEARCH_DIR}
+        HINTS ${TBB_LIBRARY} ${TBB_SEARCH_DIR} ${TBB_LIBRARIES}
         PATHS ${TBB_DEFAULT_SEARCH_DIR} ENV LIBRARY_PATH
         PATH_SUFFIXES "${TBB_LIB_PATH_SUFFIX}")
 
-    
     # Set the library to be used for the component
     if(NOT TBB_${_comp}_LIBRARY)
       if(TBB_USE_DEBUG_BUILD AND TBB_${_comp}_LIBRARY_DEBUG)
@@ -170,8 +168,8 @@ if(NOT TBB_FOUND)
       elseif(TBB_${_comp}_LIBRARY_DEBUG)
         set(TBB_${_comp}_LIBRARY "${TBB_${_comp}_LIBRARY_DEBUG}")
       endif()
-    endif()
-    
+    endif()     
+
     # Set the TBB library list and component found variables
     if(TBB_${_comp}_LIBRARY)
       list(APPEND TBB_LIBRARIES "${TBB_${_comp}_LIBRARY}")
