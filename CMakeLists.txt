@@ -23,16 +23,26 @@ include_directories(
 )
 
 set(usd_swig_library UsdCs)
-set_source_files_properties(
-    src/Swig/usdCs.i
-    PROPERTIES
-    CPLUSPLUS ON
-    SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503;-DSWIGWORDSIZE64"
-)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set_source_files_properties(
+        src/Swig/usdCs.i
+        PROPERTIES
+        CPLUSPLUS ON
+        SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503;-DSWIGWORDSIZE64"
+    endif()
+    )
+else()
+    set_source_files_properties(
+        src/Swig/usdCs.i
+        PROPERTIES
+        CPLUSPLUS ON
+        SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503"
+    )
+endif()
 
 swig_add_library(
     ${usd_swig_library}
-    TYPE SHARED
+    TYPE MODULE
     LANGUAGE csharp
     OUTPUT_DIR ${CMAKE_SOURCE_DIR}/src/USD.NET/generated
     SOURCES
@@ -41,14 +51,35 @@ swig_add_library(
     src/UsdCs/dll_main.cpp
 )
 
-set_target_properties(
-    ${usd_swig_library}
-    PROPERTIES
-    PREFIX lib
-    CXX_STANDARD_REQUIRED 11
-    LIBRARY_OUTPUT_DIRECTORY
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set_target_properties(
+        ${usd_swig_library}
+        PROPERTIES
+        CXX_STANDARD_REQUIRED 11
+        LIBRARY_OUTPUT_DIRECTORY
+        ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/MacOS
+        BUNDLE TRUE
+    )
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set_target_properties(
+        ${usd_swig_library}
+        PROPERTIES
+        PREFIX lib
+        CXX_STANDARD_REQUIRED 11
+        LIBRARY_OUTPUT_DIRECTORY
         ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/Linux
-)
+    )
+else()
+    set_target_properties(
+        ${usd_swig_library}
+        PROPERTIES
+        PREFIX lib
+        CXX_STANDARD_REQUIRED 11
+        LIBRARY_OUTPUT_DIRECTORY
+        ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64/Windows
+    )
+endif()
+
 
 swig_link_libraries(
     ${usd_swig_library}
