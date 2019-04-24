@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll" ".so" ".a")
 project(usd-unity-sdk LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 11)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
@@ -121,7 +122,10 @@ swig_add_library(
     src/UsdCs/dll_main.cpp
 )
 
-set(swig_output_dir ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/x86_64)
+set(usd_package_directory ${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd)
+set(usd_plugins_directory ${usd_package_directory}/Runtime/Plugins)
+
+set(swig_output_dir ${usd_plugins_directory}/x86_64)
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
    set(swig_output_dir ${swig_output_dir}/MacOS)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -163,103 +167,38 @@ endif()
 
 swig_link_libraries(
     ${usd_swig_library}
+    # Link against USD monolithic
     usd_ms
 )
 
-#if(WIN32)
-    #set(win32_dependencies "")
-    #string(REPLACE " " ";" PXR_LIBRARIES "${PXR_LIBRARIES}")
-    #foreach(lib ${PXR_LIBRARIES})
-	#list(APPEND win32_dependencies "${PXR_${lib}_LIBRARY}")
-    #endforeach()
-    #foreach(dep ${win32_dependencies})
-        #add_custom_command(
-            #TARGET ${usd_swig_library}
-            #POST_BUILD
-            #COMMAND ${CMAKE_COMMAND} -E copy ${dep} ${swig_output_dir}
-        #)
-    #endforeach()
-#endif()
+find_program(CSHARP_COMPILER mcs msbuild)
+# Need to find library in a better way, not hardcode
+find_library(
+   mscorlib_dll
+   NAMES mscorlib.dll
+   HINTS /usr/lib/mono/*/
+)
+get_filename_component(MONO_LIB_DIR ${mscorlib_dll} DIRECTORY CACHE)
 
-#if(0)
-    #add_custom_target(
-        #generate_swig_scripts
-        #DEPENDS swig_scripts_gen
-    #)
+set(usd_net_dll "${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/USD.NET.dll")
+add_custom_command(
+   OUTPUT ${usd_net_dll}
+   COMMAND ${CSHARP_COMPILER} /noconfig /langversion:4 /nostdlib+ /warn:4 /optimize+ /out:${usd_net_dll} /target:library /unsafe ${CMAKE_SOURCE_DIR}/src/USD.NET/collections/*.cs ${CMAKE_SOURCE_DIR}/src/USD.NET/pooling/*.cs ${CMAKE_SOURCE_DIR}/src/USD.NET/serialization/*.cs ${CMAKE_SOURCE_DIR}/src/USD.NET/Properties/*.cs ${CMAKE_SOURCE_DIR}/src/USD.NET/sdf/*.cs ${CMAKE_SOURCE_DIR}/src/USD.NET/generated/*.cs /reference:${MONO_LIB_DIR}/mscorlib.dll /reference:${MONO_LIB_DIR}/System.Core.dll /reference:${MONO_LIB_DIR}/System.dll
+   DEPENDS ${usd_swig_library}
+)
 
-    #add_dependencies(
-        #${usd_swig_library}
-        #generate_swig_scripts
-    #)
+add_custom_target(
+    usd_net
+    ALL DEPENDS
+    ${usd_net_dll}
+)
 
-    #add_custom_command(
-        #OUTPUT swig_scripts_gen
-        #COMMAND
-            #${CMAKE_COMMAND} -E env PYTHONPATH=${PXR_CMAKE_DIR}/lib/python
-            #${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/src/Swig/scripts/gen.py
-        #WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    #)
-#endif()
-
-#set(usd_net_dll "${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/USD.NET.dll")
-#compile_csharp(
-    #OUTPUT
-        #${usd_net_dll}
-    #EXTRA_ARGS
-        #"/target:library"
-        #"/unsafe"
-    #SOURCES
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET/collections/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET/pooling/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET/serialization/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET/Properties/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET/sdf/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET/generated/*.cs"
-    #REFERENCES
-        #${CSHARP_MSCORLIB_LIBRARY}
-        #${CSHARP_SYSTEM_CORE_LIBRARY}
-        #${CSHARP_SYSTEM_LIBRARY}
-    #DEPENDS
-        #${usd_swig_library}
-#)
-
-#add_custom_target(
-    #usd_net
-    #ALL DEPENDS
-    #${usd_net_dll}
-#)
-
-#set(usd_net_unity_dll "${CMAKE_SOURCE_DIR}/package/com.unity.formats.usd/Runtime/Plugins/USD.NET.Unity.dll")
-#compile_csharp(
-    #OUTPUT
-        #${usd_net_unity_dll}
-    #EXTRA_ARGS
-        #"/target:library"
-        #"/unsafe"
-    #SOURCES
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Geometry/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Properties/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Shading/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Shading/UsdPreviewSurface/*.cs"
-        #"${CMAKE_SOURCE_DIR}/src/USD.NET.Unity/Shading/UnityNative/*.cs"
-    #REFERENCES
-        #${CSHARP_MSCORLIB_LIBRARY}
-        #${CSHARP_SYSTEM_CORE_LIBRARY}
-        #${CSHARP_SYSTEM_LIBRARY}
-        #${CSHARP_UNITYEDITOR_LIBRARY}
-        #${CSHARP_UNITYENGINE_LIBRARY}
-        #${usd_net_dll}
-    #DEPENDS
-        #${usd_net_dll}
-#)
-
-#add_custom_target(
-    #usd_net_unity
-    #ALL DEPENDS
-    #${usd_net_unity_dll}
-#)
-
+add_custom_command(
+   TARGET usd_net POST_BUILD
+   COMMAND ${CMAKE_COMMAND} -E copy_directory
+   ${CMAKE_SOURCE_DIR}/src/USD.NET.Unity
+   ${usd_plugins_directory}/USD.NET.Unity
+)
 
 
 
