@@ -5,6 +5,24 @@ set (CMAKE_CXX_STANDARD 11)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 set(USD_VERSION "v19.01" CACHE STRING "USD version (git tag)")
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+   set(boost_url "https://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.gz")
+   set(boost_hash SHA1=61ed0e57d3c7c8985805bb0682de3f4c65f4b6e5)
+   set(tbb_tag 4.4.6)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+   set(boost_url "https://downloads.sourceforge.net/project/boost/boost/1.61.0/boost_1_61_0.tar.gz")
+   set(boost_hash SHA1=2d2b80771f584f327827193fcf3abf836edcdfaa)
+   set(tbb_tag 2017_U2)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+   set(boost_url "https://downloads.sourceforge.net/project/boost/boost/1.61.0/boost_1_61_0.tar.gz")
+   set(boost_hash SHA1=2d2b80771f584f327827193fcf3abf836edcdfaa)
+   set(tbb_tag 2017_U2)
+else()
+   message(FATAL_ERROR "Unsupported platform")
+endif()
+
+
 set(dep_path ${CMAKE_SOURCE_DIR}/_deps)
 set(base_dir ${CMAKE_SOURCE_DIR})
 
@@ -12,8 +30,8 @@ include(ExternalProject)
 
 ExternalProject_Add(
    BUILD_Boost
-   URL "https://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.gz"
-   URL_HASH SHA1=61ed0e57d3c7c8985805bb0682de3f4c65f4b6e5
+   URL ${boost_url}
+   URL_HASH ${boost_hash}
    BUILD_IN_SOURCE 1
    CONFIGURE_COMMAND ./bootstrap.sh --prefix=${dep_path}
    BUILD_COMMAND ./b2 install --prefix=${dep_path}
@@ -32,7 +50,7 @@ file(MAKE_DIRECTORY ${dep_path}/lib)
 ExternalProject_Add(
    BUILD_tbb
    GIT_REPOSITORY https://github.com/01org/tbb.git
-   GIT_TAG 4.4.6
+   GIT_TAG ${tbb_tag}
    GIT_SHALLOW TRUE
    CONFIGURE_COMMAND ""
    BUILD_IN_SOURCE 1
@@ -145,6 +163,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
       PROPERTIES
       CPLUSPLUS ON
       SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503;-DSWIGWORDSIZE64"
+      DEPENDS BUILD_USD
       )
 else()
    set_source_files_properties(
@@ -152,6 +171,7 @@ else()
       PROPERTIES
       CPLUSPLUS ON
       SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503"
+      DEPENDS BUILD_USD
       )
 endif()
 
