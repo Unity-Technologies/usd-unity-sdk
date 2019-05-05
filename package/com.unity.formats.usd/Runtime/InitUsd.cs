@@ -28,7 +28,7 @@ namespace Unity.Formats.USD {
       m_usdInitialized = true;
 
       try {
-        // Initializes native USD plugins and ensures plugins are discoverable on the system path. 
+        // Initializes native USD plugins and ensures plugins are discoverable on the system path.
         SetupUsdPath();
 
         // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
@@ -60,12 +60,14 @@ namespace Unity.Formats.USD {
       supPath += @"/x86_64/share/";
 #elif (UNITY_EDITOR_OSX)
       supPath += @"/x86_64/UsdCs.bundle/Contents/Resources/share/";
+#elif (UNITY_EDITOR_LINUX)
+      supPath += @"/x86_64/share/";
 #elif (UNITY_STANDALONE_WIN)
       supPath += @"/share/";
 #elif (UNITY_STANDALONE_OSX)
       supPath += @"/UsdCs.bundle/Contents/Resources/share/";
 #endif
-      
+
       Debug.LogFormat("Registering plugins: {0}", supPath);
       pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
     }
