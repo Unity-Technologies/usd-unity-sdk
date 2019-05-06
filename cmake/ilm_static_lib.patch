@@ -1,0 +1,103 @@
+diff --git a/IlmBase/Half/CMakeLists.txt b/IlmBase/Half/CMakeLists.txt
+index 3d24cd7..5a1aeb3 100644
+--- a/IlmBase/Half/CMakeLists.txt
++++ b/IlmBase/Half/CMakeLists.txt
+@@ -60,7 +60,7 @@ IF (BUILD_ILMBASE_STATIC)
+   SET_TARGET_PROPERTIES ( Half_static
+     PROPERTIES
+     VERSION ${ILMBASE_VERSION_MAJOR}.${ILMBASE_VERSION_MINOR}.${ILMBASE_VERSION_PATCH}
+-    OUTPUT_NAME "Half${ILMBASE_LIBSUFFIX}_s"
++    OUTPUT_NAME "Half${ILMBASE_LIBSUFFIX}"
+     )
+ 
+   ADD_DEPENDENCIES ( Half_static toFloat eLut )
+diff --git a/IlmBase/Iex/CMakeLists.txt b/IlmBase/Iex/CMakeLists.txt
+index 847518c..ef02a59 100644
+--- a/IlmBase/Iex/CMakeLists.txt
++++ b/IlmBase/Iex/CMakeLists.txt
+@@ -34,7 +34,7 @@ IF (BUILD_ILMBASE_STATIC)
+   SET_TARGET_PROPERTIES ( Iex_static
+     PROPERTIES
+     VERSION ${ILMBASE_VERSION_MAJOR}.${ILMBASE_VERSION_MINOR}.${ILMBASE_VERSION_PATCH}
+-    OUTPUT_NAME "Iex${ILMBASE_LIBSUFFIX}_s"
++    OUTPUT_NAME "Iex${ILMBASE_LIBSUFFIX}"
+     )
+ ENDIF()
+ 
+diff --git a/IlmBase/IexMath/CMakeLists.txt b/IlmBase/IexMath/CMakeLists.txt
+index 472fd33..e097619 100644
+--- a/IlmBase/IexMath/CMakeLists.txt
++++ b/IlmBase/IexMath/CMakeLists.txt
+@@ -36,7 +36,7 @@ IF (BUILD_ILMBASE_STATIC)
+   SET_TARGET_PROPERTIES ( IexMath_static
+     PROPERTIES
+     VERSION ${ILMBASE_VERSION_MAJOR}.${ILMBASE_VERSION_MINOR}.${ILMBASE_VERSION_PATCH}
+-    OUTPUT_NAME "IexMath${ILMBASE_LIBSUFFIX}_s"
++    OUTPUT_NAME "IexMath${ILMBASE_LIBSUFFIX}"
+     )
+ ENDIF( )
+ 
+diff --git a/IlmBase/IlmThread/CMakeLists.txt b/IlmBase/IlmThread/CMakeLists.txt
+index 3a24823..d456482 100644
+--- a/IlmBase/IlmThread/CMakeLists.txt
++++ b/IlmBase/IlmThread/CMakeLists.txt
+@@ -49,7 +49,7 @@ IF (BUILD_ILMBASE_STATIC)
+   SET_TARGET_PROPERTIES ( IlmThread_static
+     PROPERTIES
+     VERSION ${ILMBASE_VERSION_MAJOR}.${ILMBASE_VERSION_MINOR}.${ILMBASE_VERSION_PATCH}
+-    OUTPUT_NAME "IlmThread${ILMBASE_LIBSUFFIX}_s"
++    OUTPUT_NAME "IlmThread${ILMBASE_LIBSUFFIX}"
+     )
+ ENDIF ()
+ 
+diff --git a/IlmBase/Imath/CMakeLists.txt b/IlmBase/Imath/CMakeLists.txt
+index 8faa97a..8e8bc67 100644
+--- a/IlmBase/Imath/CMakeLists.txt
++++ b/IlmBase/Imath/CMakeLists.txt
+@@ -37,7 +37,7 @@ IF (BUILD_ILMBASE_STATIC)
+   SET_TARGET_PROPERTIES ( Imath_static
+     PROPERTIES
+     VERSION ${ILMBASE_VERSION_MAJOR}.${ILMBASE_VERSION_MINOR}.${ILMBASE_VERSION_PATCH}
+-    OUTPUT_NAME "Imath${ILMBASE_LIBSUFFIX}_s"
++    OUTPUT_NAME "Imath${ILMBASE_LIBSUFFIX}"
+     )
+ ENDIF ()
+ 
+diff --git a/IlmBase/ImathTest/CMakeLists.txt b/IlmBase/ImathTest/CMakeLists.txt
+index 46841b8..41b68b4 100644
+--- a/IlmBase/ImathTest/CMakeLists.txt
++++ b/IlmBase/ImathTest/CMakeLists.txt
+@@ -1,6 +1,6 @@
+ # yue.nicholas@gmail.com
+ 
+-ADD_EXECUTABLE ( ImathTest 
++ADD_EXECUTABLE ( ImathTest
+   main.cpp
+   testBox.cpp
+   testBoxAlgo.cpp
+diff --git a/OpenEXR/IlmImf/CMakeLists.txt b/OpenEXR/IlmImf/CMakeLists.txt
+index e1a8740..c010c8b 100644
+--- a/OpenEXR/IlmImf/CMakeLists.txt
++++ b/OpenEXR/IlmImf/CMakeLists.txt
+@@ -234,7 +234,7 @@ IF (OPENEXR_BUILD_STATIC)
+   SET_TARGET_PROPERTIES ( IlmImf_static
+     PROPERTIES
+     VERSION ${OPENEXR_VERSION_MAJOR}.${OPENEXR_VERSION_MINOR}.${OPENEXR_VERSION_PATCH}
+-    OUTPUT_NAME "IlmImf${OPENEXR_LIBSUFFIX}_s"
++    OUTPUT_NAME "IlmImf${OPENEXR_LIBSUFFIX}"
+     )
+     SET_ILMBASE_INCLUDE_DIRS(IlmImf_static)
+ 
+diff --git a/OpenEXR/IlmImfUtil/CMakeLists.txt b/OpenEXR/IlmImfUtil/CMakeLists.txt
+index 4cc53de..65b5940 100644
+--- a/OpenEXR/IlmImfUtil/CMakeLists.txt
++++ b/OpenEXR/IlmImfUtil/CMakeLists.txt
+@@ -60,7 +60,7 @@ IF ( OPENEXR_BUILD_STATIC )
+     PROPERTIES
+     VERSION ${OPENEXR_VERSION_MAJOR}.${OPENEXR_VERSION_MINOR}.${OPENEXR_VERSION_PATCH}
+     SOVERSION ${OPENEXR_SOVERSION}
+-    OUTPUT_NAME "IlmImfUtil${OPENEXR_LIBSUFFIX}_s"
++    OUTPUT_NAME "IlmImfUtil${OPENEXR_LIBSUFFIX}"
+     )
+ ENDIF()
+ 
