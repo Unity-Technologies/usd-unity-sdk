@@ -30,11 +30,11 @@ settings under Edit > Project Settings > Quality:
 
 ## Requirements
 
-* Windows / OSX
-* Unity version: 2018.3 (2018.3.4f1 and up) and 2019.1 (2019.1.0b2 and up)   
+* Windows / OSX / Linux (experimental)
+* Unity version: 2018.3 (2018.3.4f1 and up) and 2019.1 (2019.1.0b2 and up)
 See ["2017 users" section](#unity-2017-users) if you want to use the plugin in Unity 2017.4
-* To build a standalone, Api Compatibility Level needs to be set to .NET 4.x   
-   In Edit > Project Settings > Player :   
+* To build a standalone, Api Compatibility Level needs to be set to .NET 4.x
+   In Edit > Project Settings > Player :
     ![USD .NET version](Images/USD_.NET_version.png)
 
 ## Limitations

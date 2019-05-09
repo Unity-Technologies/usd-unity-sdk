@@ -10,6 +10,7 @@ Start by understanding the layout of the source code:
  * [/src/USD.NET.Unity](/src/USD.NET.Unity) - Unity-specific support.
  * [/package](/package) - The source for the Unity package.
  * [/third_party](/third_party) - code copyrighted by third parties.
+ * [/cmake](/cmake) - CMake build configuration.
 
 ## Compiling
 
@@ -58,7 +59,7 @@ The full build process is:
  4. Build USD to a different directory with python disabled (to minimize runtime dependencies)
  5. Set the environment variable USD_LOCATION_PYTHON to the path used in step (3)
  6. Set the environment variable USD_LOCATION to the path used in step (4)
- 7. If upgrading USD to a newer version, diff third_party includes vs newly distributed header files. 
+ 7. If upgrading USD to a newer version, diff third_party includes vs newly distributed header files.
  8. The "generated" source folder should also be deleted so it can be regenerated in the next step.
  9. Run bin\build.bat to generate Swig bindings
  10. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
@@ -101,3 +102,16 @@ cannot open .usd files), this is likely due to plugins failing to load,
 which typically is a problem with the plugInfo.json files. This can happen
 if the files changed in the USD repository but were not correctly updated
 in the Unity package.
+
+## CMake Build (experimental)
+
+On Linux, a CMake build configuration is available, which is a self-contained build of USD dependencies, and the Unity plugin.
+
+From a build/ subdirectory inside the git repository, run `cmake ../cmake`.  Optionally, specify `-DUSD_VERSION=` with the version tag from the USD repository (currently v19.05)
+Running `make intall` will build USD, Alembic, OpenEXR, TBB and boost requirements statically, and link them into `libUsdCs.so` and install the plugin into the proper location in the package structure
+
+Optionally, specify `-DBUILD_USD_NET=TRUE` to build the USD.NET.dll (this will also build Mono, which can be quite time consuming)
+
+Currently, the CMake configuration cannot be used to build the USD.NET.Unity.dll.
+
+
