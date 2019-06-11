@@ -348,6 +348,33 @@ namespace Unity.Formats.USD {
           var counts = UnityTypeConverter.ToVtArray(usdMesh.faceVertexCounts);
           UsdGeomMesh.Triangulate(indices, counts);
           UnityTypeConverter.FromVtArray(indices, ref usdMesh.faceVertexIndices);
+
+          // UsdGeomSubsets contain a list of face indices, but once the mesh is triangulated, these
+          // indices are no longer correct. The number of new faces generated is a fixed function of
+          // the original face indices, but the offset requres an accumulation of all triangulated
+          // face offsets, this is "offsetMapping". The index into offsetMapping is the original
+          // face index and the value at that index is the new face offset.
+          //
+          // TODO: this should be moved to C++
+          int[] offsetMapping = new int[usdMesh.faceVertexCounts.Length];
+          int curOffset = 0;
+          for (int i = 0; i < usdMesh.faceVertexCounts.Length; i++) {
+            offsetMapping[i] = curOffset;
+            curOffset += Math.Max(0, usdMesh.faceVertexCounts[i] - 3);
+          }
+
+          var newSubsets = new GeometrySubsets();
+          foreach (var kvp in geomSubsets.Subsets) {
+            var newFaceIndices = new List<int>();
+            foreach (var faceIndex in kvp.Value) {
+              newFaceIndices.Add(faceIndex + offsetMapping[faceIndex]);
+              for (int i = 1; i < usdMesh.faceVertexCounts[faceIndex] - 2; i++) {
+                newFaceIndices.Add(faceIndex + offsetMapping[faceIndex] + i);
+              }
+            }
+            newSubsets.Subsets.Add(kvp.Key, newFaceIndices.ToArray());
+          }
+          geomSubsets = newSubsets;
         }
         Profiler.EndSample();
 
