@@ -337,44 +337,8 @@ namespace Unity.Formats.USD {
       //
       // Pre-process UsdSkelRoots.
       //
+
       var skelRoots = new List<pxr.UsdSkelRoot>();
-
-      if (primMap.SkelCache == null) {
-        Profiler.BeginSample("USD: Populate SkelCache");
-        primMap.SkelBindings = new Dictionary<pxr.SdfPath, pxr.UsdSkelBindingVector>();
-        primMap.SkelCache = new pxr.UsdSkelCache();
-
-        foreach (var path in primMap.SkelRoots) {
-          var skelRootPrim = scene.GetPrimAtPath(path);
-          if (!skelRootPrim) {
-            Debug.LogWarning("SkelRoot prim not found: " + path);
-            continue;
-          }
-          var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
-          if (!skelRoot) {
-            Debug.LogWarning("SkelRoot prim not SkelRoot type: " + path);
-            continue;
-          }
-          if (!primMap.SkelCache.Populate(skelRoot)) {
-            Debug.LogWarning("Failed to populate skel cache: " + path);
-            continue;
-          }
-
-          try {
-            Profiler.BeginSample("Compute Skel Bindings");
-            var binding = new pxr.UsdSkelBindingVector();
-            if (!primMap.SkelCache.ComputeSkelBindings(skelRoot, binding)) {
-              Debug.LogWarning("ComputeSkelBindings failed");
-              continue;
-            }
-            primMap.SkelBindings.Add(path, binding);
-          } catch {
-            Debug.LogError("Failed to compute binding for SkelRoot: " + path);
-          }
-          Profiler.EndSample();
-        }
-      }
-
       if (importOptions.importSkinning) {
         Profiler.BeginSample("USD: Process UsdSkelRoots");
         foreach (var path in primMap.SkelRoots) {
