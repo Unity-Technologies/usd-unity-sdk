@@ -49,7 +49,6 @@ namespace Unity.Formats.USD {
     static private SdfPath[] m_paths;
     static private T[] m_results;
     static private bool[] m_done;
-    static private bool[] m_written;
     static SampleEnumerator<T>.SampleHolder m_current;
     static private AutoResetEvent m_ready;
 
@@ -72,7 +71,6 @@ namespace Unity.Formats.USD {
       m_scene = scene;
       m_results = new T[paths.Length];
       m_done = new bool[paths.Length];
-      m_written = new bool[paths.Length];
       m_current = new SampleEnumerator<T>.SampleHolder();
       m_paths = paths;
     }
@@ -97,9 +95,9 @@ namespace Unity.Formats.USD {
         sample = null;
         m_done[index] = true;
       }
+
       m_results[index] = sample;
-      m_written[index] = true;
-      
+
       m_ready.Set();
     }
 
@@ -118,7 +116,7 @@ namespace Unity.Formats.USD {
         }
 
         for (int i = 0; i < m_done.Length; i++) {
-          if (m_done[i] == false && m_written[i] == true) {
+          if (m_done[i] == false && m_results[i] != null) {
             m_current.path = m_paths[i];
             m_current.sample = m_results[i];
             m_done[i] = true;
