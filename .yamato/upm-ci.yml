@@ -1,7 +1,9 @@
 test_editors:
+  - version: 2019.2
   - version: 2019.1
+  - version: 2018.4
   - version: 2018.3
-    #  - version: trunk
+  - version: trunk
 test_platforms:
   - name: win
     type: Unity::VM
@@ -88,7 +90,7 @@ run_preview_verified_staging:
   triggers:
     tags:
       only:
-        - /^(v|V)\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
+        - /^(r|R)(c|C)-\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
   artifacts:
     artifacts.zip:
       paths:
