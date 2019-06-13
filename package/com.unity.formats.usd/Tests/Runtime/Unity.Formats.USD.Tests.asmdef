@@ -13,5 +13,11 @@
         "WindowsStandalone64"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "USD.NET.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": []
 }
