@@ -751,6 +751,68 @@ namespace Unity.Formats.USD {
       return newUvs;
     }
 
+    static Tuple<List<Vector3>, List<int>> UnrollFaceVaryingUV(Vector3[] points, int[] indices, int[] uvIndices)
+    {
+      var pointAndUvIndices = new List<KeyValuePair<int, int>>(indices.Length);
+      int currentNewIndex = points.Length;
+
+      // The new list of points and face indices. 
+      // Some of the point may be duplicated according to UV values.
+      var newIndices = new List<int>(indices.Length);
+      var newPoints = new List<Vector3>(points);
+
+      for (int i = 0; i < indices.Length; i++)
+      {
+        int pointIndex = indices[i];
+        int uvIndex = uvIndices[i];
+
+        string message = i + ": Point=" + pointIndex + ", Uv=" + uvIndex;
+
+        var pointAndUvIndex = new KeyValuePair<int, int>(pointIndex, uvIndex);
+        int j = pointAndUvIndices.IndexOf(pointAndUvIndex);
+
+        if (j == -1)  // This pair of pointIndex,uvIndex is encountered for the first time.
+        {
+          // Check if this point index was already encountered but associated with a different
+          // UV index. This would mean that the point should be duplicated to avoid UV seam problems.
+          bool existWithDifferentUV = false;
+          foreach (var pointAndUV in pointAndUvIndices)
+          {
+            if (pointIndex == pointAndUV.Key && uvIndex != pointAndUV.Value)
+            {
+              existWithDifferentUV = true;
+              break;
+            }
+          }
+
+          if (existWithDifferentUV)
+          {
+            Debug.Log(message + " >> Add new, index=" + currentNewIndex + ", point=" + points[pointIndex]);
+            newIndices.Add(currentNewIndex);
+            newPoints.Add(points[pointIndex]);
+            currentNewIndex++;
+          }
+          else
+          {
+            Debug.Log(message + " >> (j=" + j + ") Keep index: " + pointIndex);
+            newIndices.Add(pointIndex);
+          }
+        }
+        else
+        {
+          Debug.Log(message + " >> (j=" + j + ") Keep index: " + newIndices[j]);
+          newIndices.Add(newIndices[j]);
+        }
+
+        pointAndUvIndices.Add(pointAndUvIndex);
+      }
+
+      // Debug.Log("== NewPoints = " + newPoints.ToString());
+      // Debug.Log("== NewIndices = " + newIndices.ToString());
+
+      return Tuple.Create(newPoints, newIndices);
+    }
+
     /// <summary>
     /// Attempts to build a valid per-vertex UV set from the given object. If the type T is not
     /// the held type of the object "uv" argument, null is returned. If there is an error such
@@ -763,9 +825,9 @@ namespace Unity.Formats.USD {
     /// </returns>
     private static T[] TryGetUVSet<T>(object uv,
                                       int[] uvIndices,
+                                      ref Mesh unityMesh,
                                       int[] faceVertexCounts,
                                       int[] faceVertexIndices,
-                                      int vertexCount,
                                       GameObject go) {
       if (uv.GetType() != typeof(T[])) {
         return null;
@@ -778,23 +840,32 @@ namespace Unity.Formats.USD {
       }
 
       // Unroll UV indices if specified.
-      if (uvIndices != null && uvIndices.Length > 0) {
-        var newUvs = new T[uvIndices.Length];
-        for (int i = 0; i < uvIndices.Length; i++) {
-          newUvs[i] = uvVec[uvIndices[i]];
-        }
-        uvVec = newUvs;
-      }
+      // if (uvIndices != null && uvIndices.Length > 0) {
+      //   var newUvs = new T[uvIndices.Length];
+      //   for (int i = 0; i < uvIndices.Length; i++) {
+      //     newUvs[i] = uvVec[uvIndices[i]];
+      //   }
+      //   uvVec = newUvs;
+      // }
+
+      int vertexCount = unityMesh.vertexCount;
 
       // If there are more UVs than verts, the UVs must be face varying, e.g. each vertex for
       // each face has a unique UV value. These values must be collapsed such that verts shared
       // between faces also share a single UV value.
       if (uvVec.Length > vertexCount) {
-        uvVec = UnrollFaceVarying(vertexCount, uvVec, faceVertexCounts, faceVertexIndices);
-        if (uvVec == null) {
-          return new T[0];
-        }
-        Debug.Assert(uvVec.Length == vertexCount);
+        var newPoints = UnrollFaceVaryingUV(unityMesh.vertices, faceVertexIndices, uvIndices);
+
+        unityMesh.vertices = newPoints.Item1.ToArray();
+        unityMesh.triangles = newPoints.Item2.ToArray();
+
+        Debug.Log("Nb vertices: " + newPoints.Item1.Count + ", Nb uvs: " + uvVec.Length);
+
+        // uvVec = UnrollFaceVarying(vertexCount, uvVec, faceVertexCounts, faceVertexIndices);
+        // if (uvVec == null) {
+        //   return new T[0];
+        // }
+        // Debug.Assert(uvVec.Length == vertexCount);
       }
 
       // If there are fewer values, these must be "varying" / one value per face.
@@ -826,9 +897,7 @@ namespace Unity.Formats.USD {
       }
 
       try {
-        int vertCount = unityMesh.vertexCount;
-
-        var uv2 = TryGetUVSet<Vector2>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+        var uv2 = TryGetUVSet<Vector2>(uv, uvIndices, ref unityMesh, faceVertexCounts, faceVertexIndices, go);
         if (uv2 != null) {
           if (uv2.Length > 0) {
             unityMesh.SetUVs(uvSetIndex, uv2.ToList());
@@ -836,7 +905,7 @@ namespace Unity.Formats.USD {
           return;
         }
 
-        var uv3 = TryGetUVSet<Vector3>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+        var uv3 = TryGetUVSet<Vector3>(uv, uvIndices, ref unityMesh, faceVertexCounts, faceVertexIndices, go);
         if (uv3 != null) {
           if (uv3.Length > 0) {
             unityMesh.SetUVs(uvSetIndex, uv3.ToList());
@@ -844,7 +913,7 @@ namespace Unity.Formats.USD {
           return;
         }
 
-        var uv4 = TryGetUVSet<Vector4>(uv, uvIndices, faceVertexCounts, faceVertexIndices, vertCount, go);
+        var uv4 = TryGetUVSet<Vector4>(uv, uvIndices, ref unityMesh, faceVertexCounts, faceVertexIndices, go);
         if (uv4 != null) {
           if (uv4.Length > 0) {
             unityMesh.SetUVs(uvSetIndex, uv4.ToList());
