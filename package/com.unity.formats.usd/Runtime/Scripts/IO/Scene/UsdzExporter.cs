@@ -67,6 +67,7 @@ namespace Unity.Formats.USD {
 
         if (!success) {
           Debug.LogError("Couldn't export " + root.name + " to the usdz file: " + usdzFilePath);
+          return;
         }
 
         File.Copy(usdzFileName, usdzFilePath, overwrite: true);
