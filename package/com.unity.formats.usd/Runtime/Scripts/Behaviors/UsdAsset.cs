@@ -489,7 +489,7 @@ namespace Unity.Formats.USD {
     /// </summary>
     public void DestroyAllImportedObjects() {
       foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
-        if (src) {
+        if (src && src.gameObject != this.gameObject) {
           GameObject.DestroyImmediate(src.gameObject);
         }
       }
@@ -787,6 +787,11 @@ namespace Unity.Formats.USD {
     /// be destroyed and imported as a result.
     /// </summary>
     private void ApplyVariantSelectionState(Scene scene, UsdVariantSet variants) {
+      var primSource = variants.GetComponent<UsdPrimSource>();
+      if (!primSource) {
+        Debug.LogError("Null UsdPrimSource while applying variant selection state.");
+        return;
+      }
       var selections = variants.GetVariantSelections();
       var path = variants.GetComponent<UsdPrimSource>().m_usdPrimPath;
       var prim = scene.GetPrimAtPath(path);
