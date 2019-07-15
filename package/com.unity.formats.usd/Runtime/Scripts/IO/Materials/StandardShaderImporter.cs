@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -76,11 +76,11 @@ namespace Unity.Formats.USD {
           // but isn't the albedo or spec map).
           // Roughness also needs to be converted to glossiness.
           if (RoughnessMap != SpecularMap && SpecularMap != null) {
-            var specGlossTex = MaterialImporter.CombineRoughnessToGloss(SpecularMap, RoughnessMap);
+            var specGlossTex = MaterialImporter.CombineRoughness(SpecularMap, RoughnessMap, "specGloss");
             mat.SetTexture("_SpecGlossMap", specGlossTex);
             mat.EnableKeyword("_SPECGLOSSMAP");
           } else if (SpecularMap == null && RoughnessMap != DiffuseMap) {
-            var mainGlossTex = MaterialImporter.CombineRoughnessToGloss(DiffuseMap, RoughnessMap);
+            var mainGlossTex = MaterialImporter.CombineRoughness(DiffuseMap, RoughnessMap, "specGloss");
             mat.SetTexture("_SpecGlossMap", mainGlossTex);
             mat.EnableKeyword("_SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A");
           } else {
@@ -99,13 +99,15 @@ namespace Unity.Formats.USD {
           mat.SetFloat("_Metallic", Metallic.GetValueOrDefault(0));
         }
 
+        float smoothness = 1 - Roughness.GetValueOrDefault(.5f);
+        mat.SetFloat("_Glossiness", smoothness);
+        mat.SetFloat("_GlossMapScale", smoothness);
+
         if (RoughnessMap) {
+          var metalicRough = MaterialImporter.CombineRoughness(MetallicMap, RoughnessMap, "metalicRough");
           // In this case roughness get its own map, but still must be converted to glossiness.
-          mat.SetTexture("_SpecGlossMap", RoughnessMap);
-        } else {
-          float smoothness = 1 - Roughness.GetValueOrDefault(.5f);
-          mat.SetFloat("_Glossiness", smoothness);
-          mat.SetFloat("_GlossMapScale", smoothness);
+          mat.SetTexture("_MetallicGlossMap", metalicRough);
+          mat.EnableKeyword("_METALLICGLOSSMAP");
         }
       }
     }
