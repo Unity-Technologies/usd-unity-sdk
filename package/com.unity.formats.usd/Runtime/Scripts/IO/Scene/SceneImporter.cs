@@ -319,9 +319,15 @@ namespace Unity.Formats.USD {
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       Profiler.BeginSample("USD: Build Hierarchy");
       if (importOptions.importHierarchy || importOptions.forceRebuild) {
+        // When a USD file is fully RE-imported, all exsiting USD data must be removed. The old
+        // assumption was that the root would never have much more than the UsdAsset component
+        // itself, however it's now clear that the root may also have meaningful USD data added
+        // too.
+        //
         // TODO(jcowles): This feels like a workaround. What we really want here is an "undo"
         // process for changes made to the root GameObject. For example, to clean up non-USD
-        // components which may have been added.
+        // components which may have been added (e.g. what if a mesh is imported to the root?
+        // currently the MeshRenderer etc will remain after re-import).
         RemoveComponent<UsdAssemblyRoot>(root);
         RemoveComponent<UsdVariantSet>(root);
         RemoveComponent<UsdModelRoot>(root);
