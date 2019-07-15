@@ -286,6 +286,16 @@ namespace Unity.Formats.USD {
       }
     }
 
+    private static void RemoveComponent<T>(GameObject go) {
+      var c = go.GetComponent<T>() as Component;
+      if (c == null) { return; }
+#if UNITY_EDITOR
+      Component.DestroyImmediate(c);
+#else
+      Component.Destroy(c);
+#endif
+    }
+
     /// <summary>
     /// Rebuilds the USD scene as Unity GameObjects, with a limited budget per update.
     /// </summary>
@@ -309,6 +319,16 @@ namespace Unity.Formats.USD {
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       Profiler.BeginSample("USD: Build Hierarchy");
       if (importOptions.importHierarchy || importOptions.forceRebuild) {
+        // TODO(jcowles): This feels like a workaround. What we really want here is an "undo"
+        // process for changes made to the root GameObject. For example, to clean up non-USD
+        // components which may have been added.
+        RemoveComponent<UsdAssemblyRoot>(root);
+        RemoveComponent<UsdVariantSet>(root);
+        RemoveComponent<UsdModelRoot>(root);
+        RemoveComponent<UsdLayerStack>(root);
+        RemoveComponent<UsdPayload>(root);
+        RemoveComponent<UsdPrimSource>(root);
+
         primMap.Clear();
         HierarchyBuilder.BuildGameObjects(scene,
                                           root,

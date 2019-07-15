@@ -222,6 +222,12 @@ namespace Unity.Formats.USD {
                                            SceneImportOptions options) {
       map[usdRoot] = unityRoot;
 
+      // Like all GameObjects imported from USD, ensure the root has a UsdPrimSource.
+      if (unityRoot.GetComponent<UsdPrimSource>() == null) {
+        var ua = unityRoot.AddComponent<UsdPrimSource>();
+        ua.m_usdPrimPath = usdRoot.ToString();
+      }
+
       Profiler.BeginSample("Build Object Lists");
       var hierInfo = BuildObjectLists(scene, unityRoot, usdRoot, map, options);
       Profiler.EndSample();
