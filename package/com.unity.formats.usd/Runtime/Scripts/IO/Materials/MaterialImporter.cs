@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -92,7 +92,6 @@ namespace Unity.Formats.USD {
                                          MaterialSample sample,
                                          SceneImportOptions options) {
       if (string.IsNullOrEmpty(sample.surface.connectedPath)) {
-        Debug.LogWarning("Material has no connected surface: <" + materialPath + ">");
         return null;
       }
       var previewSurf = new UnityPreviewSurfaceSample();
@@ -187,12 +186,23 @@ namespace Unity.Formats.USD {
       if (st != null && st.IsConnected() && !string.IsNullOrEmpty(st.connectedPath)) {
         var pvSrc = new PrimvarReaderSample<Vector2>();
         scene.Read(new pxr.SdfPath(textureSample.st.connectedPath).GetPrimPath(), pvSrc);
-
-        if (pvSrc.varname != null
-            && pvSrc.varname.defaultValue != null) {
-          // Ask the mesh importer to load the specified texcoord.
-          // This must be a callback, since materials-to-meshes are one-to-many.
-          uvPrimvar = pvSrc.varname.defaultValue;
+        
+        if (pvSrc.varname != null) {
+          if (pvSrc.varname.IsConnected()) {
+            var connPath = new pxr.SdfPath(pvSrc.varname.GetConnectedPath());
+            var attr = scene.GetAttributeAtPath(connPath);
+            if (attr.IsValid()) {
+              var value = attr.Get(scene.Time);
+              uvPrimvar = pxr.UsdCs.VtValueToTfToken(value).ToString();
+            } else {
+              Debug.LogWarning("No primvar name was provided at the connected path: " + connPath);
+              uvPrimvar = "";
+            }
+          } else if (pvSrc.varname.defaultValue != null) {
+            // Ask the mesh importer to load the specified texcoord.
+            // This must be a callback, since materials-to-meshes are one-to-many.
+            uvPrimvar = pvSrc.varname.defaultValue;
+          }
         }
       }
 
