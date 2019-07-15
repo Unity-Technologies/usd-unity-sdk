@@ -48,7 +48,13 @@ namespace Unity.Formats.USD {
     static private Scene m_scene;
     static private SdfPath[] m_paths;
     static private T[] m_results;
-    static private bool[] m_done;
+
+    // Previously, setting elements in a bool[] caused a data race, resumably because of
+    // bit packing. Here we use an object[] to avoid this, however there was no negative
+    // effect of using a bool[] here, though the bug may have just not presented itself.
+    // An alternative lock-free implementation would also be fine (preferable) here.
+    static private object[] m_done;
+
     static SampleEnumerator<T>.SampleHolder m_current;
     static private AutoResetEvent m_ready;
 
@@ -70,7 +76,7 @@ namespace Unity.Formats.USD {
       m_ready = new AutoResetEvent(false);
       m_scene = scene;
       m_results = new T[paths.Length];
-      m_done = new bool[paths.Length];
+      m_done = new object[paths.Length];
       m_current = new SampleEnumerator<T>.SampleHolder();
       m_paths = paths;
     }
@@ -93,6 +99,7 @@ namespace Unity.Formats.USD {
         m_scene.Read(m_paths[index], sample);
       } else {
         sample = null;
+        // Any object value works here, the test below is if m_done[i] == null.
         m_done[index] = true;
       }
 
@@ -108,7 +115,7 @@ namespace Unity.Formats.USD {
       while (hasWork) {
         hasWork = false;
         for (int i = 0; i < m_done.Length; i++) {
-          hasWork = hasWork || (m_done[i] == false);
+          hasWork = hasWork || (m_done[i] == null);
         }
 
         if (!hasWork) {
@@ -116,7 +123,7 @@ namespace Unity.Formats.USD {
         }
 
         for (int i = 0; i < m_done.Length; i++) {
-          if (m_done[i] == false && m_results[i] != null) {
+          if (m_done[i] == null && m_results[i] != null) {
             m_current.path = m_paths[i];
             m_current.sample = m_results[i];
             m_done[i] = true;
