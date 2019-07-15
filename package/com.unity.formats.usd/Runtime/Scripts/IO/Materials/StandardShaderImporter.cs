@@ -61,7 +61,7 @@ namespace Unity.Formats.USD {
         }
       }
 
-      if (!IsMetallicWorkflow) {
+      if (IsSpecularWorkflow) {
         if (SpecularMap) {
           mat.SetTexture("_SpecGlossMap", SpecularMap);
           mat.EnableKeyword("_SPECGLOSSMAP");
