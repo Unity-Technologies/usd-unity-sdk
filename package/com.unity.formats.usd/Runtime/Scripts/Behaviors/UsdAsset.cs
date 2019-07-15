@@ -467,7 +467,7 @@ namespace Unity.Formats.USD {
     }
 
     /// <summary>
-    /// Finds all USD behaviors and destroyes them, ignores the GameObject and other components.
+    /// Finds all USD behaviors and destroys them, ignores the GameObject and other components.
     /// </summary>
     public void RemoveAllUsdComponents() {
       foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
