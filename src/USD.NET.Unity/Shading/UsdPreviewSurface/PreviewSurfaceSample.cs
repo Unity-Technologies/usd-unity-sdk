@@ -53,7 +53,7 @@ namespace USD.NET.Unity {
     /// Transition between the two colors according to Schlick fresnel approximation.
     /// </summary>
     [InputParameter("_SpecularColor")]
-    public Connectable<Vector3> specularColor = new Connectable<Vector3>(Vector3.one);
+    public Connectable<Vector3> specularColor = new Connectable<Vector3>(Vector3.zero);
 
     /// <summary>
     /// Use 1 for metallic surfaces and 0 for non-metallic.
@@ -67,7 +67,7 @@ namespace USD.NET.Unity {
     ///    In between, we interpolate.
     /// </summary>
     [InputParameter("_Metallic")]
-    public Connectable<float> metallic = new Connectable<float>(1);
+    public Connectable<float> metallic = new Connectable<float>(0);
 
     /// <summary>
     /// Roughness for the specular lobe. The value ranges from 0 to 1, which goes from a perfectly
@@ -75,7 +75,7 @@ namespace USD.NET.Unity {
     /// squared before use with a GGX or Beckmann lobe.
     /// </summary>
     [InputParameter("_Roughness")]
-    public Connectable<float> roughness = new Connectable<float>(0.01f);
+    public Connectable<float> roughness = new Connectable<float>(0.5f);
 
     /// <summary>
     /// Second specular lobe amount. The color is white.
@@ -95,6 +95,28 @@ namespace USD.NET.Unity {
     /// </summary>
     [InputParameter("_Opacity")]
     public Connectable<float> opacity = new Connectable<float>(1);
+
+    /// <summary>
+    /// The opacityThreshold input is useful for creating geometric cut-outs based on the opacity input.
+    /// </summary>
+    /// <remarks>
+    /// A value of 0.0 indicates that no masking is applied to the opacity input, while a value
+    /// greater than 0.0 indicates that rendering of the surface is limited to the areas where the
+    /// opacity is greater than that value. A classic use of opacityThreshold is to create a leaf
+    /// from an opacity input texture, in that case the threshold determines the parts of the
+    /// opacity texture that will be fully transparent and not receive lighting. Note that when
+    /// opacityThreshold is greater than zero, then opacity modulates the presence of the surface,
+    /// rather than its transparency - pathtracers might implement this as allowing
+    /// ((1 - opacity) * 100) % of the rays that do intersect the object to instead pass through it
+    /// unhindered, and rasterizers may interpret opacity as pixel coverage.  Thus,
+    /// opacityThreshold serves as a switch for how the opacity input is interpreted; this
+    /// "translucent or masked" behavior is common in engines and renderers, and makes the
+    /// UsdPreviewSurface easier to interchange.  It does imply, however, that it is not possible
+    /// to faithfully recreate a glassy/translucent material that also provides an opacity-based
+    /// mask... so no single-polygon glass leaves.
+    /// </remarks>
+    [InputParameter("_OpacityThreshold")]
+    public Connectable<float> opacityThreshold = new Connectable<float>(0);
 
     /// <summary>
     /// Index of Refraction to be used for translucent objects.
