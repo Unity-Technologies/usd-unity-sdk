@@ -97,10 +97,19 @@ namespace USD.NET {
 
     public bool GetBinding(Type key, out UsdTypeBinding binding) {
       lock (UsdIo.Bindings) {
+
+        // First try the exact type requested.
         if (bindings.TryGetValue(key, out binding)) {
           return true;
         }
-      
+
+        // If the first lookup failed, perhaps this is a nullable type?
+        if (key.IsGenericType && key.GetGenericTypeDefinition() == typeof(Nullable<>)
+            && bindings.TryGetValue(key.GetGenericArguments()[0], out binding)) {
+          return true;
+        }
+
+        // If this is an Enum type, then use the generic Enum handler.
         if (!key.IsEnum) {
           return false;
         }
