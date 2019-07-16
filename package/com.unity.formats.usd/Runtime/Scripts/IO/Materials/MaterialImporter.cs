@@ -191,7 +191,7 @@ namespace Unity.Formats.USD {
           if (pvSrc.varname.IsConnected()) {
             var connPath = new pxr.SdfPath(pvSrc.varname.GetConnectedPath());
             var attr = scene.GetAttributeAtPath(connPath);
-            if (attr.IsValid()) {
+            if (attr != null) {
               var value = attr.Get(scene.Time);
               uvPrimvar = pxr.UsdCs.VtValueToTfToken(value).ToString();
             } else {
