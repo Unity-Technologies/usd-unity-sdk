@@ -346,9 +346,18 @@ namespace Unity.Formats.USD {
             // The skeleton is exported at the skeleton root and UsdSkelAnimation is nested under
             // this prim as a new prim called "_anim".
             SkelRootSample rootSample = CreateSample<SkelRootSample>(context);
+            string skelRootPath = UnityTypeConverter.GetPath(animatorXf.transform, expRoot);
             string skelPath = UnityTypeConverter.GetPath(skeletonRoot, expRoot);
-            rootSample.skeleton = skelPath;
-            rootSample.animationSource = skelPath + "/_anim";
+            string skelPathSuffix = "";
+            string skelAnimSuffix = "/_anim";
+
+            if (skelPath == skelRootPath) {
+              Debug.LogWarning("SkelRoot and Skeleton have the same path, renaming Skeleton");
+              skelPathSuffix = "/_skel";
+            }
+
+            rootSample.skeleton = skelPath + skelPathSuffix;
+            rootSample.animationSource = skelPath + skelAnimSuffix;
 
             CreateExportPlan(
                 animatorXf.gameObject,
@@ -368,13 +377,15 @@ namespace Unity.Formats.USD {
                 CreateSample<SkeletonSample>(context),
                 SkeletonExporter.ExportSkeleton,
                 context,
-                insertFirst: true);
+                insertFirst: true,
+                pathSuffix: skelPathSuffix);
             CreateExportPlan(
                 skeletonRoot.gameObject,
                 CreateSample<SkeletonSample>(context),
                 NativeExporter.ExportObject,
                 context,
-                insertFirst: false);
+                insertFirst: false,
+                pathSuffix: skelPathSuffix);
 
             CreateExportPlan(
                 skeletonRoot.gameObject,
@@ -382,7 +393,7 @@ namespace Unity.Formats.USD {
                 SkeletonExporter.ExportSkelAnimation,
                 context,
                 insertFirst: true,
-                pathSuffix: "/_anim");
+                pathSuffix: skelAnimSuffix);
 
             // Exporting animation is only possible while in-editor (in 2018 and earlier).
 #if UNITY_EDITOR
