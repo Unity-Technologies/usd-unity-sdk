@@ -99,12 +99,7 @@ namespace Unity.Formats.USD {
       try {
         scene.Time = null;
         handler(scene, shaderPath, mat, shader, texPath);
-
         scene.Write(shaderPath, shader);
-        scene.GetPrimAtPath(shaderPath).CreateAttribute(pxr.UsdShadeTokens.outputsSurface,
-                                                        SdfValueTypeNames.Token,
-                                                        false,
-                                                        pxr.SdfVariability.SdfVariabilityUniform);
       } finally {
         scene.Time = origTime;
       }
