@@ -351,6 +351,13 @@ namespace Unity.Formats.USD {
             string skelPathSuffix = "";
             string skelAnimSuffix = "/_anim";
 
+            // When there is a collision between the SkelRoot and the Skeleton, make a new USD Prim
+            // for the Skeleton object. The reason this is safe is as follows: if the object was
+            // imported from USD, then the structure should already be correct and this code path will
+            // not be hit (and hence overrides, etc, will work correctly). If the object was created
+            // in Unity and there happened to be a collision, then we can safely create a new prim
+            // for the Skeleton prim because there will be no existing USD skeleton for which
+            // the namespace must match, hence adding a new prim is still safe.
             if (skelPath == skelRootPath) {
               Debug.LogWarning("SkelRoot and Skeleton have the same path, renaming Skeleton");
               skelPathSuffix = "/_skel";
