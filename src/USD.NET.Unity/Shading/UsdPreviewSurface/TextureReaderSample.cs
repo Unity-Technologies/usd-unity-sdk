@@ -93,11 +93,6 @@ namespace USD.NET.Unity {
     [InputParameter("_Bias")]
     public Connectable<Vector4> bias = new Connectable<Vector4>(Vector4.zero);
 
-    // TODO(jcowles): outputs in the UsdPreviewSurface cannot have values assigned to them, however
-    //                USD .NET has no way to stop this from happening for value types currently. 
-    //                https://github.com/googlevr/usd-unity-sdk/issues/12
-
-    /*
     /// <remarks>
     /// Outputs one or more values. If the texture is 8 bit per component [0, 255] values will first
     /// be converted to floating point [0, 1] and apply any transformations (bias, scale) indicated.
@@ -110,17 +105,16 @@ namespace USD.NET.Unity {
     /// channel's value.
     /// </remarks>
     public class Outputs : SampleBase {
-      public float r;
-      public float g;
-      public float b;
-      public float a;
-      public Vector3 rgb;
-      public Vector4 rgba;
+      public float? r;
+      public float? g;
+      public float? b;
+      public float? a;
+      public Vector3? rgb;
+      public Vector4? rgba;
     }
 
     [UsdNamespace("outputs")]
     public Outputs outputs = new Outputs();
-    */
   }
 
 }

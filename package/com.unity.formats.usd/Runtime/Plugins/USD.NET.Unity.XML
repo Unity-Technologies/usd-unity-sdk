@@ -164,6 +164,19 @@
             Bias to be applied to all components of the texture. value * scale + bias 
             </summary>
         </member>
+        <member name="T:USD.NET.Unity.TextureReaderSample.Outputs">
+            <remarks>
+            Outputs one or more values. If the texture is 8 bit per component [0, 255] values will first
+            be converted to floating point [0, 1] and apply any transformations (bias, scale) indicated.
+            Otherwise it will just apply any transformation (bias, scale).  If a single-channel texture
+            is fed into a UsdUVTexture, the r, g, and b components of the rgb and rgba outputs will
+            repeat the channel's value, while both the single a output and the a component of the rgba
+            outputs will be set to 1.0.  If a two-channel texture is fed into a UsdUVTexture, the r, g,
+            and b components of the rgb and rgba outputs will repeat the first channel's value, while
+            both the single a output and the a component of the rgba outputs will be set to the second
+            channel's value.
+            </remarks>
+        </member>
         <member name="T:USD.NET.Unity.InputParameterAttribute">
             <summary>
             A declaration that a given value is a shader input, used to discover shader parameters at
