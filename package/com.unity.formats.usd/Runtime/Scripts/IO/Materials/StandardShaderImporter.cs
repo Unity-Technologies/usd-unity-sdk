@@ -26,6 +26,9 @@ namespace Unity.Formats.USD {
 
       if (DiffuseMap) {
         mat.SetTexture("_MainTex", DiffuseMap);
+        // Albedo texture is modulated by the material color, so setting to white preserves the pure
+        // texture color.
+        mat.color = Color.white;
       } else {
         mat.color = Diffuse.GetValueOrDefault(mat.color);
       }
