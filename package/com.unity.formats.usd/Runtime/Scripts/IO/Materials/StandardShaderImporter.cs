@@ -111,6 +111,12 @@ namespace Unity.Formats.USD {
           // In this case roughness get its own map, but still must be converted to glossiness.
           mat.SetTexture("_MetallicGlossMap", metalicRough);
           mat.EnableKeyword("_METALLICGLOSSMAP");
+
+          // The scalar Glossiness modulates the roughness/glossiness map, however USD has no
+          // concept of this, so setting it to 1.0 effectively disables the scalar effect when
+          // the map is present.
+          mat.SetFloat("_Glossiness", 1.0f);
+          mat.SetFloat("_GlossMapScale", 1.0f);
         }
       }
     }
