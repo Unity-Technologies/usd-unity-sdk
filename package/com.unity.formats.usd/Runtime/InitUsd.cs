@@ -51,6 +51,8 @@ namespace Unity.Formats.USD {
     private static void SetupUsdPath()
     {
 #if UNITY_EDITOR
+      // TODO: this is not robust, e.g. if anyone changes CWD from the default, package resolution
+      // will fail. Following up with UPM devs to see what we can do about it.
       var supPath = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
 #else
       var supPath = UnityEngine.Application.dataPath.Replace("\\", "/") + "/Plugins";

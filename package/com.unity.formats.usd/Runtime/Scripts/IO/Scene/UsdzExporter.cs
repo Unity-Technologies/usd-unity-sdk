@@ -22,6 +22,11 @@ namespace Unity.Formats.USD {
 
     public static void ExportUsdz(string usdzFilePath,
                                   GameObject root) {
+      // Ensure USD is initialized before changing CWD.
+      // This does not protect us against external changes to CWD, so we are actively looking for
+      // a more robust solution with UPM devs.
+      InitUsd.Initialize();
+
       // Keep the current directory to restore it at the end.
       var currentDir = Directory.GetCurrentDirectory();
 
