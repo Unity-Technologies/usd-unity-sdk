@@ -48,24 +48,33 @@ namespace Unity.Formats.USD {
       }
 
       UnityEngine.Profiling.Profiler.BeginSample("USD: Skinning Weights");
+
+      // Skeleton path is stored in additionalData via the SceneExporter SyncExportContext(). It
+      // would be nice to formalize this, rather than passing it as blind data.
+      var skeletonPath = (string)objContext.additionalData;
+
       ExportSkelWeights(exportContext.scene,
                         objContext.path,
                         smr.sharedMesh,
                         rootBone,
-                        smr.bones);
+                        smr.bones,
+                        skeletonPath);
       UnityEngine.Profiling.Profiler.EndSample();
-
     }
 
     static void ExportSkelWeights(Scene scene,
                                   string path,
                                   Mesh unityMesh,
                                   Transform rootBone,
-                                  Transform[] bones) {
+                                  Transform[] bones,
+                                  string skeletonPath) {
       var sample = new SkelBindingSample();
 
       sample.geomBindTransform.value = Matrix4x4.identity;
       sample.joints = new string[bones.Length];
+      if (!string.IsNullOrEmpty(skeletonPath)) {
+        sample.skeleton.targetPaths = new string[] { skeletonPath };
+      }
 
       int b = 0;
       var rootPath = UnityTypeConverter.GetPath(rootBone);
