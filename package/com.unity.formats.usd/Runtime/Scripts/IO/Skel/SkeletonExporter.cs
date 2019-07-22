@@ -72,14 +72,6 @@ namespace Unity.Formats.USD {
 
     public static void ExportSkelRoot(ObjectContext objContext, ExportContext exportContext) {
       var sample = (SkelRootSample)objContext.sample;
-      var bindings = ((string[])objContext.additionalData);
-
-      if (bindings != null) {
-        sample.skeleton = bindings[0];
-        if (bindings.Length > 1) {
-          sample.animationSource = bindings[1];
-        }
-      }
 
       // Compute bounds for the root, required by USD.
       bool first = true;

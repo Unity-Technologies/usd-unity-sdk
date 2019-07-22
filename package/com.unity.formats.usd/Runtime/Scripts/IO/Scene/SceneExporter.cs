@@ -363,8 +363,25 @@ namespace Unity.Formats.USD {
               skelPathSuffix = "/_skel";
             }
 
-            rootSample.skeleton = skelPath + skelPathSuffix;
             rootSample.animationSource = skelPath + skelAnimSuffix;
+
+            // For any skinned mesh exported under this SkelRoot, pass along the skeleton path in
+            // the "additional data" member of the exporter. Note that this feels very ad hoc and
+            // should probably be formalized in some way (perhaps as a separate export event for
+            // which the SkinnedMesh exporter can explicitly register).
+            //
+            // While it is possible to bind the skel:skeleton relationship at the SkelRoot and
+            // have it inherit down namespace, the Apple importer did not respect this inheritance
+            // and it sometimes causes issues with geometry embedded in the bone hierarchy.
+            foreach (var p in context.plans) {
+              if (p.Key.transform.IsChildOf(animatorXf.transform)) {
+                foreach (var e in p.Value.exporters) {
+                  if (e.exportFunc == MeshExporter.ExportSkinnedMesh) {
+                    e.data = skelPath + skelPathSuffix;
+                  }
+                }
+              }
+            }
 
             CreateExportPlan(
                 animatorXf.gameObject,
@@ -592,7 +609,6 @@ namespace Unity.Formats.USD {
                                  ExportFunction exportFunc,
                                  ExportContext context,
                                  string pathSuffix = null,
-                                 object data = null,
                                  bool insertFirst = true) {
       // This is an exportable object.
       Transform expRoot = context.exportRoot;
@@ -604,7 +620,7 @@ namespace Unity.Formats.USD {
         context.plans.Add(go, new ExportPlan());
       }
 
-      var exp = new Exporter { exportFunc = exportFunc, sample = sample, path = path, data = data };
+      var exp = new Exporter { exportFunc = exportFunc, sample = sample, path = path };
       if (insertFirst) {
         context.plans[go].exporters.Insert(0, exp);
       } else {
