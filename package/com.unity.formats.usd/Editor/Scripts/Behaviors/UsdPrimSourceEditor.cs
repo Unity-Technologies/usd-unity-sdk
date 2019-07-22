@@ -31,6 +31,10 @@ namespace Unity.Formats.USD {
       var stageRoot = attachment.GetComponentInParent<UsdAsset>();
 
       if (!stageRoot) {
+        stageRoot = attachment.GetComponent<UsdAsset>();
+      }
+
+      if (!stageRoot) {
         Debug.LogError("No stage root found");
         return;
       }
