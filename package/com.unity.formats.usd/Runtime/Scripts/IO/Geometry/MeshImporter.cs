@@ -430,7 +430,6 @@ namespace Unity.Formats.USD {
         Profiler.BeginSample("Import Bounds");
         if (changeHandedness) {
           usdMesh.extent.center = UnityTypeConverter.ChangeBasis(usdMesh.extent.center);
-          usdMesh.extent.extents = UnityTypeConverter.ChangeBasis(usdMesh.extent.extents);
         }
         unityMesh.bounds = usdMesh.extent;
         Profiler.EndSample();
