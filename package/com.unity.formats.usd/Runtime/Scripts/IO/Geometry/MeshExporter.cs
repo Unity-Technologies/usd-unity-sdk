@@ -193,7 +193,7 @@ namespace Unity.Formats.USD {
       // Only export the mesh topology on the first frame.
       if (unvarying) {
         // TODO: Technically a mesh could be the root transform, which is not handled correctly here.
-        // It should ahve the same logic for root prims as in ExportXform.
+        // It should have the same logic for root prims as in ExportXform.
         sample.transform = XformExporter.GetLocalTransformMatrix(
             go.transform,
             scene.UpAxis == Scene.UpAxes.Z,
