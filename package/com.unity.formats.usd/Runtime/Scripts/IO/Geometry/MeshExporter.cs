@@ -239,6 +239,11 @@ namespace Unity.Formats.USD {
             if (sample.normals != null && sample.normals.Length == sample.points.Length) {
               sample.normals[i] = UnityTypeConverter.ChangeBasis(sample.normals[i]);
             }
+			if (sample.tangents != null && sample.tangents.Length == sample.points.Length) {
+              var w = sample.tangents[i].w;
+              var t = UnityTypeConverter.ChangeBasis(sample.tangents[i]);
+              sample.tangents[i] = new Vector4(t.x, t.y, t.z, w);
+            }
           }
 
           for (int i = 0; i < tris.Length; i += 3) {
