@@ -379,6 +379,10 @@ namespace USD.NET {
 
       // Get the binding for the value about to be serialized.
       if (!sm_bindings.GetBinding(csType, out binding) && !csType.IsEnum) {
+        if (csValue == null) {
+          return true;
+        }
+
         if (string.IsNullOrEmpty(ns)) {
           return false;
         }
