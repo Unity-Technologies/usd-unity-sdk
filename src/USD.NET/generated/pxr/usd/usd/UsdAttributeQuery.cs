@@ -115,6 +115,11 @@ public class UsdAttributeQuery : global::System.IDisposable {
     return ret;
   }
 
+  public bool HasAuthoredValue() {
+    bool ret = UsdCsPINVOKE.UsdAttributeQuery_HasAuthoredValue(swigCPtr);
+    return ret;
+  }
+
   public bool HasFallbackValue() {
     bool ret = UsdCsPINVOKE.UsdAttributeQuery_HasFallbackValue(swigCPtr);
     return ret;

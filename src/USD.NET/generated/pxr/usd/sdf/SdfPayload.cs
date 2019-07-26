@@ -40,15 +40,19 @@ public class SdfPayload : global::System.IDisposable {
     }
   }
 
-  public SdfPayload(string assetPath, SdfPath primPath) : this(UsdCsPINVOKE.new_SdfPayload__SWIG_0(assetPath, SdfPath.getCPtr(primPath)), true) {
+  public SdfPayload(string assetPath, SdfPath primPath, SdfLayerOffset layerOffset) : this(UsdCsPINVOKE.new_SdfPayload__SWIG_0(assetPath, SdfPath.getCPtr(primPath), SdfLayerOffset.getCPtr(layerOffset)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SdfPayload(string assetPath) : this(UsdCsPINVOKE.new_SdfPayload__SWIG_1(assetPath), true) {
+  public SdfPayload(string assetPath, SdfPath primPath) : this(UsdCsPINVOKE.new_SdfPayload__SWIG_1(assetPath, SdfPath.getCPtr(primPath)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SdfPayload() : this(UsdCsPINVOKE.new_SdfPayload__SWIG_2(), true) {
+  public SdfPayload(string assetPath) : this(UsdCsPINVOKE.new_SdfPayload__SWIG_2(assetPath), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SdfPayload() : this(UsdCsPINVOKE.new_SdfPayload__SWIG_3(), true) {
   }
 
   public string GetAssetPath() {
@@ -68,6 +72,16 @@ public class SdfPayload : global::System.IDisposable {
 
   public void SetPrimPath(SdfPath primPath) {
     UsdCsPINVOKE.SdfPayload_SetPrimPath(swigCPtr, SdfPath.getCPtr(primPath));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SdfLayerOffset GetLayerOffset() {
+    SdfLayerOffset ret = new SdfLayerOffset(UsdCsPINVOKE.SdfPayload_GetLayerOffset(swigCPtr), false);
+    return ret;
+  }
+
+  public void SetLayerOffset(SdfLayerOffset layerOffset) {
+    UsdCsPINVOKE.SdfPayload_SetLayerOffset(swigCPtr, SdfLayerOffset.getCPtr(layerOffset));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

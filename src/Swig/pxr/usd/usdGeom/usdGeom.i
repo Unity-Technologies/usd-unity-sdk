@@ -18,9 +18,7 @@
 
 %include "usdGeomTokens.i"
 
-%include "usdGeomFaceSetAPI.i"
 %include "usdGeomMotionAPI.i"
-%include "usdGeomCollectionAPI.i"
 
 %include "usdGeomPrimvar.i"
 %include "usdGeomScope.i"
@@ -54,6 +52,6 @@
 
 %include "usdGeomConstraintTarget.i"
 %include "usdGeomXformCache.i"
-%include "usdGeomBBoxCache.i"
+%include "usdGeomBboxCache.i"
 %include "usdGeomModelAPI.i"
 

@@ -21,6 +21,7 @@ namespace Tests.Cases {
 
     class MinimalSample : USD.NET.SampleBase {
       public int number;
+      public int? number2;
       public USD.NET.Relationship rel;
     }
 
@@ -183,6 +184,7 @@ namespace Tests.Cases {
       var sample2 = new MinimalSample();
 
       sample.number = 42;
+      sample.number2 = null;
       WriteAndRead(ref sample, ref sample2, true);
 
       AssertEqual(sample2.number, sample.number);

@@ -1,0 +1,23 @@
+{
+    "name": "Unity.Formats.USD.ImportMesh",
+    "references": [
+        "Unity.Formats.USD.Runtime"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "LinuxStandalone64",
+        "macOSStandalone",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "USD.NET.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

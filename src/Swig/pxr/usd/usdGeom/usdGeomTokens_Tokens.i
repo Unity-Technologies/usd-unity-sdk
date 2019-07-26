@@ -29,7 +29,6 @@
   public static TfToken clippingPlanes = new TfToken("clippingPlanes");
   public static TfToken clippingRange = new TfToken("clippingRange");
   public static TfToken closed = new TfToken("closed");
-  public static TfToken collection = new TfToken("collection");
   public static TfToken constant = new TfToken("constant");
   public static TfToken cornerIndices = new TfToken("cornerIndices");
   public static TfToken cornerSharpnesses = new TfToken("cornerSharpnesses");
@@ -52,7 +51,6 @@
   public static TfToken extentsHint = new TfToken("extentsHint");
   public static TfToken fStop = new TfToken("fStop");
   public static TfToken face = new TfToken("face");
-  public static TfToken faceSet = new TfToken("faceSet");
   public static TfToken faceVarying = new TfToken("faceVarying");
   public static TfToken faceVaryingLinearInterpolation = new TfToken("faceVaryingLinearInterpolation");
   public static TfToken faceVertexCounts = new TfToken("faceVertexCounts");
@@ -80,6 +78,7 @@
   public static TfToken leftHanded = new TfToken("leftHanded");
   public static TfToken linear = new TfToken("linear");
   public static TfToken loop = new TfToken("loop");
+  public static TfToken metersPerUnit = new TfToken("metersPerUnit");
   public static TfToken modelApplyDrawMode = new TfToken("model:applyDrawMode");
   public static TfToken modelCardGeometry = new TfToken("model:cardGeometry");
   public static TfToken modelCardTextureXNeg = new TfToken("model:cardTextureXNeg");

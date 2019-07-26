@@ -90,6 +90,11 @@ public class UsdTimeCode : global::System.IDisposable {
     return ret;
   }
 
+  public bool IsEarliestTime() {
+    bool ret = UsdCsPINVOKE.UsdTimeCode_IsEarliestTime(swigCPtr);
+    return ret;
+  }
+
   public bool IsDefault() {
     bool ret = UsdCsPINVOKE.UsdTimeCode_IsDefault(swigCPtr);
     return ret;

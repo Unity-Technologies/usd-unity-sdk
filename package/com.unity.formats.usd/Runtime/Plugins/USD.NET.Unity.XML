@@ -164,6 +164,19 @@
             Bias to be applied to all components of the texture. value * scale + bias 
             </summary>
         </member>
+        <member name="T:USD.NET.Unity.TextureReaderSample.Outputs">
+            <remarks>
+            Outputs one or more values. If the texture is 8 bit per component [0, 255] values will first
+            be converted to floating point [0, 1] and apply any transformations (bias, scale) indicated.
+            Otherwise it will just apply any transformation (bias, scale).  If a single-channel texture
+            is fed into a UsdUVTexture, the r, g, and b components of the rgb and rgba outputs will
+            repeat the channel's value, while both the single a output and the a component of the rgba
+            outputs will be set to 1.0.  If a two-channel texture is fed into a UsdUVTexture, the r, g,
+            and b components of the rgb and rgba outputs will repeat the first channel's value, while
+            both the single a output and the a component of the rgba outputs will be set to the second
+            channel's value.
+            </remarks>
+        </member>
         <member name="T:USD.NET.Unity.InputParameterAttribute">
             <summary>
             A declaration that a given value is a shader input, used to discover shader parameters at
@@ -258,6 +271,27 @@
             When opacity is 1.0 then the prim is fully opaque, if it is smaller than 1.0 then the prim
             is translucent, when it is 0 the prim is transparent. 
             </summary>
+        </member>
+        <member name="F:USD.NET.Unity.PreviewSurfaceSample.opacityThreshold">
+            <summary>
+            The opacityThreshold input is useful for creating geometric cut-outs based on the opacity input.
+            </summary>
+            <remarks>
+            A value of 0.0 indicates that no masking is applied to the opacity input, while a value
+            greater than 0.0 indicates that rendering of the surface is limited to the areas where the
+            opacity is greater than that value. A classic use of opacityThreshold is to create a leaf
+            from an opacity input texture, in that case the threshold determines the parts of the
+            opacity texture that will be fully transparent and not receive lighting. Note that when
+            opacityThreshold is greater than zero, then opacity modulates the presence of the surface,
+            rather than its transparency - pathtracers might implement this as allowing
+            ((1 - opacity) * 100) % of the rays that do intersect the object to instead pass through it
+            unhindered, and rasterizers may interpret opacity as pixel coverage.  Thus,
+            opacityThreshold serves as a switch for how the opacity input is interpreted; this
+            "translucent or masked" behavior is common in engines and renderers, and makes the
+            UsdPreviewSurface easier to interchange.  It does imply, however, that it is not possible
+            to faithfully recreate a glassy/translucent material that also provides an opacity-based
+            mask... so no single-polygon glass leaves.
+            </remarks>
         </member>
         <member name="F:USD.NET.Unity.PreviewSurfaceSample.ior">
             <summary>

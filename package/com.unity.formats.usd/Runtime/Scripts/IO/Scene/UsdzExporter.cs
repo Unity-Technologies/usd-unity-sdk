@@ -15,45 +15,40 @@
 using System.IO;
 using UnityEngine;
 using USD.NET;
+using pxr;
 
 namespace Unity.Formats.USD {
   public class UsdzExporter {
 
     public static void ExportUsdz(string usdzFilePath,
                                   GameObject root) {
-      // Setup a temp directory for zipping up files.
-      string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-      var tmpUsdName = Path.GetFileNameWithoutExtension(usdzFilePath);
-      var di = Directory.CreateDirectory(tempDirectory);
-      var tmpUsdFilePath = Path.Combine(tempDirectory, tmpUsdName + ".usdc");
-      var curDir = Directory.GetCurrentDirectory();
+      // Ensure USD is initialized before changing CWD.
+      // This does not protect us against external changes to CWD, so we are actively looking for
+      // a more robust solution with UPM devs.
+      InitUsd.Initialize();
 
-      var supportedExtensions = new System.Collections.Generic.HashSet<string>();
-      supportedExtensions.Add(".usd");
-      supportedExtensions.Add(".usda");
-      supportedExtensions.Add(".usdc");
+      // Keep the current directory to restore it at the end.
+      var currentDir = Directory.GetCurrentDirectory();
 
-      supportedExtensions.Add(".jpg");
-      supportedExtensions.Add(".jpeg");
-      supportedExtensions.Add(".jpe");
-      supportedExtensions.Add(".jif");
-      supportedExtensions.Add(".jfif");
-      supportedExtensions.Add(".jfi");
+      // Setup a temporary directory to export the wanted USD file and zip it.
+      string tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+      DirectoryInfo tmpDir = Directory.CreateDirectory(tmpDirPath);
 
-      supportedExtensions.Add(".png");
-
-      // Create the temp .usd scene, into which the data will be exported.
-      var scene = InitForSave(tmpUsdFilePath);
-      var localScale = root.transform.localScale;
+      // Get the usd file name to export and the usdz file name of the archive.
+      string usdcFileName = Path.GetFileNameWithoutExtension(usdzFilePath) + ".usdc";
+      string usdzFileName = Path.GetFileName(usdzFilePath);
 
       try {
+        // Set the current working directory to the tmp directory to export with relative paths.
+        Directory.SetCurrentDirectory(tmpDirPath);
+
+        // Create the tmp .usd scene, into which the data will be exported.
+        Scene scene = InitForSave(usdcFileName);
+        Vector3 localScale = root.transform.localScale;
+
         try {
           // USDZ is in centimeters.
           root.transform.localScale = localScale * 100;
-
-          // Set the current working directory to the USDZ directory so the paths in USD
-          // will be relative.
-          Directory.SetCurrentDirectory(tempDirectory);
 
           // Export the temp scene.
           SceneExporter.Export(root,
@@ -72,38 +67,27 @@ namespace Unity.Formats.USD {
           scene = null;
         }
 
-        // Copy resulting files into the USDZ archive.
-        var filesToArchive = new pxr.StdStringVector();
+        SdfAssetPath assetPath = new SdfAssetPath(usdcFileName);
+        bool success = pxr.UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
 
-        // According to the USDZ spec, the first file in the archive must be the primary USD file.
-        filesToArchive.Add(tmpUsdFilePath);
-
-        foreach (var fileInfo in di.GetFiles()) {
-          if (fileInfo.Name.ToLower() == Path.GetFileName(tmpUsdFilePath).ToLower()) {
-            continue;
-          }
-          var relPath = ImporterBase.MakeRelativePath(tmpUsdFilePath, fileInfo.FullName);
-          var ext = Path.GetExtension(relPath).ToLower();
-          if (!supportedExtensions.Contains(ext)) {
-            Debug.LogWarning("Unsupported file type in USDZ: " + relPath);
-            continue;
-          }
-          filesToArchive.Add(relPath);
+        if (!success) {
+          Debug.LogError("Couldn't export " + root.name + " to the usdz file: " + usdzFilePath);
+          return;
         }
 
-        // Write the USDZ file.
-        pxr.UsdCs.WriteUsdZip(usdzFilePath, filesToArchive);
+        File.Copy(usdzFileName, usdzFilePath, overwrite: true);
+
       } finally {
         // Clean up temp files.
-        Directory.SetCurrentDirectory(curDir);
-        di.Delete(recursive: true);
+        Directory.SetCurrentDirectory(currentDir);
+        tmpDir.Delete(recursive: true);
       }
     }
 
     private static Scene InitForSave(string filePath) {
-      var fileDir = Path.GetDirectoryName(filePath);
+      string fileDir = Path.GetDirectoryName(filePath);
 
-      if (!Directory.Exists(fileDir)) {
+      if (!string.IsNullOrEmpty(fileDir) && !Directory.Exists(fileDir)) {
         var di = Directory.CreateDirectory(fileDir);
         if (!di.Exists) {
           Debug.LogError("Failed to create directory: " + fileDir);
@@ -112,7 +96,7 @@ namespace Unity.Formats.USD {
       }
 
       InitUsd.Initialize();
-      var scene = Scene.Create(filePath);
+      Scene scene = Scene.Create(filePath);
       scene.Time = 0;
       scene.StartTime = 0;
       scene.EndTime = 0;

@@ -186,7 +186,11 @@ namespace Unity.Formats.USD {
           if (!mat || usdPath == null) {
             continue;
           }
-          MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
+          try {
+            MaterialExporter.ExportMaterial(scene, kvp.Key, kvp.Value);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error exporting material: " + kvp.Value, ex));
+          }
         }
         UnityEngine.Profiling.Profiler.EndSample();
       }
@@ -195,7 +199,7 @@ namespace Unity.Formats.USD {
       foreach (var kvp in context.plans) {
         GameObject go = kvp.Key;
         ExportPlan exportPlan = kvp.Value;
-        
+
         if (!go || exportPlan == null) {
           continue;
         }
@@ -217,32 +221,42 @@ namespace Unity.Formats.USD {
             additionalData = exporter.data
           };
 
-          exporter.exportFunc(objCtx, context);
+          try {
+            exporter.exportFunc(objCtx, context);
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error exporting: " + path, ex));
+            continue;
+          }
 
           UnityEngine.Profiling.Profiler.BeginSample("USD: Process Visibility");
-          if (!go.gameObject.activeSelf) {
-            switch (context.activePolicy) {
-              case ActiveExportPolicy.Ignore:
-                // Nothing to see here.
-                break;
+          try {
+            if (!go.gameObject.activeSelf) {
+              switch (context.activePolicy) {
+                case ActiveExportPolicy.Ignore:
+                  // Nothing to see here.
+                  break;
 
-              case ActiveExportPolicy.ExportAsVisibility:
-                // Make the prim invisible.
-                var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(path));
-                if (im) {
-                  im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
-                }
-                break;
+                case ActiveExportPolicy.ExportAsVisibility:
+                  // Make the prim invisible.
+                  var im = new pxr.UsdGeomImageable(scene.GetPrimAtPath(path));
+                  if (im) {
+                    im.CreateVisibilityAttr().Set(pxr.UsdGeomTokens.invisible);
+                  }
+                  break;
 
-              case ActiveExportPolicy.ExportAsActive:
-                // TODO: this may actually cause errors because exported prims will not exist in
-                // the USD scene graph. Right now, that's too much responsibility on the caller,
-                // because the error messages will be mysterious.
+                case ActiveExportPolicy.ExportAsActive:
+                  // TODO: this may actually cause errors because exported prims will not exist in
+                  // the USD scene graph. Right now, that's too much responsibility on the caller,
+                  // because the error messages will be mysterious.
 
-                // Make the prim inactive.
-                scene.GetPrimAtPath(path).SetActive(false);
-                break;
+                  // Make the prim inactive.
+                  scene.GetPrimAtPath(path).SetActive(false);
+                  break;
+              }
             }
+          } catch (Exception ex) {
+            Debug.LogException(new Exception("Error setting visibility: " + path, ex));
+            continue;
           }
           UnityEngine.Profiling.Profiler.EndSample();
 
@@ -310,7 +324,7 @@ namespace Unity.Formats.USD {
         }
 
         var animatorXf = rootBoneXf;
-        
+
         while (animatorXf != null) {
 
           // If there is an animator, assume this is the root of the rig.
@@ -332,9 +346,42 @@ namespace Unity.Formats.USD {
             // The skeleton is exported at the skeleton root and UsdSkelAnimation is nested under
             // this prim as a new prim called "_anim".
             SkelRootSample rootSample = CreateSample<SkelRootSample>(context);
+            string skelRootPath = UnityTypeConverter.GetPath(animatorXf.transform, expRoot);
             string skelPath = UnityTypeConverter.GetPath(skeletonRoot, expRoot);
-            rootSample.skeleton = skelPath;
-            rootSample.animationSource = skelPath + "/_anim";
+            string skelPathSuffix = "";
+            string skelAnimSuffix = "/_anim";
+
+            // When there is a collision between the SkelRoot and the Skeleton, make a new USD Prim
+            // for the Skeleton object. The reason this is safe is as follows: if the object was
+            // imported from USD, then the structure should already be correct and this code path will
+            // not be hit (and hence overrides, etc, will work correctly). If the object was created
+            // in Unity and there happened to be a collision, then we can safely create a new prim
+            // for the Skeleton prim because there will be no existing USD skeleton for which
+            // the namespace must match, hence adding a new prim is still safe.
+            if (skelPath == skelRootPath) {
+              Debug.LogWarning("SkelRoot and Skeleton have the same path, renaming Skeleton");
+              skelPathSuffix = "/_skel";
+            }
+
+            rootSample.animationSource = skelPath + skelAnimSuffix;
+
+            // For any skinned mesh exported under this SkelRoot, pass along the skeleton path in
+            // the "additional data" member of the exporter. Note that this feels very ad hoc and
+            // should probably be formalized in some way (perhaps as a separate export event for
+            // which the SkinnedMesh exporter can explicitly register).
+            //
+            // While it is possible to bind the skel:skeleton relationship at the SkelRoot and
+            // have it inherit down namespace, the Apple importer did not respect this inheritance
+            // and it sometimes causes issues with geometry embedded in the bone hierarchy.
+            foreach (var p in context.plans) {
+              if (p.Key.transform.IsChildOf(animatorXf.transform)) {
+                foreach (var e in p.Value.exporters) {
+                  if (e.exportFunc == MeshExporter.ExportSkinnedMesh) {
+                    e.data = skelPath + skelPathSuffix;
+                  }
+                }
+              }
+            }
 
             CreateExportPlan(
                 animatorXf.gameObject,
@@ -354,13 +401,15 @@ namespace Unity.Formats.USD {
                 CreateSample<SkeletonSample>(context),
                 SkeletonExporter.ExportSkeleton,
                 context,
-                insertFirst: true);
+                insertFirst: true,
+                pathSuffix: skelPathSuffix);
             CreateExportPlan(
                 skeletonRoot.gameObject,
                 CreateSample<SkeletonSample>(context),
                 NativeExporter.ExportObject,
                 context,
-                insertFirst: false);
+                insertFirst: false,
+                pathSuffix: skelPathSuffix);
 
             CreateExportPlan(
                 skeletonRoot.gameObject,
@@ -368,7 +417,7 @@ namespace Unity.Formats.USD {
                 SkeletonExporter.ExportSkelAnimation,
                 context,
                 insertFirst: true,
-                pathSuffix: "/_anim");
+                pathSuffix: skelAnimSuffix);
 
             // Exporting animation is only possible while in-editor (in 2018 and earlier).
 #if UNITY_EDITOR
@@ -464,7 +513,7 @@ namespace Unity.Formats.USD {
     }
 
     static Transform MergeBonesBelowAnimator(Transform animator, ExportContext context) {
-      var toRemove = new Dictionary<Transform,Transform>();
+      var toRemove = new Dictionary<Transform, Transform>();
       Transform commonRoot = null;
 
       foreach (var sourceAndRoot in context.meshToSkelRoot) {
@@ -538,7 +587,7 @@ namespace Unity.Formats.USD {
       context.meshToSkelRoot.Add(source, rootBone);
       context.meshToBones.Add(source, bones);
       Matrix4x4 existingMatrix;
-      for (int i = 0; i < bones.Length; i ++) {
+      for (int i = 0; i < bones.Length; i++) {
         Transform bone = bones[i];
         if (bone == null) {
           var srcPath = UnityTypeConverter.GetPath(source);
@@ -560,7 +609,6 @@ namespace Unity.Formats.USD {
                                  ExportFunction exportFunc,
                                  ExportContext context,
                                  string pathSuffix = null,
-                                 object data = null,
                                  bool insertFirst = true) {
       // This is an exportable object.
       Transform expRoot = context.exportRoot;
@@ -572,7 +620,7 @@ namespace Unity.Formats.USD {
         context.plans.Add(go, new ExportPlan());
       }
 
-      var exp = new Exporter { exportFunc = exportFunc, sample = sample, path = path, data = data };
+      var exp = new Exporter { exportFunc = exportFunc, sample = sample, path = path };
       if (insertFirst) {
         context.plans[go].exporters.Insert(0, exp);
       } else {

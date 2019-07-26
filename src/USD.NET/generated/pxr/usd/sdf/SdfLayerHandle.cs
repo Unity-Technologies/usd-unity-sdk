@@ -50,6 +50,21 @@ public class SdfLayerHandle : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_SdfSchemaBase GetSchema() {
+    SWIGTYPE_p_SdfSchemaBase ret = new SWIGTYPE_p_SdfSchemaBase(UsdCsPINVOKE.SdfLayerHandle_GetSchema(swigCPtr), false);
+    return ret;
+  }
+
+  public SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr GetFileFormat() {
+    SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr(UsdCsPINVOKE.SdfLayerHandle_GetFileFormat(swigCPtr), true);
+    return ret;
+  }
+
+  public SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t GetFileFormatArguments() {
+    SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t ret = new SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t(UsdCsPINVOKE.SdfLayerHandle_GetFileFormatArguments(swigCPtr), false);
+    return ret;
+  }
+
   public SdfLayer CreateNew(string identifier, string realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
     global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_CreateNew__SWIG_0(swigCPtr, identifier, realPath, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
@@ -169,11 +184,6 @@ public class SdfLayerHandle : global::System.IDisposable {
     global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayerHandle_OpenAsAnonymous__SWIG_2(swigCPtr, layerPath);
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_SdfSchemaBase GetSchema() {
-    SWIGTYPE_p_SdfSchemaBase ret = new SWIGTYPE_p_SdfSchemaBase(UsdCsPINVOKE.SdfLayerHandle_GetSchema(swigCPtr), false);
     return ret;
   }
 
@@ -972,16 +982,6 @@ public class SdfLayerHandle : global::System.IDisposable {
 
   public string ExportToString() {
     string ret = UsdCsPINVOKE.SdfLayerHandle_ExportToString(swigCPtr);
-    return ret;
-  }
-
-  public SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr GetFileFormat() {
-    SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr(UsdCsPINVOKE.SdfLayerHandle_GetFileFormat(swigCPtr), true);
-    return ret;
-  }
-
-  public SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t GetFileFormatArguments() {
-    SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t ret = new SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t(UsdCsPINVOKE.SdfLayerHandle_GetFileFormatArguments(swigCPtr), false);
     return ret;
   }
 

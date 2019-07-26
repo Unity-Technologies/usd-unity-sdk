@@ -286,6 +286,16 @@ namespace Unity.Formats.USD {
       }
     }
 
+    private static void RemoveComponent<T>(GameObject go) {
+      var c = go.GetComponent<T>() as Component;
+      if (c == null) { return; }
+#if UNITY_EDITOR
+      Component.DestroyImmediate(c);
+#else
+      Component.Destroy(c);
+#endif
+    }
+
     /// <summary>
     /// Rebuilds the USD scene as Unity GameObjects, with a limited budget per update.
     /// </summary>
@@ -309,6 +319,22 @@ namespace Unity.Formats.USD {
       // A PrimMap is returned for tracking the USD <-> Unity mapping.
       Profiler.BeginSample("USD: Build Hierarchy");
       if (importOptions.importHierarchy || importOptions.forceRebuild) {
+        // When a USD file is fully RE-imported, all exsiting USD data must be removed. The old
+        // assumption was that the root would never have much more than the UsdAsset component
+        // itself, however it's now clear that the root may also have meaningful USD data added
+        // too.
+        //
+        // TODO(jcowles): This feels like a workaround. What we really want here is an "undo"
+        // process for changes made to the root GameObject. For example, to clean up non-USD
+        // components which may have been added (e.g. what if a mesh is imported to the root?
+        // currently the MeshRenderer etc will remain after re-import).
+        RemoveComponent<UsdAssemblyRoot>(root);
+        RemoveComponent<UsdVariantSet>(root);
+        RemoveComponent<UsdModelRoot>(root);
+        RemoveComponent<UsdLayerStack>(root);
+        RemoveComponent<UsdPayload>(root);
+        RemoveComponent<UsdPrimSource>(root);
+
         primMap.Clear();
         HierarchyBuilder.BuildGameObjects(scene,
                                           root,
@@ -337,44 +363,8 @@ namespace Unity.Formats.USD {
       //
       // Pre-process UsdSkelRoots.
       //
+
       var skelRoots = new List<pxr.UsdSkelRoot>();
-
-      if (primMap.SkelCache == null) {
-        Profiler.BeginSample("USD: Populate SkelCache");
-        primMap.SkelBindings = new Dictionary<pxr.SdfPath, pxr.UsdSkelBindingVector>();
-        primMap.SkelCache = new pxr.UsdSkelCache();
-
-        foreach (var path in primMap.SkelRoots) {
-          var skelRootPrim = scene.GetPrimAtPath(path);
-          if (!skelRootPrim) {
-            Debug.LogWarning("SkelRoot prim not found: " + path);
-            continue;
-          }
-          var skelRoot = new pxr.UsdSkelRoot(skelRootPrim);
-          if (!skelRoot) {
-            Debug.LogWarning("SkelRoot prim not SkelRoot type: " + path);
-            continue;
-          }
-          if (!primMap.SkelCache.Populate(skelRoot)) {
-            Debug.LogWarning("Failed to populate skel cache: " + path);
-            continue;
-          }
-
-          try {
-            Profiler.BeginSample("Compute Skel Bindings");
-            var binding = new pxr.UsdSkelBindingVector();
-            if (!primMap.SkelCache.ComputeSkelBindings(skelRoot, binding)) {
-              Debug.LogWarning("ComputeSkelBindings failed");
-              continue;
-            }
-            primMap.SkelBindings.Add(path, binding);
-          } catch {
-            Debug.LogError("Failed to compute binding for SkelRoot: " + path);
-          }
-          Profiler.EndSample();
-        }
-      }
-
       if (importOptions.importSkinning) {
         Profiler.BeginSample("USD: Process UsdSkelRoots");
         foreach (var path in primMap.SkelRoots) {

@@ -19,6 +19,8 @@ using USD.NET.Unity;
 
 namespace Unity.Formats.USD {
   public static class MeshExporter {
+    private static pxr.TfToken m_materialBindToken = new pxr.TfToken("materialBind");
+    private static pxr.TfToken m_subMeshesToken = new pxr.TfToken("subMeshes");
 
     public static void ExportSkinnedMesh(ObjectContext objContext, ExportContext exportContext) {
       var smr = objContext.gameObject.GetComponent<SkinnedMeshRenderer>();
@@ -46,24 +48,33 @@ namespace Unity.Formats.USD {
       }
 
       UnityEngine.Profiling.Profiler.BeginSample("USD: Skinning Weights");
+
+      // Skeleton path is stored in additionalData via the SceneExporter SyncExportContext(). It
+      // would be nice to formalize this, rather than passing it as blind data.
+      var skeletonPath = (string)objContext.additionalData;
+
       ExportSkelWeights(exportContext.scene,
                         objContext.path,
                         smr.sharedMesh,
                         rootBone,
-                        smr.bones);
+                        smr.bones,
+                        skeletonPath);
       UnityEngine.Profiling.Profiler.EndSample();
-
     }
 
     static void ExportSkelWeights(Scene scene,
                                   string path,
                                   Mesh unityMesh,
                                   Transform rootBone,
-                                  Transform[] bones) {
+                                  Transform[] bones,
+                                  string skeletonPath) {
       var sample = new SkelBindingSample();
 
       sample.geomBindTransform.value = Matrix4x4.identity;
       sample.joints = new string[bones.Length];
+      if (!string.IsNullOrEmpty(skeletonPath)) {
+        sample.skeleton.targetPaths = new string[] { skeletonPath };
+      }
 
       int b = 0;
       var rootPath = UnityTypeConverter.GetPath(rootBone);
@@ -159,15 +170,17 @@ namespace Unity.Formats.USD {
                    Material sharedMaterial,
                    Material[] sharedMaterials,
                    bool exportMeshPose = true) {
-      if (mesh.isReadable == false) {
-        Debug.LogWarning("Mesh not readable: " + objContext.path);
-        return;
-      }
       string path = objContext.path;
+
       if (mesh == null) {
         Debug.LogWarning("Null mesh for: " + path);
         return;
       }
+      if (mesh.isReadable == false) {
+        Debug.LogWarning("Mesh not readable: " + objContext.path);
+        return;
+      }
+
       var scene = exportContext.scene;
       bool unvarying = scene.Time == null;
       bool slowAndSafeConversion = exportContext.basisTransform == BasisTransformation.SlowAndSafe;
@@ -189,7 +202,7 @@ namespace Unity.Formats.USD {
       // Only export the mesh topology on the first frame.
       if (unvarying) {
         // TODO: Technically a mesh could be the root transform, which is not handled correctly here.
-        // It should ahve the same logic for root prims as in ExportXform.
+        // It should have the same logic for root prims as in ExportXform.
         sample.transform = XformExporter.GetLocalTransformMatrix(
             go.transform,
             scene.UpAxis == Scene.UpAxes.Z,
@@ -277,6 +290,7 @@ namespace Unity.Formats.USD {
 
           var usdPrim = scene.GetPrimAtPath(path);
           var usdGeomMesh = new pxr.UsdGeomMesh(usdPrim);
+
           // Process each subMesh and create a UsdGeomSubset of faces this subMesh targets.
           for (int si = 0; si < mesh.subMeshCount; si++) {
             int[] indices = mesh.GetTriangles(si);
@@ -286,14 +300,13 @@ namespace Unity.Formats.USD {
               faceIndices[i / 3] = faceTable[new Vector3(indices[i], indices[i + 1], indices[i + 2])];
             }
 
-            var materialBindToken = new pxr.TfToken("materialBind");
             var vtIndices = UnityTypeConverter.ToVtArray(faceIndices);
             var subset = pxr.UsdGeomSubset.CreateUniqueGeomSubset(
                 usdGeomMesh,            // The object of which this subset belongs.
-                "subMeshes",            // An arbitrary name for the subset.
+                m_subMeshesToken, // An arbitrary name for the subset.
                 pxr.UsdGeomTokens.face, // Indicator that these represent face indices
                 vtIndices,              // The actual face indices.
-                materialBindToken       // familyName = "materialBind"
+                m_materialBindToken       // familyName = "materialBind"
                 );
 
             if (exportContext.exportMaterials) {

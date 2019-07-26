@@ -458,12 +458,6 @@ public class SdfPath : global::System.IDisposable {
     return ret;
   }
 
-  public static bool IsBuiltInMarker(string marker) {
-    bool ret = UsdCsPINVOKE.SdfPath_IsBuiltInMarker(marker);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public class Hash : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;

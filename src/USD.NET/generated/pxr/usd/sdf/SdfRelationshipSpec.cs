@@ -146,37 +146,6 @@ public class SdfRelationshipSpec : SdfPropertySpec {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t GetTargetMarkers() {
-    SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t ret = new SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t(UsdCsPINVOKE.SdfRelationshipSpec_GetTargetMarkers(swigCPtr), true);
-    return ret;
-  }
-
-  public void SetTargetMarkers(SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t markers) {
-    UsdCsPINVOKE.SdfRelationshipSpec_SetTargetMarkers(swigCPtr, SWIGTYPE_p_std__mapT_SdfPath_std__string_SdfPath__FastLessThan_t.getCPtr(markers));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetTargetMarker(SdfPath path) {
-    string ret = UsdCsPINVOKE.SdfRelationshipSpec_GetTargetMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetTargetMarker(SdfPath path, string marker) {
-    UsdCsPINVOKE.SdfRelationshipSpec_SetTargetMarker(swigCPtr, SdfPath.getCPtr(path), marker);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void ClearTargetMarker(SdfPath path) {
-    UsdCsPINVOKE.SdfRelationshipSpec_ClearTargetMarker(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPathVector GetTargetMarkerPaths() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfRelationshipSpec_GetTargetMarkerPaths(swigCPtr), true);
-    return ret;
-  }
-
   public bool GetNoLoadHint() {
     bool ret = UsdCsPINVOKE.SdfRelationshipSpec_GetNoLoadHint(swigCPtr);
     return ret;

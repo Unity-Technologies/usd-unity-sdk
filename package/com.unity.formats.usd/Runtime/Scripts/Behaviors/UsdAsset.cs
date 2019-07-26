@@ -467,7 +467,7 @@ namespace Unity.Formats.USD {
     }
 
     /// <summary>
-    /// Finds all USD behaviors and destroyes them, ignores the GameObject and other components.
+    /// Finds all USD behaviors and destroys them, ignores the GameObject and other components.
     /// </summary>
     public void RemoveAllUsdComponents() {
       foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
@@ -489,7 +489,10 @@ namespace Unity.Formats.USD {
     /// </summary>
     public void DestroyAllImportedObjects() {
       foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true)) {
-        if (src) {
+        // Remove the object if it is valid, but never remove the UsdAsset root GameObject, which
+        // is this.gameObject. The current workflow is to remove all objects EXCEPT the root, so
+        // stubs of USD Assets can be left in the scene in the scene and imported only as needed.
+        if (src && src.gameObject != this.gameObject) {
           GameObject.DestroyImmediate(src.gameObject);
         }
       }
@@ -787,8 +790,13 @@ namespace Unity.Formats.USD {
     /// be destroyed and imported as a result.
     /// </summary>
     private void ApplyVariantSelectionState(Scene scene, UsdVariantSet variants) {
+      var primSource = variants.GetComponent<UsdPrimSource>();
+      if (!primSource) {
+        Debug.LogError("Null UsdPrimSource while applying variant selection state.");
+        return;
+      }
       var selections = variants.GetVariantSelections();
-      var path = variants.GetComponent<UsdPrimSource>().m_usdPrimPath;
+      var path = primSource.m_usdPrimPath;
       var prim = scene.GetPrimAtPath(path);
       var varSets = prim.GetVariantSets();
       foreach (var sel in selections) {

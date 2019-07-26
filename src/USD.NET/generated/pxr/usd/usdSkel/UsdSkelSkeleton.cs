@@ -94,6 +94,28 @@ public class UsdSkelSkeleton : UsdGeomBoundable {
     return ret;
   }
 
+  public UsdAttribute GetJointNamesAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_GetJointNamesAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateJointNamesAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_CreateJointNamesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateJointNamesAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_CreateJointNamesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateJointNamesAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_CreateJointNamesAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetBindTransformsAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkeleton_GetBindTransformsAttr(swigCPtr), true);
     return ret;

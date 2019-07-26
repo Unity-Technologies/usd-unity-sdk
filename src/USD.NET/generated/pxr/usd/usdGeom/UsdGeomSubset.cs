@@ -138,38 +138,38 @@ public class UsdGeomSubset : UsdTyped {
     return ret;
   }
 
-  public static UsdGeomSubset CreateGeomSubset(UsdGeomImageable geom, string subsetName, TfToken elementType, VtIntArray indices, TfToken familyName, TfToken familyType) {
-    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateGeomSubset__SWIG_0(UsdGeomImageable.getCPtr(geom), subsetName, TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName), TfToken.getCPtr(familyType)), true);
+  public static UsdGeomSubset CreateGeomSubset(UsdGeomImageable geom, TfToken subsetName, TfToken elementType, VtIntArray indices, TfToken familyName, TfToken familyType) {
+    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateGeomSubset__SWIG_0(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(subsetName), TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName), TfToken.getCPtr(familyType)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomSubset CreateGeomSubset(UsdGeomImageable geom, string subsetName, TfToken elementType, VtIntArray indices, TfToken familyName) {
-    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateGeomSubset__SWIG_1(UsdGeomImageable.getCPtr(geom), subsetName, TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName)), true);
+  public static UsdGeomSubset CreateGeomSubset(UsdGeomImageable geom, TfToken subsetName, TfToken elementType, VtIntArray indices, TfToken familyName) {
+    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateGeomSubset__SWIG_1(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(subsetName), TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomSubset CreateGeomSubset(UsdGeomImageable geom, string subsetName, TfToken elementType, VtIntArray indices) {
-    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateGeomSubset__SWIG_2(UsdGeomImageable.getCPtr(geom), subsetName, TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices)), true);
+  public static UsdGeomSubset CreateGeomSubset(UsdGeomImageable geom, TfToken subsetName, TfToken elementType, VtIntArray indices) {
+    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateGeomSubset__SWIG_2(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(subsetName), TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomSubset CreateUniqueGeomSubset(UsdGeomImageable geom, string subsetName, TfToken elementType, VtIntArray indices, TfToken familyName, TfToken familyType) {
-    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateUniqueGeomSubset__SWIG_0(UsdGeomImageable.getCPtr(geom), subsetName, TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName), TfToken.getCPtr(familyType)), true);
+  public static UsdGeomSubset CreateUniqueGeomSubset(UsdGeomImageable geom, TfToken subsetName, TfToken elementType, VtIntArray indices, TfToken familyName, TfToken familyType) {
+    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateUniqueGeomSubset__SWIG_0(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(subsetName), TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName), TfToken.getCPtr(familyType)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomSubset CreateUniqueGeomSubset(UsdGeomImageable geom, string subsetName, TfToken elementType, VtIntArray indices, TfToken familyName) {
-    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateUniqueGeomSubset__SWIG_1(UsdGeomImageable.getCPtr(geom), subsetName, TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName)), true);
+  public static UsdGeomSubset CreateUniqueGeomSubset(UsdGeomImageable geom, TfToken subsetName, TfToken elementType, VtIntArray indices, TfToken familyName) {
+    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateUniqueGeomSubset__SWIG_1(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(subsetName), TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices), TfToken.getCPtr(familyName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static UsdGeomSubset CreateUniqueGeomSubset(UsdGeomImageable geom, string subsetName, TfToken elementType, VtIntArray indices) {
-    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateUniqueGeomSubset__SWIG_2(UsdGeomImageable.getCPtr(geom), subsetName, TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices)), true);
+  public static UsdGeomSubset CreateUniqueGeomSubset(UsdGeomImageable geom, TfToken subsetName, TfToken elementType, VtIntArray indices) {
+    UsdGeomSubset ret = new UsdGeomSubset(UsdCsPINVOKE.UsdGeomSubset_CreateUniqueGeomSubset__SWIG_2(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(subsetName), TfToken.getCPtr(elementType), VtIntArray.getCPtr(indices)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -198,8 +198,8 @@ public class UsdGeomSubset : UsdTyped {
     return ret;
   }
 
-  public static SWIGTYPE_p_std__setT_TfToken_TfToken__LTTokenFunctor_t GetAllGeomSubsetFamilyNames(UsdGeomImageable geom) {
-    SWIGTYPE_p_std__setT_TfToken_TfToken__LTTokenFunctor_t ret = new SWIGTYPE_p_std__setT_TfToken_TfToken__LTTokenFunctor_t(UsdCsPINVOKE.UsdGeomSubset_GetAllGeomSubsetFamilyNames(UsdGeomImageable.getCPtr(geom)), true);
+  public static SWIGTYPE_p_std__setT_TfToken_TfTokenFastArbitraryLessThan_t GetAllGeomSubsetFamilyNames(UsdGeomImageable geom) {
+    SWIGTYPE_p_std__setT_TfToken_TfTokenFastArbitraryLessThan_t ret = new SWIGTYPE_p_std__setT_TfToken_TfTokenFastArbitraryLessThan_t(UsdCsPINVOKE.UsdGeomSubset_GetAllGeomSubsetFamilyNames(UsdGeomImageable.getCPtr(geom)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

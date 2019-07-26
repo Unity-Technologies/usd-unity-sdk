@@ -365,8 +365,8 @@ namespace USD.NET {
       // Write Attribute
       //
 
-      // Object not written, still considered success.
-      if (csValue == null) { return true; }
+      // FUTURE: When writing sparse overrides, if the csValue is null exit here and avoid
+      // defining the target attribute. However, sparse authoring is not yet supported.
 
       UsdTypeBinding binding;
 
@@ -379,6 +379,10 @@ namespace USD.NET {
 
       // Get the binding for the value about to be serialized.
       if (!sm_bindings.GetBinding(csType, out binding) && !csType.IsEnum) {
+        if (csValue == null) {
+          return true;
+        }
+
         if (string.IsNullOrEmpty(ns)) {
           return false;
         }

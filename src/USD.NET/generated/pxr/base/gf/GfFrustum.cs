@@ -326,10 +326,7 @@ public class GfFrustum : global::System.IDisposable {
   
   public enum ProjectionType {
     Orthographic,
-    Perspective,
-    ORTHOGRAPHIC = Orthographic,
-    PERSPECTIVE = Perspective,
-    UNDEFINED_PROJECTION_TYPE
+    Perspective
   }
 
 }

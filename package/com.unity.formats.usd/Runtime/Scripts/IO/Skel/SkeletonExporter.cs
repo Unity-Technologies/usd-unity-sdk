@@ -72,37 +72,33 @@ namespace Unity.Formats.USD {
 
     public static void ExportSkelRoot(ObjectContext objContext, ExportContext exportContext) {
       var sample = (SkelRootSample)objContext.sample;
-      var bindings = ((string[])objContext.additionalData);
-
-      if (bindings != null) {
-        sample.skeleton = bindings[0];
-        if (bindings.Length > 1) {
-          sample.animationSource = bindings[1];
-        }
-      }
 
       // Compute bounds for the root, required by USD.
       bool first = true;
-      foreach (var r in objContext.gameObject.GetComponentsInChildren<Renderer>()) {
-        if (first) {
-          // Ensure the bounds object starts growing from the first valid child bounds.
-          first = false;
-          sample.extent = r.bounds;
-        } else {
-          sample.extent.Encapsulate(r.bounds);
+
+      // Ensure the bounds are computed in root-local space.
+      // This is required because USD expects the extent to be a local bound for the SkelRoot.
+      var oldParent = objContext.gameObject.transform.parent;
+      objContext.gameObject.transform.SetParent(null, worldPositionStays: false);
+
+      try {
+        foreach (var r in objContext.gameObject.GetComponentsInChildren<Renderer>()) {
+          if (first) {
+            // Ensure the bounds object starts growing from the first valid child bounds.
+            first = false;
+            sample.extent = r.bounds;
+          } else {
+            sample.extent.Encapsulate(r.bounds);
+          }
         }
+      } finally {
+        // Restore the root parent.
+        objContext.gameObject.transform.SetParent(oldParent, worldPositionStays: false);
       }
 
-
-      // Convert the bounds from worldspace to local space.
-      // This is required because USD expects the extent to be a local bound for the SkelRoot.
-      var xf = objContext.gameObject.transform;
-      sample.extent.min = xf.worldToLocalMatrix.MultiplyPoint(sample.extent.min);
-      sample.extent.max = xf.worldToLocalMatrix.MultiplyPoint(sample.extent.max);
-
+      // Convert handedness if needed.
       if (exportContext.basisTransform == BasisTransformation.SlowAndSafe) {
-        sample.extent.min = UnityTypeConverter.ChangeBasis(sample.extent.min);
-        sample.extent.max = UnityTypeConverter.ChangeBasis(sample.extent.max);
+        sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
       }
 
       exportContext.scene.Write(objContext.path, sample);

@@ -1,11 +1,13 @@
 test_editors:
+  - version: 2019.2
   - version: 2019.1
+  - version: 2018.4
   - version: 2018.3
-    #  - version: trunk
+  - version: trunk
 test_platforms:
   - name: win
     type: Unity::VM
-    image: package-ci/win10:latest
+    image: package-ci/win10:stable
     flavor: m1.large
   - name: mac
     type: Unity::VM::osx
@@ -19,12 +21,12 @@ pack:
    image: buildfarm/mac:stable
    flavor: m1.mac
  commands:
-   - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
+   - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
    - upm-ci package pack --package-path package/com.unity.formats.usd
  artifacts:
    packages:
      paths:
-       - "upm-ci~/packages/*.tgz"
+       - "upm-ci~/packages/**/*"
 
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
@@ -35,7 +37,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
+      - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
       - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd
   artifacts:
     logs:
@@ -66,7 +68,7 @@ test_trigger:
         - "upm-ci~/test-results/**/*"
     packages:
       paths:
-        - "upm-ci~/packages/*.tgz"
+        - "upm-ci~/packages/**/*"
   dependencies:
     - .yamato/upm-ci.yml#pack
     {% for editor in test_editors %}
@@ -79,20 +81,20 @@ run_preview_verified_staging:
   name: Preview and Verified Packages to Staging
   agent:
     type: Unity::VM
-    image: package-ci/win10:latest
+    image: package-ci/win10:stable
     flavor: m1.large
     name: Runner
   commands:
-    - npm install upm-ci-utils -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install upm-ci-utils@stable  -g --registry https://api.bintray.com/npm/unity/unity-npm
     - upm-ci package publish --package-path package/com.unity.formats.usd
   triggers:
     tags:
       only:
-        - /^(v|V)\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
+        - /^(r|R)(c|C)-\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
   artifacts:
     artifacts.zip:
       paths:
-        - "upm-ci~/packages/*.tgz"
+        - "upm-ci~/packages/**/*"
   dependencies:
     - .yamato/upm-ci.yml#pack
   {% for editor in test_editors %}

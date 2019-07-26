@@ -373,24 +373,6 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
-  public static UsdGeomFaceSetAPI CreateMaterialFaceSet(UsdPrim prim) {
-    UsdGeomFaceSetAPI ret = new UsdGeomFaceSetAPI(UsdCsPINVOKE.UsdShadeMaterial_CreateMaterialFaceSet(UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdGeomFaceSetAPI GetMaterialFaceSet(UsdPrim prim) {
-    UsdGeomFaceSetAPI ret = new UsdGeomFaceSetAPI(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialFaceSet(UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool HasMaterialFaceSet(UsdPrim prim) {
-    bool ret = UsdCsPINVOKE.UsdShadeMaterial_HasMaterialFaceSet(UsdPrim.getCPtr(prim));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
 }
 
 }

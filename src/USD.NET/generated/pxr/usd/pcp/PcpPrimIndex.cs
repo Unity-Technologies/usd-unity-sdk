@@ -87,8 +87,8 @@ public class PcpPrimIndex : global::System.IDisposable {
     return ret;
   }
 
-  public bool HasPayload() {
-    bool ret = UsdCsPINVOKE.PcpPrimIndex_HasPayload(swigCPtr);
+  public bool HasAnyPayloads() {
+    bool ret = UsdCsPINVOKE.PcpPrimIndex_HasAnyPayloads(swigCPtr);
     return ret;
   }
 
@@ -187,8 +187,8 @@ public class PcpPrimIndex : global::System.IDisposable {
     UsdCsPINVOKE.PcpPrimIndex_ComputePrimPropertyNames(swigCPtr, TfTokenVector.getCPtr(nameOrder));
   }
 
-  public SWIGTYPE_p_SdfVariantSelectionMap ComposeAuthoredVariantSelections() {
-    SWIGTYPE_p_SdfVariantSelectionMap ret = new SWIGTYPE_p_SdfVariantSelectionMap(UsdCsPINVOKE.PcpPrimIndex_ComposeAuthoredVariantSelections(swigCPtr), true);
+  public SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t ComposeAuthoredVariantSelections() {
+    SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t ret = new SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t(UsdCsPINVOKE.PcpPrimIndex_ComposeAuthoredVariantSelections(swigCPtr), true);
     return ret;
   }
 

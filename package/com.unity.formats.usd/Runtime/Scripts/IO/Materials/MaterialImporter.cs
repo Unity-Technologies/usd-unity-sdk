@@ -92,7 +92,6 @@ namespace Unity.Formats.USD {
                                          MaterialSample sample,
                                          SceneImportOptions options) {
       if (string.IsNullOrEmpty(sample.surface.connectedPath)) {
-        Debug.LogWarning("Material has no connected surface: <" + materialPath + ">");
         return null;
       }
       var previewSurf = new UnityPreviewSurfaceSample();
@@ -187,12 +186,23 @@ namespace Unity.Formats.USD {
       if (st != null && st.IsConnected() && !string.IsNullOrEmpty(st.connectedPath)) {
         var pvSrc = new PrimvarReaderSample<Vector2>();
         scene.Read(new pxr.SdfPath(textureSample.st.connectedPath).GetPrimPath(), pvSrc);
-
-        if (pvSrc.varname != null
-            && pvSrc.varname.defaultValue != null) {
-          // Ask the mesh importer to load the specified texcoord.
-          // This must be a callback, since materials-to-meshes are one-to-many.
-          uvPrimvar = pvSrc.varname.defaultValue;
+        
+        if (pvSrc.varname != null) {
+          if (pvSrc.varname.IsConnected()) {
+            var connPath = new pxr.SdfPath(pvSrc.varname.GetConnectedPath());
+            var attr = scene.GetAttributeAtPath(connPath);
+            if (attr != null) {
+              var value = attr.Get(scene.Time);
+              uvPrimvar = pxr.UsdCs.VtValueToTfToken(value).ToString();
+            } else {
+              Debug.LogWarning("No primvar name was provided at the connected path: " + connPath);
+              uvPrimvar = "";
+            }
+          } else if (pvSrc.varname.defaultValue != null) {
+            // Ask the mesh importer to load the specified texcoord.
+            // This must be a callback, since materials-to-meshes are one-to-many.
+            uvPrimvar = pvSrc.varname.defaultValue;
+          }
         }
       }
 
@@ -247,15 +257,17 @@ namespace Unity.Formats.USD {
     /// Copies the roughness texture into the alpha channel fo the rgb texture, inverting it to
     /// convert roughness into gloss.
     /// </summary>
-    public static Texture2D CombineRoughnessToGloss(Texture2D rgbTex, Texture2D roughnessTex) {
+    public static Texture2D CombineRoughness(Texture2D rgbTex,
+                                             Texture2D roughnessTex,
+                                             string fileNameSuffix) {
       if (!AlbedoGlossCombiner) {
         AlbedoGlossCombiner = new Material(Shader.Find("Hidden/USD/CombineAndConvertRoughness"));
       }
-      
-      var newTex = new Texture2D(rgbTex.width, rgbTex.height,
+      var baseTex = rgbTex ? rgbTex : roughnessTex;
+      var newTex = new Texture2D(baseTex.width, baseTex.height,
                                  TextureFormat.ARGB32, true);
       AlbedoGlossCombiner.SetTexture("_RoughnessTex", roughnessTex);
-      var tmp = RenderTexture.GetTemporary(rgbTex.width, rgbTex.height, 0,
+      var tmp = RenderTexture.GetTemporary(baseTex.width, baseTex.height, 0,
                                            RenderTextureFormat.ARGB32);
       Graphics.Blit(rgbTex, tmp, AlbedoGlossCombiner);
       RenderTexture.active = tmp;
@@ -264,11 +276,10 @@ namespace Unity.Formats.USD {
       RenderTexture.ReleaseTemporary(tmp);
 
 #if UNITY_EDITOR
-      Texture2D mainTex = rgbTex != null ? rgbTex : roughnessTex;
-      var assetPath = UnityEditor.AssetDatabase.GetAssetPath(mainTex.GetInstanceID());
+      var assetPath = UnityEditor.AssetDatabase.GetAssetPath(baseTex.GetInstanceID());
 
       var bytes = newTex.EncodeToPNG();
-      var newAssetPath = Path.ChangeExtension(assetPath, "specGloss.png");
+      var newAssetPath = Path.ChangeExtension(assetPath, fileNameSuffix + ".png");
       File.WriteAllBytes(newAssetPath, bytes);
       UnityEditor.AssetDatabase.ImportAsset(newAssetPath);
       var texImporter = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(newAssetPath);

@@ -40,6 +40,10 @@ namespace Unity.Formats.USD {
       public bool isModel;
       public bool hasPayload;
       public UsdPrim prim;
+
+      // Provides a list of all bound skeletons under a UsdSkelRoot.
+      public UsdSkelBindingVector skelBindings;
+
       public SdfPath[] skelJoints;
       public string modelAssetPath;
       public string modelName;
@@ -53,6 +57,7 @@ namespace Unity.Formats.USD {
       {
       public static HierInfo[] result;
       public static Scene scene;
+      public static UsdSkelCache skelCache; // Thread safe.
       public static SdfPath[] paths;
 
       public void Run() {
@@ -73,8 +78,9 @@ namespace Unity.Formats.USD {
         info.isVisible = HierarchyBuilder.IsVisible(info.prim);
         info.isInstance = info.prim.IsInstance();
         HierarchyBuilder.ReadModelInfo(ref info);
-        HierarchyBuilder.ReadSkeleton(ref info);
-        info.hasPayload = info.prim.GetPrimIndex().HasPayload();
+        HierarchyBuilder.PopulateSkelCache(ref info, ReadHierJob.skelCache);
+        HierarchyBuilder.ReadSkeletonJoints(ref info);
+        info.hasPayload = info.prim.GetPrimIndex().HasAnyPayloads();
 
         result[index] = info;
       }
@@ -117,7 +123,7 @@ namespace Unity.Formats.USD {
 #else
       void
 #endif
-      BeginReading(Scene scene,
+                       BeginReading(Scene scene,
                                     SdfPath usdRoot,
                                     PrimMap map,
                                     SceneImportOptions options) {
@@ -165,6 +171,7 @@ namespace Unity.Formats.USD {
       ReadHierJob.paths = FindPathsJob.results.Where(i => i != null).SelectMany(i => i).ToArray();
       ReadHierJob.result = new HierInfo[ReadHierJob.paths.Length];
       ReadHierJob.scene = scene;
+      ReadHierJob.skelCache = map.SkelCache;
       var readHierInfo = new ReadHierJob();
 #if !UNITY_2017
       return readHierInfo.Schedule(ReadHierJob.paths.Length, 8, dependsOn: findHandle);
@@ -179,6 +186,15 @@ namespace Unity.Formats.USD {
                                        SdfPath usdRoot,
                                        PrimMap map,
                                        SceneImportOptions options) {
+
+      if (map.SkelCache == null) {
+        // Note that UsdSkelCache is thread safe and can be populated from multiple threads.
+        map.SkelCache = new UsdSkelCache();
+
+        // The skelBindings dictionary, however, is not thread safe and must be populated after the
+        // hierarchy discovery thread joins, in ProcessPaths.
+        map.SkelBindings = new Dictionary<SdfPath, UsdSkelBindingVector>();
+      }
 
 #if !UNITY_2017
       BeginReading(scene, usdRoot, map, options).Complete();
@@ -205,6 +221,12 @@ namespace Unity.Formats.USD {
                                            PrimMap map,
                                            SceneImportOptions options) {
       map[usdRoot] = unityRoot;
+
+      // Like all GameObjects imported from USD, ensure the root has a UsdPrimSource.
+      if (unityRoot.GetComponent<UsdPrimSource>() == null) {
+        var ua = unityRoot.AddComponent<UsdPrimSource>();
+        ua.m_usdPrimPath = usdRoot.ToString();
+      }
 
       Profiler.BeginSample("Build Object Lists");
       var hierInfo = BuildObjectLists(scene, unityRoot, usdRoot, map, options);
@@ -271,7 +293,7 @@ namespace Unity.Formats.USD {
 
       if (options.importSkinning) {
         Profiler.BeginSample("Expand Skeletons");
-        foreach (var info in hierInfo) { 
+        foreach (var info in hierInfo) {
           if (info.skelJoints == null || info.skelJoints.Length == 0) {
             continue;
           }
@@ -380,6 +402,11 @@ namespace Unity.Formats.USD {
         var prim = info.prim;
         var path = info.prim.GetPath();
 
+        if (info.skelBindings != null) {
+          // Collect all discovered skelBindings back into the PrimMap.
+          map.SkelBindings.Add(info.prim.GetPath(), info.skelBindings);
+        }
+
         GameObject go;
         if (path == usdRoot) {
           go = unityRoot;
@@ -435,45 +462,76 @@ namespace Unity.Formats.USD {
       Profiler.EndSample();
     }
 
-    static void ReadSkeleton(ref HierInfo info) {
-      if (info.prim == null) { return; }
-
-      var skelRoot = new UsdSkelRoot(info.prim);
+    static void PopulateSkelCache(ref HierInfo skelRootInfo, UsdSkelCache skelCache) {
+      //
+      // Populate the UsdSkelCache.
+      //
+      var skelRoot = new UsdSkelRoot(skelRootInfo.prim);
       if (!skelRoot) { return; }
 
-      var skelRel = info.prim.GetRelationship(UsdSkelTokens.skelSkeleton);
-      if (!skelRel) { return; }
+      if (!skelCache.Populate(skelRoot)) {
+        Debug.LogWarning("Failed to populate skel cache: " + skelRootInfo.prim.GetPath());
+        return;
+      }
 
-      SdfPathVector targets = skelRel.GetForwardedTargets();
-      if (targets == null || targets.Count == 0) { return; }
-
-      var skelPrim = info.prim.GetStage().GetPrimAtPath(targets[0]);
-      if (!skelPrim) { return; }
-
-      var skel = new UsdSkelSkeleton(skelPrim);
-      if (!skel) { return; }
-
-      var jointsAttr = skel.GetJointsAttr();
-      if (!jointsAttr) { return; }
-
-      var vtJoints = jointsAttr.Get();
-      if (vtJoints.IsEmpty()) { return; }
-      var vtStrings = UsdCs.VtValueToVtTokenArray(vtJoints);
-      var joints = UnityTypeConverter.FromVtArray(vtStrings);
-
-      var skelPath = skelPrim.GetPath();
-      info.skelJoints = new SdfPath[joints.Length];
-
-      for (int i = 0; i < joints.Length; i++) {
-        var jointPath = new SdfPath(joints[i]);
-        if (joints[i] == "/") {
-          info.skelJoints[i] = skelPath;
-          continue;
-        } else if (jointPath.IsAbsolutePath()) {
-          Debug.LogException(new Exception("Unexpected absolute joint path: " + jointPath));
-          jointPath = new SdfPath(joints[i].TrimStart('/'));
+      try {
+        var binding = new UsdSkelBindingVector();
+        if (!skelCache.ComputeSkelBindings(skelRoot, binding)) {
+          Debug.LogWarning("ComputeSkelBindings failed: " + skelRootInfo.prim.GetPath());
+          return;
         }
-        info.skelJoints[i] = skelPath.AppendPath(jointPath);
+        skelRootInfo.skelBindings = binding;
+      } catch {
+        Debug.LogError("Failed to compute binding for SkelRoot: " + skelRootInfo.prim.GetPath());
+      }
+    }
+
+    /// <summary>
+    /// If HierInfo represents a UsdSkelRoot, reads the associated skelton joints into the
+    /// skelJoints member.
+    /// </summary>
+    static void ReadSkeletonJoints(ref HierInfo skelRootInfo) {
+      if (skelRootInfo.prim == null) { return; }
+
+      var skelRoot = new UsdSkelRoot(skelRootInfo.prim);
+      if (!skelRoot) { return; }
+
+      var processed = new HashSet<SdfPath>();
+      foreach (UsdSkelBinding binding in skelRootInfo.skelBindings) {
+        var skel = binding.GetSkeleton();
+
+        if (!skel) {
+          continue;
+        }
+
+        // If the same skeleton is referenced multiple times, only process it once.
+        if (processed.Contains(skel.GetPath())) {
+          continue;
+        }
+        processed.Add(skel.GetPath());
+
+        var jointsAttr = skel.GetJointsAttr();
+        if (!jointsAttr) { continue; }
+
+        var vtJoints = jointsAttr.Get();
+        if (vtJoints.IsEmpty()) { continue; }
+        var vtStrings = UsdCs.VtValueToVtTokenArray(vtJoints);
+        var joints = UnityTypeConverter.FromVtArray(vtStrings);
+
+        var skelPath = skel.GetPath();
+        skelRootInfo.skelJoints = new SdfPath[joints.Length];
+
+        for (int i = 0; i < joints.Length; i++) {
+          var jointPath = new SdfPath(joints[i]);
+          if (joints[i] == "/") {
+            skelRootInfo.skelJoints[i] = skelPath;
+            continue;
+          } else if (jointPath.IsAbsolutePath()) {
+            Debug.LogException(new Exception("Unexpected absolute joint path: " + jointPath));
+            jointPath = new SdfPath(joints[i].TrimStart('/'));
+          }
+          skelRootInfo.skelJoints[i] = skelPath.AppendPath(jointPath);
+        }
       }
     }
 

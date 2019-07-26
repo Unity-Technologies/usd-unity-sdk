@@ -20,7 +20,7 @@ using USD.NET.Unity;
 namespace Unity.Formats.USD {
   public abstract class ShaderImporterBase {
     public Material Material { get; private set; }
-    public bool IsMetallicWorkflow { get; private set; }
+    public bool IsSpecularWorkflow { get; private set; }
 
     public Color? Diffuse;
     public Texture2D DiffuseMap;
@@ -106,6 +106,9 @@ namespace Unity.Formats.USD {
                                                 SceneImportOptions options) {
       var primvars = new List<string>();
       string uvPrimvar = null;
+
+      IsSpecularWorkflow = previewSurf.useSpecularWorkflow.defaultValue == 1;
+
       ImportColorOrMap(scene, previewSurf.diffuseColor, false, options, ref DiffuseMap, ref Diffuse, out uvPrimvar);
       MergePrimvars(uvPrimvar, primvars);
 
@@ -129,7 +132,7 @@ namespace Unity.Formats.USD {
 
       ClearcoatRoughness = previewSurf.clearcoatRoughness.defaultValue;
 
-      if (previewSurf.useSpecularWorkflow.defaultValue == 1) {
+      if (IsSpecularWorkflow) {
         ImportColorOrMap(scene, previewSurf.specularColor, false, options, ref SpecularMap, ref Specular, out uvPrimvar);
         MergePrimvars(uvPrimvar, primvars);
       } else {

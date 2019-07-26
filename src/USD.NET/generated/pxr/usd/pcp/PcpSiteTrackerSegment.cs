@@ -40,13 +40,14 @@ public class PcpSiteTrackerSegment : global::System.IDisposable {
     }
   }
 
-  public SWIGTYPE_p_PcpLayerStackSite site {
+  public SWIGTYPE_p_PcpSiteStr site {
     set {
-      UsdCsPINVOKE.PcpSiteTrackerSegment_site_set(swigCPtr, SWIGTYPE_p_PcpLayerStackSite.getCPtr(value));
+      UsdCsPINVOKE.PcpSiteTrackerSegment_site_set(swigCPtr, SWIGTYPE_p_PcpSiteStr.getCPtr(value));
+      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     } 
     get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.PcpSiteTrackerSegment_site_get(swigCPtr);
-      SWIGTYPE_p_PcpLayerStackSite ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_PcpLayerStackSite(cPtr, false);
+      SWIGTYPE_p_PcpSiteStr ret = new SWIGTYPE_p_PcpSiteStr(UsdCsPINVOKE.PcpSiteTrackerSegment_site_get(swigCPtr), true);
+      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } 
   }

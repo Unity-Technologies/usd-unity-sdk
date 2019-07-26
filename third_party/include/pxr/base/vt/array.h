@@ -769,7 +769,7 @@ hash_value(VtArray<ELEM> const &array) {
 #if 0 // USD.NET
 // Specialize traits so others can figure out that VtArray is an array.
 template <typename T>
-struct VtIsArray< VtArray <T> > : public VtTrueType {};
+struct VtIsArray< VtArray <T> > : public std::true_type {};
 
 // free functions for operators combining scalar and array types
 ARCH_PRAGMA_PUSH

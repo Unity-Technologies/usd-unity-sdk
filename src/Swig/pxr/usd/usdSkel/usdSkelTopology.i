@@ -17,4 +17,10 @@
 #include "pxr/usd/usdSkel/topology.h"
 %}
 
+%extend UsdSkelTopology { 
+  UsdSkelTopology(VtTokenArray topology) { 
+    return new UsdSkelTopology(topology); 
+  }
+}; 
+
 %include "pxr/usd/usdSkel/topology.h"

@@ -36,7 +36,7 @@ namespace Unity.Formats.USD {
 
       // TODO: What about opacity map?
       
-      if (IsMetallicWorkflow) {
+      if (!IsSpecularWorkflow) {
         // Robustness: It would be ideal if this parameter were provided by HDRP, however that
         // would require this asset package having a dependency on the HDRP package itself,
         // which is (yet) not desirable.
@@ -48,13 +48,13 @@ namespace Unity.Formats.USD {
       }
 
       // R=Metallic, G=Occlusion, B=Displacement, A=Roughness(Smoothness)
-      var MaskMap = BuildMaskMap(IsMetallicWorkflow ? MetallicMap : null, OcclusionMap, DisplacementMap, RoughnessMap);
+      var MaskMap = BuildMaskMap(!IsSpecularWorkflow ? MetallicMap : null, OcclusionMap, DisplacementMap, RoughnessMap);
       if (MaskMap) {
         mat.SetTexture("_MaskMap", MaskMap);
         mat.EnableKeyword("_MASKMAP");
       }
 
-      if (IsMetallicWorkflow) {
+      if (!IsSpecularWorkflow) {
         if (!MetallicMap) {
          mat.SetFloat("_Metallic", Metallic.GetValueOrDefault());
         }
