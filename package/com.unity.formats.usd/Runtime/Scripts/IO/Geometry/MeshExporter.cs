@@ -176,8 +176,8 @@ namespace Unity.Formats.USD {
         Debug.LogWarning("Null mesh for: " + path);
         return;
       }
-      if (mesh.isReadable == false) {
-        Debug.LogWarning("Mesh not readable: " + objContext.path);
+      if (mesh.isReadable == false && !Application.isEditor) {
+        Debug.LogError("Mesh not readable: " + objContext.path);
         return;
       }
 
