@@ -315,8 +315,11 @@ namespace Unity.Formats.USD {
                 );
 
             if (exportContext.exportMaterials) {
-              if (si >= sharedMaterials.Length || !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
-                Debug.LogError("Invalid material bound for: " + path);
+              if (si >= sharedMaterials.Length || !sharedMaterials[si] || !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
+                Debug.LogWarning("Invalid material bound for: " + path + "\n" 
+                    + (si >= sharedMaterials.Length ? "More submeshes than materials assigned."
+                    : (!sharedMaterials[si] ? "Submesh " + si + " has null material"
+                    : "ExportMap can't map material")));
               } else {
                 MaterialSample.Bind(scene, subset.GetPath(), usdMaterialPath);
               }
