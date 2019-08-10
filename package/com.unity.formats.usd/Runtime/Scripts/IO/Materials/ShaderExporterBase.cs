@@ -47,6 +47,8 @@ namespace Unity.Formats.USD {
             //   - a RenderTexture
             //   => need to blit / export
 
+            //Debug.Log("Trying to export texture - " + textureName + " - " + textureOutput);
+
             bool textureIsExported = false;
 
             string filePath = null;
@@ -78,7 +80,7 @@ namespace Unity.Formats.USD {
 #endif
             if (!textureIsExported)
             {
-                fileName = texture2d.name;
+                fileName = Random.Range(10000000, 99999999).ToString();
                 filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
                 
                 // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (namely, 16 bit G and A instead of 8 bit RGBA)
@@ -88,7 +90,9 @@ namespace Unity.Formats.USD {
                 // attempt blitting / getting the texture back
                 // can't use RenderTexture.GetTemporary because that doesn't properly clear alpha channel
                 var rt = new RenderTexture(texture2d.width, texture2d.height, 0, RenderTextureFormat.ARGB32);
-                var resultTex2d = new Texture2D(texture2d.width, texture2d.height, TextureFormat.ARGB32, true);
+
+                // Currently only exporting RGB24 since it seems Unity creates wrong PNGs if alpha channel is 0 (color channel is premultiplied).
+                var resultTex = new Texture2D(texture2d.width, texture2d.height, TextureFormat.RGB24, true);
                 try { 
                     Graphics.Blit(texture, rt);
                     RenderTexture.active = rt;
@@ -102,6 +106,7 @@ namespace Unity.Formats.USD {
                 }
                 finally {
                     RenderTexture.active = null;
+                    rt.Release();
                     GameObject.DestroyImmediate(rt);
                     GameObject.DestroyImmediate(resultTex2d);
                 }
