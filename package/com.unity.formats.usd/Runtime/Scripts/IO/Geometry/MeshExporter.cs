@@ -149,6 +149,20 @@ namespace Unity.Formats.USD {
       scene.Write(path, sample);
     }
 
+#if UNITY_EDITOR
+        static System.Reflection.MethodInfo Mesh_canAccess;
+        static bool CanReadMesh(Mesh mesh)
+        {
+            if (mesh.isReadable) return true;
+            if (!Application.isPlaying) return true;
+
+            if (Mesh_canAccess == null)
+                Mesh_canAccess = typeof(Mesh).GetProperty("canAccess", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetMethod;
+
+            return (bool)Mesh_canAccess.Invoke(mesh, null);
+        }
+#endif
+
     public static void ExportMesh(ObjectContext objContext, ExportContext exportContext) {
       MeshFilter mf = objContext.gameObject.GetComponent<MeshFilter>();
       MeshRenderer mr = objContext.gameObject.GetComponent<MeshRenderer>();
@@ -176,7 +190,12 @@ namespace Unity.Formats.USD {
         Debug.LogWarning("Null mesh for: " + path);
         return;
       }
-      if (mesh.isReadable == false && !Application.isEditor) {
+#if UNITY_EDITOR
+        if (!CanReadMesh(mesh))
+#else
+        if(!mesh.isReadable)
+#endif
+        {
         Debug.LogError("Mesh not readable: " + objContext.path);
         return;
       }
