@@ -24,6 +24,13 @@ namespace Unity.Formats.USD {
 #if UNITY_EDITOR_OSX
       // plugInfo files are already in the UsdCs.bundle
       return;
+#elif UNITY_EDITOR_LINUX
+      var source = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+      var destination = pathToBuiltProject.Replace(".x86_64", "_Data/Plugins");
+
+      // We need to copy the whole share folder and this one plugInfo.json file
+      FileUtil.CopyFileOrDirectory(source + "/x86_64/share", destination + "/share");
+      FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
 #else
       var source = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
       var destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
