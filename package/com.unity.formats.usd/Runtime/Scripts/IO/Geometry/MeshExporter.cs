@@ -151,6 +151,9 @@ namespace Unity.Formats.USD {
 
 #if UNITY_EDITOR
         static System.Reflection.MethodInfo Mesh_canAccess;
+        // This is a workaround for a Unity peculiarity - 
+        // non-readable meshes are actually always accessible from the Editor.
+        // We're still logging a warning since this won't work in a build.
         static bool CanReadMesh(Mesh mesh)
         {
             if (mesh.isReadable) return true;
@@ -159,7 +162,21 @@ namespace Unity.Formats.USD {
             if (Mesh_canAccess == null)
                 Mesh_canAccess = typeof(Mesh).GetProperty("canAccess", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetMethod;
 
-            return (bool)Mesh_canAccess.Invoke(mesh, null);
+            if(Mesh_canAccess != null)
+            {
+                try {
+                    bool canAccess = (bool) Mesh_canAccess.Invoke(mesh, null);
+                    if(canAccess) {
+                        Debug.LogWarning("The mesh you are trying to export is not marked as readable. This will only work in the Editor and fail in a Build.", mesh);
+                        return true;
+                    }
+                }
+                catch { 
+                    // There has probably been an Unity internal API update causing an error on this call.
+                    return false;
+                }
+            }
+            return false;
         }
 #endif
 
@@ -187,16 +204,17 @@ namespace Unity.Formats.USD {
       string path = objContext.path;
 
       if (mesh == null) {
-        Debug.LogWarning("Null mesh for: " + path);
+        Debug.LogWarning("Null mesh for: " + path, objContext.gameObject);
         return;
       }
+
 #if UNITY_EDITOR
-        if (!CanReadMesh(mesh))
+      if (!CanReadMesh(mesh))
 #else
-        if(!mesh.isReadable)
+      if(!mesh.isReadable)
 #endif
-        {
-        Debug.LogError("Mesh not readable: " + objContext.path);
+      {
+        Debug.LogError("Mesh is not readable: " + objContext.path  + ". To fix this, enable read/write in the inspector for the source asset that you are attempting to export.", objContext.gameObject);
         return;
       }
 
