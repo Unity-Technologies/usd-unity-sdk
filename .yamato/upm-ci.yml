@@ -8,7 +8,7 @@ test_platforms:
   - name: win
     type: Unity::VM
     image: package-ci/win10:stable
-    flavor: m1.large
+    flavor: b1.large
   - name: mac
     type: Unity::VM::osx
     image: buildfarm/mac:stable
@@ -53,7 +53,7 @@ test_trigger:
   agent:
     type: Unity::VM
     image: package-ci/win10:stable
-    flavor: m1.large
+    flavor: b1.large
   commands:
     - dir
   triggers:
@@ -82,7 +82,7 @@ run_preview_verified_staging:
   agent:
     type: Unity::VM
     image: package-ci/win10:stable
-    flavor: m1.large
+    flavor: b1.large
     name: Runner
   commands:
     - npm install upm-ci-utils@stable  -g --registry https://api.bintray.com/npm/unity/unity-npm
@@ -100,5 +100,5 @@ run_preview_verified_staging:
   {% for editor in test_editors %}
   {% for platform in test_platforms %}
     - .yamato/upm-ci.yml#test_{{ platform.name }}_{{ editor.version }}
-  {% endfor %}  
+  {% endfor %}
   {% endfor %}
