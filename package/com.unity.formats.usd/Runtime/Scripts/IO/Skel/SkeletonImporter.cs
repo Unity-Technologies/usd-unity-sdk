@@ -43,7 +43,7 @@ namespace Unity.Formats.USD {
       Quaternion rot = Quaternion.identity;
       Vector3 scale = Vector3.one;
       if (!UnityTypeConverter.Decompose(restXform, out pos, out rot, out scale)) {
-        throw new Exception("Failed to decompose bind trnsforms for <" + skelPath + ">");
+        throw new Exception("Failed to decompose bind transforms for <" + skelPath + ">");
       }
       go.transform.localScale = scale;
       go.transform.localRotation = rot;
@@ -106,6 +106,10 @@ namespace Unity.Formats.USD {
       }
     }
 
+    /// <summary>
+    /// Unity expects bind transforms to be the bone's inverse transformation matrix.
+    /// USD doesn't do that, so this function does it for us, prepping the data to be used in Unity.
+    /// <summary>
     public static void BuildBindTransforms(string path,
                                            SkeletonSample skelSample,
                                            SceneImportOptions options) {

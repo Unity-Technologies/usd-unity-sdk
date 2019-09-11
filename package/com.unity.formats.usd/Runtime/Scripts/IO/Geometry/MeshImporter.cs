@@ -66,18 +66,6 @@ namespace Unity.Formats.USD {
     public System.Collections.IEnumerator Import(Scene scene,
                              PrimMap primMap,
                              SceneImportOptions importOptions) {
-      if (importOptions.importSkinning) {
-        Profiler.BeginSample("USD: Populate SkelCache");
-        foreach (var path in primMap.SkelRoots) {
-          var prim = scene.GetPrimAtPath(path);
-          if (!prim) { continue; }
-
-          var skelRoot = new UsdSkelRoot(prim);
-          if (!skelRoot) { continue; }
-        }
-        Profiler.EndSample();
-      }
-
       System.Reflection.MemberInfo faceVertexCounts = null;
       System.Reflection.MemberInfo faceVertexIndices = null;
       System.Reflection.MemberInfo orientation = null;
@@ -146,15 +134,6 @@ namespace Unity.Formats.USD {
             if (importOptions.importMeshes) {
               primMap.MeshSubsets[pathAndSample.path] = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
             }
-          }
-
-          if (importOptions.importSkinning) {
-            primMap.SkinningQueries.TryGetValue(pathAndSample.path, out skinningQuery);
-            /*
-            Profiler.BeginSample("Get Skinning Query");
-            skinningQuery = primMap.SkelCache.GetSkinningQuery(scene.GetPrimAtPath(pathAndSample.path));
-            Profiler.EndSample();
-            */
           }
 
           if (importOptions.importSkinning
