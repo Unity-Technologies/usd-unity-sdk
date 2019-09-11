@@ -35,11 +35,8 @@ namespace Unity.Formats.USD.Examples {
           Debug.LogWarning("Empty export path.");
         }
 
+        // Let the Scene.Create function throw an exception when it can't create a USD stage.
         var oversScene = Scene.Create(oversFilePath);
-
-        if (oversScene == null) {
-          throw new System.Exception("Failed to create scene file: " + oversFilePath);
-        }
 
         oversScene.UpAxis = importMesh.UsdScene.UpAxis;
         oversScene.Time = importMesh.m_usdTime;

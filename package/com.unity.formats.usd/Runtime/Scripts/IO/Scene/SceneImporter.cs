@@ -754,13 +754,12 @@ namespace Unity.Formats.USD {
 
                 skeletonSamples.Add(skelPath, skelSample);
 
-                // Unity uses the inverse bindTransform, since that's actually what's needed for
-                // skinning. Do that once here, so each skinned mesh doesn't need to do it
-                // redundantly.
+                // The bind pose is bone's inverse transformation matrix. This is done once here, so each
+                // skinned mesh doesn't need to do it redundantly.
                 SkeletonImporter.BuildBindTransforms(skelPath, skelSample, importOptions);
 
+                // Validate the binding transforms.
                 var bindXforms = new pxr.VtMatrix4dArray();
-
                 var prim = scene.GetPrimAtPath(skelPath);
                 var skel = new pxr.UsdSkelSkeleton(prim);
 
@@ -770,7 +769,7 @@ namespace Unity.Formats.USD {
 
                 Profiler.BeginSample("Get JointWorldBind Transforms");
                 if (!skelQuery.GetJointWorldBindTransforms(bindXforms)) {
-                  throw new ImportException("Failed to compute binding trnsforms for <" + skelPath + ">");
+                  throw new ImportException("Failed to compute binding transforms for <" + skelPath + ">");
                 }
                 Profiler.EndSample();
 
@@ -841,7 +840,7 @@ namespace Unity.Formats.USD {
 
             Profiler.BeginSample("Compute Joint Local Transforms");
             if (!skelQuery.ComputeJointLocalTransforms(restXforms, time, atRest: false)) {
-              throw new ImportException("Failed to compute bind trnsforms for <" + skelPath + ">");
+              throw new ImportException("Failed to compute bind transforms for <" + skelPath + ">");
             }
             Profiler.EndSample();
 

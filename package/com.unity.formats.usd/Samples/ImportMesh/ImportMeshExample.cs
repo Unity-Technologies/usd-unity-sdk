@@ -22,6 +22,7 @@ namespace Unity.Formats.USD.Examples {
   /// Imports meshes and transforms from a USD file into the Unity GameObject hierarchy and
   /// creates meshes.
   /// </summary>
+  [ExecuteInEditMode]
   public class ImportMeshExample : MonoBehaviour {
     public string m_usdFile;
     public Material m_material;
