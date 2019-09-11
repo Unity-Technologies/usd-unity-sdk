@@ -203,7 +203,6 @@ namespace USD.NET {
 
       PropertyInfo[] properties = Reflect.GetCachedProperties(t.GetType());
       FieldInfo[] fields = Reflect.GetCachedFields(t.GetType());
-      object value = t;
       var localVarMap = accessMap;
       bool mayVaryWasNull = mayVary == null;
       if (mayVary == null) {
@@ -241,8 +240,6 @@ namespace USD.NET {
           throw new ApplicationException("Deserialize modified mayVary to be non-null");
         }
       }
-
-      t = (T)value;
     }
 
     /// <summary>
