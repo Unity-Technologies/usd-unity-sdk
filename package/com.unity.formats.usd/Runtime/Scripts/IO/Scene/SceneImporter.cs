@@ -783,25 +783,23 @@ namespace Unity.Formats.USD {
                 //
                 Profiler.BeginSample("Apply Skin Weights");
                 foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector()) {
-                  var meshPath = skinningQuery.GetPrim().GetPath();
+                  pxr.SdfPath meshPath = skinningQuery.GetPrim().GetPath();
                   try {
-                    var skelBindingSample = new SkelBindingSample();
                     var goMesh = primMap[meshPath];
-
-                    scene.Read(meshPath, skelBindingSample);
 
                     Profiler.BeginSample("Build Skinned Mesh");
                     SkeletonImporter.BuildSkinnedMesh(
                         meshPath,
                         skelPath,
                         skelSample,
-                        skelBindingSample,
+                        skinningQuery,
                         goMesh,
                         primMap,
                         importOptions);
                     Profiler.EndSample();
 
                     // In terms of performance, this is almost free.
+                    // TODO: Check if this is correct or should be something specific (not always the first child).
                     goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform.GetChild(0);
 
                   } catch (System.Exception ex) {
