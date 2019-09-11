@@ -37,6 +37,7 @@ namespace Unity.Formats.USD {
     public SdfPath[] Cameras { get; set; }
     public SdfPath[] Meshes { get; set; }
     public SdfPath[] Cubes { get; set; }
+    public SdfPath[] Spheres { get; set; }
     public SdfPath[] Xforms { get; set; }
     public SdfPath[] SkelRoots { get; set; }
     public SdfPath[] Skeletons { get; set; }
@@ -133,6 +134,7 @@ namespace Unity.Formats.USD {
       Cameras = null;
       Meshes = null;
       Cubes = null;
+      Spheres = null;
       Xforms = null;
       SkelRoots = null;
       Skeletons = null;
