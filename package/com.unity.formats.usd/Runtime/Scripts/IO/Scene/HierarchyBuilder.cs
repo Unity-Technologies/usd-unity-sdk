@@ -129,8 +129,8 @@ namespace Unity.Formats.USD {
                                     SceneImportOptions options) {
       FindPathsJob.usdRoot = usdRoot;
       FindPathsJob.scene = scene;
-      FindPathsJob.results = new SdfPath[7][];
-      FindPathsJob.queries = new FindPathsJob.IQuery[7];
+      FindPathsJob.results = new SdfPath[8][];
+      FindPathsJob.queries = new FindPathsJob.IQuery[8];
 
       if (options.ShouldBindMaterials) {
         FindPathsJob.queries[0] = (FindPathsJob.IQuery)new FindPathsJob.Query<MaterialSample>();
@@ -141,15 +141,16 @@ namespace Unity.Formats.USD {
       if (options.importMeshes) {
         FindPathsJob.queries[2] = (FindPathsJob.IQuery)new FindPathsJob.Query<MeshSample>();
         FindPathsJob.queries[3] = (FindPathsJob.IQuery)new FindPathsJob.Query<CubeSample>();
+        FindPathsJob.queries[4] = (FindPathsJob.IQuery)new FindPathsJob.Query<SphereSample>();
       }
 
-      FindPathsJob.queries[4] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkelRootSample>();
+      FindPathsJob.queries[5] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkelRootSample>();
 
       if (options.importSkinning) {
-        FindPathsJob.queries[5] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkeletonSample>();
+        FindPathsJob.queries[6] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkeletonSample>();
       }
       if (options.importTransforms) {
-        FindPathsJob.queries[6] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
+        FindPathsJob.queries[7] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
       }
 
       var findPathsJob = new FindPathsJob();
@@ -164,9 +165,10 @@ namespace Unity.Formats.USD {
       map.Cameras = FindPathsJob.results[1];
       map.Meshes = FindPathsJob.results[2];
       map.Cubes = FindPathsJob.results[3];
-      map.SkelRoots = FindPathsJob.results[4];
-      map.Skeletons = FindPathsJob.results[5];
-      map.Xforms = FindPathsJob.results[6];
+      map.Spheres = FindPathsJob.results[4];
+      map.SkelRoots = FindPathsJob.results[5];
+      map.Skeletons = FindPathsJob.results[6];
+      map.Xforms = FindPathsJob.results[7];
 
       ReadHierJob.paths = FindPathsJob.results.Where(i => i != null).SelectMany(i => i).ToArray();
       ReadHierJob.result = new HierInfo[ReadHierJob.paths.Length];

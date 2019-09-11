@@ -516,12 +516,40 @@ namespace Unity.Formats.USD {
         foreach (var pathAndSample in scene.ReadAll<CubeSample>(primMap.Cubes)) {
           try {
             GameObject go = primMap[pathAndSample.path];
-            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
+            pxr.UsdPrim prim = scene.GetPrimAtPath(pathAndSample.path);
+
+            NativeImporter.ImportObject(scene, go, prim, importOptions);
             XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
-            CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
+            bool skinnedMesh = IsSkinnedMesh(prim, primMap, importOptions);
+            CubeImporter.BuildCube(pathAndSample.sample, go, importOptions, skinnedMesh);
+
           } catch (System.Exception ex) {
             Debug.LogException(
                 new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
+          }
+
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        }
+        Profiler.EndSample();
+
+        // Spheres.
+        Profiler.BeginSample("USD: Build Spheres");
+        foreach (var pathAndSample in scene.ReadAll<SphereSample>(primMap.Spheres))
+        {
+          try
+          {
+            GameObject go = primMap[pathAndSample.path];
+            pxr.UsdPrim prim = scene.GetPrimAtPath(pathAndSample.path);
+
+            NativeImporter.ImportObject(scene, go, prim, importOptions);
+            XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
+            bool skinnedMesh = IsSkinnedMesh(prim, primMap, importOptions);
+            SphereImporter.BuildSphere(pathAndSample.sample, go, importOptions, skinnedMesh);
+          }
+          catch (System.Exception ex)
+          {
+            Debug.LogException(
+                new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -625,6 +653,22 @@ namespace Unity.Formats.USD {
               } catch (System.Exception ex) {
                 Debug.LogException(
                     new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
+              }
+            }
+            Profiler.EndSample();
+
+            // Spheres.
+            Profiler.BeginSample("USD: Build Spheres");
+            var sphereSamples = scene.ReadAll<SphereSample>(masterRootPath);
+            foreach (var pathAndSample in sphereSamples) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
+                XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
+                SphereImporter.BuildSphere(pathAndSample.sample, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
               }
             }
             Profiler.EndSample();
@@ -916,6 +960,18 @@ namespace Unity.Formats.USD {
       timer.Stop();
       timer.Reset();
       timer.Start();
+    }
+
+    private static bool IsSkinnedMesh(pxr.UsdPrim prim, PrimMap primMap, SceneImportOptions importOptions) {
+      bool skinnedMesh = false;
+
+      if (importOptions.importSkinning && primMap.SkelCache != null) {
+        pxr.UsdSkelSkinningQuery skinningQuery = primMap.SkelCache.GetSkinningQuery(prim);
+        primMap.SkinningQueries[prim.GetPath()] = skinningQuery;
+        skinnedMesh = skinningQuery.IsValid();
+      }
+
+      return skinnedMesh;
     }
   }
 }

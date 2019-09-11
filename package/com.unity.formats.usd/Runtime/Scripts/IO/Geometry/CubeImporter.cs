@@ -25,18 +25,26 @@ namespace Unity.Formats.USD {
     /// <summary>
     /// Copy cube data from USD to Unity with the given import options.
     /// </summary>
+    /// <param name="skinnedMesh">
+    /// Whether the Cube to build is skinned or not. This will allow to determine which Renderer to create
+    /// on the GameObject (MeshRenderer or SkinnedMeshRenderer). Default value is false (not skinned).
+    /// </param>
     public static void BuildCube(CubeSample usdCube,
                                  GameObject go,
-                                 SceneImportOptions options) {
-
-
-      var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
-      var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
+                                 SceneImportOptions options,
+                                 bool skinnedMesh=false) {
       Material mat = null;
 
       var cubeGo = GameObject.CreatePrimitive(PrimitiveType.Cube);
       var unityMesh = cubeGo.GetComponent<MeshFilter>().sharedMesh;
       GameObject.DestroyImmediate(cubeGo);
+
+      // Because Unity only handle a cube with a default size, the custom size of it is define by the localScale
+      // transform. This also need to be taken into account while computing the Unity extent of the mesh (see bellow).
+      // This is doable because xformable data are always handled before mesh data, so go.transform already
+      // contains any transform of the geometry.
+      float size = (float)usdCube.size;
+      go.transform.localScale = go.transform.localScale * size;
 
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
       bool hasBounds = usdCube.extent.size.x > 0
@@ -46,7 +54,10 @@ namespace Unity.Formats.USD {
       if (ShouldImport(options.meshOptions.boundingBox) && hasBounds) {
         if (changeHandedness) {
           usdCube.extent.center = UnityTypeConverter.ChangeBasis(usdCube.extent.center);
-          usdCube.extent.extents = UnityTypeConverter.ChangeBasis(usdCube.extent.extents);
+
+          // Divide the extent by the size of the cube. A custom size of the extent is define by
+          // the localScale transform (see above).
+          usdCube.extent.extents = UnityTypeConverter.ChangeBasis(usdCube.extent.extents) / size;
         }
         unityMesh.bounds = usdCube.extent;
       } else if (ShouldCompute(options.meshOptions.boundingBox)) {
@@ -201,16 +212,34 @@ namespace Unity.Formats.USD {
         mat = options.materialMap.InstantiateSolidColor(Color.white);
       }
 
+      // Create Unity mesh.
+      Renderer renderer;
+      if (skinnedMesh) {
+        SkinnedMeshRenderer skinnedRenderer = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
+
+        if (skinnedRenderer.sharedMesh == null) {
+          skinnedRenderer.sharedMesh = Mesh.Instantiate(unityMesh);
+        }
+
+        renderer = skinnedRenderer;
+      } else {
+        renderer = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
+        MeshFilter meshFilter = ImporterBase.GetOrAddComponent<MeshFilter>(go);
+
+        if (meshFilter.sharedMesh == null) {
+          meshFilter.sharedMesh = Mesh.Instantiate(unityMesh);
+        }
+      }
+
       if (unityMesh.subMeshCount == 1) {
-        mr.sharedMaterial = mat;
+        renderer.sharedMaterial = mat;
       } else {
         var mats = new Material[unityMesh.subMeshCount];
         for (int i = 0; i < mats.Length; i++) {
           mats[i] = mat;
         }
-        mr.sharedMaterials = mats;
+        renderer.sharedMaterials = mats;
       }
-      mf.sharedMesh = Mesh.Instantiate(unityMesh);
     }
 
     /// <summary>
