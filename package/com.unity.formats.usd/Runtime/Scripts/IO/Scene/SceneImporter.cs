@@ -252,6 +252,20 @@ namespace Unity.Formats.USD {
         throw new ImportException("Null USD Scene");
       }
 
+      // The matrix to change the handedness (the basis) is different for FBX and doesn't
+      // follow convention. This bit change this basisChange matrix to match the user options.
+      // [DEFAULT] SlowAndSafe is the standard and transform (X,Y,Z) basis to (X,Y,-Z)
+      // SlowAndSafe_AsFBX is consistent with FBX/Alembic/Obj ans transform (X,Y,Z) basis to (-X,Y,Z)
+      if (importOptions.changeHandedness == BasisTransformation.SlowAndSafe_AsFBX) {
+        // To be consistent with FBX basis change, ensure it's the X axis that is inverted.
+        UnityTypeConverter.basisChange[0, 0] = -1;
+        UnityTypeConverter.basisChange[2, 2] = 1;
+      } else {
+        // Ensure it's the Z axis that is inverted.
+        UnityTypeConverter.basisChange[0, 0] = 1;
+        UnityTypeConverter.basisChange[2, 2] = -1;
+      }
+
       scene.SetInterpolation(importOptions.interpolate ?
                              Scene.InterpolationMode.Linear :
                              Scene.InterpolationMode.Held);

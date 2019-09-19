@@ -18,7 +18,14 @@ using System.Linq;
 using pxr;
 
 namespace USD.NET.Unity {
+
   public class UnityTypeConverter : IntrinsicTypeConverter {
+
+    /// <summary>
+    /// The matrix used to change basis is driven by the import options. This allow to be consistent with the
+    /// FBX/Alembic/Obj importers.
+    /// </summary>
+    public static UnityEngine.Matrix4x4 basisChange = UnityEngine.Matrix4x4.identity;
 
     /// <summary>
     /// Converts to and from the USD transform space.
@@ -28,23 +35,18 @@ namespace USD.NET.Unity {
     /// </summary>
     static public UnityEngine.Matrix4x4 ChangeBasis(UnityEngine.Matrix4x4 input) {
       // TODO(jcowles): the change of basis matrix should probably be cached.
-      var basisChange = UnityEngine.Matrix4x4.identity;
-      // Invert the forward vector.
-      basisChange[2, 2] = -1;
 
       // Note that the fully general solution is basisChange * m * basisChange.inverse, however
       // basisChange and basisChange.inverse are identical. Just aliasing here so the math below
       // reads correctly.
-      var basisChangeInverse = basisChange;
+      var basisChangeInverse = UnityTypeConverter.basisChange;
 
       // Furthermore, this could be simplified to multiplying -1 by input elements [2,6,8,9,11,14].
-      return basisChange * input * basisChangeInverse;
+      return UnityTypeConverter.basisChange * input * basisChangeInverse;
     }
 
     public static UnityEngine.Vector3 ChangeBasis(UnityEngine.Vector3 point) {
-      UnityEngine.Matrix4x4 mat = UnityEngine.Matrix4x4.identity;
-      mat[2, 2] = -1;
-      return mat.MultiplyPoint3x4(point);
+      return UnityTypeConverter.basisChange.MultiplyPoint3x4(point);
     }
 
     /// <summary>
