@@ -22,9 +22,12 @@ namespace USD.NET.Unity {
   public class UnityTypeConverter : IntrinsicTypeConverter {
 
     /// <summary>
-    /// The matrix used to change basis is driven by the import options. This allow to be consistent with the
-    /// FBX/Alembic/Obj importers.
+    /// Configurable matrix used for change of basis from USD to Unity and vice versa.
     /// </summary>
+    /// <remarks>
+    /// Allows global configuration of the change of basis matrix, which e.g. is used to make the USD importer conform
+    /// to the legacy FBX import convention in Unity, swapping the X-axis instead of the Z-axis.
+    /// </remarks>
     public static UnityEngine.Matrix4x4 basisChange = UnityEngine.Matrix4x4.identity;
 
     /// <summary>

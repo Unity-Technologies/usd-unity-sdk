@@ -38,7 +38,7 @@ namespace Unity.Formats.USD {
 
     /// <summary>
     /// Transform to left-handed basis by processing all positions, triangles, transforms, and
-    /// primvar data. It transform to match the basis transformation of FBX which is from (X,Y,Z) to (-X,Y,Z)
+    /// primvar data. It transforms to match the basis transformation of FBX which is from (X,Y,Z) to (-X,Y,Z)
     /// instead of the standard (SlowAndSafe option) (X,Y,Z) to (X,Y,-Z).
     /// This is not a conventional behavior and this option is here only to allow consistency between
     /// geometry importers.
