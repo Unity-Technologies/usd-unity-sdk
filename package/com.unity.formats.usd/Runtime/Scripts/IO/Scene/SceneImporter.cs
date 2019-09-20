@@ -252,10 +252,9 @@ namespace Unity.Formats.USD {
         throw new ImportException("Null USD Scene");
       }
 
-      // The matrix to change the handedness (the basis) is different for FBX and doesn't
-      // follow convention. This bit change this basisChange matrix to match the user options.
-      // [DEFAULT] SlowAndSafe is the standard and transform (X,Y,Z) basis to (X,Y,-Z)
-      // SlowAndSafe_AsFBX is consistent with FBX/Alembic/Obj ans transform (X,Y,Z) basis to (-X,Y,Z)
+      // The matrix to convert USD (right-handed) to Unity (left-handed) is different for the legacy FBX importer
+      // and incorrectly swaps the X-axis rather than the Z-axis. This changes the basisChange matrix to match the
+      // user options. <see cref="Unity.Formats.USD.SceneImportOptions.BasisTransformation"/> for additional details.
       if (importOptions.changeHandedness == BasisTransformation.SlowAndSafe_AsFBX) {
         // To be consistent with FBX basis change, ensure it's the X axis that is inverted.
         UnityTypeConverter.basisChange[0, 0] = -1;
