@@ -264,6 +264,7 @@ namespace Unity.Formats.USD {
     private string GetPrefabAssetPath(GameObject root) {
       string assetPath = null;
 #if UNITY_EDITOR
+// TODO: According to Yamato we don't support version of Unity earlier to this one. Is this really necessary?
 #if !UNITY_2018_3_OR_NEWER
       assetPath = UnityEditor.AssetDatabase.GetAssetPath(
               UnityEditor.PrefabUtility.GetPrefabObject(root));
@@ -272,7 +273,11 @@ namespace Unity.Formats.USD {
         var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
         if (prefabStage != null) {
           if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root)) {
+#if UNITY_2020_1_OR_NEWER
+            assetPath = prefabStage.assetPath;
+#else
             assetPath = prefabStage.prefabAssetPath;
+#endif
             // This is a great resource for determining object type, but only covers new APIs:
             // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
           }
