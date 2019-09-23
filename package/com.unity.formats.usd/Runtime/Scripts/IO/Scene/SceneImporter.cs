@@ -255,14 +255,18 @@ namespace Unity.Formats.USD {
       // The matrix to convert USD (right-handed) to Unity (left-handed) is different for the legacy FBX importer
       // and incorrectly swaps the X-axis rather than the Z-axis. This changes the basisChange matrix to match the
       // user options. <see cref="Unity.Formats.USD.SceneImportOptions.BasisTransformation"/> for additional details.
-      if (importOptions.changeHandedness == BasisTransformation.SlowAndSafe_AsFBX) {
+      // Note that in those specific cases, the inverse matrix are identical to the original one, in general,
+      // UnityTypeConverter.inverseBasisChange should be equal to UnityTypeConverter.basisChange.inverse.
+      if (importOptions.changeHandedness == BasisTransformation.SlowAndSafeAsFBX) {
         // To be consistent with FBX basis change, ensure it's the X axis that is inverted.
-        UnityTypeConverter.basisChange[0, 0] = -1;
-        UnityTypeConverter.basisChange[2, 2] = 1;
+        Vector3 matrixDiagonal = new Vector3(-1, 1, 1);
+        UnityTypeConverter.basisChange = Matrix4x4.Scale(matrixDiagonal);
+        UnityTypeConverter.inverseBasisChange = Matrix4x4.Scale(matrixDiagonal);
       } else {
         // Ensure it's the Z axis that is inverted.
-        UnityTypeConverter.basisChange[0, 0] = 1;
-        UnityTypeConverter.basisChange[2, 2] = -1;
+        Vector3 matrixDiagonal = new Vector3(1, 1, -1);
+        UnityTypeConverter.basisChange = Matrix4x4.Scale(matrixDiagonal);
+        UnityTypeConverter.inverseBasisChange = Matrix4x4.Scale(matrixDiagonal);
       }
 
       scene.SetInterpolation(importOptions.interpolate ?

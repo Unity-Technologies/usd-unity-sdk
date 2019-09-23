@@ -43,7 +43,7 @@ namespace Unity.Formats.USD {
     /// This is not a conventional behavior and this option is here only to allow consistency between
     /// geometry importers.
     /// </summary>
-    SlowAndSafe_AsFBX,
+    SlowAndSafeAsFBX,
 
     /// <summary>
     /// Preform no transformation; should only be used when the USD file is known to contain
