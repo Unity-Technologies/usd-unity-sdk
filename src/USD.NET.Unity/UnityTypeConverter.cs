@@ -208,7 +208,7 @@ namespace USD.NET.Unity {
     }
 
     private static bool AreClose(float a, float b) {
-      return UnityEngine.Mathf.Abs(a - b) < 0.0001f;
+      return UnityEngine.Mathf.Abs(a - b) < 0.000001f;
     }
 
     private static UnityEngine.Vector3 WeightedAvg(
