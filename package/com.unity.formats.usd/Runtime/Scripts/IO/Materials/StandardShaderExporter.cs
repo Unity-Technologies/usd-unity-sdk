@@ -223,18 +223,33 @@ namespace Unity.Formats.USD {
         surface.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
       }
 
-      if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "a");
-        surface.opacity.SetConnectedPath(newTex);
-      } else if (mat.HasProperty("_Color")) {
-        c = mat.GetColor("_Color").linear;
-        surface.opacity.defaultValue = c.a;
+      // Standard Shader has 4 modes:
+      // 0: Opaque - no opacity/transparency
+      // 1: Cutout - opacityThreshold should be used to cut off based on alpha values (in _MainTex.a)
+      // 2: Fade - opacity should be used, but no opacityThreshold
+      // 3: Transparent - opacity should be used, but no opacityThreshold.
+      // Note: not quite sure if and how the difference between Fade and Transparent should be handled in USD.
+      int shaderMode = 0;
+      if(mat.HasProperty("_Mode")) {
+        shaderMode = (int) mat.GetFloat("_Mode");
+      }
+
+      if(shaderMode != 0) { 
+        if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
+          var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "a");
+          surface.opacity.SetConnectedPath(newTex);
+        } else if (mat.HasProperty("_Color")) {
+          c = mat.GetColor("_Color").linear;
+          surface.opacity.defaultValue = c.a;
+        } else {
+          c = Color.white;
+          surface.opacity.defaultValue = 1.0f;
+        }
       } else {
-        c = Color.white;
         surface.opacity.defaultValue = 1.0f;
       }
 
-      if (mat.HasProperty("_Cutoff"))
+      if (shaderMode == 1 && mat.HasProperty("_Cutoff"))
         surface.opacityThreshold.defaultValue = mat.GetFloat("_Cutoff");
 
       surface.useSpecularWorkflow.defaultValue = 1;
