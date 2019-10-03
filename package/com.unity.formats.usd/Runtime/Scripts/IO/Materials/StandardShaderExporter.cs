@@ -211,8 +211,6 @@ namespace Unity.Formats.USD {
       }
 #endif
 
-      surface.opacity.defaultValue = 1;
-
       if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
         var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "rgb");
         surface.diffuseColor.SetConnectedPath(newTex);
@@ -224,6 +222,20 @@ namespace Unity.Formats.USD {
         c = Color.white;
         surface.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
       }
+
+      if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
+        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "a");
+        surface.opacity.SetConnectedPath(newTex);
+      } else if (mat.HasProperty("_Color")) {
+        c = mat.GetColor("_Color").linear;
+        surface.opacity.defaultValue = c.a;
+      } else {
+        c = Color.white;
+        surface.opacity.defaultValue = 1.0f;
+      }
+
+      if (mat.HasProperty("_Cutoff"))
+        surface.opacityThreshold.defaultValue = mat.GetFloat("_Cutoff");
 
       surface.useSpecularWorkflow.defaultValue = 1;
 
