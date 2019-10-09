@@ -498,7 +498,7 @@ namespace Unity.Formats.USD {
         if (usdMesh.colors.Length == 1) {
           // Constant color can just be set on the material.
           if ( ShouldImport(options.meshOptions.color) && options.useDisplayColorAsFallbackMaterial && options.materialImportMode != MaterialImportMode.None) {
-            mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0].gamma);
+            mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0]);
             forceVertexColors = false;
           }
         } else if (usdMesh.colors.Length == usdMesh.points.Length) {
@@ -550,13 +550,13 @@ namespace Unity.Formats.USD {
         if (forceVertexColors) {
             Color [] colors = new Color[usdMesh.points.Length];
             if (usdMesh.colors.Length != usdMesh.points.Length) {
-              Color color = usdMesh.colors[0].gamma;
+              Color color = usdMesh.colors[0];
               for (int i = 0; i < usdMesh.points.Length; i++) {
                   colors[i] = color;
               }
             } else {
               for (int i = 0; i < usdMesh.points.Length; i++) {
-                  colors[i] = usdMesh.colors[i].gamma;
+                  colors[i] = usdMesh.colors[i];
               }
             }
             unityMesh.colors = colors;
