@@ -37,19 +37,10 @@ namespace USD.NET.Unity {
     /// <remarks>
     /// UV object types should be Vector{2,3,4}[], List of Vector{2,3,4}, or null.
     /// </remarks>
-    [VertexData] public object st;
-
-    /// <summary>
-    /// When primvars:st:indices are specified, the st texture coordinates are indexed like
-    /// vertex positions.
-    /// </summary>
-    [UsdNamespace("primvars:st")]
-    public int[] indices;
-
-    // These are Unity friendly UV sets.
-    [VertexData] public object uv;
-    [VertexData] public object uv2;
-    [VertexData] public object uv3;
-    [VertexData] public object uv4;
+    public Primvar<object> st = new Primvar<object>();
+    public Primvar<object> uv = new Primvar<object>();
+    public Primvar<object> uv2 = new Primvar<object>();
+    public Primvar<object> uv3 = new Primvar<object>();
+    public Primvar<object> uv4 = new Primvar<object>();
   }
 }

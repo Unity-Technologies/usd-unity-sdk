@@ -61,3 +61,8 @@ TestProject/Logs
 TestProject/Assets/Plugins
 TestProject/Assets/Samples*
 inst-dbg/
+
+# IDE
+.vscode
+.idea
+*.user

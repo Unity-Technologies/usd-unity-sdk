@@ -23,7 +23,7 @@ namespace Unity.Formats.USD {
 
   public class UsdMenu : MonoBehaviour {
 
-    public static Scene InitForSave(string defaultName, string fileExtension = "usd") {
+    public static Scene InitForSave(string defaultName, string fileExtension = "usd,usda") {
       var filePath = EditorUtility.SaveFilePanel("Export USD File", "", defaultName, fileExtension);
 
       if (filePath == null || filePath.Length == 0) {
@@ -164,7 +164,7 @@ namespace Unity.Formats.USD {
     }
 
     static void ExportSelected(BasisTransformation basisTransform,
-                               string fileExtension = "usd",
+                               string fileExtension = "usd,usda",
                                bool exportMonoBehaviours = false) {
       Scene scene = null;
 
