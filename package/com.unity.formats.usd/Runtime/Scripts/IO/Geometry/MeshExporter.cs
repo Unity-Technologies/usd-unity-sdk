@@ -166,7 +166,7 @@ namespace Unity.Formats.USD
 #if UNITY_EDITOR
         static System.Reflection.MethodInfo Mesh_canAccess;
 
-        // This is a workaround for a Unity peculiarity - 
+        // This is a workaround for a Unity peculiarity -
         // non-readable meshes are actually always accessible from the Editor.
         // We're still logging a warning since this won't work in a build.
         static bool CanReadMesh(Mesh mesh)
@@ -304,8 +304,8 @@ namespace Unity.Formats.USD
                     sample.colors[0] = sharedMaterial.color.linear;
                 }
 
-                // Gah. There is no way to inspect a meshes UVs.
-                sample.st = mesh.uv;
+        // Gah. There is no way to inspect a meshes UVs.
+                sample.st.SetValue(mesh.uv);
 
                 // Set face vertex counts and indices.
                 var tris = mesh.triangles;
