@@ -286,7 +286,7 @@ namespace Unity.Formats.USD {
       // reading the value.
       Vector3[] newVertices = null;
       int[] newIndices = null;
-      bool arePointsSanitized = false;
+      bool areVerticesUnrolled = false;
 
       if (options.meshOptions.points == ImportMode.Import && usdMesh.points != null)
       {
@@ -301,9 +301,11 @@ namespace Unity.Formats.USD {
         
         if (IsThereFaceVaryingAttributes(usdMesh, options))
         {
-          newVertices = SanitizePointsForUnity(newVertices ?? usdMesh.points, usdMesh.faceVertexIndices);
+          // If there is attributes that are face varying we need to "unroll" the usd mesh points to make sure
+          // that each unity mesh vertex (position + attributes can be unique).
+          newVertices = UnrollVertices(newVertices ?? usdMesh.points, usdMesh.faceVertexIndices);
           newIndices = Enumerable.Range(0, usdMesh.faceVertexIndices.Length).ToArray();
-          arePointsSanitized = newVertices.Length == usdMesh.faceVertexIndices.Length;
+          areVerticesUnrolled = newVertices.Length == usdMesh.faceVertexIndices.Length;
         }
 
         if (usdMesh.faceVertexIndices != null) {
@@ -531,8 +533,8 @@ namespace Unity.Formats.USD {
         }
         else
         {
-          Color[] sanitizedColors;
-          if (usdMesh.colors.Length == usdMesh.points.Length && arePointsSanitized) // Vertex
+          Color[] newColors;
+          if (usdMesh.colors.Length == usdMesh.points.Length && areVerticesUnrolled) // Vertex
           {
             // If there were as much colors as vertices, then colors interpolation is "per vertex" and
             // there is nothing to do except if vertices were sanitized to handle some other attributes
@@ -541,17 +543,17 @@ namespace Unity.Formats.USD {
             // Assume colors indices are the same as the original points indices.
             // TODO: The right thing to do would be to get the DisplayColor primvars indices if there is some,
             //       otherwise fallback to the points indices.
-            sanitizedColors = new Color[unityMesh.vertexCount];
+            newColors = new Color[unityMesh.vertexCount];
             for (int i = 0; i < usdMesh.faceVertexIndices.Length; i++)
             {
               int colorIndex = usdMesh.faceVertexIndices[i];
-              sanitizedColors[i] = usdMesh.colors[colorIndex];
+              newColors[i] = usdMesh.colors[colorIndex];
             }
           }
           else if (usdMesh.colors.Length == usdMesh.faceVertexCounts.Length) // Uniform
           {
             // Uniform colors, one per face: unroll face colors into vertex varying colors.
-            sanitizedColors = new Color[usdMesh.faceVertexIndices.Length];
+            newColors = new Color[usdMesh.faceVertexIndices.Length];
             int idx = 0;
             try
             {
@@ -560,7 +562,7 @@ namespace Unity.Formats.USD {
                 var faceColor = usdMesh.colors[faceIndex];
                 for (int f = 0; f < usdMesh.faceVertexCounts[faceIndex]; f++)
                 {
-                  sanitizedColors[idx++] = faceColor;
+                  newColors[idx++] = faceColor;
                 }
               }
             }
@@ -572,10 +574,10 @@ namespace Unity.Formats.USD {
           else  // Face Varying
           {
             // Because points were sanitized, colors are ready to go as is.
-            sanitizedColors = usdMesh.colors;
+            newColors = usdMesh.colors;
           }
 
-          unityMesh.colors = sanitizedColors;
+          unityMesh.colors = newColors;
         }
 
         Profiler.EndSample();  // Import Display Color
@@ -587,11 +589,11 @@ namespace Unity.Formats.USD {
 
       // TODO: these should also be driven by the UV primvars required by the bound shader.
       Profiler.BeginSample("Import UV Sets");
-      ImportUv(path, unityMesh, 0, usdMesh.st, usdMesh.faceVertexCounts, usdMesh.faceVertexIndices, options.meshOptions.texcoord0, go);
-      ImportUv(path, unityMesh, 0, usdMesh.uv, usdMesh.faceVertexCounts, usdMesh.faceVertexIndices, options.meshOptions.texcoord0, go);
-      ImportUv(path, unityMesh, 1, usdMesh.uv2, usdMesh.faceVertexCounts, usdMesh.faceVertexIndices, options.meshOptions.texcoord1, go);
-      ImportUv(path, unityMesh, 2, usdMesh.uv3, usdMesh.faceVertexCounts, usdMesh.faceVertexIndices, options.meshOptions.texcoord2, go);
-      ImportUv(path, unityMesh, 3, usdMesh.uv4, usdMesh.faceVertexCounts, usdMesh.faceVertexIndices, options.meshOptions.texcoord3, go);
+      ImportUv(path, unityMesh, 0, usdMesh.st, options.meshOptions.texcoord0, areVerticesUnrolled);
+      ImportUv(path, unityMesh, 0, usdMesh.uv, options.meshOptions.texcoord0, areVerticesUnrolled);
+      ImportUv(path, unityMesh, 1, usdMesh.uv2, options.meshOptions.texcoord1, areVerticesUnrolled);
+      ImportUv(path, unityMesh, 2, usdMesh.uv3, options.meshOptions.texcoord2, areVerticesUnrolled);
+      ImportUv(path, unityMesh, 3, usdMesh.uv4, options.meshOptions.texcoord3, areVerticesUnrolled);
       Profiler.EndSample();
 
       Profiler.BeginSample("Request Material Bindings");
@@ -676,7 +678,19 @@ namespace Unity.Formats.USD {
 #endif
     }
 
-    private static Vector3[] SanitizePointsForUnity(Vector3[] vertices, int[] indices)
+    /// <summary>
+    /// Unroll vertices to ensure that vertex can be unique not simply regarding their position but also regarding
+    /// all their attributes. In other word, a Unity vertex can be shared between two faces if position, normals,
+    /// uv, tangents... are the same.
+    /// </summary>
+    /// <param name="vertices">The vertices to unroll.</param>
+    /// <param name="indices">The indices that describe the faces used to unroll the vertices.</param>
+    /// <returns>The new list of unrolled vertices.</returns>
+    /// <remarks>
+    /// Vertices should be unrolled only where attributes has seams. For now  we just unroll "brutaly"
+    /// so we produce as much vertices as they are indices.
+    /// </remarks>
+    private static Vector3[] UnrollVertices(Vector3[] vertices, int[] indices)
     {
       int indicesCount = indices.Length;
       Vector3[] sanitizedPoints = new Vector3[indicesCount];
@@ -696,13 +710,18 @@ namespace Unity.Formats.USD {
       int pointCount = usdMesh.points.Length;
       int faceCount = usdMesh.faceVertexCounts.Length;
 
-      // Potential face varying attributes are: normals, tangents, color and uv (st, uv, uv2. uv3. uv4).
+      // Potential face varying attributes are: normals, tangents, color and uv (st, uv, uv2. uv3. uv4) + all the
+      // uv primvars related to materials.
       return (IsFaceVaryingAttribute(options.meshOptions.normals, usdMesh.normals, pointCount, faceCount) ||
         IsFaceVaryingAttribute(options.meshOptions.tangents, usdMesh.tangents, pointCount, faceCount) ||
         IsFaceVaryingAttribute(options.meshOptions.color, usdMesh.colors, pointCount, faceCount) ||
         IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.st) ||
         IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.uv) ||
-        options.ShouldBindMaterials /* TODO: Explain why (cf. LoadPrimvars). */);
+        IsFaceVaryingAttribute(options.meshOptions.texcoord1, usdMesh.uv2) ||
+        IsFaceVaryingAttribute(options.meshOptions.texcoord2, usdMesh.uv3) ||
+        IsFaceVaryingAttribute(options.meshOptions.texcoord3, usdMesh.uv4) ||
+        // TODO: We should actually check the uv primvars related to bind material here, cf. LoadPrimvars(...)
+        options.ShouldBindMaterials);
     }
     
     private static bool IsFaceVaryingAttribute<T>(ImportMode mode, T[] attribute, int pointCount, int faceCount)
@@ -831,75 +850,6 @@ namespace Unity.Formats.USD {
     }
 
     /// <summary>
-    /// Fast approximate unrolling of face varying UVs into vertices.
-    /// </summary>
-    /// <remarks>
-    /// Strictly speaking, this is not correct because bordering faces with different UV values
-    /// (i.e. seams) will share UV values. This artifact will appear as seams on the object that
-    /// would otherwise be seamless. The correct solution is to compare UV values at every vertex
-    /// and un-weld vertices which do not share a common value.
-    ///
-    /// Still, this approximation is useful since often values are only incorrect at the seam and
-    /// for fast iteration loops, such a seam may be preferred over a long load time.
-    /// </remarks>
-    static T[] UnrollFaceVarying<T>(int vertCount,
-                                    T[] uvs,
-                                    int[] faceVertexCounts,
-                                    int[] faceVertexIndices) {
-      var newUvs = new T[vertCount];
-      int faceVaryingIndex = 0;
-      int vertexVaryingIndex = 0;
-
-      // Since face-varying UVs have one value per vertex, per face, this is the same number of
-      // values as the mesh indices.
-      if (faceVertexIndices.Length != uvs.Length) {
-        throw new Exception("Expected " + faceVertexIndices.Length + " UVs but found " + uvs.Length);
-      }
-
-      foreach (var count in faceVertexCounts) {
-        for (int i = 0; i < count; i++) {
-          // Find the associated mesh vertex for each vertex of the face.
-          vertexVaryingIndex = faceVertexIndices[faceVaryingIndex];
-          // Set the UV value into the same vertex as the position.
-          newUvs[vertexVaryingIndex] = uvs[faceVaryingIndex];
-          faceVaryingIndex++;
-        }
-      }
-      return newUvs;
-    }
-
-    static void UnrollFaceVarying(
-      Vector3[] vertices,
-      int[] faceVertexIndices,
-      out Vector3[] newVertices,
-      out int[] newFaceVertexIndices)
-    {
-      int newCount = faceVertexIndices.Length;
-      int nextVertexIndex = vertices.Length;
-
-      newVertices = new Vector3[newCount];
-      List<int> newFaceVertexIndicesList = new List<int>();
-
-      for (int i = 0; i < newCount; i++)
-      {
-        int vertexIndex = faceVertexIndices[i];
-        if (!newFaceVertexIndicesList.Contains(vertexIndex))
-        {
-          newFaceVertexIndicesList.Add(vertexIndex);
-          newVertices[vertexIndex] = vertices[vertexIndex];
-        }
-        else
-        {
-          newFaceVertexIndicesList.Add(vertexIndex);
-          newVertices[nextVertexIndex] = vertices[vertexIndex];
-          nextVertexIndex++;
-        }
-      }
-
-      newFaceVertexIndices = newFaceVertexIndicesList.ToArray();
-    }
-
-    /// <summary>
     /// Attempts to build a valid per-vertex UV set from the given object. If the type T is not
     /// the held type of the object "uv" argument, null is returned. If there is an error such
     /// that the type is correct, but the uv values are somehow incompatible, error messages
@@ -909,12 +859,7 @@ namespace Unity.Formats.USD {
     /// An array of size > 0 on succes, an array of size 0 on failure, or null if the given object
     /// is not of the desired type T.
     /// </returns>
-    private static T[] TryGetUVSet<T>(
-      Primvar<object> uv,
-      int[] faceVertexCounts,
-      int[] faceVertexIndices,
-      int vertexCount,
-      GameObject go)
+    private static T[] TryGetUVSet<T>(Primvar<object> uv, bool areVerticesUnrolled)
     {
       if (uv.value.GetType() != typeof(T[]))
       {
@@ -923,7 +868,7 @@ namespace Unity.Formats.USD {
 
       var uvVec = (T[]) uv.value;
 
-      if (uvVec.Length == 0)
+      if (uvVec.Length == 0 || (uv.interpolation == PrimvarInterpolation.Vertex && !areVerticesUnrolled))
       {
         return uvVec;
       }
@@ -939,25 +884,6 @@ namespace Unity.Formats.USD {
         uvVec = newUvs;
       }
 
-      // If there are more UVs than verts, the UVs must be face varying, e.g. each vertex for
-      // each face has a unique UV value. These values must be collapsed such that verts shared
-      // between faces also share a single UV value.
-      if (uvVec.Length != vertexCount) {
-//        uvVec = UnrollFaceVarying(vertexCount, uvVec, faceVertexCounts, faceVertexIndices);
-        if (uvVec == null) {
-          return new T[0];
-        }
-        Debug.Assert(uvVec.Length == vertexCount);
-      }
-
-      // If there are fewer values, these must be "varying" / one value per face.
-      // This is not yet supported.
-      if (uvVec.Length < vertexCount) {
-        Debug.LogWarning("Mesh UVs are constant or uniform, ignored "
-          + UnityTypeConverter.GetPath(go.transform));
-        return new T[0];
-      }
-
       return uvVec;
     }
 
@@ -968,10 +894,8 @@ namespace Unity.Formats.USD {
                                  Mesh unityMesh,
                                  int uvSetIndex,
                                  Primvar<object> uv,
-                                 int[] faceVertexCounts,
-                                 int[] faceVertexIndices,
                                  ImportMode texcoordImportMode,
-                                 GameObject go) {
+                                 bool areVerticesUnrolled) {
       // As in Unity, UVs are a dynamic type which can be vec2, vec3, or vec4.
       if (uv.value == null || !ShouldImport(texcoordImportMode))
       {
@@ -979,9 +903,7 @@ namespace Unity.Formats.USD {
       }
 
       try {
-        int vertCount = unityMesh.vertexCount;
-
-        var uv2 = TryGetUVSet<Vector2>(uv, faceVertexCounts, faceVertexIndices, vertCount, go);
+        var uv2 = TryGetUVSet<Vector2>(uv, areVerticesUnrolled);
         if (uv2 != null) {
           if (uv2.Length > 0) {
             unityMesh.SetUVs(uvSetIndex, uv2.ToList());
@@ -989,7 +911,7 @@ namespace Unity.Formats.USD {
           return;
         }
 
-        var uv3 = TryGetUVSet<Vector3>(uv, faceVertexCounts, faceVertexIndices, vertCount, go);
+        var uv3 = TryGetUVSet<Vector3>(uv, areVerticesUnrolled);
         if (uv3 != null) {
           if (uv3.Length > 0) {
             unityMesh.SetUVs(uvSetIndex, uv3.ToList());
@@ -997,7 +919,7 @@ namespace Unity.Formats.USD {
           return;
         }
 
-        var uv4 = TryGetUVSet<Vector4>(uv, faceVertexCounts, faceVertexIndices, vertCount, go);
+        var uv4 = TryGetUVSet<Vector4>(uv, areVerticesUnrolled);
         if (uv4 != null) {
           if (uv4.Length > 0) {
             unityMesh.SetUVs(uvSetIndex, uv4.ToList());
