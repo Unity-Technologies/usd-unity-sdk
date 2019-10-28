@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -25,7 +24,6 @@ using USD.NET.Unity;
 using Unity.Jobs;
 #endif
 using pxr;
-using UnityEditor.Graphs;
 
 namespace Unity.Formats.USD {
 
@@ -321,22 +319,18 @@ namespace Unity.Formats.USD {
       // Mesh Topology.
       //
 
-      if (options.meshOptions.topology == ImportMode.Import && usdMesh.faceVertexIndices != null)
-      {
+      if (options.meshOptions.topology == ImportMode.Import && usdMesh.faceVertexIndices != null) {
         Profiler.BeginSample("Triangulate Mesh");
         if (options.meshOptions.triangulateMesh)
         {
           // TODO: I think that vertex indices and counts are mandatory attributes for a prim with a Mesh schema,
           //       we could have a generic validation phase for that (generic = uniform checks of mandatory
           //       attributes for any schema). 
-          if (usdMesh.faceVertexIndices == null)
-          {
+          if (usdMesh.faceVertexIndices == null) {
             Debug.LogWarning("Mesh had no face indices: " + UnityTypeConverter.GetPath(go.transform));
             return;
           }
-
-          if (usdMesh.faceVertexCounts == null)
-          {
+          if (usdMesh.faceVertexCounts == null) {
             Debug.LogWarning("Mesh had no face counts: " + UnityTypeConverter.GetPath(go.transform));
             return;
           }
@@ -358,21 +352,17 @@ namespace Unity.Formats.USD {
           // TODO: this should be moved to C++
           int[] offsetMapping = new int[usdMesh.faceVertexCounts.Length];
           int curOffset = 0;
-          for (int i = 0; i < usdMesh.faceVertexCounts.Length; i++)
-          {
+          for (int i = 0; i < usdMesh.faceVertexCounts.Length; i++) {
             offsetMapping[i] = curOffset;
             curOffset += Math.Max(0, usdMesh.faceVertexCounts[i] - 3);
           }
 
           var newSubsets = new GeometrySubsets();
-          foreach (var nameAndSubset in geomSubsets.Subsets)
-          {
+          foreach (var nameAndSubset in geomSubsets.Subsets) {
             var newFaceIndices = new List<int>();
-            foreach (var faceIndex in nameAndSubset.Value)
-            {
+            foreach (var faceIndex in nameAndSubset.Value) {
               newFaceIndices.Add(faceIndex + offsetMapping[faceIndex]);
-              for (int i = 1; i < usdMesh.faceVertexCounts[faceIndex] - 2; i++)
-              {
+              for (int i = 1; i < usdMesh.faceVertexCounts[faceIndex] - 2; i++) {
                 newFaceIndices.Add(faceIndex + offsetMapping[faceIndex] + i);
               }
             }
@@ -384,8 +374,7 @@ namespace Unity.Formats.USD {
 
         Profiler.BeginSample("Convert LeftHanded");
         bool isLeftHanded = usdMesh.orientation == Orientation.LeftHanded;
-        if (changeHandedness && !isLeftHanded || !changeHandedness && isLeftHanded)
-        {
+        if (changeHandedness && !isLeftHanded || !changeHandedness && isLeftHanded) {
           // USD is right-handed, so the mesh needs to be flipped.
           // Unity is left-handed, but that doesn't matter here.
           newIndices = newIndices ?? (int[]) usdMesh.faceVertexIndices.Clone();
@@ -398,23 +387,18 @@ namespace Unity.Formats.USD {
         }
         Profiler.EndSample();  // Convert LeftHanded
 
-        if (usdMesh.faceVertexIndices.Length > 65535)
-        {
+        if (usdMesh.faceVertexIndices.Length > 65535) {
           unityMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
         }
 
         Profiler.BeginSample("Breakdown triangles for Mesh Subsets");
-        if (geomSubsets.Subsets.Count == 0)
-        {
+        if (geomSubsets.Subsets.Count == 0) {
           unityMesh.triangles = newIndices ?? usdMesh.faceVertexIndices;
-        }
-        else
-        {
+        } else {
           int[] usdIndices = newIndices ?? usdMesh.faceVertexIndices;
           unityMesh.subMeshCount = geomSubsets.Subsets.Count;
           int subsetIndex = 0;
-          foreach (var kvp in geomSubsets.Subsets)
-          {
+          foreach (var kvp in geomSubsets.Subsets) {
             int[] faceIndices = kvp.Value;
             int[] triangleIndices = new int[faceIndices.Length * 3];
 
@@ -457,15 +441,12 @@ namespace Unity.Formats.USD {
       // Normals.
       //
 
-      if (usdMesh.normals != null && ShouldImport(options.meshOptions.normals))
-      {
+      if (usdMesh.normals != null && ShouldImport(options.meshOptions.normals)) {
         Profiler.BeginSample("Import Normals");
         Vector3[] newNormals = null;
-        if (changeHandedness)
-        {
+        if (changeHandedness) {
           newNormals = new Vector3[usdMesh.normals.Length];
-          for (int i = 0; i < usdMesh.normals.Length; i++)
-          {
+          for (int i = 0; i < usdMesh.normals.Length; i++) {
             newNormals[i] = UnityTypeConverter.ChangeBasis(usdMesh.normals[i]);
           }
         }
@@ -474,9 +455,7 @@ namespace Unity.Formats.USD {
         //       are always face varying).
         unityMesh.normals = newNormals ?? usdMesh.normals;
         Profiler.EndSample();  // Import Normals
-      }
-      else if (ShouldCompute(options.meshOptions.normals))
-      {
+      } else if (ShouldCompute(options.meshOptions.normals)) {
         Profiler.BeginSample("Calculate Normals");
         unityMesh.RecalculateNormals();
         Profiler.EndSample();  // Caluclate Normals
@@ -486,8 +465,7 @@ namespace Unity.Formats.USD {
       // Tangents.
       //
 
-      if (usdMesh.tangents != null && ShouldImport(options.meshOptions.tangents))
-      {
+      if (usdMesh.tangents != null && ShouldImport(options.meshOptions.tangents)) {
         Profiler.BeginSample("Import Tangents");
         Vector4[] newTangents = null;
         if (changeHandedness)
@@ -505,9 +483,7 @@ namespace Unity.Formats.USD {
         //       are always face varying).
         unityMesh.tangents = newTangents ?? usdMesh.tangents;
         Profiler.EndSample();  // Import Tangents
-      }
-      else if (ShouldCompute(options.meshOptions.tangents))
-      {
+      } else if (ShouldCompute(options.meshOptions.tangents)) {
         Profiler.BeginSample("Calculate Tangents");
         unityMesh.RecalculateTangents();
         Profiler.EndSample();  // Calculate Tangents
@@ -517,8 +493,7 @@ namespace Unity.Formats.USD {
       // Display Color.
       //
 
-      if (ShouldImport(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0)
-      {
+      if (ShouldImport(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0) {
         Profiler.BeginSample("Import Display Color");
         // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
         // For best performance, convert color space to linear off-line and skip conversion.
@@ -526,8 +501,7 @@ namespace Unity.Formats.USD {
         if (usdMesh.colors.Length == 1)  // Constant
         {
           // Constant color can just be set on the material.
-          if (options.useDisplayColorAsFallbackMaterial && options.materialImportMode != MaterialImportMode.None)
-          {
+          if (options.useDisplayColorAsFallbackMaterial && options.materialImportMode != MaterialImportMode.None) {
             mat = options.materialMap.InstantiateSolidColor(usdMesh.colors[0].gamma);
           }
         }
@@ -607,32 +581,25 @@ namespace Unity.Formats.USD {
           mat = options.materialMap.InstantiateSolidColor(Color.white);
         }
 
-        if (unityMesh.subMeshCount == 1)
-        {
+        if (unityMesh.subMeshCount == 1) {
           renderer.sharedMaterial = mat;
-          if (options.ShouldBindMaterials)
-          {
+          if (options.ShouldBindMaterials) {
             options.materialMap.RequestBinding(
               path,
               (scene, boundMat, primvars) => BindMat(
                 scene, unityMesh, boundMat, renderer, path, primvars,
                 usdMesh.faceVertexCounts, usdMesh.faceVertexIndices));
           }
-        }
-        else
-        {
+        } else {
           var mats = new Material[unityMesh.subMeshCount];
-          for (int i = 0; i < mats.Length; i++)
-          {
+          for (int i = 0; i < mats.Length; i++) {
             mats[i] = mat;
           }
           renderer.sharedMaterials = mats;
-          if (options.ShouldBindMaterials)
-          {
+          if (options.ShouldBindMaterials) {
             Debug.Assert(geomSubsets.Subsets.Count == unityMesh.subMeshCount);
             var subIndex = 0;
-            foreach (var kvp in geomSubsets.Subsets)
-            {
+            foreach (var kvp in geomSubsets.Subsets) {
               int idx = subIndex++;
               options.materialMap.RequestBinding(
                 kvp.Key,
@@ -751,59 +718,47 @@ namespace Unity.Formats.USD {
       int[] faceVertexCounts,
       int[] faceVertexIndices)
     {
-      if (primvars == null || primvars.Count == 0)
-      {
+      if (primvars == null || primvars.Count == 0) {
         return;
       }
 
       var prim = scene.GetPrimAtPath(usdMeshPath);
-      for (int i = 0; i < primvars.Count; i++)
-      {
+      for (int i = 0; i < primvars.Count; i++) {
         var attr = prim.GetAttribute(new TfToken("primvars:" + primvars[i]));
-        if (!attr)
-        {
-          continue;
-        }
+        if (!attr) continue;
 
         // Read the raw values.
         VtValue val = attr.Get(0.0);
-        if (val.IsEmpty())
-        {
-          continue;
-        }
+        if (val.IsEmpty()) { continue; }
+
+        // TODO: We shouldn't assume it is Vector2 Array (can be Vec2, Vec3 or Vec4).
         VtVec2fArray vec2fArray = UsdCs.VtValueToVtVec2fArray(val);
         Vector2[] values = UnityTypeConverter.FromVtArray(vec2fArray);
 
         // Unroll indexed primvars.
         var pv = new UsdGeomPrimvar(attr);
         VtIntArray vtIndices = new VtIntArray();
-        if (pv.GetIndices(vtIndices, 0.0))
-        {
+        if (pv.GetIndices(vtIndices, 0.0)) {
           int[] indices = UnityTypeConverter.FromVtArray(vtIndices);
           values = indices.Select(idx => values[idx]).ToArray();
         }
 
         // Handle primvar interpolation modes.
         TfToken interp = pv.GetInterpolation();
-        if (interp == UsdGeomTokens.constant)
-        {
+        if (interp == UsdGeomTokens.constant) {
           Debug.Assert(values.Length == 1);
           var newValues = new Vector2[unityMesh.vertexCount];
           for (int idx = 0; idx < values.Length; idx++) {
             newValues[idx] = values[0];
           }
           values = newValues;
-        }
-        else if (interp == UsdGeomTokens.uniform)
-        {
+        } else if (interp == UsdGeomTokens.uniform) {
           Debug.Assert(values.Length == faceVertexCounts.Length);
-          for (int faceIndex = 0; faceIndex < values.Length; faceIndex++)
-          {
+          for (int faceIndex = 0; faceIndex < values.Length; faceIndex++) {
             var faceColor = values[faceIndex];
             int idx = 0;
             var newValues = new Vector2[unityMesh.vertexCount];
-            for (int f = 0; f < faceVertexCounts[faceIndex]; f++)
-            {
+            for (int f = 0; f < faceVertexCounts[faceIndex]; f++) {
               int vertexInFaceIdx = faceVertexIndices[idx++];
               newValues[vertexInFaceIdx] = faceColor;
             }
