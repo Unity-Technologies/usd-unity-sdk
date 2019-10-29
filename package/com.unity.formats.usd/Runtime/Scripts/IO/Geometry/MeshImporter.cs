@@ -765,6 +765,18 @@ namespace Unity.Formats.USD {
             values = newValues;
           }
         }
+        else if (interp == UsdGeomTokens.vertex)
+        {
+          // "Unroll indexed primvars" bellow should have put the uv values in the same order as the original
+          // position values (vertices), so now we can unroll them the same way to get face varying uv values.
+          var newValues = new Vector2[unityMesh.vertexCount];
+          for (int idx = 0; idx < faceVertexIndices.Length; idx++)
+          {
+            int valueIndex = faceVertexIndices[idx];
+            newValues[idx] = values[valueIndex];
+          }
+          values = newValues;
+        }
 
         // Send them to Unity.
         unityMesh.SetUVs(i, values.ToList());
