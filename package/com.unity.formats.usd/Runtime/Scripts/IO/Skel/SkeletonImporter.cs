@@ -160,35 +160,24 @@ namespace Unity.Formats.USD
                 return true;
             }
 
-            for (int i = 0; i < lhs.Length; i++)
-            {
-                if (lhs[i] != rhs[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public static void BuildSkinnedMesh(string meshPath,
-            string skelPath,
-            SkeletonSample skeleton,
-            UsdSkelSkinningQuery skinningQuery,
-            GameObject go,
-            PrimMap primMap,
-            SceneImportOptions options)
-        {
-            // The mesh renderer must already exist, since hte mesh also must already exist.
-            var smr = go.GetComponent<SkinnedMeshRenderer>();
-            if (!smr)
-            {
-                throw new Exception(
-                    "Error importing "
-                    + meshPath
-                    + " SkinnnedMeshRenderer not present on GameObject"
-                );
-            }
+    public static void BuildSkinnedMesh(string meshPath,
+                                        string skelPath,
+                                        SkeletonSample skeleton,
+                                        UsdSkelSkinningQuery skinningQuery,
+                                        GameObject go,
+                                        PrimMap primMap,
+                                        SceneImportOptions options,
+                                        int[] faceVertexIndices) {
+      // The mesh renderer must already exist, since hte mesh also must already exist.
+      var smr = go.GetComponent<SkinnedMeshRenderer>();
+      if (!smr)
+      {
+          throw new Exception(
+            "Error importing "
+            + meshPath
+            + " SkinnnedMeshRenderer not present on GameObject"
+          );
+      }
 
             // Get and validate the joint weights and indices informations.
             UsdGeomPrimvar jointWeights = skinningQuery.GetJointWeightsPrimvar();
@@ -336,15 +325,35 @@ namespace Unity.Formats.USD
 
             // Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
 #if UNITY_2019
-            var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
-            var boneWeights1 =
-                new NativeArray<BoneWeight1>(mesh.vertexCount * weightsElementSize, Allocator.Persistent);
-            for (int i = 0; i < mesh.vertexCount; i++)
-            {
-                int unityIndex = i * weightsElementSize;
-                int usdIndex = isConstant
-                    ? 0
-                    : unityIndex;
+      if (!isConstant && mesh.vertexCount == faceVertexIndices.Length)  // vertices were unrolled
+      {
+        int[] newIndices = new int[faceVertexIndices.Length * indicesElementSize];
+        float[] newWeights = new float[faceVertexIndices.Length * weightsElementSize];
+        for (int i = 0; i < faceVertexIndices.Length; i++)
+        {
+          for (int idxSize = 0; idxSize < indicesElementSize; idxSize++)
+          {
+            int vertexIdx = faceVertexIndices[i];
+            newIndices[idxSize + (i * indicesElementSize)] = indices[idxSize + (vertexIdx * indicesElementSize)];
+          }
+
+          for (int weightSize = 0; weightSize < weightsElementSize; weightSize++)
+          {
+            int vertexIdx = faceVertexIndices[i];
+            newWeights[weightSize + (i * indicesElementSize)] = weights[weightSize + (vertexIdx * indicesElementSize)];
+          }
+        }
+
+        indices = newIndices;
+        weights = newWeights;
+      }
+
+      var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
+      var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * weightsElementSize, Allocator.Persistent);
+
+      for (int i = 0; i < mesh.vertexCount; i++) {
+        int unityIndex = i * weightsElementSize;
+        int usdIndex = isConstant ? 0 : unityIndex;
 
                 bonesPerVertex[i] = (byte) weightsElementSize;
 

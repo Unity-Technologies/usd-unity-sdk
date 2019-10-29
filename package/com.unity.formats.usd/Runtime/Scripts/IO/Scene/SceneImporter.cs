@@ -1039,16 +1039,20 @@ namespace Unity.Formats.USD
                                     {
                                         var goMesh = primMap[meshPath];
 
-                                        Profiler.BeginSample("Build Skinned Mesh");
-                                        SkeletonImporter.BuildSkinnedMesh(
-                                            meshPath,
-                                            skelPath,
-                                            skelSample,
-                                            skinningQuery,
-                                            goMesh,
-                                            primMap,
-                                            importOptions);
-                                        Profiler.EndSample();
+                    MeshSample usdMesh = new MeshSample();
+                    scene.Read(meshPath, usdMesh);
+
+                    Profiler.BeginSample("Build Skinned Mesh");
+                    SkeletonImporter.BuildSkinnedMesh(
+                        meshPath,
+                        skelPath,
+                        skelSample,
+                        skinningQuery,
+                        goMesh,
+                        primMap,
+                        importOptions,
+                        usdMesh.faceVertexIndices);
+                    Profiler.EndSample();
 
                                         // In terms of performance, this is almost free.
                                         // TODO: Check if this is correct or should be something specific (not always the first child).
