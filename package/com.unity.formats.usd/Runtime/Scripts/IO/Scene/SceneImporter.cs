@@ -804,6 +804,9 @@ namespace Unity.Formats.USD {
                   try {
                     var goMesh = primMap[meshPath];
 
+                    MeshSample usdMesh = new MeshSample();
+                    scene.Read(meshPath, usdMesh);
+
                     Profiler.BeginSample("Build Skinned Mesh");
                     SkeletonImporter.BuildSkinnedMesh(
                         meshPath,
@@ -812,7 +815,8 @@ namespace Unity.Formats.USD {
                         skinningQuery,
                         goMesh,
                         primMap,
-                        importOptions);
+                        importOptions,
+                        usdMesh.faceVertexIndices);
                     Profiler.EndSample();
 
                     // In terms of performance, this is almost free.
