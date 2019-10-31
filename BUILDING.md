@@ -1,5 +1,5 @@
 # Building from Source
-This document is intended for developers indending to build USD from source.
+This document is intended for developers intending to build USD from source.
 Start by understanding the layout of the source code:
 
  * [/bin](/bin) - binaries and scripts for maintaining the repo (generating bindings, etc).
