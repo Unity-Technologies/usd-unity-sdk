@@ -51,6 +51,9 @@ packages.config
 # OSX
 .DS_Store
 
+# UPM
+upm-ci~
+
 TestProject/Library
 TestProject/ProjectSettings
 TestProject/Temp
