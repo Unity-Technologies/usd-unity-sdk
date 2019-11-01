@@ -85,7 +85,7 @@ namespace USD.NET.Unity {
       rotation = new UnityEngine.Quaternion();
       scale = new UnityEngine.Vector3();
 
-      if (AreClose(matrix[3, 3], 0)) {
+      if (matrix[3, 3] == 0.0f) {
         return false;
       }
 
@@ -105,8 +105,7 @@ namespace USD.NET.Unity {
       }
       persp[3, 3] = 1;
 
-      /// TODO: Fixme!
-      if (AreClose(persp.determinant, 0)) {
+      if (persp.determinant == 0.0f) {
         return false;
       }
 
@@ -205,10 +204,6 @@ namespace USD.NET.Unity {
       }
 #endif
       return true;
-    }
-
-    private static bool AreClose(float a, float b) {
-      return UnityEngine.Mathf.Abs(a - b) < 0.000001f;
     }
 
     private static UnityEngine.Vector3 WeightedAvg(
