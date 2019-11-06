@@ -67,6 +67,7 @@
     <Compile Include="Geometry\BasisCurvesSample.cs" />
     <Compile Include="Geometry\PointBasedSample.cs" />
     <Compile Include="Geometry\ImageableSample.cs" />
+    <Compile Include="Geometry\SphereSample.cs" />
     <Compile Include="Geometry\XformableSample.cs" />
     <Compile Include="Geometry\CameraSample.cs" />
     <Compile Include="Geometry\CubeSample.cs" />

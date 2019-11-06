@@ -43,7 +43,7 @@ namespace Unity.Formats.USD {
       Quaternion rot = Quaternion.identity;
       Vector3 scale = Vector3.one;
       if (!UnityTypeConverter.Decompose(restXform, out pos, out rot, out scale)) {
-        throw new Exception("Failed to decompose bind trnsforms for <" + skelPath + ">");
+        throw new Exception("Failed to decompose bind transforms for <" + skelPath + ">");
       }
       go.transform.localScale = scale;
       go.transform.localRotation = rot;
@@ -106,6 +106,10 @@ namespace Unity.Formats.USD {
       }
     }
 
+    /// <summary>
+    /// Unity expects bind transforms to be the bone's inverse transformation matrix.
+    /// USD doesn't do that, so this function does it for us, prepping the data to be used in Unity.
+    /// <summary>
     public static void BuildBindTransforms(string path,
                                            SkeletonSample skelSample,
                                            SceneImportOptions options) {
@@ -134,15 +138,62 @@ namespace Unity.Formats.USD {
     public static void BuildSkinnedMesh(string meshPath,
                                         string skelPath,
                                         SkeletonSample skeleton,
-                                        SkelBindingSample meshBinding,
+                                        UsdSkelSkinningQuery skinningQuery,
                                         GameObject go,
                                         PrimMap primMap,
                                         SceneImportOptions options) {
-      string[] joints = meshBinding.joints;
+      // The mesh renderer must already exist, since hte mesh also must already exist.
+      var smr = go.GetComponent<SkinnedMeshRenderer>();
+      if (!smr)
+      {
+          throw new Exception(
+            "Error importing "
+            + meshPath
+            + " SkinnnedMeshRenderer not present on GameObject"
+          );
+      }
+
+      // Get and validate the joint weights and indices informations.
+      UsdGeomPrimvar jointWeights = skinningQuery.GetJointWeightsPrimvar();
+      UsdGeomPrimvar jointIndices = skinningQuery.GetJointIndicesPrimvar();
+
+      if (!jointWeights.IsDefined() || !jointIndices.IsDefined()) {
+        throw new Exception("Joints information (indices and/or weights) are missing for: " + meshPath);
+      }
+
+      // TODO: Both indices and weights attributes can be animated. It's not handled yet.
+      // TODO: Having something that convert a UsdGeomPrimvar into a PrimvarSample could help simplify this code. 
+      int[] indices = IntrinsicTypeConverter.FromVtArray((VtIntArray)jointIndices.GetAttr().Get());
+      int indicesElementSize = jointIndices.GetElementSize();
+      pxr.TfToken indicesInterpolation = jointIndices.GetInterpolation();
+
+      if (indices.Length == 0
+          || indicesElementSize == 0
+          || indices.Length % indicesElementSize != 0
+          || !pxr.UsdGeomPrimvar.IsValidInterpolation(indicesInterpolation)) {
+        throw new Exception("Joint indices information are invalid or empty for: " + meshPath);
+      }
+
+      float[] weights = IntrinsicTypeConverter.FromVtArray((VtFloatArray)jointWeights.GetAttr().Get());
+      int weightsElementSize = jointWeights.GetElementSize();
+      pxr.TfToken weightsInterpolation = jointWeights.GetInterpolation();
+
+      if (weights.Length == 0
+          || weightsElementSize == 0
+          || weights.Length % weightsElementSize != 0
+          || !pxr.UsdGeomPrimvar.IsValidInterpolation(weightsInterpolation)) {
+        throw new Exception("Joints weights information are invalid or empty for: " + meshPath);
+      }
+
+      // Get and validate the local list of joints.
+      VtTokenArray jointsAttr = new VtTokenArray();
+      skinningQuery.GetJointOrder(jointsAttr);
+
+      // If jointsAttr wasn't define, GetJointOrder return an empty array and FromVtArray as well.
+      string[] joints = IntrinsicTypeConverter.FromVtArray(jointsAttr);
 
       // WARNING: Do not mutate skeleton values.
       string[] skelJoints = skeleton.joints;
-      bool isConstant = meshBinding.jointWeights.interpolation == PrimvarInterpolation.Constant;
 
       if (joints == null || joints.Length == 0) {
         if (skelJoints == null || skelJoints.Length == 0) {
@@ -152,15 +203,10 @@ namespace Unity.Formats.USD {
         }
       }
 
-      // The mesh renderer must already exist, since hte mesh also must already exist.
-      var smr = go.GetComponent<SkinnedMeshRenderer>();
-      if (!smr) {
-        throw new Exception("Error importing " + meshPath
-            + " SkinnnedMeshRenderer not present on GameObject");
-      }
-
       var mesh = smr.sharedMesh;
-      var geomXf = meshBinding.geomBindTransform.value;
+
+      // TODO: bind transform attribute can be animated. It's not handled yet.
+      Matrix4x4 geomXf = UnityTypeConverter.FromMatrix(skinningQuery.GetGeomBindTransform());
 
       // If the joints list is a different length than the bind transforms, then this is likely
       // a mesh using a subset of the total bones in the skeleton and the bindTransforms must be
@@ -224,28 +270,28 @@ namespace Unity.Formats.USD {
       }
       smr.bones = bones;
 
-      int[] indices = meshBinding.jointIndices.value;
-      float[] weights = meshBinding.jointWeights.value;
+      bool isConstant = weightsInterpolation.GetString() == pxr.UsdGeomTokens.constant;
 
       // Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
 #if UNITY_2019
       var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
-      var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * meshBinding.jointWeights.elementSize, Allocator.Persistent);
+      var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * weightsElementSize, Allocator.Persistent);
       for (int i = 0; i < mesh.vertexCount; i++) {
-        int unityIndex = i * meshBinding.jointWeights.elementSize;
+        int unityIndex = i * weightsElementSize;
         int usdIndex = isConstant
                      ? 0
                      : unityIndex;
 
-        bonesPerVertex[i] = (byte)meshBinding.jointWeights.elementSize;
+        bonesPerVertex[i] = (byte)weightsElementSize;
 
-        for (int wi = 0; wi < meshBinding.jointWeights.elementSize; wi++) {
+        for (int wi = 0; wi < weightsElementSize; wi++) {
           var bw = boneWeights1[unityIndex + wi];
           bw.boneIndex = indices[usdIndex + wi];
           bw.weight = weights[usdIndex + wi];
           boneWeights1[unityIndex + wi] = bw;
         }
       }
+      // TODO: Investigate if bone weights should be normalized before this line.
       mesh.SetBoneWeights(bonesPerVertex, boneWeights1);
       bonesPerVertex.Dispose();
       boneWeights1.Dispose();
@@ -256,7 +302,7 @@ namespace Unity.Formats.USD {
         // When non-constant, the offset is the index times the number of weights per vertex.
         int usdIndex = isConstant
                      ? 0
-                     : i * meshBinding.jointWeights.elementSize;
+                     : i * weightsElementSize;
 
         var boneWeight = boneWeights[i];
 
@@ -270,15 +316,15 @@ namespace Unity.Formats.USD {
         boneWeight.boneIndex0 = indices[usdIndex];
         boneWeight.weight0 = weights[usdIndex];
 
-        if (meshBinding.jointIndices.elementSize >= 2) {
+        if (indicesElementSize >= 2) {
           boneWeight.boneIndex1 = indices[usdIndex + 1];
           boneWeight.weight1 = weights[usdIndex + 1];
         }
-        if (meshBinding.jointIndices.elementSize >= 3) {
+        if (indicesElementSize >= 3) {
           boneWeight.boneIndex2 = indices[usdIndex + 2];
           boneWeight.weight2 = weights[usdIndex + 2];
         }
-        if (meshBinding.jointIndices.elementSize >= 4) {
+        if (indicesElementSize >= 4) {
           boneWeight.boneIndex3 = indices[usdIndex + 3];
           boneWeight.weight3 = weights[usdIndex + 3];
         }

@@ -37,6 +37,15 @@ namespace Unity.Formats.USD {
     SlowAndSafe,
 
     /// <summary>
+    /// Transform to left-handed basis by processing all positions, triangles, transforms, and
+    /// primvar data. It transforms to match the basis transformation of FBX which is from (X,Y,Z) to (-X,Y,Z)
+    /// instead of the standard (SlowAndSafe option) (X,Y,Z) to (X,Y,-Z).
+    /// This is not a conventional behavior and this option is here only to allow consistency between
+    /// geometry importers.
+    /// </summary>
+    SlowAndSafeAsFBX,
+
+    /// <summary>
     /// Preform no transformation; should only be used when the USD file is known to contain
     /// data which was (non-portably) stored in a left-handed basis.
     /// </summary>

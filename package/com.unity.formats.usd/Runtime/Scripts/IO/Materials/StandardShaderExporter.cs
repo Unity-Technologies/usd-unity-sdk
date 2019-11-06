@@ -211,8 +211,6 @@ namespace Unity.Formats.USD {
       }
 #endif
 
-      surface.opacity.defaultValue = 1;
-
       if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
         var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "rgb");
         surface.diffuseColor.SetConnectedPath(newTex);
@@ -225,6 +223,35 @@ namespace Unity.Formats.USD {
         surface.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
       }
 
+      // Standard Shader has 4 modes (magic shader values internally defined in StandardShaderGUI.cs):
+      // Opaque - no opacity/transparency
+      // Cutout - opacityThreshold should be used to cut off based on alpha values (in _MainTex.a)
+      // Fade - opacity should be used, but no opacityThreshold
+      // Transparent - opacity should be used, but no opacityThreshold.
+      // Note: not quite sure if and how the difference between Fade and Transparent should be handled in USD.
+      StandardShaderBlendMode shaderMode = StandardShaderBlendMode.Opaque;
+      if(mat.HasProperty("_Mode")) {
+        shaderMode = (StandardShaderBlendMode) mat.GetFloat("_Mode");
+      }
+
+      if(shaderMode != StandardShaderBlendMode.Opaque) { 
+        if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
+          var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "a");
+          surface.opacity.SetConnectedPath(newTex);
+        } else if (mat.HasProperty("_Color")) {
+          c = mat.GetColor("_Color").linear;
+          surface.opacity.defaultValue = c.a;
+        } else {
+          c = Color.white;
+          surface.opacity.defaultValue = 1.0f;
+        }
+      } else {
+        surface.opacity.defaultValue = 1.0f;
+      }
+
+      if (shaderMode == StandardShaderBlendMode.Cutout && mat.HasProperty("_Cutoff")) { 
+        surface.opacityThreshold.defaultValue = mat.GetFloat("_Cutoff");
+      }
       surface.useSpecularWorkflow.defaultValue = 1;
 
       if (mat.HasProperty("_BumpMap") && mat.GetTexture("_BumpMap") != null) {
@@ -263,5 +290,12 @@ namespace Unity.Formats.USD {
       }
     }
 
+    // local version of the internal BlendMode enum in https://github.com/Unity-Technologies/UnityCsReference/blob/master/Editor/Mono/Inspector/StandardShaderGUI.cs
+    enum StandardShaderBlendMode {
+        Opaque = 0,
+        Cutout = 1,
+        Fade = 2, // Old school alpha-blending mode, fresnel does not affect amount of transparency
+        Transparent = 3 // Physically plausible transparency mode, implemented as alpha pre-multiply
+    }
   }
 }

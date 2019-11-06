@@ -18,7 +18,19 @@ using System.Linq;
 using pxr;
 
 namespace USD.NET.Unity {
+
   public class UnityTypeConverter : IntrinsicTypeConverter {
+
+    /// <summary>
+    /// Configurable matrix used for change of basis from USD to Unity and vice versa (change handedness).
+    /// </summary>
+    /// <remarks>
+    /// Allows global configuration of the change of basis matrix, which e.g. is used to make the USD importer conform
+    /// to the legacy FBX import convention in Unity, swapping the X-axis instead of the Z-axis.
+    /// By default this matrix is set to change handedness by swapping the Z-axis.
+    /// </remarks>
+    public static UnityEngine.Matrix4x4 basisChange = UnityEngine.Matrix4x4.Scale(new UnityEngine.Vector3(1, 1, -1));
+    public static UnityEngine.Matrix4x4 inverseBasisChange = UnityEngine.Matrix4x4.Scale(new UnityEngine.Vector3(1, 1, -1));
 
     /// <summary>
     /// Converts to and from the USD transform space.
@@ -27,24 +39,12 @@ namespace USD.NET.Unity {
     /// (though doing so will result in a non-standard USD file).
     /// </summary>
     static public UnityEngine.Matrix4x4 ChangeBasis(UnityEngine.Matrix4x4 input) {
-      // TODO(jcowles): the change of basis matrix should probably be cached.
-      var basisChange = UnityEngine.Matrix4x4.identity;
-      // Invert the forward vector.
-      basisChange[2, 2] = -1;
-
-      // Note that the fully general solution is basisChange * m * basisChange.inverse, however
-      // basisChange and basisChange.inverse are identical. Just aliasing here so the math below
-      // reads correctly.
-      var basisChangeInverse = basisChange;
-
       // Furthermore, this could be simplified to multiplying -1 by input elements [2,6,8,9,11,14].
-      return basisChange * input * basisChangeInverse;
+      return UnityTypeConverter.basisChange * input * UnityTypeConverter.inverseBasisChange;
     }
 
     public static UnityEngine.Vector3 ChangeBasis(UnityEngine.Vector3 point) {
-      UnityEngine.Matrix4x4 mat = UnityEngine.Matrix4x4.identity;
-      mat[2, 2] = -1;
-      return mat.MultiplyPoint3x4(point);
+      return UnityTypeConverter.basisChange.MultiplyPoint3x4(point);
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ namespace USD.NET.Unity {
       rotation = new UnityEngine.Quaternion();
       scale = new UnityEngine.Vector3();
 
-      if (AreClose(matrix[3, 3], 0)) {
+      if (matrix[3, 3] == 0.0f) {
         return false;
       }
 
@@ -105,8 +105,7 @@ namespace USD.NET.Unity {
       }
       persp[3, 3] = 1;
 
-      /// TODO: Fixme!
-      if (AreClose(persp.determinant, 0)) {
+      if (persp.determinant == 0.0f) {
         return false;
       }
 
@@ -205,10 +204,6 @@ namespace USD.NET.Unity {
       }
 #endif
       return true;
-    }
-
-    private static bool AreClose(float a, float b) {
-      return UnityEngine.Mathf.Abs(a - b) < 0.0001f;
     }
 
     private static UnityEngine.Vector3 WeightedAvg(

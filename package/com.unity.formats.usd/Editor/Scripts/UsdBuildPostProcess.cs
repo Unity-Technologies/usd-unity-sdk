@@ -21,18 +21,24 @@ namespace Unity.Formats.USD {
 
     [PostProcessBuildAttribute(1)]
     public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
-#if UNITY_EDITOR_OSX
-      // plugInfo files are already in the UsdCs.bundle
-      return;
-#else
-      var source = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
-      var destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
 
-      // We need to copy the whole share folder and this one plugInfo.json file
-      FileUtil.CopyFileOrDirectory(source + "/x86_64/share", destination + "/share");
-      FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
-#endif
+        var source = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+        if (target == BuildTarget.StandaloneLinux64)
+        {
+          var destination = pathToBuiltProject.Replace(".x86_64", "_Data/Plugins");
+
+          // We need to copy the whole share folder and this one plugInfo.json file
+          FileUtil.CopyFileOrDirectory(source + "/x86_64/share", destination + "/share");
+          FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
+        }
+        else if (target == BuildTarget.StandaloneWindows64)
+        {
+          var destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
+
+          // We need to copy the whole share folder and this one plugInfo.json file
+          FileUtil.CopyFileOrDirectory(source + "/x86_64/share", destination + "/share");
+          FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
+        }
     }
   }
-
 }

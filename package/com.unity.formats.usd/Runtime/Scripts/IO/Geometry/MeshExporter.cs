@@ -149,6 +149,37 @@ namespace Unity.Formats.USD {
       scene.Write(path, sample);
     }
 
+#if UNITY_EDITOR
+        static System.Reflection.MethodInfo Mesh_canAccess;
+        // This is a workaround for a Unity peculiarity - 
+        // non-readable meshes are actually always accessible from the Editor.
+        // We're still logging a warning since this won't work in a build.
+        static bool CanReadMesh(Mesh mesh) {
+            if (mesh.isReadable) {
+                return true;
+            }
+            if (!Application.isPlaying) {
+                return true;
+            }
+            if (Mesh_canAccess == null) {
+                Mesh_canAccess = typeof(Mesh).GetProperty("canAccess", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetMethod;
+            }
+            if(Mesh_canAccess != null) {
+                try {
+                    bool canAccess = (bool) Mesh_canAccess.Invoke(mesh, null);
+                    if(canAccess) {
+                        Debug.LogWarning("The mesh you are trying to export is not marked as readable. This will only work in the Editor and fail in a Build.", mesh);
+                        return true;
+                    }
+                } catch { 
+                    // There has probably been an Unity internal API update causing an error on this call.
+                    return false;
+                }
+            }
+            return false;
+        }
+#endif
+
     public static void ExportMesh(ObjectContext objContext, ExportContext exportContext) {
       MeshFilter mf = objContext.gameObject.GetComponent<MeshFilter>();
       MeshRenderer mr = objContext.gameObject.GetComponent<MeshRenderer>();
@@ -173,11 +204,16 @@ namespace Unity.Formats.USD {
       string path = objContext.path;
 
       if (mesh == null) {
-        Debug.LogWarning("Null mesh for: " + path);
+        Debug.LogWarning("Null mesh for: " + path, objContext.gameObject);
         return;
       }
-      if (mesh.isReadable == false) {
-        Debug.LogWarning("Mesh not readable: " + objContext.path);
+
+#if UNITY_EDITOR
+      if (!CanReadMesh(mesh)) {
+#else
+      if(!mesh.isReadable) {
+#endif
+        Debug.LogError("Mesh is not readable: " + objContext.path  + ". To fix this, enable read/write in the inspector for the source asset that you are attempting to export.", objContext.gameObject);
         return;
       }
 
@@ -238,6 +274,11 @@ namespace Unity.Formats.USD {
             sample.points[i] = UnityTypeConverter.ChangeBasis(sample.points[i]);
             if (sample.normals != null && sample.normals.Length == sample.points.Length) {
               sample.normals[i] = UnityTypeConverter.ChangeBasis(sample.normals[i]);
+            }
+            if (sample.tangents != null && sample.tangents.Length == sample.points.Length) {
+              var w = sample.tangents[i].w;
+              var t = UnityTypeConverter.ChangeBasis(sample.tangents[i]);
+              sample.tangents[i] = new Vector4(t.x, t.y, t.z, w);
             }
           }
 
@@ -310,8 +351,11 @@ namespace Unity.Formats.USD {
                 );
 
             if (exportContext.exportMaterials) {
-              if (si >= sharedMaterials.Length || !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
-                Debug.LogError("Invalid material bound for: " + path);
+              if (si >= sharedMaterials.Length || !sharedMaterials[si] || !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath)) {
+                Debug.LogWarning("Invalid material bound for: " + path + "\n" 
+                    + (si >= sharedMaterials.Length ? "More submeshes than materials assigned."
+                    : (!sharedMaterials[si] ? "Submesh " + si + " has null material"
+                    : "ExportMap can't map material")));
               } else {
                 MaterialSample.Bind(scene, subset.GetPath(), usdMaterialPath);
               }

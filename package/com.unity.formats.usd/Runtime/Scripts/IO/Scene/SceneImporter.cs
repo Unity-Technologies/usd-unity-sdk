@@ -252,6 +252,23 @@ namespace Unity.Formats.USD {
         throw new ImportException("Null USD Scene");
       }
 
+      // The matrix to convert USD (right-handed) to Unity (left-handed) is different for the legacy FBX importer
+      // and incorrectly swaps the X-axis rather than the Z-axis. This changes the basisChange matrix to match the
+      // user options. <see cref="Unity.Formats.USD.SceneImportOptions.BasisTransformation"/> for additional details.
+      // Note that in those specific cases, the inverse matrix are identical to the original one, in general,
+      // UnityTypeConverter.inverseBasisChange should be equal to UnityTypeConverter.basisChange.inverse.
+      if (importOptions.changeHandedness == BasisTransformation.SlowAndSafeAsFBX) {
+        // To be consistent with FBX basis change, ensure it's the X axis that is inverted.
+        Vector3 matrixDiagonal = new Vector3(-1, 1, 1);
+        UnityTypeConverter.basisChange = Matrix4x4.Scale(matrixDiagonal);
+        UnityTypeConverter.inverseBasisChange = Matrix4x4.Scale(matrixDiagonal);
+      } else {
+        // Ensure it's the Z axis that is inverted.
+        Vector3 matrixDiagonal = new Vector3(1, 1, -1);
+        UnityTypeConverter.basisChange = Matrix4x4.Scale(matrixDiagonal);
+        UnityTypeConverter.inverseBasisChange = Matrix4x4.Scale(matrixDiagonal);
+      }
+
       scene.SetInterpolation(importOptions.interpolate ?
                              Scene.InterpolationMode.Linear :
                              Scene.InterpolationMode.Held);
@@ -516,12 +533,40 @@ namespace Unity.Formats.USD {
         foreach (var pathAndSample in scene.ReadAll<CubeSample>(primMap.Cubes)) {
           try {
             GameObject go = primMap[pathAndSample.path];
-            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
+            pxr.UsdPrim prim = scene.GetPrimAtPath(pathAndSample.path);
+
+            NativeImporter.ImportObject(scene, go, prim, importOptions);
             XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
-            CubeImporter.BuildCube(pathAndSample.sample, go, importOptions);
+            bool skinnedMesh = IsSkinnedMesh(prim, primMap, importOptions);
+            CubeImporter.BuildCube(pathAndSample.sample, go, importOptions, skinnedMesh);
+
           } catch (System.Exception ex) {
             Debug.LogException(
                 new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
+          }
+
+          if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
+        }
+        Profiler.EndSample();
+
+        // Spheres.
+        Profiler.BeginSample("USD: Build Spheres");
+        foreach (var pathAndSample in scene.ReadAll<SphereSample>(primMap.Spheres))
+        {
+          try
+          {
+            GameObject go = primMap[pathAndSample.path];
+            pxr.UsdPrim prim = scene.GetPrimAtPath(pathAndSample.path);
+
+            NativeImporter.ImportObject(scene, go, prim, importOptions);
+            XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
+            bool skinnedMesh = IsSkinnedMesh(prim, primMap, importOptions);
+            SphereImporter.BuildSphere(pathAndSample.sample, go, importOptions, skinnedMesh);
+          }
+          catch (System.Exception ex)
+          {
+            Debug.LogException(
+                new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
           }
 
           if (ShouldYield(targetTime, timer)) { yield return null; ResetTimer(timer); }
@@ -628,6 +673,22 @@ namespace Unity.Formats.USD {
               }
             }
             Profiler.EndSample();
+
+            // Spheres.
+            Profiler.BeginSample("USD: Build Spheres");
+            var sphereSamples = scene.ReadAll<SphereSample>(masterRootPath);
+            foreach (var pathAndSample in sphereSamples) {
+              try {
+                GameObject go = primMap[pathAndSample.path];
+                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
+                XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
+                SphereImporter.BuildSphere(pathAndSample.sample, go, importOptions);
+              } catch (System.Exception ex) {
+                Debug.LogException(
+                    new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
+              }
+            }
+            Profiler.EndSample();
           }
 
           // Cameras.
@@ -710,13 +771,12 @@ namespace Unity.Formats.USD {
 
                 skeletonSamples.Add(skelPath, skelSample);
 
-                // Unity uses the inverse bindTransform, since that's actually what's needed for
-                // skinning. Do that once here, so each skinned mesh doesn't need to do it
-                // redundantly.
+                // The bind pose is bone's inverse transformation matrix. This is done once here, so each
+                // skinned mesh doesn't need to do it redundantly.
                 SkeletonImporter.BuildBindTransforms(skelPath, skelSample, importOptions);
 
+                // Validate the binding transforms.
                 var bindXforms = new pxr.VtMatrix4dArray();
-
                 var prim = scene.GetPrimAtPath(skelPath);
                 var skel = new pxr.UsdSkelSkeleton(prim);
 
@@ -726,7 +786,7 @@ namespace Unity.Formats.USD {
 
                 Profiler.BeginSample("Get JointWorldBind Transforms");
                 if (!skelQuery.GetJointWorldBindTransforms(bindXforms)) {
-                  throw new ImportException("Failed to compute binding trnsforms for <" + skelPath + ">");
+                  throw new ImportException("Failed to compute binding transforms for <" + skelPath + ">");
                 }
                 Profiler.EndSample();
 
@@ -740,25 +800,23 @@ namespace Unity.Formats.USD {
                 //
                 Profiler.BeginSample("Apply Skin Weights");
                 foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector()) {
-                  var meshPath = skinningQuery.GetPrim().GetPath();
+                  pxr.SdfPath meshPath = skinningQuery.GetPrim().GetPath();
                   try {
-                    var skelBindingSample = new SkelBindingSample();
                     var goMesh = primMap[meshPath];
-
-                    scene.Read(meshPath, skelBindingSample);
 
                     Profiler.BeginSample("Build Skinned Mesh");
                     SkeletonImporter.BuildSkinnedMesh(
                         meshPath,
                         skelPath,
                         skelSample,
-                        skelBindingSample,
+                        skinningQuery,
                         goMesh,
                         primMap,
                         importOptions);
                     Profiler.EndSample();
 
                     // In terms of performance, this is almost free.
+                    // TODO: Check if this is correct or should be something specific (not always the first child).
                     goMesh.GetComponent<SkinnedMeshRenderer>().rootBone = primMap[skelPath].transform.GetChild(0);
 
                   } catch (System.Exception ex) {
@@ -797,7 +855,7 @@ namespace Unity.Formats.USD {
 
             Profiler.BeginSample("Compute Joint Local Transforms");
             if (!skelQuery.ComputeJointLocalTransforms(restXforms, time, atRest: false)) {
-              throw new ImportException("Failed to compute bind trnsforms for <" + skelPath + ">");
+              throw new ImportException("Failed to compute bind transforms for <" + skelPath + ">");
             }
             Profiler.EndSample();
 
@@ -916,6 +974,18 @@ namespace Unity.Formats.USD {
       timer.Stop();
       timer.Reset();
       timer.Start();
+    }
+
+    private static bool IsSkinnedMesh(pxr.UsdPrim prim, PrimMap primMap, SceneImportOptions importOptions) {
+      bool skinnedMesh = false;
+
+      if (importOptions.importSkinning && primMap.SkelCache != null) {
+        pxr.UsdSkelSkinningQuery skinningQuery = primMap.SkelCache.GetSkinningQuery(prim);
+        primMap.SkinningQueries[prim.GetPath()] = skinningQuery;
+        skinnedMesh = skinningQuery.IsValid();
+      }
+
+      return skinnedMesh;
     }
   }
 }
