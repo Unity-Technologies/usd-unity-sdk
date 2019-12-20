@@ -321,13 +321,17 @@ namespace Unity.Formats.USD
             // bounds, normals and tangents should similarly be moved out of this function and should not
             // rely on the UnityEngine.Mesh API.
 
-            Material mat = renderer.sharedMaterial;
-            bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
-                                    options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
+      Material mat = renderer.sharedMaterial;
+      bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
+                              options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
+      if (options.attrUnrollNeeded == FaceVaryingOption.None && usdMesh.points != null)
+      {
+        ComputeIfUnrollNeeded(usdMesh, options);
+      }
 
-            //
-            // Purpose.
-            //
+      //
+      // Purpose.
+      //
 
             // Deactivate non-geometry prims (e.g. guides, render, etc).
             if (usdMesh.purpose != Purpose.Default) {
@@ -356,7 +360,7 @@ namespace Unity.Formats.USD
           }
         }
 
-        if (IsThereFaceVaryingAttributes(usdMesh, options))
+        if (options.attrUnrollNeeded == FaceVaryingOption.Unroll)
         {
           // If there is attributes that are face varying we need to "unroll" the usd mesh points to make sure
           // that each unity mesh vertex (position + attributes can be unique).
@@ -521,8 +525,12 @@ namespace Unity.Formats.USD
         Profiler.EndSample();  // Import Normals
       } else if (ShouldCompute(options.meshOptions.normals)) {
         Profiler.BeginSample("Calculate Normals");
+        // TODO: If normals are computed but vertices were unrolled, then normal won't be smooth. If we want to ensure
+        //       that normals are smooth when they can, they should be computed on the original set of vertices, then
+        //       unrolled like the vertices if needed.
+        //       https://docs.unity3d.com/ScriptReference/Mesh.RecalculateNormals.html
         unityMesh.RecalculateNormals();
-        Profiler.EndSample();  // Caluclate Normals
+        Profiler.EndSample();  // Calculate Normals
       }
 
             //
@@ -557,6 +565,7 @@ namespace Unity.Formats.USD
             // Display Color.
             //
 
+      Material mat = renderer.sharedMaterial;
       if (ShouldImport(options.meshOptions.color) && usdMesh.colors != null && usdMesh.colors.Length > 0) {
         Profiler.BeginSample("Import Display Color");
         // NOTE: The following color conversion assumes PlayerSettings.ColorSpace == Linear.
@@ -627,11 +636,11 @@ namespace Unity.Formats.USD
 
       // TODO: these should also be driven by the UV primvars required by the bound shader.
       Profiler.BeginSample("Import UV Sets");
-      ImportUv(path, unityMesh, 0, usdMesh.st, options.meshOptions.texcoord0, areVerticesUnrolled);
-      ImportUv(path, unityMesh, 0, usdMesh.uv, options.meshOptions.texcoord0, areVerticesUnrolled);
-      ImportUv(path, unityMesh, 1, usdMesh.uv2, options.meshOptions.texcoord1, areVerticesUnrolled);
-      ImportUv(path, unityMesh, 2, usdMesh.uv3, options.meshOptions.texcoord2, areVerticesUnrolled);
-      ImportUv(path, unityMesh, 3, usdMesh.uv4, options.meshOptions.texcoord3, areVerticesUnrolled);
+      ImportUv(path, unityMesh, 0, usdMesh.st, options.meshOptions.texcoord0, areVerticesUnrolled, usdMesh.faceVertexIndices);
+      ImportUv(path, unityMesh, 0, usdMesh.uv, options.meshOptions.texcoord0, areVerticesUnrolled, usdMesh.faceVertexIndices);
+      ImportUv(path, unityMesh, 1, usdMesh.uv2, options.meshOptions.texcoord1, areVerticesUnrolled, usdMesh.faceVertexIndices);
+      ImportUv(path, unityMesh, 2, usdMesh.uv3, options.meshOptions.texcoord2, areVerticesUnrolled, usdMesh.faceVertexIndices);
+      ImportUv(path, unityMesh, 3, usdMesh.uv4, options.meshOptions.texcoord3, areVerticesUnrolled, usdMesh.faceVertexIndices);
       Profiler.EndSample();
 
             Profiler.BeginSample("Request Material Bindings");
@@ -721,35 +730,37 @@ namespace Unity.Formats.USD
     private static Vector3[] UnrollVertices(Vector3[] vertices, int[] indices)
     {
       int indicesCount = indices.Length;
-      Vector3[] sanitizedPoints = new Vector3[indicesCount];
+      Vector3[] newPoints = new Vector3[indicesCount];
 
-            for (int i = 0; i < indicesCount; i++)
-            {
-                int vertexIndex = indices[i];
-                sanitizedPoints[i] = vertices[vertexIndex];
-            }
+      for (int i = 0; i < indicesCount; i++)
+      {
+        int vertexIndex = indices[i];
+        newPoints[i] = vertices[vertexIndex];
+      }
 
-            return sanitizedPoints;
-        }
+      return newPoints;
+    }
 
-        private static bool IsThereFaceVaryingAttributes(MeshSample usdMesh, SceneImportOptions options)
-        {
-            // If an attribute is face varying, its number of element will be usdMesh.indices.Length.
-            int pointCount = usdMesh.points.Length;
-            int faceCount = usdMesh.faceVertexCounts.Length;
+    private static void ComputeIfUnrollNeeded(MeshSample usdMesh, SceneImportOptions options)
+    {
+      // If an attribute is face varying, its number of element will be usdMesh.indices.Length.
+      int pointCount = usdMesh.points.Length;
+      int faceCount = usdMesh.faceVertexCounts.Length;
 
       // Potential face varying attributes are: normals, tangents, color and uv (st, uv, uv2. uv3. uv4) + all the
       // uv primvars related to materials.
-      return (IsFaceVaryingAttribute(options.meshOptions.normals, usdMesh.normals, pointCount, faceCount) ||
-        IsFaceVaryingAttribute(options.meshOptions.tangents, usdMesh.tangents, pointCount, faceCount) ||
-        IsFaceVaryingAttribute(options.meshOptions.color, usdMesh.colors, pointCount, faceCount) ||
-        IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.st) ||
-        IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.uv) ||
-        IsFaceVaryingAttribute(options.meshOptions.texcoord1, usdMesh.uv2) ||
-        IsFaceVaryingAttribute(options.meshOptions.texcoord2, usdMesh.uv3) ||
-        IsFaceVaryingAttribute(options.meshOptions.texcoord3, usdMesh.uv4) ||
-        // TODO: We should actually check the uv primvars related to bind material here, cf. LoadPrimvars(...)
-        options.ShouldBindMaterials);
+      bool isFaceVarying = (IsFaceVaryingAttribute(options.meshOptions.normals, usdMesh.normals, pointCount, faceCount) ||
+                            IsFaceVaryingAttribute(options.meshOptions.tangents, usdMesh.tangents, pointCount, faceCount) ||
+                            IsFaceVaryingAttribute(options.meshOptions.color, usdMesh.colors, pointCount, faceCount) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.st) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.uv) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord1, usdMesh.uv2) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord2, usdMesh.uv3) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord3, usdMesh.uv4) ||
+                            // TODO: We should actually check the uv primvars related to bind material here, cf. LoadPrimvars(...)
+                            options.ShouldBindMaterials);
+
+      options.attrUnrollNeeded = isFaceVarying ? FaceVaryingOption.Unroll : FaceVaryingOption.DontUnroll;
     }
 
     private static bool IsFaceVaryingAttribute<T>(ImportMode mode, T[] attribute, int pointCount, int faceCount)
@@ -765,7 +776,7 @@ namespace Unity.Formats.USD
     {
       return (
         ShouldImport(mode) &&
-        attribute != null &&
+        ((Primvar<object>) attribute)?.GetValue() != null &&
         (
           attribute.interpolation == PrimvarInterpolation.FaceVarying ||
           attribute.interpolation == PrimvarInterpolation.Uniform));
@@ -889,30 +900,46 @@ namespace Unity.Formats.USD
     /// An array of size > 0 on succes, an array of size 0 on failure, or null if the given object
     /// is not of the desired type T.
     /// </returns>
-    private static T[] TryGetUVSet<T>(Primvar<object> uv, bool areVerticesUnrolled)
+    private static T[] TryGetUVSet<T>(Primvar<object> uv, bool areVerticesUnrolled, int[] faceVertexIndices)
     {
+      // We can't use uv.GetValueType() as it return "typeof(T)" and so would return "object" in this case instead of
+      // the actual type of value.
       if (uv.value.GetType() != typeof(T[]))
       {
         return null;
       }
 
-            var uvVec = (T[]) uv.value;
+      var uvVec = (T[]) uv.GetValue();
 
       if (uvVec.Length == 0 || (uv.interpolation == PrimvarInterpolation.Vertex && !areVerticesUnrolled))
       {
         return uvVec;
       }
 
-            // Unroll UV indices if specified.
-            if (uv.indices != null && uv.indices.Length > 0)
-            {
-                var newUvs = new T[uv.indices.Length];
-                for (int i = 0; i < uv.indices.Length; i++)
-                {
-                    newUvs[i] = uvVec[uv.indices[i]];
-                }
-                uvVec = newUvs;
-            }
+      // Unroll UV values if indices are specified.
+      if (uv.indices != null && uv.indices.Length > 0)
+      {
+        var newUvs = new T[uv.indices.Length];
+        for (int i = 0; i < uv.indices.Length; i++)
+        {
+          newUvs[i] = uvVec[uv.indices[i]];
+        }
+        uvVec = newUvs;
+      }
+
+      if ((uv.interpolation == PrimvarInterpolation.Vertex || uv.interpolation == PrimvarInterpolation.FaceVarying) &&
+          areVerticesUnrolled)
+      {
+        // UV values are already unrolled as either no indices was provided or it was unrolled according to the
+        // provided indices above, but they need to be reordered to match the way vertices was unrolled.
+        // TODO: if uv were face varying and indices were provided, this step is useless.
+        var newUvs = new T[faceVertexIndices.Length];
+        for (int i = 0; i < faceVertexIndices.Length; i++)
+        {
+          newUvs[i] = uvVec[faceVertexIndices[i]];
+        }
+        uvVec = newUvs;
+      }
 
       return uvVec;
     }
@@ -925,34 +952,35 @@ namespace Unity.Formats.USD
                                  int uvSetIndex,
                                  Primvar<object> uv,
                                  ImportMode texcoordImportMode,
-                                 bool areVerticesUnrolled) {
+                                 bool areVerticesUnrolled,
+                                 int[] faceVertexIndices) {
       // As in Unity, UVs are a dynamic type which can be vec2, vec3, or vec4.
-      if (uv.value == null || !ShouldImport(texcoordImportMode))
+      if (!ShouldImport(texcoordImportMode) || uv.GetValue() == null)
       {
         return;
       }
 
       try {
-        var uv2 = TryGetUVSet<Vector2>(uv, areVerticesUnrolled);
+        var uv2 = TryGetUVSet<Vector2>(uv, areVerticesUnrolled, faceVertexIndices);
         if (uv2 != null) {
           if (uv2.Length > 0) {
-            unityMesh.SetUVs(uvSetIndex, uv2.ToList());
+            unityMesh.SetUVs(uvSetIndex, uv2);
           }
           return;
         }
 
-        var uv3 = TryGetUVSet<Vector3>(uv, areVerticesUnrolled);
+        var uv3 = TryGetUVSet<Vector3>(uv, areVerticesUnrolled, faceVertexIndices);
         if (uv3 != null) {
           if (uv3.Length > 0) {
-            unityMesh.SetUVs(uvSetIndex, uv3.ToList());
+            unityMesh.SetUVs(uvSetIndex, uv3);
           }
           return;
         }
 
-        var uv4 = TryGetUVSet<Vector4>(uv, areVerticesUnrolled);
+        var uv4 = TryGetUVSet<Vector4>(uv, areVerticesUnrolled, faceVertexIndices);
         if (uv4 != null) {
           if (uv4.Length > 0) {
-            unityMesh.SetUVs(uvSetIndex, uv4.ToList());
+            unityMesh.SetUVs(uvSetIndex, uv4);
           }
           return;
         }

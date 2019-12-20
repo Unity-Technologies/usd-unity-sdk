@@ -75,16 +75,38 @@ namespace Unity.Formats.USD
         None,
     }
 
+  /// <summary>
+  /// Indicates how to handle attributes values according to the presence of face varying attributes or not.
+  /// </summary>
+  [System.Serializable]
+  public enum FaceVaryingOption {
     /// <summary>
-    /// Indicates how the scene should be imported from USD to Unity.
+    /// Unroll any attributes values that are not already face varying and unrolled.
     /// </summary>
-    [System.Serializable]
-    public class SceneImportOptions
-    {
-        /// <summary>
-        /// The root location in the Unity project where imported files will be created.
-        /// </summary>
-        public string projectAssetPath = "Assets/";
+    Unroll,
+
+    /// <summary>
+    /// Unroll nothing and keep all attributes value as is.
+    /// </summary>
+    DontUnroll,
+
+    /// <summary>
+    /// The need to unroll or not is undetermined.
+    /// </summary>
+    None,
+  }
+
+  /// <summary>
+  /// Indicates how the scene should be imported from USD to Unity.
+  /// </summary>
+  [System.Serializable]
+  public class SceneImportOptions
+  {
+
+    /// <summary>
+    /// The root location in the Unity project where imported files will be created.
+    /// </summary>
+    public string projectAssetPath = "Assets/";
 
         /// <summary>
         /// The path in the USD file at which to import/export.
@@ -108,11 +130,13 @@ namespace Unity.Formats.USD
         public bool importPointInstances = true;
         public bool importMonoBehaviours = false;
 
-        /// <summary>
-        /// Typically USD data is right-handed and Unity is left handed; this option indicates how
-        /// that conversion should be handled.
-        /// </summary>
-        public BasisTransformation changeHandedness = BasisTransformation.SlowAndSafe;
+    public FaceVaryingOption attrUnrollNeeded = FaceVaryingOption.None;
+
+    /// <summary>
+    /// Typically USD data is right-handed and Unity is left handed; this option indicates how
+    /// that conversion should be handled.
+    /// </summary>
+    public BasisTransformation changeHandedness = BasisTransformation.SlowAndSafe;
 
         /// <summary>
         /// A uniform scale to apply to the entire imported scene.

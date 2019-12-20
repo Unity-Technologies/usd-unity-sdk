@@ -131,6 +131,9 @@ namespace Unity.Formats.USD
         [HideInInspector] public ImportMode m_texcoord2;
         [HideInInspector] public ImportMode m_texcoord3;
 
+        [HideInInspector]
+        public FaceVaryingOption m_attrUnrollNeeded;
+
         // ----------------------------------------------------------------------------------------- //
         // Lightmap UV Unwrapping.
         // ----------------------------------------------------------------------------------------- //
@@ -269,6 +272,7 @@ namespace Unity.Formats.USD
             m_importSceneInstances = options.importSceneInstances;
             m_importPointInstances = options.importPointInstances;
             m_importMonoBehaviors = options.importMonoBehaviours;
+            m_attrUnrollNeeded = options.attrUnrollNeeded;
 
             // Mesh options.
             m_points = options.meshOptions.points;
@@ -322,6 +326,7 @@ namespace Unity.Formats.USD
             options.importSceneInstances = m_importSceneInstances;
             options.importPointInstances = m_importPointInstances;
             options.importMonoBehaviours = m_importMonoBehaviors;
+            options.attrUnrollNeeded = m_attrUnrollNeeded;
 
             // Mesh options.
             options.meshOptions.points = m_points;
@@ -555,6 +560,7 @@ namespace Unity.Formats.USD
 
                 SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
             }
+            OptionsToState(options);
         }
 
         /// <summary>
