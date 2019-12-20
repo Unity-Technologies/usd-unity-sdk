@@ -816,7 +816,8 @@ namespace Unity.Formats.USD {
                         goMesh,
                         primMap,
                         importOptions,
-                        usdMesh.faceVertexIndices);
+                        usdMesh.faceVertexIndices,
+                        usdMesh.points.Length);
                     Profiler.EndSample();
 
                     // In terms of performance, this is almost free.

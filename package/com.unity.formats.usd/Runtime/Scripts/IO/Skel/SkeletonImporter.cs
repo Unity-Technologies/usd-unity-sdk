@@ -142,7 +142,8 @@ namespace Unity.Formats.USD {
                                         GameObject go,
                                         PrimMap primMap,
                                         SceneImportOptions options,
-                                        int[] faceVertexIndices) {
+                                        int[] faceVertexIndices,
+                                        int originalPointNumber) {
       // The mesh renderer must already exist, since hte mesh also must already exist.
       var smr = go.GetComponent<SkinnedMeshRenderer>();
       if (!smr)
@@ -275,8 +276,10 @@ namespace Unity.Formats.USD {
 
       // Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
 #if UNITY_2019
-      if (!isConstant && mesh.vertexCount == faceVertexIndices.Length)  // vertices were unrolled
+      bool areVerticesUnroll = mesh.vertexCount > originalPointNumber;
+      if (weightsInterpolation.GetString() == pxr.UsdGeomTokens.vertex && areVerticesUnroll)
       {
+        // Joint indices and weights need to be unrolled as well.
         int[] newIndices = new int[faceVertexIndices.Length * indicesElementSize];
         float[] newWeights = new float[faceVertexIndices.Length * weightsElementSize];
         for (int i = 0; i < faceVertexIndices.Length; i++)
@@ -285,12 +288,7 @@ namespace Unity.Formats.USD {
           {
             int vertexIdx = faceVertexIndices[i];
             newIndices[idxSize + (i * indicesElementSize)] = indices[idxSize + (vertexIdx * indicesElementSize)];
-          }
-          
-          for (int weightSize = 0; weightSize < weightsElementSize; weightSize++)
-          {
-            int vertexIdx = faceVertexIndices[i];
-            newWeights[weightSize + (i * indicesElementSize)] = weights[weightSize + (vertexIdx * indicesElementSize)];
+            newWeights[idxSize + (i * indicesElementSize)] = weights[idxSize + (vertexIdx * indicesElementSize)];
           }
         }
 

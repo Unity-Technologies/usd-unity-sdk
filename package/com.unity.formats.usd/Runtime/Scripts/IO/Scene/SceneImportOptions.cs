@@ -74,6 +74,27 @@ namespace Unity.Formats.USD {
   }
 
   /// <summary>
+  /// Indicates how to handle attributes values according to the presence of face varying attributes or not.
+  /// </summary>
+  [System.Serializable]
+  public enum FaceVaryingOption {
+    /// <summary>
+    /// Unroll any attributes values that are not already face varying and unrolled.
+    /// </summary>
+    Unroll,
+
+    /// <summary>
+    /// Unroll nothing and keep all attributes value as is.
+    /// </summary>
+    DontUnroll,
+
+    /// <summary>
+    /// The need to unroll or not is undetermined.
+    /// </summary>
+    None,
+  }
+
+  /// <summary>
   /// Indicates how the scene should be imported from USD to Unity.
   /// </summary>
   [System.Serializable]
@@ -105,6 +126,8 @@ namespace Unity.Formats.USD {
     public bool importSceneInstances = true;
     public bool importPointInstances = true;
     public bool importMonoBehaviours = false;
+
+    public FaceVaryingOption attrUnrollNeeded = FaceVaryingOption.None;
 
     /// <summary>
     /// Typically USD data is right-handed and Unity is left handed; this option indicates how
