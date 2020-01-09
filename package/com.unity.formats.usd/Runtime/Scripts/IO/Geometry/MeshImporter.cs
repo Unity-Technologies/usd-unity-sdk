@@ -264,7 +264,8 @@ namespace Unity.Formats.USD {
       // rely on the UnityEngine.Mesh API.
 
       Material mat = renderer.sharedMaterial;
-      bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
+      bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
+                              options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
 
       //
       // Points.
