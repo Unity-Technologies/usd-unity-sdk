@@ -84,7 +84,7 @@ namespace Unity.Formats.USD {
         var cam = go.GetComponent<Camera>();
         if (cam != null)
         {
-          go.transform.rotation *= Quaternion.Euler(180.0f, 0.0f, 180.0f);
+          go.transform.localRotation *= Quaternion.Euler(0.0f, 180.0f, 0.0f);
         }
       }
 #endif
