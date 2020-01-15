@@ -75,19 +75,6 @@ namespace Unity.Formats.USD {
       go.transform.localScale = localScale;
       go.transform.localRotation = localRot;
       UnityEngine.Profiling.Profiler.EndSample();
-      
-      // In order to match FBX importer buggy behavior, the camera xform need an extra rotation.
-      // FBX importer is fixed in 2020 though with an option to do a DeepBake
-#if !UNITY_2020_1_OR_NEWER
-      if (options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX)
-      {
-        var cam = go.GetComponent<Camera>();
-        if (cam != null)
-        {
-          go.transform.rotation *= Quaternion.Euler(180.0f, 0.0f, 180.0f);
-        }
-      }
-#endif
     }
 
     /// <summary>
