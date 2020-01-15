@@ -51,8 +51,8 @@ test_{{ platform.name }}_{{ editor.version }}:
         - "upm-ci~/test-results/**/*"
   dependencies:
     - .yamato/upm-ci.yml#pack
-      {% endfor %}
-      {% endfor %}
+{% endfor %}
+{% endfor %}
 
 # Don't run test coverage on Unity version older than 2019.2
 {% for editor in test_editors_old %}
@@ -72,8 +72,8 @@ test_{{ platform.name }}_{{ editor.version }}:
         - "upm-ci~/test-results/**/*"
   dependencies:
     - .yamato/upm-ci.yml#pack
-      {% endfor %}
-      {% endfor %}
+{% endfor %}
+{% endfor %}
 
 test_trigger:
   name: Tests Trigger
