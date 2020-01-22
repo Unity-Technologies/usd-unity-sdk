@@ -84,7 +84,7 @@ namespace Unity.Formats.USD {
       }
     }
 
-    private static Scene InitForSave(string filePath) {
+    public static Scene InitForSave(string filePath) {
       string fileDir = Path.GetDirectoryName(filePath);
 
       if (!string.IsNullOrEmpty(fileDir) && !Directory.Exists(fileDir)) {

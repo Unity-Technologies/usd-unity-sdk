@@ -46,6 +46,8 @@ namespace Unity.Formats.USD {
 
     public ClipCaps clipCaps { get { return ClipCaps.None; } }
 
+    public bool IsUSDZ => !string.IsNullOrEmpty(m_usdFile) && m_usdFile.ToLowerInvariant().EndsWith(".usdz");
+
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner) {
       var ret = ScriptPlayable<UsdRecorderBehaviour>.Create(graph);
       var behaviour = ret.GetBehaviour();
