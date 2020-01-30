@@ -1563,6 +1563,14 @@ class "PointBased" (
     providing common attributes such as normals and velocities."""
 )
 {
+    vector3f[] accelerations (
+        doc = """If provided, 'accelerations' should be used with
+        velocities to compute positions between samples for the 'points'
+        attribute rather than interpolating between neighboring 'points'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     uniform bool doubleSided = 0 (
         doc = """Although some renderers treat all parametric or polygonal
         surfaces as if they were effectively laminae with outward-facing
@@ -1752,6 +1760,14 @@ class Mesh "Mesh" (
     precedence."""
 )
 {
+    vector3f[] accelerations (
+        doc = """If provided, 'accelerations' should be used with
+        velocities to compute positions between samples for the 'points'
+        attribute rather than interpolating between neighboring 'points'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     int[] cornerIndices = [] (
         doc = "The vertex indices of all vertices that are sharp corners."
     )
@@ -2110,6 +2126,14 @@ class NurbsPatch "NurbsPatch" (
     """
 )
 {
+    vector3f[] accelerations (
+        doc = """If provided, 'accelerations' should be used with
+        velocities to compute positions between samples for the 'points'
+        attribute rather than interpolating between neighboring 'points'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     uniform bool doubleSided = 0 (
         doc = """Although some renderers treat all parametric or polygonal
         surfaces as if they were effectively laminae with outward-facing
@@ -2374,6 +2398,14 @@ class "Curves" (
              RenderMan specification for NURBS Patches."""
 )
 {
+    vector3f[] accelerations (
+        doc = """If provided, 'accelerations' should be used with
+        velocities to compute positions between samples for the 'points'
+        attribute rather than interpolating between neighboring 'points'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     int[] curveVertexCounts (
         doc = """Curves-derived primitives can represent multiple distinct,
         potentially disconnected curves.  The length of 'curveVertexCounts'
@@ -2581,8 +2613,6 @@ class BasisCurves "BasisCurves" (
     bezier        | 3
     catmullRom    | 1
     bspline       | 1
-    hermite       | 2
-    power         | 4
     
     The first segment of a cubic (nonperiodic) curve is always defined by its
     first four points. The vstep is the increment used to determine what
@@ -2596,25 +2626,48 @@ class BasisCurves "BasisCurves" (
     properly divides by your vstep. (The indices described are relative to
     the initial vertex index for a batched curve.)
 
-    For periodic curves, at least one of the curves' initial vertices are
-    repeated to close the curve.
-    (TODO: Explain the rules for how to repeat vertices for periodic curves.)
+    For periodic curves, at least one of the curve's initial vertices are
+    repeated to close the curve. For cubic curves, the number of vertices
+    repeated is '4 - vstep'. For linear curves, only one vertex is repeated
+    to close the loop.
+    
+    Pinned curves are a special case of nonperiodic curves that only affects
+    the behavior of cubic Bspline and Catmull-Rom curves. To evaluate or render
+    pinned curves, a client must effectively add 'phantom points' at the 
+    beginning and end of every curve in a batch.  These phantom points
+    are injected to ensure that the inteprolated curve begins at P[0] and
+    ends at P[n-1].
+    
+    For a curve with initial point P[0] and last point P[n-1], the phantom
+    points are defined as.
+    P[-1]  = 2 * P[0] - P[1]
+    P[n] = 2 * P[n-1] - P[n-2]
+
+    Pinned cubic curves will (usually) have to be unpacked into the standard
+    nonperiodic representation before rendering. This unpacking can add some 
+    additional overhead. However, using pinned curves reduces the amount of
+    data recorded in a scene and (more importantly) better records the
+    authors' intent for interchange.
+
+    \\note The additional phantom points mean that the minimum curve vertex
+    count for cubic bspline and catmullRom curves is 2.
 
     Linear curve segments are defined by two vertices.
     A two segment linear curve's first segment would be defined by
     interpolating vertices [0, 1]. The second segment would be defined by 
-    vertices [1, 2]. (Again, for a batched curve indices are relative to
+    vertices [1, 2]. (Again, for a batched curve, indices are relative to
     the initial vertex index.)
 
     When validating curve topology, each renderable entry in the
     curveVertexCounts vector must pass this check.
 
-    type    | wrap           | validitity
-    ------- | -------------- | ----------------
-    linear  | nonperiodic    | curveVertexCounts[i] > 2
-    linear  | periodic       | curveVertexCounts[i] > 3
-    cubic   | nonperiodic    | (curveVertexCounts[i] - 4) % vstep == 0
-    cubic   | periodic       | (curveVertexCounts[i]) % vstep == 0
+    type    | wrap                        | validitity
+    ------- | --------------------------- | ----------------
+    linear  | nonperiodic                 | curveVertexCounts[i] > 2
+    linear  | periodic                    | curveVertexCounts[i] > 3
+    cubic   | nonperiodic                 | (curveVertexCounts[i] - 4) % vstep == 0
+    cubic   | periodic                    | (curveVertexCounts[i]) % vstep == 0
+    cubic   | pinned (catmullRom/bspline) | (curveVertexCounts[i] - 2) >= 0
 
     Cubic Vertex Interpolation
  
@@ -2650,21 +2703,22 @@ class BasisCurves "BasisCurves" (
     like '[:]' (to describe all members of an array) and 'len(...)' 
     (to describe the length of an array) are used.
 
-    type    | wrap          | curve segment count                    | batch segment count                                                       
-    ------- | ------------- | -------------------------------------- | --------------------------
-    linear  | nonperiodic   | curveVertexCounts[i] - 1               | sum(curveVertexCounts[:]) - len(curveVertexCounts)
-    linear  | periodic      | curveVertexCounts[i]                   | sum(curveVertexCounts[:])
-    cubic   | nonperiodic   | (curveVertexCounts[i] - 4) / vstep + 1 | sum(curveVertexCounts[:] - 4) / vstep + len(curveVertexCounts)
-    cubic   | periodic      | curveVertexCounts[i] / vstep           | sum(curveVertexCounts[:]) / vstep
+    type    | wrap                        | curve segment count                    | batch segment count                                                       
+    ------- | --------------------------- | -------------------------------------- | --------------------------
+    linear  | nonperiodic                 | curveVertexCounts[i] - 1               | sum(curveVertexCounts[:]) - len(curveVertexCounts)
+    linear  | periodic                    | curveVertexCounts[i]                   | sum(curveVertexCounts[:])
+    cubic   | nonperiodic                 | (curveVertexCounts[i] - 4) / vstep + 1 | sum(curveVertexCounts[:] - 4) / vstep + len(curveVertexCounts)
+    cubic   | periodic                    | curveVertexCounts[i] / vstep           | sum(curveVertexCounts[:]) / vstep
+    cubic   | pinned (catmullRom/bspline) | (curveVertexCounts[i] - 2) + 1         | sum(curveVertexCounts[:] - 2) + len(curveVertexCounts)
  
     The following table descrives the expected size of varying
     (linearly interpolated) data, derived from the segment counts computed
     above.
 
-    wrap          | curve varying count          | batch varying count
-    ------------- | ---------------------------- | ------------------------------------------------
-    nonperiodic   | segmentCounts[i] + 1         | sum(segmentCounts[:]) + len(curveVertexCounts)
-    periodic      | segmentCounts[i]             | sum(segmentCounts[:])
+    wrap                | curve varying count          | batch varying count
+    ------------------- | ---------------------------- | ------------------------------------------------
+    nonperiodic/pinned  | segmentCounts[i] + 1         | sum(segmentCounts[:]) + len(curveVertexCounts)
+    periodic            | segmentCounts[i]             | sum(segmentCounts[:])
 
     Both curve types additionally define 'constant' interpolation for the
     entire prim and 'uniform' interpolation as per curve data.
@@ -2735,6 +2789,14 @@ class BasisCurves "BasisCurves" (
 """
 )
 {
+    vector3f[] accelerations (
+        doc = """If provided, 'accelerations' should be used with
+        velocities to compute positions between samples for the 'points'
+        attribute rather than interpolating between neighboring 'points'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     uniform token basis = "bezier" (
         allowedTokens = ["bezier", "bspline", "catmullRom", "hermite", "power"]
         doc = "The basis specifies the vstep and matrix used for cubic interpolation."
@@ -2910,10 +2972,12 @@ class BasisCurves "BasisCurves" (
         and 'primvars:widths' are both specified, the latter has precedence."""
     )
     uniform token wrap = "nonperiodic" (
-        allowedTokens = ["nonperiodic", "periodic"]
+        allowedTokens = ["nonperiodic", "periodic", "pinned"]
         doc = """If wrap is set to periodic, the curve when rendered will 
         repeat the initial vertices (dependent on the vstep) to close the
-        curve."""
+        curve. If wrap is set to 'pinned', phantom points may be created
+        to ensure that the curve interpolation starts at P[0] and ends at P[n-1].
+        """
     )
     uniform token[] xformOpOrder (
         doc = """Encodes the sequence of transformation operations in the
@@ -2952,6 +3016,14 @@ class NurbsCurves "NurbsCurves" (
     all batched curves."""
 )
 {
+    vector3f[] accelerations (
+        doc = """If provided, 'accelerations' should be used with
+        velocities to compute positions between samples for the 'points'
+        attribute rather than interpolating between neighboring 'points'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     int[] curveVertexCounts (
         doc = """Curves-derived primitives can represent multiple distinct,
         potentially disconnected curves.  The length of 'curveVertexCounts'
@@ -3163,6 +3235,14 @@ class Points "Points" (
     to have constant or varying interpolation."""
 )
 {
+    vector3f[] accelerations (
+        doc = """If provided, 'accelerations' should be used with
+        velocities to compute positions between samples for the 'points'
+        attribute rather than interpolating between neighboring 'points'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     uniform bool doubleSided = 0 (
         doc = """Although some renderers treat all parametric or polygonal
         surfaces as if they were effectively laminae with outward-facing
@@ -3563,6 +3643,14 @@ class PointInstancer "PointInstancer" (
     """
 )
 {
+    vector3f[] accelerations (
+        doc = """If authored, per-instance 'accelerations' will be used with
+        velocities to compute positions between samples for the 'positions'
+        attribute rather than interpolating between neighboring 'positions'
+        samples. Acceleration is measured in position units per second-squared.
+        To convert to position units per squared UsdTimeCode, divide by the
+        square of UsdStage::GetTimeCodesPerSecond()."""
+    )
     vector3f[] angularVelocities (
         doc = """If authored, per-instance angular velocity vector to be used for
       interoplating orientations.  Angular velocities should be considered
@@ -3755,7 +3843,8 @@ class Camera "Camera" (
     (i.e. UsdGeomGetStageUpAxis()).</b>  This means that the inverse of 
     'camXform' (the VIEW half of the <A HREF=\"http://www.glprogramming.com/red/chapter03.html#name2\">MODELVIEW transform in OpenGL parlance</A>) 
     will transform the world such that the camera is at the origin, looking 
-    down the -Z axis, with Y as the up axis.
+    down the -Z axis, with +Y as the up axis, and +X pointing to the right.
+    This describes a __right handed coordinate system__. 
     
     \\sa \\ref UsdGeom_LinAlgBasics
      """
@@ -4062,5 +4151,40 @@ class "MotionAPI" (
         
         See also ComputeVelocityScale()"""
     )
+}
+
+class "XformCommonAPI" (
+    doc = """This class provides API for authoring and retrieving a standard set
+    of component transformations which include a scale, a rotation, a 
+    scale-rotate pivot and a translation. The goal of the API is to enhance 
+    component-wise interchange. It achieves this by limiting the set of allowed 
+    basic ops and by specifying the order in which they are applied. In addition
+    to the basic set of ops, the 'resetXformStack' bit can also be set to 
+    indicate whether the underlying xformable resets the parent transformation 
+    (i.e. does not inherit it's parent's transformation). 
+
+    \\sa UsdGeomXformCommonAPI::GetResetXformStack()
+    \\sa UsdGeomXformCommonAPI::SetResetXformStack()
+
+    The operator-bool for the class will inform you whether an existing 
+    xformable is compatible with this API.
+
+    The scale-rotate pivot is represented by a pair of (translate, 
+    inverse-translate) xformOps around the scale and rotate operations.
+    The rotation operation can be any of the six allowed Euler angle sets.
+    \\sa UsdGeomXformOp::Type. 
+
+    The xformOpOrder of an xformable that has all of the supported basic ops 
+    is as follows:
+    [\"xformOp:translate\", \"xformOp:translate:pivot\", \"xformOp:rotateXYZ\",
+    \"xformOp:scale\", \"!invert!xformOp:translate:pivot\"].
+
+    It is worth noting that all of the ops are optional. For example, an 
+    xformable may have only a translate or a rotate. It would still be 
+    considered as compatible with this API. Individual SetTranslate(), 
+    SetRotate(), SetScale() and SetPivot() methods are provided by this API 
+    to allow such sparse authoring."""
+)
+{
 }
 
