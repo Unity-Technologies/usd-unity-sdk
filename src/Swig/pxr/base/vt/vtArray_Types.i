@@ -18,6 +18,11 @@ WRAP_EQUAL(SdfAssetPathArray)
 %template (SdfAssetPathArray) VtArray<SdfAssetPath>;
 typedef VtArray<SdfAssetPath> SdfAssetPathArray;
 
+CSHARP_ARRAYS(SdfTimeCode, SdfTimeCode);
+WRAP_EQUAL(SdfTimeCodeArray)
+%template (SdfTimeCodeArray) VtArray<SdfTimeCode>;
+typedef VtArray<SdfTimeCode> SdfTimeCodeArray;
+
 CSHARP_ARRAYS(bool, bool);
 WRAP_EQUAL(VtBoolArray)
 %template (VtBoolArray) VtArray<bool>;
@@ -80,8 +85,8 @@ typedef VtArray<GfQuath> VtQuathArray;
 
 CSHARP_ARRAYS(std::string, string);
 WRAP_EQUAL(VtStringArray)
-%template (VtStringArray) VtArray<std::string >;
-typedef VtArray<std::string > VtStringArray;
+%template (VtStringArray) VtArray<std::string>;
+typedef VtArray<std::string> VtStringArray;
 
 CSHARP_ARRAYS(TfToken, TfToken);
 WRAP_EQUAL(VtTokenArray)

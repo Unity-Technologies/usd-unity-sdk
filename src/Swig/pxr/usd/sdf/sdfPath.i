@@ -71,4 +71,4 @@ typedef std::vector<SdfPath> SdfPathVector;
   }
 }
 
-%include "pxr/usd/sdf/path.h"
+%include "third_party/include/pxr/usd/sdf/path.h"

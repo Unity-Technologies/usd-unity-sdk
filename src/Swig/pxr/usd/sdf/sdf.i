@@ -46,3 +46,5 @@
 %include "sdfLayer.i"
 %include "sdfLayerTree.i"
 
+%include "sdfTimeCode.i"
+

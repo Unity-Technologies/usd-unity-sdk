@@ -268,6 +268,30 @@ extern void VtValueToSdfAssetPathArray(VtValue const& value, SdfAssetPathArray* 
   }
 }
 
+extern SdfTimeCode VtValueToSdfTimeCode(VtValue const& value) {
+  if (value.IsHolding<SdfTimeCode>()) {
+    return value.UncheckedGet<SdfTimeCode>();
+  }
+  return SdfTimeCode();
+}
+extern void VtValueToSdfTimeCode(VtValue const& value, SdfTimeCode* output) {
+  if (value.IsHolding<SdfTimeCode>()) {
+    *output = value.UncheckedGet<SdfTimeCode>();
+  }
+}
+
+extern SdfTimeCodeArray VtValueToSdfTimeCodeArray(VtValue const& value) {
+  if (value.IsHolding<SdfTimeCodeArray>()) {
+    return value.UncheckedGet<SdfTimeCodeArray>();
+  }
+  return SdfTimeCodeArray();
+}
+extern void VtValueToSdfTimeCodeArray(VtValue const& value, SdfTimeCodeArray* output) {
+  if (value.IsHolding<SdfTimeCodeArray>()) {
+    *output = value.UncheckedGet<SdfTimeCodeArray>();
+  }
+}
+
 extern TfToken VtValueToTfToken(VtValue const& value) {
   if (value.IsHolding<TfToken>()) {
     return value.UncheckedGet<TfToken>();

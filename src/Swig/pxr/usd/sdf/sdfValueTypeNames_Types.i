@@ -42,7 +42,7 @@
     SdfValueTypeName SdfGetValueTypeQuatdArray() { return SdfValueTypeNames->QuatdArray; }
     SdfValueTypeName SdfGetValueTypePoint3hArray() { return SdfValueTypeNames->Point3hArray; }
     SdfValueTypeName SdfGetValueTypeString() { return SdfValueTypeNames->String; }
-    SdfValueTypeName SdfGetValueTypeDouble4() { return SdfValueTypeNames->Double4; }
+    SdfValueTypeName SdfGetValueTypeVector3hArray() { return SdfValueTypeNames->Vector3hArray; }
     SdfValueTypeName SdfGetValueTypeNormal3dArray() { return SdfValueTypeNames->Normal3dArray; }
     SdfValueTypeName SdfGetValueTypeColor3dArray() { return SdfValueTypeNames->Color3dArray; }
     SdfValueTypeName SdfGetValueTypeTexCoord2dArray() { return SdfValueTypeNames->TexCoord2dArray; }
@@ -68,7 +68,7 @@
     SdfValueTypeName SdfGetValueTypeDouble3() { return SdfValueTypeNames->Double3; }
     SdfValueTypeName SdfGetValueTypeUInt64Array() { return SdfValueTypeNames->UInt64Array; }
     SdfValueTypeName SdfGetValueTypeStringArray() { return SdfValueTypeNames->StringArray; }
-    SdfValueTypeName SdfGetValueTypeVector3hArray() { return SdfValueTypeNames->Vector3hArray; }
+    SdfValueTypeName SdfGetValueTypeDouble4() { return SdfValueTypeNames->Double4; }
     SdfValueTypeName SdfGetValueTypeMatrix3dArray() { return SdfValueTypeNames->Matrix3dArray; }
     SdfValueTypeName SdfGetValueTypeQuatf() { return SdfValueTypeNames->Quatf; }
     SdfValueTypeName SdfGetValueTypeDouble3Array() { return SdfValueTypeNames->Double3Array; }
@@ -81,6 +81,7 @@
     SdfValueTypeName SdfGetValueTypeInt3() { return SdfValueTypeNames->Int3; }
     SdfValueTypeName SdfGetValueTypeBoolArray() { return SdfValueTypeNames->BoolArray; }
     SdfValueTypeName SdfGetValueTypeHalf2Array() { return SdfValueTypeNames->Half2Array; }
+    SdfValueTypeName SdfGetValueTypeTimeCode() { return SdfValueTypeNames->TimeCode; }
     SdfValueTypeName SdfGetValueTypeMatrix4d() { return SdfValueTypeNames->Matrix4d; }
     SdfValueTypeName SdfGetValueTypeInt() { return SdfValueTypeNames->Int; }
     SdfValueTypeName SdfGetValueTypeDouble4Array() { return SdfValueTypeNames->Double4Array; }
@@ -88,6 +89,7 @@
     SdfValueTypeName SdfGetValueTypeFloat4() { return SdfValueTypeNames->Float4; }
     SdfValueTypeName SdfGetValueTypeFloat2() { return SdfValueTypeNames->Float2; }
     SdfValueTypeName SdfGetValueTypeFloat3() { return SdfValueTypeNames->Float3; }
+    SdfValueTypeName SdfGetValueTypeTimeCodeArray() { return SdfValueTypeNames->TimeCodeArray; }
     SdfValueTypeName SdfGetValueTypeUIntArray() { return SdfValueTypeNames->UIntArray; }
     SdfValueTypeName SdfGetValueTypeTexCoord2d() { return SdfValueTypeNames->TexCoord2d; }
     SdfValueTypeName SdfGetValueTypeHalf3() { return SdfValueTypeNames->Half3; }
