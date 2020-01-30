@@ -13,7 +13,6 @@ namespace pxr {
 public enum SdfVariability {
   SdfVariabilityVarying,
   SdfVariabilityUniform,
-  SdfVariabilityConfig,
   SdfNumVariabilities
 }
 

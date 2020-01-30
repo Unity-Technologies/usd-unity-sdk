@@ -72,6 +72,50 @@ public class UsdRiPxrIntMultLightFilter : UsdLuxLightFilter {
     return ret;
   }
 
+  public UsdAttribute GetRiIntensityAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_GetRiIntensityAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateRiIntensityAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_CreateRiIntensityAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateRiIntensityAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_CreateRiIntensityAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateRiIntensityAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_CreateRiIntensityAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute GetColorSaturationAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_GetColorSaturationAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateColorSaturationAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_CreateColorSaturationAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateColorSaturationAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_CreateColorSaturationAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateColorSaturationAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrIntMultLightFilter_CreateColorSaturationAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
 }
 
 }

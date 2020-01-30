@@ -57,10 +57,10 @@ public class VtDoubleArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtDoubleArray(uint n, double value) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_5(n, value), true) {
+  public VtDoubleArray(uint n) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_5(n), true) {
   }
 
-  public VtDoubleArray(uint n) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_6(n), true) {
+  public VtDoubleArray(uint n, double value) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_6(n, value), true) {
   }
 
   public void push_back(double elem) {
@@ -96,10 +96,6 @@ public class VtDoubleArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtDoubleArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, double fill) {
-    UsdCsPINVOKE.VtDoubleArray_assign(swigCPtr, n, fill);
   }
 
   public void swap(VtDoubleArray other) {

@@ -51,16 +51,6 @@ public class UsdShadeUtils : global::System.IDisposable {
     return ret;
   }
 
-  public static bool ReadOldEncoding() {
-    bool ret = UsdCsPINVOKE.UsdShadeUtils_ReadOldEncoding();
-    return ret;
-  }
-
-  public static bool WriteNewEncoding() {
-    bool ret = UsdCsPINVOKE.UsdShadeUtils_WriteNewEncoding();
-    return ret;
-  }
-
   public UsdShadeUtils() : this(UsdCsPINVOKE.new_UsdShadeUtils(), true) {
   }
 

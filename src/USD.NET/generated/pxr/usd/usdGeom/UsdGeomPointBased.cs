@@ -110,6 +110,28 @@ public class UsdGeomPointBased : UsdGeomGprim {
     return ret;
   }
 
+  public UsdAttribute GetAccelerationsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointBased_GetAccelerationsAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointBased_CreateAccelerationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointBased_CreateAccelerationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateAccelerationsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointBased_CreateAccelerationsAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetNormalsAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointBased_GetNormalsAttr(swigCPtr), true);
     return ret;
@@ -151,6 +173,24 @@ public class UsdGeomPointBased : UsdGeomGprim {
 
   public static bool ComputeExtent(VtVec3fArray points, GfMatrix4d transform, VtVec3fArray extent) {
     bool ret = UsdCsPINVOKE.UsdGeomPointBased_ComputeExtent__SWIG_1(VtVec3fArray.getCPtr(points), GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ComputePointsAtTime(VtVec3fArray points, UsdTimeCode time, UsdTimeCode baseTime) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointBased_ComputePointsAtTime__SWIG_0(swigCPtr, VtVec3fArray.getCPtr(points), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ComputePointsAtTimes(VtVec3fArrayVector pointsArray, UsdTimeCodeVector times, UsdTimeCode baseTime) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointBased_ComputePointsAtTimes(swigCPtr, VtVec3fArrayVector.getCPtr(pointsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool ComputePointsAtTime(VtVec3fArray points, UsdStageWeakPtr stage, UsdTimeCode time, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray accelerations, float velocityScale) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointBased_ComputePointsAtTime__SWIG_1(VtVec3fArray.getCPtr(points), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(accelerations), velocityScale);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

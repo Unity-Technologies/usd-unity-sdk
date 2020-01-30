@@ -40,6 +40,40 @@ public class SdfPathListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfPathListOp CreateExplicit(SdfPathVector explicitItems) {
+    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_CreateExplicit__SWIG_0(SdfPathVector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfPathListOp CreateExplicit() {
+    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfPathListOp Create(SdfPathVector prependedItems, SdfPathVector appendedItems, SdfPathVector deletedItems) {
+    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_0(SdfPathVector.getCPtr(prependedItems), SdfPathVector.getCPtr(appendedItems), SdfPathVector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfPathListOp Create(SdfPathVector prependedItems, SdfPathVector appendedItems) {
+    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_1(SdfPathVector.getCPtr(prependedItems), SdfPathVector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfPathListOp Create(SdfPathVector prependedItems) {
+    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_2(SdfPathVector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfPathListOp Create() {
+    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfPathListOp() : this(UsdCsPINVOKE.new_SdfPathListOp(), true) {
   }
 
@@ -50,6 +84,12 @@ public class SdfPathListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfPathListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(SdfPath item) {
+    bool ret = UsdCsPINVOKE.SdfPathListOp_HasItem(swigCPtr, SdfPath.getCPtr(item));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

@@ -57,11 +57,11 @@ public class VtHalfArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtHalfArray(uint n, GfHalf value) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_5(n, GfHalf.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtHalfArray(uint n) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_5(n), true) {
   }
 
-  public VtHalfArray(uint n) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_6(n), true) {
+  public VtHalfArray(uint n, GfHalf value) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_6(n, GfHalf.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(GfHalf elem) {
@@ -98,11 +98,6 @@ public class VtHalfArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtHalfArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, GfHalf fill) {
-    UsdCsPINVOKE.VtHalfArray_assign(swigCPtr, n, GfHalf.getCPtr(fill));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void swap(VtHalfArray other) {

@@ -40,19 +40,23 @@ public class NdrNodeDiscoveryResult : global::System.IDisposable {
     }
   }
 
-  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri, string sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, string blindData) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_0(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri, sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), blindData), true) {
+  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri, string sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, string blindData, TfToken subIdentifier) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_0(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri, sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), blindData, TfToken.getCPtr(subIdentifier)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri, string sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_1(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri, sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true) {
+  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri, string sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, string blindData) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_1(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri, sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), blindData), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri, string sourceCode) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_2(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri, sourceCode), true) {
+  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri, string sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_2(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri, sourceCode, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_3(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri), true) {
+  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri, string sourceCode) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_3(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri, sourceCode), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public NdrNodeDiscoveryResult(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken discoveryType, TfToken sourceType, string uri, string resolvedUri) : this(UsdCsPINVOKE.new_NdrNodeDiscoveryResult__SWIG_4(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(discoveryType), TfToken.getCPtr(sourceType), uri, resolvedUri), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -178,6 +182,17 @@ public class NdrNodeDiscoveryResult : global::System.IDisposable {
     get {
       string ret = UsdCsPINVOKE.NdrNodeDiscoveryResult_blindData_get(swigCPtr);
       if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    } 
+  }
+
+  public TfToken subIdentifier {
+    set {
+      UsdCsPINVOKE.NdrNodeDiscoveryResult_subIdentifier_set(swigCPtr, TfToken.getCPtr(value));
+    } 
+    get {
+      global::System.IntPtr cPtr = UsdCsPINVOKE.NdrNodeDiscoveryResult_subIdentifier_get(swigCPtr);
+      TfToken ret = (cPtr == global::System.IntPtr.Zero) ? null : new TfToken(cPtr, false);
       return ret;
     } 
   }

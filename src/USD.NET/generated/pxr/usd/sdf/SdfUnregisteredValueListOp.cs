@@ -40,6 +40,40 @@ public class SdfUnregisteredValueListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfUnregisteredValueListOp CreateExplicit(StdUnregisteredValueVector explicitItems) {
+    SdfUnregisteredValueListOp ret = new SdfUnregisteredValueListOp(UsdCsPINVOKE.SdfUnregisteredValueListOp_CreateExplicit__SWIG_0(StdUnregisteredValueVector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUnregisteredValueListOp CreateExplicit() {
+    SdfUnregisteredValueListOp ret = new SdfUnregisteredValueListOp(UsdCsPINVOKE.SdfUnregisteredValueListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfUnregisteredValueListOp Create(StdUnregisteredValueVector prependedItems, StdUnregisteredValueVector appendedItems, StdUnregisteredValueVector deletedItems) {
+    SdfUnregisteredValueListOp ret = new SdfUnregisteredValueListOp(UsdCsPINVOKE.SdfUnregisteredValueListOp_Create__SWIG_0(StdUnregisteredValueVector.getCPtr(prependedItems), StdUnregisteredValueVector.getCPtr(appendedItems), StdUnregisteredValueVector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUnregisteredValueListOp Create(StdUnregisteredValueVector prependedItems, StdUnregisteredValueVector appendedItems) {
+    SdfUnregisteredValueListOp ret = new SdfUnregisteredValueListOp(UsdCsPINVOKE.SdfUnregisteredValueListOp_Create__SWIG_1(StdUnregisteredValueVector.getCPtr(prependedItems), StdUnregisteredValueVector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUnregisteredValueListOp Create(StdUnregisteredValueVector prependedItems) {
+    SdfUnregisteredValueListOp ret = new SdfUnregisteredValueListOp(UsdCsPINVOKE.SdfUnregisteredValueListOp_Create__SWIG_2(StdUnregisteredValueVector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUnregisteredValueListOp Create() {
+    SdfUnregisteredValueListOp ret = new SdfUnregisteredValueListOp(UsdCsPINVOKE.SdfUnregisteredValueListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfUnregisteredValueListOp() : this(UsdCsPINVOKE.new_SdfUnregisteredValueListOp(), true) {
   }
 
@@ -50,6 +84,12 @@ public class SdfUnregisteredValueListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfUnregisteredValueListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(SdfUnregisteredValue item) {
+    bool ret = UsdCsPINVOKE.SdfUnregisteredValueListOp_HasItem(swigCPtr, SdfUnregisteredValue.getCPtr(item));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

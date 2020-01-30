@@ -51,8 +51,27 @@ public class NdrRegistry : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public void SetExtraParserPlugins(TfTypeVector pluginTypes) {
+    UsdCsPINVOKE.NdrRegistry_SetExtraParserPlugins(swigCPtr, TfTypeVector.getCPtr(pluginTypes));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public NdrNode GetNodeFromAsset(SdfAssetPath asset, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, TfToken subIdentifier, TfToken sourceType) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeFromAsset__SWIG_0(swigCPtr, SdfAssetPath.getCPtr(asset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), TfToken.getCPtr(subIdentifier), TfToken.getCPtr(sourceType));
+    NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public NdrNode GetNodeFromAsset(SdfAssetPath asset, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, TfToken subIdentifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeFromAsset__SWIG_1(swigCPtr, SdfAssetPath.getCPtr(asset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), TfToken.getCPtr(subIdentifier));
+    NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public NdrNode GetNodeFromAsset(SdfAssetPath asset, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeFromAsset(swigCPtr, SdfAssetPath.getCPtr(asset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeFromAsset__SWIG_2(swigCPtr, SdfAssetPath.getCPtr(asset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
     NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -197,7 +216,7 @@ public class NdrRegistry : global::System.IDisposable {
   }
 
   public TfTokenVector GetAllNodeSourceTypes() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.NdrRegistry_GetAllNodeSourceTypes(swigCPtr), false);
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.NdrRegistry_GetAllNodeSourceTypes(swigCPtr), true);
     return ret;
   }
 

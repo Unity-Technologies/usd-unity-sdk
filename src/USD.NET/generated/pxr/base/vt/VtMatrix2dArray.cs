@@ -57,11 +57,11 @@ public class VtMatrix2dArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtMatrix2dArray(uint n, GfMatrix2d value) : this(UsdCsPINVOKE.new_VtMatrix2dArray__SWIG_5(n, GfMatrix2d.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtMatrix2dArray(uint n) : this(UsdCsPINVOKE.new_VtMatrix2dArray__SWIG_5(n), true) {
   }
 
-  public VtMatrix2dArray(uint n) : this(UsdCsPINVOKE.new_VtMatrix2dArray__SWIG_6(n), true) {
+  public VtMatrix2dArray(uint n, GfMatrix2d value) : this(UsdCsPINVOKE.new_VtMatrix2dArray__SWIG_6(n, GfMatrix2d.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(GfMatrix2d elem) {
@@ -98,11 +98,6 @@ public class VtMatrix2dArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtMatrix2dArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, GfMatrix2d fill) {
-    UsdCsPINVOKE.VtMatrix2dArray_assign(swigCPtr, n, GfMatrix2d.getCPtr(fill));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void swap(VtMatrix2dArray other) {

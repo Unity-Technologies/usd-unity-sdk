@@ -222,6 +222,12 @@ public class UsdGeomPrimvar : global::System.IDisposable {
     return ret;
   }
 
+  public static bool ComputeFlattened(VtValue value, VtValue attrVal, VtIntArray indices, /*cstype*/ out string errString) {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_ComputeFlattened__SWIG_4(VtValue.getCPtr(value), VtValue.getCPtr(attrVal), VtIntArray.getCPtr(indices), out errString);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool IsIdTarget() {
     bool ret = UsdCsPINVOKE.UsdGeomPrimvar_IsIdTarget(swigCPtr);
     return ret;

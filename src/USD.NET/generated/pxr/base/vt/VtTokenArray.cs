@@ -57,11 +57,11 @@ public class VtTokenArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtTokenArray(uint n, TfToken value) : this(UsdCsPINVOKE.new_VtTokenArray__SWIG_5(n, TfToken.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtTokenArray(uint n) : this(UsdCsPINVOKE.new_VtTokenArray__SWIG_5(n), true) {
   }
 
-  public VtTokenArray(uint n) : this(UsdCsPINVOKE.new_VtTokenArray__SWIG_6(n), true) {
+  public VtTokenArray(uint n, TfToken value) : this(UsdCsPINVOKE.new_VtTokenArray__SWIG_6(n, TfToken.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(TfToken elem) {
@@ -98,11 +98,6 @@ public class VtTokenArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtTokenArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, TfToken fill) {
-    UsdCsPINVOKE.VtTokenArray_assign(swigCPtr, n, TfToken.getCPtr(fill));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void swap(VtTokenArray other) {

@@ -40,14 +40,14 @@ public class SdfLayer : global::System.IDisposable {
     }
   }
 
-  public virtual SWIGTYPE_p_SdfSchemaBase GetSchema() {
+  public SWIGTYPE_p_SdfSchemaBase GetSchema() {
     SWIGTYPE_p_SdfSchemaBase ret = new SWIGTYPE_p_SdfSchemaBase(UsdCsPINVOKE.SdfLayer_GetSchema(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr GetFileFormat() {
-    SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr(UsdCsPINVOKE.SdfLayer_GetFileFormat(swigCPtr), true);
+    SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr ret = new SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr(UsdCsPINVOKE.SdfLayer_GetFileFormat(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -196,21 +196,35 @@ public class SdfLayer : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static SdfLayer CreateAnonymous(string tag, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_0(tag, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static SdfLayer CreateAnonymous(string tag) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_0(tag);
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_1(tag);
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static SdfLayer CreateAnonymous() {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_1();
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_2();
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     return ret;
   }
 
+  public static SdfLayer CreateAnonymous(string tag, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr format, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t args) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_3(tag, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(format), SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t.getCPtr(args));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static SdfLayer CreateAnonymous(string tag, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr format) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_2(tag, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(format));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdfLayer_CreateAnonymous__SWIG_4(tag, SWIGTYPE_p_TfDeclarePtrsT_SdfFileFormat_t__ConstPtr.getCPtr(format));
     SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -410,12 +424,6 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__type_info GetFieldTypeid(SWIGTYPE_p_SdfAbstractDataSpecId id, TfToken name) {
-    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(UsdCsPINVOKE.SdfLayer_GetFieldTypeid__SWIG_0(swigCPtr, SWIGTYPE_p_SdfAbstractDataSpecId.getCPtr(id), TfToken.getCPtr(name)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public SdfSpecType GetSpecType(SdfPath path) {
     SdfSpecType ret = (SdfSpecType)UsdCsPINVOKE.SdfLayer_GetSpecType(swigCPtr, SdfPath.getCPtr(path));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -434,20 +442,44 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
-  public bool HasField(SdfPath path, TfToken fieldName) {
-    bool ret = UsdCsPINVOKE.SdfLayer_HasField(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName));
+  public bool HasField(SdfPath path, TfToken fieldName, VtValue value) {
+    bool ret = UsdCsPINVOKE.SdfLayer_HasField__SWIG_0(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), VtValue.getCPtr(value));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public SWIGTYPE_p_std__type_info GetFieldTypeid(SdfPath path, TfToken fieldName) {
-    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(UsdCsPINVOKE.SdfLayer_GetFieldTypeid__SWIG_1(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName)), false);
+  public bool HasField(SdfPath path, TfToken fieldName) {
+    bool ret = UsdCsPINVOKE.SdfLayer_HasField__SWIG_1(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasField(SdfPath path, TfToken fieldName, SWIGTYPE_p_SdfAbstractDataValue value) {
+    bool ret = UsdCsPINVOKE.SdfLayer_HasField__SWIG_2(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), SWIGTYPE_p_SdfAbstractDataValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_std__type_info GetFieldTypeid(SdfPath path, TfToken name) {
+    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(UsdCsPINVOKE.SdfLayer_GetFieldTypeid(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(name)), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasFieldDictKey(SdfPath path, TfToken fieldName, TfToken keyPath, VtValue value) {
+    bool ret = UsdCsPINVOKE.SdfLayer_HasFieldDictKey__SWIG_0(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath), VtValue.getCPtr(value));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool HasFieldDictKey(SdfPath path, TfToken fieldName, TfToken keyPath) {
-    bool ret = UsdCsPINVOKE.SdfLayer_HasFieldDictKey(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath));
+    bool ret = UsdCsPINVOKE.SdfLayer_HasFieldDictKey__SWIG_1(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasFieldDictKey(SdfPath path, TfToken fieldName, TfToken keyPath, SWIGTYPE_p_SdfAbstractDataValue value) {
+    bool ret = UsdCsPINVOKE.SdfLayer_HasFieldDictKey__SWIG_2(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath), SWIGTYPE_p_SdfAbstractDataValue.getCPtr(value));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -462,6 +494,26 @@ public class SdfLayer : global::System.IDisposable {
     VtValue ret = new VtValue(UsdCsPINVOKE.SdfLayer_GetFieldDictValueByKey(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public void SetField(SdfPath path, TfToken fieldName, VtValue value) {
+    UsdCsPINVOKE.SdfLayer_SetField__SWIG_0(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetField(SdfPath path, TfToken fieldName, SWIGTYPE_p_SdfAbstractDataConstValue value) {
+    UsdCsPINVOKE.SdfLayer_SetField__SWIG_1(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), SWIGTYPE_p_SdfAbstractDataConstValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetFieldDictValueByKey(SdfPath path, TfToken fieldName, TfToken keyPath, VtValue value) {
+    UsdCsPINVOKE.SdfLayer_SetFieldDictValueByKey__SWIG_0(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath), VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetFieldDictValueByKey(SdfPath path, TfToken fieldName, TfToken keyPath, SWIGTYPE_p_SdfAbstractDataConstValue value) {
+    UsdCsPINVOKE.SdfLayer_SetFieldDictValueByKey__SWIG_1(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(fieldName), TfToken.getCPtr(keyPath), SWIGTYPE_p_SdfAbstractDataConstValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void EraseField(SdfPath path, TfToken fieldName) {
@@ -1007,6 +1059,12 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_std__setT_double_t ListTimeSamplesForPath(SdfPath path) {
+    SWIGTYPE_p_std__setT_double_t ret = new SWIGTYPE_p_std__setT_double_t(UsdCsPINVOKE.SdfLayer_ListTimeSamplesForPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool GetBracketingTimeSamples(double time, ref double tLower, ref double tUpper) {
     bool ret = UsdCsPINVOKE.SdfLayer_GetBracketingTimeSamples(swigCPtr, time, ref tLower, ref tUpper);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -1019,22 +1077,38 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__setT_double_t ListTimeSamplesForPath(SdfPath path) {
-    SWIGTYPE_p_std__setT_double_t ret = new SWIGTYPE_p_std__setT_double_t(UsdCsPINVOKE.SdfLayer_ListTimeSamplesForPath(swigCPtr, SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public bool GetBracketingTimeSamplesForPath(SdfPath path, double time, ref double tLower, ref double tUpper) {
     bool ret = UsdCsPINVOKE.SdfLayer_GetBracketingTimeSamplesForPath(swigCPtr, SdfPath.getCPtr(path), time, ref tLower, ref tUpper);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool QueryTimeSample(SdfPath path, double time) {
-    bool ret = UsdCsPINVOKE.SdfLayer_QueryTimeSample(swigCPtr, SdfPath.getCPtr(path), time);
+  public bool QueryTimeSample(SdfPath path, double time, VtValue value) {
+    bool ret = UsdCsPINVOKE.SdfLayer_QueryTimeSample__SWIG_0(swigCPtr, SdfPath.getCPtr(path), time, VtValue.getCPtr(value));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public bool QueryTimeSample(SdfPath path, double time) {
+    bool ret = UsdCsPINVOKE.SdfLayer_QueryTimeSample__SWIG_1(swigCPtr, SdfPath.getCPtr(path), time);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool QueryTimeSample(SdfPath path, double time, SWIGTYPE_p_SdfAbstractDataValue value) {
+    bool ret = UsdCsPINVOKE.SdfLayer_QueryTimeSample__SWIG_2(swigCPtr, SdfPath.getCPtr(path), time, SWIGTYPE_p_SdfAbstractDataValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void SetTimeSample(SdfPath path, double time, VtValue value) {
+    UsdCsPINVOKE.SdfLayer_SetTimeSample__SWIG_0(swigCPtr, SdfPath.getCPtr(path), time, VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetTimeSample(SdfPath path, double time, SWIGTYPE_p_SdfAbstractDataConstValue value) {
+    UsdCsPINVOKE.SdfLayer_SetTimeSample__SWIG_1(swigCPtr, SdfPath.getCPtr(path), time, SWIGTYPE_p_SdfAbstractDataConstValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void EraseTimeSample(SdfPath path, double time) {

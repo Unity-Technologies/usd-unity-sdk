@@ -40,6 +40,40 @@ public class SdfInt64ListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfInt64ListOp CreateExplicit(UsdGeomLongVector explicitItems) {
+    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_CreateExplicit__SWIG_0(UsdGeomLongVector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfInt64ListOp CreateExplicit() {
+    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems, UsdGeomLongVector appendedItems, UsdGeomLongVector deletedItems) {
+    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_0(UsdGeomLongVector.getCPtr(prependedItems), UsdGeomLongVector.getCPtr(appendedItems), UsdGeomLongVector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems, UsdGeomLongVector appendedItems) {
+    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_1(UsdGeomLongVector.getCPtr(prependedItems), UsdGeomLongVector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems) {
+    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_2(UsdGeomLongVector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfInt64ListOp Create() {
+    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfInt64ListOp() : this(UsdCsPINVOKE.new_SdfInt64ListOp(), true) {
   }
 
@@ -50,6 +84,11 @@ public class SdfInt64ListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfInt64ListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(long item) {
+    bool ret = UsdCsPINVOKE.SdfInt64ListOp_HasItem(swigCPtr, item);
     return ret;
   }
 

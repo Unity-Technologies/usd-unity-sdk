@@ -50,6 +50,11 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_UsdStageLoadRules GetLoadRules() {
+    SWIGTYPE_p_UsdStageLoadRules ret = new SWIGTYPE_p_UsdStageLoadRules(UsdCsPINVOKE.UsdStageWeakPtr_GetLoadRules(swigCPtr), false);
+    return ret;
+  }
+
   public UsdStagePopulationMask GetPopulationMask() {
     UsdStagePopulationMask ret = new UsdStagePopulationMask(UsdCsPINVOKE.UsdStageWeakPtr_GetPopulationMask(swigCPtr), true);
     return ret;

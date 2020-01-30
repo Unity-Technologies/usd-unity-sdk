@@ -57,11 +57,11 @@ public class SdfAssetPathArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SdfAssetPathArray(uint n, SdfAssetPath value) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_5(n, SdfAssetPath.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public SdfAssetPathArray(uint n) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_5(n), true) {
   }
 
-  public SdfAssetPathArray(uint n) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_6(n), true) {
+  public SdfAssetPathArray(uint n, SdfAssetPath value) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_6(n, SdfAssetPath.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(SdfAssetPath elem) {
@@ -98,11 +98,6 @@ public class SdfAssetPathArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.SdfAssetPathArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, SdfAssetPath fill) {
-    UsdCsPINVOKE.SdfAssetPathArray_assign(swigCPtr, n, SdfAssetPath.getCPtr(fill));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void swap(SdfAssetPathArray other) {

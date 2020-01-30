@@ -204,6 +204,28 @@ public class UsdRiPxrCookieLightFilter : UsdLuxLightFilter {
     return ret;
   }
 
+  public UsdAttribute GetTexturePremultipliedAlphaAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrCookieLightFilter_GetTexturePremultipliedAlphaAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateTexturePremultipliedAlphaAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrCookieLightFilter_CreateTexturePremultipliedAlphaAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateTexturePremultipliedAlphaAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrCookieLightFilter_CreateTexturePremultipliedAlphaAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateTexturePremultipliedAlphaAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrCookieLightFilter_CreateTexturePremultipliedAlphaAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetTextureInvertUAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrCookieLightFilter_GetTextureInvertUAttr(swigCPtr), true);
     return ret;

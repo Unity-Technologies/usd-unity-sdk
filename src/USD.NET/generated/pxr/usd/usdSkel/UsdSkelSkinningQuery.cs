@@ -43,7 +43,7 @@ public class UsdSkelSkinningQuery : global::System.IDisposable {
   public UsdSkelSkinningQuery() : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_0(), true) {
   }
 
-  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, UsdAttribute joints, UsdAttribute blendShapes, UsdRelationship blendShapeTargets) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), UsdAttribute.getCPtr(joints), UsdAttribute.getCPtr(blendShapes), UsdRelationship.getCPtr(blendShapeTargets)), true) {
+  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, VtTokenArray blendShapeOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, UsdAttribute joints, UsdAttribute blendShapes, UsdRelationship blendShapeTargets) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), VtTokenArray.getCPtr(blendShapeOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), UsdAttribute.getCPtr(joints), UsdAttribute.getCPtr(blendShapes), UsdRelationship.getCPtr(blendShapeTargets)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -107,8 +107,23 @@ public class UsdSkelSkinningQuery : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t GetJointMapper() {
+    SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t ret = new SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t(UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointMapper(swigCPtr), false);
+    return ret;
+  }
+
+  public SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t GetBlendShapeMapper() {
+    SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t ret = new SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeMapper(swigCPtr), false);
+    return ret;
+  }
+
   public bool GetJointOrder(VtTokenArray jointOrder) {
     bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointOrder(swigCPtr, VtTokenArray.getCPtr(jointOrder));
+    return ret;
+  }
+
+  public bool GetBlendShapeOrder(VtTokenArray blendShapes) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeOrder(swigCPtr, VtTokenArray.getCPtr(blendShapes));
     return ret;
   }
 

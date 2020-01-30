@@ -139,6 +139,11 @@ public class TfType : global::System.IDisposable {
     return ret;
   }
 
+  public uint GetNBaseTypes(TfType arg0, uint maxBases) {
+    uint ret = UsdCsPINVOKE.TfType_GetNBaseTypes(swigCPtr, TfType.getCPtr(arg0), maxBases);
+    return ret;
+  }
+
   public TfTypeVector GetDirectlyDerivedTypes() {
     TfTypeVector ret = new TfTypeVector(UsdCsPINVOKE.TfType_GetDirectlyDerivedTypes(swigCPtr), true);
     return ret;

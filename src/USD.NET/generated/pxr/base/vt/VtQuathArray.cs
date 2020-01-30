@@ -57,11 +57,11 @@ public class VtQuathArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtQuathArray(uint n, GfQuath value) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_5(n, GfQuath.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtQuathArray(uint n) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_5(n), true) {
   }
 
-  public VtQuathArray(uint n) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_6(n), true) {
+  public VtQuathArray(uint n, GfQuath value) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_6(n, GfQuath.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(GfQuath elem) {
@@ -98,11 +98,6 @@ public class VtQuathArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtQuathArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, GfQuath fill) {
-    UsdCsPINVOKE.VtQuathArray_assign(swigCPtr, n, GfQuath.getCPtr(fill));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void swap(VtQuathArray other) {

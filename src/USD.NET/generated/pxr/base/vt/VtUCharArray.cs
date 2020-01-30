@@ -57,10 +57,10 @@ public class VtUCharArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtUCharArray(uint n, byte value) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_5(n, value), true) {
+  public VtUCharArray(uint n) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_5(n), true) {
   }
 
-  public VtUCharArray(uint n) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_6(n), true) {
+  public VtUCharArray(uint n, byte value) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_6(n, value), true) {
   }
 
   public void push_back(byte elem) {
@@ -96,10 +96,6 @@ public class VtUCharArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtUCharArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, byte fill) {
-    UsdCsPINVOKE.VtUCharArray_assign(swigCPtr, n, fill);
   }
 
   public void swap(VtUCharArray other) {

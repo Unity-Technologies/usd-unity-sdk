@@ -57,11 +57,11 @@ public class VtVec4fArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtVec4fArray(uint n, GfVec4f value) : this(UsdCsPINVOKE.new_VtVec4fArray__SWIG_5(n, GfVec4f.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtVec4fArray(uint n) : this(UsdCsPINVOKE.new_VtVec4fArray__SWIG_5(n), true) {
   }
 
-  public VtVec4fArray(uint n) : this(UsdCsPINVOKE.new_VtVec4fArray__SWIG_6(n), true) {
+  public VtVec4fArray(uint n, GfVec4f value) : this(UsdCsPINVOKE.new_VtVec4fArray__SWIG_6(n, GfVec4f.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(GfVec4f elem) {
@@ -98,11 +98,6 @@ public class VtVec4fArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtVec4fArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, GfVec4f fill) {
-    UsdCsPINVOKE.VtVec4fArray_assign(swigCPtr, n, GfVec4f.getCPtr(fill));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void swap(VtVec4fArray other) {

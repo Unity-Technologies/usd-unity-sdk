@@ -419,6 +419,17 @@ public class UsdStage : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_UsdStageLoadRules GetLoadRules() {
+    SWIGTYPE_p_UsdStageLoadRules ret = new SWIGTYPE_p_UsdStageLoadRules(UsdCsPINVOKE.UsdStage_GetLoadRules(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void SetLoadRules(SWIGTYPE_p_UsdStageLoadRules rules) {
+    UsdCsPINVOKE.UsdStage_SetLoadRules(swigCPtr, SWIGTYPE_p_UsdStageLoadRules.getCPtr(rules));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public UsdStagePopulationMask GetPopulationMask() {
     UsdStagePopulationMask ret = new UsdStagePopulationMask(UsdCsPINVOKE.UsdStage_GetPopulationMask(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -57,10 +57,10 @@ public class VtBoolArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtBoolArray(uint n, bool value) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_5(n, value), true) {
+  public VtBoolArray(uint n) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_5(n), true) {
   }
 
-  public VtBoolArray(uint n) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_6(n), true) {
+  public VtBoolArray(uint n, bool value) : this(UsdCsPINVOKE.new_VtBoolArray__SWIG_6(n, value), true) {
   }
 
   public void push_back(bool elem) {
@@ -96,10 +96,6 @@ public class VtBoolArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtBoolArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, bool fill) {
-    UsdCsPINVOKE.VtBoolArray_assign(swigCPtr, n, fill);
   }
 
   public void swap(VtBoolArray other) {

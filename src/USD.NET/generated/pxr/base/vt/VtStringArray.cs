@@ -57,11 +57,11 @@ public class VtStringArray : Vt_ArrayBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtStringArray(uint n, string value) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_5(n, value), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtStringArray(uint n) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_5(n), true) {
   }
 
-  public VtStringArray(uint n) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_6(n), true) {
+  public VtStringArray(uint n, string value) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_6(n, value), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(string elem) {
@@ -98,11 +98,6 @@ public class VtStringArray : Vt_ArrayBase {
 
   public void clear() {
     UsdCsPINVOKE.VtStringArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, string fill) {
-    UsdCsPINVOKE.VtStringArray_assign(swigCPtr, n, fill);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void swap(VtStringArray other) {
