@@ -21,8 +21,8 @@
 // KIND, either express or implied. See the Apache License for the specific
 // language governing permissions and limitations under the Apache License.
 //
-#ifndef USD_PRIM_H
-#define USD_PRIM_H
+#ifndef PXR_USD_USD_PRIM_H
+#define PXR_USD_USD_PRIM_H
 #if 0 // USD.NET
 
 /// \file usd/prim.h
@@ -1658,5 +1658,5 @@ UsdObject::GetPrim() const
 
 PXR_NAMESPACE_CLOSE_SCOPE
 #endif // USD.NET
-#endif // USD_PRIM_H
+#endif // PXR_USD_USD_PRIM_H
 

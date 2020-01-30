@@ -21,8 +21,8 @@
 // KIND, either express or implied. See the Apache License for the specific
 // language governing permissions and limitations under the Apache License.
 //
-#ifndef VT_ARRAY_H
-#define VT_ARRAY_H
+#ifndef PXR_BASE_VT_ARRAY_H
+#define PXR_BASE_VT_ARRAY_H
 
 /// \file vt/array.h
 
@@ -48,6 +48,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <memory>
+#include <type_traits>
 
 PXR_NAMESPACE_OPEN_SCOPE
 
@@ -244,6 +245,29 @@ class VtArray : public Vt_ArrayBase {
     /// Create an empty array.
     VtArray() : _data(nullptr) {}
 
+#if 0 // USD.NET
+    /// Create an array from a pair of iterators
+    ///
+    /// Equivalent to:
+    /// \code
+    /// VtArray<T> v;
+    /// v.assign(first, last);
+    /// \endcode
+    ///
+    /// Note we use enable_if with a dummy parameter here to avoid clashing
+    /// with our other constructor with the following signature:
+    ///
+    /// VtArray(size_t n, value_type const &value = value_type())
+    template <typename LegacyInputIterator>
+    VtArray(LegacyInputIterator first, LegacyInputIterator last,
+            typename std::enable_if<
+                !std::is_integral<LegacyInputIterator>::value, 
+                void>::type* = nullptr)
+        : VtArray() {
+        assign(first, last); 
+    }
+#endif // USD.NET
+
     /// Create an array with foreign source.
     VtArray(Vt_ArrayForeignDataSource *foreignSrc,
             ElementType *data, size_t size, bool addRef = true)
@@ -284,6 +308,18 @@ class VtArray : public Vt_ArrayBase {
     }
 #endif // USD.NET
 
+    /// Create an array filled with \p n value-initialized elements.
+    explicit VtArray(size_t n)
+        : VtArray() {
+        assign(n, value_type());
+    }
+
+    /// Create an array filled with \p n copies of \p value.
+    explicit VtArray(size_t n, value_type const &value)
+        : VtArray() {
+        assign(n, value);
+    }
+
     /// Copy assign from \p other.  This array shares underlying data with
     /// \p other.
     VtArray &operator=(VtArray const &other) {
@@ -313,12 +349,6 @@ class VtArray : public Vt_ArrayBase {
         return *this;
     }
 #endif // USD.NET
-
-    /// Create an array filled with \p n copies of \p value.
-    explicit VtArray(size_t n, value_type const &value = value_type())
-        : VtArray() {
-        assign(n, value);
-    }
 
     ~VtArray() { _DecRef(); }
     
@@ -476,7 +506,23 @@ class VtArray : public Vt_ArrayBase {
     /// 5 elements would be left unchanged and the last 5 elements would be
     /// value-initialized.
     void resize(size_t newSize) {
+ #if 0 // USD.NET
+        struct _Filler {
+            inline void operator()(pointer b, pointer e) const {
+                std::uninitialized_fill(b, e, value_type());
+            }
+        };
+        return resize(newSize, _Filler());
+ #endif // USD.NET
+    }
+
 #if 0 // USD.NET
+    /// Resize this array.  Preserve existing elements that remain, initialize
+    /// any newly added elements by calling \p fillElems(first, last).  Note
+    /// that this function is passed pointers to uninitialized memory, so the
+    /// elements must be filled with something like placement-new.
+    template <class FillElemsFn>
+    void resize(size_t newSize, FillElemsFn &&fillElems) {
         const size_t oldSize = size();
         if (oldSize == newSize) {
             return;
@@ -492,7 +538,7 @@ class VtArray : public Vt_ArrayBase {
         if (!_data) {
             // Allocate newSize elements and initialize.
             newData = _AllocateNew(newSize);
-            std::uninitialized_fill_n(newData, newSize, value_type());
+            std::forward<FillElemsFn>(fillElems)(newData, newData + newSize);
         }
         else if (_IsUnique()) {
             if (growing) {
@@ -500,8 +546,8 @@ class VtArray : public Vt_ArrayBase {
                     newData = _AllocateCopy(_data, newSize, oldSize);
                 }
                 // fill with newly added elements from oldSize to newSize.
-                std::uninitialized_fill(
-                    newData + oldSize, newData + newSize, value_type());
+                std::forward<FillElemsFn>(fillElems)(newData + oldSize,
+                                                     newData + newSize);
             }
             else {
                 // destroy removed elements
@@ -516,8 +562,8 @@ class VtArray : public Vt_ArrayBase {
                 _AllocateCopy(_data, newSize, growing ? oldSize : newSize);
             if (growing) {
                 // fill with newly added elements from oldSize to newSize.
-                std::uninitialized_fill(
-                    newData + oldSize, newData + newSize, value_type());
+                std::forward<FillElemsFn>(fillElems)(newData + oldSize,
+                                                     newData + newSize);
             }
         }
 
@@ -528,8 +574,8 @@ class VtArray : public Vt_ArrayBase {
         }
         // Adjust size.
         _shapeData.totalSize = newSize;
+    }
 #endif // USD.NET
-    }        
 
     /// Equivalent to resize(0).
     void clear() {
@@ -548,6 +594,7 @@ class VtArray : public Vt_ArrayBase {
         _shapeData.totalSize = 0;
     }
 
+#if 0 // USD.NET
     /// Assign array contents.
     /// Equivalent to:
     /// \code
@@ -555,9 +602,16 @@ class VtArray : public Vt_ArrayBase {
     /// std::copy(first, last, array.begin());
     /// \endcode
     template <class ForwardIter>
-    void assign(ForwardIter first, ForwardIter last) {
-        resize(std::distance(first, last));
-        std::copy(first, last, begin());
+    typename std::enable_if<!std::is_integral<ForwardIter>::value>::type
+    assign(ForwardIter first, ForwardIter last) {
+        struct _Copier {
+            void operator()(pointer b, pointer e) const {
+                std::uninitialized_copy(first, last, b);
+            }
+            ForwardIter const &first, &last;
+        };
+        clear();
+        resize(std::distance(first, last), _Copier { first, last });
     }
 
     /// Assign array contents.
@@ -567,11 +621,16 @@ class VtArray : public Vt_ArrayBase {
     /// std::fill(array.begin(), array.end(), fill);
     /// \endcode
     void assign(size_t n, const value_type &fill) {
-        resize(n);
-        std::fill(begin(), end(), fill);
+        struct _Filler {
+            void operator()(pointer b, pointer e) const {
+                std::uninitialized_fill(b, e, fill);
+            }
+            const value_type &fill;
+        };
+        clear();
+        resize(n, _Filler { fill });
     }
 
-#if 0 // USD.NET
     /// Assign array contents via intializer list
     /// Equivalent to:
     /// \code
@@ -787,4 +846,4 @@ ARCH_PRAGMA_POP
 #endif
 PXR_NAMESPACE_CLOSE_SCOPE
 
-#endif // VT_ARRAY_H
+#endif // PXR_BASE_VT_ARRAY_H

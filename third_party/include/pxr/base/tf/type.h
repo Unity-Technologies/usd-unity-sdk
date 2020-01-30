@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2016 Pixar
 //
 // Licensed under the Apache License, Version 2.0 (the "Apache License")
@@ -21,8 +21,8 @@
 // KIND, either express or implied. See the Apache License for the specific
 // language governing permissions and limitations under the Apache License.
 //
-#ifndef TF_TYPE_H
-#define TF_TYPE_H
+#ifndef PXR_BASE_TF_TYPE_H
+#define PXR_BASE_TF_TYPE_H
 
 #include "pxr/pxr.h"
 
@@ -315,6 +315,19 @@ public:
     ///
     TF_API
     std::vector<TfType> GetBaseTypes() const;
+    
+    /// Copy the first \p maxBases base types of \p this type to \p out, or all
+    /// the base types if this type has \p maxBases or fewer base types.  Return
+    /// \p this type's number of base types.
+    ///
+    /// Note that it is supported to change a TfType to its first base type by
+    /// calling this function.  For example:
+    /// \code
+    ///     TfType t = ...;
+    ///     t.GetNBaseTypes(&t, 1);
+    /// \endcode
+    TF_API
+    size_t GetNBaseTypes(TfType *out, size_t maxBases) const;
 
     /// Return a vector of types derived directly from this type.
     ///
@@ -750,4 +763,4 @@ PXR_NAMESPACE_CLOSE_SCOPE
 // Implementation details are put in this header.
 #include "pxr/base/tf/type_Impl.h"
 
-#endif // TF_TYPE_H
+#endif // PXR_BASE_TF_TYPE_H
