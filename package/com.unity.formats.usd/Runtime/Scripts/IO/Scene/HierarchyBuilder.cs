@@ -129,8 +129,8 @@ namespace Unity.Formats.USD {
                                     SceneImportOptions options) {
       FindPathsJob.usdRoot = usdRoot;
       FindPathsJob.scene = scene;
-      FindPathsJob.results = new SdfPath[8][];
-      FindPathsJob.queries = new FindPathsJob.IQuery[8];
+      FindPathsJob.results = new SdfPath[9][];
+      FindPathsJob.queries = new FindPathsJob.IQuery[9];
 
       if (options.ShouldBindMaterials) {
         FindPathsJob.queries[0] = (FindPathsJob.IQuery)new FindPathsJob.Query<MaterialSample>();
@@ -151,6 +151,7 @@ namespace Unity.Formats.USD {
       }
       if (options.importTransforms) {
         FindPathsJob.queries[7] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
+        FindPathsJob.queries[8] = (FindPathsJob.IQuery)new FindPathsJob.Query<ScopeSample>();
       }
 
       var findPathsJob = new FindPathsJob();
