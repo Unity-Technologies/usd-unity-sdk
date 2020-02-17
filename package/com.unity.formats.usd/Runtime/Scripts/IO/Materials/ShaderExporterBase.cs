@@ -79,7 +79,11 @@ namespace Unity.Formats.USD {
 #endif
             if (!textureIsExported)
             {
-                fileName = Random.Range(10000000, 99999999).ToString();
+                fileName = texture.name + "_" + Random.Range(10000000, 99999999).ToString();
+#if UNITY_EDITOR
+                if (UnityEditor.AssetDatabase.Contains(texture))
+                    fileName = texture.name + "_png";
+#endif
                 filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
                 
                 // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (namely, 16 bit G and A instead of 8 bit RGBA)
