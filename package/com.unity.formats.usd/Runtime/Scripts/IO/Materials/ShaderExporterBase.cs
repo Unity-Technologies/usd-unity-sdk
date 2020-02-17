@@ -96,7 +96,7 @@ namespace Unity.Formats.USD {
                 var rt = new RenderTexture(texture2d.width, texture2d.height, 0, RenderTextureFormat.ARGB32);
 
                 // Currently only exporting RGB24 since it seems Unity creates wrong PNGs if alpha channel is 0 (color channel is premultiplied).
-                var resultTex = new Texture2D(texture2d.width, texture2d.height, TextureFormat.RGB24, true);
+                var resultTex = new Texture2D(texture2d.width, texture2d.height, TextureFormat.ARGB32, true);
                 try { 
                     Graphics.Blit(texture, rt);
                     RenderTexture.active = rt;
