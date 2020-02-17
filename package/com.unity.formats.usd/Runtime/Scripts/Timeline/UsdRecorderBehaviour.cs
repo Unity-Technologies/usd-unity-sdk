@@ -51,14 +51,13 @@ namespace Unity.Formats.USD {
         Clip.UsdScene.Close();
         Clip.UsdScene = null;
       }
-
+      // Keep the current directory to restore it at the end.
+      currentDir = Directory.GetCurrentDirectory();
       try {
         if (string.IsNullOrEmpty(Clip.m_usdFile)) {
           Clip.UsdScene = Scene.Create();
         } else if(Clip.IsUSDZ) {
-          // Keep the current directory to restore it at the end.
-          currentDir = Directory.GetCurrentDirectory();
-
+          
           // Setup a temporary directory to export the wanted USD file and zip it.
           string tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
           tmpDir = Directory.CreateDirectory(tmpDirPath);
@@ -137,7 +136,8 @@ namespace Unity.Formats.USD {
 
 
       try {
-        Directory.SetCurrentDirectory(tmpDir.FullName);
+        if(tmpDir != null)
+            Directory.SetCurrentDirectory(tmpDir.FullName);
 
         Clip.Context = new ExportContext();
         Clip.UsdScene.EndTime = currentTime;
@@ -166,10 +166,10 @@ namespace Unity.Formats.USD {
       } finally {
         // Clean up temp files.
         Directory.SetCurrentDirectory(currentDir);
-        if (tmpDir.Exists) { 
+        if (tmpDir != null && tmpDir.Exists) { 
             tmpDir.Delete(recursive: true);
         } else {
-            Debug.LogWarning("for some reason tmpDir " + tmpDir.FullName + " does not exist");
+            Debug.LogWarning("for some reason tmpDir " + (tmpDir != null ? tmpDir.FullName : "null")+ " does not exist");
         }
       }
     }
