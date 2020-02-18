@@ -4,14 +4,28 @@
 #usd_versions:
 #  - version: 19.11
 #  - version: 20.02
-#---    
-linux_v20.02_no_python:
-  name: Build USD v20.02 on linux (no python)
-  skip_checkout: true
-  agent:
+build_platforms:
+#  - name: win
+#    type: Unity::VM
+#    image: package-ci/win10:stable
+#    flavor: b1.large
+  - name: mac
+    type: Unity::VM::osx
+    image: filmtv/usd_build_linux_image:latest
+    flavor: m1.mac
+  - name: linux
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: i1.medium
+---
+{% for platform in build_platforms %}
+{{platform.name}}_v20.02_no_python:
+  name: Build USD v20.02 on {{platform.name}} (no python)
+  skip_checkout: true
+  agent:
+    type: {{platform.type}}
+    image: {{platform.image}}
+    flavor: {{platform.flavor}}
   commands:
     - |
       wget https://github.com/PixarAnimationStudios/USD/archive/v20.02.zip
@@ -19,17 +33,19 @@ linux_v20.02_no_python:
       cd USD-20.02
       python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging ../libs/usd-v20.02_no_python
   artifacts:
-    linux_v20.02_no_python:
-      paths:
-        - "libs/usd-v20.02_no_python/**"
+      {{platform.name}}_v20.02_no_python:
+        paths:
+          - "libs/usd-v20.02_no_python/**"
+{% endfor %}
 
-linux_v20.02:
-  name: Build USD v20.02 on linux (full)
+{% for platform in build_platforms %}
+{{platform.name}}_v20.02:
+  name: Build USD v20.02 on {{platform.name}} (full)
   skip_checkout: true
   agent:
-    type: Unity::VM
-    image: filmtv/usd_build_linux_image:latest
-    flavor: i1.medium
+    type: {{platform.type}}
+    image: {{platform.image}}
+    flavor: {{platform.flavor}}
   commands:
     - |
       wget https://github.com/PixarAnimationStudios/USD/archive/v20.02.zip
@@ -37,6 +53,7 @@ linux_v20.02:
       cd USD-20.02
       python build_scripts/build_usd.py --build-monolithic --alembic --openimageio ../libs/usd-v20.02
   artifacts:
-    linux_v20.02_no_python:
+    {{platform.name}}_v20.02_no_python:
       paths:
         - "libs/usd-v20.02/**"
+{% endfor %}
