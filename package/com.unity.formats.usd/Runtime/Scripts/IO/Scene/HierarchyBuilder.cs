@@ -161,7 +161,13 @@ namespace Unity.Formats.USD {
 #else
       findPathsJob.Run();
 #endif
-
+    
+      // Note that Scope prims are taken into account when building the hierarchy but not added to the PrimMap
+      // This is because Scopes don't need specific import/export logic for now:
+      //   * they don't hold any data ton convert on the way in
+      //   * being represented as Xforms in Unity they get automatically exported (as Xform) as part of the parent hierarchy of any
+      //     valid prim
+      // This will need to change if/when we want proper round tripping.
       map.Materials = FindPathsJob.results[0];
       map.Cameras = FindPathsJob.results[1];
       map.Meshes = FindPathsJob.results[2];
