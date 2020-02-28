@@ -16,7 +16,7 @@ build_platforms:
   - name: linux
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
-    flavor: i1.medium
+    flavor: b1.large
 ---
 {% for platform in build_platforms %}
 {{platform.name}}_v20.02_no_python:
@@ -57,3 +57,25 @@ build_platforms:
       paths:
         - "libs/usd-v20.02/**"
 {% endfor %}
+
+{% for platform in build_platforms %}
+{{platform.name}}_usd_v20.02_bindings:
+  name: Build USD C# bindings
+  agent:
+    type: {{platform.type}}
+    image: {{platform.image}}
+    flavor: {{platform.flavor}}
+  dependencies:
+    - .yamato/build_usd.yml#{{platform.name}}_v20.02
+    - .yamato/build_usd.yml#{{platform.name}}_v20.02_no_python
+  commands:
+    - |
+        mkdir build
+        cd build
+        cmake -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.02_no_python -DUSD_GENSCHEMA=${PXR_USD_LOCATION}/bin -DCMAKE_MODULE_PATH=../cmake/modules ../cmake/
+        make install -j8
+  artifacts:
+      {{platform.name}}_usdCs_v20.02:
+        paths:
+          - "package/Runtime/Plugins/x86_64/Linux/**"
+  {% endfor %}
