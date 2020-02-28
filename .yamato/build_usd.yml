@@ -20,7 +20,7 @@ build_platforms:
 ---
 {% for platform in build_platforms %}
 {{platform.name}}_v20.02_no_python:
-  name: Build USD v20.02 on {{platform.name}} (no python)
+  name: {{platform.name}} - Build USD v20.02 on (no python)
   skip_checkout: true
   agent:
     type: {{platform.type}}
@@ -40,7 +40,7 @@ build_platforms:
 
 {% for platform in build_platforms %}
 {{platform.name}}_v20.02:
-  name: Build USD v20.02 on {{platform.name}} (full)
+  name: {{platform.name}} - Build USD v20.02 (full)
   skip_checkout: true
   agent:
     type: {{platform.type}}
@@ -60,7 +60,7 @@ build_platforms:
 
 {% for platform in build_platforms %}
 {{platform.name}}_usd_v20.02_bindings:
-  name: Build USD C# bindings
+  name: {{platform.name}} - Build USD v20.02 C# bindings
   agent:
     type: {{platform.type}}
     image: {{platform.image}}
