@@ -72,13 +72,13 @@ namespace Unity.Formats.USD.Tests
     public class ScopeLoadingTest
     {
         private GameObject usdRoot;
-        private string filepath = "d:/code/usd-unity-sdk/TestProject/Assets/test_#154/test_collections.usda";
+        private string filepath = "test_#154/test_collections.usda";
         
         [SetUp]
         public void SetUp()
         {
             InitUsd.Initialize();
-            var stage = pxr.UsdStage.Open(filepath, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var stage = pxr.UsdStage.Open(Path.Combine(Application.dataPath, filepath), pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene);
             scene.Close();
