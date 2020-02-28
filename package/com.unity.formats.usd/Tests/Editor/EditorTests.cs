@@ -68,5 +68,35 @@ namespace Unity.Formats.USD.Tests
             Assert.AreApproximatelyEqual(usdMeshTr.localRotation.z,fbxMeshTr.localRotation.z);
         }
     }
+    
+    public class ScopeLoadingTest
+    {
+        private GameObject usdRoot;
+        private string filepath = "d:/code/usd-unity-sdk/TestProject/Assets/test_#154/test_collections.usda";
+        
+        [SetUp]
+        public void SetUp()
+        {
+            InitUsd.Initialize();
+            var stage = pxr.UsdStage.Open(filepath, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene);
+            scene.Close();
+        }
+        
+        [Test]
+        public void TestScopeWithoutChildren()
+        {
+            var scopeWithChildren = usdRoot.transform.Find("TestComponent/geom");
+            Assert.IsNotNull(scopeWithChildren);
+        }
+        
+        [Test]
+        public void TestScopeWithChildren()
+        {
+            var scopeWithChildren = usdRoot.transform.Find("TestComponent/ScopeTest");
+            Assert.IsNotNull(scopeWithChildren);
+        }
+    }
 }
 
