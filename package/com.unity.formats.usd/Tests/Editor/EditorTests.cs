@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using Scene = USD.NET.Scene;
@@ -9,7 +10,7 @@ namespace Unity.Formats.USD.Tests
     public class FBXHandednessModeCameraTest
     {
         const string fbxFile = "Assets/test_#129/withCamera.fbx";
-        const string usdFile = "Assets/test_#129/withCamera.usd";
+        const string usdFile = "test_#129/withCamera.usd";
         private GameObject fbxRoot;
         private GameObject usdRoot;
         
@@ -20,7 +21,7 @@ namespace Unity.Formats.USD.Tests
             var asset = AssetDatabase.LoadAssetAtPath<GameObject>(fbxFile);
             fbxRoot = PrefabUtility.InstantiatePrefab(asset) as GameObject;
 
-            var stage = pxr.UsdStage.Open(usdFile, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var stage = pxr.UsdStage.Open(Path.Combine(Application.dataPath, usdFile), pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             var importOptions = new SceneImportOptions();
             importOptions.changeHandedness = BasisTransformation.SlowAndSafeAsFBX;
