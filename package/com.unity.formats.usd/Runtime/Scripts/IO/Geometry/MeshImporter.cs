@@ -225,7 +225,7 @@ namespace Unity.Formats.USD {
                              SceneImportOptions options) {
       var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
       if (smr.sharedMesh == null) {
-        smr.sharedMesh = new Mesh();
+        smr.sharedMesh = new Mesh {name = Guid.NewGuid().ToString()};
       }
 
       BuildMesh_(path, usdMesh, smr.sharedMesh, geomSubsets, go, smr, options);
@@ -241,8 +241,10 @@ namespace Unity.Formats.USD {
                              SceneImportOptions options) {
       var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
       var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
-      if (mf.sharedMesh == null) {
-        mf.sharedMesh = new Mesh();
+      if (mf.sharedMesh == null)
+      {
+        mf.sharedMesh = new Mesh {name = Guid.NewGuid().ToString()};
+        mf.sharedMesh.MarkDynamic();
       }
 
       BuildMesh_(path, usdMesh, mf.sharedMesh, geomSubsets, go, mr, options);

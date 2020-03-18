@@ -211,13 +211,6 @@ namespace Unity.Formats.USD {
 
 #if UNITY_EDITOR
     /// <summary>
-    /// Used to track when a UsdAsset is duplicated. When duplicated, the meshes and materials
-    /// need to be instanced to keep the duplicated object from sharing the underlying assets.
-    /// </summary>
-    [SerializeField, HideInInspector]
-    private int m_instanceId = 0;
-
-    /// <summary>
     /// Returns the underlying prefab object, or null.
     /// </summary>
     private GameObject GetPrefabObject(GameObject root) {
@@ -228,26 +221,6 @@ namespace Unity.Formats.USD {
       // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
       return UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(root);
 #endif
-    }
-
-    private bool IsPrefabInstance(GameObject root) {
-      return GetPrefabObject(root) != null;
-    }
-
-    void Awake() {
-      if (IsPrefabInstance(gameObject)) { return; }
-
-      if (m_instanceId != GetInstanceID()) {
-        if (m_instanceId == 0) {
-          m_instanceId = GetInstanceID();
-        } else {
-          m_instanceId = GetInstanceID();
-          if (m_instanceId < 0) {
-            Debug.Log("Reimporting " + name + " after duplicate");
-            Reload(true);
-          }
-        }
-      }
     }
 #endif
 
