@@ -584,7 +584,8 @@ namespace Unity.Formats.USD {
             XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
             
             // In order to match FBX importer buggy behavior, the camera xform need an extra rotation.
-            // FBX importer is fixed in 2020 though with an option to do a DeepBake
+            // FBX importer is fixed in 2020 though with an option to do an axis bake on import.
+            // If axis bake is used, no need to use the SlowAndSafeAsFBX mode.
             if (importOptions.changeHandedness == BasisTransformation.SlowAndSafeAsFBX)
             {
               go.transform.localRotation *= Quaternion.Euler(180.0f, 0.0f, 180.0f); 

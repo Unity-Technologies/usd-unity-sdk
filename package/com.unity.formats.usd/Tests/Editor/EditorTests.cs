@@ -7,21 +7,24 @@ using Assert = UnityEngine.Assertions.Assert;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class FBXHandednessModeCameraTest
+    public class FBXHandednessModeTests
     {
-        const string fbxFile = "Assets/test_#129/withCamera.fbx";
-        const string usdFile = "test_#129/withCamera.usd";
+        const string fbxGUID = "86a597c63449d2541b7587ff90e75d91"; // GUID of withCamera.fbx
+        const string usdGUID = "f377c4260fb216d4dbe2f6e4d67091b5"; // GUID of withCamera.usd
+
         private GameObject fbxRoot;
         private GameObject usdRoot;
         
         [SetUp]
         public void SetUp()
         {
-            InitUsd.Initialize();
-            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(fbxFile);
+            var fbxPath = AssetDatabase.GUIDToAssetPath(fbxGUID);
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(fbxPath);
             fbxRoot = PrefabUtility.InstantiatePrefab(asset) as GameObject;
 
-            var stage = pxr.UsdStage.Open(Path.Combine(Application.dataPath, usdFile), pxr.UsdStage.InitialLoadSet.LoadNone);
+            InitUsd.Initialize();
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(usdGUID));
+            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             var importOptions = new SceneImportOptions();
             importOptions.changeHandedness = BasisTransformation.SlowAndSafeAsFBX;
