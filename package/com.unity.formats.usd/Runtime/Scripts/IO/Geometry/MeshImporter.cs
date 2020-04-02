@@ -225,7 +225,7 @@ namespace Unity.Formats.USD {
                              SceneImportOptions options) {
       var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
       if (smr.sharedMesh == null) {
-        smr.sharedMesh = new Mesh {name = Guid.NewGuid().ToString()};
+        smr.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
       }
 
       BuildMesh_(path, usdMesh, smr.sharedMesh, geomSubsets, go, smr, options);
@@ -241,10 +241,8 @@ namespace Unity.Formats.USD {
                              SceneImportOptions options) {
       var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
       var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
-      if (mf.sharedMesh == null)
-      {
-        mf.sharedMesh = new Mesh {name = Guid.NewGuid().ToString()};
-        mf.sharedMesh.MarkDynamic();
+      if (mf.sharedMesh == null) {
+        mf.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
       }
 
       BuildMesh_(path, usdMesh, mf.sharedMesh, geomSubsets, go, mr, options);
@@ -850,6 +848,14 @@ namespace Unity.Formats.USD {
     /// </summary>
     private static bool ShouldCompute(ImportMode mode) {
       return mode == ImportMode.Compute || mode == ImportMode.ImportOrCompute;
+    }
+
+    /// <summary>
+    /// Returns a unique mesh name by appending a short guid to the given string 
+    /// </summary>
+    private static string UniqueMeshName(string meshName) {
+      var shortGuid = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+      return meshName + "_" +  shortGuid.Substring(0, shortGuid.Length-2); 
     }
   }
 }
