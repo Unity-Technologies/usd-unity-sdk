@@ -20,7 +20,7 @@ using USD.NET;
 using USD.NET.Unity;
 
 namespace Unity.Formats.USD {
-
+ 
   public class UsdMenu : MonoBehaviour {
 
     public static Scene InitForSave(string defaultName, string fileExtension = "usd") {
@@ -198,6 +198,12 @@ namespace Unity.Formats.USD {
       if (scene == null) {
         return;
       }
+      ImportSceneAsGameObject(scene);
+      scene.Close();
+    }
+
+    public static GameObject ImportSceneAsGameObject(Scene scene, SceneImportOptions importOptions=null)
+    {
       string path = scene.FilePath;
 
       // Time-varying data is not supported and often scenes are written without "Default" time
@@ -205,11 +211,16 @@ namespace Unity.Formats.USD {
       // the time will be ignored and values will resolve to default time automatically).
       scene.Time = 1.0;
 
-      var importOptions = new SceneImportOptions();
-      importOptions.projectAssetPath = GetSelectedAssetPath();
-      importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
-      importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-      importOptions.usdRootPath = GetDefaultRoot(scene);
+      if (importOptions == null)
+      {
+        importOptions = new SceneImportOptions();
+        importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
+        importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+        if (importOptions.usdRootPath == null)
+        {
+          importOptions.usdRootPath = GetDefaultRoot(scene);
+        }
+      }
 
       GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
 
@@ -217,10 +228,15 @@ namespace Unity.Formats.USD {
         root.transform.SetParent(Selection.gameObjects[0].transform);
       }
 
-      try {
+      try
+      {
         UsdToGameObject(root, scene, importOptions);
-      } finally {
-        scene.Close();
+        return root;
+      }
+      catch (SceneImporter.ImportException)
+      {
+        GameObject.DestroyImmediate(root);
+        return null;
       }
     }
 

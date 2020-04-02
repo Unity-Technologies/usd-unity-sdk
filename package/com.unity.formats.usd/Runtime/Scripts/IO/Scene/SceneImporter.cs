@@ -582,6 +582,14 @@ namespace Unity.Formats.USD {
             GameObject go = primMap[pathAndSample.path];
             NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
             XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
+            
+            // In order to match FBX importer buggy behavior, the camera xform need an extra rotation.
+            // FBX importer is fixed in 2020 though with an option to do an axis bake on import.
+            // If axis bake is used, no need to use the SlowAndSafeAsFBX mode.
+            if (importOptions.changeHandedness == BasisTransformation.SlowAndSafeAsFBX)
+            {
+              go.transform.localRotation *= Quaternion.Euler(180.0f, 0.0f, 180.0f); 
+            }
 
             // The camera has many value-type parameters that need to be handled correctly when not
             // not animated. For now, only the camera transform will animate, until this is fixed.
