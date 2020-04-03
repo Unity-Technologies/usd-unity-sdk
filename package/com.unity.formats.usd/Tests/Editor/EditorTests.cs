@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Scene = USD.NET.Scene;
 using Assert = UnityEngine.Assertions.Assert;
 
@@ -69,33 +70,53 @@ namespace Unity.Formats.USD.Tests
         }
     }
     
-    public class ScopeLoadingTest
+    public class UsdPrimTypeTest_Scope
     {
-        private GameObject usdRoot;
-        private string filepath = "test_#154/test_collections.usda";
+        private GameObject m_usdRoot;
+        private string m_usdGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUI of test_collections.usda
         
         [SetUp]
         public void SetUp()
         {
             InitUsd.Initialize();
-            var stage = pxr.UsdStage.Open(Path.Combine(Application.dataPath, filepath), pxr.UsdStage.InitialLoadSet.LoadNone);
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
+            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
-            usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene);
+            m_usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene);
             scene.Close();
         }
-        
+
         [Test]
-        public void TestScopeWithoutChildren()
+        public void ScopeWithoutChildrenExists()
         {
-            var scopeWithChildren = usdRoot.transform.Find("TestComponent/geom");
-            Assert.IsNotNull(scopeWithChildren);
+            var scopeWithoutChildren = m_usdRoot.transform.Find("TestComponent/geom");
+            Assert.IsNotNull(scopeWithoutChildren);
+            Assert.Zero(scopeWithoutChildren.childCount);
         }
         
         [Test]
-        public void TestScopeWithChildren()
+        public void ScopeWithChildrenExists()
         {
-            var scopeWithChildren = usdRoot.transform.Find("TestComponent/ScopeTest");
+            var scopeWithChildren = m_usdRoot.transform.Find("TestComponent/ScopeTest");
             Assert.IsNotNull(scopeWithChildren);
+            Assert.NotZero(scopeWithChildren.childCount);
+        }
+
+        [Test]
+        public void ScopeHasPrimSourceComponent() {
+            var scope = m_usdRoot.transform.Find("TestComponent/ScopeTest");
+            var primSourceComponent = scope.GetComponent<UsdPrimSource>();
+            Assert.IsNotNull(primSourceComponent);
+            var scene = m_usdRoot.GetComponent<UsdAsset>().GetScene();
+            var prim = scene.GetPrimAtPath(primSourceComponent.m_usdPrimPath);
+            Assert.IsNotNull(prim);
+            Assert.True("Scope" == prim.GetTypeName(), scope.name + " is not of type Scope: " + prim.GetTypeName());
+        }
+        
+        [Test]
+        public void ScopeTransformIsIdentity() {
+            var scope = m_usdRoot.transform.Find("TestComponent/ScopeTest");
+            Assert.True(Matrix4x4.identity == scope.transform.localToWorldMatrix);
         }
     }
 }

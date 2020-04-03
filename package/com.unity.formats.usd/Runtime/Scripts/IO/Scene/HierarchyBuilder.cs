@@ -151,8 +151,9 @@ namespace Unity.Formats.USD {
       }
       if (options.importTransforms) {
         FindPathsJob.queries[7] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
-        FindPathsJob.queries[8] = (FindPathsJob.IQuery)new FindPathsJob.Query<ScopeSample>();
       }
+      
+      FindPathsJob.queries[8] = (FindPathsJob.IQuery)new FindPathsJob.Query<ScopeSample>();
 
       var findPathsJob = new FindPathsJob();
 #if !UNITY_2017
