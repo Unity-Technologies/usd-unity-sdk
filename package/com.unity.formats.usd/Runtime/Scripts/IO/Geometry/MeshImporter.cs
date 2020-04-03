@@ -34,7 +34,8 @@ namespace Unity.Formats.USD {
                                              T sample,
                                              MeshImporter.GeometrySubsets subsets,
                                              GameObject go,
-                                             SceneImportOptions option) where T : SampleBase, new();
+                                             SceneImportOptions option,
+                                             bool isDynamic) where T : SampleBase, new();
 
   /// <summary>
   /// This class is responsible for importing mesh samples into Unity. By swapping out the
@@ -71,6 +72,7 @@ namespace Unity.Formats.USD {
       System.Reflection.MemberInfo orientation = null;
       System.Reflection.MemberInfo purpose = null;
       System.Reflection.MemberInfo visibility = null;
+      bool isDynamic = false;
 
       if (scene.AccessMask != null && scene.IsPopulatingAccessMask) {
         var meshType = typeof(MeshSample);
@@ -100,6 +102,8 @@ namespace Unity.Formats.USD {
             if (pathAndSample.sample.visibility != Visibility.Inherited && !members.Contains(visibility)) {
               members.Add(visibility);
             }
+
+            isDynamic = true;
           }
         }
 
@@ -143,13 +147,13 @@ namespace Unity.Formats.USD {
             Profiler.BeginSample("USD: Build Skinned Mesh");
             m_skinnedMeshImporter(pathAndSample.path,
                                   pathAndSample.sample,
-                                  subsets, go, importOptions);
+                                  subsets, go, importOptions, isDynamic);
             Profiler.EndSample();
           } else {
             Profiler.BeginSample("USD: Build Mesh");
             m_meshImporter(pathAndSample.path,
                            pathAndSample.sample,
-                           subsets, go, importOptions);
+                           subsets, go, importOptions, isDynamic);
             Profiler.EndSample();
           }
         } catch (Exception ex) {
@@ -222,10 +226,17 @@ namespace Unity.Formats.USD {
                              MeshSample usdMesh,
                              GeometrySubsets geomSubsets,
                              GameObject go,
-                             SceneImportOptions options) {
+                             SceneImportOptions options,
+                             bool isDynamic) {
       var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
       if (smr.sharedMesh == null) {
-        smr.sharedMesh = new Mesh();
+        smr.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
+      }
+            
+      // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
+      // created, potentially way after mesh creation.
+      if (isDynamic) {
+        smr.sharedMesh.MarkDynamic();
       }
 
       BuildMesh_(path, usdMesh, smr.sharedMesh, geomSubsets, go, smr, options);
@@ -238,11 +249,18 @@ namespace Unity.Formats.USD {
                              MeshSample usdMesh,
                              GeometrySubsets geomSubsets,
                              GameObject go,
-                             SceneImportOptions options) {
+                             SceneImportOptions options,
+                             bool isDynamic) {
       var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
       var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
       if (mf.sharedMesh == null) {
-        mf.sharedMesh = new Mesh();
+        mf.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
+      }
+      
+      // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
+      // created, potentially way after mesh creation.
+      if (isDynamic) {
+        mf.sharedMesh.MarkDynamic();
       }
 
       BuildMesh_(path, usdMesh, mf.sharedMesh, geomSubsets, go, mr, options);
@@ -849,6 +867,14 @@ namespace Unity.Formats.USD {
     /// </summary>
     private static bool ShouldCompute(ImportMode mode) {
       return mode == ImportMode.Compute || mode == ImportMode.ImportOrCompute;
+    }
+
+    /// <summary>
+    /// Returns a unique mesh name by appending a short guid to the given string 
+    /// </summary>
+    private static string UniqueMeshName(string meshName) {
+      var shortGuid = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+      return meshName + "_" +  shortGuid.Substring(0, shortGuid.Length-2); 
     }
   }
 }
