@@ -21,13 +21,9 @@ namespace USD.NET.Unity {
   /// Implements a DiagnosticHandler which pipes messages to Unity's debug logger.
   /// </summary>
   public class DiagnosticHandler : pxr.DiagnosticHandler {
-    private static DiagnosticHandler m_instance = new DiagnosticHandler();
 
-    /// <summary>
-    /// Registers this class a the global diagnostic handler.
-    /// </summary>
-    public static void Register() {
-      pxr.DiagnosticHandler.SetGlobalHandler(m_instance);
+
+    public DiagnosticHandler() : base() {
     }
 
     /// <summary>

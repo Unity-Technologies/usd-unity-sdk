@@ -87,8 +87,6 @@ typedef std::vector< vector<double> > StdDoubleVectorVector;
 %include "base/base.i"
 %include "usd/usd.i"
 
-%include "callback.i"
-
 %{
 #include "pxr/base/arch/env.h"
 #include "pxr/usd/usdGeom/xformable.h"

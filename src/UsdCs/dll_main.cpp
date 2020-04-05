@@ -29,71 +29,6 @@
 
 PXR_NAMESPACE_USING_DIRECTIVE
 
-// Low-level diagnostic message handler for USD.
-//
-// Abstracts the low-level API provided by USD to higher level DiagnosticHandler API, exposed to C#.
-// When no C# handler is provided, messages are spewed to stderr/stdout.
-class CsharpDelegate : public TfDiagnosticMgr::Delegate {
-  static CsharpDelegate* m_instance;
-
-  CsharpDelegate() {
-  }
-
-public:
-
-  static CsharpDelegate* GetInstance() {
-    if (m_instance == NULL) {
-      m_instance = new CsharpDelegate();
-    }
-    return m_instance;
-  }
-
-  virtual ~CsharpDelegate() { }
-
-  /// Called when a \c TfError is posted.
-  virtual void IssueError(TfError const &err) {
-    // A runtime_error exception handler is specified in pxr.i in the swig source.
-    DiagnosticHandler* handler = DiagnosticHandler::GetGlobalHandler();
-    if (handler != nullptr) {
-      handler->OnError(err.GetCommentary().c_str());
-    } else {
-      fprintf(stderr, "ERROR: %s\n", err.GetCommentary().c_str());
-    }
-  }
-
-  /// Called when a \c TF_FATAL_ERROR is issued (or a failed
-  /// \c TF_AXIOM).
-  virtual void IssueFatalError(TfCallContext const &context, std::string const &msg) {
-    DiagnosticHandler* handler = DiagnosticHandler::GetGlobalHandler();
-    if (handler != nullptr) {
-      handler->OnFatalError(msg.c_str());
-    } else {
-      fprintf(stderr, "FATAL ERROR: %s\n", msg.c_str());
-    }
-  }
-
-  /// Called when a \c TF_STATUS() is issued.
-  virtual void IssueStatus(TfStatus const &status) {
-    DiagnosticHandler* handler = DiagnosticHandler::GetGlobalHandler();
-    if (handler != nullptr) {
-      handler->OnInfo(status.GetCommentary().c_str());
-    } else {
-      fprintf(stdout, "STATUS: %s\n", status.GetCommentary().c_str());
-    }
-  }
-
-  /// Called when a \c TF_WARNING() is issued.
-  virtual void IssueWarning(TfWarning const &warning) {
-    DiagnosticHandler* handler = DiagnosticHandler::GetGlobalHandler();
-    if (handler != nullptr) {
-      handler->OnInfo(warning.GetCommentary().c_str());
-    } else {
-      fprintf(stdout, "WARNING: %s\n", warning.GetCommentary().c_str());
-    }
-  }
-};
-CsharpDelegate* CsharpDelegate::m_instance = NULL;
-
 #include <mutex>
 std::once_flag reg;
 
@@ -104,7 +39,8 @@ BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID l
 __attribute__((constructor)) void DllMain() {
 #endif
   std::call_once(reg, [] {
-    TfDiagnosticMgr::GetInstance().AddDelegate(CsharpDelegate::GetInstance());
+    TfDiagnosticMgr::GetInstance().AddDelegate(new DiagnosticHandler());
+
   });
 #if defined(_WIN64)
   _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
