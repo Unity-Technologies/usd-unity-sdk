@@ -78,6 +78,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AotAttributes.cs" />
     <Compile Include="collections\SampleCollection.cs" />
     <Compile Include="collections\SampleEnumerator.cs" />
     <Compile Include="collections\RangeIterator.cs" />
@@ -584,7 +585,6 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t.cs" />
     <Compile Include="generated\UsdCs\UsdCs.cs" />
     <Compile Include="generated\UsdCs\UsdCsPINVOKE.cs" />
-    <Compile Include="MonoPInvokeCallbackAttribute.cs" />
     <Compile Include="pooling\ArrayUnpool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="serialization\CodeGen.cs" />

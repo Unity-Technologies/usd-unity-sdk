@@ -19,6 +19,18 @@ using pxr;
 
 namespace USD.NET.Unity {
 
+  /// <summary>
+  /// Prevent a method, class, field, or property from being stripped by bytecode optimization.
+  /// </summary>
+  /// <remarks>
+  /// When IL2CPP optimizes the generated IL, unused code will be stripped. Any methods only called by reflection will
+  /// also be stripped in this way. To prevent this, this attribute is copied from Unity.
+  /// </remarks>
+  [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
+  class PreserveAttribute : Attribute
+  {
+  }
+
   public class UnityTypeConverter : IntrinsicTypeConverter {
 
     /// <summary>
@@ -301,10 +313,12 @@ namespace USD.NET.Unity {
                                        unityXf.localScale);
     }
 
+    [Preserve]
     static public GfMatrix4d ToGfMatrix(UnityEngine.Transform unityXf) {
       return ToGfMatrix(GetLocalToParentXf(unityXf));
     }
 
+    [Preserve]
     static public GfMatrix4d ToGfMatrix(UnityEngine.Matrix4x4 unityMat4) {
       // Note that USD is row-major and Unity is column-major, the arguments below are pivoted
       // to account for this.
@@ -314,6 +328,7 @@ namespace USD.NET.Unity {
                             unityMat4[0, 3], unityMat4[1, 3], unityMat4[2, 3], unityMat4[3, 3]);
     }
     
+    [Preserve]
     static public UnityEngine.Matrix4x4 FromMatrix(GfMatrix4d gfMat) {
       // Note that USD is row-major and Unity is column-major, the arguments below are pivoted
       // to account for this.
@@ -347,6 +362,7 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Matrix4x4[] / VtArray<GfMatrix4d>
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtMatrix4dArray ToVtArray(UnityEngine.Matrix4x4[] input) {
       var output = new VtMatrix4dArray((uint)input.Length);
       for (int i = 0; i < input.Length; i++) {
@@ -355,6 +371,7 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public UnityEngine.Matrix4x4[] FromVtArray(VtMatrix4dArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Matrix4x4>(input.size());
       for (int i = 0; i < output.Length; i++) {
@@ -372,10 +389,12 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public VtMatrix4dArray ListToVtArray(List<UnityEngine.Matrix4x4> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<UnityEngine.Matrix4x4> ListFromVtArray(VtMatrix4dArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Matrix4x4>(input.size());
       for (int i = 0; i < output.Length; i++) {
@@ -387,24 +406,29 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Color32 direct conversion
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public GfVec4f Color32ToVec4f(UnityEngine.Color32 c) {
       return ColorToVec4f(c);
     }
 
+    [Preserve]
     static public UnityEngine.Color32 Vec4fToColor32(GfVec4f v) {
       return Vec4fToColor(v);
     }
 
+    [Preserve]
     static public VtVec4fArray ToVtArray(List<UnityEngine.Color32> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public void ToVtArray(List<UnityEngine.Color32> input,
                                  out VtVec3fArray rgb,
                                  out VtFloatArray alpha) {
       ToVtArray(input.ToArray(), out rgb, out alpha);
     }
 
+    [Preserve]
     static public VtVec4fArray ToVtArray(UnityEngine.Color32[] input) {
       var color = UsdIo.ArrayAllocator.Malloc<UnityEngine.Color>((uint)input.Length);
       // PERFORMANCE: this sucks, should implement conversion in C++.
@@ -414,6 +438,7 @@ namespace USD.NET.Unity {
       return ToVtArray(color);
     }
 
+    [Preserve]
     static public UnityEngine.Color32[] Color32FromVtArray(VtVec4fArray input) {
       UnityEngine.Color32[] ret = UsdIo.ArrayAllocator.Malloc<UnityEngine.Color32>(input.size());
       UnityEngine.Vector4[] rgb = FromVtArray(input);
@@ -428,24 +453,29 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Color direct conversion
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public GfVec4f ColorToVec4f(UnityEngine.Color c) {
       return new GfVec4f(c.r, c.g, c.b, c.a);
     }
 
+    [Preserve]
     static public UnityEngine.Color Vec4fToColor(GfVec4f v) {
       return new UnityEngine.Color(v[0], v[1], v[2], v[3]);
     }
 
+    [Preserve]
     static public VtVec4fArray ToVtArray(List<UnityEngine.Color> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public void ToVtArray(List<UnityEngine.Color> input,
                                  out VtVec3fArray rgb,
                                  out VtFloatArray alpha) {
       ToVtArray(input.ToArray(), out rgb, out alpha);
     }
 
+    [Preserve]
     static public VtVec4fArray ToVtArray(UnityEngine.Color[] input) {
       var output = new VtVec4fArray((uint)input.Length);
       unsafe
@@ -457,11 +487,13 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public UnityEngine.Color[] ColorFromVtArray(VtVec4fArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Color>(input.size());
       return ColorFromVtArray(input, ref output);
     }
 
+    [Preserve]
     static public UnityEngine.Color[] ColorFromVtArray(VtVec4fArray input,
                                               ref UnityEngine.Color[] output) {
       if (output.Length != input.size()) {
@@ -480,6 +512,7 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Color32 / Vec3f,Float split conversion
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public void ToVtArray(UnityEngine.Color32[] input,
                                  out VtVec3fArray rgb,
                                  out VtFloatArray alpha) {
@@ -497,6 +530,7 @@ namespace USD.NET.Unity {
     }
 
     /// Returns just the RGB elements of a Color array as a new Vector3 array.
+    [Preserve]
     static public UnityEngine.Vector3[] ExtractRgb(UnityEngine.Color32[] colors) {
       var ret = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>((uint)colors.Length);
       for (int i = 0; i < colors.Length; i++) {
@@ -508,6 +542,7 @@ namespace USD.NET.Unity {
     }
 
     /// Returns just the alpha component of a Color array as a new array of float.
+    [Preserve]
     static public float[] ExtractAlpha(UnityEngine.Color32[] colors) {
       var ret = UsdIo.ArrayAllocator.Malloc<float>((uint)colors.Length);
       for (int i = 0; i < colors.Length; i++) {
@@ -519,6 +554,7 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Color / Vec3f,Float
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public void ToVtArray(UnityEngine.Color[] input,
                                  out VtVec3fArray rgb,
                                  out VtFloatArray alpha) {
@@ -535,6 +571,7 @@ namespace USD.NET.Unity {
       alpha = ToVtArray(unityAlpha);
     }
 
+    [Preserve]
     static public UnityEngine.Color[] FromVtArray(VtVec3fArray rgbIn, VtFloatArray alphaIn) {
       var ret = UsdIo.ArrayAllocator.Malloc<UnityEngine.Color>(rgbIn.size());
       float[] alpha = FromVtArray(alphaIn);
@@ -551,6 +588,7 @@ namespace USD.NET.Unity {
     }
 
     /// Returns just the RGB elements of a Color array as a new Vector3 array.
+    [Preserve]
     static public UnityEngine.Vector3[] ExtractRgb(UnityEngine.Color[] colors) {
       var ret = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>((uint)colors.Length);
       for (int i = 0; i < colors.Length; i++) {
@@ -560,6 +598,7 @@ namespace USD.NET.Unity {
     }
 
     /// Returns just the alpha component of a Color array as a new array of float.
+    [Preserve]
     static public float[] ExtractAlpha(UnityEngine.Color[] colors) {
       var ret = UsdIo.ArrayAllocator.Malloc<float>((uint)colors.Length);
       for (int i = 0; i < colors.Length; i++) {
@@ -576,6 +615,7 @@ namespace USD.NET.Unity {
     // Unity Quaternion is [i0, i1, i2] [real]
     // Swapping seems preferable to making a temp array copy.
 
+    [Preserve]
     static private void SwapQuaternionReal(ref UnityEngine.Quaternion[] input) {
       float tmp;
       for (int i = 0; i < input.Length; i++) {
@@ -585,17 +625,20 @@ namespace USD.NET.Unity {
       }
     }
 
+    [Preserve]
     static public GfQuatf QuaternionToQuatf(UnityEngine.Quaternion quaternion) {
       // See pxr/unity quaternion layout above.
       return new GfQuatf(quaternion.w, quaternion.x, quaternion.y, quaternion.z);
     }
 
+    [Preserve]
     static public UnityEngine.Quaternion QuatfToQuaternion(GfQuatf quat) {
       // See pxr/unity quaternion layout above.
       GfVec3f img = quat.GetImaginary();
       return new UnityEngine.Quaternion(img[0], img[1], img[2], quat.GetReal());
     }
 
+    [Preserve]
     static public VtQuatfArray ToVtArray(UnityEngine.Quaternion[] input) {
       SwapQuaternionReal(ref input);
 
@@ -615,6 +658,7 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public UnityEngine.Quaternion[] FromVtArray(VtQuatfArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Quaternion>(input.size());
       unsafe
@@ -629,10 +673,12 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public VtQuatfArray ListToVtArray(List<UnityEngine.Quaternion> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<UnityEngine.Quaternion> ListFromVtArray(VtQuatfArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Quaternion>(input.size());
       unsafe
@@ -649,6 +695,7 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Vector4 / Vec4f
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtVec4fArray ToVtArray(UnityEngine.Vector4[] input) {
       var output = new VtVec4fArray((uint)input.Length);
       unsafe
@@ -660,6 +707,7 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public UnityEngine.Vector4[] FromVtArray(VtVec4fArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector4>(input.size());
       unsafe
@@ -671,10 +719,12 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public VtVec4fArray ListToVtArray(List<UnityEngine.Vector4> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<UnityEngine.Vector4> ListFromVtArray(VtVec4fArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector4>(input.size());
       unsafe
@@ -689,6 +739,7 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // VtVec3f[] / Bounds
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtVec3fArray BoundsToVtArray(UnityEngine.Bounds input) {
       var vtArr = new VtVec3fArray(2);
       vtArr[0] = new GfVec3f(input.min[0], input.min[1], input.min[2]);
@@ -696,6 +747,7 @@ namespace USD.NET.Unity {
       return vtArr;
     }
 
+    [Preserve]
     static public UnityEngine.Bounds BoundsFromVtArray(VtValue vtBounds) {
       var bbox = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(2);
       var v3 = (VtVec3fArray)UsdIo.ArrayAllocator.MallocHandle(typeof(VtVec3fArray));
@@ -709,6 +761,7 @@ namespace USD.NET.Unity {
       return bnds;
     }
 
+    [Preserve]
     static public UnityEngine.Bounds BoundsFromVtArray(VtValue vtBounds,
                                                        UnityEngine.Vector3[] bbox) {
       //UnityEngine.Vector3[] bbox = new UnityEngine.Vector3[2];
@@ -723,6 +776,7 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Vector3 / Vec3f
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtVec3fArray ToVtArray(UnityEngine.Vector3[] input) {
       var output = new VtVec3fArray((uint)input.Length);
       unsafe
@@ -735,12 +789,14 @@ namespace USD.NET.Unity {
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public UnityEngine.Vector3[] FromVtArray(VtVec3fArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size()); ;
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtVec3fArray input, ref UnityEngine.Vector3[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size());
@@ -753,10 +809,12 @@ namespace USD.NET.Unity {
       }
     }
 
+    [Preserve]
     static public VtVec3fArray ListToVtArray(List<UnityEngine.Vector3> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<UnityEngine.Vector3> ListFromVtArray(VtVec3fArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size());
       unsafe
@@ -771,6 +829,7 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Vector2 / Vec2f
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtVec2fArray ToVtArray(UnityEngine.Vector2[] input) {
       var output = new VtVec2fArray((uint)input.Length);
       unsafe
@@ -782,6 +841,7 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public UnityEngine.Vector2[] FromVtArray(VtVec2fArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector2>(input.size());
       unsafe
@@ -793,10 +853,12 @@ namespace USD.NET.Unity {
       return output;
     }
 
+    [Preserve]
     static public VtVec2fArray ListToVtArray(List<UnityEngine.Vector2> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<UnityEngine.Vector2> ListFromVtArray(VtVec2fArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector2>(input.size());
       unsafe
@@ -812,10 +874,12 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Vector2/Vec2
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public GfVec2f Vector2ToVec2f(UnityEngine.Vector2 vec2) {
       return new GfVec2f(vec2[0], vec2[1]);
     }
 
+    [Preserve]
     static public UnityEngine.Vector2 Vec2fToVector2(GfVec2f value) {
       GfVec2f obj = pxr.UsdCs.VtValueToGfVec2f(value);
       return new UnityEngine.Vector2(obj[0], obj[1]);
@@ -824,10 +888,12 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Vector3/Vec3
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public GfVec3f Vector3ToVec3f(UnityEngine.Vector3 vec3) {
       return new pxr.GfVec3f(vec3[0], vec3[1], vec3[2]);
     }
 
+    [Preserve]
     static public UnityEngine.Vector3 Vec3fToVector3(GfVec3f v3) {
       return new UnityEngine.Vector3(v3[0], v3[1], v3[2]);
     }
@@ -835,10 +901,12 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Vector4/Vec4
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public pxr.GfVec4f Vector4ToVec4f(UnityEngine.Vector4 vector4) {
       return new pxr.GfVec4f(vector4[0], vector4[1], vector4[2], vector4[3]);
     }
 
+    [Preserve]
     static public UnityEngine.Vector4 Vec4fToVector4(GfVec4f v4) {
       return new UnityEngine.Vector4(v4[0], v4[1], v4[2], v4[3]);
     }
@@ -846,10 +914,12 @@ namespace USD.NET.Unity {
     // ----------------------------------------------------------------------------------------- //
     // Rect
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public GfVec4f RectToVtVec4(UnityEngine.Rect rect) {
       return new pxr.GfVec4f(rect.x, rect.y, rect.width, rect.height);
     }
 
+    [Preserve]
     static public UnityEngine.Rect Vec4fToRect(GfVec4f v4) {
       return new UnityEngine.Rect(v4[0], v4[1], v4[2], v4[3]);
     }

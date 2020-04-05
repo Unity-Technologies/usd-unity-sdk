@@ -30,7 +30,11 @@ castTo = """
     }}"""
 castToPost = "%}"
 
-accessorPre = """%inline %{
+preserveAttr = """%typemap(csattributes) {cppTypeName} "[Preserve]"
+%csattributes VtValueTo{csTypeName} "[Preserve]" """
+
+accessorPre = """
+%inline %{
 // This code manifests in UsdCs class.
 """
 accessor = """
@@ -145,6 +149,11 @@ def genVtValue(basePath, copyright):
 
     with open(vtValueAccessors, "w") as f:
         print >> f, copyright
+
+        for tn in sorted(typeInfos.keys()):
+            ti = typeInfos[tn]
+            print >> f, preserveAttr.format(csTypeName=ti.csTypeName, cppTypeName=ti.cppTypeName)
+
         print >> f, accessorPre
         for tn in sorted(typeInfos.keys()):
             ti = typeInfos[tn]
