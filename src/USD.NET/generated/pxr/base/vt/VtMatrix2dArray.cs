@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtMatrix2dArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

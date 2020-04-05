@@ -1466,675 +1466,795 @@ public class UsdCs {
     return ret;
   }
 
-  public static GfHalf VtValueToGfHalf(VtValue value) {
-    GfHalf ret = new GfHalf(UsdCsPINVOKE.VtValueToGfHalf__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfHalf(VtValue value, GfHalf output) {
-    UsdCsPINVOKE.VtValueToGfHalf__SWIG_1(VtValue.getCPtr(value), GfHalf.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfMatrix2d VtValueToGfMatrix2d(VtValue value) {
-    GfMatrix2d ret = new GfMatrix2d(UsdCsPINVOKE.VtValueToGfMatrix2d__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfMatrix2d(VtValue value, GfMatrix2d output) {
-    UsdCsPINVOKE.VtValueToGfMatrix2d__SWIG_1(VtValue.getCPtr(value), GfMatrix2d.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfMatrix3d VtValueToGfMatrix3d(VtValue value) {
-    GfMatrix3d ret = new GfMatrix3d(UsdCsPINVOKE.VtValueToGfMatrix3d__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfMatrix3d(VtValue value, GfMatrix3d output) {
-    UsdCsPINVOKE.VtValueToGfMatrix3d__SWIG_1(VtValue.getCPtr(value), GfMatrix3d.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfMatrix4d VtValueToGfMatrix4d(VtValue value) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.VtValueToGfMatrix4d__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfMatrix4d(VtValue value, GfMatrix4d output) {
-    UsdCsPINVOKE.VtValueToGfMatrix4d__SWIG_1(VtValue.getCPtr(value), GfMatrix4d.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfQuatd VtValueToGfQuatd(VtValue value) {
-    GfQuatd ret = new GfQuatd(UsdCsPINVOKE.VtValueToGfQuatd__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfQuatd(VtValue value, GfQuatd output) {
-    UsdCsPINVOKE.VtValueToGfQuatd__SWIG_1(VtValue.getCPtr(value), GfQuatd.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfQuatf VtValueToGfQuatf(VtValue value) {
-    GfQuatf ret = new GfQuatf(UsdCsPINVOKE.VtValueToGfQuatf__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfQuatf(VtValue value, GfQuatf output) {
-    UsdCsPINVOKE.VtValueToGfQuatf__SWIG_1(VtValue.getCPtr(value), GfQuatf.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfQuath VtValueToGfQuath(VtValue value) {
-    GfQuath ret = new GfQuath(UsdCsPINVOKE.VtValueToGfQuath__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfQuath(VtValue value, GfQuath output) {
-    UsdCsPINVOKE.VtValueToGfQuath__SWIG_1(VtValue.getCPtr(value), GfQuath.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec2d VtValueToGfVec2d(VtValue value) {
-    GfVec2d ret = new GfVec2d(UsdCsPINVOKE.VtValueToGfVec2d__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec2d(VtValue value, GfVec2d output) {
-    UsdCsPINVOKE.VtValueToGfVec2d__SWIG_1(VtValue.getCPtr(value), GfVec2d.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec2f VtValueToGfVec2f(VtValue value) {
-    GfVec2f ret = new GfVec2f(UsdCsPINVOKE.VtValueToGfVec2f__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec2f(VtValue value, GfVec2f output) {
-    UsdCsPINVOKE.VtValueToGfVec2f__SWIG_1(VtValue.getCPtr(value), GfVec2f.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec2h VtValueToGfVec2h(VtValue value) {
-    GfVec2h ret = new GfVec2h(UsdCsPINVOKE.VtValueToGfVec2h__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec2h(VtValue value, GfVec2h output) {
-    UsdCsPINVOKE.VtValueToGfVec2h__SWIG_1(VtValue.getCPtr(value), GfVec2h.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec2i VtValueToGfVec2i(VtValue value) {
-    GfVec2i ret = new GfVec2i(UsdCsPINVOKE.VtValueToGfVec2i__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec2i(VtValue value, GfVec2i output) {
-    UsdCsPINVOKE.VtValueToGfVec2i__SWIG_1(VtValue.getCPtr(value), GfVec2i.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec3d VtValueToGfVec3d(VtValue value) {
-    GfVec3d ret = new GfVec3d(UsdCsPINVOKE.VtValueToGfVec3d__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec3d(VtValue value, GfVec3d output) {
-    UsdCsPINVOKE.VtValueToGfVec3d__SWIG_1(VtValue.getCPtr(value), GfVec3d.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec3f VtValueToGfVec3f(VtValue value) {
-    GfVec3f ret = new GfVec3f(UsdCsPINVOKE.VtValueToGfVec3f__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec3f(VtValue value, GfVec3f output) {
-    UsdCsPINVOKE.VtValueToGfVec3f__SWIG_1(VtValue.getCPtr(value), GfVec3f.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec3h VtValueToGfVec3h(VtValue value) {
-    GfVec3h ret = new GfVec3h(UsdCsPINVOKE.VtValueToGfVec3h__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec3h(VtValue value, GfVec3h output) {
-    UsdCsPINVOKE.VtValueToGfVec3h__SWIG_1(VtValue.getCPtr(value), GfVec3h.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec3i VtValueToGfVec3i(VtValue value) {
-    GfVec3i ret = new GfVec3i(UsdCsPINVOKE.VtValueToGfVec3i__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec3i(VtValue value, GfVec3i output) {
-    UsdCsPINVOKE.VtValueToGfVec3i__SWIG_1(VtValue.getCPtr(value), GfVec3i.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec4d VtValueToGfVec4d(VtValue value) {
-    GfVec4d ret = new GfVec4d(UsdCsPINVOKE.VtValueToGfVec4d__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec4d(VtValue value, GfVec4d output) {
-    UsdCsPINVOKE.VtValueToGfVec4d__SWIG_1(VtValue.getCPtr(value), GfVec4d.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec4f VtValueToGfVec4f(VtValue value) {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.VtValueToGfVec4f__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec4f(VtValue value, GfVec4f output) {
-    UsdCsPINVOKE.VtValueToGfVec4f__SWIG_1(VtValue.getCPtr(value), GfVec4f.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec4h VtValueToGfVec4h(VtValue value) {
-    GfVec4h ret = new GfVec4h(UsdCsPINVOKE.VtValueToGfVec4h__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec4h(VtValue value, GfVec4h output) {
-    UsdCsPINVOKE.VtValueToGfVec4h__SWIG_1(VtValue.getCPtr(value), GfVec4h.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec4i VtValueToGfVec4i(VtValue value) {
-    GfVec4i ret = new GfVec4i(UsdCsPINVOKE.VtValueToGfVec4i__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToGfVec4i(VtValue value, GfVec4i output) {
-    UsdCsPINVOKE.VtValueToGfVec4i__SWIG_1(VtValue.getCPtr(value), GfVec4i.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static SdfAssetPath VtValueToSdfAssetPath(VtValue value) {
-    SdfAssetPath ret = new SdfAssetPath(UsdCsPINVOKE.VtValueToSdfAssetPath__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToSdfAssetPath(VtValue value, SdfAssetPath output) {
-    UsdCsPINVOKE.VtValueToSdfAssetPath__SWIG_1(VtValue.getCPtr(value), SdfAssetPath.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static SdfAssetPathArray VtValueToSdfAssetPathArray(VtValue value) {
-    SdfAssetPathArray ret = new SdfAssetPathArray(UsdCsPINVOKE.VtValueToSdfAssetPathArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToSdfAssetPathArray(VtValue value, SdfAssetPathArray output) {
-    UsdCsPINVOKE.VtValueToSdfAssetPathArray__SWIG_1(VtValue.getCPtr(value), SdfAssetPathArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static TfToken VtValueToTfToken(VtValue value) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.VtValueToTfToken__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToTfToken(VtValue value, TfToken output) {
-    UsdCsPINVOKE.VtValueToTfToken__SWIG_1(VtValue.getCPtr(value), TfToken.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtBoolArray VtValueToVtBoolArray(VtValue value) {
-    VtBoolArray ret = new VtBoolArray(UsdCsPINVOKE.VtValueToVtBoolArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtBoolArray(VtValue value, VtBoolArray output) {
-    UsdCsPINVOKE.VtValueToVtBoolArray__SWIG_1(VtValue.getCPtr(value), VtBoolArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtDoubleArray VtValueToVtDoubleArray(VtValue value) {
-    VtDoubleArray ret = new VtDoubleArray(UsdCsPINVOKE.VtValueToVtDoubleArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtDoubleArray(VtValue value, VtDoubleArray output) {
-    UsdCsPINVOKE.VtValueToVtDoubleArray__SWIG_1(VtValue.getCPtr(value), VtDoubleArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtFloatArray VtValueToVtFloatArray(VtValue value) {
-    VtFloatArray ret = new VtFloatArray(UsdCsPINVOKE.VtValueToVtFloatArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtFloatArray(VtValue value, VtFloatArray output) {
-    UsdCsPINVOKE.VtValueToVtFloatArray__SWIG_1(VtValue.getCPtr(value), VtFloatArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtHalfArray VtValueToVtHalfArray(VtValue value) {
-    VtHalfArray ret = new VtHalfArray(UsdCsPINVOKE.VtValueToVtHalfArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtHalfArray(VtValue value, VtHalfArray output) {
-    UsdCsPINVOKE.VtValueToVtHalfArray__SWIG_1(VtValue.getCPtr(value), VtHalfArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtInt64Array VtValueToVtInt64Array(VtValue value) {
-    VtInt64Array ret = new VtInt64Array(UsdCsPINVOKE.VtValueToVtInt64Array__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtInt64Array(VtValue value, VtInt64Array output) {
-    UsdCsPINVOKE.VtValueToVtInt64Array__SWIG_1(VtValue.getCPtr(value), VtInt64Array.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtIntArray VtValueToVtIntArray(VtValue value) {
-    VtIntArray ret = new VtIntArray(UsdCsPINVOKE.VtValueToVtIntArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtIntArray(VtValue value, VtIntArray output) {
-    UsdCsPINVOKE.VtValueToVtIntArray__SWIG_1(VtValue.getCPtr(value), VtIntArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtMatrix2dArray VtValueToVtMatrix2dArray(VtValue value) {
-    VtMatrix2dArray ret = new VtMatrix2dArray(UsdCsPINVOKE.VtValueToVtMatrix2dArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtMatrix2dArray(VtValue value, VtMatrix2dArray output) {
-    UsdCsPINVOKE.VtValueToVtMatrix2dArray__SWIG_1(VtValue.getCPtr(value), VtMatrix2dArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtMatrix3dArray VtValueToVtMatrix3dArray(VtValue value) {
-    VtMatrix3dArray ret = new VtMatrix3dArray(UsdCsPINVOKE.VtValueToVtMatrix3dArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtMatrix3dArray(VtValue value, VtMatrix3dArray output) {
-    UsdCsPINVOKE.VtValueToVtMatrix3dArray__SWIG_1(VtValue.getCPtr(value), VtMatrix3dArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtMatrix4dArray VtValueToVtMatrix4dArray(VtValue value) {
-    VtMatrix4dArray ret = new VtMatrix4dArray(UsdCsPINVOKE.VtValueToVtMatrix4dArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtMatrix4dArray(VtValue value, VtMatrix4dArray output) {
-    UsdCsPINVOKE.VtValueToVtMatrix4dArray__SWIG_1(VtValue.getCPtr(value), VtMatrix4dArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtQuatdArray VtValueToVtQuatdArray(VtValue value) {
-    VtQuatdArray ret = new VtQuatdArray(UsdCsPINVOKE.VtValueToVtQuatdArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtQuatdArray(VtValue value, VtQuatdArray output) {
-    UsdCsPINVOKE.VtValueToVtQuatdArray__SWIG_1(VtValue.getCPtr(value), VtQuatdArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtQuatfArray VtValueToVtQuatfArray(VtValue value) {
-    VtQuatfArray ret = new VtQuatfArray(UsdCsPINVOKE.VtValueToVtQuatfArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtQuatfArray(VtValue value, VtQuatfArray output) {
-    UsdCsPINVOKE.VtValueToVtQuatfArray__SWIG_1(VtValue.getCPtr(value), VtQuatfArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtQuathArray VtValueToVtQuathArray(VtValue value) {
-    VtQuathArray ret = new VtQuathArray(UsdCsPINVOKE.VtValueToVtQuathArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtQuathArray(VtValue value, VtQuathArray output) {
-    UsdCsPINVOKE.VtValueToVtQuathArray__SWIG_1(VtValue.getCPtr(value), VtQuathArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtStringArray VtValueToVtStringArray(VtValue value) {
-    VtStringArray ret = new VtStringArray(UsdCsPINVOKE.VtValueToVtStringArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtStringArray(VtValue value, VtStringArray output) {
-    UsdCsPINVOKE.VtValueToVtStringArray__SWIG_1(VtValue.getCPtr(value), VtStringArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtTokenArray VtValueToVtTokenArray(VtValue value) {
-    VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.VtValueToVtTokenArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtTokenArray(VtValue value, VtTokenArray output) {
-    UsdCsPINVOKE.VtValueToVtTokenArray__SWIG_1(VtValue.getCPtr(value), VtTokenArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtUCharArray VtValueToVtUCharArray(VtValue value) {
-    VtUCharArray ret = new VtUCharArray(UsdCsPINVOKE.VtValueToVtUCharArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtUCharArray(VtValue value, VtUCharArray output) {
-    UsdCsPINVOKE.VtValueToVtUCharArray__SWIG_1(VtValue.getCPtr(value), VtUCharArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtUInt64Array VtValueToVtUInt64Array(VtValue value) {
-    VtUInt64Array ret = new VtUInt64Array(UsdCsPINVOKE.VtValueToVtUInt64Array__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtUInt64Array(VtValue value, VtUInt64Array output) {
-    UsdCsPINVOKE.VtValueToVtUInt64Array__SWIG_1(VtValue.getCPtr(value), VtUInt64Array.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtUIntArray VtValueToVtUIntArray(VtValue value) {
-    VtUIntArray ret = new VtUIntArray(UsdCsPINVOKE.VtValueToVtUIntArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtUIntArray(VtValue value, VtUIntArray output) {
-    UsdCsPINVOKE.VtValueToVtUIntArray__SWIG_1(VtValue.getCPtr(value), VtUIntArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec2dArray VtValueToVtVec2dArray(VtValue value) {
-    VtVec2dArray ret = new VtVec2dArray(UsdCsPINVOKE.VtValueToVtVec2dArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec2dArray(VtValue value, VtVec2dArray output) {
-    UsdCsPINVOKE.VtValueToVtVec2dArray__SWIG_1(VtValue.getCPtr(value), VtVec2dArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec2fArray VtValueToVtVec2fArray(VtValue value) {
-    VtVec2fArray ret = new VtVec2fArray(UsdCsPINVOKE.VtValueToVtVec2fArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec2fArray(VtValue value, VtVec2fArray output) {
-    UsdCsPINVOKE.VtValueToVtVec2fArray__SWIG_1(VtValue.getCPtr(value), VtVec2fArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec2hArray VtValueToVtVec2hArray(VtValue value) {
-    VtVec2hArray ret = new VtVec2hArray(UsdCsPINVOKE.VtValueToVtVec2hArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec2hArray(VtValue value, VtVec2hArray output) {
-    UsdCsPINVOKE.VtValueToVtVec2hArray__SWIG_1(VtValue.getCPtr(value), VtVec2hArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec2iArray VtValueToVtVec2iArray(VtValue value) {
-    VtVec2iArray ret = new VtVec2iArray(UsdCsPINVOKE.VtValueToVtVec2iArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec2iArray(VtValue value, VtVec2iArray output) {
-    UsdCsPINVOKE.VtValueToVtVec2iArray__SWIG_1(VtValue.getCPtr(value), VtVec2iArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec3dArray VtValueToVtVec3dArray(VtValue value) {
-    VtVec3dArray ret = new VtVec3dArray(UsdCsPINVOKE.VtValueToVtVec3dArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec3dArray(VtValue value, VtVec3dArray output) {
-    UsdCsPINVOKE.VtValueToVtVec3dArray__SWIG_1(VtValue.getCPtr(value), VtVec3dArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec3fArray VtValueToVtVec3fArray(VtValue value) {
-    VtVec3fArray ret = new VtVec3fArray(UsdCsPINVOKE.VtValueToVtVec3fArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec3fArray(VtValue value, VtVec3fArray output) {
-    UsdCsPINVOKE.VtValueToVtVec3fArray__SWIG_1(VtValue.getCPtr(value), VtVec3fArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec3hArray VtValueToVtVec3hArray(VtValue value) {
-    VtVec3hArray ret = new VtVec3hArray(UsdCsPINVOKE.VtValueToVtVec3hArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec3hArray(VtValue value, VtVec3hArray output) {
-    UsdCsPINVOKE.VtValueToVtVec3hArray__SWIG_1(VtValue.getCPtr(value), VtVec3hArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec3iArray VtValueToVtVec3iArray(VtValue value) {
-    VtVec3iArray ret = new VtVec3iArray(UsdCsPINVOKE.VtValueToVtVec3iArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec3iArray(VtValue value, VtVec3iArray output) {
-    UsdCsPINVOKE.VtValueToVtVec3iArray__SWIG_1(VtValue.getCPtr(value), VtVec3iArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec4dArray VtValueToVtVec4dArray(VtValue value) {
-    VtVec4dArray ret = new VtVec4dArray(UsdCsPINVOKE.VtValueToVtVec4dArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec4dArray(VtValue value, VtVec4dArray output) {
-    UsdCsPINVOKE.VtValueToVtVec4dArray__SWIG_1(VtValue.getCPtr(value), VtVec4dArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec4fArray VtValueToVtVec4fArray(VtValue value) {
-    VtVec4fArray ret = new VtVec4fArray(UsdCsPINVOKE.VtValueToVtVec4fArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec4fArray(VtValue value, VtVec4fArray output) {
-    UsdCsPINVOKE.VtValueToVtVec4fArray__SWIG_1(VtValue.getCPtr(value), VtVec4fArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec4hArray VtValueToVtVec4hArray(VtValue value) {
-    VtVec4hArray ret = new VtVec4hArray(UsdCsPINVOKE.VtValueToVtVec4hArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec4hArray(VtValue value, VtVec4hArray output) {
-    UsdCsPINVOKE.VtValueToVtVec4hArray__SWIG_1(VtValue.getCPtr(value), VtVec4hArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static VtVec4iArray VtValueToVtVec4iArray(VtValue value) {
-    VtVec4iArray ret = new VtVec4iArray(UsdCsPINVOKE.VtValueToVtVec4iArray__SWIG_0(VtValue.getCPtr(value)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToVtVec4iArray(VtValue value, VtVec4iArray output) {
-    UsdCsPINVOKE.VtValueToVtVec4iArray__SWIG_1(VtValue.getCPtr(value), VtVec4iArray.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static bool VtValueTobool(VtValue value) {
-    bool ret = UsdCsPINVOKE.VtValueTobool__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueTobool(VtValue value, ref bool output) {
-    UsdCsPINVOKE.VtValueTobool__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static double VtValueTodouble(VtValue value) {
-    double ret = UsdCsPINVOKE.VtValueTodouble__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueTodouble(VtValue value, ref double output) {
-    UsdCsPINVOKE.VtValueTodouble__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static float VtValueTofloat(VtValue value) {
-    float ret = UsdCsPINVOKE.VtValueTofloat__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueTofloat(VtValue value, ref float output) {
-    UsdCsPINVOKE.VtValueTofloat__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static int VtValueToint(VtValue value) {
-    int ret = UsdCsPINVOKE.VtValueToint__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToint(VtValue value, ref int output) {
-    UsdCsPINVOKE.VtValueToint__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static long VtValueTolong(VtValue value) {
-    long ret = UsdCsPINVOKE.VtValueTolong__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueTolong(VtValue value, ref long output) {
-    UsdCsPINVOKE.VtValueTolong__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static string VtValueTostring(VtValue value) {
-    string ret = UsdCsPINVOKE.VtValueTostring__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueTostring(VtValue value, SWIGTYPE_p_std__string output) {
-    UsdCsPINVOKE.VtValueTostring__SWIG_1(VtValue.getCPtr(value), SWIGTYPE_p_std__string.getCPtr(output));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static ulong VtValueToulong(VtValue value) {
-    ulong ret = UsdCsPINVOKE.VtValueToulong__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueToulong(VtValue value, ref ulong output) {
-    UsdCsPINVOKE.VtValueToulong__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static byte VtValueTobyte(VtValue value) {
-    byte ret = UsdCsPINVOKE.VtValueTobyte__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueTobyte(VtValue value, ref byte output) {
-    UsdCsPINVOKE.VtValueTobyte__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static uint VtValueTouint(VtValue value) {
-    uint ret = UsdCsPINVOKE.VtValueTouint__SWIG_0(VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static void VtValueTouint(VtValue value, ref uint output) {
-    UsdCsPINVOKE.VtValueTouint__SWIG_1(VtValue.getCPtr(value), ref output);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
   public static void swap(VtValue lhs, VtValue rhs) {
     UsdCsPINVOKE.swap__SWIG_1(VtValue.getCPtr(lhs), VtValue.getCPtr(rhs));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static uint hash_value(VtValue val) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_31(VtValue.getCPtr(val));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_30(VtValue.getCPtr(val));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  [Preserve]
+  public static GfHalf VtValueToGfHalf(VtValue value) {
+    GfHalf ret = new GfHalf(UsdCsPINVOKE.VtValueToGfHalf__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfHalf(VtValue value, GfHalf output) {
+    UsdCsPINVOKE.VtValueToGfHalf__SWIG_1(VtValue.getCPtr(value), GfHalf.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfMatrix2d VtValueToGfMatrix2d(VtValue value) {
+    GfMatrix2d ret = new GfMatrix2d(UsdCsPINVOKE.VtValueToGfMatrix2d__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfMatrix2d(VtValue value, GfMatrix2d output) {
+    UsdCsPINVOKE.VtValueToGfMatrix2d__SWIG_1(VtValue.getCPtr(value), GfMatrix2d.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfMatrix3d VtValueToGfMatrix3d(VtValue value) {
+    GfMatrix3d ret = new GfMatrix3d(UsdCsPINVOKE.VtValueToGfMatrix3d__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfMatrix3d(VtValue value, GfMatrix3d output) {
+    UsdCsPINVOKE.VtValueToGfMatrix3d__SWIG_1(VtValue.getCPtr(value), GfMatrix3d.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfMatrix4d VtValueToGfMatrix4d(VtValue value) {
+    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.VtValueToGfMatrix4d__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfMatrix4d(VtValue value, GfMatrix4d output) {
+    UsdCsPINVOKE.VtValueToGfMatrix4d__SWIG_1(VtValue.getCPtr(value), GfMatrix4d.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfQuatd VtValueToGfQuatd(VtValue value) {
+    GfQuatd ret = new GfQuatd(UsdCsPINVOKE.VtValueToGfQuatd__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfQuatd(VtValue value, GfQuatd output) {
+    UsdCsPINVOKE.VtValueToGfQuatd__SWIG_1(VtValue.getCPtr(value), GfQuatd.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfQuatf VtValueToGfQuatf(VtValue value) {
+    GfQuatf ret = new GfQuatf(UsdCsPINVOKE.VtValueToGfQuatf__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfQuatf(VtValue value, GfQuatf output) {
+    UsdCsPINVOKE.VtValueToGfQuatf__SWIG_1(VtValue.getCPtr(value), GfQuatf.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfQuath VtValueToGfQuath(VtValue value) {
+    GfQuath ret = new GfQuath(UsdCsPINVOKE.VtValueToGfQuath__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfQuath(VtValue value, GfQuath output) {
+    UsdCsPINVOKE.VtValueToGfQuath__SWIG_1(VtValue.getCPtr(value), GfQuath.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec2d VtValueToGfVec2d(VtValue value) {
+    GfVec2d ret = new GfVec2d(UsdCsPINVOKE.VtValueToGfVec2d__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec2d(VtValue value, GfVec2d output) {
+    UsdCsPINVOKE.VtValueToGfVec2d__SWIG_1(VtValue.getCPtr(value), GfVec2d.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec2f VtValueToGfVec2f(VtValue value) {
+    GfVec2f ret = new GfVec2f(UsdCsPINVOKE.VtValueToGfVec2f__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec2f(VtValue value, GfVec2f output) {
+    UsdCsPINVOKE.VtValueToGfVec2f__SWIG_1(VtValue.getCPtr(value), GfVec2f.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec2h VtValueToGfVec2h(VtValue value) {
+    GfVec2h ret = new GfVec2h(UsdCsPINVOKE.VtValueToGfVec2h__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec2h(VtValue value, GfVec2h output) {
+    UsdCsPINVOKE.VtValueToGfVec2h__SWIG_1(VtValue.getCPtr(value), GfVec2h.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec2i VtValueToGfVec2i(VtValue value) {
+    GfVec2i ret = new GfVec2i(UsdCsPINVOKE.VtValueToGfVec2i__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec2i(VtValue value, GfVec2i output) {
+    UsdCsPINVOKE.VtValueToGfVec2i__SWIG_1(VtValue.getCPtr(value), GfVec2i.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec3d VtValueToGfVec3d(VtValue value) {
+    GfVec3d ret = new GfVec3d(UsdCsPINVOKE.VtValueToGfVec3d__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec3d(VtValue value, GfVec3d output) {
+    UsdCsPINVOKE.VtValueToGfVec3d__SWIG_1(VtValue.getCPtr(value), GfVec3d.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec3f VtValueToGfVec3f(VtValue value) {
+    GfVec3f ret = new GfVec3f(UsdCsPINVOKE.VtValueToGfVec3f__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec3f(VtValue value, GfVec3f output) {
+    UsdCsPINVOKE.VtValueToGfVec3f__SWIG_1(VtValue.getCPtr(value), GfVec3f.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec3h VtValueToGfVec3h(VtValue value) {
+    GfVec3h ret = new GfVec3h(UsdCsPINVOKE.VtValueToGfVec3h__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec3h(VtValue value, GfVec3h output) {
+    UsdCsPINVOKE.VtValueToGfVec3h__SWIG_1(VtValue.getCPtr(value), GfVec3h.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec3i VtValueToGfVec3i(VtValue value) {
+    GfVec3i ret = new GfVec3i(UsdCsPINVOKE.VtValueToGfVec3i__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec3i(VtValue value, GfVec3i output) {
+    UsdCsPINVOKE.VtValueToGfVec3i__SWIG_1(VtValue.getCPtr(value), GfVec3i.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec4d VtValueToGfVec4d(VtValue value) {
+    GfVec4d ret = new GfVec4d(UsdCsPINVOKE.VtValueToGfVec4d__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec4d(VtValue value, GfVec4d output) {
+    UsdCsPINVOKE.VtValueToGfVec4d__SWIG_1(VtValue.getCPtr(value), GfVec4d.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec4f VtValueToGfVec4f(VtValue value) {
+    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.VtValueToGfVec4f__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec4f(VtValue value, GfVec4f output) {
+    UsdCsPINVOKE.VtValueToGfVec4f__SWIG_1(VtValue.getCPtr(value), GfVec4f.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec4h VtValueToGfVec4h(VtValue value) {
+    GfVec4h ret = new GfVec4h(UsdCsPINVOKE.VtValueToGfVec4h__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec4h(VtValue value, GfVec4h output) {
+    UsdCsPINVOKE.VtValueToGfVec4h__SWIG_1(VtValue.getCPtr(value), GfVec4h.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static GfVec4i VtValueToGfVec4i(VtValue value) {
+    GfVec4i ret = new GfVec4i(UsdCsPINVOKE.VtValueToGfVec4i__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToGfVec4i(VtValue value, GfVec4i output) {
+    UsdCsPINVOKE.VtValueToGfVec4i__SWIG_1(VtValue.getCPtr(value), GfVec4i.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static SdfAssetPath VtValueToSdfAssetPath(VtValue value) {
+    SdfAssetPath ret = new SdfAssetPath(UsdCsPINVOKE.VtValueToSdfAssetPath__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToSdfAssetPath(VtValue value, SdfAssetPath output) {
+    UsdCsPINVOKE.VtValueToSdfAssetPath__SWIG_1(VtValue.getCPtr(value), SdfAssetPath.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static SdfAssetPathArray VtValueToSdfAssetPathArray(VtValue value) {
+    SdfAssetPathArray ret = new SdfAssetPathArray(UsdCsPINVOKE.VtValueToSdfAssetPathArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToSdfAssetPathArray(VtValue value, SdfAssetPathArray output) {
+    UsdCsPINVOKE.VtValueToSdfAssetPathArray__SWIG_1(VtValue.getCPtr(value), SdfAssetPathArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static TfToken VtValueToTfToken(VtValue value) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.VtValueToTfToken__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToTfToken(VtValue value, TfToken output) {
+    UsdCsPINVOKE.VtValueToTfToken__SWIG_1(VtValue.getCPtr(value), TfToken.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtBoolArray VtValueToVtBoolArray(VtValue value) {
+    VtBoolArray ret = new VtBoolArray(UsdCsPINVOKE.VtValueToVtBoolArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtBoolArray(VtValue value, VtBoolArray output) {
+    UsdCsPINVOKE.VtValueToVtBoolArray__SWIG_1(VtValue.getCPtr(value), VtBoolArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtDoubleArray VtValueToVtDoubleArray(VtValue value) {
+    VtDoubleArray ret = new VtDoubleArray(UsdCsPINVOKE.VtValueToVtDoubleArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtDoubleArray(VtValue value, VtDoubleArray output) {
+    UsdCsPINVOKE.VtValueToVtDoubleArray__SWIG_1(VtValue.getCPtr(value), VtDoubleArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtFloatArray VtValueToVtFloatArray(VtValue value) {
+    VtFloatArray ret = new VtFloatArray(UsdCsPINVOKE.VtValueToVtFloatArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtFloatArray(VtValue value, VtFloatArray output) {
+    UsdCsPINVOKE.VtValueToVtFloatArray__SWIG_1(VtValue.getCPtr(value), VtFloatArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtHalfArray VtValueToVtHalfArray(VtValue value) {
+    VtHalfArray ret = new VtHalfArray(UsdCsPINVOKE.VtValueToVtHalfArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtHalfArray(VtValue value, VtHalfArray output) {
+    UsdCsPINVOKE.VtValueToVtHalfArray__SWIG_1(VtValue.getCPtr(value), VtHalfArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtInt64Array VtValueToVtInt64Array(VtValue value) {
+    VtInt64Array ret = new VtInt64Array(UsdCsPINVOKE.VtValueToVtInt64Array__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtInt64Array(VtValue value, VtInt64Array output) {
+    UsdCsPINVOKE.VtValueToVtInt64Array__SWIG_1(VtValue.getCPtr(value), VtInt64Array.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtIntArray VtValueToVtIntArray(VtValue value) {
+    VtIntArray ret = new VtIntArray(UsdCsPINVOKE.VtValueToVtIntArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtIntArray(VtValue value, VtIntArray output) {
+    UsdCsPINVOKE.VtValueToVtIntArray__SWIG_1(VtValue.getCPtr(value), VtIntArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtMatrix2dArray VtValueToVtMatrix2dArray(VtValue value) {
+    VtMatrix2dArray ret = new VtMatrix2dArray(UsdCsPINVOKE.VtValueToVtMatrix2dArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtMatrix2dArray(VtValue value, VtMatrix2dArray output) {
+    UsdCsPINVOKE.VtValueToVtMatrix2dArray__SWIG_1(VtValue.getCPtr(value), VtMatrix2dArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtMatrix3dArray VtValueToVtMatrix3dArray(VtValue value) {
+    VtMatrix3dArray ret = new VtMatrix3dArray(UsdCsPINVOKE.VtValueToVtMatrix3dArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtMatrix3dArray(VtValue value, VtMatrix3dArray output) {
+    UsdCsPINVOKE.VtValueToVtMatrix3dArray__SWIG_1(VtValue.getCPtr(value), VtMatrix3dArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtMatrix4dArray VtValueToVtMatrix4dArray(VtValue value) {
+    VtMatrix4dArray ret = new VtMatrix4dArray(UsdCsPINVOKE.VtValueToVtMatrix4dArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtMatrix4dArray(VtValue value, VtMatrix4dArray output) {
+    UsdCsPINVOKE.VtValueToVtMatrix4dArray__SWIG_1(VtValue.getCPtr(value), VtMatrix4dArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtQuatdArray VtValueToVtQuatdArray(VtValue value) {
+    VtQuatdArray ret = new VtQuatdArray(UsdCsPINVOKE.VtValueToVtQuatdArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtQuatdArray(VtValue value, VtQuatdArray output) {
+    UsdCsPINVOKE.VtValueToVtQuatdArray__SWIG_1(VtValue.getCPtr(value), VtQuatdArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtQuatfArray VtValueToVtQuatfArray(VtValue value) {
+    VtQuatfArray ret = new VtQuatfArray(UsdCsPINVOKE.VtValueToVtQuatfArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtQuatfArray(VtValue value, VtQuatfArray output) {
+    UsdCsPINVOKE.VtValueToVtQuatfArray__SWIG_1(VtValue.getCPtr(value), VtQuatfArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtQuathArray VtValueToVtQuathArray(VtValue value) {
+    VtQuathArray ret = new VtQuathArray(UsdCsPINVOKE.VtValueToVtQuathArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtQuathArray(VtValue value, VtQuathArray output) {
+    UsdCsPINVOKE.VtValueToVtQuathArray__SWIG_1(VtValue.getCPtr(value), VtQuathArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtStringArray VtValueToVtStringArray(VtValue value) {
+    VtStringArray ret = new VtStringArray(UsdCsPINVOKE.VtValueToVtStringArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtStringArray(VtValue value, VtStringArray output) {
+    UsdCsPINVOKE.VtValueToVtStringArray__SWIG_1(VtValue.getCPtr(value), VtStringArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtTokenArray VtValueToVtTokenArray(VtValue value) {
+    VtTokenArray ret = new VtTokenArray(UsdCsPINVOKE.VtValueToVtTokenArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtTokenArray(VtValue value, VtTokenArray output) {
+    UsdCsPINVOKE.VtValueToVtTokenArray__SWIG_1(VtValue.getCPtr(value), VtTokenArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtUCharArray VtValueToVtUCharArray(VtValue value) {
+    VtUCharArray ret = new VtUCharArray(UsdCsPINVOKE.VtValueToVtUCharArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtUCharArray(VtValue value, VtUCharArray output) {
+    UsdCsPINVOKE.VtValueToVtUCharArray__SWIG_1(VtValue.getCPtr(value), VtUCharArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtUInt64Array VtValueToVtUInt64Array(VtValue value) {
+    VtUInt64Array ret = new VtUInt64Array(UsdCsPINVOKE.VtValueToVtUInt64Array__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtUInt64Array(VtValue value, VtUInt64Array output) {
+    UsdCsPINVOKE.VtValueToVtUInt64Array__SWIG_1(VtValue.getCPtr(value), VtUInt64Array.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtUIntArray VtValueToVtUIntArray(VtValue value) {
+    VtUIntArray ret = new VtUIntArray(UsdCsPINVOKE.VtValueToVtUIntArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtUIntArray(VtValue value, VtUIntArray output) {
+    UsdCsPINVOKE.VtValueToVtUIntArray__SWIG_1(VtValue.getCPtr(value), VtUIntArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec2dArray VtValueToVtVec2dArray(VtValue value) {
+    VtVec2dArray ret = new VtVec2dArray(UsdCsPINVOKE.VtValueToVtVec2dArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec2dArray(VtValue value, VtVec2dArray output) {
+    UsdCsPINVOKE.VtValueToVtVec2dArray__SWIG_1(VtValue.getCPtr(value), VtVec2dArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec2fArray VtValueToVtVec2fArray(VtValue value) {
+    VtVec2fArray ret = new VtVec2fArray(UsdCsPINVOKE.VtValueToVtVec2fArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec2fArray(VtValue value, VtVec2fArray output) {
+    UsdCsPINVOKE.VtValueToVtVec2fArray__SWIG_1(VtValue.getCPtr(value), VtVec2fArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec2hArray VtValueToVtVec2hArray(VtValue value) {
+    VtVec2hArray ret = new VtVec2hArray(UsdCsPINVOKE.VtValueToVtVec2hArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec2hArray(VtValue value, VtVec2hArray output) {
+    UsdCsPINVOKE.VtValueToVtVec2hArray__SWIG_1(VtValue.getCPtr(value), VtVec2hArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec2iArray VtValueToVtVec2iArray(VtValue value) {
+    VtVec2iArray ret = new VtVec2iArray(UsdCsPINVOKE.VtValueToVtVec2iArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec2iArray(VtValue value, VtVec2iArray output) {
+    UsdCsPINVOKE.VtValueToVtVec2iArray__SWIG_1(VtValue.getCPtr(value), VtVec2iArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec3dArray VtValueToVtVec3dArray(VtValue value) {
+    VtVec3dArray ret = new VtVec3dArray(UsdCsPINVOKE.VtValueToVtVec3dArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec3dArray(VtValue value, VtVec3dArray output) {
+    UsdCsPINVOKE.VtValueToVtVec3dArray__SWIG_1(VtValue.getCPtr(value), VtVec3dArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec3fArray VtValueToVtVec3fArray(VtValue value) {
+    VtVec3fArray ret = new VtVec3fArray(UsdCsPINVOKE.VtValueToVtVec3fArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec3fArray(VtValue value, VtVec3fArray output) {
+    UsdCsPINVOKE.VtValueToVtVec3fArray__SWIG_1(VtValue.getCPtr(value), VtVec3fArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec3hArray VtValueToVtVec3hArray(VtValue value) {
+    VtVec3hArray ret = new VtVec3hArray(UsdCsPINVOKE.VtValueToVtVec3hArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec3hArray(VtValue value, VtVec3hArray output) {
+    UsdCsPINVOKE.VtValueToVtVec3hArray__SWIG_1(VtValue.getCPtr(value), VtVec3hArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec3iArray VtValueToVtVec3iArray(VtValue value) {
+    VtVec3iArray ret = new VtVec3iArray(UsdCsPINVOKE.VtValueToVtVec3iArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec3iArray(VtValue value, VtVec3iArray output) {
+    UsdCsPINVOKE.VtValueToVtVec3iArray__SWIG_1(VtValue.getCPtr(value), VtVec3iArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec4dArray VtValueToVtVec4dArray(VtValue value) {
+    VtVec4dArray ret = new VtVec4dArray(UsdCsPINVOKE.VtValueToVtVec4dArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec4dArray(VtValue value, VtVec4dArray output) {
+    UsdCsPINVOKE.VtValueToVtVec4dArray__SWIG_1(VtValue.getCPtr(value), VtVec4dArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec4fArray VtValueToVtVec4fArray(VtValue value) {
+    VtVec4fArray ret = new VtVec4fArray(UsdCsPINVOKE.VtValueToVtVec4fArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec4fArray(VtValue value, VtVec4fArray output) {
+    UsdCsPINVOKE.VtValueToVtVec4fArray__SWIG_1(VtValue.getCPtr(value), VtVec4fArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec4hArray VtValueToVtVec4hArray(VtValue value) {
+    VtVec4hArray ret = new VtVec4hArray(UsdCsPINVOKE.VtValueToVtVec4hArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec4hArray(VtValue value, VtVec4hArray output) {
+    UsdCsPINVOKE.VtValueToVtVec4hArray__SWIG_1(VtValue.getCPtr(value), VtVec4hArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static VtVec4iArray VtValueToVtVec4iArray(VtValue value) {
+    VtVec4iArray ret = new VtVec4iArray(UsdCsPINVOKE.VtValueToVtVec4iArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToVtVec4iArray(VtValue value, VtVec4iArray output) {
+    UsdCsPINVOKE.VtValueToVtVec4iArray__SWIG_1(VtValue.getCPtr(value), VtVec4iArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static bool VtValueTobool(VtValue value) {
+    bool ret = UsdCsPINVOKE.VtValueTobool__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueTobool(VtValue value, ref bool output) {
+    UsdCsPINVOKE.VtValueTobool__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static double VtValueTodouble(VtValue value) {
+    double ret = UsdCsPINVOKE.VtValueTodouble__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueTodouble(VtValue value, ref double output) {
+    UsdCsPINVOKE.VtValueTodouble__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static float VtValueTofloat(VtValue value) {
+    float ret = UsdCsPINVOKE.VtValueTofloat__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueTofloat(VtValue value, ref float output) {
+    UsdCsPINVOKE.VtValueTofloat__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static int VtValueToint(VtValue value) {
+    int ret = UsdCsPINVOKE.VtValueToint__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToint(VtValue value, ref int output) {
+    UsdCsPINVOKE.VtValueToint__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static long VtValueTolong(VtValue value) {
+    long ret = UsdCsPINVOKE.VtValueTolong__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueTolong(VtValue value, ref long output) {
+    UsdCsPINVOKE.VtValueTolong__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static string VtValueTostring(VtValue value) {
+    string ret = UsdCsPINVOKE.VtValueTostring__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueTostring(VtValue value, SWIGTYPE_p_std__string output) {
+    UsdCsPINVOKE.VtValueTostring__SWIG_1(VtValue.getCPtr(value), SWIGTYPE_p_std__string.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static ulong VtValueToulong(VtValue value) {
+    ulong ret = UsdCsPINVOKE.VtValueToulong__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToulong(VtValue value, ref ulong output) {
+    UsdCsPINVOKE.VtValueToulong__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static byte VtValueTobyte(VtValue value) {
+    byte ret = UsdCsPINVOKE.VtValueTobyte__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueTobyte(VtValue value, ref byte output) {
+    UsdCsPINVOKE.VtValueTobyte__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static uint VtValueTouint(VtValue value) {
+    uint ret = UsdCsPINVOKE.VtValueTouint__SWIG_0(VtValue.getCPtr(value));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueTouint(VtValue value, ref uint output) {
+    UsdCsPINVOKE.VtValueTouint__SWIG_1(VtValue.getCPtr(value), ref output);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static void swap(VtDictionary lhs, VtDictionary rhs) {
@@ -4081,16 +4201,6 @@ public class UsdCs {
     string ret = UsdCsPINVOKE.UsdUtilsFlattenLayerStackResolveAssetPath(SdfLayerHandle.getCPtr(sourceLayer), assetPath);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
-  }
-
-  public static void TestCall(TaskCallback cb, int start, int end) {
-    UsdCsPINVOKE.TestCall(TaskCallback.getCPtr(cb), start, end);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static void ParallelForN(uint n, TaskCallback dispatch) {
-    UsdCsPINVOKE.ParallelForN(n, TaskCallback.getCPtr(dispatch));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static void SetEnv(string name, string value) {
