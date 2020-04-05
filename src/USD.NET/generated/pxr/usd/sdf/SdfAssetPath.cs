@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class SdfAssetPath : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;

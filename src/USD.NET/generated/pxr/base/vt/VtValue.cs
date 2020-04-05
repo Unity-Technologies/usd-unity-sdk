@@ -614,35 +614,6 @@ public class VtValue : global::System.IDisposable {
     return ret;
   }
 
-  public static bool Equals(VtValue lhs, VtValue rhs) {
-    bool ret = UsdCsPINVOKE.VtValue_Equals(VtValue.getCPtr(lhs), VtValue.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.VtValue_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(VtValue lhs, VtValue rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || VtValue.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(VtValue lhs, VtValue rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return VtValue.Equals(this, rhs as VtValue);
-    }
-  
   public VtValue(GfHalf obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_4(GfHalf.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -875,6 +846,35 @@ public class VtValue : global::System.IDisposable {
   public VtValue(uint obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_63(obj), true) {
   }
 
+  public static bool Equals(VtValue lhs, VtValue rhs) {
+    bool ret = UsdCsPINVOKE.VtValue_Equals(VtValue.getCPtr(lhs), VtValue.getCPtr(rhs));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  override public int GetHashCode() {
+    int ret = UsdCsPINVOKE.VtValue_GetHashCode(swigCPtr);
+    return ret;
+  }
+
+    public static bool operator==(VtValue lhs, VtValue rhs){
+      // The Swig binding glue will re-enter this operator comparing to null, so 
+      // that case must be handled explicitly to avoid an infinite loop. This is still
+      // not great, since it crosses the C#/C++ barrier twice. A better approache might
+      // be to return a simple value from C++ that can be compared in C#.
+      bool lnull = lhs as object == null;
+      bool rnull = rhs as object == null;
+      return (lnull == rnull) && ((lnull && rnull) || VtValue.Equals(lhs, rhs));
+    }
+
+    public static bool operator !=(VtValue lhs, VtValue rhs) {
+        return !(lhs == rhs);
+    }
+
+    override public bool Equals(object rhs) {
+      return VtValue.Equals(this, rhs as VtValue);
+    }
+  
 }
 
 }

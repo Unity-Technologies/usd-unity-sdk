@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtTokenArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
