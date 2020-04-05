@@ -28,7 +28,7 @@
 %apply unsigned int     * INOUT { unsigned int     * output };
 %apply uint64_t * INOUT { uint64_t * output };
 
-%include "vtArray.i"
 %include "vtValue.i"
+%include "vtArray.i"
 %include "vtDictionary.i"
 

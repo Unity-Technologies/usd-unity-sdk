@@ -34,11 +34,13 @@
 
 %include "vtValue_Casts.i"
 
-%import "vtArray.i"
+%include "third_party/include/pxr/base/vt/value.h"
+
+%include "vtValue_Types.i"
+
 %include "vtValue_Accessors.i"
 
 WRAP_EQUAL(VtValue)
 
-%include "third_party/include/pxr/base/vt/value.h"
 
-%include "vtValue_Types.i"
+
