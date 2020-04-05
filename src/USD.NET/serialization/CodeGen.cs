@@ -19,11 +19,6 @@ using System.Reflection.Emit;
 
 static internal class CodeGen {
 
-  // Generates a function of the form:
-  //  object Fn(VtValue val, object vtArray) {
-  //    valueToVtArray(value, ref vtArray);
-  //    return (object)(vtArrayToCs(vtArray));
-  //  }
   private static int m_funcCount = 0;
 
   // XXX : All Emit methods must have an iOS version which does not actually emit executable code,
@@ -31,6 +26,13 @@ static internal class CodeGen {
   //       be emitted at build time.
 
   public static Delegate EmitToCs<T>(MethodInfo toVtArray, MethodInfo toCsArray) {
+
+    // Generates a function of the form:
+    //   object ToCs(VtValue val, object vtArray) {
+    //     toVtArray(value, ref vtArray);
+    //     return (object)(toCsArray(vtArray));
+    //   }
+
     // define the signature of the dynamic method
     var fn = new DynamicMethod(
         "ToCs" + m_funcCount++,
@@ -65,6 +67,13 @@ static internal class CodeGen {
   }
 
   public static Delegate EmitToVt<T>(MethodInfo converter, Type csType, Type vtArrayType) {
+    
+    // Generates a function of the form:
+    //   VtValue ToVt(object CSharpNativeArray) {
+    //     VtArray<T> = converter( (StrongC#Type)CSharpNativeArray) );
+    //     return VtValue(vtArray<T>);
+    //   }
+
     // define the signature of the dynamic method
     var fn = new DynamicMethod(
         "ToVt" + m_funcCount++,
@@ -75,7 +84,7 @@ static internal class CodeGen {
 
     var il = fn.GetILGenerator();
 
-    // Push the VtValue onto the stack as the first argument.
+    // Push the C# object (array) onto the stack as the first argument.
     il.Emit(OpCodes.Ldarg_0);
 
     // Convert the object-typed argument to the specific VtArray type the converter wants.
@@ -87,9 +96,6 @@ static internal class CodeGen {
     // Convert the return value to a VtValue via construction.
     var valueCtor = typeof(pxr.VtValue).GetConstructor(new Type[] { vtArrayType });
     il.Emit(OpCodes.Newobj, valueCtor);
-
-    // Convert the return value from the specific C# type to "pxr.VtValue"
-    //il.Emit(OpCodes.Castclass, typeof(pxr.VtValue));
 
     // Return the newly constructed VtValue to the caller.
     il.Emit(OpCodes.Ret);

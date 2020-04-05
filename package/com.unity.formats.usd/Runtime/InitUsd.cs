@@ -31,6 +31,13 @@ namespace Unity.Formats.USD {
         // Initializes native USD plugins and ensures plugins are discoverable on the system path.
         SetupUsdPath();
 
+        // The TypeBinder will generate code at runtime as a performance optimization, this must
+        // be disabled when IL2CPP is enabled, since dynamic code generation is not possible.
+#if ENABLE_IL2CPP
+        TypeBinder.EnableCodeGeneration = false;
+        Debug.Log("USD: Dynamic code generation disabled for IL2CPP.");
+#endif
+
         // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
         // Vector3[] -> VtVec3fArray).
         UnityTypeBindings.RegisterTypes();
