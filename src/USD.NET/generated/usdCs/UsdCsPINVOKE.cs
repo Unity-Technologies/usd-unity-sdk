@@ -33,6 +33,7 @@ class UsdCsPINVOKE {
     static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
     static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
 
+    [MonoPInvokeCallback]
     [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="SWIGRegisterExceptionCallbacks_UsdCs")]
     public static extern void SWIGRegisterExceptionCallbacks_UsdCs(
                                 ExceptionDelegate applicationDelegate,
@@ -47,54 +48,69 @@ class UsdCsPINVOKE {
                                 ExceptionDelegate overflowDelegate, 
                                 ExceptionDelegate systemExceptionDelegate);
 
+    [MonoPInvokeCallback]
     [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="SWIGRegisterExceptionArgumentCallbacks_UsdCs")]
     public static extern void SWIGRegisterExceptionCallbacksArgument_UsdCs(
                                 ExceptionArgumentDelegate argumentDelegate,
                                 ExceptionArgumentDelegate argumentNullDelegate,
                                 ExceptionArgumentDelegate argumentOutOfRangeDelegate);
 
+    [MonoPInvokeCallback]
     static void SetPendingApplicationException(string message) {
       SWIGPendingException.Set(new global::System.ApplicationException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingArithmeticException(string message) {
       SWIGPendingException.Set(new global::System.ArithmeticException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingDivideByZeroException(string message) {
       SWIGPendingException.Set(new global::System.DivideByZeroException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingIndexOutOfRangeException(string message) {
       SWIGPendingException.Set(new global::System.IndexOutOfRangeException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingInvalidCastException(string message) {
       SWIGPendingException.Set(new global::System.InvalidCastException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingInvalidOperationException(string message) {
       SWIGPendingException.Set(new global::System.InvalidOperationException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingIOException(string message) {
       SWIGPendingException.Set(new global::System.IO.IOException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingNullReferenceException(string message) {
       SWIGPendingException.Set(new global::System.NullReferenceException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingOutOfMemoryException(string message) {
       SWIGPendingException.Set(new global::System.OutOfMemoryException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingOverflowException(string message) {
       SWIGPendingException.Set(new global::System.OverflowException(message, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingSystemException(string message) {
       SWIGPendingException.Set(new global::System.SystemException(message, SWIGPendingException.Retrieve()));
     }
 
+    [MonoPInvokeCallback]
     static void SetPendingArgumentException(string message, string paramName) {
       SWIGPendingException.Set(new global::System.ArgumentException(message, paramName, SWIGPendingException.Retrieve()));
     }
+    [MonoPInvokeCallback]
     static void SetPendingArgumentNullException(string message, string paramName) {
       global::System.Exception e = SWIGPendingException.Retrieve();
       if (e != null) message = message + " Inner Exception: " + e.Message;
       SWIGPendingException.Set(new global::System.ArgumentNullException(paramName, message));
     }
+    [MonoPInvokeCallback]
     static void SetPendingArgumentOutOfRangeException(string message, string paramName) {
       global::System.Exception e = SWIGPendingException.Retrieve();
       if (e != null) message = message + " Inner Exception: " + e.Message;
@@ -172,6 +188,7 @@ class UsdCsPINVOKE {
     [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="SWIGRegisterStringCallback_UsdCs")]
     public static extern void SWIGRegisterStringCallback_UsdCs(SWIGStringDelegate stringDelegate);
 
+    [MonoPInvokeCallback]
     static string CreateString(string cString) {
       return cString;
     }
