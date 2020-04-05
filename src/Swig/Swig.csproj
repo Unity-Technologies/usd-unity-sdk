@@ -111,7 +111,6 @@
     <Content Include="pxr\base\vt\vtValue_Types.i" />
     <Content Include="pxr\base\tf\tfWeakPtr.i" />
     <Content Include="pxr\base\tf\tfRefPtr.i" />
-    <Content Include="pxr\callback.i" />
     <Content Include="pxr\operators.i" />
     <Content Include="pxr\base\tf\tfWeakPtrBase.i" />
     <Content Include="pxr\base\tf\tfRefPtrBase.i" />

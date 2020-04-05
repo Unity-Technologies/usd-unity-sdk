@@ -13,25 +13,42 @@
 // limitations under the License.
 
 #include "diagnosticHandler.h"
+#include <iostream>
 
-DiagnosticHandler* DiagnosticHandler::m_instance = nullptr;
+#include <pxr/base/tf/weakPtr.h>
+#include <pxr/base/tf/diagnostic.h>
+#include <pxr/base/tf/diagnosticMgr.h>
 
-/*virtual*/
-void DiagnosticHandler::OnInfo(char const* msg) {
+//Create a callback delegate
+void RegisterUsdLogCallback(FuncLogCallBack cb) {
+  s_UsdLogCallback = cb;
+}
 
+void DiagnosticHandler::_Send(int logType, char const* msg) {
+  if (s_UsdLogCallback == nullptr) {
+    std::cerr << "USD: " << msg << std::endl;
+    return;
+  }
+
+  s_UsdLogCallback(logType, msg);
 }
 
 /*virtual*/
-void DiagnosticHandler::OnWarning(char const* msg) {
-
+void DiagnosticHandler::IssueStatus(pxr::TfStatus const &status) {
+  _Send(0, status.GetCommentary().c_str());
 }
 
 /*virtual*/
-void DiagnosticHandler::OnError(char const* msg) {
+void DiagnosticHandler::IssueWarning(pxr::TfWarning const &warning) {
+  _Send(1, warning.GetCommentary().c_str());
+}
 
+/*virtual*/
+void DiagnosticHandler::IssueError(pxr::TfError const &err) {
+  _Send(2, err.GetCommentary().c_str());
 }
 
 /*virtual*/ 
-void DiagnosticHandler::OnFatalError(char const* msg) {
-
+void DiagnosticHandler::IssueFatalError(pxr::TfCallContext const &context, std::string const &msg) {
+  _Send(3, msg.c_str());
 }

@@ -13,12 +13,14 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET;
 using USD.NET.Unity;
 
 namespace Unity.Formats.USD {
 
   public static class InitUsd {
     private static bool m_usdInitialized;
+    private static DiagnosticHandler m_handler;
 
     public static bool Initialize() {
       if (m_usdInitialized) {
@@ -44,11 +46,13 @@ namespace Unity.Formats.USD {
 
         // The DiagnosticHandler propagates USD native errors, warnings and info up to C# exceptions
         // and Debug.Log[Warning] respectively.
-        DiagnosticHandler.Register();
+        m_handler = new DiagnosticHandler();
+
       } catch (System.Exception ex) {
         Debug.LogException(ex);
         return false;
       }
+
       return true;
     }
 

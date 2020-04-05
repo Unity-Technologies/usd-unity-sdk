@@ -37,7 +37,6 @@ namespace Tests.Util {
       // We want to register the diagnostic handler before registering plugins, since they may spew
       // some useful warnings when things go wrong.
       var handler = new DiagnosticHandler();
-      pxr.DiagnosticHandler.SetGlobalHandler(handler);
 
       // Save a copy so it doesn't get garbage collected while set as the handler.
       sm_diagnosticHandler = handler;

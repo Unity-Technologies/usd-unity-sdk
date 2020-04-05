@@ -31,7 +31,6 @@ copy .\src\Swig\usdDefines.h   .\src\UsdCs
 md src\USD.NET\generated\UsdCs 2> nul
 move src\USD.NET\TaskCallback.cs        .\src\USD.NET\generated\UsdCs\
 move src\USD.NET\TaskCallbackVector.cs  .\src\USD.NET\generated\UsdCs\
-move src\USD.NET\DiagnosticHandler.cs   .\src\USD.NET\generated\UsdCs\
 
 md src\USD.NET\generated\pxr\base\tf 2> nul
 md src\USD.NET\generated\pxr\base\js 2> nul

@@ -83,6 +83,7 @@
     <Compile Include="collections\RangeIterator.cs" />
     <Compile Include="collections\SubtreeIterator.cs" />
     <Compile Include="collections\SiblingIterator.cs" />
+    <Compile Include="DiagnosticHandler.cs" />
     <Compile Include="generated\pxr\base\gf\GfBBox3d.cs" />
     <Compile Include="generated\pxr\base\gf\GfCamera.cs" />
     <Compile Include="generated\pxr\base\gf\GfFrustum.cs" />
@@ -581,14 +582,11 @@
     <Compile Include="generated\SWIG\SWIGTYPE_p_void.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_VtArrayT_UsdSkelSkinningQuery_t.cs" />
     <Compile Include="generated\SWIG\SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_std__string_t_t_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__iterator_t.cs" />
-    <Compile Include="generated\UsdCs\DiagnosticHandler.cs" />
-    <Compile Include="generated\UsdCs\TaskCallback.cs" />
-    <Compile Include="generated\UsdCs\TaskCallbackVector.cs" />
     <Compile Include="generated\UsdCs\UsdCs.cs" />
     <Compile Include="generated\UsdCs\UsdCsPINVOKE.cs" />
+    <Compile Include="MonoPInvokeCallbackAttribute.cs" />
     <Compile Include="pooling\ArrayUnpool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="serialization\BackgroundExecutor.cs" />
     <Compile Include="serialization\CodeGen.cs" />
     <Compile Include="serialization\Primvar.cs" />
     <Compile Include="serialization\Relationship.cs" />
