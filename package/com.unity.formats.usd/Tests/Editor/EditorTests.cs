@@ -2,7 +2,6 @@ using NUnit.Framework;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 using Scene = USD.NET.Scene;
 using Assert = UnityEngine.Assertions.Assert;
 
@@ -91,7 +90,7 @@ namespace Unity.Formats.USD.Tests
         {
             var scopeWithoutChildren = m_usdRoot.transform.Find("TestComponent/geom");
             Assert.IsNotNull(scopeWithoutChildren);
-            Assert.Zero(scopeWithoutChildren.childCount);
+            Assert.AreEqual(0, scopeWithoutChildren.childCount);
         }
         
         [Test]
@@ -99,7 +98,7 @@ namespace Unity.Formats.USD.Tests
         {
             var scopeWithChildren = m_usdRoot.transform.Find("TestComponent/ScopeTest");
             Assert.IsNotNull(scopeWithChildren);
-            Assert.NotZero(scopeWithChildren.childCount);
+            Assert.AreNotEqual(0, scopeWithChildren.childCount);
         }
 
         [Test]
@@ -110,13 +109,13 @@ namespace Unity.Formats.USD.Tests
             var scene = m_usdRoot.GetComponent<UsdAsset>().GetScene();
             var prim = scene.GetPrimAtPath(primSourceComponent.m_usdPrimPath);
             Assert.IsNotNull(prim);
-            Assert.True("Scope" == prim.GetTypeName(), scope.name + " is not of type Scope: " + prim.GetTypeName());
+            Assert.IsTrue("Scope" == prim.GetTypeName(), scope.name + " is not of type Scope: " + prim.GetTypeName());
         }
         
         [Test]
         public void ScopeTransformIsIdentity() {
             var scope = m_usdRoot.transform.Find("TestComponent/ScopeTest");
-            Assert.True(Matrix4x4.identity == scope.transform.localToWorldMatrix);
+            Assert.IsTrue(Matrix4x4.identity == scope.transform.localToWorldMatrix);
         }
     }
 }
