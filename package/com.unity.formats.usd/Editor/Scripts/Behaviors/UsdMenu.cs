@@ -216,10 +216,7 @@ namespace Unity.Formats.USD {
         importOptions = new SceneImportOptions();
         importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
         importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-        if (importOptions.usdRootPath == null)
-        {
-          importOptions.usdRootPath = GetDefaultRoot(scene);
-        }
+        importOptions.usdRootPath = GetDefaultRoot(scene);
       }
 
       GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
