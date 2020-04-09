@@ -88,7 +88,7 @@ test_trigger:
       only:
         - "/.*/"
       except:
-        - master
+        - stable
   artifacts:
     logs:
       paths:
@@ -116,7 +116,7 @@ nightly_test_trigger:
     recurring:
       - branch: dev
         frequency: daily
-      - branch: master
+      - branch: stable
         frequency: daily
   artifacts:
     logs:
