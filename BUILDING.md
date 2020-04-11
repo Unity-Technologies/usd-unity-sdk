@@ -64,14 +64,15 @@ The full build process is:
  9. Run bin\build.bat to generate Swig bindings
  10. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
  11. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
- 12. Build the solution
- 13. Hit play to run tests
- 14. Run bin\install to copy USD.NET DLLs to the Unity asset package
- 15. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
- 16. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
- 17. Test the asset package
- 18. Export a new Unity asset package
- 19. Test the exported asset package
+ 12. Manually add MonoPInvokeCallback attributes to Swig callbacks, as done here (IL2CPP support): https://github.com/Unity-Technologies/usd-unity-sdk/pull/163/commits/831f9bea364de60759c8661025da6a912af9635c#diff-aae1edb8e38ca3dd35de2760982634dcR36
+ 13. Build the solution
+ 14. Hit play to run tests
+ 15. Run bin\install to copy USD.NET DLLs to the Unity asset package
+ 16. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
+ 17. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
+ 18. Test the asset package
+ 19. Export a new Unity asset package
+ 20. Test the exported asset package
 
 The following is an example of valid environment variables:
 
