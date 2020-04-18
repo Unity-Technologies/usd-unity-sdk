@@ -51,7 +51,7 @@ build_platforms:
       wget https://github.com/PixarAnimationStudios/USD/archive/v20.02.zip
       unzip v20.02.zip
       cd USD-20.02
-      python build_scripts/build_usd.py --build-monolithic --alembic --openimageio ../libs/usd-v20.02
+      python build_scripts/build_usd.py --build-monolithic --alembic --no-imaging ../libs/usd-v20.02
   artifacts:
     {{platform.name}}_v20.02:
       paths:
