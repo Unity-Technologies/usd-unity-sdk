@@ -22,14 +22,14 @@
 #include <pxr/base/tf/diagnostic.h>
 #include <pxr/base/tf/diagnosticMgr.h>
 
-#define DLLExport __declspec(dllexport)
+
 
 extern "C"
 {
   //Create a callback delegate
   typedef void(*FuncLogCallBack)(int logType, char const* message);
   static FuncLogCallBack s_UsdLogCallback = nullptr;
-  DLLExport void RegisterUsdLogCallback(FuncLogCallBack cb);
+  void RegisterUsdLogCallback(FuncLogCallBack cb);
 }
 
 /// A reciever of diagnostic messages, sent from USD.
