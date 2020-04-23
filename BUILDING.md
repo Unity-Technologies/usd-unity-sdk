@@ -14,7 +14,9 @@ Start by understanding the layout of the source code:
 
 ## Compiling
 
-Note that currently only Windows and OSX builds are officially supported.
+Note that currently only Windows, OSX, and Linux builds are officially supported.
+
+### Windows
 
 USD.NET.sln is a Visual Studio solution which includes all projects. The
 primary requirement is to setup the library and include paths for the
@@ -22,10 +24,23 @@ C component of the build (UsdCs):
 
  * Create a new environment variable USD_LOCATION pointing to your USD install root (contains /lib and /include)
 
-Similarly for OSX an XCode project is provided in the src directory, called
+
+### OSX / Darwin
+
+Similarly for OSX, an XCode project is provided in the src directory, called
 UsdCs.xcodeproj. The OSX build will produce a .bundle file, into which all
 dependent dylibs must be manually copied, as well as the USD plugInfo.json
 files. See the existing bundle as an example of the correct structure.
+
+The XCode project is setup to add the RPATH `@loaderpath/../Frameworks/` which
+is critical to enable the UsdCs.dylib to link against the external dylibs in
+the Frameworks directory. To verify the RPATH is set correcty, run
+`otool -l UsdCs.dylib` and search for `LC_RPATH`. If the RPATH is not set,
+it can be added to the library after compilation using the command
+```
+install_name_tool -add_rpath @loaderpath/../Frameworks/ UsdCs
+install_name_tool -add_rpath @loader_path/../../../ UsdCs
+```
 
 ## Generating Bindings
 
