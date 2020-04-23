@@ -31,7 +31,10 @@ namespace Unity.Formats.USD {
       surface.metallic.defaultValue = 0;
 
       if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_SpecGlossMap", "rgb");
+        var scale = Vector4.one;
+        if (material.HasProperty("_SpecColor"))
+          scale = material.GetColor("_SpecColor"); 
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_SpecGlossMap", "rgb");
         surface.specularColor.SetConnectedPath(newTex);
       } else if (material.HasProperty("_SpecColor")) {
         // If there is a spec color, then this is not metallic workflow.
@@ -61,7 +64,10 @@ namespace Unity.Formats.USD {
       surface.useSpecularWorkflow.defaultValue = 0;
 
       if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_MetallicGlossMap", "r");
+        var scale = Vector4.one;
+        if (material.HasProperty("_Metallic"))
+          scale.x = material.GetFloat("_Metallic");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
         surface.metallic.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
@@ -70,7 +76,10 @@ namespace Unity.Formats.USD {
       }
 
       if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_SpecGlossMap", "r");
+        var scale = Vector4.one;
+        if (material.HasProperty("_Glossiness"))
+          scale.x = 1 - material.GetFloat("_Glossiness");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_SpecGlossMap", "r");
         surface.roughness.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Glossiness")) {
         surface.roughness.defaultValue = 1 - material.GetFloat("_Glossiness");
@@ -88,7 +97,10 @@ namespace Unity.Formats.USD {
       surface.useSpecularWorkflow.defaultValue = 0;
 
       if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_MetallicGlossMap", "r");
+        var scale = Vector4.one;
+        if (material.HasProperty("_Metallic"))
+          scale.x = material.GetFloat("_Metallic");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
         surface.metallic.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
@@ -131,7 +143,10 @@ namespace Unity.Formats.USD {
           || material.HasProperty("_SpecularColor")
           || material.shader.name.ToLower().Contains("specular")) {
         if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
-          var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_SpecGlossMap", "rgb");
+          var scale = Vector4.one;
+          if (material.HasProperty("_SpecularColor"))
+            scale = material.GetColor("_SpecularColor");
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_SpecGlossMap", "rgb");
           surface.specularColor.SetConnectedPath(newTex);
         } else if (material.HasProperty("_SpecColor")) {
           // If there is a spec color, then this is not metallic workflow.
@@ -151,7 +166,10 @@ namespace Unity.Formats.USD {
       } else {
         surface.useSpecularWorkflow.defaultValue = 0;
         if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
-          var newTex = SetupTexture(scene, usdShaderPath, material, surface, destTexturePath, "_MetallicGlossMap", "r");
+          var scale = Vector4.one;
+          if (material.HasProperty("_Metallic"))
+            scale.x = material.GetFloat("_Metallic");
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
           surface.metallic.SetConnectedPath(newTex);
         } else if (material.HasProperty("_Metallic")) {
           surface.metallic.defaultValue = material.GetFloat("_Metallic");
@@ -212,7 +230,10 @@ namespace Unity.Formats.USD {
 #endif
 
       if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "rgb");
+        var scale = new Vector4(1, 1, 1, 1);
+        if (mat.HasProperty("_Color"))
+            scale = mat.GetColor("_Color").linear;
+        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, scale, destTexturePath, "_MainTex", "rgb");
         surface.diffuseColor.SetConnectedPath(newTex);
       } else if (mat.HasProperty("_Color")) {
         // Standard.
@@ -236,7 +257,10 @@ namespace Unity.Formats.USD {
 
       if(shaderMode != StandardShaderBlendMode.Opaque) { 
         if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null) {
-          var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_MainTex", "a");
+          var scale = Vector4.one;
+          if (mat.HasProperty("_BaseColor"))
+            scale.w = mat.GetColor("_BaseColor").linear.a;
+          var newTex = SetupTexture(scene, usdShaderPath, mat, surface, scale, destTexturePath, "_MainTex", "a");
           surface.opacity.SetConnectedPath(newTex);
         } else if (mat.HasProperty("_Color")) {
           c = mat.GetColor("_Color").linear;
@@ -255,17 +279,17 @@ namespace Unity.Formats.USD {
       surface.useSpecularWorkflow.defaultValue = 1;
 
       if (mat.HasProperty("_BumpMap") && mat.GetTexture("_BumpMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_BumpMap", "rgb");
+        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath, "_BumpMap", "rgb");
         surface.normal.SetConnectedPath(newTex);
       }
 
       if (mat.HasProperty("_ParallaxMap") && mat.GetTexture("_ParallaxMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_ParallaxMap", "rgb");
+        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath, "_ParallaxMap", "rgb");
         surface.displacement.SetConnectedPath(newTex);
       }
 
       if (mat.HasProperty("_OcclusionMap") && mat.GetTexture("_OcclusionMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_OcclusionMap", "r");
+        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath, "_OcclusionMap", "r");
         surface.occlusion.SetConnectedPath(newTex);
       }
 
@@ -279,7 +303,10 @@ namespace Unity.Formats.USD {
       
       if (mat.IsKeywordEnabled("_EMISSION")) {
         if (mat.HasProperty("_EmissionMap") && mat.GetTexture("_EmissionMap") != null) {
-          var newTex = SetupTexture(scene, usdShaderPath, mat, surface, destTexturePath, "_EmissionMap", "rgb");
+          var scale = Vector4.one;
+          if (mat.HasProperty("_EmissionColor"))
+            scale = mat.GetColor("_EmissionColor").linear;
+          var newTex = SetupTexture(scene, usdShaderPath, mat, surface, scale, destTexturePath, "_EmissionMap", "rgb");
           surface.emissiveColor.SetConnectedPath(newTex);
         }
         
