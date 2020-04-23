@@ -27,7 +27,7 @@
         "type": "git",
         "url": "ssh://git@github.com:Unity-Technologies/usd-unity-sdk.git"
     },
-    "unity": "2018.3",
+    "unity": "2018.4",
     "unityRelease": "4f1",
-    "version": "1.0.3-preview.1"
+    "version": "1.0.3-preview.2"
 }
