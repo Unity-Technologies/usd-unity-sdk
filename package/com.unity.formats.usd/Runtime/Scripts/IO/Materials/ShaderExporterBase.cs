@@ -36,8 +36,8 @@ namespace Unity.Formats.USD {
                                  string textureName,
                                  string textureOutput) {
 #if UNITY_EDITOR
-      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(material.GetTexture(textureName));
-      var dataPath = Application.dataPath;
+      var texture = material.GetTexture(textureName);
+      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(texture);
       dataPath = dataPath.Substring(0, dataPath.LastIndexOf("Assets"));
       srcPath = dataPath + srcPath;
       var fileName = System.IO.Path.GetFileName(srcPath);
@@ -53,6 +53,8 @@ namespace Unity.Formats.USD {
       uvReader.varname.defaultValue = new TfToken("st");
       scene.Write(usdShaderPath + "/uvReader", uvReader);
       var tex = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
+      tex.wrapS = new Connectable<TextureReaderSample.WrapMode>(WrapMode(texture.wrapModeU));
+      tex.wrapT = new Connectable<TextureReaderSample.WrapMode>(WrapMode(texture.wrapModeV));
       if(scale != Vector4.one) {
         tex.scale = new Connectable<Vector4>(scale);
       }
@@ -63,6 +65,22 @@ namespace Unity.Formats.USD {
       // (can't encode compressed textures, etc).
       throw new System.Exception("Not supported at run-time");
 #endif
+    }
+
+    static TextureReaderSample.WrapMode WrapMode(TextureWrapMode wrap)
+    {
+      switch (wrap)
+      {
+        case TextureWrapMode.Repeat:
+          return TextureReaderSample.WrapMode.Repeat;
+        case TextureWrapMode.Clamp:
+          return TextureReaderSample.WrapMode.Clamp;
+        case TextureWrapMode.Mirror:
+        case TextureWrapMode.MirrorOnce:
+          return TextureReaderSample.WrapMode.Mirror;
+        default:
+          return TextureReaderSample.WrapMode.Black;
+      }
     }
 
   }
