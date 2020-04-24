@@ -36,8 +36,9 @@ namespace Unity.Formats.USD {
                                  string textureOutput) {
 #if UNITY_EDITOR
       var srcPath = UnityEditor.AssetDatabase.GetAssetPath(material.GetTexture(textureName));
-      srcPath = srcPath.Substring("Assets/".Length);
-      srcPath = Application.dataPath + "/" + srcPath;
+      var dataPath = Application.dataPath;
+      dataPath = dataPath.Substring(0, dataPath.LastIndexOf("Assets"));
+      srcPath = dataPath + srcPath;
       var fileName = System.IO.Path.GetFileName(srcPath);
       var filePath = System.IO.Path.Combine(destTexturePath, fileName);
 
