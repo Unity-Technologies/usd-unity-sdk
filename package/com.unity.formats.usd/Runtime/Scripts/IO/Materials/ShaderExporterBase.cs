@@ -36,124 +36,122 @@ namespace Unity.Formats.USD {
                                  string textureName,
                                  string textureOutput)
     {
+      // We have to handle multiple cases here:
+      // - file exists on disk
+      //   - file is a supported format => can be directly copied
+      //   - file is not in a supported format => need to blit / export
+      // - file is only in memory
+      //   - a Texture2D
+      //   - a Texture
+      //   - a RenderTexture
+      //   - needs special care if marked as Normal Map
+      //     (can probably only be detected in an Editor context, and heuristically at runtime)
+      //   => need to blit / export
+      // - file is not supported at all (or not yet)
+      //   - a 3D texture
+      //   => needs to be ignored, log Warning
 
-            // multiple cases here:
-            // - file exists on disk
-            //   - file is a supported format => can be directly copied
-            //   - file is not in a supported format => need to blit / export
-            // - file is only in memory
-            //   - a Texture2D
-            //   - a Texture
-            //   - a RenderTexture
-            //   => need to blit / export
+      bool textureIsExported = false;
 
-            //Debug.Log("Trying to export texture - " + textureName + " - " + textureOutput);
+      string filePath = null;
+      string fileName = null;
 
-            bool textureIsExported = false;
+      var texture = material.GetTexture(textureName);
 
-            string filePath = null;
-            string fileName = null;
+  #if UNITY_EDITOR
+      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(texture);
+      if(!string.IsNullOrEmpty(srcPath))
+      { 
+        srcPath = srcPath.Substring("Assets/".Length);
+        srcPath = Application.dataPath + "/" + srcPath;
+        fileName = System.IO.Path.GetFileName(srcPath);
+        filePath = System.IO.Path.Combine(destTexturePath, fileName);
 
-            var texture2d = material.GetTexture(textureName);
+        if(System.IO.File.Exists(srcPath))
+        { 
+          // USD officially only supports png / jpg / jpeg
+          // https://graphics.pixar.com/usd/docs/Usdz-File-Format-Specification.html
 
-#if UNITY_EDITOR
-            var srcPath = UnityEditor.AssetDatabase.GetAssetPath(texture2d);
-            if(!string.IsNullOrEmpty(srcPath))
-            { 
-                srcPath = srcPath.Substring("Assets/".Length);
-                srcPath = Application.dataPath + "/" + srcPath;
-                fileName = System.IO.Path.GetFileName(srcPath);
-                filePath = System.IO.Path.Combine(destTexturePath, fileName);
+          var ext = System.IO.Path.GetExtension(srcPath).ToLowerInvariant();
+          if(ext == ".png" || ext == ".jpg" || ext == ".jpeg") { 
+            System.IO.File.Copy(srcPath, filePath, overwrite: true);
+            if (System.IO.File.Exists(filePath))
+              textureIsExported = true;
+          }
+        }
+      }
+  #endif
+      if (!textureIsExported)
+      {
+        fileName = texture.name + "_" + Random.Range(10000000, 99999999).ToString();
+  #if UNITY_EDITOR
+        if (UnityEditor.AssetDatabase.Contains(texture))
+          fileName = texture.name + "_png";
+  #endif
+        filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
+        
+        // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (namely, 16 bit G and A instead of 8 bit RGBA)
+        // An example of this conversion in a shader is in Khronos' UnityGLTF implementation.
+        // basically, the blit has do be done with the right unlit conversion shader to get a proper "file-based" tangent space normal map back
 
-                if(System.IO.File.Exists(srcPath))
-                { 
-                    // USD officially only supports png / jpg / jpeg
-                    // https://graphics.pixar.com/usd/docs/Usdz-File-Format-Specification.html
+        // Blit the texture and get it back to CPU
+        // Note: Can't use RenderTexture.GetTemporary because that doesn't properly clear alpha channel
+        var rt = new RenderTexture(texture.width, texture.height, 0, RenderTextureFormat.ARGB32);
+        var resultTex = new Texture2D(texture.width, texture.height, TextureFormat.ARGB32, true);
+        try { 
+          Graphics.Blit(texture, rt);
+          RenderTexture.active = rt;
+          resultTex.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
+          resultTex.Apply();
 
-                    var ext = System.IO.Path.GetExtension(srcPath).ToLowerInvariant();
-                    if(ext == ".png" || ext == ".jpg" || ext == ".jpeg") { 
-                        System.IO.File.Copy(srcPath, filePath, overwrite: true);
-                        if (System.IO.File.Exists(filePath)) textureIsExported = true;
-                    }
-                }
-            }
-#endif
-            if (!textureIsExported)
-            {
-                fileName = texture.name + "_" + Random.Range(10000000, 99999999).ToString();
-#if UNITY_EDITOR
-                if (UnityEditor.AssetDatabase.Contains(texture))
-                    fileName = texture.name + "_png";
-#endif
-                filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
-                
-                // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (namely, 16 bit G and A instead of 8 bit RGBA)
-                // An example of this conversion in a shader is in Khronos' UnityGLTF implementation.
-                // basically, the blit has do be done with the right unlit conversion shader to get a proper "file-based" tangent space normal map back
+          System.IO.File.WriteAllBytes(filePath, resultTex.EncodeToPNG());
+          if (System.IO.File.Exists(filePath))
+            textureIsExported = true;
+        }
+        finally {
+          RenderTexture.active = null;
+          rt.Release();
+          GameObject.DestroyImmediate(rt);
+          GameObject.DestroyImmediate(resultTex);
+        }
+      }
 
-                // attempt blitting / getting the texture back
-                // can't use RenderTexture.GetTemporary because that doesn't properly clear alpha channel
-                var rt = new RenderTexture(texture2d.width, texture2d.height, 0, RenderTextureFormat.ARGB32);
+      if(!textureIsExported)
+      {
+        var tex = new Texture2D(1, 1, TextureFormat.ARGB32, true);
+        try { 
+          tex.SetPixel(0, 0, Color.white);
+          tex.Apply();
+          System.IO.File.WriteAllBytes(filePath, tex.EncodeToPNG());
+          if (System.IO.File.Exists(filePath))
+              textureIsExported = true;
+        }
+        finally
+        {
+          GameObject.DestroyImmediate(tex);
+        }
+      }
 
-                // Currently only exporting RGB24 since it seems Unity creates wrong PNGs if alpha channel is 0 (color channel is premultiplied).
-                var resultTex = new Texture2D(texture2d.width, texture2d.height, TextureFormat.ARGB32, true);
-                try { 
-                    Graphics.Blit(texture, rt);
-                    RenderTexture.active = rt;
-                    resultTex2d.ReadPixels(new Rect(0, 0, texture2d.width, texture2d.height), 0, 0);
-                    resultTex2d.Apply();
+      if(textureIsExported)
+      { 
+        // Make file path baked into USD relative to scene file and use forward slashes.
+        filePath = ImporterBase.MakeRelativePath(scene.FilePath, filePath);
+        filePath = filePath.Replace("\\", "/");
 
-                    System.IO.File.WriteAllBytes(filePath, resultTex.EncodeToPNG());
-                    if (System.IO.File.Exists(filePath)) {
-                        textureIsExported = true;
-                    }
-                }
-                finally {
-                    RenderTexture.active = null;
-                    rt.Release();
-                    GameObject.DestroyImmediate(rt);
-                    GameObject.DestroyImmediate(resultTex2d);
-                }
-            }
-
-            if(!textureIsExported)
-            {
-                var tex2d = new Texture2D(1, 1, TextureFormat.ARGB32, true);
-                try { 
-                    tex2d.SetPixel(0, 0, Color.white);
-                    tex2d.Apply();
-                    System.IO.File.WriteAllBytes(filePath, tex2d.EncodeToPNG());
-                    if (System.IO.File.Exists(filePath)) {
-                        textureIsExported = true;
-                    }
-                }
-                finally
-                {
-                    GameObject.DestroyImmediate(tex2d);
-                }
-            }
-
-            if(textureIsExported)
-            { 
-                // Make file path baked into USD relative to scene file and use forward slashes.
-                filePath = ImporterBase.MakeRelativePath(scene.FilePath, filePath);
-                filePath = filePath.Replace("\\", "/");
-
-                var uvReader = new PrimvarReaderSample<Vector2>();
-                uvReader.varname.defaultValue = new TfToken("st");
-                scene.Write(usdShaderPath + "/uvReader", uvReader);
-                var tex = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
-                tex.wrapS = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture2d.wrapModeU));
-                tex.wrapT = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture2d.wrapModeV));
-                if(scale != Vector4.one) {
-                  tex.scale = new Connectable<Vector4>(scale);
-                }
-                scene.Write(usdShaderPath + "/" + textureName, tex);
-                return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
+        var uvReader = new PrimvarReaderSample<Vector2>();
+        uvReader.varname.defaultValue = new TfToken("st");
+        scene.Write(usdShaderPath + "/uvReader", uvReader);
+        var tex = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
+        tex.wrapS = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture2d.wrapModeU));
+        tex.wrapT = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture2d.wrapModeV));
+        if(scale != Vector4.one) {
+            tex.scale = new Connectable<Vector4>(scale);
+        }
+        scene.Write(usdShaderPath + "/" + textureName, tex);
+        return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
             } else {
                 throw new System.Exception("Texture wasn't exported.");
             }
-
     }
   }
 }
