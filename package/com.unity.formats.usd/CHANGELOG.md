@@ -4,6 +4,10 @@
 ### Changed
 - Updated USD version to 20.08
 
+## [1.0.3-preview.2] - 2020-04-24
+### Changed
+- Fix regression where the default usd root was ignored, creating broken hierarchies of game objects
+
 ## [1.0.3-preview.1] - 2020-04-01
 ### Changed
 - Fix the "Slow and safe as FBX" loading mode to perform the basis change as the FBX importer (#129)
