@@ -31,7 +31,7 @@ namespace Unity.Formats.USD {
     string usdzFileName;
     string usdzFilePath;
     string currentDir;
-    DirectoryInfo tmpDir;
+    DirectoryInfo usdzTemporaryDir;
     GameObject _root;
 
     // ------------------------------------------------------------------------------------------ //
@@ -61,7 +61,7 @@ namespace Unity.Formats.USD {
           
           // Setup a temporary directory to export the wanted USD file and zip it.
           string tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-          tmpDir = Directory.CreateDirectory(tmpDirPath);
+          usdzTemporaryDir = Directory.CreateDirectory(tmpDirPath);
                     
           // Get the usd file name to export and the usdz file name of the archive.
           usdcFileName = Path.GetFileNameWithoutExtension(Clip.m_usdFile) + ".usdc";
@@ -73,8 +73,6 @@ namespace Unity.Formats.USD {
           Directory.SetCurrentDirectory(tmpDirPath);
 
           Clip.UsdScene = UsdzExporter.InitForSave(usdcFileName);
-
-          Debug.Log("tmp: " + tmpDirPath + "\n" + "usdc: " + usdcFileName + "\n" + "usdz: " + usdzFileName + "\n" + "usdz path: " + usdzFilePath);
         } else {
           Clip.UsdScene = Scene.Create(Clip.m_usdFile);
         }
@@ -115,6 +113,7 @@ namespace Unity.Formats.USD {
         // USDZ is in centimeters.
         if (Clip.IsUSDZ)
           root.transform.localScale = localScale * 100;
+
         SceneExporter.SyncExportContext(root, Clip.Context);
         SceneExporter.Export(root,
                              Clip.Context,
@@ -126,7 +125,8 @@ namespace Unity.Formats.USD {
           Clip.UsdScene.Close();
           Clip.UsdScene = null;
         }
-        tmpDir.Delete(recursive: true);
+        if (Clip.IsUSDZ)
+          usdzTemporaryDir.Delete(recursive: true);
         throw;
       } finally {
         // USDZ is in centimeters.
@@ -144,8 +144,8 @@ namespace Unity.Formats.USD {
 
 
       try {
-        if(tmpDir != null)
-            Directory.SetCurrentDirectory(tmpDir.FullName);
+        if(Clip.IsUSDZ && usdzTemporaryDir != null)
+          Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
 
         Clip.Context = new ExportContext();
         Clip.UsdScene.EndTime = currentTime;
@@ -174,10 +174,8 @@ namespace Unity.Formats.USD {
       } finally {
         // Clean up temp files.
         Directory.SetCurrentDirectory(currentDir);
-        if (tmpDir != null && tmpDir.Exists) { 
-            tmpDir.Delete(recursive: true);
-        } else {
-            Debug.LogWarning("for some reason tmpDir " + (tmpDir != null ? tmpDir.FullName : "null")+ " does not exist");
+        if (Clip.IsUSDZ && usdzTemporaryDir != null && usdzTemporaryDir.Exists) { 
+          usdzTemporaryDir.Delete(recursive: true);
         }
       }
     }
