@@ -44,6 +44,26 @@ namespace USD.NET.Unity {
     }
 
     /// <summary>
+    /// Converts Unity texture wrap mode to USD wrap mode.
+    /// </summary>
+    /// <remarks>
+    /// Note that this is not a 1:1 match - MirrorOnce is not supported in USD, while the USD default (black outside tex) is not supported in Unity.
+    /// </remarks>
+    public static WrapMode GetWrapMode(TextureWrapMode wrap) {
+      switch (wrap) {
+        case TextureWrapMode.Repeat:
+          return WrapMode.Repeat;
+        case TextureWrapMode.Clamp:
+          return WrapMode.Clamp;
+        case TextureWrapMode.Mirror:
+        case TextureWrapMode.MirrorOnce:
+          return WrapMode.Mirror;
+        default:
+          return WrapMode.Black;
+      }
+    }
+
+    /// <summary>
     /// Path to the texture.  Following the 1.36 MaterialX spec, Mari UDIM substitution in file
     /// values uses the "UDIM" token, so for example in USD, we might see a value
     /// @textures/occlusion.UDIM.tex@

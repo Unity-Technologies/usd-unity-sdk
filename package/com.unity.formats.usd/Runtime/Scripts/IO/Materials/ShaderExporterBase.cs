@@ -52,8 +52,8 @@ namespace Unity.Formats.USD {
       uvReader.varname.defaultValue = new TfToken("st");
       scene.Write(usdShaderPath + "/uvReader", uvReader);
       var tex = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
-      tex.wrapS = new Connectable<TextureReaderSample.WrapMode>(WrapMode(texture.wrapModeU));
-      tex.wrapT = new Connectable<TextureReaderSample.WrapMode>(WrapMode(texture.wrapModeV));
+      tex.wrapS = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture.wrapModeU));
+      tex.wrapT = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture.wrapModeV));
       scene.Write(usdShaderPath + "/" + textureName, tex);
       return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
 #else
@@ -62,23 +62,5 @@ namespace Unity.Formats.USD {
       throw new System.Exception("Not supported at run-time");
 #endif
     }
-
-    static TextureReaderSample.WrapMode WrapMode(TextureWrapMode wrap)
-    {
-      switch (wrap)
-      {
-        case TextureWrapMode.Repeat:
-          return TextureReaderSample.WrapMode.Repeat;
-        case TextureWrapMode.Clamp:
-          return TextureReaderSample.WrapMode.Clamp;
-        case TextureWrapMode.Mirror:
-        case TextureWrapMode.MirrorOnce:
-          return TextureReaderSample.WrapMode.Mirror;
-        default:
-          return TextureReaderSample.WrapMode.Black;
-      }
-    }
-
   }
-
 }
