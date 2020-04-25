@@ -68,7 +68,7 @@ namespace Unity.Formats.USD {
 
         if(System.IO.File.Exists(srcPath))
         { 
-          // USD officially only supports png / jpg / jpeg
+          // USDZ officially only supports png / jpg / jpeg
           // https://graphics.pixar.com/usd/docs/Usdz-File-Format-Specification.html
 
           var ext = System.IO.Path.GetExtension(srcPath).ToLowerInvariant();
@@ -89,17 +89,19 @@ namespace Unity.Formats.USD {
   #endif
         filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
         
-        // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (namely, 16 bit G and A instead of 8 bit RGBA)
+        // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (for example 16 bit AG instead of 8 bit RGBA, depending on platform)
         // An example of this conversion in a shader is in Khronos' UnityGLTF implementation.
-        // basically, the blit has do be done with the right unlit conversion shader to get a proper "file-based" tangent space normal map back
+        // Basically, the blit has do be done with the right unlit conversion shader to get a proper "file-based" tangent space normal map back
 
         // Blit the texture and get it back to CPU
         // Note: Can't use RenderTexture.GetTemporary because that doesn't properly clear alpha channel
         var rt = new RenderTexture(texture.width, texture.height, 0, RenderTextureFormat.ARGB32);
         var resultTex = new Texture2D(texture.width, texture.height, TextureFormat.ARGB32, true);
+        var activeRT = RenderTexture.active;
         try { 
-          Graphics.Blit(texture, rt);
           RenderTexture.active = rt;
+          GL.Clear(true, true, Color.clear);
+          Graphics.Blit(texture, rt);
           resultTex.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
           resultTex.Apply();
 
@@ -108,7 +110,7 @@ namespace Unity.Formats.USD {
             textureIsExported = true;
         }
         finally {
-          RenderTexture.active = null;
+          RenderTexture.active = activeRT;
           rt.Release();
           GameObject.DestroyImmediate(rt);
           GameObject.DestroyImmediate(resultTex);
@@ -122,11 +124,11 @@ namespace Unity.Formats.USD {
           tex.SetPixel(0, 0, Color.white);
           tex.Apply();
           System.IO.File.WriteAllBytes(filePath, tex.EncodeToPNG());
-          if (System.IO.File.Exists(filePath))
-              textureIsExported = true;
+          if (System.IO.File.Exists(filePath)) {
+            textureIsExported = true;
+          }
         }
-        finally
-        {
+        finally {
           GameObject.DestroyImmediate(tex);
         }
       }
@@ -144,8 +146,9 @@ namespace Unity.Formats.USD {
         scene.Write(usdShaderPath + "/" + textureName, tex);
         return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
       }
-      else
-        throw new System.Exception("Texture wasn't exported.");
+      else {
+        Debug.LogError("Texture wasn't exported: " + texture.name + " (" + textureName + " from material " + material, texture);
+      }
     }
   }
 
