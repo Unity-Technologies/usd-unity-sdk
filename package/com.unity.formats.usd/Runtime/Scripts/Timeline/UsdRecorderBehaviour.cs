@@ -23,6 +23,8 @@ using UnityEditor;
 namespace Unity.Formats.USD {
   public class UsdRecorderBehaviour : PlayableBehaviour {
 
+    // Conversion to keyframes (60 frames per second) to work around QuickLook bug
+    const int kExportFrameRate = 60;
     bool m_isPaused = false;
     public UsdRecorderClip Clip;
 
@@ -67,8 +69,12 @@ namespace Unity.Formats.USD {
         //  m_usdScene.Stage.SetTimeCodesPerSecond(1);
         //}
 
-        Clip.UsdScene.FrameRate = 60;
-        Clip.UsdScene.Stage.SetFramesPerSecond(60);
+        // Regardless of the actual sampling rate (e.g. Timeline playback speed), we are converting
+        // the timecode from seconds to frames with a sampling rate of 60 FPS. This has the nice quality
+        // of adding additional numerical stability.
+        // In the event that the timeline is not configured for 60 FPS playback, we rely on USD's linear
+        // interpolation mode to up-sample to 60 FPS.
+        Clip.UsdScene.FrameRate = kExportFrameRate ;
         Clip.UsdScene.Stage.SetInterpolationType(pxr.UsdInterpolationType.UsdInterpolationTypeLinear);
 
         // For simplicity in this example, adding game objects while recording is not supported.
@@ -78,7 +84,7 @@ namespace Unity.Formats.USD {
         Clip.Context.activePolicy = Clip.m_activePolicy;
         Clip.Context.exportMaterials = Clip.m_exportMaterials;
 
-        Clip.UsdScene.StartTime = currentTime * 60;
+        Clip.UsdScene.StartTime = currentTime * kExportFrameRate ;
 
         // Export the "default" frame, that is, all data which doesn't vary over time.
         Clip.UsdScene.Time = null;
@@ -104,7 +110,7 @@ namespace Unity.Formats.USD {
       }
 
       Clip.Context = new ExportContext();
-      Clip.UsdScene.EndTime = currentTime * 60;
+      Clip.UsdScene.EndTime = currentTime * kExportFrameRate ;
 
       // In a real exporter, additional error handling should be added here.
       if (!string.IsNullOrEmpty(Clip.m_usdFile)) {
@@ -129,7 +135,7 @@ namespace Unity.Formats.USD {
         Debug.LogError("Process: context.scene is null");
       }
 
-      Clip.UsdScene.Time = currentTime * 60; // conversion to keyframes to work around QuickLook bug
+      Clip.UsdScene.Time = currentTime * kExportFrameRate ;
       Clip.Context.exportMaterials = false;
       SceneExporter.Export(root, Clip.Context, zeroRootTransform: false);
     }
