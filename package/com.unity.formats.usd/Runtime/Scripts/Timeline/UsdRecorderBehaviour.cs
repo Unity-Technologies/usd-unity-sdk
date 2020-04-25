@@ -110,15 +110,13 @@ namespace Unity.Formats.USD {
         Clip.Context.basisTransform = Clip.m_convertHandedness;
         Clip.Context.activePolicy = Clip.m_activePolicy;
         Clip.Context.exportMaterials = Clip.m_exportMaterials;
+        // USDZ is in centimeters.
+        Clip.Context.scale = Clip.IsUSDZ ? 100.0f : 1.0f;
 
         Clip.UsdScene.StartTime = currentTime * kExportFrameRate ;
 
         // Export the "default" frame, that is, all data which doesn't vary over time.
         Clip.UsdScene.Time = null;
-
-        // USDZ is in centimeters.
-        if (Clip.IsUSDZ)
-          root.transform.localScale = localScale * 100;
 
         SceneExporter.SyncExportContext(root, Clip.Context);
         SceneExporter.Export(root,
@@ -135,9 +133,6 @@ namespace Unity.Formats.USD {
           usdzTemporaryDir.Delete(recursive: true);
         throw;
       } finally {
-        // USDZ is in centimeters.
-        if (Clip.IsUSDZ)
-          root.transform.localScale = localScale;
         Directory.SetCurrentDirectory(currentDir);
       }
     }
@@ -201,12 +196,7 @@ namespace Unity.Formats.USD {
 
       Clip.UsdScene.Time = currentTime * kExportFrameRate ;
       Clip.Context.exportMaterials = false;
-      var localScale = root.transform.localScale;
-      if (Clip.IsUSDZ)
-        root.transform.localScale = localScale * 100;
       SceneExporter.Export(root, Clip.Context, zeroRootTransform: false);
-      if (Clip.IsUSDZ)
-        root.transform.localScale = localScale;
     }
 
     bool IsPlaying() {
