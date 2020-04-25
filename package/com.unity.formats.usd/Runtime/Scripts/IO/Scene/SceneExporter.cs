@@ -56,6 +56,7 @@ namespace Unity.Formats.USD {
     public Transform exportRoot;
     public bool exportMaterials = true;
     public bool exportNative = false;
+    public float scale = 1.0f;
 
     public BasisTransformation basisTransform = BasisTransformation.FastWithNegativeScale;
     public ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
@@ -152,6 +153,8 @@ namespace Unity.Formats.USD {
         root.transform.localRotation = Quaternion.identity;
         root.transform.localScale = Vector3.one;
       }
+      // Scale overall scene for export (e.g. USDZ export needs scale 100)
+      root.transform.localScale *= context.scale;
 
       UnityEngine.Profiling.Profiler.BeginSample("USD: Export");
       try {
@@ -167,6 +170,9 @@ namespace Unity.Formats.USD {
           root.transform.localRotation = localRot;
           root.transform.localScale = localScale;
           root.transform.SetParent(parent, worldPositionStays: false);
+        }
+        else {
+          root.transform.localScale = localScale;
         }
         UnityEngine.Profiling.Profiler.EndSample();
       }
