@@ -83,11 +83,13 @@ namespace Unity.Formats.USD {
   #endif
       if (!textureIsExported)
       {
+        // Since this is a texture we can't directly export from disk, we need to blit it and output it as PNG.
+        // To avoid collisions, e.g. with multiple different textures named the same, each texture gets a pseudo-random name.
+        // This will also avoid collisions when exporting multiple models to the same folder, e.g. with a a RenderTexture called "RT"
+        // in each of them that might look different between exports.
+        // TODO Future work could, if necessary, generate a texture content hash to avoid exporting identical textures multiple times
+        // (Unity's content hash isn't reliable for some types of textures unfortunately, e.g. RTs)
         fileName = texture.name + "_" + Random.Range(10000000, 99999999).ToString();
-  #if UNITY_EDITOR
-        if (UnityEditor.AssetDatabase.Contains(texture))
-          fileName = texture.name + "_png";
-  #endif
         filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
         
         // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (for example 16 bit AG instead of 8 bit RGBA, depending on platform)
@@ -107,8 +109,9 @@ namespace Unity.Formats.USD {
           resultTex.Apply();
 
           System.IO.File.WriteAllBytes(filePath, resultTex.EncodeToPNG());
-          if (System.IO.File.Exists(filePath))
+          if (System.IO.File.Exists(filePath)) {
             textureIsExported = true;
+          }
         }
         finally {
           RenderTexture.active = activeRT;
@@ -154,6 +157,7 @@ namespace Unity.Formats.USD {
       }
       else {
         Debug.LogError("Texture wasn't exported: " + texture.name + " (" + textureName + " from material " + material, texture);
+        return null;
       }
     }
   }
