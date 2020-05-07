@@ -36,10 +36,12 @@ namespace Unity.Formats.USD {
                                  string textureName,
                                  string textureOutput) {
 #if UNITY_EDITOR
-      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(material.GetTexture(textureName));
+      var texture = material.GetTexture(textureName);
+      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(texture);
       var dataPath = Application.dataPath;
       dataPath = dataPath.Substring(0, dataPath.LastIndexOf("Assets"));
       srcPath = dataPath + srcPath;
+
       var fileName = System.IO.Path.GetFileName(srcPath);
       var filePath = System.IO.Path.Combine(destTexturePath, fileName);
 
@@ -53,6 +55,8 @@ namespace Unity.Formats.USD {
       uvReader.varname.defaultValue = new TfToken("st");
       scene.Write(usdShaderPath + "/uvReader", uvReader);
       var tex = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
+      tex.wrapS = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture.wrapModeU));
+      tex.wrapT = new Connectable<TextureReaderSample.WrapMode>(TextureReaderSample.GetWrapMode(texture.wrapModeV));
       if(scale != Vector4.one) {
         tex.scale = new Connectable<Vector4>(scale);
       }
@@ -64,7 +68,5 @@ namespace Unity.Formats.USD {
       throw new System.Exception("Not supported at run-time");
 #endif
     }
-
   }
-
 }
