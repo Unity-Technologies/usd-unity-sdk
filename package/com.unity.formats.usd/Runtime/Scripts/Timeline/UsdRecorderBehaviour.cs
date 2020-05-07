@@ -129,8 +129,9 @@ namespace Unity.Formats.USD {
           Clip.UsdScene.Close();
           Clip.UsdScene = null;
         }
-        if (Clip.IsUSDZ)
+        if (Clip.IsUSDZ) {
           usdzTemporaryDir.Delete(recursive: true);
+        }
         throw;
       } finally {
         Directory.SetCurrentDirectory(currentDir);
