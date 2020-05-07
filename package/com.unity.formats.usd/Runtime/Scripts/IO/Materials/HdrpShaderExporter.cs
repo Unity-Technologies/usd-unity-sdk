@@ -30,8 +30,9 @@ namespace Unity.Formats.USD {
 
       if (material.HasProperty("_BaseColorMap") && material.GetTexture("_BaseColorMap") != null) {
         var scale = Vector4.one;
-        if (material.HasProperty("_BaseColor"))
+        if (material.HasProperty("_BaseColor")) {
           scale = material.GetColor("_BaseColor").linear;
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_BaseColorMap", "rgb");
         surface.diffuseColor.SetConnectedPath(newTex);
       } else if (material.HasProperty("_BaseColor")) {
@@ -44,8 +45,9 @@ namespace Unity.Formats.USD {
 
       if (material.HasProperty("_BaseColorMap") && material.GetTexture("_BaseColorMap") != null) {
         var scale = Vector4.one;
-        if (material.HasProperty("_BaseColor"))
+        if (material.HasProperty("_BaseColor")) {
           scale.w = material.GetColor("_BaseColor").linear.a;
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_BaseColorMap", "a");
         surface.opacity.SetConnectedPath(newTex);
       } else if (material.HasProperty("_BaseColor")) {
@@ -81,8 +83,9 @@ namespace Unity.Formats.USD {
 
       if (useSpec && material.HasProperty("_SpecularColorMap") && material.GetTexture("_SpecularColorMap") != null) {
         var scale = Vector4.one;
-        if (useSpec && material.HasProperty("_SpecularColor"))
+        if (useSpec && material.HasProperty("_SpecularColor")) {
           scale = material.GetColor("_SpecularColor");
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_SpecularColorMap", "rgb");
         surface.specularColor.SetConnectedPath(newTex);
       } else if (useSpec && material.HasProperty("_SpecularColor")) {
@@ -95,8 +98,9 @@ namespace Unity.Formats.USD {
 
       if (useMetallic && material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
         var scale = Vector4.one;
-        if (useSpec && material.HasProperty("_Metallic"))
+        if (useSpec && material.HasProperty("_Metallic")) {
           scale.x = material.GetFloat("_Metallic");
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "r");
         surface.metallic.SetConnectedPath(newTex);
       } else if (useMetallic && material.HasProperty("_Metallic")) {
@@ -107,8 +111,9 @@ namespace Unity.Formats.USD {
 
       if (material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
         var scale = Vector4.one;
-        if (material.HasProperty("_Smoothness"))
+        if (material.HasProperty("_Smoothness")) {
           scale.w = 1 - material.GetFloat("_Smoothness");
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "a");
         surface.roughness.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Smoothness")) {
@@ -144,8 +149,9 @@ namespace Unity.Formats.USD {
       if (material.IsKeywordEnabled("_EMISSIVE_COLOR_MAP")) {
         if (material.HasProperty("_EmissionMap") && material.GetTexture("_EmissionMap") != null) {
           var scale = Vector4.one;
-          if (material.HasProperty("_EmissionColor"))
+          if (material.HasProperty("_EmissionColor")) {
             scale = material.GetColor("_EmissionColor").linear;
+          }
           var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_EmissionMap", "rgb");
           surface.emissiveColor.SetConnectedPath(newTex);
         } else if (material.HasProperty("_EmissionColor")) {

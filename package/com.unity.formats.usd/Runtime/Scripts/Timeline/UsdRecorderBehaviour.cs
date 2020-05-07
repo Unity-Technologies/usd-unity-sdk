@@ -15,6 +15,8 @@
 using UnityEngine;
 using UnityEngine.Playables;
 using USD.NET;
+using System.IO;
+using pxr;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -27,6 +29,12 @@ namespace Unity.Formats.USD {
     const int kExportFrameRate = 60;
     bool m_isPaused = false;
     public UsdRecorderClip Clip;
+    string usdcFileName;
+    string usdzFileName;
+    string usdzFilePath;
+    string currentDir;
+    DirectoryInfo usdzTemporaryDir;
+    GameObject _root;
 
     // ------------------------------------------------------------------------------------------ //
     // Recording Control.
@@ -34,6 +42,7 @@ namespace Unity.Formats.USD {
 
     public void BeginRecording(double currentTime, GameObject root) {
       InitUsd.Initialize();
+      _root = root;
 
       if (!root) {
         Debug.LogError("ExportRoot not assigned.");
@@ -44,10 +53,28 @@ namespace Unity.Formats.USD {
         Clip.UsdScene.Close();
         Clip.UsdScene = null;
       }
-
+      // Keep the current directory to restore it at the end.
+      currentDir = Directory.GetCurrentDirectory();
+      var localScale = root.transform.localScale;
       try {
         if (string.IsNullOrEmpty(Clip.m_usdFile)) {
           Clip.UsdScene = Scene.Create();
+        } else if(Clip.IsUSDZ) {
+          
+          // Setup a temporary directory to export the wanted USD file and zip it.
+          string tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+          usdzTemporaryDir = Directory.CreateDirectory(tmpDirPath);
+                    
+          // Get the usd file name to export and the usdz file name of the archive.
+          usdcFileName = Path.GetFileNameWithoutExtension(Clip.m_usdFile) + ".usdc";
+          usdzFileName = Path.GetFileName(Clip.m_usdFile);
+          var fi = new FileInfo(Clip.m_usdFile);
+          usdzFilePath = fi.FullName;
+
+          // Set the current working directory to the tmp directory to export with relative paths.
+          Directory.SetCurrentDirectory(tmpDirPath);
+
+          Clip.UsdScene = UsdzExporter.InitForSave(usdcFileName);
         } else {
           Clip.UsdScene = Scene.Create(Clip.m_usdFile);
         }
@@ -83,11 +110,14 @@ namespace Unity.Formats.USD {
         Clip.Context.basisTransform = Clip.m_convertHandedness;
         Clip.Context.activePolicy = Clip.m_activePolicy;
         Clip.Context.exportMaterials = Clip.m_exportMaterials;
+        // USDZ is in centimeters.
+        Clip.Context.scale = Clip.IsUSDZ ? 100.0f : 1.0f;
 
         Clip.UsdScene.StartTime = currentTime * kExportFrameRate ;
 
         // Export the "default" frame, that is, all data which doesn't vary over time.
         Clip.UsdScene.Time = null;
+
         SceneExporter.SyncExportContext(root, Clip.Context);
         SceneExporter.Export(root,
                              Clip.Context,
@@ -99,7 +129,12 @@ namespace Unity.Formats.USD {
           Clip.UsdScene.Close();
           Clip.UsdScene = null;
         }
+        if (Clip.IsUSDZ) {
+          usdzTemporaryDir.Delete(recursive: true);
+        }
         throw;
+      } finally {
+        Directory.SetCurrentDirectory(currentDir);
       }
     }
 
@@ -112,16 +147,41 @@ namespace Unity.Formats.USD {
       Clip.Context = new ExportContext();
       Clip.UsdScene.EndTime = currentTime * kExportFrameRate ;
 
-      // In a real exporter, additional error handling should be added here.
-      if (!string.IsNullOrEmpty(Clip.m_usdFile)) {
-        // We could use SaveAs here, which is fine for small scenes, though it will require
-        // everything to fit in memory and another step where that memory is copied to disk.
-        Clip.UsdScene.Save();
-      }
+      try {
+        if(Clip.IsUSDZ && usdzTemporaryDir != null)
+          Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
 
-      // Release memory associated with the scene.
-      Clip.UsdScene.Close();
-      Clip.UsdScene = null;
+        Clip.Context = new ExportContext();
+        Clip.UsdScene.EndTime = currentTime;
+        // In a real exporter, additional error handling should be added here.
+        if (!string.IsNullOrEmpty(Clip.m_usdFile)) {
+          // We could use SaveAs here, which is fine for small scenes, though it will require
+          // everything to fit in memory and another step where that memory is copied to disk.
+          Clip.UsdScene.Save();
+        }
+
+        // Release memory associated with the scene.
+        Clip.UsdScene.Close();
+        Clip.UsdScene = null;
+        if(Clip.IsUSDZ) {
+          SdfAssetPath assetPath = new SdfAssetPath(usdcFileName);
+          bool success = pxr.UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
+
+          if (!success) {
+            Debug.LogError("Couldn't export " + _root.name + " to the usdz file: " + usdzFilePath);
+            return;
+          }
+
+          // needed if we export into temp folder first
+          File.Copy(usdzFileName, usdzFilePath, overwrite: true);
+        }
+      } finally {
+        // Clean up temp files.
+        Directory.SetCurrentDirectory(currentDir);
+        if (Clip.IsUSDZ && usdzTemporaryDir != null && usdzTemporaryDir.Exists) { 
+          usdzTemporaryDir.Delete(recursive: true);
+        }
+      }
     }
 
     void ProcessRecording(double currentTime, GameObject root) {

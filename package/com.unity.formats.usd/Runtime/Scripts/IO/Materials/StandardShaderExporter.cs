@@ -32,8 +32,9 @@ namespace Unity.Formats.USD {
 
       if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
         var scale = Vector4.one;
-        if (material.HasProperty("_SpecColor"))
+        if (material.HasProperty("_SpecColor")) {
           scale = material.GetColor("_SpecColor"); 
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_SpecGlossMap", "rgb");
         surface.specularColor.SetConnectedPath(newTex);
       } else if (material.HasProperty("_SpecColor")) {
@@ -65,8 +66,9 @@ namespace Unity.Formats.USD {
 
       if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
         var scale = Vector4.one;
-        if (material.HasProperty("_Metallic"))
+        if (material.HasProperty("_Metallic")) {
           scale.x = material.GetFloat("_Metallic");
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
         surface.metallic.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Metallic")) {
@@ -77,8 +79,9 @@ namespace Unity.Formats.USD {
 
       if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
         var scale = Vector4.one;
-        if (material.HasProperty("_Glossiness"))
+        if (material.HasProperty("_Glossiness")) {
           scale.x = 1 - material.GetFloat("_Glossiness");
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_SpecGlossMap", "r");
         surface.roughness.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Glossiness")) {
@@ -98,8 +101,9 @@ namespace Unity.Formats.USD {
 
       if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
         var scale = Vector4.one;
-        if (material.HasProperty("_Metallic"))
+        if (material.HasProperty("_Metallic")) {
           scale.x = material.GetFloat("_Metallic");
+        }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
         surface.metallic.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Metallic")) {
@@ -144,8 +148,9 @@ namespace Unity.Formats.USD {
           || material.shader.name.ToLower().Contains("specular")) {
         if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null) {
           var scale = Vector4.one;
-          if (material.HasProperty("_SpecularColor"))
+          if (material.HasProperty("_SpecularColor")) {
             scale = material.GetColor("_SpecularColor");
+          }
           var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_SpecGlossMap", "rgb");
           surface.specularColor.SetConnectedPath(newTex);
         } else if (material.HasProperty("_SpecColor")) {
@@ -167,8 +172,9 @@ namespace Unity.Formats.USD {
         surface.useSpecularWorkflow.defaultValue = 0;
         if (material.HasProperty("_MetallicGlossMap") && material.GetTexture("_MetallicGlossMap") != null) {
           var scale = Vector4.one;
-          if (material.HasProperty("_Metallic"))
+          if (material.HasProperty("_Metallic")) {
             scale.x = material.GetFloat("_Metallic");
+          }
           var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
           surface.metallic.SetConnectedPath(newTex);
         } else if (material.HasProperty("_Metallic")) {
