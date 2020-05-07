@@ -122,6 +122,14 @@
             https://graphics.pixar.com/usd/docs/UsdPreviewSurface-Proposal.html
             </summary>
         </member>
+        <member name="M:USD.NET.Unity.TextureReaderSample.GetWrapMode(UnityEngine.TextureWrapMode)">
+            <summary>
+            Converts Unity texture wrap mode to USD wrap mode.
+            </summary>
+            <remarks>
+            Note that this is not a 1:1 match - MirrorOnce is not supported in USD, while the USD default (black outside tex) is not supported in Unity.
+            </remarks>
+        </member>
         <member name="F:USD.NET.Unity.TextureReaderSample.file">
             <summary>
             Path to the texture.  Following the 1.36 MaterialX spec, Mari UDIM substitution in file
