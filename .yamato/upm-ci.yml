@@ -26,7 +26,7 @@ pack:
     image: buildfarm/mac:stable
     flavor: m1.mac
   commands:
-    - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package pack --package-path package/com.unity.formats.usd
   artifacts:
     packages:
@@ -42,7 +42,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+      - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
       - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd
         --enable-code-coverage --code-coverage-options 'enableCyclomaticComplexity;generateHtmlReport'
   artifacts:
@@ -64,7 +64,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+      - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
       - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd
   artifacts:
     logs:
@@ -141,7 +141,7 @@ run_preview_verified_staging:
     flavor: b1.large
     name: Runner
   commands:
-    - npm install upm-ci-utils@latest  -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package publish --package-path package/com.unity.formats.usd
   triggers:
     tags:
