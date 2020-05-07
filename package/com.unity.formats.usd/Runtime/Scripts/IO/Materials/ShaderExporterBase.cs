@@ -31,6 +31,7 @@ namespace Unity.Formats.USD {
                                  string usdShaderPath,
                                  Material material,
                                  PreviewSurfaceSample surface,
+                                 Vector4 scale,
                                  string destTexturePath,
                                  string textureName,
                                  string textureOutput) {
@@ -52,6 +53,9 @@ namespace Unity.Formats.USD {
       uvReader.varname.defaultValue = new TfToken("st");
       scene.Write(usdShaderPath + "/uvReader", uvReader);
       var tex = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
+      if(scale != Vector4.one) {
+        tex.scale = new Connectable<Vector4>(scale);
+      }
       scene.Write(usdShaderPath + "/" + textureName, tex);
       return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
 #else
