@@ -80,6 +80,8 @@ namespace Unity.Formats.USD {
       // This is required because USD expects the extent to be a local bound for the SkelRoot.
       var oldParent = objContext.gameObject.transform.parent;
       objContext.gameObject.transform.SetParent(null, worldPositionStays: false);
+      var originalScale = objContext.gameObject.transform.localScale;
+      objContext.gameObject.transform.localScale *= 1 / exportContext.scale;
 
       try {
         foreach (var r in objContext.gameObject.GetComponentsInChildren<Renderer>()) {
@@ -94,6 +96,7 @@ namespace Unity.Formats.USD {
       } finally {
         // Restore the root parent.
         objContext.gameObject.transform.SetParent(oldParent, worldPositionStays: false);
+        objContext.gameObject.transform.localScale = originalScale;
       }
 
       // Convert handedness if needed.
