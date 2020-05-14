@@ -144,9 +144,6 @@ namespace Unity.Formats.USD {
         return;
       }
 
-      Clip.Context = new ExportContext();
-      Clip.UsdScene.EndTime = currentTime * kExportFrameRate;
-
       try {
         if(Clip.IsUSDZ && usdzTemporaryDir != null)
           Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
