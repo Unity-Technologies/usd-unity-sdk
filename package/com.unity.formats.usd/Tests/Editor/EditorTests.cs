@@ -68,5 +68,55 @@ namespace Unity.Formats.USD.Tests
             Assert.AreApproximatelyEqual(usdMeshTr.localRotation.z,fbxMeshTr.localRotation.z);
         }
     }
+    
+    public class UsdPrimTypeTest_Scope
+    {
+        private GameObject m_usdRoot;
+        private string m_usdGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUI of test_collections.usda
+        
+        [SetUp]
+        public void SetUp()
+        {
+            InitUsd.Initialize();
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
+            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            m_usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene);
+            scene.Close();
+        }
+
+        [Test]
+        public void ScopeWithoutChildrenExists()
+        {
+            var scopeWithoutChildren = m_usdRoot.transform.Find("TestComponent/geom");
+            Assert.IsNotNull(scopeWithoutChildren);
+            Assert.AreEqual(0, scopeWithoutChildren.childCount);
+        }
+        
+        [Test]
+        public void ScopeWithChildrenExists()
+        {
+            var scopeWithChildren = m_usdRoot.transform.Find("TestComponent/ScopeTest");
+            Assert.IsNotNull(scopeWithChildren);
+            Assert.AreNotEqual(0, scopeWithChildren.childCount);
+        }
+
+        [Test]
+        public void ScopeHasPrimSourceComponent() {
+            var scope = m_usdRoot.transform.Find("TestComponent/ScopeTest");
+            var primSourceComponent = scope.GetComponent<UsdPrimSource>();
+            Assert.IsNotNull(primSourceComponent);
+            var scene = m_usdRoot.GetComponent<UsdAsset>().GetScene();
+            var prim = scene.GetPrimAtPath(primSourceComponent.m_usdPrimPath);
+            Assert.IsNotNull(prim);
+            Assert.IsTrue("Scope" == prim.GetTypeName(), scope.name + " is not of type Scope: " + prim.GetTypeName());
+        }
+        
+        [Test]
+        public void ScopeTransformIsIdentity() {
+            var scope = m_usdRoot.transform.Find("TestComponent/ScopeTest");
+            Assert.IsTrue(Matrix4x4.identity == scope.transform.localToWorldMatrix);
+        }
+    }
 }
 

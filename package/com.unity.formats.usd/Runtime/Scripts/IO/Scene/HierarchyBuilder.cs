@@ -129,8 +129,8 @@ namespace Unity.Formats.USD {
                                     SceneImportOptions options) {
       FindPathsJob.usdRoot = usdRoot;
       FindPathsJob.scene = scene;
-      FindPathsJob.results = new SdfPath[8][];
-      FindPathsJob.queries = new FindPathsJob.IQuery[8];
+      FindPathsJob.results = new SdfPath[9][];
+      FindPathsJob.queries = new FindPathsJob.IQuery[9];
 
       if (options.ShouldBindMaterials) {
         FindPathsJob.queries[0] = (FindPathsJob.IQuery)new FindPathsJob.Query<MaterialSample>();
@@ -152,6 +152,8 @@ namespace Unity.Formats.USD {
       if (options.importTransforms) {
         FindPathsJob.queries[7] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
       }
+      
+      FindPathsJob.queries[8] = (FindPathsJob.IQuery)new FindPathsJob.Query<ScopeSample>();
 
       var findPathsJob = new FindPathsJob();
 #if !UNITY_2017
@@ -160,7 +162,13 @@ namespace Unity.Formats.USD {
 #else
       findPathsJob.Run();
 #endif
-
+    
+      // Note that Scope prims are taken into account when building the hierarchy but not added to the PrimMap
+      // This is because Scopes don't need specific import/export logic for now:
+      //   * they don't hold any data ton convert on the way in
+      //   * being represented as Xforms in Unity they get automatically exported (as Xform) as part of the parent hierarchy of any
+      //     valid prim
+      // This will need to change if/when we want proper round tripping.
       map.Materials = FindPathsJob.results[0];
       map.Cameras = FindPathsJob.results[1];
       map.Meshes = FindPathsJob.results[2];
