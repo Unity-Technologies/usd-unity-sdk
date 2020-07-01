@@ -21,6 +21,13 @@ namespace Unity.Formats.USD {
 
   public class ShaderExporterBase {
 
+    public enum ConversionType {
+      None,
+      SwapRASmoothnessToBGRoughness
+    }
+
+    static Material _metalGlossChannelSwapMaterial = null;
+
     /// <summary>
     /// Exports the given texture to the destination texture path and wires up the preview surface.
     /// </summary>
@@ -103,7 +110,22 @@ namespace Unity.Formats.USD {
         try {
           RenderTexture.active = rt;
           GL.Clear(true, true, Color.clear);
-          Graphics.Blit(srcTexture2d, rt);
+
+          // conversion material
+          if(_metalGlossChannelSwapMaterial == null) {
+            var metalGlossChannelSwapShader = Resources.Load("MetalGlossChannelSwap", typeof(Shader)) as Shader;
+            _metalGlossChannelSwapMaterial = new Material(metalGlossChannelSwapShader);
+          }
+
+          switch(conversionType) {
+            case ConversionType.None:
+              Graphics.Blit(srcTexture2d, rt);
+              break;
+            case ConversionType.SwapRASmoothnessToBGRoughness:
+              Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
+              break;
+          }
+
           resultTex2d.ReadPixels(new Rect(0, 0, srcTexture2d.width, srcTexture2d.height), 0, 0);
           resultTex2d.Apply();
 
@@ -147,6 +169,7 @@ namespace Unity.Formats.USD {
         if (scale != Vector4.one) {
           usdTexReader.scale = new Connectable<Vector4>(scale);
         }
+        // usdTexReader.isSRGB = new Connectable<TextureReaderSample.SRGBMode>(TextureReaderSample.SRGBMode.Auto);
         scene.Write(usdShaderPath + "/" + textureName, usdTexReader);
         return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
       } else {
