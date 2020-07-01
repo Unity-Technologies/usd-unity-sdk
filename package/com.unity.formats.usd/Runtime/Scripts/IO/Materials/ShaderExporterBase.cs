@@ -41,7 +41,8 @@ namespace Unity.Formats.USD {
                                  Vector4 scale,
                                  string destTexturePath,
                                  string textureName,
-                                 string textureOutput) {
+                                 string textureOutput,
+                                 ConversionType conversionType = ConversionType.None) {
       // We have to handle multiple cases here:
       // - file exists on disk
       //   - file is a supported format => can be directly copied
@@ -65,23 +66,26 @@ namespace Unity.Formats.USD {
       var srcTexture2d = material.GetTexture(textureName);
 
 #if UNITY_EDITOR
-      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d);
+      // only export from disk if there's no need to do any type of data conversion here
+      if(conversionType == ConversionType.None) {
+        var srcPath = UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d);
 
-      if (!string.IsNullOrEmpty(srcPath)) {
-        srcPath = srcPath.Substring("Assets/".Length);
-        srcPath = Application.dataPath + "/" + srcPath;
-        fileName = System.IO.Path.GetFileName(srcPath);
-        filePath = System.IO.Path.Combine(destTexturePath, fileName);
+        if (!string.IsNullOrEmpty(srcPath)) {
+          srcPath = srcPath.Substring("Assets/".Length);
+          srcPath = Application.dataPath + "/" + srcPath;
+          fileName = System.IO.Path.GetFileName(srcPath);
+          filePath = System.IO.Path.Combine(destTexturePath, fileName);
 
-        if (System.IO.File.Exists(srcPath)) {
-          // USDZ officially only supports png / jpg / jpeg
-          // https://graphics.pixar.com/usd/docs/Usdz-File-Format-Specification.html
+          if (System.IO.File.Exists(srcPath)) {
+            // USDZ officially only supports png / jpg / jpeg
+            // https://graphics.pixar.com/usd/docs/Usdz-File-Format-Specification.html
 
-          var ext = System.IO.Path.GetExtension(srcPath).ToLowerInvariant();
-          if (ext == ".png" || ext == ".jpg" || ext == ".jpeg") {
-            System.IO.File.Copy(srcPath, filePath, overwrite: true);
-            if (System.IO.File.Exists(filePath)) {
-              textureIsExported = true;
+            var ext = System.IO.Path.GetExtension(srcPath).ToLowerInvariant();
+            if (ext == ".png" || ext == ".jpg" || ext == ".jpeg") {
+              System.IO.File.Copy(srcPath, filePath, overwrite: true);
+              if (System.IO.File.Exists(filePath)) {
+                textureIsExported = true;
+              }
             }
           }
         }
