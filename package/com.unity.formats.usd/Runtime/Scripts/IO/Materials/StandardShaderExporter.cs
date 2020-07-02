@@ -75,7 +75,6 @@ namespace Unity.Formats.USD {
         scale.x = 1 - material.GetFloat("_Glossiness");
         var roughnessTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "a");
         surface.roughness.SetConnectedPath(roughnessTex);
-        Debug.Log("connected roughness");
       } else if (material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
       } else {
@@ -112,11 +111,9 @@ namespace Unity.Formats.USD {
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "b", ConversionType.SwapRASmoothnessToBGRoughness);
         surface.metallic.SetConnectedPath(newTex);
         scale = Vector4.one;
-        // scale.x = 1 - material.GetFloat("_Glossiness");
-        scale.x = -material.GetFloat("_Glossiness");
+        scale.x = 1 - material.GetFloat("_Glossiness");
         var roughnessTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "g", ConversionType.SwapRASmoothnessToBGRoughness);
         surface.roughness.SetConnectedPath(roughnessTex);
-        Debug.Log("connected roughness; " + scale.x);
       } else if (material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
       } else {
