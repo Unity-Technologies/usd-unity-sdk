@@ -144,15 +144,12 @@ namespace Unity.Formats.USD {
         return;
       }
 
-      Clip.Context = new ExportContext();
-      Clip.UsdScene.EndTime = currentTime * kExportFrameRate ;
-
       try {
         if(Clip.IsUSDZ && usdzTemporaryDir != null)
           Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
 
         Clip.Context = new ExportContext();
-        Clip.UsdScene.EndTime = currentTime;
+        Clip.UsdScene.EndTime = currentTime * kExportFrameRate;
         // In a real exporter, additional error handling should be added here.
         if (!string.IsNullOrEmpty(Clip.m_usdFile)) {
           // We could use SaveAs here, which is fine for small scenes, though it will require
