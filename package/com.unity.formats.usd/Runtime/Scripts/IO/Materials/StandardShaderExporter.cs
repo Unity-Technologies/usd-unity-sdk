@@ -228,16 +228,20 @@ namespace Unity.Formats.USD {
         if (!mat.HasProperty(name)) {
           continue;
         }
+
+        // Note that for whatever reason, shader properties may be listed multiple times.
+        // So dictionary assignment is used here, instead of Add().
+
         switch (UnityEditor.ShaderUtil.GetPropertyType(mat.shader, i)) {
           case UnityEditor.ShaderUtil.ShaderPropertyType.Color:
-            surface.unity.colorArgs.Add(name, mat.GetColor(name).linear);
+            surface.unity.colorArgs[name] = mat.GetColor(name).linear;
             break;
           case UnityEditor.ShaderUtil.ShaderPropertyType.Float:
           case UnityEditor.ShaderUtil.ShaderPropertyType.Range:
-            surface.unity.floatArgs.Add(name, mat.GetFloat(name));
+            surface.unity.floatArgs[name] = mat.GetFloat(name);
             break;
           case UnityEditor.ShaderUtil.ShaderPropertyType.Vector:
-            surface.unity.vectorArgs.Add(name, mat.GetVector(name));
+            surface.unity.vectorArgs[name] = mat.GetVector(name);
             break;
         }
       }
