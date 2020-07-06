@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -147,15 +147,15 @@ namespace Unity.Formats.USD {
       }
 
       if (material.IsKeywordEnabled("_EMISSIVE_COLOR_MAP")) {
-        if (material.HasProperty("_EmissionMap") && material.GetTexture("_EmissionMap") != null) {
+        if (material.HasProperty("_EmissiveColorMap") && material.GetTexture("_EmissiveColorMap") != null) {
           var scale = Vector4.one;
-          if (material.HasProperty("_EmissionColor")) {
-            scale = material.GetColor("_EmissionColor").linear;
+          if (material.HasProperty("_EmissiveColor")) {
+            scale = material.GetColor("_EmissiveColor").linear;
           }
-          var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_EmissionMap", "rgb");
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_EmissiveColorMap", "rgb");
           surface.emissiveColor.SetConnectedPath(newTex);
-        } else if (material.HasProperty("_EmissionColor")) {
-          c = material.GetColor("_EmissionColor").linear;
+        } else if (material.HasProperty("_EmissiveColor")) {
+          c = material.GetColor("_EmissiveColor").linear;
           surface.emissiveColor.defaultValue = new Vector3(c.r, c.g, c.b);
         }
       }
