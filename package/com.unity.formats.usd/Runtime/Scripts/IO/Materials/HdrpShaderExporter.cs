@@ -31,7 +31,7 @@ namespace Unity.Formats.USD {
       // useful for debugging which keywords are set in which case to determine actual feature usage
       // (just because a material has an _AlphaCutoff does not mean the option is actually active)
       // Debug.Log("Material: " + material.name + ", Keywords: " + string.Join("\n", material.shaderKeywords), material);
-
+      surface.diffuseColor.defaultValue = new Vector3(1,1,1);
       if (material.HasProperty("_BaseColorMap") && material.GetTexture("_BaseColorMap") != null) {
         var scale = Vector4.one;
         if (material.HasProperty("_BaseColor")) {
@@ -112,7 +112,7 @@ namespace Unity.Formats.USD {
         if (useSpec && material.HasProperty("_Metallic")) {
           scale.x = material.GetFloat("_Metallic");
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "r");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "r", ConversionType.InvertAlpha);
         surface.metallic.SetConnectedPath(newTex);
       } else if (useMetallic && material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
@@ -122,13 +122,13 @@ namespace Unity.Formats.USD {
 
       // TODO seems _Smoothness isn't actually used in HDRP;
       // there's _SmoothnessMin and _SmoothnessMax for remapping which would need to be implemented with scale and bias.
-      surface.roughness.defaultValue = 1.0f;
+      surface.roughness.defaultValue = 0.0f;
       if (material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
         var scale = Vector4.one;
         if (material.HasProperty("_Smoothness")) {
           scale.w = 1 - material.GetFloat("_Smoothness");
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "a");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "a", ConversionType.InvertAlpha);
         surface.roughness.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Smoothness")) {
         surface.roughness.defaultValue = 1 - material.GetFloat("_Smoothness");
@@ -141,13 +141,13 @@ namespace Unity.Formats.USD {
           // TODO texture scale and bias needs to be constructed from the heightmap parametrization;
           // there's a lot of options
           // (_HeightAmplitude, _HeightCenter, _HeightMapParametrization, _HeightMax, _HeightMin, _HeightOffset, _HeightPoMAmplitude, _HeightTessAmplitude, _HeightTessCenter)
-          var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "b");
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "b", ConversionType.InvertAlpha);
           surface.displacement.SetConnectedPath(newTex);
         }
       }
 
       if (material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "g");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "g", ConversionType.InvertAlpha);
         surface.occlusion.SetConnectedPath(newTex);
       }
 

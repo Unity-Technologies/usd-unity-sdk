@@ -23,7 +23,8 @@ namespace Unity.Formats.USD {
 
     public enum ConversionType {
       None,
-      SwapRASmoothnessToBGRoughness
+      SwapRASmoothnessToBGRoughness,
+      InvertAlpha
     }
 
     static Material _metalGlossChannelSwapMaterial = null;
@@ -99,7 +100,10 @@ namespace Unity.Formats.USD {
         // in each of them that might look different between exports.
         // TODO Future work could, if necessary, generate a texture content hash to avoid exporting identical textures multiple times
         // (Unity's content hash isn't reliable for some types of textures unfortunately, e.g. RTs)
-        fileName = srcTexture2d.name + "_" + Random.Range(10000000, 99999999).ToString();
+        if(srcTexture2d is Texture2D)
+          fileName = srcTexture2d.name + "_" + srcTexture2d.imageContentsHash.ToString();
+        else
+          fileName = srcTexture2d.name + "_" + Random.Range(10000000, 99999999).ToString();
         filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
 
         // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (for example 16 bit AG instead of 8 bit RGBA, depending on platform)
@@ -119,20 +123,32 @@ namespace Unity.Formats.USD {
           if(_metalGlossChannelSwapMaterial == null)
           {
             _metalGlossChannelSwapMaterial = new Material(Shader.Find("Hidden/USD/ChannelCombiner"));
-            _metalGlossChannelSwapMaterial.SetVector("_Invert", new Vector4(0,1,0,1)); // invert resulting g channel, make sure alpha is 1
-            _metalGlossChannelSwapMaterial.SetVector("_RScale", new Vector4(0,0,0,0));
-            _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,0,0,1)); // use a channel from _G texture for resulting g
-            _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(1,0,0,0)); // use r channel from _B texture for resulting b
-            _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,0));
           }
+
+          _metalGlossChannelSwapMaterial.SetTexture("_R", srcTexture2d);
+          _metalGlossChannelSwapMaterial.SetTexture("_G", srcTexture2d);
+          _metalGlossChannelSwapMaterial.SetTexture("_B", srcTexture2d);
+          _metalGlossChannelSwapMaterial.SetTexture("_A", srcTexture2d);
 
           switch(conversionType) {
             case ConversionType.None:
               Graphics.Blit(srcTexture2d, rt);
               break;
             case ConversionType.SwapRASmoothnessToBGRoughness:
-              _metalGlossChannelSwapMaterial.SetTexture("_G", srcTexture2d);
-              _metalGlossChannelSwapMaterial.SetTexture("_B", srcTexture2d);
+              _metalGlossChannelSwapMaterial.SetVector("_Invert", new Vector4(0,1,0,1)); // invert resulting g channel, make sure alpha is 1
+              _metalGlossChannelSwapMaterial.SetVector("_RScale", new Vector4(0,0,0,0));
+              _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,0,0,1)); // use a channel from _G texture for resulting g
+              _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(1,0,0,0)); // use r channel from _B texture for resulting b
+              _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,0));
+              
+              Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
+              break;
+            case ConversionType.InvertAlpha:
+              _metalGlossChannelSwapMaterial.SetVector("_Invert", new Vector4(0,0,0,1)); // invert alpha result
+              _metalGlossChannelSwapMaterial.SetVector("_RScale", new Vector4(1,0,0,0)); // use all color channels as-is
+              _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,1,0,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(0,0,1,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,1));
               
               Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
               break;
