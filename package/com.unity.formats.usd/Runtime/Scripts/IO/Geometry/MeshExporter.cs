@@ -295,15 +295,26 @@ namespace Unity.Formats.USD {
         scene.Write(path, sample);
         UnityEngine.Profiling.Profiler.EndSample();
 
+        pxr.UsdPrim usdPrim = scene.GetPrimAtPath(path);
+
         // TODO: this is a bit of a half-measure, we need real support for primvar interpolation.
         // Set interpolation based on color count.
         if (sample.colors != null && sample.colors.Length == 1) {
-          pxr.UsdPrim usdPrim = scene.GetPrimAtPath(path);
           var colorPrimvar = new pxr.UsdGeomPrimvar(usdPrim.GetAttribute(pxr.UsdGeomTokens.primvarsDisplayColor));
           colorPrimvar.SetInterpolation(pxr.UsdGeomTokens.constant);
           var opacityPrimvar = new pxr.UsdGeomPrimvar(usdPrim.GetAttribute(pxr.UsdGeomTokens.primvarsDisplayOpacity));
           opacityPrimvar.SetInterpolation(pxr.UsdGeomTokens.constant);
         }
+
+        // for polygonal meshes, we do not want the default subdivision scheme of "catmull-clark" but instead "none"
+        // so that authored normals keep working.
+        var usdGeomMesh = new pxr.UsdGeomMesh(usdPrim);
+        usdGeomMesh.CreateSubdivisionSchemeAttr().Set(new pxr.TfToken("none"));
+
+        // explicitly set the normal interpolation here –
+        // default should be "vertex" anyways but seems some viewers don't respect the default
+        var normalInterp = new pxr.UsdGeomPrimvar(usdPrim.GetAttribute(pxr.UsdGeomTokens.normals));
+        normalInterp.SetInterpolation(pxr.UsdGeomTokens.vertex);
 
         string usdMaterialPath;
         if (exportContext.exportMaterials && sharedMaterial != null) {
@@ -328,9 +339,6 @@ namespace Unity.Formats.USD {
               faceTable.Add(new Vector3(tris[i + 1], tris[i], tris[i + 2]), i / 3);
             }
           }
-
-          var usdPrim = scene.GetPrimAtPath(path);
-          var usdGeomMesh = new pxr.UsdGeomMesh(usdPrim);
 
           // Process each subMesh and create a UsdGeomSubset of faces this subMesh targets.
           for (int si = 0; si < mesh.subMeshCount; si++) {
