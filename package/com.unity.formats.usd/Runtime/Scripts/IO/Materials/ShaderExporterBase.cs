@@ -25,7 +25,8 @@ namespace Unity.Formats.USD {
       None,
       SwapRASmoothnessToBGRoughness,
       InvertAlpha,
-      UnpackNormal
+      UnpackNormal,
+      MaskMapToORM
     }
 
     static Material _metalGlossChannelSwapMaterial = null;
@@ -72,10 +73,6 @@ namespace Unity.Formats.USD {
       switch(conversionType) {
         case ConversionType.None:
           break;
-        case ConversionType.InvertAlpha:
-        case ConversionType.SwapRASmoothnessToBGRoughness:
-          needsConversion = true;
-          break;
         case ConversionType.UnpackNormal:
 #if UNITY_EDITOR
           if(UnityEditor.AssetDatabase.Contains(srcTexture2d)) {
@@ -94,6 +91,9 @@ namespace Unity.Formats.USD {
             }
           }
 #endif
+          break;
+        default:
+          needsConversion = true;
           break;
       }
 
@@ -198,6 +198,17 @@ namespace Unity.Formats.USD {
               _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,1,0,0)); 
               _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(0,0,1,0)); 
               _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,1));
+              
+              Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
+              break;
+            case ConversionType.MaskMapToORM:
+              // Input is RGBA (Metallic, Occlusion, Detail, Smoothness)
+              // Output is RGB1 (Occlusion, Roughness = 1 - Smoothness, Metallic, 1)
+              _metalGlossChannelSwapMaterial.SetVector("_Invert", new Vector4(0,1,0,1)); // smoothness to roughness, solid alpha
+              _metalGlossChannelSwapMaterial.SetVector("_RScale", new Vector4(0,1,0,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,0,0,1)); 
+              _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(1,0,0,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,0));
               
               Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
               break;

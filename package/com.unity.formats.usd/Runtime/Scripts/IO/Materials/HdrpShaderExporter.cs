@@ -112,7 +112,7 @@ namespace Unity.Formats.USD {
         if (useSpec && material.HasProperty("_Metallic")) {
           scale.x = material.GetFloat("_Metallic");
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "r", ConversionType.InvertAlpha);
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "b", ConversionType.MaskMapToORM);
         surface.metallic.SetConnectedPath(newTex);
       } else if (useMetallic && material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
@@ -128,7 +128,7 @@ namespace Unity.Formats.USD {
         if (material.HasProperty("_Smoothness")) {
           scale.w = 1 - material.GetFloat("_Smoothness");
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "a", ConversionType.InvertAlpha);
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "g", ConversionType.MaskMapToORM);
         surface.roughness.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Smoothness")) {
         surface.roughness.defaultValue = 1 - material.GetFloat("_Smoothness");
@@ -141,13 +141,13 @@ namespace Unity.Formats.USD {
           // TODO texture scale and bias needs to be constructed from the heightmap parametrization;
           // there's a lot of options
           // (_HeightAmplitude, _HeightCenter, _HeightMapParametrization, _HeightMax, _HeightMin, _HeightOffset, _HeightPoMAmplitude, _HeightTessAmplitude, _HeightTessCenter)
-          var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "b", ConversionType.InvertAlpha);
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_HeightMap", "r");
           surface.displacement.SetConnectedPath(newTex);
         }
       }
 
       if (material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "g", ConversionType.InvertAlpha);
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "r", ConversionType.MaskMapToORM);
         surface.occlusion.SetConnectedPath(newTex);
       }
 
