@@ -153,8 +153,14 @@ namespace Unity.Formats.USD {
 
         // Blit the texture and get it back to CPU
         // Note: Can't use RenderTexture.GetTemporary because that doesn't properly clear alpha channel
-        var rt = new RenderTexture(srcTexture2d.width, srcTexture2d.height, 0, RenderTextureFormat.ARGB32);
-        var resultTex2d = new Texture2D(srcTexture2d.width, srcTexture2d.height, TextureFormat.ARGB32, true);
+        bool preserveLinear = false;
+        switch(conversionType) {
+          case ConversionType.UnpackNormal:
+            preserveLinear = true;
+            break;
+        }
+        var rt =      new RenderTexture(srcTexture2d.width, srcTexture2d.height, 0, RenderTextureFormat.ARGB32, preserveLinear ? RenderTextureReadWrite.Linear : RenderTextureReadWrite.Default);
+        var resultTex2d = new Texture2D(srcTexture2d.width, srcTexture2d.height,    TextureFormat.ARGB32, true, preserveLinear ? true : false);
         var activeRT = RenderTexture.active;
         try {
           RenderTexture.active = rt;

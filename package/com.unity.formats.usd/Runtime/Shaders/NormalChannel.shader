@@ -55,23 +55,22 @@
 			*/
 
 			// from https://forum.unity.com/threads/runtime-generated-bump-maps-are-not-marked-as-normal-maps.413778/#post-5424156
-			fixed4 DTXnm2RGBA(fixed4 col)
-			{
-				fixed4 c = col;
-				c.r = c.a * 2 - 1;  //red<-alpha (x<-w)
-				c.g = c.g * 2 - 1; //green is always the same (y)
-				fixed2 xy = fixed2(c.r, c.g); //this is the xy vector, can be written also just "c.xy"
-				c.b = sqrt(1 - clamp(dot(xy, xy), 0, 1)); //recalculate the blue channel (z)
-				return fixed4(c.r * 0.5f + 0.5f, c.g * 0.5f + 0.5f, c.b * 0.5f + 0.5f, 1); //back to 0-1 range
-			}
+			// float4 DTXnm2RGBA(float4 col)
+			// {
+			// 	float4 c = col;
+			// 	c.r = c.a * 2 - 1;  //red<-alpha (x<-w)
+			// 	c.g = c.g * 2 - 1; //green is always the same (y)
+			// 	float2 xy = float2(c.r, c.g); //this is the xy vector, can be written also just "c.xy"
+			// 	c.b = sqrt(1 - clamp(dot(xy, xy), 0, 1)); //recalculate the blue channel (z)
+			// 	return float4(c.r * 0.5f + 0.5f, c.g * 0.5f + 0.5f, c.b * 0.5f + 0.5f, 1); //back to 0-1 range
+			// }
 
-			fixed4 frag (v2f i) : SV_Target
+			float4 frag (v2f i) : SV_Target
 			{
 				float4 col = tex2D(_MainTex, i.uv);
 				// If a texture is marked as a normal map
 				// the values are stored in the A and G channel.
-				return fixed4(UnpackNormalmapRGorAG(col) * 0.5f + 0.5f, 1);
-				// return float4(col.a, col.g, 1, 1);
+				return float4(UnpackNormalmapRGorAG(col) * 0.5f + 0.5f, 1);
 			}
 			ENDCG
 		}
