@@ -29,6 +29,7 @@ namespace Unity.Formats.USD {
     }
 
     static Material _metalGlossChannelSwapMaterial = null;
+    static Material _normalChannelMaterial = null;
 
     /// <summary>
     /// Exports the given texture to the destination texture path and wires up the preview surface.
@@ -160,9 +161,11 @@ namespace Unity.Formats.USD {
           GL.Clear(true, true, Color.clear);
 
           // conversion material
-          if(_metalGlossChannelSwapMaterial == null)
-          {
+          if(_metalGlossChannelSwapMaterial == null) {
             _metalGlossChannelSwapMaterial = new Material(Shader.Find("Hidden/USD/ChannelCombiner"));
+          }
+          if(_normalChannelMaterial == null) {
+            _normalChannelMaterial = new Material(Shader.Find("Hidden/USD/NormalChannel"));
           }
 
           _metalGlossChannelSwapMaterial.SetTexture("_R", srcTexture2d);
@@ -191,6 +194,9 @@ namespace Unity.Formats.USD {
               _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,1));
               
               Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
+              break;
+            case ConversionType.UnpackNormal:
+              Graphics.Blit(srcTexture2d, rt, _normalChannelMaterial);
               break;
           }
 
