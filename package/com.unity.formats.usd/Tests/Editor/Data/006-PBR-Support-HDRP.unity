@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -233,8 +233,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 10
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 10
+  m_Intensity: 1
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -718,3 +718,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 581d6c9e9164a0b42b898b0fca5b3ff2, type: 3}
+--- !u!1001 &6204042058257573806
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.694
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.019352168
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.010811001
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848337191967528699, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005851050587965779, guid: e7dd740f3bd58314bb3b69e1b6688ef1,
+        type: 3}
+      propertyPath: m_Name
+      value: AOPlanes-HDRP
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e7dd740f3bd58314bb3b69e1b6688ef1, type: 3}
