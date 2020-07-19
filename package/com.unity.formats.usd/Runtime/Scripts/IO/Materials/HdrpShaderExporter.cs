@@ -161,7 +161,7 @@ namespace Unity.Formats.USD {
       }
 
       if (material.HasProperty("_NormalMap") && material.GetTexture("_NormalMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_NormalMap", "rgb");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_NormalMap", "rgb", ConversionType.UnpackNormal);
         surface.normal.SetConnectedPath(newTex);
       }
 

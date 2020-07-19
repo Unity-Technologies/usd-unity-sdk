@@ -24,7 +24,8 @@ namespace Unity.Formats.USD {
     public enum ConversionType {
       None,
       SwapRASmoothnessToBGRoughness,
-      InvertAlpha
+      InvertAlpha,
+      UnpackNormal
     }
 
     static Material _metalGlossChannelSwapMaterial = null;
@@ -66,9 +67,38 @@ namespace Unity.Formats.USD {
 
       var srcTexture2d = material.GetTexture(textureName);
 
+      bool needsConversion = false;
+      switch(conversionType) {
+        case ConversionType.None:
+          break;
+        case ConversionType.InvertAlpha:
+        case ConversionType.SwapRASmoothnessToBGRoughness:
+          needsConversion = true;
+          break;
+        case ConversionType.UnpackNormal:
+#if UNITY_EDITOR
+          if(UnityEditor.AssetDatabase.Contains(srcTexture2d)) {
+            // normal needs to be converted if the one on disk isn't really a normal map
+            // (e.g. created from greyscale)
+            UnityEditor.TextureImporter importer = (UnityEditor.TextureImporter) UnityEditor.AssetImporter.GetAtPath(UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d));
+            if(importer.textureType != UnityEditor.TextureImporterType.NormalMap) {
+              Debug.LogWarning("Texture " + textureName + " is set as NormalMap but isn't marked as such", srcTexture2d);
+            }
+            UnityEditor.TextureImporterSettings dst = new UnityEditor.TextureImporterSettings();
+            importer.ReadTextureSettings(dst);
+            // if this NormalMap is created from greyscale we will export the NormalMap from memory.
+            if(dst.convertToNormalMap) {
+              needsConversion = true;
+              break;
+            }
+          }
+#endif
+          break;
+      }
+
 #if UNITY_EDITOR
       // only export from disk if there's no need to do any type of data conversion here
-      if(conversionType == ConversionType.None) {
+      if(!needsConversion) {
         var srcPath = UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d);
 
         if (!string.IsNullOrEmpty(srcPath)) {
