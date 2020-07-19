@@ -72,6 +72,7 @@
 				// the values are stored in the A and G channel.
 				return float4(UnpackNormalmapRGorAG(col) * 0.5f + 0.5f, 1);
 			}
+			
 			ENDCG
 		}
 	}
