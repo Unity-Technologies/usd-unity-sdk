@@ -297,7 +297,7 @@ namespace Unity.Formats.USD {
       surface.useSpecularWorkflow.defaultValue = 1;
 
       if (mat.HasProperty("_BumpMap") && mat.GetTexture("_BumpMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath, "_BumpMap", "rgb");
+        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath, "_BumpMap", "rgb", ConversionType.UnpackNormal);
         surface.normal.SetConnectedPath(newTex);
       }
 
