@@ -21,6 +21,7 @@
 #include <pxr/base/tf/weakPtr.h>
 #include <pxr/base/tf/diagnostic.h>
 #include <pxr/base/tf/diagnosticMgr.h>
+#include <pxr/base/arch/export.h>
 
 
 
@@ -29,7 +30,7 @@ extern "C"
   //Create a callback delegate
   typedef void(*FuncLogCallBack)(int logType, char const* message);
   static FuncLogCallBack s_UsdLogCallback = nullptr;
-  void RegisterUsdLogCallback(FuncLogCallBack cb);
+  ARCH_EXPORT void RegisterUsdLogCallback(FuncLogCallBack cb);
 }
 
 /// A reciever of diagnostic messages, sent from USD.
@@ -41,16 +42,16 @@ public:
   virtual ~DiagnosticHandler() {}
 
   /// Informational messages.
-  virtual void IssueStatus(pxr::TfStatus const &status);
+  ARCH_EXPORT virtual void IssueStatus(pxr::TfStatus const &status);
 
   /// Diagnostic warning messages.
-  virtual void IssueWarning(pxr::TfWarning const &warning);
+  ARCH_EXPORT virtual void IssueWarning(pxr::TfWarning const &warning);
 
   /// Recoverable error messages, which should be treated as non-fatal exceptions.
-  virtual void IssueError(pxr::TfError const &err);
+  ARCH_EXPORT virtual void IssueError(pxr::TfError const &err);
 
   /// Messages recieved here will occur just before the application aborts.
-  virtual void IssueFatalError(pxr::TfCallContext const &context, std::string const &msg);
+  ARCH_EXPORT virtual void IssueFatalError(pxr::TfCallContext const &context, std::string const &msg);
 
 private:
   void _Send(int logType, char const* msg);
