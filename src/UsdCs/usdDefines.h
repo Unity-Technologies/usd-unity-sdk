@@ -57,5 +57,7 @@ PXR_NAMESPACE_USING_DIRECTIVE
 #include "pxr/base/gf/vec4h.h"
 #include "pxr/base/gf/vec4i.h"
 #include "pxr/usd/sdf/assetPath.h"
+#include "pxr/usd/sdf/timeCode.h"
 
 typedef VtArray<SdfAssetPath> SdfAssetPathArray;
+typedef VtArray<SdfTimeCode> SdfTimeCodeArray;

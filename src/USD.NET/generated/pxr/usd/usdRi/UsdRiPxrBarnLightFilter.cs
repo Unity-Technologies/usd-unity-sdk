@@ -556,91 +556,91 @@ public class UsdRiPxrBarnLightFilter : UsdLuxLightFilter {
     return ret;
   }
 
-  public UsdAttribute GetEdgeTopAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeTopAttr(swigCPtr), true);
+  public UsdAttribute GetEdgeScaleTopAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeScaleTopAttr(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute CreateEdgeTopAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeTopAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+  public UsdAttribute CreateEdgeScaleTopAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleTopAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeTopAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeTopAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+  public UsdAttribute CreateEdgeScaleTopAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleTopAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeTopAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeTopAttr__SWIG_2(swigCPtr), true);
+  public UsdAttribute CreateEdgeScaleTopAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleTopAttr__SWIG_2(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute GetEdgeBottomAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeBottomAttr(swigCPtr), true);
+  public UsdAttribute GetEdgeScaleBottomAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeScaleBottomAttr(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute CreateEdgeBottomAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeBottomAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+  public UsdAttribute CreateEdgeScaleBottomAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleBottomAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeBottomAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeBottomAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+  public UsdAttribute CreateEdgeScaleBottomAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleBottomAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeBottomAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeBottomAttr__SWIG_2(swigCPtr), true);
+  public UsdAttribute CreateEdgeScaleBottomAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleBottomAttr__SWIG_2(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute GetEdgeLeftAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeLeftAttr(swigCPtr), true);
+  public UsdAttribute GetEdgeScaleLeftAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeScaleLeftAttr(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute CreateEdgeLeftAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeLeftAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+  public UsdAttribute CreateEdgeScaleLeftAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleLeftAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeLeftAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeLeftAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+  public UsdAttribute CreateEdgeScaleLeftAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleLeftAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeLeftAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeLeftAttr__SWIG_2(swigCPtr), true);
+  public UsdAttribute CreateEdgeScaleLeftAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleLeftAttr__SWIG_2(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute GetEdgeRightAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeRightAttr(swigCPtr), true);
+  public UsdAttribute GetEdgeScaleRightAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_GetEdgeScaleRightAttr(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute CreateEdgeRightAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeRightAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+  public UsdAttribute CreateEdgeScaleRightAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleRightAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeRightAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeRightAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+  public UsdAttribute CreateEdgeScaleRightAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleRightAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateEdgeRightAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeRightAttr__SWIG_2(swigCPtr), true);
+  public UsdAttribute CreateEdgeScaleRightAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdRiPxrBarnLightFilter_CreateEdgeScaleRightAttr__SWIG_2(swigCPtr), true);
     return ret;
   }
 

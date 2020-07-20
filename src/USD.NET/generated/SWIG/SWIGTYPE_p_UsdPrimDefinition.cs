@@ -10,18 +10,18 @@
 
 namespace pxr {
 
-public class SWIGTYPE_p_unsigned_char {
+public class SWIGTYPE_p_UsdPrimDefinition {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal SWIGTYPE_p_unsigned_char(global::System.IntPtr cPtr, bool futureUse) {
+  internal SWIGTYPE_p_UsdPrimDefinition(global::System.IntPtr cPtr, bool futureUse) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  protected SWIGTYPE_p_unsigned_char() {
+  protected SWIGTYPE_p_UsdPrimDefinition() {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_unsigned_char obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_UsdPrimDefinition obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 }

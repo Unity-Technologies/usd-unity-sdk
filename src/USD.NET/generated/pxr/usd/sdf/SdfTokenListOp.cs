@@ -40,6 +40,40 @@ public class SdfTokenListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfTokenListOp CreateExplicit(TfTokenVector explicitItems) {
+    SdfTokenListOp ret = new SdfTokenListOp(UsdCsPINVOKE.SdfTokenListOp_CreateExplicit__SWIG_0(TfTokenVector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfTokenListOp CreateExplicit() {
+    SdfTokenListOp ret = new SdfTokenListOp(UsdCsPINVOKE.SdfTokenListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfTokenListOp Create(TfTokenVector prependedItems, TfTokenVector appendedItems, TfTokenVector deletedItems) {
+    SdfTokenListOp ret = new SdfTokenListOp(UsdCsPINVOKE.SdfTokenListOp_Create__SWIG_0(TfTokenVector.getCPtr(prependedItems), TfTokenVector.getCPtr(appendedItems), TfTokenVector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfTokenListOp Create(TfTokenVector prependedItems, TfTokenVector appendedItems) {
+    SdfTokenListOp ret = new SdfTokenListOp(UsdCsPINVOKE.SdfTokenListOp_Create__SWIG_1(TfTokenVector.getCPtr(prependedItems), TfTokenVector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfTokenListOp Create(TfTokenVector prependedItems) {
+    SdfTokenListOp ret = new SdfTokenListOp(UsdCsPINVOKE.SdfTokenListOp_Create__SWIG_2(TfTokenVector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfTokenListOp Create() {
+    SdfTokenListOp ret = new SdfTokenListOp(UsdCsPINVOKE.SdfTokenListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfTokenListOp() : this(UsdCsPINVOKE.new_SdfTokenListOp(), true) {
   }
 
@@ -50,6 +84,12 @@ public class SdfTokenListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfTokenListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(TfToken item) {
+    bool ret = UsdCsPINVOKE.SdfTokenListOp_HasItem(swigCPtr, TfToken.getCPtr(item));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

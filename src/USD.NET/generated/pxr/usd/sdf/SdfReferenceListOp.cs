@@ -40,6 +40,40 @@ public class SdfReferenceListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfReferenceListOp CreateExplicit(StdReferenceVector explicitItems) {
+    SdfReferenceListOp ret = new SdfReferenceListOp(UsdCsPINVOKE.SdfReferenceListOp_CreateExplicit__SWIG_0(StdReferenceVector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfReferenceListOp CreateExplicit() {
+    SdfReferenceListOp ret = new SdfReferenceListOp(UsdCsPINVOKE.SdfReferenceListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfReferenceListOp Create(StdReferenceVector prependedItems, StdReferenceVector appendedItems, StdReferenceVector deletedItems) {
+    SdfReferenceListOp ret = new SdfReferenceListOp(UsdCsPINVOKE.SdfReferenceListOp_Create__SWIG_0(StdReferenceVector.getCPtr(prependedItems), StdReferenceVector.getCPtr(appendedItems), StdReferenceVector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfReferenceListOp Create(StdReferenceVector prependedItems, StdReferenceVector appendedItems) {
+    SdfReferenceListOp ret = new SdfReferenceListOp(UsdCsPINVOKE.SdfReferenceListOp_Create__SWIG_1(StdReferenceVector.getCPtr(prependedItems), StdReferenceVector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfReferenceListOp Create(StdReferenceVector prependedItems) {
+    SdfReferenceListOp ret = new SdfReferenceListOp(UsdCsPINVOKE.SdfReferenceListOp_Create__SWIG_2(StdReferenceVector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfReferenceListOp Create() {
+    SdfReferenceListOp ret = new SdfReferenceListOp(UsdCsPINVOKE.SdfReferenceListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfReferenceListOp() : this(UsdCsPINVOKE.new_SdfReferenceListOp(), true) {
   }
 
@@ -50,6 +84,12 @@ public class SdfReferenceListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfReferenceListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(SdfReference item) {
+    bool ret = UsdCsPINVOKE.SdfReferenceListOp_HasItem(swigCPtr, SdfReference.getCPtr(item));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

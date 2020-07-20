@@ -172,6 +172,11 @@
             Bias to be applied to all components of the texture. value * scale + bias 
             </summary>
         </member>
+        <member name="F:USD.NET.Unity.TextureReaderSample.isSRGB">
+            <summary>
+            sRGB Mode. Defaults to Auto
+            </summary>
+        </member>
         <member name="T:USD.NET.Unity.TextureReaderSample.Outputs">
             <remarks>
             Outputs one or more values. If the texture is 8 bit per component [0, 255] values will first

@@ -126,20 +126,20 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool ConnectToSource(UsdProperty shadingProp, UsdShadeConnectableAPI source, TfToken sourceName, UsdShadeAttributeType sourceType, SdfValueTypeName typeName) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_0(UsdProperty.getCPtr(shadingProp), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), (int)sourceType, SdfValueTypeName.getCPtr(typeName));
+  public static bool ConnectToSource(UsdAttribute shadingAttr, UsdShadeConnectableAPI source, TfToken sourceName, UsdShadeAttributeType sourceType, SdfValueTypeName typeName) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_0(UsdAttribute.getCPtr(shadingAttr), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), (int)sourceType, SdfValueTypeName.getCPtr(typeName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool ConnectToSource(UsdProperty shadingProp, UsdShadeConnectableAPI source, TfToken sourceName, UsdShadeAttributeType sourceType) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_1(UsdProperty.getCPtr(shadingProp), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), (int)sourceType);
+  public static bool ConnectToSource(UsdAttribute shadingAttr, UsdShadeConnectableAPI source, TfToken sourceName, UsdShadeAttributeType sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_1(UsdAttribute.getCPtr(shadingAttr), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), (int)sourceType);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool ConnectToSource(UsdProperty shadingProp, UsdShadeConnectableAPI source, TfToken sourceName) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_2(UsdProperty.getCPtr(shadingProp), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName));
+  public static bool ConnectToSource(UsdAttribute shadingAttr, UsdShadeConnectableAPI source, TfToken sourceName) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_2(UsdAttribute.getCPtr(shadingAttr), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -180,8 +180,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool ConnectToSource(UsdProperty shadingProp, SdfPath sourcePath) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_9(UsdProperty.getCPtr(shadingProp), SdfPath.getCPtr(sourcePath));
+  public static bool ConnectToSource(UsdAttribute shadingAttr, SdfPath sourcePath) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_9(UsdAttribute.getCPtr(shadingAttr), SdfPath.getCPtr(sourcePath));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -198,8 +198,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool ConnectToSource(UsdProperty shadingProp, UsdShadeInput sourceInput) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_12(UsdProperty.getCPtr(shadingProp), UsdShadeInput.getCPtr(sourceInput));
+  public static bool ConnectToSource(UsdAttribute shadingAttr, UsdShadeInput sourceInput) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_12(UsdAttribute.getCPtr(shadingAttr), UsdShadeInput.getCPtr(sourceInput));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -216,8 +216,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool ConnectToSource(UsdProperty shadingProp, UsdShadeOutput sourceOutput) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_15(UsdProperty.getCPtr(shadingProp), UsdShadeOutput.getCPtr(sourceOutput));
+  public static bool ConnectToSource(UsdAttribute shadingAttr, UsdShadeOutput sourceOutput) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ConnectToSource__SWIG_15(UsdAttribute.getCPtr(shadingAttr), UsdShadeOutput.getCPtr(sourceOutput));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -234,8 +234,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool GetConnectedSource(UsdProperty shadingProp, UsdShadeConnectableAPI source, TfToken sourceName, out UsdShadeAttributeType sourceType) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_0(UsdProperty.getCPtr(shadingProp), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), out sourceType);
+  public static bool GetConnectedSource(UsdAttribute shadingAttr, UsdShadeConnectableAPI source, TfToken sourceName, out UsdShadeAttributeType sourceType) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetConnectedSource__SWIG_0(UsdAttribute.getCPtr(shadingAttr), UsdShadeConnectableAPI.getCPtr(source), TfToken.getCPtr(sourceName), out sourceType);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -252,8 +252,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool GetRawConnectedSourcePaths(UsdProperty shadingProp, SdfPathVector sourcePaths) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_0(UsdProperty.getCPtr(shadingProp), SdfPathVector.getCPtr(sourcePaths));
+  public static bool GetRawConnectedSourcePaths(UsdAttribute shadingAttr, SdfPathVector sourcePaths) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_GetRawConnectedSourcePaths__SWIG_0(UsdAttribute.getCPtr(shadingAttr), SdfPathVector.getCPtr(sourcePaths));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -270,8 +270,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool HasConnectedSource(UsdProperty shadingProp) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_HasConnectedSource__SWIG_0(UsdProperty.getCPtr(shadingProp));
+  public static bool HasConnectedSource(UsdAttribute shadingAttr) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_HasConnectedSource__SWIG_0(UsdAttribute.getCPtr(shadingAttr));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -288,8 +288,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool IsSourceConnectionFromBaseMaterial(UsdProperty shadingProp) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_0(UsdProperty.getCPtr(shadingProp));
+  public static bool IsSourceConnectionFromBaseMaterial(UsdAttribute shadingAttr) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_IsSourceConnectionFromBaseMaterial__SWIG_0(UsdAttribute.getCPtr(shadingAttr));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -306,8 +306,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool DisconnectSource(UsdProperty shadingProp) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_DisconnectSource__SWIG_0(UsdProperty.getCPtr(shadingProp));
+  public static bool DisconnectSource(UsdAttribute shadingAttr) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_DisconnectSource__SWIG_0(UsdAttribute.getCPtr(shadingAttr));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -324,8 +324,8 @@ public class UsdShadeConnectableAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static bool ClearSource(UsdProperty shadingProp) {
-    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ClearSource__SWIG_0(UsdProperty.getCPtr(shadingProp));
+  public static bool ClearSource(UsdAttribute shadingAttr) {
+    bool ret = UsdCsPINVOKE.UsdShadeConnectableAPI_ClearSource__SWIG_0(UsdAttribute.getCPtr(shadingAttr));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

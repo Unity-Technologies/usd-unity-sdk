@@ -85,12 +85,6 @@ public class PcpLayerStack : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__setT_std__string_t GetResolvedAssetPaths() {
-    SWIGTYPE_p_std__setT_std__string_t ret = new SWIGTYPE_p_std__setT_std__string_t(UsdCsPINVOKE.PcpLayerStack_GetResolvedAssetPaths(swigCPtr), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public SWIGTYPE_p_std__setT_std__string_t GetMutedLayers() {
     SWIGTYPE_p_std__setT_std__string_t ret = new SWIGTYPE_p_std__setT_std__string_t(UsdCsPINVOKE.PcpLayerStack_GetMutedLayers(swigCPtr), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -111,6 +105,12 @@ public class PcpLayerStack : global::System.IDisposable {
 
   public bool HasLayer(SdfLayer layer) {
     bool ret = UsdCsPINVOKE.PcpLayerStack_HasLayer__SWIG_1(swigCPtr, SdfLayer.getCPtr(layer));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public double GetTimeCodesPerSecond() {
+    double ret = UsdCsPINVOKE.PcpLayerStack_GetTimeCodesPerSecond(swigCPtr);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

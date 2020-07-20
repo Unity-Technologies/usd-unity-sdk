@@ -10,18 +10,18 @@
 
 namespace pxr {
 
-public class SWIGTYPE_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__value_type {
+public class SWIGTYPE_p_SdfAbstractDataValue {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-  internal SWIGTYPE_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__value_type(global::System.IntPtr cPtr, bool futureUse) {
+  internal SWIGTYPE_p_SdfAbstractDataValue(global::System.IntPtr cPtr, bool futureUse) {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  protected SWIGTYPE_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__value_type() {
+  protected SWIGTYPE_p_SdfAbstractDataValue() {
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_std__mapT_std__string_VtValue_std__lessT_std__string_t_t__value_type obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_SdfAbstractDataValue obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 }

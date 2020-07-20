@@ -348,6 +348,11 @@ public class UsdGeomMesh : UsdGeomPointBased {
     return ret;
   }
 
+  public static bool IsSharpnessInfinite(float sharpness) {
+    bool ret = UsdCsPINVOKE.UsdGeomMesh_IsSharpnessInfinite(sharpness);
+    return ret;
+  }
+
   public static float SHARPNESS_INFINITE {
     get {
       float ret = UsdCsPINVOKE.UsdGeomMesh_SHARPNESS_INFINITE_get();
