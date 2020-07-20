@@ -39,6 +39,8 @@ typedef std::vector< PcpLayerStackPtr > PcpLayerStackPtrVector;
     SdfRelocatesMap *incrementalRelocatesTargetToSource,
     SdfPathVector *relocatesPrimPaths);
 
+%ignore Pcp_NeedToRecomputeLayerStackTimeCodesPerSecond;
+
 %ignore Pcp_NeedToRecomputeDueToAssetPathChange(const PcpLayerStackPtr& layerStack);
 %include "pxr/usd/pcp/layerStack.h"
 

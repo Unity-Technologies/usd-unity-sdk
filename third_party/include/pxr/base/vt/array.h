@@ -21,8 +21,8 @@
 // KIND, either express or implied. See the Apache License for the specific
 // language governing permissions and limitations under the Apache License.
 //
-#ifndef VT_ARRAY_H
-#define VT_ARRAY_H
+#ifndef PXR_BASE_VT_ARRAY_H
+#define PXR_BASE_VT_ARRAY_H
 
 /// \file vt/array.h
 
@@ -48,6 +48,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <memory>
+#include <type_traits>
 
 PXR_NAMESPACE_OPEN_SCOPE
 
@@ -244,6 +245,28 @@ class VtArray : public Vt_ArrayBase {
     /// Create an empty array.
     VtArray() : _data(nullptr) {}
 
+#if 0 // USD.NET
+    /// Create an array from a pair of iterators
+    ///
+    /// Equivalent to:
+    /// \code
+    /// VtArray<T> v;
+    /// v.assign(first, last);
+    /// \endcode
+    ///
+    /// Note we use enable_if with a dummy parameter here to avoid clashing
+    /// with our other constructor with the following signature:
+    ///
+    /// VtArray(size_t n, value_type const &value = value_type())
+    template <typename LegacyInputIterator>
+    VtArray(LegacyInputIterator first, LegacyInputIterator last,
+            typename std::enable_if<
+                !std::is_integral<LegacyInputIterator>::value, 
+                void>::type* = nullptr)
+        : VtArray() {
+        assign(first, last); 
+    }
+
     /// Create an array with foreign source.
     VtArray(Vt_ArrayForeignDataSource *foreignSrc,
             ElementType *data, size_t size, bool addRef = true)
@@ -254,7 +277,8 @@ class VtArray : public Vt_ArrayBase {
         }
         _shapeData.totalSize = size;
     }
-    
+#endif // USD.NET
+
     /// Copy \p other.  The new array shares underlying data with \p other.
     VtArray(VtArray const &other) : Vt_ArrayBase(other)
                                   , _data(other._data) {
@@ -283,6 +307,18 @@ class VtArray : public Vt_ArrayBase {
         assign(initializerList);
     }
 #endif // USD.NET
+
+    /// Create an array filled with \p n value-initialized elements.
+    explicit VtArray(size_t n)
+        : VtArray() {
+        assign(n, value_type());
+    }
+
+    /// Create an array filled with \p n copies of \p value.
+    explicit VtArray(size_t n, value_type const &value)
+        : VtArray() {
+        assign(n, value);
+    }
 
     /// Copy assign from \p other.  This array shares underlying data with
     /// \p other.
@@ -313,12 +349,6 @@ class VtArray : public Vt_ArrayBase {
         return *this;
     }
 #endif // USD.NET
-
-    /// Create an array filled with \p n copies of \p value.
-    explicit VtArray(size_t n, value_type const &value = value_type())
-        : VtArray() {
-        assign(n, value);
-    }
 
     ~VtArray() { _DecRef(); }
     
@@ -477,6 +507,20 @@ class VtArray : public Vt_ArrayBase {
     /// value-initialized.
     void resize(size_t newSize) {
 #if 0 // USD.NET
+        struct _Filler {
+            inline void operator()(pointer b, pointer e) const {
+                std::uninitialized_fill(b, e, value_type());
+            }
+        };
+        return resize(newSize, _Filler());
+    }
+
+    /// Resize this array.  Preserve existing elements that remain, initialize
+    /// any newly added elements by calling \p fillElems(first, last).  Note
+    /// that this function is passed pointers to uninitialized memory, so the
+    /// elements must be filled with something like placement-new.
+    template <class FillElemsFn>
+    void resize(size_t newSize, FillElemsFn &&fillElems) {
         const size_t oldSize = size();
         if (oldSize == newSize) {
             return;
@@ -492,7 +536,7 @@ class VtArray : public Vt_ArrayBase {
         if (!_data) {
             // Allocate newSize elements and initialize.
             newData = _AllocateNew(newSize);
-            std::uninitialized_fill_n(newData, newSize, value_type());
+            std::forward<FillElemsFn>(fillElems)(newData, newData + newSize);
         }
         else if (_IsUnique()) {
             if (growing) {
@@ -500,8 +544,8 @@ class VtArray : public Vt_ArrayBase {
                     newData = _AllocateCopy(_data, newSize, oldSize);
                 }
                 // fill with newly added elements from oldSize to newSize.
-                std::uninitialized_fill(
-                    newData + oldSize, newData + newSize, value_type());
+                std::forward<FillElemsFn>(fillElems)(newData + oldSize,
+                                                     newData + newSize);
             }
             else {
                 // destroy removed elements
@@ -516,8 +560,8 @@ class VtArray : public Vt_ArrayBase {
                 _AllocateCopy(_data, newSize, growing ? oldSize : newSize);
             if (growing) {
                 // fill with newly added elements from oldSize to newSize.
-                std::uninitialized_fill(
-                    newData + oldSize, newData + newSize, value_type());
+                std::forward<FillElemsFn>(fillElems)(newData + oldSize,
+                                                     newData + newSize);
             }
         }
 
@@ -529,7 +573,7 @@ class VtArray : public Vt_ArrayBase {
         // Adjust size.
         _shapeData.totalSize = newSize;
 #endif // USD.NET
-    }        
+    }
 
     /// Equivalent to resize(0).
     void clear() {
@@ -548,6 +592,83 @@ class VtArray : public Vt_ArrayBase {
         _shapeData.totalSize = 0;
     }
 
+#if 0 // USD.NET
+    /// Removes a single element at \p pos from the array
+    /// 
+    /// To match the behavior of std::vector, returns an iterator
+    /// pointing to the position following the removed element.
+    /// 
+    /// Since the returned iterator is mutable, when the array is
+    /// not uniquely owned, a copy will be required.
+    ///
+    /// Erase invalidates all iterators (unlike std::vector
+    /// where iterators prior to \p pos remain valid).
+    ///
+    /// \sa erase(const_iterator, const_iterator)
+    iterator erase(const_iterator pos) {
+        TF_DEV_AXIOM(pos != cend());
+        return erase(pos, pos+1);
+    }
+
+    /// Remove a range of elements [\p first, \p last) from the array.
+    /// 
+    /// To match the behavior of std::vector, returns an iterator
+    /// at the position following the removed element.
+    /// If no elements are removed, a non-const iterator pointing
+    /// to last will be returned.
+    /// 
+    /// Since the returned iterator is mutable, when the array is
+    /// not uniquely owned, a copy will be required even when
+    /// the contents are unchanged.
+    ///
+    /// Erase invalidates all iterators (unlike std::vector
+    /// where iterators prior to \p first remain valid).
+    ///
+    /// \sa erase(const_iterator)
+    iterator erase(const_iterator first, const_iterator last) {
+        if (first == last){
+            return std::next(begin(), std::distance(cbegin(), last));
+        }
+        if ((first == cbegin()) && (last == cend())){
+            clear();
+            return end();
+        }
+        // Given the previous two conditions, we know that we are removing
+        // at least one element and the result array will contain at least one
+        // element.
+        value_type* removeStart = std::next(_data, std::distance(cbegin(), first));
+        value_type* removeEnd = std::next(_data, std::distance(cbegin(), last));
+        value_type* endIt = std::next(_data, size());
+        size_t newSize = size() - std::distance(first, last);
+        if (_IsUnique()){
+            // If the array is unique, we can simply move the tail elements
+            // and free to the end of the array.
+            value_type* deleteIt = std::move(removeEnd, endIt, removeStart);
+            for (; deleteIt != endIt; ++deleteIt) {
+                deleteIt->~value_type();
+            }
+            _shapeData.totalSize = newSize;
+            return iterator(removeStart);
+        } else{
+            // If the array is not unique, we want to avoid copying the
+            // elements in the range we are erasing. We allocate a
+            // new buffer and copy the head and tail ranges, omitting
+            // [first, last)
+            value_type* newData = _AllocateNew(newSize);
+            value_type* newMiddle = std::uninitialized_copy(
+                _data, removeStart, newData);
+            value_type* newEnd = std::uninitialized_copy(
+                removeEnd, endIt, newMiddle);
+            TF_DEV_AXIOM(newEnd == std::next(newData, newSize));
+            TF_DEV_AXIOM(std::distance(newData, newMiddle) == 
+                         std::distance(_data, removeStart));
+            _DecRef();
+            _data = newData;
+            _shapeData.totalSize = newSize;
+            return iterator(newMiddle);
+        }
+    }
+
     /// Assign array contents.
     /// Equivalent to:
     /// \code
@@ -555,10 +676,18 @@ class VtArray : public Vt_ArrayBase {
     /// std::copy(first, last, array.begin());
     /// \endcode
     template <class ForwardIter>
-    void assign(ForwardIter first, ForwardIter last) {
-        resize(std::distance(first, last));
-        std::copy(first, last, begin());
+    typename std::enable_if<!std::is_integral<ForwardIter>::value>::type
+    assign(ForwardIter first, ForwardIter last) {
+        struct _Copier {
+            void operator()(pointer b, pointer e) const {
+                std::uninitialized_copy(first, last, b);
+            }
+            ForwardIter const &first, &last;
+        };
+        clear();
+        resize(std::distance(first, last), _Copier { first, last });
     }
+#endif // USD.NET
 
     /// Assign array contents.
     /// Equivalent to:
@@ -567,8 +696,14 @@ class VtArray : public Vt_ArrayBase {
     /// std::fill(array.begin(), array.end(), fill);
     /// \endcode
     void assign(size_t n, const value_type &fill) {
-        resize(n);
-        std::fill(begin(), end(), fill);
+        struct _Filler {
+            void operator()(pointer b, pointer e) const {
+                std::uninitialized_fill(b, e, fill);
+            }
+            const value_type &fill;
+        };
+        clear();
+        resize(n, _Filler { fill });
     }
 
 #if 0 // USD.NET
@@ -784,7 +919,7 @@ VTOPERATOR_CPPSCALAR(/)
 VTOPERATOR_CPPSCALAR_DOUBLE(/)
 VTOPERATOR_CPPSCALAR(%)
 ARCH_PRAGMA_POP
-#endif
+#endif // USD.NET
 PXR_NAMESPACE_CLOSE_SCOPE
 
-#endif // VT_ARRAY_H
+#endif // PXR_BASE_VT_ARRAY_H

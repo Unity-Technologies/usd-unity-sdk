@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2019 Unity 3D. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdGeomBBoxCache
+%module sdfTimeCode
 
 %{
-#include "pxr/usd/usdGeom/bboxCache.h"
+#include "pxr/usd/sdf/timeCode.h"
 %}
 
-%include "arrays_csharp.i"
-%apply int64_t INPUT[]  { int64_t* instanceIdBegin }
+%template(SdfTimeCodeVector) std::vector<SdfTimeCode>;
+typedef std::vector<SdfTimeCode> SdfTimeCodeVector;
 
-%include "third_party/include/pxr/usd/usdGeom/bboxCache.h"
-//%include "pxr/usd/usdGeom/bboxCache.h"
 
+%include "pxr/usd/sdf/timeCode.h" 

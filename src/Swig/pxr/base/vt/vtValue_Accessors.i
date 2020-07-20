@@ -54,6 +54,10 @@
 %csattributes VtValueToSdfAssetPath "[Preserve]" 
 %typemap(csattributes) VtArray<SdfAssetPath> "[Preserve]"
 %csattributes VtValueToSdfAssetPathArray "[Preserve]" 
+%typemap(csattributes) SdfTimeCode "[Preserve]"
+%csattributes VtValueToSdfTimeCode "[Preserve]" 
+%typemap(csattributes) VtArray<SdfTimeCode> "[Preserve]"
+%csattributes VtValueToSdfTimeCodeArray "[Preserve]" 
 %typemap(csattributes) TfToken "[Preserve]"
 %csattributes VtValueToTfToken "[Preserve]" 
 %typemap(csattributes) VtArray<bool> "[Preserve]"
@@ -80,7 +84,7 @@
 %csattributes VtValueToVtQuatfArray "[Preserve]" 
 %typemap(csattributes) VtArray<GfQuath> "[Preserve]"
 %csattributes VtValueToVtQuathArray "[Preserve]" 
-%typemap(csattributes) VtArray<std::string > "[Preserve]"
+%typemap(csattributes) VtArray<std::string> "[Preserve]"
 %csattributes VtValueToVtStringArray "[Preserve]" 
 %typemap(csattributes) VtArray<TfToken> "[Preserve]"
 %csattributes VtValueToVtTokenArray "[Preserve]" 
@@ -386,6 +390,30 @@ extern SdfAssetPathArray VtValueToSdfAssetPathArray(VtValue const& value) {
 extern void VtValueToSdfAssetPathArray(VtValue const& value, SdfAssetPathArray* output) {
   if (value.IsHolding<SdfAssetPathArray>()) {
     *output = value.UncheckedGet<SdfAssetPathArray>();
+  }
+}
+
+extern SdfTimeCode VtValueToSdfTimeCode(VtValue const& value) {
+  if (value.IsHolding<SdfTimeCode>()) {
+    return value.UncheckedGet<SdfTimeCode>();
+  }
+  return SdfTimeCode();
+}
+extern void VtValueToSdfTimeCode(VtValue const& value, SdfTimeCode* output) {
+  if (value.IsHolding<SdfTimeCode>()) {
+    *output = value.UncheckedGet<SdfTimeCode>();
+  }
+}
+
+extern SdfTimeCodeArray VtValueToSdfTimeCodeArray(VtValue const& value) {
+  if (value.IsHolding<SdfTimeCodeArray>()) {
+    return value.UncheckedGet<SdfTimeCodeArray>();
+  }
+  return SdfTimeCodeArray();
+}
+extern void VtValueToSdfTimeCodeArray(VtValue const& value, SdfTimeCodeArray* output) {
+  if (value.IsHolding<SdfTimeCodeArray>()) {
+    *output = value.UncheckedGet<SdfTimeCodeArray>();
   }
 }
 
