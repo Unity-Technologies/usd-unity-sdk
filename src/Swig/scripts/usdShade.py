@@ -22,13 +22,13 @@ def genUsdShadeTokens(usdPath, copyright):
     tokenPath = usdPath + "usdShade/usdShadeTokens_Tokens.i"
     toks = [x for x in dir(UsdShade.Tokens) if not x.startswith("_")]
     with open(tokenPath, "w") as f:
-        print >> f, copyright
-        print >> f, tokenPre
+        print(copyright, file=f)
+        print(tokenPre, file=f)
         for t in toks:
             v = UsdShade.Tokens.__dict__[t].fget()
             # TODO: doc doesn't work for some reason, need to investigate
             #doc = UsdShade.Tokens.__dict__[t].__doc__
             #if not doc is None:
             #  print '///<summary>' + doc + '</summary>'
-            print >> f, tokenDecl.format(name=t, value=v)
-        print >> f, tokenPost
+            print(tokenDecl.format(name=t, value=v), file=f)
+        print(tokenPost, file=f)

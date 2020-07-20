@@ -37,34 +37,34 @@ copyright = """// Copyright 2017 Google Inc. All rights reserved.
 
 if __name__ == "__main__":
     if not os.path.exists(basePath):
-        print "Output path does not exist: " + basePath
+        print("Output path does not exist: " + basePath)
         sys.exit(1)
     if not os.path.exists(usdPath):
-        print "Output path does not exist: " + usdPath
+        print("Output path does not exist: " + usdPath)
         sys.exit(1)
 
-    print "Generating Sdf "
+    print("Generating Sdf ")
     sdf.genSdfValueTypeNames(usdPath, usdInstPath, copyright)
 
-    print "Generating Vt "
+    print("Generating Vt ")
     vt.genVtValue(basePath, copyright)
 
-    print "Generating UsdGeom "
+    print("Generating UsdGeom ")
     usdGeom.genUsdGeomTokens(usdPath, copyright)
 
-    print "Generating UsdLux "
+    print("Generating UsdLux ")
     usdLux.genUsdLuxTokens(usdPath, copyright)
 
-    print "Generating UsdRi "
+    print("Generating UsdRi ")
     usdRi.genUsdRiTokens(usdPath, copyright)
 
-    print "Generating UsdShade "
+    print("Generating UsdShade ")
     usdShade.genUsdShadeTokens(usdPath, copyright)
 
-    print "Generating UsdSkel "
+    print("Generating UsdSkel ")
     usdSkel.genUsdSkelTokens(usdPath, copyright)
 
-    print "Generating Kind "
+    print("Generating Kind ")
     kind.genKindTokens(usdPath, copyright)
 
     # Disabled until this issue is resolved:

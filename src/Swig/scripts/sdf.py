@@ -34,15 +34,15 @@ def genSdfValueTypeNames(usdPath, usdInstPath, copyright):
   values = [k for k in Sdf.ValueTypeNames.__dict__ if isinstance(Sdf.ValueTypeNames.__dict__[k],
             type(Sdf.ValueTypeNames.__dict__["Token"]))]
   with open(sdfValueTypes, "w") as f:
-    print >> f, copyright
-    print >> f, accessorPre
+    print(copyright, file=f)
+    print(accessorPre, file=f)
     for vtn in values:
-      print >> f, accessor.format(valueTypeName=vtn)
-    print >> f, accessorPost
+      print(accessor.format(valueTypeName=vtn), file=f)
+    print(accessorPost, file=f)
 
   with open(sdfClass, "w") as f:
-    print >> f, copyright
-    print >> f, klassPre
+    print(copyright, file=f)
+    print(klassPre, file=f)
     for vtn in values:
-      print >> f, klass.format(valueTypeName=vtn)
-    print >> f, klassPost
+      print(klass.format(valueTypeName=vtn), file=f)
+    print(klassPost, file=f)
