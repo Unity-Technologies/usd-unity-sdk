@@ -20,7 +20,7 @@ build_platforms:
 ---
 {% for platform in build_platforms %}
 {{platform.name}}_v20.08_no_python:
-  name: {{platform.name}} - Build USD v20.08 on (no python)
+  name: {{platform.name}} - Build USD v20.08 (no python)
   skip_checkout: true
   agent:
     type: {{platform.type}}
@@ -31,7 +31,7 @@ build_platforms:
       wget https://github.com/PixarAnimationStudios/USD/archive/v20.08.zip
       unzip v20.08.zip
       cd USD-20.08
-      python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging ../libs/usd-v20.08_no_python
+      python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../libs/usd-v20.08_no_python
   artifacts:
       {{platform.name}}_v20.08_no_python:
         paths:
@@ -51,7 +51,7 @@ build_platforms:
       wget https://github.com/PixarAnimationStudios/USD/archive/v20.08.zip
       unzip v20.08.zip
       cd USD-20.08
-      python build_scripts/build_usd.py --build-monolithic --alembic --no-imaging ../libs/usd-v20.08
+      python build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../libs/usd-v20.08
   artifacts:
     {{platform.name}}_v20.08:
       paths:
