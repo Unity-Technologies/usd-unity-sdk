@@ -1,5 +1,9 @@
 # Changes in usd-unitysdk for Unity
 
+## [1.0.4-preview.1] - 2020-07-24
+### Changed
+- Updated USD version to 20.08
+
 ## [1.0.3-preview.1] - 2020-04-01
 ### Changed
 - Fix the "Slow and safe as FBX" loading mode to perform the basis change as the FBX importer (#129)
