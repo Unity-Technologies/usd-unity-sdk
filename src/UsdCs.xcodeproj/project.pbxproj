@@ -267,6 +267,7 @@
 		46964DCC20A8F6AB005EFA10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = UsdCs/Info.plist;
@@ -282,9 +283,10 @@
 		46964DCD20A8F6AB005EFA10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v18.09/include";
+				"HEADER_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v20.08/include";
 				INFOPLIST_FILE = UsdCs/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = (
@@ -292,7 +294,7 @@
 					"@loader_path/../../../",
 					"@loader_path/../Frameworks/",
 				);
-				"LIBRARY_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v18.09/lib";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "/Users/jcowles/Documents/github/usd/usd_monolith_nopy-v20.08/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.UsdCs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
