@@ -70,17 +70,17 @@ namespace Unity.Formats.USD {
 #endif
 
 #if (UNITY_EDITOR_WIN)
-      supPath += @"/x86_64/share/";
+      supPath += @"/x86_64/usd/";
 #elif (UNITY_EDITOR_OSX)
-      supPath += @"/x86_64/UsdCs.bundle/Contents/Resources/share/";
+      supPath += @"/x86_64/UsdCs.bundle/Contents/Resources/usd/";
 #elif (UNITY_EDITOR_LINUX)
-      supPath += @"/x86_64/share/";
+      supPath += @"/x86_64/usd/";
 #elif (UNITY_STANDALONE_WIN)
-      supPath += @"/share/";
+      supPath += @"/usd/";
 #elif (UNITY_STANDALONE_OSX)
-      supPath += @"/UsdCs.bundle/Contents/Resources/share/";
+      supPath += @"/UsdCs.bundle/Contents/Resources/usd/";
 #elif (UNITY_STANDALONE_LINUX)
-      supPath += @"/share/";
+      supPath += @"/usd/";
 #endif
 
       Debug.LogFormat("Registering plugins: {0}", supPath);
