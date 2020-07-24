@@ -3,7 +3,7 @@
 #  full: --build-monolithic --alembic --openimageio
 #usd_versions:
 #  - version: 19.11
-#  - version: 20.02
+#  - version: 20.08
 build_platforms:
 #  - name: win
 #    type: Unity::VM
@@ -19,8 +19,8 @@ build_platforms:
     flavor: b1.large
 ---
 {% for platform in build_platforms %}
-{{platform.name}}_v20.02_no_python:
-  name: {{platform.name}} - Build USD v20.02 on (no python)
+{{platform.name}}_v20.08_no_python:
+  name: {{platform.name}} - Build USD v20.08 on (no python)
   skip_checkout: true
   agent:
     type: {{platform.type}}
@@ -28,19 +28,19 @@ build_platforms:
     flavor: {{platform.flavor}}
   commands:
     - |
-      wget https://github.com/PixarAnimationStudios/USD/archive/v20.02.zip
-      unzip v20.02.zip
-      cd USD-20.02
-      python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging ../libs/usd-v20.02_no_python
+      wget https://github.com/PixarAnimationStudios/USD/archive/v20.08.zip
+      unzip v20.08.zip
+      cd USD-20.08
+      python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging ../libs/usd-v20.08_no_python
   artifacts:
-      {{platform.name}}_v20.02_no_python:
+      {{platform.name}}_v20.08_no_python:
         paths:
-          - "libs/usd-v20.02_no_python/**"
+          - "libs/usd-v20.08_no_python/**"
 {% endfor %}
 
 {% for platform in build_platforms %}
-{{platform.name}}_v20.02:
-  name: {{platform.name}} - Build USD v20.02 (full)
+{{platform.name}}_v20.08:
+  name: {{platform.name}} - Build USD v20.08 (full)
   skip_checkout: true
   agent:
     type: {{platform.type}}
@@ -48,34 +48,34 @@ build_platforms:
     flavor: {{platform.flavor}}
   commands:
     - |
-      wget https://github.com/PixarAnimationStudios/USD/archive/v20.02.zip
-      unzip v20.02.zip
-      cd USD-20.02
-      python build_scripts/build_usd.py --build-monolithic --alembic --no-imaging ../libs/usd-v20.02
+      wget https://github.com/PixarAnimationStudios/USD/archive/v20.08.zip
+      unzip v20.08.zip
+      cd USD-20.08
+      python build_scripts/build_usd.py --build-monolithic --alembic --no-imaging ../libs/usd-v20.08
   artifacts:
-    {{platform.name}}_v20.02:
+    {{platform.name}}_v20.08:
       paths:
-        - "libs/usd-v20.02/**"
+        - "libs/usd-v20.08/**"
 {% endfor %}
 
 {% for platform in build_platforms %}
-{{platform.name}}_usd_v20.02_bindings:
-  name: {{platform.name}} - Build USD v20.02 C# bindings
+{{platform.name}}_usd_v20.08_bindings:
+  name: {{platform.name}} - Build USD v20.08 C# bindings
   agent:
     type: {{platform.type}}
     image: {{platform.image}}
     flavor: {{platform.flavor}}
   dependencies:
-    - .yamato/build_usd.yml#{{platform.name}}_v20.02
-    - .yamato/build_usd.yml#{{platform.name}}_v20.02_no_python
+    - .yamato/build_usd.yml#{{platform.name}}_v20.08
+    - .yamato/build_usd.yml#{{platform.name}}_v20.08_no_python
   commands:
     - |
         mkdir build
         cd build
-        cmake -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.02_no_python -DUSD_GENSCHEMA=${PXR_USD_LOCATION}/bin -DCMAKE_MODULE_PATH=../cmake/modules ../cmake/
+        cmake -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.08_no_python -DUSD_GENSCHEMA=${PXR_USD_LOCATION}/bin -DCMAKE_MODULE_PATH=../cmake/modules ../cmake/
         make install -j8
   artifacts:
-      {{platform.name}}_usdCs_v20.02:
+      {{platform.name}}_usdCs_v20.08:
         paths:
           - "package/Runtime/Plugins/x86_64/Linux/**"
   {% endfor %}
