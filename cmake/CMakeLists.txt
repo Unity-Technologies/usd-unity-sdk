@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 project(usd-unity-sdk LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 #include(pxrConfig)
 # 
 # set(USD_VERSION "v19.05" CACHE STRING "USD version (git tag)")
