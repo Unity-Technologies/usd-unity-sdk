@@ -72,13 +72,13 @@ namespace Unity.Formats.USD {
 #if (UNITY_EDITOR_WIN)
       supPath += @"/x86_64/usd/";
 #elif (UNITY_EDITOR_OSX)
-      supPath += @"/x86_64/UsdCs.bundle/Contents/Resources/usd/";
+      supPath += @"/x86_64/usd/";
 #elif (UNITY_EDITOR_LINUX)
       supPath += @"/x86_64/usd/";
 #elif (UNITY_STANDALONE_WIN)
       supPath += @"/usd/";
 #elif (UNITY_STANDALONE_OSX)
-      supPath += @"/UsdCs.bundle/Contents/Resources/usd/";
+      supPath += @"/usd/";
 #elif (UNITY_STANDALONE_LINUX)
       supPath += @"/usd/";
 #endif
