@@ -40,6 +40,40 @@ public class SdfUInt64ListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfUInt64ListOp CreateExplicit(StdUInt64Vector explicitItems) {
+    SdfUInt64ListOp ret = new SdfUInt64ListOp(UsdCsPINVOKE.SdfUInt64ListOp_CreateExplicit__SWIG_0(StdUInt64Vector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUInt64ListOp CreateExplicit() {
+    SdfUInt64ListOp ret = new SdfUInt64ListOp(UsdCsPINVOKE.SdfUInt64ListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfUInt64ListOp Create(StdUInt64Vector prependedItems, StdUInt64Vector appendedItems, StdUInt64Vector deletedItems) {
+    SdfUInt64ListOp ret = new SdfUInt64ListOp(UsdCsPINVOKE.SdfUInt64ListOp_Create__SWIG_0(StdUInt64Vector.getCPtr(prependedItems), StdUInt64Vector.getCPtr(appendedItems), StdUInt64Vector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUInt64ListOp Create(StdUInt64Vector prependedItems, StdUInt64Vector appendedItems) {
+    SdfUInt64ListOp ret = new SdfUInt64ListOp(UsdCsPINVOKE.SdfUInt64ListOp_Create__SWIG_1(StdUInt64Vector.getCPtr(prependedItems), StdUInt64Vector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUInt64ListOp Create(StdUInt64Vector prependedItems) {
+    SdfUInt64ListOp ret = new SdfUInt64ListOp(UsdCsPINVOKE.SdfUInt64ListOp_Create__SWIG_2(StdUInt64Vector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUInt64ListOp Create() {
+    SdfUInt64ListOp ret = new SdfUInt64ListOp(UsdCsPINVOKE.SdfUInt64ListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfUInt64ListOp() : this(UsdCsPINVOKE.new_SdfUInt64ListOp(), true) {
   }
 
@@ -50,6 +84,11 @@ public class SdfUInt64ListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfUInt64ListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(ulong item) {
+    bool ret = UsdCsPINVOKE.SdfUInt64ListOp_HasItem(swigCPtr, item);
     return ret;
   }
 

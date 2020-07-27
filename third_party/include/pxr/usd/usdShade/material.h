@@ -36,8 +36,6 @@
 #include "pxr/usd/usd/variantSets.h"
 #include "pxr/usd/usdGeom/subset.h"
 #include "pxr/usd/usdShade/connectableAPI.h"
-#include "pxr/usd/usdShade/tokens.h"
-
 
 #include "pxr/base/vt/value.h"
 
@@ -211,10 +209,11 @@ public:
     /// Represents the universal "surface" output terminal of a
     /// material.
     ///
-    /// \n  C++ Type: TfToken
-    /// \n  Usd Type: SdfValueTypeNames->Token
-    /// \n  Variability: SdfVariabilityVarying
-    /// \n  Fallback Value: No Fallback
+    /// | ||
+    /// | -- | -- |
+    /// | Declaration | `token outputs:surface` |
+    /// | C++ Type | TfToken |
+    /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Token |
     USDSHADE_API
     UsdAttribute GetSurfaceAttr() const;
 
@@ -233,10 +232,11 @@ public:
     /// Represents the universal "displacement" output terminal of a 
     /// material.
     ///
-    /// \n  C++ Type: TfToken
-    /// \n  Usd Type: SdfValueTypeNames->Token
-    /// \n  Variability: SdfVariabilityVarying
-    /// \n  Fallback Value: No Fallback
+    /// | ||
+    /// | -- | -- |
+    /// | Declaration | `token outputs:displacement` |
+    /// | C++ Type | TfToken |
+    /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Token |
     USDSHADE_API
     UsdAttribute GetDisplacementAttr() const;
 
@@ -255,10 +255,11 @@ public:
     /// Represents the universal "volume" output terminal of a
     /// material.
     ///
-    /// \n  C++ Type: TfToken
-    /// \n  Usd Type: SdfValueTypeNames->Token
-    /// \n  Variability: SdfVariabilityVarying
-    /// \n  Fallback Value: No Fallback
+    /// | ||
+    /// | -- | -- |
+    /// | Declaration | `token outputs:volume` |
+    /// | C++ Type | TfToken |
+    /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Token |
     USDSHADE_API
     UsdAttribute GetVolumeAttr() const;
 
@@ -292,63 +293,6 @@ public:
 
     /// @}
 
-    // --------------------------------------------------------------------- //
-    /// \name Binding Geometry Prims to Materials
-    /// \deprecated
-    /// This API is now deprecated. Please use UsdShadeMaterialBindingAPI
-    /// instead.
-    /// @{
-    // --------------------------------------------------------------------- //
-
-    /// \deprecated
-    /// Create a Material-binding relationship on \p prim and target it to this 
-    /// Material prim
-    ///
-    /// Any UsdPrim can have a binding to at most a \em single UsdShadeMaterial .
-    /// \return true on success
-    USDSHADE_API
-    //[[deprecated("Please use UsdShadeMaterialBindingAPI instead.")]]
-    bool Bind(const UsdPrim& prim) const;
-
-    /// \deprecated
-    /// Ensure that, when resolved up to and including the current UsdEditTarget
-    /// in composition strength, the given prim has no binding to a UsdShadeMaterial
-    ///
-    /// Note that this constitutes an assertion that there be no binding - 
-    /// it does \em not simply remove any binding at the current EditTarget
-    /// such that a weaker binding will "shine through".  For that behavior,
-    /// use GetBindingRel().ClearTargets()
-    /// \return true on success
-    USDSHADE_API
-    //[[deprecated("Please use UsdShadeMaterialBindingAPI instead.")]]
-    static bool Unbind(const UsdPrim& prim);
-
-    /// \deprecated
-    /// Direct access to the binding relationship for \p prim, if it has
-    /// already been created.
-    ///
-    /// This is how clients discover the Material to which a prim is bound,
-    /// and also how one would add metadata or 
-    /// \ref UsdObject::GetCustomData() "customData" .
-    ///
-    /// Care should be exercized when manipulating this relationship's
-    /// targets directly, rather than via Bind() and Unbind(), since it
-    /// will then be the client's responsibility to ensure that only a
-    /// single Material prim is targetted.  In general, use 
-    /// UsdRelationship::SetTargets() rather than UsdRelationship::AddTarget()
-    //[[deprecated("Please use UsdShadeMaterialBindingAPI instead.")]]
-    USDSHADE_API
-    static UsdRelationship GetBindingRel(const UsdPrim& prim);
-
-    /// \deprecated
-    /// Follows the relationship returned by GetBindingRel and returns a
-    /// valid UsdShadeMaterial if the relationship targets exactly one such prim.
-    ///
-    //[[deprecated("Please use UsdShadeMaterialBindingAPI instead.")]]
-    USDSHADE_API
-    static UsdShadeMaterial GetBoundMaterial(const UsdPrim &prim);
-
-    /// @}
 
     // --------------------------------------------------------------------- //
     /// \anchor UsdShadeMaterial_Outputs
@@ -732,104 +676,6 @@ public:
 
     /// @}
 
-
-    // --------------------------------------------------------------------- //
-    /// \anchor UsdShadeMaterial_Subsets
-    /// \name Binding materials to subsets
-    /// \deprecated This API is now deprecated. Please use the equivalent API 
-    ///             available on UsdShadeMaterialBindingAPI.
-    /// 
-    /// API to create, access and query the presence of GeomSubsets below an 
-    /// imageable prim, that are created for the purpose of binding materials.
-    /// 
-    /// \note Material bindings authored on GeomSubsets are honored by renderers
-    /// only if their familyName is <b>UsdShadeTokens->materialBind</b>.
-    /// 
-    /// Here's some sample code that shows how to create "face" subsets and 
-    /// and bind materials to them.
-    /// \code
-    /// UsdGeomImageable mesh = UsdGeomImageable::Get(stage,
-    ///         SdfPath("/path/to/meshPrim");
-    /// UsdShadeMaterial plastic = UsdShadeMaterial::Get(stage, 
-    ///         SdfPath("/path/to/PlasticMaterial");
-    /// UsdShadeMaterial metal = UsdShadeMaterial::Get(stage, 
-    ///         SdfPath("/path/to/MetalMaterial");    
-    ///
-    /// VtIntArray plasticFaces, metalFaces;
-    /// //.. populate faceIndices here.
-    /// //.. 
-    /// 
-    /// UsdGeomSubset plasticSubset = 
-    ///         UsdShaderMaterial::CreateMaterialBindSubset(mesh, 
-    ///                 "plasticSubset", plasticFaces);
-    /// UsdGeomSubset metalSubset = 
-    ///         UsdShaderMaterial::CreateMaterialBindSubset(mesh, 
-    ///                 "metalSubset", metalFaces);
-    /// plastic.Bind(plasticSubset.GetPrim())
-    /// metal.Bind(metalSubset.GetPrim())
-    /// 
-    /// \endcode
-    /// @{
-
-    /// \deprecated 
-    /// Creates a GeomSubset named \p subsetName with element type, 
-    /// \p elementType and familyName <b>materialBind<b> below the given
-    /// imageable prim, \p geom. 
-    /// 
-    /// If a GeomSubset named \p subsetName already exists, then its 
-    /// "familyName" is updated to be UsdShadeTokens->materialBind and its 
-    /// indices (at <i>default</i> timeCode) are updated with the provided 
-    /// \p indices value before returning. 
-    /// 
-    /// This method forces the familyType of the "materialBind" family of 
-    /// subsets to UsdGeomTokens->nonOverlapping if it's unset or explicitly set
-    /// to UsdGeomTokens->unrestricted.
-    /// 
-    /// The default value \p elementType is UsdGeomTokens->face, as we expect 
-    /// materials to be bound most often to subsets of faces on meshes.
-    USDSHADE_API
-    static UsdGeomSubset CreateMaterialBindSubset(
-        const UsdGeomImageable &geom,
-        const TfToken &subsetName,
-        const VtIntArray &indices,
-#if 0 // USD.NET
-        const TfToken &elementType=UsdGeomTokens->face);
-#else
-        const TfToken &elementType="face");
-#endif // USD.NET
-
-    /// \deprecated
-    /// Returns all the existing GeomSubsets with 
-    /// familyName=UsdShadeTokens->materialBind below the given imageable prim, 
-    /// \p geom.
-    USDSHADE_API
-    static std::vector<UsdGeomSubset> GetMaterialBindSubsets(
-        const UsdGeomImageable &geom);
-    
-    /// \deprecated
-    /// Encodes whether the family of "materialBind" subsets form a valid 
-    /// partition of the set of all faces on the imageable prim, \p geom.
-    USDSHADE_API
-    static bool SetMaterialBindSubsetsFamilyType(
-        const UsdGeomImageable &geom,
-        const TfToken &familyType);
-
-    /// \deprecated
-    /// Returns the familyType of the family of "materialBind" subsets under
-    /// \p geom. 
-    /// 
-    /// By default materialBind subsets have familyType="nonOverlapping", but
-    /// their can also be tagged as a "partition", using 
-    /// SetMaterialBindFaceSubsetsFamilyType(). 
-    /// 
-    /// \sa UsdGeomSubset::SetFamilyType
-    /// \sa UsdGeomSubset::GetFamilyNameAttr
-    /// 
-    USDSHADE_API
-    static TfToken GetMaterialBindSubsetsFamilyType(
-        const UsdGeomImageable &geom);
-
-    /// @}
 };
 
 PXR_NAMESPACE_CLOSE_SCOPE

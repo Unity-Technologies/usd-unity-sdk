@@ -43,27 +43,23 @@ public class GfVec3h : global::System.IDisposable {
   public GfVec3h() : this(UsdCsPINVOKE.new_GfVec3h__SWIG_0(), true) {
   }
 
-  public GfVec3h(GfVec3h other) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_1(GfVec3h.getCPtr(other)), true) {
+  public GfVec3h(GfHalf value) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_1(GfHalf.getCPtr(value)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec3h(GfHalf value) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_2(GfHalf.getCPtr(value)), true) {
+  public GfVec3h(GfHalf s0, GfHalf s1, GfHalf s2) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_2(GfHalf.getCPtr(s0), GfHalf.getCPtr(s1), GfHalf.getCPtr(s2)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec3h(GfHalf s0, GfHalf s1, GfHalf s2) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_3(GfHalf.getCPtr(s0), GfHalf.getCPtr(s1), GfHalf.getCPtr(s2)), true) {
+  public GfVec3h(GfVec3d other) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_4(GfVec3d.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec3h(GfVec3d other) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_5(GfVec3d.getCPtr(other)), true) {
+  public GfVec3h(GfVec3f other) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_5(GfVec3f.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec3h(GfVec3f other) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_6(GfVec3f.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfVec3h(GfVec3i other) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_7(GfVec3i.getCPtr(other)), true) {
+  public GfVec3h(GfVec3i other) : this(UsdCsPINVOKE.new_GfVec3h__SWIG_6(GfVec3i.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

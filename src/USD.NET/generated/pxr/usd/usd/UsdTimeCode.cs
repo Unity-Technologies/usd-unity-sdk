@@ -65,6 +65,10 @@ public class UsdTimeCode : global::System.IDisposable {
   public UsdTimeCode() : this(UsdCsPINVOKE.new_UsdTimeCode__SWIG_1(), true) {
   }
 
+  public UsdTimeCode(SdfTimeCode timeCode) : this(UsdCsPINVOKE.new_UsdTimeCode__SWIG_2(SdfTimeCode.getCPtr(timeCode)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public static UsdTimeCode EarliestTime() {
     UsdTimeCode ret = new UsdTimeCode(UsdCsPINVOKE.UsdTimeCode_EarliestTime(), true);
     return ret;

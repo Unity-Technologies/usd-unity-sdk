@@ -75,24 +75,6 @@ public class SdfAttributeSpecHandle : global::System.IDisposable {
     return ret;
   }
 
-  public SdfAttributeSpecHandle New(SdfRelationshipSpecHandle owner, SdfPath targetPath, string name, SdfValueTypeName typeName, SdfVariability variability, bool custom) {
-    SdfAttributeSpecHandle ret = new SdfAttributeSpecHandle(UsdCsPINVOKE.SdfAttributeSpecHandle_New__SWIG_3(swigCPtr, SdfRelationshipSpecHandle.getCPtr(owner), SdfPath.getCPtr(targetPath), name, SdfValueTypeName.getCPtr(typeName), (int)variability, custom), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SdfAttributeSpecHandle New(SdfRelationshipSpecHandle owner, SdfPath targetPath, string name, SdfValueTypeName typeName, SdfVariability variability) {
-    SdfAttributeSpecHandle ret = new SdfAttributeSpecHandle(UsdCsPINVOKE.SdfAttributeSpecHandle_New__SWIG_4(swigCPtr, SdfRelationshipSpecHandle.getCPtr(owner), SdfPath.getCPtr(targetPath), name, SdfValueTypeName.getCPtr(typeName), (int)variability), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SdfAttributeSpecHandle New(SdfRelationshipSpecHandle owner, SdfPath targetPath, string name, SdfValueTypeName typeName) {
-    SdfAttributeSpecHandle ret = new SdfAttributeSpecHandle(UsdCsPINVOKE.SdfAttributeSpecHandle_New__SWIG_5(swigCPtr, SdfRelationshipSpecHandle.getCPtr(owner), SdfPath.getCPtr(targetPath), name, SdfValueTypeName.getCPtr(typeName)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public SWIGTYPE_p_SdfConnectionsProxy GetConnectionPathList() {
     SWIGTYPE_p_SdfConnectionsProxy ret = new SWIGTYPE_p_SdfConnectionsProxy(UsdCsPINVOKE.SdfAttributeSpecHandle_GetConnectionPathList(swigCPtr), true);
     return ret;
@@ -105,17 +87,6 @@ public class SdfAttributeSpecHandle : global::System.IDisposable {
 
   public void ClearConnectionPaths() {
     UsdCsPINVOKE.SdfAttributeSpecHandle_ClearConnectionPaths(swigCPtr);
-  }
-
-  public SdfPath GetConnectionPathForMapper(SWIGTYPE_p_SdfMapperSpecHandle mapper) {
-    SdfPath ret = new SdfPath(UsdCsPINVOKE.SdfAttributeSpecHandle_GetConnectionPathForMapper(swigCPtr, SWIGTYPE_p_SdfMapperSpecHandle.getCPtr(mapper)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void ChangeMapperPath(SdfPath oldPath, SdfPath newPath) {
-    UsdCsPINVOKE.SdfAttributeSpecHandle_ChangeMapperPath(swigCPtr, SdfPath.getCPtr(oldPath), SdfPath.getCPtr(newPath));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public VtTokenArray GetAllowedTokens() {

@@ -57,4 +57,7 @@ typedef std::vector<UsdAttribute> UsdAttributeVector;
 %ignore UsdAttribute::GetTimeSamples(std::vector<double>* times) const;
 %ignore UsdAttribute::Get(VtValue* value) const;
 
+%ignore UsdAttribute::Set(const char* value) const;
+%ignore UsdAttribute::Set(const char* value, UsdTimeCode time = UsdTimeCode::Default()) const;
+
 %include "pxr/usd/usd/attribute.h"

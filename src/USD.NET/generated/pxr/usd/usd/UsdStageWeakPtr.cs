@@ -50,6 +50,11 @@ public class UsdStageWeakPtr : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_UsdStageLoadRules GetLoadRules() {
+    SWIGTYPE_p_UsdStageLoadRules ret = new SWIGTYPE_p_UsdStageLoadRules(UsdCsPINVOKE.UsdStageWeakPtr_GetLoadRules(swigCPtr), false);
+    return ret;
+  }
+
   public UsdStagePopulationMask GetPopulationMask() {
     UsdStagePopulationMask ret = new UsdStagePopulationMask(UsdCsPINVOKE.UsdStageWeakPtr_GetPopulationMask(swigCPtr), true);
     return ret;
@@ -78,6 +83,24 @@ public class UsdStageWeakPtr : global::System.IDisposable {
 
   public UsdObject GetObjectAtPath(SdfPath path) {
     UsdObject ret = new UsdObject(UsdCsPINVOKE.UsdStageWeakPtr_GetObjectAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdProperty GetPropertyAtPath(SdfPath path) {
+    UsdProperty ret = new UsdProperty(UsdCsPINVOKE.UsdStageWeakPtr_GetPropertyAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute GetAttributeAtPath(SdfPath path) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdStageWeakPtr_GetAttributeAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdRelationship GetRelationshipAtPath(SdfPath path) {
+    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdStageWeakPtr_GetRelationshipAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

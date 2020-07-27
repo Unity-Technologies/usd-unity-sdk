@@ -40,19 +40,15 @@ public class PcpCache : global::System.IDisposable {
     }
   }
 
-  public PcpCache(PcpLayerStackIdentifier layerStackIdentifier, string targetSchema, bool usd, SWIGTYPE_p_TfDeclarePtrsT_PcpPayloadDecorator_t__RefPtr payloadDecorator) : this(UsdCsPINVOKE.new_PcpCache__SWIG_0(PcpLayerStackIdentifier.getCPtr(layerStackIdentifier), targetSchema, usd, SWIGTYPE_p_TfDeclarePtrsT_PcpPayloadDecorator_t__RefPtr.getCPtr(payloadDecorator)), true) {
+  public PcpCache(PcpLayerStackIdentifier layerStackIdentifier, string fileFormatTarget, bool usd) : this(UsdCsPINVOKE.new_PcpCache__SWIG_0(PcpLayerStackIdentifier.getCPtr(layerStackIdentifier), fileFormatTarget, usd), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public PcpCache(PcpLayerStackIdentifier layerStackIdentifier, string targetSchema, bool usd) : this(UsdCsPINVOKE.new_PcpCache__SWIG_1(PcpLayerStackIdentifier.getCPtr(layerStackIdentifier), targetSchema, usd), true) {
+  public PcpCache(PcpLayerStackIdentifier layerStackIdentifier, string fileFormatTarget) : this(UsdCsPINVOKE.new_PcpCache__SWIG_1(PcpLayerStackIdentifier.getCPtr(layerStackIdentifier), fileFormatTarget), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public PcpCache(PcpLayerStackIdentifier layerStackIdentifier, string targetSchema) : this(UsdCsPINVOKE.new_PcpCache__SWIG_2(PcpLayerStackIdentifier.getCPtr(layerStackIdentifier), targetSchema), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public PcpCache(PcpLayerStackIdentifier layerStackIdentifier) : this(UsdCsPINVOKE.new_PcpCache__SWIG_3(PcpLayerStackIdentifier.getCPtr(layerStackIdentifier)), true) {
+  public PcpCache(PcpLayerStackIdentifier layerStackIdentifier) : this(UsdCsPINVOKE.new_PcpCache__SWIG_2(PcpLayerStackIdentifier.getCPtr(layerStackIdentifier)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -71,14 +67,8 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public string GetTargetSchema() {
-    string ret = UsdCsPINVOKE.PcpCache_GetTargetSchema(swigCPtr);
-    return ret;
-  }
-
-  public SWIGTYPE_p_PcpPayloadDecorator GetPayloadDecorator() {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.PcpCache_GetPayloadDecorator(swigCPtr);
-    SWIGTYPE_p_PcpPayloadDecorator ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_PcpPayloadDecorator(cPtr, false);
+  public string GetFileFormatTarget() {
+    string ret = UsdCsPINVOKE.PcpCache_GetFileFormatTarget(swigCPtr);
     return ret;
   }
 
@@ -103,8 +93,8 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__setT_SdfPath_t GetIncludedPayloads() {
-    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.PcpCache_GetIncludedPayloads(swigCPtr), true);
+  public SWIGTYPE_p_std__unordered_setT_SdfPath_SdfPath__Hash_t GetIncludedPayloads() {
+    SWIGTYPE_p_std__unordered_setT_SdfPath_SdfPath__Hash_t ret = new SWIGTYPE_p_std__unordered_setT_SdfPath_SdfPath__Hash_t(UsdCsPINVOKE.PcpCache_GetIncludedPayloads(swigCPtr), false);
     return ret;
   }
 
@@ -195,13 +185,13 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
-  public void ComputeRelationshipTargetPaths(SdfPath relationshipPath, SdfPathVector paths, bool localOnly, SdfSpecHandle stopProperty, bool includeStopProperty, SWIGTYPE_p_PcpErrorVector allErrors) {
-    UsdCsPINVOKE.PcpCache_ComputeRelationshipTargetPaths(swigCPtr, SdfPath.getCPtr(relationshipPath), SdfPathVector.getCPtr(paths), localOnly, SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
+  public void ComputeRelationshipTargetPaths(SdfPath relationshipPath, SdfPathVector paths, bool localOnly, SdfSpecHandle stopProperty, bool includeStopProperty, SdfPathVector deletedPaths, SWIGTYPE_p_PcpErrorVector allErrors) {
+    UsdCsPINVOKE.PcpCache_ComputeRelationshipTargetPaths(swigCPtr, SdfPath.getCPtr(relationshipPath), SdfPathVector.getCPtr(paths), localOnly, SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SdfPathVector.getCPtr(deletedPaths), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void ComputeAttributeConnectionPaths(SdfPath attributePath, SdfPathVector paths, bool localOnly, SdfSpecHandle stopProperty, bool includeStopProperty, SWIGTYPE_p_PcpErrorVector allErrors) {
-    UsdCsPINVOKE.PcpCache_ComputeAttributeConnectionPaths(swigCPtr, SdfPath.getCPtr(attributePath), SdfPathVector.getCPtr(paths), localOnly, SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
+  public void ComputeAttributeConnectionPaths(SdfPath attributePath, SdfPathVector paths, bool localOnly, SdfSpecHandle stopProperty, bool includeStopProperty, SdfPathVector deletedPaths, SWIGTYPE_p_PcpErrorVector allErrors) {
+    UsdCsPINVOKE.PcpCache_ComputeAttributeConnectionPaths(swigCPtr, SdfPath.getCPtr(attributePath), SdfPathVector.getCPtr(paths), localOnly, SdfSpecHandle.getCPtr(stopProperty), includeStopProperty, SdfPathVector.getCPtr(deletedPaths), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -257,6 +247,23 @@ public class PcpCache : global::System.IDisposable {
 
   public bool IsInvalidAssetPath(string resolvedAssetPath) {
     bool ret = UsdCsPINVOKE.PcpCache_IsInvalidAssetPath(swigCPtr, resolvedAssetPath);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool HasAnyDynamicFileFormatArgumentDependencies() {
+    bool ret = UsdCsPINVOKE.PcpCache_HasAnyDynamicFileFormatArgumentDependencies(swigCPtr);
+    return ret;
+  }
+
+  public bool IsPossibleDynamicFileFormatArgumentField(TfToken field) {
+    bool ret = UsdCsPINVOKE.PcpCache_IsPossibleDynamicFileFormatArgumentField(swigCPtr, TfToken.getCPtr(field));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SWIGTYPE_p_PcpDynamicFileFormatDependencyData GetDynamicFileFormatArgumentDependencyData(SdfPath primIndexPath) {
+    SWIGTYPE_p_PcpDynamicFileFormatDependencyData ret = new SWIGTYPE_p_PcpDynamicFileFormatDependencyData(UsdCsPINVOKE.PcpCache_GetDynamicFileFormatArgumentDependencyData(swigCPtr, SdfPath.getCPtr(primIndexPath)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

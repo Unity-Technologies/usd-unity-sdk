@@ -21,8 +21,8 @@
 // KIND, either express or implied. See the Apache License for the specific
 // language governing permissions and limitations under the Apache License.
 //
-#ifndef USDUTILS_STITCH_CLIPS_H
-#define USDUTILS_STITCH_CLIPS_H
+#ifndef PXR_USD_USD_UTILS_STITCH_CLIPS_H
+#define PXR_USD_USD_UTILS_STITCH_CLIPS_H
 
 /// \file usdUtils/stitchClips.h
 ///
@@ -67,7 +67,13 @@ SDF_DECLARE_HANDLES(SdfLayer);
 ///                           highest endTimeCode authored from the 
 ///                           \p clipLayers.
 ///
-/// \p clipSet            The name of the clipSet in which the
+/// \p interpolateMissingClipValues
+///                           Whether values for clips without samples are
+///                           interpolated from surrounding clips. See
+///                           UsdClipsAPI::GetInterpolateMissingClipValues
+///                           for more details.
+///
+/// \p clipSet                The name of the clipSet in which the
 ///                           aforementioned metadata will be authored.
 ///                           \note If this parameter is omitted, the default
 ///                           clipSet name will be authored.
@@ -114,6 +120,8 @@ UsdUtilsStitchClips(const SdfLayerHandle& resultLayer,
                         = std::numeric_limits<double>::max(),
                     const double endTimeCode
                         = std::numeric_limits<double>::max(),
+                    const bool interpolateMissingClipValues
+                        = false,
                     const TfToken& clipSet
 #if 0 // USD.NET
                         = UsdClipsAPISetNames->default_);
@@ -168,6 +176,12 @@ UsdUtilsStitchClipsTopology(const SdfLayerHandle& topologyLayer,
 ///                           \note If this parameter is omitted, no value 
 ///                           will be authored as the metadata is optional. 
 ///
+/// \p interpolateMissingClipValues
+///                           Whether values for clips without samples are
+///                           interpolated from surrounding clips. See
+///                           UsdClipsAPI::GetInterpolateMissingClipValues
+///                           for more details.
+///
 /// \p clipSet                The name of the clipSet in which the
 ///                           aforementioned metadata will be authored.
 ///                           \note If this parameter is omitted, the default
@@ -186,6 +200,8 @@ UsdUtilsStitchClipsTemplate(const SdfLayerHandle& resultLayer,
                             const double stride,
                             const double activeOffset
                                 = std::numeric_limits<double>::max(),
+                            const bool interpolateMissingClipValues
+                                = false,
                             const TfToken& clipSet
 #if 0 // USD.NET
                                 = UsdClipsAPISetNames->default_);
@@ -210,4 +226,4 @@ UsdUtilsGenerateClipTopologyName(const std::string& rootLayerName);
 
 PXR_NAMESPACE_CLOSE_SCOPE
 
-#endif /* USDUTILS_STITCH_CLIPS_H */
+#endif /* PXR_USD_USD_UTILS_STITCH_CLIPS_H */

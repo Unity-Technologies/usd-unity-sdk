@@ -15,8 +15,7 @@
 %typemap(cscode) UsdShadeTokens %{
   public static TfToken allPurpose = new TfToken("");
   public static TfToken bindMaterialAs = new TfToken("bindMaterialAs");
-  public static TfToken connectedSourceFor = new TfToken("connectedSourceFor:");
-  public static TfToken derivesFrom = new TfToken("derivesFrom");
+  public static TfToken coordSys = new TfToken("coordSys:");
   public static TfToken displacement = new TfToken("displacement");
   public static TfToken fallbackStrength = new TfToken("fallbackStrength");
   public static TfToken full = new TfToken("full");
@@ -25,8 +24,6 @@
   public static TfToken infoImplementationSource = new TfToken("info:implementationSource");
   public static TfToken inputs = new TfToken("inputs:");
   public static TfToken interfaceOnly = new TfToken("interfaceOnly");
-  public static TfToken interfaceRecipientsOf = new TfToken("interfaceRecipientsOf:");
-  public static TfToken interface_ = new TfToken("interface:");
   public static TfToken materialBind = new TfToken("materialBind");
   public static TfToken materialBinding = new TfToken("material:binding");
   public static TfToken materialBindingCollection = new TfToken("material:binding:collection");
@@ -40,6 +37,7 @@
   public static TfToken sourceAsset = new TfToken("sourceAsset");
   public static TfToken sourceCode = new TfToken("sourceCode");
   public static TfToken strongerThanDescendants = new TfToken("strongerThanDescendants");
+  public static TfToken subIdentifier = new TfToken("subIdentifier");
   public static TfToken surface = new TfToken("surface");
   public static TfToken universalRenderContext = new TfToken("");
   public static TfToken universalSourceType = new TfToken("");

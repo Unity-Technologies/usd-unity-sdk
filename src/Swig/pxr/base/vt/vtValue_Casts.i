@@ -98,6 +98,14 @@
         return UsdCs.VtValueToSdfAssetPathArray(value);
     }
 
+    public static implicit operator SdfTimeCode (VtValue value) {
+        return UsdCs.VtValueToSdfTimeCode(value);
+    }
+
+    public static implicit operator SdfTimeCodeArray (VtValue value) {
+        return UsdCs.VtValueToSdfTimeCodeArray(value);
+    }
+
     public static implicit operator TfToken (VtValue value) {
         return UsdCs.VtValueToTfToken(value);
     }
@@ -335,6 +343,14 @@
     }
 
     public static implicit operator VtValue (SdfAssetPathArray value) {
+        return new VtValue(value);
+    }
+
+    public static implicit operator VtValue (SdfTimeCode value) {
+        return new VtValue(value);
+    }
+
+    public static implicit operator VtValue (SdfTimeCodeArray value) {
         return new VtValue(value);
     }
 

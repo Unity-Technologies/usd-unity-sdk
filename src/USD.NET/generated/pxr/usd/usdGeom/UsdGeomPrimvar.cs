@@ -84,6 +84,24 @@ public class UsdGeomPrimvar : global::System.IDisposable {
     return ret;
   }
 
+  public static bool IsValidPrimvarName(TfToken name) {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_IsValidPrimvarName(TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool IsPrimvarRelatedPropertyName(TfToken name) {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_IsPrimvarRelatedPropertyName(TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken StripPrimvarsName(TfToken name) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomPrimvar_StripPrimvarsName(TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool IsValidInterpolation(TfToken interpolation) {
     bool ret = UsdCsPINVOKE.UsdGeomPrimvar_IsValidInterpolation(TfToken.getCPtr(interpolation));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -219,6 +237,12 @@ public class UsdGeomPrimvar : global::System.IDisposable {
 
   public bool ComputeFlattened(VtValue value) {
     bool ret = UsdCsPINVOKE.UsdGeomPrimvar_ComputeFlattened__SWIG_3(swigCPtr, VtValue.getCPtr(value));
+    return ret;
+  }
+
+  public static bool ComputeFlattened(VtValue value, VtValue attrVal, VtIntArray indices, /*cstype*/ out string errString) {
+    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_ComputeFlattened__SWIG_4(VtValue.getCPtr(value), VtValue.getCPtr(attrVal), VtIntArray.getCPtr(indices), out errString);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

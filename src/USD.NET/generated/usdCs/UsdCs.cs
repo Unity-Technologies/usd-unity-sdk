@@ -407,6 +407,12 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint TfHashValue(TfToken x) {
+    uint ret = UsdCsPINVOKE.TfHashValue(TfToken.getCPtr(x));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static uint hash_value(TfToken x) {
     uint ret = UsdCsPINVOKE.hash_value__SWIG_0(TfToken.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -1358,6 +1364,12 @@ public class UsdCs {
     return ret;
   }
 
+  public static float GfDot(GfQuatf q1, GfQuatf q2) {
+    float ret = UsdCsPINVOKE.GfDot__SWIG_12(GfQuatf.getCPtr(q1), GfQuatf.getCPtr(q2));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static uint hash_value(GfQuatf q) {
     uint ret = UsdCsPINVOKE.hash_value__SWIG_27(GfQuatf.getCPtr(q));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -1372,6 +1384,12 @@ public class UsdCs {
 
   public static GfQuatf GfSlerp(GfQuatf q0, GfQuatf q1, double alpha) {
     GfQuatf ret = new GfQuatf(UsdCsPINVOKE.GfSlerp__SWIG_6(GfQuatf.getCPtr(q0), GfQuatf.getCPtr(q1), alpha), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static double GfDot(GfQuatd q1, GfQuatd q2) {
+    double ret = UsdCsPINVOKE.GfDot__SWIG_13(GfQuatd.getCPtr(q1), GfQuatd.getCPtr(q2));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1747,6 +1765,32 @@ public class UsdCs {
   [Preserve]
   public static void VtValueToSdfAssetPathArray(VtValue value, SdfAssetPathArray output) {
     UsdCsPINVOKE.VtValueToSdfAssetPathArray__SWIG_1(VtValue.getCPtr(value), SdfAssetPathArray.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static SdfTimeCode VtValueToSdfTimeCode(VtValue value) {
+    SdfTimeCode ret = new SdfTimeCode(UsdCsPINVOKE.VtValueToSdfTimeCode__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToSdfTimeCode(VtValue value, SdfTimeCode output) {
+    UsdCsPINVOKE.VtValueToSdfTimeCode__SWIG_1(VtValue.getCPtr(value), SdfTimeCode.getCPtr(output));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  [Preserve]
+  public static SdfTimeCodeArray VtValueToSdfTimeCodeArray(VtValue value) {
+    SdfTimeCodeArray ret = new SdfTimeCodeArray(UsdCsPINVOKE.VtValueToSdfTimeCodeArray__SWIG_0(VtValue.getCPtr(value)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  [Preserve]
+  public static void VtValueToSdfTimeCodeArray(VtValue value, SdfTimeCodeArray output) {
+    UsdCsPINVOKE.VtValueToSdfTimeCodeArray__SWIG_1(VtValue.getCPtr(value), SdfTimeCodeArray.getCPtr(output));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -2368,18 +2412,6 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool SdfBoolFromString(string arg0, SWIGTYPE_p_bool parseOk) {
-    bool ret = UsdCsPINVOKE.SdfBoolFromString__SWIG_0(arg0, SWIGTYPE_p_bool.getCPtr(parseOk));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool SdfBoolFromString(string arg0) {
-    bool ret = UsdCsPINVOKE.SdfBoolFromString__SWIG_1(arg0);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public static bool SdfValueHasValidType(VtValue value) {
     bool ret = UsdCsPINVOKE.SdfValueHasValidType(VtValue.getCPtr(value));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -2401,6 +2433,11 @@ public class UsdCs {
   public static TfToken SdfGetRoleNameForValueTypeName(TfToken typeName) {
     TfToken ret = new TfToken(UsdCsPINVOKE.SdfGetRoleNameForValueTypeName(TfToken.getCPtr(typeName)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool SdfConvertToValidMetadataDictionary(VtDictionary dict, SWIGTYPE_p_std__string errMsg) {
+    bool ret = UsdCsPINVOKE.SdfConvertToValidMetadataDictionary(VtDictionary.getCPtr(dict), SWIGTYPE_p_std__string.getCPtr(errMsg));
     return ret;
   }
 
@@ -2488,43 +2525,8 @@ public class UsdCs {
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeColor4dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor4dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeMatrix3d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix3d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord3dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypePoint3h() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3h(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeAsset() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeAsset(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypePoint3d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypePoint3f() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3f(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeQuathArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuathArray(), true);
+  public static SdfValueTypeName SdfGetValueTypeBool() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeBool(), true);
     return ret;
   }
 
@@ -2533,18 +2535,178 @@ public class UsdCs {
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeMatrix2dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix2dArray(), true);
+  public static SdfValueTypeName SdfGetValueTypeInt() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt(), true);
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeTexCoord2fArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2fArray(), true);
+  public static SdfValueTypeName SdfGetValueTypeUInt() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUInt(), true);
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeVector3dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3dArray(), true);
+  public static SdfValueTypeName SdfGetValueTypeInt64() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt64(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeUInt64() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUInt64(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalf() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloat() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDouble() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTimeCode() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTimeCode(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeString() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeString(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeToken() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeToken(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeAsset() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeAsset(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeInt2() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt2(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeInt3() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt3(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeInt4() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt4(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalf2() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf2(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalf3() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf3(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalf4() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf4(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloat2() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat2(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloat3() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat3(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloat4() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat4(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDouble2() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble2(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDouble3() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble3(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDouble4() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble4(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypePoint3h() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3h(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypePoint3f() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3f(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypePoint3d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3d(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeVector3h() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3h(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeVector3f() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3f(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeVector3d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3d(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeNormal3h() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3h(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeNormal3f() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3f(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeNormal3d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3d(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor3h() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3h(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor3f() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3f(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor3d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3d(), true);
     return ret;
   }
 
@@ -2563,213 +2725,8 @@ public class UsdCs {
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeFloat2Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat2Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFloat4Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat4Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeAssetArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeAssetArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeUInt() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUInt(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeNormal3fArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3fArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeToken() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeToken(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFloat3Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat3Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord2hArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2hArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeUCharArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUCharArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeDoubleArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDoubleArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFrame4d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFrame4d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeQuatdArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuatdArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypePoint3hArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3hArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeString() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeString(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeDouble4() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble4(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeNormal3dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor3dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord2dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeHalf3Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf3Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeMatrix4dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix4dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeNormal3h() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3h(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor3fArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3fArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor4hArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor4hArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeNormal3d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeMatrix2d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix2d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeNormal3f() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3f(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeUInt64() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUInt64(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFloatArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloatArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor3f() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3f(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor3d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeInt64Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt64Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeIntArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeIntArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypePoint3dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord3hArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3hArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeBool() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeBool(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor3hArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3hArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeDouble2() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble2(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeDouble3() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble3(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeUInt64Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUInt64Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeStringArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeStringArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeVector3hArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3hArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeMatrix3dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix3dArray(), true);
+  public static SdfValueTypeName SdfGetValueTypeQuath() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuath(), true);
     return ret;
   }
 
@@ -2778,53 +2735,18 @@ public class UsdCs {
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeDouble3Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble3Array(), true);
-    return ret;
-  }
-
   public static SdfValueTypeName SdfGetValueTypeQuatd() {
     SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuatd(), true);
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeQuath() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuath(), true);
+  public static SdfValueTypeName SdfGetValueTypeMatrix2d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix2d(), true);
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeInt4() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt4(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeHalf4Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf4Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeInt2() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt2(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypePoint3fArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3fArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeInt3() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt3(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeBoolArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeBoolArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeHalf2Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf2Array(), true);
+  public static SdfValueTypeName SdfGetValueTypeMatrix3d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix3d(), true);
     return ret;
   }
 
@@ -2833,138 +2755,8 @@ public class UsdCs {
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeInt() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeDouble4Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble4Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeHalfArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalfArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFloat4() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat4(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFloat2() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat2(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFloat3() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat3(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeUIntArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUIntArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord2d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeHalf3() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf3(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord3h() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3h(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFrame4dArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFrame4dArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeVector3fArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3fArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord3d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTexCoord3f() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3f(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor3h() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3h(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeHalf() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeVector3h() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3h(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeVector3d() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3d(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeDouble() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeVector3f() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3f(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeInt4Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt4Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeColor4fArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor4fArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeQuatfArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuatfArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeDouble2Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble2Array(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeTokenArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTokenArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeNormal3hArray() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3hArray(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeInt3Array() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt3Array(), true);
+  public static SdfValueTypeName SdfGetValueTypeFrame4d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFrame4d(), true);
     return ret;
   }
 
@@ -2973,23 +2765,93 @@ public class UsdCs {
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeHalf4() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf4(), true);
-    return ret;
-  }
-
-  public static SdfValueTypeName SdfGetValueTypeFloat() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat(), true);
-    return ret;
-  }
-
   public static SdfValueTypeName SdfGetValueTypeTexCoord2f() {
     SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2f(), true);
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeHalf2() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf2(), true);
+  public static SdfValueTypeName SdfGetValueTypeTexCoord2d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2d(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord3h() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3h(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord3f() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3f(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord3d() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3d(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeBoolArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeBoolArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeUCharArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUCharArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeIntArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeIntArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeUIntArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUIntArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeInt64Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt64Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeUInt64Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeUInt64Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalfArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalfArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloatArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloatArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDoubleArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDoubleArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTimeCodeArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTimeCodeArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeStringArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeStringArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTokenArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTokenArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeAssetArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeAssetArray(), true);
     return ret;
   }
 
@@ -2998,13 +2860,198 @@ public class UsdCs {
     return ret;
   }
 
-  public static SdfValueTypeName SdfGetValueTypeInt64() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt64(), true);
+  public static SdfValueTypeName SdfGetValueTypeInt3Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt3Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeInt4Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeInt4Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalf2Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf2Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalf3Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf3Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeHalf4Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeHalf4Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloat2Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat2Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloat3Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat3Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFloat4Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFloat4Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDouble2Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble2Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDouble3Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble3Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeDouble4Array() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeDouble4Array(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypePoint3hArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3hArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypePoint3fArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3fArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypePoint3dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypePoint3dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeVector3hArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3hArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeVector3fArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3fArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeVector3dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeVector3dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeNormal3hArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3hArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeNormal3fArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3fArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeNormal3dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeNormal3dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor3hArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3hArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor3fArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3fArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor3dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor3dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor4hArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor4hArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor4fArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor4fArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeColor4dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeColor4dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeQuathArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuathArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeQuatfArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuatfArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeQuatdArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeQuatdArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeMatrix2dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix2dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeMatrix3dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix3dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeMatrix4dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeMatrix4dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeFrame4dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeFrame4dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord2hArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2hArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord2fArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2fArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord2dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord2dArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord3hArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3hArray(), true);
     return ret;
   }
 
   public static SdfValueTypeName SdfGetValueTypeTexCoord3fArray() {
     SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3fArray(), true);
+    return ret;
+  }
+
+  public static SdfValueTypeName SdfGetValueTypeTexCoord3dArray() {
+    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfGetValueTypeTexCoord3dArray(), true);
     return ret;
   }
 
@@ -3024,6 +3071,28 @@ public class UsdCs {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static void intrusive_ptr_add_ref(SWIGTYPE_p_Sdf_PathNode arg0) {
+    UsdCsPINVOKE.intrusive_ptr_add_ref(SWIGTYPE_p_Sdf_PathNode.getCPtr(arg0));
+  }
+
+  public static void intrusive_ptr_release(SWIGTYPE_p_Sdf_PathNode arg0) {
+    UsdCsPINVOKE.intrusive_ptr_release(SWIGTYPE_p_Sdf_PathNode.getCPtr(arg0));
+  }
+
+  public static uint Sdf_SizeofPrimPathNode {
+    get {
+      uint ret = UsdCsPINVOKE.Sdf_SizeofPrimPathNode_get();
+      return ret;
+    } 
+  }
+
+  public static uint Sdf_SizeofPropPathNode {
+    get {
+      uint ret = UsdCsPINVOKE.Sdf_SizeofPropPathNode_get();
+      return ret;
+    } 
+  }
+
   public static void swap(SdfPath lhs, SdfPath rhs) {
     UsdCsPINVOKE.swap__SWIG_4(SdfPath.getCPtr(lhs), SdfPath.getCPtr(rhs));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -3031,6 +3100,18 @@ public class UsdCs {
 
   public static uint hash_value(SdfPath path) {
     uint ret = UsdCsPINVOKE.hash_value__SWIG_49(SdfPath.getCPtr(path));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__setT_SdfPath_t__const_iterator SdfPathFindLongestPrefix(SWIGTYPE_p_std__setT_SdfPath_t set, SdfPath path) {
+    SWIGTYPE_p_std__setT_SdfPath_t__const_iterator ret = new SWIGTYPE_p_std__setT_SdfPath_t__const_iterator(UsdCsPINVOKE.SdfPathFindLongestPrefix(SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(set), SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__setT_SdfPath_t__const_iterator SdfPathFindLongestStrictPrefix(SWIGTYPE_p_std__setT_SdfPath_t set, SdfPath path) {
+    SWIGTYPE_p_std__setT_SdfPath_t__const_iterator ret = new SWIGTYPE_p_std__setT_SdfPath_t__const_iterator(UsdCsPINVOKE.SdfPathFindLongestStrictPrefix(SWIGTYPE_p_std__setT_SdfPath_t.getCPtr(set), SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3084,6 +3165,41 @@ public class UsdCs {
     SdfPrimSpecHandle ret = new SdfPrimSpecHandle(UsdCsPINVOKE.SdfCreatePrimInLayer(SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(primPath)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public static bool SdfJustCreatePrimInLayer(SdfLayerHandle layer, SdfPath primPath) {
+    bool ret = UsdCsPINVOKE.SdfJustCreatePrimInLayer(SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(primPath));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool SdfJustCreatePrimAttributeInLayer(SdfLayerHandle layer, SdfPath attrPath, SdfValueTypeName typeName, SdfVariability variability, bool isCustom) {
+    bool ret = UsdCsPINVOKE.SdfJustCreatePrimAttributeInLayer__SWIG_0(SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(attrPath), SdfValueTypeName.getCPtr(typeName), (int)variability, isCustom);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool SdfJustCreatePrimAttributeInLayer(SdfLayerHandle layer, SdfPath attrPath, SdfValueTypeName typeName, SdfVariability variability) {
+    bool ret = UsdCsPINVOKE.SdfJustCreatePrimAttributeInLayer__SWIG_1(SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(attrPath), SdfValueTypeName.getCPtr(typeName), (int)variability);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool SdfJustCreatePrimAttributeInLayer(SdfLayerHandle layer, SdfPath attrPath, SdfValueTypeName typeName) {
+    bool ret = UsdCsPINVOKE.SdfJustCreatePrimAttributeInLayer__SWIG_2(SdfLayerHandle.getCPtr(layer), SdfPath.getCPtr(attrPath), SdfValueTypeName.getCPtr(typeName));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static uint hash_value(SdfTimeCode ap) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(SdfTimeCode.getCPtr(ap));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void swap(SdfTimeCode lhs, SdfTimeCode rhs) {
+    UsdCsPINVOKE.swap__SWIG_5(SdfTimeCode.getCPtr(lhs), SdfTimeCode.getCPtr(rhs));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static bool IsTruthy(TfToken propName, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
@@ -3146,14 +3262,31 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool IsPropertyATerminal(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    bool ret = UsdCsPINVOKE.IsPropertyATerminal(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken GetRoleFromMetadata(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.GetRoleFromMetadata(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool PcpIsTimeScalingForLayerTimeCodesPerSecondDisabled() {
+    bool ret = UsdCsPINVOKE.PcpIsTimeScalingForLayerTimeCodesPerSecondDisabled();
+    return ret;
+  }
+
   public static uint hash_value(PcpLayerStackIdentifier x) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_54(PcpLayerStackIdentifier.getCPtr(x));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(PcpLayerStackIdentifier.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(PcpLayerStackIdentifierStr x) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_55(PcpLayerStackIdentifierStr.getCPtr(x));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(PcpLayerStackIdentifierStr.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3177,18 +3310,18 @@ public class UsdCs {
   }
 
   public static uint hash_value(PcpNodeRef x) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_56(PcpNodeRef.getCPtr(x));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(PcpNodeRef.getCPtr(x));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static void swap(PcpPrimIndex l, PcpPrimIndex r) {
-    UsdCsPINVOKE.swap__SWIG_5(PcpPrimIndex.getCPtr(l), PcpPrimIndex.getCPtr(r));
+    UsdCsPINVOKE.swap__SWIG_6(PcpPrimIndex.getCPtr(l), PcpPrimIndex.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static void swap(SWIGTYPE_p_PcpPrimIndexOutputs l, SWIGTYPE_p_PcpPrimIndexOutputs r) {
-    UsdCsPINVOKE.swap__SWIG_6(SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(l), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(r));
+    UsdCsPINVOKE.swap__SWIG_7(SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(l), SWIGTYPE_p_PcpPrimIndexOutputs.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -3222,18 +3355,13 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool PcpIsSpecializesArc(PcpArcType arcType) {
-    bool ret = UsdCsPINVOKE.PcpIsSpecializesArc((int)arcType);
+  public static bool PcpIsSpecializeArc(PcpArcType arcType) {
+    bool ret = UsdCsPINVOKE.PcpIsSpecializeArc((int)arcType);
     return ret;
   }
 
   public static bool PcpIsClassBasedArc(PcpArcType arcType) {
     bool ret = UsdCsPINVOKE.PcpIsClassBasedArc((int)arcType);
-    return ret;
-  }
-
-  public static bool PcpIsLocalClassBasedArc(PcpArcType arcType) {
-    bool ret = UsdCsPINVOKE.PcpIsLocalClassBasedArc((int)arcType);
     return ret;
   }
 
@@ -3268,30 +3396,14 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool UsdAuthorOldStyleAdd() {
-    bool ret = UsdCsPINVOKE.UsdAuthorOldStyleAdd();
-    return ret;
-  }
-
-  public static bool UsdUsesInverseLayerOffset() {
-    bool ret = UsdCsPINVOKE.UsdUsesInverseLayerOffset();
-    return ret;
-  }
-
-  public static SdfLayerOffset UsdPrepLayerOffset(SdfLayerOffset offset) {
-    SdfLayerOffset ret = new SdfLayerOffset(UsdCsPINVOKE.UsdPrepLayerOffset(SdfLayerOffset.getCPtr(offset)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public static uint hash_value(UsdTimeCode time) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_57(UsdTimeCode.getCPtr(time));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_58(UsdTimeCode.getCPtr(time));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(Usd_PrimFlagsPredicate p) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_58(Usd_PrimFlagsPredicate.getCPtr(p));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_59(Usd_PrimFlagsPredicate.getCPtr(p));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3379,13 +3491,19 @@ public class UsdCs {
     return ret;
   }
 
+  public static uint hash_value(UsdStagePopulationMask arg0) {
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_60(UsdStagePopulationMask.getCPtr(arg0));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static void swap(UsdStagePopulationMask l, UsdStagePopulationMask r) {
-    UsdCsPINVOKE.swap__SWIG_7(UsdStagePopulationMask.getCPtr(l), UsdStagePopulationMask.getCPtr(r));
+    UsdCsPINVOKE.swap__SWIG_8(UsdStagePopulationMask.getCPtr(l), UsdStagePopulationMask.getCPtr(r));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static void swap(UsdStageCache lhs, UsdStageCache rhs) {
-    UsdCsPINVOKE.swap__SWIG_8(UsdStageCache.getCPtr(lhs), UsdStageCache.getCPtr(rhs));
+    UsdCsPINVOKE.swap__SWIG_9(UsdStageCache.getCPtr(lhs), UsdStageCache.getCPtr(rhs));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -3405,7 +3523,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdObject obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_59(UsdObject.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_61(UsdObject.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3422,7 +3540,7 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdGeomPrimvar obj) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_60(UsdGeomPrimvar.getCPtr(obj));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_62(UsdGeomPrimvar.getCPtr(obj));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3439,13 +3557,13 @@ public class UsdCs {
   }
 
   public static uint hash_value(UsdSkelAnimQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_61(UsdSkelAnimQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_63(UsdSkelAnimQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static uint hash_value(UsdSkelSkeletonQuery query) {
-    uint ret = UsdCsPINVOKE.hash_value__SWIG_62(UsdSkelSkeletonQuery.getCPtr(query));
+    uint ret = UsdCsPINVOKE.hash_value__SWIG_64(UsdSkelSkeletonQuery.getCPtr(query));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3787,6 +3905,54 @@ public class UsdCs {
     return ret;
   }
 
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_0(GfMatrix3d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_1(GfMatrix3d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_2(GfMatrix3f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_3(GfMatrix3f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_4(GfMatrix3d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_5(GfMatrix3d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals, bool inSerial) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_6(GfMatrix3f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals), inSerial);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdSkelSkinNormalsLBS(GfMatrix3f geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t jointXforms, SWIGTYPE_p_TfSpanT_GfVec2f_const_t influences, int numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t normals) {
+    bool ret = UsdCsPINVOKE.UsdSkelSkinNormalsLBS__SWIG_7(GfMatrix3f.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix3f_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_GfVec2f_const_t.getCPtr(influences), numInfluencesPerPoint, SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(normals));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool UsdSkelSkinTransformLBS(GfMatrix4d geomBindTransform, SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t jointXforms, SWIGTYPE_p_TfSpanT_int_const_t jointIndices, SWIGTYPE_p_TfSpanT_float_const_t jointWeights, GfMatrix4d xform) {
     bool ret = UsdCsPINVOKE.UsdSkelSkinTransformLBS__SWIG_0(GfMatrix4d.getCPtr(geomBindTransform), SWIGTYPE_p_TfSpanT_GfMatrix4d_const_t.getCPtr(jointXforms), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(jointIndices), SWIGTYPE_p_TfSpanT_float_const_t.getCPtr(jointWeights), GfMatrix4d.getCPtr(xform));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -3817,32 +3983,8 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool UsdSkelApplyBlendShape(float weight, SWIGTYPE_p_TfSpanT_GfVec3f_const_t offsets, SWIGTYPE_p_TfSpanT_unsigned_int_const_t indices, SWIGTYPE_p_TfSpanT_GfVec3f_t points) {
-    bool ret = UsdCsPINVOKE.UsdSkelApplyBlendShape(weight, SWIGTYPE_p_TfSpanT_GfVec3f_const_t.getCPtr(offsets), SWIGTYPE_p_TfSpanT_unsigned_int_const_t.getCPtr(indices), SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool UsdSkelBakeSkinning(UsdSkelRoot root, GfInterval interval) {
-    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_0(UsdSkelRoot.getCPtr(root), GfInterval.getCPtr(interval));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool UsdSkelBakeSkinning(UsdSkelRoot root) {
-    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_1(UsdSkelRoot.getCPtr(root));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool UsdSkelBakeSkinning(UsdPrimRange range, GfInterval interval) {
-    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_2(UsdPrimRange.getCPtr(range), GfInterval.getCPtr(interval));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool UsdSkelBakeSkinning(UsdPrimRange range) {
-    bool ret = UsdCsPINVOKE.UsdSkelBakeSkinning__SWIG_3(UsdPrimRange.getCPtr(range));
+  public static bool UsdSkelApplyBlendShape(float weight, SWIGTYPE_p_TfSpanT_GfVec3f_const_t offsets, SWIGTYPE_p_TfSpanT_int_const_t indices, SWIGTYPE_p_TfSpanT_GfVec3f_t points) {
+    bool ret = UsdCsPINVOKE.UsdSkelApplyBlendShape(weight, SWIGTYPE_p_TfSpanT_GfVec3f_const_t.getCPtr(offsets), SWIGTYPE_p_TfSpanT_int_const_t.getCPtr(indices), SWIGTYPE_p_TfSpanT_GfVec3f_t.getCPtr(points));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -3979,26 +4121,32 @@ public class UsdCs {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode, double endTimeCode, TfToken clipSet) {
-    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_0(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode, endTimeCode, TfToken.getCPtr(clipSet));
+  public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode, double endTimeCode, bool interpolateMissingClipValues, TfToken clipSet) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_0(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode, endTimeCode, interpolateMissingClipValues, TfToken.getCPtr(clipSet));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode, double endTimeCode, bool interpolateMissingClipValues) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_1(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode, endTimeCode, interpolateMissingClipValues);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode, double endTimeCode) {
-    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_1(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode, endTimeCode);
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_2(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode, endTimeCode);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath, double startTimeCode) {
-    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_2(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode);
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_3(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath), startTimeCode);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdUtilsStitchClips(SdfLayerHandle resultLayer, StdStringVector clipLayerFiles, SdfPath clipPath) {
-    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_3(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath));
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClips__SWIG_4(SdfLayerHandle.getCPtr(resultLayer), StdStringVector.getCPtr(clipLayerFiles), SdfPath.getCPtr(clipPath));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -4009,20 +4157,26 @@ public class UsdCs {
     return ret;
   }
 
-  public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride, double activeOffset, TfToken clipSet) {
-    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_0(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride, activeOffset, TfToken.getCPtr(clipSet));
+  public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride, double activeOffset, bool interpolateMissingClipValues, TfToken clipSet) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_0(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride, activeOffset, interpolateMissingClipValues, TfToken.getCPtr(clipSet));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride, double activeOffset, bool interpolateMissingClipValues) {
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_1(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride, activeOffset, interpolateMissingClipValues);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride, double activeOffset) {
-    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_1(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride, activeOffset);
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_2(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride, activeOffset);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool UsdUtilsStitchClipsTemplate(SdfLayerHandle resultLayer, SdfLayerHandle topologyLayer, SdfPath clipPath, string templatePath, double startTime, double endTime, double stride) {
-    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_2(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride);
+    bool ret = UsdCsPINVOKE.UsdUtilsStitchClipsTemplate__SWIG_3(SdfLayerHandle.getCPtr(resultLayer), SdfLayerHandle.getCPtr(topologyLayer), SdfPath.getCPtr(clipPath), templatePath, startTime, endTime, stride);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

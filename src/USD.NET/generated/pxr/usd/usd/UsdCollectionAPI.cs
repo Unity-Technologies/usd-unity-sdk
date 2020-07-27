@@ -193,109 +193,6 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public class MembershipQuery : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal MembershipQuery(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(MembershipQuery obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~MembershipQuery() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_UsdCollectionAPI_MembershipQuery(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-        }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public MembershipQuery() : this(UsdCsPINVOKE.new_UsdCollectionAPI_MembershipQuery(), true) {
-    }
-  
-    public bool IsPathIncluded(SdfPath path, TfToken expansionRule) {
-      bool ret = UsdCsPINVOKE.UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_0(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(expansionRule));
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-  
-    public bool IsPathIncluded(SdfPath path) {
-      bool ret = UsdCsPINVOKE.UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_1(swigCPtr, SdfPath.getCPtr(path));
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-  
-    public bool IsPathIncluded(SdfPath path, TfToken parentExpansionRule, TfToken expansionRule) {
-      bool ret = UsdCsPINVOKE.UsdCollectionAPI_MembershipQuery_IsPathIncluded__SWIG_2(swigCPtr, SdfPath.getCPtr(path), TfToken.getCPtr(parentExpansionRule), TfToken.getCPtr(expansionRule));
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-  
-    public bool HasExcludes() {
-      bool ret = UsdCsPINVOKE.UsdCollectionAPI_MembershipQuery_HasExcludes(swigCPtr);
-      return ret;
-    }
-  
-      public class Hash : global::System.IDisposable {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
-      
-        internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn) {
-          swigCMemOwn = cMemoryOwn;
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-      
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj) {
-          return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-      
-        ~Hash() {
-          Dispose();
-        }
-      
-        public virtual void Dispose() {
-          lock(this) {
-            if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-              if (swigCMemOwn) {
-                swigCMemOwn = false;
-                UsdCsPINVOKE.delete_UsdCollectionAPI_MembershipQuery_Hash(swigCPtr);
-              }
-              swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            global::System.GC.SuppressFinalize(this);
-          }
-        }
-      
-        public Hash() : this(UsdCsPINVOKE.new_UsdCollectionAPI_MembershipQuery_Hash(), true) {
-        }
-      
-      }
-  
-    public uint GetHash() {
-      uint ret = UsdCsPINVOKE.UsdCollectionAPI_MembershipQuery_GetHash(swigCPtr);
-      return ret;
-    }
-  
-    public SWIGTYPE_p_std__unordered_mapT_SdfPath_TfToken_SdfPath__Hash_t GetAsPathExpansionRuleMap() {
-      SWIGTYPE_p_std__unordered_mapT_SdfPath_TfToken_SdfPath__Hash_t ret = new SWIGTYPE_p_std__unordered_mapT_SdfPath_TfToken_SdfPath__Hash_t(UsdCsPINVOKE.UsdCollectionAPI_MembershipQuery_GetAsPathExpansionRuleMap(swigCPtr), true);
-      return ret;
-    }
-  
-  }
-
   public SdfPath GetCollectionPath() {
     SdfPath ret = new SdfPath(UsdCsPINVOKE.UsdCollectionAPI_GetCollectionPath(swigCPtr), true);
     return ret;
@@ -307,13 +204,13 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public UsdCollectionAPI.MembershipQuery ComputeMembershipQuery() {
-    UsdCollectionAPI.MembershipQuery ret = new UsdCollectionAPI.MembershipQuery(UsdCsPINVOKE.UsdCollectionAPI_ComputeMembershipQuery__SWIG_0(swigCPtr), true);
+  public SWIGTYPE_p_UsdCollectionMembershipQuery ComputeMembershipQuery() {
+    SWIGTYPE_p_UsdCollectionMembershipQuery ret = new SWIGTYPE_p_UsdCollectionMembershipQuery(UsdCsPINVOKE.UsdCollectionAPI_ComputeMembershipQuery__SWIG_0(swigCPtr), true);
     return ret;
   }
 
-  public void ComputeMembershipQuery(UsdCollectionAPI.MembershipQuery query) {
-    UsdCsPINVOKE.UsdCollectionAPI_ComputeMembershipQuery__SWIG_1(swigCPtr, UsdCollectionAPI.MembershipQuery.getCPtr(query));
+  public void ComputeMembershipQuery(SWIGTYPE_p_UsdCollectionMembershipQuery query) {
+    UsdCsPINVOKE.UsdCollectionAPI_ComputeMembershipQuery__SWIG_1(swigCPtr, SWIGTYPE_p_UsdCollectionMembershipQuery.getCPtr(query));
   }
 
   public bool HasNoIncludedPaths() {
@@ -321,14 +218,14 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static SWIGTYPE_p_std__setT_SdfPath_t ComputeIncludedPaths(UsdCollectionAPI.MembershipQuery query, UsdStageWeakPtr stage, Usd_PrimFlagsPredicate pred) {
-    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.UsdCollectionAPI_ComputeIncludedPaths__SWIG_0(UsdCollectionAPI.MembershipQuery.getCPtr(query), UsdStageWeakPtr.getCPtr(stage), Usd_PrimFlagsPredicate.getCPtr(pred)), true);
+  public static SWIGTYPE_p_std__setT_SdfPath_t ComputeIncludedPaths(SWIGTYPE_p_UsdCollectionMembershipQuery query, UsdStageWeakPtr stage, Usd_PrimFlagsPredicate pred) {
+    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.UsdCollectionAPI_ComputeIncludedPaths__SWIG_0(SWIGTYPE_p_UsdCollectionMembershipQuery.getCPtr(query), UsdStageWeakPtr.getCPtr(stage), Usd_PrimFlagsPredicate.getCPtr(pred)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static SWIGTYPE_p_std__setT_SdfPath_t ComputeIncludedPaths(UsdCollectionAPI.MembershipQuery query, UsdStageWeakPtr stage) {
-    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.UsdCollectionAPI_ComputeIncludedPaths__SWIG_1(UsdCollectionAPI.MembershipQuery.getCPtr(query), UsdStageWeakPtr.getCPtr(stage)), true);
+  public static SWIGTYPE_p_std__setT_SdfPath_t ComputeIncludedPaths(SWIGTYPE_p_UsdCollectionMembershipQuery query, UsdStageWeakPtr stage) {
+    SWIGTYPE_p_std__setT_SdfPath_t ret = new SWIGTYPE_p_std__setT_SdfPath_t(UsdCsPINVOKE.UsdCollectionAPI_ComputeIncludedPaths__SWIG_1(SWIGTYPE_p_UsdCollectionMembershipQuery.getCPtr(query), UsdStageWeakPtr.getCPtr(stage)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -361,8 +258,8 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public static UsdObjectVector ComputeIncludedObjects(UsdCollectionAPI.MembershipQuery query, UsdStageWeakPtr stage) {
-    UsdObjectVector ret = new UsdObjectVector(UsdCsPINVOKE.UsdCollectionAPI_ComputeIncludedObjects(UsdCollectionAPI.MembershipQuery.getCPtr(query), UsdStageWeakPtr.getCPtr(stage)), true);
+  public static UsdObjectVector ComputeIncludedObjects(SWIGTYPE_p_UsdCollectionMembershipQuery query, UsdStageWeakPtr stage) {
+    UsdObjectVector ret = new UsdObjectVector(UsdCsPINVOKE.UsdCollectionAPI_ComputeIncludedObjects(SWIGTYPE_p_UsdCollectionMembershipQuery.getCPtr(query), UsdStageWeakPtr.getCPtr(stage)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

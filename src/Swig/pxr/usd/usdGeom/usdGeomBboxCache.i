@@ -21,7 +21,6 @@
 %include "arrays_csharp.i"
 %apply int64_t INPUT[]  { int64_t* instanceIdBegin }
 
-
-
-%include "pxr/usd/usdGeom/bboxCache.h"
+%include "third_party/include/pxr/usd/usdGeom/bboxCache.h"
+//%include "pxr/usd/usdGeom/bboxCache.h"
 

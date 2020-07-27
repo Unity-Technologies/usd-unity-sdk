@@ -56,6 +56,11 @@ public class UsdUtilsSparseValueWriter : global::System.IDisposable {
     UsdCsPINVOKE.UsdUtilsSparseValueWriter_Clear(swigCPtr);
   }
 
+  public SWIGTYPE_p_std__vectorT_UsdUtilsSparseAttrValueWriter_t GetSparseAttrValueWriters() {
+    SWIGTYPE_p_std__vectorT_UsdUtilsSparseAttrValueWriter_t ret = new SWIGTYPE_p_std__vectorT_UsdUtilsSparseAttrValueWriter_t(UsdCsPINVOKE.UsdUtilsSparseValueWriter_GetSparseAttrValueWriters(swigCPtr), true);
+    return ret;
+  }
+
   public UsdUtilsSparseValueWriter() : this(UsdCsPINVOKE.new_UsdUtilsSparseValueWriter(), true) {
   }
 

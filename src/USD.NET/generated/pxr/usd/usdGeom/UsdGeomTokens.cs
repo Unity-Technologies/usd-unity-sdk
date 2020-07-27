@@ -36,6 +36,7 @@ public class UsdGeomTokens : global::System.IDisposable {
     }
   }
 
+  public static TfToken accelerations = new TfToken("accelerations");
   public static TfToken all = new TfToken("all");
   public static TfToken angularVelocities = new TfToken("angularVelocities");
   public static TfToken axis = new TfToken("axis");
@@ -127,6 +128,8 @@ public class UsdGeomTokens : global::System.IDisposable {
   public static TfToken partition = new TfToken("partition");
   public static TfToken periodic = new TfToken("periodic");
   public static TfToken perspective = new TfToken("perspective");
+  public static TfToken pinned = new TfToken("pinned");
+  public static TfToken pivot = new TfToken("pivot");
   public static TfToken pointWeights = new TfToken("pointWeights");
   public static TfToken points = new TfToken("points");
   public static TfToken positions = new TfToken("positions");
@@ -151,6 +154,7 @@ public class UsdGeomTokens : global::System.IDisposable {
   public static TfToken smooth = new TfToken("smooth");
   public static TfToken stereoRole = new TfToken("stereoRole");
   public static TfToken subdivisionScheme = new TfToken("subdivisionScheme");
+  public static TfToken tangents = new TfToken("tangents");
   public static TfToken triangleSubdivisionRule = new TfToken("triangleSubdivisionRule");
   public static TfToken trimCurveCounts = new TfToken("trimCurve:counts");
   public static TfToken trimCurveKnots = new TfToken("trimCurve:knots");

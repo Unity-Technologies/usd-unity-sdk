@@ -109,6 +109,11 @@ public class SdfReference : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public bool IsInternal() {
+    bool ret = UsdCsPINVOKE.SdfReference_IsInternal(swigCPtr);
+    return ret;
+  }
+
   public class IdentityEqual : global::System.IDisposable {
     private global::System.Runtime.InteropServices.HandleRef swigCPtr;
     protected bool swigCMemOwn;

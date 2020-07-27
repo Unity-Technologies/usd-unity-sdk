@@ -147,21 +147,6 @@ public class UsdShadeOutput : global::System.IDisposable {
     return ret;
   }
 
-  public UsdProperty GetProperty() {
-    UsdProperty ret = new UsdProperty(UsdCsPINVOKE.UsdShadeOutput_GetProperty(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdRelationship GetRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdShadeOutput_GetRel(swigCPtr), true);
-    return ret;
-  }
-
-  public bool IsTerminal() {
-    bool ret = UsdCsPINVOKE.UsdShadeOutput_IsTerminal(swigCPtr);
-    return ret;
-  }
-
   public bool IsDefined() {
     bool ret = UsdCsPINVOKE.UsdShadeOutput_IsDefined(swigCPtr);
     return ret;

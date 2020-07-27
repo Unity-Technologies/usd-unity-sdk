@@ -142,7 +142,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (bool* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -164,7 +164,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (bool* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -180,7 +180,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (bool* p = tmp) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
       return tmp.ToList();
@@ -195,7 +195,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (byte* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -227,7 +227,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (byte* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -252,7 +252,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (int* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -274,7 +274,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (int* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -298,7 +298,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (uint* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -320,7 +320,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (uint* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -344,7 +344,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (long* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -366,7 +366,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (long* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -390,7 +390,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (ulong* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -412,7 +412,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (ulong* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -436,7 +436,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (float* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -448,7 +448,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (float* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
       return output;
@@ -473,7 +473,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (double* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
@@ -485,7 +485,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (double* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
       return output;

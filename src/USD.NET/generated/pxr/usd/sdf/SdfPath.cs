@@ -98,6 +98,11 @@ public class SdfPath : global::System.IDisposable {
     return ret;
   }
 
+  public bool IsAbsoluteRootPath() {
+    bool ret = UsdCsPINVOKE.SdfPath_IsAbsoluteRootPath(swigCPtr);
+    return ret;
+  }
+
   public bool IsPrimPath() {
     bool ret = UsdCsPINVOKE.SdfPath_IsPrimPath(swigCPtr);
     return ret;
@@ -140,6 +145,11 @@ public class SdfPath : global::System.IDisposable {
 
   public bool ContainsPrimVariantSelection() {
     bool ret = UsdCsPINVOKE.SdfPath_ContainsPrimVariantSelection(swigCPtr);
+    return ret;
+  }
+
+  public bool ContainsPropertyElements() {
+    bool ret = UsdCsPINVOKE.SdfPath_ContainsPropertyElements(swigCPtr);
     return ret;
   }
 
@@ -200,6 +210,11 @@ public class SdfPath : global::System.IDisposable {
 
   public void GetPrefixes(SdfPathVector prefixes) {
     UsdCsPINVOKE.SdfPath_GetPrefixes__SWIG_1(swigCPtr, SdfPathVector.getCPtr(prefixes));
+  }
+
+  public SdfPathAncestorsRange GetAncestorsRange() {
+    SdfPathAncestorsRange ret = new SdfPathAncestorsRange(UsdCsPINVOKE.SdfPath_GetAncestorsRange(swigCPtr), true);
+    return ret;
   }
 
   public string GetName() {
@@ -442,6 +457,12 @@ public class SdfPath : global::System.IDisposable {
 
   public static TfToken StripNamespace(TfToken name) {
     TfToken ret = new TfToken(UsdCsPINVOKE.SdfPath_StripNamespace__SWIG_1(TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_std__pairT_std__string_bool_t StripPrefixNamespace(string name, string matchNamespace) {
+    SWIGTYPE_p_std__pairT_std__string_bool_t ret = new SWIGTYPE_p_std__pairT_std__string_bool_t(UsdCsPINVOKE.SdfPath_StripPrefixNamespace(name, matchNamespace), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -96,15 +96,29 @@ public class SdrRegistry : NdrRegistry {
     return ret;
   }
 
+  public SdrShaderNode GetShaderNodeFromAsset(SdfAssetPath shaderAsset, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, TfToken subIdentifier, TfToken sourceType) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeFromAsset__SWIG_0(swigCPtr, SdfAssetPath.getCPtr(shaderAsset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), TfToken.getCPtr(subIdentifier), TfToken.getCPtr(sourceType));
+    SdrShaderNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdrShaderNode(cPtr, false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdrShaderNode GetShaderNodeFromAsset(SdfAssetPath shaderAsset, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, TfToken subIdentifier) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeFromAsset__SWIG_1(swigCPtr, SdfAssetPath.getCPtr(shaderAsset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), TfToken.getCPtr(subIdentifier));
+    SdrShaderNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdrShaderNode(cPtr, false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public SdrShaderNode GetShaderNodeFromAsset(SdfAssetPath shaderAsset, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeFromAsset__SWIG_0(swigCPtr, SdfAssetPath.getCPtr(shaderAsset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeFromAsset__SWIG_2(swigCPtr, SdfAssetPath.getCPtr(shaderAsset), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata));
     SdrShaderNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdrShaderNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public SdrShaderNode GetShaderNodeFromAsset(SdfAssetPath shaderAsset) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeFromAsset__SWIG_1(swigCPtr, SdfAssetPath.getCPtr(shaderAsset));
+    global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeFromAsset__SWIG_3(swigCPtr, SdfAssetPath.getCPtr(shaderAsset));
     SdrShaderNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdrShaderNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -119,13 +133,6 @@ public class SdrRegistry : NdrRegistry {
 
   public SdrShaderNode GetShaderNodeFromSourceCode(string sourceCode, TfToken sourceType) {
     global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeFromSourceCode__SWIG_1(swigCPtr, sourceCode, TfToken.getCPtr(sourceType));
-    SdrShaderNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdrShaderNode(cPtr, false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SdrShaderNode GetShaderNodeByURI(string uri) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.SdrRegistry_GetShaderNodeByURI(swigCPtr, uri);
     SdrShaderNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdrShaderNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;

@@ -204,6 +204,28 @@ public class UsdGeomPointInstancer : UsdGeomBoundable {
     return ret;
   }
 
+  public UsdAttribute GetAccelerationsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetAccelerationsAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateAccelerationsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetAngularVelocitiesAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetAngularVelocitiesAttr(swigCPtr), true);
     return ret;
@@ -363,14 +385,14 @@ public class UsdGeomPointInstancer : UsdGeomBoundable {
     return ret;
   }
 
-  public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask, float velocityScale) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_3(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask), velocityScale);
+  public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray accelerations, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask, float velocityScale) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_3(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(accelerations), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask), velocityScale);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_4(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask));
+  public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray accelerations, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask) {
+    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_4(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(accelerations), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

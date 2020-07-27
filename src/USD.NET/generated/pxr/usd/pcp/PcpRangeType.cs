@@ -12,15 +12,12 @@ namespace pxr {
 
 public enum PcpRangeType {
   PcpRangeTypeRoot,
-  PcpRangeTypeLocalInherit,
-  PcpRangeTypeGlobalInherit,
+  PcpRangeTypeInherit,
   PcpRangeTypeVariant,
   PcpRangeTypeReference,
   PcpRangeTypePayload,
-  PcpRangeTypeLocalSpecializes,
-  PcpRangeTypeGlobalSpecializes,
+  PcpRangeTypeSpecialize,
   PcpRangeTypeAll,
-  PcpRangeTypeAllInherits,
   PcpRangeTypeWeakerThanRoot,
   PcpRangeTypeStrongerThanPayload,
   PcpRangeTypeInvalid

@@ -33,6 +33,8 @@
 %template(VtValue) VtValue::VtValue<GfVec4i>;
 %template(VtValue) VtValue::VtValue<SdfAssetPath>;
 %template(VtValue) VtValue::VtValue<SdfAssetPathArray>;
+%template(VtValue) VtValue::VtValue<SdfTimeCode>;
+%template(VtValue) VtValue::VtValue<SdfTimeCodeArray>;
 %template(VtValue) VtValue::VtValue<TfToken>;
 %template(VtValue) VtValue::VtValue<VtBoolArray>;
 %template(VtValue) VtValue::VtValue<VtDoubleArray>;

@@ -204,6 +204,28 @@ public class UsdLuxShapingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public UsdAttribute GetShapingIesNormalizeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxShapingAPI_GetShapingIesNormalizeAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateShapingIesNormalizeAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxShapingAPI_CreateShapingIesNormalizeAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateShapingIesNormalizeAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxShapingAPI_CreateShapingIesNormalizeAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateShapingIesNormalizeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxShapingAPI_CreateShapingIesNormalizeAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
 }
 
 }

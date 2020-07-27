@@ -48,6 +48,16 @@ public class UsdSkelSkeletonQuery : global::System.IDisposable {
     return ret;
   }
 
+  public bool HasBindPose() {
+    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_HasBindPose(swigCPtr);
+    return ret;
+  }
+
+  public bool HasRestPose() {
+    bool ret = UsdCsPINVOKE.UsdSkelSkeletonQuery_HasRestPose(swigCPtr);
+    return ret;
+  }
+
   public UsdPrim GetPrim() {
     UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelSkeletonQuery_GetPrim(swigCPtr), true);
     return ret;
@@ -65,6 +75,11 @@ public class UsdSkelSkeletonQuery : global::System.IDisposable {
 
   public UsdSkelTopology GetTopology() {
     UsdSkelTopology ret = new UsdSkelTopology(UsdCsPINVOKE.UsdSkelSkeletonQuery_GetTopology(swigCPtr), false);
+    return ret;
+  }
+
+  public UsdSkelAnimMapper GetMapper() {
+    UsdSkelAnimMapper ret = new UsdSkelAnimMapper(UsdCsPINVOKE.UsdSkelSkeletonQuery_GetMapper(swigCPtr), false);
     return ret;
   }
 
