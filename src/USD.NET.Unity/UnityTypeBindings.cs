@@ -59,6 +59,10 @@ namespace USD.NET.Unity {
           (object obj) => UnityTypeConverter.Vector4ToVec4f((Vector4)obj),
           (pxr.VtValue value) => UnityTypeConverter.Vec4fToVector4(value),
           SdfValueTypeNames.Float4));
+      binder.BindType(typeof(Vector2), new UsdTypeBinding(
+          (object obj) => UnityTypeConverter.Vector2ToVec2f((Vector2)obj),
+          (pxr.VtValue value) => UnityTypeConverter.Vec2fToVector2(value),
+          SdfValueTypeNames.TexCoord2f));
 
       //
       // Scaler Rect <-> GfVec4f
@@ -79,6 +83,9 @@ namespace USD.NET.Unity {
 
       binder.BindArrayType<UnityTypeConverter>(typeof(Vector4[]), typeof(pxr.VtVec4fArray), SdfValueTypeNames.Float4Array);
       binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector4>), typeof(pxr.VtVec4fArray), SdfValueTypeNames.Float4Array, "List");
+      
+      binder.BindArrayType<UnityTypeConverter>(typeof(Vector2[]), typeof(pxr.VtVec2fArray), SdfValueTypeNames.TexCoord2fArray);
+      binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector2>), typeof(pxr.VtVec2fArray), SdfValueTypeNames.TexCoord2fArray, "List");
 
       //
       // Color / Color32
