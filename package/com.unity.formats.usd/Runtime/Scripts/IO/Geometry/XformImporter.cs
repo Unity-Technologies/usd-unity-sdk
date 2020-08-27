@@ -26,6 +26,19 @@ namespace Unity.Formats.USD {
 
     #region "Import API"
 
+    public static void ProcessXform(pxr.SdfPath path,
+                                    XformableSample usdXf,
+                                    SceneImportOptions options,
+                                    Scene scene)
+    {
+      // Vector3 localPosition = new Vector3();
+      // Quaternion localRotation = new Quaternion();
+      // Vector3 localScale = new Vector3();
+      // UnityTypeConverter.ExtractTrs(usdXf.transform, ref localPosition, ref localRotation, ref localScale);
+      // localScale *= 2;
+      // usdXf.transform = Matrix4x4.TRS(localPosition, localRotation, localScale);
+  }
+    
     /// <summary>
     /// Copies the transform value from USD to Unity, optionally changing handedness in the
     /// process.

@@ -16,6 +16,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using pxr;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -393,7 +394,10 @@ namespace Unity.Formats.USD {
         } else {
           stage = pxr.UsdStage.Open(usdFullPath, pxr.UsdStage.InitialLoadSet.LoadAll);
         }
-
+        
+        var editTarget = new UsdEditTarget(stage.GetSessionLayer());
+        stage.SetEditTarget(editTarget);
+        
         m_lastScene = Scene.Open(stage);
         m_lastPrimMap = null;
         m_lastAccessMask = null;

@@ -114,6 +114,8 @@ namespace Unity.Formats.USD {
 
           if (importOptions.importTransforms) {
             Profiler.BeginSample("Build Mesh Xform");
+            
+            XformImporter.ProcessXform(pathAndSample.path, pathAndSample.sample, importOptions, scene);
             XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
             Profiler.EndSample();
           }
@@ -242,6 +244,81 @@ namespace Unity.Formats.USD {
       BuildMesh_(path, usdMesh, smr.sharedMesh, geomSubsets, go, smr, options);
     }
 
+    public static void ProcessMesh(string path,
+      MeshSample usdMesh,
+      GeometrySubsets geomSubsets,
+      GameObject go,
+      SceneImportOptions options,
+      bool isDynamic)
+    {
+      Vector3[] newVertices = null;
+      int[] newIndices = null;
+      
+      if (ComputeIfUnrollNeeded(usdMesh, options))
+      {
+        newVertices = UnrollVertices(usdMesh.points, usdMesh.faceVertexIndices);
+        newIndices = Enumerable.Range(0, usdMesh.faceVertexIndices.Length).ToArray();
+      }
+
+      usdMesh.points = newVertices;
+      usdMesh.indices = newIndices;
+    }
+    
+    private static bool ComputeIfUnrollNeeded(MeshSample usdMesh, SceneImportOptions options)
+    {
+      // If an attribute is face varying, its number of element will be usdMesh.indices.Length.
+      int pointCount = usdMesh.points.Length;
+      int faceCount = usdMesh.faceVertexCounts.Length;
+
+      // Potential face varying attributes are: normals, tangents, color and uv (st, uv, uv2. uv3. uv4) + all the
+      // uv primvars related to materials.
+      bool isFaceVarying = (IsFaceVaryingAttribute(options.meshOptions.normals, usdMesh.normals, pointCount, faceCount) ||
+                            IsFaceVaryingAttribute(options.meshOptions.tangents, usdMesh.tangents, pointCount, faceCount) ||
+                            IsFaceVaryingAttribute(options.meshOptions.color, usdMesh.colors, pointCount, faceCount) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.st) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.uv) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord1, usdMesh.uv2) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord2, usdMesh.uv3) ||
+                            IsFaceVaryingAttribute(options.meshOptions.texcoord3, usdMesh.uv4) ||
+                            // TODO: We should actually check the uv primvars related to bind material here, cf. LoadPrimvars(...)
+                            options.ShouldBindMaterials);
+
+      return isFaceVarying;
+    }
+    
+    private static bool IsFaceVaryingAttribute<T>(ImportMode mode, T[] attribute, int pointCount, int faceCount)
+    {
+      // TODO: Attribute interpolation should be retrieve via the USD API, not assumed from the data length.
+      return (
+        ShouldImport(mode) &&
+        attribute != null &&
+        (attribute.Length > pointCount || attribute.Length == faceCount));
+    }
+    
+    private static bool IsFaceVaryingAttribute(ImportMode mode, PrimvarBase attribute)
+    {
+      return (
+        ShouldImport(mode) &&
+        ((Primvar<object>) attribute)?.GetValue() != null &&
+        (
+          attribute.interpolation == PrimvarInterpolation.FaceVarying || 
+          attribute.interpolation == PrimvarInterpolation.Uniform));
+    }
+    
+    private static Vector3[] UnrollVertices(Vector3[] vertices, int[] indices)
+    {
+      int indicesCount = indices.Length;
+      Vector3[] newPoints = new Vector3[indicesCount];
+
+      for (int i = 0; i < indicesCount; i++)
+      {
+        int vertexIndex = indices[i];
+        newPoints[i] = vertices[vertexIndex];
+      }
+
+      return newPoints;
+    }
+    
     /// <summary>
     /// Copy mesh data from USD to Unity with the given import options.
     /// </summary>
@@ -262,7 +339,9 @@ namespace Unity.Formats.USD {
       if (isDynamic) {
         mf.sharedMesh.MarkDynamic();
       }
-
+      
+      ProcessMesh(path, usdMesh, geomSubsets, go, options, isDynamic);
+      
       BuildMesh_(path, usdMesh, mf.sharedMesh, geomSubsets, go, mr, options);
     }
 
