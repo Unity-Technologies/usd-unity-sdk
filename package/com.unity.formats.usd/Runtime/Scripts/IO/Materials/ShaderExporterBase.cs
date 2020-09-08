@@ -21,6 +21,17 @@ namespace Unity.Formats.USD {
 
   public class ShaderExporterBase {
 
+    public enum ConversionType {
+      None,
+      SwapRASmoothnessToBGRoughness,
+      InvertAlpha,
+      UnpackNormal,
+      MaskMapToORM
+    }
+
+    static Material _metalGlossChannelSwapMaterial = null;
+    static Material _normalChannelMaterial = null;
+
     /// <summary>
     /// Exports the given texture to the destination texture path and wires up the preview surface.
     /// </summary>
@@ -34,7 +45,8 @@ namespace Unity.Formats.USD {
                                  Vector4 scale,
                                  string destTexturePath,
                                  string textureName,
-                                 string textureOutput) {
+                                 string textureOutput,
+                                 ConversionType conversionType = ConversionType.None) {
       // We have to handle multiple cases here:
       // - file exists on disk
       //   - file is a supported format => can be directly copied
@@ -57,24 +69,65 @@ namespace Unity.Formats.USD {
 
       var srcTexture2d = material.GetTexture(textureName);
 
+      bool needsConversion = false;
+      switch(conversionType) {
+        case ConversionType.None:
+          break;
+        case ConversionType.UnpackNormal:
 #if UNITY_EDITOR
-      var srcPath = UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d);
+          if(UnityEditor.AssetDatabase.Contains(srcTexture2d)) {
+            // normal needs to be converted if the one on disk isn't really a normal map
+            // (e.g. created from greyscale)
+            UnityEditor.TextureImporter importer = (UnityEditor.TextureImporter) UnityEditor.AssetImporter.GetAtPath(UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d));
+            if(importer.textureType != UnityEditor.TextureImporterType.NormalMap) {
+              Debug.LogWarning("Texture " + textureName + " is set as NormalMap but isn't marked as such", srcTexture2d);
+            }
+            UnityEditor.TextureImporterSettings dst = new UnityEditor.TextureImporterSettings();
+            importer.ReadTextureSettings(dst);
+            // if this NormalMap is created from greyscale we will export the NormalMap from memory.
+            if(dst.convertToNormalMap) {
+              needsConversion = true;
+              break;
+            }
+          }
+#endif
+          break;
+        default:
+          needsConversion = true;
+          break;
+      }
 
-      if (!string.IsNullOrEmpty(srcPath)) {
-        srcPath = srcPath.Substring("Assets/".Length);
-        srcPath = Application.dataPath + "/" + srcPath;
-        fileName = System.IO.Path.GetFileName(srcPath);
-        filePath = System.IO.Path.Combine(destTexturePath, fileName);
+#if UNITY_EDITOR
+      // only export from disk if there's no need to do any type of data conversion here
+      if(!needsConversion) {
+        var srcPath = UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d);
 
-        if (System.IO.File.Exists(srcPath)) {
-          // USDZ officially only supports png / jpg / jpeg
-          // https://graphics.pixar.com/usd/docs/Usdz-File-Format-Specification.html
+        if (!string.IsNullOrEmpty(srcPath)) {
+#if UNITY_2019_2_OR_GREATER
+          // Since textures might be inside of packages for various reasons we should support that.
+          // Usually this would just be "Path.GetFullPath(srcPath)", but USD export messes with the CWD (Working Directory)
+          // and so we have to do a bit more path wrangling here.
+          if(srcPath.StartsWith("Packages")) {
+            var pi = UnityEditor.PackageManager.PackageInfo.FindForAssetPath(srcPath);
+            srcPath = pi.resolvedPath + srcPath.Substring(("Packages/" + pi.name).Length);
+          }
+#endif
+          if(srcPath.StartsWith("Assets")) {
+            srcPath = Application.dataPath + "/" + srcPath.Substring("Assets/".Length);
+          }
+          fileName = System.IO.Path.GetFileName(srcPath);
+          filePath = System.IO.Path.Combine(destTexturePath, fileName);
 
-          var ext = System.IO.Path.GetExtension(srcPath).ToLowerInvariant();
-          if (ext == ".png" || ext == ".jpg" || ext == ".jpeg") {
-            System.IO.File.Copy(srcPath, filePath, overwrite: true);
-            if (System.IO.File.Exists(filePath)) {
-              textureIsExported = true;
+          if (System.IO.File.Exists(srcPath)) {
+            // USDZ officially only supports png / jpg / jpeg
+            // https://graphics.pixar.com/usd/docs/Usdz-File-Format-Specification.html
+
+            var ext = System.IO.Path.GetExtension(srcPath).ToLowerInvariant();
+            if (ext == ".png" || ext == ".jpg" || ext == ".jpeg") {
+              System.IO.File.Copy(srcPath, filePath, overwrite: true);
+              if (System.IO.File.Exists(filePath)) {
+                textureIsExported = true;
+              }
             }
           }
         }
@@ -88,7 +141,10 @@ namespace Unity.Formats.USD {
         // in each of them that might look different between exports.
         // TODO Future work could, if necessary, generate a texture content hash to avoid exporting identical textures multiple times
         // (Unity's content hash isn't reliable for some types of textures unfortunately, e.g. RTs)
-        fileName = srcTexture2d.name + "_" + Random.Range(10000000, 99999999).ToString();
+        if(srcTexture2d is Texture2D)
+          fileName = srcTexture2d.name + "_" + srcTexture2d.imageContentsHash.ToString();
+        else
+          fileName = srcTexture2d.name + "_" + Random.Range(10000000, 99999999).ToString();
         filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
 
         // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (for example 16 bit AG instead of 8 bit RGBA, depending on platform)
@@ -97,13 +153,70 @@ namespace Unity.Formats.USD {
 
         // Blit the texture and get it back to CPU
         // Note: Can't use RenderTexture.GetTemporary because that doesn't properly clear alpha channel
-        var rt = new RenderTexture(srcTexture2d.width, srcTexture2d.height, 0, RenderTextureFormat.ARGB32);
-        var resultTex2d = new Texture2D(srcTexture2d.width, srcTexture2d.height, TextureFormat.ARGB32, true);
+        bool preserveLinear = false;
+        switch(conversionType) {
+          case ConversionType.UnpackNormal:
+            preserveLinear = true;
+            break;
+        }
+        var rt =      new RenderTexture(srcTexture2d.width, srcTexture2d.height, 0, RenderTextureFormat.ARGB32, preserveLinear ? RenderTextureReadWrite.Linear : RenderTextureReadWrite.Default);
+        var resultTex2d = new Texture2D(srcTexture2d.width, srcTexture2d.height,    TextureFormat.ARGB32, true, preserveLinear ? true : false);
         var activeRT = RenderTexture.active;
         try {
           RenderTexture.active = rt;
           GL.Clear(true, true, Color.clear);
-          Graphics.Blit(srcTexture2d, rt);
+
+          // conversion material
+          if(_metalGlossChannelSwapMaterial == null) {
+            _metalGlossChannelSwapMaterial = new Material(Shader.Find("Hidden/USD/ChannelCombiner"));
+          }
+          if(_normalChannelMaterial == null) {
+            _normalChannelMaterial = new Material(Shader.Find("Hidden/USD/NormalChannel"));
+          }
+
+          _metalGlossChannelSwapMaterial.SetTexture("_R", srcTexture2d);
+          _metalGlossChannelSwapMaterial.SetTexture("_G", srcTexture2d);
+          _metalGlossChannelSwapMaterial.SetTexture("_B", srcTexture2d);
+          _metalGlossChannelSwapMaterial.SetTexture("_A", srcTexture2d);
+
+          switch(conversionType) {
+            case ConversionType.None:
+              Graphics.Blit(srcTexture2d, rt);
+              break;
+            case ConversionType.SwapRASmoothnessToBGRoughness:
+              _metalGlossChannelSwapMaterial.SetVector("_Invert", new Vector4(0,1,0,1)); // invert resulting g channel, make sure alpha is 1
+              _metalGlossChannelSwapMaterial.SetVector("_RScale", new Vector4(0,0,0,0));
+              _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,0,0,1)); // use a channel from _G texture for resulting g
+              _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(1,0,0,0)); // use r channel from _B texture for resulting b
+              _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,0));
+              
+              Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
+              break;
+            case ConversionType.InvertAlpha:
+              _metalGlossChannelSwapMaterial.SetVector("_Invert", new Vector4(0,0,0,1)); // invert alpha result
+              _metalGlossChannelSwapMaterial.SetVector("_RScale", new Vector4(1,0,0,0)); // use all color channels as-is
+              _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,1,0,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(0,0,1,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,1));
+              
+              Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
+              break;
+            case ConversionType.MaskMapToORM:
+              // Input is RGBA (Metallic, Occlusion, Detail, Smoothness)
+              // Output is RGB1 (Occlusion, Roughness = 1 - Smoothness, Metallic, 1)
+              _metalGlossChannelSwapMaterial.SetVector("_Invert", new Vector4(0,1,0,1)); // smoothness to roughness, solid alpha
+              _metalGlossChannelSwapMaterial.SetVector("_RScale", new Vector4(0,1,0,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_GScale", new Vector4(0,0,0,1)); 
+              _metalGlossChannelSwapMaterial.SetVector("_BScale", new Vector4(1,0,0,0)); 
+              _metalGlossChannelSwapMaterial.SetVector("_AScale", new Vector4(0,0,0,0));
+              
+              Graphics.Blit(srcTexture2d, rt, _metalGlossChannelSwapMaterial);
+              break;
+            case ConversionType.UnpackNormal:
+              Graphics.Blit(srcTexture2d, rt, _normalChannelMaterial);
+              break;
+          }
+
           resultTex2d.ReadPixels(new Rect(0, 0, srcTexture2d.width, srcTexture2d.height), 0, 0);
           resultTex2d.Apply();
 
@@ -147,6 +260,7 @@ namespace Unity.Formats.USD {
         if (scale != Vector4.one) {
           usdTexReader.scale = new Connectable<Vector4>(scale);
         }
+        // usdTexReader.isSRGB = new Connectable<TextureReaderSample.SRGBMode>(TextureReaderSample.SRGBMode.Auto);
         scene.Write(usdShaderPath + "/" + textureName, usdTexReader);
         return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
       } else {

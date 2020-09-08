@@ -14,17 +14,6 @@
 
 Shader "Hidden/USD/ChannelCombiner"
 {
-  //
-  // Creates a new texture with inputs packed into RGBA.
-  //
-  Properties
-  {
-    _R("Red", 2D) = "black" {}
-    _G("Green", 2D) = "black" {}
-    _B("Blue", 2D) = "black" {}
-    _A("Alpha", 2D) = "black" {}
-  }
-
   SubShader
   {
     // No culling or depth
@@ -63,24 +52,28 @@ Shader "Hidden/USD/ChannelCombiner"
       sampler2D _B;
       sampler2D _A;
 
-      bool _InvertAlpha;
+      float4 _RScale;
+      float4 _GScale;
+      float4 _BScale;
+      float4 _AScale;
+      float4 _Invert;
 
       float4 frag(v2f i) : SV_Target
       {
-        // All input textures are assumed to be single channel.
-        //
-        // This is a limitation of the current implementation and may need to be extended to
-        // support USD driving the exact channel, in the event that the textures are already
-        // packed in the USD representation.
-        
-        float r = tex2D(_R, i.uv).r;
-        float g = tex2D(_G, i.uv).r;
-        float b = tex2D(_B, i.uv).r;
-        float a = tex2D(_A, i.uv).r;
+        // _[X]Scale values drive how channels are combined;
+        // usually you'll want to just set the channel you're interested from as 1 and the rest to 0.
+        // so if you want to have _R.g as output, use _Rscale = float4(0,1,0,0) to only have that
+        // if you don't have an alpha texture, make sure to set _Invert.a = 1 so we end up with a white alpha.
 
-        a = lerp(a, 1 - a, _InvertAlpha);
+        float r = dot(tex2D(_R, i.uv), _RScale);
+        float g = dot(tex2D(_G, i.uv), _GScale);
+        float b = dot(tex2D(_B, i.uv), _BScale);
+        float a = dot(tex2D(_A, i.uv), _AScale);
 
-        return float4(r, g, b, a);
+        float4 c = float4(r,g,b,a);
+        c = lerp(c, 1 - c, _Invert);
+
+        return c;
       }
     ENDCG
   }

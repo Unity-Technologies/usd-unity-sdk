@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,6 +28,10 @@ namespace Unity.Formats.USD {
                                  string destTexturePath) {
       Color c;
 
+      // useful for debugging which keywords are set in which case to determine actual feature usage
+      // (just because a material has an _AlphaCutoff does not mean the option is actually active)
+      // Debug.Log("Material: " + material.name + ", Keywords: " + string.Join("\n", material.shaderKeywords), material);
+      surface.diffuseColor.defaultValue = new Vector3(1,1,1);
       if (material.HasProperty("_BaseColorMap") && material.GetTexture("_BaseColorMap") != null) {
         var scale = Vector4.one;
         if (material.HasProperty("_BaseColor")) {
@@ -43,19 +47,25 @@ namespace Unity.Formats.USD {
         surface.diffuseColor.defaultValue = new Vector3(c.r, c.g, c.b);
       }
 
-      if (material.HasProperty("_BaseColorMap") && material.GetTexture("_BaseColorMap") != null) {
-        var scale = Vector4.one;
-        if (material.HasProperty("_BaseColor")) {
-          scale.w = material.GetColor("_BaseColor").linear.a;
+      if(material.IsKeywordEnabled("_SURFACE_TYPE_TRANSPARENT")) {
+        if (material.HasProperty("_BaseColorMap") && material.GetTexture("_BaseColorMap") != null) {
+          var scale = Vector4.one;
+          if (material.HasProperty("_BaseColor")) {
+            scale.w = material.GetColor("_BaseColor").linear.a;
+          }
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_BaseColorMap", "a");
+          surface.opacity.SetConnectedPath(newTex);
+        } else if (material.HasProperty("_BaseColor")) {
+          c = material.GetColor("_BaseColor").linear;
+          surface.opacity.defaultValue = c.a;
+        } else {
+          c = Color.white;
+          surface.opacity.defaultValue = 1.0f;
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_BaseColorMap", "a");
-        surface.opacity.SetConnectedPath(newTex);
-      } else if (material.HasProperty("_BaseColor")) {
-        c = material.GetColor("_BaseColor").linear;
-        surface.opacity.defaultValue = c.a;
-      } else {
-        c = Color.white;
-        surface.opacity.defaultValue = 1.0f;
+
+        if(material.IsKeywordEnabled("_ALPHATEST_ON")) {
+          surface.opacityThreshold.defaultValue = material.GetFloat("_AlphaCutoff");
+        }
       }
 
       var materialType = (int)material.GetFloat("_MaterialID");
@@ -96,12 +106,13 @@ namespace Unity.Formats.USD {
         surface.specularColor.defaultValue = new Vector3(c.r, c.g, c.b);
       }
 
+      surface.metallic.defaultValue = 1.0f;
       if (useMetallic && material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
         var scale = Vector4.one;
         if (useSpec && material.HasProperty("_Metallic")) {
           scale.x = material.GetFloat("_Metallic");
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "r");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "b", ConversionType.MaskMapToORM);
         surface.metallic.SetConnectedPath(newTex);
       } else if (useMetallic && material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
@@ -109,12 +120,15 @@ namespace Unity.Formats.USD {
         surface.metallic.defaultValue = 0.5f;
       }
 
+      // TODO seems _Smoothness isn't actually used in HDRP;
+      // there's _SmoothnessMin and _SmoothnessMax for remapping which would need to be implemented with scale and bias.
+      surface.roughness.defaultValue = 0.0f;
       if (material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
         var scale = Vector4.one;
         if (material.HasProperty("_Smoothness")) {
           scale.w = 1 - material.GetFloat("_Smoothness");
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "a");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MaskMap", "g", ConversionType.MaskMapToORM);
         surface.roughness.SetConnectedPath(newTex);
       } else if (material.HasProperty("_Smoothness")) {
         surface.roughness.defaultValue = 1 - material.GetFloat("_Smoothness");
@@ -122,13 +136,18 @@ namespace Unity.Formats.USD {
         surface.roughness.defaultValue = 0.5f;
       }
 
-      if (material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "b");
-        surface.displacement.SetConnectedPath(newTex);
+      if(material.IsKeywordEnabled("_VERTEX_DISPLACEMENT") || material.IsKeywordEnabled("_TESSELLATION_DISPLACEMENT")) {
+        if (material.HasProperty("_HeightMap") && material.GetTexture("_HeightMap") != null) {
+          // TODO texture scale and bias needs to be constructed from the heightmap parametrization;
+          // there's a lot of options
+          // (_HeightAmplitude, _HeightCenter, _HeightMapParametrization, _HeightMax, _HeightMin, _HeightOffset, _HeightPoMAmplitude, _HeightTessAmplitude, _HeightTessCenter)
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_HeightMap", "r");
+          surface.displacement.SetConnectedPath(newTex);
+        }
       }
 
       if (material.HasProperty("_MaskMap") && material.GetTexture("_MaskMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "g");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_MaskMap", "r", ConversionType.MaskMapToORM);
         surface.occlusion.SetConnectedPath(newTex);
       }
 
@@ -142,20 +161,20 @@ namespace Unity.Formats.USD {
       }
 
       if (material.HasProperty("_NormalMap") && material.GetTexture("_NormalMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_NormalMap", "rgb");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, Vector4.one, destTexturePath, "_NormalMap", "rgb", ConversionType.UnpackNormal);
         surface.normal.SetConnectedPath(newTex);
       }
 
       if (material.IsKeywordEnabled("_EMISSIVE_COLOR_MAP")) {
-        if (material.HasProperty("_EmissionMap") && material.GetTexture("_EmissionMap") != null) {
+        if (material.HasProperty("_EmissiveColorMap") && material.GetTexture("_EmissiveColorMap") != null) {
           var scale = Vector4.one;
-          if (material.HasProperty("_EmissionColor")) {
-            scale = material.GetColor("_EmissionColor").linear;
+          if (material.HasProperty("_EmissiveColor")) {
+            scale = material.GetColor("_EmissiveColor").linear;
           }
-          var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_EmissionMap", "rgb");
+          var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_EmissiveColorMap", "rgb");
           surface.emissiveColor.SetConnectedPath(newTex);
-        } else if (material.HasProperty("_EmissionColor")) {
-          c = material.GetColor("_EmissionColor").linear;
+        } else if (material.HasProperty("_EmissiveColor")) {
+          c = material.GetColor("_EmissiveColor").linear;
           surface.emissiveColor.defaultValue = new Vector3(c.r, c.g, c.b);
         }
       }

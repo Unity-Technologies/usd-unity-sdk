@@ -118,11 +118,15 @@ namespace Unity.Formats.USD {
       }
 
       var newTex = new Texture2D(maxW, maxH, TextureFormat.ARGB32, true, true);
-      ChannelCombinerMat.SetFloat("_InvertAlpha", 1);
+      ChannelCombinerMat.SetVector("_Invert", new Vector4(0,0,0,1));
       ChannelCombinerMat.SetTexture("_R", red);
+      ChannelCombinerMat.SetVector("_RScale", new Vector4(1,0,0,0));
       ChannelCombinerMat.SetTexture("_G", green);
+      ChannelCombinerMat.SetVector("_GScale", new Vector4(1,0,0,0));
       ChannelCombinerMat.SetTexture("_B", blue);
+      ChannelCombinerMat.SetVector("_BScale", new Vector4(1,0,0,0));
       ChannelCombinerMat.SetTexture("_A", alpha);
+      ChannelCombinerMat.SetVector("_AScale", new Vector4(1,0,0,0));
       Graphics.Blit(red, tmp, ChannelCombinerMat);
 
       RenderTexture.active = tmp;

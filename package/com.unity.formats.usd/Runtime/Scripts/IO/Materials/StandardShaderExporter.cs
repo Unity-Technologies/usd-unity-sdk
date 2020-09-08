@@ -71,6 +71,10 @@ namespace Unity.Formats.USD {
         }
         var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
         surface.metallic.SetConnectedPath(newTex);
+        scale = Vector4.one;
+        scale.x = 1 - material.GetFloat("_Glossiness");
+        var roughnessTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "a");
+        surface.roughness.SetConnectedPath(roughnessTex);
       } else if (material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
       } else {
@@ -104,8 +108,12 @@ namespace Unity.Formats.USD {
         if (material.HasProperty("_Metallic")) {
           scale.x = material.GetFloat("_Metallic");
         }
-        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "r");
+        var newTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "b", ConversionType.SwapRASmoothnessToBGRoughness);
         surface.metallic.SetConnectedPath(newTex);
+        scale = Vector4.one;
+        scale.x = 1 - material.GetFloat("_Glossiness");
+        var roughnessTex = SetupTexture(scene, usdShaderPath, material, surface, scale, destTexturePath, "_MetallicGlossMap", "g", ConversionType.SwapRASmoothnessToBGRoughness);
+        surface.roughness.SetConnectedPath(roughnessTex);
       } else if (material.HasProperty("_Metallic")) {
         surface.metallic.defaultValue = material.GetFloat("_Metallic");
       } else {
@@ -220,16 +228,20 @@ namespace Unity.Formats.USD {
         if (!mat.HasProperty(name)) {
           continue;
         }
+
+        // Note that for whatever reason, shader properties may be listed multiple times.
+        // So dictionary assignment is used here, instead of Add().
+
         switch (UnityEditor.ShaderUtil.GetPropertyType(mat.shader, i)) {
           case UnityEditor.ShaderUtil.ShaderPropertyType.Color:
-            surface.unity.colorArgs.Add(name, mat.GetColor(name).linear);
+            surface.unity.colorArgs[name] = mat.GetColor(name).linear;
             break;
           case UnityEditor.ShaderUtil.ShaderPropertyType.Float:
           case UnityEditor.ShaderUtil.ShaderPropertyType.Range:
-            surface.unity.floatArgs.Add(name, mat.GetFloat(name));
+            surface.unity.floatArgs[name] = mat.GetFloat(name);
             break;
           case UnityEditor.ShaderUtil.ShaderPropertyType.Vector:
-            surface.unity.vectorArgs.Add(name, mat.GetVector(name));
+            surface.unity.vectorArgs[name] = mat.GetVector(name);
             break;
         }
       }
@@ -285,7 +297,7 @@ namespace Unity.Formats.USD {
       surface.useSpecularWorkflow.defaultValue = 1;
 
       if (mat.HasProperty("_BumpMap") && mat.GetTexture("_BumpMap") != null) {
-        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath, "_BumpMap", "rgb");
+        var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath, "_BumpMap", "rgb", ConversionType.UnpackNormal);
         surface.normal.SetConnectedPath(newTex);
       }
 

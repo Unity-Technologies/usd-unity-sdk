@@ -43,6 +43,13 @@ namespace USD.NET.Unity {
       Mirror,  // Flip and repeat texture outside the unit square.
     }
 
+    public enum SRGBMode
+    {
+        Yes,
+        No,
+        Auto
+    }
+
     /// <summary>
     /// Converts Unity texture wrap mode to USD wrap mode.
     /// </summary>
@@ -112,6 +119,12 @@ namespace USD.NET.Unity {
     /// </summary>
     [InputParameter("_Bias")]
     public Connectable<Vector4> bias = new Connectable<Vector4>(Vector4.zero);
+
+    /// <summary>
+    /// sRGB Mode. Defaults to Auto
+    /// </summary>
+    [InputParameter("_IsSRGB")]
+    public Connectable<SRGBMode> isSRGB = new Connectable<SRGBMode>(SRGBMode.Auto);
 
     /// <remarks>
     /// Outputs one or more values. If the texture is 8 bit per component [0, 255] values will first
