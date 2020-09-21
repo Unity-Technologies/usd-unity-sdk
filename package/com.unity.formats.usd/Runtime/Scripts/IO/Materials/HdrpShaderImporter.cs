@@ -93,7 +93,10 @@ namespace Unity.Formats.USD {
       }
 
       if (EmissionMap) {
-        mat.SetTexture("_EmissionMap", EmissionMap);
+        mat.SetTexture("_EmissiveColorMap", EmissionMap);
+        mat.SetColor("_EmissiveColor", Color.white * 1000);
+        mat.SetColor("_EmissiveColorLDR", Color.white);
+        mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.BakedEmissive;
         mat.EnableKeyword("_EMISSIVE_COLOR_MAP");
       } else {
         mat.SetColor("_EmissionColor", Emission.GetValueOrDefault());
