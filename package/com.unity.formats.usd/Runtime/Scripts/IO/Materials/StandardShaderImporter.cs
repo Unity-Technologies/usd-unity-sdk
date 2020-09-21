@@ -56,6 +56,7 @@ namespace Unity.Formats.USD {
       if (EmissionMap) {
         mat.SetTexture("_EmissionMap", EmissionMap);
         mat.SetColor("_EmissionColor", Color.white);
+        mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.BakedEmissive;
         mat.EnableKeyword("_EMISSION");
       } else {
         var rgb = Emission.GetValueOrDefault(Color.black);
