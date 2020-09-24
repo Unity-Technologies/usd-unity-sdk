@@ -1,0 +1,14 @@
+@ECHO OFF
+SET ORIGPATH=%PATH%
+SET ORIGPYTHONPATH=%PYTHONPATH%
+SET CWD=%CD%
+ECHO Generating type info from Python...
+@ECHO Switching PATH to python build USD_LOCATION_PYTHON
+SET USD_LOCATION=D:\libs\pixar\usd-v20.08_no_python
+SET USD_LOCATION_PYTHON=D:\libs\pixar\usd-v20.08
+SET PATH=%USD_LOCATION_PYTHON%/lib;%USD_LOCATION_PYTHON%/bin;%PATH%
+SET PYTHONPATH=%PYTHONPATH%;%USD_LOCATION_PYTHON%/lib/python
+CHDIR %~p0\..
+@python3 src\Swig\scripts\gen.py
+CHDIR %CWD%
+SET PATH=%ORIGPATH%

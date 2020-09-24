@@ -2,164 +2,54 @@ cmake_minimum_required(VERSION 3.12)
 
 project(usd-unity-sdk LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 14)
-#include(pxrConfig)
-# 
-# set(USD_VERSION "v19.05" CACHE STRING "USD version (git tag)")
-# 
-# if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-#     set(boost_url "https://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.gz")
-#     set(boost_hash SHA1=61ed0e57d3c7c8985805bb0682de3f4c65f4b6e5)
-#     set(tbb_tag 4.4.6)
-# #elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-#     #set(boost_url "https://downloads.sourceforge.net/project/boost/boost/1.61.0/boost_1_61_0.tar.gz")
-#     #set(boost_hash SHA1=2d2b80771f584f327827193fcf3abf836edcdfaa)
-#     #set(tbb_tag 2017_U2)
-# #elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-# #    set(boost_url "https://downloads.sourceforge.net/project/boost/boost/1.61.0/boost_1_61_0.tar.gz")
-# #    set(boost_hash SHA1=2d2b80771f584f327827193fcf3abf836edcdfaa)
-# #    set(tbb_tag 2017_U2)
-# else ()
-#     message(FATAL_ERROR "Unsupported platform")
-# endif ()
-# 
-# set(dep_path ${CMAKE_BINARY_DIR}/_deps)
-# set(base_dir ${CMAKE_SOURCE_DIR})
-# 
-# include(ExternalProject)
-# 
-# ExternalProject_Add(
-#     BUILD_Boost
-#     URL ${boost_url}
-#     URL_HASH ${boost_hash}
-#     BUILD_IN_SOURCE 1
-#     CONFIGURE_COMMAND ./bootstrap.sh --prefix=${dep_path}
-#     BUILD_COMMAND ./b2 install --prefix=${dep_path}
-#     link=static runtime-link=static threading=multi
-#     --with-atomic
-#     --with-program_options
-#     --with-regex
-#     --with-filesystem
-#     --with-system
-#     --with-date_time
-#     variant=release
-#     INSTALL_COMMAND ""
-#     )
-# 
-# file(MAKE_DIRECTORY ${dep_path}/lib)
-# ExternalProject_Add(
-#     BUILD_tbb
-#     GIT_REPOSITORY https://github.com/01org/tbb.git
-#     GIT_TAG ${tbb_tag}
-#     GIT_SHALLOW TRUE
-#     CONFIGURE_COMMAND ""
-#     BUILD_IN_SOURCE 1
-#     BUILD_COMMAND make tbb extra_inc=big_iron.inc
-#     INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/include ${dep_path}/include
-#     )
-# ExternalProject_Get_Property(BUILD_tbb SOURCE_DIR)
-# add_custom_command(
-#     TARGET BUILD_tbb POST_BUILD
-#     COMMAND ${CMAKE_COMMAND} -E copy
-#     ${SOURCE_DIR}/build/*_release/libtbb.a
-#     ${dep_path}/lib
-#     BYPRODUCTS
-#     ${dep_path}/lib/libtbb.a
-#     )
-# 
-# ExternalProject_Add(
-#     BUILD_OpenEXR
-#     GIT_REPOSITORY https://github.com/openexr/openexr.git
-#     GIT_TAG v2.3.0
-#     GIT_SHALLOW TRUE
-#     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${dep_path}
-#     -DOPENEXR_BUILD_PYTHON_LIBS=OFF
-#     -DOPENEXR_ENABLE_TESTS=OFF
-#     -DOPENEXR_BUILD_UTILS=OFF
-#     -DOPENEXR_BUILD_VIEWERS=OFF
-#     -DCMAKE_BUILD_TYPE=Release
-#     -DCMAKE_PREFIX_PATH=${dep_path}
-#     -DOPENEXR_BUILD_SHARED=OFF
-#     -DOPENEXR_BUILD_STATIC=ON
-#     # The OpenEXR CMake appends _s to static libraries
-#     # This breaks finding/linking later, so patch to remove
-#     PATCH_COMMAND patch -p1 < ${base_dir}/ilm_static_lib.patch
-#     )
-# 
-# ExternalProject_Add(
-#     BUILD_Alembic
-#     GIT_REPOSITORY https://github.com/alembic/alembic.git
-#     GIT_TAG 1.7.7
-#     GIT_SHALLOW TRUE
-#     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${dep_path}
-#     -DUSE_BINARIES=OFF
-#     -DUSE_TESTS=OFF
-#     -DUSE_HDF5=OFF
-#     -DCMAKE_BUILD_TYPE=Release
-#     -DCMAKE_PREFIX_PATH=${dep_path}
-#     -DUSE_STATIC_BOOST=ON
-#     -DALEMBIC_ILMBASE_LINK_STATIC=ON
-#     -DALEMBIC_SHARED_LIBS=OFF
-#     DEPENDS BUILD_OpenEXR BUILD_Boost
-#     )
-# 
-# ExternalProject_Add(
-#     BUILD_USD
-#     GIT_REPOSITORY "https://github.com/PixarAnimationStudios/USD.git"
-#     GIT_TAG ${USD_VERSION}
-#     GIT_SHALLOW TRUE
-#     GIT_PROGRESS TRUE
-#     CMAKE_ARGS -DPXR_ENABLE_PYTHON_SUPPORT=FALSE
-#     -DPXR_BUILD_DOCUMENTATION=OFF
-#     -DPXR_BUILD_USD_IMAGING=OFF
-#     -DPXR_BUILD_IMAGING=OFF
-#     -DPXR_BUILD_MONOLITHIC=ON
-#     -DPXR_BUILD_USDVIEW=OFF
-#     -DPXR_BUILD_TESTS=OFF
-#     -DCMAKE_INSTALL_PREFIX=${dep_path}
-#     -DPXR_BUILD_ALEMBIC_PLUGIN=ON
-#     -DPXR_ENABLE_HDF5_SUPPORT=OFF
-#     -DBUILD_SHARED_LIBS=OFF
-#     -DCMAKE_BUILD_TYPE=Release
-#     -DCMAKE_PREFIX_PATH=${dep_path}
-#     DEPENDS
-#     BUILD_Boost BUILD_OpenEXR BUILD_Alembic BUILD_tbb
-#     )
-# ExternalProject_Get_Property(BUILD_USD BINARY_DIR)
-# 
-find_package(USD REQUIRED)
-set(BUILD_USD_NET FALSE CACHE BOOL "Build mono and USD.NET.dll")
 
-if(BUILD_USD_NET)
-    ExternalProject_Add(
-        BUILD_Mono
-        GIT_REPOSITORY https://github.com/mono/mono.git
-        GIT_TAG "mono-5.20.1.19"
-        GIT_SHALLOW TRUE
-        GIT_PROGRESS TRUE
-        BUILD_IN_SOURCE TRUE
-        CONFIGURE_COMMAND ./autogen.sh --prefix=${dep_path}
-        )
-endif()
+set(dep_path ${CMAKE_BINARY_DIR}/_deps)
+
+
+find_package(USD REQUIRED)
+set(BUILD_USD_NET TRUE CACHE BOOL "Build mono and USD.NET.dll")
+
+if (BUILD_USD_NET)
+    find_package(Unity REQUIRED)
+#    find_package(MONO 5.20.1.19 REQUIRED)
+#    if (NOT DEFINED CSHARP_MONO_FOUND})
+#        include(ExternalProject)
+#        ExternalProject_Add(
+#            BUILD_Mono
+#            GIT_REPOSITORY https://github.com/mono/mono.git
+#            GIT_TAG "mono-5.20.1.19"
+#            GIT_SHALLOW TRUE
+#            GIT_PROGRESS TRUE
+#            CMAKE_GENERATOR "Visual Studio 15 2017"
+#            CONFIGURE_COMMAND ""
+#            BUILD_IN_SOURCE TRUE
+#            BUILD_COMMAND msbuild msvc\\mono.sln /p:Platform=x64 /p:Configuration=Release /p:MONO_TARGET_GC=sgen /p:MONO_BUILD_DIR_PREFIX=${dep_path} # ./autogen.sh --prefix=${dep_path}
+#            INSTALL_COMMAND ""
+#        )
+#    endif ()
+endif ()
 
 find_package(SWIG 3.0.12 REQUIRED)
 include(${SWIG_USE_FILE})
 
+# Generate type info from python
+add_custom_target(usd_type_info ALL
+    COMMAND
+        ${CMAKE_SOURCE_DIR}/../bin/gen_type_info.cmd
+    COMMENT "Generating type info from USD python"
+)
+        
 if (WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX /bigobj /EHsc")
 endif ()
 
 include_directories(
-    #${dep_path}/include
     ${USD_INCLUDE_DIR}
     ${CMAKE_SOURCE_DIR}/../src/UsdCs
     ${CMAKE_SOURCE_DIR}/../
     )
 
-link_directories(
-    #${dep_path}/lib
-    ${USD_LIBRARY_DIR}
-    #${BINARY_DIR}/pxr
-    )
+link_directories(${USD_LIBRARY_DIR})
 
 set(usd_swig_library UsdCs)
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -176,15 +66,16 @@ else ()
         PROPERTIES
         CPLUSPLUS ON
         SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503"
-        DEPENDS BUILD_USD
+        # DEPENDS BUILD_USD
         )
 endif ()
 
+set(swig_generated_filedir ${CMAKE_SOURCE_DIR}/generated)
 swig_add_library(
     ${usd_swig_library}
     TYPE MODULE
     LANGUAGE csharp
-    OUTPUT_DIR ${CMAKE_SOURCE_DIR}/generated
+    OUTPUT_DIR ${swig_generated_filedir}
     SOURCES
     ${CMAKE_SOURCE_DIR}/../src/Swig/usdCs.i
     ${CMAKE_SOURCE_DIR}/../src/UsdCs/diagnosticHandler.cpp
@@ -207,7 +98,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set_target_properties(
         ${usd_swig_library}
         PROPERTIES
-        CXX_STANDARD_REQUIRED 11
+        CXX_STANDARD_REQUIRED 14
         BUNDLE TRUE
         )
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -215,14 +106,14 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         ${usd_swig_library}
         PROPERTIES
         PREFIX lib
-        CXX_STANDARD_REQUIRED 11
+        CXX_STANDARD_REQUIRED 14
         )
-#elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-     #set_target_properties(
-        #${usd_swig_library}
-        #PROPERTIES
-        #CXX_STANDARD_REQUIRED 11
-#)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+     set_target_properties(
+        ${usd_swig_library}
+        PROPERTIES
+        CXX_STANDARD_REQUIRED 14
+        )
 endif ()
 
 
@@ -240,29 +131,32 @@ swig_link_libraries(
     tbb
     )
 
-#add_dependencies(
-#    ${usd_swig_library}
-#    BUILD_USD
-#    )
+add_dependencies(
+    ${usd_swig_library}
+    usd_type_info
+    )
 
 if(BUILD_USD_NET)
+    MESSAGE("BUILD USD NEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEET")
     set(usd_net_dll USD.NET.dll)
-    set(mono_lib_dir ${dep_path}/lib/mono/4.5)
+    set(mcs C:/Users/julien.dubuisson/scoop/apps/mono/6.10.0.104/bin/mcs)
+    set(mono_lib_dir C:/Users/julien.dubuisson/scoop/apps/mono/6.10.0.104/lib/mono/4.5)
     add_custom_command(
         OUTPUT ${usd_net_dll}
-        COMMAND ${dep_path}/bin/mcs /noconfig /langversion:4 /nostdlib+
+        COMMAND ${mcs} /noconfig /langversion:4 /nostdlib+
         /warn:4 /optimize+ /out:${usd_net_dll} /target:library /unsafe
         ${CMAKE_SOURCE_DIR}/../src/USD.NET/collections/*.cs
         ${CMAKE_SOURCE_DIR}/../src/USD.NET/pooling/*.cs
         ${CMAKE_SOURCE_DIR}/../src/USD.NET/serialization/*.cs
         ${CMAKE_SOURCE_DIR}/../src/USD.NET/Properties/*.cs
-        ${CMAKE_SOURCE_DIR}/../src/USD.NET/sdf/*.cs
+        ${CMAKE_SOURCE_DIR}/../src/USD.NET/AotAttributes.cs
+        ${CMAKE_SOURCE_DIR}/../src/USD.NET/DiagnosticHandler.cs
         ${CMAKE_SOURCE_DIR}/generated/*.cs
         /reference:${mono_lib_dir}/mscorlib.dll
         /reference:${mono_lib_dir}/System.Core.dll
         /reference:${mono_lib_dir}/System.dll
         DEPENDS
-        ${usd_swig_library} BUILD_Mono
+        ${usd_swig_library} # BUILD_Mono
         )
 
     add_custom_target(
@@ -277,6 +171,70 @@ if(BUILD_USD_NET)
         DESTINATION
         ${usd_plugins_directory}
         )
+        
+    # USD.NET.Unity
+    set(usd_net_unity_dll USD.NET.Unity.dll)
+        add_custom_command(
+                OUTPUT ${usd_net_unity_dll}
+                COMMAND mcs /noconfig /langversion:4 /nostdlib+
+                /warn:4 /optimize+ /out:${usd_net_unity_dll} /target:library /unsafe
+                ${CMAKE_SOURCE_DIR}/../src/USD.NET.Unity/*.cs
+                ${CMAKE_SOURCE_DIR}/../src/USD.NET.Unity/Geometry/*.cs
+                ${CMAKE_SOURCE_DIR}/../src/USD.NET.Unity/Properties/*.cs
+                ${CMAKE_SOURCE_DIR}/../src/USD.NET.Unity/Shading/*.cs
+                ${CMAKE_SOURCE_DIR}/../src/USD.NET.Unity/Shading/UnityNative/*.cs
+                ${CMAKE_SOURCE_DIR}/../src/USD.NET.Unity/Shading/UsdPreviewSurface/*.cs
+                /reference:${usd_net_dll}
+                /reference:${CSHARP_UNITYENGINE_LIBRARY}
+                /reference:${mono_lib_dir}/mscorlib.dll
+                /reference:${mono_lib_dir}/System.Core.dll
+                /reference:${mono_lib_dir}/System.dll
+                DEPENDS
+                ${usd_net} # BUILD_Mono
+                )
+        add_custom_target(
+            usd_net_unity
+            ALL DEPENDS
+            ${usd_net_unity_dll}
+            )
+        install(
+            FILES
+            ${CMAKE_BINARY_DIR}/${usd_net_unity_dll}
+            DESTINATION
+            ${usd_plugins_directory}
+        )
+
+    
+    # USD.NET tests
+    set(usd_net_tests_exe Tests.exe)
+    add_custom_command(
+            OUTPUT ${usd_net_tests_exe}
+            COMMAND mcs /noconfig /langversion:4 /nostdlib+
+            /warn:4 /optimize+ /out:${usd_net_tests_exe} /target:exe /unsafe
+            ${CMAKE_SOURCE_DIR}/../src/Tests/*.cs
+            ${CMAKE_SOURCE_DIR}/../src/Tests/Cases/*.cs
+            ${CMAKE_SOURCE_DIR}/../src/Tests/Util/*.cs
+            /reference:${usd_net_dll}
+            /reference:${usd_net_unity_dll}
+            #/reference:${usd_swig_library}
+            /reference:${CSHARP_UNITYENGINE_LIBRARY}
+            /reference:${mono_lib_dir}/mscorlib.dll
+            /reference:${mono_lib_dir}/System.Core.dll
+            /reference:${mono_lib_dir}/System.dll
+            DEPENDS
+            ${usd_net_unity} # BUILD_Mono
+            )
+    add_custom_target(
+        usd_net_tests
+        ALL DEPENDS
+        ${usd_net_tests_exe}
+        )
+    # TODO: run tests
+    #add_custom_command(TARGET usd_net_tests
+    #                   COMMENT "Run tests"
+    #                   POST_BUILD COMMAND ${CMAKE_BINARY_DIR}/../bin/run_tests.cmd
+    #                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    #)
 endif()
 
 set(CMAKE_INSTALL_RPATH "$ORIGIN")
@@ -288,3 +246,14 @@ install(
     ${swig_output_dir}
     )
 
+# Install the bindings generated by Swig to the USD.NET folder
+install(
+    SCRIPT
+        ${CMAKE_SOURCE_DIR}/install_usd_bindings.cmake
+)
+
+# Tag the generated folders so they are removed when doing `make clean`
+set_property(DIRECTORY PROPERTY ADDITIONAL_MAKE_CLEAN_FILES 
+    ${CMAKE_SOURCE_DIR}/../src/USD.NET/generated
+    ${CMAKE_SOURCE_DIR}/../cmake/generated
+)

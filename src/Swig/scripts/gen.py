@@ -18,7 +18,7 @@ import usdGeom, usdShade, usdSkel, usdLux, usdRi, usdVol, kind
 
 basePath = "src/Swig/pxr/base/"
 usdPath = "src/Swig/pxr/usd/"
-usdInstPath = "src/USD.NET/"
+usdInstPath = "cmake/generated/"
 
 copyright = """// Copyright 2017 Google Inc. All rights reserved.
 //
