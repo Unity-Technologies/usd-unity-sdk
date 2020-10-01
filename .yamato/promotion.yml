@@ -50,17 +50,6 @@ promotion_test_{{ platform.name }}_{{ editor.version }}:
 
 promotion_test_trigger:
   name: Promotion Tests Trigger
-  agent:
-    type: Unity::VM
-    image: package-ci/win10:stable
-    flavor: b1.large
-  artifacts:
-    logs:
-      paths:
-        - "upm-ci~/test-results/**/*"
-    packages:
-      paths:
-        - "upm-ci~/packages/**/*"
   dependencies:
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
