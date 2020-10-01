@@ -3,10 +3,9 @@
 endif()
 
 if(BUILD_USD_NET)
-    #add_subdirectory(USD.NET)
     add_subdirectory(USD.NET.Unity)
 endif()
 
-#if(BUILD_TESTS)
-#    add_subdirectory(Tests)
-#endif()
+if(BUILD_TESTS)
+    add_subdirectory(Tests)
+endif()

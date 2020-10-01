@@ -12,7 +12,6 @@ if (Unity_FOUND)
 endif()
 # include(CSharpHelpers)
 
-set(UNITY_VERSION 2019.4.9f1)
 
 # If UNITY is set to the root of the Unity install, we use it, otherwise we set
 # it to the default install location.

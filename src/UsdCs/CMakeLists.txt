@@ -1,5 +1,12 @@
 ﻿project(UsdCs LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 14)        
+if (WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX /bigobj /EHsc")
+endif ()
+set(CMAKE_INSTALL_RPATH "$ORIGIN")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
 find_package(SWIG 3.0.12 REQUIRED)
 include(${SWIG_USE_FILE})
 
@@ -7,6 +14,15 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../Swig/CMakeLists.txt)
 
 set(USD_SWIG_LIBRARY UsdCs)
 set(SWIG_GENERATED_FILEDIR ${CMAKE_SOURCE_DIR}/cmake/generated)
+set(SWIG_OUTPUT_DIR ${USD_PLUGINS_DIR}/x86_64) 
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/MacOS)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Linux)
+else ()
+    # This is consistent with other os, but VS build were done at the root
+    # set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Windows)
+endif ()
 
 include_directories(
     ${USD_INCLUDE_DIR}
@@ -16,8 +32,7 @@ include_directories(
 
 link_directories(${USD_LIBRARY_DIR})
 
-swig_add_library(
-    ${USD_SWIG_LIBRARY}
+swig_add_library(${USD_SWIG_LIBRARY}
     TYPE MODULE
     LANGUAGE csharp
     OUTPUT_DIR ${SWIG_GENERATED_FILEDIR}
@@ -25,45 +40,29 @@ swig_add_library(
     ${USD_CS_SWIG_SHIM}
     diagnosticHandler.cpp
     dll_main.cpp
-    )
+)
     
-
-   
-set(SWIG_OUTPUT_DIR ${usd_plugins_directory}/x86_64) 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    set(swig_output_dir ${swig_output_dir}/MacOS)
-elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(swig_output_dir ${swig_output_dir}/Linux)
-else ()
-    set(swig_output_dir ${swig_output_dir}/Windows)
-endif ()
-
-
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    set_target_properties(
-        ${USD_SWIG_LIBRARY}
+    set_target_properties(${USD_SWIG_LIBRARY}
         PROPERTIES
         CXX_STANDARD_REQUIRED 14
         BUNDLE TRUE
         )
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set_target_properties(
-        ${USD_SWIG_LIBRARY}
+    set_target_properties(${USD_SWIG_LIBRARY}
         PROPERTIES
         PREFIX lib
         CXX_STANDARD_REQUIRED 14
         )
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-     set_target_properties(
-        ${USD_SWIG_LIBRARY}
+     set_target_properties(${USD_SWIG_LIBRARY}
         PROPERTIES
         CXX_STANDARD_REQUIRED 14
         # USE_TARGET_INCLUDE_DIRECTORIES TRUE
         )
 endif ()
 
-swig_link_libraries(
-    ${USD_SWIG_LIBRARY}
+swig_link_libraries(${USD_SWIG_LIBRARY}
     # Link against USD monolithic
     -Wl,--whole-archive usd_ms -Wl,--no-whole-archive
     Alembic
@@ -76,9 +75,9 @@ swig_link_libraries(
     tbb
     )
 
-add_dependencies(
-    ${USD_SWIG_LIBRARY}
+add_dependencies(${USD_SWIG_LIBRARY}
     usd_type_info
+    decorate_usdcspinvoke
     )
     
 install(
@@ -99,6 +98,3 @@ set_property(DIRECTORY PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
     ${CMAKE_SOURCE_DIR}/src/USD.NET/generated
     ${CMAKE_SOURCE_DIR}/cmake/generated
 )
-
-set(CMAKE_INSTALL_RPATH "$ORIGIN")
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

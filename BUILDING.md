@@ -135,8 +135,8 @@ Optionally, specify `-DBUILD_USD_NET=TRUE` to build the USD.NET.dll (this will a
 
 Currently, the CMake configuration cannot be used to build the USD.NET.Unity.dll.
 
-IN X86_x64 command prompt for VS2017
+IN x64 command prompt for VS2017
 mkdir build
-cmake -S . -B build -DPXR_USD_LOCATION=D:/libs/pixar/usd-v20.08_no_python -DUSD_GENSCHEMA=${PXR_USD_LOCATION}/bin -DBUILD_USD_NET=TRUE -DSHELL=cmd -DCMAKE_MODULE_PATH=cmake/modules -G "Unix Makefiles"
 cd build
-cmake --build build -- SHELL=cmd install
+cmake -S .. -B . -DUNITY_VERSION=2019.4.9f1 -DPXR_USD_LOCATION=D:/libs/pixar/usd-v20.08_no_python -DBUILD_USD_NET=TRUE -DSHELL=cmd -DCMAKE_MODULE_PATH=D:/code/usd-unity-sdk/cmake/modules -G "Unix Makefiles"
+make SHELL=cmd VERBOSE=1 install
