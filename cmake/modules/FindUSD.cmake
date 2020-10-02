@@ -42,7 +42,8 @@ find_path(USD_INCLUDE_DIR
 
 find_library(USD_LIBRARY
     NAMES
-        libusd_ms.so
+        usd_ms.lib
+        #libusd_ms.so
         #${USD_LIB_PREFIX}usd${USD_LIB_SUFFIX}
     HINTS
         ${PXR_USD_LOCATION}
@@ -114,7 +115,7 @@ find_package_handle_standard_args(USD
         PXR_USD_LOCATION
         USD_INCLUDE_DIR
         USD_LIBRARY_DIR
-        USD_GENSCHEMA
+        #USD_GENSCHEMA
         USD_CONFIG_FILE
     VERSION_VAR
         USD_VERSION

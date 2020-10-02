@@ -61,6 +61,7 @@ TestProject/*.sln*
 TestProject/*.csproj
 TestProject/.idea
 TestProject/Logs
-TestProject/Assets/Plugins
-TestProject/Assets/Samples*
+TestProject/Assets/*
+build/
+cmake/generated/
 inst-dbg/
