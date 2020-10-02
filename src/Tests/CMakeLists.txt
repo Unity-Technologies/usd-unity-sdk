@@ -4,7 +4,7 @@ set(USD_NET_TESTS_EXE Tests.exe)
     
 add_custom_command(
         OUTPUT ${USD_NET_TESTS_EXE}
-        COMMAND mcs /noconfig /langversion:4 /nostdlib+
+        COMMAND ${MCS} /noconfig /langversion:4 /nostdlib+
         /warn:4 /optimize+ /out:${USD_NET_TESTS_EXE} /target:exe /unsafe
         ${CMAKE_CURRENT_LIST_DIR}/*.cs
         ${CMAKE_CURRENT_LIST_DIR}/Cases/*.cs
@@ -12,11 +12,11 @@ add_custom_command(
         /reference:${USD_NET_BINARY_DIR}/USD.NET.dll
         /reference:${USD_NET_UNITY_BINARY_DIR}/USD.NET.Unity.dll
         /reference:${CSHARP_UNITYENGINE_LIBRARY}
-        /reference:${MONO_LIB_DIR}/mscorlib.dll
-        /reference:${MONO_LIB_DIR}/System.Core.dll
-        /reference:${MONO_LIB_DIR}/System.dll
+        /reference:${MONO_MSCORLIB}
+        /reference:${MONO_SYSTEM_CORE_LIB}
+        /reference:${MONO_SYSTEM_LIB}
         DEPENDS
-        ${USD_NET_UNITY} # BUILD_Mono
+        ${USD_NET} ${USD_NET_UNITY}
         )
 add_custom_target(
     USD_NET_TESTS
@@ -25,7 +25,11 @@ add_custom_target(
     )
 install(
     FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/${USD_NET_TESTS_EXE} ${CSHARP_UNITYENGINE_LIBRARY} ${USD_NET_BINARY_DIR}/USD.NET.dll ${USD_NET_UNITY_BINARY_DIR}/USD.NET.Unity.dll
+    ${CMAKE_CURRENT_BINARY_DIR}/${USD_NET_TESTS_EXE} 
+    ${CSHARP_UNITYENGINE_LIBRARY} 
+    ${USD_NET_BINARY_DIR}/USD.NET.dll 
+    ${USD_NET_UNITY_BINARY_DIR}/USD.NET.Unity.dll
+    ${UsdCs_BINARY_DIR}/UsdCs.dll
     DESTINATION
     ${CMAKE_BINARY_DIR}
 )

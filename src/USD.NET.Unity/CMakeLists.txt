@@ -1,12 +1,10 @@
 ﻿# USD.NET.Unity
 project(USD_NET_UNITY)
 
-include(${CMAKE_SOURCE_DIR}/src/USD.NET/CMakeLists.txt)
-
 set(USD_NET_UNITY_DLL USD.NET.Unity.dll)
 add_custom_command(
         OUTPUT ${USD_NET_UNITY_DLL}
-        COMMAND mcs /noconfig /langversion:4 /nostdlib+
+        COMMAND ${MCS} /noconfig /langversion:4 /nostdlib+
         /warn:4 /optimize+ /out:${USD_NET_UNITY_DLL} /target:library /unsafe
         ${CMAKE_CURRENT_LIST_DIR}/*.cs
         ${CMAKE_CURRENT_LIST_DIR}/Geometry/*.cs
@@ -14,11 +12,11 @@ add_custom_command(
         ${CMAKE_CURRENT_LIST_DIR}/Shading/*.cs
         ${CMAKE_CURRENT_LIST_DIR}/Shading/UnityNative/*.cs
         ${CMAKE_CURRENT_LIST_DIR}/Shading/UsdPreviewSurface/*.cs
-        /reference:${USD_NET_DLL}
+        /reference:${USD_NET_BINARY_DIR}/USD.NET.dll
         /reference:${CSHARP_UNITYENGINE_LIBRARY}
-        /reference:${MONO_LIB_DIR}/mscorlib.dll
-        /reference:${MONO_LIB_DIR}/System.Core.dll
-        /reference:${MONO_LIB_DIR}/System.dll
+        /reference:${MONO_MSCORLIB}
+        /reference:${MONO_SYSTEM_CORE_LIB}
+        /reference:${MONO_SYSTEM_LIB}
         DEPENDS
         ${USD_NET} # BUILD_Mono
         )

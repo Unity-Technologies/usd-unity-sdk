@@ -76,12 +76,39 @@ endmacro()
 dotnet_find_library(CSHARP_UNITYEDITOR_LIBRARY UnityEditor.dll PATHS ${UNITY_EDITOR_DLL_PATH})
 dotnet_find_library(CSHARP_UNITYENGINE_LIBRARY UnityEngine.dll PATHS ${UNITY_EDITOR_DLL_PATH})
 
-# Check whether we found everything we needed.
-MESSAGE(${UNITY_EDITOR_PATH})
-MESSAGE(${CSHARP_UNITYEDITOR_LIBRARY})
-MESSAGE(${CSHARP_UNITYENGINE_LIBRARY})
+# Find Unity mono
+find_program(MCS mcs PATHS ${UNITY_EXECUTABLE_PATHS}
+            PATH_SUFFIXES Data/MonoBleedingEdge/bin
+            NO_DEFAULT_PATH
+            )
+find_library(MONO_MSCORLIB mscorlib.dll PATHS ${UNITY_EXECUTABLE_PATHS}
+            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5/
+            NO_DEFAULT_PATH
+            )
+find_library(MONO_SYSTEM_CORE_LIB System.Core.dll PATHS ${UNITY_EXECUTABLE_PATHS}
+            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5
+            NO_DEFAULT_PATH
+            )
+find_library(MONO_SYSTEM_LIB System.dll PATHS ${UNITY_EXECUTABLE_PATHS}
+            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5
+            NO_DEFAULT_PATH
+            )
 
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(Unity DEFAULT_MSG
+# Check whether we found everything we needed.
+message(STATUS ${UNITY_EDITOR_PATH})
+message(STATUS ${CSHARP_UNITYEDITOR_LIBRARY})
+message(STATUS ${CSHARP_UNITYENGINE_LIBRARY})
+message(STATUS ${MCS})
+message(STATUS ${MONO_MSCORLIB})
+message(STATUS ${MONO_SYSTEM_CORE_LIB})
+message(STATUS ${MONO_SYSTEM_LIB})
+
+find_package_handle_standard_args(Unity
+    REQUIRED_VARS
         UNITY_EDITOR_PATH
         CSHARP_UNITYEDITOR_LIBRARY
-        CSHARP_UNITYENGINE_LIBRARY)
+        CSHARP_UNITYENGINE_LIBRARY
+        MCS
+        MONO_MSCORLIB
+        MONO_SYSTEM_CORE_LIB
+        MONO_SYSTEM_LIB)
