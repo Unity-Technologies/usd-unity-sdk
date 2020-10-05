@@ -5,18 +5,24 @@
 #  - version: 19.11
 #  - version: 20.08
 build_platforms:
-#  - name: win
-#    type: Unity::VM
-#    image: package-ci/win10:stable
-#    flavor: b1.large
+  - name: win
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+    cmake_cmd: cmake -S .. -B . -DPXR_USD_LOCATION=C:/Users/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=C:/Users/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=C:/Users/bokken/usd-unity-sdk/cmake/modules -G "NMake Makefiles"
+    make_cmd: nmake SHELL=cmd install -j8
   - name: mac
     type: Unity::VM::osx
     image: filmtv/usd_build_macos_image:latest
     flavor: m1.mac
+    cmake_cmd: cmake -S .. -B . -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=/home/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=/home/bokken/usd-unity-sdk/cmake/modules -G "Unix Makefiles"
+    make_cmd: make install -j8
   - name: linux
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.large
+    cmake_cmd: cmake -S .. -B . -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=/home/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=/home/bokken/usd-unity-sdk/cmake/modules -G "Unix Makefiles"
+    make_cmd: make install -j8
 ---
 {% for platform in build_platforms %}
 {{platform.name}}_v20.08_no_python:
@@ -72,31 +78,11 @@ build_platforms:
     - |
         mkdir build
         cd build
-        cmake -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.08_no_python -DUSD_GENSCHEMA=${PXR_USD_LOCATION}/bin -DCMAKE_MODULE_PATH=../cmake/modules ../cmake/
-        make install -j8
+        {{platform.cmake_cmd}}
+        {{platform.make_cmd}}
   artifacts:
       {{platform.name}}_usdCs_v20.08:
         paths:
-          - "package/Runtime/Plugins/x86_64/Linux/**"
+          - "package/Runtime/Plugins/x86_64/{{platform.name}}/**"
   {% endfor %}
 
-  win_usd_v20.08_bindings:
-    name: Windows - Build USD v20.08 C# bindings
-    agent:
-      type: Unity::VM
-      image: filmtv/usd_build_win10_image:latest
-      flavor: b1.large
-    dependencies:
-      - .yamato/build_usd.yml#{{platform.name}}_v20.08
-      - .yamato/build_usd.yml#{{platform.name}}_v20.08_no_python
-    commands:
-      - |
-        mkdir build
-        cd build
-        cmake -S .. -B . -DPXR_USD_LOCATION=C:/Users/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=C:/Users/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=C:/Users/bokken/usd-unity-sdk/cmake/modules -G "NMake Makefiles"
-        nmake SHELL=cmd install -j8
-    artifacts:
-        windows_usdCs_v20.08:
-          paths:
-            - "package/Runtime/Plugins/**"
-            - "package/Runtime/Plugins/x86_64/**"
