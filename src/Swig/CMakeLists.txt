@@ -1,13 +1,13 @@
 ﻿# Generate type info from python
 add_custom_target(usd_type_info ALL
-    COMMAND gen_type_info.cmd
+    COMMAND gen_type_info.cmd ${PXR_USD_LOCATION_PYTHON_BUILD}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
     BYPRODUCTS ${CMAKE_MODULE_PATH}/../generated/SdfValueTypeNames.cs
     COMMENT "Generating type info from USD python"
 )
 
 add_custom_target(decorate_usdcspinvoke ALL
-    COMMAND python add_MonoPInvokeCallback_attribute.py
+    COMMAND ${PYTHON_EXECUTABLE} add_MonoPInvokeCallback_attribute.py
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
     COMMENT "Adding MonoPInvokeCallback attributes"
 )
