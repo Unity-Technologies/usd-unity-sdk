@@ -62,6 +62,7 @@ build_platforms:
   terminal: {{platform.terminal}}
   commands:
     - |
+      set PATH=%PATH%;C:\Program Files\CMake\bin
       wget https://github.com/PixarAnimationStudios/USD/archive/v20.08.zip
       unzip v20.08.zip
       cd USD-20.08
