@@ -9,6 +9,7 @@ build_platforms:
     type: Unity::VM
     image: filmtv/usd_build_win10_image:latest
     flavor: b1.large
+    terminal: "cmd /k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Professional\\VC\\Auxiliary\\Build\\vcvars64.bat\""
     setenv_cmd: "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Professional\\VC\\Auxiliary\\Build\\vcvars64.bat\""
     cmake_cmd: cmake -S .. -B . -DPXR_USD_LOCATION=C:/Users/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=C:/Users/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=C:/Users/bokken/usd-unity-sdk/cmake/modules -G "NMake Makefiles"
     make_cmd: nmake SHELL=cmd install -j8
@@ -16,6 +17,7 @@ build_platforms:
     type: Unity::VM::osx
     image: filmtv/usd_build_macos_image:latest
     flavor: m1.mac
+    terminal: sh
     setenv_cmd: echo "Environment set"
     cmake_cmd: cmake -S .. -B . -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=/home/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=/home/bokken/usd-unity-sdk/cmake/modules -G "Unix Makefiles"
     make_cmd: make install -j8
@@ -23,6 +25,7 @@ build_platforms:
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.large
+    terminal: sh
     setenv_cmd: echo "Environment set"
     cmake_cmd: cmake -S .. -B . -DPXR_USD_LOCATION=/home/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=/home/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=/home/bokken/usd-unity-sdk/cmake/modules -G "Unix Makefiles"
     make_cmd: make install -j8
@@ -56,9 +59,9 @@ build_platforms:
     type: {{platform.type}}
     image: {{platform.image}}
     flavor: {{platform.flavor}}
+  terminal: {{platform.terminal}}
   commands:
     - |
-      {{platform.setenv_cmd}}
       wget https://github.com/PixarAnimationStudios/USD/archive/v20.08.zip
       unzip v20.08.zip
       cd USD-20.08
