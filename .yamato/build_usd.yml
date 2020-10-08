@@ -1,9 +1,10 @@
 ﻿#build_args:
 #  no_python: --build-monolithic --alembic --no-python --no-imaging
 #  full: --build-monolithic --alembic --openimageio
-#usd_versions:
-#  - version: 19.11
-#  - version: 20.08
+usd_versions:
+  - version: 19.11
+  - version: 20.08
+  - version: 20.11
 build_platforms:
   - name: win
     type: Unity::VM
@@ -71,15 +72,13 @@ build_platforms:
 {% endfor %}
 
 {% for platform in build_platforms %}
-{{platform.name}}_usd_v20.08_bindings:
-  name: {{platform.name}} - Build USD v20.08 C# bindings
+{% for usd_version in usd_versions %}
+{{platform.name}}_usd_v{{usd_version.version}}_bindings:
+  name: {{usd_version.version}} {{platform.name}} - Build C# bindings
   agent:
     type: {{platform.type}}
     image: {{platform.image}}
     flavor: {{platform.flavor}}
-  dependencies:
-    - .yamato/build_usd.yml#{{platform.name}}_v20.08
-    - .yamato/build_usd.yml#{{platform.name}}_v20.08_no_python
   commands:
     - |
         {{platform.setenv_cmd}}
@@ -88,8 +87,23 @@ build_platforms:
         {{platform.cmake_cmd}}
         {{platform.make_cmd}}
   artifacts:
-      {{platform.name}}_usdCs_v20.08:
+      {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:
           - "package/Runtime/Plugins/x86_64/{{platform.name}}/**"
-  {% endfor %}
+{% endfor %}
+{% endfor %}
 
+{% for usd_version in usd_versions %}
+{{usd_version.version}}_publish_bindings:
+  name: {{usd_version.version}} - Publish C# bindings
+  agent:
+    type: linux
+    image: filmtv/usd_build_linux_image:latest
+    flavor: b1.small
+  dependencies:
+    - .yamato/build_usd.yml#win_usd_v{{usd_version.version}}_bindings
+    - .yamato/build_usd.yml#mac_usd_v{{usd_version.version}}_bindings
+    - .yamato/build_usd.yml#linux_usd_v{{usd_version.version}}_bindings
+  commands:
+    - bin/commit_bindings.sh
+{% endfor %}
