@@ -20,7 +20,7 @@ build_platforms:
     type: Unity::VM
     image: filmtv/usd_build_win10_image:latest
     flavor: b1.large
-    setenv_cmd: for /f "usebackq delims=#" %a in (`"%programfiles(x86)%\\Microsoft Visual Studio\\Installer\\vswhere" -latest -property installationPath`) do "%a\\Common7\\Tools\\VsDevCmd.bat"
+    setenv_cmd: call "C:\\Program Files (x86)\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
     cmake_cmd: cmake -S .. -B . -DPXR_USD_LOCATION=C:/Users/bokken/libs/usd-v20.08_no_python -DPXR_USD_LOCATION_PYTHON_BUILT=C:/Users/bokken/libs/usd-v20.08_no_python -DUNITY_VERSION=2019.4 -DBUILD_USD_NET=TRUE -DBUILD_TESTS=TRUE -DCMAKE_MODULE_PATH=C:/Users/bokken/usd-unity-sdk/cmake/modules -G "NMake Makefiles"
     make_cmd: nmake SHELL=cmd install -j8
   - name: mac
@@ -75,11 +75,12 @@ build_platforms:
     flavor: {{platform.flavor}}
   commands:
     - |
-        python3 bin/build.py "{{usd_version.version}}" "../libs"
-        mkdir build
-        cd build
-        {{platform.cmake_cmd}}
-        {{platform.make_cmd}}
+      {{platform.setenv_cmd}}
+      python3 bin/build.py "{{usd_version.version}}" "../libs"
+      mkdir build
+      cd build
+      {{platform.cmake_cmd}}
+      {{platform.make_cmd}}
   artifacts:
       {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:
