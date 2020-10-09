@@ -56,10 +56,11 @@ build_platforms:
       unzip {{usd_version.version}}.zip
       cd {{usd_version.dir_name}}
       python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}{{usd_flavor.output_dir_suffix}}
+      tar -cvzf ../artifacts/{{platform.name}}_usd-{{usd_version.version}}{{usd_flavor.output_dir_suffix}}.zip ../artifacts/usd-{{usd_version.version}}{{usd_flavor.output_dir_suffix}} 
   artifacts:
       {{platform.name}}_{{usd_version.version}}_no_python:
         paths:
-          - "artifacts/**/*"
+          - "artifacts/*zip"
 {% endfor %}  
 {% endfor %}  
 {% endfor %}
