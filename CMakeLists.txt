@@ -17,6 +17,7 @@ set(USD_PLUGINS_DIR ${USD_PKG_DIR}/Runtime/Plugins)
 find_package(USD REQUIRED)
 find_package(PythonInterp 3.7 REQUIRED COMPONENTS Interpreter)
 message("Python exec ${Python3_FOUND}   ${Python3_EXECUTABLE} ${Python3_INTERPRETER_ID}")
+find_package(Unity REQUIRED)
 
 add_subdirectory(src)
 

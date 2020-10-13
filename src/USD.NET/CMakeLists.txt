@@ -1,6 +1,5 @@
 ﻿project(USD_NET)
 
-find_package(Unity REQUIRED)
 set(USD_NET_DLL USD.NET.dll)
 add_custom_command(
     OUTPUT ${USD_NET_DLL}
