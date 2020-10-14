@@ -19,7 +19,7 @@ build_platforms:
   - name: win
     type: Unity::VM
     image: filmtv/usd_build_win10_image:latest
-    flavor: b1.large
+    flavor: b1.xlarge
     setenv_cmd: call "C:\\Program Files (x86)\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
   - name: mac
     type: Unity::VM::osx
@@ -49,10 +49,9 @@ build_platforms:
       unzip {{usd_version.version}}.zip
       cd {{usd_version.dir_name}}
       python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}_no_python
-      python build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}
-      tar -cvzf ../artifacts/usd-{{usd_version.version}}-{{platform.name}}.gz ../artifacts/usd-{{usd_version.version}}/* ../artifacts/usd-{{usd_version.version}}_no_python/* 
-      curl -sSo StevedoreUpload.exe "$STEVEDORE_UPLOAD_TOOL_URL"
-      mono StevedoreUpload.exe --version-len=12 --repo=testing --version="$GIT_REVISION" ../artifacts/*.gz
+      tar -cvzf ../artifacts/usd-{{usd_version.version}}-{{platform.name}}.gz ../artifacts/usd-{{usd_version.version}}_no_python/* 
+      curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
+      StevedoreUpload.exe --version-len=12 --repo=testing --version="$GIT_REVISION" ../artifacts/*.gz
 
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
