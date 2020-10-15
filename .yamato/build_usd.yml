@@ -48,11 +48,13 @@ build_platforms:
       wget https://github.com/PixarAnimationStudios/USD/archive/{{usd_version.version}}.zip
       unzip {{usd_version.version}}.zip
       cd {{usd_version.dir_name}}
+      python build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}
+      rm -rf ../artifacts/usd-{{usd_version.version}}/build
+      rm -rf ../artifacts/usd-{{usd_version.version}}/src
       python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}_no_python
+      rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/build
+      rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
       tar -cvzf ../artifacts/usd-{{usd_version.version}}-{{platform.name}}.gz ../artifacts/usd-{{usd_version.version}}_no_python/* 
-      curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
-      StevedoreUpload.exe --version-len=12 --repo=testing --version="$GIT_REVISION" ../artifacts/*.gz
-
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
         paths:
