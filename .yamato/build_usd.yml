@@ -44,7 +44,6 @@ build_platforms:
   commands:
     - |
       {{platform.setenv_cmd}}
-      set PATH=%PATH%;C:\Program Files\CMake\bin
       wget https://github.com/PixarAnimationStudios/USD/archive/{{usd_version.version}}.zip
       unzip {{usd_version.version}}.zip
       cd {{usd_version.dir_name}}
@@ -54,7 +53,10 @@ build_platforms:
       python build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}_no_python
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/build
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
-      tar -cvzf ../artifacts/usd-{{usd_version.version}}-{{platform.name}}.gz ../artifacts/usd-{{usd_version.version}}_no_python/* 
+      cd ../artifacts
+      tar -cvzf usd-{{usd_version.version}}-{{platform.name}}.gz usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
+      curl -sSo StevedoreUpload.exe "https://stevedore.unity3d.com/static/StevedoreUpload.exe"
+      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-{{usd_version.version}}-{{platform.name}}.gz
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
         paths:
