@@ -54,9 +54,9 @@ build_platforms:
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/build
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
       cd ../artifacts
-      tar -cvzf usd-{{usd_version.version}}-{{platform.name}}.gz usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
-      curl -sSo StevedoreUpload.exe "https://stevedore.unity3d.com/static/StevedoreUpload.exe"
-      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-{{usd_version.version}}-{{platform.name}}.gz
+      tar -cvzf usd-{{usd_version.version}}-{{platform.name}}.tar.gz usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
+      curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
+      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-{{usd_version.version}}-{{platform.name}}.tar.gz
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
         paths:
@@ -110,5 +110,5 @@ test_stevedore_job:
     - |
       curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
       echo.> usd-20.08-win64
-      tar -cvzf  usd-20.08-win64.gz usd-20.08-win64
-      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-20.08-win64.gz
+      tar -cvzf  usd-20.08-win64.tar.gz usd-20.08-win64
+      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-20.08-win64.tar.gz
