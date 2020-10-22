@@ -111,4 +111,4 @@ test_stevedore_job:
       curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
       echo.> usd-20.08-win64
       tar -cvzf  usd-20-08-win64.tar.gz usd-20.08-win64
-      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-20-08-win64.tar.gz
+      StevedoreUpload.exe  --repo=testing --version="%GIT_REVISION%" usd-20-08-win64.tar.gz
