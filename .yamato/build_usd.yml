@@ -105,10 +105,10 @@ test_stevedore_job:
   agent:
     type: Unity::VM
     image: filmtv/usd_build_win10_image:latest
-    flavor: b1.xlarge
+    flavor: b1.small
   commands: 
     - |
       curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
       echo.> usd-20.08-win64
-      tar -cvzf  usd-20.08-win64.tar.gz usd-20.08-win64
-      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-20.08-win64.tar.gz
+      tar -cvzf  usd-20-08-win64.tar.gz usd-20.08-win64
+      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-20-08-win64.tar.gz
