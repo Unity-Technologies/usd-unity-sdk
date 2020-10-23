@@ -21,16 +21,22 @@ build_platforms:
     image: filmtv/usd_build_win10_image:latest
     flavor: b1.xlarge
     setenv_cmd: call "C:\\Program Files (x86)\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
+    stevedore_url: "%STEVEDORE_UPLOAD_TOOL_URL%"
+    stevedore_exe: "StevedoreUpload.exe"
   - name: mac
     type: Unity::VM::osx
     image: filmtv/usd_build_macos_image:latest
     flavor: m1.mac
     setenv_cmd: echo "Environment set"
+    stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
+    stevedore_exe: "mono StevedoreUpload.exe"
   - name: linux
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.large
     setenv_cmd: echo "Environment set"
+    stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
+    stevedore_exe: "mono StevedoreUpload.exe"
 ---
 {% for platform in build_platforms %}
 {% for usd_version in usd_versions %}
@@ -55,8 +61,8 @@ build_platforms:
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
       cd ../artifacts
       tar -acf usd-{{platform.name}}-x64.zip usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
-      curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
-      StevedoreUpload.exe --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-x64.zip
+      curl -sSo StevedoreUpload.exe {{platform.stevedore_url}}
+      {{platform.stevedore_exe}} --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-x64.zip
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
         paths:
