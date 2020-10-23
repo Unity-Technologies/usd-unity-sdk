@@ -54,13 +54,13 @@ build_platforms:
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/build
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
       cd ../artifacts
-      tar -cvzf usd-{{usd_version.version}}-{{platform.name}}.tar.gz usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
+      tar -acf usd-{{platform.name}}-x64.zip usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
       curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
-      StevedoreUpload.exe --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-{{usd_version.version}}-{{platform.name}}.tar.gz
+      StevedoreUpload.exe --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-x64.zip
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
         paths:
-          - "artifacts/*gz"
+          - "artifacts/usd-{{usd_version.version}}*"
 {% endfor %}  
 {% endfor %}
 
