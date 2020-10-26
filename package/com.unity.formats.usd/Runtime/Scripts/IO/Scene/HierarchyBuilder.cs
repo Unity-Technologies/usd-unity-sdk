@@ -185,7 +185,16 @@ namespace Unity.Formats.USD
             map.SkelRoots = FindPathsJob.results[5];
             map.Skeletons = FindPathsJob.results[6];
             map.Xforms = FindPathsJob.results[7];
-
+//
+//       ConvertGeometryJob.scene = scene;
+//       ConvertGeometryJob.changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
+//                                             options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
+//       ConvertGeometryJob.meshOptions = options.meshOptions;
+//       ConvertGeometryJob.paths = map.Meshes.Where(i => i != null).ToArray();
+//       var convertGeometryJob = new ConvertGeometryJob();
+//       var convertHandle = convertGeometryJob.Schedule(ConvertGeometryJob.paths.Length, 1);
+//       convertHandle.Complete();
+//
             ReadHierJob.paths = FindPathsJob.results.Where(i => i != null).SelectMany(i => i).ToArray();
             ReadHierJob.result = new HierInfo[ReadHierJob.paths.Length];
             ReadHierJob.scene = scene;
@@ -238,6 +247,14 @@ namespace Unity.Formats.USD
                 var ua = unityRoot.AddComponent<UsdPrimSource>();
                 ua.m_usdPrimPath = usdRoot.ToString();
             }
+
+            // Make sure the meshes will get converted
+            var convertComponent = unityRoot.GetComponent<UsdConvertMeshes>();
+            if (convertComponent == null)
+            {
+                convertComponent = unityRoot.AddComponent<UsdConvertMeshes>();
+            }
+            convertComponent.Scene = scene;
 
             Profiler.BeginSample("Build Object Lists");
             var hierInfo = BuildObjectLists(scene, unityRoot, usdRoot, map, options);

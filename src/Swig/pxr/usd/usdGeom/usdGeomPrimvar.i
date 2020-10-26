@@ -28,4 +28,23 @@ namespace std {
 }
 typedef std::vector<UsdGeomPrimvar> UsdGeomPrimvarVector;
 
+
+
 %include "pxr/usd/usdGeom/primvar.h"
+
+%extend UsdGeomPrimVar {
+    template <typename T>
+	void UnrollValues(const VtIntArray indices, UsdTimeCode time = UsdTimeCode::Default()){
+	    uint indicesCount = indices.size();
+        T newValues = new T(indicesCount);
+        T *oldValues = new T();
+        _attr.Get(oldValues, time);
+
+        for (int i = 0; i < indicesCount; i++)
+        {
+            int vertexIndex = indices[i];
+            newValues[i] = oldValues[vertexIndex];
+        }
+        _attr.Set(newValues, time);
+	} 
+}

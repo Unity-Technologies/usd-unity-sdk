@@ -16,6 +16,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using pxr;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -426,12 +427,14 @@ namespace Unity.Formats.USD
                     }
                 }
 
-                // Re-apply variant selection state, similar to prim load state.
-                foreach (var variants in GetComponentsInChildren<UsdVariantSet>())
-                {
-                    ApplyVariantSelectionState(m_lastScene, variants);
-                }
-            }
+        stage.SetEditTarget(new UsdEditTarget(stage.GetSessionLayer()));
+
+        // Re-apply variant selection state, similar to prim load state.
+        foreach (var variants in GetComponentsInChildren<UsdVariantSet>())
+        {
+            ApplyVariantSelectionState(m_lastScene, variants);
+        }
+      }
 
             m_lastScene.Time = m_usdTimeOffset;
             m_lastScene.SetInterpolation(m_interpolation);
@@ -503,16 +506,16 @@ namespace Unity.Formats.USD
             }
         }
 
-        /// <summary>
-        /// Reimports the USD scene, either fully rebuilding every object or updating them in-place.
-        /// </summary>
-        /// <param name="forceRebuild">Destroys each GameObject before reimporting.</param>
-        public void Reload(bool forceRebuild)
-        {
-            var options = new SceneImportOptions();
-            StateToOptions(ref options);
+    /// <summary>
+    /// Reimports the USD scene, either fully rebuilding every object or updating them in-place.
+    /// </summary>
+    /// <param name="forceRebuild">Destroys each GameObject before reimporting.</param>
+    public void Reload(bool forceRebuild) {
+      var options = new SceneImportOptions();
+      StateToOptions(ref options);
 
-            options.forceRebuild = forceRebuild;
+      options.forceRebuild = forceRebuild;
+      options.attrUnrollNeeded = FaceVaryingOption.None;
 
             if (string.IsNullOrEmpty(options.projectAssetPath))
             {

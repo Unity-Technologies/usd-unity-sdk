@@ -365,6 +365,11 @@ public class UsdGeomMesh : UsdGeomPointBased {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static void ComputeNormals(VtVec3fArray points, VtIntArray faceVertexIndices, VtVec3fArray normals) {
+    UsdCsPINVOKE.UsdGeomMesh_ComputeNormals(VtVec3fArray.getCPtr(points), VtIntArray.getCPtr(faceVertexIndices), VtVec3fArray.getCPtr(normals));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
 }
 
 }

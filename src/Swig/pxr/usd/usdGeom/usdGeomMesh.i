@@ -44,4 +44,34 @@
     faceVertexIndices.swap(newIndices);
     faceVertexCounts.swap(newCounts);
   }
+
+  static void ComputeNormals(VtVec3fArray& points, VtIntArray& faceVertexIndices, VtVec3fArray& normals) {
+    for (int i = 0; i < normals.size(); i++)
+    {
+        normals[i] = GfVec3f(0.f);
+    }
+
+    for (int faceIndex = 0; faceIndex < faceVertexIndices.size() / 3; faceIndex++)
+    {
+        int i0 = faceVertexIndices[faceIndex*3];
+        int i1 = faceVertexIndices[faceIndex*3 + 1];
+        int i2 = faceVertexIndices[faceIndex*3 + 2];
+
+        GfVec3f e1 = points[i1];
+        e1 -= points[i0];
+        GfVec3f e2 = points[i2];
+        e2 -= points[i0];
+        GfVec3f n = GfCross(e1, e2);
+
+        normals[i0] += n;
+        normals[i1] += n;
+        normals[i2] += n;
+    }
+
+    for (int i = 0; i < normals.size(); i++)
+    {
+        GfNormalize(&normals[i]);
+    }
+  }
+
 }
