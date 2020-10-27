@@ -155,7 +155,11 @@ namespace Unity.Formats.USD {
         matAdapter.ImportFromUsd();
       }
 
-      mat.name = materialPath;
+      // Get the material name from the path
+      if (mat != null && !string.IsNullOrEmpty(materialPath))
+      {
+         mat.name = new pxr.SdfPath(materialPath).GetName();
+      }
       return mat;
     }
 

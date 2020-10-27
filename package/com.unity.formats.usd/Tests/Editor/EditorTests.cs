@@ -149,7 +149,7 @@ namespace Unity.Formats.USD.Tests
 
             var material = renderer.sharedMaterial;
             Assert.IsNotNull(material);
-            Assert.IsTrue(material.name == "/pCube1/Looks/lambert3SG");
+            Assert.IsTrue(material.name == "lambert3SG");
         }
     }
 }
