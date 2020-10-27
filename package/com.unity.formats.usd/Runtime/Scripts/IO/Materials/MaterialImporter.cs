@@ -155,6 +155,7 @@ namespace Unity.Formats.USD {
         matAdapter.ImportFromUsd();
       }
 
+      mat.name = materialPath;
       return mat;
     }
 
