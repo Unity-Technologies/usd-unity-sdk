@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using UnityEngine;
+using USD.NET;
 using USD.NET.Unity;
 
 namespace Unity.Formats.USD {
@@ -25,13 +26,18 @@ namespace Unity.Formats.USD {
     /// <summary>
     /// Copy camera data from USD to Unity with the given import options.
     /// </summary>
-    public static void BuildCamera(CameraSample usdCamera,
-                                 GameObject go,
-                                 SceneImportOptions options) {
-      var cam = ImporterBase.GetOrAddComponent<Camera>(go);
-      usdCamera.CopyToCamera(cam, setTransform: false);
-      cam.nearClipPlane *= options.scale;
-      cam.farClipPlane *= options.scale;
+    public static void BuildCamera(pxr.SdfPath path,
+      CameraSample usdCamera,
+      GameObject go,
+      SceneImportOptions options, Scene scene)
+    {
+      if (scene.AccessMask == null || scene.IsPopulatingAccessMask || scene.AccessMask.Included.ContainsKey(path))
+      {
+        var cam = ImporterBase.GetOrAddComponent<Camera>(go);
+        usdCamera.CopyToCamera(cam, false);
+        cam.nearClipPlane *= options.scale;
+        cam.farClipPlane *= options.scale;
+      }
     }
   }
 }

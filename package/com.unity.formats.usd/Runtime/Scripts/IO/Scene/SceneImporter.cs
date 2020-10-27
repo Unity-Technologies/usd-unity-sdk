@@ -591,11 +591,8 @@ namespace Unity.Formats.USD {
               go.transform.localRotation *= Quaternion.Euler(180.0f, 0.0f, 180.0f); 
             }
 
-            // The camera has many value-type parameters that need to be handled correctly when not
-            // not animated. For now, only the camera transform will animate, until this is fixed.
-            if (scene.AccessMask == null || scene.IsPopulatingAccessMask) {
-              CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
-            }
+            CameraImporter.BuildCamera(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
+
           } catch (System.Exception ex) {
             Debug.LogException(
                 new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
@@ -708,7 +705,7 @@ namespace Unity.Formats.USD {
                 GameObject go = primMap[pathAndSample.path];
                 NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
-                CameraImporter.BuildCamera(pathAndSample.sample, go, importOptions);
+                CameraImporter.BuildCamera(pathAndSample.path,pathAndSample.sample, go, importOptions, scene);
               } catch (System.Exception ex) {
                 Debug.LogException(
                     new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
