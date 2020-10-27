@@ -118,5 +118,39 @@ namespace Unity.Formats.USD.Tests
             Assert.IsTrue(Matrix4x4.identity == scope.transform.localToWorldMatrix);
         }
     }
+
+    public class UsdMaterialTest
+    {
+        private GameObject m_usdRoot;
+        private string m_usdGUID = "c06c7eba08022b74ca49dce5f79ef3ba"; // GUI of simpleMaterialTest.usd
+
+        [SetUp]
+        public void SetUp()
+        {
+            InitUsd.Initialize();
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
+            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            var importOptions = new SceneImportOptions();
+            importOptions.materialImportMode = MaterialImportMode.ImportPreviewSurface;
+            m_usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene, importOptions);
+            scene.Close();
+        }
+
+        [Test]
+        public void TestMaterialNameSetOnImport()
+        {
+            // Check that the material name is the same after import as in the USD file
+            Assert.IsNotNull(m_usdRoot);
+            var cube = m_usdRoot.transform.Find("pCube1");
+            Assert.IsNotNull(cube);
+            var renderer = cube.GetComponent<Renderer>();
+            Assert.IsNotNull(renderer);
+
+            var material = renderer.sharedMaterial;
+            Assert.IsNotNull(material);
+            Assert.IsTrue(material.name == "/pCube1/Looks/lambert3SG");
+        }
+    }
 }
 
