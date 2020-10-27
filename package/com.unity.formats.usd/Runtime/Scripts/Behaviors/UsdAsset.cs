@@ -394,6 +394,7 @@ namespace Unity.Formats.USD {
           stage = pxr.UsdStage.Open(usdFullPath, pxr.UsdStage.InitialLoadSet.LoadAll);
         }
 
+        stage.Reload();  // Ensure the stage is reloaded it case it was already opened and cached.
         m_lastScene = Scene.Open(stage);
         m_lastPrimMap = null;
         m_lastAccessMask = null;
