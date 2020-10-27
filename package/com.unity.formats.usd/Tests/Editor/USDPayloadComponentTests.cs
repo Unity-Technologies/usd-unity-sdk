@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class USDPayloadsComponent
+    public class USDPayloadComponentTests
     {
         const string k_USDGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUID of test_collections.usda
  
@@ -70,7 +70,7 @@ namespace Unity.Formats.USD.Tests
         }
 
         [UnityTest]
-        public IEnumerator IsLoaded_LoadPayload_WhenSetFromFalseToTrue()
+        public IEnumerator IsLoaded_IsTrue_WhenLoadedFromComponent()
         {
             // Prepare states
             Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
