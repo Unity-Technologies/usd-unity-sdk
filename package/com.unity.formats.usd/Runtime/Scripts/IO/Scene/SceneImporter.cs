@@ -659,8 +659,8 @@ namespace Unity.Formats.USD {
                 NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                 XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
                 var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
-                MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions, 
-                             scene.AccessMask.Included.ContainsKey(pathAndSample.path));
+                bool isDynamic = scene.AccessMask != null ? scene.AccessMask.Included.ContainsKey(pathAndSample.path) : false;
+                MeshImporter.BuildMesh(pathAndSample.path, pathAndSample.sample, subsets, go, importOptions, isDynamic);
               } catch (System.Exception ex) {
                 Debug.LogException(
                     new ImportException("Error processing mesh <" + pathAndSample.path + ">", ex));
