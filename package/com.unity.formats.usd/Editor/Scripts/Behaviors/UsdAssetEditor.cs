@@ -208,6 +208,7 @@ namespace Unity.Formats.USD {
 
       GUILayout.Label("Import Settings", EditorStyles.boldLabel);
 
+      EditorGUI.BeginChangeCheck();
       EditorGUILayout.BeginHorizontal();
 
       var op = LinearUnits.Custom;
@@ -265,7 +266,8 @@ namespace Unity.Formats.USD {
       usdAsset.m_importMeshes = EditorGUILayout.Toggle("Import Meshes", usdAsset.m_importMeshes);
       usdAsset.m_importSkinning = EditorGUILayout.Toggle("Import Skinning", usdAsset.m_importSkinning);
       usdAsset.m_importTransforms = EditorGUILayout.Toggle("Import Transforms", usdAsset.m_importTransforms);
-
+      if (EditorGUI.EndChangeCheck())
+         EditorUtility.SetDirty(usdAsset);
     }
 
     private void ReloadFromUsd(UsdAsset stageRoot, bool forceRebuild) {
