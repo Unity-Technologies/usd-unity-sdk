@@ -529,6 +529,10 @@ namespace Unity.Formats.USD
                     DestroyAllImportedObjects();
                 }
 
+                m_lastScene = null;
+                m_lastPrimMap = null;
+                m_lastAccessMask = null;
+
                 SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
