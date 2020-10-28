@@ -1,0 +1,47 @@
+#usda 1.0
+(
+    defaultPrim = "pCube1"
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Mesh "pCube1" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+    kind = "component"
+)
+{
+    uniform bool doubleSided = 1
+    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+    int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 1, 0, 1, 7, 5, 3, 6, 0, 2, 4]
+    rel material:binding = </pCube1/Looks/lambert3SG>
+    point3f[] points = [(-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, -0.5), (-0.5, -0.5, -0.5), (0.5, -0.5, -0.5)]
+    texCoord2f[] primvars:st = [(0.375, 0), (0.625, 0), (0.625, 0.25), (0.375, 0.25), (0.625, 0.5), (0.375, 0.5), (0.625, 0.75), (0.375, 0.75), (0.625, 1), (0.375, 1), (0.875, 0), (0.875, 0.25), (0.125, 0), (0.125, 0.25)] (
+        interpolation = "faceVarying"
+    )
+    int[] primvars:st:indices = [0, 1, 2, 3, 3, 2, 4, 5, 5, 4, 6, 7, 7, 6, 8, 9, 1, 10, 11, 2, 12, 0, 3, 13]
+    double3 xformOp:translate = (0, 0, 3.0322376197326038)
+    uniform token[] xformOpOrder = ["xformOp:translate"]
+
+    def Scope "Looks"
+    {
+        def Material "lambert3SG"
+        {
+            token outputs:surface.connect = </pCube1/Looks/lambert3SG/test.outputs:surface>
+
+            def Shader "test"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.432, 0.19576, 0.025360001)
+                color3f inputs:emissiveColor = (0, 0, 0)
+                float3 inputs:normal = (1, 1, 1)
+                float inputs:roughness = 1
+                color3f inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 1
+                token outputs:displacement
+                token outputs:surface
+            }
+        }
+    }
+}
+
