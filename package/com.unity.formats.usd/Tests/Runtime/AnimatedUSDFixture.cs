@@ -86,6 +86,7 @@ namespace Unity.Formats.USD.Tests
         [TearDown]
         public void TearDown()
         {
+            Object.DestroyImmediate(m_usdRoot);
             foreach (var file in m_filesToDelete)
             {
                 File.Delete(file);
