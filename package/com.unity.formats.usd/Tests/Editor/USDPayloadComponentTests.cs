@@ -26,6 +26,7 @@ namespace Unity.Formats.USD.Tests
             scene.Close();
 
             m_usdAsset = m_usdRoot.GetComponent<UsdAsset>();
+            Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
         }
 
         [TearDown]
@@ -39,8 +40,6 @@ namespace Unity.Formats.USD.Tests
         public IEnumerator IsLoaded_DefaultIsFalse_WhenPolicyIsSetToDontLoad()
         {
             // Prepare states
-            Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
-
             m_usdAsset.m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
             m_usdAsset.Reload(forceRebuild: true);
 
@@ -56,8 +55,6 @@ namespace Unity.Formats.USD.Tests
         public IEnumerator IsLoaded_DefaultIsTrue_WhenPolicyIsSetToLoadAll()
         {
             // Prepare states
-            Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
-
             m_usdAsset.m_payloadPolicy = PayloadPolicy.LoadAll;
             m_usdAsset.Reload(forceRebuild: true);
 
@@ -73,8 +70,6 @@ namespace Unity.Formats.USD.Tests
         public IEnumerator IsLoaded_IsTrue_WhenLoadedFromComponent()
         {
             // Prepare states
-            Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
-
             m_usdAsset.m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
             m_usdAsset.Reload(forceRebuild: true);
 
@@ -94,7 +89,7 @@ namespace Unity.Formats.USD.Tests
             yield return null;
             var payloadPrim = m_usdAsset.GetScene().GetPrimAtPath(usdPrimSource.m_usdPrimPath);
 
-            Assert.That(payloadPrim.GetPayloads().GetPrim().IsLoaded(), Is.True, "Payload should exist.");
+            Assert.That(payloadPrim.IsLoaded(), Is.True, "Payload should exist.");
 
             usdPayload = m_usdRoot.GetComponentInChildren<UsdPayload>();
             Assume.That(usdPayload, Is.Not.Null, "Could not find USDPayload in the subtree.");
@@ -105,8 +100,6 @@ namespace Unity.Formats.USD.Tests
         public IEnumerator IsLoaded_IsTrue_WhenSubtreeIsLoadedFromUSDMenu()
         {
             // Prepare states
-            Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
-
             m_usdAsset.m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
             m_usdAsset.Reload(forceRebuild: true);
 
@@ -128,7 +121,7 @@ namespace Unity.Formats.USD.Tests
             yield return null;
             // Tests
             var payloadPrim = m_usdAsset.GetScene().GetPrimAtPath(usdPrimSource.m_usdPrimPath);
-            Assert.That(payloadPrim.GetPayloads().GetPrim().IsLoaded(), Is.True, "Payload should exist.");
+            Assert.That(payloadPrim.IsLoaded(), Is.True, "Payload should exist.");
 
             usdPayload = m_usdRoot.GetComponentInChildren<UsdPayload>();
             Assume.That(usdPayload, Is.Not.Null, "Could not find USDPayload in the subtree.");
@@ -139,8 +132,6 @@ namespace Unity.Formats.USD.Tests
         public IEnumerator IsLoaded_IsFalse_WhenSubtreeIsUnloadedFromUSDMenu()
         {
             // Prepare states
-            Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
-
             m_usdAsset.m_payloadPolicy = PayloadPolicy.LoadAll;
             m_usdAsset.Reload(forceRebuild: true);
 
@@ -162,7 +153,7 @@ namespace Unity.Formats.USD.Tests
             yield return null;
             // Tests
             var payloadPrim = m_usdAsset.GetScene().GetPrimAtPath(usdPrimSource.m_usdPrimPath);
-            Assert.That(payloadPrim.GetPayloads().GetPrim().IsLoaded(), Is.False, "Payload should not exist.");
+            Assert.That(payloadPrim.IsLoaded(), Is.False, "Payload should not exist.");
 
             usdPayload = m_usdRoot.GetComponentInChildren<UsdPayload>();
             Assume.That(usdPayload, Is.Not.Null, "Could not find USDPayload in the subtree.");
@@ -177,8 +168,6 @@ namespace Unity.Formats.USD.Tests
         public IEnumerator IsLoaded_IsFalse_WhenIsUnloadedFromComponent()
         {
             // Prepare states
-            Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
-
             m_usdAsset.m_payloadPolicy = PayloadPolicy.LoadAll;
             m_usdAsset.Reload(forceRebuild: true);
 
@@ -197,7 +186,7 @@ namespace Unity.Formats.USD.Tests
             yield return null;
             // Tests
             var payloadPrim = m_usdAsset.GetScene().GetPrimAtPath(usdPrimSource.m_usdPrimPath);
-            Assert.That(payloadPrim.GetPayloads().GetPrim().IsLoaded(), Is.False, "Payload should not exist.");
+            Assert.That(payloadPrim.IsLoaded(), Is.False, "Payload should not exist.");
 
             usdPayload = m_usdRoot.GetComponentInChildren<UsdPayload>();
             Assume.That(usdPayload, Is.Not.Null, "Could not find USDPayload in the subtree.");
