@@ -390,10 +390,9 @@ namespace Unity.Formats.USD
                     stage = pxr.UsdStage.Open(usdFullPath, pxr.UsdStage.InitialLoadSet.LoadAll);
                 }
 
+                ClearLastData();
                 stage.Reload(); // Ensure the stage is reloaded in case it was already opened and cached.
                 m_lastScene = Scene.Open(stage);
-                m_lastPrimMap = null;
-                m_lastAccessMask = null;
 
                 // TODO: This is potentially horrible in terms of performance, LoadAndUnload should be used
                 // instead, but the binding is not complete.
@@ -459,6 +458,16 @@ namespace Unity.Formats.USD
             }
 
             Component.DestroyImmediate(comp);
+        }
+
+        /// <summary>
+        /// Clear internal data.
+        /// Call to <see cref="GetScene">GetScene()</see> to update them with the latest USD data.
+        /// </summary>
+        private void ClearLastData() {
+            m_lastScene = null;
+            m_lastPrimMap = null;
+            m_lastAccessMask = null;
         }
 
         /// <summary>
@@ -529,10 +538,7 @@ namespace Unity.Formats.USD
                     DestroyAllImportedObjects();
                 }
 
-                m_lastScene = null;
-                m_lastPrimMap = null;
-                m_lastAccessMask = null;
-
+                ClearLastData();
                 SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
@@ -554,10 +560,7 @@ namespace Unity.Formats.USD
                     DestroyAllImportedObjects();
                 }
 
-                m_lastScene = null;
-                m_lastPrimMap = null;
-                m_lastAccessMask = null;
-
+                ClearLastData();
                 SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
             }
         }
