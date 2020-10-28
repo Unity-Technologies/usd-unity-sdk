@@ -1,3 +1,4 @@
+#if UNITY_2019_4_OR_NEWER
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -171,3 +172,5 @@ namespace Unity.Formats.USD.Tests
         }
     }
 }
+
+#endif
