@@ -44,6 +44,7 @@ namespace Unity.Formats.USD.Tests
             m_filesToDelete.Add(usdRecorderAsset.m_usdFile);
             usdRecorderAsset.m_exportRoot = new ExposedReference<GameObject> {exposedName = Guid.NewGuid().ToString()};
             director.SetReferenceValue(usdRecorderAsset.m_exportRoot.exposedName, cam);
+            Time.captureDeltaTime = 1 / timeline.editorSettings.fps;
             director.Play();
             while (director.time <= 1.1)
                 yield return null;
@@ -77,8 +78,8 @@ namespace Unity.Formats.USD.Tests
             
             director.time = 1;
             director.Evaluate();
-            Assert.That(100, Is.EqualTo(cam.transform.localPosition.x).Within(0.1));
-            Assert.That(100, Is.EqualTo(cam.fieldOfView).Within(0.1));
+            Assert.That(100, Is.EqualTo(cam.transform.localPosition.x).Within(1e-5));
+            Assert.That(100, Is.EqualTo(cam.fieldOfView).Within(1e-5));
             
         }
 
