@@ -1,4 +1,3 @@
-#if UNITY_2019_4_OR_NEWER
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +35,7 @@ namespace Unity.Formats.USD.Tests
             aTrack.CreateClip(clip).displayName = "CamClip";
             var cam = new GameObject("Camera").AddComponent<Camera>().gameObject;
             director.SetGenericBinding(aTrack, cam.AddComponent<Animator>());
-            var usdRecordTrack = timeline.CreateTrack<UsdRecorderTrack>();
+            var usdRecordTrack = timeline.CreateTrack<UsdRecorderTrack>(null, "");
             var usdRecorderClip = usdRecordTrack.CreateDefaultClip();
             usdRecorderClip.start = 0;
             usdRecorderClip.duration = 2;
@@ -45,7 +44,7 @@ namespace Unity.Formats.USD.Tests
             m_filesToDelete.Add(usdRecorderAsset.m_usdFile);
             usdRecorderAsset.m_exportRoot = new ExposedReference<GameObject> {exposedName = Guid.NewGuid().ToString()};
             director.SetReferenceValue(usdRecorderAsset.m_exportRoot.exposedName, cam);
-            Time.captureDeltaTime = 1 / timeline.editorSettings.fps;
+            Time.captureFramerate = (int)timeline.editorSettings.fps;
             director.Play();
             while (director.time <= 1.1)
                 yield return null;
@@ -62,7 +61,7 @@ namespace Unity.Formats.USD.Tests
         public void TestCamAnimation()
         {
             CreateTimeline(out var director, out var timeline);
-            var usdTrack = timeline.CreateTrack<UsdPlayableTrack>();
+            var usdTrack = timeline.CreateTrack<UsdPlayableTrack>(null,"");
             var clip = usdTrack.CreateDefaultClip();
             clip.duration = 2;
             var usdPlayableAsset = clip.asset as UsdPlayableAsset;
@@ -172,5 +171,3 @@ namespace Unity.Formats.USD.Tests
         }
     }
 }
-
-#endif
