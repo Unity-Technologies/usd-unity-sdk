@@ -15,6 +15,7 @@
 - Fixed hardcoded package name in InitUSD and BuildPostProcessor (#236).
 - Fixed a BuildPostProcess bug caused by permissions issues in OSX (#245).
 - Fixed an IL2CPP build bug caused by the inclusion of USD codegen directory (#245).
+- Fixed UsdAsset not properly refreshing the asset within the Prefab stage (#246).
 
 ## [2.0.0-exp.1] - 2020-12-21
 ### Features
