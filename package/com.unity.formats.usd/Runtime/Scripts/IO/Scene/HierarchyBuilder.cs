@@ -672,7 +672,7 @@ namespace Unity.Formats.USD {
 
       if (!pl) {
         pl = go.AddComponent<UsdPayload>();
-        pl.SetInitialState(info.prim.GetPayloads().GetPrim().IsLoaded());
+        pl.SetInitialState(info.prim.IsLoaded());
       }
     }
 
