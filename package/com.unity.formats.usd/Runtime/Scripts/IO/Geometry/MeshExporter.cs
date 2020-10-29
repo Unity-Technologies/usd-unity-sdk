@@ -223,7 +223,8 @@ namespace Unity.Formats.USD {
       var sample = (MeshSample)objContext.sample;
       var go = objContext.gameObject;
 
-      if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) {
+      //if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero) 
+      {
         mesh.RecalculateBounds();
       }
       sample.extent = mesh.bounds;
