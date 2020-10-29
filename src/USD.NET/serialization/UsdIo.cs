@@ -467,6 +467,8 @@ namespace USD.NET {
         return true;
       }
 
+      // use the sparse attribute value writer, to skip redundant time samples
+      var sparseAttrValueWriter = new pxr.UsdUtilsSparseAttrValueWriter(attr);
       pxr.VtValue vtValue = binding.toVtValue(csValue);
       lock (m_stageLock) {
         if (isMetaData) {
@@ -476,7 +478,7 @@ namespace USD.NET {
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           pxr.UsdCs.SetFusedDisplayColor(prim, vtValue, time);
         } else {
-          attr.Set(vtValue, time);
+          sparseAttrValueWriter.SetTimeSample(vtValue, time);
         }
       }
 
