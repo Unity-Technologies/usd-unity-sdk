@@ -1,0 +1,109 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.TestTools;
+using UnityEngine.Timeline;
+using USD.NET;
+
+namespace Unity.Formats.USD.Tests
+{
+    class AnimationRecordingTests
+    {
+        readonly List<string> m_filesToDelete = new List<string>();
+        string m_recordedUsdFile;
+
+        [UnitySetUp]
+        public IEnumerator SetUp()
+        {
+            // Create the necessary objects
+            // Cube is animated by an animation clip, Cylinder by a rigidbody,
+            // and Sphere is not animated.
+            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            var cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            cylinder.AddComponent<Rigidbody>();
+            // parent sphere and cylinder under cube
+            sphere.transform.SetParent(cube.transform);
+            cylinder.transform.SetParent(cube.transform);
+
+            // create simple animation clip (to animate the cube)
+            var curve = AnimationCurve.Linear(0, 50, 1, 100);
+            var clip = new AnimationClip();
+            clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
+
+            // create and setup the timeline
+            CreateTimeline(out var director, out var timeline);
+
+            var aTrack = timeline.CreateTrack<AnimationTrack>(null, "CubeAnimation");
+            aTrack.CreateClip(clip).displayName = "CubeClip";
+
+            // bind the timeline track to the cube
+            director.SetGenericBinding(aTrack, cube.AddComponent<Animator>());
+
+            // add usd recording track
+            var usdRecordTrack = timeline.CreateTrack<UsdRecorderTrack>(null, "");
+            var usdRecorderClip = usdRecordTrack.CreateDefaultClip();
+            usdRecorderClip.start = 0;
+            usdRecorderClip.duration = 2;
+            var usdRecorderAsset = usdRecorderClip.asset as UsdRecorderClip;
+
+            // set path to record to
+            m_recordedUsdFile = "Assets/" + Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".usd";
+            usdRecorderAsset.m_usdFile = m_recordedUsdFile;
+            m_filesToDelete.Add(usdRecorderAsset.m_usdFile);
+            
+            usdRecorderAsset.m_exportRoot = new ExposedReference<GameObject> { exposedName = Guid.NewGuid().ToString() };
+            director.SetReferenceValue(usdRecorderAsset.m_exportRoot.exposedName, cube);
+            Time.captureFramerate = (int)timeline.editorSettings.fps;
+
+            // record to USD
+            director.Play();
+            while (director.time <= 1.1)
+                yield return null;
+            director.Stop();
+            yield return null;
+        }
+
+        [Test]
+        public void TestExportSparseTimesampling()
+        {
+            Assert.That(m_recordedUsdFile, Does.Exist);
+            // Check that the Cube and Cylinder have timesamples, but not the Sphere (not animated)
+            InitUsd.Initialize();
+            var stage = pxr.UsdStage.Open(m_recordedUsdFile, pxr.UsdStage.InitialLoadSet.LoadAll);
+            var scene = Scene.Open(stage);
+            var cubePath = "/Cube";
+            var spherePath = "/Cube/Sphere";
+            var cylinderPath = "/Cube/Cylinder";
+
+            var keyframeDict = scene.ComputeKeyFrames(cubePath, attribute: "xformOp:transform");
+            // there should be transform keyframes for cube and cylinder but not sphere
+            Assert.That(keyframeDict.ContainsKey(cubePath), Is.True, "Missing timesamples for Cube in recorded usd");
+            Assert.That(keyframeDict.ContainsKey(cylinderPath), Is.True, "Missing timesamples for Cylinder in recorded usd");
+            Assert.That(keyframeDict.ContainsKey(spherePath), Is.False, "There should not be timesamples for Sphere in the recorded usd");
+
+            scene.Close();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            foreach (var file in m_filesToDelete)
+            {
+                File.Delete(file);
+            }
+            m_filesToDelete.Clear();
+        }
+
+        static void CreateTimeline(out PlayableDirector director, out TimelineAsset timeline)
+        {
+            director = new GameObject("Timeline").AddComponent<PlayableDirector>();
+            timeline = ScriptableObject.CreateInstance<TimelineAsset>();
+            director.playableAsset = timeline;
+        }
+    }
+}
