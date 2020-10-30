@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using Scene = USD.NET.Scene;
 using Assert = UnityEngine.Assertions.Assert;
+using System.Collections;
 
 namespace Unity.Formats.USD.Tests
 {
@@ -11,10 +12,26 @@ namespace Unity.Formats.USD.Tests
     {
         const string fbxGUID = "86a597c63449d2541b7587ff90e75d91"; // GUID of withCamera.fbx
         const string usdGUID = "f377c4260fb216d4dbe2f6e4d67091b5"; // GUID of withCamera.usd
+        const string leftHandedUsdGUID = "25388fbb44b88c448a40ef8eeb0c3ca2"; // GUID of withCamera_leftHanded.usd
 
         private GameObject fbxRoot;
         private GameObject usdRoot;
         
+        private GameObject LoadUSD(string guid, BasisTransformation changeHandedness = BasisTransformation.SlowAndSafeAsFBX)
+        {
+            InitUsd.Initialize();
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(guid));
+            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            var importOptions = new SceneImportOptions();
+            importOptions.changeHandedness = changeHandedness;
+            importOptions.scale = 0.01f;
+            importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+            var usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene, importOptions);
+            scene.Close();
+            return usdRoot;
+        }
+
         [SetUp]
         public void SetUp()
         {
@@ -22,16 +39,7 @@ namespace Unity.Formats.USD.Tests
             var asset = AssetDatabase.LoadAssetAtPath<GameObject>(fbxPath);
             fbxRoot = PrefabUtility.InstantiatePrefab(asset) as GameObject;
 
-            InitUsd.Initialize();
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(usdGUID));
-            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
-            var scene = Scene.Open(stage);
-            var importOptions = new SceneImportOptions();
-            importOptions.changeHandedness = BasisTransformation.SlowAndSafeAsFBX;
-            importOptions.scale = 0.01f;
-            importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-            usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene, importOptions);
-            scene.Close();
+            usdRoot = LoadUSD(usdGUID);
         }
 
         [Test]
@@ -66,6 +74,29 @@ namespace Unity.Formats.USD.Tests
             Assert.AreApproximatelyEqual(usdMeshTr.localRotation.x,fbxMeshTr.localRotation.x);
             Assert.AreApproximatelyEqual(usdMeshTr.localRotation.y,fbxMeshTr.localRotation.y);
             Assert.AreApproximatelyEqual(usdMeshTr.localRotation.z,fbxMeshTr.localRotation.z);
+        }
+
+        [Test]
+        public void TestLeftHandedUsdImport()
+        {
+            // Compare import of Left handed USD to right handed USD
+            var leftHandedUsdRoot = LoadUSD(leftHandedUsdGUID);
+            Assert.IsNotNull(leftHandedUsdRoot);
+
+            // check that the mesh does not match the right handed one
+            var usdCube = usdRoot.transform.Find("group2/group1/pCube1");
+            Assert.IsNotNull(usdCube);
+            var leftHandedUsdCube = leftHandedUsdRoot.transform.Find("group2/group1/pCube1");
+            Assert.IsNotNull(leftHandedUsdCube);
+
+            var cubeMesh = usdCube.GetComponent<MeshFilter>().sharedMesh;
+            var leftHandedCubeMesh = leftHandedUsdCube.GetComponent<MeshFilter>().sharedMesh;
+            
+            // Since the two files are different handedness, the vertices, triangles, and normals
+            // will be different.
+            NUnit.Framework.Assert.That(cubeMesh.vertices, Is.Not.EqualTo(leftHandedCubeMesh.vertices));
+            NUnit.Framework.Assert.That(cubeMesh.triangles, Is.Not.EqualTo(leftHandedCubeMesh.triangles));
+            NUnit.Framework.Assert.That(cubeMesh.normals, Is.Not.EqualTo(leftHandedCubeMesh.normals));
         }
     }
     
