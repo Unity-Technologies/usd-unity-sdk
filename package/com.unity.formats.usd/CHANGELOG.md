@@ -5,6 +5,9 @@
 - Set material name in Unity to match the material name in the USD file on import.
 - Fixed USDPayload's "Is Loaded" field in the inspector staying at false even when the payload has been loaded.
 
+### Fixed
+- Fixed left handed USD mesh not importing correctly.
+
 ## [1.0.4-preview.1] - 2020-07-24
 ### Changed
 - Updated USD version to 20.08
