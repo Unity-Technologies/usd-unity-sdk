@@ -9,7 +9,9 @@ namespace Unity.Formats.USD.Tests
 {
     public class FBXHandednessModeTests : ScriptableObject
     {
-        public Object withCameraFbx;
+        // Cannot store FBX as Object that can be set, as the fileID (stored in the meta file of this script), changes
+        // depending on the Unity version.
+        const string withCameraFbxGUID = "86a597c63449d2541b7587ff90e75d91"; // GUID of withCamera.fbx
         public Object withCameraUsd;
         public Object leftHandedWithCameraUsd;
         public Object bakedLeftHandedCube;
@@ -35,7 +37,10 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            fbxRoot = PrefabUtility.InstantiatePrefab(withCameraFbx) as GameObject;
+            var fbxPath = AssetDatabase.GUIDToAssetPath(withCameraFbxGUID);
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(fbxPath);
+            fbxRoot = PrefabUtility.InstantiatePrefab(asset) as GameObject;
+
             usdRoot = LoadUSD(withCameraUsd);
         }
 

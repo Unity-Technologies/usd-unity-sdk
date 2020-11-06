@@ -4,8 +4,6 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - withCameraFbx: {fileID: 919132149155446097, guid: 86a597c63449d2541b7587ff90e75d91,
-      type: 3}
   - withCameraUsd: {fileID: 102900000, guid: f377c4260fb216d4dbe2f6e4d67091b5, type: 3}
   - leftHandedWithCameraUsd: {fileID: 102900000, guid: 25388fbb44b88c448a40ef8eeb0c3ca2,
       type: 3}
