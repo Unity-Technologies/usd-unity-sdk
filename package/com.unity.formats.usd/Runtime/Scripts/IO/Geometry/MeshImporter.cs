@@ -285,8 +285,8 @@ namespace Unity.Formats.USD {
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
                               options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
       // Check if the handedness needs to change.
-      changeHandedness = changeHandedness && (usdMesh.orientation != Orientation.LeftHanded) ||
-                !changeHandedness && (usdMesh.orientation == Orientation.LeftHanded);
+      changeHandedness = (changeHandedness && (usdMesh.orientation != Orientation.LeftHanded)) ||
+                (!changeHandedness && (usdMesh.orientation == Orientation.LeftHanded));
 
       //
       // Points.
