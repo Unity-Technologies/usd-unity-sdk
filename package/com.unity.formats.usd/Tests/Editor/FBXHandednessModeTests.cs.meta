@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 841b1e2a5b155694cb2aa569fff58d99
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - withCameraFbx: {fileID: 919132149155446097, guid: 86a597c63449d2541b7587ff90e75d91,
+      type: 3}
+  - withCameraUsd: {fileID: 102900000, guid: f377c4260fb216d4dbe2f6e4d67091b5, type: 3}
+  - leftHandedWithCameraUsd: {fileID: 102900000, guid: 25388fbb44b88c448a40ef8eeb0c3ca2,
+      type: 3}
+  - bakedLeftHandedCube: {fileID: 4300000, guid: e833691401c227c4e95b6dbfe9215706,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

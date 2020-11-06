@@ -284,16 +284,16 @@ namespace Unity.Formats.USD {
       Material mat = renderer.sharedMaterial;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
                               options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
-      // check if the handedness needs to change
-      bool isLeftHanded = usdMesh.orientation == Orientation.LeftHanded;
-      var handednessChanged = changeHandedness && !isLeftHanded || !changeHandedness && isLeftHanded;
+      // Check if the handedness needs to change.
+      changeHandedness = changeHandedness && (usdMesh.orientation != Orientation.LeftHanded) ||
+                !changeHandedness && (usdMesh.orientation == Orientation.LeftHanded);
 
       //
       // Points.
       //
 
       if (options.meshOptions.points == ImportMode.Import && usdMesh.points != null) {
-        if (handednessChanged) {
+        if (changeHandedness) {
           for (int i = 0; i < usdMesh.points.Length; i++) {
             usdMesh.points[i] = UnityTypeConverter.ChangeBasis(usdMesh.points[i]);
           }
@@ -380,7 +380,7 @@ namespace Unity.Formats.USD {
         Profiler.EndSample();
 
         Profiler.BeginSample("Convert LeftHanded");
-        if (handednessChanged) {
+        if (changeHandedness) {
           // USD is right-handed, so the mesh needs to be flipped.
           // Unity is left-handed, but that doesn't matter here.
           for (int i = 0; i < usdMesh.faceVertexIndices.Length; i += 3) {
@@ -428,7 +428,7 @@ namespace Unity.Formats.USD {
 
       if (ShouldImport(options.meshOptions.boundingBox) && hasBounds) {
         Profiler.BeginSample("Import Bounds");
-        if (handednessChanged) {
+        if (changeHandedness) {
           usdMesh.extent.center = UnityTypeConverter.ChangeBasis(usdMesh.extent.center);
         }
         unityMesh.bounds = usdMesh.extent;
@@ -445,7 +445,7 @@ namespace Unity.Formats.USD {
 
       if (usdMesh.normals != null && ShouldImport(options.meshOptions.normals)) {
         Profiler.BeginSample("Import Normals");
-        if (handednessChanged) {
+        if (changeHandedness) {
           for (int i = 0; i < usdMesh.points.Length; i++) {
             usdMesh.normals[i] = UnityTypeConverter.ChangeBasis(usdMesh.normals[i]);
           }
@@ -468,7 +468,7 @@ namespace Unity.Formats.USD {
 
       if (usdMesh.tangents != null && ShouldImport(options.meshOptions.tangents)) {
         Profiler.BeginSample("Import Tangents");
-        if (handednessChanged) {
+        if (changeHandedness) {
           for (int i = 0; i < usdMesh.points.Length; i++) {
             var w = usdMesh.tangents[i].w;
             var t = UnityTypeConverter.ChangeBasis(usdMesh.tangents[i]);
