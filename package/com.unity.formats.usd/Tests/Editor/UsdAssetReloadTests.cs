@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.IO;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
 using USD.NET;
 using USD.NET.Unity;
 
@@ -43,8 +45,8 @@ namespace Unity.Formats.USD.Tests
             ResetTestFile();
         }
         
-        [Test]
-        public void UsdAsset_Reload_FileHasChanged_NewValuesAreRetrieved()
+        [UnityTest]
+        public IEnumerator UsdAsset_Reload_FileHasChanged_NewValuesAreRetrieved()
         {
             var xform = new XformSample();
 
@@ -54,6 +56,7 @@ namespace Unity.Formats.USD.Tests
             
             // Simulate the fact that the usd file was changed on disk.
             UpdateTestFile();
+            yield return null;
             
             // Refresh the asset.
             m_usdAsset.Reload(false);
@@ -64,8 +67,8 @@ namespace Unity.Formats.USD.Tests
             Assert.AreEqual(new Vector4(2, 2, 2, 1), translate);
         }
         
-        [Test]
-        public void UsdAsset_Reload_FileHasChangedAndForceRebuild_NewValuesAreRetrieved()
+        [UnityTest]
+        public IEnumerator UsdAsset_Reload_FileHasChangedAndForceRebuild_NewValuesAreRetrieved()
         {
             var xform = new XformSample();
 
@@ -75,6 +78,7 @@ namespace Unity.Formats.USD.Tests
             
             // Simulate the fact that the usd file was changed on disk.
             UpdateTestFile();
+            yield return null;
             
             // Reload the asset.
             m_usdAsset.Reload(true);
