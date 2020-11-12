@@ -2,25 +2,17 @@
     "name": "Unity.Formats.USD.Tests.Editor",
     "references": [
         "Unity.Formats.USD.Runtime",
-        "Unity.Formats.USD.Editor",
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "Unity.Formats.USD.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
     ],
     "includePlatforms": [
         "Editor"
     ],
-    "excludePlatforms": [],
     "allowUnsafeCode": true,
-    "overrideReferences": true,
     "precompiledReferences": [
         "USD.NET.dll",
-        "USD.NET.Unity.dll",
-        "nunit.framework.dll"
-    ],
-    "autoReferenced": false,
-    "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
-    ],
-    "versionDefines": [],
-    "noEngineReferences": false
+        "USD.NET.Unity.dll"
+    ]
 }
