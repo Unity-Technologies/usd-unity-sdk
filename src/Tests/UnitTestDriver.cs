@@ -58,6 +58,7 @@ namespace Tests {
       Cases.BasicTests.PrimvarsTest();
       Cases.BasicTests.SampleBaseTest();
       Cases.BasicTests.GetUsdObjectsTest();
+      Cases.BasicTests.ReadNonExistingPrimsTest();
 
       Cases.UnityIoTests.VectorsTest();
       Cases.UnityIoTests.QuaternionTest();
