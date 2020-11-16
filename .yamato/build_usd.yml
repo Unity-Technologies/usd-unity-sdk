@@ -60,9 +60,9 @@ build_platforms:
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/build
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
       cd ../artifacts
-      tar -acf usd-{{platform.name}}-x64.zip usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
+      tar -czf usd-{{platform.name}}-x64.tar.gz usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
       curl -sSo StevedoreUpload.exe {{platform.stevedore_url}}
-      {{platform.stevedore_exe}} --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-x64.zip
+      {{platform.stevedore_exe}} --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-x64.tar.gz
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
         paths:
@@ -105,16 +105,3 @@ build_platforms:
   commands:
     - bin/commit_bindings.sh
 {% endfor %}
-
-test_stevedore_job:
-  name: Stevedore test
-  agent:
-    type: Unity::VM
-    image: filmtv/usd_build_win10_image:latest
-    flavor: b1.small
-  commands: 
-    - |
-      curl -sSo StevedoreUpload.exe "%STEVEDORE_UPLOAD_TOOL_URL%"
-      echo.> usd-20-08-win-x64
-      tar -acf  usd-20-08-win-x64.zip usd-20-08-win-x64
-      StevedoreUpload.exe  --version-len=12 --repo=testing --version="%GIT_REVISION%" usd-20-08-win-x64.zip
