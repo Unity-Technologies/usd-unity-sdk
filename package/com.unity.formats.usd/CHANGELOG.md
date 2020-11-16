@@ -6,6 +6,9 @@
 - Fixed USDPayload's "Is Loaded" field in the inspector staying at false even when the payload has been loaded.
 - Fix UsdAsset not saving changes made in the inspector (simple view).
 
+### Bug Fixes
+- Fix the scene primMap that was corrupted with invalid prim making the write fail.
+
 ## [1.0.4-preview.1] - 2020-07-24
 ### Changed
 - Updated USD version to 20.08

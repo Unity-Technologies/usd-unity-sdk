@@ -745,10 +745,12 @@ namespace USD.NET {
     private pxr.UsdPrim GetUsdPrim(SdfPath path) {
       UsdPrim prim;
       lock(m_stageLock) {
-      if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
-        prim = Stage.GetPrimAtPath(path);
-        m_primMap[path] = prim;
-      }
+        if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
+          prim = Stage.GetPrimAtPath(path);
+          if (prim.IsValid()) {
+            m_primMap[path] = prim;
+          }
+        }
       }
       return prim;
     }
