@@ -18,7 +18,6 @@ namespace Unity.Formats.USD.Tests
 
         string testFilePath;
         string testFileModifiedPath;
-        string testFileBackupPath;
         
         GameObject m_usdRoot;
         UsdAsset m_usdAsset;
