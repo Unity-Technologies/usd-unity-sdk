@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 using NUnit.Framework;
 using UnityEditor;
@@ -13,6 +14,7 @@ namespace Unity.Formats.USD.Tests
     {
         const string k_USDGUID = "68d552f46d3740c47b17d0ac1c531e76";  // reloadTest.usda
         const string k_USDModifiedGUID = "4eccf405e5254fd4089cef2f9bcbd882"; // reloadTest_modified.usda
+        const string k_USDOriginGUID = "069ae5d2d8a36fd4b8a0395de731eda0"; // reloadTest_origin.usda
 
         string testFilePath;
         string testFileModifiedPath;
@@ -32,6 +34,7 @@ namespace Unity.Formats.USD.Tests
             scene.Close();
 
             m_usdAsset = m_usdRoot.GetComponent<UsdAsset>();
+            m_usdAsset.Reload(true);
             Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
         }
 
@@ -40,7 +43,7 @@ namespace Unity.Formats.USD.Tests
         {
             m_usdAsset.DestroyAllImportedObjects();
             GameObject.DestroyImmediate(m_usdRoot);
-            
+
             // Restore test files.
             ResetTestFile();
         }
@@ -54,10 +57,10 @@ namespace Unity.Formats.USD.Tests
             var translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(1, 1, 1, 1), translate);
             
+            yield return new WaitForSecondsRealtime(1f);
             // Simulate the fact that the usd file was changed on disk.
             UpdateTestFile();
-            yield return null;
-            
+
             // Refresh the asset.
             m_usdAsset.Reload(false);
             
@@ -65,6 +68,7 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(2, 2, 2, 1), translate);
+            yield return new WaitForSecondsRealtime(1f);
         }
         
         [UnityTest]
@@ -75,10 +79,10 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             var translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(1, 1, 1, 1), translate);
-            
+
+            yield return new WaitForSecondsRealtime(1f);
             // Simulate the fact that the usd file was changed on disk.
             UpdateTestFile();
-            yield return null;
             
             // Reload the asset.
             m_usdAsset.Reload(true);
@@ -87,6 +91,7 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(2, 2, 2, 1), translate);
+            yield return new WaitForSecondsRealtime(1f);
         }
         
         [Test]
@@ -111,20 +116,14 @@ namespace Unity.Formats.USD.Tests
         {
             testFileModifiedPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDModifiedGUID));
             
-            var folder = Path.GetDirectoryName(testFilePath);
-            testFileBackupPath = Path.Combine(folder, "backup.usda");
-            
-            File.Move(testFilePath, testFileBackupPath);
-            File.Move(testFileModifiedPath, testFilePath);
+            File.WriteAllBytes(testFilePath, File.ReadAllBytes(testFileModifiedPath));
         }
 
         void ResetTestFile()
         {
-            if (!File.Exists(testFileBackupPath))
-                return; // Nothing to restore
-            
-            File.Move(testFilePath, testFileModifiedPath);
-            File.Move(testFileBackupPath, testFilePath);
+            var originFile = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDOriginGUID));
+
+            File.WriteAllBytes(testFilePath, File.ReadAllBytes(originFile));
         }
     }
 }
