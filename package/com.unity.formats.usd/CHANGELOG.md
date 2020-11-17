@@ -9,6 +9,9 @@
 ### Bug Fixes
 - Fix the scene primMap that was corrupted with invalid prim making the write fail.
 
+### Bug Fixes
+- Fix an inability to refresh layers in Editor Mode
+
 ## [1.0.4-preview.1] - 2020-07-24
 ### Changed
 - Updated USD version to 20.08
