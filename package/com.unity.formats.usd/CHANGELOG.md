@@ -3,8 +3,13 @@
 ## [Unreleased] - 2020-10-27
 ### Changed
 - Set material name in Unity to match the material name in the USD file on import.
+
+### Bug Fixes
+- Fix the scene primMap that was corrupted with invalid prim making the write fail.
+- Fix an inability to refresh layers in Editor Mode
 - Fixed USDPayload's "Is Loaded" field in the inspector staying at false even when the payload has been loaded.
 - Fixed Transform Overrides export extension (USDU-124)
+- Fix UsdAsset not saving changes made in the inspector (simple view).
 
 ## [1.0.4-preview.1] - 2020-07-24
 ### Changed
