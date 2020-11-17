@@ -4,7 +4,6 @@ using UnityEditor;
 using UnityEngine;
 using Scene = USD.NET.Scene;
 using Assert = UnityEngine.Assertions.Assert;
-using System.Collections;
 
 namespace Unity.Formats.USD.Tests
 {
