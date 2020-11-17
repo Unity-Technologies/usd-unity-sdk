@@ -60,9 +60,9 @@ build_platforms:
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/build
       rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
       cd ../artifacts
-      tar -czf usd-{{platform.name}}-x64.tar.gz usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
+      zip -r usd-{{platform.name}}-x64.zip usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/* 
       curl -sSo StevedoreUpload.exe {{platform.stevedore_url}}
-      {{platform.stevedore_exe}} --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-x64.tar.gz
+      {{platform.stevedore_exe}} --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-x64.zip
   artifacts:
       {{platform.name}}_usd_{{usd_version.version}}:
         paths:
