@@ -284,9 +284,6 @@ namespace Unity.Formats.USD {
       Material mat = renderer.sharedMaterial;
       bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
                               options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
-      // Check if the handedness needs to change.
-      changeHandedness = (changeHandedness && (usdMesh.orientation != Orientation.LeftHanded)) ||
-                (!changeHandedness && (usdMesh.orientation == Orientation.LeftHanded));
 
       //
       // Points.
@@ -380,7 +377,8 @@ namespace Unity.Formats.USD {
         Profiler.EndSample();
 
         Profiler.BeginSample("Convert LeftHanded");
-        if (changeHandedness) {
+        bool isLeftHanded = usdMesh.orientation == Orientation.LeftHanded;
+        if (changeHandedness && !isLeftHanded || !changeHandedness && isLeftHanded) {
           // USD is right-handed, so the mesh needs to be flipped.
           // Unity is left-handed, but that doesn't matter here.
           for (int i = 0; i < usdMesh.faceVertexIndices.Length; i += 3) {
