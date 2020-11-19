@@ -566,5 +566,33 @@ namespace Tests.Cases {
       AssertTrue(scene.GetRelationshipAtPath("/Foo.number") == null);
       AssertTrue(scene.GetAttributeAtPath("/Foo.rel") == null);
     }
+
+    public static void ReadNonExistingPrimsTest()
+    {
+      var scene = USD.NET.Scene.Create();
+      
+      var sample = new MinimalSample();
+      // Read non existing prim, not in the prim map
+      scene.Read<MinimalSample>("/Foo", sample);
+      AssertTrue(sample.number == 0);
+      AssertTrue(sample.rel == null);
+
+      sample.number = 45;
+      sample.rel = new USD.NET.Relationship("/Foo");      
+      scene.Write("/Foo", sample);
+
+      //// Reading the prim adds it the internal prim map
+      var sample2 = new MinimalSample();
+      scene.Read<MinimalSample>("/Foo", sample2);
+      AssertTrue(sample.number == sample2.number);
+      AssertTrue(sample.rel != null);
+
+      // Reading a non existing prim that is still in the prim map
+      scene.Stage.RemovePrim(new pxr.SdfPath("/Foo"));
+      var sample3 = new MinimalSample();
+      scene.Read<MinimalSample>("/Foo", sample3);
+      AssertTrue(sample3.number == 0);
+      AssertTrue(sample3.rel == null);
+    }
   }
 }
