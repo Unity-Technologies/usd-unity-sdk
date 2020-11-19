@@ -56,8 +56,13 @@ namespace USD.NET {
     // A lock used to protect the stage from multi-threaded writes.
     private object m_stageLock;
 
+    // Sparse value writer that keeps a map of UsdAttributes to UsdUtilsSparseAttrValueWriter objects.
+    // Used when setting time samples, to avoid writing redundant values.
+    private pxr.UsdUtilsSparseValueWriter m_sparseValueWriter;
+
     public UsdIo(object stageLock) {
       m_stageLock = stageLock;
+      m_sparseValueWriter = new pxr.UsdUtilsSparseValueWriter();
     }
 
     /// <summary>
@@ -467,8 +472,7 @@ namespace USD.NET {
         return true;
       }
 
-      // use the sparse attribute value writer, to skip redundant time samples
-      var sparseAttrValueWriter = new pxr.UsdUtilsSparseAttrValueWriter(attr);
+
       pxr.VtValue vtValue = binding.toVtValue(csValue);
       lock (m_stageLock) {
         if (isMetaData) {
@@ -478,7 +482,8 @@ namespace USD.NET {
         } else if (Reflect.IsFusedDisplayColor(memberInfo)) {
           pxr.UsdCs.SetFusedDisplayColor(prim, vtValue, time);
         } else {
-          sparseAttrValueWriter.SetTimeSample(vtValue, time);
+          // use the sparse attribute value writer, to skip redundant time samples
+          m_sparseValueWriter.SetAttribute(attr, vtValue, time);
         }
       }
 
