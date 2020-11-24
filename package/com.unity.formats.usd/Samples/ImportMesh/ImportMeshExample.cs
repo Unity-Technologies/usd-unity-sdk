@@ -14,6 +14,7 @@
 
 using System;
 using UnityEngine;
+using System.IO;
 using USD.NET;
 
 namespace Unity.Formats.USD.Examples {
@@ -25,6 +26,7 @@ namespace Unity.Formats.USD.Examples {
   [ExecuteInEditMode]
   public class ImportMeshExample : MonoBehaviour {
     public string m_usdFile;
+    private const string K_DEFAULT_MESH = "mesh.usd";
     public Material m_material;
 
     // The range is arbitrary, but adding it provides a slider in the UI.
@@ -48,13 +50,12 @@ namespace Unity.Formats.USD.Examples {
     void Start() {
       InitUsd.Initialize();
       m_lastTime = m_usdTime;
+      if (string.IsNullOrEmpty(m_usdFile))
+        m_usdFile = Path.Combine(PackageUtils.GetMonoBehaviourFolderPath(this), K_DEFAULT_MESH);
     }
 
-    void Update() {
-      m_usdFile = m_usdFile.Replace("\"", "");
-      if (!System.IO.Path.IsPathRooted(m_usdFile)) {
-        m_usdFile = Application.dataPath + "/" + m_usdFile;
-      }
+    void Update()
+    {
       if (string.IsNullOrEmpty(m_usdFile)) {
         if (m_scene == null) {
           return;
@@ -71,11 +72,6 @@ namespace Unity.Formats.USD.Examples {
       }
 
       try {
-        // Does the path exist?
-        if (!System.IO.File.Exists(m_usdFile)) {
-          throw new System.IO.FileNotFoundException(m_usdFile);
-        }
-
         m_lastTime = m_usdTime;
 
         // Clear out the old scene.
@@ -118,6 +114,15 @@ namespace Unity.Formats.USD.Examples {
         enabled = false;
         throw;
       }
+    }
+    private void OnValidate()
+    {
+      if (!string.IsNullOrEmpty(m_usdFile) && !System.IO.File.Exists(m_usdFile))
+      {
+        enabled = false;
+        throw new System.IO.FileNotFoundException(m_usdFile);
+      }
+      enabled = true;
     }
 
     // Destroy all previously created objects.
