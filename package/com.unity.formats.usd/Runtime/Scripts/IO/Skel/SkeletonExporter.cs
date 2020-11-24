@@ -101,6 +101,18 @@ namespace Unity.Formats.USD {
         sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
       }
 
+      // Convert the transform
+      var path = new pxr.SdfPath(objContext.path);
+
+      // If exporting for Z-Up, rotate the world.
+      bool correctZUp = exportContext.scene.UpAxis == Scene.UpAxes.Z;
+
+      sample.transform = XformExporter.GetLocalTransformMatrix(
+            objContext.gameObject.transform,
+            correctZUp,
+            path.IsRootPrimPath(),
+            exportContext.basisTransform);
+
       exportContext.scene.Write(objContext.path, sample);
     }
 

@@ -11,6 +11,9 @@
 - Fixed Transform Overrides export extension (USDU-124)
 - Fix UsdAsset not saving changes made in the inspector (simple view).
 
+### Fixed
+- Fix redundant Timesamples created every frame for every prims at export.
+
 ## [1.0.4-preview.1] - 2020-07-24
 ### Changed
 - Updated USD version to 20.08
