@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ namespace Tests {
       System.IO.File.Delete(filename);
     }
 
-    public static void TestVariability<T>(T inputSample)
+    public static void TestVariability<T>(T inputSample, T inputSample2)
       where T : USD.NET.SampleBase, new() {
       // ----------------------------------------------- //
       // Test with default time --> not varying.
@@ -89,7 +89,7 @@ namespace Tests {
       System.IO.File.Delete(filename);
 
       // ----------------------------------------------- //
-      // Test with time = 1.0, 2.0 --> varying.
+      // Test with time = 1.0, 2.0 --> same sample, not varying (sparse writing)
       // ----------------------------------------------- //
       filename = GetTempFile();
       scene = USD.NET.Scene.Create(filename);
@@ -98,7 +98,36 @@ namespace Tests {
       scene.Write("/Foo", inputSample);
 
       scene.Time = 2.0;
+      scene.Write("/Foo", inputSample2);
+
+      scene.Save();
+      scene.Close();
+
+      varMap = new USD.NET.AccessMask();
+      scene2 = USD.NET.Scene.Open(filename);
+      scene2.Time = 1.0;
+      scene2.IsPopulatingAccessMask = true;
+      scene2.AccessMask = varMap;
+      scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
+      scene2.Close();
+
+      // Expect nothing dynamic, since the same exact values were written at 2 different times     
+      AssertTrue(varMap.Included.Count > 0);
+      AssertTrue(varMap.Included[new pxr.SdfPath("/Foo")].Count > 0);
+   
+      System.IO.File.Delete(filename);
+
+      // ----------------------------------------------- //
+      // Test with time = 1.0, 2.0 --> same sample, not varying (sparse writing)
+      // ----------------------------------------------- //
+      filename = GetTempFile();
+      scene = USD.NET.Scene.Create(filename);
+
+      scene.Time = 1.0;
       scene.Write("/Foo", inputSample);
+
+      scene.Time = 2.0;
+      scene.Write("/Foo", inputSample2);
 
       scene.Save();
       scene.Close();
@@ -126,9 +155,11 @@ namespace Tests {
       scene2.Close();
 
       Console.WriteLine("(Expect only </Foo>)");
-      foreach (var pathAndMembers in varMap.Included) {
+      foreach (var pathAndMembers in varMap.Included)
+      {
         Console.WriteLine("  Dynamic Members: " + pathAndMembers.Key);
-        foreach (var memberInfo in pathAndMembers.Value) {
+        foreach (var memberInfo in pathAndMembers.Value)
+        {
           Console.WriteLine("    ." + memberInfo.Name);
         }
       }
@@ -136,17 +167,21 @@ namespace Tests {
       AssertTrue(varMap.Included.Count > 0);
       AssertTrue(varMap.Included[new pxr.SdfPath("/Foo")].Count > 0);
 
-      foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo")]) {
+      foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo")])
+      {
         var fi = memberInfo as System.Reflection.FieldInfo;
         var pi = memberInfo as System.Reflection.PropertyInfo;
         object vIn = null;
         object vOut = null;
-        if (fi != null && fi.FieldType.IsClass) {
-          vIn = fi.GetValue(inputSample);
-          vOut = fi.GetValue(outputSample);
-        } else if (pi != null && pi.PropertyType.IsClass) {
-          vIn = pi.GetValue(inputSample, null);
-          vOut = pi.GetValue(outputSample, null);
+        if (fi != null && fi.FieldType.IsClass)
+        {
+            vIn = fi.GetValue(inputSample);
+            vOut = fi.GetValue(outputSample);
+        }
+        else if (pi != null && pi.PropertyType.IsClass)
+        {
+            vIn = pi.GetValue(inputSample, null);
+            vOut = pi.GetValue(outputSample, null);
         }
 
         AssertEqual(vIn, vOut);
@@ -167,7 +202,7 @@ namespace Tests {
       scene.Time = 1.0;
       scene.Write("/Foo/Bar", inputSample);
       scene.Time = 2.0;
-      scene.Write("/Foo/Bar", inputSample);
+      scene.Write("/Foo/Bar", inputSample2);
 
       scene.Save();
       scene.Close();
@@ -213,13 +248,17 @@ namespace Tests {
       }
 
       // Assert that all </Bar> values are non-default.
-      foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo/Bar")]) {
+      foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo/Bar")])
+      {
         var fi = memberInfo as System.Reflection.FieldInfo;
         var pi = memberInfo as System.Reflection.PropertyInfo;
-        if (fi != null && fi.FieldType.IsClass) {
-          AssertEqual(fi.GetValue(barSample), fi.GetValue(inputSample));
-        } else if (pi != null && pi.PropertyType.IsClass) {
-          AssertEqual(pi.GetValue(barSample, null), fi.GetValue(inputSample));
+        if (fi != null && fi.FieldType.IsClass)
+        {
+            AssertEqual(fi.GetValue(barSample), fi.GetValue(inputSample));
+        }
+        else if (pi != null && pi.PropertyType.IsClass)
+        {
+            AssertEqual(pi.GetValue(barSample, null), fi.GetValue(inputSample));
         }
       }
 

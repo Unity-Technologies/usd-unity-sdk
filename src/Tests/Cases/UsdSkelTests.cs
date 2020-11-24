@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System.Linq;
 using pxr;
 using USD.NET;
-using USD.NET.Unity;
 using UnityEngine;
 
 namespace Tests.Cases {

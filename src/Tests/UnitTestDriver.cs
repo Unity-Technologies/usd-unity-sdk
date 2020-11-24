@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ namespace Tests {
       Console.ReadKey();
 
       Cases.MeshTests.TriangulationTest();
-      Cases.MeshTests.VisibilityTest();
 
       Cases.StageTests.BadPrimTest();
 
@@ -60,32 +59,7 @@ namespace Tests {
       Cases.BasicTests.GetUsdObjectsTest();
       Cases.BasicTests.ReadNonExistingPrimsTest();
 
-      Cases.UnityIoTests.VectorsTest();
-      Cases.UnityIoTests.QuaternionTest();
-      Cases.UnityIoTests.XformTest();
-      Cases.UnityIoTests.Xform2Test();
-
-      Cases.UsdGeomTests.CurvesTest();
-      Cases.UsdGeomTests.CameraTest();
-      Cases.UsdGeomTests.Camera2Test();
-      Cases.UsdGeomTests.PrimvarTest();
-
-      Cases.UsdShadeTests.MaterialBindTest();
-      Cases.UsdShadeTests.MaterialIoTest();
-
       Cases.TimeSampleTests.ComputeKeyFramesTest();
-
-      Cases.UsdShadeTests.MaterialBindTest();
-
-      Cases.UsdPreviewSurfaceTests.ReadWriteTest();
-
-      Cases.InstancingTests.TraversalTest();
-      Cases.InstancingTests.CreatePointInstancerManualTest();
-      Cases.InstancingTests.PointInstancerTest();
-
-      Cases.OverrideTests.WriteToOverTest();
-      Cases.OverrideTests.WriteToUnderTest();
-      Cases.OverrideTests.WriteOverOnlyTest();
 
       Console.ReadKey();
     }

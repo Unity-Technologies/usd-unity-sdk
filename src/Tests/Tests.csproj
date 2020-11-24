@@ -82,22 +82,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\Program Files\Unity2018.2.7f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cases\BasicTests.cs" />
-    <Compile Include="Cases\InstancingTests.cs" />
     <Compile Include="Cases\MeshTests.cs" />
     <Compile Include="Cases\QueryTests.cs" />
-    <Compile Include="Cases\OverrideTests.cs" />
     <Compile Include="Cases\StageTests.cs" />
     <Compile Include="Cases\TimeSampleTests.cs" />
-    <Compile Include="Cases\UnityIoTests.cs" />
-    <Compile Include="Cases\UsdGeomTests.cs" />
-    <Compile Include="Cases\UsdPreviewSurfaceTests.cs" />
-    <Compile Include="Cases\UsdShadeTests.cs" />
     <Compile Include="Cases\VerifyAotAttributes.cs" />
     <Compile Include="UnitTestDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,10 +100,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\USD.NET.Unity\USD.NET.Unity.csproj">
-      <Project>{0563652b-6e9c-43b8-bf51-944065757974}</Project>
-      <Name>USD.NET.Unity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\USD.NET\USD.NET.csproj">
       <Project>{7706d7ac-a3ab-436a-a6eb-8c08b42d9a44}</Project>
       <Name>USD.NET</Name>

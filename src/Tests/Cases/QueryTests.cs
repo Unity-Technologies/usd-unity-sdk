@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,13 +14,25 @@
 
 using System;
 using USD.NET;
-using USD.NET.Unity;
 
 [System.Serializable]
 [UsdSchema("UsdGeomXformable")]
 class XformableQuery : SampleBase {
   public XformableQuery() {
   }
+}
+
+[System.Serializable]
+[UsdSchema("UsdGeomCube")]
+class CubeSample : SampleBase
+{
+}
+
+[System.Serializable]
+[UsdSchema("UsdGeomMesh")]
+class MeshSample : SampleBase
+{
+    public Visibility visibility;
 }
 
 [System.Serializable]
@@ -77,7 +89,7 @@ namespace Tests.Cases {
         foreach (var mesh in scene.ReadAll<BadBaseTypeQuery>(rootPath: "/Root")) {
           Console.WriteLine("Query Test: " + mesh.path);
         }
-        
+
         // TODO: for some reason, these stop working after the first exception is thrown,
         //       but it seems like *only* this code path is affected.
         if (!string.IsNullOrEmpty(Util.DiagnosticHandler.Instance.LastError)) {

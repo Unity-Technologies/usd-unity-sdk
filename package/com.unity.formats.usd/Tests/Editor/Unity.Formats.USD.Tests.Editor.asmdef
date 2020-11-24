@@ -1,6 +1,7 @@
 {
     "name": "Unity.Formats.USD.Tests.Editor",
     "references": [
+        "USD.NET.Unity",
         "Unity.Formats.USD.Runtime",
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Tests"
@@ -13,7 +14,6 @@
     ],
     "allowUnsafeCode": true,
     "precompiledReferences": [
-        "USD.NET.dll",
-        "USD.NET.Unity.dll"
+        "USD.NET.dll"
     ]
 }

@@ -46,7 +46,7 @@ namespace Tests.Util {
       pxr.PlugRegistry.GetInstance().RegisterPlugins(pluginsLocation);
 
       // Init USD.NET.Unity type bindings.
-      USD.NET.Unity.UnityTypeBindings.RegisterTypes();
+      // USD.NET.Unity.UnityTypeBindings.RegisterTypes();
     }
 
     /// <summary>

@@ -21,7 +21,6 @@ using UnityEditor.AssetImporters;
 #else
 using UnityEditor.Experimental.AssetImporters;
 #endif
-using USD.NET.Unity;
 
 #if false
 [CustomEditor(typeof(UsdScriptedImporter))]

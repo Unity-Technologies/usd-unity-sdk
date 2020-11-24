@@ -17,18 +17,7 @@ using pxr;
 
 namespace Tests.Cases {
   class MeshTests : UnitTest {
-    
-    public static void VisibilityTest() {
-      var sample = new USD.NET.Unity.MeshSample();
-      var outSample = new USD.NET.Unity.MeshSample();
-      sample.visibility = USD.NET.Visibility.Invisible;
-
-      WriteAndRead(ref sample, ref outSample, true);
-
-      AssertEqual(sample.visibility, outSample.visibility);
-    }
-
-    public static void TriangulationTest() {
+      public static void TriangulationTest() {
       VtIntArray indices = new VtIntArray();
       VtIntArray faceCounts = new VtIntArray();
 
