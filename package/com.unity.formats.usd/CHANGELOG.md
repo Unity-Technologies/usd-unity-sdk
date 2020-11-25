@@ -1,22 +1,27 @@
 # Changes in usd-unitysdk for Unity
 
-## [Unreleased] - 2020-10-27
-### Changed
-- Set material name in Unity to match the material name in the USD file on import.
+## [Unreleased 2.0.0] - 2020-10-27
+### Features
+- Updated USD version to v20.08
+- Set material name in Unity to match the material name in the USD file on import (#174).
+- Shader exporter: added PBR export support to standard shader (#191, #206).
+- Shader exporter: added support for in-memory and render texture export (#125).
+- Shader exporter: added support for texture wrap modes (#125).
+- Added USDZ export from recorder clip.
+- Added Scope import as XForm (#154).
 
 ### Bug Fixes
-- Fix the scene primMap that was corrupted with invalid prim making the write fail.
-- Fix an inability to refresh layers in Editor Mode
+- Fixed a crash happening when calling Scene.Read on non existing prims (#158).
+- Fixed an inability to refresh layers in Editor Mode (#155).
 - Fixed USDPayload's "Is Loaded" field in the inspector staying at false even when the payload has been loaded.
 - Fixed Transform Overrides export extension (USDU-124)
-- Fix UsdAsset not saving changes made in the inspector (simple view).
+- Fixed UsdAsset not saving changes made in the inspector (simple view).
+- Fixed redundant Timesamples created every frame for every prims at export.
+- Fixed shader import for emissive color & light baking.
+- Fixed wrong texture paths when exporting from packages (#125).
+- Fixed prefabs being reset when entering Play mode (#101).
 
-### Fixed
-- Fix redundant Timesamples created every frame for every prims at export.
-
-## [1.0.4-preview.1] - 2020-07-24
-### Changed
-- Updated USD version to 20.08
+Special thanks to Felix Herbst for his awesome contributions on the materials and USDZ exporters.
 
 ## [1.0.3-preview.2] - 2020-04-24
 ### Changed
