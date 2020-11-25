@@ -21,9 +21,7 @@ using pxr;
 using USD.NET;
 using USD.NET.Unity;
 
-#if !UNITY_2017
 using Unity.Jobs;
-#endif
 
 namespace Unity.Formats.USD {
 
@@ -50,10 +48,7 @@ namespace Unity.Formats.USD {
       public string modelVersion;
     }
 
-    struct ReadHierJob
-#if !UNITY_2017
-      : IJobParallelFor
-#endif
+    struct ReadHierJob: IJobParallelFor
       {
       public static HierInfo[] result;
       public static Scene scene;
@@ -86,10 +81,7 @@ namespace Unity.Formats.USD {
       }
     }
 
-    struct FindPathsJob
-#if !UNITY_2017
-      : IJobParallelFor
-#endif
+    struct FindPathsJob : IJobParallelFor
       {
       public interface IQuery {
         SdfPath[] Find(Scene scene, SdfPath usdRoot);
@@ -117,16 +109,10 @@ namespace Unity.Formats.USD {
       }
     }
 
-    static
-#if !UNITY_2017
-      JobHandle
-#else
-      void
-#endif
-                       BeginReading(Scene scene,
-                                    SdfPath usdRoot,
-                                    PrimMap map,
-                                    SceneImportOptions options) {
+    static JobHandle BeginReading(Scene scene,
+                                  SdfPath usdRoot,
+                                  PrimMap map,
+                                  SceneImportOptions options) {
       FindPathsJob.usdRoot = usdRoot;
       FindPathsJob.scene = scene;
       FindPathsJob.results = new SdfPath[9][];
@@ -152,17 +138,13 @@ namespace Unity.Formats.USD {
       if (options.importTransforms) {
         FindPathsJob.queries[7] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
       }
-      
+
       FindPathsJob.queries[8] = (FindPathsJob.IQuery)new FindPathsJob.Query<ScopeSample>();
 
       var findPathsJob = new FindPathsJob();
-#if !UNITY_2017
       var findHandle = findPathsJob.Schedule(FindPathsJob.queries.Length, 1);
       findHandle.Complete();
-#else
-      findPathsJob.Run();
-#endif
-    
+
       // Note that Scope prims are taken into account when building the hierarchy but not added to the PrimMap
       // This is because Scopes don't need specific import/export logic for now:
       //   * they don't hold any data ton convert on the way in
@@ -183,12 +165,7 @@ namespace Unity.Formats.USD {
       ReadHierJob.scene = scene;
       ReadHierJob.skelCache = map.SkelCache;
       var readHierInfo = new ReadHierJob();
-#if !UNITY_2017
       return readHierInfo.Schedule(ReadHierJob.paths.Length, 8, dependsOn: findHandle);
-#else
-      readHierInfo.Run();
-      return;
-#endif
     }
 
     static HierInfo[] BuildObjectLists(Scene scene,
@@ -206,12 +183,7 @@ namespace Unity.Formats.USD {
         map.SkelBindings = new Dictionary<SdfPath, UsdSkelBindingVector>();
       }
 
-#if !UNITY_2017
       BeginReading(scene, usdRoot, map, options).Complete();
-#else
-      BeginReading(scene, usdRoot, map, options);
-#endif
-
       ProcessPaths(ReadHierJob.result, scene, unityRoot, usdRoot, map, options);
 
       return ReadHierJob.result;

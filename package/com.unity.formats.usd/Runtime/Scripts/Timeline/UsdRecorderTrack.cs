@@ -17,9 +17,6 @@ using UnityEngine.Timeline;
 namespace Unity.Formats.USD {
   [System.Serializable]
   [TrackClipType(typeof(UsdRecorderClip))]
-#if !UNITY_2018_2_OR_NEWER
-  [TrackMediaType(TimelineAsset.MediaType.Script)]
-#endif
   [TrackColor(0.7f, 0.0f, 0.0f)]
   public class UsdRecorderTrack : TrackAsset {
   }

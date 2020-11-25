@@ -15,9 +15,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-#if !UNITY_2017
 using Unity.Jobs;
-#endif
 
 using pxr;
 using System.Collections;
@@ -33,16 +31,14 @@ namespace Unity.Formats.USD {
   /// <remarks>
   /// Internally the reads happen in a background thread while the main thread is unblocked to
   /// begin processing the data as it arrives.
-  /// 
+  ///
   /// Note because this class is templated on T, the static variables are unique to each
   /// instantiation of T; this is true regardless of whether or not the static uses type T.
   /// </remarks>
   public struct ReadAllJob<T> :
       IEnumerator<SampleEnumerator<T>.SampleHolder>,
-      IEnumerable<SampleEnumerator<T>.SampleHolder>
-#if !UNITY_2017
-      , IJobParallelFor
-#endif
+      IEnumerable<SampleEnumerator<T>.SampleHolder>,
+      IJobParallelFor
       where T : SampleBase, new() {
 
     static private Scene m_scene;
