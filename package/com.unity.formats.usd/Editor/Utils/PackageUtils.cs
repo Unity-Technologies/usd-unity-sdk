@@ -46,23 +46,5 @@ namespace Unity.Formats.USD
         {
             return GetRelativeFolderPath(Directory.GetCurrentDirectory(), filePath);
         }
-
-
-        /// <summary>
-        /// Utils function to get the absolute path of a MonoBehaviour
-        /// </summary>
-        public static string GetMonoBehaviourPath(MonoBehaviour mono)
-        {
-            var script = MonoScript.FromMonoBehaviour(mono);
-            return AssetDatabase.GetAssetPath(script);
-        }
-
-        /// <summary>
-        /// Utils function to get the absolute path of the parent folder of a MonoBehaviour
-        /// </summary>
-        public static string GetMonoBehaviourFolderPath(MonoBehaviour mono)
-        {
-            return Directory.GetParent(GetMonoBehaviourPath(mono)).FullName;
-        }
     }
 }
