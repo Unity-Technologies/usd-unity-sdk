@@ -21079,6 +21079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786737527}
   - component: {fileID: 1786737528}
+  - component: {fileID: 1786737529}
   m_Layer: 0
   m_Name: testRecording
   m_TagString: Untagged
@@ -21113,7 +21114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aff4833db8e2b14aa0f0b6071c41e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_usdFile: Assets/Samples/USD/1.0.3-preview.1/UsdTimelinePlayable/mesh.usd
+  m_usdFile:
   m_projectAssetPath: Assets/
   m_usdRootPath: /
   m_usdTimeOffset: 0
@@ -21157,6 +21158,18 @@ MonoBehaviour:
   LastHandedness: 1
   LastScale: 1
   m_instanceId: 33892
+--- !u!114 &1786737529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786737526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cababbffd53bec479dc9d47daf0353c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1 &1786831524
 GameObject:
   m_ObjectHideFlags: 0
