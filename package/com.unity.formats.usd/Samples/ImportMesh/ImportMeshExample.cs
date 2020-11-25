@@ -51,7 +51,7 @@ namespace Unity.Formats.USD.Examples {
       InitUsd.Initialize();
       m_lastTime = m_usdTime;
       if (string.IsNullOrEmpty(m_usdFile))
-        m_usdFile = Path.Combine(PackageUtils.GetMonoBehaviourFolderPath(this), K_DEFAULT_MESH);
+        m_usdFile = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), K_DEFAULT_MESH);
     }
 
     void Update()
