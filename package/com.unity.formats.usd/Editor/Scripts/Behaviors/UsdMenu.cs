@@ -20,8 +20,14 @@ using USD.NET;
 using USD.NET.Unity;
 
 namespace Unity.Formats.USD {
- 
-  public class UsdMenu : MonoBehaviour {
+
+  public class UsdMenu : MonoBehaviour
+  {
+      const string PayloadPolicyPrefName = "USD.LoadAllPayloads";
+      const string MaterialPolicyPrefName = "USD.LoadPreviewSurface";
+
+      const string UsdPrefPayloadMenuName = "USD/Preferences/Load all payloads";
+      const string UsdPrefMaterialMenuName = "USD/Preferences/Load preview surface";
 
     public static Scene InitForSave(string defaultName, string fileExtension = "usd,usda,usdc") {
       var filePath = EditorUtility.SaveFilePanel("Export USD File", "", defaultName, fileExtension);
@@ -54,7 +60,10 @@ namespace Unity.Formats.USD {
         return null;
       }
       InitUsd.Initialize();
-      var stage = pxr.UsdStage.Open(path, pxr.UsdStage.InitialLoadSet.LoadNone);
+      var loadSet = EditorPrefs.GetBool(PayloadPolicyPrefName, true)
+          ? pxr.UsdStage.InitialLoadSet.LoadAll
+          : pxr.UsdStage.InitialLoadSet.LoadNone;
+      var stage = pxr.UsdStage.Open(path, loadSet);
       return Scene.Open(stage);
     }
 
@@ -192,7 +201,38 @@ namespace Unity.Formats.USD {
       }
     }
 
-    [MenuItem("USD/Import as GameObjects", priority = 0)]
+
+    [MenuItem(UsdPrefPayloadMenuName, priority = 0)]
+    static void LoadAllPayloads()
+    {
+        var enabled = Menu.GetChecked(UsdPrefPayloadMenuName);
+        EditorPrefs.SetBool(PayloadPolicyPrefName, !enabled);
+        Menu.SetChecked(UsdPrefPayloadMenuName, !enabled);
+    }
+
+    [MenuItem(UsdPrefPayloadMenuName, true)]
+    static bool LoadAllPayloadsValidate() {
+        var enabled = EditorPrefs.GetBool(PayloadPolicyPrefName, true);
+        Menu.SetChecked(UsdPrefPayloadMenuName, enabled);
+        return true;
+    }
+
+    [MenuItem(UsdPrefMaterialMenuName, priority = 0)]
+    static void LoadAllPreviewSurface()
+    {
+        var enabled = Menu.GetChecked(UsdPrefMaterialMenuName);
+        EditorPrefs.SetBool(MaterialPolicyPrefName, !enabled);
+        Menu.SetChecked(UsdPrefMaterialMenuName, !enabled);
+    }
+
+    [MenuItem(UsdPrefMaterialMenuName, true)]
+    static bool LoadAllPreviewSurfaceValidate() {
+        var enabled = EditorPrefs.GetBool(MaterialPolicyPrefName, false);
+        Menu.SetChecked(UsdPrefMaterialMenuName, enabled);
+        return true;
+    }
+
+    [MenuItem("USD/Import as GameObjects", priority = 20)]
     public static void MenuImportAsGameObjects() {
       var scene = InitForOpen();
       if (scene == null) {
@@ -217,6 +257,10 @@ namespace Unity.Formats.USD {
         importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
         importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
         importOptions.usdRootPath = GetDefaultRoot(scene);
+        importOptions.payloadPolicy = EditorPrefs.GetBool(PayloadPolicyPrefName, true) ?
+            PayloadPolicy.LoadAll : PayloadPolicy.DontLoadPayloads;
+        importOptions.materialImportMode = EditorPrefs.GetBool(MaterialPolicyPrefName, false) ?
+            MaterialImportMode.ImportPreviewSurface: MaterialImportMode.ImportDisplayColor;
       }
 
       GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
@@ -237,7 +281,7 @@ namespace Unity.Formats.USD {
       }
     }
 
-    [MenuItem("USD/Import as Prefab", priority = 1)]
+    [MenuItem("USD/Import as Prefab", priority = 21)]
     public static void MenuImportAsPrefab() {
       var scene = InitForOpen();
       if (scene == null) {
@@ -255,6 +299,10 @@ namespace Unity.Formats.USD {
       importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
       importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
       importOptions.usdRootPath = GetDefaultRoot(scene);
+      importOptions.payloadPolicy = EditorPrefs.GetBool(PayloadPolicyPrefName, true) ?
+          PayloadPolicy.LoadAll : PayloadPolicy.DontLoadPayloads;
+      importOptions.materialImportMode = EditorPrefs.GetBool(MaterialPolicyPrefName, false) ?
+          MaterialImportMode.ImportPreviewSurface: MaterialImportMode.ImportDisplayColor;
 
       var invalidChars = Path.GetInvalidFileNameChars();
       var prefabName = string.Join("_", GetPrefabName(path).Split(invalidChars,
@@ -273,7 +321,7 @@ namespace Unity.Formats.USD {
       }
     }
 
-    [MenuItem("USD/Import as Timeline Clip", priority = 2)]
+    [MenuItem("USD/Import as Timeline Clip", priority = 22)]
     public static void MenuImportAsTimelineClip() {
       var scene = InitForOpen();
       if (scene == null) {
@@ -408,7 +456,6 @@ namespace Unity.Formats.USD {
       var fileName = GetObjectName(path);
       return fileName + "_prefab";
     }
-
   }
 
 }
