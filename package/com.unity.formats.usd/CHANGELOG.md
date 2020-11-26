@@ -2,6 +2,9 @@
 
 ## [Unreleased] - 2020-10-27
 ### Changed
+- PayloadPolicy and MaterialImportMode are now Editor Preferences that can be changed in the USD/Preferences menu.
+- PayloadPolicy now defaults to LoadAll in Editor
+- MaterialImportMode now defaults to PreviewSurface in Editor
 - Set material name in Unity to match the material name in the USD file on import.
 
 ### Bug Fixes
