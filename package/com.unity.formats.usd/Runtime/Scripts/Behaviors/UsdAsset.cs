@@ -214,13 +214,9 @@ namespace Unity.Formats.USD {
     /// Returns the underlying prefab object, or null.
     /// </summary>
     private GameObject GetPrefabObject(GameObject root) {
-#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
-      return UnityEditor.PrefabUtility.GetPrefabObject(root) as GameObject;
-#else
       // This is a great resource for determining object type, but only covers new APIs:
       // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
       return UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(root);
-#endif
     }
 #endif
 
@@ -237,11 +233,6 @@ namespace Unity.Formats.USD {
     private string GetPrefabAssetPath(GameObject root) {
       string assetPath = null;
 #if UNITY_EDITOR
-// TODO: According to Yamato we don't support version of Unity earlier to this one. Is this really necessary?
-#if !UNITY_2018_3_OR_NEWER
-      assetPath = UnityEditor.AssetDatabase.GetAssetPath(
-              UnityEditor.PrefabUtility.GetPrefabObject(root));
-#else
       if (!UnityEditor.EditorUtility.IsPersistent(root)) {
         var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
         if (prefabStage != null) {
@@ -256,7 +247,6 @@ namespace Unity.Formats.USD {
           }
         }
       }
-#endif
 #endif
       return assetPath;
     }

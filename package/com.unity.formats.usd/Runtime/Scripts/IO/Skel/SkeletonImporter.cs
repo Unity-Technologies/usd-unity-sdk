@@ -19,9 +19,7 @@ using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
 
-#if !UNITY_2017 && !UNITY_2018
 using Unity.Collections;
-#endif
 
 namespace Unity.Formats.USD {
 
@@ -162,7 +160,7 @@ namespace Unity.Formats.USD {
       }
 
       // TODO: Both indices and weights attributes can be animated. It's not handled yet.
-      // TODO: Having something that convert a UsdGeomPrimvar into a PrimvarSample could help simplify this code. 
+      // TODO: Having something that convert a UsdGeomPrimvar into a PrimvarSample could help simplify this code.
       int[] indices = IntrinsicTypeConverter.FromVtArray((VtIntArray)jointIndices.GetAttr().Get());
       int indicesElementSize = jointIndices.GetElementSize();
       pxr.TfToken indicesInterpolation = jointIndices.GetInterpolation();

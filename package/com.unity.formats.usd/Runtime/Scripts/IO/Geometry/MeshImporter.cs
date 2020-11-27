@@ -20,9 +20,7 @@ using UnityEngine.Profiling;
 using USD.NET;
 using USD.NET.Unity;
 
-#if UNITY_2018_1_OR_NEWER
 using Unity.Jobs;
-#endif
 using pxr;
 
 namespace Unity.Formats.USD {
@@ -52,17 +50,10 @@ namespace Unity.Formats.USD {
     }
 
     ReadAllJob<MeshSample> m_readMeshesJob;
-#if UNITY_2018_1_OR_NEWER
     public void BeginReading(Scene scene, PrimMap primMap) {
       m_readMeshesJob = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
       m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
     }
-#else
-    public void BeginReading(Scene scene, PrimMap primMap) {
-      m_readMeshesJob = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
-      m_readMeshesJob.Run();
-    }
-#endif
 
     public System.Collections.IEnumerator Import(Scene scene,
                              PrimMap primMap,
@@ -232,7 +223,7 @@ namespace Unity.Formats.USD {
       if (smr.sharedMesh == null) {
         smr.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
       }
-            
+
       // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
       // created, potentially way after mesh creation.
       if (isDynamic) {
@@ -256,7 +247,7 @@ namespace Unity.Formats.USD {
       if (mf.sharedMesh == null) {
         mf.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
       }
-      
+
       // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
       // created, potentially way after mesh creation.
       if (isDynamic) {
@@ -596,12 +587,6 @@ namespace Unity.Formats.USD {
 
 #if UNITY_EDITOR
       if (options.meshOptions.generateLightmapUVs) {
-#if !UNITY_2018_3_OR_NEWER
-        if (unityMesh.indexFormat == UnityEngine.Rendering.IndexFormat.UInt32) {
-          Debug.LogWarning("Skipping prim " + path + " due to large IndexFormat (UInt32) bug in older vesrsions of Unity");
-          return;
-        }
-#endif
         Profiler.BeginSample("Unwrap Lightmap UVs");
         var unwrapSettings = new UnityEditor.UnwrapParam();
 
@@ -719,7 +704,7 @@ namespace Unity.Formats.USD {
     /// (i.e. seams) will share UV values. This artifact will appear as seams on the object that
     /// would otherwise be seamless. The correct solution is to compare UV values at every vertex
     /// and un-weld vertices which do not share a common value.
-    /// 
+    ///
     /// Still, this approximation is useful since often values are only incorrect at the seam and
     /// for fast iteration loops, such a seam may be preferred over a long load time.
     /// </remarks>
@@ -870,11 +855,11 @@ namespace Unity.Formats.USD {
     }
 
     /// <summary>
-    /// Returns a unique mesh name by appending a short guid to the given string 
+    /// Returns a unique mesh name by appending a short guid to the given string
     /// </summary>
     private static string UniqueMeshName(string meshName) {
       var shortGuid = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-      return meshName + "_" +  shortGuid.Substring(0, shortGuid.Length-2); 
+      return meshName + "_" +  shortGuid.Substring(0, shortGuid.Length-2);
     }
   }
 }

@@ -19,9 +19,7 @@ using UnityEngine.Profiling;
 using USD.NET;
 using USD.NET.Unity;
 
-#if UNITY_2018_1_OR_NEWER
 using Unity.Jobs;
-#endif
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -84,11 +82,7 @@ namespace Unity.Formats.USD {
       if (oldPrefab == null) {
         // Create the prefab. At this point, the meshes do not yet exist and will be
         // dangling references
-#if UNITY_2018_3_OR_NEWER
         prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
-#else
-        prefab = PrefabUtility.CreatePrefab(prefabPath, rootObject);
-#endif
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
         AddObjectsToAsset(rootObject, prefab, importOptions, out meshes, out materials);
@@ -102,25 +96,18 @@ namespace Unity.Formats.USD {
         }
 
         // Fix the dangling references.
-#if UNITY_2018_3_OR_NEWER
         prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
-#else
-        prefab = PrefabUtility.ReplacePrefab(rootObject, prefab);
-#endif
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
 
         playable.SourceUsdAsset.defaultValue = prefab.GetComponent<UsdAsset>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
-#if UNITY_2018_3_OR_NEWER
         prefab = PrefabUtility.SavePrefabAsset(prefab);
-#endif
       } else {
         HashSet<Mesh> meshes;
         HashSet<Material> materials;
-#if UNITY_2018_3_OR_NEWER
+
         oldPrefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
-#endif
         AddObjectsToAsset(rootObject, oldPrefab, importOptions, out meshes, out materials);
 
         // ReplacePrefab only removes the GameObjects from the asset.
@@ -150,24 +137,13 @@ namespace Unity.Formats.USD {
           AssetDatabase.AddObjectToAsset(mat, oldPrefab);
         }
 
-#if UNITY_2018_3_OR_NEWER
         prefab = PrefabUtility.SaveAsPrefabAsset(rootObject, prefabPath);
-#else
-        if (oldPrefab != rootObject) {
-          prefab = PrefabUtility.ReplacePrefab(
-              rootObject, oldPrefab, ReplacePrefabOptions.ReplaceNameBased);
-        } else {
-          prefab = oldPrefab;
-        }
-#endif
 
         var playable = ScriptableObject.CreateInstance<UsdPlayableAsset>();
         playable.SourceUsdAsset.defaultValue = prefab.GetComponent<UsdAsset>();
         playable.name = playableClipName;
         AssetDatabase.AddObjectToAsset(playable, prefab);
-#if UNITY_2018_3_OR_NEWER
         PrefabUtility.SavePrefabAsset(prefab);
-#endif
       }
 
       AssetDatabase.ImportAsset(prefabPath, ImportAssetOptions.ForceUpdate);
@@ -371,7 +347,7 @@ namespace Unity.Formats.USD {
           processor.PostProcessHierarchy(primMap, importOptions);
         } catch (System.Exception ex) {
           Debug.LogException(ex);
-        }        
+        }
       }
       Profiler.EndSample();
 
@@ -442,18 +418,12 @@ namespace Unity.Formats.USD {
       ReadAllJob<XformSample> readXforms;
       if (importOptions.importTransforms) {
         readXforms = new ReadAllJob<XformSample>(scene, primMap.Xforms);
-#if UNITY_2018_1_OR_NEWER
         readXforms.Schedule(primMap.Xforms.Length, 4);
-#else
-        readXforms.Run();
-#endif
       }
       if (importOptions.importMeshes) {
         ActiveMeshImporter.BeginReading(scene, primMap);
       }
-#if UNITY_2018_1_OR_NEWER
       JobHandle.ScheduleBatchedJobs();
-#endif
 
 
       // Xforms.
@@ -582,13 +552,13 @@ namespace Unity.Formats.USD {
             GameObject go = primMap[pathAndSample.path];
             NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
             XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
-            
+
             // In order to match FBX importer buggy behavior, the camera xform need an extra rotation.
             // FBX importer is fixed in 2020 though with an option to do an axis bake on import.
             // If axis bake is used, no need to use the SlowAndSafeAsFBX mode.
             if (importOptions.changeHandedness == BasisTransformation.SlowAndSafeAsFBX)
             {
-              go.transform.localRotation *= Quaternion.Euler(180.0f, 0.0f, 180.0f); 
+              go.transform.localRotation *= Quaternion.Euler(180.0f, 0.0f, 180.0f);
             }
 
             // The camera has many value-type parameters that need to be handled correctly when not

@@ -62,13 +62,9 @@ namespace Unity.Formats.USD {
     }
 
     private GameObject GetPrefabObject(GameObject root) {
-#if UNITY_2017 || UNITY_2018_1 || UNITY_2018_2
-      return PrefabUtility.GetPrefabObject(root) as GameObject;
-#else
       // This is a great resource for determining object type, but only covers new APIs:
       // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
       return PrefabUtility.GetCorrespondingObjectFromSource(root);
-#endif
     }
 
     private bool IsPrefabInstance(GameObject root) {
@@ -197,7 +193,7 @@ namespace Unity.Formats.USD {
               lastDir =  Path.GetDirectoryName(usdAsset.usdFullPath);
           string importFilepath = EditorUtility.OpenFilePanelWithFilters("Usd Asset", lastDir, new string[] { "Usd","us*"});
           if ( string.IsNullOrEmpty(importFilepath)) return;
-          usdAsset.usdFullPath = importFilepath;    
+          usdAsset.usdFullPath = importFilepath;
       }
       EditorGUILayout.EndHorizontal();
 
@@ -230,7 +226,7 @@ namespace Unity.Formats.USD {
       }
 
       var newOp = (LinearUnits)EditorGUILayout.EnumPopup("Original Scale", op);
-      
+
       if (newOp == LinearUnits.Custom) {
         // Force the UI to stay on the "custom" selection by adding an offset.
         float offset = op == newOp ? 0 : 0.01f;
