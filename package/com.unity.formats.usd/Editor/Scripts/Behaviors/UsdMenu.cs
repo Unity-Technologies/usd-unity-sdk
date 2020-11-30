@@ -12,22 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using USD.NET;
 using USD.NET.Unity;
+using Object = UnityEngine.Object;
 
 namespace Unity.Formats.USD {
 
-  public class UsdMenu : MonoBehaviour
+  public static class UsdMenu
   {
-      const string PayloadPolicyPrefName = "USD.LoadAllPayloads";
-      const string MaterialPolicyPrefName = "USD.LoadPreviewSurface";
+    const string PayloadPolicyPrefName = "USD.LoadAllPayloads";
+    const string MaterialPolicyPrefName = "USD.LoadPreviewSurface";
 
-      const string UsdPrefPayloadMenuName = "USD/Preferences/Load all payloads";
-      const string UsdPrefMaterialMenuName = "USD/Preferences/Load preview surface";
+    const string UsdPrefPayloadMenuName = "USD/Preferences/Load all payloads";
+    const string UsdPrefMaterialMenuName = "USD/Preferences/Load preview surface";
+
+    static SavedBool loadAllPayloads = new SavedBool(PayloadPolicyPrefName, true);
+    static SavedBool loadPreviewSurface = new SavedBool(MaterialPolicyPrefName, false);
 
     public static Scene InitForSave(string defaultName, string fileExtension = "usd,usda,usdc") {
       var filePath = EditorUtility.SaveFilePanel("Export USD File", "", defaultName, fileExtension);
@@ -203,33 +208,27 @@ namespace Unity.Formats.USD {
 
 
     [MenuItem(UsdPrefPayloadMenuName, priority = 0)]
-    static void LoadAllPayloads()
-    {
-        var enabled = Menu.GetChecked(UsdPrefPayloadMenuName);
-        EditorPrefs.SetBool(PayloadPolicyPrefName, !enabled);
-        Menu.SetChecked(UsdPrefPayloadMenuName, !enabled);
+    static void LoadAllPayloads() {
+      loadAllPayloads.value = !Menu.GetChecked(UsdPrefPayloadMenuName);
+      Menu.SetChecked(UsdPrefPayloadMenuName, loadAllPayloads);
     }
 
     [MenuItem(UsdPrefPayloadMenuName, true)]
     static bool LoadAllPayloadsValidate() {
-        var enabled = EditorPrefs.GetBool(PayloadPolicyPrefName, true);
-        Menu.SetChecked(UsdPrefPayloadMenuName, enabled);
-        return true;
+      Menu.SetChecked(UsdPrefPayloadMenuName, loadAllPayloads);
+      return true;
     }
 
     [MenuItem(UsdPrefMaterialMenuName, priority = 0)]
-    static void LoadAllPreviewSurface()
-    {
-        var enabled = Menu.GetChecked(UsdPrefMaterialMenuName);
-        EditorPrefs.SetBool(MaterialPolicyPrefName, !enabled);
-        Menu.SetChecked(UsdPrefMaterialMenuName, !enabled);
+    static void LoadAllPreviewSurface() {
+      loadPreviewSurface.value = !Menu.GetChecked(UsdPrefMaterialMenuName);
+      Menu.SetChecked(UsdPrefMaterialMenuName, loadPreviewSurface);
     }
 
     [MenuItem(UsdPrefMaterialMenuName, true)]
     static bool LoadAllPreviewSurfaceValidate() {
-        var enabled = EditorPrefs.GetBool(MaterialPolicyPrefName, false);
-        Menu.SetChecked(UsdPrefMaterialMenuName, enabled);
-        return true;
+      Menu.SetChecked(UsdPrefMaterialMenuName, loadPreviewSurface);
+      return true;
     }
 
     [MenuItem("USD/Import as GameObjects", priority = 20)]
