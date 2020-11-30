@@ -14,7 +14,8 @@ namespace Unity.Formats.USD.Tests
     public class SanityTest
     {
         List<string> filesToDelete = new List<string>();
-        class MyCustomData : SampleBase 
+
+        class MyCustomData : SampleBase
         {
             public string aString;
             public int[] anArrayOfInts;
@@ -35,7 +36,7 @@ namespace Unity.Formats.USD.Tests
             // Populate Values.
             var value = new MyCustomData();
             value.aString = "IT'S ALIIIIIIIIIIIIIVE!";
-            value.anArrayOfInts = new int[] { 1, 2, 3, 4 };
+            value.anArrayOfInts = new int[] {1, 2, 3, 4};
             value.aBoundingBox = new UnityEngine.Bounds();
 
             // Writing the value.
@@ -45,7 +46,7 @@ namespace Unity.Formats.USD.Tests
             Debug.Log(scene.Stage.GetRootLayer().ExportToString());
             scene.Save();
             scene.Close();
-            
+
             Assert.IsTrue(File.Exists(usdFile));
 
             // Reading the value.
@@ -54,16 +55,16 @@ namespace Unity.Formats.USD.Tests
             scene = Scene.Open(usdFile);
             scene.Time = 1.0;
             scene.Read("/someValue", newValue);
-            
+
             Assert.AreEqual(value.aString, newValue.aString);
-            
+
             scene.Close();
         }
 
         [TearDown]
         public void TearDown()
         {
-            foreach (var file in filesToDelete) 
+            foreach (var file in filesToDelete)
             {
                 try
                 {
@@ -77,4 +78,3 @@ namespace Unity.Formats.USD.Tests
         }
     }
 }
-

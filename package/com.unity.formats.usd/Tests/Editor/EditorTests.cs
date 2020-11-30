@@ -11,7 +11,7 @@ namespace Unity.Formats.USD.Tests
     {
         private GameObject m_usdRoot;
         private string m_usdGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUI of test_collections.usda
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -30,7 +30,7 @@ namespace Unity.Formats.USD.Tests
             Assert.IsNotNull(scopeWithoutChildren);
             Assert.AreEqual(0, scopeWithoutChildren.childCount);
         }
-        
+
         [Test]
         public void ScopeWithChildrenExists()
         {
@@ -40,7 +40,8 @@ namespace Unity.Formats.USD.Tests
         }
 
         [Test]
-        public void ScopeHasPrimSourceComponent() {
+        public void ScopeHasPrimSourceComponent()
+        {
             var scope = m_usdRoot.transform.Find("TestComponent/ScopeTest");
             var primSourceComponent = scope.GetComponent<UsdPrimSource>();
             Assert.IsNotNull(primSourceComponent);
@@ -49,9 +50,10 @@ namespace Unity.Formats.USD.Tests
             Assert.IsNotNull(prim);
             Assert.IsTrue("Scope" == prim.GetTypeName(), scope.name + " is not of type Scope: " + prim.GetTypeName());
         }
-        
+
         [Test]
-        public void ScopeTransformIsIdentity() {
+        public void ScopeTransformIsIdentity()
+        {
             var scope = m_usdRoot.transform.Find("TestComponent/ScopeTest");
             Assert.IsTrue(Matrix4x4.identity == scope.transform.localToWorldMatrix);
         }
@@ -91,4 +93,3 @@ namespace Unity.Formats.USD.Tests
         }
     }
 }
-

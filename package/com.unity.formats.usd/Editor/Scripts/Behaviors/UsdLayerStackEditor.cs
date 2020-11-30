@@ -21,34 +21,39 @@ using UnityEditor.Experimental.AssetImporters;
 #endif
 using USD.NET;
 
-namespace Unity.Formats.USD {
+namespace Unity.Formats.USD
+{
+    [CustomEditor(typeof(UsdLayerStack))]
+    public class UsdLayerStackEditor : ScriptedImporterEditor
+    {
+        public override void OnInspectorGUI()
+        {
+            var layerStack = (UsdLayerStack) this.target;
 
-  [CustomEditor(typeof(UsdLayerStack))]
-  public class UsdLayerStackEditor : ScriptedImporterEditor {
-    public override void OnInspectorGUI() {
-      var layerStack = (UsdLayerStack)this.target;
+            base.DrawDefaultInspector();
 
-      base.DrawDefaultInspector();
+            GUILayout.Space(10);
 
-      GUILayout.Space(10);
+            if (GUILayout.Button("Save Overrides to Target Layer"))
+            {
+                InitUsd.Initialize();
+                layerStack.SaveToLayer();
+            }
 
-      if (GUILayout.Button("Save Overrides to Target Layer")) {
-        InitUsd.Initialize();
-        layerStack.SaveToLayer();
-      }
-
-      if (GUILayout.Button("Save Layer Stack")) {
-        InitUsd.Initialize();
-        Scene scene = Scene.Open(layerStack.GetComponent<UsdAsset>().usdFullPath);
-        try {
-          layerStack.SaveLayerStack(scene, layerStack.m_layerStack);
-        } finally {
-          scene.Close();
-          scene = null;
+            if (GUILayout.Button("Save Layer Stack"))
+            {
+                InitUsd.Initialize();
+                Scene scene = Scene.Open(layerStack.GetComponent<UsdAsset>().usdFullPath);
+                try
+                {
+                    layerStack.SaveLayerStack(scene, layerStack.m_layerStack);
+                }
+                finally
+                {
+                    scene.Close();
+                    scene = null;
+                }
+            }
         }
-      }
-
     }
-
-  }
 }

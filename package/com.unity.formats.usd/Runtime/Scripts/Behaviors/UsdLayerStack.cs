@@ -17,93 +17,111 @@ using UnityEngine;
 using pxr;
 using Scene = USD.NET.Scene;
 
-namespace Unity.Formats.USD {
-
-  /// <summary>
-  /// A mechanism for managing USD layers in a multi-layer shot context.
-  /// </summary>
-  [RequireComponent(typeof(UsdAsset))]
-  public class UsdLayerStack : MonoBehaviour {
-
-    public string m_targetLayer;
-    public string[] m_layerStack;
-    public string[] m_mutedLayers;
-
+namespace Unity.Formats.USD
+{
     /// <summary>
-    /// Initialize a layer as a subLayer to be compatible with the parentLayer.
+    /// A mechanism for managing USD layers in a multi-layer shot context.
     /// </summary>
-    private void SetupNewSubLayer(Scene parentScene, Scene subLayerScene) {
-      if (parentScene == null) {
-        throw new NullReferenceException("ParentScene is null");
-      }
+    [RequireComponent(typeof(UsdAsset))]
+    public class UsdLayerStack : MonoBehaviour
+    {
+        public string m_targetLayer;
+        public string[] m_layerStack;
+        public string[] m_mutedLayers;
 
-      subLayerScene.WriteMode = Scene.WriteModes.Over;
-      subLayerScene.UpAxis = parentScene.UpAxis;
-    }
+        /// <summary>
+        /// Initialize a layer as a subLayer to be compatible with the parentLayer.
+        /// </summary>
+        private void SetupNewSubLayer(Scene parentScene, Scene subLayerScene)
+        {
+            if (parentScene == null)
+            {
+                throw new NullReferenceException("ParentScene is null");
+            }
 
-    /// <summary>
-    /// Ensure each layer path is expressed in the USD sub layer stack of the given scene,
-    /// creating the sublayer USD files if needed.
-    /// </summary>
-    public void SaveLayerStack(Scene scene, string[] layerStack) {
-      if (scene == null) {
-        throw new NullReferenceException("Null scene provided to SaveLayerStack");
-      }
-      SdfSubLayerProxy subLayers = scene.Stage.GetRootLayer().GetSubLayerPaths();
-      for (int i = 0; i < m_layerStack.Length; i++) {
-        string absoluteLayerPath = m_layerStack[i];
-        string relativeLayerPath = ImporterBase.MakeRelativePath(scene.FilePath, absoluteLayerPath);
-        if (!System.IO.File.Exists(absoluteLayerPath)) {
-          var newSubLayer = Scene.Create(absoluteLayerPath);
-          SetupNewSubLayer(scene, newSubLayer);
-          newSubLayer.Save();
-          newSubLayer.Close();
+            subLayerScene.WriteMode = Scene.WriteModes.Over;
+            subLayerScene.UpAxis = parentScene.UpAxis;
         }
-        if (subLayers.Count(relativeLayerPath) == 0) {
-          subLayers.push_back(relativeLayerPath);
+
+        /// <summary>
+        /// Ensure each layer path is expressed in the USD sub layer stack of the given scene,
+        /// creating the sublayer USD files if needed.
+        /// </summary>
+        public void SaveLayerStack(Scene scene, string[] layerStack)
+        {
+            if (scene == null)
+            {
+                throw new NullReferenceException("Null scene provided to SaveLayerStack");
+            }
+
+            SdfSubLayerProxy subLayers = scene.Stage.GetRootLayer().GetSubLayerPaths();
+            for (int i = 0; i < m_layerStack.Length; i++)
+            {
+                string absoluteLayerPath = m_layerStack[i];
+                string relativeLayerPath = ImporterBase.MakeRelativePath(scene.FilePath, absoluteLayerPath);
+                if (!System.IO.File.Exists(absoluteLayerPath))
+                {
+                    var newSubLayer = Scene.Create(absoluteLayerPath);
+                    SetupNewSubLayer(scene, newSubLayer);
+                    newSubLayer.Save();
+                    newSubLayer.Close();
+                }
+
+                if (subLayers.Count(relativeLayerPath) == 0)
+                {
+                    subLayers.push_back(relativeLayerPath);
+                }
+            }
+
+            scene.Save();
         }
-      }
-      scene.Save();
-    }
 
-    /// <summary>
-    /// Writes overrides to the currently targeted subLayer.
-    /// </summary>
-    public void SaveToLayer() {
-      var stageRoot = GetComponent<UsdAsset>();
+        /// <summary>
+        /// Writes overrides to the currently targeted subLayer.
+        /// </summary>
+        public void SaveToLayer()
+        {
+            var stageRoot = GetComponent<UsdAsset>();
 
-      Scene subLayerScene = Scene.Create(m_targetLayer);
-      if (subLayerScene == null) {
-        throw new NullReferenceException("Could not create layer: " + m_targetLayer);
-      }
+            Scene subLayerScene = Scene.Create(m_targetLayer);
+            if (subLayerScene == null)
+            {
+                throw new NullReferenceException("Could not create layer: " + m_targetLayer);
+            }
 
-      Scene rootScene = Scene.Open(stageRoot.usdFullPath);
-      if (rootScene == null) {
-        throw new NullReferenceException("Could not open base layer: " + stageRoot.usdFullPath);
-      }
+            Scene rootScene = Scene.Open(stageRoot.usdFullPath);
+            if (rootScene == null)
+            {
+                throw new NullReferenceException("Could not open base layer: " + stageRoot.usdFullPath);
+            }
 
-      SetupNewSubLayer(rootScene, subLayerScene);
+            SetupNewSubLayer(rootScene, subLayerScene);
 
-      rootScene.Close();
-      rootScene = null;
+            rootScene.Close();
+            rootScene = null;
 
-      try {
-        SceneExporter.Export(stageRoot.gameObject,
-                              subLayerScene,
-                              stageRoot.m_changeHandedness,
-                              exportUnvarying: false,
-                              zeroRootTransform: false);
-      } catch (Exception ex) {
-        Debug.LogException(ex);
-        return;
-      } finally {
-        if (subLayerScene != null) {
-          subLayerScene.Save();
-          subLayerScene.Close();
-          subLayerScene = null;
+            try
+            {
+                SceneExporter.Export(stageRoot.gameObject,
+                    subLayerScene,
+                    stageRoot.m_changeHandedness,
+                    exportUnvarying: false,
+                    zeroRootTransform: false);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogException(ex);
+                return;
+            }
+            finally
+            {
+                if (subLayerScene != null)
+                {
+                    subLayerScene.Save();
+                    subLayerScene.Close();
+                    subLayerScene = null;
+                }
+            }
         }
-      }
     }
-
-  }
 }
