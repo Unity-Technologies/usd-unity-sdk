@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -21,6 +22,7 @@ namespace Unity.Formats.USD.Examples {
 
   public class ImportMaterialsExample : MonoBehaviour {
     private const string kCubePath = "/Model/Geom/Cube";
+    private static string m_localPath;
 
     // The USD Shader ID is used to index into this map to find the corresponding ShaderPair,
     // i.e. the Unity / USD shader pair that should be instantiated for the ID.
@@ -77,6 +79,9 @@ namespace Unity.Formats.USD.Examples {
     // Also See: https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html
     //
     void Start() {
+      // Get the current local path
+      m_localPath = PackageUtils.GetCallerRelativeToProjectFolderPath();
+
       // Create a scene for this test, but could also be read from disk.
       Scene usdScene = CreateSceneWithShading();
 
@@ -241,7 +246,7 @@ namespace Unity.Formats.USD.Examples {
       var detailNormalMapPath = "/Model/Materials/SimpleMat/DetailNormalMap";
       var detailMaskPath = "/Model/Materials/SimpleMat/DetailMask";
 
-      var textureFilePath = @"Assets/Samples/USD/1.0.3-preview.1/ImportMaterials/Textures/";
+      var textureFilePath = Path.Combine(m_localPath, "Textures");
 
       var cube = new CubeSample();
       cube.size = 7;
@@ -298,35 +303,35 @@ namespace Unity.Formats.USD.Examples {
       // Setup Textures.
       //
       var albedoTexture = new Texture2DSample();
-      albedoTexture.sourceFile.defaultValue = textureFilePath + "albedoMap.png";
+      albedoTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "albedoMap.png");
       albedoTexture.sRgb = true;
       
       var normalTexture = new Texture2DSample();
-      normalTexture.sourceFile.defaultValue = textureFilePath + "normalMap.png";
+      normalTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "normalMap.png");
       normalTexture.sRgb = true;
       
       var emissionTexture = new Texture2DSample();
-      emissionTexture.sourceFile.defaultValue = textureFilePath + "emissionMap.png";
+      emissionTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "emissionMap.png");
       emissionTexture.sRgb = true;
 
       var metallicTexture = new Texture2DSample();
-      metallicTexture.sourceFile.defaultValue = textureFilePath + "metallicMap.png";
+      metallicTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "metallicMap.png");
       metallicTexture.sRgb = true;
 
       var occlusionTexture = new Texture2DSample();
-      occlusionTexture.sourceFile.defaultValue = textureFilePath + "occlusionMap.png";
+      occlusionTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "occlusionMap.png");
       occlusionTexture.sRgb = true;
 
       var parallaxTexture = new Texture2DSample();
-      parallaxTexture.sourceFile.defaultValue = textureFilePath + "parallaxMap.png";
+      parallaxTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "parallaxMap.png");
       parallaxTexture.sRgb = true;
 
       var detailNormalTexture = new Texture2DSample();
-      detailNormalTexture.sourceFile.defaultValue = textureFilePath + "detailMap.png";
+      detailNormalTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "detailMap.png");
       detailNormalTexture.sRgb = true;
 
       var detailMaskTexture = new Texture2DSample();
-      detailMaskTexture.sourceFile.defaultValue = textureFilePath + "metallicMap.png";
+      detailMaskTexture.sourceFile.defaultValue = Path.Combine(textureFilePath, "metallicMap.png");
       detailMaskTexture.sRgb = true;
 
       //

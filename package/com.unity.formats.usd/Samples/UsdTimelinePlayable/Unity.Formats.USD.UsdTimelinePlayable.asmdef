@@ -1,5 +1,5 @@
 {
-    "name": "Unity.Formats.USD.ImportMesh",
+    "name": "Unity.Formats.USD.UsdTimelinePlayable",
     "references": [
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Runtime"

@@ -1,6 +1,7 @@
 {
     "name": "Unity.Formats.USD.ImportMaterials",
     "references": [
+        "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Runtime"
     ],
     "optionalUnityReferences": [
