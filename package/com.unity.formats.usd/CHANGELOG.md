@@ -20,8 +20,9 @@
 - Fixed shader import for emissive color & light baking.
 - Fixed wrong texture paths when exporting from packages (#125).
 - Fixed prefabs being reset when entering Play mode (#101).
+- Fixed export framerate to frames (60FPS) for more stability and improved compatibility with ArQuickLook (#170)
 
-Special thanks to Felix Herbst for his awesome contributions on the materials and USDZ exporters.
+Special thanks to Felix Herbst for his awesome contributions on the materials import/export and USDZ exporters.
 
 ## [1.0.3-preview.2] - 2020-04-24
 ### Changed
