@@ -2,7 +2,7 @@
 
 namespace Unity.Formats.USD
 {
-    class SavedBool
+    public class SavedBool
     {
         bool m_Value;
         string m_Name;

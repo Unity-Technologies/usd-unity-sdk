@@ -28,8 +28,8 @@ namespace Unity.Formats.USD {
     const string PayloadPolicyPrefName = "USD.LoadAllPayloads";
     const string MaterialPolicyPrefName = "USD.LoadPreviewSurface";
 
-    const string UsdPrefPayloadMenuName = "USD/Preferences/Load all payloads";
-    const string UsdPrefMaterialMenuName = "USD/Preferences/Load preview surface";
+    const string UsdPrefPayloadMenuName = "USD/Preferences/Load All Payloads";
+    const string UsdPrefMaterialMenuName = "USD/Preferences/Load Preview Surface";
 
     static SavedBool loadAllPayloads = new SavedBool(PayloadPolicyPrefName, true);
     static SavedBool loadPreviewSurface = new SavedBool(MaterialPolicyPrefName, false);
