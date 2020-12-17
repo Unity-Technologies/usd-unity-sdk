@@ -34,7 +34,7 @@ build_platforms:
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.large
-    setenv_cmd: scl enable devtoolset-7 bash
+    setenv_cmd: echo "Environment set"
     stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
     stevedore_exe: "mono StevedoreUpload.exe"
 ---
