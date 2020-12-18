@@ -29,7 +29,7 @@ namespace Unity.Formats.USD
                 var destination = pathToBuiltProject.Replace(".x86_64", "_Data/Plugins");
 
                 // We need to copy the whole share folder and this one plugInfo.json file
-                FileUtil.CopyFileOrDirectory(source + "/x86_64/share", destination + "/share");
+                FileUtil.CopyFileOrDirectory(source + "/x86_64/usd", destination + "/usd");
                 FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
             }
             else if (target == BuildTarget.StandaloneWindows64)
@@ -37,7 +37,7 @@ namespace Unity.Formats.USD
                 var destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
 
                 // We need to copy the whole share folder and this one plugInfo.json file
-                FileUtil.CopyFileOrDirectory(source + "/x86_64/share", destination + "/share");
+                FileUtil.CopyFileOrDirectory(source + "/x86_64/usd", destination + "/usd");
                 FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
             }
         }
