@@ -159,10 +159,14 @@ namespace Unity.Formats.USD
                 // in each of them that might look different between exports.
                 // TODO Future work could, if necessary, generate a texture content hash to avoid exporting identical textures multiple times
                 // (Unity's content hash isn't reliable for some types of textures unfortunately, e.g. RTs)
+#if UNITY_EDITOR
                 if (srcTexture2d is Texture2D)
                     fileName = srcTexture2d.name + "_" + srcTexture2d.imageContentsHash.ToString();
                 else
                     fileName = srcTexture2d.name + "_" + Random.Range(10000000, 99999999).ToString();
+#else
+                fileName = srcTexture2d.name + "_" + Random.Range(10000000, 99999999).ToString();
+#endif
                 filePath = System.IO.Path.Combine(destTexturePath, fileName + ".png");
 
                 // TODO extra care has to be taken of Normal Maps etc., since these are in a converted format in memory (for example 16 bit AG instead of 8 bit RGBA, depending on platform)
