@@ -16,61 +16,66 @@ using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
 
-namespace Unity.Formats.USD {
+namespace Unity.Formats.USD
+{
+    public static class InitUsd
+    {
+        private static bool m_usdInitialized;
+        private static DiagnosticHandler m_handler;
 
-  public static class InitUsd {
-    private static bool m_usdInitialized;
-    private static DiagnosticHandler m_handler;
+        public static bool Initialize()
+        {
+            if (m_usdInitialized)
+            {
+                return true;
+            }
 
-    public static bool Initialize() {
-      if (m_usdInitialized) {
-        return true;
-      }
+            m_usdInitialized = true;
 
-      m_usdInitialized = true;
+            try
+            {
+                // Initializes native USD plugins and ensures plugins are discoverable on the system path.
+                SetupUsdPath();
 
-      try {
-        // Initializes native USD plugins and ensures plugins are discoverable on the system path.
-        SetupUsdPath();
-
-        // The TypeBinder will generate code at runtime as a performance optimization, this must
-        // be disabled when IL2CPP is enabled, since dynamic code generation is not possible.
+                // The TypeBinder will generate code at runtime as a performance optimization, this must
+                // be disabled when IL2CPP is enabled, since dynamic code generation is not possible.
 #if ENABLE_IL2CPP
         TypeBinder.EnableCodeGeneration = false;
         Debug.Log("USD: Dynamic code generation disabled for IL2CPP.");
 #endif
 
-        // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
-        // Vector3[] -> VtVec3fArray).
-        UnityTypeBindings.RegisterTypes();
+                // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
+                // Vector3[] -> VtVec3fArray).
+                UnityTypeBindings.RegisterTypes();
 
-        // The DiagnosticHandler propagates USD native errors, warnings and info up to C# exceptions
-        // and Debug.Log[Warning] respectively.
-        m_handler = new DiagnosticHandler();
+                // The DiagnosticHandler propagates USD native errors, warnings and info up to C# exceptions
+                // and Debug.Log[Warning] respectively.
+                m_handler = new DiagnosticHandler();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogException(ex);
+                return false;
+            }
 
-      } catch (System.Exception ex) {
-        Debug.LogException(ex);
-        return false;
-      }
+            return true;
+        }
 
-      return true;
-    }
-
-    // USD has several auxillary C++ plugin discovery files which must be discoverable at run-time
-    // We store those libs in Support/ThirdParty/Usd and then set a magic environment variable to let
-    // USD's libPlug know where to look to find them.
-    private static void SetupUsdPath()
-    {
+        // USD has several auxillary C++ plugin discovery files which must be discoverable at run-time
+        // We store those libs in Support/ThirdParty/Usd and then set a magic environment variable to let
+        // USD's libPlug know where to look to find them.
+        private static void SetupUsdPath()
+        {
 #if UNITY_EDITOR
-      // TODO: this is not robust, e.g. if anyone changes CWD from the default, package resolution
-      // will fail. Following up with UPM devs to see what we can do about it.
-      var supPath = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+            // TODO: this is not robust, e.g. if anyone changes CWD from the default, package resolution
+            // will fail. Following up with UPM devs to see what we can do about it.
+            var supPath = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
 #else
       var supPath = UnityEngine.Application.dataPath.Replace("\\", "/") + "/Plugins";
 #endif
 
 #if (UNITY_EDITOR_WIN)
-      supPath += @"/x86_64/usd/";
+            supPath += @"/x86_64/usd/";
 #elif (UNITY_EDITOR_OSX)
       supPath += @"/x86_64/usd/";
 #elif (UNITY_EDITOR_LINUX)
@@ -83,8 +88,8 @@ namespace Unity.Formats.USD {
       supPath += @"/usd/";
 #endif
 
-      Debug.LogFormat("Registering plugins: {0}", supPath);
-      pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
+            Debug.LogFormat("Registering plugins: {0}", supPath);
+            pxr.PlugRegistry.GetInstance().RegisterPlugins(supPath);
+        }
     }
-  }
 }

@@ -17,44 +17,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Unity.Formats.USD {
+namespace Unity.Formats.USD
+{
+    [ExecuteInEditMode]
+    class UsdWaitForEndOfFrame : MonoBehaviour
+    {
+        List<Action> m_pending = new List<Action>();
 
-  [ExecuteInEditMode]
-  class UsdWaitForEndOfFrame : MonoBehaviour {
-    List<Action> m_pending = new List<Action>();
+        static UsdWaitForEndOfFrame s_instance;
 
-    static UsdWaitForEndOfFrame s_instance;
-    static UsdWaitForEndOfFrame GetInstance() {
-      if (s_instance == null) {
-        s_instance = GameObject.FindObjectOfType<UsdWaitForEndOfFrame>();
-        if (s_instance == null) {
-          var go = new GameObject();
-          go.name = "UsdRecorderHelper";
-          go.hideFlags = HideFlags.HideAndDontSave;
-          s_instance = go.AddComponent<UsdWaitForEndOfFrame>();
+        static UsdWaitForEndOfFrame GetInstance()
+        {
+            if (s_instance == null)
+            {
+                s_instance = GameObject.FindObjectOfType<UsdWaitForEndOfFrame>();
+                if (s_instance == null)
+                {
+                    var go = new GameObject();
+                    go.name = "UsdRecorderHelper";
+                    go.hideFlags = HideFlags.HideAndDontSave;
+                    s_instance = go.AddComponent<UsdWaitForEndOfFrame>();
+                }
+            }
+
+            return s_instance;
         }
-      }
-      return s_instance;
-    }
 
-    public static void Add(Action callback) {
-      GetInstance().m_pending.Add(callback);
-    }
-
-    IEnumerator WaitForEndOfFrame() {
-      yield return new WaitForEndOfFrame();
-      foreach (var callback in m_pending) {
-        try {
-          callback();
-        } catch (Exception ex) {
-          Debug.LogException(ex);
+        public static void Add(Action callback)
+        {
+            GetInstance().m_pending.Add(callback);
         }
-      }
-      m_pending.Clear();
-    }
 
-    void LateUpdate() {
-      StartCoroutine(WaitForEndOfFrame());
+        IEnumerator WaitForEndOfFrame()
+        {
+            yield return new WaitForEndOfFrame();
+            foreach (var callback in m_pending)
+            {
+                try
+                {
+                    callback();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                }
+            }
+
+            m_pending.Clear();
+        }
+
+        void LateUpdate()
+        {
+            StartCoroutine(WaitForEndOfFrame());
+        }
     }
-  }
 }

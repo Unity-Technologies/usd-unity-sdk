@@ -15,33 +15,41 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Unity.Formats.USD.Examples {
+namespace Unity.Formats.USD.Examples
+{
+    [CustomEditor(typeof(ExportMeshExample))]
+    public class ExportMeshExampleEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
 
-  [CustomEditor(typeof(ExportMeshExample))]
-  public class ExportMeshExampleEditor : Editor {
-    public override void OnInspectorGUI() {
-      DrawDefaultInspector();
+            ExportMeshExample script = (ExportMeshExample) target;
+            if (script.IsRecording)
+            {
+                var oldBg = GUI.backgroundColor;
+                GUI.backgroundColor = Color.white;
+                if (GUILayout.Button("Stop"))
+                {
+                    script.StopRecording();
+                    EditorApplication.isPaused = true;
+                }
 
-      ExportMeshExample script = (ExportMeshExample)target;
-      if (script.IsRecording) {
-        var oldBg = GUI.backgroundColor;
-        GUI.backgroundColor = Color.white;
-        if (GUILayout.Button("Stop")) {
-          script.StopRecording();
-          EditorApplication.isPaused = true;
+                GUI.backgroundColor = oldBg;
+            }
+            else
+            {
+                var oldBg = GUI.backgroundColor;
+                GUI.backgroundColor = Color.red;
+                if (GUILayout.Button("Record"))
+                {
+                    EditorApplication.isPaused = false;
+                    //EditorApplication.isPlaying = true;
+                    script.StartRecording();
+                }
+
+                GUI.backgroundColor = oldBg;
+            }
         }
-        GUI.backgroundColor = oldBg;
-      } else {
-        var oldBg = GUI.backgroundColor;
-        GUI.backgroundColor = Color.red;
-        if (GUILayout.Button("Record")) {
-          EditorApplication.isPaused = false;
-          //EditorApplication.isPlaying = true;
-          script.StartRecording();
-        }
-        GUI.backgroundColor = oldBg;
-      }
     }
-  }
-
 }

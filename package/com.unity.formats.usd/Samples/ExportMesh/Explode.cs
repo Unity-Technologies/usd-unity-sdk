@@ -14,33 +14,38 @@
 
 using UnityEngine;
 
-namespace USD.NET.Examples {
+namespace USD.NET.Examples
+{
+    public class Explode : MonoBehaviour
+    {
+        public int m_explodeTime = 10;
+        public Transform m_effectRoot;
+        public float m_force = 1;
+        public float m_radius = 1;
 
-  public class Explode : MonoBehaviour {
+        private bool m_active = true;
 
-    public int m_explodeTime = 10;
-    public Transform m_effectRoot;
-    public float m_force = 1;
-    public float m_radius = 1;
+        void Start()
+        {
+        }
 
-    private bool m_active = true;
+        void Update()
+        {
+            if (!m_active)
+            {
+                return;
+            }
 
-    void Start() {
+            if (Time.time < m_explodeTime)
+            {
+                return;
+            }
 
+            m_active = false;
+            foreach (Rigidbody rb in m_effectRoot.GetComponentsInChildren<Rigidbody>())
+            {
+                rb.AddExplosionForce(m_force, transform.position, m_radius);
+            }
+        }
     }
-
-    void Update() {
-      if (!m_active) { return; }
-      if (Time.time < m_explodeTime) {
-        return;
-      }
-
-      m_active = false;
-      foreach (Rigidbody rb in m_effectRoot.GetComponentsInChildren<Rigidbody>()) {
-        rb.AddExplosionForce(m_force, transform.position, m_radius);
-      }  
-
-    }
-  }
-
 }

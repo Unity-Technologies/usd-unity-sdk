@@ -15,23 +15,24 @@
 using UnityEngine;
 using USD.NET.Unity;
 
-namespace Unity.Formats.USD {
-
-  /// <summary>
-  /// A collection of methods used for importing USD Camera data into Unity.
-  /// </summary>
-  public static class CameraImporter {
-
+namespace Unity.Formats.USD
+{
     /// <summary>
-    /// Copy camera data from USD to Unity with the given import options.
+    /// A collection of methods used for importing USD Camera data into Unity.
     /// </summary>
-    public static void BuildCamera(CameraSample usdCamera,
-                                 GameObject go,
-                                 SceneImportOptions options) {
-      var cam = ImporterBase.GetOrAddComponent<Camera>(go);
-      usdCamera.CopyToCamera(cam, setTransform: false);
-      cam.nearClipPlane *= options.scale;
-      cam.farClipPlane *= options.scale;
+    public static class CameraImporter
+    {
+        /// <summary>
+        /// Copy camera data from USD to Unity with the given import options.
+        /// </summary>
+        public static void BuildCamera(CameraSample usdCamera,
+            GameObject go,
+            SceneImportOptions options)
+        {
+            var cam = ImporterBase.GetOrAddComponent<Camera>(go);
+            usdCamera.CopyToCamera(cam, setTransform: false);
+            cam.nearClipPlane *= options.scale;
+            cam.farClipPlane *= options.scale;
+        }
     }
-  }
 }

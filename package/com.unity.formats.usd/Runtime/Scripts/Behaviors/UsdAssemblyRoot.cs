@@ -14,18 +14,18 @@
 
 using UnityEngine;
 
-namespace Unity.Formats.USD {
-
-  /// <summary>
-  /// Indicates that the source was an Assembly in USD. See Kind in USD for details:
-  /// https://graphics.pixar.com/usd/docs/api/kind_page_front.html
-  /// </summary>
-  /// <remarks>
-  /// An assembly is a model made of more models, for example a film set or a game level. It is
-  /// often useful to have special processing behavior for assemblies, so this is actually less of
-  /// a behavior and more of a marker or attribute on the GameObject.
-  /// </remarks>
-  public class UsdAssemblyRoot : MonoBehaviour {
-  }
-
+namespace Unity.Formats.USD
+{
+    /// <summary>
+    /// Indicates that the source was an Assembly in USD. See Kind in USD for details:
+    /// https://graphics.pixar.com/usd/docs/api/kind_page_front.html
+    /// </summary>
+    /// <remarks>
+    /// An assembly is a model made of more models, for example a film set or a game level. It is
+    /// often useful to have special processing behavior for assemblies, so this is actually less of
+    /// a behavior and more of a marker or attribute on the GameObject.
+    /// </remarks>
+    public class UsdAssemblyRoot : MonoBehaviour
+    {
+    }
 }

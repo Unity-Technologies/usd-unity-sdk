@@ -15,8 +15,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using USD.NET;
 using pxr;
-namespace Unity.Formats.USD {
 
+namespace Unity.Formats.USD
+{
     /// <summary>
     /// Called by SceneImporter after Usd Scene is loaded, but before any instantiation or recreation in Unity
     /// </summary>

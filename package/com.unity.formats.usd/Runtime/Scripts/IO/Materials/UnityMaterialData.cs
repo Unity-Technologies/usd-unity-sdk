@@ -17,26 +17,22 @@ using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
 
-namespace Unity.Formats.USD {
+namespace Unity.Formats.USD
+{
+    public class UnityMaterialData : SampleBase
+    {
+        public string shaderName;
+        public string[] shaderKeywords;
 
-  public class UnityMaterialData : SampleBase {
+        [UsdNamespace("floats")] public Dictionary<string, float> floatArgs = new Dictionary<string, float>();
 
-    public string shaderName;
-    public string[] shaderKeywords;
+        [UsdNamespace("colors")] public Dictionary<string, Color> colorArgs = new Dictionary<string, Color>();
 
-    [UsdNamespace("floats")]
-    public Dictionary<string, float> floatArgs = new Dictionary<string, float>();
+        [UsdNamespace("vectors")] public Dictionary<string, Vector4> vectorArgs = new Dictionary<string, Vector4>();
+    }
 
-    [UsdNamespace("colors")]
-    public Dictionary<string, Color> colorArgs = new Dictionary<string, Color>();
-
-    [UsdNamespace("vectors")]
-    public Dictionary<string, Vector4> vectorArgs = new Dictionary<string, Vector4>();
-  }
-
-  public class UnityPreviewSurfaceSample : PreviewSurfaceSample {
-    [UsdNamespace("unity")]
-    public UnityMaterialData unity = new UnityMaterialData();
-  }
-
+    public class UnityPreviewSurfaceSample : PreviewSurfaceSample
+    {
+        [UsdNamespace("unity")] public UnityMaterialData unity = new UnityMaterialData();
+    }
 }

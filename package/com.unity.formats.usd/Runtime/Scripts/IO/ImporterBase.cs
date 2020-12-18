@@ -16,81 +16,101 @@ using System;
 using System.IO;
 using UnityEngine;
 
-namespace Unity.Formats.USD {
-  /// <summary>
-  /// Basic functionality shared among Importers.
-  /// </summary>
-  public static class ImporterBase {
-
+namespace Unity.Formats.USD
+{
     /// <summary>
-    /// Creates a relative path from one file or folder to another.
+    /// Basic functionality shared among Importers.
     /// </summary>
-    public static String MakeRelativePath(string anchorPath, string pathToMakeRelative) {
-      if (string.IsNullOrEmpty(anchorPath)) throw new ArgumentNullException("pathToMakeRelative");
-      if (string.IsNullOrEmpty(pathToMakeRelative)) throw new ArgumentNullException("anchorPath");
-      if (anchorPath == pathToMakeRelative) {
-        return Path.GetFileName(pathToMakeRelative);
-      }
+    public static class ImporterBase
+    {
+        /// <summary>
+        /// Creates a relative path from one file or folder to another.
+        /// </summary>
+        public static String MakeRelativePath(string anchorPath, string pathToMakeRelative)
+        {
+            if (string.IsNullOrEmpty(anchorPath)) throw new ArgumentNullException("pathToMakeRelative");
+            if (string.IsNullOrEmpty(pathToMakeRelative)) throw new ArgumentNullException("anchorPath");
+            if (anchorPath == pathToMakeRelative)
+            {
+                return Path.GetFileName(pathToMakeRelative);
+            }
 
-      Uri fromUri = new Uri(anchorPath);
-      Uri toUri = new Uri(pathToMakeRelative);
+            Uri fromUri = new Uri(anchorPath);
+            Uri toUri = new Uri(pathToMakeRelative);
 
-      // path can't be made relative.
-      if (fromUri.Scheme != toUri.Scheme) { return pathToMakeRelative; }
+            // path can't be made relative.
+            if (fromUri.Scheme != toUri.Scheme)
+            {
+                return pathToMakeRelative;
+            }
 
-      Uri relativeUri = fromUri.MakeRelativeUri(toUri);
-      String relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+            Uri relativeUri = fromUri.MakeRelativeUri(toUri);
+            String relativePath = Uri.UnescapeDataString(relativeUri.ToString());
 
-      if (toUri.Scheme.Equals("file", StringComparison.InvariantCultureIgnoreCase)) {
-        relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
-      }
+            if (toUri.Scheme.Equals("file", StringComparison.InvariantCultureIgnoreCase))
+            {
+                relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            }
 
-      return relativePath;
-    }
+            return relativePath;
+        }
 
-    public static bool ApproximatelyEqual(Matrix4x4 lhs, Matrix4x4 rhs) {
-      bool equal = true;
-      for (int i = 0; i < 16; i++) {
-        equal = equal && (Mathf.Approximately(lhs[i], rhs[i]));
-      }
-      return equal;
-    }
+        public static bool ApproximatelyEqual(Matrix4x4 lhs, Matrix4x4 rhs)
+        {
+            bool equal = true;
+            for (int i = 0; i < 16; i++)
+            {
+                equal = equal && (Mathf.Approximately(lhs[i], rhs[i]));
+            }
 
-    /// <summary>
-    /// Moves the given component to be first in the list on the GameObject.
-    /// If not in editor, this function is a no-op.
-    /// </summary>
-    public static void MoveComponentFirst(Component comp) {
+            return equal;
+        }
+
+        /// <summary>
+        /// Moves the given component to be first in the list on the GameObject.
+        /// If not in editor, this function is a no-op.
+        /// </summary>
+        public static void MoveComponentFirst(Component comp)
+        {
 #if UNITY_EDITOR
-      while (UnityEditorInternal.ComponentUtility.MoveComponentUp(comp)) {}
+            while (UnityEditorInternal.ComponentUtility.MoveComponentUp(comp))
+            {
+            }
 #else
       Debug.LogWarning("Cannot reorder component, not in editor");
 #endif
-    }
+        }
 
-    /// <summary>
-    /// Moves the given component to be last in the list on the GameObject.
-    /// If not in editor, this function is a no-op.
-    /// </summary>
-    public static void MoveComponentLast(Component comp) {
+        /// <summary>
+        /// Moves the given component to be last in the list on the GameObject.
+        /// If not in editor, this function is a no-op.
+        /// </summary>
+        public static void MoveComponentLast(Component comp)
+        {
 #if UNITY_EDITOR
-      while (UnityEditorInternal.ComponentUtility.MoveComponentDown(comp)) { }
+            while (UnityEditorInternal.ComponentUtility.MoveComponentDown(comp))
+            {
+            }
 
 #else
       Debug.LogWarning("Cannot reorder component, not in editor");
 #endif
-    }
+        }
 
-    public static T GetOrAddComponent<T>(GameObject go, bool insertFirst = false) where T : Component {
-      T comp = go.GetComponent<T>();
-      if (!comp) {
-        comp = go.AddComponent<T>();
-      }
-      if (insertFirst) {
-        MoveComponentFirst(comp);
-      }
-      return comp;
-    }
+        public static T GetOrAddComponent<T>(GameObject go, bool insertFirst = false) where T : Component
+        {
+            T comp = go.GetComponent<T>();
+            if (!comp)
+            {
+                comp = go.AddComponent<T>();
+            }
 
-  }
+            if (insertFirst)
+            {
+                MoveComponentFirst(comp);
+            }
+
+            return comp;
+        }
+    }
 }

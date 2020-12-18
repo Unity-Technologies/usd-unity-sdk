@@ -12,108 +12,109 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Unity.Formats.USD {
+namespace Unity.Formats.USD
+{
+    /// <summary>
+    /// Indicates how an attribute should be imported.
+    /// </summary>
+    public enum ImportMode
+    {
+        /// <summary>
+        /// The value is imported if authored, otherwise null/default.
+        /// </summary>
+        Import,
 
-  /// <summary>
-  /// Indicates how an attribute should be imported.
-  /// </summary>
-  public enum ImportMode {
+        /// <summary>
+        /// The value is imported if authored, else the value is computed (if possible).
+        /// </summary>
+        ImportOrCompute,
+
+        /// <summary>
+        /// The value is only computed (if possible), authored values are ignored.
+        /// </summary>
+        Compute,
+
+        /// <summary>
+        /// The authored value is ignored and no value is computed.
+        /// </summary>
+        Ignore,
+    }
 
     /// <summary>
-    /// The value is imported if authored, otherwise null/default.
+    /// Indicates how values are imported from the given scene into a UnityEngine.Mesh object.
     /// </summary>
-    Import,
+    [System.Serializable]
+    public class MeshImportOptions
+    {
+        /// <summary>
+        /// When true, instance cubes onto each joint of the rest pose.
+        /// </summary>
+        public bool debugShowSkeletonRestPose = false;
 
-    /// <summary>
-    /// The value is imported if authored, else the value is computed (if possible).
-    /// </summary>
-    ImportOrCompute,
+        /// <summary>
+        /// When true, instance cubes onto each joint of the bind pose.
+        /// These cubes will be presented in world space, the inverse of the actual bind pose.
+        /// </summary>
+        public bool debugShowSkeletonBindPose = false;
 
-    /// <summary>
-    /// The value is only computed (if possible), authored values are ignored.
-    /// </summary>
-    Compute,
+        /// <summary>
+        /// If true, the vertex positions of the mesh will be imported.
+        /// </summary>
+        public ImportMode points = ImportMode.Import;
 
-    /// <summary>
-    /// The authored value is ignored and no value is computed.
-    /// </summary>
-    Ignore,
-  }
+        /// <summary>
+        /// If true, the topology (triangles/faces) of the mesh will be imported.
+        /// </summary>
+        public ImportMode topology = ImportMode.Import;
 
-  /// <summary>
-  /// Indicates how values are imported from the given scene into a UnityEngine.Mesh object.
-  /// </summary>
-  [System.Serializable]
-  public class MeshImportOptions {
+        /// <summary>
+        /// If true, triangulates the mesh. Should only be set to false if the mesh is guaranteed
+        /// to be a valid triangle mesh before import.
+        /// </summary>
+        public bool triangulateMesh = true;
 
-    /// <summary>
-    /// When true, instance cubes onto each joint of the rest pose.
-    /// </summary>
-    public bool debugShowSkeletonRestPose = false;
+        /// <summary>
+        /// If true, a secondary UV set will be generated automatically for lightmapping.
+        /// </summary>
+        public bool generateLightmapUVs = false;
 
-    /// <summary>
-    /// When true, instance cubes onto each joint of the bind pose.
-    /// These cubes will be presented in world space, the inverse of the actual bind pose.
-    /// </summary>
-    public bool debugShowSkeletonBindPose = false;
+        #region "Advanced Unwrapping Options"
 
-    /// <summary>
-    /// If true, the vertex positions of the mesh will be imported.
-    /// </summary>
-    public ImportMode points = ImportMode.Import;
+        /// <summary>
+        /// Maximum allowed angle distortion (0..1).
+        /// </summary>
+        public float unwrapAngleError = .08f;
 
-    /// <summary>
-    /// If true, the topology (triangles/faces) of the mesh will be imported.
-    /// </summary>
-    public ImportMode topology = ImportMode.Import;
+        /// <summary>
+        /// Maximum allowed area distortion (0..1).
+        /// </summary>
+        public float unwrapAreaError = .15f;
 
-    /// <summary>
-    /// If true, triangulates the mesh. Should only be set to false if the mesh is guaranteed
-    /// to be a valid triangle mesh before import.
-    /// </summary>
-    public bool triangulateMesh = true;
+        /// <summary>
+        /// This angle (in degrees) or greater between triangles will cause seam to be created.
+        /// </summary>
+        public float unwrapHardAngle = 88;
 
-    /// <summary>
-    /// If true, a secondary UV set will be generated automatically for lightmapping.
-    /// </summary>
-    public bool generateLightmapUVs = false;
+        /// <summary>
+        /// How much uv-islands will be padded, in pixels.
+        /// </summary>
+        /// <remarks>
+        /// Note that the Unity UnwrapParams API is actually specified in a unitless number. To convert
+        /// pixels to this unitless value, this number is divided by 1024.
+        /// </remarks>
+        public int unwrapPackMargin = 4;
 
-    #region "Advanced Unwrapping Options"
-    /// <summary>
-    /// Maximum allowed angle distortion (0..1).
-    /// </summary>
-    public float unwrapAngleError = .08f;
+        #endregion
 
-    /// <summary>
-    /// Maximum allowed area distortion (0..1).
-    /// </summary>
-    public float unwrapAreaError = .15f;
+        public ImportMode color = ImportMode.Import;
+        public ImportMode normals = ImportMode.ImportOrCompute;
+        public ImportMode tangents = ImportMode.ImportOrCompute;
+        public ImportMode boundingBox = ImportMode.ImportOrCompute;
 
-    /// <summary>
-    /// This angle (in degrees) or greater between triangles will cause seam to be created.
-    /// </summary>
-    public float unwrapHardAngle = 88;
-
-    /// <summary>
-    /// How much uv-islands will be padded, in pixels.
-    /// </summary>
-    /// <remarks>
-    /// Note that the Unity UnwrapParams API is actually specified in a unitless number. To convert
-    /// pixels to this unitless value, this number is divided by 1024.
-    /// </remarks>
-    public int unwrapPackMargin = 4;
-    #endregion
-
-    public ImportMode color = ImportMode.Import;
-    public ImportMode normals = ImportMode.ImportOrCompute;
-    public ImportMode tangents = ImportMode.ImportOrCompute;
-    public ImportMode boundingBox = ImportMode.ImportOrCompute;
-
-    // Deprecated.
-    public ImportMode texcoord0 = ImportMode.Ignore;
-    public ImportMode texcoord1 = ImportMode.Ignore;
-    public ImportMode texcoord2 = ImportMode.Ignore;
-    public ImportMode texcoord3 = ImportMode.Ignore;
-  }
-
+        // Deprecated.
+        public ImportMode texcoord0 = ImportMode.Ignore;
+        public ImportMode texcoord1 = ImportMode.Ignore;
+        public ImportMode texcoord2 = ImportMode.Ignore;
+        public ImportMode texcoord3 = ImportMode.Ignore;
+    }
 }
