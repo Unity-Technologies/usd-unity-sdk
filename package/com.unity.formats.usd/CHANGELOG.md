@@ -1,6 +1,6 @@
 # Changes in usd-unitysdk for Unity
 
-## [Unreleased] - 2020-10-27
+## [2.0.0-exp.1] - 2020-12-21
 ### Features
 - Updated USD version to v20.08
 - Set material name in Unity to match the material name in the USD file on import (#174).
