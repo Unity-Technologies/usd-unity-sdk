@@ -22,8 +22,8 @@
 // language governing permissions and limitations under the Apache License.
 //
 
-#ifndef NDR_FILESYSTEMDISCOVERYPLUGIN_H
-#define NDR_FILESYSTEMDISCOVERYPLUGIN_H
+#ifndef PXR_USD_NDR_FILESYSTEM_DISCOVERY_H
+#define PXR_USD_NDR_FILESYSTEM_DISCOVERY_H
 
 /// \file ndrDiscovery/filesystemDiscovery.h
 
@@ -111,4 +111,4 @@ private:
 
 PXR_NAMESPACE_CLOSE_SCOPE
 
-#endif // NDR_FILESYSTEMDISCOVERYPLUGIN_H
+#endif // PXR_USD_NDR_FILESYSTEM_DISCOVERY_H

@@ -18,283 +18,349 @@ using pxr;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
-
-#if !UNITY_2017 && !UNITY_2018
 using Unity.Collections;
-#endif
 
-namespace Unity.Formats.USD {
+namespace Unity.Formats.USD
+{
+    /// <summary>
+    /// Import support for UsdSkelSkeleton
+    /// </summary>
+    public static class SkeletonImporter
+    {
+        public static void BuildSkeletonBone(string skelPath,
+            GameObject go,
+            Matrix4x4 restXform,
+            VtTokenArray joints,
+            SceneImportOptions importOptions)
+        {
+            // Perform change of basis, if needed.
+            XformImporter.ImportXform(ref restXform, importOptions);
 
-  /// <summary>
-  /// Import support for UsdSkelSkeleton
-  /// </summary>
-  public static class SkeletonImporter {
-
-    public static void BuildSkeletonBone(string skelPath,
-                                         GameObject go,
-                                         Matrix4x4 restXform,
-                                         VtTokenArray joints,
-                                         SceneImportOptions importOptions) {
-      // Perform change of basis, if needed.
-      XformImporter.ImportXform(ref restXform, importOptions);
-
-      // Decompose into TSR.
-      Vector3 pos = Vector3.zero;
-      Quaternion rot = Quaternion.identity;
-      Vector3 scale = Vector3.one;
-      if (!UnityTypeConverter.Decompose(restXform, out pos, out rot, out scale)) {
-        throw new Exception("Failed to decompose bind transforms for <" + skelPath + ">");
-      }
-      go.transform.localScale = scale;
-      go.transform.localRotation = rot;
-      go.transform.localPosition = pos;
-
-      var cubeDebugName = "usdSkel_restPose_debug_cube";
-      if (importOptions.meshOptions.debugShowSkeletonRestPose) {
-        var cube = go.transform.Find(cubeDebugName);
-        if (!cube) {
-          cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
-          cube.name = cubeDebugName;
-          cube.SetParent(go.transform, worldPositionStays: false);
-          cube.localScale = Vector3.one * 2;
-        }
-      } else {
-        var existing = go.transform.Find(cubeDebugName);
-        if (existing) {
-          GameObject.DestroyImmediate(existing.gameObject);
-        }
-      }
-    }
-
-    public static void BuildDebugBindTransforms(SkeletonSample skelSample,
-                                                GameObject goSkeleton,
-                                                SceneImportOptions options) {
-      var debugPrefix = "usdSkel_bindPose_debug_cube";
-      if (options.meshOptions.debugShowSkeletonBindPose) {
-
-        int i = 0;
-        foreach (var bindXf in skelSample.bindTransforms) {
-          // Undo the bindXf inversion for visualization.
-          var mat = bindXf.inverse;
-          var cubeName = debugPrefix + i++;
-          var cube = goSkeleton.transform.Find(cubeName);
-          if (!cube) {
-            cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
-            cube.SetParent(goSkeleton.transform, worldPositionStays: false);
-            cube.name = cubeName;
-          }
-          Vector3 t, s;
-          Quaternion r;
-          UnityTypeConverter.Decompose(mat, out t, out r, out s);
-          cube.localPosition = t;
-          cube.localScale = s;
-          cube.localRotation = r;
-        }
-      } else {
-        var zero = goSkeleton.transform.Find(debugPrefix + 0);
-        if (zero) {
-          var toDelete = new List<GameObject>();
-          foreach (Transform child in goSkeleton.transform) {
-            if (child.name.StartsWith(debugPrefix)) {
-              toDelete.Add(child.gameObject);
+            // Decompose into TSR.
+            Vector3 pos = Vector3.zero;
+            Quaternion rot = Quaternion.identity;
+            Vector3 scale = Vector3.one;
+            if (!UnityTypeConverter.Decompose(restXform, out pos, out rot, out scale))
+            {
+                throw new Exception("Failed to decompose bind transforms for <" + skelPath + ">");
             }
-          }
-          foreach (var child in toDelete) {
-            GameObject.DestroyImmediate(child);
-          }
-        }
-      }
-    }
 
-    /// <summary>
-    /// Unity expects bind transforms to be the bone's inverse transformation matrix.
-    /// USD doesn't do that, so this function does it for us, prepping the data to be used in Unity.
-    /// <summary>
-    public static void BuildBindTransforms(string path,
-                                           SkeletonSample skelSample,
-                                           SceneImportOptions options) {
-      if (skelSample.bindTransforms == null) { return; }
-      for (int i = 0; i < skelSample.bindTransforms.Length; i++) {
-        var xf = skelSample.bindTransforms[i];
-        XformImporter.ImportXform(ref xf, options);
-        skelSample.bindTransforms[i] = xf.inverse;
-      }
-    }
+            go.transform.localScale = scale;
+            go.transform.localRotation = rot;
+            go.transform.localPosition = pos;
 
-    static bool JointsMatch(string[] lhs, string[] rhs) {
-      if (lhs == null && rhs == null) { return true; }
-      if (lhs == null || rhs == null) { return false; }
-      if (lhs == rhs) { return true; }
-
-      for (int i = 0; i < lhs.Length; i++) {
-        if (lhs[i] != rhs[i]) {
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-    public static void BuildSkinnedMesh(string meshPath,
-                                        string skelPath,
-                                        SkeletonSample skeleton,
-                                        UsdSkelSkinningQuery skinningQuery,
-                                        GameObject go,
-                                        PrimMap primMap,
-                                        SceneImportOptions options) {
-      // The mesh renderer must already exist, since hte mesh also must already exist.
-      var smr = go.GetComponent<SkinnedMeshRenderer>();
-      if (!smr)
-      {
-          throw new Exception(
-            "Error importing "
-            + meshPath
-            + " SkinnnedMeshRenderer not present on GameObject"
-          );
-      }
-
-      // Get and validate the joint weights and indices informations.
-      UsdGeomPrimvar jointWeights = skinningQuery.GetJointWeightsPrimvar();
-      UsdGeomPrimvar jointIndices = skinningQuery.GetJointIndicesPrimvar();
-
-      if (!jointWeights.IsDefined() || !jointIndices.IsDefined()) {
-        throw new Exception("Joints information (indices and/or weights) are missing for: " + meshPath);
-      }
-
-      // TODO: Both indices and weights attributes can be animated. It's not handled yet.
-      // TODO: Having something that convert a UsdGeomPrimvar into a PrimvarSample could help simplify this code. 
-      int[] indices = IntrinsicTypeConverter.FromVtArray((VtIntArray)jointIndices.GetAttr().Get());
-      int indicesElementSize = jointIndices.GetElementSize();
-      pxr.TfToken indicesInterpolation = jointIndices.GetInterpolation();
-
-      if (indices.Length == 0
-          || indicesElementSize == 0
-          || indices.Length % indicesElementSize != 0
-          || !pxr.UsdGeomPrimvar.IsValidInterpolation(indicesInterpolation)) {
-        throw new Exception("Joint indices information are invalid or empty for: " + meshPath);
-      }
-
-      float[] weights = IntrinsicTypeConverter.FromVtArray((VtFloatArray)jointWeights.GetAttr().Get());
-      int weightsElementSize = jointWeights.GetElementSize();
-      pxr.TfToken weightsInterpolation = jointWeights.GetInterpolation();
-
-      if (weights.Length == 0
-          || weightsElementSize == 0
-          || weights.Length % weightsElementSize != 0
-          || !pxr.UsdGeomPrimvar.IsValidInterpolation(weightsInterpolation)) {
-        throw new Exception("Joints weights information are invalid or empty for: " + meshPath);
-      }
-
-      // Get and validate the local list of joints.
-      VtTokenArray jointsAttr = new VtTokenArray();
-      skinningQuery.GetJointOrder(jointsAttr);
-
-      // If jointsAttr wasn't define, GetJointOrder return an empty array and FromVtArray as well.
-      string[] joints = IntrinsicTypeConverter.FromVtArray(jointsAttr);
-
-      // WARNING: Do not mutate skeleton values.
-      string[] skelJoints = skeleton.joints;
-
-      if (joints == null || joints.Length == 0) {
-        if (skelJoints == null || skelJoints.Length == 0) {
-          throw new Exception("Joints array empty: " + meshPath);
-        } else {
-          joints = skelJoints;
-        }
-      }
-
-      var mesh = smr.sharedMesh;
-
-      // TODO: bind transform attribute can be animated. It's not handled yet.
-      Matrix4x4 geomXf = UnityTypeConverter.FromMatrix(skinningQuery.GetGeomBindTransform());
-
-      // If the joints list is a different length than the bind transforms, then this is likely
-      // a mesh using a subset of the total bones in the skeleton and the bindTransforms must be
-      // reconstructed.
-      var bindPoses = skeleton.bindTransforms;
-      if (!JointsMatch(skeleton.joints, joints)) {
-        var boneToPose = new Dictionary<string, Matrix4x4>();
-        bindPoses = new Matrix4x4[joints.Length];
-        for (int i = 0; i < skelJoints.Length; i++) {
-          boneToPose[skelJoints[i]] = skeleton.bindTransforms[i];
-        }
-        for (int i = 0; i < joints.Length; i++) {
-          bindPoses[i] = boneToPose[joints[i]];
-        }
-      }
-
-      // When geomXf is identity, we can take a shortcut and just use the exact skeleton bindPoses.
-      if (!ImporterBase.ApproximatelyEqual(geomXf, Matrix4x4.identity)) {
-        // Note that the bind poses were transformed when the skeleton was imported, but the
-        // geomBindTransform is per-mesh, so it must be transformed here so it is in the same space
-        // as the bind pose.
-        XformImporter.ImportXform(ref geomXf, options);
-
-        // Make a copy only if we haven't already copied the bind poses earlier.
-        if (bindPoses == skeleton.bindTransforms) {
-          var newBindPoses = new Matrix4x4[skeleton.bindTransforms.Length];
-          Array.Copy(bindPoses, newBindPoses, bindPoses.Length);
-          bindPoses = newBindPoses;
+            var cubeDebugName = "usdSkel_restPose_debug_cube";
+            if (importOptions.meshOptions.debugShowSkeletonRestPose)
+            {
+                var cube = go.transform.Find(cubeDebugName);
+                if (!cube)
+                {
+                    cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+                    cube.name = cubeDebugName;
+                    cube.SetParent(go.transform, worldPositionStays: false);
+                    cube.localScale = Vector3.one * 2;
+                }
+            }
+            else
+            {
+                var existing = go.transform.Find(cubeDebugName);
+                if (existing)
+                {
+                    GameObject.DestroyImmediate(existing.gameObject);
+                }
+            }
         }
 
-        // Concatenate the geometry bind transform with the skeleton bind poses.
-        for (int i = 0; i < bindPoses.Length; i++) {
-          // The geometry transform should be applied to the points before any other transform,
-          // hence the right hand multiply here.
-          bindPoses[i] = bindPoses[i] * geomXf;
+        public static void BuildDebugBindTransforms(SkeletonSample skelSample,
+            GameObject goSkeleton,
+            SceneImportOptions options)
+        {
+            var debugPrefix = "usdSkel_bindPose_debug_cube";
+            if (options.meshOptions.debugShowSkeletonBindPose)
+            {
+                int i = 0;
+                foreach (var bindXf in skelSample.bindTransforms)
+                {
+                    // Undo the bindXf inversion for visualization.
+                    var mat = bindXf.inverse;
+                    var cubeName = debugPrefix + i++;
+                    var cube = goSkeleton.transform.Find(cubeName);
+                    if (!cube)
+                    {
+                        cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
+                        cube.SetParent(goSkeleton.transform, worldPositionStays: false);
+                        cube.name = cubeName;
+                    }
+
+                    Vector3 t, s;
+                    Quaternion r;
+                    UnityTypeConverter.Decompose(mat, out t, out r, out s);
+                    cube.localPosition = t;
+                    cube.localScale = s;
+                    cube.localRotation = r;
+                }
+            }
+            else
+            {
+                var zero = goSkeleton.transform.Find(debugPrefix + 0);
+                if (zero)
+                {
+                    var toDelete = new List<GameObject>();
+                    foreach (Transform child in goSkeleton.transform)
+                    {
+                        if (child.name.StartsWith(debugPrefix))
+                        {
+                            toDelete.Add(child.gameObject);
+                        }
+                    }
+
+                    foreach (var child in toDelete)
+                    {
+                        GameObject.DestroyImmediate(child);
+                    }
+                }
+            }
         }
-      }
-      mesh.bindposes = bindPoses;
 
-      var bones = new Transform[joints.Length];
-      var sdfSkelPath = new SdfPath(skelPath);
-      for (int i = 0; i < joints.Length; i++) {
-        var jointPath = new SdfPath(joints[i]);
+        /// <summary>
+        /// Unity expects bind transforms to be the bone's inverse transformation matrix.
+        /// USD doesn't do that, so this function does it for us, prepping the data to be used in Unity.
+        /// <summary>
+        public static void BuildBindTransforms(string path,
+            SkeletonSample skelSample,
+            SceneImportOptions options)
+        {
+            if (skelSample.bindTransforms == null)
+            {
+                return;
+            }
 
-        if (joints[i] == "/") {
-          jointPath = sdfSkelPath;
-        } else if (jointPath.IsAbsolutePath()) {
-          Debug.LogException(new Exception("Unexpected absolute joint path: " + jointPath));
-          jointPath = new SdfPath(joints[i].TrimStart('/'));
-          jointPath = sdfSkelPath.AppendPath(jointPath);
-        } else {
-          jointPath = sdfSkelPath.AppendPath(jointPath);
+            for (int i = 0; i < skelSample.bindTransforms.Length; i++)
+            {
+                var xf = skelSample.bindTransforms[i];
+                XformImporter.ImportXform(ref xf, options);
+                skelSample.bindTransforms[i] = xf.inverse;
+            }
         }
-        var jointGo = primMap[jointPath];
-        if (!jointGo) {
-          Debug.LogError("Error importing " + meshPath + " "
-                       + "Joint not found: " + joints[i]);
-          continue;
+
+        static bool JointsMatch(string[] lhs, string[] rhs)
+        {
+            if (lhs == null && rhs == null)
+            {
+                return true;
+            }
+
+            if (lhs == null || rhs == null)
+            {
+                return false;
+            }
+
+            if (lhs == rhs)
+            {
+                return true;
+            }
+
+            for (int i = 0; i < lhs.Length; i++)
+            {
+                if (lhs[i] != rhs[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
-        bones[i] = jointGo.transform;
-      }
-      smr.bones = bones;
 
-      bool isConstant = weightsInterpolation.GetString() == pxr.UsdGeomTokens.constant;
+        public static void BuildSkinnedMesh(string meshPath,
+            string skelPath,
+            SkeletonSample skeleton,
+            UsdSkelSkinningQuery skinningQuery,
+            GameObject go,
+            PrimMap primMap,
+            SceneImportOptions options)
+        {
+            // The mesh renderer must already exist, since hte mesh also must already exist.
+            var smr = go.GetComponent<SkinnedMeshRenderer>();
+            if (!smr)
+            {
+                throw new Exception(
+                    "Error importing "
+                    + meshPath
+                    + " SkinnnedMeshRenderer not present on GameObject"
+                );
+            }
 
-      // Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
+            // Get and validate the joint weights and indices informations.
+            UsdGeomPrimvar jointWeights = skinningQuery.GetJointWeightsPrimvar();
+            UsdGeomPrimvar jointIndices = skinningQuery.GetJointIndicesPrimvar();
+
+            if (!jointWeights.IsDefined() || !jointIndices.IsDefined())
+            {
+                throw new Exception("Joints information (indices and/or weights) are missing for: " + meshPath);
+            }
+
+            // TODO: Both indices and weights attributes can be animated. It's not handled yet.
+            // TODO: Having something that convert a UsdGeomPrimvar into a PrimvarSample could help simplify this code.
+            int[] indices = IntrinsicTypeConverter.FromVtArray((VtIntArray) jointIndices.GetAttr().Get());
+            int indicesElementSize = jointIndices.GetElementSize();
+            pxr.TfToken indicesInterpolation = jointIndices.GetInterpolation();
+
+            if (indices.Length == 0
+                || indicesElementSize == 0
+                || indices.Length % indicesElementSize != 0
+                || !pxr.UsdGeomPrimvar.IsValidInterpolation(indicesInterpolation))
+            {
+                throw new Exception("Joint indices information are invalid or empty for: " + meshPath);
+            }
+
+            float[] weights = IntrinsicTypeConverter.FromVtArray((VtFloatArray) jointWeights.GetAttr().Get());
+            int weightsElementSize = jointWeights.GetElementSize();
+            pxr.TfToken weightsInterpolation = jointWeights.GetInterpolation();
+
+            if (weights.Length == 0
+                || weightsElementSize == 0
+                || weights.Length % weightsElementSize != 0
+                || !pxr.UsdGeomPrimvar.IsValidInterpolation(weightsInterpolation))
+            {
+                throw new Exception("Joints weights information are invalid or empty for: " + meshPath);
+            }
+
+            // Get and validate the local list of joints.
+            VtTokenArray jointsAttr = new VtTokenArray();
+            skinningQuery.GetJointOrder(jointsAttr);
+
+            // If jointsAttr wasn't define, GetJointOrder return an empty array and FromVtArray as well.
+            string[] joints = IntrinsicTypeConverter.FromVtArray(jointsAttr);
+
+            // WARNING: Do not mutate skeleton values.
+            string[] skelJoints = skeleton.joints;
+
+            if (joints == null || joints.Length == 0)
+            {
+                if (skelJoints == null || skelJoints.Length == 0)
+                {
+                    throw new Exception("Joints array empty: " + meshPath);
+                }
+                else
+                {
+                    joints = skelJoints;
+                }
+            }
+
+            var mesh = smr.sharedMesh;
+
+            // TODO: bind transform attribute can be animated. It's not handled yet.
+            Matrix4x4 geomXf = UnityTypeConverter.FromMatrix(skinningQuery.GetGeomBindTransform());
+
+            // If the joints list is a different length than the bind transforms, then this is likely
+            // a mesh using a subset of the total bones in the skeleton and the bindTransforms must be
+            // reconstructed.
+            var bindPoses = skeleton.bindTransforms;
+            if (!JointsMatch(skeleton.joints, joints))
+            {
+                var boneToPose = new Dictionary<string, Matrix4x4>();
+                bindPoses = new Matrix4x4[joints.Length];
+                for (int i = 0; i < skelJoints.Length; i++)
+                {
+                    boneToPose[skelJoints[i]] = skeleton.bindTransforms[i];
+                }
+
+                for (int i = 0; i < joints.Length; i++)
+                {
+                    bindPoses[i] = boneToPose[joints[i]];
+                }
+            }
+
+            // When geomXf is identity, we can take a shortcut and just use the exact skeleton bindPoses.
+            if (!ImporterBase.ApproximatelyEqual(geomXf, Matrix4x4.identity))
+            {
+                // Note that the bind poses were transformed when the skeleton was imported, but the
+                // geomBindTransform is per-mesh, so it must be transformed here so it is in the same space
+                // as the bind pose.
+                XformImporter.ImportXform(ref geomXf, options);
+
+                // Make a copy only if we haven't already copied the bind poses earlier.
+                if (bindPoses == skeleton.bindTransforms)
+                {
+                    var newBindPoses = new Matrix4x4[skeleton.bindTransforms.Length];
+                    Array.Copy(bindPoses, newBindPoses, bindPoses.Length);
+                    bindPoses = newBindPoses;
+                }
+
+                // Concatenate the geometry bind transform with the skeleton bind poses.
+                for (int i = 0; i < bindPoses.Length; i++)
+                {
+                    // The geometry transform should be applied to the points before any other transform,
+                    // hence the right hand multiply here.
+                    bindPoses[i] = bindPoses[i] * geomXf;
+                }
+            }
+
+            mesh.bindposes = bindPoses;
+
+            var bones = new Transform[joints.Length];
+            var sdfSkelPath = new SdfPath(skelPath);
+            for (int i = 0; i < joints.Length; i++)
+            {
+                var jointPath = new SdfPath(joints[i]);
+
+                if (joints[i] == "/")
+                {
+                    jointPath = sdfSkelPath;
+                }
+                else if (jointPath.IsAbsolutePath())
+                {
+                    Debug.LogException(new Exception("Unexpected absolute joint path: " + jointPath));
+                    jointPath = new SdfPath(joints[i].TrimStart('/'));
+                    jointPath = sdfSkelPath.AppendPath(jointPath);
+                }
+                else
+                {
+                    jointPath = sdfSkelPath.AppendPath(jointPath);
+                }
+
+                var jointGo = primMap[jointPath];
+                if (!jointGo)
+                {
+                    Debug.LogError("Error importing " + meshPath + " "
+                                   + "Joint not found: " + joints[i]);
+                    continue;
+                }
+
+                bones[i] = jointGo.transform;
+            }
+
+            smr.bones = bones;
+
+            bool isConstant = weightsInterpolation.GetString() == pxr.UsdGeomTokens.constant;
+
+            // Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
 #if UNITY_2019
-      var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
-      var boneWeights1 = new NativeArray<BoneWeight1>(mesh.vertexCount * weightsElementSize, Allocator.Persistent);
-      for (int i = 0; i < mesh.vertexCount; i++) {
-        int unityIndex = i * weightsElementSize;
-        int usdIndex = isConstant
-                     ? 0
-                     : unityIndex;
+            var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
+            var boneWeights1 =
+                new NativeArray<BoneWeight1>(mesh.vertexCount * weightsElementSize, Allocator.Persistent);
+            for (int i = 0; i < mesh.vertexCount; i++)
+            {
+                int unityIndex = i * weightsElementSize;
+                int usdIndex = isConstant
+                    ? 0
+                    : unityIndex;
 
-        bonesPerVertex[i] = (byte)weightsElementSize;
+                bonesPerVertex[i] = (byte) weightsElementSize;
 
-        for (int wi = 0; wi < weightsElementSize; wi++) {
-          var bw = boneWeights1[unityIndex + wi];
-          bw.boneIndex = indices[usdIndex + wi];
-          bw.weight = weights[usdIndex + wi];
-          boneWeights1[unityIndex + wi] = bw;
-        }
-      }
-      // TODO: Investigate if bone weights should be normalized before this line.
-      mesh.SetBoneWeights(bonesPerVertex, boneWeights1);
-      bonesPerVertex.Dispose();
-      boneWeights1.Dispose();
+                for (int wi = 0; wi < weightsElementSize; wi++)
+                {
+                    var bw = boneWeights1[unityIndex + wi];
+                    bw.boneIndex = indices[usdIndex + wi];
+                    bw.weight = weights[usdIndex + wi];
+                    boneWeights1[unityIndex + wi] = bw;
+                }
+            }
+
+            // TODO: Investigate if bone weights should be normalized before this line.
+            mesh.SetBoneWeights(bonesPerVertex, boneWeights1);
+            bonesPerVertex.Dispose();
+            boneWeights1.Dispose();
 #else
       var boneWeights = new BoneWeight[mesh.vertexCount];
       for (int i = 0; i < boneWeights.Length; i++) {
@@ -346,6 +412,6 @@ namespace Unity.Formats.USD {
 
       mesh.boneWeights = boneWeights;
 #endif
-    }
-  } // class
+        }
+    } // class
 } // namespace

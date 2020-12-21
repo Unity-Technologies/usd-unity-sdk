@@ -138,30 +138,6 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
-  public bool Bind(UsdPrim prim) {
-    bool ret = UsdCsPINVOKE.UsdShadeMaterial_Bind(swigCPtr, UsdPrim.getCPtr(prim));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool Unbind(UsdPrim prim) {
-    bool ret = UsdCsPINVOKE.UsdShadeMaterial_Unbind(UsdPrim.getCPtr(prim));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdRelationship GetBindingRel(UsdPrim prim) {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdShadeMaterial_GetBindingRel(UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdShadeMaterial GetBoundMaterial(UsdPrim prim) {
-    UsdShadeMaterial ret = new UsdShadeMaterial(UsdCsPINVOKE.UsdShadeMaterial_GetBoundMaterial(UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public UsdShadeOutput CreateSurfaceOutput(TfToken renderContext) {
     UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdShadeMaterial_CreateSurfaceOutput__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -352,24 +328,6 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
 
   public bool HasBaseMaterial() {
     bool ret = UsdCsPINVOKE.UsdShadeMaterial_HasBaseMaterial(swigCPtr);
-    return ret;
-  }
-
-  public static UsdGeomSubsetVector GetMaterialBindSubsets(UsdGeomImageable geom) {
-    UsdGeomSubsetVector ret = new UsdGeomSubsetVector(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindSubsets(UsdGeomImageable.getCPtr(geom)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool SetMaterialBindSubsetsFamilyType(UsdGeomImageable geom, TfToken familyType) {
-    bool ret = UsdCsPINVOKE.UsdShadeMaterial_SetMaterialBindSubsetsFamilyType(UsdGeomImageable.getCPtr(geom), TfToken.getCPtr(familyType));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static TfToken GetMaterialBindSubsetsFamilyType(UsdGeomImageable geom) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeMaterial_GetMaterialBindSubsetsFamilyType(UsdGeomImageable.getCPtr(geom)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

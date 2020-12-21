@@ -14,149 +14,159 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-
-#if !UNITY_2017
 using Unity.Jobs;
-#endif
-
 using pxr;
 using System.Collections;
 using System.Threading;
 using USD.NET;
 
-namespace Unity.Formats.USD {
-
-  /// <summary>
-  /// Uses the C# job system to read all data for the given path list and presents it as an
-  /// enumerator.
-  /// </summary>
-  /// <remarks>
-  /// Internally the reads happen in a background thread while the main thread is unblocked to
-  /// begin processing the data as it arrives.
-  /// 
-  /// Note because this class is templated on T, the static variables are unique to each
-  /// instantiation of T; this is true regardless of whether or not the static uses type T.
-  /// </remarks>
-  public struct ReadAllJob<T> :
-      IEnumerator<SampleEnumerator<T>.SampleHolder>,
-      IEnumerable<SampleEnumerator<T>.SampleHolder>
-#if !UNITY_2017
-      , IJobParallelFor
-#endif
-      where T : SampleBase, new() {
-
-    static private Scene m_scene;
-    static private SdfPath[] m_paths;
-    static private T[] m_results;
-
-    // Previously, setting elements in a bool[] caused a data race, resumably because of
-    // bit packing. Here we use an object[] to avoid this, however there was no negative
-    // effect of using a bool[] here, though the bug may have just not presented itself.
-    // An alternative lock-free implementation would also be fine (preferable) here.
-    static private object[] m_done;
-
-    static SampleEnumerator<T>.SampleHolder m_current;
-    static private AutoResetEvent m_ready;
-
-    public SampleEnumerator<T>.SampleHolder Current
+namespace Unity.Formats.USD
+{
+    /// <summary>
+    /// Uses the C# job system to read all data for the given path list and presents it as an
+    /// enumerator.
+    /// </summary>
+    /// <remarks>
+    /// Internally the reads happen in a background thread while the main thread is unblocked to
+    /// begin processing the data as it arrives.
+    ///
+    /// Note because this class is templated on T, the static variables are unique to each
+    /// instantiation of T; this is true regardless of whether or not the static uses type T.
+    /// </remarks>
+    public struct ReadAllJob<T> :
+        IEnumerator<SampleEnumerator<T>.SampleHolder>,
+        IEnumerable<SampleEnumerator<T>.SampleHolder>,
+        IJobParallelFor
+        where T : SampleBase, new()
     {
-      get {
-        return m_current;
-      }
-    }
+        static private Scene m_scene;
+        static private SdfPath[] m_paths;
+        static private T[] m_results;
 
-    object IEnumerator.Current
-    {
-      get {
-        return m_current;
-      }
-    }
+        // Previously, setting elements in a bool[] caused a data race, resumably because of
+        // bit packing. Here we use an object[] to avoid this, however there was no negative
+        // effect of using a bool[] here, though the bug may have just not presented itself.
+        // An alternative lock-free implementation would also be fine (preferable) here.
+        static private object[] m_done;
 
-    public ReadAllJob(Scene scene, SdfPath[] paths) {
-      m_ready = new AutoResetEvent(false);
-      m_scene = scene;
-      m_results = new T[paths.Length];
-      m_done = new object[paths.Length];
-      m_current = new SampleEnumerator<T>.SampleHolder();
-      m_paths = paths;
-    }
+        static SampleEnumerator<T>.SampleHolder m_current;
+        static private AutoResetEvent m_ready;
 
-    private bool ShouldReadPath(Scene scene, SdfPath path) {
-      return scene.AccessMask == null
-          || scene.IsPopulatingAccessMask
-          || scene.AccessMask.Included.ContainsKey(path);
-    }
-
-    public void Run() {
-      for (int i = 0; i < m_paths.Length; i++) {
-        Execute(i);
-      }
-    }
-
-    public void Execute(int index) {
-      var sample = new T();
-      if (ShouldReadPath(m_scene, m_paths[index])) {
-        m_scene.Read(m_paths[index], sample);
-      } else {
-        sample = null;
-        // Any object value works here, the test below is if m_done[i] == null.
-        m_done[index] = true;
-      }
-
-      m_results[index] = sample;
-
-      m_ready.Set();
-    }
-
-    public bool MoveNext() {
-      bool hasWork = true;
-
-      int j = 0;
-      while (hasWork) {
-        hasWork = false;
-        for (int i = 0; i < m_done.Length; i++) {
-          hasWork = hasWork || (m_done[i] == null);
+        public SampleEnumerator<T>.SampleHolder Current
+        {
+            get { return m_current; }
         }
 
-        if (!hasWork) {
-          return false;
+        object IEnumerator.Current
+        {
+            get { return m_current; }
         }
 
-        for (int i = 0; i < m_done.Length; i++) {
-          if (m_done[i] == null && m_results[i] != null) {
-            m_current.path = m_paths[i];
-            m_current.sample = m_results[i];
-            m_done[i] = true;
-            return true;
-          }
+        public ReadAllJob(Scene scene, SdfPath[] paths)
+        {
+            m_ready = new AutoResetEvent(false);
+            m_scene = scene;
+            m_results = new T[paths.Length];
+            m_done = new object[paths.Length];
+            m_current = new SampleEnumerator<T>.SampleHolder();
+            m_paths = paths;
         }
 
-        j++;
-        if (!m_ready.WaitOne(1000)) {
-          Debug.LogError("Timed out while waiting for thread read");
-          return false;
+        private bool ShouldReadPath(Scene scene, SdfPath path)
+        {
+            return scene.AccessMask == null
+                   || scene.IsPopulatingAccessMask
+                   || scene.AccessMask.Included.ContainsKey(path);
         }
-      }
 
-      return false;
-    }
+        public void Run()
+        {
+            for (int i = 0; i < m_paths.Length; i++)
+            {
+                Execute(i);
+            }
+        }
 
-    public void Reset() {
-      for (int i = 0; i < m_done.Length; i++) {
-        m_done[i] = false;
-      }
-    }
+        public void Execute(int index)
+        {
+            var sample = new T();
+            if (ShouldReadPath(m_scene, m_paths[index]))
+            {
+                m_scene.Read(m_paths[index], sample);
+            }
+            else
+            {
+                sample = null;
+                // Any object value works here, the test below is if m_done[i] == null.
+                m_done[index] = true;
+            }
 
-    public void Dispose() {
-      m_ready.Close();
-    }
+            m_results[index] = sample;
 
-    public IEnumerator<SampleEnumerator<T>.SampleHolder> GetEnumerator() {
-      return this;
-    }
+            m_ready.Set();
+        }
 
-    IEnumerator IEnumerable.GetEnumerator() {
-      return this;
+        public bool MoveNext()
+        {
+            bool hasWork = true;
+
+            int j = 0;
+            while (hasWork)
+            {
+                hasWork = false;
+                for (int i = 0; i < m_done.Length; i++)
+                {
+                    hasWork = hasWork || (m_done[i] == null);
+                }
+
+                if (!hasWork)
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < m_done.Length; i++)
+                {
+                    if (m_done[i] == null && m_results[i] != null)
+                    {
+                        m_current.path = m_paths[i];
+                        m_current.sample = m_results[i];
+                        m_done[i] = true;
+                        return true;
+                    }
+                }
+
+                j++;
+                if (!m_ready.WaitOne(1000))
+                {
+                    Debug.LogError("Timed out while waiting for thread read");
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
+        public void Reset()
+        {
+            for (int i = 0; i < m_done.Length; i++)
+            {
+                m_done[i] = false;
+            }
+        }
+
+        public void Dispose()
+        {
+            m_ready.Close();
+        }
+
+        public IEnumerator<SampleEnumerator<T>.SampleHolder> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
     }
-  }
 }

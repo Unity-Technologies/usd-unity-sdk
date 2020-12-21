@@ -2,19 +2,26 @@
 This document is intended for developers intending to build USD from source.
 Start by understanding the layout of the source code:
 
- * [/bin](/bin) - binaries and scripts for maintaining the repo (generating bindings, etc).
- * [/src](/src) - code from which all projects are generated.
- * [/src/Swig](/src/Swig) - hand coded and generated swig inputs.
- * [/src/Tests](/src/Tests) - unit tests for USD.NET and USD.NET.Unity.
- * [/src/USD.NET](/src/USD.NET) - generated USD bindings and serialization foundation.
+ * [/.yamato](/.yamato) - Continuous integration configuration.
+ * [/bin](/bin) - Binaries and scripts for maintaining the repo (generating bindings, etc).
+ * [/Images](/Images) - Readme images.
+ * [/src](/src) - Code from which all projects are generated.
+ * [/src/Swig](/src/Swig) - Hand coded and generated swig inputs.
+ * [/src/Tests](/src/Tests) - Unit tests for USD.NET and USD.NET.Unity.
+ * [/src/USD.NET](/src/USD.NET) - Generated USD bindings and serialization foundation.
  * [/src/USD.NET.Unity](/src/USD.NET.Unity) - Unity-specific support.
+ * [/src/UsdCs](/src/UsdCs) - The USD C# bindings library, pure C API.
+ * [/src/UsdCs.xcodeproj](/src/UsdCs.xcodeproj) - XCode project for building UsdCs shared library.
  * [/package](/package) - The source for the Unity package.
- * [/third_party](/third_party) - code copyrighted by third parties.
+ * [/TestProject](/TestProject) - Unity project for testing source package in CI.
+ * [/third_party](/third_party) - Code copyrighted by third parties.
  * [/cmake](/cmake) - CMake build configuration.
 
 ## Compiling
 
-Note that currently only Windows and OSX builds are officially supported.
+Note that currently only Windows, OSX, and Linux builds are officially supported.
+
+### Windows
 
 USD.NET.sln is a Visual Studio solution which includes all projects. The
 primary requirement is to setup the library and include paths for the
@@ -22,10 +29,23 @@ C component of the build (UsdCs):
 
  * Create a new environment variable USD_LOCATION pointing to your USD install root (contains /lib and /include)
 
-Similarly for OSX an XCode project is provided in the src directory, called
+
+### OSX / Darwin
+
+Similarly for OSX, an XCode project is provided in the src directory, called
 UsdCs.xcodeproj. The OSX build will produce a .bundle file, into which all
 dependent dylibs must be manually copied, as well as the USD plugInfo.json
 files. See the existing bundle as an example of the correct structure.
+
+The XCode project is setup to add the RPATH `@loaderpath/../Frameworks/` which
+is critical to enable the UsdCs.dylib to link against the external dylibs in
+the Frameworks directory. To verify the RPATH is set correcty, run
+`otool -l UsdCs.dylib` and search for `LC_RPATH`. If the RPATH is not set,
+it can be added to the library after compilation using the command
+```
+install_name_tool -add_rpath @loaderpath/../Frameworks/ UsdCs
+install_name_tool -add_rpath @loader_path/../../../ UsdCs
+```
 
 ## Generating Bindings
 
@@ -64,25 +84,26 @@ The full build process is:
  9. Run bin\build.bat to generate Swig bindings
  10. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
  11. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
- 12. Build the solution
- 13. Hit play to run tests
- 14. Run bin\install to copy USD.NET DLLs to the Unity asset package
- 15. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
- 16. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
- 17. Test the asset package
- 18. Export a new Unity asset package
- 19. Test the exported asset package
+ 12. **Manually add MonoPInvokeCallback attributes to Swig callbacks**, as done here (IL2CPP support): https://github.com/Unity-Technologies/usd-unity-sdk/pull/163/commits/831f9bea364de60759c8661025da6a912af9635c#diff-aae1edb8e38ca3dd35de2760982634dcR36
+ 13. Build the solution
+ 14. Hit play to run tests
+ 15. Run bin\install to copy USD.NET DLLs to the Unity asset package
+ 16. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
+ 17. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
+ 18. Test the asset package
+ 19. Export a new Unity asset package
+ 20. Test the exported asset package
 
 The following is an example of valid environment variables:
 
-SET USD_LOCATION=C:\src\usd\builds\v19.01\monolithic_no-python\
-SET USD_LOCATION_PYTHON=C:\src\usd\builds\v19.01\monolithic\
+SET USD_LOCATION=C:\src\usd\builds\v20.08\monolithic_no-python\
+SET USD_LOCATION_PYTHON=C:\src\usd\builds\v20.08\monolithic\
 
 The following are the USD build commands used to generate the two build paths noted above:
 
-python build_scripts\build_usd.py --build-monolithic --alembic --no-python --no-imaging C:\src\usd\builds\v19.01\monolithic_no-python
+python build_scripts\build_usd.py --build-monolithic --alembic --no-python --no-imaging C:\src\usd\builds\v20.08\monolithic_no-python
 
-python build_scripts\build_usd.py --build-monolithic --alembic --openimageio C:\src\usd\builds\v19.01\usd_monolithic
+python build_scripts\build_usd.py --build-monolithic --alembic --openimageio C:\src\usd\builds\v20.08\usd_monolithic
 
 ## Updating USD
 

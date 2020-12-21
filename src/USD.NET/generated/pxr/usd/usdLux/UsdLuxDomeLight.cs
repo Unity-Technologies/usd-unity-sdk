@@ -127,6 +127,10 @@ public class UsdLuxDomeLight : global::System.IDisposable {
     return ret;
   }
 
+  public void OrientToStageUpAxis() {
+    UsdCsPINVOKE.UsdLuxDomeLight_OrientToStageUpAxis(swigCPtr);
+  }
+
 }
 
 }

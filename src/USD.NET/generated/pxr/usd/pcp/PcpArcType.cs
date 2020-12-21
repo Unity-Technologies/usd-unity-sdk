@@ -12,14 +12,12 @@ namespace pxr {
 
 public enum PcpArcType {
   PcpArcTypeRoot,
-  PcpArcTypeLocalInherit,
-  PcpArcTypeGlobalInherit,
+  PcpArcTypeInherit,
   PcpArcTypeVariant,
   PcpArcTypeRelocate,
   PcpArcTypeReference,
   PcpArcTypePayload,
-  PcpArcTypeLocalSpecializes,
-  PcpArcTypeGlobalSpecializes,
+  PcpArcTypeSpecialize,
   PcpNumArcTypes
 }
 

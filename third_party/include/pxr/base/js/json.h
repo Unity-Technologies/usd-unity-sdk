@@ -22,8 +22,8 @@
 // language governing permissions and limitations under the Apache License.
 //
 
-#ifndef JS_JSON_H
-#define JS_JSON_H
+#ifndef PXR_BASE_JS_JSON_H
+#define PXR_BASE_JS_JSON_H
 
 /// \file js/json.h
 /// Top-level entrypoints for reading and writing JSON.
@@ -232,4 +232,4 @@ JS_API void JsWriteValue(JsWriter* writer, const JsValue& value);
 
 PXR_NAMESPACE_CLOSE_SCOPE
 
-#endif // JS_JSON_H
+#endif // PXR_BASE_JS_JSON_H

@@ -17,44 +17,56 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using USD.NET;
 
-namespace Unity.Formats.USD {
+namespace Unity.Formats.USD
+{
+    [System.ComponentModel.DisplayName("USD Recorder Clip")]
+    public class UsdRecorderClip : PlayableAsset, ITimelineClipAsset
+    {
+        // The root GameObject to export to USD.
+        public ExposedReference<GameObject> m_exportRoot;
+        private GameObject[] m_trackedRoots;
 
-  [System.ComponentModel.DisplayName("USD Recorder Clip")]
-  public class UsdRecorderClip : PlayableAsset, ITimelineClipAsset {
+        public bool m_exportMaterials = true;
+        public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
+        public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
 
-    // The root GameObject to export to USD.
-    public ExposedReference<GameObject> m_exportRoot;
-    private GameObject[] m_trackedRoots;
+        // The path to where the USD file will be written.
+        // If null/empty, the file will be created in memory only.
+        public string m_usdFile = "Assets/recording.usd";
 
-    public bool m_exportMaterials = true;
-    public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
-    public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
+        // The scene object to which the recording will be saved.
+        public Scene UsdScene { get; set; }
 
-    // The path to where the USD file will be written.
-    // If null/empty, the file will be created in memory only.
-    public string m_usdFile = "Assets/recording.usd";
+        ExportContext m_context = new ExportContext();
 
-    // The scene object to which the recording will be saved.
-    public Scene UsdScene { get; set; }
+        public ExportContext Context
+        {
+            get { return m_context; }
+            set { m_context = value; }
+        }
 
-    ExportContext m_context = new ExportContext();
-    public ExportContext Context { get { return m_context; } set { m_context = value; } }
+        public GameObject GetExportRoot(PlayableGraph graph)
+        {
+            return m_exportRoot.Resolve(graph.GetResolver());
+        }
 
-    public GameObject GetExportRoot(PlayableGraph graph) {
-      return m_exportRoot.Resolve(graph.GetResolver());
+        public ClipCaps clipCaps
+        {
+            get { return ClipCaps.None; }
+        }
+
+        public bool IsUSDZ => !string.IsNullOrEmpty(m_usdFile) && m_usdFile.ToLowerInvariant().EndsWith(".usdz");
+
+        public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
+        {
+            var ret = ScriptPlayable<UsdRecorderBehaviour>.Create(graph);
+            var behaviour = ret.GetBehaviour();
+            behaviour.Clip = this;
+            return ret;
+        }
+
+        public virtual void OnDestroy()
+        {
+        }
     }
-
-    public ClipCaps clipCaps { get { return ClipCaps.None; } }
-
-    public override Playable CreatePlayable(PlayableGraph graph, GameObject owner) {
-      var ret = ScriptPlayable<UsdRecorderBehaviour>.Create(graph);
-      var behaviour = ret.GetBehaviour();
-      behaviour.Clip = this;
-      return ret;
-    }
-
-    public virtual void OnDestroy() {
-    }
-
-  }
 }

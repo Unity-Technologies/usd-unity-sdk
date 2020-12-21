@@ -11,10 +11,9 @@
 namespace pxr {
 
 public enum UsdShadeAttributeType {
+  Invalid,
   Input,
-  Output,
-  Parameter,
-  InterfaceAttribute
+  Output
 }
 
 }

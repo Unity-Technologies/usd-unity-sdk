@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtVec3hArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,21 +48,15 @@ public class VtVec3hArray : Vt_ArrayBase {
   public VtVec3hArray() : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_0(), true) {
   }
 
-  public VtVec3hArray(Vt_ArrayForeignDataSource foreignSrc, GfVec3h data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfVec3h.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtVec3hArray(Vt_ArrayForeignDataSource foreignSrc, GfVec3h data, uint size) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfVec3h.getCPtr(data), size), true) {
-  }
-
-  public VtVec3hArray(VtVec3hArray other) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_3(VtVec3hArray.getCPtr(other)), true) {
+  public VtVec3hArray(VtVec3hArray other) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_1(VtVec3hArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtVec3hArray(uint n, GfVec3h value) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_5(n, GfVec3h.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtVec3hArray(uint n) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_3(n), true) {
   }
 
-  public VtVec3hArray(uint n) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_6(n), true) {
+  public VtVec3hArray(uint n, GfVec3h value) : this(UsdCsPINVOKE.new_VtVec3hArray__SWIG_4(n, GfVec3h.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(GfVec3h elem) {

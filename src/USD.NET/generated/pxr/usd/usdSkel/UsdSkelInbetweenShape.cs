@@ -73,6 +73,33 @@ public class UsdSkelInbetweenShape : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetNormalOffsetsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelInbetweenShape_GetNormalOffsetsAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateNormalOffsetsAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelInbetweenShape_CreateNormalOffsetsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateNormalOffsetsAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelInbetweenShape_CreateNormalOffsetsAttr__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public bool GetNormalOffsets(VtVec3fArray offsets) {
+    bool ret = UsdCsPINVOKE.UsdSkelInbetweenShape_GetNormalOffsets(swigCPtr, VtVec3fArray.getCPtr(offsets));
+    return ret;
+  }
+
+  public bool SetNormalOffsets(VtVec3fArray offsets) {
+    bool ret = UsdCsPINVOKE.UsdSkelInbetweenShape_SetNormalOffsets(swigCPtr, VtVec3fArray.getCPtr(offsets));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool IsInbetween(UsdAttribute attr) {
     bool ret = UsdCsPINVOKE.UsdSkelInbetweenShape_IsInbetween(UsdAttribute.getCPtr(attr));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -40,6 +40,40 @@ public class SdfStringListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfStringListOp CreateExplicit(StdStringVector explicitItems) {
+    SdfStringListOp ret = new SdfStringListOp(UsdCsPINVOKE.SdfStringListOp_CreateExplicit__SWIG_0(StdStringVector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfStringListOp CreateExplicit() {
+    SdfStringListOp ret = new SdfStringListOp(UsdCsPINVOKE.SdfStringListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfStringListOp Create(StdStringVector prependedItems, StdStringVector appendedItems, StdStringVector deletedItems) {
+    SdfStringListOp ret = new SdfStringListOp(UsdCsPINVOKE.SdfStringListOp_Create__SWIG_0(StdStringVector.getCPtr(prependedItems), StdStringVector.getCPtr(appendedItems), StdStringVector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfStringListOp Create(StdStringVector prependedItems, StdStringVector appendedItems) {
+    SdfStringListOp ret = new SdfStringListOp(UsdCsPINVOKE.SdfStringListOp_Create__SWIG_1(StdStringVector.getCPtr(prependedItems), StdStringVector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfStringListOp Create(StdStringVector prependedItems) {
+    SdfStringListOp ret = new SdfStringListOp(UsdCsPINVOKE.SdfStringListOp_Create__SWIG_2(StdStringVector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfStringListOp Create() {
+    SdfStringListOp ret = new SdfStringListOp(UsdCsPINVOKE.SdfStringListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfStringListOp() : this(UsdCsPINVOKE.new_SdfStringListOp(), true) {
   }
 
@@ -50,6 +84,12 @@ public class SdfStringListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfStringListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(string item) {
+    bool ret = UsdCsPINVOKE.SdfStringListOp_HasItem(swigCPtr, item);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

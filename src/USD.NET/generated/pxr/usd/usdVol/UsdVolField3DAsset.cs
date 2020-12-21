@@ -95,6 +95,28 @@ public class UsdVolField3DAsset : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetFieldPurposeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolField3DAsset_GetFieldPurposeAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldPurposeAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolField3DAsset_CreateFieldPurposeAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldPurposeAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolField3DAsset_CreateFieldPurposeAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldPurposeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolField3DAsset_CreateFieldPurposeAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdAttribute GetFieldIndexAttr() {
     UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolField3DAsset_GetFieldIndexAttr(swigCPtr), true);
     return ret;

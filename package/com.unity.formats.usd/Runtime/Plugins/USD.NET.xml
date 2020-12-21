@@ -4,6 +4,32 @@
         <name>USD.NET</name>
     </assembly>
     <members>
+        <member name="T:MonoPInvokeCallbackAttribute">
+             <summary>
+             Add this tag to make callback compatible with IL2CPP
+             </summary>
+             
+             <remarks>
+             Why does this class exist?
+             See: https://github.com/Unity-Technologies/usd-unity-sdk/issues/100#issuecomment-512134215
+                  https://github.com/Unity-Technologies/usd-unity-sdk/issues/100#issuecomment-589834716
+            
+             SWIG Callbacks must be explicitly tagged as mono callbacks so the IL2CPP backend can correctly
+             generate C++ code. This is hack to work around the fact that USD.NET doesn't reference the
+             Mono runtime libraries.
+             
+             Also see: https://docs.microsoft.com/en-us/dotnet/api/objcruntime.monopinvokecallbackattribute?view=xamarin-ios-sdk-12
+             </remarks>
+        </member>
+        <member name="T:PreserveAttribute">
+            <summary>
+            Prevent a method, class, field, or property from being stripped by bytecode optimization.
+            </summary>
+            <remarks>
+            When IL2CPP optimizes the generated IL, unused code will be stripped. Any methods only called by reflection will
+            also be stripped in this way. To prevent this, this attribute is copied from Unity.
+            </remarks>
+        </member>
         <member name="T:USD.NET.SampleCollection`1">
             <summary>
             Provides custom enumeration over an SdfPathVector to avoid generation of garbage.
@@ -763,16 +789,6 @@
             Set the layer to which this scene will author when writing values.
             </summary>
         </member>
-        <member name="M:USD.NET.Scene.WaitForWrites">
-            <summary>
-            Wait until all asynchronous writes complete.
-            </summary>
-        </member>
-        <member name="M:USD.NET.Scene.WaitForReads">
-            <summary>
-            Wait until all asynchronous reads complete.
-            </summary>
-        </member>
         <member name="M:USD.NET.Scene.Save">
             <summary>
             Saves the current scene if backed by a file, throws an exception if this scene is in
@@ -893,6 +909,12 @@
         <member name="T:USD.NET.DefaultConversions">
             Conversions discovered automatically via reflection on VtValue.
         </member>
+        <member name="F:USD.NET.TypeBinder.EnableCodeGeneration">
+            <summary>
+            Use the JIT compiler to emit new functions (fast path) for type bindings.
+            Set to false for platforms which do not support JIT compilation.
+            </summary>
+        </member>
         <member name="M:USD.NET.TypeBinder.BindArrayType``1(System.Type,System.Type,pxr.SdfValueTypeName,System.String)">
             <summary>
             Binds the specified C# type to the given USD array and scene description (Sdf) types,
@@ -909,6 +931,21 @@
             
             TODO: The C++ type can be inferred from the Sdf type, so vtArrayType is not needed.
             
+        </member>
+        <member name="M:USD.NET.TypeBinder.CsArrayToVtValue(System.Reflection.MethodInfo,System.Type,System.Type)">
+            <summary>
+            Returns a function that converts a C# array to a VtValue holding a VtArray of T, using (slow) late binding.
+            </summary>
+        </member>
+        <member name="M:USD.NET.TypeBinder.ToCsDynamicConvertHelper(pxr.VtValue,System.Type,System.Reflection.MethodInfo,System.Reflection.MethodInfo)">
+            <summary>
+            Converts a VtValue holding a VtArray of T to a C#-native array type, using (slow) late binding.
+            </summary>
+        </member>
+        <member name="M:USD.NET.TypeBinder.ToCsConvertHelper(pxr.VtValue,System.Type,USD.NET.ToCsCopyConverter)">
+            <summary>
+            Converts a VtValue holding a VtArray of T to a C#-native array type, using a generated (fast) function, toCs.
+            </summary>
         </member>
         <member name="T:USD.NET.UsdIo">
             <summary>
@@ -1200,6 +1237,12 @@
             collection but not when one of the elements of the collection is modified as it is a bit
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
+        <member name="T:pxr.SdfTimeCodeVector.SdfTimeCodeVectorEnumerator">
+            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
+            whenever the collection is modified. This has been done for changes in the size of the
+            collection but not when one of the elements of the collection is modified as it is a bit
+            tricky to detect unmanaged code that modifies the collection under our feet.
+        </member>
         <member name="T:pxr.SdfUInt64ListOpVector.SdfUInt64ListOpVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
@@ -1417,12 +1460,6 @@
             tricky to detect unmanaged code that modifies the collection under our feet.
         </member>
         <member name="T:pxr.StdUnregisteredValueVector.StdUnregisteredValueVectorEnumerator">
-            Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
-            whenever the collection is modified. This has been done for changes in the size of the
-            collection but not when one of the elements of the collection is modified as it is a bit
-            tricky to detect unmanaged code that modifies the collection under our feet.
-        </member>
-        <member name="T:pxr.TaskCallbackVector.TaskCallbackVectorEnumerator">
             Note that the IEnumerator documentation requires an InvalidOperationException to be thrown
             whenever the collection is modified. This has been done for changes in the size of the
             collection but not when one of the elements of the collection is modified as it is a bit

@@ -470,7 +470,6 @@ namespace USD.NET {
         this.m_stage.Dispose();
         this.m_stage = null;
       }
-      this.m_bgExe.Stop();
     }
 
     /// <summary>
@@ -542,27 +541,10 @@ namespace USD.NET {
     }
 
     /// <summary>
-    /// Wait until all asynchronous writes complete.
-    /// </summary>
-    public void WaitForWrites() {
-      m_bgExe.Paused = false;
-      m_bgExe.WaitForWrites();
-    }
-
-    /// <summary>
-    /// Wait until all asynchronous reads complete.
-    /// </summary>
-    public void WaitForReads() {
-      m_bgExe.Paused = false;
-      m_bgExe.WaitForReads();
-    }
-
-    /// <summary>
     /// Saves the current scene if backed by a file, throws an exception if this scene is in
     /// memory only.
     /// </summary>
     public void Save() {
-      WaitForWrites();
       m_stage.Save();
     }
 
@@ -570,7 +552,6 @@ namespace USD.NET {
     /// Write the root layer of the current scene to the given file path, preserving all references.
     /// </summary>
     public void SaveAs(string filePath) {
-      WaitForWrites();
       m_stage.GetEditTarget().GetLayer().Export(filePath);
     }
 
@@ -583,7 +564,6 @@ namespace USD.NET {
     /// inlined.
     /// </remarks>
     public void FlattenAs(string filePath) {
-      WaitForWrites();
       m_stage.Flatten(addSourceFileComment: false).Export(filePath);
     }
 
@@ -644,13 +624,6 @@ namespace USD.NET {
       memberValue = (T)o;
     }
 
-    public void ReadAsync<T>(string path, T sample) where T : SampleBase {
-      ReadAsync(GetSdfPath(path), sample);
-    }
-    public void ReadAsync<T>(SdfPath path, T sample) where T : SampleBase {
-      m_bgExe.AsyncRead(() => ReadInternal(path, sample, TimeCode));
-    }
-
     static readonly HashSet<System.Reflection.MemberInfo> m_empty = new HashSet<System.Reflection.MemberInfo>();
     private void ReadInternal<T>(SdfPath path,
                                  T sample,
@@ -703,13 +676,6 @@ namespace USD.NET {
     }
     public void Write<T>(SdfPath path, T sample) where T : SampleBase {
       WriteInternal(path, sample, TimeCode);
-    }
-
-    public void WriteAsync<T>(string path, T sample) where T : SampleBase {
-      WriteAsync(GetSdfPath(path), sample);
-    }
-    public void WriteAsync<T>(SdfPath path, T sample) where T : SampleBase {
-      m_bgExe.AsyncWrite(() => WriteInternal(path, sample, TimeCode));
     }
 
     private void WriteInternal<T>(SdfPath path,
@@ -779,10 +745,12 @@ namespace USD.NET {
     private pxr.UsdPrim GetUsdPrim(SdfPath path) {
       UsdPrim prim;
       lock(m_stageLock) {
-      if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
-        prim = Stage.GetPrimAtPath(path);
-        m_primMap[path] = prim;
-      }
+        if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid()) {
+          prim = Stage.GetPrimAtPath(path);
+          if (prim.IsValid()) {
+            m_primMap[path] = prim;
+          }
+        }
       }
       return prim;
     }
@@ -817,7 +785,6 @@ namespace USD.NET {
     private object m_stageLock = new object();
     private UsdIo m_usdIo;
     private UsdStage m_stage;
-    private BackgroundExecutor m_bgExe = new BackgroundExecutor();
 
     // Cache TfTokens for reuse to avoid P/Invoke and token churn.
     private static readonly TfToken kUpAxisToken = new TfToken("upAxis");

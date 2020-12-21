@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtUCharArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,20 +48,14 @@ public class VtUCharArray : Vt_ArrayBase {
   public VtUCharArray() : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_0(), true) {
   }
 
-  public VtUCharArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_unsigned_char data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_unsigned_char.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtUCharArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_unsigned_char data, uint size) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_unsigned_char.getCPtr(data), size), true) {
-  }
-
-  public VtUCharArray(VtUCharArray other) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_3(VtUCharArray.getCPtr(other)), true) {
+  public VtUCharArray(VtUCharArray other) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_1(VtUCharArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtUCharArray(uint n, byte value) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_5(n, value), true) {
+  public VtUCharArray(uint n) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_3(n), true) {
   }
 
-  public VtUCharArray(uint n) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_6(n), true) {
+  public VtUCharArray(uint n, byte value) : this(UsdCsPINVOKE.new_VtUCharArray__SWIG_4(n, value), true) {
   }
 
   public void push_back(byte elem) {

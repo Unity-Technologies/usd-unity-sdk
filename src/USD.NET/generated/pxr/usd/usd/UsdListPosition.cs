@@ -14,8 +14,7 @@ public enum UsdListPosition {
   UsdListPositionFrontOfPrependList,
   UsdListPositionBackOfPrependList,
   UsdListPositionFrontOfAppendList,
-  UsdListPositionBackOfAppendList,
-  UsdListPositionTempDefault
+  UsdListPositionBackOfAppendList
 }
 
 }

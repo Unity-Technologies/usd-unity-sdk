@@ -156,56 +156,74 @@ public class GfRay : global::System.IDisposable {
     return ret;
   }
 
+  public bool Intersect(GfBBox3d box, out double enterDistance, out double exitDistance) {
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_11(swigCPtr, GfBBox3d.getCPtr(box), out enterDistance, out exitDistance);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool Intersect(GfBBox3d box, out double enterDistance) {
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_12(swigCPtr, GfBBox3d.getCPtr(box), out enterDistance);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool Intersect(GfBBox3d box) {
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_13(swigCPtr, GfBBox3d.getCPtr(box));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool Intersect(GfVec3d center, double radius, out double enterDistance, out double exitDistance) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_11(swigCPtr, GfVec3d.getCPtr(center), radius, out enterDistance, out exitDistance);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_14(swigCPtr, GfVec3d.getCPtr(center), radius, out enterDistance, out exitDistance);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d center, double radius, out double enterDistance) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_12(swigCPtr, GfVec3d.getCPtr(center), radius, out enterDistance);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_15(swigCPtr, GfVec3d.getCPtr(center), radius, out enterDistance);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d center, double radius) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_13(swigCPtr, GfVec3d.getCPtr(center), radius);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_16(swigCPtr, GfVec3d.getCPtr(center), radius);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d origin, GfVec3d axis, double radius, out double enterDistance, out double exitDistance) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_14(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, out enterDistance, out exitDistance);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_17(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, out enterDistance, out exitDistance);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d origin, GfVec3d axis, double radius, out double enterDistance) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_15(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, out enterDistance);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_18(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, out enterDistance);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d origin, GfVec3d axis, double radius) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_16(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_19(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d origin, GfVec3d axis, double radius, double height, out double enterDistance, out double exitDistance) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_17(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, height, out enterDistance, out exitDistance);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_20(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, height, out enterDistance, out exitDistance);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d origin, GfVec3d axis, double radius, double height, out double enterDistance) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_18(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, height, out enterDistance);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_21(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, height, out enterDistance);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool Intersect(GfVec3d origin, GfVec3d axis, double radius, double height) {
-    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_19(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, height);
+    bool ret = UsdCsPINVOKE.GfRay_Intersect__SWIG_22(swigCPtr, GfVec3d.getCPtr(origin), GfVec3d.getCPtr(axis), radius, height);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

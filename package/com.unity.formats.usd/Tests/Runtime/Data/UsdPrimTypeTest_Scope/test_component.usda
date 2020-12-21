@@ -1,0 +1,56 @@
+#usda 1.0
+(
+    defaultPrim = "test_component"
+)
+
+def Xform "test_component" (
+    prepend references = </root_payload>
+)
+{
+}
+
+over "root_payload" (
+)
+{
+    def Xform "XformTest" ()
+    {
+
+    }
+
+    def Scope "ScopeTest" ()
+    {
+        def Xform "ScopeWillShowUpWhenHavingXformsInside" ()
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+        }
+    }
+
+    def Scope "geom" (
+        prepend variantSets = "LevelOfDetail"
+    )
+    {
+        variantSet "LevelOfDetail" = {
+            "high" (
+                payload = @./test_component.payload.usda@</high_scope>
+            ) {
+
+            }
+            "high" (
+                payload = @./test_component.payload.usda@</high>
+            ) {
+
+            }
+            "medium" (
+                payload = @./test_component.payload.usda@</medium>
+            ) {
+
+            }
+            "low" (
+                payload = @./test_component.payload.usda@</low>
+            ){
+                
+            }
+        }
+    }
+}

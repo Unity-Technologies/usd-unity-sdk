@@ -15,184 +15,301 @@
 using UnityEngine;
 using UnityEngine.Playables;
 using USD.NET;
-
+using System.IO;
+using pxr;
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
-namespace Unity.Formats.USD {
-  public class UsdRecorderBehaviour : PlayableBehaviour {
+namespace Unity.Formats.USD
+{
+    public class UsdRecorderBehaviour : PlayableBehaviour
+    {
+        // Conversion to keyframes (60 frames per second) to work around QuickLook bug
+        const int kExportFrameRate = 60;
+        bool m_isPaused = false;
+        public UsdRecorderClip Clip;
+        string usdcFileName;
+        string usdzFileName;
+        string usdzFilePath;
+        string currentDir;
+        DirectoryInfo usdzTemporaryDir;
+        GameObject _root;
 
-    bool m_isPaused = false;
-    public UsdRecorderClip Clip;
+        // ------------------------------------------------------------------------------------------ //
+        // Recording Control.
+        // ------------------------------------------------------------------------------------------ //
 
-    // ------------------------------------------------------------------------------------------ //
-    // Recording Control.
-    // ------------------------------------------------------------------------------------------ //
+        public void BeginRecording(double currentTime, GameObject root)
+        {
+            InitUsd.Initialize();
+            _root = root;
 
-    public void BeginRecording(double currentTime, GameObject root) {
-      InitUsd.Initialize();
+            if (!root)
+            {
+                Debug.LogError("ExportRoot not assigned.");
+                return;
+            }
 
-      if (!root) {
-        Debug.LogError("ExportRoot not assigned.");
-        return;
-      }
+            if (Clip.UsdScene != null)
+            {
+                Clip.UsdScene.Close();
+                Clip.UsdScene = null;
+            }
 
-      if (Clip.UsdScene != null) {
-        Clip.UsdScene.Close();
-        Clip.UsdScene = null;
-      }
+            // Keep the current directory to restore it at the end.
+            currentDir = Directory.GetCurrentDirectory();
+            var localScale = root.transform.localScale;
+            try
+            {
+                if (string.IsNullOrEmpty(Clip.m_usdFile))
+                {
+                    Clip.UsdScene = Scene.Create();
+                }
+                else if (Clip.IsUSDZ)
+                {
+                    // Setup a temporary directory to export the wanted USD file and zip it.
+                    string tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                    usdzTemporaryDir = Directory.CreateDirectory(tmpDirPath);
 
-      try {
-        if (string.IsNullOrEmpty(Clip.m_usdFile)) {
-          Clip.UsdScene = Scene.Create();
-        } else {
-          Clip.UsdScene = Scene.Create(Clip.m_usdFile);
+                    // Get the usd file name to export and the usdz file name of the archive.
+                    usdcFileName = Path.GetFileNameWithoutExtension(Clip.m_usdFile) + ".usdc";
+                    usdzFileName = Path.GetFileName(Clip.m_usdFile);
+                    var fi = new FileInfo(Clip.m_usdFile);
+                    usdzFilePath = fi.FullName;
+
+                    // Set the current working directory to the tmp directory to export with relative paths.
+                    Directory.SetCurrentDirectory(tmpDirPath);
+
+                    Clip.UsdScene = UsdzExporter.InitForSave(usdcFileName);
+                }
+                else
+                {
+                    Clip.UsdScene = Scene.Create(Clip.m_usdFile);
+                }
+
+                // Set the frame rate in USD  as well.
+                //
+                // This both set the "time samples per second" and the playback rate.
+                // Setting times samples per second allows the authoring code to express samples as integer
+                // values, avoiding floating point error; so by setting FrameRate = 60, the samples written
+                // at time=0 through time=59 represent the first second of playback.
+                //
+                // Stage.TimeCodesPerSecond is set implicitly to 1 / FrameRate.
+                //m_usdScene.FrameRate = Clip.frame;
+
+                // When authoring in terms of seconds, at any frame rate the samles written at
+                // time = 0.0 through time = 1.0 represent the first second of playback. The framerate
+                // above will only be used as a target frame rate.
+                //if (m_timeUnits == TimeCode.Seconds) {
+                //  m_usdScene.Stage.SetTimeCodesPerSecond(1);
+                //}
+
+                // Regardless of the actual sampling rate (e.g. Timeline playback speed), we are converting
+                // the timecode from seconds to frames with a sampling rate of 60 FPS. This has the nice quality
+                // of adding additional numerical stability.
+                // In the event that the timeline is not configured for 60 FPS playback, we rely on USD's linear
+                // interpolation mode to up-sample to 60 FPS.
+                Clip.UsdScene.FrameRate = kExportFrameRate;
+                Clip.UsdScene.Stage.SetInterpolationType(pxr.UsdInterpolationType.UsdInterpolationTypeLinear);
+
+                // For simplicity in this example, adding game objects while recording is not supported.
+                Clip.Context = new ExportContext();
+                Clip.Context.scene = Clip.UsdScene;
+                Clip.Context.basisTransform = Clip.m_convertHandedness;
+                Clip.Context.activePolicy = Clip.m_activePolicy;
+                Clip.Context.exportMaterials = Clip.m_exportMaterials;
+                // USDZ is in centimeters.
+                Clip.Context.scale = Clip.IsUSDZ ? 100.0f : 1.0f;
+
+                Clip.UsdScene.StartTime = currentTime * kExportFrameRate;
+
+                // Export the "default" frame, that is, all data which doesn't vary over time.
+                Clip.UsdScene.Time = null;
+
+                SceneExporter.SyncExportContext(root, Clip.Context);
+                SceneExporter.Export(root,
+                    Clip.Context,
+                    zeroRootTransform: false);
+            }
+            catch
+            {
+                if (Clip.UsdScene != null)
+                {
+                    Debug.LogError("Set scene to null");
+                    Clip.UsdScene.Close();
+                    Clip.UsdScene = null;
+                }
+
+                if (Clip.IsUSDZ)
+                {
+                    usdzTemporaryDir.Delete(recursive: true);
+                }
+
+                throw;
+            }
+            finally
+            {
+                Directory.SetCurrentDirectory(currentDir);
+            }
         }
 
-        // Set the frame rate in USD  as well.
-        //
-        // This both set the "time samples per second" and the playback rate.
-        // Setting times samples per second allows the authoring code to express samples as integer
-        // values, avoiding floating point error; so by setting FrameRate = 60, the samples written
-        // at time=0 through time=59 represent the first second of playback.
-        //
-        // Stage.TimeCodesPerSecond is set implicitly to 1 / FrameRate.
-        //m_usdScene.FrameRate = Clip.frame;
+        public void StopRecording(double currentTime)
+        {
+            if (Clip.UsdScene == null)
+            {
+                // If an error occured, avoid spewing on every frame.
+                return;
+            }
 
-        // When authoring in terms of seconds, at any frame rate the samles written at
-        // time = 0.0 through time = 1.0 represent the first second of playback. The framerate
-        // above will only be used as a target frame rate.
-        //if (m_timeUnits == TimeCode.Seconds) {
-        //  m_usdScene.Stage.SetTimeCodesPerSecond(1);
-        //}
+            try
+            {
+                if (Clip.IsUSDZ && usdzTemporaryDir != null)
+                    Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
 
-        // TODO: How does one extract the time mode (frames or seconds) from the Timeline?
-        Clip.UsdScene.Stage.SetFramesPerSecond(30);
-        Clip.UsdScene.Stage.SetTimeCodesPerSecond(1);
+                Clip.Context = new ExportContext();
+                Clip.UsdScene.EndTime = currentTime * kExportFrameRate;
+                // In a real exporter, additional error handling should be added here.
+                if (!string.IsNullOrEmpty(Clip.m_usdFile))
+                {
+                    // We could use SaveAs here, which is fine for small scenes, though it will require
+                    // everything to fit in memory and another step where that memory is copied to disk.
+                    Clip.UsdScene.Save();
+                }
 
-        // For simplicity in this example, adding game objects while recording is not supported.
-        Clip.Context = new ExportContext();
-        Clip.Context.scene = Clip.UsdScene;
-        Clip.Context.basisTransform = Clip.m_convertHandedness;
-        Clip.Context.activePolicy = Clip.m_activePolicy;
-        Clip.Context.exportMaterials = Clip.m_exportMaterials;
+                // Release memory associated with the scene.
+                Clip.UsdScene.Close();
+                Clip.UsdScene = null;
+                if (Clip.IsUSDZ)
+                {
+                    SdfAssetPath assetPath = new SdfAssetPath(usdcFileName);
+                    bool success = pxr.UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
 
-        Clip.UsdScene.StartTime = currentTime;
+                    if (!success)
+                    {
+                        Debug.LogError("Couldn't export " + _root.name + " to the usdz file: " + usdzFilePath);
+                        return;
+                    }
 
-        // Export the "default" frame, that is, all data which doesn't vary over time.
-        Clip.UsdScene.Time = null;
-        SceneExporter.SyncExportContext(root, Clip.Context);
-        SceneExporter.Export(root,
-                             Clip.Context,
-                             zeroRootTransform: false);
-
-      } catch {
-        if (Clip.UsdScene != null) {
-          Debug.LogError("Set scene to null");
-          Clip.UsdScene.Close();
-          Clip.UsdScene = null;
+                    // needed if we export into temp folder first
+                    File.Copy(usdzFileName, usdzFilePath, overwrite: true);
+                }
+            }
+            finally
+            {
+                // Clean up temp files.
+                Directory.SetCurrentDirectory(currentDir);
+                if (Clip.IsUSDZ && usdzTemporaryDir != null && usdzTemporaryDir.Exists)
+                {
+                    usdzTemporaryDir.Delete(recursive: true);
+                }
+            }
         }
-        throw;
-      }
-    }
 
-    public void StopRecording(double currentTime) {
-      if (Clip.UsdScene == null) {
-        // If an error occured, avoid spewing on every frame.
-        return;
-      }
+        void ProcessRecording(double currentTime, GameObject root)
+        {
+            if (!root || m_isPaused)
+            {
+                return;
+            }
 
-      Clip.Context = new ExportContext();
-      Clip.UsdScene.EndTime = currentTime;
+            if (Clip.UsdScene == null)
+            {
+                Debug.LogError("Process: clip.scene is null");
+            }
 
-      // In a real exporter, additional error handling should be added here.
-      if (!string.IsNullOrEmpty(Clip.m_usdFile)) {
-        // We could use SaveAs here, which is fine for small scenes, though it will require
-        // everything to fit in memory and another step where that memory is copied to disk.
-        Clip.UsdScene.Save();
-      }
+            if (Clip.Context.scene == null)
+            {
+                Debug.LogError("Process: context.scene is null");
+            }
 
-      // Release memory associated with the scene.
-      Clip.UsdScene.Close();
-      Clip.UsdScene = null;
-    }
+            Clip.UsdScene.Time = currentTime * kExportFrameRate;
+            Clip.Context.exportMaterials = false;
+            SceneExporter.Export(root, Clip.Context, zeroRootTransform: false);
+        }
 
-    void ProcessRecording(double currentTime, GameObject root) {
-      if (!root || m_isPaused) {
-        return;
-      }
-      if (Clip.UsdScene == null) {
-        Debug.LogError("Process: clip.scene is null");
-      }
-      if (Clip.Context.scene == null) {
-        Debug.LogError("Process: context.scene is null");
-      }
-
-      Clip.UsdScene.Time = currentTime;
-      Clip.Context.exportMaterials = false;
-      SceneExporter.Export(root, Clip.Context, zeroRootTransform: false);
-    }
-
-    bool IsPlaying() {
+        bool IsPlaying()
+        {
 #if UNITY_EDITOR
-      return EditorApplication.isPlaying;
+            return EditorApplication.isPlaying;
 #else
       return true;
 #endif
-    }
+        }
 
-    // ------------------------------------------------------------------------------------------ //
-    // Timeline Events.
-    // ------------------------------------------------------------------------------------------ //
+        // ------------------------------------------------------------------------------------------ //
+        // Timeline Events.
+        // ------------------------------------------------------------------------------------------ //
 
-    public override void OnPlayableCreate(Playable playable) {
-    }
+        public override void OnPlayableCreate(Playable playable)
+        {
+        }
 
-    public override void OnPlayableDestroy(Playable playable) {
-      if (!IsPlaying()) {
-        return;
-      }
-      StopRecording(playable.GetTime());
-    }
+        public override void OnPlayableDestroy(Playable playable)
+        {
+            if (!IsPlaying())
+            {
+                return;
+            }
 
-    public override void OnGraphStart(Playable playable) {
-      if (!IsPlaying()) {
-        return;
-      }
-      BeginRecording(playable.GetTime(), Clip.GetExportRoot(playable.GetGraph()));
-    }
+            StopRecording(playable.GetTime());
+        }
 
-    public override void OnGraphStop(Playable playable) {
-      if (!IsPlaying()) {
-        return;
-      }
-      StopRecording(playable.GetTime());
-    }
+        public override void OnGraphStart(Playable playable)
+        {
+            if (!IsPlaying())
+            {
+                return;
+            }
 
-    public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
-      if (!IsPlaying()) {
-        return;
-      }
-      var frameRate = Time.captureFramerate;
-      if (frameRate < 1) {
-        frameRate = Application.targetFrameRate;
-      }
-      
-      UsdWaitForEndOfFrame.Add(() => OnFrameEnd(playable, info, playerData));
-    }
+            BeginRecording(playable.GetTime(), Clip.GetExportRoot(playable.GetGraph()));
+        }
 
-    public override void OnBehaviourPlay(Playable playable, FrameData info) {
-      m_isPaused = false;
-    }
+        public override void OnGraphStop(Playable playable)
+        {
+            if (!IsPlaying())
+            {
+                return;
+            }
 
-    public override void OnBehaviourPause(Playable playable, FrameData info) {
-      m_isPaused = true;
-    }
+            StopRecording(playable.GetTime());
+        }
 
-    public void OnFrameEnd(Playable playable, FrameData info, object playerData) {
-      if (!playable.IsValid()) { return; }
-      ProcessRecording(playable.GetTime(), Clip.GetExportRoot(playable.GetGraph()));
+        public override void ProcessFrame(Playable playable, FrameData info, object playerData)
+        {
+            if (!IsPlaying())
+            {
+                return;
+            }
+
+            var frameRate = Time.captureFramerate;
+            if (frameRate < 1)
+            {
+                frameRate = Application.targetFrameRate;
+            }
+
+            UsdWaitForEndOfFrame.Add(() => OnFrameEnd(playable, info, playerData));
+        }
+
+        public override void OnBehaviourPlay(Playable playable, FrameData info)
+        {
+            m_isPaused = false;
+        }
+
+        public override void OnBehaviourPause(Playable playable, FrameData info)
+        {
+            m_isPaused = true;
+        }
+
+        public void OnFrameEnd(Playable playable, FrameData info, object playerData)
+        {
+            if (!playable.IsValid())
+            {
+                return;
+            }
+
+            ProcessRecording(playable.GetTime(), Clip.GetExportRoot(playable.GetGraph()));
+        }
     }
-  }
 }

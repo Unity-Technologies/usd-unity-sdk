@@ -122,6 +122,14 @@
             https://graphics.pixar.com/usd/docs/UsdPreviewSurface-Proposal.html
             </summary>
         </member>
+        <member name="M:USD.NET.Unity.TextureReaderSample.GetWrapMode(UnityEngine.TextureWrapMode)">
+            <summary>
+            Converts Unity texture wrap mode to USD wrap mode.
+            </summary>
+            <remarks>
+            Note that this is not a 1:1 match - MirrorOnce is not supported in USD, while the USD default (black outside tex) is not supported in Unity.
+            </remarks>
+        </member>
         <member name="F:USD.NET.Unity.TextureReaderSample.file">
             <summary>
             Path to the texture.  Following the 1.36 MaterialX spec, Mari UDIM substitution in file
@@ -333,11 +341,6 @@
             Implements a DiagnosticHandler which pipes messages to Unity's debug logger.
             </summary>
         </member>
-        <member name="M:USD.NET.Unity.DiagnosticHandler.Register">
-            <summary>
-            Registers this class a the global diagnostic handler.
-            </summary>
-        </member>
         <member name="M:USD.NET.Unity.DiagnosticHandler.OnFatalError(System.String)">
             <summary>
             Messages sent when an unrecoverable fatal error occured in the USD API.
@@ -357,6 +360,25 @@
             <summary>
             Informational messages sent from the USD API.
             </summary>
+        </member>
+        <member name="T:USD.NET.Unity.PreserveAttribute">
+            <summary>
+            Prevent a method, class, field, or property from being stripped by bytecode optimization.
+            </summary>
+            <remarks>
+            When IL2CPP optimizes the generated IL, unused code will be stripped. Any methods only called by reflection will
+            also be stripped in this way. To prevent this, this attribute is copied from Unity.
+            </remarks>
+        </member>
+        <member name="F:USD.NET.Unity.UnityTypeConverter.basisChange">
+            <summary>
+            Configurable matrix used for change of basis from USD to Unity and vice versa (change handedness).
+            </summary>
+            <remarks>
+            Allows global configuration of the change of basis matrix, which e.g. is used to make the USD importer conform
+            to the legacy FBX import convention in Unity, swapping the X-axis instead of the Z-axis.
+            By default this matrix is set to change handedness by swapping the Z-axis.
+            </remarks>
         </member>
         <member name="M:USD.NET.Unity.UnityTypeConverter.ChangeBasis(UnityEngine.Matrix4x4)">
             <summary>

@@ -43,27 +43,23 @@ public class GfVec2h : global::System.IDisposable {
   public GfVec2h() : this(UsdCsPINVOKE.new_GfVec2h__SWIG_0(), true) {
   }
 
-  public GfVec2h(GfVec2h other) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_1(GfVec2h.getCPtr(other)), true) {
+  public GfVec2h(GfHalf value) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_1(GfHalf.getCPtr(value)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec2h(GfHalf value) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_2(GfHalf.getCPtr(value)), true) {
+  public GfVec2h(GfHalf s0, GfHalf s1) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_2(GfHalf.getCPtr(s0), GfHalf.getCPtr(s1)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec2h(GfHalf s0, GfHalf s1) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_3(GfHalf.getCPtr(s0), GfHalf.getCPtr(s1)), true) {
+  public GfVec2h(GfVec2d other) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_4(GfVec2d.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec2h(GfVec2d other) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_5(GfVec2d.getCPtr(other)), true) {
+  public GfVec2h(GfVec2f other) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_5(GfVec2f.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfVec2h(GfVec2f other) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_6(GfVec2f.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfVec2h(GfVec2i other) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_7(GfVec2i.getCPtr(other)), true) {
+  public GfVec2h(GfVec2i other) : this(UsdCsPINVOKE.new_GfVec2h__SWIG_6(GfVec2i.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

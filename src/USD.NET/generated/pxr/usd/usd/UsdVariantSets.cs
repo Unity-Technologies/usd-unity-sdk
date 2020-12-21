@@ -86,6 +86,11 @@ public class UsdVariantSets : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t GetAllVariantSelections() {
+    SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t ret = new SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_t(UsdCsPINVOKE.UsdVariantSets_GetAllVariantSelections(swigCPtr), true);
+    return ret;
+  }
+
 }
 
 }

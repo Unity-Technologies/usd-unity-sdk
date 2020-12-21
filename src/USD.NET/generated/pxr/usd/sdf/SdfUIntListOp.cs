@@ -40,6 +40,40 @@ public class SdfUIntListOp : global::System.IDisposable {
     }
   }
 
+  public static SdfUIntListOp CreateExplicit(StdUIntVector explicitItems) {
+    SdfUIntListOp ret = new SdfUIntListOp(UsdCsPINVOKE.SdfUIntListOp_CreateExplicit__SWIG_0(StdUIntVector.getCPtr(explicitItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUIntListOp CreateExplicit() {
+    SdfUIntListOp ret = new SdfUIntListOp(UsdCsPINVOKE.SdfUIntListOp_CreateExplicit__SWIG_1(), true);
+    return ret;
+  }
+
+  public static SdfUIntListOp Create(StdUIntVector prependedItems, StdUIntVector appendedItems, StdUIntVector deletedItems) {
+    SdfUIntListOp ret = new SdfUIntListOp(UsdCsPINVOKE.SdfUIntListOp_Create__SWIG_0(StdUIntVector.getCPtr(prependedItems), StdUIntVector.getCPtr(appendedItems), StdUIntVector.getCPtr(deletedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUIntListOp Create(StdUIntVector prependedItems, StdUIntVector appendedItems) {
+    SdfUIntListOp ret = new SdfUIntListOp(UsdCsPINVOKE.SdfUIntListOp_Create__SWIG_1(StdUIntVector.getCPtr(prependedItems), StdUIntVector.getCPtr(appendedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUIntListOp Create(StdUIntVector prependedItems) {
+    SdfUIntListOp ret = new SdfUIntListOp(UsdCsPINVOKE.SdfUIntListOp_Create__SWIG_2(StdUIntVector.getCPtr(prependedItems)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SdfUIntListOp Create() {
+    SdfUIntListOp ret = new SdfUIntListOp(UsdCsPINVOKE.SdfUIntListOp_Create__SWIG_3(), true);
+    return ret;
+  }
+
   public SdfUIntListOp() : this(UsdCsPINVOKE.new_SdfUIntListOp(), true) {
   }
 
@@ -50,6 +84,11 @@ public class SdfUIntListOp : global::System.IDisposable {
 
   public bool HasKeys() {
     bool ret = UsdCsPINVOKE.SdfUIntListOp_HasKeys(swigCPtr);
+    return ret;
+  }
+
+  public bool HasItem(uint item) {
+    bool ret = UsdCsPINVOKE.SdfUIntListOp_HasItem(swigCPtr, item);
     return ret;
   }
 

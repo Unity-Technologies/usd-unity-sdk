@@ -98,6 +98,11 @@ public class SdrShaderProperty : NdrProperty {
     return ret;
   }
 
+  public TfToken GetVStructConditionalExpr() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.SdrShaderProperty_GetVStructConditionalExpr(swigCPtr), false);
+    return ret;
+  }
+
   public override bool IsConnectable() {
     bool ret = UsdCsPINVOKE.SdrShaderProperty_IsConnectable(swigCPtr);
     return ret;

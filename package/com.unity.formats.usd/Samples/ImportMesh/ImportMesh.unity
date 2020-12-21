@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 536733509}
   - component: {fileID: 536733508}
-  - component: {fileID: 536733507}
   - component: {fileID: 536733506}
   - component: {fileID: 536733505}
   m_Layer: 0
@@ -149,14 +148,6 @@ AudioListener:
   m_GameObject: {fileID: 536733504}
   m_Enabled: 1
 --- !u!124 &536733506
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536733504}
-  m_Enabled: 1
---- !u!92 &536733507
 Behaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -373,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9422ac107eb345ba17ec50a29caf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_usdFile: Samples/USD/1.0.3-preview.1/ImportMesh/mesh.usd
+  m_usdFile:
   m_material: {fileID: 2100000, guid: 5a4399f9b4f4d774dbc7921697839d7e, type: 2}
   m_usdTime: 0
   m_changeHandedness: 0

@@ -1,6 +1,7 @@
 {
     "name": "Unity.Formats.USD.ImportMesh",
     "references": [
+        "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Runtime"
     ],
     "optionalUnityReferences": [

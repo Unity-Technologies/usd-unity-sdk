@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -49,8 +49,15 @@ namespace USD.NET {
   }
 
   public class TypeBinder {
-    static Dictionary<Type, UsdTypeBinding> bindings = new Dictionary<Type, UsdTypeBinding>();
 
+    /// <summary>
+    /// Use the JIT compiler to emit new functions (fast path) for type bindings.
+    /// Set to false for platforms which do not support JIT compilation.
+    /// </summary>
+    public static bool EnableCodeGeneration = true;
+
+    static Dictionary<Type, UsdTypeBinding> bindings = new Dictionary<Type, UsdTypeBinding>();
+    
     // TODO: change these in Python generator to match .NET System types rather than C# types
     Dictionary<string, string> typeNameMapping = new Dictionary<string, string>();
     Dictionary<Type, Dictionary<pxr.TfToken, Enum>> enumMaps = new Dictionary<Type, Dictionary<pxr.TfToken, Enum>>();
@@ -152,6 +159,11 @@ namespace USD.NET {
                                           Type vtArrayType,
                                           pxr.SdfValueTypeName sdfName,
                                           string methodNamePrefix = "") {
+
+      // ConverterT and the function being found will be something like:
+      //   class IntrinsicTypeConverter {
+      //     static public VtTokenArray ToVtArray(string[] input);
+      //
       var csToVtArray = typeof(ConverterT)
                       .GetMethod(methodNamePrefix + "ToVtArray", new Type[] { csType });
       if (csToVtArray == null) {
@@ -159,6 +171,10 @@ namespace USD.NET {
           csType.ToString()));
       }
 
+      // ConverterT and the function being found will be something like:
+      //   class IntrinsicTypeConverter {
+      //     static public string[] FromVtArray(VtTokenArray input);
+      //
       var vtToCsArray = typeof(ConverterT)
                       .GetMethod(methodNamePrefix + "FromVtArray", new Type[] { vtArrayType });
       if (vtToCsArray == null) {
@@ -166,6 +182,10 @@ namespace USD.NET {
           vtArrayType.ToString()));
       }
 
+      // The specific UsdCs method being located here will be somthing like:
+      //   class UsdCs {
+      //     public static void VtValueToVtTokenArray(VtValue value, VtTokenArray output);
+      //
       var valToVtArray = typeof(pxr.UsdCs).GetMethod("VtValueTo" + vtArrayType.Name,
           new Type[] { typeof(pxr.VtValue), vtArrayType });
 
@@ -174,23 +194,93 @@ namespace USD.NET {
           vtArrayType.ToString()));
       }
 
-      var copyConverter = (ToCsCopyConverter)CodeGen.EmitToCs<ToCsCopyConverter>(valToVtArray, vtToCsArray);
-      ToCsConverter toCs = (vtValue) => ToCsConvertHelper(vtValue, vtArrayType, copyConverter);
-      ToVtConverter toVt =
-          (ToVtConverter)CodeGen.EmitToVt<ToVtConverter>(csToVtArray, csType, vtArrayType);
+      // The following code constructs functions to:
+      //
+      //   1) Convert the VtValue (type-erased container) to a specific VtArray<T> type and then 
+      //      convert the VtArray<T> to a native C# type.
+      //
+      //   2) Convert a strongly typed C# array to a strongly typed VtArray<T> and then 
+      //      convert the VtArray<T> to a type-erased VtValue.
+      //
+      // For example, to will convert:
+      //
+      //   1) VtValue -> VtArray<TfToken> -> string[]
+      //   2) string[] -> VtArray<TfToken> -> VtValue
+      // 
+
+      ToCsConverter toCs = null;
+      ToVtConverter toVt = null;
+
+      if (EnableCodeGeneration) {
+        var copyConverter = (ToCsCopyConverter)CodeGen.EmitToCs<ToCsCopyConverter>(valToVtArray, vtToCsArray);
+        toCs = (vtValue) => ToCsConvertHelper(vtValue, vtArrayType, copyConverter);
+        toVt = (ToVtConverter)CodeGen.EmitToVt<ToVtConverter>(csToVtArray, csType, vtArrayType);
+      } else {
+        // When IL2CPP is enabled, we cannot dynamically emit code.
+        // Instead, we use late binding, which is slower, but also doesn't crash.
+        // In the future, we should generate code to do these conversions, rather than using late binding.
+        toCs = (vtValue) => ToCsDynamicConvertHelper(vtValue, vtArrayType, valToVtArray, vtToCsArray);
+        toVt = CsArrayToVtValue(csToVtArray, csType, vtArrayType);
+      }
 
       bindings[csType] = new UsdTypeBinding(toVt, toCs, sdfName);
     }
 
-    object ToCsConvertHelper(pxr.VtValue val, Type vtArrayType, ToCsCopyConverter toCs) {
+    /// <summary>
+    /// Returns a function that converts a C# array to a VtValue holding a VtArray of T, using (slow) late binding.
+    /// </summary>
+    ToVtConverter CsArrayToVtValue(System.Reflection.MethodInfo csToVtArray, Type csType, Type vtArrayType) {
+      // Generates a function of the form:
+      //   VtValue ToVt(object CSharpNativeArray) {
+      //     VtArray<T> = converter( (StrongC#Type)CSharpNativeArray) );
+      //     return VtValue(vtArray<T>);
+      //   }
+
+      // For example:
+      //   class IntrinsicTypeConverter {
+      //     static public VtTokenArray ToVtArray(string[] input);
+      var ctor = typeof(pxr.VtValue).GetConstructor(new Type[] { vtArrayType });
+      return (object csArray) => (pxr.VtValue)ctor.Invoke(new object[] { Convert.ChangeType(csToVtArray.Invoke(null, new object[] { Convert.ChangeType(csArray, csType) }), vtArrayType) });
+    }
+
+    /// <summary>
+    /// Converts a VtValue holding a VtArray of T to a C#-native array type, using (slow) late binding.
+    /// </summary>
+    object ToCsDynamicConvertHelper(pxr.VtValue vtValue, Type vtArrayType, System.Reflection.MethodInfo valToVtArray, System.Reflection.MethodInfo vtToCsArray) {
       // Intentionally not tracking size here, since USD will resize the array for us.
-      object o = UsdIo.ArrayAllocator.MallocHandle(vtArrayType);
+      object vtArrayObject = UsdIo.ArrayAllocator.MallocHandle(vtArrayType);
 
       // Convert value to VtArray<T> and convert that to the target C# array type.
-      object csArray = toCs(val, o);
+
+      // For example:
+      //   class UsdCs {
+      //     public static void VtValueToVtTokenArray(VtValue value, VtTokenArray output);
+      valToVtArray.Invoke(null, new object[] { vtValue, vtArrayObject });
+
+      // For example: 
+      //   class IntrinsicTypeConverter {
+      //     static public string[] FromVtArray(VtTokenArray input);
+      object csArray = vtToCsArray.Invoke(null, new object[] { vtArrayObject });
 
       // Free the handle back to the allocator.
-      UsdIo.ArrayAllocator.FreeHandle(vtArrayType, o);
+      UsdIo.ArrayAllocator.FreeHandle(vtArrayType, vtArrayObject);
+
+      // Return the C# array.
+      return csArray;
+    }
+
+    /// <summary>
+    /// Converts a VtValue holding a VtArray of T to a C#-native array type, using a generated (fast) function, toCs.
+    /// </summary>
+    object ToCsConvertHelper(pxr.VtValue val, Type vtArrayType, ToCsCopyConverter toCs) {
+      // Intentionally not tracking size here, since USD will resize the array for us.
+      object vtArrayObject = UsdIo.ArrayAllocator.MallocHandle(vtArrayType);
+
+      // Convert value to VtArray<T> and convert that to the target C# array type.
+      object csArray = toCs(val, vtArrayObject);
+
+      // Free the handle back to the allocator.
+      UsdIo.ArrayAllocator.FreeHandle(vtArrayType, vtArrayObject);
 
       // Return the C# array.
       return csArray;
@@ -205,8 +295,8 @@ namespace USD.NET {
           new Type[] { typeof(pxr.VtValue) });
 
       if (converter == null) {
-        throw new ArgumentException(string.Format("No VtValueTo... converter found for type {0}",
-          csType.ToString()));
+        throw new ArgumentException(string.Format("No VtValueTo... converter found for type {0}, VtValueTo{1}",
+          csType.ToString(), name));
       }
       bindings[csType] = new UsdTypeBinding(DefaultConversions.ToVtValue,
         (x) => converter.Invoke(null, new object[] { x }),

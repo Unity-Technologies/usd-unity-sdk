@@ -205,12 +205,6 @@ public class UsdRiMaterialAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public bool SetInterfaceInputConsumer(UsdShadeInput interfaceInput, UsdShadeInput consumer) {
-    bool ret = UsdCsPINVOKE.UsdRiMaterialAPI_SetInterfaceInputConsumer(swigCPtr, UsdShadeInput.getCPtr(interfaceInput), UsdShadeInput.getCPtr(consumer));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public SWIGTYPE_p_std__unordered_mapT_UsdShadeInput_std__vectorT_UsdShadeInput_t_UsdShadeInput__Hash_t ComputeInterfaceInputConsumersMap(bool computeTransitiveConsumers) {
     SWIGTYPE_p_std__unordered_mapT_UsdShadeInput_std__vectorT_UsdShadeInput_t_UsdShadeInput__Hash_t ret = new SWIGTYPE_p_std__unordered_mapT_UsdShadeInput_std__vectorT_UsdShadeInput_t_UsdShadeInput__Hash_t(UsdCsPINVOKE.UsdRiMaterialAPI_ComputeInterfaceInputConsumersMap__SWIG_0(swigCPtr, computeTransitiveConsumers), true);
     return ret;
@@ -218,11 +212,6 @@ public class UsdRiMaterialAPI : UsdAPISchemaBase {
 
   public SWIGTYPE_p_std__unordered_mapT_UsdShadeInput_std__vectorT_UsdShadeInput_t_UsdShadeInput__Hash_t ComputeInterfaceInputConsumersMap() {
     SWIGTYPE_p_std__unordered_mapT_UsdShadeInput_std__vectorT_UsdShadeInput_t_UsdShadeInput__Hash_t ret = new SWIGTYPE_p_std__unordered_mapT_UsdShadeInput_std__vectorT_UsdShadeInput_t_UsdShadeInput__Hash_t(UsdCsPINVOKE.UsdRiMaterialAPI_ComputeInterfaceInputConsumersMap__SWIG_1(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdShadeInputVector GetInterfaceInputs() {
-    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdRiMaterialAPI_GetInterfaceInputs(swigCPtr), true);
     return ret;
   }
 

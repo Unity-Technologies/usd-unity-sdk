@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtUInt64Array : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,20 +48,14 @@ public class VtUInt64Array : Vt_ArrayBase {
   public VtUInt64Array() : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_0(), true) {
   }
 
-  public VtUInt64Array(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_unsigned_long_long data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_unsigned_long_long.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtUInt64Array(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_unsigned_long_long data, uint size) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_unsigned_long_long.getCPtr(data), size), true) {
-  }
-
-  public VtUInt64Array(VtUInt64Array other) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_3(VtUInt64Array.getCPtr(other)), true) {
+  public VtUInt64Array(VtUInt64Array other) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_1(VtUInt64Array.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtUInt64Array(uint n, ulong value) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_5(n, value), true) {
+  public VtUInt64Array(uint n) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_3(n), true) {
   }
 
-  public VtUInt64Array(uint n) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_6(n), true) {
+  public VtUInt64Array(uint n, ulong value) : this(UsdCsPINVOKE.new_VtUInt64Array__SWIG_4(n, value), true) {
   }
 
   public void push_back(ulong elem) {

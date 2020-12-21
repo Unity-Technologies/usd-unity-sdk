@@ -14,35 +14,45 @@
 
 #pragma once
 
+//#include <stdio.h>
+#include <string>
+//#include <stdio.h>
+//#include <sstream>
+#include <pxr/base/tf/weakPtr.h>
+#include <pxr/base/tf/diagnostic.h>
+#include <pxr/base/tf/diagnosticMgr.h>
+#include <pxr/base/arch/export.h>
+
+
+
+extern "C"
+{
+  //Create a callback delegate
+  typedef void(*FuncLogCallBack)(int logType, char const* message);
+  static FuncLogCallBack s_UsdLogCallback = nullptr;
+  ARCH_EXPORT void RegisterUsdLogCallback(FuncLogCallBack cb);
+}
+
 /// A reciever of diagnostic messages, sent from USD.
 ///
 /// Only one global handler may be registered to recieve all diagnostic messages. If no handler is
 /// assigned, diagnostic messages are printed to stdout and stderr accordingly.
-class DiagnosticHandler {
-  static DiagnosticHandler* m_instance;
+class DiagnosticHandler : public pxr::TfDiagnosticMgr::Delegate {
 public:
-
-  /// Returns the currently registered global diagnostic handler, may be null.
-  static DiagnosticHandler* GetGlobalHandler() {
-    return m_instance;
-  }
-
-  /// Sets the global diagnostic handler, null to clear the handler.
-  static void SetGlobalHandler(DiagnosticHandler* handler) {
-    m_instance = handler;
-  }
-
   virtual ~DiagnosticHandler() {}
 
   /// Informational messages.
-  virtual void OnInfo(char const* msg);
+  ARCH_EXPORT virtual void IssueStatus(pxr::TfStatus const &status);
 
   /// Diagnostic warning messages.
-  virtual void OnWarning(char const* msg);
+  ARCH_EXPORT virtual void IssueWarning(pxr::TfWarning const &warning);
 
   /// Recoverable error messages, which should be treated as non-fatal exceptions.
-  virtual void OnError(char const* msg);
+  ARCH_EXPORT virtual void IssueError(pxr::TfError const &err);
 
   /// Messages recieved here will occur just before the application aborts.
-  virtual void OnFatalError(char const* msg);
+  ARCH_EXPORT virtual void IssueFatalError(pxr::TfCallContext const &context, std::string const &msg);
+
+private:
+  void _Send(int logType, char const* msg);
 };

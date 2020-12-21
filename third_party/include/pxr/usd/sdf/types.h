@@ -21,8 +21,8 @@
 // KIND, either express or implied. See the Apache License for the specific
 // language governing permissions and limitations under the Apache License.
 //
-#ifndef SDF_TYPES_H
-#define SDF_TYPES_H
+#ifndef PXR_USD_SDF_TYPES_H
+#define PXR_USD_SDF_TYPES_H
 
 /// \file sdf/types.h
 /// Basic Sdf data types
@@ -32,6 +32,7 @@
 #include "pxr/usd/sdf/assetPath.h"
 #include "pxr/usd/sdf/declareHandles.h"
 #include "pxr/usd/sdf/listOp.h"
+#include "pxr/usd/sdf/timeCode.h"
 #include "pxr/usd/sdf/valueTypeName.h"
 
 #include "pxr/base/arch/demangle.h"
@@ -66,7 +67,9 @@
 
 #include <boost/noncopyable.hpp>
 #include <boost/preprocessor/list/for_each.hpp>
+#include <boost/preprocessor/list/size.hpp>
 #include <boost/preprocessor/punctuation/comma.hpp>
+#include <boost/preprocessor/selection/max.hpp>
 #include <boost/preprocessor/seq/for_each.hpp>
 #include <boost/preprocessor/seq/seq.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
@@ -170,16 +173,12 @@ enum SdfPermission {
 ///            only with non-animated values (default values).  They cannot 
 ///            be affected by Actions, but they can be connected to other 
 ///            Uniform attributes.
-///     <li><b>SdfVariabilityConfig.</b> Config attributes are the same as 
-///            Uniform except that a Prim can choose to alter its collection 
-///            of built-in properties based on the values of its Config attributes.
 ///     <li><b>SdNumVariabilities.</b> Internal sentinel value.
 /// </ul>
 ///
 enum SdfVariability {
     SdfVariabilityVarying,
     SdfVariabilityUniform,
-    SdfVariabilityConfig,
 
     SdfNumVariabilities 
 };
@@ -287,11 +286,9 @@ SDF_API const TfEnum &SdfDefaultUnit( const TfEnum &unit );
 /// Gets the unit category for a given /a unit.
 SDF_API const std::string &SdfUnitCategory( const TfEnum &unit );
 
-#if 0 // USD.NET
-//    // Bug filed: https://github.com/PixarAnimationStudios/USD/issues/812
-/// Gets the type/unit pair for a unit enum.
-std::pair<uint32_t, uint32_t> Sdf_GetUnitIndices( const TfEnum &unit );
-#endif
+/// Converts from one unit of measure to another. The \a fromUnit and \a toUnit
+/// units must be of the same type (for example, both of type SdfLengthUnit).
+SDF_API double SdfConvertUnit( const TfEnum &fromUnit, const TfEnum &toUnit );
 
 /// Converts from one unit of measure to another. The \a fromUnit and \a toUnit
 /// units must be of the same type (for example, both of type SdfLengthUnit).
@@ -302,14 +299,6 @@ SDF_API const std::string &SdfGetNameForUnit( const TfEnum &unit );
 
 /// Gets a unit for the given /a name
 SDF_API const TfEnum &SdfGetUnitFromName( const std::string &name );
-
-/// Converts a string to a bool.
-/// Accepts case insensitive "yes", "no", "false", true", "0", "1".
-/// Defaults to "true" if the string is not recognized.
-///
-/// If parseOK is supplied, the pointed-to bool will be set to indicate
-/// whether the parse was successful.
-SDF_API bool SdfBoolFromString( const std::string &, bool *parseOk = NULL );
 
 /// Given a value, returns if there is a valid corresponding valueType.
 SDF_API bool SdfValueHasValidType(VtValue const& value);
@@ -349,6 +338,7 @@ SDF_API TfToken SdfGetRoleNameForValueTypeName(TfToken const &typeName);
     ((Half,       half,       GfHalf,         ()    )) \
     ((Float,      float,      float,          ()    )) \
     ((Double,     double,     double,         ()    )) \
+    ((TimeCode,   timecode,   SdfTimeCode,    ()    )) \
     ((String,     string,     std::string,    ()    )) \
     ((Token,      token,      TfToken,        ()    )) \
     ((Asset,      asset,      SdfAssetPath,   ()    ))
@@ -404,6 +394,31 @@ struct SdfValueTypeTraits<SDF_VALUE_CPP_ARRAY_TYPE(elem)> {                 \
 BOOST_PP_SEQ_FOR_EACH(SDF_DECLARE_VALUE_TYPE_TRAITS, ~, SDF_VALUE_TYPES);
 #endif //USD.NET
 
+/// Convert \p dict to a valid metadata dictionary for scene description.  Valid
+/// metadata dictionaries have values that are any of SDF_VALUE_TYPES (or
+/// VtArrays of those), plus VtDictionary with values of those types (or
+/// similarly nested VtDictionaries).
+///
+/// Certain conversions are performed in an attempt to produce a valid metadata
+/// dictionary.  For example:
+///
+/// Convert std::vector<VtValue> to VtArray<T> where T is the type of the first
+/// element in the vector.  Fail conversion for empty vectors where a concrete
+/// type cannot be inferred.
+///
+/// Convert python sequences to VtArray<T> where T is the type of the first
+/// element in the python sequence, when converted to VtValue, if that T is an
+/// SDF_VALUE_TYPE).  Fail conversion for empty sequences where a concrete type
+/// cannot be inferred.
+///
+/// If any values cannot be converted to valid SDF_VALUE_TYPES, omit those
+/// elements and add a message to \p errMsg indicating which values were
+/// omitted.
+///
+SDF_API
+bool
+SdfConvertToValidMetadataDictionary(VtDictionary *dict, std::string *errMsg);
+
 #define SDF_VALUE_ROLE_NAME_TOKENS              \
     (Point)                                     \
     (Normal)                                    \
@@ -421,8 +436,6 @@ TF_DECLARE_PUBLIC_TOKENS(SdfValueRoleNames, SDF_API, SDF_VALUE_ROLE_NAME_TOKENS)
 SDF_DECLARE_HANDLES(SdfLayer);
 
 SDF_DECLARE_HANDLES(SdfAttributeSpec);
-SDF_DECLARE_HANDLES(SdfMapperArgSpec);
-SDF_DECLARE_HANDLES(SdfMapperSpec);
 SDF_DECLARE_HANDLES(SdfPrimSpec);
 SDF_DECLARE_HANDLES(SdfPropertySpec);
 SDF_DECLARE_HANDLES(SdfSpec);
@@ -500,7 +513,7 @@ class Sdf_ValueTypeNamesType : boost::noncopyable {
 public:
     SdfValueTypeName Bool;
     SdfValueTypeName UChar, Int, UInt, Int64, UInt64;
-    SdfValueTypeName Half, Float, Double;
+    SdfValueTypeName Half, Float, Double, TimeCode;
     SdfValueTypeName String, Token, Asset;
     SdfValueTypeName Int2,     Int3,     Int4;
     SdfValueTypeName Half2,    Half3,    Half4;
@@ -519,7 +532,7 @@ public:
 
     SdfValueTypeName BoolArray;
     SdfValueTypeName UCharArray, IntArray, UIntArray, Int64Array, UInt64Array;
-    SdfValueTypeName HalfArray, FloatArray, DoubleArray;
+    SdfValueTypeName HalfArray, FloatArray, DoubleArray, TimeCodeArray;
     SdfValueTypeName StringArray, TokenArray, AssetArray;
     SdfValueTypeName Int2Array,     Int3Array,     Int4Array;
     SdfValueTypeName Half2Array,    Half3Array,    Half4Array;
@@ -547,7 +560,7 @@ public:
     TfToken GetSerializationName(const TfToken&) const;
 
 private:
-    friend class SdfSchema;
+    friend const Sdf_ValueTypeNamesType* Sdf_InitializeValueTypeNames();
     Sdf_ValueTypeNamesType();
 };
 
@@ -608,4 +621,4 @@ size_t hash_value(const SdfHumanReadableValue &hrval);
 
 PXR_NAMESPACE_CLOSE_SCOPE
 
-#endif // SDF_TYPES_H
+#endif // PXR_USD_SDF_TYPES_H

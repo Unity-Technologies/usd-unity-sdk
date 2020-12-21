@@ -40,15 +40,15 @@ public class NdrNode : global::System.IDisposable {
     }
   }
 
-  public NdrNode(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken context, TfToken sourceType, string uri, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t properties, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, string sourceCode) : this(UsdCsPINVOKE.new_NdrNode__SWIG_0(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(context), TfToken.getCPtr(sourceType), uri, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t.getCPtr(properties), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), sourceCode), true) {
+  public NdrNode(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken context, TfToken sourceType, string definitionURI, string implementationURI, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t properties, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, string sourceCode) : this(UsdCsPINVOKE.new_NdrNode__SWIG_0(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(context), TfToken.getCPtr(sourceType), definitionURI, implementationURI, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t.getCPtr(properties), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), sourceCode), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public NdrNode(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken context, TfToken sourceType, string uri, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t properties, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) : this(UsdCsPINVOKE.new_NdrNode__SWIG_1(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(context), TfToken.getCPtr(sourceType), uri, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t.getCPtr(properties), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true) {
+  public NdrNode(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken context, TfToken sourceType, string definitionURI, string implementationURI, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t properties, SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata) : this(UsdCsPINVOKE.new_NdrNode__SWIG_1(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(context), TfToken.getCPtr(sourceType), definitionURI, implementationURI, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t.getCPtr(properties), SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public NdrNode(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken context, TfToken sourceType, string uri, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t properties) : this(UsdCsPINVOKE.new_NdrNode__SWIG_2(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(context), TfToken.getCPtr(sourceType), uri, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t.getCPtr(properties)), true) {
+  public NdrNode(TfToken identifier, NdrVersion version, string name, TfToken family, TfToken context, TfToken sourceType, string definitionURI, string implementationURI, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t properties) : this(UsdCsPINVOKE.new_NdrNode__SWIG_2(TfToken.getCPtr(identifier), NdrVersion.getCPtr(version), name, TfToken.getCPtr(family), TfToken.getCPtr(context), TfToken.getCPtr(sourceType), definitionURI, implementationURI, SWIGTYPE_p_std__vectorT_std__unique_ptrT_NdrProperty_t_t.getCPtr(properties)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -82,8 +82,13 @@ public class NdrNode : global::System.IDisposable {
     return ret;
   }
 
-  public string GetSourceURI() {
-    string ret = UsdCsPINVOKE.NdrNode_GetSourceURI(swigCPtr);
+  public string GetResolvedDefinitionURI() {
+    string ret = UsdCsPINVOKE.NdrNode_GetResolvedDefinitionURI(swigCPtr);
+    return ret;
+  }
+
+  public string GetResolvedImplementationURI() {
+    string ret = UsdCsPINVOKE.NdrNode_GetResolvedImplementationURI(swigCPtr);
     return ret;
   }
 

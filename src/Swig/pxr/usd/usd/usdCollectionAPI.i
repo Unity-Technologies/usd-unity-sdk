@@ -30,13 +30,13 @@ namespace std {
 %ignore UsdCollectionAPI::schemaType;
 
 %ignore ComputeIncludedObjects(
-    const MembershipQuery &query,
+    const UsdCollectionMembershipQuery &query,
     const UsdStageWeakPtr &stage,
     const Usd_PrimFlagsPredicate &pred);
 
 // Must be defined before interfaces to which it applies
 %extend UsdCollectionAPI {
-  static std::vector<UsdObject> ComputeIncludedObjects(const MembershipQuery &query, const UsdStageWeakPtr &stage) {
+  static std::vector<UsdObject> ComputeIncludedObjects(const UsdCollectionMembershipQuery &query, const UsdStageWeakPtr &stage) {
     std::set<UsdObject> tmp = UsdCollectionAPI::ComputeIncludedObjects(query, stage);
     std::vector<UsdObject> result(tmp.begin(), tmp.end());
     return result;

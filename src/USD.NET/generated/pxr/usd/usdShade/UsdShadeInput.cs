@@ -326,6 +326,11 @@ public class UsdShadeInput : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetValueProducingAttribute(SWIGTYPE_p_UsdShadeAttributeType attrType) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdShadeInput_GetValueProducingAttribute(swigCPtr, SWIGTYPE_p_UsdShadeAttributeType.getCPtr(attrType)), true);
+    return ret;
+  }
+
 }
 
 }

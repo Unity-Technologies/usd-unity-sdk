@@ -166,8 +166,8 @@ public class PcpNodeRef : global::System.IDisposable {
     return ret;
   }
 
-  public bool IsDirect() {
-    bool ret = UsdCsPINVOKE.PcpNodeRef_IsDirect(swigCPtr);
+  public bool IsRootNode() {
+    bool ret = UsdCsPINVOKE.PcpNodeRef_IsRootNode(swigCPtr);
     return ret;
   }
 

@@ -15,8 +15,7 @@ public enum UsdResolveInfoSource {
   UsdResolveInfoSourceFallback,
   UsdResolveInfoSourceDefault,
   UsdResolveInfoSourceTimeSamples,
-  UsdResolveInfoSourceValueClips,
-  UsdResolveInfoSourceIsTimeDependent
+  UsdResolveInfoSourceValueClips
 }
 
 }

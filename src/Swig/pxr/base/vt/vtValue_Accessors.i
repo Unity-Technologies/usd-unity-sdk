@@ -12,6 +12,131 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+%typemap(csattributes) GfHalf "[Preserve]"
+%csattributes VtValueToGfHalf "[Preserve]" 
+%typemap(csattributes) GfMatrix2d "[Preserve]"
+%csattributes VtValueToGfMatrix2d "[Preserve]" 
+%typemap(csattributes) GfMatrix3d "[Preserve]"
+%csattributes VtValueToGfMatrix3d "[Preserve]" 
+%typemap(csattributes) GfMatrix4d "[Preserve]"
+%csattributes VtValueToGfMatrix4d "[Preserve]" 
+%typemap(csattributes) GfQuatd "[Preserve]"
+%csattributes VtValueToGfQuatd "[Preserve]" 
+%typemap(csattributes) GfQuatf "[Preserve]"
+%csattributes VtValueToGfQuatf "[Preserve]" 
+%typemap(csattributes) GfQuath "[Preserve]"
+%csattributes VtValueToGfQuath "[Preserve]" 
+%typemap(csattributes) GfVec2d "[Preserve]"
+%csattributes VtValueToGfVec2d "[Preserve]" 
+%typemap(csattributes) GfVec2f "[Preserve]"
+%csattributes VtValueToGfVec2f "[Preserve]" 
+%typemap(csattributes) GfVec2h "[Preserve]"
+%csattributes VtValueToGfVec2h "[Preserve]" 
+%typemap(csattributes) GfVec2i "[Preserve]"
+%csattributes VtValueToGfVec2i "[Preserve]" 
+%typemap(csattributes) GfVec3d "[Preserve]"
+%csattributes VtValueToGfVec3d "[Preserve]" 
+%typemap(csattributes) GfVec3f "[Preserve]"
+%csattributes VtValueToGfVec3f "[Preserve]" 
+%typemap(csattributes) GfVec3h "[Preserve]"
+%csattributes VtValueToGfVec3h "[Preserve]" 
+%typemap(csattributes) GfVec3i "[Preserve]"
+%csattributes VtValueToGfVec3i "[Preserve]" 
+%typemap(csattributes) GfVec4d "[Preserve]"
+%csattributes VtValueToGfVec4d "[Preserve]" 
+%typemap(csattributes) GfVec4f "[Preserve]"
+%csattributes VtValueToGfVec4f "[Preserve]" 
+%typemap(csattributes) GfVec4h "[Preserve]"
+%csattributes VtValueToGfVec4h "[Preserve]" 
+%typemap(csattributes) GfVec4i "[Preserve]"
+%csattributes VtValueToGfVec4i "[Preserve]" 
+%typemap(csattributes) SdfAssetPath "[Preserve]"
+%csattributes VtValueToSdfAssetPath "[Preserve]" 
+%typemap(csattributes) VtArray<SdfAssetPath> "[Preserve]"
+%csattributes VtValueToSdfAssetPathArray "[Preserve]" 
+%typemap(csattributes) SdfTimeCode "[Preserve]"
+%csattributes VtValueToSdfTimeCode "[Preserve]" 
+%typemap(csattributes) VtArray<SdfTimeCode> "[Preserve]"
+%csattributes VtValueToSdfTimeCodeArray "[Preserve]" 
+%typemap(csattributes) TfToken "[Preserve]"
+%csattributes VtValueToTfToken "[Preserve]" 
+%typemap(csattributes) VtArray<bool> "[Preserve]"
+%csattributes VtValueToVtBoolArray "[Preserve]" 
+%typemap(csattributes) VtArray<double> "[Preserve]"
+%csattributes VtValueToVtDoubleArray "[Preserve]" 
+%typemap(csattributes) VtArray<float> "[Preserve]"
+%csattributes VtValueToVtFloatArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfHalf> "[Preserve]"
+%csattributes VtValueToVtHalfArray "[Preserve]" 
+%typemap(csattributes) VtArray<int64_t> "[Preserve]"
+%csattributes VtValueToVtInt64Array "[Preserve]" 
+%typemap(csattributes) VtArray<int> "[Preserve]"
+%csattributes VtValueToVtIntArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfMatrix2d> "[Preserve]"
+%csattributes VtValueToVtMatrix2dArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfMatrix3d> "[Preserve]"
+%csattributes VtValueToVtMatrix3dArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfMatrix4d> "[Preserve]"
+%csattributes VtValueToVtMatrix4dArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfQuatd> "[Preserve]"
+%csattributes VtValueToVtQuatdArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfQuatf> "[Preserve]"
+%csattributes VtValueToVtQuatfArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfQuath> "[Preserve]"
+%csattributes VtValueToVtQuathArray "[Preserve]" 
+%typemap(csattributes) VtArray<std::string> "[Preserve]"
+%csattributes VtValueToVtStringArray "[Preserve]" 
+%typemap(csattributes) VtArray<TfToken> "[Preserve]"
+%csattributes VtValueToVtTokenArray "[Preserve]" 
+%typemap(csattributes) VtArray<unsigned char> "[Preserve]"
+%csattributes VtValueToVtUCharArray "[Preserve]" 
+%typemap(csattributes) VtArray<uint64_t> "[Preserve]"
+%csattributes VtValueToVtUInt64Array "[Preserve]" 
+%typemap(csattributes) VtArray<unsigned int> "[Preserve]"
+%csattributes VtValueToVtUIntArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec2d> "[Preserve]"
+%csattributes VtValueToVtVec2dArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec2f> "[Preserve]"
+%csattributes VtValueToVtVec2fArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec2h> "[Preserve]"
+%csattributes VtValueToVtVec2hArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec2i> "[Preserve]"
+%csattributes VtValueToVtVec2iArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec3d> "[Preserve]"
+%csattributes VtValueToVtVec3dArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec3f> "[Preserve]"
+%csattributes VtValueToVtVec3fArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec3h> "[Preserve]"
+%csattributes VtValueToVtVec3hArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec3i> "[Preserve]"
+%csattributes VtValueToVtVec3iArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec4d> "[Preserve]"
+%csattributes VtValueToVtVec4dArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec4f> "[Preserve]"
+%csattributes VtValueToVtVec4fArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec4h> "[Preserve]"
+%csattributes VtValueToVtVec4hArray "[Preserve]" 
+%typemap(csattributes) VtArray<GfVec4i> "[Preserve]"
+%csattributes VtValueToVtVec4iArray "[Preserve]" 
+%typemap(csattributes) bool "[Preserve]"
+%csattributes VtValueTobool "[Preserve]" 
+%typemap(csattributes) double "[Preserve]"
+%csattributes VtValueTodouble "[Preserve]" 
+%typemap(csattributes) float "[Preserve]"
+%csattributes VtValueTofloat "[Preserve]" 
+%typemap(csattributes) int "[Preserve]"
+%csattributes VtValueToint "[Preserve]" 
+%typemap(csattributes) int64_t "[Preserve]"
+%csattributes VtValueTolong "[Preserve]" 
+%typemap(csattributes) std::string "[Preserve]"
+%csattributes VtValueTostring "[Preserve]" 
+%typemap(csattributes) uint64_t "[Preserve]"
+%csattributes VtValueToulong "[Preserve]" 
+%typemap(csattributes) unsigned char "[Preserve]"
+%csattributes VtValueTobyte "[Preserve]" 
+%typemap(csattributes) unsigned int "[Preserve]"
+%csattributes VtValueTouint "[Preserve]" 
+
 %inline %{
 // This code manifests in UsdCs class.
 
@@ -265,6 +390,30 @@ extern SdfAssetPathArray VtValueToSdfAssetPathArray(VtValue const& value) {
 extern void VtValueToSdfAssetPathArray(VtValue const& value, SdfAssetPathArray* output) {
   if (value.IsHolding<SdfAssetPathArray>()) {
     *output = value.UncheckedGet<SdfAssetPathArray>();
+  }
+}
+
+extern SdfTimeCode VtValueToSdfTimeCode(VtValue const& value) {
+  if (value.IsHolding<SdfTimeCode>()) {
+    return value.UncheckedGet<SdfTimeCode>();
+  }
+  return SdfTimeCode();
+}
+extern void VtValueToSdfTimeCode(VtValue const& value, SdfTimeCode* output) {
+  if (value.IsHolding<SdfTimeCode>()) {
+    *output = value.UncheckedGet<SdfTimeCode>();
+  }
+}
+
+extern SdfTimeCodeArray VtValueToSdfTimeCodeArray(VtValue const& value) {
+  if (value.IsHolding<SdfTimeCodeArray>()) {
+    return value.UncheckedGet<SdfTimeCodeArray>();
+  }
+  return SdfTimeCodeArray();
+}
+extern void VtValueToSdfTimeCodeArray(VtValue const& value, SdfTimeCodeArray* output) {
+  if (value.IsHolding<SdfTimeCodeArray>()) {
+    *output = value.UncheckedGet<SdfTimeCodeArray>();
   }
 }
 

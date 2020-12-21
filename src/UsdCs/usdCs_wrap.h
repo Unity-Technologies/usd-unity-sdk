@@ -11,30 +11,6 @@
 #ifndef SWIG_UsdCs_WRAP_H_
 #define SWIG_UsdCs_WRAP_H_
 
-class SwigDirector_DiagnosticHandler : public DiagnosticHandler, public Swig::Director {
-
-public:
-    SwigDirector_DiagnosticHandler();
-    virtual ~SwigDirector_DiagnosticHandler();
-    virtual void OnInfo(char const *msg);
-    virtual void OnWarning(char const *msg);
-    virtual void OnError(char const *msg);
-    virtual void OnFatalError(char const *msg);
-
-    typedef void (SWIGSTDCALL* SWIG_Callback0_t)(char *);
-    typedef void (SWIGSTDCALL* SWIG_Callback1_t)(char *);
-    typedef void (SWIGSTDCALL* SWIG_Callback2_t)(char *);
-    typedef void (SWIGSTDCALL* SWIG_Callback3_t)(char *);
-    void swig_connect_director(SWIG_Callback0_t callbackOnInfo, SWIG_Callback1_t callbackOnWarning, SWIG_Callback2_t callbackOnError, SWIG_Callback3_t callbackOnFatalError);
-
-private:
-    SWIG_Callback0_t swig_callbackOnInfo;
-    SWIG_Callback1_t swig_callbackOnWarning;
-    SWIG_Callback2_t swig_callbackOnError;
-    SWIG_Callback3_t swig_callbackOnFatalError;
-    void swig_init_callbacks();
-};
-
 class SwigDirector_TaskCallback : public TaskCallback, public Swig::Director {
 
 public:

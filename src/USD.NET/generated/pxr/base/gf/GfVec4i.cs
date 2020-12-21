@@ -43,14 +43,10 @@ public class GfVec4i : global::System.IDisposable {
   public GfVec4i() : this(UsdCsPINVOKE.new_GfVec4i__SWIG_0(), true) {
   }
 
-  public GfVec4i(GfVec4i other) : this(UsdCsPINVOKE.new_GfVec4i__SWIG_1(GfVec4i.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public GfVec4i(int value) : this(UsdCsPINVOKE.new_GfVec4i__SWIG_1(value), true) {
   }
 
-  public GfVec4i(int value) : this(UsdCsPINVOKE.new_GfVec4i__SWIG_2(value), true) {
-  }
-
-  public GfVec4i(int s0, int s1, int s2, int s3) : this(UsdCsPINVOKE.new_GfVec4i__SWIG_3(s0, s1, s2, s3), true) {
+  public GfVec4i(int s0, int s1, int s2, int s3) : this(UsdCsPINVOKE.new_GfVec4i__SWIG_2(s0, s1, s2, s3), true) {
   }
 
   public static GfVec4i XAxis() {

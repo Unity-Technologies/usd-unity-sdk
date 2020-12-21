@@ -318,6 +318,11 @@ public class GfMatrix4f : global::System.IDisposable {
     return ret;
   }
 
+  public GfQuatf ExtractRotationQuat() {
+    GfQuatf ret = new GfQuatf(UsdCsPINVOKE.GfMatrix4f_ExtractRotationQuat(swigCPtr), true);
+    return ret;
+  }
+
   public GfVec3f DecomposeRotation(GfVec3f axis0, GfVec3f axis1, GfVec3f axis2) {
     GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfMatrix4f_DecomposeRotation(swigCPtr, GfVec3f.getCPtr(axis0), GfVec3f.getCPtr(axis1), GfVec3f.getCPtr(axis2)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -27,13 +27,16 @@ namespace Tests {
 
     static void RunTestCases() {
 
-      Cases.BasicTests.IntrinsicTypesTest();
+      Cases.VerifyAotAttributes.HasPreserveAttrsTest();
       Console.ReadKey();
 
       Cases.MeshTests.TriangulationTest();
       Cases.MeshTests.VisibilityTest();
 
       Cases.StageTests.BadPrimTest();
+
+      Cases.VerifyAotAttributes.HasMonoPInvokeCallbackAttrsTest();
+      Cases.VerifyAotAttributes.HasPreserveAttrsTest();
 
       Cases.QueryTests.BasicTest();
 
@@ -55,6 +58,7 @@ namespace Tests {
       Cases.BasicTests.PrimvarsTest();
       Cases.BasicTests.SampleBaseTest();
       Cases.BasicTests.GetUsdObjectsTest();
+      Cases.BasicTests.ReadNonExistingPrimsTest();
 
       Cases.UnityIoTests.VectorsTest();
       Cases.UnityIoTests.QuaternionTest();

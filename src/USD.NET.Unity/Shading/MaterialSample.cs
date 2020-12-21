@@ -114,7 +114,8 @@ namespace USD.NET.Unity {
       if (!mat.GetPrim().IsValid()) {
         throw new ApplicationException("Invalid material on prim <" + materialPath + ">");
       }
-      mat.Bind(scene.Stage.GetPrimAtPath(new SdfPath(primPath)));
+      var bindingApi = new UsdShadeMaterialBindingAPI(scene.Stage.GetPrimAtPath(new SdfPath(primPath)));
+      bindingApi.Bind(mat);
     }
 
     /// <summary>
@@ -127,7 +128,8 @@ namespace USD.NET.Unity {
       if (!prim.IsValid()) {
         throw new ApplicationException("Invalid prim <" + primPath + ">");
       }
-      UsdShadeMaterial.Unbind(prim);
+      var bindingApi = new UsdShadeMaterialBindingAPI(prim);
+      bindingApi.UnbindAllBindings();
     }
   }
 

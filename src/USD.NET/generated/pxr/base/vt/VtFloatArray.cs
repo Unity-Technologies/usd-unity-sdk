@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtFloatArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,20 +48,14 @@ public class VtFloatArray : Vt_ArrayBase {
   public VtFloatArray() : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_0(), true) {
   }
 
-  public VtFloatArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_float data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_float.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtFloatArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_float data, uint size) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_float.getCPtr(data), size), true) {
-  }
-
-  public VtFloatArray(VtFloatArray other) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_3(VtFloatArray.getCPtr(other)), true) {
+  public VtFloatArray(VtFloatArray other) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_1(VtFloatArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtFloatArray(uint n, float value) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_5(n, value), true) {
+  public VtFloatArray(uint n) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_3(n), true) {
   }
 
-  public VtFloatArray(uint n) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_6(n), true) {
+  public VtFloatArray(uint n, float value) : this(UsdCsPINVOKE.new_VtFloatArray__SWIG_4(n, value), true) {
   }
 
   public void push_back(float elem) {

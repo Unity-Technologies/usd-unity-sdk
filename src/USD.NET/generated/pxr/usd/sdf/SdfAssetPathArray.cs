@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class SdfAssetPathArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,21 +48,15 @@ public class SdfAssetPathArray : Vt_ArrayBase {
   public SdfAssetPathArray() : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_0(), true) {
   }
 
-  public SdfAssetPathArray(Vt_ArrayForeignDataSource foreignSrc, SdfAssetPath data, uint size, bool addRef) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SdfAssetPath.getCPtr(data), size, addRef), true) {
-  }
-
-  public SdfAssetPathArray(Vt_ArrayForeignDataSource foreignSrc, SdfAssetPath data, uint size) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SdfAssetPath.getCPtr(data), size), true) {
-  }
-
-  public SdfAssetPathArray(SdfAssetPathArray other) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_3(SdfAssetPathArray.getCPtr(other)), true) {
+  public SdfAssetPathArray(SdfAssetPathArray other) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_1(SdfAssetPathArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SdfAssetPathArray(uint n, SdfAssetPath value) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_5(n, SdfAssetPath.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public SdfAssetPathArray(uint n) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_3(n), true) {
   }
 
-  public SdfAssetPathArray(uint n) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_6(n), true) {
+  public SdfAssetPathArray(uint n, SdfAssetPath value) : this(UsdCsPINVOKE.new_SdfAssetPathArray__SWIG_4(n, SdfAssetPath.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(SdfAssetPath elem) {

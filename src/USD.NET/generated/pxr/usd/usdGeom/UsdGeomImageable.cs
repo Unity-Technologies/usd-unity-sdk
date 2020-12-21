@@ -206,14 +206,84 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
-  public TfToken ComputePurpose() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputePurpose__SWIG_0(swigCPtr), true);
+  public class PurposeInfo : global::System.IDisposable {
+    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+    protected bool swigCMemOwn;
+  
+    internal PurposeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
+      swigCMemOwn = cMemoryOwn;
+      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+    }
+  
+    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PurposeInfo obj) {
+      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+    }
+  
+    ~PurposeInfo() {
+      Dispose();
+    }
+  
+    public virtual void Dispose() {
+      lock(this) {
+        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+          if (swigCMemOwn) {
+            swigCMemOwn = false;
+            UsdCsPINVOKE.delete_UsdGeomImageable_PurposeInfo(swigCPtr);
+          }
+          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
+        global::System.GC.SuppressFinalize(this);
+      }
+    }
+  
+    public PurposeInfo() : this(UsdCsPINVOKE.new_UsdGeomImageable_PurposeInfo__SWIG_0(), true) {
+    }
+  
+    public PurposeInfo(TfToken purpose_, bool isInheritable_) : this(UsdCsPINVOKE.new_UsdGeomImageable_PurposeInfo__SWIG_1(TfToken.getCPtr(purpose_), isInheritable_), true) {
+      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    }
+  
+    public TfToken purpose {
+      set {
+        UsdCsPINVOKE.UsdGeomImageable_PurposeInfo_purpose_set(swigCPtr, TfToken.getCPtr(value));
+      } 
+      get {
+        global::System.IntPtr cPtr = UsdCsPINVOKE.UsdGeomImageable_PurposeInfo_purpose_get(swigCPtr);
+        TfToken ret = (cPtr == global::System.IntPtr.Zero) ? null : new TfToken(cPtr, false);
+        return ret;
+      } 
+    }
+  
+    public bool isInheritable {
+      set {
+        UsdCsPINVOKE.UsdGeomImageable_PurposeInfo_isInheritable_set(swigCPtr, value);
+      } 
+      get {
+        bool ret = UsdCsPINVOKE.UsdGeomImageable_PurposeInfo_isInheritable_get(swigCPtr);
+        return ret;
+      } 
+    }
+  
+    public TfToken GetInheritablePurpose() {
+      TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_PurposeInfo_GetInheritablePurpose(swigCPtr), false);
+      return ret;
+    }
+  
+  }
+
+  public UsdGeomImageable.PurposeInfo ComputePurposeInfo() {
+    UsdGeomImageable.PurposeInfo ret = new UsdGeomImageable.PurposeInfo(UsdCsPINVOKE.UsdGeomImageable_ComputePurposeInfo__SWIG_0(swigCPtr), true);
     return ret;
   }
 
-  public TfToken ComputePurpose(TfToken parentPurpose) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputePurpose__SWIG_1(swigCPtr, TfToken.getCPtr(parentPurpose)), true);
+  public UsdGeomImageable.PurposeInfo ComputePurposeInfo(UsdGeomImageable.PurposeInfo parentPurposeInfo) {
+    UsdGeomImageable.PurposeInfo ret = new UsdGeomImageable.PurposeInfo(UsdCsPINVOKE.UsdGeomImageable_ComputePurposeInfo__SWIG_1(swigCPtr, UsdGeomImageable.PurposeInfo.getCPtr(parentPurposeInfo)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public TfToken ComputePurpose() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputePurpose(swigCPtr), true);
     return ret;
   }
 

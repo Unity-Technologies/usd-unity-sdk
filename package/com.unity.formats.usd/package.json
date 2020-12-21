@@ -2,7 +2,7 @@
     "dependencies": {
         "com.unity.timeline" : "1.0.0"
     },
-    "description": "The Unity USD package contains a set of libraries designed to support the use of Pixar's Universal Scene Description (USD) in Unity. The goal of this package is to make it maximally easy to integrate USD using native Unity & C# data types with a familiar serialization paradigm and little prior knowledge of USD. USD enables round-trip asset workflows between digital content creation tools like Maya, 3ds Max, Houdini, Katana, Nuke, Modo, Sketchup, Substance Designer, and Substance Painter. \n\nUnlike other asset file formats, Universal Scene Description is designed to support an entire asset pipeline and to enable teams to work in parallel using asset references and overrides. \n\nThis package includes ready-to-use binaries and examples to allow anyone to easily jump-in.\n\nUSD version: 19.05",
+    "description": "The Unity USD package contains a set of libraries designed to support the use of Pixar's Universal Scene Description (USD) in Unity. The goal of this package is to make it maximally easy to integrate USD using native Unity & C# data types with a familiar serialization paradigm and little prior knowledge of USD. USD enables round-trip asset workflows between digital content creation tools like Maya, 3ds Max, Houdini, Katana, Nuke, Modo, Sketchup, Substance Designer, and Substance Painter. \n\nUnlike other asset file formats, Universal Scene Description is designed to support an entire asset pipeline and to enable teams to work in parallel using asset references and overrides. \n\nThis package includes ready-to-use binaries and examples to allow anyone to easily jump-in.\n\nUSD version: 20.08",
     "displayName": "USD",
     "keywords": [
       "usd",
@@ -27,7 +27,6 @@
         "type": "git",
         "url": "ssh://git@github.com:Unity-Technologies/usd-unity-sdk.git"
     },
-    "unity": "2018.4",
-    "unityRelease": "4f1",
-    "version": "1.0.3-preview.2"
+    "unity": "2019.4",
+    "version": "2.0.0-exp.1"
 }

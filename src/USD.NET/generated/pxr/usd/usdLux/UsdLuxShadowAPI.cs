@@ -182,26 +182,6 @@ public class UsdLuxShadowAPI : UsdAPISchemaBase {
     return ret;
   }
 
-  public UsdRelationship GetShadowIncludeRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdLuxShadowAPI_GetShadowIncludeRel(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdRelationship CreateShadowIncludeRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdLuxShadowAPI_CreateShadowIncludeRel(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdRelationship GetShadowExcludeRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdLuxShadowAPI_GetShadowExcludeRel(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdRelationship CreateShadowExcludeRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdLuxShadowAPI_CreateShadowExcludeRel(swigCPtr), true);
-    return ret;
-  }
-
 }
 
 }

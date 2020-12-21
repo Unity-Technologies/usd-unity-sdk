@@ -23,6 +23,7 @@ namespace USD.NET {
   /// Converts intrinsic C# types to/from USD. This is serializaiton infrastructure and should only
   /// be needed when dealing directly with the low level USD API.
   /// </summary>
+  [Preserve]
   public class IntrinsicTypeConverter {
 
     static public string MakeValidIdentifier(string unityIdentifier) {
@@ -51,6 +52,7 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // string[], List<string> <--> TokenArray
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtTokenArray ToVtArray(string[] input) {
       var output = new VtTokenArray((uint)input.Length);
       // PERFORMANCE: this is super inefficient.
@@ -60,21 +62,25 @@ namespace USD.NET {
       return output;
     }
 
+    [Preserve]
     static public VtTokenArray ListToVtArray(List<string> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<string> ListFromVtArray(VtTokenArray input) {
       return FromVtArray(input).ToList();
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public string[] FromVtArray(VtTokenArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<string>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtTokenArray input, ref string[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<string>(input.size());
@@ -88,6 +94,7 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // SdfAssetPath[], List<SdfAssetPath> <--> SdfAssetPath
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public SdfAssetPathArray ToVtArray(SdfAssetPath[] input) {
       var output = new SdfAssetPathArray((uint)input.Length);
       // PERFORMANCE: this is super inefficient.
@@ -97,21 +104,25 @@ namespace USD.NET {
       return output;
     }
 
+    [Preserve]
     static public SdfAssetPathArray ListToVtArray(List<SdfAssetPath> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<SdfAssetPath> ListFromVtArray(SdfAssetPathArray input) {
       return FromVtArray(input).ToList();
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public SdfAssetPath[] FromVtArray(SdfAssetPathArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<SdfAssetPath>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(SdfAssetPathArray input, ref SdfAssetPath[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<SdfAssetPath>(input.size());
@@ -125,24 +136,27 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // bool[], List<bool> <--> BoolArray
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtBoolArray ToVtArray(bool[] input) {
       var output = new VtBoolArray((uint)input.Length);
       unsafe
       {
         fixed (bool* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public bool[] FromVtArray(VtBoolArray input) {
       bool[] output = UsdIo.ArrayAllocator.Malloc<bool>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtBoolArray input, ref bool[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<bool>(input.size());
@@ -150,21 +164,23 @@ namespace USD.NET {
       unsafe
       {
         fixed (bool* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
 
+    [Preserve]
     static public VtBoolArray ListToVtArray(List<bool> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<bool> ListFromVtArray(VtBoolArray input) {
       bool[] tmp = UsdIo.ArrayAllocator.Malloc<bool>(input.size());
       unsafe
       {
         fixed (bool* p = tmp) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
       return tmp.ToList();
@@ -173,32 +189,37 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // byte[], List<byte> <--> UCharArray
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtUCharArray ToVtArray(byte[] input) {
       var output = new VtUCharArray((uint)input.Length);
       unsafe
       {
         fixed (byte* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
+    [Preserve]
     static public VtUCharArray ListToVtArray(List<byte> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<byte> ListFromVtArray(VtUCharArray input) {
       return FromVtArray(input).ToList();
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public byte[] FromVtArray(VtUCharArray input) {
       byte[] output = UsdIo.ArrayAllocator.Malloc<byte>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtUCharArray input, ref byte[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<byte>(input.size());
@@ -206,7 +227,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (byte* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -215,32 +236,37 @@ namespace USD.NET {
     // int[], List<int> <--> IntArray
     // ----------------------------------------------------------------------------------------- //
 
+    [Preserve]
     static public VtIntArray ListToVtArray(List<int> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<int> ListFromVtArray(VtIntArray input) {
       return FromVtArray(input).ToList();
     }
 
+    [Preserve]
     static public VtIntArray ToVtArray(int[] input) {
       var output = new VtIntArray((uint)input.Length);
       unsafe
       {
         fixed (int* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public int[] FromVtArray(VtIntArray input) {
       int[] output = UsdIo.ArrayAllocator.Malloc<int>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtIntArray input, ref int[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<int>(input.size());
@@ -248,7 +274,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (int* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -256,32 +282,37 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // uint[], List<uint> <--> UIntArray
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtUIntArray ListToVtArray(List<uint> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<uint> ListFromVtArray(VtUIntArray input) {
       return FromVtArray(input).ToList();
     }
 
+    [Preserve]
     static public VtUIntArray ToVtArray(uint[] input) {
       var output = new VtUIntArray((uint)input.Length);
       unsafe
       {
         fixed (uint* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public uint[] FromVtArray(VtUIntArray input) {
       uint[] output = UsdIo.ArrayAllocator.Malloc<uint>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtUIntArray input, ref uint[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<uint>(input.size());
@@ -289,7 +320,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (uint* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -297,32 +328,37 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // long[], List<long> <--> Int64Array
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtInt64Array ListToVtArray(List<long> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<long> ListFromVtArray(VtInt64Array input) {
       return FromVtArray(input).ToList();
     }
 
+    [Preserve]
     static public VtInt64Array ToVtArray(long[] input) {
       var output = new VtInt64Array((uint)input.Length);
       unsafe
       {
         fixed (long* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public long[] FromVtArray(VtInt64Array input) {
       long[] output = UsdIo.ArrayAllocator.Malloc<long>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtInt64Array input, ref long[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<long>(input.size());
@@ -330,7 +366,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (long* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -338,32 +374,37 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // ulong[], List<ulong> <--> UInt64Array
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtUInt64Array ListToVtArray(List<ulong> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<ulong> ListFromVtArray(VtUInt64Array input) {
       return FromVtArray(input).ToList();
     }
 
+    [Preserve]
     static public VtUInt64Array ToVtArray(ulong[] input) {
       var output = new VtUInt64Array((uint)input.Length);
       unsafe
       {
         fixed (ulong* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
     // Convenience API: generates garbage, do not use when performance matters.
+    [Preserve]
     static public ulong[] FromVtArray(VtUInt64Array input) {
       ulong[] output = UsdIo.ArrayAllocator.Malloc<ulong>(input.size());
       FromVtArray(input, ref output);
       return output;
     }
 
+    [Preserve]
     static public void FromVtArray(VtUInt64Array input, ref ulong[] output) {
       if (output.Length != input.size()) {
         output = UsdIo.ArrayAllocator.Malloc<ulong>(input.size());
@@ -371,7 +412,7 @@ namespace USD.NET {
       unsafe
       {
         fixed (ulong* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
     }
@@ -379,31 +420,35 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // float[], List<float> <--> FloatArray
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtFloatArray ListToVtArray(List<float> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<float> ListFromVtArray(VtFloatArray input) {
       return FromVtArray(input).ToList();
     }
 
+    [Preserve]
     static public VtFloatArray ToVtArray(float[] input) {
       var output = new VtFloatArray((uint)input.Length);
       unsafe
       {
         fixed (float* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
+    [Preserve]
     static public float[] FromVtArray(VtFloatArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<float>(input.size());
       unsafe
       {
         fixed (float* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
       return output;
@@ -412,31 +457,35 @@ namespace USD.NET {
     // ----------------------------------------------------------------------------------------- //
     // double[], List<double> <--> DoubleArray
     // ----------------------------------------------------------------------------------------- //
+    [Preserve]
     static public VtDoubleArray ListToVtArray(List<double> input) {
       return ToVtArray(input.ToArray());
     }
 
+    [Preserve]
     static public List<double> ListFromVtArray(VtDoubleArray input) {
       return FromVtArray(input).ToList();
     }
 
+    [Preserve]
     static public VtDoubleArray ToVtArray(double[] input) {
       var output = new VtDoubleArray((uint)input.Length);
       unsafe
       {
         fixed (double* p = input) {
-          output.CopyFromArray((IntPtr)p);
+          output.CopyFromArray(new IntPtr(p));
         }
       }
       return output;
     }
 
+    [Preserve]
     static public double[] FromVtArray(VtDoubleArray input) {
       var output = UsdIo.ArrayAllocator.Malloc<double>(input.size());
       unsafe
       {
         fixed (double* p = output) {
-          input.CopyToArray((IntPtr)p);
+          input.CopyToArray(new IntPtr(p));
         }
       }
       return output;

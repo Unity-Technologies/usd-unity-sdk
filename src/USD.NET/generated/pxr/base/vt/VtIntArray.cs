@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtIntArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,20 +48,14 @@ public class VtIntArray : Vt_ArrayBase {
   public VtIntArray() : this(UsdCsPINVOKE.new_VtIntArray__SWIG_0(), true) {
   }
 
-  public VtIntArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_int data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_int.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtIntArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_int data, uint size) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_int.getCPtr(data), size), true) {
-  }
-
-  public VtIntArray(VtIntArray other) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_3(VtIntArray.getCPtr(other)), true) {
+  public VtIntArray(VtIntArray other) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_1(VtIntArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtIntArray(uint n, int value) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_5(n, value), true) {
+  public VtIntArray(uint n) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_3(n), true) {
   }
 
-  public VtIntArray(uint n) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_6(n), true) {
+  public VtIntArray(uint n, int value) : this(UsdCsPINVOKE.new_VtIntArray__SWIG_4(n, value), true) {
   }
 
   public void push_back(int elem) {

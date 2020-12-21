@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtStringArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,21 +48,15 @@ public class VtStringArray : Vt_ArrayBase {
   public VtStringArray() : this(UsdCsPINVOKE.new_VtStringArray__SWIG_0(), true) {
   }
 
-  public VtStringArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_std__string data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_std__string.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtStringArray(Vt_ArrayForeignDataSource foreignSrc, SWIGTYPE_p_std__string data, uint size) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), SWIGTYPE_p_std__string.getCPtr(data), size), true) {
-  }
-
-  public VtStringArray(VtStringArray other) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_3(VtStringArray.getCPtr(other)), true) {
+  public VtStringArray(VtStringArray other) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_1(VtStringArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtStringArray(uint n, string value) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_5(n, value), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtStringArray(uint n) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_3(n), true) {
   }
 
-  public VtStringArray(uint n) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_6(n), true) {
+  public VtStringArray(uint n, string value) : this(UsdCsPINVOKE.new_VtStringArray__SWIG_4(n, value), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(string elem) {

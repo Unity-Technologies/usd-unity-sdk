@@ -125,6 +125,14 @@ public class VtValue : global::System.IDisposable {
         return UsdCs.VtValueToSdfAssetPathArray(value);
     }
 
+    public static implicit operator SdfTimeCode (VtValue value) {
+        return UsdCs.VtValueToSdfTimeCode(value);
+    }
+
+    public static implicit operator SdfTimeCodeArray (VtValue value) {
+        return UsdCs.VtValueToSdfTimeCodeArray(value);
+    }
+
     public static implicit operator TfToken (VtValue value) {
         return UsdCs.VtValueToTfToken(value);
     }
@@ -362,6 +370,14 @@ public class VtValue : global::System.IDisposable {
     }
 
     public static implicit operator VtValue (SdfAssetPathArray value) {
+        return new VtValue(value);
+    }
+
+    public static implicit operator VtValue (SdfTimeCode value) {
+        return new VtValue(value);
+    }
+
+    public static implicit operator VtValue (SdfTimeCodeArray value) {
         return new VtValue(value);
     }
 
@@ -614,35 +630,6 @@ public class VtValue : global::System.IDisposable {
     return ret;
   }
 
-  public static bool Equals(VtValue lhs, VtValue rhs) {
-    bool ret = UsdCsPINVOKE.VtValue_Equals(VtValue.getCPtr(lhs), VtValue.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.VtValue_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(VtValue lhs, VtValue rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || VtValue.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(VtValue lhs, VtValue rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return VtValue.Equals(this, rhs as VtValue);
-    }
-  
   public VtValue(GfHalf obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_4(GfHalf.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
@@ -727,154 +714,191 @@ public class VtValue : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(TfToken obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_25(TfToken.getCPtr(obj)), true) {
+  public VtValue(SdfTimeCode obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_25(SdfTimeCode.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtBoolArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_26(VtBoolArray.getCPtr(obj)), true) {
+  public VtValue(SdfTimeCodeArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_26(SdfTimeCodeArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtDoubleArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_27(VtDoubleArray.getCPtr(obj)), true) {
+  public VtValue(TfToken obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_27(TfToken.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtFloatArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_28(VtFloatArray.getCPtr(obj)), true) {
+  public VtValue(VtBoolArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_28(VtBoolArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtHalfArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_29(VtHalfArray.getCPtr(obj)), true) {
+  public VtValue(VtDoubleArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_29(VtDoubleArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtInt64Array obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_30(VtInt64Array.getCPtr(obj)), true) {
+  public VtValue(VtFloatArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_30(VtFloatArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtIntArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_31(VtIntArray.getCPtr(obj)), true) {
+  public VtValue(VtHalfArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_31(VtHalfArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtMatrix2dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_32(VtMatrix2dArray.getCPtr(obj)), true) {
+  public VtValue(VtInt64Array obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_32(VtInt64Array.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtMatrix3dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_33(VtMatrix3dArray.getCPtr(obj)), true) {
+  public VtValue(VtIntArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_33(VtIntArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtMatrix4dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_34(VtMatrix4dArray.getCPtr(obj)), true) {
+  public VtValue(VtMatrix2dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_34(VtMatrix2dArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtQuatdArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_35(VtQuatdArray.getCPtr(obj)), true) {
+  public VtValue(VtMatrix3dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_35(VtMatrix3dArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtQuatfArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_36(VtQuatfArray.getCPtr(obj)), true) {
+  public VtValue(VtMatrix4dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_36(VtMatrix4dArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtQuathArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_37(VtQuathArray.getCPtr(obj)), true) {
+  public VtValue(VtQuatdArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_37(VtQuatdArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtStringArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_38(VtStringArray.getCPtr(obj)), true) {
+  public VtValue(VtQuatfArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_38(VtQuatfArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtTokenArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_39(VtTokenArray.getCPtr(obj)), true) {
+  public VtValue(VtQuathArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_39(VtQuathArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtUCharArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_40(VtUCharArray.getCPtr(obj)), true) {
+  public VtValue(VtStringArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_40(VtStringArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtUInt64Array obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_41(VtUInt64Array.getCPtr(obj)), true) {
+  public VtValue(VtTokenArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_41(VtTokenArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtUIntArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_42(VtUIntArray.getCPtr(obj)), true) {
+  public VtValue(VtUCharArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_42(VtUCharArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec2dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_43(VtVec2dArray.getCPtr(obj)), true) {
+  public VtValue(VtUInt64Array obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_43(VtUInt64Array.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec2fArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_44(VtVec2fArray.getCPtr(obj)), true) {
+  public VtValue(VtUIntArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_44(VtUIntArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec2hArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_45(VtVec2hArray.getCPtr(obj)), true) {
+  public VtValue(VtVec2dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_45(VtVec2dArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec2iArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_46(VtVec2iArray.getCPtr(obj)), true) {
+  public VtValue(VtVec2fArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_46(VtVec2fArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec3dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_47(VtVec3dArray.getCPtr(obj)), true) {
+  public VtValue(VtVec2hArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_47(VtVec2hArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec3fArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_48(VtVec3fArray.getCPtr(obj)), true) {
+  public VtValue(VtVec2iArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_48(VtVec2iArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec3hArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_49(VtVec3hArray.getCPtr(obj)), true) {
+  public VtValue(VtVec3dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_49(VtVec3dArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec3iArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_50(VtVec3iArray.getCPtr(obj)), true) {
+  public VtValue(VtVec3fArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_50(VtVec3fArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec4dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_51(VtVec4dArray.getCPtr(obj)), true) {
+  public VtValue(VtVec3hArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_51(VtVec3hArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec4fArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_52(VtVec4fArray.getCPtr(obj)), true) {
+  public VtValue(VtVec3iArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_52(VtVec3iArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec4hArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_53(VtVec4hArray.getCPtr(obj)), true) {
+  public VtValue(VtVec4dArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_53(VtVec4dArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(VtVec4iArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_54(VtVec4iArray.getCPtr(obj)), true) {
+  public VtValue(VtVec4fArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_54(VtVec4fArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(bool obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_55(obj), true) {
-  }
-
-  public VtValue(double obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_56(obj), true) {
-  }
-
-  public VtValue(float obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_57(obj), true) {
-  }
-
-  public VtValue(int obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_58(obj), true) {
-  }
-
-  public VtValue(long obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_59(obj), true) {
-  }
-
-  public VtValue(string obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_60(obj), true) {
+  public VtValue(VtVec4hArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_55(VtVec4hArray.getCPtr(obj)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(ulong obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_61(obj), true) {
+  public VtValue(VtVec4iArray obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_56(VtVec4iArray.getCPtr(obj)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtValue(byte obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_62(obj), true) {
+  public VtValue(bool obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_57(obj), true) {
   }
 
-  public VtValue(uint obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_63(obj), true) {
+  public VtValue(double obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_58(obj), true) {
   }
 
+  public VtValue(float obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_59(obj), true) {
+  }
+
+  public VtValue(int obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_60(obj), true) {
+  }
+
+  public VtValue(long obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_61(obj), true) {
+  }
+
+  public VtValue(string obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_62(obj), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public VtValue(ulong obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_63(obj), true) {
+  }
+
+  public VtValue(byte obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_64(obj), true) {
+  }
+
+  public VtValue(uint obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_65(obj), true) {
+  }
+
+  public static bool Equals(VtValue lhs, VtValue rhs) {
+    bool ret = UsdCsPINVOKE.VtValue_Equals(VtValue.getCPtr(lhs), VtValue.getCPtr(rhs));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  override public int GetHashCode() {
+    int ret = UsdCsPINVOKE.VtValue_GetHashCode(swigCPtr);
+    return ret;
+  }
+
+    public static bool operator==(VtValue lhs, VtValue rhs){
+      // The Swig binding glue will re-enter this operator comparing to null, so 
+      // that case must be handled explicitly to avoid an infinite loop. This is still
+      // not great, since it crosses the C#/C++ barrier twice. A better approache might
+      // be to return a simple value from C++ that can be compared in C#.
+      bool lnull = lhs as object == null;
+      bool rnull = rhs as object == null;
+      return (lnull == rnull) && ((lnull && rnull) || VtValue.Equals(lhs, rhs));
+    }
+
+    public static bool operator !=(VtValue lhs, VtValue rhs) {
+        return !(lhs == rhs);
+    }
+
+    override public bool Equals(object rhs) {
+      return VtValue.Equals(this, rhs as VtValue);
+    }
+  
 }
 
 }

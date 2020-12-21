@@ -88,6 +88,17 @@ public class UsdClipsAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public SdfAssetPathArray ComputeClipAssetPaths(string clipSet) {
+    SdfAssetPathArray ret = new SdfAssetPathArray(UsdCsPINVOKE.UsdClipsAPI_ComputeClipAssetPaths__SWIG_0(swigCPtr, clipSet), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfAssetPathArray ComputeClipAssetPaths() {
+    SdfAssetPathArray ret = new SdfAssetPathArray(UsdCsPINVOKE.UsdClipsAPI_ComputeClipAssetPaths__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
   public bool GetClipAssetPaths(SdfAssetPathArray assetPaths, string clipSet) {
     bool ret = UsdCsPINVOKE.UsdClipsAPI_GetClipAssetPaths__SWIG_0(swigCPtr, SdfAssetPathArray.getCPtr(assetPaths), clipSet);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -204,6 +215,61 @@ public class UsdClipsAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public SdfLayer GenerateClipManifest(string clipSet, bool writeBlocksForClipsWithMissingValues) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdClipsAPI_GenerateClipManifest__SWIG_0(swigCPtr, clipSet, writeBlocksForClipsWithMissingValues);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer GenerateClipManifest(string clipSet) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdClipsAPI_GenerateClipManifest__SWIG_1(swigCPtr, clipSet);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public SdfLayer GenerateClipManifest(bool writeBlocksForClipsWithMissingValues) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdClipsAPI_GenerateClipManifest__SWIG_2(swigCPtr, writeBlocksForClipsWithMissingValues);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    return ret;
+  }
+
+  public SdfLayer GenerateClipManifest() {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdClipsAPI_GenerateClipManifest__SWIG_3(swigCPtr);
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    return ret;
+  }
+
+  public static SdfLayer GenerateClipManifestFromLayers(SdfLayerHandleVector clipLayers, SdfPath clipPrimPath) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdClipsAPI_GenerateClipManifestFromLayers(SdfLayerHandleVector.getCPtr(clipLayers), SdfPath.getCPtr(clipPrimPath));
+    SdfLayer ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayer(cPtr, true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetInterpolateMissingClipValues(SWIGTYPE_p_bool interpolate, string clipSet) {
+    bool ret = UsdCsPINVOKE.UsdClipsAPI_GetInterpolateMissingClipValues__SWIG_0(swigCPtr, SWIGTYPE_p_bool.getCPtr(interpolate), clipSet);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool GetInterpolateMissingClipValues(SWIGTYPE_p_bool interpolate) {
+    bool ret = UsdCsPINVOKE.UsdClipsAPI_GetInterpolateMissingClipValues__SWIG_1(swigCPtr, SWIGTYPE_p_bool.getCPtr(interpolate));
+    return ret;
+  }
+
+  public bool SetInterpolateMissingClipValues(bool interpolate, string clipSet) {
+    bool ret = UsdCsPINVOKE.UsdClipsAPI_SetInterpolateMissingClipValues__SWIG_0(swigCPtr, interpolate, clipSet);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool SetInterpolateMissingClipValues(bool interpolate) {
+    bool ret = UsdCsPINVOKE.UsdClipsAPI_SetInterpolateMissingClipValues__SWIG_1(swigCPtr, interpolate);
+    return ret;
+  }
+
   public bool GetClipTemplateAssetPath(/*cstype*/ out string clipTemplateAssetPath, string clipSet) {
     bool ret = UsdCsPINVOKE.UsdClipsAPI_GetClipTemplateAssetPath__SWIG_0(swigCPtr, out clipTemplateAssetPath, clipSet);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -313,11 +379,6 @@ public class UsdClipsAPI : UsdAPISchemaBase {
 
   public bool SetClipTemplateEndTime(double clipTemplateEndTime) {
     bool ret = UsdCsPINVOKE.UsdClipsAPI_SetClipTemplateEndTime__SWIG_1(swigCPtr, clipTemplateEndTime);
-    return ret;
-  }
-
-  public static bool IsAuthoringLegacyClipMetadata() {
-    bool ret = UsdCsPINVOKE.UsdClipsAPI_IsAuthoringLegacyClipMetadata();
     return ret;
   }
 

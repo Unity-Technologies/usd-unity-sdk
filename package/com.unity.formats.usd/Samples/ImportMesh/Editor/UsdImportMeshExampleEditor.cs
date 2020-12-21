@@ -16,42 +16,45 @@ using UnityEngine;
 using UnityEditor;
 using USD.NET;
 
-namespace Unity.Formats.USD.Examples {
-
-  [CustomEditor(typeof(ImportMeshExample))]
-  public class UsdImportMeshEditor : Editor {
-
-    string MakeOversPath(string path) {
-      return System.IO.Path.ChangeExtension(path, ".overs.usda");
-    }
-
-    public override void OnInspectorGUI() {
-      base.DrawDefaultInspector();
-      if (GUILayout.Button("Export Overides")) {
-        var importMesh = (ImportMeshExample)target;
-        var oversFilePath = MakeOversPath(importMesh.m_usdFile);
-
-        if (string.IsNullOrEmpty(oversFilePath)) {
-          Debug.LogWarning("Empty export path.");
+namespace Unity.Formats.USD.Examples
+{
+    [CustomEditor(typeof(ImportMeshExample))]
+    public class UsdImportMeshEditor : Editor
+    {
+        string MakeOversPath(string path)
+        {
+            return System.IO.Path.ChangeExtension(path, ".overs.usda");
         }
 
-        // Let the Scene.Create function throw an exception when it can't create a USD stage.
-        var oversScene = Scene.Create(oversFilePath);
+        public override void OnInspectorGUI()
+        {
+            base.DrawDefaultInspector();
+            if (GUILayout.Button("Export Overides"))
+            {
+                var importMesh = (ImportMeshExample) target;
+                var oversFilePath = MakeOversPath(importMesh.m_usdFile);
 
-        oversScene.UpAxis = importMesh.UsdScene.UpAxis;
-        oversScene.Time = importMesh.m_usdTime;
-        oversScene.AddSubLayer(importMesh.UsdScene);
+                if (string.IsNullOrEmpty(oversFilePath))
+                {
+                    Debug.LogWarning("Empty export path.");
+                }
 
-        XformExporter.WriteSparseOverrides(oversScene,
-                                            importMesh.PrimMap,
-                                            importMesh.m_changeHandedness);
+                // Let the Scene.Create function throw an exception when it can't create a USD stage.
+                var oversScene = Scene.Create(oversFilePath);
 
-        oversScene.Save();
-        oversScene.Close();
+                oversScene.UpAxis = importMesh.UsdScene.UpAxis;
+                oversScene.Time = importMesh.m_usdTime;
+                oversScene.AddSubLayer(importMesh.UsdScene);
 
-        Debug.Log("Written: " + oversFilePath);
-      }
+                XformExporter.WriteSparseOverrides(oversScene,
+                    importMesh.PrimMap,
+                    importMesh.m_changeHandedness);
+
+                oversScene.Save();
+                oversScene.Close();
+
+                Debug.Log("Written: " + oversFilePath);
+            }
+        }
     }
-  }
-
 }

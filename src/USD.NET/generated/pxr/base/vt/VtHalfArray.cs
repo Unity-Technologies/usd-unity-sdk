@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtHalfArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,21 +48,15 @@ public class VtHalfArray : Vt_ArrayBase {
   public VtHalfArray() : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_0(), true) {
   }
 
-  public VtHalfArray(Vt_ArrayForeignDataSource foreignSrc, GfHalf data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfHalf.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtHalfArray(Vt_ArrayForeignDataSource foreignSrc, GfHalf data, uint size) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfHalf.getCPtr(data), size), true) {
-  }
-
-  public VtHalfArray(VtHalfArray other) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_3(VtHalfArray.getCPtr(other)), true) {
+  public VtHalfArray(VtHalfArray other) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_1(VtHalfArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtHalfArray(uint n, GfHalf value) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_5(n, GfHalf.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtHalfArray(uint n) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_3(n), true) {
   }
 
-  public VtHalfArray(uint n) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_6(n), true) {
+  public VtHalfArray(uint n, GfHalf value) : this(UsdCsPINVOKE.new_VtHalfArray__SWIG_4(n, GfHalf.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(GfHalf elem) {

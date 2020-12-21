@@ -86,66 +86,6 @@ public class SdfRelationshipSpec : SdfPropertySpec {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SWIGTYPE_p_SdfRelationalAttributeSpecView GetAttributesForTargetPath(SdfPath path) {
-    SWIGTYPE_p_SdfRelationalAttributeSpecView ret = new SWIGTYPE_p_SdfRelationalAttributeSpecView(UsdCsPINVOKE.SdfRelationshipSpec_GetAttributesForTargetPath(swigCPtr, SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetAttributesForTargetPath(SdfPath path, SdfAttributeSpecHandleVector newAttrs) {
-    UsdCsPINVOKE.SdfRelationshipSpec_SetAttributesForTargetPath(swigCPtr, SdfPath.getCPtr(path), SdfAttributeSpecHandleVector.getCPtr(newAttrs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool InsertAttributeForTargetPath(SdfPath path, SdfAttributeSpecHandle attr, int index) {
-    bool ret = UsdCsPINVOKE.SdfRelationshipSpec_InsertAttributeForTargetPath__SWIG_0(swigCPtr, SdfPath.getCPtr(path), SdfAttributeSpecHandle.getCPtr(attr), index);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool InsertAttributeForTargetPath(SdfPath path, SdfAttributeSpecHandle attr) {
-    bool ret = UsdCsPINVOKE.SdfRelationshipSpec_InsertAttributeForTargetPath__SWIG_1(swigCPtr, SdfPath.getCPtr(path), SdfAttributeSpecHandle.getCPtr(attr));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void RemoveAttributeForTargetPath(SdfPath path, SdfAttributeSpecHandle attr) {
-    UsdCsPINVOKE.SdfRelationshipSpec_RemoveAttributeForTargetPath(swigCPtr, SdfPath.getCPtr(path), SdfAttributeSpecHandle.getCPtr(attr));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPathVector GetAttributeTargetPaths() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfRelationshipSpec_GetAttributeTargetPaths(swigCPtr), true);
-    return ret;
-  }
-
-  public SdfPath GetTargetPathForAttribute(SWIGTYPE_p_SdfAttributeSpecConstHandle attr) {
-    SdfPath ret = new SdfPath(UsdCsPINVOKE.SdfRelationshipSpec_GetTargetPathForAttribute(swigCPtr, SWIGTYPE_p_SdfAttributeSpecConstHandle.getCPtr(attr)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SdfPathVector GetAttributeOrderTargetPaths() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfRelationshipSpec_GetAttributeOrderTargetPaths(swigCPtr), true);
-    return ret;
-  }
-
-  public bool HasAttributeOrderForTargetPath(SdfPath path) {
-    bool ret = UsdCsPINVOKE.SdfRelationshipSpec_HasAttributeOrderForTargetPath(swigCPtr, SdfPath.getCPtr(path));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void SetTargetAttributeOrders(SWIGTYPE_p_std__mapT_SdfPath_std__vectorT_TfToken_t_std__lessT_SdfPath_t_t orders) {
-    UsdCsPINVOKE.SdfRelationshipSpec_SetTargetAttributeOrders(swigCPtr, SWIGTYPE_p_std__mapT_SdfPath_std__vectorT_TfToken_t_std__lessT_SdfPath_t_t.getCPtr(orders));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void ApplyAttributeOrderForTargetPath(SdfPath path, TfTokenVector vec) {
-    UsdCsPINVOKE.SdfRelationshipSpec_ApplyAttributeOrderForTargetPath(swigCPtr, SdfPath.getCPtr(path), TfTokenVector.getCPtr(vec));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
   public bool GetNoLoadHint() {
     bool ret = UsdCsPINVOKE.SdfRelationshipSpec_GetNoLoadHint(swigCPtr);
     return ret;

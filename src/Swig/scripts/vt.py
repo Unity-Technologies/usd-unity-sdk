@@ -30,7 +30,11 @@ castTo = """
     }}"""
 castToPost = "%}"
 
-accessorPre = """%inline %{
+preserveAttr = """%typemap(csattributes) {cppTypeName} "[Preserve]"
+%csattributes VtValueTo{csTypeName} "[Preserve]" """
+
+accessorPre = """
+%inline %{
 // This code manifests in UsdCs class.
 """
 accessor = """
@@ -130,37 +134,42 @@ def genVtValue(basePath, copyright):
         typeInfos[translateTypes(tn)] = ti
 
     with open(vtValueTypes, "w") as f:
-        print >> f, copyright
+        print(copyright, file=f)
         for tn in sorted(typeInfos.keys()):
-            print >> f, valueCtor.format(typeName=tn)
+            print(valueCtor.format(typeName=tn), file=f)
 
     with open(vtValueCasts, "w") as f:
-        print >> f, copyright
-        print >> f, castFromPre
+        print(copyright, file=f)
+        print(castFromPre, file=f)
         for tn in sorted(typeInfos.keys()):
-            print >> f, castFrom.format(csTypeName=typeInfos[tn].csTypeName)
+            print(castFrom.format(csTypeName=typeInfos[tn].csTypeName), file=f)
         for tn in sorted(typeInfos.keys()):
-            print >> f, castTo.format(csTypeName=typeInfos[tn].csTypeName)
-        print >> f, castToPost
+            print(castTo.format(csTypeName=typeInfos[tn].csTypeName), file=f)
+        print(castToPost, file=f)
 
     with open(vtValueAccessors, "w") as f:
-        print >> f, copyright
-        print >> f, accessorPre
+        print(copyright, file=f)
+
+        for tn in sorted(typeInfos.keys()):
+            ti = typeInfos[tn]
+            print(preserveAttr.format(csTypeName=ti.csTypeName, cppTypeName=ti.cppTypeName), file=f)
+
+        print(accessorPre, file=f)
         for tn in sorted(typeInfos.keys()):
             ti = typeInfos[tn]
             # unsigned int/char need special handling so they compile on OSX.
             if tn == "unsigned int" or tn == "unsigned char":
-              print >> f, accessorAlt.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName)
+              print(accessorAlt.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName), file=f)
             else:
-              print >> f, accessor.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName)
-        print >> f, accessorPost
+              print(accessor.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName), file=f)
+        print(accessorPost, file=f)
 
     with open(vtArrayTypes, "w") as f:
-        print >> f, copyright
-        print >> f, arrayDeclPre
+        print(copyright, file=f)
+        print(arrayDeclPre, file=f)
         for tn in sorted(typeInfos.keys()):
             ti = typeInfos[tn]
             if not ti.isArray:
                 continue
-            print >> f, arrayDecl.format(typeName=tn, cppTypeName=ti.cppTypeName, scalarType=ti.scalarType, scalarTypeCs=ti.scalarTypeCs)
-        print >> f, arrayDeclPost
+            print(arrayDecl.format(typeName=tn, cppTypeName=ti.cppTypeName, scalarType=ti.scalarType, scalarTypeCs=ti.scalarTypeCs), file=f)
+        print(arrayDeclPost, file=f)

@@ -10,6 +10,7 @@
 
 namespace pxr {
 
+[Preserve]
 public class VtMatrix3dArray : Vt_ArrayBase {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -47,21 +48,15 @@ public class VtMatrix3dArray : Vt_ArrayBase {
   public VtMatrix3dArray() : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_0(), true) {
   }
 
-  public VtMatrix3dArray(Vt_ArrayForeignDataSource foreignSrc, GfMatrix3d data, uint size, bool addRef) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_1(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfMatrix3d.getCPtr(data), size, addRef), true) {
-  }
-
-  public VtMatrix3dArray(Vt_ArrayForeignDataSource foreignSrc, GfMatrix3d data, uint size) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_2(Vt_ArrayForeignDataSource.getCPtr(foreignSrc), GfMatrix3d.getCPtr(data), size), true) {
-  }
-
-  public VtMatrix3dArray(VtMatrix3dArray other) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_3(VtMatrix3dArray.getCPtr(other)), true) {
+  public VtMatrix3dArray(VtMatrix3dArray other) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_1(VtMatrix3dArray.getCPtr(other)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VtMatrix3dArray(uint n, GfMatrix3d value) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_5(n, GfMatrix3d.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  public VtMatrix3dArray(uint n) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_3(n), true) {
   }
 
-  public VtMatrix3dArray(uint n) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_6(n), true) {
+  public VtMatrix3dArray(uint n, GfMatrix3d value) : this(UsdCsPINVOKE.new_VtMatrix3dArray__SWIG_4(n, GfMatrix3d.getCPtr(value)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void push_back(GfMatrix3d elem) {

@@ -98,6 +98,7 @@
     <Compile Include="Cases\UsdGeomTests.cs" />
     <Compile Include="Cases\UsdPreviewSurfaceTests.cs" />
     <Compile Include="Cases\UsdShadeTests.cs" />
+    <Compile Include="Cases\VerifyAotAttributes.cs" />
     <Compile Include="UnitTestDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\DiagnosticHandler.cs" />

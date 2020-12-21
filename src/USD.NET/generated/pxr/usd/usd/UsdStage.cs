@@ -419,6 +419,17 @@ public class UsdStage : global::System.IDisposable {
     return ret;
   }
 
+  public SWIGTYPE_p_UsdStageLoadRules GetLoadRules() {
+    SWIGTYPE_p_UsdStageLoadRules ret = new SWIGTYPE_p_UsdStageLoadRules(UsdCsPINVOKE.UsdStage_GetLoadRules(swigCPtr), false);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void SetLoadRules(SWIGTYPE_p_UsdStageLoadRules rules) {
+    UsdCsPINVOKE.UsdStage_SetLoadRules(swigCPtr, SWIGTYPE_p_UsdStageLoadRules.getCPtr(rules));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public UsdStagePopulationMask GetPopulationMask() {
     UsdStagePopulationMask ret = new UsdStagePopulationMask(UsdCsPINVOKE.UsdStage_GetPopulationMask(swigCPtr), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -466,6 +477,24 @@ public class UsdStage : global::System.IDisposable {
 
   public UsdObject GetObjectAtPath(SdfPath path) {
     UsdObject ret = new UsdObject(UsdCsPINVOKE.UsdStage_GetObjectAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdProperty GetPropertyAtPath(SdfPath path) {
+    UsdProperty ret = new UsdProperty(UsdCsPINVOKE.UsdStage_GetPropertyAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute GetAttributeAtPath(SdfPath path) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdStage_GetAttributeAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdRelationship GetRelationshipAtPath(SdfPath path) {
+    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdStage_GetRelationshipAtPath(swigCPtr, SdfPath.getCPtr(path)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -724,6 +753,11 @@ public class UsdStage : global::System.IDisposable {
     bool ret = UsdCsPINVOKE.UsdStage_ClearMetadataByDictKey(swigCPtr, TfToken.getCPtr(key), TfToken.getCPtr(keyPath));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public void WriteFallbackPrimTypes() {
+    UsdCsPINVOKE.UsdStage_WriteFallbackPrimTypes(swigCPtr);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public double GetStartTimeCode() {

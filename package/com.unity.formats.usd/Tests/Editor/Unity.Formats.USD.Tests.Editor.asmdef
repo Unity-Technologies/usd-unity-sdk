@@ -12,6 +12,7 @@
     ],
     "allowUnsafeCode": true,
     "precompiledReferences": [
-        "USD.NET.dll"
+        "USD.NET.dll",
+        "USD.NET.Unity.dll"
     ]
 }

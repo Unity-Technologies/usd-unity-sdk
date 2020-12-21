@@ -40,15 +40,14 @@
   public static TfToken lightListCacheBehavior = new TfToken("lightList:cacheBehavior");
   public static TfToken mirroredBall = new TfToken("mirroredBall");
   public static TfToken normalize = new TfToken("normalize");
+  public static TfToken orientToStageUpAxis = new TfToken("orientToStageUpAxis");
   public static TfToken portals = new TfToken("portals");
   public static TfToken radius = new TfToken("radius");
   public static TfToken shadowColor = new TfToken("shadow:color");
   public static TfToken shadowDistance = new TfToken("shadow:distance");
   public static TfToken shadowEnable = new TfToken("shadow:enable");
-  public static TfToken shadowExclude = new TfToken("shadow:exclude");
   public static TfToken shadowFalloff = new TfToken("shadow:falloff");
   public static TfToken shadowFalloffGamma = new TfToken("shadow:falloffGamma");
-  public static TfToken shadowInclude = new TfToken("shadow:include");
   public static TfToken shadowLink = new TfToken("shadowLink");
   public static TfToken shapingConeAngle = new TfToken("shaping:cone:angle");
   public static TfToken shapingConeSoftness = new TfToken("shaping:cone:softness");
@@ -56,6 +55,7 @@
   public static TfToken shapingFocusTint = new TfToken("shaping:focusTint");
   public static TfToken shapingIesAngleScale = new TfToken("shaping:ies:angleScale");
   public static TfToken shapingIesFile = new TfToken("shaping:ies:file");
+  public static TfToken shapingIesNormalize = new TfToken("shaping:ies:normalize");
   public static TfToken specular = new TfToken("specular");
   public static TfToken textureFile = new TfToken("texture:file");
   public static TfToken textureFormat = new TfToken("texture:format");

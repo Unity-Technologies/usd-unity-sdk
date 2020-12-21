@@ -107,6 +107,11 @@ public class UsdSkelAnimQuery : global::System.IDisposable {
     return ret;
   }
 
+  public bool GetBlendShapeWeightAttributes(UsdAttributeVector attrs) {
+    bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_GetBlendShapeWeightAttributes(swigCPtr, UsdAttributeVector.getCPtr(attrs));
+    return ret;
+  }
+
   public bool BlendShapeWeightsMightBeTimeVarying() {
     bool ret = UsdCsPINVOKE.UsdSkelAnimQuery_BlendShapeWeightsMightBeTimeVarying(swigCPtr);
     return ret;
