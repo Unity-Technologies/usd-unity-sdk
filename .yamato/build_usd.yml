@@ -18,21 +18,21 @@ usd_flavors:
 build_platforms:
   - name: win
     type: Unity::VM
-    image: filmtv/usd_build_win10_image:latest
+    image: filmtv/usd_build_win10_image:stable
     flavor: b1.xlarge
     setenv_cmd: call "C:\\Program Files (x86)\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
     stevedore_url: "%STEVEDORE_UPLOAD_TOOL_URL%"
     stevedore_exe: "StevedoreUpload.exe"
   - name: mac
     type: Unity::VM::osx
-    image: filmtv/usd_build_macos_image:latest
+    image: filmtv/usd_build_macos_image:stable
     flavor: m1.mac
     setenv_cmd: echo "Environment set"
     stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
     stevedore_exe: "mono StevedoreUpload.exe"
   - name: linux
     type: Unity::VM
-    image: filmtv/usd_build_linux_image:latest
+    image: filmtv/usd_build_linux_image:stable
     flavor: b1.large
     setenv_cmd: export PATH=/opt/rh/devtoolset-7/root/usr/bin:/home/bokken/cmake-3.19.2-Linux-x86_64/bin:$PATH
     stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
@@ -81,7 +81,7 @@ build_platforms:
     flavor: {{platform.flavor}}
   commands:
     - |
-      python3 bin\build.py "{{usd_version.version}}" "../../libs/pixar" "2019.4"
+      python3 bin\build.py "{{usd_version.version}}" "../libs/pixar" "2019.4"
   artifacts:
       {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:
