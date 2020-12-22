@@ -116,5 +116,6 @@ test_linux_vm:
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.small
+  interpreter: bash
   commands:
     - gcc --version
