@@ -34,7 +34,7 @@ build_platforms:
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.large
-    setenv_cmd: echo "Environment set"
+    setenv_cmd: export PATH=/opt/rh/devtoolset-7/root/usr/bin:/home/bokken/cmake-3.19.2-Linux-x86_64/bin:$PATH
     stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
     stevedore_exe: "mono StevedoreUpload.exe"
 ---
@@ -119,5 +119,4 @@ test_linux_vm:
   commands:
     - |
       gcc --version
-      export PATH=/opt/rh/devtoolset-7/root/usr/bin:/home/bokken/cmake-3.19.2-Linux-x86_64/bin:$PATH
       gcc --version
