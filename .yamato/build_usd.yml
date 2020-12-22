@@ -82,7 +82,7 @@ build_platforms:
   commands:
     - |
       {{platform.setenv_cmd}}
-      python3 bin/build.py "{{usd_version.version}}" "../../libs/pixar" "2019.4"
+      python3 bin/build.py "{{usd_version.version}}" "../../libs/pixar" "2019.4" --download
   artifacts:
       {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:
