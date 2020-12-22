@@ -95,7 +95,8 @@ build_platforms:
   name: {{usd_version.version}} - Publish C# bindings
   skip_checkout: true
   agent:
-    type: linux
+    name: linux
+    type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.small
   dependencies:
@@ -105,3 +106,15 @@ build_platforms:
   commands:
     - bin/commit_bindings.sh
 {% endfor %}
+
+
+test_linux_vm:
+  name: Test Linux VM
+  skip_checkout: true
+  agent:
+    name: linux
+    type: Unity::VM
+    image: filmtv/usd_build_linux_image:latest
+    flavor: b1.small
+  commands:
+    - gcc --version
