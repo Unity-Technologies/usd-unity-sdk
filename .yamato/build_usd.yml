@@ -116,6 +116,8 @@ test_linux_vm:
     type: Unity::VM
     image: filmtv/usd_build_linux_image:latest
     flavor: b1.small
-  interpreter: bash
   commands:
-    - gcc --version
+    - |
+      gcc --version
+      export PATH=/opt/rh/devtoolset-7/root/usr/bin:/home/bokken/cmake-3.19.2-Linux-x86_64/bin:$PATH
+      gcc --version
