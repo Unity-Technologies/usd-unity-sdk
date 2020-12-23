@@ -62,11 +62,19 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    if not os.path.exists(args.library_path):
+        os.makedirs(args.library_path)
+
     if args.download_usd_binaries:
         (usd_python_dir_path, usd_no_python_dir_path) = download_usd_binaries(args.usd_version, "36", args.library_path)
     else:
         usd_python_dir_path = os.path.join(args.library_path, usd_python_dirname(args.usd_version))
         usd_no_python_dir_path = os.path.join(args.library_path, usd_no_python_dirname(args.usd_version))
+
+    if not os.path.exists(usd_python_dir_path):
+        raise FileNotFoundException(usd_python_dir_path)
+    if not os.path.exists(usd_no_python_dir_path):
+        raise FileNotFoundException(usd_no_python_dir_path)
 
     if not os.path.exists("./build"):
         os.mkdir("build")
