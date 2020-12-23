@@ -9,7 +9,7 @@ import argparse
 import zipfile
 
 STEVEDORE_REPO = "https://artifactory.internal.unity3d.com/stevedore-testing"
-USD_BINARIES = {"20.08": {"Windows": "usd-win-python36-x86_64/v20.08_ce9dafb942b8d95001de4af7ec6e3b10e6b7fb663dcfd26fbbad7733dc04a495.zip" ,
+USD_BINARIES = {"20.08": {"Windows": "usd-win-python36-x86_64/v20.08_1df762cff26f05e8c53edbc217cf0fa1210be67d75ff845316124867e33c6869.zip" ,
                           "Linux": "usd-linux-python36-x86_64/v20.08_7006693e9ac0ad3ff013f26a0558e9aa4fca68805f3b32a5ee29d8cc3607e560.zip",
                           "Darwin": "usd-mac-python36-x86_64/v20.08_e2df4db2fe24542b50f21e9ae2df45768f533c5ab03956f4d8dff64e773ed065.zip"}}
 
