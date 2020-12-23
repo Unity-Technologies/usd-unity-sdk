@@ -105,9 +105,13 @@ if __name__ == "__main__":
     logging.info("Running CMake:\n{}\n\n".format(cmake_cmd))
     p = subprocess.Popen(shlex.split(cmake_cmd))
     p.wait()
+    if p.returncode != 0:
+        raise RuntimeError("Failed to run '{cmd}'\n.".format(cmd=cmake_cmd))
     logging.info("\n\n")
 
     build_cmd = "cmake --build build --config RelWithDebInfo --target install"
     logging.info("Running CMake build:\n{}\n\n".format(build_cmd))
     p = subprocess.Popen(shlex.split(build_cmd))
     p.wait()
+    if p.returncode != 0:
+        raise RuntimeError("Failed to run '{cmd}'\n.".format(cmd=cmake_cmd))
