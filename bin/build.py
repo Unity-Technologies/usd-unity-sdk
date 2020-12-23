@@ -12,6 +12,7 @@ STEVEDORE_REPO = "https://artifactory.internal.unity3d.com/stevedore-testing"
 USD_BINARIES = {"20.08": {"Windows": "usd-win-python36-x86_64/v20.08_1df762cff26f05e8c53edbc217cf0fa1210be67d75ff845316124867e33c6869.zip" ,
                           "Linux": "usd-linux-python36-x86_64/v20.08_a47ac54028df326afe4f871a1cd2b01aa3eab2b0819cc56abe1e90883d2ef97b.zip",
                           "Darwin": "usd-mac-python36-x86_64/v20.08_e2df4db2fe24542b50f21e9ae2df45768f533c5ab03956f4d8dff64e773ed065.zip"}}
+PYTHON_VERSION = "36"
 
 def usd_python_dirname(usd_version, python_version):
     return "usd-v{0}".format(usd_version)
@@ -19,24 +20,26 @@ def usd_python_dirname(usd_version, python_version):
 def usd_no_python_dirname(usd_version):
     return "usd-v{0}_no_python".format(usd_version)
 
+def usd_binaries_dirname(usd_version, python_version):
+    return "usd-v{0}-python{1}".format(usd_version, python_version)
 
-def download_usd_binaries(usd_version, python_version="36", output_dir=""):
+def download_usd_binaries(usd_version, python_version=PYTHON_VERSION, output_dir=""):
+    output_dir = os.path.abspath(output_dir)
     if not os.path.exists(output_dir):
         logging.error("Target path doesn't exist: {0}".format(output_dir))
         return None, None
-    output_dir = os.path.abspath(output_dir)
 
     # Download usd archive from artifactory/stevedore
     artifactory_usd_archive = USD_BINARIES[usd_version][platform.system()]
     usd_archive_path = os.path.join(output_dir, artifactory_usd_archive.split('/')[-1])
     if(not os.path.exists(usd_archive_path)):
         logging.info("Downloading USD v{0} for python {1} to {2} ...".format(usd_version, python_version, output_dir))
-        p = subprocess.Popen(shlex.split("wget -P {0} {1}/{2}".format(output_dir, STEVEDORE_REPO, artifactory_usd_archive)))
+        p = subprocess.Popen(shlex.split('wget -P "{0}" {1}/{2}'.format(output_dir, STEVEDORE_REPO, artifactory_usd_archive)))
         p.wait()
 
     # Extract archive
-    output_path = os.path.join(output_dir, "usd-v{0}-python{1}".format(usd_version, python_version))
-    logging.info("Extracting to {} ...".format(output_path))
+    output_path = usd_binaries_dirname(usd_version, python_version)
+    logging.info("Extracting to {} ...\n".format(output_path))
     with zipfile.ZipFile(usd_archive_path, 'r') as usd_zip:
         usd_zip.extractall(output_path)
 
@@ -62,14 +65,15 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if not os.path.exists(args.library_path):
-        os.makedirs(args.library_path)
+    library_path = os.path.abspath(args.library_path)
+    if not os.path.exists(library_path):
+        os.makedirs(library_path)
 
     if args.download_usd_binaries:
-        (usd_python_dir_path, usd_no_python_dir_path) = download_usd_binaries(args.usd_version, "36", args.library_path)
+        (usd_python_dir_path, usd_no_python_dir_path) = download_usd_binaries(args.usd_version, PYTHON_VERSION, library_path)
     else:
-        usd_python_dir_path = os.path.join(args.library_path, usd_python_dirname(args.usd_version))
-        usd_no_python_dir_path = os.path.join(args.library_path, usd_no_python_dirname(args.usd_version))
+        usd_python_dir_path = os.path.join(library_path, usd_binaries_dirname(args.usd_version, PYTHON_VERSION), usd_python_dirname(args.usd_version, PYTHON_VERSION))
+        usd_no_python_dir_path = os.path.join(library_path, usd_binaries_dirname(args.usd_version, PYTHON_VERSION), usd_no_python_dirname(args.usd_version))
 
     if not os.path.exists(usd_python_dir_path):
         raise FileNotFoundException(usd_python_dir_path)
@@ -90,12 +94,13 @@ if __name__ == "__main__":
     if platform.system() == "Windows":
         cmake_cmd += "-G \"Visual Studio 15 2017 Win64\""
 
-    build_cmd = "cmake --build build --config RelWithDebInfo --target install"
-
-    logging.info("Running CMake: {}".format(cmake_cmd))
-
+    logging.info("="*80)
+    logging.info("Running CMake:\n{}\n\n".format(cmake_cmd))
     p = subprocess.Popen(shlex.split(cmake_cmd))
     p.wait()
+    logging.info("\n\n")
 
+    build_cmd = "cmake --build build --config RelWithDebInfo --target install"
+    logging.info("Running CMake build:\n{}\n\n".format(build_cmd))
     p = subprocess.Popen(shlex.split(build_cmd))
     p.wait()
