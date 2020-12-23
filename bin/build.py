@@ -65,6 +65,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    # Some versions of usd are tagged with a leading v, so strip it out
+    if args.usd_version.startswith("v"):
+        args.usd_version = args.usd_version[1:]
+
     library_path = os.path.abspath(args.library_path)
     if not os.path.exists(library_path):
         os.makedirs(library_path)
