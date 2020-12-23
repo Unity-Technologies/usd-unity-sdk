@@ -43,8 +43,8 @@ def download_usd_binaries(usd_version, python_version=PYTHON_VERSION, output_dir
     with zipfile.ZipFile(usd_archive_path, 'r') as usd_zip:
         usd_zip.extractall(output_path)
 
-    usd_python_path = os.path.join(output_path, usd_python_dirname(usd_version, python_version))
-    usd_no_python_path = os.path.join(output_path, usd_no_python_dirname(usd_version))
+    usd_python_path = os.path.join(output_dir, output_path, usd_python_dirname(usd_version, python_version))
+    usd_no_python_path = os.path.join(output_dir, output_path, usd_no_python_dirname(usd_version))
     return usd_python_path, usd_no_python_path
 
 if __name__ == "__main__":
@@ -69,10 +69,12 @@ if __name__ == "__main__":
     if args.usd_version.startswith("v"):
         args.usd_version = args.usd_version[1:]
 
+    # Create the install folder
     library_path = os.path.abspath(args.library_path)
     if not os.path.exists(library_path):
         os.makedirs(library_path)
 
+    # Download usd binaries from stevedore
     if args.download_usd_binaries:
         (usd_python_dir_path, usd_no_python_dir_path) = download_usd_binaries(args.usd_version, PYTHON_VERSION, library_path)
     else:
@@ -83,6 +85,7 @@ if __name__ == "__main__":
         raise FileNotFoundException(usd_python_dir_path)
     if not os.path.exists(usd_no_python_dir_path):
         raise FileNotFoundException(usd_no_python_dir_path)
+
 
     if not os.path.exists("./build"):
         os.mkdir("build")
