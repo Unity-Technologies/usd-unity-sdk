@@ -38,13 +38,13 @@ def download_usd_binaries(usd_version, python_version=PYTHON_VERSION, output_dir
         p.wait()
 
     # Extract archive
-    output_path = usd_binaries_dirname(usd_version, python_version)
+    output_path = os.path.join(output_dir, usd_binaries_dirname(usd_version, python_version))
     logging.info("Extracting to {} ...\n".format(output_path))
     with zipfile.ZipFile(usd_archive_path, 'r') as usd_zip:
         usd_zip.extractall(output_path)
 
-    usd_python_path = os.path.join(output_dir, output_path, usd_python_dirname(usd_version, python_version))
-    usd_no_python_path = os.path.join(output_dir, output_path, usd_no_python_dirname(usd_version))
+    usd_python_path = os.path.join(output_path, usd_python_dirname(usd_version, python_version))
+    usd_no_python_path = os.path.join(output_path, usd_no_python_dirname(usd_version))
     return usd_python_path, usd_no_python_path
 
 if __name__ == "__main__":
@@ -82,9 +82,9 @@ if __name__ == "__main__":
         usd_no_python_dir_path = os.path.join(library_path, usd_binaries_dirname(args.usd_version, PYTHON_VERSION), usd_no_python_dirname(args.usd_version))
 
     if not os.path.exists(usd_python_dir_path):
-        raise FileNotFoundException(usd_python_dir_path)
+        raise FileNotFoundError(usd_python_dir_path)
     if not os.path.exists(usd_no_python_dir_path):
-        raise FileNotFoundException(usd_no_python_dir_path)
+        raise FileNotFoundError(usd_no_python_dir_path)
 
 
     if not os.path.exists("./build"):
