@@ -1,8 +1,8 @@
 ﻿import os
 
-USD_CS_PINVOKE_FILEPATH = "../src/USD.NET/generated/UsdCs/UsdCsPINVOKE.cs"
-USD_CS_PINVOKE_OUT_FILEPATH = "../src/USD.NET/generated/UsdCs/UsdCsPINVOKE.cs.out"
-DECORATORS = ["// ATTRIBUTE MANUALLY ADDED.",
+USD_CS_PINVOKE_FILEPATH = "../cmake/generated/UsdCsPINVOKE.cs"
+USD_CS_PINVOKE_OUT_FILEPATH = "../cmake/generated/UsdCsPINVOKE.cs.out"
+DECORATORS = ["// ATTRIBUTE AUTOMATICALLY ADDED.",
               "[MonoPInvokeCallback]"]
 
 METHODS_TO_DECORATE = ["SetPendingApplicationException(",
@@ -22,17 +22,17 @@ METHODS_TO_DECORATE = ["SetPendingApplicationException(",
                       "EntryPoint=\"SWIGRegisterExceptionCallbacks_UsdCs",
                       "EntryPoint=\"SWIGRegisterExceptionArgumentCallbacks_UsdCs",
                       "CreateString("]
-          
+
 def decorate(line):
     print("decorating: {0}".format(line))
     leading_spaces = len(line) - len(line.lstrip(' '))
     decorated = ["{0}{1}".format(" "*leading_spaces, d) for d in DECORATORS]
     decorated.append(line)
     return "\n".join(decorated)
-                
+
 def main():
     print("Adding MonoPInvokeCallback attribute to the appropriate methods ...\n")
-    
+
     cwd = os.path.abspath(os.path.dirname(__file__))
     filein_path = os.path.join(cwd, USD_CS_PINVOKE_FILEPATH)
     fileout_path = os.path.join(cwd, USD_CS_PINVOKE_OUT_FILEPATH)

@@ -62,6 +62,11 @@ if __name__ == "__main__":
     parser.add_argument("--download", dest="download_usd_binaries", action="store_true", default=False,
                         help="Download USD binaries from Unity's Stevedore internal repository. "
                         "Refer to BUILDING.md for command used to build the libraries")
+    parser.add_argument("--target", dest="cmake_target", action="store_const", const="clean", default="install",
+                        help="Call cmake with the clean target.")
+    parser.add_argument("--component", dest="component", choices=["usdcs", "usdnet"], default="usdcs")
+    parser.add_argument("-v", "--verbose", action="store_true", default=False,
+                        help="Set the CMake verbose flag.")
 
     args = parser.parse_args()
 
@@ -86,17 +91,30 @@ if __name__ == "__main__":
     if not os.path.exists(usd_no_python_dir_path):
         raise FileNotFoundError(usd_no_python_dir_path)
 
+    build_dir = "./build"
+    if args.component == "usdcs":
+        build_dir += "_usdcs"
+    elif args.component == "usdnet":
+        build_dir += "_usdnet"
+    if not os.path.exists(build_dir):
+        os.mkdir(build_dir)
 
-    if not os.path.exists("./build"):
-        os.mkdir("build")
-
-    cmake_cmd = " ".join(["cmake -S . -B build ",
-                          "-DPXR_USD_LOCATION={} "
-                          "-DPXR_USD_LOCATION_PYTHON_BUILD={} "
+    cmake_cmd = " ".join(["cmake -S . -B {} ",
+                          '-DPXR_USD_LOCATION="{}" '
+                          '-DPXR_USD_LOCATION_PYTHON_BUILD="{}" '
                           "-DUNITY_VERSION={} ",
-                          "-DBUILD_USD_NET=TRUE -DBUILD_TESTS=FALSE ",
+                          "-DBUILD_USDCS={} ",
+                          "-DBUILD_USD_NET={} ",
                           "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                          "-DCMAKE_MODULE_PATH=./cmake/modules "]).format(usd_no_python_dir_path, usd_python_dir_path, args.unity_version)
+                          "-DCMAKE_MODULE_PATH=./cmake/modules "]).format(build_dir, usd_no_python_dir_path,
+                                                                          usd_python_dir_path,
+                                                                          args.unity_version,
+                                                                          args.component == "usdcs",
+                                                                          args.component == "usdnet",
+                                                                          args.unity_version)
+
+    if args.verbose:
+        cmake_cmd += "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON "
 
     if platform.system() == "Windows":
         cmake_cmd += "-G \"Visual Studio 15 2017 Win64\""
@@ -109,9 +127,9 @@ if __name__ == "__main__":
         raise RuntimeError("Failed to run '{cmd}'\n.".format(cmd=cmake_cmd))
     logging.info("\n\n")
 
-    build_cmd = "cmake --build build --config RelWithDebInfo --target install"
+    build_cmd = "cmake --build {} --config RelWithDebInfo --target {}".format(build_dir, args.cmake_target)
     logging.info("Running CMake build:\n{}\n\n".format(build_cmd))
     p = subprocess.Popen(shlex.split(build_cmd))
     p.wait()
     if p.returncode != 0:
-        raise RuntimeError("Failed to run '{cmd}'\n.".format(cmd=cmake_cmd))
+        raise RuntimeError("Failed to run '{cmd}'\n.".format(cmd=build_cmd))

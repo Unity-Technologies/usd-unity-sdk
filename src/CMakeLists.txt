@@ -1,4 +1,4 @@
-﻿if(BUILD_BINDINGS)
+﻿if(BUILD_USDCS)
     add_subdirectory(UsdCs)
 endif()
 

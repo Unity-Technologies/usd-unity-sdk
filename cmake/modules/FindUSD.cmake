@@ -13,7 +13,7 @@ set(USD_LIB_PREFIX ${CMAKE_SHARED_LIBRARY_PREFIX}
 
 if (WIN32)
     # ".lib" on Windows
-    set(USD_LIB_SUFFIX ${CMAKE_STATIC_LIBRARY_SUFFIX}
+    set(USD_LIB_SUFFIX _ms${CMAKE_STATIC_LIBRARY_SUFFIX}
         CACHE STRING "Extension of USD libraries")
 else ()
     # ".so" on Linux, ".dylib" on MacOS
@@ -42,9 +42,7 @@ find_path(USD_INCLUDE_DIR
 
 find_library(USD_LIBRARY
     NAMES
-        usd_ms.lib
-        #libusd_ms.so
-        #${USD_LIB_PREFIX}usd${USD_LIB_SUFFIX}
+        ${USD_LIB_PREFIX}usd${USD_LIB_SUFFIX}
     HINTS
         ${PXR_USD_LOCATION}
         $ENV{PXR_USD_LOCATION}
@@ -69,9 +67,9 @@ find_file(USD_GENSCHEMA
 )
 
 find_file(USD_CONFIG_FILE
-    NAMES 
+    NAMES
         pxrConfig.cmake
-    PATHS 
+    PATHS
         ${PXR_USD_LOCATION}
         $ENV{PXR_USD_LOCATION}
     DOC "USD cmake configuration file"
