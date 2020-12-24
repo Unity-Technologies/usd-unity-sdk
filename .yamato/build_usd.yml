@@ -86,7 +86,7 @@ build_platforms:
   artifacts:
       {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:
-          - "package/Runtime/Plugins/x86_64/{{platform.name}}/**"
+          - "package/com.unity.formats.usd/Runtime/Plugins/x86_64/{{platform.name}}/**"
 {% endfor %}
 {% endfor %}
 

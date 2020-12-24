@@ -28,8 +28,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Linux)
 else ()
-    # This is consistent with other os, but VS build were done at the root
-    # set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Windows)
+    set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Windows)
 endif ()
 
 include_directories(
