@@ -14,7 +14,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../Swig/CMakeLists.txt)
 
 # Generate type info from python
 add_custom_target(USD_TYPE_INFO
-    COMMAND gen_type_info.cmd ${PXR_USD_LOCATION_PYTHON_BUILD}
+    COMMAND ${PYTHON_EXECUTABLE} gen_type_info.py ${PXR_USD_LOCATION_PYTHON_BUILD}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
     BYPRODUCTS ${CMAKE_MODULE_PATH}/../generated/SdfValueTypeNames.cs
     COMMENT "Generating type info from USD python"
