@@ -1,0 +1,65 @@
+﻿usd_versions:
+  - version: v19.11
+    dir_name: USD-19.11
+  - version: v20.08
+    dir_name: USD-20.08
+  - version: v20.11
+    dir_name: USD-20.11
+build_platforms:
+  - name: win
+    type: Unity::VM
+    image: filmtv/usd_build_win10_image:latest
+    flavor: b1.xlarge
+    setenv_cmd: call "C:\\Program Files (x86)\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
+    stevedore_url: "%STEVEDORE_UPLOAD_TOOL_URL%"
+    stevedore_exe: "StevedoreUpload.exe"
+    install_path: package/com.unity.formats.usd/Runtime/Plugins/x86_64/Windows/**
+  - name: mac
+    type: Unity::VM::osx
+    image: filmtv/usd_build_macos_image:latest
+    flavor: m1.mac
+    setenv_cmd: echo "Environment set"
+    stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
+    stevedore_exe: "mono StevedoreUpload.exe"
+    install_path: package/com.unity.formats.usd/Runtime/Plugins/x86_64/MacOS/**
+  - name: linux
+    type: Unity::VM
+    image: filmtv/usd_build_linux_image:latest
+    flavor: b1.large
+    setenv_cmd: export PATH=/opt/rh/devtoolset-7/root/usr/bin:/home/bokken/cmake-3.19.2-Linux-x86_64/bin:$PATH
+    stevedore_url: "$STEVEDORE_UPLOAD_TOOL_URL"
+    stevedore_exe: "mono StevedoreUpload.exe"
+    install_path: package/com.unity.formats.usd/Runtime/Plugins/x86_64/Linux/**
+---
+{% for platform in build_platforms %}
+{% for usd_version in usd_versions %}
+{{usd_version.version}}_{{platform.name}}:
+  name: {{usd_version.version}} - {{platform.name}} - Build USD library
+  skip_checkout: true
+  agent:
+    type: {{platform.type}}
+    image: {{platform.image}}
+    flavor: {{platform.flavor}}
+  commands:
+    - |
+      {{platform.setenv_cmd}}
+      wget https://github.com/PixarAnimationStudios/USD/archive/{{usd_version.version}}.zip
+      unzip {{usd_version.version}}.zip
+      cd {{usd_version.dir_name}}
+      python3 build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}
+      rm -rf ../artifacts/usd-{{usd_version.version}}/build
+      rm -rf ../artifacts/usd-{{usd_version.version}}/src
+      python3 build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-{{usd_version.version}}_no_python
+      rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/build
+      rm -rf ../artifacts/usd-{{usd_version.version}}_no_python/src
+      cd ../artifacts
+      zip -r usd-{{platform.name}}-python36-x86_64.zip usd-{{usd_version.version}}/* usd-{{usd_version.version}}_no_python/*
+      curl -sSo StevedoreUpload.exe {{platform.stevedore_url}}
+      {{platform.stevedore_exe}} --repo=testing --version="{{usd_version.version}}" usd-{{platform.name}}-python36-x86_64.zip
+  artifacts:
+      {{platform.name}}_usd_{{usd_version.version}}:
+        paths:
+          - "artifacts/usd-{{usd_version.version}}*"
+{% endfor %}
+{% endfor %}
+
