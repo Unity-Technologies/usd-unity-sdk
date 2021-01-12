@@ -11,12 +11,11 @@ if __name__ == "__main__":
     # Add usd to the environment
     usd_location = sys.argv[1]
     new_env = os.environ.copy()
-    new_env["PATH"] = "{0}:{1}:{2}".format(os.path.join(usd_location, "bin"),
+    new_env["PATH"] = os.pathsep.join([os.path.join(usd_location, "bin"),
                                            os.path.join(usd_location, "lib"),
-                                           new_env["PATH"])
-    new_env["PYTHONPATH"] = "{0}:{1}".format(os.path.join(usd_location, "lib", "python"),
-                                             new_env["PYTHONPATH"])
-    logging.getLogger().error(new_env['PATH'])
+                                           new_env["PATH"]])
+    new_env["PYTHONPATH"] = os.pathsep.join([os.path.join(usd_location, "lib", "python"),
+                                             new_env["PYTHONPATH"]])
 
     # Spawn a python process with the new environment
     cmd = ["python3", "src/Swig/scripts/gen.py"]
