@@ -2,12 +2,10 @@
 #  no_python: --build-monolithic --alembic --no-python --no-imaging
 #  full: --build-monolithic --alembic --openimageio
 usd_versions:
-  - version: v19.11
-    dir_name: USD-19.11
   - version: v20.08
     dir_name: USD-20.08
-  - version: v20.11
-    dir_name: USD-20.11
+  - version: v21.02
+    dir_name: USD-21.02
 usd_flavors:
   - name: minimal
     build_args:  --build-monolithic --alembic --no-imaging --no-examples --no-tutorials
@@ -85,11 +83,11 @@ build_platforms:
   commands:
     - |
       {{platform.setenv_cmd}}
-      python3 bin/build.py "{{usd_version.version}}" "../../libs/pixar" "2019.4" --download
+      python3 bin/build.py "{{usd_version.version}}" "../libs" "2019.4" --download --component usdcs
   artifacts:
       {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:
-          - "{{platform.install_path}}"
+          - "build/output/Unity-Technologies/usd-unity-sdk/{{platform.install_path}}"
 {% endfor %}
 {% endfor %}
 
