@@ -108,7 +108,9 @@ install(
     )
 
 # Install the debug info
-install(FILES $<TARGET_PDB_FILE:${USD_SWIG_LIBRARY}> DESTINATION ${SWIG_OUTPUT_DIR} OPTIONAL)
+if (WIN32)
+    install(FILES $<TARGET_PDB_FILE:${USD_SWIG_LIBRARY}> DESTINATION ${SWIG_OUTPUT_DIR} OPTIONAL)
+endif()
 
 # Install the swig generated cs files to USD_NET
 install(SCRIPT ${CMAKE_SOURCE_DIR}/cmake/install_usd_bindings.cmake)
