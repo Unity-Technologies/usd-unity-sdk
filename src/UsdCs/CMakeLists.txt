@@ -76,16 +76,11 @@ add_dependencies(${USD_SWIG_LIBRARY}
     USD_TYPE_INFO
     )
 
+set(LINK_DEPENDENCIES Alembic Iex-2_2 IexMath-2_2 Imath-2_2 IlmThread-2_2 IlmImf-2_2 Half)
 swig_link_libraries(${USD_SWIG_LIBRARY}
     # Link against USD monolithic
     -Wl,--whole-archive usd_ms -Wl,--no-whole-archive
-    Alembic
-    Iex-2_2
-    IexMath-2_2
-    Imath-2_2
-    IlmThread-2_2
-    IlmImf-2_2
-    Half
+    ${LINK_DEPENDENCIES}
     tbb
     )
 
@@ -108,9 +103,24 @@ install(
     ${USD_SWIG_LIBRARY}
     DESTINATION
     ${SWIG_OUTPUT_DIR}
+    EXPORT ${project-name}-config
+    COMPONENT usdcs
     )
+
+# Install the debug info
+install(FILES $<TARGET_PDB_FILE:${USD_SWIG_LIBRARY}> DESTINATION ${SWIG_OUTPUT_DIR} OPTIONAL)
+
 # Install the swig generated cs files to USD_NET
 install(SCRIPT ${CMAKE_SOURCE_DIR}/cmake/install_usd_bindings.cmake)
+
+# Install the runtime dependencies (usd and its dependencies)
+set(PIXAR_DEPS usd_ms ${LINK_DEPENDENCIES})
+list(TRANSFORM PIXAR_DEPS PREPEND ${USD_LIBRARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX})
+list(TRANSFORM PIXAR_DEPS APPEND ${CMAKE_SHARED_LIBRARY_SUFFIX})
+install(FILES ${PIXAR_DEPS} DESTINATION ${SWIG_OUTPUT_DIR})
+
+# Install the usd plugin folder
+install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/..")
 
 # Tag the generated folders so they are removed when doing `make clean`
 set_target_properties(${USD_CS} PROPERTIES ADDITIONAL_CLEAN_FILES
