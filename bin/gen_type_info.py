@@ -14,8 +14,9 @@ if __name__ == "__main__":
     new_env["PATH"] = os.pathsep.join([os.path.join(usd_location, "bin"),
                                            os.path.join(usd_location, "lib"),
                                            new_env["PATH"]])
-    new_env["PYTHONPATH"] = os.pathsep.join([os.path.join(usd_location, "lib", "python"),
-                                             new_env["PYTHONPATH"]])
+    usd_python_path = os.path.join(usd_location, "lib", "python")
+    new_env["PYTHONPATH"] = usd_python_path if "PYTHONPATH" not in new_env else \
+        os.pathsep.join([usd_python_path, new_env["PYTHONPATH"]])
 
     # Spawn a python process with the new environment
     cmd = ["python3", "src/Swig/scripts/gen.py"]
