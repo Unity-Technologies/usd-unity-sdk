@@ -42,6 +42,8 @@ if __name__ == "__main__":
     if not os.path.exists(usdPath):
         print("Output path does not exist: " + usdPath)
         sys.exit(1)
+    if not os.path.exists(usdInstPath):
+        os.makedirs(usdInstPath)
 
     print("Generating Sdf ")
     sdf.genSdfValueTypeNames(usdPath, usdInstPath, copyright)
