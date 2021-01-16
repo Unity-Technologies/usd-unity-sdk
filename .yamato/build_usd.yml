@@ -87,7 +87,7 @@ build_platforms:
   artifacts:
       {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:
-          - "build/output/Unity-Technologies/usd-unity-sdk/{{platform.install_path}}"
+          - "{{platform.install_path}}"
 {% endfor %}
 {% endfor %}
 
