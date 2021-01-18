@@ -1,7 +1,6 @@
 ﻿import os
+import sys
 
-USD_CS_PINVOKE_FILEPATH = "../cmake/generated/UsdCsPINVOKE.cs"
-USD_CS_PINVOKE_OUT_FILEPATH = "../cmake/generated/UsdCsPINVOKE.cs.out"
 DECORATORS = ["// ATTRIBUTE AUTOMATICALLY ADDED.",
               "[MonoPInvokeCallback]"]
 
@@ -30,12 +29,13 @@ def decorate(line):
     decorated.append(line)
     return "\n".join(decorated)
 
+#TODO: add proper argument handling
 def main():
     print("Adding MonoPInvokeCallback attribute to the appropriate methods ...\n")
-
+    build_path = sys.argv[1]
     cwd = os.path.abspath(os.path.dirname(__file__))
-    filein_path = os.path.join(cwd, USD_CS_PINVOKE_FILEPATH)
-    fileout_path = os.path.join(cwd, USD_CS_PINVOKE_OUT_FILEPATH)
+    filein_path = os.path.join(cwd, build_path, "UsdCsPINVOKE.cs")
+    fileout_path = os.path.join(cwd, build_path, "UsdCsPINVOKE.cs.out")
     with open(filein_path, "r") as filein, open(fileout_path, "w") as fileout:
         for line in filein:
             if any(methods in line for methods in METHODS_TO_DECORATE):

@@ -18,7 +18,7 @@ import usdGeom, usdShade, usdSkel, usdLux, usdRi, usdVol, kind
 
 basePath = "src/Swig/pxr/base/"
 usdPath = "src/Swig/pxr/usd/"
-usdInstPath = "cmake/generated/"
+usdInstPath = "build_usdcs/generated/"
 
 copyright = """// Copyright 2017 Google Inc. All rights reserved.
 //
@@ -35,6 +35,7 @@ copyright = """// Copyright 2017 Google Inc. All rights reserved.
 // limitations under the License.
 """
 
+# TODO: add proper argument handling
 if __name__ == "__main__":
     if not os.path.exists(basePath):
         print("Output path does not exist: " + basePath)
@@ -42,6 +43,8 @@ if __name__ == "__main__":
     if not os.path.exists(usdPath):
         print("Output path does not exist: " + usdPath)
         sys.exit(1)
+    instPath = sys.argv[1]
+    usdInstPath = os.path.join(instPath, "generated")
     if not os.path.exists(usdInstPath):
         os.makedirs(usdInstPath)
 
