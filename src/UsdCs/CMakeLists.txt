@@ -13,15 +13,16 @@ include(${SWIG_USE_FILE})
 include(${CMAKE_CURRENT_SOURCE_DIR}/../Swig/CMakeLists.txt)
 
 # Generate type info from python
+# TODO: I'd prefer to have a custom_command and a custom_target in order to have a well defined output but I can't make it run that way
 add_custom_target(USD_TYPE_INFO
-    COMMAND ${PYTHON_EXECUTABLE} gen_type_info.py ${PXR_USD_LOCATION_PYTHON_BUILD}
+    COMMAND ${PYTHON_EXECUTABLE} gen_type_info.py ${PXR_USD_LOCATION_PYTHON_BUILD} ${CMAKE_BINARY_DIR}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
-    BYPRODUCTS ${CMAKE_MODULE_PATH}/../generated/SdfValueTypeNames.cs
-    COMMENT "Generating type info from USD python"
+    COMMENT "-[ Generating type info from USD python ]-"
+    DEPENDS ${USD_INCLUDE_DIR}
 )
 
 set(USD_SWIG_LIBRARY UsdCs)
-set(SWIG_GENERATED_FILEDIR ${CMAKE_SOURCE_DIR}/cmake/generated)
+set(SWIG_GENERATED_FILEDIR ${CMAKE_BINARY_DIR}/generated)
 set(SWIG_OUTPUT_DIR ${USD_PLUGINS_DIR}/x86_64)
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/MacOS)
@@ -86,13 +87,13 @@ swig_link_libraries(${USD_SWIG_LIBRARY}
 
 # Decorate mono pinvoke calls
 add_custom_target(DECORATE_MONO_PINVOKE ALL
-    COMMAND ${PYTHON_EXECUTABLE} add_MonoPInvokeCallback_attribute.py
+    COMMAND ${PYTHON_EXECUTABLE} add_MonoPInvokeCallback_attribute.py ${SWIG_GENERATED_FILEDIR}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin
-    COMMENT "Decorate pinvoke callbacks "
+    COMMENT "-[ Decorate pinvoke callbacks ]-"
 )
 add_dependencies(DECORATE_MONO_PINVOKE ${USD_SWIG_LIBRARY})
 
-add_custom_target(USD_CS ALL
+add_custom_target(USD_CS_DLL ALL
     DEPENDS
     ${DECORATE_MONO_PINVOKE}
 )
@@ -103,8 +104,6 @@ install(
     ${USD_SWIG_LIBRARY}
     DESTINATION
     ${SWIG_OUTPUT_DIR}
-    EXPORT ${project-name}-config
-    COMPONENT usdcs
     )
 
 # Install the debug info
@@ -124,7 +123,8 @@ install(FILES ${PIXAR_DEPS} DESTINATION ${SWIG_OUTPUT_DIR})
 # Install the usd plugin folder
 install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/..")
 
-# Tag the generated folders so they are removed when doing `make clean`
-set_target_properties(${USD_CS} PROPERTIES ADDITIONAL_CLEAN_FILES
+# Tag the generated folders so they are removed when doing calling the clean target
+# Doesn't work with the VC generator ...
+set_target_properties(${USD_SWIG_LIBRARY} PROPERTIES ADDITIONAL_CLEAN_FILES
     "${CMAKE_SOURCE_DIR}/cmake/generated;${CMAKE_SOURCE_DIR}/src/USD.NET/generated"
 )
