@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import os
 from pxr import Sdf
 
 values = Sdf.ValueTypeNames.__dict__
@@ -29,7 +29,7 @@ klassPost = "}"
 
 def genSdfValueTypeNames(usdPath, usdInstPath, copyright):
   sdfValueTypes = usdPath + "sdf/sdfValueTypeNames_Types.i"
-  sdfClass = usdInstPath + "SdfValueTypeNames.cs"
+  sdfClass = os.path.join(usdInstPath, "SdfValueTypeNames.cs")
 
   values = [k for k in Sdf.ValueTypeNames.__dict__ if isinstance(Sdf.ValueTypeNames.__dict__[k],
             type(Sdf.ValueTypeNames.__dict__["Token"]))]
