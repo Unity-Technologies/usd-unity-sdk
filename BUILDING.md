@@ -9,9 +9,7 @@ Start by understanding the layout of the source code:
  * [/src/Swig](/src/Swig) - Hand coded and generated swig inputs.
  * [/src/Tests](/src/Tests) - Unit tests for USD.NET and USD.NET.Unity.
  * [/src/USD.NET](/src/USD.NET) - Generated USD bindings and serialization foundation.
- * [/src/USD.NET.Unity](/src/USD.NET.Unity) - Unity-specific support.
  * [/src/UsdCs](/src/UsdCs) - The USD C# bindings library, pure C API.
- * [/src/UsdCs.xcodeproj](/src/UsdCs.xcodeproj) - XCode project for building UsdCs shared library.
  * [/package](/package) - The source for the Unity package.
  * [/TestProject](/TestProject) - Unity project for testing source package in CI.
  * [/third_party](/third_party) - Code copyrighted by third parties.
@@ -21,89 +19,72 @@ Start by understanding the layout of the source code:
 
 Note that currently only Windows, OSX, and Linux builds are officially supported.
 
-### Windows
+### Generating Bindings
 
-USD.NET.sln is a Visual Studio solution which includes all projects. The
-primary requirement is to setup the library and include paths for the
-C component of the build (UsdCs):
+A CMake build configuration is available for all platforms to build the bindings from the usd binaries. It's available through a build script in python
+and can build the native library (UsdCs), the C# library (USD.NET) and the tests.
 
- * Create a new environment variable USD_LOCATION pointing to your USD install root (contains /lib and /include)
+#### Requirements
 
+##### Cross Platforms
+ * Python 3.6 (available as python3 in your system PATH)
+ * USD 20.08 with python 3.6 support (used to generate type information for the SWIG bindings)
+ * USD 20.08 without python support` (used to minimize runtime dependencies of the bindings)
+ * CMake 3.19 (available in your system PATH)
+ * Swig 3.0.12 (available in your system PATH)
+ 
+ ##### Windows
+ * Visual Studio 2017
+ 
+ ##### Linux
+ * gcc 7
+ 
+ ##### OSX
+ * xcode v????
+ 
+#### Building USD 
 
-### OSX / Darwin
+We typically use the standard build steps from the USD repo instructions. The exact command line we are using are:
+* with python support: `python3 build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../artifacts/usd-v20.08`
+* no python support:   `python3 build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-v20.08_no_python`
 
-Similarly for OSX, an XCode project is provided in the src directory, called
-UsdCs.xcodeproj. The OSX build will produce a .bundle file, into which all
-dependent dylibs must be manually copied, as well as the USD plugInfo.json
-files. See the existing bundle as an example of the correct structure.
+**Unity developers**: USD binaries are built with each new release and pushed on Stevedore. See next section to download them automatically when building the bindings.
 
-The XCode project is setup to add the RPATH `@loaderpath/../Frameworks/` which
-is critical to enable the UsdCs.dylib to link against the external dylibs in
-the Frameworks directory. To verify the RPATH is set correcty, run
-`otool -l UsdCs.dylib` and search for `LC_RPATH`. If the RPATH is not set,
-it can be added to the library after compilation using the command
-```
-install_name_tool -add_rpath @loaderpath/../Frameworks/ UsdCs
-install_name_tool -add_rpath @loader_path/../../../ UsdCs
-```
+#### Building the C# bindings
 
-## Generating Bindings
+The bindings are made of two libraries:
+* UsdCs: the native USD C# bindings library (C++, SWIG generated)
+* USD.NET: the C# library (serialization API)
 
-C# The following instructions assume a Windows build environment, though
-the same process should work on OSX as well.
+The simplest way to build the bindings libraries is to use the provided python build script with the corresponding component (usdcs or usdnet)
 
-There are two main steps to code generation, the first is a sequence of
-Python scripts which generate type-specific SWIG shims (.i files). The
-second step is the SWIG code generator itself.
+Start by setting a USD_LOCATION environment variable pointing to a directory containing the 2 different flavors of USD (python and no puython)
 
- * The Python step has been tested with Ptyhon 2.7 and requires the USD
-   Python files to be importable via PYTHONPATH.
- * The SWIG step requires the SWIG 3.0.12 executable on your system PATH.
+In a terminal, running the following command from the root of the repository will build UsdCs by default:
 
-By setting USD_LOCATION_PYTHON to the root install directory of a USD
-python build, all scripts will work without setting the system PATH or
-PYTHONPATH. The variable USD_LOCATION should be set to a USD build without
-python, to minimize runtime dependencies of the final plugin.
+`python3 bin/build.py 20.08 $USD_LOCATION 2019.4`
 
-Once these two requirements are met, [build.cmd](build.cmd) can be run
-from a cmd prompt from the root of the UsdBindings directory. It will
-generate the additional SWIG inputs via Python, run SWIG, and then copy
-the outputs into the correct locations in the source tree. If this script
-fails at any step, execution will stop so the error can be observed.
+You can specify the component using the --component option. The following command will build USD.NET:
 
-The full build process is:
+`python3 bin/build.py 20.08 $USD_LOCATION 2019.4 --component usdnet`
 
- 1. Clone a USD repository
- 2. Check out the desired version to a new branch (e.g. git checkout -b v0.8.4)
- 3. Build USD with python enabled (this is required to generate C# bindings)
- 4. Build USD to a different directory with python disabled (to minimize runtime dependencies)
- 5. Set the environment variable USD_LOCATION_PYTHON to the path used in step (3)
- 6. Set the environment variable USD_LOCATION to the path used in step (4)
- 7. If upgrading USD to a newer version, diff third_party includes vs newly distributed header files.
- 8. The "generated" source folder should also be deleted so it can be regenerated in the next step.
- 9. Run bin\build.bat to generate Swig bindings
- 10. Open USD.NET.sln in Visual Studio 2015 (only VS 2015 is currently supported)
- 11. If the source was upgraded or if the "generated" folder was deleted in step (7), update this folder in the solution by removing missing files and adding new additions
- 12. **Manually add MonoPInvokeCallback attributes to Swig callbacks**, as done here (IL2CPP support): https://github.com/Unity-Technologies/usd-unity-sdk/pull/163/commits/831f9bea364de60759c8661025da6a912af9635c#diff-aae1edb8e38ca3dd35de2760982634dcR36
- 13. Build the solution
- 14. Hit play to run tests
- 15. Run bin\install to copy USD.NET DLLs to the Unity asset package
- 16. Distribute C++ DLLs to the unity asset package. After upgrading USD, its highly recommended to use a tool like DependencyWalker (64-bit) to collect a minimal set of dependencies.
- 17. If upgrading USD, run bin\diff-plugins to merge / verify USD plugin changes. Note that the library paths are intentionally different.
- 18. Test the asset package
- 19. Export a new Unity asset package
- 20. Test the exported asset package
+**Unity developers**: to download the USD binaries from stevedore use the `--download` option
 
-The following is an example of valid environment variables:
+#### Bindings building steps (advanced)
 
-SET USD_LOCATION=C:\src\usd\builds\v20.08\monolithic_no-python\
-SET USD_LOCATION_PYTHON=C:\src\usd\builds\v20.08\monolithic\
+**UsdCs**
+1. Generate type info SWIG interface files by parsing the USD python files (bin/gen_type_info.py)
+2. Generate the SWIG bindings, produces C# files and the UsdCs library
+3. Decorate the SWIG callbacks in UsdCsPINVOKE.cs to allow IL2CPP support (bin/add_MonoPInvokeCallback_attribute.py)
+4. Install the generated C# files in src/USD.NET/generated directory (cmake/install_usd_bindings.cmake)
+5. Generate a CMakeLists.txt in src/USD.NET/generated to list the generated C# files 
+6. Install the library and its runtime dependencies to package/com.unity.formats.usd/Runtime/Plugins/x86_64/[Platform]/
+7. Install the USD plugins files to package/com.unity.formats.usd/Runtime/Plugins
 
-The following are the USD build commands used to generate the two build paths noted above:
+**USD.NET**
+1. Build the C# library
+2. Install the USD.NET library to package/com.unity.formats.usd/Runtime/Plugins/
 
-python build_scripts\build_usd.py --build-monolithic --alembic --no-python --no-imaging C:\src\usd\builds\v20.08\monolithic_no-python
-
-python build_scripts\build_usd.py --build-monolithic --alembic --openimageio C:\src\usd\builds\v20.08\usd_monolithic
 
 ## Updating USD
 
@@ -112,27 +93,7 @@ Whenever the USD core libs are updated, the following steps are critical:
  1. Sync the USD tree to the exact release build.
  2. Run a diff against all headers in third_party and resolve changes.
  3. Generate new C# bindings (described above).
- 4. Deploy new DLLs and plugInfo.json files for each platform.
 
 If the new libray fails to load, the most common issue is that the library
 dependencies where not correctly updated. Using a tool like otool or
 DependencyWalker is a great way to inspect the dynamic linkage issues.
-
-If the new library loads, but complains about an unknown file format (e.g.
-cannot open .usd files), this is likely due to plugins failing to load,
-which typically is a problem with the plugInfo.json files. This can happen
-if the files changed in the USD repository but were not correctly updated
-in the Unity package.
-
-## CMake Build (experimental)
-
-On Linux, a CMake build configuration is available, which is a self-contained build of USD dependencies, and the Unity plugin.
-
-From a build/ subdirectory inside the git repository, run `cmake ../cmake`.  Optionally, specify `-DUSD_VERSION=` with the version tag from the USD repository (currently v19.05)
-Running `make intall` will build USD, Alembic, OpenEXR, TBB and boost requirements statically, and link them into `libUsdCs.so` and install the plugin into the proper location in the package structure
-
-Optionally, specify `-DBUILD_USD_NET=TRUE` to build the USD.NET.dll (this will also build Mono, which can be quite time consuming)
-
-Currently, the CMake configuration cannot be used to build the USD.NET.Unity.dll.
-
-
