@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -64,12 +65,11 @@ namespace Unity.Formats.USD
         // USD has several auxillary C++ plugin discovery files which must be discoverable at run-time
         // We store those libs in Support/ThirdParty/Usd and then set a magic environment variable to let
         // USD's libPlug know where to look to find them.
-        private static void SetupUsdPath()
+        private static void SetupUsdPath([CallerFilePath] string sourceFilePath = "")
         {
 #if UNITY_EDITOR
-            // TODO: this is not robust, e.g. if anyone changes CWD from the default, package resolution
-            // will fail. Following up with UPM devs to see what we can do about it.
-            var supPath = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+            var fileInfo = new System.IO.FileInfo(sourceFilePath);
+            var supPath = System.IO.Path.Combine(fileInfo.DirectoryName, "Plugins");
 #else
       var supPath = UnityEngine.Application.dataPath.Replace("\\", "/") + "/Plugins";
 #endif
