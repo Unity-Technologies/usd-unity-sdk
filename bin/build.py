@@ -11,7 +11,7 @@ import zipfile
 STEVEDORE_REPO = "https://artifactory.internal.unity3d.com/stevedore-testing"
 USD_BINARIES = {"20.08": {"Windows": "usd-win-python36-x86_64/v20.08_1df762cff26f05e8c53edbc217cf0fa1210be67d75ff845316124867e33c6869.zip" ,
                           "Linux": "usd-linux-python36-x86_64/v20.08_a47ac54028df326afe4f871a1cd2b01aa3eab2b0819cc56abe1e90883d2ef97b.zip",
-                          "Darwin": "usd-mac-python36-x86_64/v20.08_e2df4db2fe24542b50f21e9ae2df45768f533c5ab03956f4d8dff64e773ed065.zip"}}
+                          "Darwin": "usd-mac-python36-x86_64/v20.08_8b0dfc648fb4dcd06938901690e9201835cb79ad51ad9eee90e7b3cfc6b3bf2c.zip"}}
 PYTHON_VERSION = "36"
 
 def usd_python_dirname(usd_version, python_version):

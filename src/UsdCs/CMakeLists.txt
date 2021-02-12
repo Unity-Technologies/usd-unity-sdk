@@ -24,12 +24,16 @@ add_custom_target(USD_TYPE_INFO
 set(USD_SWIG_LIBRARY UsdCs)
 set(SWIG_GENERATED_FILEDIR ${CMAKE_BINARY_DIR}/generated)
 set(SWIG_OUTPUT_DIR ${USD_PLUGINS_DIR}/x86_64)
+set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR})
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/MacOS)
+    set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR}/UsdCs.bundle/Contents/Frameworks)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Linux)
+    set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR})
 else ()
     set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Windows)
+    set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR})
 endif ()
 
 include_directories(
@@ -77,12 +81,10 @@ add_dependencies(${USD_SWIG_LIBRARY}
     USD_TYPE_INFO
     )
 
-set(LINK_DEPENDENCIES Alembic Iex-2_2 IexMath-2_2 Imath-2_2 IlmThread-2_2 IlmImf-2_2 Half)
+set(LINK_DEPENDENCIES Alembic Iex-2_2 IexMath-2_2 Imath-2_2 IlmThread-2_2 IlmImf-2_2 Half tbb)
 swig_link_libraries(${USD_SWIG_LIBRARY}
-    # Link against USD monolithic
-    -Wl,--whole-archive usd_ms -Wl,--no-whole-archive
+    usd_ms
     ${LINK_DEPENDENCIES}
-    tbb
     )
 
 # Decorate mono pinvoke calls
