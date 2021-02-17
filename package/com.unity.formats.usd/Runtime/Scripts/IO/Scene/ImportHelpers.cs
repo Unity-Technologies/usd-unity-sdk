@@ -1,0 +1,210 @@
+﻿using System;
+using System.IO;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
+using USD.NET;
+using USD.NET.Unity;
+using Object = UnityEngine.Object;
+
+namespace Unity.Formats.USD
+{
+    public static class ImportHelpers
+    {
+        public static GameObject ImportSceneAsGameObject(Scene scene, SceneImportOptions importOptions = null)
+        {
+            string path = scene.FilePath;
+
+            // Time-varying data is not supported and often scenes are written without "Default" time
+            // values, which makes setting an arbitrary time safer (because if only default was authored
+            // the time will be ignored and values will resolve to default time automatically).
+            scene.Time = 1.0;
+
+            if (importOptions == null)
+            {
+                importOptions = new SceneImportOptions();
+                importOptions.usdRootPath = GetDefaultRoot(scene);
+            }
+
+            GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
+
+            if (Selection.gameObjects.Length > 0)
+            {
+                root.transform.SetParent(Selection.gameObjects[0].transform);
+            }
+
+            try
+            {
+                UsdToGameObject(root, scene, importOptions);
+                return root;
+            }
+            catch (SceneImporter.ImportException)
+            {
+                Object.DestroyImmediate(root);
+                return null;
+            }
+        }
+
+#if UNITY_EDITOR
+        public static void ImportAsPrefab(Scene scene)
+        {
+            string path = scene.FilePath;
+
+            // Time-varying data is not supported and often scenes are written without "Default" time
+            // values, which makes setting an arbitrary time safer (because if only default was authored
+            // the time will be ignored and values will resolve to default time automatically).
+            scene.Time = 1.0;
+
+            var importOptions = new SceneImportOptions();
+            importOptions.projectAssetPath = GetSelectedAssetPath();
+            importOptions.usdRootPath = GetDefaultRoot(scene);
+
+            string prefabPath = GetPrefabPath(path, importOptions.projectAssetPath);
+            string clipName = Path.GetFileNameWithoutExtension(path);
+
+            var go = new GameObject(GetObjectName(importOptions.usdRootPath, path));
+            try
+            {
+                UsdToGameObject(go, scene, importOptions);
+                SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
+            }
+            finally
+            {
+                Object.DestroyImmediate(go);
+                scene.Close();
+            }
+        }
+
+        public static void ImportAsTimelineClip(Scene scene)
+        {
+            string path = scene.FilePath;
+
+            var importOptions = new SceneImportOptions();
+            importOptions.projectAssetPath = GetSelectedAssetPath();
+            importOptions.usdRootPath = GetDefaultRoot(scene);
+            importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
+
+            string prefabPath = GetPrefabPath(path, importOptions.projectAssetPath);
+            string clipName = Path.GetFileNameWithoutExtension(path);
+
+            var go = new GameObject(GetObjectName(importOptions.usdRootPath, path));
+            try
+            {
+                // Ensure we have at least one GameObject with the import settings.
+                XformImporter.BuildSceneRoot(scene, go.transform, importOptions);
+                SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
+            }
+            finally
+            {
+                GameObject.DestroyImmediate(go);
+            }
+        }
+#endif
+
+        public static Scene InitForOpen(string path = "")
+        {
+#if UNITY_EDITOR
+            if (String.IsNullOrEmpty(path))
+                path = EditorUtility.OpenFilePanel("Import USD File", "", "usd,usda,usdc,abc");
+#endif
+
+            if (String.IsNullOrEmpty(path))
+                return null;
+
+            InitUsd.Initialize();
+            var stage = pxr.UsdStage.Open(path, pxr.UsdStage.InitialLoadSet.LoadNone);
+            return Scene.Open(stage);
+        }
+
+        static pxr.SdfPath GetDefaultRoot(Scene scene)
+        {
+            // We can't safely assume the default prim is the model root, because Alembic files will
+            // always have a default prim set arbitrarily.
+
+            // If there is only one root prim, reference this prim.
+            var children = scene.Stage.GetPseudoRoot().GetChildren().ToList();
+            if (children.Count == 1)
+            {
+                return children[0].GetPath();
+            }
+
+            // Otherwise there are 0 or many root prims, in this case the best option is to reference
+            // them all, to avoid confusion.
+            return pxr.SdfPath.AbsoluteRootPath();
+        }
+
+        /// <summary>
+        /// Returns the selected object path or "Assets/" if no object is selected.
+        /// </summary>
+        static string GetSelectedAssetPath()
+        {
+            Object[] selectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
+            foreach (Object obj in selectedAsset)
+            {
+                var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
+                if (string.IsNullOrEmpty(path))
+                {
+                    continue;
+                }
+
+                if (File.Exists(path))
+                {
+                    path = Path.GetDirectoryName(path);
+                }
+
+                if (!path.EndsWith("/"))
+                {
+                    path += "/";
+                }
+
+                return path;
+            }
+
+            return "Assets/";
+        }
+
+        static GameObject UsdToGameObject(GameObject parent,
+            Scene scene,
+            SceneImportOptions importOptions)
+        {
+            try
+            {
+                SceneImporter.ImportUsd(parent, scene, new PrimMap(), importOptions);
+            }
+            finally
+            {
+                scene.Close();
+            }
+
+            return parent;
+        }
+
+        static string GetObjectName(pxr.SdfPath rootPrimName, string path)
+        {
+            return pxr.UsdCs.TfIsValidIdentifier(rootPrimName.GetName())
+                ? rootPrimName.GetName()
+                : GetObjectName(path);
+        }
+
+        static string GetObjectName(string path)
+        {
+            return UnityTypeConverter.MakeValidIdentifier(Path.GetFileNameWithoutExtension(path));
+        }
+
+        static string GetPrefabName(string path)
+        {
+            var fileName = GetObjectName(path);
+            return fileName + "_prefab";
+        }
+
+        static string GetPrefabPath(string usdPath, string dataPath)
+        {
+            var invalidChars = Path.GetInvalidFileNameChars();
+            var prefabName = string.Join("_", GetPrefabName(usdPath).Split(invalidChars,
+                System.StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
+            string prefabPath = dataPath + prefabName + ".prefab";
+            prefabPath = AssetDatabase.GenerateUniqueAssetPath(prefabPath);
+            return prefabPath;
+        }
+    }
+}
