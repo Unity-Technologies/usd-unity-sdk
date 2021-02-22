@@ -45,7 +45,7 @@ namespace Unity.Formats.USD.Tests
             importOptions.changeHandedness = changeHandedness;
             importOptions.scale = 0.01f;
             importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-            var usdRoot = ImportHelpers.ImportSceneAsGameObject(scene, importOptions);
+            var usdRoot = ImportHelpers.ImportSceneAsGameObject(scene, importOptions: importOptions);
             scene.Close();
             return usdRoot;
         }

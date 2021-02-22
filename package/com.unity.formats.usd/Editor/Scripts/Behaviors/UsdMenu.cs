@@ -139,7 +139,7 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            ImportHelpers.ImportSceneAsGameObject(scene);
+            ImportHelpers.ImportSceneAsGameObject(scene, Selection.activeGameObject);
             scene.Close();
         }
 

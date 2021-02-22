@@ -73,7 +73,7 @@ namespace Unity.Formats.USD.Tests
             var scene = Scene.Open(stage);
             var importOptions = new SceneImportOptions();
             importOptions.materialImportMode = MaterialImportMode.ImportPreviewSurface;
-            m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene, importOptions);
+            m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene, importOptions: importOptions);
             scene.Close();
         }
 

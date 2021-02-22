@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -11,7 +13,7 @@ namespace Unity.Formats.USD
 {
     public static class ImportHelpers
     {
-        public static GameObject ImportSceneAsGameObject(Scene scene, SceneImportOptions importOptions = null)
+        public static GameObject ImportSceneAsGameObject(Scene scene, GameObject parent = null, SceneImportOptions importOptions = null)
         {
             string path = scene.FilePath;
 
@@ -28,9 +30,9 @@ namespace Unity.Formats.USD
 
             GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
 
-            if (Selection.gameObjects.Length > 0)
+            if (parent != null)
             {
-                root.transform.SetParent(Selection.gameObjects[0].transform);
+                root.transform.SetParent(parent.transform);
             }
 
             try
@@ -46,7 +48,7 @@ namespace Unity.Formats.USD
         }
 
 #if UNITY_EDITOR
-        public static void ImportAsPrefab(Scene scene)
+        public static string ImportAsPrefab(Scene scene)
         {
             string path = scene.FilePath;
 
@@ -67,6 +69,7 @@ namespace Unity.Formats.USD
             {
                 UsdToGameObject(go, scene, importOptions);
                 SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
+                return prefabPath;
             }
             finally
             {
@@ -75,7 +78,7 @@ namespace Unity.Formats.USD
             }
         }
 
-        public static void ImportAsTimelineClip(Scene scene)
+        public static string ImportAsTimelineClip(Scene scene)
         {
             string path = scene.FilePath;
 
@@ -93,11 +96,42 @@ namespace Unity.Formats.USD
                 // Ensure we have at least one GameObject with the import settings.
                 XformImporter.BuildSceneRoot(scene, go.transform, importOptions);
                 SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
+                return prefabPath;
             }
             finally
             {
                 GameObject.DestroyImmediate(go);
             }
+        }
+
+        /// <summary>
+        /// Returns the selected object path or "Assets/" if no object is selected.
+        /// </summary>
+        static string GetSelectedAssetPath()
+        {
+            Object[] selectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
+            foreach (Object obj in selectedAsset)
+            {
+                var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
+                if (string.IsNullOrEmpty(path))
+                {
+                    continue;
+                }
+
+                if (File.Exists(path))
+                {
+                    path = Path.GetDirectoryName(path);
+                }
+
+                if (!path.EndsWith("/"))
+                {
+                    path += "/";
+                }
+
+                return path;
+            }
+
+            return "Assets/";
         }
 #endif
 
@@ -131,36 +165,6 @@ namespace Unity.Formats.USD
             // Otherwise there are 0 or many root prims, in this case the best option is to reference
             // them all, to avoid confusion.
             return pxr.SdfPath.AbsoluteRootPath();
-        }
-
-        /// <summary>
-        /// Returns the selected object path or "Assets/" if no object is selected.
-        /// </summary>
-        static string GetSelectedAssetPath()
-        {
-            Object[] selectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
-            foreach (Object obj in selectedAsset)
-            {
-                var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
-                if (string.IsNullOrEmpty(path))
-                {
-                    continue;
-                }
-
-                if (File.Exists(path))
-                {
-                    path = Path.GetDirectoryName(path);
-                }
-
-                if (!path.EndsWith("/"))
-                {
-                    path += "/";
-                }
-
-                return path;
-            }
-
-            return "Assets/";
         }
 
         static GameObject UsdToGameObject(GameObject parent,
