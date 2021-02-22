@@ -21,7 +21,7 @@ using USD.NET.Unity;
 
 namespace Unity.Formats.USD
 {
-    public class UsdMenu
+    public static class UsdMenu
     {
         [MenuItem("USD/Export Selected with Children", true)]
         static bool EnableMenuExportSelectedWithChildren()
@@ -32,7 +32,10 @@ namespace Unity.Formats.USD
         [MenuItem("USD/Export Selected with Children", priority = 50)]
         static void MenuExportSelectedWithChildren()
         {
-            ExportHelpers.ExportSelected(BasisTransformation.SlowAndSafe);
+            var go = Selection.gameObjects.First();
+            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, "usd,usda,usdc");
+            var scene = ExportHelpers.InitForSave(filePath);
+            ExportHelpers.ExportGameObjects(Selection.gameObjects, scene,BasisTransformation.SlowAndSafe);
         }
 
         [MenuItem("USD/Export Transform Overrides", true)]
@@ -45,7 +48,8 @@ namespace Unity.Formats.USD
         static public void MenuExportTransforms()
         {
             var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
-            var overs = ExportHelpers.InitForSave(Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs");
+            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs", "usd,usda,usdc");
+            var overs = ExportHelpers.InitForSave(filePath);
             root.ExportOverrides(overs);
         }
 

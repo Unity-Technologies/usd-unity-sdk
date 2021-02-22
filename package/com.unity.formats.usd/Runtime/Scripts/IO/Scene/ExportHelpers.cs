@@ -7,12 +7,9 @@ namespace Unity.Formats.USD
 {
     public static class ExportHelpers
     {
-#if UNITY_EDITOR
-        public static Scene InitForSave(string defaultName, string fileExtension = "usd,usda,usdc")
+        public static Scene InitForSave(string filePath)
         {
-            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", defaultName, fileExtension);
-
-            if (filePath == null || filePath.Length == 0)
+            if (string.IsNullOrEmpty(filePath))
             {
                 return null;
             }
@@ -36,25 +33,15 @@ namespace Unity.Formats.USD
             scene.EndTime = 0;
             return scene;
         }
-#endif
 
-        public static void ExportSelected(BasisTransformation basisTransform,
-            string fileExtension = "usd,usda,usdc",
-            bool exportMonoBehaviours = false)
+        public static void ExportGameObjects(GameObject[] objects, Scene scene, BasisTransformation basisTransform,
+                                          bool exportMonoBehaviours = false)
         {
-            Scene scene = null;
+            if (scene == null)
+                return;
 
-            foreach (GameObject go in Selection.gameObjects)
+            foreach (GameObject go in objects)
             {
-                if (scene == null)
-                {
-                    scene = InitForSave(go.name, fileExtension);
-                    if (scene == null)
-                    {
-                        return;
-                    }
-                }
-
                 try
                 {
                     SceneExporter.Export(go, scene, basisTransform,
@@ -64,15 +51,10 @@ namespace Unity.Formats.USD
                 catch (System.Exception ex)
                 {
                     Debug.LogException(ex);
-                    continue;
                 }
             }
-
-            if (scene != null)
-            {
-                scene.Save();
-                scene.Close();
-            }
+            scene.Save();
+            scene.Close();
         }
     }
 }

@@ -82,7 +82,7 @@ namespace Unity.Formats.USD
                     // Set the current working directory to the tmp directory to export with relative paths.
                     Directory.SetCurrentDirectory(tmpDirPath);
 
-                    Clip.UsdScene = UsdzExporter.InitForSave(usdcFileName);
+                    Clip.UsdScene = ExportHelpers.InitForSave(Path.Combine(tmpDirPath,usdcFileName));
                 }
                 else
                 {
