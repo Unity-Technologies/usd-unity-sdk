@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using pxr;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -15,6 +16,12 @@ namespace Unity.Formats.USD
     {
         public static GameObject ImportSceneAsGameObject(Scene scene, GameObject parent = null, SceneImportOptions importOptions = null)
         {
+            if (scene == null || scene.Stage == null)
+            {
+                Debug.LogError("The USD Scene needs to be opened before being imported.");
+                return null;
+            }
+
             string path = scene.FilePath;
 
             // Time-varying data is not supported and often scenes are written without "Default" time
@@ -42,7 +49,11 @@ namespace Unity.Formats.USD
             }
             catch (SceneImporter.ImportException)
             {
+#if UNITY_EDITOR
                 Object.DestroyImmediate(root);
+#else
+                Object.Destroy(root);
+#endif
                 return null;
             }
         }
@@ -101,6 +112,7 @@ namespace Unity.Formats.USD
             finally
             {
                 GameObject.DestroyImmediate(go);
+                scene.Close();
             }
         }
 
@@ -135,10 +147,10 @@ namespace Unity.Formats.USD
         }
 #endif
 
-        public static Scene InitForOpen(string path = "")
+        public static Scene InitForOpen(string path = "", UsdStage.InitialLoadSet loadSet = pxr.UsdStage.InitialLoadSet.LoadNone)
         {
 #if UNITY_EDITOR
-            if (String.IsNullOrEmpty(path))
+            if (String.IsNullOrEmpty(path) && !UnityEngine.Application.isPlaying)
                 path = EditorUtility.OpenFilePanel("Import USD File", "", "usd,usda,usdc,abc");
 #endif
 
@@ -146,7 +158,8 @@ namespace Unity.Formats.USD
                 return null;
 
             InitUsd.Initialize();
-            var stage = pxr.UsdStage.Open(path, pxr.UsdStage.InitialLoadSet.LoadNone);
+            // var editingStage = new EditingStage(path);
+            var stage = pxr.UsdStage.Open(path, loadSet);
             return Scene.Open(stage);
         }
 

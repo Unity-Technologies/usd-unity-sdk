@@ -2,7 +2,8 @@
     "name": "Unity.Formats.USD.Tests.Editor",
     "references": [
         "Unity.Formats.USD.Runtime",
-        "Unity.Formats.USD.Editor"
+        "Unity.Formats.USD.Editor",
+        "Unity.Formats.USD.Tests"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
