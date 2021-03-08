@@ -60,6 +60,7 @@ namespace Unity.Formats.USD.Tests
             });
             var fileInfoAfter = new FileInfo(filePath);
             Assert.AreEqual(fileInfoBefore.Length, fileInfoAfter.Length);
+            scene.Close();
         }
 
         [Test]
@@ -85,6 +86,7 @@ namespace Unity.Formats.USD.Tests
             var paths = scene.Stage.GetAllPaths();
             Debug.Log(scene.Stage.GetRootLayer().ExportToString());
             Assert.AreEqual(2, paths.Count);
+            scene.Close();
         }
 
         [Test]
