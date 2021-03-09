@@ -13,14 +13,16 @@ namespace Unity.Formats.USD.Tests
         public void SetUp()
         {
             m_buildOptions = new BuildPlayerOptions();
-            m_buildOptions.locationPathName = "../testBuild/dummy.exe";
             m_buildOptions.options = BuildOptions.None;
 
 #if UNITY_EDITOR_WIN
+            m_buildOptions.locationPathName = "../testBuild/dummy.exe";
             m_buildOptions.target = BuildTarget.StandaloneWindows64;
 #elif UNITY_EDITOR_OSX
+            m_buildOptions.locationPathName = "../testBuild/dummy";
             m_buildOptions.target = BuildTarget.StandaloneOSX;
 #elif UNITY_EDITOR_LINUX
+            m_buildOptions.locationPathName = "../testBuild/dummy.x86_64";
             m_buildOptions.target = BuildTarget.StandaloneLinux64;
 #endif
 
