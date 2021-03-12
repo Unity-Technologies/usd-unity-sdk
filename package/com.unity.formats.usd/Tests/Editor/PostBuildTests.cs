@@ -45,6 +45,7 @@ namespace Unity.Formats.USD.Tests
             var buildFolder = new FileInfo(m_buildOptions.locationPathName).Directory;
             var dirs = buildFolder.GetDirectories("usd", SearchOption.AllDirectories);
 
+            Assert.IsTrue(File.Exists(m_buildOptions.locationPathName), "Executable not found. Build failed");
             Assert.IsNotNull(dirs, "The usd plugins directories were not found in the build.");
         }
     }
