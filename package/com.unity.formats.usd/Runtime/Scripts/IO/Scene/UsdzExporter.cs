@@ -46,7 +46,7 @@ namespace Unity.Formats.USD
                 Directory.SetCurrentDirectory(tmpDirPath);
 
                 // Create the tmp .usd scene, into which the data will be exported.
-                Scene scene = InitForSave(usdcFileName);
+                Scene scene = ExportHelpers.InitForSave(Path.Combine(tmpDirPath,usdcFileName));
                 Vector3 localScale = root.transform.localScale;
 
                 try
@@ -90,28 +90,6 @@ namespace Unity.Formats.USD
                 Directory.SetCurrentDirectory(currentDir);
                 tmpDir.Delete(recursive: true);
             }
-        }
-
-        internal static Scene InitForSave(string filePath)
-        {
-            string fileDir = Path.GetDirectoryName(filePath);
-
-            if (!string.IsNullOrEmpty(fileDir) && !Directory.Exists(fileDir))
-            {
-                var di = Directory.CreateDirectory(fileDir);
-                if (!di.Exists)
-                {
-                    Debug.LogError("Failed to create directory: " + fileDir);
-                    return null;
-                }
-            }
-
-            InitUsd.Initialize();
-            Scene scene = Scene.Create(filePath);
-            scene.Time = 0;
-            scene.StartTime = 0;
-            scene.EndTime = 0;
-            return scene;
         }
     }
 }

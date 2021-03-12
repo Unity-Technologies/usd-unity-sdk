@@ -19,7 +19,7 @@ namespace Unity.Formats.USD.Tests
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
             var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
-            m_usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene);
+            m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
             scene.Close();
         }
 
@@ -73,7 +73,7 @@ namespace Unity.Formats.USD.Tests
             var scene = Scene.Open(stage);
             var importOptions = new SceneImportOptions();
             importOptions.materialImportMode = MaterialImportMode.ImportPreviewSurface;
-            m_usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene, importOptions);
+            m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene, importOptions: importOptions);
             scene.Close();
         }
 

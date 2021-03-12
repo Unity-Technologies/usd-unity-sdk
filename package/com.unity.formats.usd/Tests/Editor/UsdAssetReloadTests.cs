@@ -18,7 +18,7 @@ namespace Unity.Formats.USD.Tests
 
         string testFilePath;
         string testFileModifiedPath;
-        
+
         GameObject m_usdRoot;
         UsdAsset m_usdAsset;
 
@@ -29,7 +29,7 @@ namespace Unity.Formats.USD.Tests
             testFilePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDGUID));
             var stage = pxr.UsdStage.Open(testFilePath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
-            m_usdRoot = UsdMenu.ImportSceneAsGameObject(scene);
+            m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
             scene.Close();
 
             m_usdAsset = m_usdRoot.GetComponent<UsdAsset>();
@@ -46,7 +46,7 @@ namespace Unity.Formats.USD.Tests
             // Restore test files.
             ResetTestFile();
         }
-        
+
         [UnityTest]
         public IEnumerator UsdAsset_Reload_FileHasChanged_NewValuesAreRetrieved()
         {
@@ -55,21 +55,21 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             var translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(1, 1, 1, 1), translate);
-            
+
             yield return new WaitForSecondsRealtime(1f);
             // Simulate the fact that the usd file was changed on disk.
             UpdateTestFile();
 
             // Refresh the asset.
             m_usdAsset.Reload(false);
-            
+
             // Ensure the new attribute's values can be retrieved.
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(2, 2, 2, 1), translate);
             yield return new WaitForSecondsRealtime(1f);
         }
-        
+
         [UnityTest]
         public IEnumerator UsdAsset_Reload_FileHasChangedAndForceRebuild_NewValuesAreRetrieved()
         {
@@ -82,17 +82,17 @@ namespace Unity.Formats.USD.Tests
             yield return new WaitForSecondsRealtime(1f);
             // Simulate the fact that the usd file was changed on disk.
             UpdateTestFile();
-            
+
             // Reload the asset.
             m_usdAsset.Reload(true);
-            
+
             // Ensure the new attribute's values can be retrieved.
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(2, 2, 2, 1), translate);
             yield return new WaitForSecondsRealtime(1f);
         }
-        
+
         [Test]
         public void UsdAsset_Reload_FileDidNotChange_ValuesDoNotChange()
         {
@@ -104,7 +104,7 @@ namespace Unity.Formats.USD.Tests
 
             // Refresh the asset.
             m_usdAsset.Reload(false);
-            
+
             // Ensure that nothing changed.
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             translate = xform.transform.GetColumn(3);
@@ -114,7 +114,7 @@ namespace Unity.Formats.USD.Tests
         void UpdateTestFile()
         {
             testFileModifiedPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDModifiedGUID));
-            
+
             File.WriteAllBytes(testFilePath, File.ReadAllBytes(testFileModifiedPath));
         }
 

@@ -11,7 +11,7 @@ namespace Unity.Formats.USD.Tests
     public class USDPayloadComponentTests
     {
         const string k_USDGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUID of test_collections.usda
- 
+
         private GameObject m_usdRoot;
         private UsdAsset m_usdAsset;
 
@@ -22,7 +22,7 @@ namespace Unity.Formats.USD.Tests
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDGUID));
             var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
-            m_usdRoot = USD.UsdMenu.ImportSceneAsGameObject(scene);
+            m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
             scene.Close();
 
             m_usdAsset = m_usdRoot.GetComponent<UsdAsset>();

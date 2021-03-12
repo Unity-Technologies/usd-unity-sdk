@@ -221,7 +221,10 @@ namespace Unity.Formats.USD
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("USD File");
-            usdAsset.usdFullPath = EditorGUILayout.TextField(usdAsset.usdFullPath, EditorStyles.textField);
+            GUI.enabled = false;
+            EditorGUILayout.TextField(usdAsset.usdFullPath, EditorStyles.textField);
+            GUI.enabled = true;
+
             if (GUILayout.Button("..."))
             {
                 string lastDir;
