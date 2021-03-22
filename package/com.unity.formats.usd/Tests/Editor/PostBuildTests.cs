@@ -15,14 +15,15 @@ namespace Unity.Formats.USD.Tests
             m_buildOptions = new BuildPlayerOptions();
             m_buildOptions.options = BuildOptions.None;
 
+            var tmpPath = System.IO.Path.GetTempPath();
 #if UNITY_EDITOR_WIN
-            m_buildOptions.locationPathName = "../testBuild/dummy.exe";
+            m_buildOptions.locationPathName = Path.Combine(tmpPath, "testBuild", "dummy.exe");
             m_buildOptions.target = BuildTarget.StandaloneWindows64;
 #elif UNITY_EDITOR_OSX
-            m_buildOptions.locationPathName = "../testBuild/dummy";
+            m_buildOptions.locationPathName = Path.Combine(tmpPath, "testBuild", "dummy");
             m_buildOptions.target = BuildTarget.StandaloneOSX;
 #elif UNITY_EDITOR_LINUX
-            m_buildOptions.locationPathName = "../testBuild/dummy.x86_64";
+            m_buildOptions.locationPathName = Path.Combine(tmpPath, "testBuild", "dummy.x86_64");
             m_buildOptions.target = BuildTarget.StandaloneLinux64;
 #endif
 

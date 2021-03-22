@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.IO;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
@@ -9,7 +10,7 @@ namespace Unity.Formats.USD
         [PostProcessBuildAttribute(1)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            var source = System.IO.Path.Combine(GetCurrentDir(), "..", "..", "Runtime", "Plugins");
+            var source = Path.Combine(GetCurrentDir(), "..", "..", "Runtime", "Plugins");
             var destination = "";
             if (target == BuildTarget.StandaloneLinux64)
             {
@@ -31,7 +32,7 @@ namespace Unity.Formats.USD
 
         static string GetCurrentDir([CallerFilePath] string filePath = "")
         {
-            var fileInfo = new System.IO.FileInfo(filePath);
+            var fileInfo = new FileInfo(filePath);
             return fileInfo.DirectoryName;
         }
     }
