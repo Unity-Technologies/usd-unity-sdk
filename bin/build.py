@@ -117,7 +117,7 @@ if __name__ == "__main__":
         cmake_cmd += "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON "
 
     if platform.system() == "Windows":
-        cmake_cmd += "-G \"Visual Studio 15 2017 Win64\""
+        cmake_cmd += "-G \"Visual Studio 16 2019\""
 
     logging.info("="*80)
     logging.info("Running CMake:\n{}\n\n".format(cmake_cmd))
