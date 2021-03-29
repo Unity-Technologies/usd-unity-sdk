@@ -73,7 +73,7 @@ build_platforms:
   commands:
     - |
       {{platform.setenv_cmd}}
-      python3 bin/build.py "{{usd_version.version}}" "../libs" "2019.4" --download --component usdcs
+      python3 bin/build.py --usd_version "{{usd_version.version}}" --download --component usdcs
   artifacts:
       {{platform.name}}_usdCs_v{{usd_version.version}}:
         paths:

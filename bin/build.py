@@ -1,8 +1,9 @@
 ﻿#!/usr/bin/python -B
+from builtins import FileNotFoundError
+
 import logging
 import os
 import platform
-import sys
 import shlex
 import subprocess
 import argparse
@@ -14,14 +15,18 @@ USD_BINARIES = {"20.08": {"Windows": "usd-win-python36-x86_64/v20.08_1df762cff26
                           "Darwin": "usd-mac-python36-x86_64/v20.08_8b0dfc648fb4dcd06938901690e9201835cb79ad51ad9eee90e7b3cfc6b3bf2c.zip"}}
 PYTHON_VERSION = "36"
 
+
 def usd_python_dirname(usd_version, python_version):
     return "usd-v{0}".format(usd_version)
+
 
 def usd_no_python_dirname(usd_version):
     return "usd-v{0}_no_python".format(usd_version)
 
+
 def usd_binaries_dirname(usd_version, python_version):
     return "usd-v{0}-python{1}".format(usd_version, python_version)
+
 
 def download_usd_binaries(usd_version, python_version=PYTHON_VERSION, output_dir=""):
     output_dir = os.path.abspath(output_dir)
@@ -29,23 +34,33 @@ def download_usd_binaries(usd_version, python_version=PYTHON_VERSION, output_dir
         logging.error("Target path doesn't exist: {0}".format(output_dir))
         return None, None
 
-    # Download usd archive from artifactory/stevedore
-    artifactory_usd_archive = USD_BINARIES[usd_version][platform.system()]
-    usd_archive_path = os.path.join(output_dir, artifactory_usd_archive.split('/')[-1])
-    if(not os.path.exists(usd_archive_path)):
-        logging.info("Downloading USD v{0} for python {1} to {2} ...".format(usd_version, python_version, output_dir))
-        p = subprocess.Popen(shlex.split('wget -P "{0}" {1}/{2}'.format(output_dir, STEVEDORE_REPO, artifactory_usd_archive)))
-        p.wait()
-
-    # Extract archive
     output_path = os.path.join(output_dir, usd_binaries_dirname(usd_version, python_version))
-    logging.info("Extracting to {} ...\n".format(output_path))
-    with zipfile.ZipFile(usd_archive_path, 'r') as usd_zip:
-        usd_zip.extractall(output_path)
+    try:
+        artifactory_usd_archive = USD_BINARIES[usd_version][platform.system()]
+    except KeyError as ex:
+        logging.error("USD v{} binaries are not uploaded on Stevedore. Available versions are: [{}]".format(usd_version,
+                                                                                                            ",".join(USD_BINARIES.keys())))
+        raise ex
+
+    usd_archive_path = os.path.join(output_dir, artifactory_usd_archive.split('/')[-1])
+
+    if not os.path.exists(output_path):
+        # Download usd archive from artifactory/stevedore
+        if not os.path.exists(usd_archive_path):
+            logging.info("Downloading USD v{0} for python {1} to {2} ...".format(usd_version, python_version, output_dir))
+            p = subprocess.Popen(shlex.split('wget -P "{0}" {1}/{2}'.format(output_dir, STEVEDORE_REPO,
+                                                                            artifactory_usd_archive)))
+            p.wait()
+
+        # Extract archive
+        logging.info("Extracting to {} ...\n".format(output_path))
+        with zipfile.ZipFile(usd_archive_path, 'r') as usd_zip:
+            usd_zip.extractall(output_path)
 
     usd_python_path = os.path.join(output_path, usd_python_dirname(usd_version, python_version))
     usd_no_python_path = os.path.join(output_path, usd_no_python_dirname(usd_version))
     return usd_python_path, usd_no_python_path
+
 
 if __name__ == "__main__":
     logging.basicConfig()
@@ -53,12 +68,13 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Build script for the USD C# bindings.")
 
-    parser.add_argument("usd_version", type=str,
+    parser.add_argument("--usd_version", dest="usd_version", default="20.08",
                         help="Version of the USD library (ex: 20.08).")
-    parser.add_argument("library_path", type=str,
-                        help="Path to the usd install directory")
-    parser.add_argument("unity_version", type=str,
-                        help="Version of Unity (ex: 2019.4)")
+    parser.add_argument("--unity_version", dest="unity_version", default="2019.4",
+                        help="Version of Unity (ex: 2019.4). "
+                             "Used to find the C# compiler when building the usdnet component")
+    parser.add_argument("--library_path", dest="library_path", default="./artifacts",
+                        help="Path to the root of the usd install folders (ex: usd-v20.08 and usd-v20.08_no_python)")
     parser.add_argument("--download", dest="download_usd_binaries", action="store_true", default=False,
                         help="Download USD binaries from Unity's Stevedore internal repository. "
                         "Refer to BUILDING.md for command used to build the libraries")
@@ -81,10 +97,16 @@ if __name__ == "__main__":
 
     # Download usd binaries from stevedore
     if args.download_usd_binaries:
-        (usd_python_dir_path, usd_no_python_dir_path) = download_usd_binaries(args.usd_version, PYTHON_VERSION, library_path)
+        try:
+            (usd_python_dir_path, usd_no_python_dir_path) = download_usd_binaries(args.usd_version, PYTHON_VERSION,
+                                                                                  library_path)
+        except KeyError:
+            exit()
     else:
-        usd_python_dir_path = os.path.join(library_path, usd_binaries_dirname(args.usd_version, PYTHON_VERSION), usd_python_dirname(args.usd_version, PYTHON_VERSION))
-        usd_no_python_dir_path = os.path.join(library_path, usd_binaries_dirname(args.usd_version, PYTHON_VERSION), usd_no_python_dirname(args.usd_version))
+        usd_python_dir_path = os.path.join(library_path, usd_binaries_dirname(args.usd_version, PYTHON_VERSION),
+                                           usd_python_dirname(args.usd_version, PYTHON_VERSION))
+        usd_no_python_dir_path = os.path.join(library_path, usd_binaries_dirname(args.usd_version, PYTHON_VERSION),
+                                              usd_no_python_dirname(args.usd_version))
 
     if not os.path.exists(usd_python_dir_path):
         raise FileNotFoundError(usd_python_dir_path)

@@ -64,3 +64,4 @@ TestProject/Logs
 TestProject/Assets/*
 inst-dbg/
 package/com.unity.formats.usd/TestRunnerOptions.json.meta
+/artifacts/
