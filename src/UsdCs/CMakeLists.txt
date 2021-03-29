@@ -1,11 +1,14 @@
 ﻿project(usdcs LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
-if (WIN32)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set(CMAKE_INSTALL_RPATH "@loader_path/../Frameworks")
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(CMAKE_INSTALL_RPATH "\$ORIGIN/../Frameworks")
+else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX /bigobj /EHsc")
 endif ()
-set(CMAKE_INSTALL_RPATH "$ORIGIN")
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 find_package(SWIG 3.0.12 REQUIRED)
 include(${SWIG_USE_FILE})
@@ -81,7 +84,7 @@ add_dependencies(${USD_SWIG_LIBRARY}
     USD_TYPE_INFO
     )
 
-set(LINK_DEPENDENCIES Alembic Iex-2_2 IexMath-2_2 Imath-2_2 IlmThread-2_2 IlmImf-2_2 Half tbb)
+set(LINK_DEPENDENCIES Alembic.1.7 Iex-2_2.12 IexMath-2_2.12 Imath-2_2.12 IlmThread-2_2.12 IlmImf-2_2.22 Half.12 tbb)
 swig_link_libraries(${USD_SWIG_LIBRARY}
     usd_ms
     ${LINK_DEPENDENCIES}
@@ -120,7 +123,7 @@ install(SCRIPT ${CMAKE_SOURCE_DIR}/cmake/install_usd_bindings.cmake)
 set(PIXAR_DEPS usd_ms ${LINK_DEPENDENCIES})
 list(TRANSFORM PIXAR_DEPS PREPEND ${USD_LIBRARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX})
 list(TRANSFORM PIXAR_DEPS APPEND ${CMAKE_SHARED_LIBRARY_SUFFIX})
-install(FILES ${PIXAR_DEPS} DESTINATION ${SWIG_OUTPUT_DIR})
+install(FILES ${PIXAR_DEPS} DESTINATION ${DEPENDENCIES_INSTALL_DIR})
 
 # Install the usd plugin folder
 install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/..")
