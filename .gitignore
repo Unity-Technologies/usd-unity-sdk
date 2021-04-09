@@ -61,7 +61,7 @@ TestProject/*.sln*
 TestProject/*.csproj
 TestProject/.idea
 TestProject/Logs
-TestProject/Assets/Plugins
-TestProject/Assets/Samples*
+TestProject/Assets/*
 inst-dbg/
 package/com.unity.formats.usd/TestRunnerOptions.json.meta
+/artifacts/

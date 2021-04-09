@@ -84,14 +84,17 @@ def translateTypes(tn):
     return tn.replace("string", "std::string").\
               replace("__int64", "int64_t").\
               replace("pxr_half::half", "GfHalf").\
-              replace("unsigned int64_t", "uint64_t")
+              replace("unsigned int64_t", "uint64_t").\
+              replace("long long", "long")
 
 def translateCsTypes(tn):
     return tn.replace("unsigned __int64", "ulong").\
               replace("__int64", "long").\
               replace("unsigned char", "byte").\
               replace("unsigned int", "uint").\
-              replace("pxr_half::half", "GfHalf")
+              replace("unsigned long", "ulong").\
+              replace("pxr_half::half", "GfHalf").\
+              replace("long long", "long")
 
 def genVtValue(basePath, copyright):
     vtValueTypes = basePath + "vt/vtValue_Types.i"
@@ -157,8 +160,8 @@ def genVtValue(basePath, copyright):
         print(accessorPre, file=f)
         for tn in sorted(typeInfos.keys()):
             ti = typeInfos[tn]
-            # unsigned int/char need special handling so they compile on OSX.
-            if tn == "unsigned int" or tn == "unsigned char":
+            # unsigned int/char/long need special handling so they compile on OSX.
+            if tn == "unsigned int" or tn == "unsigned char" or tn == "unsigned long":
               print(accessorAlt.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName), file=f)
             else:
               print(accessor.format(typeName=tn, typeNameId=ti.typeId, csTypeName=ti.csTypeName), file=f)
