@@ -28,7 +28,7 @@ find_package(USD REQUIRED)
 find_package(PythonInterp 3.6 REQUIRED COMPONENTS Interpreter)
 message("Python exec ${Python3_FOUND}   ${Python3_EXECUTABLE} ${Python3_INTERPRETER_ID}")
 if (BUILD_USD_NET)
-    find_package(Unity REQUIRED)
+    find_package(Mono REQUIRED)
 endif()
 
 add_subdirectory(src)
