@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python -B
+﻿#!/usr/bin/env python3 -B
 from builtins import FileNotFoundError
 
 import logging

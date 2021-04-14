@@ -22,10 +22,9 @@ add_custom_target(
     ${USD_NET_DLL}
     )
 
-file(GLOB ALLFILES ${CMAKE_CURRENT_BINARY_DIR}/USD.NET* )
 install(
     FILES
-    ${ALLFILES}
+    ${CMAKE_CURRENT_BINARY_DIR}/USD.NET.dll
     DESTINATION
     ${USD_PLUGINS_DIR}
     )
