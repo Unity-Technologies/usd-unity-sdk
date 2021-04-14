@@ -78,9 +78,9 @@ if __name__ == "__main__":
     parser.add_argument("--download", dest="download_usd_binaries", action="store_true", default=False,
                         help="Download USD binaries from Unity's Stevedore internal repository. "
                         "Refer to BUILDING.md for command used to build the libraries")
-    parser.add_argument("--target", dest="cmake_target", action="store_const", const="clean", default="install",
+    parser.add_argument("--clean", dest="cmake_target", action="store_const", const="clean", default="install",
                         help="Call cmake with the clean target.")
-    parser.add_argument("--component", dest="component", choices=["usdcs", "usdnet"], default="usdcs")
+    parser.add_argument("--component", dest="component", choices=["usdcs", "usdnet", "tests"], default="usdcs")
     parser.add_argument("-v", "--verbose", action="store_true", default=False,
                         help="Set the CMake verbose flag.")
 
@@ -118,6 +118,8 @@ if __name__ == "__main__":
         build_dir += "_usdcs"
     elif args.component == "usdnet":
         build_dir += "_usdnet"
+    elif args.component == "tests":
+        build_dir += "_tests"
     if not os.path.exists(build_dir):
         os.mkdir(build_dir)
 
@@ -127,12 +129,14 @@ if __name__ == "__main__":
                           "-DUNITY_VERSION={} ",
                           "-DBUILD_USDCS={} ",
                           "-DBUILD_USD_NET={} ",
+                          "-DBUILD_TESTS={} ",
                           "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                           "-DCMAKE_MODULE_PATH=./cmake/modules "]).format(build_dir, usd_no_python_dir_path,
                                                                           usd_python_dir_path,
                                                                           args.unity_version,
                                                                           args.component == "usdcs",
                                                                           args.component == "usdnet",
+                                                                          args.component == "tests",
                                                                           args.unity_version)
 
     if args.verbose:
