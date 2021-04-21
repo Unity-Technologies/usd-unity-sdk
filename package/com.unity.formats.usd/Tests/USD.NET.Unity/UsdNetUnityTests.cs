@@ -32,8 +32,13 @@ namespace USD.NET.Unity.Tests
         {
             foreach (var file in m_filesToDelete)
             {
-                File.Delete(file);
+                if (File.Exists(file))
+                {
+                    File.Delete(file);
+                }
             }
+
+            m_filesToDelete.Clear();
         }
 
         protected static void WriteAndRead<T>(ref T inputSample, ref T outputSample)
