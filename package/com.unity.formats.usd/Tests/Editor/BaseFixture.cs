@@ -18,6 +18,8 @@ namespace Unity.Formats.USD.Tests
             {
                 AssetDatabase.DeleteAsset(file);
             }
+
+            m_assetsToDelete.Clear();
         }
     }
 }

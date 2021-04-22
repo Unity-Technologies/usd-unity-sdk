@@ -1,6 +1,7 @@
 {
     "name": "Unity.Formats.USD.ImportMaterials",
     "references": [
+        "USD.NET.Unity",
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Runtime"
     ],
@@ -17,8 +18,7 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "USD.NET.dll",
-        "USD.NET.Unity.dll"
+        "USD.NET.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": []

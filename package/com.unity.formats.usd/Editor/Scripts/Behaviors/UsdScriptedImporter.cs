@@ -21,7 +21,6 @@ using UnityEditor.AssetImporters;
 using UnityEditor.Experimental.AssetImporters;
 #endif
 using USD.NET;
-using USD.NET.Unity;
 
 #if false
 [ScriptedImporter(1, new string[] { "usd-hook" }, 0)]

@@ -15,7 +15,6 @@
 using System;
 using System.Collections.Generic;
 using USD.NET;
-using USD.NET.Unity;
 
 namespace Tests.Cases {
   class OverrideTests : UnitTest {

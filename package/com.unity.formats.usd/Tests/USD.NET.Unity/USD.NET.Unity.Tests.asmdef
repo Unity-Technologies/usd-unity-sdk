@@ -1,0 +1,24 @@
+{
+    "name": "USD.NET.Unity.Tests",
+    "references": [
+        "Unity.Formats.USD.Runtime",
+        "USD.NET.Unity"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "LinuxStandalone64",
+        "macOSStandalone",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "USD.NET.dll",
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

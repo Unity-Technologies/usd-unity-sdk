@@ -30,8 +30,13 @@ namespace Unity.Formats.USD.Tests
         {
             foreach (var file in m_filesToDelete)
             {
-                File.Delete(file);
+                if (File.Exists(file))
+                {
+                    File.Delete(file);
+                }
             }
+
+            m_filesToDelete.Clear();
         }
     }
 }

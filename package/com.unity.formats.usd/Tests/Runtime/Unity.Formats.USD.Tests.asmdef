@@ -1,6 +1,7 @@
 {
     "name": "Unity.Formats.USD.Tests",
     "references": [
+        "USD.NET.Unity",
         "Unity.Formats.USD.Runtime",
         "Unity.Timeline",
         "UnityEngine.TestRunner",
@@ -17,7 +18,6 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "USD.NET.dll",
-        "USD.NET.Unity.dll",
         "nunit.framework.dll"
     ],
     "autoReferenced": true,

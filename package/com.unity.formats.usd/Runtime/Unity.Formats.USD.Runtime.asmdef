@@ -1,7 +1,8 @@
 {
     "name": "Unity.Formats.USD.Runtime",
     "references": [
-        "Unity.Timeline"
+        "Unity.Timeline",
+        "USD.NET.Unity"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

@@ -90,15 +90,6 @@ namespace Tests.Cases {
           AssertTrue(HasPreserveAttribute(method));
         }
       }
-
-      Console.WriteLine("\nUnity Type Converter\n");
-      foreach (var method in typeof(USD.NET.Unity.UnityTypeConverter).GetMethods()) {
-        var name = method.Name;
-        if (name.Contains("ToVt") || name.Contains("FromVt")) {
-          AssertTrue(HasPreserveAttribute(method));
-        }
-      }
     }
-
   }
 }

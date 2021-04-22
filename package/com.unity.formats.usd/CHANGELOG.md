@@ -1,5 +1,15 @@
 # Changes in usd-unitysdk for Unity
 
+## Unreleased
+### Features
+- New Import/Export API. See the ImportHelpers and ExportHelpers class
+
+### Changed
+- USD.NET.Unity API is now in the package
+
+### Bug Fixes
+- Fix hardcoded package name in InitUSD and BuildPostProcessor (#236)
+
 ## [2.0.0-exp.1] - 2020-12-21
 ### Features
 - Updated USD version to v20.08
