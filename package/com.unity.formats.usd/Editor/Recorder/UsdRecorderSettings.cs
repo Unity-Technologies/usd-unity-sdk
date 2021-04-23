@@ -1,4 +1,5 @@
 #if RECORDER_AVAILABLE
+using System;
 using System.Collections.Generic;
 using UnityEditor.Recorder;
 using UnityEngine;
@@ -9,17 +10,32 @@ namespace UnityEditor.Formats.USD.Recorder
     public class UsdRecorderSettings : RecorderSettings
     {
         [SerializeField] UsdRecorderInputSettings inputSettings = new();
-        string m_extension;
+        [SerializeField] Format exportFormat;
+        internal enum Format
+        {
+            Usd,
+            UsdZ,
+        }
 
         protected override string Extension
         {
-            get { return m_extension; }
+            get
+            {
+                return exportFormat switch
+                {
+                    Format.Usd => "usd",
+                    Format.UsdZ => "usdz",
+                    _ => throw new ArgumentException("Unhandled format")
+                };
+            }
         }
 
         public override IEnumerable<RecorderInputSettings> InputsSettings
         {
             get { yield return inputSettings; }
         }
+
+        internal Format ExportFormat => exportFormat;
     }
 }
 
