@@ -19,7 +19,7 @@ namespace UnityEditor.Formats.USD.Recorder
 
         protected override void NewFrameReady(RecordingSession session)
         {
-            Context.scene.Time = session.recorderTime;
+            Context.scene.Time = session.recorderTime * session.settings.FrameRate;
             Context.exportMaterials = false;
             SceneExporter.Export(Settings.gameObject, Context, zeroRootTransform: false);
         }

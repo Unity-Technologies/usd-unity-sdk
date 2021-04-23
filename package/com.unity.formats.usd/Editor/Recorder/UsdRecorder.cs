@@ -8,7 +8,7 @@ namespace UnityEditor.Formats.USD.Recorder
 {
     public class UsdRecorder : GenericRecorder<UsdRecorderSettings>
     {
-        ExportContext Context;
+        ExportContext context;
         UsdRecorderInput Input => m_Inputs[0] as UsdRecorderInput;
 
         protected override void SessionCreated(RecordingSession session)
@@ -18,37 +18,39 @@ namespace UnityEditor.Formats.USD.Recorder
             InitUsd.Initialize();
             if (Settings.ExportFormat == UsdRecorderSettings.Format.Usd) // FIXME Support USDz
             {
-                Context = new ExportContext
+                context = new ExportContext
                 {
                     scene = Scene.Create(Settings.FileNameGenerator.BuildAbsolutePath(session))
                 };
             }
 
-            Context.scene.FrameRate = Settings.FrameRate; // Variable framerate support ?
-            Context.scene.Stage.SetInterpolationType(pxr.UsdInterpolationType.UsdInterpolationTypeLinear); // User Option
+            context.scene.FrameRate = Settings.FrameRate; // Variable framerate support ?
+            context.scene.Stage.SetInterpolationType(Settings.InterpolationType); // User Option
 
             // FIXME User optionbs
-            Context.basisTransform = BasisTransformation.SlowAndSafe;//Clip.m_convertHandedness;
-            Context.activePolicy = ActiveExportPolicy.ExportAsActive;
-            Context.exportMaterials = true;
+            context.basisTransform = Settings.BasisTransformation;
+            context.activePolicy = Settings.ActivePolicy;
+            context.exportMaterials = Settings.ExportMaterials;
+            // Scale
 
             // USDZ is in centimeters.
-            Context.scale = Settings.ExportFormat == UsdRecorderSettings.Format.UsdZ ? 100.0f : 1.0f;
+            context.scale = Settings.Scale;
 
-            Context.scene.StartTime = 0; // Absolute vs relative Time
+            context.scene.StartTime = 0; // Absolute vs relative Time
 
             // Export the "default" frame, that is, all data which doesn't vary over time.
-            Context.scene.Time = null;
+            context.scene.Time = null;
 
-            Input.Context = Context;
+            Input.Context = context;
         }
 
         protected override void EndRecording(RecordingSession session)
         {
+            context.scene.EndTime = session.recorderTime * session.settings.FrameRate;
             // Support USDz
-            Context.scene.Save();
-            Context.scene.Close();
-            Context = null;
+            context.scene.Save();
+            context.scene.Close();
+            context = null;
             Input.Context = null;
         }
 
