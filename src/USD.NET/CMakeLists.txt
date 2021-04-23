@@ -5,7 +5,7 @@ add_subdirectory(generated)
 set(USD_NET_DLL USD.NET.dll)
 add_custom_command(
     OUTPUT ${USD_NET_DLL}
-    COMMAND ${MCS_EXECUTABLE} -langversion:4
+    COMMAND ${MCS} -noconfig -langversion:4 -nostdlib+
     -warn:4 -optimize+ -debug -out:${USD_NET_DLL} -target:library -unsafe
     ${SWIG_GENERATED_FILES}
     ${CMAKE_CURRENT_LIST_DIR}/collections/*.cs
@@ -13,6 +13,9 @@ add_custom_command(
     ${CMAKE_CURRENT_LIST_DIR}/serialization/*.cs
     ${CMAKE_CURRENT_LIST_DIR}/Properties/*.cs
     ${CMAKE_CURRENT_LIST_DIR}/*.cs
+    /reference:${MONO_MSCORLIB}
+    /reference:${MONO_SYSTEM_CORE_LIB}
+    /reference:${MONO_SYSTEM_LIB}
     COMMAND_EXPAND_LISTS
     DEPENDS ${USD_CS}
     )

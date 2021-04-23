@@ -11,6 +11,6 @@ else ()
         ${USD_CS_SWIG_SHIM}
         PROPERTIES
         CPLUSPLUS ON
-        SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503"
+        SWIG_FLAGS "-namespace;pxr;-w401;-w516;-w503;-dllimport;UsdCs"
         )
 endif ()

@@ -83,6 +83,8 @@ if __name__ == "__main__":
     parser.add_argument("--component", dest="component", choices=["usdcs", "usdnet", "tests"], default="usdcs")
     parser.add_argument("-v", "--verbose", action="store_true", default=False,
                         help="Set the CMake verbose flag.")
+    parser.add_argument("--use_custom_mono", action="store_true", default=False,
+                        help="Use a custom mono version. Default is to use the mono compiler provided by Unity.")
 
     args = parser.parse_args()
 
@@ -131,13 +133,14 @@ if __name__ == "__main__":
                           "-DBUILD_USD_NET={} ",
                           "-DBUILD_TESTS={} ",
                           "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                          "-DCMAKE_MODULE_PATH=./cmake/modules "]).format(build_dir, usd_no_python_dir_path,
+                          "-DCMAKE_MODULE_PATH=./cmake/modules",
+                          "-DUSE_CUSTOM_MONO={}"]).format(build_dir, usd_no_python_dir_path,
                                                                           usd_python_dir_path,
                                                                           args.unity_version,
                                                                           args.component == "usdcs",
                                                                           args.component == "usdnet",
                                                                           args.component == "tests",
-                                                                          args.unity_version)
+                                                                          args.use_custom_mono)
 
     if args.verbose:
         cmake_cmd += "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON "
