@@ -1,7 +1,8 @@
 using System.IO;
+using pxr;
 using Unity.Formats.USD;
 using UnityEditor.Recorder;
-using USD.NET;
+using UnityEngine;
 
 #if RECORDER_AVAILABLE
 namespace UnityEditor.Formats.USD.Recorder
@@ -11,29 +12,49 @@ namespace UnityEditor.Formats.USD.Recorder
         ExportContext context;
         UsdRecorderInput Input => m_Inputs[0] as UsdRecorderInput;
 
+        // Stateful stuff used during the recording that should be cleaned
+        DirectoryInfo usdzTemporaryDir;
+        string usdcFileName;
+        string usdzFileName;
+        string usdzFilePath;
+        string currentDir;
         protected override void SessionCreated(RecordingSession session)
         {
             base.SessionCreated(session);
 
             InitUsd.Initialize();
-            if (Settings.ExportFormat == UsdRecorderSettings.Format.Usd) // FIXME Support USDz
+            var outputFile = Settings.FileNameGenerator.BuildAbsolutePath(session);
+            if (Settings.ExportFormat == UsdRecorderSettings.Format.UsdZ) // FIXME Support USDz
             {
-                context = new ExportContext
-                {
-                    scene = Scene.Create(Settings.FileNameGenerator.BuildAbsolutePath(session))
-                };
+                currentDir = Directory.GetCurrentDirectory();
+                // Setup a temporary directory to export the wanted USD file and zip it.
+                var tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                usdzTemporaryDir = Directory.CreateDirectory(tmpDirPath);
+
+                // Get the usd file name to export and the usdz file name of the archive.
+                usdcFileName = Path.GetFileNameWithoutExtension(outputFile) + ".usdc";
+                usdzFileName = Path.GetFileName(outputFile);
+                var fi = new FileInfo(outputFile);
+                usdzFilePath = fi.FullName;
+
+                // Set the current working directory to the tmp directory to export with relative paths.
+                Directory.SetCurrentDirectory(tmpDirPath);
+
+                outputFile = Path.Combine(tmpDirPath,usdcFileName);
             }
+
+            context = new ExportContext
+            {
+                scene = ExportHelpers.InitForSave(outputFile)
+            };
 
             context.scene.FrameRate = Settings.FrameRate; // Variable framerate support ?
             context.scene.Stage.SetInterpolationType(Settings.InterpolationType); // User Option
 
-            // FIXME User optionbs
             context.basisTransform = Settings.BasisTransformation;
             context.activePolicy = Settings.ActivePolicy;
             context.exportMaterials = Settings.ExportMaterials;
-            // Scale
-
-            // USDZ is in centimeters.
+         
             context.scale = Settings.Scale;
 
             context.scene.StartTime = 0; // Absolute vs relative Time
@@ -47,11 +68,31 @@ namespace UnityEditor.Formats.USD.Recorder
         protected override void EndRecording(RecordingSession session)
         {
             context.scene.EndTime = session.recorderTime * session.settings.FrameRate;
-            // Support USDz
             context.scene.Save();
             context.scene.Close();
+
+            if (Settings.ExportFormat == UsdRecorderSettings.Format.UsdZ)
+            {
+                Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
+                var assetPath = new SdfAssetPath(usdcFileName);
+                var success = UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
+
+                if (!success)
+                {
+                    Debug.LogError("Couldn't export to the usdz file: " + usdzFilePath);
+                    return;
+                }
+
+                // needed if we export into temp folder first
+                File.Copy(usdzFileName, usdzFilePath, overwrite: true);
+                Directory.SetCurrentDirectory(currentDir);
+                usdzTemporaryDir.Delete(recursive: true);
+            }
+
             context = null;
             Input.Context = null;
+
+            base.EndRecording(session);
         }
 
         protected override void RecordFrame(RecordingSession ctx) // Weird
