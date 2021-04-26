@@ -134,7 +134,7 @@ if __name__ == "__main__":
                           "-DBUILD_TESTS={} ",
                           "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                           "-DCMAKE_MODULE_PATH=./cmake/modules",
-                          "-DUSE_CUSTOM_MONO={}"]).format(build_dir, usd_no_python_dir_path,
+                          "-DUSE_CUSTOM_MONO={} "]).format(build_dir, usd_no_python_dir_path,
                                                                           usd_python_dir_path,
                                                                           args.unity_version,
                                                                           args.component == "usdcs",
