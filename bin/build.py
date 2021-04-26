@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python -B
+﻿#!/usr/bin/env python3 -B
 from builtins import FileNotFoundError
 
 import logging
@@ -78,11 +78,13 @@ if __name__ == "__main__":
     parser.add_argument("--download", dest="download_usd_binaries", action="store_true", default=False,
                         help="Download USD binaries from Unity's Stevedore internal repository. "
                         "Refer to BUILDING.md for command used to build the libraries")
-    parser.add_argument("--target", dest="cmake_target", action="store_const", const="clean", default="install",
+    parser.add_argument("--clean", dest="cmake_target", action="store_const", const="clean", default="install",
                         help="Call cmake with the clean target.")
-    parser.add_argument("--component", dest="component", choices=["usdcs", "usdnet"], default="usdcs")
+    parser.add_argument("--component", dest="component", choices=["usdcs", "usdnet", "tests"], default="usdcs")
     parser.add_argument("-v", "--verbose", action="store_true", default=False,
                         help="Set the CMake verbose flag.")
+    parser.add_argument("--use_custom_mono", action="store_true", default=False,
+                        help="Use a custom mono version. Default is to use the mono compiler provided by Unity.")
 
     args = parser.parse_args()
 
@@ -118,6 +120,8 @@ if __name__ == "__main__":
         build_dir += "_usdcs"
     elif args.component == "usdnet":
         build_dir += "_usdnet"
+    elif args.component == "tests":
+        build_dir += "_tests"
     if not os.path.exists(build_dir):
         os.mkdir(build_dir)
 
@@ -127,13 +131,16 @@ if __name__ == "__main__":
                           "-DUNITY_VERSION={} ",
                           "-DBUILD_USDCS={} ",
                           "-DBUILD_USD_NET={} ",
+                          "-DBUILD_TESTS={} ",
                           "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                          "-DCMAKE_MODULE_PATH=./cmake/modules "]).format(build_dir, usd_no_python_dir_path,
+                          "-DCMAKE_MODULE_PATH=./cmake/modules",
+                          "-DUSE_CUSTOM_MONO={} "]).format(build_dir, usd_no_python_dir_path,
                                                                           usd_python_dir_path,
                                                                           args.unity_version,
                                                                           args.component == "usdcs",
                                                                           args.component == "usdnet",
-                                                                          args.unity_version)
+                                                                          args.component == "tests",
+                                                                          args.use_custom_mono)
 
     if args.verbose:
         cmake_cmd += "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON "

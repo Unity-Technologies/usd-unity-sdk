@@ -46,11 +46,7 @@ FILE(GLOB usd_kind ${CMAKE_BINARY_DIR}/generated/Kind*.cs)
 FILE(INSTALL ${usd_kind} DESTINATION ${CMAKE_SOURCE_DIR}/../src/USD.NET/generated/pxr/usd/kind)
 LIST(APPEND SWIG_FILES pxr/usd/kind/*.cs)
 
-FILE(GLOB usd__ndr ${CMAKE_BINARY_DIR}/generated/_Ndr*.cs)
-FILE(INSTALL ${usd__ndr} DESTINATION ${CMAKE_SOURCE_DIR}/../src/USD.NET/generated/pxr/usd/ndr)
-LIST(APPEND SWIG_FILES pxr/usd/ndr/*.cs)
-
-FILE(GLOB usd_ndr ${CMAKE_BINARY_DIR}/generated/ndr*.cs)
+FILE(GLOB usd_ndr ${CMAKE_BINARY_DIR}/generated/Ndr*.cs)
 FILE(INSTALL ${usd_ndr} DESTINATION ${CMAKE_SOURCE_DIR}/../src/USD.NET/generated/pxr/usd/ndr)
 LIST(APPEND SWIG_FILES pxr/usd/ndr/*.cs)
 

@@ -6,6 +6,7 @@
 
 ### Changed
 - USD.NET.Unity API is now in the package
+- Building USD.NET can now be done with a standalone Mono.
 
 ### Bug Fixes
 - Fix hardcoded package name in InitUSD and BuildPostProcessor (#236)

@@ -84,8 +84,9 @@ def translateTypes(tn):
     return tn.replace("string", "std::string").\
               replace("__int64", "int64_t").\
               replace("pxr_half::half", "GfHalf").\
-              replace("unsigned int64_t", "uint64_t").\
-              replace("long long", "long")
+              replace("unsigned int64_t", "uint64_t"). \
+              replace("unsigned long long", "uint64_t").\
+              replace("long long", "int64_t")
 
 def translateCsTypes(tn):
     return tn.replace("unsigned __int64", "ulong").\

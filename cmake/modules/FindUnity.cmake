@@ -17,7 +17,7 @@ endif()
 # it to the default install location.
 if (NOT DEFINED UNITY)
     if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-      set(UNITY "/Applications/Unity")
+      set(UNITY "/Applications/Unity/Hub/Editor/${UNITY_VERSION}")
     elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
       set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
       set(UNITY "C:/Program Files/Unity")
@@ -31,9 +31,8 @@ endif()
 # or the root of the Unity installation. On mac it can be the app bundle.
 list(APPEND UNITY_EXECUTABLE_PATHS "${UNITY}")
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-  list(APPEND UNITY_EXECUTABLE_PATHS "${UNITY}/Contents/MacOS")
+  list(APPEND UNITY_EXECUTABLE_PATHS "${UNITY}/Unity.app/Contents")
   list(APPEND UNITY_EXECUTABLE_PATHS "${UNITY}/Unity.app/Contents/MacOS")
-  list(APPEND UNITY_EXECUTABLE_PATHS "${UNITY}/Unity/Hub/Editor")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
   list(APPEND UNITY_EXECUTABLE_PATHS "${UNITY}/Editor")
   list(APPEND UNITY_EXECUTABLE_PATHS "${UNITY}/Editor/${UNITY_VERSION}/Editor")
@@ -80,19 +79,19 @@ dotnet_find_library(CSHARP_UNITYENGINE_LIBRARY UnityEngine.dll PATHS ${UNITY_EDI
 
 # Find Unity mono
 find_program(MCS mcs PATHS ${UNITY_EXECUTABLE_PATHS}
-            PATH_SUFFIXES Data/MonoBleedingEdge/bin
+            PATH_SUFFIXES Data/MonoBleedingEdge/bin MonoBleedingEdge/bin
             NO_DEFAULT_PATH
             )
-find_library(MONO_MSCORLIB mscorlib.dll PATHS ${UNITY_EXECUTABLE_PATHS}
-            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5/
+find_file(MONO_MSCORLIB mscorlib.dll PATHS ${UNITY_EXECUTABLE_PATHS}
+            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5/ MonoBleedingEdge/lib/mono/4.5/
             NO_DEFAULT_PATH
             )
-find_library(MONO_SYSTEM_CORE_LIB System.Core.dll PATHS ${UNITY_EXECUTABLE_PATHS}
-            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5
+find_file(MONO_SYSTEM_CORE_LIB System.Core.dll PATHS ${UNITY_EXECUTABLE_PATHS}
+            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5 MonoBleedingEdge/lib/mono/4.5
             NO_DEFAULT_PATH
             )
-find_library(MONO_SYSTEM_LIB System.dll PATHS ${UNITY_EXECUTABLE_PATHS}
-            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5
+find_file(MONO_SYSTEM_LIB System.dll PATHS ${UNITY_EXECUTABLE_PATHS}
+            PATH_SUFFIXES /Data/MonoBleedingEdge/lib/mono/4.5 MonoBleedingEdge/lib/mono/4.5
             NO_DEFAULT_PATH
             )
 
