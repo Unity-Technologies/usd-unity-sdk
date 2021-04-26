@@ -65,3 +65,9 @@ TestProject/Assets/*
 inst-dbg/
 package/com.unity.formats.usd/TestRunnerOptions.json.meta
 /artifacts/
+TestProject/*/.idea
+TestProject/Usd-Recorder/Library
+TestProject/**/Temp
+TestProject/**/Logs
+TestProject/**/*.csproj
+TestProject/**/*.sln

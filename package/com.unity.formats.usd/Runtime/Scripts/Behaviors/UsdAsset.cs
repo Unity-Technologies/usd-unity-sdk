@@ -229,7 +229,7 @@ namespace Unity.Formats.USD
 #if UNITY_EDITOR
             if (!UnityEditor.EditorUtility.IsPersistent(root))
             {
-                var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
+                var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
                 if (prefabStage != null)
                 {
                     if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root))

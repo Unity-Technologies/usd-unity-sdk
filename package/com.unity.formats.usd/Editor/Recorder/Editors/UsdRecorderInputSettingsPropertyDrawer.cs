@@ -1,3 +1,4 @@
+#if RECORDER_AVAILABLE
 using UnityEngine;
 
 namespace UnityEditor.Formats.USD.Recorder
@@ -20,3 +21,4 @@ namespace UnityEditor.Formats.USD.Recorder
         }
     }
 }
+#endif

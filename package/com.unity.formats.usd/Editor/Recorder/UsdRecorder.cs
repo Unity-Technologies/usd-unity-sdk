@@ -1,10 +1,10 @@
+#if RECORDER_AVAILABLE
 using System.IO;
 using pxr;
 using Unity.Formats.USD;
 using UnityEditor.Recorder;
 using UnityEngine;
 
-#if RECORDER_AVAILABLE
 namespace UnityEditor.Formats.USD.Recorder
 {
     public class UsdRecorder : GenericRecorder<UsdRecorderSettings>
@@ -54,7 +54,7 @@ namespace UnityEditor.Formats.USD.Recorder
             context.basisTransform = Settings.BasisTransformation;
             context.activePolicy = Settings.ActivePolicy;
             context.exportMaterials = Settings.ExportMaterials;
-         
+
             context.scale = Settings.Scale;
 
             context.scene.StartTime = 0; // Absolute vs relative Time
