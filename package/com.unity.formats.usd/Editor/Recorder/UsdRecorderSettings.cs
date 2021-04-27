@@ -11,7 +11,7 @@ namespace UnityEditor.Formats.USD.Recorder
     [RecorderSettings(typeof(UsdRecorder), "Usd Clip", "usd_recorder")]
     public class UsdRecorderSettings : RecorderSettings
     {
-        [SerializeField] UsdRecorderInputSettings inputSettings = new();
+        [SerializeField] UsdRecorderInputSettings inputSettings = new UsdRecorderInputSettings();
         [SerializeField] Format exportFormat;
         [SerializeField] UsdInterpolationType interpolationType = UsdInterpolationType.UsdInterpolationTypeLinear;
         [SerializeField] BasisTransformation basisTransformation = BasisTransformation.SlowAndSafe;
@@ -61,13 +61,17 @@ namespace UnityEditor.Formats.USD.Recorder
         {
             get
             {
-                return exportFormat switch
+                switch (exportFormat)
                 {
-                    Format.Usd => "usd",
-                    Format.Usda => "usda",
-                    Format.UsdZ => "usdz",
-                    _ => throw new ArgumentException("Unhandled format")
-                };
+                    case Format.Usd:
+                        return "usd";
+                    case Format.Usda:
+                        return "usda";
+                    case Format.UsdZ:
+                        return "usdz";
+                    default:
+                        throw new ArgumentException("Unhandled format");
+                }
             }
         }
 

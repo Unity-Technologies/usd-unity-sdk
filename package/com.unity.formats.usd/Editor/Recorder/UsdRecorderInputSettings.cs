@@ -10,7 +10,7 @@ namespace UnityEditor.Formats.USD.Recorder
     public class UsdRecorderInputSettings: RecorderInputSettings
     {
         [SerializeField] string m_BindingId = null;
-        public GameObject gameObject
+        public GameObject GameObject
         {
             get
             {
@@ -35,7 +35,7 @@ namespace UnityEditor.Formats.USD.Recorder
 
         protected override bool ValidityCheck(List<string> errors)
         {
-            if (gameObject == null)
+            if (GameObject == null)
             {
                 errors.Add("GameObject cannot be null");
                 return false;

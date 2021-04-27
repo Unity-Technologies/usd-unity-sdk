@@ -12,10 +12,10 @@ namespace UnityEditor.Formats.USD.Recorder
             //var target = (UsdRecorderInputSettings)property.objectReferenceValue;
             using (var changed = new EditorGUI.ChangeCheckScope())
             {
-                var go = EditorGUI.ObjectField(position, label, target.gameObject, typeof(GameObject), true) as GameObject;
+                var go = EditorGUI.ObjectField(position, label, target.GameObject, typeof(GameObject), true) as GameObject;
                 if (changed.changed)
                 {
-                    target.gameObject = go;
+                    target.GameObject = go;
                 }
             }
         }

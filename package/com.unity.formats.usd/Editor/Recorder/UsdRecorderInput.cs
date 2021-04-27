@@ -11,8 +11,8 @@ namespace UnityEditor.Formats.USD.Recorder
 
         protected override void BeginRecording(RecordingSession session)
         {
-            SceneExporter.SyncExportContext(Settings.gameObject, Context);
-            SceneExporter.Export(Settings.gameObject,
+            SceneExporter.SyncExportContext(Settings.GameObject, Context);
+            SceneExporter.Export(Settings.GameObject,
                 Context,
                 zeroRootTransform: false);
         }
@@ -21,7 +21,7 @@ namespace UnityEditor.Formats.USD.Recorder
         {
             Context.scene.Time = session.recorderTime * session.settings.FrameRate;
             Context.exportMaterials = false;
-            SceneExporter.Export(Settings.gameObject, Context, zeroRootTransform: false);
+            SceneExporter.Export(Settings.GameObject, Context, zeroRootTransform: false);
         }
     }
 }
