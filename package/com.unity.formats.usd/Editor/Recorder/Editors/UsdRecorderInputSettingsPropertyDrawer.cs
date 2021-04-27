@@ -9,7 +9,6 @@ namespace UnityEditor.Formats.USD.Recorder
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             Initialize(property);
-            //var target = (UsdRecorderInputSettings)property.objectReferenceValue;
             using (var changed = new EditorGUI.ChangeCheckScope())
             {
                 var go = EditorGUI.ObjectField(position, label, target.GameObject, typeof(GameObject), true) as GameObject;
