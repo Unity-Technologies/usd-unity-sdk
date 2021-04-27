@@ -59,12 +59,13 @@ namespace DefaultNamespace
         [TearDown]
         public void TearDown()
         {
-            foreach (var file in deleteFileList)
+            // For some reason Yamato throws System.UnauthorizedAccessException 
+        /*    foreach (var file in deleteFileList)
             {
                 File.Delete(file);
             }
 
-            deleteFileList.Clear();
+            deleteFileList.Clear();*/
         }
 
         [UnityTest]
