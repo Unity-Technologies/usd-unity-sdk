@@ -3,6 +3,7 @@
 ## Unreleased
 ### Features
 - New Import/Export API. See the ImportHelpers and ExportHelpers class
+- Added Integration with the Recordfer Package (compatible with >= 2.2.0)
 
 ### Changed
 - USD.NET.Unity API is now in the package
