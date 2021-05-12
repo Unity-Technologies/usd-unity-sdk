@@ -214,6 +214,7 @@ namespace Unity.Formats.USD
             return fileName + "_prefab";
         }
 
+#if UNITY_EDITOR
         static string GetPrefabPath(string usdPath, string dataPath)
         {
             var invalidChars = Path.GetInvalidFileNameChars();
@@ -223,5 +224,6 @@ namespace Unity.Formats.USD
             prefabPath = AssetDatabase.GenerateUniqueAssetPath(prefabPath);
             return prefabPath;
         }
+#endif
     }
 }
