@@ -160,7 +160,10 @@ namespace Unity.Formats.USD
                 return true;
             }
 
-    public static void BuildSkinnedMesh(string meshPath,
+            return true;
+        }
+
+        public static void BuildSkinnedMesh(string meshPath,
                                         string skelPath,
                                         SkeletonSample skeleton,
                                         UsdSkelSkinningQuery skinningQuery,
@@ -168,17 +171,15 @@ namespace Unity.Formats.USD
                                         PrimMap primMap,
                                         SceneImportOptions options,
                                         int[] faceVertexIndices,
-                                        int originalPointNumber) {
-      // The mesh renderer must already exist, since hte mesh also must already exist.
-      var smr = go.GetComponent<SkinnedMeshRenderer>();
-      if (!smr)
-      {
-          throw new Exception(
-            "Error importing "
-            + meshPath
-            + " SkinnnedMeshRenderer not present on GameObject"
-          );
-      }
+                                        int originalPointNumber)
+        {
+            // The mesh renderer must already exist, since hte mesh also must already exist.
+            var smr = go.GetComponent<SkinnedMeshRenderer>();
+            if (!smr)
+            {
+                throw new Exception(
+                    "Error importing " + meshPath + " SkinnnedMeshRenderer not present on GameObject");
+            }
 
             // Get and validate the joint weights and indices informations.
             UsdGeomPrimvar jointWeights = skinningQuery.GetJointWeightsPrimvar();
