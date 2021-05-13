@@ -3,14 +3,30 @@ test_editors:
   - version: 2020.1
   - version: 2019.4
 test_platforms:
-  - name: win
+  - name: win-standalone-il2cpp
     type: Unity::VM
     image: package-ci/win10:stable
     flavor: b1.large
-  - name: mac
+    platform: standalone
+    backend: il2cpp
+  - name: win-standalone-mono
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+    platform: standalone
+    backend: mono
+  - name: win-editor
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.large
+    platform: editmode
+    backend: mono
+  - name: mac-editor
     type: Unity::VM::osx
     image: package-ci/mac:stable
     flavor: m1.mac
+    platform: editmode
+    backend: mono
 ---
 pack:
   name: Pack
@@ -37,7 +53,7 @@ test_{{ platform.name }}_{{ editor.version }}:
   commands:
       - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
       - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd
-        --enable-code-coverage --code-coverage-options 'enableCyclomaticComplexity;generateHtmlReport'
+        --enable-code-coverage --code-coverage-options 'enableCyclomaticComplexity;generateHtmlReport' --platform {{ platform.platform  }} --backend {{ platform.backend  }}
   artifacts:
     logs:
       paths:
