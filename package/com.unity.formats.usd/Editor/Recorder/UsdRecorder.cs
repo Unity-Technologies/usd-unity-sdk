@@ -1,4 +1,5 @@
 #if RECORDER_AVAILABLE
+using System;
 using System.IO;
 using pxr;
 using Unity.Formats.USD;
@@ -43,10 +44,18 @@ namespace UnityEditor.Formats.USD.Recorder
                 outputFile = Path.Combine(tmpDirPath,usdcFileName);
             }
 
-            context = new ExportContext
+            try
             {
-                scene = ExportHelpers.InitForSave(outputFile)
-            };
+                context = new ExportContext
+                {
+                    scene = ExportHelpers.InitForSave(outputFile)
+                };
+            }
+            catch (Exception)
+            {
+                throw new InvalidOperationException($"The file is already open in Unity. Please close all references to it and try again: {outputFile}");
+            }
+
 
             context.scene.FrameRate = Settings.FrameRate; // Variable framerate support ?
             context.scene.Stage.SetInterpolationType(Settings.InterpolationType); // User Option
