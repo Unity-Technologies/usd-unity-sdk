@@ -129,6 +129,7 @@ install(FILES ${PIXAR_DEPS} DESTINATION ${DEPENDENCIES_INSTALL_DIR})
 
 # Install the usd plugin folder
 install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/..")
+        PATTERN "codegenTemplates" EXCLUDE)
 
 # Tag the generated folders so they are removed when doing calling the clean target
 # Doesn't work with the VC generator ...
