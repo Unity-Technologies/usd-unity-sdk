@@ -1,13 +1,13 @@
 {
     "name": "USD.NET.Unity",
-    "references": [],
+    "references": [
+      "USD.NET"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
     "overrideReferences": false,
-    "precompiledReferences": [
-        "USD.NET.dll"
-    ],
+    "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],

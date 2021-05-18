@@ -1,6 +1,7 @@
 {
     "name": "Unity.Formats.USD.HelloUsd",
     "references": [
+        "USD.NET",
         "Unity.Formats.USD.Runtime"
     ],
     "optionalUnityReferences": [
@@ -15,9 +16,7 @@
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
-    "precompiledReferences": [
-        "USD.NET.dll"
-    ],
+    "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": []
 }
