@@ -73,7 +73,9 @@ namespace Unity.Formats.USD.Tests
             {
                 ExportHelpers.ExportGameObjects(new GameObject[] {null}, scene, BasisTransformation.SlowAndSafe);
             });
-            UnityEngine.TestTools.LogAssert.Expect(LogType.Exception, "NullReferenceException: Object reference not set to an instance of an object");
+
+            // This works in standalone, to make it works in play mode remove the trailing '.' !!!
+            UnityEngine.TestTools.LogAssert.Expect(LogType.Exception, "NullReferenceException: Object reference not set to an instance of an object.");
         }
 
         [Test]
