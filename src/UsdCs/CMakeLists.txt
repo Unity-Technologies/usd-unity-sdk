@@ -137,5 +137,5 @@ install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/.."
 # Tag the generated folders so they are removed when doing calling the clean target
 # Doesn't work with the VC generator ...
 set_target_properties(${USD_SWIG_LIBRARY} PROPERTIES ADDITIONAL_CLEAN_FILES
-    "${CMAKE_SOURCE_DIR}/cmake/generated;${CMAKE_SOURCE_DIR}/src/USD.NET/generated"
+    "${CMAKE_SOURCE_DIR}/cmake/generated;${CMAKE_SOURCE_DIR}/../package/com.unity.formats.usd/Dependencies/USD.NET/generated"
 )
