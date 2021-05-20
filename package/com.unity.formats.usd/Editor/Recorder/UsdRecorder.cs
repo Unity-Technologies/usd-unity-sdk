@@ -25,7 +25,7 @@ namespace UnityEditor.Formats.USD.Recorder
 
             InitUsd.Initialize();
             var outputFile = Settings.FileNameGenerator.BuildAbsolutePath(session);
-            if (Settings.ExportFormat == UsdRecorderSettings.Format.UsdZ) // FIXME Support USDz
+            if (Settings.ExportFormat == UsdRecorderSettings.Format.USDZ) // FIXME Support USDz
             {
                 currentDir = Directory.GetCurrentDirectory();
                 // Setup a temporary directory to export the wanted USD file and zip it.
@@ -80,7 +80,7 @@ namespace UnityEditor.Formats.USD.Recorder
             context.scene.Save();
             context.scene.Close();
 
-            if (Settings.ExportFormat == UsdRecorderSettings.Format.UsdZ)
+            if (Settings.ExportFormat == UsdRecorderSettings.Format.USDZ)
             {
                 Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
                 var assetPath = new SdfAssetPath(usdcFileName);

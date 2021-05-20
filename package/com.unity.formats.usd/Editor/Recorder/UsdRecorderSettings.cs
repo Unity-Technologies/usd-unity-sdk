@@ -14,15 +14,15 @@ namespace UnityEditor.Formats.USD.Recorder
         [SerializeField] UsdRecorderInputSettings inputSettings = new UsdRecorderInputSettings();
         [SerializeField] Format exportFormat;
         [SerializeField] UsdInterpolationType interpolationType = UsdInterpolationType.UsdInterpolationTypeLinear;
-        [SerializeField] BasisTransformation basisTransformation = BasisTransformation.SlowAndSafe;
+        [SerializeField] BasisTransformation coordinateConversion = BasisTransformation.SlowAndSafe;
         [SerializeField] ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
         [SerializeField] bool exportMaterials = true;
         [SerializeField] float scale = 1;
         public enum Format
         {
-            Usd,
-            Usda,
-            UsdZ,
+            USD,
+            USDA,
+            USDZ,
         }
 
         public UsdInterpolationType InterpolationType
@@ -51,8 +51,8 @@ namespace UnityEditor.Formats.USD.Recorder
 
         public BasisTransformation BasisTransformation
         {
-            get => basisTransformation;
-            set => basisTransformation = value;
+            get => coordinateConversion;
+            set => coordinateConversion = value;
         }
 
         public Format ExportFormat => exportFormat;
@@ -63,11 +63,11 @@ namespace UnityEditor.Formats.USD.Recorder
             {
                 switch (exportFormat)
                 {
-                    case Format.Usd:
+                    case Format.USD:
                         return "usd";
-                    case Format.Usda:
+                    case Format.USDA:
                         return "usda";
-                    case Format.UsdZ:
+                    case Format.USDZ:
                         return "usdz";
                     default:
                         throw new ArgumentException("Unhandled format");

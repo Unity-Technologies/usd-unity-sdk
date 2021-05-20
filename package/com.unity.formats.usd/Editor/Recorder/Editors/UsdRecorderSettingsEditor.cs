@@ -10,7 +10,7 @@ namespace UnityEditor.Formats.USD.Recorder
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("exportFormat"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("interpolationType"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("basisTransformation"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("coordinateConversion"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("activePolicy"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("exportMaterials"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("scale"));
