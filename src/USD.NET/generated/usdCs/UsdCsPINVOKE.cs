@@ -25902,6 +25902,63 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelSkinningQuery")]
   public static extern void delete_UsdSkelSkinningQuery(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelBlendShapeQuery__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdSkelBlendShapeQuery__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelBlendShapeQuery__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdSkelBlendShapeQuery__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_IsValid")]
+  public static extern bool UsdSkelBlendShapeQuery_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_GetPrim")]
+  public static extern global::System.IntPtr UsdSkelBlendShapeQuery_GetPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_GetBlendShape")]
+  public static extern global::System.IntPtr UsdSkelBlendShapeQuery_GetBlendShape(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_GetInbetween")]
+  public static extern global::System.IntPtr UsdSkelBlendShapeQuery_GetInbetween(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_GetBlendShapeIndex")]
+  public static extern uint UsdSkelBlendShapeQuery_GetBlendShapeIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_GetNumBlendShapes")]
+  public static extern uint UsdSkelBlendShapeQuery_GetNumBlendShapes(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_GetNumSubShapes")]
+  public static extern uint UsdSkelBlendShapeQuery_GetNumSubShapes(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputeBlendShapePointIndices")]
+  public static extern global::System.IntPtr UsdSkelBlendShapeQuery_ComputeBlendShapePointIndices(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputeSubShapePointOffsets")]
+  public static extern global::System.IntPtr UsdSkelBlendShapeQuery_ComputeSubShapePointOffsets(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputeSubShapeNormalOffsets")]
+  public static extern global::System.IntPtr UsdSkelBlendShapeQuery_ComputeSubShapeNormalOffsets(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputeSubShapeWeights")]
+  public static extern bool UsdSkelBlendShapeQuery_ComputeSubShapeWeights(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputeFlattenedSubShapeWeights")]
+  public static extern bool UsdSkelBlendShapeQuery_ComputeFlattenedSubShapeWeights(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputeDeformedPoints")]
+  public static extern bool UsdSkelBlendShapeQuery_ComputeDeformedPoints(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, global::System.Runtime.InteropServices.HandleRef jarg7);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputeDeformedNormals")]
+  public static extern bool UsdSkelBlendShapeQuery_ComputeDeformedNormals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, global::System.Runtime.InteropServices.HandleRef jarg7);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_ComputePackedShapeTable")]
+  public static extern bool UsdSkelBlendShapeQuery_ComputePackedShapeTable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdSkelBlendShapeQuery_GetDescription")]
+  public static extern string UsdSkelBlendShapeQuery_GetDescription(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdSkelBlendShapeQuery")]
+  public static extern void delete_UsdSkelBlendShapeQuery(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdSkelTopology__SWIG_0")]
   public static extern global::System.IntPtr new_UsdSkelTopology__SWIG_0();
 

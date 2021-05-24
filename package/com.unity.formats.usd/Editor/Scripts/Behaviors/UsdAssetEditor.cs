@@ -314,6 +314,7 @@ namespace Unity.Formats.USD
             usdAsset.m_importCameras = EditorGUILayout.Toggle("Import Cameras", usdAsset.m_importCameras);
             usdAsset.m_importMeshes = EditorGUILayout.Toggle("Import Meshes", usdAsset.m_importMeshes);
             usdAsset.m_importSkinning = EditorGUILayout.Toggle("Import Skinning", usdAsset.m_importSkinning);
+            usdAsset.m_importBlendShapes = EditorGUILayout.Toggle("Import BlendShapes", usdAsset.m_importBlendShapes);
             usdAsset.m_importTransforms = EditorGUILayout.Toggle("Import Transforms", usdAsset.m_importTransforms);
             if (EditorGUI.EndChangeCheck())
                 EditorUtility.SetDirty(usdAsset);

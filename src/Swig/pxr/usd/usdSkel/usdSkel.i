@@ -27,6 +27,7 @@
 %include "usdSkelSkeleton.i"
 %include "usdSkelSkeletonQuery.i"
 %include "usdSkelSkinningQuery.i"
+%include "usdSkelBlendShapeQuery.i"
 %include "usdSkelTopology.i"
 %include "usdSkelUtils.i"
 
