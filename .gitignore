@@ -70,3 +70,5 @@ package/com.unity.formats.usd/TestRunnerOptions.json.meta
 .vscode
 .idea
 *.user
+build_usdnet
+build_usdcs
