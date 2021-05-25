@@ -48,7 +48,7 @@ def download_usd_binaries(usd_version, python_version=PYTHON_VERSION, output_dir
         # Download usd archive from artifactory/stevedore
         if not os.path.exists(usd_archive_path):
             logging.info("Downloading USD v{0} for python {1} to {2} ...".format(usd_version, python_version, output_dir))
-            p = subprocess.Popen(shlex.split('wget -P "{0}" {1}/{2}'.format(output_dir, STEVEDORE_REPO,
+            p = subprocess.Popen(shlex.split('wget --no-check-certificate -P "{0}" {1}/{2}'.format(output_dir, STEVEDORE_REPO,
                                                                             artifactory_usd_archive)))
             p.wait()
 
