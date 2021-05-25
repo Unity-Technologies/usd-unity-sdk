@@ -19,8 +19,8 @@ using pxr;
 using USD.NET;
 using UnityEngine;
 
-namespace Tests.Cases {
-  class UsdSkelTests : UnitTest {
+namespace USD.NET.Tests {
+  class UsdSkelTests : UsdTests {
 
   }
 }

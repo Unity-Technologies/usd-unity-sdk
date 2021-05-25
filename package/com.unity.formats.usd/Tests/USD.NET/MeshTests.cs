@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using pxr;
+using NUnit.Framework;
 
-namespace Tests.Cases {
-  class MeshTests : UnitTest {
-      public static void TriangulationTest() {
+namespace USD.NET.Tests {
+  class MeshTests : UsdTests {
+
+      [Test]
+      public void TriangulationTest() {
       VtIntArray indices = new VtIntArray();
       VtIntArray faceCounts = new VtIntArray();
 
@@ -46,37 +48,37 @@ namespace Tests.Cases {
 
       UsdGeomMesh.Triangulate(indices, faceCounts);
 
-      AssertEqual((int)faceCounts.size(), 6);
+      Assert.AreEqual(6, (int)faceCounts.size());
 
       for (int i = 0; i < faceCounts.size(); i++) {
-        AssertEqual((int)faceCounts[i], 3);
+        Assert.AreEqual(3, (int)faceCounts[i]);
       }
 
-      AssertEqual((int)indices.size(), 18);
+      Assert.AreEqual(18, (int)indices.size());
 
-      AssertEqual(indices[0], 0);
-      AssertEqual(indices[1], 1);
-      AssertEqual(indices[2], 2);
+      Assert.AreEqual( 0, indices[0]);
+      Assert.AreEqual( 1, indices[1]);
+      Assert.AreEqual( 2, indices[2]);
 
-      AssertEqual(indices[3], 0);
-      AssertEqual(indices[4], 2);
-      AssertEqual(indices[5], 3);
+      Assert.AreEqual( 0, indices[3]);
+      Assert.AreEqual( 2, indices[4]);
+      Assert.AreEqual( 3, indices[5]);
 
-      AssertEqual(indices[6], 0);
-      AssertEqual(indices[7], 3);
-      AssertEqual(indices[8], 4);
+      Assert.AreEqual( 0, indices[6]);
+      Assert.AreEqual( 3, indices[7]);
+      Assert.AreEqual( 4, indices[8]);
 
-      AssertEqual(indices[9], 5);
-      AssertEqual(indices[10], 6);
-      AssertEqual(indices[11], 7);
+      Assert.AreEqual( 5, indices[9]);
+      Assert.AreEqual( 6, indices[10]);
+      Assert.AreEqual( 7, indices[11]);
 
-      AssertEqual(indices[12], 5);
-      AssertEqual(indices[13], 7);
-      AssertEqual(indices[14], 8);
+      Assert.AreEqual( 5, indices[12]);
+      Assert.AreEqual( 7, indices[13]);
+      Assert.AreEqual( 8, indices[14]);
 
-      AssertEqual(indices[15], 9);
-      AssertEqual(indices[16], 10);
-      AssertEqual(indices[17], 11);
+      Assert.AreEqual(9, indices[15]);
+      Assert.AreEqual(10, indices[16]);
+      Assert.AreEqual(11,indices[17]);
     }
   }
 }

@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
-using Unity.Formats.USD;
 
-namespace USD.NET.Unity.Tests
+namespace USD.NET.Tests
 {
     class UsdTests
     {
@@ -58,12 +57,12 @@ namespace USD.NET.Unity.Tests
             File.Delete(filename);
         }
 
-        static string GetTempFile(string extension = "usd")
+        protected static string GetTempFile(string extension = "usd")
         {
             return Path.ChangeExtension(Path.GetTempFileName(), extension);
         }
 
-        static protected void AssertEqual<T>(T[] first, T[] second)
+        protected static void AssertEqual<T>(T[] first, T[] second)
         {
             if (first == null && second == null)
             {
@@ -159,6 +158,5 @@ namespace USD.NET.Unity.Tests
                 throw new Exception("Values do not match for " + typeof(T).Name);
             }
         }
-
     }
 }

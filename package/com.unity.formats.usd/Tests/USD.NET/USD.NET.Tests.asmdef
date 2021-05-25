@@ -1,10 +1,8 @@
 {
-    "name": "USD.NET.Unity.Tests",
-    "rootNamespace": "",
+    "name": "USD.NET.Tests",
     "references": [
-        "Unity.Formats.USD.Runtime",
-        "USD.NET.Unity",
-        "USD.NET"
+        "USD.NET",
+        "UnityEngine.TestRunner"
     ],
     "includePlatforms": [
         "Editor",
@@ -20,8 +18,9 @@
     ],
     "autoReferenced": false,
     "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
+      "UNITY_INCLUDE_TESTS"
     ],
+    "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
 }
