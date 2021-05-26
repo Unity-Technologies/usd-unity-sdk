@@ -14,9 +14,9 @@ test_platforms:
     flavor: m1.mac
 test_backends:
   - name: il2cpp
-    editor: 2020.1
+    editor: 2020.3
   - name: mono
-    editor: 2020.1
+    editor: 2020.3
 ---
 pack:
   name: Pack
@@ -54,8 +54,8 @@ test_{{ platform.name }}_{{ editor.version }}:
 {% endfor %}
 
 {% for backend in test_backends %}
-{% for platform in test_standalone_platforms %}
-test_standalone_{{ platform.name }}_{{ backend.editor }}:
+{% for platform in test_platforms %}
+test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}:
   name : Test standalone {{backend.editor}} {{ backend.name }}  {{ platform.name }}
   agent:
     type: {{ platform.type }}
@@ -90,8 +90,8 @@ test_trigger:
       {% endfor %}
       {% endfor %}
       {% for backend in test_backends %}
-      {% for platform in test_standalone_platforms % }
-    - .yamato/upm-ci.yml#test_standalone_{{platform.name}}_{{backend.editor}}
+      {% for platform in test_platforms %}
+    - .yamato/upm-ci.yml#test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}
       {% endfor %}
       {% endfor %}
 
@@ -137,7 +137,7 @@ run_preview_verified_staging:
       {% endfor %}
       {% endfor %}
       {% for backend in test_backends %}
-      { % for platform in test_standalone_platforms % }
-    - .yamato/upm-ci.yml#test_standalone_{{platform.name}}_{{backend.editor}}
+      {% for platform in test_platforms %}
+    - .yamato/upm-ci.yml#test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}
       {% endfor %}
       {% endfor %}
