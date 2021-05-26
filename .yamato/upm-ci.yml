@@ -1,32 +1,22 @@
 test_editors:
   - version: trunk
-  - version: 2020.1
+  - version: 2021.1
+  - version: 2020.3
   - version: 2019.4
 test_platforms:
-  - name: win-standalone-il2cpp
+  - name: win
     type: Unity::VM
     image: package-ci/win10:stable
     flavor: b1.large
-    platform: standalone
-    backend: il2cpp
-  - name: win-standalone-mono
-    type: Unity::VM
-    image: package-ci/win10:stable
-    flavor: b1.large
-    platform: standalone
-    backend: mono
-  - name: win-editor
-    type: Unity::VM
-    image: package-ci/win10:stable
-    flavor: b1.large
-    platform: editmode
-    backend: mono
-  - name: mac-editor
+  - name: mac
     type: Unity::VM::osx
     image: package-ci/mac:stable
     flavor: m1.mac
-    platform: editmode
-    backend: mono
+test_backends:
+  - name: il2cpp
+    editor: 2020.1
+  - name: mono
+    editor: 2020.1
 ---
 pack:
   name: Pack
@@ -53,7 +43,28 @@ test_{{ platform.name }}_{{ editor.version }}:
   commands:
       - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
       - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd
-        --enable-code-coverage --code-coverage-options 'enableCyclomaticComplexity;generateHtmlReport' --platform {{ platform.platform  }} --backend {{ platform.backend  }}
+        --enable-code-coverage --code-coverage-options 'enableCyclomaticComplexity;generateHtmlReport'
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+  dependencies:
+    - .yamato/upm-ci.yml#pack
+{% endfor %}
+{% endfor %}
+
+{% for backend in test_backends %}
+{% for platform in test_standalone_platforms %}
+test_standalone_{{ platform.name }}_{{ backend.editor }}:
+  name : Test standalone {{backend.editor}} {{ backend.name }}  {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  commands:
+    - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+    - upm-ci package test --unity-version {{ backend.editor }} --package-path package/com.unity.formats.usd
+      --platform standalone --backend {{ backend.name  }} --extra-utr-arg=--testfilter=StandaloneSanityTest
   artifacts:
     logs:
       paths:
@@ -76,6 +87,11 @@ test_trigger:
       {% for editor in test_editors %}
       {% for platform in test_platforms %}
     - .yamato/upm-ci.yml#test_{{platform.name}}_{{editor.version}}
+      {% endfor %}
+      {% endfor %}
+      {% for backend in test_backends %}
+      {% for platform in test_standalone_platforms % }
+    - .yamato/upm-ci.yml#test_standalone_{{platform.name}}_{{backend.editor}}
       {% endfor %}
       {% endfor %}
 
@@ -118,5 +134,10 @@ run_preview_verified_staging:
       {% for editor in test_editors %}
       {% for platform in test_platforms %}
     - .yamato/upm-ci.yml#test_{{ platform.name }}_{{ editor.version }}
+      {% endfor %}
+      {% endfor %}
+      {% for backend in test_backends %}
+      { % for platform in test_standalone_platforms % }
+    - .yamato/upm-ci.yml#test_standalone_{{platform.name}}_{{backend.editor}}
       {% endfor %}
       {% endfor %}
