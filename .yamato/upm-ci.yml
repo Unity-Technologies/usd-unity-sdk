@@ -1,6 +1,7 @@
 test_editors:
   - version: trunk
-  - version: 2020.1
+  - version: 2020.2
+  - version: 2021.1
   - version: 2019.4
 test_platforms:
   - name: win
@@ -37,7 +38,7 @@ test_{{ platform.name }}_{{ editor.version }}:
   commands:
       - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
       - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd
-        --enable-code-coverage --code-coverage-options 'enableCyclomaticComplexity;generateHtmlReport'
+        --enable-code-coverage --code-coverage-options 'enableCyclomaticComplexity;generateHtmlReport' --extra-create-project-arg="-upmNoDefaultPackages"
   artifacts:
     logs:
       paths:
