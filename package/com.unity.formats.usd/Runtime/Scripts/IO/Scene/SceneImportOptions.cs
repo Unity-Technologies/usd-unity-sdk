@@ -130,7 +130,6 @@ namespace Unity.Formats.USD
         public bool importPointInstances = true;
         public bool importMonoBehaviours = false;
 
-    public FaceVaryingOption attrUnrollNeeded = FaceVaryingOption.None;
 
     /// <summary>
     /// Typically USD data is right-handed and Unity is left handed; this option indicates how

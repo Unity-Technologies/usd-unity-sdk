@@ -682,29 +682,6 @@ namespace Unity.Formats.USD
             return newPoints;
         }
 
-        static void ComputeIfUnrollNeeded(MeshSample usdMesh, SceneImportOptions options)
-        {
-            // If an attribute is face varying, its number of element will be usdMesh.indices.Length.
-            var pointCount = usdMesh.points.Length;
-            var faceCount = usdMesh.faceVertexCounts.Length;
-
-            // Potential face varying attributes are: normals, tangents, color and uv (st, uv, uv2. uv3. uv4) + all the
-            // uv primvars related to materials.
-            var isFaceVarying =
-                IsFaceVaryingAttribute(options.meshOptions.normals, usdMesh.normals, pointCount, faceCount) ||
-                IsFaceVaryingAttribute(options.meshOptions.tangents, usdMesh.tangents, pointCount, faceCount) ||
-                IsFaceVaryingAttribute(options.meshOptions.color, usdMesh.colors, pointCount, faceCount) ||
-                IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.st) ||
-                IsFaceVaryingAttribute(options.meshOptions.texcoord0, usdMesh.uv) ||
-                IsFaceVaryingAttribute(options.meshOptions.texcoord1, usdMesh.uv2) ||
-                IsFaceVaryingAttribute(options.meshOptions.texcoord2, usdMesh.uv3) ||
-                IsFaceVaryingAttribute(options.meshOptions.texcoord3, usdMesh.uv4) ||
-                // TODO: We should actually check the uv primvars related to bind material here, cf. LoadPrimvars(...)
-                options.ShouldBindMaterials;
-
-            options.attrUnrollNeeded = isFaceVarying ? FaceVaryingOption.Unroll : FaceVaryingOption.DontUnroll;
-        }
-
         static bool IsFaceVaryingAttribute<T>(ImportMode mode, T[] attribute, int pointCount, int faceCount)
         {
             // TODO: Attribute interpolation should be retrieve via the USD API, not assumed from the data length.

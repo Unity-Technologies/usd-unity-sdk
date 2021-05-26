@@ -109,7 +109,7 @@ namespace Unity.Formats.USD.Tests
 
             scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
             gameObject = ImportHelpers.ImportSceneAsGameObject(scene, null,
-                new SceneImportOptions {attrUnrollNeeded = FaceVaryingOption.Unroll, payloadPolicy = PayloadPolicy.LoadAll});
+                new SceneImportOptions { payloadPolicy = PayloadPolicy.LoadAll});
         }
 
         [TearDown]
