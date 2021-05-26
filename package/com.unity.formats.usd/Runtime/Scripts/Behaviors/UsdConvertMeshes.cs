@@ -116,28 +116,27 @@ namespace Unity.Formats.USD
 //     }
 
 
-    public class UsdConvertMeshes : MonoBehaviour, IImportPostProcessHierarchy
+    public static class UsdConvertMeshes
     {
-        Scene _scene;
 
-        public Scene Scene
-        {
-            get => _scene;
-            set => _scene = value;
-        }
+        static readonly GfMatrix4f Basis = new GfMatrix4f(1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, -1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f);
 
-        public void PostProcessHierarchy(PrimMap primMap, SceneImportOptions sceneImportOptions)
+
+        public static void PostProcessHierarchy(PrimMap primMap, Scene scene, SceneImportOptions sceneImportOptions)
         {
             // ReadSamples(primMap, sceneImportOptions);
-            ReadUsd(primMap, sceneImportOptions);
+            ReadUsd(primMap,scene, sceneImportOptions);
 
-            _scene.Stage.GetSessionLayer().Export("D:\\session.usda");
+            scene.Stage.GetSessionLayer().Export("D:\\session.usda"); // FIXME
         }
 
 
-        public void ReadSamples(PrimMap primMap, SceneImportOptions sceneImportOptions)
+        public static void ReadSamples(PrimMap primMap, Scene scene, SceneImportOptions sceneImportOptions)
         {
-            var readMeshes = new ReadAllJob<MeshSample>(Scene, primMap.Meshes);
+            var readMeshes = new ReadAllJob<MeshSample>(scene, primMap.Meshes);
             readMeshes.Schedule(primMap.Meshes.Length, 4);
 
             var changeHandedness = sceneImportOptions.changeHandedness == BasisTransformation.SlowAndSafe ||
@@ -206,9 +205,7 @@ namespace Unity.Formats.USD
                 // Tangents
 
                 // Unroll
-                if (true)
-                {
-                    // If there is attributes that are face varying we need to "unroll" the usd mesh points to make sure
+                // If there is attributes that are face varying we need to "unroll" the usd mesh points to make sure
                     // that each unity mesh vertex (position + attributes can be unique).
                     usdMesh.points = MeshImporter.UnrollPrimvars(usdMesh.points, usdMesh.faceVertexIndices);
                     // pointsAttr.Set(points);
@@ -230,29 +227,22 @@ namespace Unity.Formats.USD
                     // VtIntArray newIndices = new VtIntArray(faceVertexIndices.size());
                     // newIndices.CopyFromArray(Enumerable.Range(0, checked((int)faceVertexIndices.size())).ToArray());
                     // fvi.Set(newIndices);
-                }
 
-                Scene.Write(pathAndSample.path, usdMesh);
+
+                scene.Write(pathAndSample.path, usdMesh);
             }
         }
 
-        public void ReadUsd(PrimMap primMap, SceneImportOptions sceneImportOptions)
+        static void ReadUsd(PrimMap primMap, Scene scene, SceneImportOptions sceneImportOptions)
         {
-            var usdAsset = gameObject.GetComponent<UsdAsset>();
             var changeHandedness = sceneImportOptions.changeHandedness == BasisTransformation.SlowAndSafe ||
                                    sceneImportOptions.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
 
 
-            var basis = new GfMatrix4f(1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, -1.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f);
-
             foreach (var prim in primMap.Meshes)
             {
-                var mesh = new UsdGeomMesh(_scene.Stage.GetPrimAtPath(prim));
+                var mesh = new UsdGeomMesh(scene.Stage.GetPrimAtPath(prim));
 
-                TfToken targetInterpolation;
                 var unrollAttributes = ComputeIfUnrollNeeded(mesh, sceneImportOptions);
 
                 var pointsAttr = mesh.GetPointsAttr();
@@ -267,14 +257,12 @@ namespace Unity.Formats.USD
                 // Points
                 if (changeHandedness)
                 {
-                    for (var i = 0; i < points.size(); i++) points[i] = basis.Transform(points[i]);
-
+                    for (var i = 0; i < points.size(); i++) points[i] = Basis.Transform(points[i]);
                     pointsAttr.Set(points);
                 }
 
                 // Topology
                 //    Triangulate
-                var faceMapping = ComputeFaceMapping(faceVertexCount);
                 UsdGeomMesh.Triangulate(faceVertexIndices, faceVertexCount);
 
                 //    Handedness
@@ -302,7 +290,7 @@ namespace Unity.Formats.USD
                     VtVec3fArray normals = normalsAttr.Get();
                     if (changeHandedness)
                         for (var i = 0; i < normals.size(); i++)
-                            normals[i] = basis.Transform(normals[i]);
+                            normals[i] = Basis.Transform(normals[i]);
 
                     normalsAttr.Set(normals);
                 }
@@ -335,25 +323,25 @@ namespace Unity.Formats.USD
                     mesh.SetNormalsInterpolation(UsdGeomTokens.faceVarying);
 
                     var colorAttr = mesh.GetDisplayColorPrimvar();
-                    ConvertPrimvarInterpolation(colorAttr, faceVertexIndices, faceVertexCountOrig, faceMapping);
+                    ConvertPrimvarInterpolation(colorAttr, faceVertexIndices, faceVertexCountOrig);
 
                     var opacityAttr = mesh.GetDisplayOpacityPrimvar();
-                    ConvertPrimvarInterpolation(opacityAttr, faceVertexIndices, faceVertexCountOrig, faceMapping);
+                    ConvertPrimvarInterpolation(opacityAttr, faceVertexIndices, faceVertexCountOrig);
 
                     var st = mesh.GetPrimvar(new TfToken("st"));
-                    ConvertPrimvarInterpolation(st, faceVertexIndices, faceVertexCountOrig, faceMapping);
+                    ConvertPrimvarInterpolation(st, faceVertexIndices, faceVertexCountOrig);
 
                     var uv = mesh.GetPrimvar(new TfToken("uv"));
-                    ConvertPrimvarInterpolation(uv, faceVertexIndices, faceVertexCountOrig, faceMapping);
+                    ConvertPrimvarInterpolation(uv, faceVertexIndices, faceVertexCountOrig);
 
                     var uv2 = mesh.GetPrimvar(new TfToken("uv2"));
-                    ConvertPrimvarInterpolation(uv2, faceVertexIndices, faceVertexCountOrig, faceMapping);
+                    ConvertPrimvarInterpolation(uv2, faceVertexIndices, faceVertexCountOrig);
 
                     var uv3 = mesh.GetPrimvar(new TfToken("uv3"));
-                    ConvertPrimvarInterpolation(uv3, faceVertexIndices, faceVertexCountOrig, faceMapping);
+                    ConvertPrimvarInterpolation(uv3, faceVertexIndices, faceVertexCountOrig);
 
                     var uv4 = mesh.GetPrimvar(new TfToken("uv4"));
-                    ConvertPrimvarInterpolation(uv4, faceVertexIndices, faceVertexCountOrig, faceMapping);
+                    ConvertPrimvarInterpolation(uv4, faceVertexIndices, faceVertexCountOrig);
 
 
                     // Now that all attributes and primvar are converted to facevarying, update the faceIndices
@@ -415,10 +403,9 @@ namespace Unity.Formats.USD
             var result = new VtVec2fArray();
             result.reserve(size);
             var last = 0;
-            var next = 1;
             for (var i = 0; i < faceVertexCount.size(); i++)
             {
-                next = last + 1;
+                var next = last + 1;
                 for (var t = 0; t < faceVertexCount[i] - 2; t++)
                     if (changeHandedness)
                     {
@@ -446,10 +433,9 @@ namespace Unity.Formats.USD
             var result = new VtVec3fArray();
             result.reserve(size);
             var last = 0;
-            var next = 1;
             for (var i = 0; i < faceVertexCount.size(); i++)
             {
-                next = last + 1;
+                var next = last + 1;
                 for (var t = 0; t < faceVertexCount[i] - 2; t++)
                     if (changeHandedness)
                     {
@@ -469,25 +455,6 @@ namespace Unity.Formats.USD
 
             data.swap(result);
             result.Dispose();
-        }
-
-
-        // UsdGeomSubsets contain a list of face indices, but once the mesh is triangulated, these
-        // indices are no longer correct. The number of new faces generated is a fixed function of
-        // the original face indices, but the offset requires an accumulation of all triangulated
-        // face offsets, this is "offsetMapping". The index into offsetMapping is the original
-        // face index and the value at that index is the new face offset.
-        static int[] ComputeFaceMapping(VtIntArray faceVertexCount)
-        {
-            var faceOffsetMapping = new int[faceVertexCount.size()];
-            var curOffset = 0;
-            for (var i = 0; i < faceVertexCount.size(); i++)
-            {
-                faceOffsetMapping[i] = curOffset;
-                curOffset += Math.Max(0, faceVertexCount[i] - 3);
-            }
-
-            return faceOffsetMapping;
         }
 
         // bool ComputeFlattenedHelper<T>(const T values, ref T flattened, VtIntArray indices)
@@ -533,10 +500,9 @@ namespace Unity.Formats.USD
         // uniform: one value per face
         // varying/vertex: same meaning for polygonal meshes, one value per vertex
         // face varying: one value per vertex per face
-        void ConvertPrimvarInterpolation(UsdGeomPrimvar primVar,
+        static void ConvertPrimvarInterpolation(UsdGeomPrimvar primVar,
             VtIntArray indices,
-            VtIntArray faceVertexCount,
-            int[] faceOffset)
+            VtIntArray faceVertexCount)
         {
             var count = indices.size();
 
@@ -546,7 +512,6 @@ namespace Unity.Formats.USD
             // primVar.get
             var val = new VtValue();
             primVar.ComputeFlattened(val);
-            var errString = "";
             // Use the static version of computeFlattened as the instance crashes
             // if (primVar.IsIndexed())
             // {

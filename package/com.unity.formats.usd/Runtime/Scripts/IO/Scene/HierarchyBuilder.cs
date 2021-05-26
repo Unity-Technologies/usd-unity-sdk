@@ -248,14 +248,6 @@ namespace Unity.Formats.USD
                 ua.m_usdPrimPath = usdRoot.ToString();
             }
 
-            // Make sure the meshes will get converted
-            var convertComponent = unityRoot.GetComponent<UsdConvertMeshes>();
-            if (convertComponent == null)
-            {
-                convertComponent = unityRoot.AddComponent<UsdConvertMeshes>();
-            }
-            convertComponent.Scene = scene;
-
             Profiler.BeginSample("Build Object Lists");
             var hierInfo = BuildObjectLists(scene, unityRoot, usdRoot, map, options);
             Profiler.EndSample();

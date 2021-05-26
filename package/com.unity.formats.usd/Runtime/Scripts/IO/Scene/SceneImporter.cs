@@ -425,6 +425,8 @@ namespace Unity.Formats.USD
                 }
             }
 
+            UsdConvertMeshes.PostProcessHierarchy(primMap, scene, importOptions);
+
             Profiler.EndSample();
 
             if (ShouldYield(targetTime, timer))
