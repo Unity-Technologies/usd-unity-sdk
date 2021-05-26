@@ -206,27 +206,27 @@ namespace Unity.Formats.USD
 
                 // Unroll
                 // If there is attributes that are face varying we need to "unroll" the usd mesh points to make sure
-                    // that each unity mesh vertex (position + attributes can be unique).
-                    usdMesh.points = MeshImporter.UnrollPrimvars(usdMesh.points, usdMesh.faceVertexIndices);
-                    // pointsAttr.Set(points);
+                // that each unity mesh vertex (position + attributes can be unique).
+                usdMesh.points = MeshImporter.UnrollPrimvars(usdMesh.points, usdMesh.faceVertexIndices);
+                // pointsAttr.Set(points);
 
 
-                    usdMesh.normals = MeshImporter.UnrollPrimvars(usdMesh.normals, usdMesh.faceVertexIndices);
+                usdMesh.normals = MeshImporter.UnrollPrimvars(usdMesh.normals, usdMesh.faceVertexIndices);
 
-                    // var colorAttr = mesh.GetDisplayColorPrimvar();
-                    // VtVec3fArray colors = colorAttr.Get();
-                    // UnrollPrimvars(colors, faceVertexIndices);
-                    // colorAttr.Set(colors);
-                    // var colorAttr = mesh.GetDisplayColorPrimvar();
-                    // ConvertPrimvarToFaceVarying(colorAttr, faceVertexIndices);
-                    //
-                    // // var st = mesh.GetPrimvar(new TfToken("st"));
-                    // // ConvertPrimvarToFaceVarying(st, faceVertexIndices);
-                    //
-                    // // Now that all attributes and primvar are converted to facevarying, update the faceIndices
-                    // VtIntArray newIndices = new VtIntArray(faceVertexIndices.size());
-                    // newIndices.CopyFromArray(Enumerable.Range(0, checked((int)faceVertexIndices.size())).ToArray());
-                    // fvi.Set(newIndices);
+                // var colorAttr = mesh.GetDisplayColorPrimvar();
+                // VtVec3fArray colors = colorAttr.Get();
+                // UnrollPrimvars(colors, faceVertexIndices);
+                // colorAttr.Set(colors);
+                // var colorAttr = mesh.GetDisplayColorPrimvar();
+                // ConvertPrimvarToFaceVarying(colorAttr, faceVertexIndices);
+                //
+                // // var st = mesh.GetPrimvar(new TfToken("st"));
+                // // ConvertPrimvarToFaceVarying(st, faceVertexIndices);
+                //
+                // // Now that all attributes and primvar are converted to facevarying, update the faceIndices
+                // VtIntArray newIndices = new VtIntArray(faceVertexIndices.size());
+                // newIndices.CopyFromArray(Enumerable.Range(0, checked((int)faceVertexIndices.size())).ToArray());
+                // fvi.Set(newIndices);
 
 
                 scene.Write(pathAndSample.path, usdMesh);
