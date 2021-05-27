@@ -249,7 +249,6 @@ namespace Unity.Formats.USD
                 VtVec3fArray points = pointsAttr.Get();
                 var fvi = mesh.GetFaceVertexIndicesAttr();
                 VtIntArray faceVertexIndices = fvi.Get();
-                VtIntArray faceVertexIndicesOriginal = fvi.Get();
                 var fvc = mesh.GetFaceVertexCountsAttr();
                 VtIntArray faceVertexCount = mesh.GetFaceVertexCountsAttr().Get();
                 var faceVertexCountOrig = new VtIntArray(faceVertexCount);

@@ -461,7 +461,6 @@ namespace Unity.Formats.USD
             if (usdMesh.normals != null)
             {
                 Profiler.BeginSample("Import Normals");
-                Vector3[] newNormals = null;
                 unityMesh.normals = usdMesh.normals;
                 Profiler.EndSample(); // Import Normals
             }
