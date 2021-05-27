@@ -15,6 +15,7 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
+using System.IO;
 
 namespace Unity.Formats.USD
 {
@@ -36,6 +37,15 @@ namespace Unity.Formats.USD
             else if (target == BuildTarget.StandaloneWindows64)
             {
                 destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
+            }
+
+            if (!Directory.Exists(destination))
+                Directory.CreateDirectory(destination);
+            else
+            {
+                var attrs = File.GetAttributes(destination);
+                attrs &= ~FileAttributes.ReadOnly;
+                File.SetAttributes(destination, attrs);
             }
 
             // We need to copy the whole share folder
