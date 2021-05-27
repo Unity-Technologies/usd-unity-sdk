@@ -100,3 +100,9 @@ Timeline playback is multi-threaded using the C# Job System.
 
 Access to variant selection, model details, and payload state are all accessible via
 the inspector on the game object at which these features were authored.
+
+## Exporting USD
+USD files can be exported in 3 ways:
+* The simplest way to export a USD composition that does not change with time is through the menu entry: USD->Export Selected.
+* For compositions that change with time, the best experience is provided through the RecorderWindow or the recorder track by adding the Usd Clip recorder type. (The unity package: com.unity.recorder is needed for this)
+* For exporting compositions that change with time from a standalone build, one should use the "Usd Recorder Track" ( no dependency on to the recorder package). 
