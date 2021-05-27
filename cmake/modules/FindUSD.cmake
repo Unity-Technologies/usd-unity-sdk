@@ -52,6 +52,18 @@ find_library(USD_LIBRARY
         "Main USD library"
 )
 
+find_path(USD_BIN_DIR
+    NAMES
+        sdfdump${CMAKE_EXECUTABLE_SUFFIX}
+    HINTS
+        ${PXR_USD_LOCATION}
+        $ENV{PXR_USD_LOCATION}
+    PATH_SUFFIXES
+        bin
+    DOC
+        "USD bin directory"
+)
+
 get_filename_component(USD_LIBRARY_DIR ${USD_LIBRARY} DIRECTORY)
 
 find_file(USD_GENSCHEMA
@@ -104,6 +116,7 @@ endif()
 
 message(STATUS "USD include dir: ${USD_INCLUDE_DIR}")
 message(STATUS "USD library dir: ${USD_LIBRARY_DIR}")
+message(STATUS "USD bin dir: ${USD_BIN_DIR}")
 message(STATUS "USD version: ${USD_VERSION}")
 
 include(FindPackageHandleStandardArgs)
@@ -113,6 +126,7 @@ find_package_handle_standard_args(USD
         PXR_USD_LOCATION
         USD_INCLUDE_DIR
         USD_LIBRARY_DIR
+        USD_BIN_DIR
         #USD_GENSCHEMA
         USD_CONFIG_FILE
     VERSION_VAR
