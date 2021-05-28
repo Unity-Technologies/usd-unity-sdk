@@ -15,8 +15,10 @@ test_platforms:
 test_backends:
   - name: il2cpp
     editor: 2020.3
+    apiprofile: " "
   - name: mono
     editor: 2020.3
+    apiprofile: --api-profile=NET_4_6
 ---
 pack:
   name: Pack
@@ -64,7 +66,7 @@ test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}:
   commands:
     - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package test --unity-version {{ backend.editor }} --package-path package/com.unity.formats.usd
-      --platform standalone --backend {{ backend.name  }} --extra-utr-arg=--testfilter=StandaloneSanityTest
+      --platform standalone --backend {{ backend.name  }} --extra-utr-arg="--testfilter=StandaloneSanityTest {{ backend.apiprofile }}"
   artifacts:
     logs:
       paths:
