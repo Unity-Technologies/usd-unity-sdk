@@ -49,8 +49,8 @@ public class NdrProperty : global::System.IDisposable {
     return ret;
   }
 
-  public TfToken GetType() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.NdrProperty_GetType(swigCPtr), false);
+  public TfToken GetTfType() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.NdrProperty_GetTfType(swigCPtr), false);
     return ret;
   }
 

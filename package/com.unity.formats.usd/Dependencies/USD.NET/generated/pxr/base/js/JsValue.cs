@@ -113,8 +113,8 @@ public class JsValue : global::System.IDisposable {
     return ret;
   }
 
-  public JsValue.Type GetType() {
-    JsValue.Type ret = (JsValue.Type)UsdCsPINVOKE.JsValue_GetType(swigCPtr);
+  public JsValue.Type GetJsType() {
+    JsValue.Type ret = (JsValue.Type)UsdCsPINVOKE.JsValue_GetJsType(swigCPtr);
     return ret;
   }
 

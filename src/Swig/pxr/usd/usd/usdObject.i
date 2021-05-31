@@ -23,7 +23,7 @@
 
 %typemap(cscode) UsdObject %{
   public static bool operator==(UsdObject lhs, UsdObject rhs){
-    // The Swig binding glew will re-enter this operator comparing to null, so 
+    // The Swig binding glew will re-enter this operator comparing to null, so
     // that case must be handled explicitly to avoid an infinite loop. This is still
     // not great, since it crosses the C#/C++ barrier twice. A better approache might
     // be to return a simple value from C++ that can be compared in C#.
@@ -48,6 +48,11 @@
 %extend UsdObject {
   static bool Equals(UsdObject const& lhs, UsdObject const& rhs) {
   return lhs == rhs;
+  }
+
+  %csmethodmodifiers GetHashCode() "override public";
+  int GetHashCode() {
+    return (int)TfHash()(self);
   }
 
   bool _IsValid() {

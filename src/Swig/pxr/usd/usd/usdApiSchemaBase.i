@@ -20,4 +20,9 @@
 
 %ignore UsdAPISchemaBase::schemaType;
 
+%extend UsdAPISchemaBase {
+%csmethodmodifiers GetSchemaAttributeNames() "public new";
+%csmethodmodifiers GetSchemaAttributeNames(bool) "public new";
+}
+
 %include "pxr/usd/usd/apiSchemaBase.h"

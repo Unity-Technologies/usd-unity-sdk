@@ -41,7 +41,7 @@ public class UsdObject : global::System.IDisposable {
   }
 
   public static bool operator==(UsdObject lhs, UsdObject rhs){
-    // The Swig binding glew will re-enter this operator comparing to null, so 
+    // The Swig binding glew will re-enter this operator comparing to null, so
     // that case must be handled explicitly to avoid an infinite loop. This is still
     // not great, since it crosses the C#/C++ barrier twice. A better approache might
     // be to return a simple value from C++ that can be compared in C#.
@@ -309,6 +309,11 @@ public class UsdObject : global::System.IDisposable {
   public static bool Equals(UsdObject lhs, UsdObject rhs) {
     bool ret = UsdCsPINVOKE.UsdObject_Equals(UsdObject.getCPtr(lhs), UsdObject.getCPtr(rhs));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  override public int GetHashCode() {
+    int ret = UsdCsPINVOKE.UsdObject_GetHashCode(swigCPtr);
     return ret;
   }
 

@@ -39,12 +39,12 @@ public class UsdAPISchemaBase : UsdSchemaBase {
     }
   }
 
-  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
+  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
-  public static TfTokenVector GetSchemaAttributeNames() {
+  public new static TfTokenVector GetSchemaAttributeNames() {
     TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdAPISchemaBase_GetSchemaAttributeNames__SWIG_1(), false);
     return ret;
   }

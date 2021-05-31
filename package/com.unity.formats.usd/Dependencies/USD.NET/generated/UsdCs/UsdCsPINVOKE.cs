@@ -1407,8 +1407,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_JsValue_GetReal")]
   public static extern double JsValue_GetReal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_JsValue_GetType")]
-  public static extern int JsValue_GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_JsValue_GetJsType")]
+  public static extern int JsValue_GetJsType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_JsValue_GetTypeName")]
   public static extern string JsValue_GetTypeName(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -8775,8 +8775,8 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrProperty_GetName")]
   public static extern global::System.IntPtr NdrProperty_GetName(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrProperty_GetType")]
-  public static extern global::System.IntPtr NdrProperty_GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrProperty_GetTfType")]
+  public static extern global::System.IntPtr NdrProperty_GetTfType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_NdrProperty_GetDefaultValue")]
   public static extern global::System.IntPtr NdrProperty_GetDefaultValue(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -17259,6 +17259,9 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_hash_value__SWIG_58")]
   public static extern uint hash_value__SWIG_58(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdTimeCode_GetHashCode")]
+  public static extern int UsdTimeCode_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdTimeCode")]
   public static extern void delete_UsdTimeCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -18374,6 +18377,9 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_Equals")]
   public static extern bool UsdObject_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject_GetHashCode")]
+  public static extern int UsdObject_GetHashCode(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdObject__IsValid")]
   public static extern bool UsdObject__IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
