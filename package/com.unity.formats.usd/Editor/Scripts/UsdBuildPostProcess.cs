@@ -24,7 +24,7 @@ namespace Unity.Formats.USD
         [PostProcessBuildAttribute(1)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            var source = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+            var source = Path.Combine(GetCurrentDir(), "..", "..", "Runtime", "Plugins");
             var destination = "";
             if (target == BuildTarget.StandaloneLinux64)
             {
@@ -51,6 +51,12 @@ namespace Unity.Formats.USD
             // We need to copy the whole share folder
             FileUtil.CopyFileOrDirectory(source + "/x86_64/usd", destination + "/usd");
             FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
+        }
+
+        static string GetCurrentDir([CallerFilePath] string filePath = "")
+        {
+            var fileInfo = new FileInfo(filePath);
+            return fileInfo.DirectoryName;
         }
     }
 }
