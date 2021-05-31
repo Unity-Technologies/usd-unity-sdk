@@ -16,6 +16,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace Unity.Formats.USD
 {
@@ -40,7 +41,9 @@ namespace Unity.Formats.USD
             }
 
             if (!Directory.Exists(destination))
+            {
                 Directory.CreateDirectory(destination);
+            }
             else
             {
                 var attrs = File.GetAttributes(destination);
