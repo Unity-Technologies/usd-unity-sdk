@@ -27,21 +27,28 @@ namespace UnityEditor.Formats.USD.Recorder
             var outputFile = Settings.FileNameGenerator.BuildAbsolutePath(session);
             if (Settings.ExportFormat == UsdRecorderSettings.Format.USDZ) // FIXME Support USDz
             {
-                currentDir = Directory.GetCurrentDirectory();
-                // Setup a temporary directory to export the wanted USD file and zip it.
-                var tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                usdzTemporaryDir = Directory.CreateDirectory(tmpDirPath);
+                try
+                {
+                    currentDir = Directory.GetCurrentDirectory();
+                    // Setup a temporary directory to export the wanted USD file and zip it.
+                    var tmpDirPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                    usdzTemporaryDir = Directory.CreateDirectory(tmpDirPath);
 
-                // Get the usd file name to export and the usdz file name of the archive.
-                usdcFileName = Path.GetFileNameWithoutExtension(outputFile) + ".usdc";
-                usdzFileName = Path.GetFileName(outputFile);
-                var fi = new FileInfo(outputFile);
-                usdzFilePath = fi.FullName;
+                    // Get the usd file name to export and the usdz file name of the archive.
+                    usdcFileName = Path.GetFileNameWithoutExtension(outputFile) + ".usdc";
+                    usdzFileName = Path.GetFileName(outputFile);
+                    var fi = new FileInfo(outputFile);
+                    usdzFilePath = fi.FullName;
 
-                // Set the current working directory to the tmp directory to export with relative paths.
-                Directory.SetCurrentDirectory(tmpDirPath);
+                    // Set the current working directory to the tmp directory to export with relative paths.
+                    Directory.SetCurrentDirectory(tmpDirPath);
 
-                outputFile = Path.Combine(tmpDirPath,usdcFileName);
+                    outputFile = Path.Combine(tmpDirPath, usdcFileName);
+                }
+                finally
+                {
+                    Directory.SetCurrentDirectory(currentDir);
+                }
             }
 
             try
@@ -55,6 +62,7 @@ namespace UnityEditor.Formats.USD.Recorder
             {
                 throw new InvalidOperationException($"The file is already open in Unity. Please close all references to it and try again: {outputFile}");
             }
+
 
 
             context.scene.FrameRate = Settings.FrameRate; // Variable framerate support ?
@@ -82,20 +90,31 @@ namespace UnityEditor.Formats.USD.Recorder
 
             if (Settings.ExportFormat == UsdRecorderSettings.Format.USDZ)
             {
-                Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
-                var assetPath = new SdfAssetPath(usdcFileName);
-                var success = UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
-
-                if (!success)
+                try
                 {
-                    Debug.LogError("Couldn't export to the usdz file: " + usdzFilePath);
-                    return;
-                }
 
-                // needed if we export into temp folder first
-                File.Copy(usdzFileName, usdzFilePath, overwrite: true);
-                Directory.SetCurrentDirectory(currentDir);
-                usdzTemporaryDir.Delete(recursive: true);
+                    Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
+                    var assetPath = new SdfAssetPath(usdcFileName);
+                    var success = UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
+
+                    if (!success)
+                    {
+                        Debug.LogError("Couldn't export to the usdz file: " + usdzFilePath);
+                        return;
+                    }
+
+                    // needed if we export into temp folder first
+                    File.Copy(usdzFileName, usdzFilePath, overwrite: true);
+                }
+                finally
+                {
+                    // Clean up temp files.
+                    Directory.SetCurrentDirectory(currentDir);
+                    if (usdzTemporaryDir != null && usdzTemporaryDir.Exists)
+                    {
+                        usdzTemporaryDir.Delete(recursive: true);
+                    }
+                }
             }
 
             context = null;

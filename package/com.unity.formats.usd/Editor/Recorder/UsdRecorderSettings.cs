@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace UnityEditor.Formats.USD.Recorder
 {
-    [RecorderSettings(typeof(UsdRecorder), "Usd Clip", "usd_recorder")]
+    [RecorderSettings(typeof(UsdRecorder), "USD Clip", "usd_recorder")]
     public class UsdRecorderSettings : RecorderSettings
     {
         [SerializeField] UsdRecorderInputSettings inputSettings = new UsdRecorderInputSettings();
@@ -18,6 +18,12 @@ namespace UnityEditor.Formats.USD.Recorder
         [SerializeField] ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
         [SerializeField] bool exportMaterials = true;
         [SerializeField] float scale = 1;
+
+        public UsdRecorderSettings()
+        {
+            FileNameGenerator.FileName = DefaultWildcard.Recorder + "_" + DefaultWildcard.Take;
+        }
+
         public enum Format
         {
             USD,
