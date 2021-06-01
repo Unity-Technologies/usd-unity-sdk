@@ -71,3 +71,4 @@ TestProject/**/Temp
 TestProject/**/Logs
 TestProject/**/*.csproj
 TestProject/**/*.sln
+build_usdcs
