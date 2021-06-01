@@ -2,7 +2,7 @@
   "dependencies": {
     "com.unity.analytics": "3.3.5",
     "com.unity.ext.nunit": "1.0.0",
-    "com.unity.formats.usd": "file:../../package/com.unity.formats.usd/",
+    "com.unity.formats.usd": "file:../../../package/com.unity.formats.usd/",
     "com.unity.test-framework": "1.1.11",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
