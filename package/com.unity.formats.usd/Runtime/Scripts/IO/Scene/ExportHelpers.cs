@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using USD.NET;
@@ -35,7 +35,7 @@ namespace Unity.Formats.USD
         }
 
         public static void ExportGameObjects(GameObject[] objects, Scene scene, BasisTransformation basisTransform,
-                                          bool exportMonoBehaviours = false)
+            bool exportMonoBehaviours = false)
         {
             if (scene == null)
                 return;

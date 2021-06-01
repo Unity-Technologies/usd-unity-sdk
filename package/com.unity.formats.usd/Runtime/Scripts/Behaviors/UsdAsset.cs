@@ -53,7 +53,7 @@ namespace Unity.Formats.USD
         // Source Asset.
         // ----------------------------------------------------------------------------------------- //
 
-        [Header("Source Asset")] [SerializeField]
+        [Header("Source Asset")][SerializeField]
         string m_usdFile;
 
         [HideInInspector]
@@ -103,7 +103,7 @@ namespace Unity.Formats.USD
         [Tooltip("The default material to use when importing metallic workflow USD Preview Surface materials.")]
         public Material m_metallicWorkflowMaterial;
 
-        [HideInInspector] [Tooltip("When enabled, set the GPU Instancing flag on all materials.")]
+        [HideInInspector][Tooltip("When enabled, set the GPU Instancing flag on all materials.")]
         public bool m_enableGpuInstancing;
 
         // ----------------------------------------------------------------------------------------- //
@@ -138,16 +138,16 @@ namespace Unity.Formats.USD
         [Header("Mesh Lightmap UV Unwrapping")]
         public bool m_generateLightmapUVs;
 
-        [Tooltip("Maximum allowed angle distortion")] [Range(0, 1)]
+        [Tooltip("Maximum allowed angle distortion")][Range(0, 1)]
         public float m_unwrapAngleError = .08f;
 
-        [Tooltip("Maximum allowed area distortion")] [Range(0, 1)]
+        [Tooltip("Maximum allowed area distortion")][Range(0, 1)]
         public float m_unwrapAreaError = .15f;
 
-        [Tooltip("This angle (in degrees) or greater between triangles will cause seam to be created")] [Range(1, 359)]
+        [Tooltip("This angle (in degrees) or greater between triangles will cause seam to be created")][Range(1, 359)]
         public float m_unwrapHardAngle = 88;
 
-        [Tooltip("UV-island padding in pixels")] [Range(0, 32)]
+        [Tooltip("UV-island padding in pixels")][Range(0, 32)]
         public int m_unwrapPackMargin = 4;
 
         // ----------------------------------------------------------------------------------------- //
@@ -166,14 +166,14 @@ namespace Unity.Formats.USD
         public bool m_importMonoBehaviors = false;
 
 #if false
-    [Header("Export Settings")]
-    public bool m_exportCameras = true;
-    public bool m_exportMeshes = true;
-    public bool m_exportSkinning = true;
-    public bool m_exportTransforms = true;
-    public bool m_exportSceneInstances = true;
-    public bool m_exportPointInstances = true;
-    public bool m_exportMonoBehaviors = true;
+        [Header("Export Settings")]
+        public bool m_exportCameras = true;
+        public bool m_exportMeshes = true;
+        public bool m_exportSkinning = true;
+        public bool m_exportTransforms = true;
+        public bool m_exportSceneInstances = true;
+        public bool m_exportPointInstances = true;
+        public bool m_exportMonoBehaviors = true;
 #endif
 
         // ----------------------------------------------------------------------------------------- //
@@ -209,6 +209,7 @@ namespace Unity.Formats.USD
             // https://github.com/Unity-Technologies/UniteLA2018Examples/blob/master/Assets/Scripts/GameObjectTypeLogging.cs
             return UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(root);
         }
+
 #endif
 
         private void OnDestroy()
@@ -235,7 +236,7 @@ namespace Unity.Formats.USD
                     if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root))
                     {
 #if UNITY_2020_1_OR_NEWER
-            assetPath = prefabStage.assetPath;
+                        assetPath = prefabStage.assetPath;
 #else
                         assetPath = prefabStage.prefabAssetPath;
 #endif
@@ -361,7 +362,7 @@ namespace Unity.Formats.USD
             }
 
             return Path.GetFullPath(m_lastScene.FilePath).ToLower().Replace("\\", "/")
-                   != usdFullPath.ToLower().Replace("\\", "/");
+                != usdFullPath.ToLower().Replace("\\", "/");
         }
 
         /// <summary>
@@ -659,7 +660,7 @@ namespace Unity.Formats.USD
             // Careful not to update any local members here, if this data is driven from a prefab, we
             // dont want those changes to be baked back into the asset.
             time += foreignRoot.m_usdTimeOffset;
-            float usdTime = (float) (scene.StartTime + time * scene.Stage.GetTimeCodesPerSecond());
+            float usdTime = (float)(scene.StartTime + time * scene.Stage.GetTimeCodesPerSecond());
             if (usdTime > scene.EndTime)
             {
                 return;
@@ -697,7 +698,7 @@ namespace Unity.Formats.USD
             }
 
             if (m_debugPrintVariabilityCache && m_lastAccessMask != null
-                                             && !scene.IsPopulatingAccessMask)
+                && !scene.IsPopulatingAccessMask)
             {
                 var sb = new System.Text.StringBuilder();
                 foreach (var kvp in m_lastAccessMask.Included)

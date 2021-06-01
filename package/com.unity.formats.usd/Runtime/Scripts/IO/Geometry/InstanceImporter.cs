@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -105,7 +105,7 @@ namespace Unity.Formats.USD
                 if (index >= sample.prototypes.targetPaths.Length)
                 {
                     Debug.LogWarning("ProtoIndex out of bounds: [" + index + "] " +
-                                     "for instancer: " + pointInstancerPath);
+                        "for instancer: " + pointInstancerPath);
                     continue;
                 }
 
@@ -121,7 +121,7 @@ namespace Unity.Formats.USD
                 if (i >= transforms.Length)
                 {
                     Debug.LogWarning("No transform for instance index [" + i + "] " +
-                                     "for instancer: " + pointInstancerPath);
+                        "for instancer: " + pointInstancerPath);
                     break;
                 }
 

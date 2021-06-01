@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,16 +19,16 @@ using USD.NET;
 
 namespace Unity.Formats.USD.Examples
 {
-  /// <summary>
-  /// Imports meshes and transforms from a USD file into the Unity GameObject hierarchy and
-  /// creates meshes.
-  /// </summary>
-  [ExecuteInEditMode]
-  public class ImportMeshExample : MonoBehaviour
-  {
-    public string m_usdFile;
-    private const string K_DEFAULT_MESH = "mesh.usd";
-    public Material m_material;
+    /// <summary>
+    /// Imports meshes and transforms from a USD file into the Unity GameObject hierarchy and
+    /// creates meshes.
+    /// </summary>
+    [ExecuteInEditMode]
+    public class ImportMeshExample : MonoBehaviour
+    {
+        public string m_usdFile;
+        private const string K_DEFAULT_MESH = "mesh.usd";
+        public Material m_material;
 
         // The range is arbitrary, but adding it provides a slider in the UI.
         [Range(0, 100)] public float m_usdTime;
@@ -60,7 +60,6 @@ namespace Unity.Formats.USD.Examples
             m_lastTime = m_usdTime;
             if (string.IsNullOrEmpty(m_usdFile))
                 m_usdFile = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), K_DEFAULT_MESH);
-
         }
 
         void Update()

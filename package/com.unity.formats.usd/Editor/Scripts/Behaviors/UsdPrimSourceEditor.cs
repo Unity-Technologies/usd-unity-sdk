@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Unity.Formats.USD
 
         public override void OnInspectorGUI()
         {
-            var attachment = (UsdPrimSource) target;
+            var attachment = (UsdPrimSource)target;
             var stageRoot = attachment.GetComponentInParent<UsdAsset>();
 
             if (!stageRoot)
@@ -178,7 +178,7 @@ namespace Unity.Formats.USD
         {
             GUI.enabled = node.HasSpecs();
             EditorGUILayout.LabelField("[" + node.GetArcType().ToString().Replace("PcpArcType", "") + "] < " +
-                                       node.GetPath() + ">");
+                node.GetPath() + ">");
             WalkLayers(node, node.GetLayerStack().GetLayerTree(), 1);
             foreach (PcpNodeRef child in node.GetChildren())
             {
@@ -320,7 +320,7 @@ namespace Unity.Formats.USD
             var arraySize = -1;
             if (valAtTime.IsArrayValued())
             {
-                arraySize = (int) valAtTime.GetArraySize();
+                arraySize = (int)valAtTime.GetArraySize();
             }
 
             // Metadata cannot be time-varying.

@@ -134,15 +134,15 @@ namespace Unity.Formats.USD
                         continue;
                     }
 
-                    if (obj is Mesh && meshes.Contains((Mesh) obj))
+                    if (obj is Mesh && meshes.Contains((Mesh)obj))
                     {
-                        meshes.Remove((Mesh) obj);
+                        meshes.Remove((Mesh)obj);
                         continue;
                     }
 
-                    if (obj is Material && materials.Contains((Material) obj))
+                    if (obj is Material && materials.Contains((Material)obj))
                     {
-                        materials.Remove((Material) obj);
+                        materials.Remove((Material)obj);
                         continue;
                     }
 
@@ -258,6 +258,7 @@ namespace Unity.Formats.USD
             usedMeshes = meshes;
             usedMaterials = materials;
         }
+
 #endif
 
         public static void ImportUsd(GameObject goRoot,
@@ -350,7 +351,7 @@ namespace Unity.Formats.USD
 #if UNITY_EDITOR
             Component.DestroyImmediate(c);
 #else
-      Component.Destroy(c);
+            Component.Destroy(c);
 #endif
         }
 
@@ -1016,7 +1017,7 @@ namespace Unity.Formats.USD
                                 if (!skelQuery.GetJointWorldBindTransforms(bindXforms))
                                 {
                                     throw new ImportException("Failed to compute binding transforms for <" + skelPath +
-                                                              ">");
+                                        ">");
                                 }
 
                                 Profiler.EndSample();

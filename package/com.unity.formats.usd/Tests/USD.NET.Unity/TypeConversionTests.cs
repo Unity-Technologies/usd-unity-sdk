@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
@@ -59,8 +59,8 @@ namespace USD.NET.Unity.Tests
             var sampleW = new QuaternionSample();
             sampleW.quatArray = new[]
             {
-                new Quaternion(1,2,3,4),
-                new Quaternion(5,6,7,8)
+                new Quaternion(1, 2, 3, 4),
+                new Quaternion(5, 6, 7, 8)
             };
             sampleW.quat = sampleW.quatArray[0];
             sampleW.quatList = sampleW.quatArray.ToList();
@@ -78,15 +78,15 @@ namespace USD.NET.Unity.Tests
             var sampleW = new VectorSample();
             sampleW.v2Array = new[]
             {
-                new Vector2(0,1),
-                new Vector2(2,3),
+                new Vector2(0, 1),
+                new Vector2(2, 3),
             };
             sampleW.v2 = sampleW.v2Array[0];
             sampleW.v2List = sampleW.v2Array.ToList();
 
             sampleW.v3Array = new[]
             {
-                new Vector3(0,1, 2),
+                new Vector3(0, 1, 2),
                 new Vector3(3, 4, 5),
             };
             sampleW.v3 = sampleW.v3Array[0];
@@ -94,8 +94,8 @@ namespace USD.NET.Unity.Tests
 
             sampleW.v4Array = new[]
             {
-                new Vector4(0,1,2,3),
-                new Vector4(4,5,6,7),
+                new Vector4(0, 1, 2, 3),
+                new Vector4(4, 5, 6, 7),
             };
             sampleW.v4 = sampleW.v4Array[0];
             sampleW.v4List = sampleW.v4Array.ToList();
@@ -140,7 +140,6 @@ namespace USD.NET.Unity.Tests
             // AssertEqual(sampleW.color32List, sampleR.color32List);
         }
 
-
         [Test]
         public void RectBoundsTest()
         {
@@ -148,12 +147,11 @@ namespace USD.NET.Unity.Tests
             sampleW.rect = Rect.MinMaxRect(-5, -5, 5, 5);
             sampleW.bounds = new Bounds(new Vector3(1, 2, 3), new Vector3(1, 2, 3));
 
-            var sampleR= new RectBoundsSample();
+            var sampleR = new RectBoundsSample();
             WriteAndRead(ref sampleW, ref sampleR);
 
             Assert.AreEqual(sampleW.bounds, sampleR.bounds);
             Assert.AreEqual(sampleW.rect, sampleR.rect);
-
         }
 
         [Test]
@@ -193,7 +191,8 @@ namespace USD.NET.Unity.Tests
         [Test]
         public void HasPreserveAttribute()
         {
-            foreach (var method in typeof(UnityTypeConverter).GetMethods()) {
+            foreach (var method in typeof(UnityTypeConverter).GetMethods())
+            {
                 var name = method.Name;
                 if (name.Contains("ToVt") || name.Contains("FromVt") ||
                     name.Contains("Gf") || name.Contains("FromMatrix") ||

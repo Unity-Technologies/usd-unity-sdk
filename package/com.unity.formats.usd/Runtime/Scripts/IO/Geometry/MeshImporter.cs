@@ -44,7 +44,7 @@ namespace Unity.Formats.USD
         private MeshImportFunction<MeshSample> m_skinnedMeshImporter;
 
         public MeshImportStrategy(MeshImportFunction<MeshSample> meshImporter,
-            MeshImportFunction<MeshSample> skinnedMeshImporter)
+                                  MeshImportFunction<MeshSample> skinnedMeshImporter)
         {
             m_meshImporter = meshImporter;
             m_skinnedMeshImporter = skinnedMeshImporter;
@@ -323,7 +323,7 @@ namespace Unity.Formats.USD
 
             Material mat = renderer.sharedMaterial;
             bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe ||
-                                    options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
+                options.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
 
             //
             // Points.
@@ -344,7 +344,7 @@ namespace Unity.Formats.USD
                     // Annoyingly, there is a circular dependency between vertices and triangles, which makes
                     // it impossible to have a fixed update order in this function. As a result, we must clear
                     // the triangles before setting the points, to break that dependency.
-                    unityMesh.SetTriangles(new int[0] { }, 0);
+                    unityMesh.SetTriangles(new int[0] {}, 0);
                 }
 
                 unityMesh.vertices = usdMesh.points;
@@ -368,8 +368,8 @@ namespace Unity.Formats.USD
             // needed for facevarying primvars; that special case should throw a warning, rather than
             // reading the value.
             int[] originalIndices = new int[usdMesh.faceVertexIndices == null
-                ? 0
-                : usdMesh.faceVertexIndices.Length];
+                                            ? 0
+                                            : usdMesh.faceVertexIndices.Length];
             // Optimization: only do this when there are face varying primvars.
             if (usdMesh.faceVertexIndices != null)
             {
@@ -491,8 +491,8 @@ namespace Unity.Formats.USD
             //
 
             bool hasBounds = usdMesh.extent.size.x > 0
-                             || usdMesh.extent.size.y > 0
-                             || usdMesh.extent.size.z > 0;
+                || usdMesh.extent.size.y > 0
+                || usdMesh.extent.size.z > 0;
 
             if (ShouldImport(options.meshOptions.boundingBox) && hasBounds)
             {
@@ -744,9 +744,10 @@ namespace Unity.Formats.USD
                 Profiler.EndSample();
             }
 #else
-      if (options.meshOptions.generateLightmapUVs) {
-        Debug.LogWarning("Lightmap UVs were requested to be generated, but cannot be generated outside of the editor");
-      }
+            if (options.meshOptions.generateLightmapUVs)
+            {
+                Debug.LogWarning("Lightmap UVs were requested to be generated, but cannot be generated outside of the editor");
+            }
 #endif
         }
 
@@ -927,7 +928,7 @@ namespace Unity.Formats.USD
                 return null;
             }
 
-            var uvVec = (T[]) uv;
+            var uvVec = (T[])uv;
 
             if (uvVec.Length == 0)
             {
@@ -965,7 +966,7 @@ namespace Unity.Formats.USD
             if (uvVec.Length < vertexCount)
             {
                 Debug.LogWarning("Mesh UVs are constant or uniform, ignored "
-                                 + UnityTypeConverter.GetPath(go.transform));
+                    + UnityTypeConverter.GetPath(go.transform));
                 return new T[0];
             }
 

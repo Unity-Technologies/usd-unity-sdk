@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -103,8 +103,8 @@ namespace Unity.Formats.USD
                 SpecularWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
                 MetallicWorkflowMaterial = Material.Instantiate(pipeline.defaultMaterial);
 #else
-        SpecularWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
-        MetallicWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
+                SpecularWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
+                MetallicWorkflowMaterial = Material.Instantiate(pipeline.GetDefaultMaterial());
 #endif
                 DisplayColorMaterial = new Material(Shader.Find("USD/SrpVertexColor"));
             }
@@ -199,11 +199,11 @@ namespace Unity.Formats.USD
 
         public IEnumerator GetEnumerator()
         {
-            return ((IEnumerable) m_map).GetEnumerator();
+            return ((IEnumerable)m_map).GetEnumerator();
         }
 
         IEnumerator<KeyValuePair<string, Material>>
-            IEnumerable<KeyValuePair<string, Material>>.GetEnumerator()
+        IEnumerable<KeyValuePair<string, Material>>.GetEnumerator()
         {
             return m_map.GetEnumerator();
         }

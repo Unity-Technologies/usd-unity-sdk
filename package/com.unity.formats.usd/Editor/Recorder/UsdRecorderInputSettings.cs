@@ -7,7 +7,7 @@ using UnityEngine;
 namespace UnityEditor.Formats.USD.Recorder
 {
     [Serializable]
-    public class UsdRecorderInputSettings: RecorderInputSettings
+    public class UsdRecorderInputSettings : RecorderInputSettings
     {
         [SerializeField] string m_BindingId = null;
         public GameObject GameObject

@@ -1,0 +1,756 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Formats.USD
+{
+    public enum ActiveExportPolicy
+    {
+        public const Unity.Formats.USD.ActiveExportPolicy DoNotExport = 2;
+        public const Unity.Formats.USD.ActiveExportPolicy ExportAsActive = 1;
+        public const Unity.Formats.USD.ActiveExportPolicy ExportAsVisibility = 0;
+        public const Unity.Formats.USD.ActiveExportPolicy Ignore = 3;
+        public int value__;
+    }
+
+    public enum BasisTransformation
+    {
+        public const Unity.Formats.USD.BasisTransformation FastWithNegativeScale = 0;
+        public const Unity.Formats.USD.BasisTransformation None = 3;
+        public const Unity.Formats.USD.BasisTransformation SlowAndSafe = 1;
+        public const Unity.Formats.USD.BasisTransformation SlowAndSafeAsFBX = 2;
+        public int value__;
+    }
+
+    [USD.NET.UsdSchema(@"BlendShape")] public class BlendShapeSample : USD.NET.SampleBase
+    {
+        public UnityEngine.Vector3[] offsets;
+        public System.UInt32[] pointIndices;
+        public BlendShapeSample() {}
+    }
+
+    public static class CameraExporter
+    {
+        public static void ExportCamera(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+    }
+
+    public static class CameraImporter
+    {
+        public static void BuildCamera(USD.NET.Unity.CameraSample usdCamera, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options);
+    }
+
+    public static class CubeImporter
+    {
+        public static void BuildCube(USD.NET.Unity.CubeSample usdCube, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool skinnedMesh = False);
+    }
+
+    public class ExportContext
+    {
+        public Unity.Formats.USD.ActiveExportPolicy activePolicy;
+        public Unity.Formats.USD.BasisTransformation basisTransform;
+        public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Matrix4x4> bindPoses;
+        public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Transform> boneToRoot;
+        public bool exportMaterials;
+        public bool exportNative;
+        public UnityEngine.Transform exportRoot;
+        public System.Collections.Generic.Dictionary<UnityEngine.Material, string> matMap;
+        public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Transform[]> meshToBones;
+        public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Transform> meshToSkelRoot;
+        public System.Collections.Generic.Dictionary<string, UnityEngine.Transform> pathToBone;
+        public System.Collections.Generic.Dictionary<UnityEngine.GameObject, Unity.Formats.USD.ExportPlan> plans;
+        public System.Collections.Generic.Dictionary<System.Type, USD.NET.SampleBase> samples;
+        public float scale;
+        public USD.NET.Scene scene;
+        public System.Collections.Generic.Dictionary<UnityEngine.Transform, System.Collections.Generic.List<string>> skelSortedMap;
+        public ExportContext() {}
+    }
+
+    public class Exporter
+    {
+        public object data;
+        public Unity.Formats.USD.ExportFunction exportFunc;
+        public string path;
+        public USD.NET.SampleBase sample;
+        public Exporter() {}
+    }
+
+    public delegate void ExportFunction(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+
+    public static class ExportHelpers
+    {
+        public static void ExportGameObjects(UnityEngine.GameObject[] objects, USD.NET.Scene scene, Unity.Formats.USD.BasisTransformation basisTransform, bool exportMonoBehaviours = False);
+        public static USD.NET.Scene InitForSave(string filePath);
+    }
+
+    public class ExportPlan
+    {
+        public System.Collections.Generic.List<Unity.Formats.USD.Exporter> exporters;
+        public ExportPlan() {}
+    }
+
+    public class HdrpShaderExporter : Unity.Formats.USD.ShaderExporterBase
+    {
+        public HdrpShaderExporter() {}
+        public static void ExportLit(USD.NET.Scene scene, string usdShaderPath, UnityEngine.Material material, USD.NET.Unity.PreviewSurfaceSample surface, string destTexturePath);
+    }
+
+    public class HdrpShaderImporter : Unity.Formats.USD.ShaderImporterBase
+    {
+        public HdrpShaderImporter(UnityEngine.Material material) {}
+        public virtual void ImportFromUsd();
+    }
+
+    public static class HierarchyBuilder
+    {
+        public static Unity.Formats.USD.PrimMap BuildGameObjects(USD.NET.Scene scene, UnityEngine.GameObject unityRoot, pxr.SdfPath usdRoot, System.Collections.Generic.IEnumerable<pxr.SdfPath> paths, Unity.Formats.USD.PrimMap map, Unity.Formats.USD.SceneImportOptions options);
+    }
+
+    public interface IImporter
+    {
+        public abstract void BeginReading(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap);
+        public abstract System.Collections.IEnumerator Import(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions importOptions);
+    }
+
+    public interface IImportPostProcessComponents
+    {
+        public abstract void PostProcessComponents(Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions sceneImportOptions);
+    }
+
+    public interface IImportPostProcessHierarchy
+    {
+        public abstract void PostProcessHierarchy(Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions sceneImportOptions);
+    }
+
+    public interface IImportProcessUsd
+    {
+        public abstract void ProcessUsd(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions sceneImportOptions);
+    }
+
+    public static class ImporterBase
+    {
+        public static bool ApproximatelyEqual(UnityEngine.Matrix4x4 lhs, UnityEngine.Matrix4x4 rhs);
+        public static T GetOrAddComponent<T>(UnityEngine.GameObject go, bool insertFirst = False) where T : UnityEngine.Component;
+        public static string MakeRelativePath(string anchorPath, string pathToMakeRelative);
+        public static void MoveComponentFirst(UnityEngine.Component comp);
+        public static void MoveComponentLast(UnityEngine.Component comp);
+    }
+
+    public static class ImportHelpers
+    {
+        public static string ImportAsPrefab(USD.NET.Scene scene);
+        public static string ImportAsTimelineClip(USD.NET.Scene scene);
+        public static UnityEngine.GameObject ImportSceneAsGameObject(USD.NET.Scene scene, UnityEngine.GameObject parent = default(UnityEngine.GameObject), Unity.Formats.USD.SceneImportOptions importOptions = default(Unity.Formats.USD.SceneImportOptions));
+        public static USD.NET.Scene InitForOpen(string path = , pxr.UsdStage.InitialLoadSet loadSet = 1);
+    }
+
+    public enum ImportMode
+    {
+        public const Unity.Formats.USD.ImportMode Compute = 2;
+        public const Unity.Formats.USD.ImportMode Ignore = 3;
+        public const Unity.Formats.USD.ImportMode Import = 0;
+        public const Unity.Formats.USD.ImportMode ImportOrCompute = 1;
+        public int value__;
+    }
+
+    public static class InitUsd
+    {
+        public static bool Initialize();
+    }
+
+    public static class InstanceImporter
+    {
+        public static void BuildPointInstances(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, string pointInstancerPath, USD.NET.Unity.PointInstancerSample sample, UnityEngine.GameObject root, Unity.Formats.USD.SceneImportOptions options);
+        public static void BuildSceneInstances(Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions options);
+    }
+
+    public static class MaterialExporter
+    {
+        public static System.Collections.Generic.Dictionary<string, Unity.Formats.USD.MaterialExporter.ExportHandler> ExportRegistry;
+        public static readonly string kHdrpFallbackHandler;
+        public static readonly string kLwrpFallbackHandler;
+        public static readonly string kStandardFallbackHandler;
+        public static void ExportMaterial(USD.NET.Scene scene, UnityEngine.Material mat, string usdMaterialPath);
+        public delegate void ExportHandler(USD.NET.Scene scene, string usdShaderPath, UnityEngine.Material material, Unity.Formats.USD.UnityPreviewSurfaceSample surface, string destTexturePath);
+    }
+
+    public static class MaterialImporter
+    {
+        public static Unity.Formats.USD.MaterialImporter.TextureResolver OnResolveTexture;
+        public static UnityEngine.Material BuildMaterial(USD.NET.Scene scene, string materialPath, USD.NET.Unity.MaterialSample sample, Unity.Formats.USD.SceneImportOptions options);
+        public static UnityEngine.Texture2D CombineRoughness(UnityEngine.Texture2D rgbTex, UnityEngine.Texture2D roughnessTex, string fileNameSuffix);
+        public static Unity.Formats.USD.UnityPreviewSurfaceSample GetSurfaceShaderPrim(USD.NET.Scene scene, string primPath);
+        public static UnityEngine.Texture2D ImportConnectedTexture<T>(USD.NET.Scene scene, USD.NET.Connectable<T> connection, bool isNormalMap, Unity.Formats.USD.SceneImportOptions options, out string uvPrimvar);
+        public static void ProcessMaterialBindings(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
+        public delegate UnityEngine.Texture2D TextureResolver(pxr.SdfAssetPath textureAssetPath, bool isNormalMap, Unity.Formats.USD.SceneImportOptions importOptions);
+    }
+
+    public enum MaterialImportMode
+    {
+        public const Unity.Formats.USD.MaterialImportMode ImportDisplayColor = 1;
+        public const Unity.Formats.USD.MaterialImportMode ImportPreviewSurface = 0;
+        public const Unity.Formats.USD.MaterialImportMode None = 2;
+        public int value__;
+    }
+
+    [System.Reflection.DefaultMember(@"Item")] public class MaterialMap : System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, UnityEngine.Material>>, System.Collections.IEnumerable
+    {
+        public bool useOriginalShaderIfAvailable;
+        public UnityEngine.Material DisplayColorMaterial { get; set; }
+        public UnityEngine.Material this[string path] { get; set; }
+        public UnityEngine.Material MetallicWorkflowMaterial { get; set; }
+        public UnityEngine.Material SpecularWorkflowMaterial { get; set; }
+        public MaterialMap() {}
+        public static void AssignColor(UnityEngine.Material material, UnityEngine.Color color);
+        public System.Collections.Generic.Dictionary<string, Unity.Formats.USD.MaterialMap.MaterialBinder> ClearRequestedBindings();
+        public virtual System.Collections.IEnumerator GetEnumerator();
+        public System.Collections.Generic.List<string> GetPrimvars(string materialPath);
+        public UnityEngine.Material InstantiateSolidColor(UnityEngine.Color color);
+        public void RequestBinding(string usdPath, Unity.Formats.USD.MaterialMap.MaterialBinder binder);
+        public void SetPrimvars(string materialPath, System.Collections.Generic.List<string> primvars);
+        public delegate void MaterialBinder(USD.NET.Scene scene, UnityEngine.Material mat, System.Collections.Generic.List<string> uvPrimvars);
+    }
+
+    public static class MeshExporter
+    {
+        public static void ExportMesh(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+        public static void ExportSkinnedMesh(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+    }
+
+    public static class MeshImporter
+    {
+        public static void BuildMesh(string path, USD.NET.Unity.MeshSample usdMesh, Unity.Formats.USD.MeshImporter.GeometrySubsets geomSubsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool isDynamic);
+        public static void BuildSkinnedMesh(string path, USD.NET.Unity.MeshSample usdMesh, Unity.Formats.USD.MeshImporter.GeometrySubsets geomSubsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool isDynamic);
+        public static Unity.Formats.USD.MeshImporter.GeometrySubsets ReadGeomSubsets(USD.NET.Scene scene, string path);
+        public class GeometrySubsets
+        {
+            public System.Collections.Generic.Dictionary<string, int[]> Subsets { get; set; }
+            public GeometrySubsets() {}
+        }
+    }
+
+    public delegate void MeshImportFunction<T>(string path, T sample, Unity.Formats.USD.MeshImporter.GeometrySubsets subsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions option, bool isDynamic) where T : USD.NET.SampleBase, new();
+
+    public class MeshImportOptions
+    {
+        public Unity.Formats.USD.ImportMode boundingBox;
+        public Unity.Formats.USD.ImportMode color;
+        public bool debugShowSkeletonBindPose;
+        public bool debugShowSkeletonRestPose;
+        public bool generateLightmapUVs;
+        public Unity.Formats.USD.ImportMode normals;
+        public Unity.Formats.USD.ImportMode points;
+        public Unity.Formats.USD.ImportMode tangents;
+        public Unity.Formats.USD.ImportMode texcoord0;
+        public Unity.Formats.USD.ImportMode texcoord1;
+        public Unity.Formats.USD.ImportMode texcoord2;
+        public Unity.Formats.USD.ImportMode texcoord3;
+        public Unity.Formats.USD.ImportMode topology;
+        public bool triangulateMesh;
+        public float unwrapAngleError;
+        public float unwrapAreaError;
+        public float unwrapHardAngle;
+        public int unwrapPackMargin;
+        public MeshImportOptions() {}
+    }
+
+    public class MeshImportStrategy : Unity.Formats.USD.IImporter
+    {
+        public MeshImportStrategy(Unity.Formats.USD.MeshImportFunction<USD.NET.Unity.MeshSample> meshImporter, Unity.Formats.USD.MeshImportFunction<USD.NET.Unity.MeshSample> skinnedMeshImporter) {}
+        public virtual void BeginReading(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap);
+        [System.Runtime.CompilerServices.IteratorStateMachine(typeof(Unity.Formats.USD.MeshImportStrategy.<Import>d__5))] public virtual System.Collections.IEnumerator Import(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions importOptions);
+    }
+
+    public class NativeExporter
+    {
+        public NativeExporter() {}
+        public static void ExportObject(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+    }
+
+    public class NativeImporter
+    {
+        public NativeImporter() {}
+        public static void ImportObject(USD.NET.Scene scene, UnityEngine.GameObject go, pxr.UsdPrim usdPrim, Unity.Formats.USD.SceneImportOptions options);
+    }
+
+    public static class NativeSerialization
+    {
+        public static pxr.SdfValueTypeName GetSdfType(UnityEditor.SerializedProperty prop);
+        public static pxr.VtValue PropToVtValue(UnityEditor.SerializedProperty prop);
+        public static string ValueToString(UnityEditor.SerializedProperty prop);
+        public static void VtValueToProp(UnityEditor.SerializedProperty prop, pxr.VtValue val);
+    }
+
+    public struct ObjectContext
+    {
+        public object additionalData;
+        public UnityEngine.GameObject gameObject;
+        public string path;
+        public USD.NET.SampleBase sample;
+    }
+
+    public enum PayloadPolicy
+    {
+        public const Unity.Formats.USD.PayloadPolicy DontLoadPayloads = 0;
+        public const Unity.Formats.USD.PayloadPolicy LoadAll = 1;
+        public int value__;
+    }
+
+    [System.Reflection.DefaultMember(@"Item")] public class PrimMap : System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<pxr.SdfPath, UnityEngine.GameObject>>, System.Collections.IEnumerable
+    {
+        public System.Collections.Generic.Dictionary<pxr.SdfPath, Unity.Formats.USD.MeshImporter.GeometrySubsets> MeshSubsets;
+        public System.Collections.Generic.Dictionary<pxr.SdfPath, pxr.UsdSkelBindingVector> SkelBindings;
+        public pxr.UsdSkelCache SkelCache;
+        public System.Collections.Generic.Dictionary<pxr.SdfPath, pxr.UsdSkelSkinningQuery> SkinningQueries;
+        public pxr.SdfPath[] Cameras { get; set; }
+        public pxr.SdfPath[] Cubes { get; set; }
+        public UnityEngine.GameObject this[pxr.SdfPath path] { get; set; }
+        public pxr.SdfPath[] Materials { get; set; }
+        public pxr.SdfPath[] Meshes { get; set; }
+        public pxr.SdfPath[] Skeletons { get; set; }
+        public pxr.SdfPath[] SkelRoots { get; set; }
+        public pxr.SdfPath[] Spheres { get; set; }
+        public pxr.SdfPath[] Xforms { get; set; }
+        public PrimMap() {}
+        public void AddInstance(UnityEngine.GameObject goInst);
+        public void AddInstanceRoot(pxr.SdfPath instancePath, UnityEngine.GameObject go, pxr.SdfPath masterPath);
+        public void AddMasterRoot(pxr.SdfPath path, UnityEngine.GameObject go);
+        public void Clear();
+        public void DestroyAll();
+        public virtual System.Collections.IEnumerator GetEnumerator();
+        public System.Collections.Generic.Dictionary<pxr.SdfPath, Unity.Formats.USD.PrimMap.InstanceRoot> GetInstanceRoots();
+        public System.Collections.Generic.Dictionary<pxr.SdfPath, UnityEngine.GameObject> GetMasterRootPaths();
+        public bool TryGetValue(pxr.SdfPath key, out UnityEngine.GameObject obj);
+        public struct InstanceRoot
+        {
+            public UnityEngine.GameObject gameObject;
+            public pxr.SdfPath masterPath;
+        }
+    }
+
+    public struct ReadAllJob<T> : System.Collections.Generic.IEnumerable<USD.NET.SampleEnumerator<T>>, System.Collections.Generic.IEnumerator<USD.NET.SampleEnumerator<T>>, System.Collections.IEnumerable, System.Collections.IEnumerator, System.IDisposable, Unity.Jobs.IJobParallelFor where T : USD.NET.SampleBase, new()
+    {
+        public virtual USD.NET.SampleEnumerator<T> Current { get; }
+        public ReadAllJob(USD.NET.Scene scene, pxr.SdfPath[] paths) {}
+        public virtual void Dispose();
+        public virtual void Execute(int index);
+        public virtual System.Collections.Generic.IEnumerator<USD.NET.SampleEnumerator<T>> GetEnumerator();
+        public virtual bool MoveNext();
+        public virtual void Reset();
+        public void Run();
+    }
+
+    public static class SceneExporter
+    {
+        public static void Export(UnityEngine.GameObject root, Unity.Formats.USD.ExportContext context, bool zeroRootTransform);
+        public static void Export(UnityEngine.GameObject root, USD.NET.Scene scene, Unity.Formats.USD.BasisTransformation basisTransform, bool exportUnvarying, bool zeroRootTransform, bool exportMaterials = False, bool exportMonoBehaviours = False);
+        public static void SyncExportContext(UnityEngine.GameObject exportRoot, Unity.Formats.USD.ExportContext context);
+    }
+
+    public static class SceneImporter
+    {
+        public static Unity.Formats.USD.IImporter ActiveMeshImporter;
+        public static Unity.Formats.USD.PrimMap BuildScene(USD.NET.Scene scene, UnityEngine.GameObject root, Unity.Formats.USD.SceneImportOptions importOptions, Unity.Formats.USD.PrimMap primMap, bool composingSubtree);
+        [System.Runtime.CompilerServices.IteratorStateMachine(typeof(Unity.Formats.USD.SceneImporter.<BuildScene>d__9))] public static System.Collections.IEnumerator BuildScene(USD.NET.Scene scene, UnityEngine.GameObject root, Unity.Formats.USD.SceneImportOptions importOptions, Unity.Formats.USD.PrimMap primMap, float targetFrameMilliseconds, bool composingSubtree);
+        public static void ImportUsd(UnityEngine.GameObject goRoot, USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions importOptions);
+        public static void ImportUsd(UnityEngine.GameObject goRoot, USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, bool composingSubtree, Unity.Formats.USD.SceneImportOptions importOptions);
+        public static void SavePrefab(UnityEngine.GameObject rootObject, string prefabPath, string playableClipName, Unity.Formats.USD.SceneImportOptions importOptions);
+        public class ImportException : System.Exception
+        {
+            public ImportException() {}
+            public ImportException(string message) {}
+            public ImportException(string message, System.Exception innerException) {}
+        }
+    }
+
+    public class SceneImportOptions
+    {
+        public Unity.Formats.USD.BasisTransformation changeHandedness;
+        public bool enableGpuInstancing;
+        public bool forceRebuild;
+        public bool importCameras;
+        public bool importHierarchy;
+        public bool importMeshes;
+        public bool importMonoBehaviours;
+        public bool importPointInstances;
+        public bool importSceneInstances;
+        public bool importSkinning;
+        public bool importSkinWeights;
+        public bool importTransforms;
+        public bool interpolate;
+        public Unity.Formats.USD.MaterialImportMode materialImportMode;
+        public Unity.Formats.USD.MaterialMap materialMap;
+        public Unity.Formats.USD.MeshImportOptions meshOptions;
+        public Unity.Formats.USD.PayloadPolicy payloadPolicy;
+        public string projectAssetPath;
+        public float scale;
+        public pxr.SdfPath usdRootPath;
+        public bool useDisplayColorAsFallbackMaterial;
+        public bool ShouldBindMaterials { get; }
+        public SceneImportOptions() {}
+    }
+
+    public class ShaderExporterBase
+    {
+        public ShaderExporterBase() {}
+        protected static string SetupTexture(USD.NET.Scene scene, string usdShaderPath, UnityEngine.Material material, USD.NET.Unity.PreviewSurfaceSample surface, UnityEngine.Vector4 scale, string destTexturePath, string textureName, string textureOutput, Unity.Formats.USD.ShaderExporterBase.ConversionType conversionType = 0);
+        public enum ConversionType
+        {
+            public const Unity.Formats.USD.ShaderExporterBase.ConversionType InvertAlpha = 2;
+            public const Unity.Formats.USD.ShaderExporterBase.ConversionType MaskMapToORM = 4;
+            public const Unity.Formats.USD.ShaderExporterBase.ConversionType None = 0;
+            public const Unity.Formats.USD.ShaderExporterBase.ConversionType SwapRASmoothnessToBGRoughness = 1;
+            public const Unity.Formats.USD.ShaderExporterBase.ConversionType UnpackNormal = 3;
+            public int value__;
+        }
+    }
+
+    public abstract class ShaderImporterBase
+    {
+        public System.Nullable<float> Clearcoat;
+        public UnityEngine.Texture2D ClearcoatMap;
+        public System.Nullable<float> ClearcoatRoughness;
+        public System.Nullable<UnityEngine.Color> Diffuse;
+        public UnityEngine.Texture2D DiffuseMap;
+        public System.Nullable<float> Displacement;
+        public UnityEngine.Texture2D DisplacementMap;
+        public System.Nullable<UnityEngine.Color> Emission;
+        public UnityEngine.Texture2D EmissionMap;
+        public System.Nullable<float> Metallic;
+        public UnityEngine.Texture2D MetallicMap;
+        public System.Nullable<UnityEngine.Vector3> Normal;
+        public UnityEngine.Texture2D NormalMap;
+        public System.Nullable<float> Occlusion;
+        public UnityEngine.Texture2D OcclusionMap;
+        public System.Nullable<float> Roughness;
+        public UnityEngine.Texture2D RoughnessMap;
+        public System.Nullable<UnityEngine.Color> Specular;
+        public UnityEngine.Texture2D SpecularMap;
+        public bool IsSpecularWorkflow { get; }
+        public UnityEngine.Material Material { get; }
+        public ShaderImporterBase(UnityEngine.Material material) {}
+        protected void ImportColorOrMap(USD.NET.Scene scene, USD.NET.Connectable<UnityEngine.Vector3> usdParam, bool isNormalMap, Unity.Formats.USD.SceneImportOptions options, ref UnityEngine.Texture2D map, ref System.Nullable<UnityEngine.Color> value, out string uvPrimvar);
+        public abstract void ImportFromUsd();
+        public virtual void ImportParametersFromUsd(USD.NET.Scene scene, string materialPath, USD.NET.Unity.MaterialSample materialSample, USD.NET.Unity.PreviewSurfaceSample previewSurf, Unity.Formats.USD.SceneImportOptions options);
+        protected void ImportValueOrMap<T>(USD.NET.Scene scene, USD.NET.Connectable<T> usdParam, bool isNormalMap, Unity.Formats.USD.SceneImportOptions options, ref UnityEngine.Texture2D map, ref System.Nullable<T> value, out string uvPrimvar) where T : System.ValueType, new();
+    }
+
+    [USD.NET.UsdSchema(@"SkelAnimation")] public class SkelAnimationSample : USD.NET.SampleBase
+    {
+        [USD.NET.UsdVariability(1)] public string[] blendShapes;
+        [USD.NET.UsdVariability(1)] public float[] blendShapeWeights;
+        [USD.NET.UsdVariability(1)] public string[] joints;
+        public UnityEngine.Quaternion[] rotations;
+        public pxr.VtVec3hArray scales;
+        public UnityEngine.Vector3[] translations;
+        public SkelAnimationSample() {}
+    }
+
+    public class SkelBindingSample : USD.NET.SampleBase
+    {
+        [USD.NET.UsdNamespace(@"skel")] public USD.NET.Relationship animationSource;
+        [USD.NET.UsdNamespace(@"skel")] [USD.NET.UsdVariability(1)] public string[] blendShapes;
+        [USD.NET.UsdNamespace(@"skel")] public USD.NET.Relationship blendShapeTargets;
+        [USD.NET.UsdNamespace(@"skel")] [USD.NET.UsdVariability(1)] public USD.NET.Primvar<UnityEngine.Matrix4x4> geomBindTransform;
+        [USD.NET.UsdNamespace(@"skel")] [USD.NET.UsdVariability(1)] public USD.NET.Primvar<int[]> jointIndices;
+        [USD.NET.UsdNamespace(@"skel")] [USD.NET.UsdVariability(1)] public string[] joints;
+        [USD.NET.UsdNamespace(@"skel")] [USD.NET.UsdVariability(1)] public USD.NET.Primvar<float[]> jointWeights;
+        [USD.NET.UsdNamespace(@"skel")] public USD.NET.Relationship skeleton;
+        public SkelBindingSample() {}
+    }
+
+    public static class SkeletonExporter
+    {
+        public static void ExportSkelAnimation(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+        public static void ExportSkeleton(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+        public static void ExportSkelRoot(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+    }
+
+    public static class SkeletonImporter
+    {
+        public static void BuildBindTransforms(string path, Unity.Formats.USD.SkeletonSample skelSample, Unity.Formats.USD.SceneImportOptions options);
+        public static void BuildDebugBindTransforms(Unity.Formats.USD.SkeletonSample skelSample, UnityEngine.GameObject goSkeleton, Unity.Formats.USD.SceneImportOptions options);
+        public static void BuildSkeletonBone(string skelPath, UnityEngine.GameObject go, UnityEngine.Matrix4x4 restXform, pxr.VtTokenArray joints, Unity.Formats.USD.SceneImportOptions importOptions);
+        public static void BuildSkinnedMesh(string meshPath, string skelPath, Unity.Formats.USD.SkeletonSample skeleton, pxr.UsdSkelSkinningQuery skinningQuery, UnityEngine.GameObject go, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions options);
+    }
+
+    public class SkeletonIo
+    {
+        public SkeletonIo() {}
+        public UnityEngine.Transform[] GetBones(UnityEngine.Transform rootBone);
+        public void RegisterSkeleton(UnityEngine.Transform rootBone, UnityEngine.Transform[] bones);
+    }
+
+    [USD.NET.UsdSchema(@"Skeleton")] public class SkeletonSample : USD.NET.Unity.XformableSample
+    {
+        [USD.NET.UsdVariability(1)] public UnityEngine.Matrix4x4[] bindTransforms;
+        [USD.NET.UsdVariability(1)] public string[] joints;
+        [USD.NET.UsdVariability(1)] public UnityEngine.Matrix4x4[] restTransforms;
+        public SkeletonSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"SkelRoot")] public class SkelRootSample : USD.NET.Unity.BoundableSample
+    {
+        [USD.NET.UsdNamespace(@"skel")] public USD.NET.Relationship animationSource;
+        [USD.NET.UsdNamespace(@"skel")] public USD.NET.Relationship skeleton;
+        public SkelRootSample() {}
+    }
+
+    [UnityEngine.ExecuteInEditMode] public class SkinnedMeshUnityDiff : UnityEngine.MonoBehaviour
+    {
+        [UnityEngine.Tooltip(@"The Unity skinned mesh to compare")] public UnityEngine.SkinnedMeshRenderer m_unityMesh;
+        [UnityEngine.Tooltip(@"The USD skinned mesh to compare")] public UnityEngine.SkinnedMeshRenderer m_usdMesh;
+        public SkinnedMeshUnityDiff() {}
+    }
+
+    [UnityEngine.ExecuteInEditMode] [UnityEngine.RequireComponent(typeof(UnityEngine.SkinnedMeshRenderer))] public class SkinnedMeshUsdDiff : UnityEngine.MonoBehaviour
+    {
+        [UnityEngine.Tooltip(@"How to convert transforms for comparison")] public Unity.Formats.USD.BasisTransformation m_basisTransform;
+        [UnityEngine.Tooltip(@"A path to a USD file for comparing weights")] public string m_usdFile;
+        [UnityEngine.Tooltip(@"A prim path to the skinned mesh in the USD file")] public string m_usdMeshPath;
+        public SkinnedMeshUsdDiff() {}
+    }
+
+    public static class SphereImporter
+    {
+        public static void BuildSphere(USD.NET.Unity.SphereSample usdSphere, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool skinnedMesh = False);
+    }
+
+    public class StandardShaderExporter : Unity.Formats.USD.ShaderExporterBase
+    {
+        public StandardShaderExporter() {}
+        public static void ExportGeneric(USD.NET.Scene scene, string usdShaderPath, UnityEngine.Material material, Unity.Formats.USD.UnityPreviewSurfaceSample surface, string destTexturePath);
+        public static void ExportStandard(USD.NET.Scene scene, string usdShaderPath, UnityEngine.Material material, Unity.Formats.USD.UnityPreviewSurfaceSample surface, string destTexturePath);
+        public static void ExportStandardRoughness(USD.NET.Scene scene, string usdShaderPath, UnityEngine.Material material, Unity.Formats.USD.UnityPreviewSurfaceSample surface, string destTexturePath);
+        public static void ExportStandardSpecular(USD.NET.Scene scene, string usdShaderPath, UnityEngine.Material material, Unity.Formats.USD.UnityPreviewSurfaceSample surface, string destTexturePath);
+    }
+
+    public class StandardShaderImporter : Unity.Formats.USD.ShaderImporterBase
+    {
+        public StandardShaderImporter(UnityEngine.Material material) {}
+        public virtual void ImportFromUsd();
+    }
+
+    public class UnityMaterialData : USD.NET.SampleBase
+    {
+        [USD.NET.UsdNamespace(@"colors")] public System.Collections.Generic.Dictionary<string, UnityEngine.Color> colorArgs;
+        [USD.NET.UsdNamespace(@"floats")] public System.Collections.Generic.Dictionary<string, float> floatArgs;
+        public string[] shaderKeywords;
+        public string shaderName;
+        [USD.NET.UsdNamespace(@"vectors")] public System.Collections.Generic.Dictionary<string, UnityEngine.Vector4> vectorArgs;
+        public UnityMaterialData() {}
+    }
+
+    public class UnityPreviewSurfaceSample : USD.NET.Unity.PreviewSurfaceSample
+    {
+        [USD.NET.UsdNamespace(@"unity")] public Unity.Formats.USD.UnityMaterialData unity;
+        public UnityPreviewSurfaceSample() {}
+    }
+
+    public class UnitySkeleton
+    {
+        public UnityEngine.Transform[] bones;
+        public UnityEngine.Transform rootBone;
+        public UnitySkeleton() {}
+    }
+
+    public class UsdAssemblyRoot : UnityEngine.MonoBehaviour
+    {
+        public UsdAssemblyRoot() {}
+    }
+
+    [UnityEngine.ExecuteInEditMode] public class UsdAsset : UnityEngine.MonoBehaviour
+    {
+        [UnityEngine.HideInInspector] public Unity.Formats.USD.BasisTransformation LastHandedness;
+        [UnityEngine.HideInInspector] public float LastScale;
+        public Unity.Formats.USD.ImportMode m_boundingBox;
+        [UnityEngine.Tooltip(@"Conversion method for right-handed (USD) to left-handed conversion (Unity) and vice versa.")] public Unity.Formats.USD.BasisTransformation m_changeHandedness;
+        [UnityEngine.Tooltip(@"Combined import policy for primvars:displayColor and primvars:displayOpacity")] public Unity.Formats.USD.ImportMode m_color;
+        public bool m_debugPrintVariabilityCache;
+        [UnityEngine.Header(@"Debug Options")] public bool m_debugShowSkeletonBindPose;
+        public bool m_debugShowSkeletonRestPose;
+        [UnityEngine.Tooltip(@"The default material to use when importing materials as display color.")] public UnityEngine.Material m_displayColorMaterial;
+        [UnityEngine.HideInInspector] [UnityEngine.Tooltip(@"When enabled, set the GPU Instancing flag on all materials.")] public bool m_enableGpuInstancing;
+        [UnityEngine.Header(@"Mesh Lightmap UV Unwrapping")] public bool m_generateLightmapUVs;
+        public bool m_importCameras;
+        [UnityEngine.HideInInspector] public bool m_importHierarchy;
+        public bool m_importMeshes;
+        public bool m_importMonoBehaviors;
+        public bool m_importPointInstances;
+        public bool m_importSceneInstances;
+        public bool m_importSkinning;
+        public bool m_importTransforms;
+        [UnityEngine.Tooltip(@"Behavior to use when no value was authored at the requested time.")] public USD.NET.Scene.InterpolationMode m_interpolation;
+        [UnityEngine.Header(@"Import Settings")] public Unity.Formats.USD.MaterialImportMode m_materialImportMode;
+        [UnityEngine.Tooltip(@"The default material to use when importing metallic workflow USD Preview Surface materials.")] public UnityEngine.Material m_metallicWorkflowMaterial;
+        [UnityEngine.Tooltip(@"Import policy for normals, note that the 'normals' attribute is built-in, not a primvar")] public Unity.Formats.USD.ImportMode m_normals;
+        [UnityEngine.Tooltip(@"For assets with payloads authored, indicates if payloads should be loaded or unloaded by default.")] public Unity.Formats.USD.PayloadPolicy m_payloadPolicy;
+        [UnityEngine.Header(@"Mesh Options")] public Unity.Formats.USD.ImportMode m_points;
+        [UnityEngine.HideInInspector] [UnityEngine.Tooltip(@"The Unity project path into which imported files (such as textures) will be placed.")] public string m_projectAssetPath;
+        [UnityEngine.Header(@"Conversions")] [UnityEngine.Tooltip(@"A scale to be applied to the root asset, useful for converting asset units to meters.")] public float m_scale;
+        [UnityEngine.Tooltip(@"The default material to use when importing specular workflow USD Preview Surface materials.")] public UnityEngine.Material m_specularWorkflowMaterial;
+        [UnityEngine.Tooltip(@"Import policy for primvars:st")] public Unity.Formats.USD.ImportMode m_st;
+        [UnityEngine.Tooltip(@"Import policy for primvars:tangent")] public Unity.Formats.USD.ImportMode m_tangents;
+        [UnityEngine.HideInInspector] public Unity.Formats.USD.ImportMode m_texcoord1;
+        [UnityEngine.HideInInspector] public Unity.Formats.USD.ImportMode m_texcoord2;
+        [UnityEngine.HideInInspector] public Unity.Formats.USD.ImportMode m_texcoord3;
+        public Unity.Formats.USD.ImportMode m_topology;
+        [UnityEngine.Range(0, 1)] [UnityEngine.Tooltip(@"Maximum allowed angle distortion")] public float m_unwrapAngleError;
+        [UnityEngine.Range(0, 1)] [UnityEngine.Tooltip(@"Maximum allowed area distortion")] public float m_unwrapAreaError;
+        [UnityEngine.Range(1, 359)] [UnityEngine.Tooltip(@"This angle (in degrees) or greater between triangles will cause seam to be created")] public float m_unwrapHardAngle;
+        [UnityEngine.Range(0, 32)] [UnityEngine.Tooltip(@"UV-island padding in pixels")] public int m_unwrapPackMargin;
+        [UnityEngine.Tooltip(@"The USD prim path in the USD scene at which to start the import process.")] public string m_usdRootPath;
+        [UnityEngine.Tooltip(@"An offset applied to all data in the USD file")] public float m_usdTimeOffset;
+        [UnityEngine.Tooltip(@"Memorizes which attributes change over time, to speed up playback (trades time for memory)")] public bool m_usdVariabilityCache;
+        [UnityEngine.Header(@"Material Options")] [UnityEngine.Tooltip(@"If the original shader name is stored in USD, attempt to find that shader in this project.")] public bool m_useOriginalShaderIfAvailable;
+        public double Length { get; }
+        public string usdFullPath { get; set; }
+        public UsdAsset() {}
+        public void DestroyAllImportedObjects();
+        public void ExportOverrides(USD.NET.Scene sceneInWhichToStoreTransforms);
+        public USD.NET.Scene GetScene();
+        public void ImportUsdAsCoroutine(UnityEngine.GameObject goRoot, string usdFilePath, double time, Unity.Formats.USD.SceneImportOptions importOptions, float targetFrameMilliseconds);
+        public void OptionsToState(Unity.Formats.USD.SceneImportOptions options);
+        public static void PrepOptionsForTimeChange(ref Unity.Formats.USD.SceneImportOptions options);
+        public void Reload(bool forceRebuild);
+        public void RemoveAllUsdComponents();
+        public void SetPayloadState(UnityEngine.GameObject go, bool isLoaded);
+        public void SetTime(double time, Unity.Formats.USD.UsdAsset foreignRoot, bool saveMeshUpdates);
+        public void SetVariantSelection(UnityEngine.GameObject go, string usdPrimPath, System.Collections.Generic.Dictionary<string, string> selections);
+        public void StateToOptions(ref Unity.Formats.USD.SceneImportOptions options);
+    }
+
+    [UnityEngine.RequireComponent(typeof(Unity.Formats.USD.UsdAsset))] public class UsdLayerStack : UnityEngine.MonoBehaviour
+    {
+        public string[] m_layerStack;
+        public string[] m_mutedLayers;
+        public string m_targetLayer;
+        public UsdLayerStack() {}
+        public void SaveLayerStack(USD.NET.Scene scene, string[] layerStack);
+        public void SaveToLayer();
+    }
+
+    public class UsdModelRoot : UnityEngine.MonoBehaviour
+    {
+        public string m_modelAssetPath;
+        public string m_modelName;
+        public string m_modelVersion;
+        public UsdModelRoot() {}
+    }
+
+    [UnityEngine.ExecuteInEditMode] public class UsdPayload : UnityEngine.MonoBehaviour
+    {
+        public bool IsLoaded { get; }
+        public UsdPayload() {}
+        public void Load();
+        public void SetInitialState(bool loaded);
+        public void Unload();
+        public void Update();
+    }
+
+    public class UsdPlayableAsset : UnityEngine.Playables.PlayableAsset, UnityEngine.Timeline.ITimelineClipAsset
+    {
+        [UnityEngine.Tooltip(@"USD Player to Control")] public UnityEngine.ExposedReference<Unity.Formats.USD.UsdAsset> SourceUsdAsset;
+        public virtual UnityEngine.Timeline.ClipCaps clipCaps { get; }
+        public virtual double duration { get; }
+        public UsdPlayableAsset() {}
+        public virtual UnityEngine.Playables.Playable CreatePlayable(UnityEngine.Playables.PlayableGraph graph, UnityEngine.GameObject owner);
+        public Unity.Formats.USD.UsdAsset GetUsdAsset(string usdRootPath);
+    }
+
+    public class UsdPlayableBehaviour : UnityEngine.Playables.PlayableBehaviour
+    {
+        public Unity.Formats.USD.UsdPlayableAsset playableAsset;
+        public UsdPlayableBehaviour() {}
+        public virtual void OnBehaviourPause(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info);
+        public virtual void OnBehaviourPlay(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info);
+        public virtual void OnGraphStart(UnityEngine.Playables.Playable playable);
+        public virtual void OnGraphStop(UnityEngine.Playables.Playable playable);
+        public virtual void PrepareData(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info);
+        public virtual void PrepareFrame(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info);
+        public virtual void ProcessFrame(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info, object playerData);
+    }
+
+    [UnityEngine.Timeline.TrackBindingType(typeof(Unity.Formats.USD.UsdAsset))] [UnityEngine.Timeline.TrackClipType(typeof(Unity.Formats.USD.UsdPlayableAsset))] [UnityEngine.Timeline.TrackColor(0.1, 0.2, 0.8)] public class UsdPlayableTrack : UnityEngine.Timeline.TrackAsset
+    {
+        public UsdPlayableTrack() {}
+        protected virtual void OnCreateClip(UnityEngine.Timeline.TimelineClip clip);
+    }
+
+    public class UsdPrimSource : UnityEngine.MonoBehaviour
+    {
+        public string m_usdPrimPath;
+        public UsdPrimSource() {}
+    }
+
+    public class UsdRecorderBehaviour : UnityEngine.Playables.PlayableBehaviour
+    {
+        public Unity.Formats.USD.UsdRecorderClip Clip;
+        public UsdRecorderBehaviour() {}
+        public void BeginRecording(double currentTime, UnityEngine.GameObject root);
+        public virtual void OnBehaviourPause(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info);
+        public virtual void OnBehaviourPlay(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info);
+        public void OnFrameEnd(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info, object playerData);
+        public virtual void OnGraphStart(UnityEngine.Playables.Playable playable);
+        public virtual void OnGraphStop(UnityEngine.Playables.Playable playable);
+        public virtual void OnPlayableCreate(UnityEngine.Playables.Playable playable);
+        public virtual void OnPlayableDestroy(UnityEngine.Playables.Playable playable);
+        public virtual void ProcessFrame(UnityEngine.Playables.Playable playable, UnityEngine.Playables.FrameData info, object playerData);
+        public void StopRecording(double currentTime);
+    }
+
+    [System.ComponentModel.DisplayName(@"USD Recorder Clip")] public class UsdRecorderClip : UnityEngine.Playables.PlayableAsset, UnityEngine.Timeline.ITimelineClipAsset
+    {
+        public Unity.Formats.USD.ActiveExportPolicy m_activePolicy;
+        public Unity.Formats.USD.BasisTransformation m_convertHandedness;
+        public bool m_exportMaterials;
+        public UnityEngine.ExposedReference<UnityEngine.GameObject> m_exportRoot;
+        public string m_usdFile;
+        public virtual UnityEngine.Timeline.ClipCaps clipCaps { get; }
+        public Unity.Formats.USD.ExportContext Context { get; set; }
+        public bool IsUSDZ { get; }
+        public USD.NET.Scene UsdScene { get; set; }
+        public UsdRecorderClip() {}
+        public virtual UnityEngine.Playables.Playable CreatePlayable(UnityEngine.Playables.PlayableGraph graph, UnityEngine.GameObject owner);
+        public UnityEngine.GameObject GetExportRoot(UnityEngine.Playables.PlayableGraph graph);
+        public virtual void OnDestroy();
+    }
+
+    [UnityEngine.Timeline.TrackClipType(typeof(Unity.Formats.USD.UsdRecorderClip))] [UnityEngine.Timeline.TrackColor(0.7, 0, 0)] public class UsdRecorderTrack : UnityEngine.Timeline.TrackAsset
+    {
+        public UsdRecorderTrack() {}
+    }
+
+    public class UsdVariantSet : UnityEngine.MonoBehaviour
+    {
+        public string m_primPath;
+        public string[] m_selected;
+        public int[] m_variantCounts;
+        public string[] m_variants;
+        public string[] m_variantSetNames;
+        public UsdVariantSet() {}
+        public void ApplyVariantSelections();
+        public System.Collections.Generic.Dictionary<string, string> GetVariantSelections();
+        public void LoadFromUsd(pxr.UsdPrim prim);
+    }
+
+    public class UsdzExporter
+    {
+        public UsdzExporter() {}
+        public static void ExportUsdz(string usdzFilePath, UnityEngine.GameObject root);
+    }
+
+    public static class XformExporter
+    {
+        public static void ExportXform(Unity.Formats.USD.ObjectContext objContext, Unity.Formats.USD.ExportContext exportContext);
+        public static UnityEngine.Matrix4x4 GetLocalTransformMatrix(UnityEngine.Transform tr, bool correctZUp, bool isRootPrim, Unity.Formats.USD.BasisTransformation conversionType);
+        public static void WriteSparseOverrides(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.BasisTransformation changeHandedness, float tolerance = 0.0001);
+    }
+
+    public static class XformImporter
+    {
+        public static void BuildSceneRoot(USD.NET.Scene scene, UnityEngine.Transform root, Unity.Formats.USD.SceneImportOptions options);
+        public static void BuildXform(UnityEngine.Matrix4x4 xf, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options);
+        public static void BuildXform(pxr.SdfPath path, USD.NET.Unity.XformableSample usdXf, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, USD.NET.Scene scene);
+        public static void ImportXform(ref UnityEngine.Matrix4x4 mat, Unity.Formats.USD.SceneImportOptions options);
+        public static void UndoRootTransform(USD.NET.Scene scene, Unity.Formats.USD.UsdAsset stageRoot, ref UnityEngine.Vector3 localScale, ref UnityEngine.Quaternion localRotation);
+    }
+}

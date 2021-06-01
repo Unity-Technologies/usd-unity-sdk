@@ -20,20 +20,20 @@ namespace Unity.Formats.USD.Examples
 {
     /// <remarks>
     /// Export Mesh Example
-    /// 
+    ///
     ///  * StartRecording:
     ///    * Create and configure a USD scene.
     ///    * Traverse the Unity scene, for each GameObject:
     ///      * Create an association between the Unity object and a USD prim.
     ///      * Assign an ExportFunction that will export the data for the object.
-    ///      
+    ///
     ///  * Export unvarying data:
     ///    * Export mesh topology and any other data that doesn't change from frame-to-frame.
-    ///  
+    ///
     ///  * On Update, export time-varying data:
     ///    * Traverse the map of GameObjects, for each object:
     ///      * Call the associated export function.
-    ///  
+    ///
     ///  * StopRecording:
     ///    * Save and close the USD scene.
     ///    * Release the association map and USD scene.
@@ -135,12 +135,12 @@ namespace Unity.Formats.USD.Examples
 
                 // USD operates on frames, so the frame rate is required for playback.
                 // We could also set this to 1 to indicate that the TimeCode is in seconds.
-                Application.targetFrameRate = (int) m_frameRate;
+                Application.targetFrameRate = (int)m_frameRate;
 
                 // This forces Unity to use a fixed time step, resulting in evenly spaced
                 // time samples in USD. Unfortunately, non-integer frame rates are not supported.
                 // When non-integer frame rates are needed, time can be manually paused and
-                // and advanced 
+                // and advanced
                 Time.captureFramerate = Application.targetFrameRate;
 
                 // Set the frame rate in USD  as well.

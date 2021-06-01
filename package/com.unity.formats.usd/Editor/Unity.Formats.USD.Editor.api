@@ -1,0 +1,52 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Formats.USD
+{
+    public static class PackageUtils
+    {
+        public static string GetCallerRelativeToProjectFolderPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = );
+        public static string GetRelativeFolderPath(string baseFolderPath, string filePath = );
+    }
+
+    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.UsdAsset))] public class UsdAssetEditor : UnityEditor.Editor
+    {
+        public UsdAssetEditor() {}
+        public void OnEnable();
+        public virtual void OnInspectorGUI();
+    }
+
+    public class UsdBuildPostProcess
+    {
+        public UsdBuildPostProcess() {}
+        [UnityEditor.Callbacks.PostProcessBuild(1)] public static void OnPostprocessBuild(UnityEditor.BuildTarget target, string pathToBuiltProject);
+    }
+
+    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.UsdLayerStack))] public class UsdLayerStackEditor : UnityEditor.Experimental.AssetImporters.ScriptedImporterEditor
+    {
+        public UsdLayerStackEditor() {}
+        public virtual void OnInspectorGUI();
+    }
+
+    public static class UsdMenu
+    {
+        [UnityEditor.MenuItem(@"USD/Export Transform Overrides", priority = 50)] public static void MenuExportTransforms();
+        [UnityEditor.MenuItem(@"USD/Import as GameObjects", priority = 0)] public static void MenuImportAsGameObjects();
+        [UnityEditor.MenuItem(@"USD/Import as Prefab", priority = 1)] public static void MenuImportAsPrefab();
+        [UnityEditor.MenuItem(@"USD/Import as Timeline Clip", priority = 2)] public static void MenuImportAsTimelineClip();
+        [UnityEditor.MenuItem(@"USD/Load Subtree", priority = 101)] public static void MenuLoadSubtree();
+        [UnityEditor.MenuItem(@"USD/Unload Subtree", priority = 100)] public static void MenuUnloadSubtree();
+    }
+
+    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.UsdPrimSource))] public class UsdPrimSourceEditor : UnityEditor.Editor
+    {
+        public UsdPrimSourceEditor() {}
+        public virtual void OnInspectorGUI();
+    }
+
+    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.UsdVariantSet))] public class UsdVariantSetEditor : UnityEditor.Editor
+    {
+        public UsdVariantSetEditor() {}
+        public virtual void OnInspectorGUI();
+    }
+}

@@ -357,7 +357,7 @@ namespace Unity.Formats.USD
             if (context.samples.TryGetValue(typeof(T), out sb)) {
               return (T)sb;
             }
-      
+
             sb = (new T());
             context.samples[typeof(T)] = sb;
             return (T)sb;
@@ -406,8 +406,8 @@ namespace Unity.Formats.USD
                         {
                             animatorXf = animatorXf.parent;
                             Debug.LogWarning("No children found under animator: " +
-                                             UnityTypeConverter.GetPath(animatorXf) + " Root bone XF: " +
-                                             UnityTypeConverter.GetPath(rootBoneXf));
+                                UnityTypeConverter.GetPath(animatorXf) + " Root bone XF: " +
+                                UnityTypeConverter.GetPath(rootBoneXf));
                             continue;
                         }
 
@@ -497,27 +497,32 @@ namespace Unity.Formats.USD
                         // Exporting animation is only possible while in-editor (in 2018 and earlier).
 #if UNITY_EDITOR
 #if false // Currently disabled, future work.
-            if (anim.layerCount > 0) {
-              for (int l = 0; l < anim.layerCount; l++) {
-                int clipCount = anim.GetCurrentAnimatorClipInfoCount(l);
-                var clipInfos = anim.GetCurrentAnimatorClipInfo(l);
-                foreach (var clipInfo in clipInfos) {
-                  var bindings = UnityEditor.AnimationUtility.GetCurveBindings(clipInfo.clip);
-                  // Properties are expressed as individual values, for transforms this is:
-                  //   m_LocalPosition.x,y,z
-                  //   m_LocalScale.x,y,z
-                  //   m_LocalRotation.x,y,z,w
-                  // Which means they must be reaggregated into matrices.
-                  foreach (var binding in bindings) {
-                    if (binding.type != typeof(Transform)) {
-                      continue;
-                    }
-                    Debug.Log(binding.path + "." + binding.propertyName);
-                    var knot = UnityEditor.AnimationUtility.GetEditorCurve(clipInfo.clip, binding);
-                  }
-                }
-              }
-            }
+                        if (anim.layerCount > 0)
+                        {
+                            for (int l = 0; l < anim.layerCount; l++)
+                            {
+                                int clipCount = anim.GetCurrentAnimatorClipInfoCount(l);
+                                var clipInfos = anim.GetCurrentAnimatorClipInfo(l);
+                                foreach (var clipInfo in clipInfos)
+                                {
+                                    var bindings = UnityEditor.AnimationUtility.GetCurveBindings(clipInfo.clip);
+                                    // Properties are expressed as individual values, for transforms this is:
+                                    //   m_LocalPosition.x,y,z
+                                    //   m_LocalScale.x,y,z
+                                    //   m_LocalRotation.x,y,z,w
+                                    // Which means they must be reaggregated into matrices.
+                                    foreach (var binding in bindings)
+                                    {
+                                        if (binding.type != typeof(Transform))
+                                        {
+                                            continue;
+                                        }
+                                        Debug.Log(binding.path + "." + binding.propertyName);
+                                        var knot = UnityEditor.AnimationUtility.GetEditorCurve(clipInfo.clip, binding);
+                                    }
+                                }
+                            }
+                        }
 #endif // disabled.
 #endif // Editor only.
 
@@ -557,8 +562,8 @@ namespace Unity.Formats.USD
                     if (!context.matMap.ContainsKey(mat))
                     {
                         string usdPath = materialBasePath +
-                                         pxr.UsdCs.TfMakeValidIdentifier(
-                                             mat.name + "_" + mat.GetInstanceID().ToString());
+                            pxr.UsdCs.TfMakeValidIdentifier(
+                            mat.name + "_" + mat.GetInstanceID().ToString());
                         context.matMap.Add(mat, usdPath);
                     }
                 }
@@ -602,8 +607,8 @@ namespace Unity.Formats.USD
                     if (!context.matMap.ContainsKey(mat))
                     {
                         string usdPath = materialBasePath +
-                                         pxr.UsdCs.TfMakeValidIdentifier(
-                                             mat.name + "_" + mat.GetInstanceID().ToString());
+                            pxr.UsdCs.TfMakeValidIdentifier(
+                            mat.name + "_" + mat.GetInstanceID().ToString());
                         context.matMap.Add(mat, usdPath);
                     }
                 }
@@ -682,7 +687,7 @@ namespace Unity.Formats.USD
                 allBones.AddRange(context.meshToBones[curMeshXf]);
 
                 // Downstream code will have a root bone and need to know how to make bone paths relative
-                // to the new, arbitrary, common root which we have chosen. 
+                // to the new, arbitrary, common root which we have chosen.
                 context.boneToRoot[rootBone] = commonRoot;
 
                 context.meshToSkelRoot.Remove(curMeshXf);
@@ -725,7 +730,7 @@ namespace Unity.Formats.USD
                 if (context.bindPoses.TryGetValue(bone, out existingMatrix) && existingMatrix != bindPoses[i])
                 {
                     Debug.LogWarning("Duplicate bone with different bind poses: " + path + "\n" +
-                                     existingMatrix.ToString() + "\n" + bindPoses[i].ToString());
+                        existingMatrix.ToString() + "\n" + bindPoses[i].ToString());
                 }
             }
         }

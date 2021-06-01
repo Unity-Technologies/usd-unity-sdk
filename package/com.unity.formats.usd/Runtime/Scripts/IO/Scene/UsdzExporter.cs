@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ namespace Unity.Formats.USD
                 Directory.SetCurrentDirectory(tmpDirPath);
 
                 // Create the tmp .usd scene, into which the data will be exported.
-                Scene scene = ExportHelpers.InitForSave(Path.Combine(tmpDirPath,usdcFileName));
+                Scene scene = ExportHelpers.InitForSave(Path.Combine(tmpDirPath, usdcFileName));
                 Vector3 localScale = root.transform.localScale;
 
                 try

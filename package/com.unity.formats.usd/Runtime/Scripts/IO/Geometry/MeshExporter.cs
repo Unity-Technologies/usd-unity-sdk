@@ -48,7 +48,7 @@ namespace Unity.Formats.USD
             if (smr.rootBone != null && !exportContext.boneToRoot.TryGetValue(smr.rootBone, out rootBone))
             {
                 Debug.LogWarning("Root bone not found in export context for " +
-                                 UnityTypeConverter.GetPath(smr.rootBone));
+                    UnityTypeConverter.GetPath(smr.rootBone));
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace Unity.Formats.USD
 
             // Skeleton path is stored in additionalData via the SceneExporter SyncExportContext(). It
             // would be nice to formalize this, rather than passing it as blind data.
-            var skeletonPath = (string) objContext.additionalData;
+            var skeletonPath = (string)objContext.additionalData;
 
             ExportSkelWeights(exportContext.scene,
                 objContext.path,
@@ -134,31 +134,33 @@ namespace Unity.Formats.USD
                 w += maxWeightCount - weightCount;
             }
 #else
-      var unityBoneWeights = unityMesh.boneWeights;
+            var unityBoneWeights = unityMesh.boneWeights;
 
-      if (unityBoneWeights.Length == 0) {
-        Debug.LogWarning("Found zero bone weights at: " + path);
-        return;
-      }
+            if (unityBoneWeights.Length == 0)
+            {
+                Debug.LogWarning("Found zero bone weights at: " + path);
+                return;
+            }
 
-      sample.jointIndices.value = new int[unityBoneWeights.Length * 4];
-      sample.jointIndices.elementSize = 4;
-      sample.jointIndices.interpolation = PrimvarInterpolation.Vertex;
+            sample.jointIndices.value = new int[unityBoneWeights.Length * 4];
+            sample.jointIndices.elementSize = 4;
+            sample.jointIndices.interpolation = PrimvarInterpolation.Vertex;
 
-      sample.jointWeights.value = new float[unityBoneWeights.Length * 4];
-      sample.jointWeights.elementSize = 4;
-      sample.jointWeights.interpolation = PrimvarInterpolation.Vertex;
+            sample.jointWeights.value = new float[unityBoneWeights.Length * 4];
+            sample.jointWeights.elementSize = 4;
+            sample.jointWeights.interpolation = PrimvarInterpolation.Vertex;
 
-      foreach (var bone in unityBoneWeights) {
-        sample.jointIndices.value[i++] = bone.boneIndex0;
-        sample.jointIndices.value[i++] = bone.boneIndex1;
-        sample.jointIndices.value[i++] = bone.boneIndex2;
-        sample.jointIndices.value[i++] = bone.boneIndex3;
-        sample.jointWeights.value[w++] = bone.weight0;
-        sample.jointWeights.value[w++] = bone.weight1;
-        sample.jointWeights.value[w++] = bone.weight2;
-        sample.jointWeights.value[w++] = bone.weight3;
-      }
+            foreach (var bone in unityBoneWeights)
+            {
+                sample.jointIndices.value[i++] = bone.boneIndex0;
+                sample.jointIndices.value[i++] = bone.boneIndex1;
+                sample.jointIndices.value[i++] = bone.boneIndex2;
+                sample.jointIndices.value[i++] = bone.boneIndex3;
+                sample.jointWeights.value[w++] = bone.weight0;
+                sample.jointWeights.value[w++] = bone.weight1;
+                sample.jointWeights.value[w++] = bone.weight2;
+                sample.jointWeights.value[w++] = bone.weight3;
+            }
 #endif
             scene.Write(path, sample);
         }
@@ -166,7 +168,7 @@ namespace Unity.Formats.USD
 #if UNITY_EDITOR
         static System.Reflection.MethodInfo Mesh_canAccess;
 
-        // This is a workaround for a Unity peculiarity - 
+        // This is a workaround for a Unity peculiarity -
         // non-readable meshes are actually always accessible from the Editor.
         // We're still logging a warning since this won't work in a build.
         static bool CanReadMesh(Mesh mesh)
@@ -191,7 +193,7 @@ namespace Unity.Formats.USD
             {
                 try
                 {
-                    bool canAccess = (bool) Mesh_canAccess.Invoke(mesh, null);
+                    bool canAccess = (bool)Mesh_canAccess.Invoke(mesh, null);
                     if (canAccess)
                     {
                         Debug.LogWarning(
@@ -209,6 +211,7 @@ namespace Unity.Formats.USD
 
             return false;
         }
+
 #endif
 
         public static void ExportMesh(ObjectContext objContext, ExportContext exportContext)
@@ -246,7 +249,8 @@ namespace Unity.Formats.USD
             if (!CanReadMesh(mesh))
             {
 #else
-      if(!mesh.isReadable) {
+            if (!mesh.isReadable)
+            {
 #endif
                 Debug.LogError(
                     "Mesh is not readable: " + objContext.path +
@@ -258,7 +262,7 @@ namespace Unity.Formats.USD
             var scene = exportContext.scene;
             bool unvarying = scene.Time == null;
             bool slowAndSafeConversion = exportContext.basisTransform == BasisTransformation.SlowAndSafe;
-            var sample = (MeshSample) objContext.sample;
+            var sample = (MeshSample)objContext.sample;
             var go = objContext.gameObject;
 
             if (mesh.bounds.center == Vector3.zero && mesh.bounds.extents == Vector3.zero)
@@ -420,11 +424,11 @@ namespace Unity.Formats.USD
                                 !exportContext.matMap.TryGetValue(sharedMaterials[si], out usdMaterialPath))
                             {
                                 Debug.LogWarning("Invalid material bound for: " + path + "\n"
-                                                 + (si >= sharedMaterials.Length
-                                                     ? "More submeshes than materials assigned."
-                                                     : (!sharedMaterials[si]
-                                                         ? "Submesh " + si + " has null material"
-                                                         : "ExportMap can't map material")));
+                                    + (si >= sharedMaterials.Length
+                                        ? "More submeshes than materials assigned."
+                                        : (!sharedMaterials[si]
+                                            ? "Submesh " + si + " has null material"
+                                            : "ExportMap can't map material")));
                             }
                             else
                             {

@@ -64,7 +64,6 @@ namespace UnityEditor.Formats.USD.Recorder
             }
 
 
-
             context.scene.FrameRate = Settings.FrameRate; // Variable framerate support ?
             context.scene.Stage.SetInterpolationType(Settings.InterpolationType); // User Option
 
@@ -92,7 +91,6 @@ namespace UnityEditor.Formats.USD.Recorder
             {
                 try
                 {
-
                     Directory.SetCurrentDirectory(usdzTemporaryDir.FullName);
                     var assetPath = new SdfAssetPath(usdcFileName);
                     var success = UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);

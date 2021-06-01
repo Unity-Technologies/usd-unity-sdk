@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -96,7 +96,6 @@ namespace Unity.Formats.USD.Tests
             Assert.AreEqual(1, goCount, "Wrong GameObjects count in the prefab.");
             // Only 3 default materials and no meshRenderer
             Assert.AreEqual(3, materialCount, "Wrong Materials count in the prefab");
-
         }
     }
 }

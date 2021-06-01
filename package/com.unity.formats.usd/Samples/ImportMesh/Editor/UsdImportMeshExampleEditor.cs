@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Unity.Formats.USD.Examples
             base.DrawDefaultInspector();
             if (GUILayout.Button("Export Overides"))
             {
-                var importMesh = (ImportMeshExample) target;
+                var importMesh = (ImportMeshExample)target;
                 var oversFilePath = MakeOversPath(importMesh.m_usdFile);
 
                 if (string.IsNullOrEmpty(oversFilePath))

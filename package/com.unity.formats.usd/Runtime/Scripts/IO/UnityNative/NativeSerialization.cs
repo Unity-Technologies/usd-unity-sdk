@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -200,7 +200,7 @@ namespace Unity.Formats.USD
                     //prop.intValue = (int)val;
                     break;
                 case SerializedPropertyType.Boolean:
-                    prop.boolValue = (bool) val;
+                    prop.boolValue = (bool)val;
                     break;
                 case SerializedPropertyType.Bounds:
                     prop.boundsValue = UnityTypeConverter.BoundsFromVtArray(val);
@@ -208,18 +208,18 @@ namespace Unity.Formats.USD
                 case SerializedPropertyType.BoundsInt:
                     // TODO: add this to UnityTypeConverter.
                     var bnds = UnityTypeConverter.BoundsFromVtArray(val);
-                    var center = new Vector3Int((int) bnds.center.x, (int) bnds.center.y, (int) bnds.center.z);
-                    var size = new Vector3Int((int) bnds.size.x, (int) bnds.size.y, (int) bnds.size.z);
+                    var center = new Vector3Int((int)bnds.center.x, (int)bnds.center.y, (int)bnds.center.z);
+                    var size = new Vector3Int((int)bnds.size.x, (int)bnds.size.y, (int)bnds.size.z);
                     prop.boundsIntValue = new BoundsInt(center, size);
                     break;
                 case SerializedPropertyType.Character:
-                    prop.intValue = (int) val;
+                    prop.intValue = (int)val;
                     break;
                 case SerializedPropertyType.Color:
                     prop.colorValue = UnityTypeConverter.Vec4fToColor(val);
                     break;
                 case SerializedPropertyType.Enum:
-                    prop.enumValueIndex = (int) val;
+                    prop.enumValueIndex = (int)val;
                     break;
                 case SerializedPropertyType.ExposedReference:
                     // TODO.
@@ -230,7 +230,7 @@ namespace Unity.Formats.USD
                     // TODO.
                     throw new System.NotImplementedException();
                 case SerializedPropertyType.Float:
-                    prop.floatValue = (float) val;
+                    prop.floatValue = (float)val;
                     break;
                 case SerializedPropertyType.Generic:
                     throw new System.Exception();
@@ -238,10 +238,10 @@ namespace Unity.Formats.USD
                     // TODO: gradientValue accessor is not public. wat?
                     throw new System.NotImplementedException();
                 case SerializedPropertyType.Integer:
-                    prop.intValue = (int) val;
+                    prop.intValue = (int)val;
                     break;
                 case SerializedPropertyType.LayerMask:
-                    prop.intValue = (int) val;
+                    prop.intValue = (int)val;
                     break;
                 case SerializedPropertyType.ObjectReference:
                     /*
@@ -273,9 +273,9 @@ namespace Unity.Formats.USD
                     Object obj = objs[pathId];
 
                     Debug.Log("pathId: " + pathId
-                                         + " fileId: " + fileId
-                                         + " guid: " + guid.ToString()
-                                         + " obj: " + obj.ToString());
+                        + " fileId: " + fileId
+                        + " guid: " + guid.ToString()
+                        + " obj: " + obj.ToString());
 
                     //break;
                     /* TODO:
@@ -297,24 +297,24 @@ namespace Unity.Formats.USD
                     break;
                 case SerializedPropertyType.RectInt:
                     var rect = UnityTypeConverter.Vec4fToRect(val);
-                    prop.rectIntValue = new RectInt((int) rect.xMin, (int) rect.yMin,
-                        (int) rect.width, (int) rect.height);
+                    prop.rectIntValue = new RectInt((int)rect.xMin, (int)rect.yMin,
+                        (int)rect.width, (int)rect.height);
                     break;
                 case SerializedPropertyType.String:
-                    var s = (string) val;
+                    var s = (string)val;
                     if (s == null)
                     {
                         break;
                     }
 
-                    prop.stringValue = (string) val;
+                    prop.stringValue = (string)val;
                     break;
                 case SerializedPropertyType.Vector2:
                     prop.vector2Value = UnityTypeConverter.Vec2fToVector2(val);
                     break;
                 case SerializedPropertyType.Vector2Int:
                     // TODO: add this to UnityTypeConverter.
-                    var v2 = (pxr.GfVec2i) val;
+                    var v2 = (pxr.GfVec2i)val;
                     prop.vector2IntValue = new Vector2Int(v2[0], v2[1]);
                     break;
                 case SerializedPropertyType.Vector3:
@@ -322,7 +322,7 @@ namespace Unity.Formats.USD
                     break;
                 case SerializedPropertyType.Vector3Int:
                     // TODO: add this to UnityTypeConverter.
-                    var v3 = (pxr.GfVec3i) val;
+                    var v3 = (pxr.GfVec3i)val;
                     prop.vector3IntValue = new Vector3Int(v3[0], v3[1], v3[2]);
                     break;
                 case SerializedPropertyType.Vector4:

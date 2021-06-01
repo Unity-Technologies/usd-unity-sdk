@@ -1,4 +1,4 @@
-﻿// Copyright 2021 Unity Technologies. All rights reserved.
+// Copyright 2021 Unity Technologies. All rights reserved.
 // Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,32 +13,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace USD.NET.Unity {
+namespace USD.NET.Unity
+{
+    [System.Serializable]
+    [UsdSchema("BasisCurves")]
+    public class BasisCurvesSample : CurvesSample
+    {
+        public enum CurveType
+        {
+            Linear,
+            Cubic,
+        }
 
-  [System.Serializable]
-  [UsdSchema("BasisCurves")]
-  public class BasisCurvesSample : CurvesSample {
+        public enum Basis
+        {
+            Bezier,
+            Bspline,
+            CatmullRom,
+            Hermite,
+            Power,
+        }
 
-    public enum CurveType {
-      Linear,
-      Cubic,
+        public enum WrapMode
+        {
+            Nonperiodic,
+            Periodic,
+        }
+
+        public CurveType type;
+        public Basis basis;
+        public WrapMode wrap;
     }
-
-    public enum Basis {
-      Bezier,
-      Bspline,
-      CatmullRom,
-      Hermite,
-      Power,
-    }
-
-    public enum WrapMode {
-      Nonperiodic,
-      Periodic,
-    }
-
-    public CurveType type;
-    public Basis basis;
-    public WrapMode wrap;
-  }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -70,14 +70,13 @@ namespace USD.NET.Unity.Tests
                 return;
             }
 
-            Assert.AreEqual(first.Length,second.Length, "Length of arrays do not match");
+            Assert.AreEqual(first.Length, second.Length, "Length of arrays do not match");
 
             for (int i = 0; i < first.Length; i++)
             {
                 Assert.AreEqual(first[i], second[i]);
             }
         }
-
 
         static protected void AssertEqual(Array first, Array second)
         {
@@ -86,7 +85,7 @@ namespace USD.NET.Unity.Tests
                 return;
             }
 
-            Assert.AreEqual(first.Length,second.Length, "Length of arrays do not match");
+            Assert.AreEqual(first.Length, second.Length, "Length of arrays do not match");
 
             for (int i = 0; i < first.Length; i++)
             {
@@ -159,6 +158,5 @@ namespace USD.NET.Unity.Tests
                 throw new Exception("Values do not match for " + typeof(T).Name);
             }
         }
-
     }
 }

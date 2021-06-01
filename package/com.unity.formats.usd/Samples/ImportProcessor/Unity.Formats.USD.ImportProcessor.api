@@ -1,0 +1,52 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Formats.USD.Examples
+{
+    public class CombineMeshes : Unity.Formats.USD.Examples.RegexImportProcessor, Unity.Formats.USD.IImportPostProcessComponents
+    {
+        [UnityEngine.Tooltip(@"If true, prevents vertex count from exceeding 65534 (old 16bit limit)")] public bool m_enforceU16VertexLimit;
+        public CombineMeshes() {}
+        public virtual void PostProcessComponents(Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions sceneImportOptions);
+    }
+
+    public abstract class RegexImportProcessor : UnityEngine.MonoBehaviour
+    {
+        [UnityEngine.Tooltip(@"UsdName matches only the name of the GameObject/UsdPrim, while UsdPath matches against the entire path of the object starting at /")] public Unity.Formats.USD.Examples.RegexImportProcessor.ECompareAgainst compareAgainst;
+        [UnityEngine.Tooltip(@"If true, matches are ignored, failed matches are proccessed.")] public bool isNot;
+        [UnityEngine.Tooltip(@"The wildcard or regex expression to test against")] public string matchExpression;
+        [UnityEngine.Tooltip(@"Wildcard matches using simple filesystem-style globbing, Regex uses strict regular expression")] public Unity.Formats.USD.Examples.RegexImportProcessor.EMatchType matchType;
+        protected RegexImportProcessor() {}
+        protected void InitRegex();
+        protected bool IsMatch(pxr.SdfPath sdfPath);
+        public static string WildcardToRegex(string pattern);
+        public enum ECompareAgainst
+        {
+            public const Unity.Formats.USD.Examples.RegexImportProcessor.ECompareAgainst UsdName = 0;
+            public const Unity.Formats.USD.Examples.RegexImportProcessor.ECompareAgainst UsdPath = 1;
+            public int value__;
+        }
+        public enum EMatchType
+        {
+            public const Unity.Formats.USD.Examples.RegexImportProcessor.EMatchType Regex = 1;
+            public int value__;
+            public const Unity.Formats.USD.Examples.RegexImportProcessor.EMatchType Wildcard = 0;
+        }
+    }
+
+    public class SetHideFlags : Unity.Formats.USD.Examples.RegexImportProcessor, Unity.Formats.USD.IImportPostProcessHierarchy
+    {
+        public UnityEngine.HideFlags hideFlagsSettings;
+        [UnityEngine.Tooltip(@"The logical operator to use when setting the flags. In most cases Or will produce expected results")] public Unity.Formats.USD.Examples.SetHideFlags.Operation operation;
+        public SetHideFlags() {}
+        public virtual void PostProcessHierarchy(Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions sceneImportOptions);
+        public enum Operation
+        {
+            public const Unity.Formats.USD.Examples.SetHideFlags.Operation LogicalAND = 1;
+            public const Unity.Formats.USD.Examples.SetHideFlags.Operation LogicalOR = 2;
+            public const Unity.Formats.USD.Examples.SetHideFlags.Operation LogicalXOR = 3;
+            public const Unity.Formats.USD.Examples.SetHideFlags.Operation Overwrite = 0;
+            public int value__;
+        }
+    }
+}
