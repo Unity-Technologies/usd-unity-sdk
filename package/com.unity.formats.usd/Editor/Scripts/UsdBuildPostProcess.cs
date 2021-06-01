@@ -15,6 +15,8 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace Unity.Formats.USD
 {
@@ -23,7 +25,7 @@ namespace Unity.Formats.USD
         [PostProcessBuildAttribute(1)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            var source = System.IO.Path.GetFullPath("Packages/com.unity.formats.usd/Runtime/Plugins");
+            var source = Path.Combine(GetCurrentDir(), "..", "..", "Runtime", "Plugins");
             var destination = "";
             if (target == BuildTarget.StandaloneLinux64)
             {
@@ -38,9 +40,26 @@ namespace Unity.Formats.USD
                 destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
             }
 
-            // We need to copy the whole share folder and this one plugInfo.json file
+            if (!Directory.Exists(destination))
+            {
+                Directory.CreateDirectory(destination);
+            }
+            else
+            {
+                var attrs = File.GetAttributes(destination);
+                attrs &= ~FileAttributes.ReadOnly;
+                File.SetAttributes(destination, attrs);
+            }
+
+            // We need to copy the whole share folder
             FileUtil.CopyFileOrDirectory(source + "/x86_64/usd", destination + "/usd");
             FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
+        }
+
+        static string GetCurrentDir([CallerFilePath] string filePath = "")
+        {
+            var fileInfo = new FileInfo(filePath);
+            return fileInfo.DirectoryName;
         }
     }
 }

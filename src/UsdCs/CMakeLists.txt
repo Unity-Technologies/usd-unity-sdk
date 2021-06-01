@@ -47,7 +47,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}
 )
 
-link_directories(${USD_LIBRARY_DIR})
+link_directories(${USD_LIBRARY_DIR} ${USD_BIN_DIR})
 
 swig_add_library(${USD_SWIG_LIBRARY}
     TYPE MODULE
@@ -125,10 +125,14 @@ install(SCRIPT ${CMAKE_SOURCE_DIR}/cmake/install_usd_bindings.cmake)
 set(PIXAR_DEPS usd_ms ${LINK_DEPENDENCIES})
 list(TRANSFORM PIXAR_DEPS PREPEND ${USD_LIBRARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX})
 list(TRANSFORM PIXAR_DEPS APPEND ${CMAKE_SHARED_LIBRARY_SUFFIX})
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    list(APPEND PIXAR_DEPS ${USD_BIN_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}tbb${CMAKE_SHARED_LIBRARY_SUFFIX})
+endif
 install(FILES ${PIXAR_DEPS} DESTINATION ${DEPENDENCIES_INSTALL_DIR})
 
 # Install the usd plugin folder
-install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/..")
+install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/.."
+        PATTERN "codegenTemplates" EXCLUDE)
 
 # Tag the generated folders so they are removed when doing calling the clean target
 # Doesn't work with the VC generator ...

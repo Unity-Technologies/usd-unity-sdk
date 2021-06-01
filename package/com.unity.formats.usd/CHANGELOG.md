@@ -2,15 +2,18 @@
 
 ## Unreleased
 ### Features
-- New Import/Export API. See the ImportHelpers and ExportHelpers class.
-- Added Integration with Recorder (compatible with Recorder 2.2.0 or newer).
+- New Import/Export API. See the ImportHelpers and ExportHelpers class (#237).
+- Added Integration with Recorder (compatible with Recorder 2.2.0 or newer) (#243).
 
 ### Changed
-- USD.NET.Unity API is now in the package
-- Building USD.NET can now be done with a standalone Mono.
+- USD.NET.Unity API is now in the package (#240).
+- Building USD.NET can now be done with a standalone Mono (#241).
+- Building the bindings is now done through CMake on all platforms. See BUILDING.md (#235).
 
 ### Bug Fixes
-- Fix hardcoded package name in InitUSD and BuildPostProcessor (#236)
+- Fixed hardcoded package name in InitUSD and BuildPostProcessor (#236).
+- Fixed a BuildPostProcess bug caused by permissions issues in OSX (#245).
+- Fixed an IL2CPP build bug caused by the inclusion of USD codegen directory (#245).
 
 ## [2.0.0-exp.1] - 2020-12-21
 ### Features

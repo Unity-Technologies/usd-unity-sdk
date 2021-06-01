@@ -73,6 +73,7 @@ namespace Unity.Formats.USD.Tests
             {
                 ExportHelpers.ExportGameObjects(new GameObject[] {null}, scene, BasisTransformation.SlowAndSafe);
             });
+
             UnityEngine.TestTools.LogAssert.Expect(LogType.Exception, "NullReferenceException: Object reference not set to an instance of an object");
         }
 
