@@ -71,4 +71,5 @@ TestProject/**/Temp
 TestProject/**/Logs
 TestProject/**/*.csproj
 TestProject/**/*.sln
+TestProject/Usd-Development/Library
 build_usdcs
