@@ -21,4 +21,6 @@
 %template(UsdStageCacheResultPair) std::pair<UsdStageRefPtr, bool>;
 %template(UsdStageRefPtrVector) std::vector<UsdStageRefPtr>;
 
+%ignore UsdStageCache::Id;
+
 %include "pxr/usd/usd/stageCache.h"

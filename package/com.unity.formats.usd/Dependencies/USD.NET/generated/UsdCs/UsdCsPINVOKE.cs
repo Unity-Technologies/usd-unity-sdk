@@ -18075,27 +18075,6 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdStageRefPtrVector")]
   public static extern void delete_UsdStageRefPtrVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageCache_Id")]
-  public static extern global::System.IntPtr new_UsdStageCache_Id();
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageCache_Id_FromLongInt")]
-  public static extern global::System.IntPtr UsdStageCache_Id_FromLongInt(int jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageCache_Id_FromString")]
-  public static extern global::System.IntPtr UsdStageCache_Id_FromString(string jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageCache_Id_ToLongInt")]
-  public static extern int UsdStageCache_Id_ToLongInt(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageCache_Id_ToString")]
-  public static extern string UsdStageCache_Id_ToString(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStageCache_Id_IsValid")]
-  public static extern bool UsdStageCache_Id_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdStageCache_Id")]
-  public static extern void delete_UsdStageCache_Id(global::System.Runtime.InteropServices.HandleRef jarg1);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdStageCache__SWIG_0")]
   public static extern global::System.IntPtr new_UsdStageCache__SWIG_0();
 

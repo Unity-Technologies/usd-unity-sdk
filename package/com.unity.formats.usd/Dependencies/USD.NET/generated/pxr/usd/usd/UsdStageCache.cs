@@ -40,67 +40,6 @@ public class UsdStageCache : global::System.IDisposable {
     }
   }
 
-  public class Id : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Id(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Id obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Id() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_UsdStageCache_Id(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-        }
-        global::System.GC.SuppressFinalize(this);
-      }
-    }
-  
-    public Id() : this(UsdCsPINVOKE.new_UsdStageCache_Id(), true) {
-    }
-  
-    public static UsdStageCache.Id FromLongInt(int val) {
-      UsdStageCache.Id ret = new UsdStageCache.Id(UsdCsPINVOKE.UsdStageCache_Id_FromLongInt(val), true);
-      return ret;
-    }
-  
-    public static UsdStageCache.Id FromString(string s) {
-      UsdStageCache.Id ret = new UsdStageCache.Id(UsdCsPINVOKE.UsdStageCache_Id_FromString(s), true);
-      if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-  
-    public int ToLongInt() {
-      int ret = UsdCsPINVOKE.UsdStageCache_Id_ToLongInt(swigCPtr);
-      return ret;
-    }
-  
-    public string ToString() {
-      string ret = UsdCsPINVOKE.UsdStageCache_Id_ToString(swigCPtr);
-      return ret;
-    }
-  
-    public bool IsValid() {
-      bool ret = UsdCsPINVOKE.UsdStageCache_Id_IsValid(swigCPtr);
-      return ret;
-    }
-  
-  }
-
   public UsdStageCache() : this(UsdCsPINVOKE.new_UsdStageCache__SWIG_0(), true) {
   }
 
@@ -134,8 +73,8 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public UsdStage Find(UsdStageCache.Id id) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageCache_Find(swigCPtr, UsdStageCache.Id.getCPtr(id));
+  public UsdStage Find(SWIGTYPE_p_UsdStageCache__Id id) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageCache_Find(swigCPtr, SWIGTYPE_p_UsdStageCache__Id.getCPtr(id));
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -193,8 +132,8 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public UsdStageCache.Id GetId(UsdStage stage) {
-    UsdStageCache.Id ret = new UsdStageCache.Id(UsdCsPINVOKE.UsdStageCache_GetId(swigCPtr, UsdStage.getCPtr(stage)), true);
+  public SWIGTYPE_p_UsdStageCache__Id GetId(UsdStage stage) {
+    SWIGTYPE_p_UsdStageCache__Id ret = new SWIGTYPE_p_UsdStageCache__Id(UsdCsPINVOKE.UsdStageCache_GetId(swigCPtr, UsdStage.getCPtr(stage)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -205,20 +144,20 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public bool Contains(UsdStageCache.Id id) {
-    bool ret = UsdCsPINVOKE.UsdStageCache_Contains__SWIG_1(swigCPtr, UsdStageCache.Id.getCPtr(id));
+  public bool Contains(SWIGTYPE_p_UsdStageCache__Id id) {
+    bool ret = UsdCsPINVOKE.UsdStageCache_Contains__SWIG_1(swigCPtr, SWIGTYPE_p_UsdStageCache__Id.getCPtr(id));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdStageCache.Id Insert(UsdStage stage) {
-    UsdStageCache.Id ret = new UsdStageCache.Id(UsdCsPINVOKE.UsdStageCache_Insert(swigCPtr, UsdStage.getCPtr(stage)), true);
+  public SWIGTYPE_p_UsdStageCache__Id Insert(UsdStage stage) {
+    SWIGTYPE_p_UsdStageCache__Id ret = new SWIGTYPE_p_UsdStageCache__Id(UsdCsPINVOKE.UsdStageCache_Insert(swigCPtr, UsdStage.getCPtr(stage)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool Erase(UsdStageCache.Id id) {
-    bool ret = UsdCsPINVOKE.UsdStageCache_Erase__SWIG_0(swigCPtr, UsdStageCache.Id.getCPtr(id));
+  public bool Erase(SWIGTYPE_p_UsdStageCache__Id id) {
+    bool ret = UsdCsPINVOKE.UsdStageCache_Erase__SWIG_0(swigCPtr, SWIGTYPE_p_UsdStageCache__Id.getCPtr(id));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
