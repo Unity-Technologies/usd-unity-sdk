@@ -88,15 +88,16 @@ namespace Unity.Formats.USD
 
         [UsdVariability(Variability.Uniform)] public string[] blendShapes;
 
-        [UsdVariability(Variability.Uniform)] public float[] blendShapeWeights;
+        public float[] blendShapeWeights;
     }
 
     [System.Serializable]
     [UsdSchema("BlendShape")]
     public class BlendShapeSample : SampleBase
     {
-        public Vector3[] offsets;
-        public uint[] pointIndices;
+        [UsdVariability(Variability.Uniform)] public Vector3[] offsets;
+        [UsdVariability(Variability.Uniform)] public Vector3[] normalOffsets;
+        [UsdVariability(Variability.Uniform)] public int[] pointIndices;
     }
 
     public class SkeletonIo

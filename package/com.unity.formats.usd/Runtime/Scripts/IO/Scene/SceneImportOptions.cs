@@ -103,6 +103,8 @@ namespace Unity.Formats.USD
         public bool importMeshes = true;
         public bool importSkinning = true;
         public bool importSkinWeights = true;
+        public bool importBlendShapeTargets = true;
+        public bool importBlendShapes = true;
         public bool importTransforms = true;
         public bool importSceneInstances = true;
         public bool importPointInstances = true;

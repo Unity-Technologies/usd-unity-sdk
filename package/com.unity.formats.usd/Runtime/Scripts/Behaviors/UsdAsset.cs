@@ -160,6 +160,7 @@ namespace Unity.Formats.USD
         public bool m_importCameras = true;
         public bool m_importMeshes = true;
         public bool m_importSkinning = true;
+        public bool m_importBlendShapes = true;
         public bool m_importTransforms = true;
         public bool m_importSceneInstances = true;
         public bool m_importPointInstances = true;
@@ -264,6 +265,7 @@ namespace Unity.Formats.USD
             m_importCameras = options.importCameras;
             m_importMeshes = options.importMeshes;
             m_importSkinning = options.importSkinning;
+            m_importBlendShapes = options.importBlendShapes;
             m_importHierarchy = options.importHierarchy;
             m_importTransforms = options.importTransforms;
             m_importSceneInstances = options.importSceneInstances;
@@ -317,6 +319,7 @@ namespace Unity.Formats.USD
             options.importCameras = m_importCameras;
             options.importMeshes = m_importMeshes;
             options.importSkinning = m_importSkinning;
+            options.importBlendShapes = m_importBlendShapes;
             options.importHierarchy = m_importHierarchy;
             options.importTransforms = m_importTransforms;
             options.importSceneInstances = m_importSceneInstances;
@@ -751,6 +754,7 @@ namespace Unity.Formats.USD
 
             options.meshOptions.generateLightmapUVs = false;
             options.importSkinWeights = false;
+            options.importBlendShapeTargets = false;
 
             // Note that tangent and Normals must be updated when the mesh deforms.
             options.importHierarchy = false;

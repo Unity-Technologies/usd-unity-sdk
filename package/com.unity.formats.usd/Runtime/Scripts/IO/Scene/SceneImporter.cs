@@ -960,7 +960,7 @@ namespace Unity.Formats.USD
             //
             // SkinnedMesh bone bindings.
             //
-            if (importOptions.importSkinning)
+            if (importOptions.importSkinning || importOptions.importBlendShapes)
             {
                 Profiler.BeginSample("USD: Build Skeletons");
                 var skeletonSamples = new Dictionary<pxr.SdfPath, SkeletonSample>();
@@ -989,6 +989,7 @@ namespace Unity.Formats.USD
                             Profiler.BeginSample("Build Bind Transforms");
                             var skelPath = skelBinding.GetSkeleton().GetPath();
                             SkeletonSample skelSample = null;
+
                             if (!skeletonSamples.TryGetValue(skelPath, out skelSample))
                             {
                                 skelSample = new SkeletonSample();
@@ -1026,43 +1027,87 @@ namespace Unity.Formats.USD
 
                             Profiler.EndSample();
 
-                            if (importOptions.importSkinWeights)
+                            if (importOptions.importSkinWeights || importOptions.importBlendShapeTargets)
                             {
                                 //
                                 // Apply skinning weights to each skinned mesh.
                                 //
-                                Profiler.BeginSample("Apply Skin Weights");
+                                Profiler.BeginSample("Apply Skin Weights and Blend Shapes");
                                 foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector())
                                 {
+
                                     pxr.SdfPath meshPath = skinningQuery.GetPrim().GetPath();
-                                    try
+                                    var goMesh = primMap[meshPath];
+
+
+                                    if (importOptions.importSkinWeights && skinningQuery.HasJointInfluences())
                                     {
-                                        var goMesh = primMap[meshPath];
+                                        try
+                                        {
 
-                                        Profiler.BeginSample("Build Skinned Mesh");
-                                        SkeletonImporter.BuildSkinnedMesh(
-                                            meshPath,
-                                            skelPath,
-                                            skelSample,
-                                            skinningQuery,
-                                            goMesh,
-                                            primMap,
-                                            importOptions);
-                                        Profiler.EndSample();
+                                            Profiler.BeginSample("Build Skinned Mesh");
+                                            SkeletonImporter.BuildSkinnedMesh(
+                                                meshPath,
+                                                skelPath,
+                                                skelSample,
+                                                skinningQuery,
+                                                goMesh,
+                                                primMap,
+                                                importOptions);
+                                            Profiler.EndSample();
 
-                                        // In terms of performance, this is almost free.
-                                        // TODO: Check if this is correct or should be something specific (not always the first child).
-                                        goMesh.GetComponent<SkinnedMeshRenderer>().rootBone =
-                                            primMap[skelPath].transform.GetChild(0);
+                                            // In terms of performance, this is almost free.
+                                            SkinnedMeshRenderer smr = goMesh.GetComponent<SkinnedMeshRenderer>();
+                                            smr.sharedMesh.ClearBlendShapes();
+                                            // TODO: Check if this is correct or should be something specific (not always the first child).
+                                            smr.rootBone = primMap[skelPath].transform.GetChild(0);
+                                        }
+                                        catch (System.Exception ex)
+                                        {
+                                            Debug.LogException(new ImportException("Error skinning mesh: " + meshPath,
+                                                ex));
+                                        }
                                     }
-                                    catch (System.Exception ex)
+
+                                    if (importOptions.importBlendShapeTargets && skinningQuery.HasBlendShapes())
                                     {
-                                        Debug.LogException(new ImportException("Error skinning mesh: " + meshPath, ex));
+                                        try
+                                        {
+                                            Profiler.BeginSample("Add Blend Shapes");
+                                            BlendShapeImporter.BuildBlendShapeTargets(
+                                                meshPath,
+                                                goMesh,
+                                                scene,
+                                                skinningQuery,
+                                                importOptions);
+                                            Profiler.EndSample();
+                                        }
+                                        catch (System.Exception ex)
+                                        {
+                                            Debug.LogException(new ImportException($"Error adding blend shapes: {meshPath}", ex));
+                                        }
                                     }
                                 }
 
+
                                 Profiler.EndSample();
                             }
+
+                            Profiler.BeginSample("Apply Blend Shape Weights");
+                            if (importOptions.importBlendShapes)
+                            {
+                                foreach (var skinningQuery in skelBinding.GetSkinningTargetsAsVector())
+                                {
+                                    if (skinningQuery.HasBlendShapes())
+                                    {
+                                        var go = primMap[skinningQuery.GetPrim().GetPath()];
+                                        Profiler.BeginSample("Build Blend Shape Weights");
+                                        BlendShapeImporter.BuildBlendShapeWeights(go, scene, skinningQuery);
+                                        Profiler.EndSample();
+                                    }
+                                }
+                            }
+                            Profiler.EndSample();
                         }
                     }
                     catch (System.Exception ex)
