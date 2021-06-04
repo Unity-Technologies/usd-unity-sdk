@@ -85,6 +85,10 @@ LIST(APPEND SWIG_FILES pxr/usd/usd/*.cs)
 
 FILE(GLOB usd_swigtypes ${CMAKE_BINARY_DIR}/generated/SWIGTYPE_*.cs)
 FILE(INSTALL ${usd_swigtypes} DESTINATION ${INSTALL_DIR}/SWIG)
+FILE(RENAME ${INSTALL_DIR}/SWIG/SWIGTYPE_p_std__pairT_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_t_t_p_std__mapT_std__string_VtValue_std__lessT_t_t__iterator_t_bool_t.cs
+            ${INSTALL_DIR}/SWIG/SWIGTYPE_pair_VtDictionaryIterator_bool_t.cs)
+FILE(RENAME ${INSTALL_DIR}/SWIG/SWIGTYPE_p_VtDictionary__IteratorT_std__mapT_std__string_VtValue_std__lessT_t_t_p_std__mapT_std__string_VtValue_std__lessT_t_t__iterator_t.cs
+            ${INSTALL_DIR}/SWIG/SWIGTYPE_p_VtDictionaryIterator.cs)
 LIST(APPEND SWIG_FILES SWIG/*.cs)
 
 FILE(GLOB usd_std ${CMAKE_BINARY_DIR}/generated/Std*.cs)
