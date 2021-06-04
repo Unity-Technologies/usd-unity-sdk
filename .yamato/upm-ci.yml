@@ -15,7 +15,7 @@ test_platforms:
 test_backends:
   - name: il2cpp
     editor: 2020.3
-    apiprofile: " "
+    apiprofile: --api-profile=NET_4_6
   - name: mono
     editor: 2020.3
     apiprofile: --api-profile=NET_4_6
