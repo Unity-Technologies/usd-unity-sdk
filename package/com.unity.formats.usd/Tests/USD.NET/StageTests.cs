@@ -39,10 +39,16 @@ namespace USD.NET.Tests {
             UnityEngine.TestTools.LogAssert.Expect(LogType.Exception,
                 "ApplicationException: USD ERROR: Failed verification: ' fileFormat '");
 
-            Assert.Throws<ApplicationException>(delegate { USD.NET.Scene.Create(@"Z:\This\Doesnt\Exist.usd"); },
+            var invalidPath = "";
+#if UNITY_EDITOR_WIN
+            invalidPath = @"Z:\This\Doesnt\Exist.usd";
+#else
+            invalidPath = @"/,/This/Doesnt/Exist.usd";
+#endif
+            Assert.Throws<ApplicationException>(delegate { USD.NET.Scene.Create(invalidPath); },
                 "Creating a file to a non existing path should raise");
             UnityEngine.TestTools.LogAssert.Expect(LogType.Exception,
-                "ApplicationException: USD ERROR: Cannot create path to write 'Z:\\This\\Doesnt\\Exist.usd'");
+                "ApplicationException: USD ERROR: Cannot create path to write '" + invalidPath + "'");
         }
 
         public UsdStage CreateStageHierarchy()
