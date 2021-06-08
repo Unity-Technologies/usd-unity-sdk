@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -83,7 +83,7 @@ namespace Unity.Formats.USD
                         // normal needs to be converted if the one on disk isn't really a normal map
                         // (e.g. created from greyscale)
                         UnityEditor.TextureImporter importer =
-                            (UnityEditor.TextureImporter) UnityEditor.AssetImporter.GetAtPath(
+                            (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(
                                 UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d));
                         if (importer.textureType != UnityEditor.TextureImporterType.NormalMap)
                         {
@@ -116,13 +116,14 @@ namespace Unity.Formats.USD
                 if (!string.IsNullOrEmpty(srcPath))
                 {
 #if UNITY_2019_2_OR_GREATER
-          // Since textures might be inside of packages for various reasons we should support that.
-          // Usually this would just be "Path.GetFullPath(srcPath)", but USD export messes with the CWD (Working Directory)
-          // and so we have to do a bit more path wrangling here.
-          if(srcPath.StartsWith("Packages")) {
-            var pi = UnityEditor.PackageManager.PackageInfo.FindForAssetPath(srcPath);
-            srcPath = pi.resolvedPath + srcPath.Substring(("Packages/" + pi.name).Length);
-          }
+                    // Since textures might be inside of packages for various reasons we should support that.
+                    // Usually this would just be "Path.GetFullPath(srcPath)", but USD export messes with the CWD (Working Directory)
+                    // and so we have to do a bit more path wrangling here.
+                    if (srcPath.StartsWith("Packages"))
+                    {
+                        var pi = UnityEditor.PackageManager.PackageInfo.FindForAssetPath(srcPath);
+                        srcPath = pi.resolvedPath + srcPath.Substring(("Packages/" + pi.name).Length);
+                    }
 #endif
                     if (srcPath.StartsWith("Assets"))
                     {

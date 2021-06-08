@@ -8,145 +8,169 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdSchemaBase : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdSchemaBase : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdSchemaBase(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSchemaBase obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdSchemaBase() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdSchemaBase(swigCPtr);
+        internal UsdSchemaBase(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSchemaBase obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdSchemaBase()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdSchemaBase(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public static implicit operator bool(UsdSchemaBase b)
+        {
+            return b._IsValid();
+        }
+
+        public bool IsConcrete()
+        {
+            bool ret = UsdCsPINVOKE.UsdSchemaBase_IsConcrete(swigCPtr);
+            return ret;
+        }
+
+        public bool IsTyped()
+        {
+            bool ret = UsdCsPINVOKE.UsdSchemaBase_IsTyped(swigCPtr);
+            return ret;
+        }
+
+        public bool IsAPISchema()
+        {
+            bool ret = UsdCsPINVOKE.UsdSchemaBase_IsAPISchema(swigCPtr);
+            return ret;
+        }
+
+        public bool IsAppliedAPISchema()
+        {
+            bool ret = UsdCsPINVOKE.UsdSchemaBase_IsAppliedAPISchema(swigCPtr);
+            return ret;
+        }
+
+        public bool IsMultipleApplyAPISchema()
+        {
+            bool ret = UsdCsPINVOKE.UsdSchemaBase_IsMultipleApplyAPISchema(swigCPtr);
+            return ret;
+        }
+
+        public UsdSchemaType GetSchemaType()
+        {
+            UsdSchemaType ret = (UsdSchemaType)UsdCsPINVOKE.UsdSchemaBase_GetSchemaType(swigCPtr);
+            return ret;
+        }
+
+        public UsdSchemaBase(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdSchemaBase__SWIG_0(UsdPrim.getCPtr(prim)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdSchemaBase() : this(UsdCsPINVOKE.new_UsdSchemaBase__SWIG_1(), true)
+        {
+        }
+
+        public UsdSchemaBase(UsdSchemaBase otherSchema) : this(UsdCsPINVOKE.new_UsdSchemaBase__SWIG_2(UsdSchemaBase.getCPtr(otherSchema)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdPrim GetPrim()
+        {
+            UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSchemaBase_GetPrim(swigCPtr), true);
+            return ret;
+        }
+
+        public SdfPath GetPath()
+        {
+            SdfPath ret = new SdfPath(UsdCsPINVOKE.UsdSchemaBase_GetPath(swigCPtr), true);
+            return ret;
+        }
+
+        public SWIGTYPE_p_UsdPrimDefinition GetSchemaClassPrimDefinition()
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.UsdSchemaBase_GetSchemaClassPrimDefinition(swigCPtr);
+            SWIGTYPE_p_UsdPrimDefinition ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_UsdPrimDefinition(cPtr, false);
+            return ret;
+        }
+
+        public static TfTokenVector GetSchemaAttributeNames(bool includeInherited)
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSchemaBase_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
+            return ret;
+        }
+
+        public static TfTokenVector GetSchemaAttributeNames()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSchemaBase_GetSchemaAttributeNames__SWIG_1(), false);
+            return ret;
+        }
+
+        public static bool Equals(UsdSchemaBase lhs, UsdSchemaBase rhs)
+        {
+            bool ret = UsdCsPINVOKE.UsdSchemaBase_Equals(UsdSchemaBase.getCPtr(lhs), UsdSchemaBase.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.UsdSchemaBase_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(UsdSchemaBase lhs, UsdSchemaBase rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || UsdSchemaBase.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(UsdSchemaBase lhs, UsdSchemaBase rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return UsdSchemaBase.Equals(this, rhs as UsdSchemaBase);
+        }
+
+        public bool _IsValid()
+        {
+            bool ret = UsdCsPINVOKE.UsdSchemaBase__IsValid(swigCPtr);
+            return ret;
+        }
     }
-  }
-
-
-  public static implicit operator bool(UsdSchemaBase b) {
-    return b._IsValid();
-  }
-
-
-  public bool IsConcrete() {
-    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsConcrete(swigCPtr);
-    return ret;
-  }
-
-  public bool IsTyped() {
-    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsTyped(swigCPtr);
-    return ret;
-  }
-
-  public bool IsAPISchema() {
-    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsAPISchema(swigCPtr);
-    return ret;
-  }
-
-  public bool IsAppliedAPISchema() {
-    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsAppliedAPISchema(swigCPtr);
-    return ret;
-  }
-
-  public bool IsMultipleApplyAPISchema() {
-    bool ret = UsdCsPINVOKE.UsdSchemaBase_IsMultipleApplyAPISchema(swigCPtr);
-    return ret;
-  }
-
-  public UsdSchemaType GetSchemaType() {
-    UsdSchemaType ret = (UsdSchemaType)UsdCsPINVOKE.UsdSchemaBase_GetSchemaType(swigCPtr);
-    return ret;
-  }
-
-  public UsdSchemaBase(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdSchemaBase__SWIG_0(UsdPrim.getCPtr(prim)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdSchemaBase() : this(UsdCsPINVOKE.new_UsdSchemaBase__SWIG_1(), true) {
-  }
-
-  public UsdSchemaBase(UsdSchemaBase otherSchema) : this(UsdCsPINVOKE.new_UsdSchemaBase__SWIG_2(UsdSchemaBase.getCPtr(otherSchema)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdPrim GetPrim() {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSchemaBase_GetPrim(swigCPtr), true);
-    return ret;
-  }
-
-  public SdfPath GetPath() {
-    SdfPath ret = new SdfPath(UsdCsPINVOKE.UsdSchemaBase_GetPath(swigCPtr), true);
-    return ret;
-  }
-
-  public SWIGTYPE_p_UsdPrimDefinition GetSchemaClassPrimDefinition() {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdSchemaBase_GetSchemaClassPrimDefinition(swigCPtr);
-    SWIGTYPE_p_UsdPrimDefinition ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_UsdPrimDefinition(cPtr, false);
-    return ret;
-  }
-
-  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSchemaBase_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
-    return ret;
-  }
-
-  public static TfTokenVector GetSchemaAttributeNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSchemaBase_GetSchemaAttributeNames__SWIG_1(), false);
-    return ret;
-  }
-
-  public static bool Equals(UsdSchemaBase lhs, UsdSchemaBase rhs) {
-    bool ret = UsdCsPINVOKE.UsdSchemaBase_Equals(UsdSchemaBase.getCPtr(lhs), UsdSchemaBase.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.UsdSchemaBase_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(UsdSchemaBase lhs, UsdSchemaBase rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || UsdSchemaBase.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(UsdSchemaBase lhs, UsdSchemaBase rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return UsdSchemaBase.Equals(this, rhs as UsdSchemaBase);
-    }
-  
-  public bool _IsValid() {
-    bool ret = UsdCsPINVOKE.UsdSchemaBase__IsValid(swigCPtr);
-    return ret;
-  }
-
-}
-
 }

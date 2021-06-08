@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.coding": "0.1.0-preview.20",
     "com.unity.analytics": "3.3.5",
     "com.unity.ext.nunit": "1.0.0",
     "com.unity.formats.usd": "file:../../../package/com.unity.formats.usd/",

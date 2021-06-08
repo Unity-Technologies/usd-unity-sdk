@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -89,7 +89,7 @@ namespace Unity.Formats.USD
         }
 
         IEnumerator<KeyValuePair<SdfPath, GameObject>>
-            IEnumerable<KeyValuePair<SdfPath, GameObject>>.GetEnumerator()
+        IEnumerable<KeyValuePair<SdfPath, GameObject>>.GetEnumerator()
         {
             return m_prims.GetEnumerator();
         }

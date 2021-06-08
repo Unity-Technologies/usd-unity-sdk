@@ -17,7 +17,7 @@ using pxr;
 namespace Unity.Formats.USD.Examples
 {
     /// <summary>
-    /// Abstract class meant as base class for certain IImportPostProcessHierarchy 
+    /// Abstract class meant as base class for certain IImportPostProcessHierarchy
     /// implmentations.  Has methods for filtering Usd Paths based on glob-style wildcards or regex.
     /// </summary>
     public abstract class RegexImportProcessor : MonoBehaviour

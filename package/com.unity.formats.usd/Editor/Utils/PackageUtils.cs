@@ -8,7 +8,6 @@ namespace Unity.Formats.USD
 {
     public static class PackageUtils
     {
-
         /// <summary>
         /// Utils function to get the relative path of a file considering a base folder
         /// </summary>

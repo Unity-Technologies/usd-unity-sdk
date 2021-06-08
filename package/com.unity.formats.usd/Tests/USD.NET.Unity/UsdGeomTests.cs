@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using pxr;
 using UnityEngine;
 
@@ -31,7 +31,7 @@ namespace USD.NET.Unity.Tests
             Assert.AreEqual(PrimvarInterpolation.Constant, sample.scalar.interpolation);
             Assert.AreEqual(UsdGeomTokens.constant, sample.scalar.GetInterpolationToken());
 
-            sample.vector.value = new []
+            sample.vector.value = new[]
             {
                 new Vector4(1, 2, 3, 4),
                 new Vector4(4, 5, 6, 7)
@@ -60,7 +60,7 @@ namespace USD.NET.Unity.Tests
             UsdStage stage = UsdStage.CreateInMemory();
             var path = new SdfPath("/Parent/Curves");
             var curvesGprim = UsdGeomBasisCurves.Define(new UsdStageWeakPtr(stage), path);
-            var vertCounts = IntrinsicTypeConverter.ToVtArray(new [] {4});
+            var vertCounts = IntrinsicTypeConverter.ToVtArray(new[] {4});
             curvesGprim.CreateCurveVertexCountsAttr(vertCounts);
 
             var basisCurves = new BasisCurvesSample();
@@ -201,6 +201,5 @@ namespace USD.NET.Unity.Tests
             Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m32, copiedTransformConverted.m32, 0.00001);
             Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m33, copiedTransformConverted.m33, 0.00001);
         }
-
     }
 }

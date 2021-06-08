@@ -8,17 +8,17 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum PcpArcType {
-  PcpArcTypeRoot,
-  PcpArcTypeInherit,
-  PcpArcTypeVariant,
-  PcpArcTypeRelocate,
-  PcpArcTypeReference,
-  PcpArcTypePayload,
-  PcpArcTypeSpecialize,
-  PcpNumArcTypes
-}
-
+namespace pxr
+{
+    public enum PcpArcType
+    {
+        PcpArcTypeRoot,
+        PcpArcTypeInherit,
+        PcpArcTypeVariant,
+        PcpArcTypeRelocate,
+        PcpArcTypeReference,
+        PcpArcTypePayload,
+        PcpArcTypeSpecialize,
+        PcpNumArcTypes
+    }
 }

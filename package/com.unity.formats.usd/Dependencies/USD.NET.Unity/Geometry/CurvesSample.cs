@@ -1,4 +1,4 @@
-﻿// Copyright 2021 Unity Technologies. All rights reserved.
+// Copyright 2021 Unity Technologies. All rights reserved.
 // Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,32 +15,32 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity {
+namespace USD.NET.Unity
+{
+    [System.Serializable]
+    [UsdSchema("Curves")]
+    public class CurvesSample : PointBasedSample
+    {
+        // TODO: Split into a base class and share with MeshSample (as defined in the schema).
 
-  [System.Serializable]
-  [UsdSchema("Curves")]
-  public class CurvesSample : PointBasedSample {
+        // UsdGeomGprim
+        // ------------
 
-    // TODO: Split into a base class and share with MeshSample (as defined in the schema).
+        [UsdVariability(Variability.Uniform)]
+        public bool doubleSided;
 
-    // UsdGeomGprim
-    // ------------
+        [UsdVariability(Variability.Uniform)]
+        public Orientation orientation;
 
-    [UsdVariability(Variability.Uniform)]
-    public bool doubleSided;
+        // UsdGeomPointBased
+        // -----------------
+        public Vector3[] points;
+        public Vector3[] normals;
+        public Vector3[] velocities;
 
-    [UsdVariability(Variability.Uniform)]
-    public Orientation orientation;
-
-    // UsdGeomPointBased
-    // -----------------
-    public Vector3[] points;
-    public Vector3[] normals;
-    public Vector3[] velocities;
-
-    // UsdGeomCurves
-    // -------------
-    public int[] curveVertexCounts;
-    public float[] widths;
-  }
+        // UsdGeomCurves
+        // -------------
+        public int[] curveVertexCounts;
+        public float[] widths;
+    }
 }

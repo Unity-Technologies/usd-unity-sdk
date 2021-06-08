@@ -1,0 +1,452 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace USD.NET.Unity
+{
+    [USD.NET.UsdSchema(@"BasisCurves")] public class BasisCurvesSample : USD.NET.Unity.CurvesSample
+    {
+        public USD.NET.Unity.BasisCurvesSample.Basis basis;
+        public USD.NET.Unity.BasisCurvesSample.CurveType type;
+        public USD.NET.Unity.BasisCurvesSample.WrapMode wrap;
+        public BasisCurvesSample() {}
+        public enum Basis
+        {
+            public const USD.NET.Unity.BasisCurvesSample.Basis Bezier = 0;
+            public const USD.NET.Unity.BasisCurvesSample.Basis Bspline = 1;
+            public const USD.NET.Unity.BasisCurvesSample.Basis CatmullRom = 2;
+            public const USD.NET.Unity.BasisCurvesSample.Basis Hermite = 3;
+            public const USD.NET.Unity.BasisCurvesSample.Basis Power = 4;
+            public int value__;
+        }
+        public enum CurveType
+        {
+            public const USD.NET.Unity.BasisCurvesSample.CurveType Cubic = 1;
+            public const USD.NET.Unity.BasisCurvesSample.CurveType Linear = 0;
+            public int value__;
+        }
+        public enum WrapMode
+        {
+            public const USD.NET.Unity.BasisCurvesSample.WrapMode Nonperiodic = 0;
+            public const USD.NET.Unity.BasisCurvesSample.WrapMode Periodic = 1;
+            public int value__;
+        }
+    }
+
+    [USD.NET.UsdSchema(@"UsdGeomBoundable")] public class BoundableSample : USD.NET.Unity.XformableSample
+    {
+        public UnityEngine.Bounds extent;
+        public BoundableSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"Camera")] public class CameraSample : USD.NET.Unity.XformSample
+    {
+        public UnityEngine.Vector4[] clippingPlanes;
+        public UnityEngine.Vector2 clippingRange;
+        public float focalLength;
+        public float focusDistance;
+        public float fStop;
+        public float horizontalAperture;
+        public float horizontalApertureOffset;
+        public USD.NET.Unity.CameraSample.ProjectionType projection;
+        [USD.NET.UsdNamespace(@"shutter")] public USD.NET.Unity.CameraSample.Shutter shutter;
+        [USD.NET.UsdVariability(1)] public USD.NET.Unity.CameraSample.StereoRole stereoRole;
+        public float verticalAperture;
+        public float verticalApertureOffset;
+        public CameraSample() {}
+        public CameraSample(UnityEngine.Camera fromCamera) {}
+        public void CopyFromCamera(UnityEngine.Camera camera, bool convertTransformToUsd = True);
+        public void CopyToCamera(UnityEngine.Camera camera, bool setTransform);
+        public enum ProjectionType
+        {
+            public const USD.NET.Unity.CameraSample.ProjectionType Orthographic = 1;
+            public const USD.NET.Unity.CameraSample.ProjectionType Perspective = 0;
+            public int value__;
+        }
+        public class Shutter : USD.NET.SampleBase
+        {
+            public double close;
+            public double open;
+            public Shutter() {}
+        }
+        public enum StereoRole
+        {
+            public const USD.NET.Unity.CameraSample.StereoRole Left = 1;
+            public const USD.NET.Unity.CameraSample.StereoRole Mono = 0;
+            public const USD.NET.Unity.CameraSample.StereoRole Right = 2;
+            public int value__;
+        }
+    }
+
+    [USD.NET.UsdSchema(@"Cube")] public class CubeSample : USD.NET.Unity.GprimSample
+    {
+        public double size { get; set; }
+        public CubeSample() {}
+        public CubeSample(double size) {}
+    }
+
+    [USD.NET.UsdSchema(@"Curves")] public class CurvesSample : USD.NET.Unity.PointBasedSample
+    {
+        public int[] curveVertexCounts;
+        [USD.NET.UsdVariability(1)] public bool doubleSided;
+        public UnityEngine.Vector3[] normals;
+        [USD.NET.UsdVariability(1)] public USD.NET.Orientation orientation;
+        public UnityEngine.Vector3[] points;
+        public UnityEngine.Vector3[] velocities;
+        public float[] widths;
+        public CurvesSample() {}
+    }
+
+    public class DiagnosticHandler : pxr.DiagnosticHandler
+    {
+        public DiagnosticHandler() {}
+        public virtual void OnError(string msg);
+        public virtual void OnFatalError(string msg);
+        public virtual void OnInfo(string msg);
+        public virtual void OnWarning(string msg);
+    }
+
+    [USD.NET.UsdSchema(@"UsdGeomGprim")] public class GprimSample : USD.NET.Unity.BoundableSample
+    {
+        [USD.NET.FusedDisplayColor] [USD.NET.VertexData] public UnityEngine.Color[] colors;
+        public GprimSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"UsdGeomImageable")] public class ImageableSample : USD.NET.SampleBase
+    {
+        public ImageableSample() {}
+    }
+
+    public class InputParameterAttribute : USD.NET.UsdNamespaceAttribute
+    {
+        public string UnityName { get; }
+        public InputParameterAttribute() {}
+        public InputParameterAttribute(string unityName) {}
+    }
+
+    public class InputTextureAttribute : USD.NET.UsdNamespaceAttribute
+    {
+        public string UnityName { get; }
+        public InputTextureAttribute() {}
+        public InputTextureAttribute(string unityName) {}
+    }
+
+    public class MaterialBindingSample : USD.NET.SampleBase
+    {
+        [USD.NET.UsdNamespace(@"material")] public USD.NET.Relationship binding;
+        public MaterialBindingSample() {}
+        public MaterialBindingSample(string materialPath) {}
+    }
+
+    [USD.NET.UsdSchema(@"Material")] public class MaterialSample : USD.NET.SampleBase
+    {
+        [USD.NET.UsdNamespace(@"outputs")] public USD.NET.Connectable<pxr.TfToken> displacement;
+        public string[] requiredKeywords;
+        [USD.NET.UsdNamespace(@"outputs")] public USD.NET.Connectable<pxr.TfToken> surface;
+        public MaterialSample() {}
+        public MaterialSample(string surfacePath) {}
+        public MaterialSample(string surfacePath, string displacementPath) {}
+        public static void Bind(USD.NET.Scene scene, string primPath, string materialPath);
+        public static bool ReadMaterial(USD.NET.Scene scene, string geometryPath, USD.NET.Unity.MaterialSample materialSample, out string shaderId);
+        public static void Unbind(USD.NET.Scene scene, string primPath);
+    }
+
+    [USD.NET.UsdSchema(@"Mesh")] public class MeshSample : USD.NET.Unity.MeshSampleBase
+    {
+        [USD.NET.UsdVariability(1)] public bool doubleSided;
+        public int[] faceVertexCounts;
+        [USD.NET.UsdVariability(1)] public USD.NET.Orientation orientation;
+        [USD.NET.UsdVariability(1)] public USD.NET.Purpose purpose;
+        public USD.NET.Visibility visibility;
+        public MeshSample() {}
+        public void SetTriangles(int[] triangleIndices);
+    }
+
+    [USD.NET.UsdSchema(@"Mesh")] public class MeshSampleBase : USD.NET.Unity.PointBasedSample
+    {
+        public int[] faceVertexIndices;
+        [USD.NET.UsdNamespace(@"primvars:st")] public int[] indices;
+        public UnityEngine.Vector3[] normals;
+        public UnityEngine.Vector3[] points;
+        [USD.NET.VertexData] public object st;
+        [USD.NET.VertexData] public UnityEngine.Vector4[] tangents;
+        [USD.NET.VertexData] public object uv;
+        [USD.NET.VertexData] public object uv2;
+        [USD.NET.VertexData] public object uv3;
+        [USD.NET.VertexData] public object uv4;
+        public MeshSampleBase() {}
+    }
+
+    public struct ParameterInfo
+    {
+        public string connectedPath;
+        public string[] requiredShaderKeywords;
+        public string unityName;
+        public string usdName;
+        public object value;
+        public virtual string ToString();
+    }
+
+    [USD.NET.UsdSchema(@"UsdGeomPointBased")] public class PointBasedSample : USD.NET.Unity.GprimSample
+    {
+        public PointBasedSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"PointInstancer")] public class PointInstancerPrototypesSample : USD.NET.Unity.BoundableSample
+    {
+        public USD.NET.Relationship prototypes;
+        public PointInstancerPrototypesSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"PointInstancer")] public class PointInstancerSample : USD.NET.Unity.PointInstancerPrototypesSample
+    {
+        public UnityEngine.Vector3[] angularVelocities;
+        public long[] ids;
+        public long[] invisibleIds;
+        public UnityEngine.Vector3[] positions;
+        public int[] protoIndices;
+        public UnityEngine.Quaternion[] rotations;
+        public UnityEngine.Vector3[] scales;
+        public UnityEngine.Vector3[] velocities;
+        public PointInstancerSample() {}
+        public UnityEngine.Matrix4x4[] ComputeInstanceMatrices(USD.NET.Scene scene, string primPath);
+    }
+
+    [USD.NET.UsdSchema(@"Shader")] public class PreviewSurfaceSample : USD.NET.Unity.ShaderSample
+    {
+        [USD.NET.Unity.InputParameter(@"_Clearcoat")] public USD.NET.Connectable<float> clearcoat;
+        [USD.NET.Unity.InputParameter(@"_ClearcoatRoughness")] public USD.NET.Connectable<float> clearcoatRoughness;
+        [USD.NET.Unity.InputParameter(@"_DiffuseColor")] public USD.NET.Connectable<UnityEngine.Vector3> diffuseColor;
+        [USD.NET.Unity.InputParameter(@"_Displacement")] public USD.NET.Connectable<float> displacement;
+        [USD.NET.Unity.InputParameter(@"_EmissiveColor")] public USD.NET.Connectable<UnityEngine.Vector3> emissiveColor;
+        [USD.NET.Unity.InputParameter(@"_Ior")] public USD.NET.Connectable<float> ior;
+        [USD.NET.Unity.InputParameter(@"_Metallic")] public USD.NET.Connectable<float> metallic;
+        [USD.NET.Unity.InputParameter(@"_Normal")] public USD.NET.Connectable<UnityEngine.Vector3> normal;
+        [USD.NET.Unity.InputParameter(@"_Occlusion")] public USD.NET.Connectable<float> occlusion;
+        [USD.NET.Unity.InputParameter(@"_Opacity")] public USD.NET.Connectable<float> opacity;
+        [USD.NET.Unity.InputParameter(@"_OpacityThreshold")] public USD.NET.Connectable<float> opacityThreshold;
+        [USD.NET.UsdNamespace(@"outputs")] public USD.NET.Unity.PreviewSurfaceSample.Outputs outputs;
+        [USD.NET.Unity.InputParameter(@"_Roughness")] public USD.NET.Connectable<float> roughness;
+        [USD.NET.Unity.InputParameter(@"_SpecularColor")] public USD.NET.Connectable<UnityEngine.Vector3> specularColor;
+        [USD.NET.Unity.InputParameter(@"_UseSpecularWorkflow")] public USD.NET.Connectable<int> useSpecularWorkflow;
+        public PreviewSurfaceSample() {}
+        public class Outputs : USD.NET.SampleBase
+        {
+            public pxr.TfToken displacement;
+            public pxr.TfToken surface;
+            public Outputs() {}
+        }
+    }
+
+    [USD.NET.UsdSchema(@"Shader")] public class PrimvarReaderSample<T> : USD.NET.Unity.ShaderSample where T : System.ValueType, new()
+    {
+        [USD.NET.Unity.InputParameter(@"_Fallback")] public USD.NET.Connectable<T> fallback;
+        [USD.NET.UsdNamespace(@"outputs")] public USD.NET.Unity.PrimvarReaderSample<T> outputs;
+        [USD.NET.Unity.InputParameter(@"_Varname")] public USD.NET.Connectable<pxr.TfToken> varname;
+        public PrimvarReaderSample() {}
+        public class Outputs<T> : USD.NET.SampleBase where T : System.ValueType, new()
+        {
+            public System.Nullable<T> result;
+            public Outputs() {}
+        }
+    }
+
+    public class RequireShaderKeywordsAttribute : System.Attribute
+    {
+        public string[] Keywords { get; }
+        public RequireShaderKeywordsAttribute(string keyword) {}
+        public RequireShaderKeywordsAttribute(string[] keywords) {}
+    }
+
+    [USD.NET.UsdSchema(@"Scope")] public class ScopeSample : USD.NET.Unity.ImageableSample
+    {
+        public ScopeSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"Shader")] public class ShaderSample : USD.NET.SampleBase
+    {
+        [USD.NET.UsdNamespace(@"info")] public pxr.TfToken id;
+        public ShaderSample() {}
+        [System.Runtime.CompilerServices.IteratorStateMachine(typeof(USD.NET.Unity.ShaderSample.<GetInputParameters>d__3))] public System.Collections.Generic.IEnumerable<USD.NET.Unity.ParameterInfo> GetInputParameters();
+        [System.Runtime.CompilerServices.IteratorStateMachine(typeof(USD.NET.Unity.ShaderSample.<GetInputTextures>d__4))] public System.Collections.Generic.IEnumerable<USD.NET.Unity.ParameterInfo> GetInputTextures();
+    }
+
+    [USD.NET.UsdSchema(@"Sphere")] public class SphereSample : USD.NET.Unity.GprimSample
+    {
+        public double radius { get; set; }
+        public SphereSample() {}
+        public SphereSample(double radius) {}
+    }
+
+    [USD.NET.UsdSchema(@"Shader")] public class StandardShaderSample : USD.NET.Unity.ShaderSample
+    {
+        [USD.NET.Unity.InputParameter(@"_Color")] public USD.NET.Connectable<UnityEngine.Color> albedo;
+        [USD.NET.Unity.InputTexture(@"_MainTex")] public USD.NET.Connectable<UnityEngine.Color> albedoMap;
+        [USD.NET.Unity.InputParameter(@"_Cutoff")] public USD.NET.Connectable<float> cutoff;
+        [USD.NET.Unity.InputTexture(@"_DetailAlbedoMap")] [USD.NET.Unity.RequireShaderKeywords(@"_DETAIL_MULX2")] public USD.NET.Connectable<UnityEngine.Color> detailAlbedoMap;
+        [USD.NET.Unity.InputTexture(@"_DetailMask")] public USD.NET.Connectable<UnityEngine.Color> detailMask;
+        [USD.NET.Unity.InputTexture(@"_DetailNormalMap")] [USD.NET.Unity.RequireShaderKeywords(@"_DETAIL_MULX2")] public USD.NET.Connectable<UnityEngine.Color> detailNormalMap;
+        [USD.NET.Unity.InputParameter(@"_DetailNormalMapScale")] public USD.NET.Connectable<float> detailNormalMapScale;
+        [USD.NET.Unity.InputParameter(@"_DstBlend")] public USD.NET.Connectable<float> dstBlend;
+        [USD.NET.Unity.InputParameter(@"_EmissionColor")] public USD.NET.Connectable<UnityEngine.Color> emission;
+        [USD.NET.Unity.InputTexture(@"_EmissionMap")] [USD.NET.Unity.RequireShaderKeywords(@"_EMISSION")] public USD.NET.Connectable<UnityEngine.Color> emissionMap;
+        [USD.NET.Unity.InputParameter(@"_GlossyReflections")] public USD.NET.Connectable<bool> enableGlossyReflections;
+        [USD.NET.UsdNamespace(@"info")] public bool enableGpuInstancing;
+        [USD.NET.Unity.InputParameter(@"_SpecularHighlights")] public USD.NET.Connectable<bool> enableSpecularHighlights;
+        [USD.NET.Unity.InputTexture(@"_MetallicGlossMap")] [USD.NET.Unity.RequireShaderKeywords(@"_METALLICGLOSSMAP")] public USD.NET.Connectable<float> metallicMap;
+        [USD.NET.Unity.InputParameter(@"_Metallic")] public USD.NET.Connectable<float> metallicScale;
+        [USD.NET.Unity.InputTexture(@"_BumpMap")] [USD.NET.Unity.RequireShaderKeywords(@"_NORMALMAP")] public USD.NET.Connectable<UnityEngine.Color> normalMap;
+        [USD.NET.Unity.InputParameter(@"_BumpScale")] public USD.NET.Connectable<float> normalMapScale;
+        [USD.NET.Unity.InputTexture(@"_OcclusionMap")] public USD.NET.Connectable<float> occlusionMap;
+        [USD.NET.Unity.InputParameter(@"_OcclusionStrength")] public USD.NET.Connectable<float> occlusionMapScale;
+        [USD.NET.Unity.InputTexture(@"_ParallaxMap")] [USD.NET.Unity.RequireShaderKeywords(@"_PARALLAXMAP")] public USD.NET.Connectable<UnityEngine.Color> parallaxMap;
+        [USD.NET.Unity.InputParameter(@"_Parallax")] public USD.NET.Connectable<float> parallaxMapScale;
+        [USD.NET.Unity.InputParameter(@"_Mode")] public USD.NET.Connectable<float> renderingMode;
+        [USD.NET.Unity.InputParameter(@"_Glossiness")] public USD.NET.Connectable<float> smoothness;
+        [USD.NET.Unity.InputParameter(@"_GlossMapScale")] public USD.NET.Connectable<float> smoothnessScale;
+        [USD.NET.Unity.InputParameter(@"_SmoothnessTextureChannel")] public USD.NET.Connectable<float> smoothnessTextureChannel;
+        [USD.NET.Unity.InputParameter(@"_SrcBlend")] public USD.NET.Connectable<float> srcBlend;
+        [USD.NET.Unity.InputParameter(@"_UVSec")] public USD.NET.Connectable<float> uvSetForSecondaryTextures;
+        [USD.NET.Unity.InputParameter(@"_ZWrite")] public USD.NET.Connectable<float> zwrite;
+        public StandardShaderSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"Texture2D")] public class Texture2DSample : USD.NET.SampleBase
+    {
+        [USD.NET.UsdAssetPath] [USD.NET.UsdNamespace(@"inputs")] public USD.NET.Connectable<string> sourceFile;
+        public bool sRgb;
+        public Texture2DSample() {}
+    }
+
+    [USD.NET.UsdSchema(@"Shader")] public class TextureReaderSample : USD.NET.Unity.ShaderSample
+    {
+        [USD.NET.Unity.InputParameter(@"_Bias")] public USD.NET.Connectable<UnityEngine.Vector4> bias;
+        [USD.NET.Unity.InputParameter(@"_Fallback")] public USD.NET.Connectable<UnityEngine.Vector4> fallback;
+        [USD.NET.Unity.InputParameter(@"_File")] public USD.NET.Connectable<pxr.SdfAssetPath> file;
+        [USD.NET.Unity.InputParameter(@"_IsSRGB")] public USD.NET.Connectable<USD.NET.Unity.TextureReaderSample.SRGBMode> isSRGB;
+        [USD.NET.UsdNamespace(@"outputs")] public USD.NET.Unity.TextureReaderSample.Outputs outputs;
+        [USD.NET.Unity.InputParameter(@"_Scale")] public USD.NET.Connectable<UnityEngine.Vector4> scale;
+        [USD.NET.Unity.InputParameter(@"_St")] public USD.NET.Connectable<UnityEngine.Vector2> st;
+        [USD.NET.Unity.InputParameter(@"_WrapS")] public USD.NET.Connectable<USD.NET.Unity.TextureReaderSample.WrapMode> wrapS;
+        [USD.NET.Unity.InputParameter(@"_WrapT")] public USD.NET.Connectable<USD.NET.Unity.TextureReaderSample.WrapMode> wrapT;
+        public TextureReaderSample() {}
+        public TextureReaderSample(string filePath) {}
+        public TextureReaderSample(string filePath, string stConnectionPath) {}
+        public static USD.NET.Unity.TextureReaderSample.WrapMode GetWrapMode(UnityEngine.TextureWrapMode wrap);
+        public class Outputs : USD.NET.SampleBase
+        {
+            public System.Nullable<float> a;
+            public System.Nullable<float> b;
+            public System.Nullable<float> g;
+            public System.Nullable<float> r;
+            public System.Nullable<UnityEngine.Vector3> rgb;
+            public System.Nullable<UnityEngine.Vector4> rgba;
+            public Outputs() {}
+        }
+        public enum SRGBMode
+        {
+            public const USD.NET.Unity.TextureReaderSample.SRGBMode Auto = 2;
+            public const USD.NET.Unity.TextureReaderSample.SRGBMode No = 1;
+            public int value__;
+            public const USD.NET.Unity.TextureReaderSample.SRGBMode Yes = 0;
+        }
+        public enum WrapMode
+        {
+            public const USD.NET.Unity.TextureReaderSample.WrapMode Black = 0;
+            public const USD.NET.Unity.TextureReaderSample.WrapMode Clamp = 1;
+            public const USD.NET.Unity.TextureReaderSample.WrapMode Mirror = 3;
+            public const USD.NET.Unity.TextureReaderSample.WrapMode Repeat = 2;
+            public int value__;
+        }
+    }
+
+    public static class UnityTypeBindings
+    {
+        public static void RegisterTypes();
+    }
+
+    public class UnityTypeConverter : USD.NET.IntrinsicTypeConverter
+    {
+        public static UnityEngine.Matrix4x4 basisChange;
+        public static UnityEngine.Matrix4x4 inverseBasisChange;
+        public UnityTypeConverter() {}
+        public static UnityEngine.Bounds BoundsFromVtArray(pxr.VtValue vtBounds);
+        public static UnityEngine.Bounds BoundsFromVtArray(pxr.VtValue vtBounds, UnityEngine.Vector3[] bbox);
+        public static pxr.VtVec3fArray BoundsToVtArray(UnityEngine.Bounds input);
+        public static UnityEngine.Matrix4x4 ChangeBasis(UnityEngine.Matrix4x4 input);
+        public static UnityEngine.Vector3 ChangeBasis(UnityEngine.Vector3 point);
+        public static UnityEngine.Color32[] Color32FromVtArray(pxr.VtVec4fArray input);
+        public static pxr.GfVec4f Color32ToVec4f(UnityEngine.Color32 c);
+        public static UnityEngine.Color[] ColorFromVtArray(pxr.VtVec4fArray input);
+        public static UnityEngine.Color[] ColorFromVtArray(pxr.VtVec4fArray input, ref UnityEngine.Color[] output);
+        public static pxr.GfVec4f ColorToVec4f(UnityEngine.Color c);
+        public static bool Decompose(UnityEngine.Matrix4x4 matrix, out UnityEngine.Vector3 translation, out UnityEngine.Quaternion rotation, out UnityEngine.Vector3 scale);
+        public static float[] ExtractAlpha(UnityEngine.Color[] colors);
+        public static float[] ExtractAlpha(UnityEngine.Color32[] colors);
+        public static UnityEngine.Vector3[] ExtractRgb(UnityEngine.Color[] colors);
+        public static UnityEngine.Vector3[] ExtractRgb(UnityEngine.Color32[] colors);
+        public static void ExtractTrs(UnityEngine.Matrix4x4 transform, ref UnityEngine.Vector3 localPosition, ref UnityEngine.Quaternion localRotation, ref UnityEngine.Vector3 localScale);
+        public static UnityEngine.Matrix4x4 FromMatrix(pxr.GfMatrix4d gfMat);
+        public static UnityEngine.Matrix4x4[] FromVtArray(pxr.VtMatrix4dArray input);
+        public static UnityEngine.Quaternion[] FromVtArray(pxr.VtQuatfArray input);
+        public static UnityEngine.Vector2[] FromVtArray(pxr.VtVec2fArray input);
+        public static UnityEngine.Vector3[] FromVtArray(pxr.VtVec3fArray input);
+        public static UnityEngine.Vector4[] FromVtArray(pxr.VtVec4fArray input);
+        public static void FromVtArray(pxr.VtVec3fArray input, ref UnityEngine.Vector3[] output);
+        public static UnityEngine.Color[] FromVtArray(pxr.VtVec3fArray rgbIn, pxr.VtFloatArray alphaIn);
+        public static UnityEngine.Matrix4x4 GetLocalToParentXf(UnityEngine.Transform unityXf);
+        public static string GetPath(UnityEngine.Transform unityObj);
+        public static string GetPath(UnityEngine.Transform unityObj, UnityEngine.Transform unityObjRoot);
+        public static System.Collections.Generic.List<UnityEngine.Matrix4x4> ListFromVtArray(pxr.VtMatrix4dArray input);
+        public static System.Collections.Generic.List<UnityEngine.Quaternion> ListFromVtArray(pxr.VtQuatfArray input);
+        public static System.Collections.Generic.List<UnityEngine.Vector2> ListFromVtArray(pxr.VtVec2fArray input);
+        public static System.Collections.Generic.List<UnityEngine.Vector3> ListFromVtArray(pxr.VtVec3fArray input);
+        public static System.Collections.Generic.List<UnityEngine.Vector4> ListFromVtArray(pxr.VtVec4fArray input);
+        public static pxr.VtMatrix4dArray ListToVtArray(System.Collections.Generic.List<UnityEngine.Matrix4x4> input);
+        public static pxr.VtQuatfArray ListToVtArray(System.Collections.Generic.List<UnityEngine.Quaternion> input);
+        public static pxr.VtVec2fArray ListToVtArray(System.Collections.Generic.List<UnityEngine.Vector2> input);
+        public static pxr.VtVec3fArray ListToVtArray(System.Collections.Generic.List<UnityEngine.Vector3> input);
+        public static pxr.VtVec4fArray ListToVtArray(System.Collections.Generic.List<UnityEngine.Vector4> input);
+        public static pxr.GfQuatf QuaternionToQuatf(UnityEngine.Quaternion quaternion);
+        public static UnityEngine.Quaternion QuatfToQuaternion(pxr.GfQuatf quat);
+        public static pxr.GfVec4f RectToVtVec4(UnityEngine.Rect rect);
+        public static void SetTransform(UnityEngine.Matrix4x4 localXf, UnityEngine.Transform transform);
+        public static pxr.GfMatrix4d ToGfMatrix(UnityEngine.Matrix4x4 unityMat4);
+        public static pxr.GfMatrix4d ToGfMatrix(UnityEngine.Transform unityXf);
+        public static pxr.VtMatrix4dArray ToVtArray(UnityEngine.Matrix4x4[] input);
+        public static pxr.VtQuatfArray ToVtArray(UnityEngine.Quaternion[] input);
+        public static pxr.VtVec2fArray ToVtArray(UnityEngine.Vector2[] input);
+        public static pxr.VtVec3fArray ToVtArray(UnityEngine.Vector3[] input);
+        public static pxr.VtVec4fArray ToVtArray(System.Collections.Generic.List<UnityEngine.Color> input);
+        public static pxr.VtVec4fArray ToVtArray(System.Collections.Generic.List<UnityEngine.Color32> input);
+        public static pxr.VtVec4fArray ToVtArray(UnityEngine.Color[] input);
+        public static pxr.VtVec4fArray ToVtArray(UnityEngine.Color32[] input);
+        public static pxr.VtVec4fArray ToVtArray(UnityEngine.Vector4[] input);
+        public static void ToVtArray(System.Collections.Generic.List<UnityEngine.Color> input, out pxr.VtVec3fArray rgb, out pxr.VtFloatArray alpha);
+        public static void ToVtArray(System.Collections.Generic.List<UnityEngine.Color32> input, out pxr.VtVec3fArray rgb, out pxr.VtFloatArray alpha);
+        public static void ToVtArray(UnityEngine.Color[] input, out pxr.VtVec3fArray rgb, out pxr.VtFloatArray alpha);
+        public static void ToVtArray(UnityEngine.Color32[] input, out pxr.VtVec3fArray rgb, out pxr.VtFloatArray alpha);
+        public static UnityEngine.Vector2 Vec2fToVector2(pxr.GfVec2f value);
+        public static UnityEngine.Vector3 Vec3fToVector3(pxr.GfVec3f v3);
+        public static UnityEngine.Color Vec4fToColor(pxr.GfVec4f v);
+        public static UnityEngine.Color32 Vec4fToColor32(pxr.GfVec4f v);
+        public static UnityEngine.Rect Vec4fToRect(pxr.GfVec4f v4);
+        public static UnityEngine.Vector4 Vec4fToVector4(pxr.GfVec4f v4);
+        public static pxr.GfVec2f Vector2ToVec2f(UnityEngine.Vector2 vec2);
+        public static pxr.GfVec3f Vector3ToVec3f(UnityEngine.Vector3 vec3);
+        public static pxr.GfVec4f Vector4ToVec4f(UnityEngine.Vector4 vector4);
+    }
+
+    [USD.NET.UsdSchema(@"UsdGeomXformable")] public class XformableSample : USD.NET.Unity.ImageableSample
+    {
+        [USD.NET.UsdVariability(1)] public string[] xformOpOrder;
+        [USD.NET.FusedTransform] [USD.NET.UsdNamespace(@"xformOp")] public UnityEngine.Matrix4x4 transform { get; set; }
+        public XformableSample() {}
+        public void ConvertTransform();
+        public static USD.NET.Unity.XformableSample FromTransform(UnityEngine.Transform transform);
+    }
+
+    [USD.NET.UsdSchema(@"Xform")] public class XformSample : USD.NET.Unity.XformableSample
+    {
+        public XformSample() {}
+    }
+}

@@ -8,106 +8,124 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdGeomXformCache : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdGeomXformCache : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdGeomXformCache(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomXformCache obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdGeomXformCache() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdGeomXformCache(swigCPtr);
+        internal UsdGeomXformCache(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomXformCache obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdGeomXformCache()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdGeomXformCache(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public UsdGeomXformCache(UsdTimeCode time) : this(UsdCsPINVOKE.new_UsdGeomXformCache__SWIG_0(UsdTimeCode.getCPtr(time)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdGeomXformCache() : this(UsdCsPINVOKE.new_UsdGeomXformCache__SWIG_1(), true)
+        {
+        }
+
+        public GfMatrix4d GetLocalToWorldTransform(UsdPrim prim)
+        {
+            GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_GetLocalToWorldTransform(swigCPtr, UsdPrim.getCPtr(prim)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfMatrix4d GetParentToWorldTransform(UsdPrim prim)
+        {
+            GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_GetParentToWorldTransform(swigCPtr, UsdPrim.getCPtr(prim)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfMatrix4d GetLocalTransformation(UsdPrim prim, out bool resetsXformStack)
+        {
+            GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_GetLocalTransformation(swigCPtr, UsdPrim.getCPtr(prim), out resetsXformStack), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfMatrix4d ComputeRelativeTransform(UsdPrim prim, UsdPrim ancestor, SWIGTYPE_p_bool resetXformStack)
+        {
+            GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_ComputeRelativeTransform(swigCPtr, UsdPrim.getCPtr(prim), UsdPrim.getCPtr(ancestor), SWIGTYPE_p_bool.getCPtr(resetXformStack)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool IsAttributeIncludedInLocalTransform(UsdPrim prim, TfToken attrName)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomXformCache_IsAttributeIncludedInLocalTransform(swigCPtr, UsdPrim.getCPtr(prim), TfToken.getCPtr(attrName));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool TransformMightBeTimeVarying(UsdPrim prim)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomXformCache_TransformMightBeTimeVarying(swigCPtr, UsdPrim.getCPtr(prim));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool GetResetXformStack(UsdPrim prim)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomXformCache_GetResetXformStack(swigCPtr, UsdPrim.getCPtr(prim));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void Clear()
+        {
+            UsdCsPINVOKE.UsdGeomXformCache_Clear(swigCPtr);
+        }
+
+        public void SetTime(UsdTimeCode time)
+        {
+            UsdCsPINVOKE.UsdGeomXformCache_SetTime(swigCPtr, UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdTimeCode GetTime()
+        {
+            UsdTimeCode ret = new UsdTimeCode(UsdCsPINVOKE.UsdGeomXformCache_GetTime(swigCPtr), true);
+            return ret;
+        }
+
+        public void Swap(UsdGeomXformCache other)
+        {
+            UsdCsPINVOKE.UsdGeomXformCache_Swap(swigCPtr, UsdGeomXformCache.getCPtr(other));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
-  }
-
-  public UsdGeomXformCache(UsdTimeCode time) : this(UsdCsPINVOKE.new_UsdGeomXformCache__SWIG_0(UsdTimeCode.getCPtr(time)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdGeomXformCache() : this(UsdCsPINVOKE.new_UsdGeomXformCache__SWIG_1(), true) {
-  }
-
-  public GfMatrix4d GetLocalToWorldTransform(UsdPrim prim) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_GetLocalToWorldTransform(swigCPtr, UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfMatrix4d GetParentToWorldTransform(UsdPrim prim) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_GetParentToWorldTransform(swigCPtr, UsdPrim.getCPtr(prim)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfMatrix4d GetLocalTransformation(UsdPrim prim, out bool resetsXformStack) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_GetLocalTransformation(swigCPtr, UsdPrim.getCPtr(prim), out resetsXformStack), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfMatrix4d ComputeRelativeTransform(UsdPrim prim, UsdPrim ancestor, SWIGTYPE_p_bool resetXformStack) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdGeomXformCache_ComputeRelativeTransform(swigCPtr, UsdPrim.getCPtr(prim), UsdPrim.getCPtr(ancestor), SWIGTYPE_p_bool.getCPtr(resetXformStack)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool IsAttributeIncludedInLocalTransform(UsdPrim prim, TfToken attrName) {
-    bool ret = UsdCsPINVOKE.UsdGeomXformCache_IsAttributeIncludedInLocalTransform(swigCPtr, UsdPrim.getCPtr(prim), TfToken.getCPtr(attrName));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool TransformMightBeTimeVarying(UsdPrim prim) {
-    bool ret = UsdCsPINVOKE.UsdGeomXformCache_TransformMightBeTimeVarying(swigCPtr, UsdPrim.getCPtr(prim));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool GetResetXformStack(UsdPrim prim) {
-    bool ret = UsdCsPINVOKE.UsdGeomXformCache_GetResetXformStack(swigCPtr, UsdPrim.getCPtr(prim));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void Clear() {
-    UsdCsPINVOKE.UsdGeomXformCache_Clear(swigCPtr);
-  }
-
-  public void SetTime(UsdTimeCode time) {
-    UsdCsPINVOKE.UsdGeomXformCache_SetTime(swigCPtr, UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdTimeCode GetTime() {
-    UsdTimeCode ret = new UsdTimeCode(UsdCsPINVOKE.UsdGeomXformCache_GetTime(swigCPtr), true);
-    return ret;
-  }
-
-  public void Swap(UsdGeomXformCache other) {
-    UsdCsPINVOKE.UsdGeomXformCache_Swap(swigCPtr, UsdGeomXformCache.getCPtr(other));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-}
-
 }

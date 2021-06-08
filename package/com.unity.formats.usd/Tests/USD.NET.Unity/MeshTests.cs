@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using pxr;
 
 namespace USD.NET.Unity.Tests

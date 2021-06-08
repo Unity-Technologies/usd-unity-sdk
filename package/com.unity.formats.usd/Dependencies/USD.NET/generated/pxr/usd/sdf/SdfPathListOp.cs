@@ -8,185 +8,219 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class SdfPathListOp : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class SdfPathListOp : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SdfPathListOp(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfPathListOp obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfPathListOp() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfPathListOp(swigCPtr);
+        internal SdfPathListOp(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfPathListOp obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~SdfPathListOp()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfPathListOp(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public static SdfPathListOp CreateExplicit(SdfPathVector explicitItems)
+        {
+            SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_CreateExplicit__SWIG_0(SdfPathVector.getCPtr(explicitItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfPathListOp CreateExplicit()
+        {
+            SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_CreateExplicit__SWIG_1(), true);
+            return ret;
+        }
+
+        public static SdfPathListOp Create(SdfPathVector prependedItems, SdfPathVector appendedItems, SdfPathVector deletedItems)
+        {
+            SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_0(SdfPathVector.getCPtr(prependedItems), SdfPathVector.getCPtr(appendedItems), SdfPathVector.getCPtr(deletedItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfPathListOp Create(SdfPathVector prependedItems, SdfPathVector appendedItems)
+        {
+            SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_1(SdfPathVector.getCPtr(prependedItems), SdfPathVector.getCPtr(appendedItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfPathListOp Create(SdfPathVector prependedItems)
+        {
+            SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_2(SdfPathVector.getCPtr(prependedItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfPathListOp Create()
+        {
+            SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_3(), true);
+            return ret;
+        }
+
+        public SdfPathListOp() : this(UsdCsPINVOKE.new_SdfPathListOp(), true)
+        {
+        }
+
+        public void Swap(SdfPathListOp rhs)
+        {
+            UsdCsPINVOKE.SdfPathListOp_Swap(swigCPtr, SdfPathListOp.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool HasKeys()
+        {
+            bool ret = UsdCsPINVOKE.SdfPathListOp_HasKeys(swigCPtr);
+            return ret;
+        }
+
+        public bool HasItem(SdfPath item)
+        {
+            bool ret = UsdCsPINVOKE.SdfPathListOp_HasItem(swigCPtr, SdfPath.getCPtr(item));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool IsExplicit()
+        {
+            bool ret = UsdCsPINVOKE.SdfPathListOp_IsExplicit(swigCPtr);
+            return ret;
+        }
+
+        public SdfPathVector GetExplicitItems()
+        {
+            SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetExplicitItems(swigCPtr), false);
+            return ret;
+        }
+
+        public SdfPathVector GetAddedItems()
+        {
+            SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetAddedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public SdfPathVector GetPrependedItems()
+        {
+            SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetPrependedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public SdfPathVector GetAppendedItems()
+        {
+            SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetAppendedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public SdfPathVector GetDeletedItems()
+        {
+            SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetDeletedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public SdfPathVector GetOrderedItems()
+        {
+            SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetOrderedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public SdfPathVector GetItems(SdfListOpType type)
+        {
+            SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetItems(swigCPtr, (int)type), false);
+            return ret;
+        }
+
+        public void SetExplicitItems(SdfPathVector items)
+        {
+            UsdCsPINVOKE.SdfPathListOp_SetExplicitItems(swigCPtr, SdfPathVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetAddedItems(SdfPathVector items)
+        {
+            UsdCsPINVOKE.SdfPathListOp_SetAddedItems(swigCPtr, SdfPathVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetPrependedItems(SdfPathVector items)
+        {
+            UsdCsPINVOKE.SdfPathListOp_SetPrependedItems(swigCPtr, SdfPathVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetAppendedItems(SdfPathVector items)
+        {
+            UsdCsPINVOKE.SdfPathListOp_SetAppendedItems(swigCPtr, SdfPathVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetDeletedItems(SdfPathVector items)
+        {
+            UsdCsPINVOKE.SdfPathListOp_SetDeletedItems(swigCPtr, SdfPathVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetOrderedItems(SdfPathVector items)
+        {
+            UsdCsPINVOKE.SdfPathListOp_SetOrderedItems(swigCPtr, SdfPathVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetItems(SdfPathVector items, SdfListOpType type)
+        {
+            UsdCsPINVOKE.SdfPathListOp_SetItems(swigCPtr, SdfPathVector.getCPtr(items), (int)type);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Clear()
+        {
+            UsdCsPINVOKE.SdfPathListOp_Clear(swigCPtr);
+        }
+
+        public void ClearAndMakeExplicit()
+        {
+            UsdCsPINVOKE.SdfPathListOp_ClearAndMakeExplicit(swigCPtr);
+        }
+
+        public bool ReplaceOperations(SdfListOpType op, uint index, uint n, SdfPathVector newItems)
+        {
+            bool ret = UsdCsPINVOKE.SdfPathListOp_ReplaceOperations(swigCPtr, (int)op, index, n, SdfPathVector.getCPtr(newItems));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void ComposeOperations(SdfPathListOp stronger, SdfListOpType op)
+        {
+            UsdCsPINVOKE.SdfPathListOp_ComposeOperations(swigCPtr, SdfPathListOp.getCPtr(stronger), (int)op);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
-  }
-
-  public static SdfPathListOp CreateExplicit(SdfPathVector explicitItems) {
-    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_CreateExplicit__SWIG_0(SdfPathVector.getCPtr(explicitItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfPathListOp CreateExplicit() {
-    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_CreateExplicit__SWIG_1(), true);
-    return ret;
-  }
-
-  public static SdfPathListOp Create(SdfPathVector prependedItems, SdfPathVector appendedItems, SdfPathVector deletedItems) {
-    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_0(SdfPathVector.getCPtr(prependedItems), SdfPathVector.getCPtr(appendedItems), SdfPathVector.getCPtr(deletedItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfPathListOp Create(SdfPathVector prependedItems, SdfPathVector appendedItems) {
-    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_1(SdfPathVector.getCPtr(prependedItems), SdfPathVector.getCPtr(appendedItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfPathListOp Create(SdfPathVector prependedItems) {
-    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_2(SdfPathVector.getCPtr(prependedItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfPathListOp Create() {
-    SdfPathListOp ret = new SdfPathListOp(UsdCsPINVOKE.SdfPathListOp_Create__SWIG_3(), true);
-    return ret;
-  }
-
-  public SdfPathListOp() : this(UsdCsPINVOKE.new_SdfPathListOp(), true) {
-  }
-
-  public void Swap(SdfPathListOp rhs) {
-    UsdCsPINVOKE.SdfPathListOp_Swap(swigCPtr, SdfPathListOp.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool HasKeys() {
-    bool ret = UsdCsPINVOKE.SdfPathListOp_HasKeys(swigCPtr);
-    return ret;
-  }
-
-  public bool HasItem(SdfPath item) {
-    bool ret = UsdCsPINVOKE.SdfPathListOp_HasItem(swigCPtr, SdfPath.getCPtr(item));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool IsExplicit() {
-    bool ret = UsdCsPINVOKE.SdfPathListOp_IsExplicit(swigCPtr);
-    return ret;
-  }
-
-  public SdfPathVector GetExplicitItems() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetExplicitItems(swigCPtr), false);
-    return ret;
-  }
-
-  public SdfPathVector GetAddedItems() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetAddedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public SdfPathVector GetPrependedItems() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetPrependedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public SdfPathVector GetAppendedItems() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetAppendedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public SdfPathVector GetDeletedItems() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetDeletedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public SdfPathVector GetOrderedItems() {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetOrderedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public SdfPathVector GetItems(SdfListOpType type) {
-    SdfPathVector ret = new SdfPathVector(UsdCsPINVOKE.SdfPathListOp_GetItems(swigCPtr, (int)type), false);
-    return ret;
-  }
-
-  public void SetExplicitItems(SdfPathVector items) {
-    UsdCsPINVOKE.SdfPathListOp_SetExplicitItems(swigCPtr, SdfPathVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetAddedItems(SdfPathVector items) {
-    UsdCsPINVOKE.SdfPathListOp_SetAddedItems(swigCPtr, SdfPathVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetPrependedItems(SdfPathVector items) {
-    UsdCsPINVOKE.SdfPathListOp_SetPrependedItems(swigCPtr, SdfPathVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetAppendedItems(SdfPathVector items) {
-    UsdCsPINVOKE.SdfPathListOp_SetAppendedItems(swigCPtr, SdfPathVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetDeletedItems(SdfPathVector items) {
-    UsdCsPINVOKE.SdfPathListOp_SetDeletedItems(swigCPtr, SdfPathVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetOrderedItems(SdfPathVector items) {
-    UsdCsPINVOKE.SdfPathListOp_SetOrderedItems(swigCPtr, SdfPathVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetItems(SdfPathVector items, SdfListOpType type) {
-    UsdCsPINVOKE.SdfPathListOp_SetItems(swigCPtr, SdfPathVector.getCPtr(items), (int)type);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Clear() {
-    UsdCsPINVOKE.SdfPathListOp_Clear(swigCPtr);
-  }
-
-  public void ClearAndMakeExplicit() {
-    UsdCsPINVOKE.SdfPathListOp_ClearAndMakeExplicit(swigCPtr);
-  }
-
-  public bool ReplaceOperations(SdfListOpType op, uint index, uint n, SdfPathVector newItems) {
-    bool ret = UsdCsPINVOKE.SdfPathListOp_ReplaceOperations(swigCPtr, (int)op, index, n, SdfPathVector.getCPtr(newItems));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void ComposeOperations(SdfPathListOp stronger, SdfListOpType op) {
-    UsdCsPINVOKE.SdfPathListOp_ComposeOperations(swigCPtr, SdfPathListOp.getCPtr(stronger), (int)op);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-}
-
 }

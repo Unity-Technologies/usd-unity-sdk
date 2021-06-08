@@ -1,0 +1,16 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Formats.USD.Examples
+{
+    public class ImportMaterialsExample : UnityEngine.MonoBehaviour
+    {
+        public ImportMaterialsExample() {}
+        public struct ShaderPair
+        {
+            public UnityEngine.Shader unityShader;
+            public USD.NET.Unity.ShaderSample usdShader;
+            public ShaderPair(UnityEngine.Shader unityShader, USD.NET.Unity.ShaderSample usdShader) {}
+        }
+    }
+}

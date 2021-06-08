@@ -8,175 +8,209 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class GfVec4f : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class GfVec4f : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal GfVec4f(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfVec4f obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~GfVec4f() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_GfVec4f(swigCPtr);
+        internal GfVec4f(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfVec4f obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~GfVec4f()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_GfVec4f(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public GfVec4f() : this(UsdCsPINVOKE.new_GfVec4f__SWIG_0(), true)
+        {
+        }
+
+        public GfVec4f(float value) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_1(value), true)
+        {
+        }
+
+        public GfVec4f(float s0, float s1, float s2, float s3) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_2(s0, s1, s2, s3), true)
+        {
+        }
+
+        public GfVec4f(GfVec4d other) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_4(GfVec4d.getCPtr(other)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfVec4f(GfVec4h other) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_5(GfVec4h.getCPtr(other)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfVec4f(GfVec4i other) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_6(GfVec4i.getCPtr(other)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public static GfVec4f XAxis()
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_XAxis(), true);
+            return ret;
+        }
+
+        public static GfVec4f YAxis()
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_YAxis(), true);
+            return ret;
+        }
+
+        public static GfVec4f ZAxis()
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_ZAxis(), true);
+            return ret;
+        }
+
+        public static GfVec4f WAxis()
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_WAxis(), true);
+            return ret;
+        }
+
+        public static GfVec4f Axis(uint i)
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_Axis(i), true);
+            return ret;
+        }
+
+        public GfVec4f Set(float s0, float s1, float s2, float s3)
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_Set(swigCPtr, s0, s1, s2, s3), false);
+            return ret;
+        }
+
+        public GfVec4f GetProjection(GfVec4f v)
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetProjection(swigCPtr, GfVec4f.getCPtr(v)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfVec4f GetComplement(GfVec4f b)
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetComplement(swigCPtr, GfVec4f.getCPtr(b)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public float GetLengthSq()
+        {
+            float ret = UsdCsPINVOKE.GfVec4f_GetLengthSq(swigCPtr);
+            return ret;
+        }
+
+        public float GetLength()
+        {
+            float ret = UsdCsPINVOKE.GfVec4f_GetLength(swigCPtr);
+            return ret;
+        }
+
+        public float Normalize(float eps)
+        {
+            float ret = UsdCsPINVOKE.GfVec4f_Normalize__SWIG_0(swigCPtr, eps);
+            return ret;
+        }
+
+        public float Normalize()
+        {
+            float ret = UsdCsPINVOKE.GfVec4f_Normalize__SWIG_1(swigCPtr);
+            return ret;
+        }
+
+        public GfVec4f GetNormalized(float eps)
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetNormalized__SWIG_0(swigCPtr, eps), true);
+            return ret;
+        }
+
+        public GfVec4f GetNormalized()
+        {
+            GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetNormalized__SWIG_1(swigCPtr), true);
+            return ret;
+        }
+
+        public static bool Equals(GfVec4f lhs, GfVec4f rhs)
+        {
+            bool ret = UsdCsPINVOKE.GfVec4f_Equals(GfVec4f.getCPtr(lhs), GfVec4f.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.GfVec4f_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(GfVec4f lhs, GfVec4f rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || GfVec4f.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(GfVec4f lhs, GfVec4f rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return GfVec4f.Equals(this, rhs as GfVec4f);
+        }
+
+        protected float GetValue(int index)
+        {
+            float ret = UsdCsPINVOKE.GfVec4f_GetValue(swigCPtr, index);
+            return ret;
+        }
+
+        protected void SetValue(int index, float value)
+        {
+            UsdCsPINVOKE.GfVec4f_SetValue(swigCPtr, index, value);
+        }
+
+        public float this[int index]
+        {
+            get { return GetValue(index); }
+            set { SetValue(index, value); }
+        }
+
+        public static readonly uint dimension = UsdCsPINVOKE.GfVec4f_dimension_get();
     }
-  }
-
-  public GfVec4f() : this(UsdCsPINVOKE.new_GfVec4f__SWIG_0(), true) {
-  }
-
-  public GfVec4f(float value) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_1(value), true) {
-  }
-
-  public GfVec4f(float s0, float s1, float s2, float s3) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_2(s0, s1, s2, s3), true) {
-  }
-
-  public GfVec4f(GfVec4d other) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_4(GfVec4d.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfVec4f(GfVec4h other) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_5(GfVec4h.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfVec4f(GfVec4i other) : this(UsdCsPINVOKE.new_GfVec4f__SWIG_6(GfVec4i.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static GfVec4f XAxis() {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_XAxis(), true);
-    return ret;
-  }
-
-  public static GfVec4f YAxis() {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_YAxis(), true);
-    return ret;
-  }
-
-  public static GfVec4f ZAxis() {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_ZAxis(), true);
-    return ret;
-  }
-
-  public static GfVec4f WAxis() {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_WAxis(), true);
-    return ret;
-  }
-
-  public static GfVec4f Axis(uint i) {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_Axis(i), true);
-    return ret;
-  }
-
-  public GfVec4f Set(float s0, float s1, float s2, float s3) {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_Set(swigCPtr, s0, s1, s2, s3), false);
-    return ret;
-  }
-
-  public GfVec4f GetProjection(GfVec4f v) {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetProjection(swigCPtr, GfVec4f.getCPtr(v)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfVec4f GetComplement(GfVec4f b) {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetComplement(swigCPtr, GfVec4f.getCPtr(b)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public float GetLengthSq() {
-    float ret = UsdCsPINVOKE.GfVec4f_GetLengthSq(swigCPtr);
-    return ret;
-  }
-
-  public float GetLength() {
-    float ret = UsdCsPINVOKE.GfVec4f_GetLength(swigCPtr);
-    return ret;
-  }
-
-  public float Normalize(float eps) {
-    float ret = UsdCsPINVOKE.GfVec4f_Normalize__SWIG_0(swigCPtr, eps);
-    return ret;
-  }
-
-  public float Normalize() {
-    float ret = UsdCsPINVOKE.GfVec4f_Normalize__SWIG_1(swigCPtr);
-    return ret;
-  }
-
-  public GfVec4f GetNormalized(float eps) {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetNormalized__SWIG_0(swigCPtr, eps), true);
-    return ret;
-  }
-
-  public GfVec4f GetNormalized() {
-    GfVec4f ret = new GfVec4f(UsdCsPINVOKE.GfVec4f_GetNormalized__SWIG_1(swigCPtr), true);
-    return ret;
-  }
-
-  public static bool Equals(GfVec4f lhs, GfVec4f rhs) {
-    bool ret = UsdCsPINVOKE.GfVec4f_Equals(GfVec4f.getCPtr(lhs), GfVec4f.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.GfVec4f_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(GfVec4f lhs, GfVec4f rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || GfVec4f.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(GfVec4f lhs, GfVec4f rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return GfVec4f.Equals(this, rhs as GfVec4f);
-    }
-  
-  protected float GetValue(int index) {
-    float ret = UsdCsPINVOKE.GfVec4f_GetValue(swigCPtr, index);
-    return ret;
-  }
-
-  protected void SetValue(int index, float value) {
-    UsdCsPINVOKE.GfVec4f_SetValue(swigCPtr, index, value);
-  }
-
-  public float this[int index] {
-    get { return GetValue(index); }
-    set { SetValue(index, value); }
-  }
-  
-  public static readonly uint dimension = UsdCsPINVOKE.GfVec4f_dimension_get();
-}
-
 }

@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ namespace Unity.Formats.USD
             foreach (var compProp in comps)
             {
                 var compAttr = usdPrim.GetAttribute(compProp.GetName());
-                string assemblyQualifiedName = (string) compAttr.Get(0);
+                string assemblyQualifiedName = (string)compAttr.Get(0);
                 var compType = System.Type.GetType(assemblyQualifiedName);
 
                 // TODO: Handle multiple components of the same type.
@@ -170,12 +170,14 @@ namespace Unity.Formats.USD
     } // End Class
 } // End Namespace
 #else
-namespace Unity.Formats.USD {
-  public class NativeImporter {
-    static public void ImportObject(Scene scene,
-                                    GameObject go,
-                                    pxr.UsdPrim usdPrim,
-                                    SceneImportOptions options) {}
-  }
+namespace Unity.Formats.USD
+{
+    public class NativeImporter
+    {
+        static public void ImportObject(Scene scene,
+            GameObject go,
+            pxr.UsdPrim usdPrim,
+            SceneImportOptions options) {}
+    }
 }
 #endif

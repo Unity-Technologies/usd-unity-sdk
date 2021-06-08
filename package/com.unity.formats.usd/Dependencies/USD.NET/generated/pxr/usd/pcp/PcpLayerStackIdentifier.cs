@@ -8,117 +8,140 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class PcpLayerStackIdentifier : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class PcpLayerStackIdentifier : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal PcpLayerStackIdentifier(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PcpLayerStackIdentifier obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~PcpLayerStackIdentifier() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_PcpLayerStackIdentifier(swigCPtr);
+        internal PcpLayerStackIdentifier(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
-  }
 
-  public PcpLayerStackIdentifier() : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_0(), true) {
-  }
-
-  public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_, SdfLayerHandle sessionLayer_, ArResolverContext pathResolverContext_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_1(SdfLayerHandle.getCPtr(rootLayer_), SdfLayerHandle.getCPtr(sessionLayer_), ArResolverContext.getCPtr(pathResolverContext_)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_, SdfLayerHandle sessionLayer_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_2(SdfLayerHandle.getCPtr(rootLayer_), SdfLayerHandle.getCPtr(sessionLayer_)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_3(SdfLayerHandle.getCPtr(rootLayer_)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public class Hash : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Hash() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_PcpLayerStackIdentifier_Hash(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PcpLayerStackIdentifier obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+        ~PcpLayerStackIdentifier()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_PcpLayerStackIdentifier(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public PcpLayerStackIdentifier() : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_0(), true)
+        {
+        }
+
+        public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_, SdfLayerHandle sessionLayer_, ArResolverContext pathResolverContext_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_1(SdfLayerHandle.getCPtr(rootLayer_), SdfLayerHandle.getCPtr(sessionLayer_), ArResolverContext.getCPtr(pathResolverContext_)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_, SdfLayerHandle sessionLayer_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_2(SdfLayerHandle.getCPtr(rootLayer_), SdfLayerHandle.getCPtr(sessionLayer_)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public PcpLayerStackIdentifier(SdfLayerHandle rootLayer_) : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier__SWIG_3(SdfLayerHandle.getCPtr(rootLayer_)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public class Hash : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Hash()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this) {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            UsdCsPINVOKE.delete_PcpLayerStackIdentifier_Hash(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            public Hash() : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier_Hash(), true)
+            {
+            }
+        }
+
+        public uint GetHash()
+        {
+            uint ret = UsdCsPINVOKE.PcpLayerStackIdentifier_GetHash(swigCPtr);
+            return ret;
+        }
+
+        public SdfLayerHandle rootLayer
+        {
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStackIdentifier_rootLayer_get(swigCPtr);
+                SdfLayerHandle ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayerHandle(cPtr, false);
+                return ret;
+            }
+        }
+
+        public SdfLayerHandle sessionLayer
+        {
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStackIdentifier_sessionLayer_get(swigCPtr);
+                SdfLayerHandle ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayerHandle(cPtr, false);
+                return ret;
+            }
+        }
+
+        public ArResolverContext pathResolverContext
+        {
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStackIdentifier_pathResolverContext_get(swigCPtr);
+                ArResolverContext ret = (cPtr == global::System.IntPtr.Zero) ? null : new ArResolverContext(cPtr, false);
+                return ret;
+            }
+        }
     }
-  
-    public Hash() : this(UsdCsPINVOKE.new_PcpLayerStackIdentifier_Hash(), true) {
-    }
-  
-  }
-
-  public uint GetHash() {
-    uint ret = UsdCsPINVOKE.PcpLayerStackIdentifier_GetHash(swigCPtr);
-    return ret;
-  }
-
-  public SdfLayerHandle rootLayer {
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStackIdentifier_rootLayer_get(swigCPtr);
-      SdfLayerHandle ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayerHandle(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public SdfLayerHandle sessionLayer {
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStackIdentifier_sessionLayer_get(swigCPtr);
-      SdfLayerHandle ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfLayerHandle(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public ArResolverContext pathResolverContext {
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.PcpLayerStackIdentifier_pathResolverContext_get(swigCPtr);
-      ArResolverContext ret = (cPtr == global::System.IntPtr.Zero) ? null : new ArResolverContext(cPtr, false);
-      return ret;
-    } 
-  }
-
-}
-
 }

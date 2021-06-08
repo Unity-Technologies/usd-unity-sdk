@@ -8,14 +8,14 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum UsdResolveInfoSource {
-  UsdResolveInfoSourceNone,
-  UsdResolveInfoSourceFallback,
-  UsdResolveInfoSourceDefault,
-  UsdResolveInfoSourceTimeSamples,
-  UsdResolveInfoSourceValueClips
-}
-
+namespace pxr
+{
+    public enum UsdResolveInfoSource
+    {
+        UsdResolveInfoSourceNone,
+        UsdResolveInfoSourceFallback,
+        UsdResolveInfoSourceDefault,
+        UsdResolveInfoSourceTimeSamples,
+        UsdResolveInfoSourceValueClips
+    }
 }

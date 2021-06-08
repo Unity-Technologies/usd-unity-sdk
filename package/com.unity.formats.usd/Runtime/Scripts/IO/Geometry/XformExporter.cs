@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ namespace Unity.Formats.USD
         {
             UnityEngine.Profiling.Profiler.BeginSample("USD: Xform Conversion");
 
-            XformSample sample = (XformSample) objContext.sample;
+            XformSample sample = (XformSample)objContext.sample;
             var localRot = objContext.gameObject.transform.localRotation;
             var localScale = objContext.gameObject.transform.localScale;
             var path = new pxr.SdfPath(objContext.path);

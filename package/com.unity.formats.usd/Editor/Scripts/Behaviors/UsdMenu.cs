@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ namespace Unity.Formats.USD
             var go = Selection.gameObjects.First();
             var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, "usd,usda,usdc");
             var scene = ExportHelpers.InitForSave(filePath);
-            ExportHelpers.ExportGameObjects(Selection.gameObjects, scene,BasisTransformation.SlowAndSafe);
+            ExportHelpers.ExportGameObjects(Selection.gameObjects, scene, BasisTransformation.SlowAndSafe);
         }
 
         [MenuItem("USD/Export Transform Overrides", true)]
@@ -85,47 +85,57 @@ namespace Unity.Formats.USD
         }
 
 #if false
-    [MenuItem("USD/Save Unity as USD (Experimental)", true)]
-    static bool EnableMenuSaveAsUsd() {
-      return Selection.gameObjects.Length == 1;
-    }
-    [MenuItem("USD/Save Unity as USD (Experimental)", priority = 170)]
-    static void MenuExportSaveAsUsd() {
-      ExportSelected(BasisTransformation.SlowAndSafe, exportMonoBehaviours: true);
-    }
+        [MenuItem("USD/Save Unity as USD (Experimental)", true)]
+        static bool EnableMenuSaveAsUsd()
+        {
+            return Selection.gameObjects.Length == 1;
+        }
 
-    [MenuItem("USD/Load Unity from USD (Experimental)", priority = 170)]
-    static void MenuExportLoadFromUsd() {
-      var scene = InitForOpen();
-      if (scene == null) {
-        return;
-      }
-      string path = scene.FilePath;
+        [MenuItem("USD/Save Unity as USD (Experimental)", priority = 170)]
+        static void MenuExportSaveAsUsd()
+        {
+            ExportSelected(BasisTransformation.SlowAndSafe, exportMonoBehaviours: true);
+        }
 
-      // Time-varying data is not supported and often scenes are written without "Default" time
-      // values, which makes setting an arbitrary time safer (because if only default was authored
-      // the time will be ignored and values will resolve to default time automatically).
-      scene.Time = 1.0;
+        [MenuItem("USD/Load Unity from USD (Experimental)", priority = 170)]
+        static void MenuExportLoadFromUsd()
+        {
+            var scene = InitForOpen();
+            if (scene == null)
+            {
+                return;
+            }
+            string path = scene.FilePath;
 
-      var importOptions = new SceneImportOptions();
-      importOptions.projectAssetPath = GetSelectedAssetPath();
-      importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
-      importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
-      importOptions.usdRootPath = GetDefaultRoot(scene);
-      importOptions.importMonoBehaviours = true;
+            // Time-varying data is not supported and often scenes are written without "Default" time
+            // values, which makes setting an arbitrary time safer (because if only default was authored
+            // the time will be ignored and values will resolve to default time automatically).
+            scene.Time = 1.0;
 
-      GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
+            var importOptions = new SceneImportOptions();
+            importOptions.projectAssetPath = GetSelectedAssetPath();
+            importOptions.changeHandedness = BasisTransformation.SlowAndSafe;
+            importOptions.materialImportMode = MaterialImportMode.ImportDisplayColor;
+            importOptions.usdRootPath = GetDefaultRoot(scene);
+            importOptions.importMonoBehaviours = true;
 
-      if (Selection.gameObjects.Length > 0) {
-        root.transform.SetParent(Selection.gameObjects[0].transform);
-      }
+            GameObject root = new GameObject(GetObjectName(importOptions.usdRootPath, path));
 
-      try {
-        UsdToGameObject(root, scene, importOptions);
-      } finally {
-        scene.Close();
-      }
-    }
+            if (Selection.gameObjects.Length > 0)
+            {
+                root.transform.SetParent(Selection.gameObjects[0].transform);
+            }
+
+            try
+            {
+                UsdToGameObject(root, scene, importOptions);
+            }
+            finally
+            {
+                scene.Close();
+            }
+        }
+
 #endif
 
 

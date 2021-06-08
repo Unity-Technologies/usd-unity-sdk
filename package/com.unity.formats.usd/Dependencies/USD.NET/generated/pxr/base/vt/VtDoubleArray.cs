@@ -8,142 +8,171 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    [Preserve]
+    public class VtDoubleArray : Vt_ArrayBase
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-[Preserve]
-public class VtDoubleArray : Vt_ArrayBase {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal VtDoubleArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtDoubleArray_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VtDoubleArray obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~VtDoubleArray() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_VtDoubleArray(swigCPtr);
+        internal VtDoubleArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtDoubleArray_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VtDoubleArray obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~VtDoubleArray()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_VtDoubleArray(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public double this[int index]
+        {
+            get { return GetValue(index); }
+            set { SetValue(index, value); }
+        }
+
+        public VtDoubleArray() : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_0(), true)
+        {
+        }
+
+        public VtDoubleArray(VtDoubleArray other) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_1(VtDoubleArray.getCPtr(other)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public VtDoubleArray(uint n) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_3(n), true)
+        {
+        }
+
+        public VtDoubleArray(uint n, double value) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_4(n, value), true)
+        {
+        }
+
+        public void push_back(double elem)
+        {
+            UsdCsPINVOKE.VtDoubleArray_push_back(swigCPtr, elem);
+        }
+
+        public void pop_back()
+        {
+            UsdCsPINVOKE.VtDoubleArray_pop_back(swigCPtr);
+        }
+
+        public uint size()
+        {
+            uint ret = UsdCsPINVOKE.VtDoubleArray_size(swigCPtr);
+            return ret;
+        }
+
+        public uint capacity()
+        {
+            uint ret = UsdCsPINVOKE.VtDoubleArray_capacity(swigCPtr);
+            return ret;
+        }
+
+        public bool empty()
+        {
+            bool ret = UsdCsPINVOKE.VtDoubleArray_empty(swigCPtr);
+            return ret;
+        }
+
+        public void reserve(uint num)
+        {
+            UsdCsPINVOKE.VtDoubleArray_reserve(swigCPtr, num);
+        }
+
+        public void resize(uint newSize)
+        {
+            UsdCsPINVOKE.VtDoubleArray_resize(swigCPtr, newSize);
+        }
+
+        public void clear()
+        {
+            UsdCsPINVOKE.VtDoubleArray_clear(swigCPtr);
+        }
+
+        public void assign(uint n, double fill)
+        {
+            UsdCsPINVOKE.VtDoubleArray_assign(swigCPtr, n, fill);
+        }
+
+        public void swap(VtDoubleArray other)
+        {
+            UsdCsPINVOKE.VtDoubleArray_swap(swigCPtr, VtDoubleArray.getCPtr(other));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool IsIdentical(VtDoubleArray other)
+        {
+            bool ret = UsdCsPINVOKE.VtDoubleArray_IsIdentical(swigCPtr, VtDoubleArray.getCPtr(other));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool Equals(VtDoubleArray lhs, VtDoubleArray rhs)
+        {
+            bool ret = UsdCsPINVOKE.VtDoubleArray_Equals(VtDoubleArray.getCPtr(lhs), VtDoubleArray.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public override string ToString()
+        {
+            string ret = UsdCsPINVOKE.VtDoubleArray_ToString(swigCPtr);
+            return ret;
+        }
+
+        public void CopyToArray(double[] dest)
+        {
+            UsdCsPINVOKE.VtDoubleArray_CopyToArray__SWIG_0(swigCPtr, dest);
+        }
+
+        public void CopyFromArray(double[] src)
+        {
+            UsdCsPINVOKE.VtDoubleArray_CopyFromArray__SWIG_0(swigCPtr, src);
+        }
+
+        public void CopyToArray(System.IntPtr dest)
+        {
+            UsdCsPINVOKE.VtDoubleArray_CopyToArray__SWIG_1(swigCPtr, dest);
+        }
+
+        public void CopyFromArray(System.IntPtr src)
+        {
+            UsdCsPINVOKE.VtDoubleArray_CopyFromArray__SWIG_1(swigCPtr, src);
+        }
+
+        protected double GetValue(int index)
+        {
+            double ret = UsdCsPINVOKE.VtDoubleArray_GetValue(swigCPtr, index);
+            return ret;
+        }
+
+        protected void SetValue(int index, double value)
+        {
+            UsdCsPINVOKE.VtDoubleArray_SetValue(swigCPtr, index, value);
+        }
     }
-  }
-
-	  public double this[int index] {
-		  get { return GetValue(index); }
-		  set { SetValue(index, value); }
-	  }
-  
-  public VtDoubleArray() : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_0(), true) {
-  }
-
-  public VtDoubleArray(VtDoubleArray other) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_1(VtDoubleArray.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public VtDoubleArray(uint n) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_3(n), true) {
-  }
-
-  public VtDoubleArray(uint n, double value) : this(UsdCsPINVOKE.new_VtDoubleArray__SWIG_4(n, value), true) {
-  }
-
-  public void push_back(double elem) {
-    UsdCsPINVOKE.VtDoubleArray_push_back(swigCPtr, elem);
-  }
-
-  public void pop_back() {
-    UsdCsPINVOKE.VtDoubleArray_pop_back(swigCPtr);
-  }
-
-  public uint size() {
-    uint ret = UsdCsPINVOKE.VtDoubleArray_size(swigCPtr);
-    return ret;
-  }
-
-  public uint capacity() {
-    uint ret = UsdCsPINVOKE.VtDoubleArray_capacity(swigCPtr);
-    return ret;
-  }
-
-  public bool empty() {
-    bool ret = UsdCsPINVOKE.VtDoubleArray_empty(swigCPtr);
-    return ret;
-  }
-
-  public void reserve(uint num) {
-    UsdCsPINVOKE.VtDoubleArray_reserve(swigCPtr, num);
-  }
-
-  public void resize(uint newSize) {
-    UsdCsPINVOKE.VtDoubleArray_resize(swigCPtr, newSize);
-  }
-
-  public void clear() {
-    UsdCsPINVOKE.VtDoubleArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, double fill) {
-    UsdCsPINVOKE.VtDoubleArray_assign(swigCPtr, n, fill);
-  }
-
-  public void swap(VtDoubleArray other) {
-    UsdCsPINVOKE.VtDoubleArray_swap(swigCPtr, VtDoubleArray.getCPtr(other));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsIdentical(VtDoubleArray other) {
-    bool ret = UsdCsPINVOKE.VtDoubleArray_IsIdentical(swigCPtr, VtDoubleArray.getCPtr(other));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool Equals(VtDoubleArray lhs, VtDoubleArray rhs) {
-    bool ret = UsdCsPINVOKE.VtDoubleArray_Equals(VtDoubleArray.getCPtr(lhs), VtDoubleArray.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public override string ToString() {
-    string ret = UsdCsPINVOKE.VtDoubleArray_ToString(swigCPtr);
-    return ret;
-  }
-
-  public void CopyToArray(double[] dest) {
-    UsdCsPINVOKE.VtDoubleArray_CopyToArray__SWIG_0(swigCPtr, dest);
-  }
-
-  public void CopyFromArray(double[] src) {
-    UsdCsPINVOKE.VtDoubleArray_CopyFromArray__SWIG_0(swigCPtr, src);
-  }
-
-  public void CopyToArray(System.IntPtr dest) {
-    UsdCsPINVOKE.VtDoubleArray_CopyToArray__SWIG_1(swigCPtr, dest);
-  }
-
-  public void CopyFromArray(System.IntPtr src) {
-    UsdCsPINVOKE.VtDoubleArray_CopyFromArray__SWIG_1(swigCPtr, src);
-  }
-
-  protected double GetValue(int index) {
-    double ret = UsdCsPINVOKE.VtDoubleArray_GetValue(swigCPtr, index);
-    return ret;
-  }
-
-  protected void SetValue(int index, double value) {
-    UsdCsPINVOKE.VtDoubleArray_SetValue(swigCPtr, index, value);
-  }
-
-}
-
 }

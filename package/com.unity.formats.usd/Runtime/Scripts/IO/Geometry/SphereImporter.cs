@@ -44,13 +44,13 @@ namespace Unity.Formats.USD
             // transform. This also need to be taken into account while computing the Unity extent of the mesh (see bellow).
             // This is doable because xformable data are always handled before mesh data, so go.transform already
             // contains any transform of the geometry.
-            float size = (float) usdSphere.radius * 2;
+            float size = (float)usdSphere.radius * 2;
             go.transform.localScale = go.transform.localScale * size;
 
             bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
             bool hasBounds = usdSphere.extent.size.x > 0
-                             || usdSphere.extent.size.y > 0
-                             || usdSphere.extent.size.z > 0;
+                || usdSphere.extent.size.y > 0
+                || usdSphere.extent.size.z > 0;
 
             if (ShouldImport(options.meshOptions.boundingBox) && hasBounds)
             {

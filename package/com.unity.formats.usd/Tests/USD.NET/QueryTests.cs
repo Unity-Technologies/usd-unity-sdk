@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,8 +22,10 @@ namespace USD.NET.Tests
 {
     [System.Serializable]
     [UsdSchema("UsdGeomXformable")]
-    class XformableQuery : SampleBase {
-        public XformableQuery() {
+    class XformableQuery : SampleBase
+    {
+        public XformableQuery()
+        {
         }
     }
 
@@ -42,8 +44,10 @@ namespace USD.NET.Tests
 
     [System.Serializable]
     [UsdSchema("BOGUS_TYPE_INTENDED_TO_THROW_ERROR")]
-    class BadBaseTypeQuery : SampleBase {
-        public BadBaseTypeQuery() {
+    class BadBaseTypeQuery : SampleBase
+    {
+        public BadBaseTypeQuery()
+        {
         }
     }
 
@@ -52,7 +56,6 @@ namespace USD.NET.Tests
         [Test]
         public static void BasicTest()
         {
-
             var cubeSample = new CubeSample();
             var meshSample = new MeshSample();
             meshSample.visibility = Visibility.Invisible;
@@ -85,7 +88,6 @@ namespace USD.NET.Tests
             }
             UnityEngine.TestTools.LogAssert.Expect(LogType.Exception, "ApplicationException: USD ERROR: Invalid root path </Bogus/Root/Path>");
             paths.Clear();
-
 
 
             foreach (var mesh in scene.ReadAll<BadBaseTypeQuery>(rootPath: "/Root"))

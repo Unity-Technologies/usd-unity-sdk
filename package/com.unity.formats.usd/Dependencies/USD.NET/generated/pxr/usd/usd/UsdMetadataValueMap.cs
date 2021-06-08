@@ -8,57 +8,66 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdMetadataValueMap : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdMetadataValueMap : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdMetadataValueMap(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdMetadataValueMap obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdMetadataValueMap() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdMetadataValueMap(swigCPtr);
+        internal UsdMetadataValueMap(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdMetadataValueMap obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdMetadataValueMap()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdMetadataValueMap(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public TfTokenVector GetKeys()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdMetadataValueMap_GetKeys(swigCPtr), true);
+            return ret;
+        }
+
+        public VtValue GetValue(TfToken key)
+        {
+            VtValue ret = new VtValue(UsdCsPINVOKE.UsdMetadataValueMap_GetValue(swigCPtr, TfToken.getCPtr(key)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        protected void SetValue(TfToken key, VtValue value)
+        {
+            UsdCsPINVOKE.UsdMetadataValueMap_SetValue(swigCPtr, TfToken.getCPtr(key), VtValue.getCPtr(value));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdMetadataValueMap() : this(UsdCsPINVOKE.new_UsdMetadataValueMap(), true)
+        {
+        }
     }
-  }
-
-  public TfTokenVector GetKeys() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdMetadataValueMap_GetKeys(swigCPtr), true);
-    return ret;
-  }
-
-  public VtValue GetValue(TfToken key) {
-    VtValue ret = new VtValue(UsdCsPINVOKE.UsdMetadataValueMap_GetValue(swigCPtr, TfToken.getCPtr(key)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  protected void SetValue(TfToken key, VtValue value) {
-    UsdCsPINVOKE.UsdMetadataValueMap_SetValue(swigCPtr, TfToken.getCPtr(key), VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdMetadataValueMap() : this(UsdCsPINVOKE.new_UsdMetadataValueMap(), true) {
-  }
-
-}
-
 }

@@ -8,15 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum SdfListOpType {
-  SdfListOpTypeExplicit,
-  SdfListOpTypeAdded,
-  SdfListOpTypeDeleted,
-  SdfListOpTypeOrdered,
-  SdfListOpTypePrepended,
-  SdfListOpTypeAppended
-}
-
+namespace pxr
+{
+    public enum SdfListOpType
+    {
+        SdfListOpTypeExplicit,
+        SdfListOpTypeAdded,
+        SdfListOpTypeDeleted,
+        SdfListOpTypeOrdered,
+        SdfListOpTypePrepended,
+        SdfListOpTypeAppended
+    }
 }

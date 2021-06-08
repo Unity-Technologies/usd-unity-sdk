@@ -8,69 +8,81 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class SdfBatchNamespaceEdit : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class SdfBatchNamespaceEdit : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SdfBatchNamespaceEdit(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfBatchNamespaceEdit obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfBatchNamespaceEdit() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfBatchNamespaceEdit(swigCPtr);
+        internal SdfBatchNamespaceEdit(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfBatchNamespaceEdit obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~SdfBatchNamespaceEdit()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfBatchNamespaceEdit(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public SdfBatchNamespaceEdit() : this(UsdCsPINVOKE.new_SdfBatchNamespaceEdit__SWIG_0(), true)
+        {
+        }
+
+        public SdfBatchNamespaceEdit(SdfBatchNamespaceEdit arg0) : this(UsdCsPINVOKE.new_SdfBatchNamespaceEdit__SWIG_1(SdfBatchNamespaceEdit.getCPtr(arg0)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SdfBatchNamespaceEdit(SdfNamespaceEditVector arg0) : this(UsdCsPINVOKE.new_SdfBatchNamespaceEdit__SWIG_2(SdfNamespaceEditVector.getCPtr(arg0)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Add(SdfNamespaceEdit edit)
+        {
+            UsdCsPINVOKE.SdfBatchNamespaceEdit_Add__SWIG_0(swigCPtr, SdfNamespaceEdit.getCPtr(edit));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Add(SdfPath currentPath, SdfPath newPath, int index)
+        {
+            UsdCsPINVOKE.SdfBatchNamespaceEdit_Add__SWIG_1(swigCPtr, SdfPath.getCPtr(currentPath), SdfPath.getCPtr(newPath), index);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Add(SdfPath currentPath, SdfPath newPath)
+        {
+            UsdCsPINVOKE.SdfBatchNamespaceEdit_Add__SWIG_2(swigCPtr, SdfPath.getCPtr(currentPath), SdfPath.getCPtr(newPath));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SdfNamespaceEditVector GetEdits()
+        {
+            SdfNamespaceEditVector ret = new SdfNamespaceEditVector(UsdCsPINVOKE.SdfBatchNamespaceEdit_GetEdits(swigCPtr), false);
+            return ret;
+        }
     }
-  }
-
-  public SdfBatchNamespaceEdit() : this(UsdCsPINVOKE.new_SdfBatchNamespaceEdit__SWIG_0(), true) {
-  }
-
-  public SdfBatchNamespaceEdit(SdfBatchNamespaceEdit arg0) : this(UsdCsPINVOKE.new_SdfBatchNamespaceEdit__SWIG_1(SdfBatchNamespaceEdit.getCPtr(arg0)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfBatchNamespaceEdit(SdfNamespaceEditVector arg0) : this(UsdCsPINVOKE.new_SdfBatchNamespaceEdit__SWIG_2(SdfNamespaceEditVector.getCPtr(arg0)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Add(SdfNamespaceEdit edit) {
-    UsdCsPINVOKE.SdfBatchNamespaceEdit_Add__SWIG_0(swigCPtr, SdfNamespaceEdit.getCPtr(edit));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Add(SdfPath currentPath, SdfPath newPath, int index) {
-    UsdCsPINVOKE.SdfBatchNamespaceEdit_Add__SWIG_1(swigCPtr, SdfPath.getCPtr(currentPath), SdfPath.getCPtr(newPath), index);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Add(SdfPath currentPath, SdfPath newPath) {
-    UsdCsPINVOKE.SdfBatchNamespaceEdit_Add__SWIG_2(swigCPtr, SdfPath.getCPtr(currentPath), SdfPath.getCPtr(newPath));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfNamespaceEditVector GetEdits() {
-    SdfNamespaceEditVector ret = new SdfNamespaceEditVector(UsdCsPINVOKE.SdfBatchNamespaceEdit_GetEdits(swigCPtr), false);
-    return ret;
-  }
-
-}
-
 }

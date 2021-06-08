@@ -1,0 +1,62 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Formats.USD.Examples
+{
+    public class ExportMeshExample : UnityEngine.MonoBehaviour
+    {
+        public Unity.Formats.USD.ActiveExportPolicy m_activePolicy;
+        public Unity.Formats.USD.BasisTransformation m_convertHandedness;
+        public int m_curFrame;
+        public bool m_exportMaterials;
+        public UnityEngine.GameObject m_exportRoot;
+        [UnityEngine.Range(1, 500)] public int m_frameCount;
+        public Unity.Formats.USD.Examples.ExportMeshExample.FrameRate m_frameRate;
+        public Unity.Formats.USD.Examples.ExportMeshExample.TimeCode m_timeUnits;
+        public UnityEngine.GameObject[] m_trackedRoots;
+        public string m_usdFile;
+        public bool IsRecording { get; }
+        public ExportMeshExample() {}
+        public static void Export(UnityEngine.GameObject root, USD.NET.Scene scene, Unity.Formats.USD.BasisTransformation basisTransform);
+        public void StartRecording();
+        public void StopRecording();
+        public enum FrameRate
+        {
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps12 = 12;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps15 = 15;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps24 = 24;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps30 = 30;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps48 = 48;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps6 = 6;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps60 = 60;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps72 = 72;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps75 = 75;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.FrameRate Fps90 = 90;
+            public int value__;
+        }
+        public enum TimeCode
+        {
+            public const Unity.Formats.USD.Examples.ExportMeshExample.TimeCode Frames = 0;
+            public const Unity.Formats.USD.Examples.ExportMeshExample.TimeCode Seconds = 1;
+            public int value__;
+        }
+    }
+
+    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.Examples.ExportMeshExample))] public class ExportMeshExampleEditor : UnityEditor.Editor
+    {
+        public ExportMeshExampleEditor() {}
+        public virtual void OnInspectorGUI();
+    }
+}
+
+namespace USD.NET.Examples
+{
+    public class Explode : UnityEngine.MonoBehaviour
+    {
+        public UnityEngine.Transform m_effectRoot;
+        public int m_explodeTime;
+        public float m_force;
+        public float m_radius;
+        public Explode() {}
+    }
+}

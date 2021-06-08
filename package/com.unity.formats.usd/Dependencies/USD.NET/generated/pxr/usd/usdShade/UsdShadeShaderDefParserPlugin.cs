@@ -8,50 +8,58 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdShadeShaderDefParserPlugin : NdrParserPlugin
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class UsdShadeShaderDefParserPlugin : NdrParserPlugin {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal UsdShadeShaderDefParserPlugin(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdShadeShaderDefParserPlugin_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdShadeShaderDefParserPlugin obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdShadeShaderDefParserPlugin() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdShadeShaderDefParserPlugin(swigCPtr);
+        internal UsdShadeShaderDefParserPlugin(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdShadeShaderDefParserPlugin_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdShadeShaderDefParserPlugin obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdShadeShaderDefParserPlugin()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdShadeShaderDefParserPlugin(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public UsdShadeShaderDefParserPlugin() : this(UsdCsPINVOKE.new_UsdShadeShaderDefParserPlugin(), true)
+        {
+        }
+
+        public override TfTokenVector GetDiscoveryTypes()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdShadeShaderDefParserPlugin_GetDiscoveryTypes(swigCPtr), false);
+            return ret;
+        }
+
+        public override TfToken GetSourceType()
+        {
+            TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeShaderDefParserPlugin_GetSourceType(swigCPtr), false);
+            return ret;
+        }
     }
-  }
-
-  public UsdShadeShaderDefParserPlugin() : this(UsdCsPINVOKE.new_UsdShadeShaderDefParserPlugin(), true) {
-  }
-
-  public override TfTokenVector GetDiscoveryTypes() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdShadeShaderDefParserPlugin_GetDiscoveryTypes(swigCPtr), false);
-    return ret;
-  }
-
-  public override TfToken GetSourceType() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeShaderDefParserPlugin_GetSourceType(swigCPtr), false);
-    return ret;
-  }
-
-}
-
 }

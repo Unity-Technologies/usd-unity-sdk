@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Google Inc. All rights reserved.
+// Copyright 2018 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,9 @@ using pxr;
 using USD.NET;
 using UnityEngine;
 
-namespace USD.NET.Tests {
-  class UsdSkelTests : UsdTests {
-
-  }
+namespace USD.NET.Tests
+{
+    class UsdSkelTests : UsdTests
+    {
+    }
 }

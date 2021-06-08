@@ -8,22 +8,22 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum SdfSpecType {
-  SdfSpecTypeUnknown = 0,
-  SdfSpecTypeAttribute,
-  SdfSpecTypeConnection,
-  SdfSpecTypeExpression,
-  SdfSpecTypeMapper,
-  SdfSpecTypeMapperArg,
-  SdfSpecTypePrim,
-  SdfSpecTypePseudoRoot,
-  SdfSpecTypeRelationship,
-  SdfSpecTypeRelationshipTarget,
-  SdfSpecTypeVariant,
-  SdfSpecTypeVariantSet,
-  SdfNumSpecTypes
-}
-
+namespace pxr
+{
+    public enum SdfSpecType
+    {
+        SdfSpecTypeUnknown = 0,
+        SdfSpecTypeAttribute,
+        SdfSpecTypeConnection,
+        SdfSpecTypeExpression,
+        SdfSpecTypeMapper,
+        SdfSpecTypeMapperArg,
+        SdfSpecTypePrim,
+        SdfSpecTypePseudoRoot,
+        SdfSpecTypeRelationship,
+        SdfSpecTypeRelationshipTarget,
+        SdfSpecTypeVariant,
+        SdfSpecTypeVariantSet,
+        SdfNumSpecTypes
+    }
 }

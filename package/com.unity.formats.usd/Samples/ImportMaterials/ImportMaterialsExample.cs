@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,11 +20,10 @@ using USD.NET.Unity;
 
 namespace Unity.Formats.USD.Examples
 {
-
-  public class ImportMaterialsExample : MonoBehaviour
-  {
-    private const string kCubePath = "/Model/Geom/Cube";
-    private static string m_localPath;
+    public class ImportMaterialsExample : MonoBehaviour
+    {
+        private const string kCubePath = "/Model/Geom/Cube";
+        private static string m_localPath;
 
         // The USD Shader ID is used to index into this map to find the corresponding ShaderPair,
         // i.e. the Unity / USD shader pair that should be instantiated for the ID.
@@ -38,7 +37,7 @@ namespace Unity.Formats.USD.Examples
             public ShaderSample usdShader;
 
             public ShaderPair(Shader unityShader,
-                ShaderSample usdShader)
+                              ShaderSample usdShader)
             {
                 this.unityShader = unityShader;
                 this.usdShader = usdShader;
@@ -190,7 +189,7 @@ namespace Unity.Formats.USD.Examples
 
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.transform.SetParent(transform, worldPositionStays: false);
-            go.transform.localScale = Vector3.one * (float) cubeSample.size;
+            go.transform.localScale = Vector3.one * (float)cubeSample.size;
             m_cube = transform;
 
             go.GetComponent<MeshRenderer>().material = mat;
@@ -204,67 +203,67 @@ namespace Unity.Formats.USD.Examples
         {
             if (value.GetType() == typeof(Color))
             {
-                mat.SetColor(unityParamName, (Color) value);
+                mat.SetColor(unityParamName, (Color)value);
             }
             else if (value.GetType() == typeof(Color[]))
             {
-                mat.SetColorArray(unityParamName, (Color[]) value);
+                mat.SetColorArray(unityParamName, (Color[])value);
             }
             else if (value.GetType() == typeof(List<Color>))
             {
-                mat.SetColorArray(unityParamName, (List<Color>) value);
+                mat.SetColorArray(unityParamName, (List<Color>)value);
             }
             else if (value.GetType() == typeof(bool))
             {
-                mat.SetFloat(unityParamName, ((bool) value) ? 1f : 0f);
+                mat.SetFloat(unityParamName, ((bool)value) ? 1f : 0f);
             }
             else if (value.GetType() == typeof(float))
             {
-                mat.SetFloat(unityParamName, (float) value);
+                mat.SetFloat(unityParamName, (float)value);
             }
             else if (value.GetType() == typeof(float[]))
             {
-                mat.SetFloatArray(unityParamName, (float[]) value);
+                mat.SetFloatArray(unityParamName, (float[])value);
             }
             else if (value.GetType() == typeof(List<float>))
             {
-                mat.SetFloatArray(unityParamName, (List<float>) value);
+                mat.SetFloatArray(unityParamName, (List<float>)value);
             }
             else if (value.GetType() == typeof(int))
             {
-                mat.SetInt(unityParamName, (int) value);
+                mat.SetInt(unityParamName, (int)value);
             }
             else if (value.GetType() == typeof(Matrix4x4))
             {
-                mat.SetMatrix(unityParamName, (Matrix4x4) value);
+                mat.SetMatrix(unityParamName, (Matrix4x4)value);
             }
             else if (value.GetType() == typeof(Matrix4x4[]))
             {
-                mat.SetMatrixArray(unityParamName, (Matrix4x4[]) value);
+                mat.SetMatrixArray(unityParamName, (Matrix4x4[])value);
             }
             else if (value.GetType() == typeof(List<Matrix4x4>))
             {
-                mat.SetMatrixArray(unityParamName, (List<Matrix4x4>) value);
+                mat.SetMatrixArray(unityParamName, (List<Matrix4x4>)value);
             }
             else if (value.GetType() == typeof(Vector2))
             {
-                mat.SetVector(unityParamName, (Vector2) value);
+                mat.SetVector(unityParamName, (Vector2)value);
             }
             else if (value.GetType() == typeof(Vector3))
             {
-                mat.SetVector(unityParamName, (Vector3) value);
+                mat.SetVector(unityParamName, (Vector3)value);
             }
             else if (value.GetType() == typeof(Vector4))
             {
-                mat.SetVector(unityParamName, (Vector4) value);
+                mat.SetVector(unityParamName, (Vector4)value);
             }
             else if (value.GetType() == typeof(Vector4[]))
             {
-                mat.SetVectorArray(unityParamName, (Vector4[]) value);
+                mat.SetVectorArray(unityParamName, (Vector4[])value);
             }
             else if (value.GetType() == typeof(List<Vector4>))
             {
-                mat.SetVectorArray(unityParamName, (List<Vector4>) value);
+                mat.SetVectorArray(unityParamName, (List<Vector4>)value);
             }
             else
             {

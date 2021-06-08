@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using NUnit.Framework;
 using pxr;
@@ -87,9 +87,9 @@ namespace USD.NET.Unity.Tests
             Assert.AreEqual("/Instancer/Cube", piSample.prototypes.targetPaths[0]);
 
             var matrices = piSample.ComputeInstanceMatrices(scene, "/Instancer");
-            for(var i = 0; i<3; i++)
+            for (var i = 0; i < 3; i++)
             {
-                Assert.AreEqual(Matrix4x4.Translate(new Vector3(0+i*2, 0, 0)), matrices[i]);
+                Assert.AreEqual(Matrix4x4.Translate(new Vector3(0 + i * 2, 0, 0)), matrices[i]);
             }
             scene.Close();
         }

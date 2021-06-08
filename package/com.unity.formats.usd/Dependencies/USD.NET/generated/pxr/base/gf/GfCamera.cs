@@ -8,281 +8,341 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class GfCamera : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class GfCamera : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal GfCamera(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfCamera obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~GfCamera() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_GfCamera(swigCPtr);
+        internal GfCamera(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfCamera obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~GfCamera()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_GfCamera(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public static double APERTURE_UNIT
+        {
+            get
+            {
+                double ret = UsdCsPINVOKE.GfCamera_APERTURE_UNIT_get();
+                return ret;
+            }
+        }
+
+        public static double FOCAL_LENGTH_UNIT
+        {
+            get
+            {
+                double ret = UsdCsPINVOKE.GfCamera_FOCAL_LENGTH_UNIT_get();
+                return ret;
+            }
+        }
+
+        public static double DEFAULT_HORIZONTAL_APERTURE
+        {
+            get
+            {
+                double ret = UsdCsPINVOKE.GfCamera_DEFAULT_HORIZONTAL_APERTURE_get();
+                return ret;
+            }
+        }
+
+        public static double DEFAULT_VERTICAL_APERTURE
+        {
+            get
+            {
+                double ret = UsdCsPINVOKE.GfCamera_DEFAULT_VERTICAL_APERTURE_get();
+                return ret;
+            }
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange, GfVec4fVector clippingPlanes, float fStop, float focusDistance) : this(UsdCsPINVOKE.new_GfCamera__SWIG_0(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange), GfVec4fVector.getCPtr(clippingPlanes), fStop, focusDistance), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange, GfVec4fVector clippingPlanes, float fStop) : this(UsdCsPINVOKE.new_GfCamera__SWIG_1(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange), GfVec4fVector.getCPtr(clippingPlanes), fStop), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange, GfVec4fVector clippingPlanes) : this(UsdCsPINVOKE.new_GfCamera__SWIG_2(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange), GfVec4fVector.getCPtr(clippingPlanes)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange) : this(UsdCsPINVOKE.new_GfCamera__SWIG_3(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength) : this(UsdCsPINVOKE.new_GfCamera__SWIG_4(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset) : this(UsdCsPINVOKE.new_GfCamera__SWIG_5(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset) : this(UsdCsPINVOKE.new_GfCamera__SWIG_6(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture) : this(UsdCsPINVOKE.new_GfCamera__SWIG_7(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture) : this(UsdCsPINVOKE.new_GfCamera__SWIG_8(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform, GfCamera.Projection projection) : this(UsdCsPINVOKE.new_GfCamera__SWIG_9(GfMatrix4d.getCPtr(transform), (int)projection), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera(GfMatrix4d transform) : this(UsdCsPINVOKE.new_GfCamera__SWIG_10(GfMatrix4d.getCPtr(transform)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfCamera() : this(UsdCsPINVOKE.new_GfCamera__SWIG_11(), true)
+        {
+        }
+
+        public void SetTransform(GfMatrix4d val)
+        {
+            UsdCsPINVOKE.GfCamera_SetTransform(swigCPtr, GfMatrix4d.getCPtr(val));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetProjection(GfCamera.Projection val)
+        {
+            UsdCsPINVOKE.GfCamera_SetProjection(swigCPtr, (int)val);
+        }
+
+        public void SetFocalLength(float val)
+        {
+            UsdCsPINVOKE.GfCamera_SetFocalLength(swigCPtr, val);
+        }
+
+        public void SetHorizontalAperture(float val)
+        {
+            UsdCsPINVOKE.GfCamera_SetHorizontalAperture(swigCPtr, val);
+        }
+
+        public void SetVerticalAperture(float val)
+        {
+            UsdCsPINVOKE.GfCamera_SetVerticalAperture(swigCPtr, val);
+        }
+
+        public void SetHorizontalApertureOffset(float val)
+        {
+            UsdCsPINVOKE.GfCamera_SetHorizontalApertureOffset(swigCPtr, val);
+        }
+
+        public void SetVerticalApertureOffset(float val)
+        {
+            UsdCsPINVOKE.GfCamera_SetVerticalApertureOffset(swigCPtr, val);
+        }
+
+        public void SetPerspectiveFromAspectRatioAndFieldOfView(float aspectRatio, float fieldOfView, GfCamera.FOVDirection direction, float horizontalAperture)
+        {
+            UsdCsPINVOKE.GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0(swigCPtr, aspectRatio, fieldOfView, (int)direction, horizontalAperture);
+        }
+
+        public void SetPerspectiveFromAspectRatioAndFieldOfView(float aspectRatio, float fieldOfView, GfCamera.FOVDirection direction)
+        {
+            UsdCsPINVOKE.GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1(swigCPtr, aspectRatio, fieldOfView, (int)direction);
+        }
+
+        public void SetOrthographicFromAspectRatioAndSize(float aspectRatio, float orthographicSize, GfCamera.FOVDirection direction)
+        {
+            UsdCsPINVOKE.GfCamera_SetOrthographicFromAspectRatioAndSize(swigCPtr, aspectRatio, orthographicSize, (int)direction);
+        }
+
+        public void SetClippingRange(GfRange1f val)
+        {
+            UsdCsPINVOKE.GfCamera_SetClippingRange(swigCPtr, GfRange1f.getCPtr(val));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetClippingPlanes(GfVec4fVector val)
+        {
+            UsdCsPINVOKE.GfCamera_SetClippingPlanes(swigCPtr, GfVec4fVector.getCPtr(val));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetFStop(float val)
+        {
+            UsdCsPINVOKE.GfCamera_SetFStop(swigCPtr, val);
+        }
+
+        public void SetFocusDistance(float val)
+        {
+            UsdCsPINVOKE.GfCamera_SetFocusDistance(swigCPtr, val);
+        }
+
+        public GfMatrix4d GetTransform()
+        {
+            GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.GfCamera_GetTransform(swigCPtr), true);
+            return ret;
+        }
+
+        public GfCamera.Projection GetProjection()
+        {
+            GfCamera.Projection ret = (GfCamera.Projection)UsdCsPINVOKE.GfCamera_GetProjection(swigCPtr);
+            return ret;
+        }
+
+        public float GetHorizontalAperture()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetHorizontalAperture(swigCPtr);
+            return ret;
+        }
+
+        public float GetVerticalAperture()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetVerticalAperture(swigCPtr);
+            return ret;
+        }
+
+        public float GetHorizontalApertureOffset()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetHorizontalApertureOffset(swigCPtr);
+            return ret;
+        }
+
+        public float GetVerticalApertureOffset()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetVerticalApertureOffset(swigCPtr);
+            return ret;
+        }
+
+        public float GetAspectRatio()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetAspectRatio(swigCPtr);
+            return ret;
+        }
+
+        public float GetFocalLength()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetFocalLength(swigCPtr);
+            return ret;
+        }
+
+        public float GetFieldOfView(GfCamera.FOVDirection direction)
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetFieldOfView(swigCPtr, (int)direction);
+            return ret;
+        }
+
+        public GfRange1f GetClippingRange()
+        {
+            GfRange1f ret = new GfRange1f(UsdCsPINVOKE.GfCamera_GetClippingRange(swigCPtr), true);
+            return ret;
+        }
+
+        public GfVec4fVector GetClippingPlanes()
+        {
+            GfVec4fVector ret = new GfVec4fVector(UsdCsPINVOKE.GfCamera_GetClippingPlanes(swigCPtr), false);
+            return ret;
+        }
+
+        public GfFrustum GetFrustum()
+        {
+            GfFrustum ret = new GfFrustum(UsdCsPINVOKE.GfCamera_GetFrustum(swigCPtr), true);
+            return ret;
+        }
+
+        public float GetFStop()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetFStop(swigCPtr);
+            return ret;
+        }
+
+        public float GetFocusDistance()
+        {
+            float ret = UsdCsPINVOKE.GfCamera_GetFocusDistance(swigCPtr);
+            return ret;
+        }
+
+        public static bool Equals(GfCamera lhs, GfCamera rhs)
+        {
+            bool ret = UsdCsPINVOKE.GfCamera_Equals(GfCamera.getCPtr(lhs), GfCamera.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.GfCamera_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(GfCamera lhs, GfCamera rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || GfCamera.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(GfCamera lhs, GfCamera rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return GfCamera.Equals(this, rhs as GfCamera);
+        }
+
+        public enum Projection
+        {
+            Perspective = 0,
+            Orthographic
+        }
+
+        public enum FOVDirection
+        {
+            FOVHorizontal = 0,
+            FOVVertical
+        }
     }
-  }
-
-  public static double APERTURE_UNIT {
-    get {
-      double ret = UsdCsPINVOKE.GfCamera_APERTURE_UNIT_get();
-      return ret;
-    } 
-  }
-
-  public static double FOCAL_LENGTH_UNIT {
-    get {
-      double ret = UsdCsPINVOKE.GfCamera_FOCAL_LENGTH_UNIT_get();
-      return ret;
-    } 
-  }
-
-  public static double DEFAULT_HORIZONTAL_APERTURE {
-    get {
-      double ret = UsdCsPINVOKE.GfCamera_DEFAULT_HORIZONTAL_APERTURE_get();
-      return ret;
-    } 
-  }
-
-  public static double DEFAULT_VERTICAL_APERTURE {
-    get {
-      double ret = UsdCsPINVOKE.GfCamera_DEFAULT_VERTICAL_APERTURE_get();
-      return ret;
-    } 
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange, GfVec4fVector clippingPlanes, float fStop, float focusDistance) : this(UsdCsPINVOKE.new_GfCamera__SWIG_0(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange), GfVec4fVector.getCPtr(clippingPlanes), fStop, focusDistance), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange, GfVec4fVector clippingPlanes, float fStop) : this(UsdCsPINVOKE.new_GfCamera__SWIG_1(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange), GfVec4fVector.getCPtr(clippingPlanes), fStop), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange, GfVec4fVector clippingPlanes) : this(UsdCsPINVOKE.new_GfCamera__SWIG_2(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange), GfVec4fVector.getCPtr(clippingPlanes)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength, GfRange1f clippingRange) : this(UsdCsPINVOKE.new_GfCamera__SWIG_3(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength, GfRange1f.getCPtr(clippingRange)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset, float focalLength) : this(UsdCsPINVOKE.new_GfCamera__SWIG_4(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset, focalLength), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset, float verticalApertureOffset) : this(UsdCsPINVOKE.new_GfCamera__SWIG_5(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset, verticalApertureOffset), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture, float horizontalApertureOffset) : this(UsdCsPINVOKE.new_GfCamera__SWIG_6(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture, horizontalApertureOffset), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture, float verticalAperture) : this(UsdCsPINVOKE.new_GfCamera__SWIG_7(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture, verticalAperture), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection, float horizontalAperture) : this(UsdCsPINVOKE.new_GfCamera__SWIG_8(GfMatrix4d.getCPtr(transform), (int)projection, horizontalAperture), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform, GfCamera.Projection projection) : this(UsdCsPINVOKE.new_GfCamera__SWIG_9(GfMatrix4d.getCPtr(transform), (int)projection), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera(GfMatrix4d transform) : this(UsdCsPINVOKE.new_GfCamera__SWIG_10(GfMatrix4d.getCPtr(transform)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfCamera() : this(UsdCsPINVOKE.new_GfCamera__SWIG_11(), true) {
-  }
-
-  public void SetTransform(GfMatrix4d val) {
-    UsdCsPINVOKE.GfCamera_SetTransform(swigCPtr, GfMatrix4d.getCPtr(val));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetProjection(GfCamera.Projection val) {
-    UsdCsPINVOKE.GfCamera_SetProjection(swigCPtr, (int)val);
-  }
-
-  public void SetFocalLength(float val) {
-    UsdCsPINVOKE.GfCamera_SetFocalLength(swigCPtr, val);
-  }
-
-  public void SetHorizontalAperture(float val) {
-    UsdCsPINVOKE.GfCamera_SetHorizontalAperture(swigCPtr, val);
-  }
-
-  public void SetVerticalAperture(float val) {
-    UsdCsPINVOKE.GfCamera_SetVerticalAperture(swigCPtr, val);
-  }
-
-  public void SetHorizontalApertureOffset(float val) {
-    UsdCsPINVOKE.GfCamera_SetHorizontalApertureOffset(swigCPtr, val);
-  }
-
-  public void SetVerticalApertureOffset(float val) {
-    UsdCsPINVOKE.GfCamera_SetVerticalApertureOffset(swigCPtr, val);
-  }
-
-  public void SetPerspectiveFromAspectRatioAndFieldOfView(float aspectRatio, float fieldOfView, GfCamera.FOVDirection direction, float horizontalAperture) {
-    UsdCsPINVOKE.GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_0(swigCPtr, aspectRatio, fieldOfView, (int)direction, horizontalAperture);
-  }
-
-  public void SetPerspectiveFromAspectRatioAndFieldOfView(float aspectRatio, float fieldOfView, GfCamera.FOVDirection direction) {
-    UsdCsPINVOKE.GfCamera_SetPerspectiveFromAspectRatioAndFieldOfView__SWIG_1(swigCPtr, aspectRatio, fieldOfView, (int)direction);
-  }
-
-  public void SetOrthographicFromAspectRatioAndSize(float aspectRatio, float orthographicSize, GfCamera.FOVDirection direction) {
-    UsdCsPINVOKE.GfCamera_SetOrthographicFromAspectRatioAndSize(swigCPtr, aspectRatio, orthographicSize, (int)direction);
-  }
-
-  public void SetClippingRange(GfRange1f val) {
-    UsdCsPINVOKE.GfCamera_SetClippingRange(swigCPtr, GfRange1f.getCPtr(val));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetClippingPlanes(GfVec4fVector val) {
-    UsdCsPINVOKE.GfCamera_SetClippingPlanes(swigCPtr, GfVec4fVector.getCPtr(val));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetFStop(float val) {
-    UsdCsPINVOKE.GfCamera_SetFStop(swigCPtr, val);
-  }
-
-  public void SetFocusDistance(float val) {
-    UsdCsPINVOKE.GfCamera_SetFocusDistance(swigCPtr, val);
-  }
-
-  public GfMatrix4d GetTransform() {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.GfCamera_GetTransform(swigCPtr), true);
-    return ret;
-  }
-
-  public GfCamera.Projection GetProjection() {
-    GfCamera.Projection ret = (GfCamera.Projection)UsdCsPINVOKE.GfCamera_GetProjection(swigCPtr);
-    return ret;
-  }
-
-  public float GetHorizontalAperture() {
-    float ret = UsdCsPINVOKE.GfCamera_GetHorizontalAperture(swigCPtr);
-    return ret;
-  }
-
-  public float GetVerticalAperture() {
-    float ret = UsdCsPINVOKE.GfCamera_GetVerticalAperture(swigCPtr);
-    return ret;
-  }
-
-  public float GetHorizontalApertureOffset() {
-    float ret = UsdCsPINVOKE.GfCamera_GetHorizontalApertureOffset(swigCPtr);
-    return ret;
-  }
-
-  public float GetVerticalApertureOffset() {
-    float ret = UsdCsPINVOKE.GfCamera_GetVerticalApertureOffset(swigCPtr);
-    return ret;
-  }
-
-  public float GetAspectRatio() {
-    float ret = UsdCsPINVOKE.GfCamera_GetAspectRatio(swigCPtr);
-    return ret;
-  }
-
-  public float GetFocalLength() {
-    float ret = UsdCsPINVOKE.GfCamera_GetFocalLength(swigCPtr);
-    return ret;
-  }
-
-  public float GetFieldOfView(GfCamera.FOVDirection direction) {
-    float ret = UsdCsPINVOKE.GfCamera_GetFieldOfView(swigCPtr, (int)direction);
-    return ret;
-  }
-
-  public GfRange1f GetClippingRange() {
-    GfRange1f ret = new GfRange1f(UsdCsPINVOKE.GfCamera_GetClippingRange(swigCPtr), true);
-    return ret;
-  }
-
-  public GfVec4fVector GetClippingPlanes() {
-    GfVec4fVector ret = new GfVec4fVector(UsdCsPINVOKE.GfCamera_GetClippingPlanes(swigCPtr), false);
-    return ret;
-  }
-
-  public GfFrustum GetFrustum() {
-    GfFrustum ret = new GfFrustum(UsdCsPINVOKE.GfCamera_GetFrustum(swigCPtr), true);
-    return ret;
-  }
-
-  public float GetFStop() {
-    float ret = UsdCsPINVOKE.GfCamera_GetFStop(swigCPtr);
-    return ret;
-  }
-
-  public float GetFocusDistance() {
-    float ret = UsdCsPINVOKE.GfCamera_GetFocusDistance(swigCPtr);
-    return ret;
-  }
-
-  public static bool Equals(GfCamera lhs, GfCamera rhs) {
-    bool ret = UsdCsPINVOKE.GfCamera_Equals(GfCamera.getCPtr(lhs), GfCamera.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.GfCamera_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(GfCamera lhs, GfCamera rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || GfCamera.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(GfCamera lhs, GfCamera rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return GfCamera.Equals(this, rhs as GfCamera);
-    }
-  
-  public enum Projection {
-    Perspective = 0,
-    Orthographic
-  }
-
-  public enum FOVDirection {
-    FOVHorizontal = 0,
-    FOVVertical
-  }
-
-}
-
 }

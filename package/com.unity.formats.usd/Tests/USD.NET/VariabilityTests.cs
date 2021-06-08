@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 namespace USD.NET.Tests
 {
     class VariabilityTests : UsdTests
@@ -28,13 +28,11 @@ namespace USD.NET.Tests
             Assert.Zero(varMap.Included.Count, "Expected zero dynamic prims and members.");
 
             System.IO.File.Delete(filename);
-
         }
 
         static protected void TestTimeOne_NotVarying<T>(T inputSample)
             where T : USD.NET.SampleBase, new()
         {
-
             // ----------------------------------------------- //
             // Test with time = 1.0 --> not varying.
             // ----------------------------------------------- //
@@ -165,13 +163,11 @@ namespace USD.NET.Tests
             }
 
             System.IO.File.Delete(filename);
-
         }
 
         static protected void TestTimeOneTwo_SameSample_RefNotPopulated<T>(T inputSample, T inputSample2)
             where T : USD.NET.SampleBase, new()
         {
-
             // ----------------------------------------------- //
             // Test that reference values are not populated.
             // ----------------------------------------------- //
@@ -222,7 +218,7 @@ namespace USD.NET.Tests
             var defaultSample = new T();
             Assert.False(varMap.Included.ContainsKey(new pxr.SdfPath("/Foo")));
             var bindFlags = System.Reflection.BindingFlags.Public
-                        | System.Reflection.BindingFlags.Instance;
+                | System.Reflection.BindingFlags.Instance;
             foreach (var memberInfo in typeof(T).GetMembers(bindFlags))
             {
                 var fi = memberInfo as System.Reflection.FieldInfo;
@@ -230,7 +226,8 @@ namespace USD.NET.Tests
                 if (fi != null && fi.FieldType.IsClass)
                 {
                     AssertEqual(fi.GetValue(outputSample), fi.GetValue(defaultSample));
-                } else if (pi != null && pi.PropertyType.IsClass)
+                }
+                else if (pi != null && pi.PropertyType.IsClass)
                 {
                     AssertEqual(pi.GetValue(outputSample, null), fi.GetValue(defaultSample));
                 }
@@ -251,7 +248,7 @@ namespace USD.NET.Tests
                 }
             }
 
-          System.IO.File.Delete(filename);
+            System.IO.File.Delete(filename);
         }
     }
 }

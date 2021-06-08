@@ -8,12 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum UsdShadeAttributeType {
-  Invalid,
-  Input,
-  Output
-}
-
+namespace pxr
+{
+    public enum UsdShadeAttributeType
+    {
+        Invalid,
+        Input,
+        Output
+    }
 }

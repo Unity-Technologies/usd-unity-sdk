@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Google Inc. All rights reserved.
+// Copyright 2018 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ namespace USD.NET.Tests
 {
     class TimeSampleTests : UsdTests
     {
-
         public class KeyFramesTestSample : SampleBase
         {
             public int intValue;
@@ -44,8 +43,8 @@ namespace USD.NET.Tests
 
                 foreach (double time in times)
                 {
-                    s1.intValue = (int) time;
-                    s1.uniformValue = (int) time;
+                    s1.intValue = (int)time;
+                    s1.uniformValue = (int)time;
                     scene.Time = time;
                     scene.Write(path, s1);
                 }
@@ -66,6 +65,5 @@ namespace USD.NET.Tests
 
             scene.Close();
         }
-
     }
 }

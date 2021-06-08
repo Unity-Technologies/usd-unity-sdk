@@ -8,43 +8,49 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class NdrParserPluginFactoryBase : TfType.FactoryBase
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class NdrParserPluginFactoryBase : TfType.FactoryBase {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal NdrParserPluginFactoryBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.NdrParserPluginFactoryBase_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(NdrParserPluginFactoryBase obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~NdrParserPluginFactoryBase() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_NdrParserPluginFactoryBase(swigCPtr);
+        internal NdrParserPluginFactoryBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.NdrParserPluginFactoryBase_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(NdrParserPluginFactoryBase obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~NdrParserPluginFactoryBase()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_NdrParserPluginFactoryBase(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public virtual NdrParserPlugin New()
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.NdrParserPluginFactoryBase_New(swigCPtr);
+            NdrParserPlugin ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrParserPlugin(cPtr, false);
+            return ret;
+        }
     }
-  }
-
-  public virtual NdrParserPlugin New() {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrParserPluginFactoryBase_New(swigCPtr);
-    NdrParserPlugin ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrParserPlugin(cPtr, false);
-    return ret;
-  }
-
-}
-
 }

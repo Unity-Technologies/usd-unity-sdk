@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -201,7 +201,7 @@ namespace Unity.Formats.USD
 
             // TODO: Both indices and weights attributes can be animated. It's not handled yet.
             // TODO: Having something that convert a UsdGeomPrimvar into a PrimvarSample could help simplify this code.
-            int[] indices = IntrinsicTypeConverter.FromVtArray((VtIntArray) jointIndices.GetAttr().Get());
+            int[] indices = IntrinsicTypeConverter.FromVtArray((VtIntArray)jointIndices.GetAttr().Get());
             int indicesElementSize = jointIndices.GetElementSize();
             pxr.TfToken indicesInterpolation = jointIndices.GetInterpolation();
 
@@ -213,7 +213,7 @@ namespace Unity.Formats.USD
                 throw new Exception("Joint indices information are invalid or empty for: " + meshPath);
             }
 
-            float[] weights = IntrinsicTypeConverter.FromVtArray((VtFloatArray) jointWeights.GetAttr().Get());
+            float[] weights = IntrinsicTypeConverter.FromVtArray((VtFloatArray)jointWeights.GetAttr().Get());
             int weightsElementSize = jointWeights.GetElementSize();
             pxr.TfToken weightsInterpolation = jointWeights.GetInterpolation();
 
@@ -323,7 +323,7 @@ namespace Unity.Formats.USD
                 if (!jointGo)
                 {
                     Debug.LogError("Error importing " + meshPath + " "
-                                   + "Joint not found: " + joints[i]);
+                        + "Joint not found: " + joints[i]);
                     continue;
                 }
 
@@ -346,7 +346,7 @@ namespace Unity.Formats.USD
                     ? 0
                     : unityIndex;
 
-                bonesPerVertex[i] = (byte) weightsElementSize;
+                bonesPerVertex[i] = (byte)weightsElementSize;
 
                 for (int wi = 0; wi < weightsElementSize; wi++)
                 {
@@ -362,55 +362,61 @@ namespace Unity.Formats.USD
             bonesPerVertex.Dispose();
             boneWeights1.Dispose();
 #else
-      var boneWeights = new BoneWeight[mesh.vertexCount];
-      for (int i = 0; i < boneWeights.Length; i++) {
-        // When interpolation is constant, the base usdIndex should always be zero.
-        // When non-constant, the offset is the index times the number of weights per vertex.
-        int usdIndex = isConstant
-                     ? 0
-                     : i * weightsElementSize;
+            var boneWeights = new BoneWeight[mesh.vertexCount];
+            for (int i = 0; i < boneWeights.Length; i++)
+            {
+                // When interpolation is constant, the base usdIndex should always be zero.
+                // When non-constant, the offset is the index times the number of weights per vertex.
+                int usdIndex = isConstant
+                    ? 0
+                    : i * weightsElementSize;
 
-        var boneWeight = boneWeights[i];
+                var boneWeight = boneWeights[i];
 
-        if (usdIndex >= indices.Length) {
-          Debug.Log("UsdIndex out of bounds: " + usdIndex
-                  + " indices.Length: " + indices.Length
-                  + " boneWeights.Length: " + boneWeights.Length
-                  + " mesh: " + meshPath);
-        }
+                if (usdIndex >= indices.Length)
+                {
+                    Debug.Log("UsdIndex out of bounds: " + usdIndex
+                        + " indices.Length: " + indices.Length
+                        + " boneWeights.Length: " + boneWeights.Length
+                        + " mesh: " + meshPath);
+                }
 
-        boneWeight.boneIndex0 = indices[usdIndex];
-        boneWeight.weight0 = weights[usdIndex];
+                boneWeight.boneIndex0 = indices[usdIndex];
+                boneWeight.weight0 = weights[usdIndex];
 
-        if (indicesElementSize >= 2) {
-          boneWeight.boneIndex1 = indices[usdIndex + 1];
-          boneWeight.weight1 = weights[usdIndex + 1];
-        }
-        if (indicesElementSize >= 3) {
-          boneWeight.boneIndex2 = indices[usdIndex + 2];
-          boneWeight.weight2 = weights[usdIndex + 2];
-        }
-        if (indicesElementSize >= 4) {
-          boneWeight.boneIndex3 = indices[usdIndex + 3];
-          boneWeight.weight3 = weights[usdIndex + 3];
-        }
+                if (indicesElementSize >= 2)
+                {
+                    boneWeight.boneIndex1 = indices[usdIndex + 1];
+                    boneWeight.weight1 = weights[usdIndex + 1];
+                }
+                if (indicesElementSize >= 3)
+                {
+                    boneWeight.boneIndex2 = indices[usdIndex + 2];
+                    boneWeight.weight2 = weights[usdIndex + 2];
+                }
+                if (indicesElementSize >= 4)
+                {
+                    boneWeight.boneIndex3 = indices[usdIndex + 3];
+                    boneWeight.weight3 = weights[usdIndex + 3];
+                }
 
-        // If weights are less than 1, Unity will not automatically renormalize.
-        // If weights are greater than 1, Unity will renormalize.
-        // Only normalize when less than one to make it easier to diff bone weights which were
-        // round-tripped and were being normalized by Unity.
-        float sum = boneWeight.weight0 + boneWeight.weight1 + boneWeight.weight2 + boneWeight.weight3;
-        if (sum < 1) {
-          boneWeight.weight0 /= sum;
-          boneWeight.weight1 /= sum;
-          boneWeight.weight2 /= sum;
-          boneWeight.weight3 /= sum;
-        }
+                // If weights are less than 1, Unity will not automatically renormalize.
+                // If weights are greater than 1, Unity will renormalize.
+                // Only normalize when less than one to make it easier to diff bone weights which were
+                // round-tripped and were being normalized by Unity.
+                float sum = boneWeight.weight0 + boneWeight.weight1 + boneWeight.weight2 + boneWeight.weight3;
+                if (sum < 1)
+                {
+                    boneWeight.weight0 /= sum;
+                    boneWeight.weight1 /= sum;
+                    boneWeight.weight2 /= sum;
+                    boneWeight.weight3 /= sum;
+                }
 
-        boneWeights[i] = boneWeight;
-      }
+                boneWeights[i] = boneWeight;
+            }
 
-      mesh.boneWeights = boneWeights;
+            mesh.boneWeights = boneWeights;
 #endif
         }
     } // class

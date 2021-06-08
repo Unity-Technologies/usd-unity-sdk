@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,10 @@ using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace USD.NET.Tests {
-    class StageTests : UsdTests {
+namespace USD.NET.Tests
+{
+    class StageTests : UsdTests
+    {
         [Test]
         public static void OpenFailTest()
         {
@@ -134,7 +136,7 @@ namespace USD.NET.Tests {
             var pruned = false;
             foreach (UsdPrim curPrim in range)
             {
-                if(pruned)
+                if (pruned)
                     Assert.AreEqual("/Bar/B4", curPrim.GetPath().GetString());
 
                 if (curPrim.GetPath() == "/Bar/B3")
@@ -191,7 +193,7 @@ namespace USD.NET.Tests {
                 Assert.IsFalse(s.HasAuthoredMetadata(defultPrimToken));
                 // Even though it's not authored, reading it should succeed.
                 Assert.IsTrue(s.GetMetadata(defultPrimToken, value));
-                AssertEqual(((TfToken) value).ToString(), "");
+                AssertEqual(((TfToken)value).ToString(), "");
             }
 
             // Set the default prim, which should set the defaultPrim metadata.
@@ -206,7 +208,7 @@ namespace USD.NET.Tests {
                 Assert.IsTrue(s.HasMetadata(defultPrimToken));
                 Assert.IsTrue(s.HasAuthoredMetadata(defultPrimToken));
                 Assert.IsTrue(s.GetMetadata(defultPrimToken, value));
-                AssertEqual(((TfToken) value).ToString(), "Foo");
+                AssertEqual(((TfToken)value).ToString(), "Foo");
             }
 
             string str = s.GetRootLayer().ExportToString();
@@ -217,7 +219,7 @@ namespace USD.NET.Tests {
                 Assert.IsFalse(s.GetDefaultPrim().IsValid());
                 Assert.IsFalse(s.HasAuthoredMetadata(defultPrimToken));
                 Assert.IsTrue(s.GetMetadata(defultPrimToken, value));
-                AssertEqual(((TfToken) value).ToString(), "");
+                AssertEqual(((TfToken)value).ToString(), "");
             }
 
             var classPrim = s.CreateClassPrim(new SdfPath("/Foo_class_"));

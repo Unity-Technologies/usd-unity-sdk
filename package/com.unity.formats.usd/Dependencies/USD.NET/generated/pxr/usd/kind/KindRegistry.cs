@@ -8,62 +8,71 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class KindRegistry : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class KindRegistry : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal KindRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(KindRegistry obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          throw new global::System.MethodAccessException("C++ destructor does not have public access");
+        internal KindRegistry(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(KindRegistry obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        throw new global::System.MethodAccessException("C++ destructor does not have public access");
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public static KindRegistry GetInstance()
+        {
+            KindRegistry ret = new KindRegistry(UsdCsPINVOKE.KindRegistry_GetInstance(), false);
+            return ret;
+        }
+
+        public static bool HasKind(TfToken kind)
+        {
+            bool ret = UsdCsPINVOKE.KindRegistry_HasKind(TfToken.getCPtr(kind));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static TfToken GetBaseKind(TfToken kind)
+        {
+            TfToken ret = new TfToken(UsdCsPINVOKE.KindRegistry_GetBaseKind(TfToken.getCPtr(kind)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool IsA(TfToken derivedKind, TfToken baseKind)
+        {
+            bool ret = UsdCsPINVOKE.KindRegistry_IsA(TfToken.getCPtr(derivedKind), TfToken.getCPtr(baseKind));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static TfTokenVector GetAllKinds()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.KindRegistry_GetAllKinds(), true);
+            return ret;
+        }
     }
-  }
-
-  public static KindRegistry GetInstance() {
-    KindRegistry ret = new KindRegistry(UsdCsPINVOKE.KindRegistry_GetInstance(), false);
-    return ret;
-  }
-
-  public static bool HasKind(TfToken kind) {
-    bool ret = UsdCsPINVOKE.KindRegistry_HasKind(TfToken.getCPtr(kind));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static TfToken GetBaseKind(TfToken kind) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.KindRegistry_GetBaseKind(TfToken.getCPtr(kind)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool IsA(TfToken derivedKind, TfToken baseKind) {
-    bool ret = UsdCsPINVOKE.KindRegistry_IsA(TfToken.getCPtr(derivedKind), TfToken.getCPtr(baseKind));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static TfTokenVector GetAllKinds() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.KindRegistry_GetAllKinds(), true);
-    return ret;
-  }
-
-}
-
 }

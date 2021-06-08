@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,42 +12,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace USD.NET {
+namespace USD.NET
+{
+    public enum Variability
+    {
+        Varying,
+        Uniform,
+    }
 
-  public enum Variability {
-    Varying,
-    Uniform,
-  }
+    public enum Visibility
+    {
+        Inherited, // Default
+        Invisible,
+    }
 
-  public enum Visibility {
-    Inherited,    // Default
-    Invisible,
-  }
+    public enum Purpose
+    {
+        Default,  // Default
+        Render,
+        Proxy,
+        Guide,
+    }
 
-  public enum Purpose {
-    Default,      // Default
-    Render,
-    Proxy,
-    Guide,
-  }
+    public enum Orientation
+    {
+        RightHanded, // Default
+        LeftHanded,
+    }
 
-  public enum Orientation {
-    RightHanded,  // Default
-    LeftHanded,
-  }
+    public enum SubdivScheme
+    {
+        None,     // Default
+        CatmullClark,
+        Loop,
+        Bilinear,
+    }
 
-  public enum SubdivScheme {
-    None,         // Default
-    CatmullClark,
-    Loop,
-    Bilinear,
-  }
-
-  public enum PrimvarInterpolation {
-    Constant,
-    Uniform,
-    Varying,
-    Vertex,
-    FaceVarying
-  }
+    public enum PrimvarInterpolation
+    {
+        Constant,
+        Uniform,
+        Varying,
+        Vertex,
+        FaceVarying
+    }
 }

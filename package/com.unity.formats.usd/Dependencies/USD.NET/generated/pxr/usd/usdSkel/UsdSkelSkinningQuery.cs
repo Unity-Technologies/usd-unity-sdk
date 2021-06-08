@@ -8,168 +8,199 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdSkelSkinningQuery : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdSkelSkinningQuery : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdSkelSkinningQuery(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSkelSkinningQuery obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdSkelSkinningQuery() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdSkelSkinningQuery(swigCPtr);
+        internal UsdSkelSkinningQuery(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSkelSkinningQuery obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdSkelSkinningQuery()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdSkelSkinningQuery(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public UsdSkelSkinningQuery() : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_0(), true)
+        {
+        }
+
+        public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, VtTokenArray blendShapeOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, UsdAttribute joints, UsdAttribute blendShapes, UsdRelationship blendShapeTargets) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), VtTokenArray.getCPtr(blendShapeOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), UsdAttribute.getCPtr(joints), UsdAttribute.getCPtr(blendShapes), UsdRelationship.getCPtr(blendShapeTargets)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool IsValid()
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_IsValid(swigCPtr);
+            return ret;
+        }
+
+        public UsdPrim GetPrim()
+        {
+            UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelSkinningQuery_GetPrim(swigCPtr), false);
+            return ret;
+        }
+
+        public bool HasBlendShapes()
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_HasBlendShapes(swigCPtr);
+            return ret;
+        }
+
+        public bool HasJointInfluences()
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_HasJointInfluences(swigCPtr);
+            return ret;
+        }
+
+        public int GetNumInfluencesPerComponent()
+        {
+            int ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetNumInfluencesPerComponent(swigCPtr);
+            return ret;
+        }
+
+        public TfToken GetInterpolation()
+        {
+            TfToken ret = new TfToken(UsdCsPINVOKE.UsdSkelSkinningQuery_GetInterpolation(swigCPtr), false);
+            return ret;
+        }
+
+        public bool IsRigidlyDeformed()
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_IsRigidlyDeformed(swigCPtr);
+            return ret;
+        }
+
+        public UsdAttribute GetGeomBindTransformAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkinningQuery_GetGeomBindTransformAttr(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomPrimvar GetJointIndicesPrimvar()
+        {
+            UsdGeomPrimvar ret = new UsdGeomPrimvar(UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointIndicesPrimvar(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomPrimvar GetJointWeightsPrimvar()
+        {
+            UsdGeomPrimvar ret = new UsdGeomPrimvar(UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointWeightsPrimvar(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdAttribute GetBlendShapesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapesAttr(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdRelationship GetBlendShapeTargetsRel()
+        {
+            UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeTargetsRel(swigCPtr), false);
+            return ret;
+        }
+
+        public SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t GetJointMapper()
+        {
+            SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t ret = new SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t(UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointMapper(swigCPtr), false);
+            return ret;
+        }
+
+        public SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t GetBlendShapeMapper()
+        {
+            SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t ret = new SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeMapper(swigCPtr), false);
+            return ret;
+        }
+
+        public bool GetJointOrder(VtTokenArray jointOrder)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointOrder(swigCPtr, VtTokenArray.getCPtr(jointOrder));
+            return ret;
+        }
+
+        public bool GetBlendShapeOrder(VtTokenArray blendShapes)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeOrder(swigCPtr, VtTokenArray.getCPtr(blendShapes));
+            return ret;
+        }
+
+        public bool GetTimeSamples(StdDoubleVector times)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetTimeSamples(swigCPtr, StdDoubleVector.getCPtr(times));
+            return ret;
+        }
+
+        public bool ComputeJointInfluences(VtIntArray indices, VtFloatArray weights, UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeJointInfluences__SWIG_0(swigCPtr, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights), UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeJointInfluences(VtIntArray indices, VtFloatArray weights)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeJointInfluences__SWIG_1(swigCPtr, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights));
+            return ret;
+        }
+
+        public bool ComputeVaryingJointInfluences(uint numPoints, VtIntArray indices, VtFloatArray weights, UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeVaryingJointInfluences__SWIG_0(swigCPtr, numPoints, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights), UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeVaryingJointInfluences(uint numPoints, VtIntArray indices, VtFloatArray weights)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeVaryingJointInfluences__SWIG_1(swigCPtr, numPoints, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights));
+            return ret;
+        }
+
+        public GfMatrix4d GetGeomBindTransform(UsdTimeCode time)
+        {
+            GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelSkinningQuery_GetGeomBindTransform__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfMatrix4d GetGeomBindTransform()
+        {
+            GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelSkinningQuery_GetGeomBindTransform__SWIG_1(swigCPtr), true);
+            return ret;
+        }
+
+        public string GetDescription()
+        {
+            string ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetDescription(swigCPtr);
+            return ret;
+        }
     }
-  }
-
-  public UsdSkelSkinningQuery() : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_0(), true) {
-  }
-
-  public UsdSkelSkinningQuery(UsdPrim prim, VtTokenArray skelJointOrder, VtTokenArray blendShapeOrder, UsdAttribute jointIndices, UsdAttribute jointWeights, UsdAttribute geomBindTransform, UsdAttribute joints, UsdAttribute blendShapes, UsdRelationship blendShapeTargets) : this(UsdCsPINVOKE.new_UsdSkelSkinningQuery__SWIG_1(UsdPrim.getCPtr(prim), VtTokenArray.getCPtr(skelJointOrder), VtTokenArray.getCPtr(blendShapeOrder), UsdAttribute.getCPtr(jointIndices), UsdAttribute.getCPtr(jointWeights), UsdAttribute.getCPtr(geomBindTransform), UsdAttribute.getCPtr(joints), UsdAttribute.getCPtr(blendShapes), UsdRelationship.getCPtr(blendShapeTargets)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsValid() {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_IsValid(swigCPtr);
-    return ret;
-  }
-
-  public UsdPrim GetPrim() {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdSkelSkinningQuery_GetPrim(swigCPtr), false);
-    return ret;
-  }
-
-  public bool HasBlendShapes() {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_HasBlendShapes(swigCPtr);
-    return ret;
-  }
-
-  public bool HasJointInfluences() {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_HasJointInfluences(swigCPtr);
-    return ret;
-  }
-
-  public int GetNumInfluencesPerComponent() {
-    int ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetNumInfluencesPerComponent(swigCPtr);
-    return ret;
-  }
-
-  public TfToken GetInterpolation() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdSkelSkinningQuery_GetInterpolation(swigCPtr), false);
-    return ret;
-  }
-
-  public bool IsRigidlyDeformed() {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_IsRigidlyDeformed(swigCPtr);
-    return ret;
-  }
-
-  public UsdAttribute GetGeomBindTransformAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkinningQuery_GetGeomBindTransformAttr(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomPrimvar GetJointIndicesPrimvar() {
-    UsdGeomPrimvar ret = new UsdGeomPrimvar(UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointIndicesPrimvar(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomPrimvar GetJointWeightsPrimvar() {
-    UsdGeomPrimvar ret = new UsdGeomPrimvar(UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointWeightsPrimvar(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdAttribute GetBlendShapesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapesAttr(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdRelationship GetBlendShapeTargetsRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeTargetsRel(swigCPtr), false);
-    return ret;
-  }
-
-  public SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t GetJointMapper() {
-    SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t ret = new SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t(UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointMapper(swigCPtr), false);
-    return ret;
-  }
-
-  public SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t GetBlendShapeMapper() {
-    SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t ret = new SWIGTYPE_p_std__shared_ptrT_UsdSkelAnimMapper_t(UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeMapper(swigCPtr), false);
-    return ret;
-  }
-
-  public bool GetJointOrder(VtTokenArray jointOrder) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetJointOrder(swigCPtr, VtTokenArray.getCPtr(jointOrder));
-    return ret;
-  }
-
-  public bool GetBlendShapeOrder(VtTokenArray blendShapes) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetBlendShapeOrder(swigCPtr, VtTokenArray.getCPtr(blendShapes));
-    return ret;
-  }
-
-  public bool GetTimeSamples(StdDoubleVector times) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetTimeSamples(swigCPtr, StdDoubleVector.getCPtr(times));
-    return ret;
-  }
-
-  public bool ComputeJointInfluences(VtIntArray indices, VtFloatArray weights, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeJointInfluences__SWIG_0(swigCPtr, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeJointInfluences(VtIntArray indices, VtFloatArray weights) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeJointInfluences__SWIG_1(swigCPtr, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights));
-    return ret;
-  }
-
-  public bool ComputeVaryingJointInfluences(uint numPoints, VtIntArray indices, VtFloatArray weights, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeVaryingJointInfluences__SWIG_0(swigCPtr, numPoints, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeVaryingJointInfluences(uint numPoints, VtIntArray indices, VtFloatArray weights) {
-    bool ret = UsdCsPINVOKE.UsdSkelSkinningQuery_ComputeVaryingJointInfluences__SWIG_1(swigCPtr, numPoints, VtIntArray.getCPtr(indices), VtFloatArray.getCPtr(weights));
-    return ret;
-  }
-
-  public GfMatrix4d GetGeomBindTransform(UsdTimeCode time) {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelSkinningQuery_GetGeomBindTransform__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfMatrix4d GetGeomBindTransform() {
-    GfMatrix4d ret = new GfMatrix4d(UsdCsPINVOKE.UsdSkelSkinningQuery_GetGeomBindTransform__SWIG_1(swigCPtr), true);
-    return ret;
-  }
-
-  public string GetDescription() {
-    string ret = UsdCsPINVOKE.UsdSkelSkinningQuery_GetDescription(swigCPtr);
-    return ret;
-  }
-
-}
-
 }

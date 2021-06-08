@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using pxr;
@@ -145,6 +145,7 @@ namespace Unity.Formats.USD
 
             return "Assets/";
         }
+
 #endif
 
         public static Scene InitForOpen(string path = "", UsdStage.InitialLoadSet loadSet = pxr.UsdStage.InitialLoadSet.LoadNone)
@@ -224,6 +225,7 @@ namespace Unity.Formats.USD
             prefabPath = AssetDatabase.GenerateUniqueAssetPath(prefabPath);
             return prefabPath;
         }
+
 #endif
     }
 }

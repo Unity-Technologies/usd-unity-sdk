@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ namespace Unity.Formats.USD.Examples
 
             var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/someValue"));
             var vtValue = prim.GetAttribute(new pxr.TfToken("aString")).Get(1);
-            Debug.Log((string) vtValue);
+            Debug.Log((string)vtValue);
 
             scene.Close();
         }

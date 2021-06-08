@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Unity.Formats.USD
     /// shadingVariant set may have three variants: Red, Green, Blue. The full outer product of all
     /// variant selections is possible, e.g. Red, Green, or Blue CupWithHandle and Red, Green, or Blue
     /// CupWithoutHandle.
-    /// 
+    ///
     /// For more details on USD variant sets and selections, see:
     /// https://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-VariantSet
     /// </remarks>

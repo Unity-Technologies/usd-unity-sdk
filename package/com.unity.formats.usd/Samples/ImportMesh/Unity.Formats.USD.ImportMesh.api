@@ -1,0 +1,23 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.Formats.USD.Examples
+{
+    [UnityEngine.ExecuteInEditMode] public class ImportMeshExample : UnityEngine.MonoBehaviour
+    {
+        public Unity.Formats.USD.BasisTransformation m_changeHandedness;
+        [UnityEngine.Tooltip(@"Enable GPU instancing on materials for USD point or scene instances.")] public bool m_enableGpuInstancing;
+        public UnityEngine.Material m_material;
+        public string m_usdFile;
+        [UnityEngine.Range(0, 100)] public float m_usdTime;
+        public Unity.Formats.USD.PrimMap PrimMap { get; }
+        public USD.NET.Scene UsdScene { get; }
+        public ImportMeshExample() {}
+    }
+
+    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.Examples.ImportMeshExample))] public class UsdImportMeshEditor : UnityEditor.Editor
+    {
+        public UsdImportMeshEditor() {}
+        public virtual void OnInspectorGUI();
+    }
+}

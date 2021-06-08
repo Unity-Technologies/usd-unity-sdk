@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@ namespace Unity.Formats.USD
     /// </remarks>
     public struct ReadAllJob<T> :
         IEnumerator<SampleEnumerator<T>.SampleHolder>,
-        IEnumerable<SampleEnumerator<T>.SampleHolder>,
-        IJobParallelFor
+            IEnumerable<SampleEnumerator<T>.SampleHolder>,
+            IJobParallelFor
         where T : SampleBase, new()
     {
         static private Scene m_scene;
@@ -75,8 +75,8 @@ namespace Unity.Formats.USD
         private bool ShouldReadPath(Scene scene, SdfPath path)
         {
             return scene.AccessMask == null
-                   || scene.IsPopulatingAccessMask
-                   || scene.AccessMask.Included.ContainsKey(path);
+                || scene.IsPopulatingAccessMask
+                || scene.AccessMask.Included.ContainsKey(path);
         }
 
         public void Run()

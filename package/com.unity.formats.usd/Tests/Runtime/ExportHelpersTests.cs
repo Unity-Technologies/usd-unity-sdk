@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using NUnit.Framework;
 using UnityEngine;
 using USD.NET;
@@ -56,7 +56,7 @@ namespace Unity.Formats.USD.Tests
             var fileInfoBefore = new FileInfo(filePath);
             Assert.DoesNotThrow(delegate()
             {
-                ExportHelpers.ExportGameObjects(new GameObject [] {}, scene, BasisTransformation.SlowAndSafe);
+                ExportHelpers.ExportGameObjects(new GameObject[] {}, scene, BasisTransformation.SlowAndSafe);
             });
             var fileInfoAfter = new FileInfo(filePath);
             Assert.AreEqual(fileInfoBefore.Length, fileInfoAfter.Length);
@@ -66,7 +66,6 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportGameObjects_InvalidGO()
         {
-
             var filePath = CreateTmpUsdFile("dummyUsd.usda");
             var scene = Scene.Open(filePath);
             Assert.DoesNotThrow(delegate()
@@ -82,7 +81,7 @@ namespace Unity.Formats.USD.Tests
         {
             var filePath = CreateTmpUsdFile("dummyUsd.usda");
             var scene = Scene.Open(filePath);
-            ExportHelpers.ExportGameObjects(new [] {new GameObject("test")}, scene, BasisTransformation.SlowAndSafe);
+            ExportHelpers.ExportGameObjects(new[] {new GameObject("test")}, scene, BasisTransformation.SlowAndSafe);
             scene = Scene.Open(filePath);
             var paths = scene.Stage.GetAllPaths();
             Debug.Log(scene.Stage.GetRootLayer().ExportToString());
@@ -93,10 +92,9 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportGameObjects_SceneClosedAfterExport()
         {
-
             var filePath = CreateTmpUsdFile("dummyUsd.usda");
             var scene = Scene.Open(filePath);
-            ExportHelpers.ExportGameObjects(new [] {new GameObject("test")}, scene, BasisTransformation.SlowAndSafe);
+            ExportHelpers.ExportGameObjects(new[] {new GameObject("test")}, scene, BasisTransformation.SlowAndSafe);
             Assert.IsNull(scene.Stage);
         }
     }

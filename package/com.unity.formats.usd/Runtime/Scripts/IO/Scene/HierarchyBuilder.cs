@@ -662,7 +662,7 @@ namespace Unity.Formats.USD
                     if (!parentGo)
                     {
                         Debug.LogException(new Exception("Failed to create ancestors for " + path + " for prim: " +
-                                                         prim.GetPath()));
+                            prim.GetPath()));
                         continue;
                     }
                 }

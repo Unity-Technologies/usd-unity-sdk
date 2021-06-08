@@ -8,93 +8,110 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdSkelTopology : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdSkelTopology : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdSkelTopology(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSkelTopology obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdSkelTopology() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdSkelTopology(swigCPtr);
+        internal UsdSkelTopology(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSkelTopology obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdSkelTopology()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdSkelTopology(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public UsdSkelTopology() : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_0(), true)
+        {
+        }
+
+        public UsdSkelTopology(SWIGTYPE_p_TfSpanT_TfToken_const_t paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_1(SWIGTYPE_p_TfSpanT_TfToken_const_t.getCPtr(paths)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdSkelTopology(SWIGTYPE_p_TfSpanT_SdfPath_const_t paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_2(SWIGTYPE_p_TfSpanT_SdfPath_const_t.getCPtr(paths)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdSkelTopology(VtIntArray parentIndices) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_3(VtIntArray.getCPtr(parentIndices)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool Validate(/*cstype*/ out string reason)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelTopology_Validate__SWIG_0(swigCPtr, out reason);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool Validate()
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelTopology_Validate__SWIG_1(swigCPtr);
+            return ret;
+        }
+
+        public VtIntArray GetParentIndices()
+        {
+            VtIntArray ret = new VtIntArray(UsdCsPINVOKE.UsdSkelTopology_GetParentIndices(swigCPtr), false);
+            return ret;
+        }
+
+        public uint GetNumJoints()
+        {
+            uint ret = UsdCsPINVOKE.UsdSkelTopology_GetNumJoints(swigCPtr);
+            return ret;
+        }
+
+        public uint size()
+        {
+            uint ret = UsdCsPINVOKE.UsdSkelTopology_size(swigCPtr);
+            return ret;
+        }
+
+        public int GetParent(uint index)
+        {
+            int ret = UsdCsPINVOKE.UsdSkelTopology_GetParent(swigCPtr, index);
+            return ret;
+        }
+
+        public bool IsRoot(uint index)
+        {
+            bool ret = UsdCsPINVOKE.UsdSkelTopology_IsRoot(swigCPtr, index);
+            return ret;
+        }
+
+        public UsdSkelTopology(VtTokenArray topology) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_4(VtTokenArray.getCPtr(topology)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
-  }
-
-  public UsdSkelTopology() : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_0(), true) {
-  }
-
-  public UsdSkelTopology(SWIGTYPE_p_TfSpanT_TfToken_const_t paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_1(SWIGTYPE_p_TfSpanT_TfToken_const_t.getCPtr(paths)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdSkelTopology(SWIGTYPE_p_TfSpanT_SdfPath_const_t paths) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_2(SWIGTYPE_p_TfSpanT_SdfPath_const_t.getCPtr(paths)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdSkelTopology(VtIntArray parentIndices) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_3(VtIntArray.getCPtr(parentIndices)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool Validate(/*cstype*/ out string reason) {
-    bool ret = UsdCsPINVOKE.UsdSkelTopology_Validate__SWIG_0(swigCPtr, out reason);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool Validate() {
-    bool ret = UsdCsPINVOKE.UsdSkelTopology_Validate__SWIG_1(swigCPtr);
-    return ret;
-  }
-
-  public VtIntArray GetParentIndices() {
-    VtIntArray ret = new VtIntArray(UsdCsPINVOKE.UsdSkelTopology_GetParentIndices(swigCPtr), false);
-    return ret;
-  }
-
-  public uint GetNumJoints() {
-    uint ret = UsdCsPINVOKE.UsdSkelTopology_GetNumJoints(swigCPtr);
-    return ret;
-  }
-
-  public uint size() {
-    uint ret = UsdCsPINVOKE.UsdSkelTopology_size(swigCPtr);
-    return ret;
-  }
-
-  public int GetParent(uint index) {
-    int ret = UsdCsPINVOKE.UsdSkelTopology_GetParent(swigCPtr, index);
-    return ret;
-  }
-
-  public bool IsRoot(uint index) {
-    bool ret = UsdCsPINVOKE.UsdSkelTopology_IsRoot(swigCPtr, index);
-    return ret;
-  }
-
-  public UsdSkelTopology(VtTokenArray topology) : this(UsdCsPINVOKE.new_UsdSkelTopology__SWIG_4(VtTokenArray.getCPtr(topology)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-}
-
 }

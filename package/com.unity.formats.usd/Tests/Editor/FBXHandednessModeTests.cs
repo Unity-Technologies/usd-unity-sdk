@@ -1,4 +1,4 @@
-﻿// Copyright 2019 Jeremy Cowles. All rights reserved.
+// Copyright 2019 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -96,9 +96,8 @@ namespace Unity.Formats.USD.Tests
 
         private static bool CheckVector3Equality(Vector3 a, Vector3 b, float epsilon = 0.001f)
         {
-            return Vector3.SqrMagnitude(a - b) < (epsilon*epsilon);
+            return Vector3.SqrMagnitude(a - b) < (epsilon * epsilon);
         }
-
 
         [TestCase(BasisTransformation.SlowAndSafe)]
         [TestCase(BasisTransformation.SlowAndSafeAsFBX)]
@@ -145,11 +144,11 @@ namespace Unity.Formats.USD.Tests
             // The two files are different handedness (different winding order of vertices), therefore the triangles
             // will be different, the vertices will remain the same and the normals will be flipped.
             NUnit.Framework.Assert.That(leftHandedCubeMesh.vertices.Length, Is.EqualTo(cubeMesh.vertices.Length));
-            for(int i = 0; i < cubeMesh.vertices.Length; i++)
+            for (int i = 0; i < cubeMesh.vertices.Length; i++)
             {
                 Assert.IsTrue(CheckVector3Equality(leftHandedCubeMesh.vertices[i], cubeMesh.vertices[i]),
                     string.Format("Vertex at index {0} of left and right handed cube mesh are not equal, expected equal:\nExpected:{1}\nActual:{2}",
-                                    i, cubeMesh.vertices[i], leftHandedCubeMesh.vertices[i]));
+                        i, cubeMesh.vertices[i], leftHandedCubeMesh.vertices[i]));
             }
             NUnit.Framework.Assert.That(cubeMesh.triangles, Is.Not.EqualTo(leftHandedCubeMesh.triangles));
 
@@ -159,7 +158,7 @@ namespace Unity.Formats.USD.Tests
                 // check that normals are flipped
                 Assert.IsTrue(CheckVector3Equality(leftHandedCubeMesh.normals[i], -cubeMesh.normals[i]),
                     string.Format("Normal at index {0} of left and right handed cube mesh are not equal, expected equal\nExpected:{1}\nActual:{2}",
-                                    i, -cubeMesh.normals[i], leftHandedCubeMesh.normals[i]));
+                        i, -cubeMesh.normals[i], leftHandedCubeMesh.normals[i]));
             }
 
             // Check that the imported left handed cube matches the baked cube.
@@ -171,7 +170,7 @@ namespace Unity.Formats.USD.Tests
             {
                 Assert.IsTrue(CheckVector3Equality(leftHandedCubeMesh.vertices[i], bakedCubeMesh.vertices[i]),
                     string.Format("Vertex at index {0} of left handed and baked cube mesh are not equal, expected equal:\nExpected:{1}\nActual:{2}",
-                                    i, bakedCubeMesh.vertices[i], leftHandedCubeMesh.vertices[i]));
+                        i, bakedCubeMesh.vertices[i], leftHandedCubeMesh.vertices[i]));
             }
             NUnit.Framework.Assert.That(bakedCubeMesh.triangles, Is.EqualTo(leftHandedCubeMesh.triangles));
 
@@ -180,7 +179,7 @@ namespace Unity.Formats.USD.Tests
             {
                 Assert.IsTrue(CheckVector3Equality(leftHandedCubeMesh.normals[i], bakedCubeMesh.normals[i]),
                     string.Format("Normal at index {0} of left handed and baked cube mesh are not equal, expected equal:\nExpected:{1}\nActual:{2}",
-                                    i, bakedCubeMesh.normals[i], leftHandedCubeMesh.normals[i]));
+                        i, bakedCubeMesh.normals[i], leftHandedCubeMesh.normals[i]));
             }
         }
     }

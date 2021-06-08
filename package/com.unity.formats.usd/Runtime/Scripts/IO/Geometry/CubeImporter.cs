@@ -44,13 +44,13 @@ namespace Unity.Formats.USD
             // transform. This also need to be taken into account while computing the Unity extent of the mesh (see bellow).
             // This is doable because xformable data are always handled before mesh data, so go.transform already
             // contains any transform of the geometry.
-            float size = (float) usdCube.size;
+            float size = (float)usdCube.size;
             go.transform.localScale = go.transform.localScale * size;
 
             bool changeHandedness = options.changeHandedness == BasisTransformation.SlowAndSafe;
             bool hasBounds = usdCube.extent.size.x > 0
-                             || usdCube.extent.size.y > 0
-                             || usdCube.extent.size.z > 0;
+                || usdCube.extent.size.y > 0
+                || usdCube.extent.size.z > 0;
 
             if (ShouldImport(options.meshOptions.boundingBox) && hasBounds)
             {
@@ -122,7 +122,7 @@ namespace Unity.Formats.USD
                     unityColors[20] = usdCube.colors[4]; // right back bottom
                     unityColors[21] = usdCube.colors[4]; // right back top
                     unityColors[22] = usdCube.colors[4]; // right front top
-                    unityColors[23] = usdCube.colors[4]; // right front bottom 
+                    unityColors[23] = usdCube.colors[4]; // right front bottom
 
                     unityMesh.colors = unityColors;
                 }
@@ -167,7 +167,7 @@ namespace Unity.Formats.USD
                     unityColors[20] = usdCube.colors[16 + 2]; // right back bottom
                     unityColors[21] = usdCube.colors[16 + 3]; // right back top
                     unityColors[22] = usdCube.colors[16 + 0]; // right front top
-                    unityColors[23] = usdCube.colors[16 + 1]; // right front bottom 
+                    unityColors[23] = usdCube.colors[16 + 1]; // right front bottom
 
                     unityMesh.colors = unityColors;
                 }
@@ -213,7 +213,7 @@ namespace Unity.Formats.USD
                     unityColors[20] = usdCube.colors[7]; // right back bottom
                     unityColors[21] = usdCube.colors[6]; // right back top
                     unityColors[22] = usdCube.colors[0]; // right front top
-                    unityColors[23] = usdCube.colors[3]; // right front bottom 
+                    unityColors[23] = usdCube.colors[3]; // right front bottom
 
                     unityMesh.colors = unityColors;
                     Debug.Log("vertex colors assigned");
@@ -223,7 +223,7 @@ namespace Unity.Formats.USD
                     // FaceVarying and uniform both require breaking up the mesh and are not yet handled in
                     // this example.
                     Debug.LogWarning("Uniform (color per face) and FaceVarying (color per vert per face) "
-                                     + "display color not supported in this example");
+                        + "display color not supported in this example");
                 }
             }
 

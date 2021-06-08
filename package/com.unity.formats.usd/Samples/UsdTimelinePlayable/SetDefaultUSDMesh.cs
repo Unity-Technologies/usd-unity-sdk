@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,22 +17,22 @@ using UnityEngine;
 using System.IO;
 using USD.NET;
 
- namespace Unity.Formats.USD.Examples
- {
-   /// <summary>Fill in a default USD Asset in case the user didn't choose one
-   /// </summary>
-   [ExecuteInEditMode, RequireComponent(typeof(UsdAsset))]
-   public class SetDefaultUSDMesh : MonoBehaviour
-   {
-     private const string K_DEFAULT_MESH = "mesh.usd";
+namespace Unity.Formats.USD.Examples
+{
+    /// <summary>Fill in a default USD Asset in case the user didn't choose one
+    /// </summary>
+    [ExecuteInEditMode, RequireComponent(typeof(UsdAsset))]
+    public class SetDefaultUSDMesh : MonoBehaviour
+    {
+        private const string K_DEFAULT_MESH = "mesh.usd";
 
-     void Start()
-     {
-       var asset = GetComponent<UsdAsset>();
-       if (string.IsNullOrEmpty(asset.usdFullPath))
-       {
-         asset.usdFullPath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), K_DEFAULT_MESH);
-       }
-     }
-   }
- }
+        void Start()
+        {
+            var asset = GetComponent<UsdAsset>();
+            if (string.IsNullOrEmpty(asset.usdFullPath))
+            {
+                asset.usdFullPath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), K_DEFAULT_MESH);
+            }
+        }
+    }
+}

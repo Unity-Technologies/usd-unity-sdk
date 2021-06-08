@@ -8,70 +8,82 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdSkelPackedJointAnimation : UsdSkelAnimation
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class UsdSkelPackedJointAnimation : UsdSkelAnimation {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal UsdSkelPackedJointAnimation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdSkelPackedJointAnimation_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSkelPackedJointAnimation obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdSkelPackedJointAnimation() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdSkelPackedJointAnimation(swigCPtr);
+        internal UsdSkelPackedJointAnimation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdSkelPackedJointAnimation_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdSkelPackedJointAnimation obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdSkelPackedJointAnimation()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdSkelPackedJointAnimation(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public UsdSkelPackedJointAnimation(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdSkelPackedJointAnimation__SWIG_0(UsdPrim.getCPtr(prim)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdSkelPackedJointAnimation() : this(UsdCsPINVOKE.new_UsdSkelPackedJointAnimation__SWIG_1(), true)
+        {
+        }
+
+        public UsdSkelPackedJointAnimation(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdSkelPackedJointAnimation__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited)
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
+            return ret;
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetSchemaAttributeNames__SWIG_1(), false);
+            return ret;
+        }
+
+        public new static UsdSkelPackedJointAnimation Get(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdSkelPackedJointAnimation ret = new UsdSkelPackedJointAnimation(UsdCsPINVOKE.UsdSkelPackedJointAnimation_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public new static UsdSkelPackedJointAnimation Define(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdSkelPackedJointAnimation ret = new UsdSkelPackedJointAnimation(UsdCsPINVOKE.UsdSkelPackedJointAnimation_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
-  }
-
-  public UsdSkelPackedJointAnimation(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdSkelPackedJointAnimation__SWIG_0(UsdPrim.getCPtr(prim)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdSkelPackedJointAnimation() : this(UsdCsPINVOKE.new_UsdSkelPackedJointAnimation__SWIG_1(), true) {
-  }
-
-  public UsdSkelPackedJointAnimation(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdSkelPackedJointAnimation__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
-    return ret;
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdSkelPackedJointAnimation_GetSchemaAttributeNames__SWIG_1(), false);
-    return ret;
-  }
-
-  public new static UsdSkelPackedJointAnimation Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdSkelPackedJointAnimation ret = new UsdSkelPackedJointAnimation(UsdCsPINVOKE.UsdSkelPackedJointAnimation_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new static UsdSkelPackedJointAnimation Define(UsdStageWeakPtr stage, SdfPath path) {
-    UsdSkelPackedJointAnimation ret = new UsdSkelPackedJointAnimation(UsdCsPINVOKE.UsdSkelPackedJointAnimation_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
-
 }

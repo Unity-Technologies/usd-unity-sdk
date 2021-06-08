@@ -8,146 +8,175 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    [Preserve]
+    public class VtQuathArray : Vt_ArrayBase
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-[Preserve]
-public class VtQuathArray : Vt_ArrayBase {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal VtQuathArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtQuathArray_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VtQuathArray obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~VtQuathArray() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_VtQuathArray(swigCPtr);
+        internal VtQuathArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.VtQuathArray_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VtQuathArray obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~VtQuathArray()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_VtQuathArray(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public GfQuath this[int index]
+        {
+            get { return GetValue(index); }
+            set { SetValue(index, value); }
+        }
+
+        public VtQuathArray() : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_0(), true)
+        {
+        }
+
+        public VtQuathArray(VtQuathArray other) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_1(VtQuathArray.getCPtr(other)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public VtQuathArray(uint n) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_3(n), true)
+        {
+        }
+
+        public VtQuathArray(uint n, GfQuath value) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_4(n, GfQuath.getCPtr(value)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void push_back(GfQuath elem)
+        {
+            UsdCsPINVOKE.VtQuathArray_push_back(swigCPtr, GfQuath.getCPtr(elem));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void pop_back()
+        {
+            UsdCsPINVOKE.VtQuathArray_pop_back(swigCPtr);
+        }
+
+        public uint size()
+        {
+            uint ret = UsdCsPINVOKE.VtQuathArray_size(swigCPtr);
+            return ret;
+        }
+
+        public uint capacity()
+        {
+            uint ret = UsdCsPINVOKE.VtQuathArray_capacity(swigCPtr);
+            return ret;
+        }
+
+        public bool empty()
+        {
+            bool ret = UsdCsPINVOKE.VtQuathArray_empty(swigCPtr);
+            return ret;
+        }
+
+        public void reserve(uint num)
+        {
+            UsdCsPINVOKE.VtQuathArray_reserve(swigCPtr, num);
+        }
+
+        public void resize(uint newSize)
+        {
+            UsdCsPINVOKE.VtQuathArray_resize(swigCPtr, newSize);
+        }
+
+        public void clear()
+        {
+            UsdCsPINVOKE.VtQuathArray_clear(swigCPtr);
+        }
+
+        public void assign(uint n, GfQuath fill)
+        {
+            UsdCsPINVOKE.VtQuathArray_assign(swigCPtr, n, GfQuath.getCPtr(fill));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void swap(VtQuathArray other)
+        {
+            UsdCsPINVOKE.VtQuathArray_swap(swigCPtr, VtQuathArray.getCPtr(other));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool IsIdentical(VtQuathArray other)
+        {
+            bool ret = UsdCsPINVOKE.VtQuathArray_IsIdentical(swigCPtr, VtQuathArray.getCPtr(other));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool Equals(VtQuathArray lhs, VtQuathArray rhs)
+        {
+            bool ret = UsdCsPINVOKE.VtQuathArray_Equals(VtQuathArray.getCPtr(lhs), VtQuathArray.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public override string ToString()
+        {
+            string ret = UsdCsPINVOKE.VtQuathArray_ToString(swigCPtr);
+            return ret;
+        }
+
+        public void CopyToArray(GfQuath[] dest)
+        {
+            UsdCsPINVOKE.VtQuathArray_CopyToArray__SWIG_0(swigCPtr, dest);
+        }
+
+        public void CopyFromArray(GfQuath[] src)
+        {
+            UsdCsPINVOKE.VtQuathArray_CopyFromArray__SWIG_0(swigCPtr, src);
+        }
+
+        public void CopyToArray(System.IntPtr dest)
+        {
+            UsdCsPINVOKE.VtQuathArray_CopyToArray__SWIG_1(swigCPtr, dest);
+        }
+
+        public void CopyFromArray(System.IntPtr src)
+        {
+            UsdCsPINVOKE.VtQuathArray_CopyFromArray__SWIG_1(swigCPtr, src);
+        }
+
+        protected GfQuath GetValue(int index)
+        {
+            GfQuath ret = new GfQuath(UsdCsPINVOKE.VtQuathArray_GetValue(swigCPtr, index), false);
+            return ret;
+        }
+
+        protected void SetValue(int index, GfQuath value)
+        {
+            UsdCsPINVOKE.VtQuathArray_SetValue(swigCPtr, index, GfQuath.getCPtr(value));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
-  }
-
-	  public GfQuath this[int index] {
-		  get { return GetValue(index); }
-		  set { SetValue(index, value); }
-	  }
-  
-  public VtQuathArray() : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_0(), true) {
-  }
-
-  public VtQuathArray(VtQuathArray other) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_1(VtQuathArray.getCPtr(other)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public VtQuathArray(uint n) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_3(n), true) {
-  }
-
-  public VtQuathArray(uint n, GfQuath value) : this(UsdCsPINVOKE.new_VtQuathArray__SWIG_4(n, GfQuath.getCPtr(value)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void push_back(GfQuath elem) {
-    UsdCsPINVOKE.VtQuathArray_push_back(swigCPtr, GfQuath.getCPtr(elem));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void pop_back() {
-    UsdCsPINVOKE.VtQuathArray_pop_back(swigCPtr);
-  }
-
-  public uint size() {
-    uint ret = UsdCsPINVOKE.VtQuathArray_size(swigCPtr);
-    return ret;
-  }
-
-  public uint capacity() {
-    uint ret = UsdCsPINVOKE.VtQuathArray_capacity(swigCPtr);
-    return ret;
-  }
-
-  public bool empty() {
-    bool ret = UsdCsPINVOKE.VtQuathArray_empty(swigCPtr);
-    return ret;
-  }
-
-  public void reserve(uint num) {
-    UsdCsPINVOKE.VtQuathArray_reserve(swigCPtr, num);
-  }
-
-  public void resize(uint newSize) {
-    UsdCsPINVOKE.VtQuathArray_resize(swigCPtr, newSize);
-  }
-
-  public void clear() {
-    UsdCsPINVOKE.VtQuathArray_clear(swigCPtr);
-  }
-
-  public void assign(uint n, GfQuath fill) {
-    UsdCsPINVOKE.VtQuathArray_assign(swigCPtr, n, GfQuath.getCPtr(fill));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void swap(VtQuathArray other) {
-    UsdCsPINVOKE.VtQuathArray_swap(swigCPtr, VtQuathArray.getCPtr(other));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsIdentical(VtQuathArray other) {
-    bool ret = UsdCsPINVOKE.VtQuathArray_IsIdentical(swigCPtr, VtQuathArray.getCPtr(other));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool Equals(VtQuathArray lhs, VtQuathArray rhs) {
-    bool ret = UsdCsPINVOKE.VtQuathArray_Equals(VtQuathArray.getCPtr(lhs), VtQuathArray.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public override string ToString() {
-    string ret = UsdCsPINVOKE.VtQuathArray_ToString(swigCPtr);
-    return ret;
-  }
-
-  public void CopyToArray(GfQuath[] dest) {
-    UsdCsPINVOKE.VtQuathArray_CopyToArray__SWIG_0(swigCPtr, dest);
-  }
-
-  public void CopyFromArray(GfQuath[] src) {
-    UsdCsPINVOKE.VtQuathArray_CopyFromArray__SWIG_0(swigCPtr, src);
-  }
-
-  public void CopyToArray(System.IntPtr dest) {
-    UsdCsPINVOKE.VtQuathArray_CopyToArray__SWIG_1(swigCPtr, dest);
-  }
-
-  public void CopyFromArray(System.IntPtr src) {
-    UsdCsPINVOKE.VtQuathArray_CopyFromArray__SWIG_1(swigCPtr, src);
-  }
-
-  protected GfQuath GetValue(int index) {
-    GfQuath ret = new GfQuath(UsdCsPINVOKE.VtQuathArray_GetValue(swigCPtr, index), false);
-    return ret;
-  }
-
-  protected void SetValue(int index, GfQuath value) {
-    UsdCsPINVOKE.VtQuathArray_SetValue(swigCPtr, index, GfQuath.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-}
-
 }

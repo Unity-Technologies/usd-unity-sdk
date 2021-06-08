@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -55,7 +55,7 @@ namespace Unity.Formats.USD.Tests
             m_recordedUsdFile = "Assets/" + Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".usd";
             usdRecorderAsset.m_usdFile = m_recordedUsdFile;
             m_filesToDelete.Add(usdRecorderAsset.m_usdFile);
-            
+
             usdRecorderAsset.m_exportRoot = new ExposedReference<GameObject> { exposedName = Guid.NewGuid().ToString() };
             director.SetReferenceValue(usdRecorderAsset.m_exportRoot.exposedName, cube);
             Time.captureFramerate = (int)timeline.editorSettings.fps;

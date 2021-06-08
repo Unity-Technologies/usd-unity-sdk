@@ -8,175 +8,208 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class TfToken : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class TfToken : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal TfToken(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TfToken obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~TfToken() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_TfToken(swigCPtr);
+        internal TfToken(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
-  }
 
-    public static implicit operator string (TfToken value) {
-        return value.GetText();
-    }
-
-    public override string ToString() {
-        return GetText();
-    }
-
-  public TfToken() : this(UsdCsPINVOKE.new_TfToken__SWIG_0(), true) {
-  }
-
-  public TfToken(TfToken rhs) : this(UsdCsPINVOKE.new_TfToken__SWIG_1(TfToken.getCPtr(rhs)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public TfToken(string s) : this(UsdCsPINVOKE.new_TfToken__SWIG_3(s), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public TfToken(string s, TfToken._ImmortalTag arg1) : this(UsdCsPINVOKE.new_TfToken__SWIG_4(s, (int)arg1), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public static TfToken Find(string s) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.TfToken_Find(s), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public uint Hash() {
-    uint ret = UsdCsPINVOKE.TfToken_Hash(swigCPtr);
-    return ret;
-  }
-
-  public class HashFunctor : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal HashFunctor(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(HashFunctor obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~HashFunctor() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_TfToken_HashFunctor(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TfToken obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+        ~TfToken()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_TfToken(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public static implicit operator string(TfToken value)
+        {
+            return value.GetText();
+        }
+
+        public override string ToString()
+        {
+            return GetText();
+        }
+
+        public TfToken() : this(UsdCsPINVOKE.new_TfToken__SWIG_0(), true)
+        {
+        }
+
+        public TfToken(TfToken rhs) : this(UsdCsPINVOKE.new_TfToken__SWIG_1(TfToken.getCPtr(rhs)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public TfToken(string s) : this(UsdCsPINVOKE.new_TfToken__SWIG_3(s), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public TfToken(string s, TfToken._ImmortalTag arg1) : this(UsdCsPINVOKE.new_TfToken__SWIG_4(s, (int)arg1), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public static TfToken Find(string s)
+        {
+            TfToken ret = new TfToken(UsdCsPINVOKE.TfToken_Find(s), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public uint Hash()
+        {
+            uint ret = UsdCsPINVOKE.TfToken_Hash(swigCPtr);
+            return ret;
+        }
+
+        public class HashFunctor : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal HashFunctor(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(HashFunctor obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~HashFunctor()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this) {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            UsdCsPINVOKE.delete_TfToken_HashFunctor(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            public HashFunctor() : this(UsdCsPINVOKE.new_TfToken_HashFunctor(), true)
+            {
+            }
+        }
+
+        public uint size()
+        {
+            uint ret = UsdCsPINVOKE.TfToken_size(swigCPtr);
+            return ret;
+        }
+
+        public string GetText()
+        {
+            string ret = UsdCsPINVOKE.TfToken_GetText(swigCPtr);
+            return ret;
+        }
+
+        public string data()
+        {
+            string ret = UsdCsPINVOKE.TfToken_data(swigCPtr);
+            return ret;
+        }
+
+        public string GetString()
+        {
+            string ret = UsdCsPINVOKE.TfToken_GetString(swigCPtr);
+            return ret;
+        }
+
+        public void Swap(TfToken other)
+        {
+            UsdCsPINVOKE.TfToken_Swap(swigCPtr, TfToken.getCPtr(other));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool IsEmpty()
+        {
+            bool ret = UsdCsPINVOKE.TfToken_IsEmpty(swigCPtr);
+            return ret;
+        }
+
+        public bool IsImmortal()
+        {
+            bool ret = UsdCsPINVOKE.TfToken_IsImmortal(swigCPtr);
+            return ret;
+        }
+
+        public static bool Equals(TfToken lhs, TfToken rhs)
+        {
+            bool ret = UsdCsPINVOKE.TfToken_Equals(TfToken.getCPtr(lhs), TfToken.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.TfToken_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(TfToken lhs, TfToken rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || TfToken.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(TfToken lhs, TfToken rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return TfToken.Equals(this, rhs as TfToken);
+        }
+
+        public enum _ImmortalTag
+        {
+            Immortal
+        }
     }
-  
-    public HashFunctor() : this(UsdCsPINVOKE.new_TfToken_HashFunctor(), true) {
-    }
-  
-  }
-
-  public uint size() {
-    uint ret = UsdCsPINVOKE.TfToken_size(swigCPtr);
-    return ret;
-  }
-
-  public string GetText() {
-    string ret = UsdCsPINVOKE.TfToken_GetText(swigCPtr);
-    return ret;
-  }
-
-  public string data() {
-    string ret = UsdCsPINVOKE.TfToken_data(swigCPtr);
-    return ret;
-  }
-
-  public string GetString() {
-    string ret = UsdCsPINVOKE.TfToken_GetString(swigCPtr);
-    return ret;
-  }
-
-  public void Swap(TfToken other) {
-    UsdCsPINVOKE.TfToken_Swap(swigCPtr, TfToken.getCPtr(other));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsEmpty() {
-    bool ret = UsdCsPINVOKE.TfToken_IsEmpty(swigCPtr);
-    return ret;
-  }
-
-  public bool IsImmortal() {
-    bool ret = UsdCsPINVOKE.TfToken_IsImmortal(swigCPtr);
-    return ret;
-  }
-
-  public static bool Equals(TfToken lhs, TfToken rhs) {
-    bool ret = UsdCsPINVOKE.TfToken_Equals(TfToken.getCPtr(lhs), TfToken.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.TfToken_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(TfToken lhs, TfToken rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || TfToken.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(TfToken lhs, TfToken rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return TfToken.Equals(this, rhs as TfToken);
-    }
-  
-  public enum _ImmortalTag {
-    Immortal
-  }
-
-}
-
 }

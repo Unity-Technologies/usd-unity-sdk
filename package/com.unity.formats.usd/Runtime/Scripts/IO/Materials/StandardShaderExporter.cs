@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -365,7 +365,7 @@ namespace Unity.Formats.USD
             StandardShaderBlendMode shaderMode = StandardShaderBlendMode.Opaque;
             if (mat.HasProperty("_Mode"))
             {
-                shaderMode = (StandardShaderBlendMode) mat.GetFloat("_Mode");
+                shaderMode = (StandardShaderBlendMode)mat.GetFloat("_Mode");
             }
 
             if (shaderMode != StandardShaderBlendMode.Opaque)

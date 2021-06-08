@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -174,16 +174,16 @@ namespace Unity.Formats.USD
             Debug.Log(newAssetPath);
             System.IO.File.WriteAllBytes(newAssetPath, bytes);
             UnityEditor.AssetDatabase.ImportAsset(newAssetPath);
-            var texImporter = (UnityEditor.TextureImporter) UnityEditor.AssetImporter.GetAtPath(newAssetPath);
+            var texImporter = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(newAssetPath);
             UnityEditor.EditorUtility.SetDirty(texImporter);
             texImporter.SaveAndReimport();
 #endif
             // To get the correct file ID, the texture must be reloaded from the asset path.
             Texture2D.DestroyImmediate(newTex);
 #if UNITY_EDITOR
-            return (Texture2D) UnityEditor.AssetDatabase.LoadAssetAtPath(newAssetPath, typeof(Texture2D));
+            return (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath(newAssetPath, typeof(Texture2D));
 #else
-      return null;
+            return null;
 #endif
         }
     }

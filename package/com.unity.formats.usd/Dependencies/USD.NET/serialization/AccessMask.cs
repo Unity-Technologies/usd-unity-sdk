@@ -1,4 +1,4 @@
-﻿// Copyright 2019 Jeremy Cowles. All rights reserved.
+// Copyright 2019 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,18 +17,17 @@ using System.Collections.Generic;
 using System.Reflection;
 using pxr;
 
-namespace USD.NET {
-
-  /// <summary>
-  /// Records what Prims and Attributes should be read over time.
-  /// </summary>
-  /// <remarks>
-  /// Used, for example, when tracking what prims are animated. By adding the dynamic prims to an
-  /// AccessMask, only the dynamic prims are loaded and downstream logic need not know why.
-  /// </remarks>
-  public class AccessMask {
-
-    public Dictionary<SdfPath, HashSet<MemberInfo>> Included = new Dictionary<SdfPath, HashSet<MemberInfo>>();
-
-  }
+namespace USD.NET
+{
+    /// <summary>
+    /// Records what Prims and Attributes should be read over time.
+    /// </summary>
+    /// <remarks>
+    /// Used, for example, when tracking what prims are animated. By adding the dynamic prims to an
+    /// AccessMask, only the dynamic prims are loaded and downstream logic need not know why.
+    /// </remarks>
+    public class AccessMask
+    {
+        public Dictionary<SdfPath, HashSet<MemberInfo>> Included = new Dictionary<SdfPath, HashSet<MemberInfo>>();
+    }
 }

@@ -80,7 +80,7 @@ namespace Unity.Formats.USD
 
         public override void OnInspectorGUI()
         {
-            var usdAsset = (UsdAsset) this.target;
+            var usdAsset = (UsdAsset)this.target;
 
             if (usdAsset.m_displayColorMaterial == null)
             {
@@ -122,7 +122,7 @@ namespace Unity.Formats.USD
             if (GUILayout.Button(new GUIContent(m_refreshButton, "Refresh values from USD"), refreshStyle))
             {
                 if (EditorUtility.DisplayDialog("Refresh from Source", "Refresh values from USD?\n\n"
-                                                                       + "Any object set to import will have it's state updated from USD",
+                    + "Any object set to import will have it's state updated from USD",
                     "OK", "Cancel"))
                 {
                     ReloadFromUsd(usdAsset, forceRebuild: false);
@@ -171,8 +171,8 @@ namespace Unity.Formats.USD
                 if (GUILayout.Button(new GUIContent(m_trashButton, "Remove USD Contents (destructive)"), buttonStyle))
                 {
                     if (EditorUtility.DisplayDialog("Clear Contents", "Destroy all USD objects?\n\n"
-                                                                      + "Any GameObject with a UsdPrimSource will be destroyed. "
-                                                                      + "These objects can be re-imported but any custom components will be lost.",
+                        + "Any GameObject with a UsdPrimSource will be destroyed. "
+                        + "These objects can be re-imported but any custom components will be lost.",
                         "OK", "Cancel"))
                     {
                         DestroyAllImportedObjects(usdAsset);
@@ -182,8 +182,8 @@ namespace Unity.Formats.USD
                 if (GUILayout.Button(new GUIContent(m_detachButton, "Detach, remove all USD components"), buttonStyle))
                 {
                     if (EditorUtility.DisplayDialog("Detach from USD", "Remove all USD components?\n\n"
-                                                                       + "USD components will be destroyed (except the UsdAsset root), "
-                                                                       + "but can be recreated by refreshing from USD.",
+                        + "USD components will be destroyed (except the UsdAsset root), "
+                        + "but can be recreated by refreshing from USD.",
                         "OK", "Cancel"))
                     {
                         DetachFromUsd(usdAsset);
@@ -273,7 +273,7 @@ namespace Unity.Formats.USD
                 op = LinearUnits.Kilometers;
             }
 
-            var newOp = (LinearUnits) EditorGUILayout.EnumPopup("Original Scale", op);
+            var newOp = (LinearUnits)EditorGUILayout.EnumPopup("Original Scale", op);
 
             if (newOp == LinearUnits.Custom)
             {
@@ -305,9 +305,9 @@ namespace Unity.Formats.USD
             }
 
             usdAsset.m_materialImportMode =
-                (MaterialImportMode) EditorGUILayout.EnumPopup("Materials", usdAsset.m_materialImportMode);
+                (MaterialImportMode)EditorGUILayout.EnumPopup("Materials", usdAsset.m_materialImportMode);
             usdAsset.m_payloadPolicy =
-                (PayloadPolicy) EditorGUILayout.EnumPopup("Payload Policy", usdAsset.m_payloadPolicy);
+                (PayloadPolicy)EditorGUILayout.EnumPopup("Payload Policy", usdAsset.m_payloadPolicy);
 
             GUILayout.Label("Object Types", EditorStyles.boldLabel);
 

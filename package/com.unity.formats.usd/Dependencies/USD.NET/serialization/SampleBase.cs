@@ -1,4 +1,4 @@
-﻿﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,29 +14,33 @@
 
 using System;
 
-namespace USD.NET {
-
-  /// <summary>
-  /// The base class for all automatically serializable classes.
-  /// </summary>
-  [Serializable]
-  public class SampleBase {
-    // TODO: Should this class hold a reference to the allocator, in prep for when ArrayAllocator
-    // is no longer global state?
-
-    // TODO: convert this to Dispose pattern
-    // https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
-
+namespace USD.NET
+{
     /// <summary>
-    /// Visits all arrays held by this object and returns them to the associated allocator.
+    /// The base class for all automatically serializable classes.
     /// </summary>
-    public void Free() {
-      foreach (Array array in Reflect.ExtractArrays(this)) {
-        if (array.Rank != 1) {
-          throw new NotImplementedException("Multi-dimensional arrays are not supported");
+    [Serializable]
+    public class SampleBase
+    {
+        // TODO: Should this class hold a reference to the allocator, in prep for when ArrayAllocator
+        // is no longer global state?
+
+        // TODO: convert this to Dispose pattern
+        // https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
+
+        /// <summary>
+        /// Visits all arrays held by this object and returns them to the associated allocator.
+        /// </summary>
+        public void Free()
+        {
+            foreach (Array array in Reflect.ExtractArrays(this))
+            {
+                if (array.Rank != 1)
+                {
+                    throw new NotImplementedException("Multi-dimensional arrays are not supported");
+                }
+                UsdIo.ArrayAllocator.Free(array.GetType(), (uint)array.GetLength(0), array);
+            }
         }
-        UsdIo.ArrayAllocator.Free(array.GetType(), (uint)array.GetLength(0), array);
-      }
     }
-  }
 }

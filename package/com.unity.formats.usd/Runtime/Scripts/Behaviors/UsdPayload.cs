@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2018 Jeremy Cowles. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ namespace Unity.Formats.USD
         [SerializeField] private bool m_isLoaded = true;
 
         // Variable used to track dirty load state.
-        [SerializeField] [HideInInspector] private bool m_wasLoaded = true;
+        [SerializeField][HideInInspector] private bool m_wasLoaded = true;
 
         /// <summary>
         /// Returns true of the prim is currently loaded. Note that this will return the currently

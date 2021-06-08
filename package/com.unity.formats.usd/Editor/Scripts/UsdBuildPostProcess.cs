@@ -1,4 +1,4 @@
-﻿// Copyright 2018 Pixar Animation Studios
+// Copyright 2018 Pixar Animation Studios
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Unity.Formats.USD
             {
                 destination = pathToBuiltProject.Replace(".x86_64", "_Data/Plugins");
             }
-            else if(target == BuildTarget.StandaloneOSX)
+            else if (target == BuildTarget.StandaloneOSX)
             {
                 destination = pathToBuiltProject + "/Contents/Plugins";
             }

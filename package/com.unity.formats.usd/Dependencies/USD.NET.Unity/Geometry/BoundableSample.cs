@@ -1,4 +1,4 @@
-﻿// Copyright 2021 Unity Technologies. All rights reserved.
+// Copyright 2021 Unity Technologies. All rights reserved.
 // Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,11 +15,12 @@
 
 using UnityEngine;
 
-namespace USD.NET.Unity {
-
-  [System.Serializable]
-  [UsdSchema("UsdGeomBoundable")]
-  public class BoundableSample : XformableSample {
-    public Bounds extent;
-  }
+namespace USD.NET.Unity
+{
+    [System.Serializable]
+    [UsdSchema("UsdGeomBoundable")]
+    public class BoundableSample : XformableSample
+    {
+        public Bounds extent;
+    }
 }

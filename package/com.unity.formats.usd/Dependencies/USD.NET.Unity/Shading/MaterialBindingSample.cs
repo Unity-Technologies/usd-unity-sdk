@@ -1,4 +1,4 @@
-﻿// Copyright 2021 Unity Technologies. All rights reserved.
+// Copyright 2021 Unity Technologies. All rights reserved.
 // Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,22 +13,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace USD.NET.Unity {
+namespace USD.NET.Unity
+{
+    /// <summary>
+    /// Provides access to the material binding (if any) on the UsdPrim.
+    /// </summary>
+    [System.Serializable]
+    public class MaterialBindingSample : SampleBase
+    {
+        public MaterialBindingSample() : base()
+        {
+        }
 
-  /// <summary>
-  /// Provides access to the material binding (if any) on the UsdPrim.
-  /// </summary>
-  [System.Serializable]
-  public class MaterialBindingSample : SampleBase {
-    public MaterialBindingSample() : base() {
+        public MaterialBindingSample(string materialPath) : base()
+        {
+            binding = new Relationship(materialPath);
+        }
+
+        [UsdNamespace("material")]
+        public Relationship binding;
     }
-
-    public MaterialBindingSample(string materialPath) : base() {
-      binding = new Relationship(materialPath);
-    }
-
-    [UsdNamespace("material")]
-    public Relationship binding;
-  }
-
 }

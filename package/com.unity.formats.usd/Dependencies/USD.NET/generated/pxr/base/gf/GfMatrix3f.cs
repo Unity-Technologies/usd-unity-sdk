@@ -8,275 +8,329 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class GfMatrix3f : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class GfMatrix3f : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal GfMatrix3f(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfMatrix3f obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~GfMatrix3f() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_GfMatrix3f(swigCPtr);
+        internal GfMatrix3f(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfMatrix3f obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~GfMatrix3f()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_GfMatrix3f(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public GfMatrix3f() : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_0(), true)
+        {
+        }
+
+        public GfMatrix3f(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_1(m00, m01, m02, m10, m11, m12, m20, m21, m22), true)
+        {
+        }
+
+        public GfMatrix3f(float s) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_2(s), true)
+        {
+        }
+
+        public GfMatrix3f(int s) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_3(s), true)
+        {
+        }
+
+        public GfMatrix3f(GfVec3f v) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_4(GfVec3f.getCPtr(v)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix3f(StdDoubleVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_5(StdDoubleVectorVector.getCPtr(v)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix3f(StdFloatVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_6(StdFloatVectorVector.getCPtr(v)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix3f(GfRotation rot) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_7(GfRotation.getCPtr(rot)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix3f(GfQuatf rot) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_8(GfQuatf.getCPtr(rot)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix3f(GfMatrix3d m) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_9(GfMatrix3d.getCPtr(m)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetRow(int i, GfVec3f v)
+        {
+            UsdCsPINVOKE.GfMatrix3f_SetRow(swigCPtr, i, GfVec3f.getCPtr(v));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetColumn(int i, GfVec3f v)
+        {
+            UsdCsPINVOKE.GfMatrix3f_SetColumn(swigCPtr, i, GfVec3f.getCPtr(v));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfVec3f GetRow(int i)
+        {
+            GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfMatrix3f_GetRow(swigCPtr, i), true);
+            return ret;
+        }
+
+        public GfVec3f GetColumn(int i)
+        {
+            GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfMatrix3f_GetColumn(swigCPtr, i), true);
+            return ret;
+        }
+
+        public GfMatrix3f Set(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_Set(swigCPtr, m00, m01, m02, m10, m11, m12, m20, m21, m22), false);
+            return ret;
+        }
+
+        public GfMatrix3f SetIdentity()
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetIdentity(swigCPtr), false);
+            return ret;
+        }
+
+        public GfMatrix3f SetZero()
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetZero(swigCPtr), false);
+            return ret;
+        }
+
+        public GfMatrix3f SetDiagonal(float s)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetDiagonal__SWIG_0(swigCPtr, s), false);
+            return ret;
+        }
+
+        public GfMatrix3f SetDiagonal(GfVec3f arg0)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetDiagonal__SWIG_1(swigCPtr, GfVec3f.getCPtr(arg0)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_float Get(SWIGTYPE_p_a_3__float m)
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix3f_Get(swigCPtr, SWIGTYPE_p_a_3__float.getCPtr(m));
+            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
+            return ret;
+        }
+
+        public SWIGTYPE_p_float data()
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix3f_data__SWIG_0(swigCPtr);
+            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
+            return ret;
+        }
+
+        public GfMatrix3f GetTranspose()
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetTranspose(swigCPtr), true);
+            return ret;
+        }
+
+        public GfMatrix3f GetInverse(ref double det, double eps)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetInverse__SWIG_0(swigCPtr, ref det, eps), true);
+            return ret;
+        }
+
+        public GfMatrix3f GetInverse(ref double det)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetInverse__SWIG_1(swigCPtr, ref det), true);
+            return ret;
+        }
+
+        public GfMatrix3f GetInverse()
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetInverse__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public double GetDeterminant()
+        {
+            double ret = UsdCsPINVOKE.GfMatrix3f_GetDeterminant(swigCPtr);
+            return ret;
+        }
+
+        public bool Orthonormalize(bool issueWarning)
+        {
+            bool ret = UsdCsPINVOKE.GfMatrix3f_Orthonormalize__SWIG_0(swigCPtr, issueWarning);
+            return ret;
+        }
+
+        public bool Orthonormalize()
+        {
+            bool ret = UsdCsPINVOKE.GfMatrix3f_Orthonormalize__SWIG_1(swigCPtr);
+            return ret;
+        }
+
+        public GfMatrix3f GetOrthonormalized(bool issueWarning)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetOrthonormalized__SWIG_0(swigCPtr, issueWarning), true);
+            return ret;
+        }
+
+        public GfMatrix3f GetOrthonormalized()
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetOrthonormalized__SWIG_1(swigCPtr), true);
+            return ret;
+        }
+
+        public double GetHandedness()
+        {
+            double ret = UsdCsPINVOKE.GfMatrix3f_GetHandedness(swigCPtr);
+            return ret;
+        }
+
+        public bool IsRightHanded()
+        {
+            bool ret = UsdCsPINVOKE.GfMatrix3f_IsRightHanded(swigCPtr);
+            return ret;
+        }
+
+        public bool IsLeftHanded()
+        {
+            bool ret = UsdCsPINVOKE.GfMatrix3f_IsLeftHanded(swigCPtr);
+            return ret;
+        }
+
+        public GfMatrix3f SetScale(float scaleFactor)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetScale__SWIG_0(swigCPtr, scaleFactor), false);
+            return ret;
+        }
+
+        public GfMatrix3f SetRotate(GfQuatf rot)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetRotate__SWIG_0(swigCPtr, GfQuatf.getCPtr(rot)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfMatrix3f SetRotate(GfRotation rot)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetRotate__SWIG_1(swigCPtr, GfRotation.getCPtr(rot)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfMatrix3f SetScale(GfVec3f scaleFactors)
+        {
+            GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetScale__SWIG_1(swigCPtr, GfVec3f.getCPtr(scaleFactors)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfRotation ExtractRotation()
+        {
+            GfRotation ret = new GfRotation(UsdCsPINVOKE.GfMatrix3f_ExtractRotation(swigCPtr), true);
+            return ret;
+        }
+
+        public GfVec3f DecomposeRotation(GfVec3f axis0, GfVec3f axis1, GfVec3f axis2)
+        {
+            GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfMatrix3f_DecomposeRotation(swigCPtr, GfVec3f.getCPtr(axis0), GfVec3f.getCPtr(axis1), GfVec3f.getCPtr(axis2)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public GfQuaternion ExtractRotationQuaternion()
+        {
+            GfQuaternion ret = new GfQuaternion(UsdCsPINVOKE.GfMatrix3f_ExtractRotationQuaternion(swigCPtr), true);
+            return ret;
+        }
+
+        public static bool Equals(GfMatrix3f lhs, GfMatrix3f rhs)
+        {
+            bool ret = UsdCsPINVOKE.GfMatrix3f_Equals(GfMatrix3f.getCPtr(lhs), GfMatrix3f.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.GfMatrix3f_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(GfMatrix3f lhs, GfMatrix3f rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || GfMatrix3f.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(GfMatrix3f lhs, GfMatrix3f rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return GfMatrix3f.Equals(this, rhs as GfMatrix3f);
+        }
+
+        public override string ToString()
+        {
+            string ret = UsdCsPINVOKE.GfMatrix3f_ToString(swigCPtr);
+            return ret;
+        }
+
+        public void CopyToArray(float[] dest)
+        {
+            UsdCsPINVOKE.GfMatrix3f_CopyToArray(swigCPtr, dest);
+        }
+
+        public void CopyFromArray(float[] src)
+        {
+            UsdCsPINVOKE.GfMatrix3f_CopyFromArray(swigCPtr, src);
+        }
+
+        public static readonly uint numRows = UsdCsPINVOKE.GfMatrix3f_numRows_get();
+        public static readonly uint numColumns = UsdCsPINVOKE.GfMatrix3f_numColumns_get();
     }
-  }
-
-  public GfMatrix3f() : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_0(), true) {
-  }
-
-  public GfMatrix3f(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_1(m00, m01, m02, m10, m11, m12, m20, m21, m22), true) {
-  }
-
-  public GfMatrix3f(float s) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_2(s), true) {
-  }
-
-  public GfMatrix3f(int s) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_3(s), true) {
-  }
-
-  public GfMatrix3f(GfVec3f v) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_4(GfVec3f.getCPtr(v)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix3f(StdDoubleVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_5(StdDoubleVectorVector.getCPtr(v)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix3f(StdFloatVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_6(StdFloatVectorVector.getCPtr(v)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix3f(GfRotation rot) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_7(GfRotation.getCPtr(rot)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix3f(GfQuatf rot) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_8(GfQuatf.getCPtr(rot)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix3f(GfMatrix3d m) : this(UsdCsPINVOKE.new_GfMatrix3f__SWIG_9(GfMatrix3d.getCPtr(m)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetRow(int i, GfVec3f v) {
-    UsdCsPINVOKE.GfMatrix3f_SetRow(swigCPtr, i, GfVec3f.getCPtr(v));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetColumn(int i, GfVec3f v) {
-    UsdCsPINVOKE.GfMatrix3f_SetColumn(swigCPtr, i, GfVec3f.getCPtr(v));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfVec3f GetRow(int i) {
-    GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfMatrix3f_GetRow(swigCPtr, i), true);
-    return ret;
-  }
-
-  public GfVec3f GetColumn(int i) {
-    GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfMatrix3f_GetColumn(swigCPtr, i), true);
-    return ret;
-  }
-
-  public GfMatrix3f Set(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_Set(swigCPtr, m00, m01, m02, m10, m11, m12, m20, m21, m22), false);
-    return ret;
-  }
-
-  public GfMatrix3f SetIdentity() {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetIdentity(swigCPtr), false);
-    return ret;
-  }
-
-  public GfMatrix3f SetZero() {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetZero(swigCPtr), false);
-    return ret;
-  }
-
-  public GfMatrix3f SetDiagonal(float s) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetDiagonal__SWIG_0(swigCPtr, s), false);
-    return ret;
-  }
-
-  public GfMatrix3f SetDiagonal(GfVec3f arg0) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetDiagonal__SWIG_1(swigCPtr, GfVec3f.getCPtr(arg0)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_float Get(SWIGTYPE_p_a_3__float m) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix3f_Get(swigCPtr, SWIGTYPE_p_a_3__float.getCPtr(m));
-    SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
-    return ret;
-  }
-
-  public SWIGTYPE_p_float data() {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix3f_data__SWIG_0(swigCPtr);
-    SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
-    return ret;
-  }
-
-  public GfMatrix3f GetTranspose() {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetTranspose(swigCPtr), true);
-    return ret;
-  }
-
-  public GfMatrix3f GetInverse(ref double det, double eps) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetInverse__SWIG_0(swigCPtr, ref det, eps), true);
-    return ret;
-  }
-
-  public GfMatrix3f GetInverse(ref double det) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetInverse__SWIG_1(swigCPtr, ref det), true);
-    return ret;
-  }
-
-  public GfMatrix3f GetInverse() {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetInverse__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public double GetDeterminant() {
-    double ret = UsdCsPINVOKE.GfMatrix3f_GetDeterminant(swigCPtr);
-    return ret;
-  }
-
-  public bool Orthonormalize(bool issueWarning) {
-    bool ret = UsdCsPINVOKE.GfMatrix3f_Orthonormalize__SWIG_0(swigCPtr, issueWarning);
-    return ret;
-  }
-
-  public bool Orthonormalize() {
-    bool ret = UsdCsPINVOKE.GfMatrix3f_Orthonormalize__SWIG_1(swigCPtr);
-    return ret;
-  }
-
-  public GfMatrix3f GetOrthonormalized(bool issueWarning) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetOrthonormalized__SWIG_0(swigCPtr, issueWarning), true);
-    return ret;
-  }
-
-  public GfMatrix3f GetOrthonormalized() {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_GetOrthonormalized__SWIG_1(swigCPtr), true);
-    return ret;
-  }
-
-  public double GetHandedness() {
-    double ret = UsdCsPINVOKE.GfMatrix3f_GetHandedness(swigCPtr);
-    return ret;
-  }
-
-  public bool IsRightHanded() {
-    bool ret = UsdCsPINVOKE.GfMatrix3f_IsRightHanded(swigCPtr);
-    return ret;
-  }
-
-  public bool IsLeftHanded() {
-    bool ret = UsdCsPINVOKE.GfMatrix3f_IsLeftHanded(swigCPtr);
-    return ret;
-  }
-
-  public GfMatrix3f SetScale(float scaleFactor) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetScale__SWIG_0(swigCPtr, scaleFactor), false);
-    return ret;
-  }
-
-  public GfMatrix3f SetRotate(GfQuatf rot) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetRotate__SWIG_0(swigCPtr, GfQuatf.getCPtr(rot)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfMatrix3f SetRotate(GfRotation rot) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetRotate__SWIG_1(swigCPtr, GfRotation.getCPtr(rot)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfMatrix3f SetScale(GfVec3f scaleFactors) {
-    GfMatrix3f ret = new GfMatrix3f(UsdCsPINVOKE.GfMatrix3f_SetScale__SWIG_1(swigCPtr, GfVec3f.getCPtr(scaleFactors)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfRotation ExtractRotation() {
-    GfRotation ret = new GfRotation(UsdCsPINVOKE.GfMatrix3f_ExtractRotation(swigCPtr), true);
-    return ret;
-  }
-
-  public GfVec3f DecomposeRotation(GfVec3f axis0, GfVec3f axis1, GfVec3f axis2) {
-    GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfMatrix3f_DecomposeRotation(swigCPtr, GfVec3f.getCPtr(axis0), GfVec3f.getCPtr(axis1), GfVec3f.getCPtr(axis2)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public GfQuaternion ExtractRotationQuaternion() {
-    GfQuaternion ret = new GfQuaternion(UsdCsPINVOKE.GfMatrix3f_ExtractRotationQuaternion(swigCPtr), true);
-    return ret;
-  }
-
-  public static bool Equals(GfMatrix3f lhs, GfMatrix3f rhs) {
-    bool ret = UsdCsPINVOKE.GfMatrix3f_Equals(GfMatrix3f.getCPtr(lhs), GfMatrix3f.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.GfMatrix3f_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(GfMatrix3f lhs, GfMatrix3f rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || GfMatrix3f.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(GfMatrix3f lhs, GfMatrix3f rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return GfMatrix3f.Equals(this, rhs as GfMatrix3f);
-    }
-  
-  public override string ToString() {
-    string ret = UsdCsPINVOKE.GfMatrix3f_ToString(swigCPtr);
-    return ret;
-  }
-
-  public void CopyToArray(float[] dest) {
-    UsdCsPINVOKE.GfMatrix3f_CopyToArray(swigCPtr, dest);
-  }
-
-  public void CopyFromArray(float[] src) {
-    UsdCsPINVOKE.GfMatrix3f_CopyFromArray(swigCPtr, src);
-  }
-
-  public static readonly uint numRows = UsdCsPINVOKE.GfMatrix3f_numRows_get();
-  public static readonly uint numColumns = UsdCsPINVOKE.GfMatrix3f_numColumns_get();
-}
-
 }

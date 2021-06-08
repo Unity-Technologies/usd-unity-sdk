@@ -8,228 +8,269 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class TfType : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class TfType : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal TfType(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TfType obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~TfType() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_TfType(swigCPtr);
+        internal TfType(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
-  }
 
-  public class FactoryBase : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal FactoryBase(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FactoryBase obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~FactoryBase() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_TfType_FactoryBase(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TfType obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+        ~TfType()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_TfType(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public class FactoryBase : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal FactoryBase(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FactoryBase obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~FactoryBase()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this) {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            UsdCsPINVOKE.delete_TfType_FactoryBase(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            public FactoryBase() : this(UsdCsPINVOKE.new_TfType_FactoryBase(), true)
+            {
+            }
+        }
+
+        public TfType() : this(UsdCsPINVOKE.new_TfType(), true)
+        {
+        }
+
+        public static TfType GetUnknownType()
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_GetUnknownType(), false);
+            return ret;
+        }
+
+        public static TfType Find(SWIGTYPE_p_std__type_info t)
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_Find(SWIGTYPE_p_std__type_info.getCPtr(t)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static TfType FindByTypeid(SWIGTYPE_p_std__type_info t)
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_FindByTypeid(SWIGTYPE_p_std__type_info.getCPtr(t)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static TfType FindByName(string name)
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_FindByName(name), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public TfType FindDerivedByName(string name)
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_FindDerivedByName(swigCPtr, name), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static TfType GetRoot()
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_GetRoot(), false);
+            return ret;
+        }
+
+        public string GetTypeName()
+        {
+            string ret = UsdCsPINVOKE.TfType_GetTypeName(swigCPtr);
+            return ret;
+        }
+
+        public SWIGTYPE_p_std__type_info GetTypeid()
+        {
+            SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(UsdCsPINVOKE.TfType_GetTypeid(swigCPtr), false);
+            return ret;
+        }
+
+        public static string GetCanonicalTypeName(SWIGTYPE_p_std__type_info arg0)
+        {
+            string ret = UsdCsPINVOKE.TfType_GetCanonicalTypeName(SWIGTYPE_p_std__type_info.getCPtr(arg0));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public StdStringVector GetAliases(TfType derivedType)
+        {
+            StdStringVector ret = new StdStringVector(UsdCsPINVOKE.TfType_GetAliases(swigCPtr, TfType.getCPtr(derivedType)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public TfTypeVector GetBaseTypes()
+        {
+            TfTypeVector ret = new TfTypeVector(UsdCsPINVOKE.TfType_GetBaseTypes(swigCPtr), true);
+            return ret;
+        }
+
+        public uint GetNBaseTypes(TfType arg0, uint maxBases)
+        {
+            uint ret = UsdCsPINVOKE.TfType_GetNBaseTypes(swigCPtr, TfType.getCPtr(arg0), maxBases);
+            return ret;
+        }
+
+        public TfTypeVector GetDirectlyDerivedTypes()
+        {
+            TfTypeVector ret = new TfTypeVector(UsdCsPINVOKE.TfType_GetDirectlyDerivedTypes(swigCPtr), true);
+            return ret;
+        }
+
+        public TfType GetCanonicalType()
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_GetCanonicalType(swigCPtr), false);
+            return ret;
+        }
+
+        public void GetAllDerivedTypes(SWIGTYPE_p_std__setT_TfType_t result)
+        {
+            UsdCsPINVOKE.TfType_GetAllDerivedTypes(swigCPtr, SWIGTYPE_p_std__setT_TfType_t.getCPtr(result));
+        }
+
+        public void GetAllAncestorTypes(TfTypeVector result)
+        {
+            UsdCsPINVOKE.TfType_GetAllAncestorTypes(swigCPtr, TfTypeVector.getCPtr(result));
+        }
+
+        public bool IsA(TfType queryType)
+        {
+            bool ret = UsdCsPINVOKE.TfType_IsA(swigCPtr, TfType.getCPtr(queryType));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool IsUnknown()
+        {
+            bool ret = UsdCsPINVOKE.TfType_IsUnknown(swigCPtr);
+            return ret;
+        }
+
+        public bool IsRoot()
+        {
+            bool ret = UsdCsPINVOKE.TfType_IsRoot(swigCPtr);
+            return ret;
+        }
+
+        public bool IsEnumType()
+        {
+            bool ret = UsdCsPINVOKE.TfType_IsEnumType(swigCPtr);
+            return ret;
+        }
+
+        public bool IsPlainOldDataType()
+        {
+            bool ret = UsdCsPINVOKE.TfType_IsPlainOldDataType(swigCPtr);
+            return ret;
+        }
+
+        public uint GetSizeof()
+        {
+            uint ret = UsdCsPINVOKE.TfType_GetSizeof(swigCPtr);
+            return ret;
+        }
+
+        public static TfType Declare(string typeName)
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_Declare(typeName), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void AddAlias(TfType arg0, string name)
+        {
+            UsdCsPINVOKE.TfType_AddAlias(swigCPtr, TfType.getCPtr(arg0), name);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public TfType Alias(TfType arg0, string name)
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.TfType_Alias(swigCPtr, TfType.getCPtr(arg0), name), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_void CastToAncestor(TfType ancestor, SWIGTYPE_p_void addr)
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.TfType_CastToAncestor__SWIG_0(swigCPtr, TfType.getCPtr(ancestor), SWIGTYPE_p_void.getCPtr(addr));
+            SWIGTYPE_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_void(cPtr, false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_void CastFromAncestor(TfType ancestor, SWIGTYPE_p_void addr)
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.TfType_CastFromAncestor__SWIG_0(swigCPtr, TfType.getCPtr(ancestor), SWIGTYPE_p_void.getCPtr(addr));
+            SWIGTYPE_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_void(cPtr, false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public enum LegacyFlags
+        {
+            ABSTRACT = 0x01,
+            CONCRETE = 0x02,
+            MANUFACTURABLE = 0x08
+        }
     }
-  
-    public FactoryBase() : this(UsdCsPINVOKE.new_TfType_FactoryBase(), true) {
-    }
-  
-  }
-
-  public TfType() : this(UsdCsPINVOKE.new_TfType(), true) {
-  }
-
-  public static TfType GetUnknownType() {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_GetUnknownType(), false);
-    return ret;
-  }
-
-  public static TfType Find(SWIGTYPE_p_std__type_info t) {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_Find(SWIGTYPE_p_std__type_info.getCPtr(t)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static TfType FindByTypeid(SWIGTYPE_p_std__type_info t) {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_FindByTypeid(SWIGTYPE_p_std__type_info.getCPtr(t)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static TfType FindByName(string name) {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_FindByName(name), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public TfType FindDerivedByName(string name) {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_FindDerivedByName(swigCPtr, name), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static TfType GetRoot() {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_GetRoot(), false);
-    return ret;
-  }
-
-  public string GetTypeName() {
-    string ret = UsdCsPINVOKE.TfType_GetTypeName(swigCPtr);
-    return ret;
-  }
-
-  public SWIGTYPE_p_std__type_info GetTypeid() {
-    SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(UsdCsPINVOKE.TfType_GetTypeid(swigCPtr), false);
-    return ret;
-  }
-
-  public static string GetCanonicalTypeName(SWIGTYPE_p_std__type_info arg0) {
-    string ret = UsdCsPINVOKE.TfType_GetCanonicalTypeName(SWIGTYPE_p_std__type_info.getCPtr(arg0));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public StdStringVector GetAliases(TfType derivedType) {
-    StdStringVector ret = new StdStringVector(UsdCsPINVOKE.TfType_GetAliases(swigCPtr, TfType.getCPtr(derivedType)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public TfTypeVector GetBaseTypes() {
-    TfTypeVector ret = new TfTypeVector(UsdCsPINVOKE.TfType_GetBaseTypes(swigCPtr), true);
-    return ret;
-  }
-
-  public uint GetNBaseTypes(TfType arg0, uint maxBases) {
-    uint ret = UsdCsPINVOKE.TfType_GetNBaseTypes(swigCPtr, TfType.getCPtr(arg0), maxBases);
-    return ret;
-  }
-
-  public TfTypeVector GetDirectlyDerivedTypes() {
-    TfTypeVector ret = new TfTypeVector(UsdCsPINVOKE.TfType_GetDirectlyDerivedTypes(swigCPtr), true);
-    return ret;
-  }
-
-  public TfType GetCanonicalType() {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_GetCanonicalType(swigCPtr), false);
-    return ret;
-  }
-
-  public void GetAllDerivedTypes(SWIGTYPE_p_std__setT_TfType_t result) {
-    UsdCsPINVOKE.TfType_GetAllDerivedTypes(swigCPtr, SWIGTYPE_p_std__setT_TfType_t.getCPtr(result));
-  }
-
-  public void GetAllAncestorTypes(TfTypeVector result) {
-    UsdCsPINVOKE.TfType_GetAllAncestorTypes(swigCPtr, TfTypeVector.getCPtr(result));
-  }
-
-  public bool IsA(TfType queryType) {
-    bool ret = UsdCsPINVOKE.TfType_IsA(swigCPtr, TfType.getCPtr(queryType));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool IsUnknown() {
-    bool ret = UsdCsPINVOKE.TfType_IsUnknown(swigCPtr);
-    return ret;
-  }
-
-  public bool IsRoot() {
-    bool ret = UsdCsPINVOKE.TfType_IsRoot(swigCPtr);
-    return ret;
-  }
-
-  public bool IsEnumType() {
-    bool ret = UsdCsPINVOKE.TfType_IsEnumType(swigCPtr);
-    return ret;
-  }
-
-  public bool IsPlainOldDataType() {
-    bool ret = UsdCsPINVOKE.TfType_IsPlainOldDataType(swigCPtr);
-    return ret;
-  }
-
-  public uint GetSizeof() {
-    uint ret = UsdCsPINVOKE.TfType_GetSizeof(swigCPtr);
-    return ret;
-  }
-
-  public static TfType Declare(string typeName) {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_Declare(typeName), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void AddAlias(TfType arg0, string name) {
-    UsdCsPINVOKE.TfType_AddAlias(swigCPtr, TfType.getCPtr(arg0), name);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public TfType Alias(TfType arg0, string name) {
-    TfType ret = new TfType(UsdCsPINVOKE.TfType_Alias(swigCPtr, TfType.getCPtr(arg0), name), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_void CastToAncestor(TfType ancestor, SWIGTYPE_p_void addr) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.TfType_CastToAncestor__SWIG_0(swigCPtr, TfType.getCPtr(ancestor), SWIGTYPE_p_void.getCPtr(addr));
-    SWIGTYPE_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_void(cPtr, false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_void CastFromAncestor(TfType ancestor, SWIGTYPE_p_void addr) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.TfType_CastFromAncestor__SWIG_0(swigCPtr, TfType.getCPtr(ancestor), SWIGTYPE_p_void.getCPtr(addr));
-    SWIGTYPE_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_void(cPtr, false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public enum LegacyFlags {
-    ABSTRACT = 0x01,
-    CONCRETE = 0x02,
-    MANUFACTURABLE = 0x08
-  }
-
-}
-
 }
