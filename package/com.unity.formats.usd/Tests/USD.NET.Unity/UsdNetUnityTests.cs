@@ -150,7 +150,7 @@ namespace USD.NET.Unity.Tests
             {
                 AssertEqual(first as IDictionary, second as IDictionary);
             }
-            else if ((first as Array).Length != 0)
+            else if ((first as Array)?.Length != 0)
             {
                 AssertEqual(first as Array, second as Array);
             }

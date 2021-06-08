@@ -7,6 +7,7 @@
         "Unity.Recorder.Editor",
         "Unity.Formats.USD.Runtime",
         "Unity.Formats.USD.Editor",
+        "USD.NET",
         "USD.NET.Unity"
     ],
     "includePlatforms": [
@@ -19,8 +20,7 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll",
-        "USD.NET.dll"
+        "nunit.framework.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

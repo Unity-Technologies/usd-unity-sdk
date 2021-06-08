@@ -2,6 +2,7 @@
     "name": "Unity.Formats.USD.Runtime",
     "references": [
         "Unity.Timeline",
+        "USD.NET",
         "USD.NET.Unity"
     ],
     "optionalUnityReferences": [],

@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Unity.Formats.USD.Runtime",
-        "Unity.Recorder.Editor"
+        "Unity.Recorder.Editor",
+        "USD.NET"
     ],
     "includePlatforms": [
         "Editor"

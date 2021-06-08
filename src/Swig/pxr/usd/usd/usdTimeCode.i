@@ -28,7 +28,7 @@ namespace std {
         return new UsdTimeCode(value);
     }
   public static bool operator==(UsdTimeCode lhs, UsdTimeCode rhs){
-      // The Swig binding glew will re-enter this operator comparing to null, so 
+    // The Swig binding glew will re-enter this operator comparing to null, so
     // that case must be handled explicitly to avoid an infinite loop. This is still
     // not great, since it crosses the C#/C++ barrier twice. A better approache might
     // be to return a simple value from C++ that can be compared in C#.
@@ -43,6 +43,13 @@ namespace std {
     return UsdTimeCode.Equals(this, rhs as UsdTimeCode);
   }
 %}
+
+%extend UsdTimeCode {
+  %csmethodmodifiers GetHashCode() "override public";
+  int GetHashCode() {
+    return (int)TfHash()(self);
+  }
+ }
 
 //WRAP_EQUAL( UsdTimeCode )
 

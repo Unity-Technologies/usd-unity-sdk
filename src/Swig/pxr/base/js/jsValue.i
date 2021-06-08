@@ -18,4 +18,6 @@
 #include "pxr/base/js/value.h"
 %}
 
+%rename (GetJsType) JsValue::GetType;
+
 %include "pxr/base/js/value.h"

@@ -1,0 +1,26 @@
+{
+    "name": "USD.NET.Tests",
+    "references": [
+        "USD.NET",
+        "UnityEngine.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "LinuxStandalone64",
+        "macOSStandalone",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+      "UNITY_INCLUDE_TESTS"
+    ],
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -7,8 +7,7 @@ Start by understanding the layout of the source code:
  * [/Images](/Images) - Readme images.
  * [/src](/src) - Code from which all projects are generated.
  * [/src/Swig](/src/Swig) - Hand coded and generated swig inputs.
- * [/src/Tests](/src/Tests) - Unit tests for USD.NET and USD.NET.Unity.
- * [/src/USD.NET](/src/USD.NET) - Generated USD bindings and serialization foundation.
+ * [/src/USD.NET](/src/USD.NET) - Generated USD bindings and serialization foundation. Note that USD.NET sources are now included in the package folder.
  * [/src/UsdCs](/src/UsdCs) - The USD C# bindings library, pure C API.
  * [/package](/package) - The source for the Unity package.
  * [/TestProject](/TestProject) - Unity project for testing source package in CI.
@@ -32,6 +31,7 @@ and can build the native library (UsdCs), the C# library (USD.NET) and the tests
  * USD 20.08 without python support` (used to minimize runtime dependencies of the bindings)
  * CMake 3.19 (available in your system PATH)
  * Swig 3.0.12 (available in your system PATH)
+ * Mono 5.1x (available in your system PATH). As of v3.0.0 of this package, USD.NET sources are included in the package folder so you only need this if you intend to build USD.NET manually.
  
  ##### Windows
  * Visual Studio 2017
@@ -40,7 +40,7 @@ and can build the native library (UsdCs), the C# library (USD.NET) and the tests
  * gcc 7
  
  ##### OSX
- * xcode v????
+ * xcode
  
 #### Building USD 
 
@@ -56,17 +56,23 @@ The bindings are made of two libraries:
 * UsdCs: the native USD C# bindings library (C++, SWIG generated)
 * USD.NET: the C# library (serialization API)
 
-The simplest way to build the bindings libraries is to use the provided python build script with the corresponding component (usdcs or usdnet)
+The simplest way to build the bindings is to use the provided python build script with the corresponding component (usdcs or usdnet).
+Note that USD.NET sources are now included in the package folder and will be automatically compield by Unity. Use the CMake usdnet component if you are only interested in the C# bindings.
 
-Start by setting a USD_LOCATION environment variable pointing to a directory containing the 2 different flavors of USD (python and no puython)
+Start by setting a USD_LOCATION environment variable pointing to a directory containing the 2 different flavors of USD (python and no python).
+The build script expects the following folder structure:
+* $USD_LOCATION
+    * usd_v20.08-python36
+        * usd_v20.08
+        * usd_v20.08_no_python
 
 In a terminal, running the following command from the root of the repository will build UsdCs by default:
 
-`python3 bin/build.py 20.08 $USD_LOCATION 2019.4`
+`python3 bin/build.py --usd_version 20.08 --library_path $USD_LOCATION`
 
-You can specify the component using the --component option. The following command will build USD.NET:
+You can specify the component using the --component option. The following command will build USD.NET, using the mono compiler installed on your machine:
 
-`python3 bin/build.py 20.08 $USD_LOCATION 2019.4 --component usdnet`
+`python3 bin/build.py --usd_version 20.08 --library_path $USD_LOCATION --use_custom_mono --component usdnet`
 
 **Unity developers**: to download the USD binaries from stevedore use the `--download` option
 

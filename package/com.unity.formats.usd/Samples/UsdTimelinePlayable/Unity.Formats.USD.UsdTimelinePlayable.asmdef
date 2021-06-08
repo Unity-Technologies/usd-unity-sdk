@@ -1,6 +1,7 @@
 {
     "name": "Unity.Formats.USD.UsdTimelinePlayable",
     "references": [
+        "USD.NET",
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Runtime"
     ],
@@ -16,9 +17,7 @@
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
-    "precompiledReferences": [
-        "USD.NET.dll"
-    ],
+    "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": []
 }
