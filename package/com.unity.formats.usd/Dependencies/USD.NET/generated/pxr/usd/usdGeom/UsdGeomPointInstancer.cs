@@ -8,429 +8,505 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdGeomPointInstancer : UsdGeomBoundable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class UsdGeomPointInstancer : UsdGeomBoundable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal UsdGeomPointInstancer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomPointInstancer_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomPointInstancer obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdGeomPointInstancer() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdGeomPointInstancer(swigCPtr);
+        internal UsdGeomPointInstancer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomPointInstancer_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomPointInstancer obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdGeomPointInstancer()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdGeomPointInstancer(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public UsdGeomPointInstancer(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdGeomPointInstancer__SWIG_0(UsdPrim.getCPtr(prim)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdGeomPointInstancer() : this(UsdCsPINVOKE.new_UsdGeomPointInstancer__SWIG_1(), true)
+        {
+        }
+
+        public UsdGeomPointInstancer(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdGeomPointInstancer__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited)
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
+            return ret;
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_1(), false);
+            return ret;
+        }
+
+        public new static UsdGeomPointInstancer Get(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdGeomPointInstancer ret = new UsdGeomPointInstancer(UsdCsPINVOKE.UsdGeomPointInstancer_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static UsdGeomPointInstancer Define(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdGeomPointInstancer ret = new UsdGeomPointInstancer(UsdCsPINVOKE.UsdGeomPointInstancer_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute GetProtoIndicesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetProtoIndicesAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateProtoIndicesAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateProtoIndicesAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateProtoIndicesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetIdsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetIdsAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateIdsAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateIdsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateIdsAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateIdsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateIdsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateIdsAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetPositionsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetPositionsAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreatePositionsAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePositionsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreatePositionsAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePositionsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreatePositionsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePositionsAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetOrientationsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetOrientationsAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateOrientationsAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateOrientationsAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateOrientationsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetScalesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetScalesAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateScalesAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateScalesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateScalesAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateScalesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateScalesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateScalesAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetVelocitiesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetVelocitiesAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateVelocitiesAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateVelocitiesAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateVelocitiesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetAccelerationsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetAccelerationsAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateAccelerationsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetAngularVelocitiesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetAngularVelocitiesAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateAngularVelocitiesAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateAngularVelocitiesAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateAngularVelocitiesAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute GetInvisibleIdsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetInvisibleIdsAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateInvisibleIdsAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateInvisibleIdsAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateInvisibleIdsAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdRelationship GetPrototypesRel()
+        {
+            UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdGeomPointInstancer_GetPrototypesRel(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdRelationship CreatePrototypesRel()
+        {
+            UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePrototypesRel(swigCPtr), true);
+            return ret;
+        }
+
+        public bool ActivateId(long id)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ActivateId(swigCPtr, id);
+            return ret;
+        }
+
+        public bool ActivateIds(VtInt64Array ids)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ActivateIds(swigCPtr, VtInt64Array.getCPtr(ids));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ActivateAllIds()
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ActivateAllIds(swigCPtr);
+            return ret;
+        }
+
+        public bool DeactivateId(long id)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_DeactivateId(swigCPtr, id);
+            return ret;
+        }
+
+        public bool DeactivateIds(VtInt64Array ids)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_DeactivateIds(swigCPtr, VtInt64Array.getCPtr(ids));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool VisId(long id, UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_VisId(swigCPtr, id, UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool VisIds(VtInt64Array ids, UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_VisIds(swigCPtr, VtInt64Array.getCPtr(ids), UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool VisAllIds(UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_VisAllIds(swigCPtr, UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool InvisId(long id, UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_InvisId(swigCPtr, id, UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool InvisIds(VtInt64Array ids, UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_InvisIds(swigCPtr, VtInt64Array.getCPtr(ids), UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdGeomBoolVector ComputeMaskAtTime(UsdTimeCode time, VtInt64Array ids)
+        {
+            UsdGeomBoolVector ret = new UsdGeomBoolVector(UsdCsPINVOKE.UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time), VtInt64Array.getCPtr(ids)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdGeomBoolVector ComputeMaskAtTime(UsdTimeCode time)
+        {
+            UsdGeomBoolVector ret = new UsdGeomBoolVector(UsdCsPINVOKE.UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_1(swigCPtr, UsdTimeCode.getCPtr(time)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdTimeCode time, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms, UsdGeomPointInstancer.MaskApplication applyMask)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms, (int)applyMask);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdTimeCode time, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdTimeCode time, UsdTimeCode baseTime)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_2(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms, UsdGeomPointInstancer.MaskApplication applyMask)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_0(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms, (int)applyMask);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_1(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_2(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray accelerations, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask, float velocityScale)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_3(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(accelerations), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask), velocityScale);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray accelerations, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_4(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(accelerations), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeExtentAtTime(VtVec3fArray extent, UsdTimeCode time, UsdTimeCode baseTime)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTime__SWIG_0(swigCPtr, VtVec3fArray.getCPtr(extent), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeExtentAtTime(VtVec3fArray extent, UsdTimeCode time, UsdTimeCode baseTime, GfMatrix4d transform)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTime__SWIG_1(swigCPtr, VtVec3fArray.getCPtr(extent), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime), GfMatrix4d.getCPtr(transform));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeExtentAtTimes(VtVec3fArrayVector extents, UsdTimeCodeVector times, UsdTimeCode baseTime)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_0(swigCPtr, VtVec3fArrayVector.getCPtr(extents), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool ComputeExtentAtTimes(VtVec3fArrayVector extents, UsdTimeCodeVector times, UsdTimeCode baseTime, GfMatrix4d transform)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_1(swigCPtr, VtVec3fArrayVector.getCPtr(extents), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), GfMatrix4d.getCPtr(transform));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public enum ProtoXformInclusion
+        {
+            IncludeProtoXform,
+            ExcludeProtoXform
+        }
+
+        public enum MaskApplication
+        {
+            ApplyMask,
+            IgnoreMask
+        }
     }
-  }
-
-  public UsdGeomPointInstancer(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdGeomPointInstancer__SWIG_0(UsdPrim.getCPtr(prim)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdGeomPointInstancer() : this(UsdCsPINVOKE.new_UsdGeomPointInstancer__SWIG_1(), true) {
-  }
-
-  public UsdGeomPointInstancer(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdGeomPointInstancer__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
-    return ret;
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomPointInstancer_GetSchemaAttributeNames__SWIG_1(), false);
-    return ret;
-  }
-
-  public new static UsdGeomPointInstancer Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomPointInstancer ret = new UsdGeomPointInstancer(UsdCsPINVOKE.UsdGeomPointInstancer_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdGeomPointInstancer Define(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomPointInstancer ret = new UsdGeomPointInstancer(UsdCsPINVOKE.UsdGeomPointInstancer_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute GetProtoIndicesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetProtoIndicesAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateProtoIndicesAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateProtoIndicesAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateProtoIndicesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateProtoIndicesAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetIdsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetIdsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateIdsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateIdsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateIdsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateIdsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateIdsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateIdsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetPositionsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetPositionsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreatePositionsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePositionsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreatePositionsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePositionsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreatePositionsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePositionsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetOrientationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetOrientationsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateOrientationsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateOrientationsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateOrientationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateOrientationsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetScalesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetScalesAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateScalesAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateScalesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateScalesAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateScalesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateScalesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateScalesAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetVelocitiesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetVelocitiesAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateVelocitiesAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateVelocitiesAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateVelocitiesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateVelocitiesAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetAccelerationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetAccelerationsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateAccelerationsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateAccelerationsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAccelerationsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetAngularVelocitiesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetAngularVelocitiesAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateAngularVelocitiesAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateAngularVelocitiesAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateAngularVelocitiesAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateAngularVelocitiesAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute GetInvisibleIdsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_GetInvisibleIdsAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateInvisibleIdsAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateInvisibleIdsAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateInvisibleIdsAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomPointInstancer_CreateInvisibleIdsAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdRelationship GetPrototypesRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdGeomPointInstancer_GetPrototypesRel(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdRelationship CreatePrototypesRel() {
-    UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdGeomPointInstancer_CreatePrototypesRel(swigCPtr), true);
-    return ret;
-  }
-
-  public bool ActivateId(long id) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ActivateId(swigCPtr, id);
-    return ret;
-  }
-
-  public bool ActivateIds(VtInt64Array ids) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ActivateIds(swigCPtr, VtInt64Array.getCPtr(ids));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ActivateAllIds() {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ActivateAllIds(swigCPtr);
-    return ret;
-  }
-
-  public bool DeactivateId(long id) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_DeactivateId(swigCPtr, id);
-    return ret;
-  }
-
-  public bool DeactivateIds(VtInt64Array ids) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_DeactivateIds(swigCPtr, VtInt64Array.getCPtr(ids));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool VisId(long id, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_VisId(swigCPtr, id, UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool VisIds(VtInt64Array ids, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_VisIds(swigCPtr, VtInt64Array.getCPtr(ids), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool VisAllIds(UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_VisAllIds(swigCPtr, UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool InvisId(long id, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_InvisId(swigCPtr, id, UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool InvisIds(VtInt64Array ids, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_InvisIds(swigCPtr, VtInt64Array.getCPtr(ids), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdGeomBoolVector ComputeMaskAtTime(UsdTimeCode time, VtInt64Array ids) {
-    UsdGeomBoolVector ret = new UsdGeomBoolVector(UsdCsPINVOKE.UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(time), VtInt64Array.getCPtr(ids)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdGeomBoolVector ComputeMaskAtTime(UsdTimeCode time) {
-    UsdGeomBoolVector ret = new UsdGeomBoolVector(UsdCsPINVOKE.UsdGeomPointInstancer_ComputeMaskAtTime__SWIG_1(swigCPtr, UsdTimeCode.getCPtr(time)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdTimeCode time, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms, UsdGeomPointInstancer.MaskApplication applyMask) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_0(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms, (int)applyMask);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdTimeCode time, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_1(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdTimeCode time, UsdTimeCode baseTime) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_2(swigCPtr, VtMatrix4dArray.getCPtr(xforms), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms, UsdGeomPointInstancer.MaskApplication applyMask) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_0(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms, (int)applyMask);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime, UsdGeomPointInstancer.ProtoXformInclusion doProtoXforms) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_1(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), (int)doProtoXforms);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeInstanceTransformsAtTimes(VtMatrix4dArrayVector xformsArray, UsdTimeCodeVector times, UsdTimeCode baseTime) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTimes__SWIG_2(swigCPtr, VtMatrix4dArrayVector.getCPtr(xformsArray), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray accelerations, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask, float velocityScale) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_3(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(accelerations), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask), velocityScale);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool ComputeInstanceTransformsAtTime(VtMatrix4dArray xforms, UsdStageWeakPtr stage, UsdTimeCode time, VtIntArray protoIndices, VtVec3fArray positions, VtVec3fArray velocities, UsdTimeCode velocitiesSampleTime, VtVec3fArray accelerations, VtVec3fArray scales, VtQuathArray orientations, VtVec3fArray angularVelocities, UsdTimeCode angularVelocitiesSampleTime, SdfPathVector protoPaths, UsdGeomBoolVector mask) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeInstanceTransformsAtTime__SWIG_4(VtMatrix4dArray.getCPtr(xforms), UsdStageWeakPtr.getCPtr(stage), UsdTimeCode.getCPtr(time), VtIntArray.getCPtr(protoIndices), VtVec3fArray.getCPtr(positions), VtVec3fArray.getCPtr(velocities), UsdTimeCode.getCPtr(velocitiesSampleTime), VtVec3fArray.getCPtr(accelerations), VtVec3fArray.getCPtr(scales), VtQuathArray.getCPtr(orientations), VtVec3fArray.getCPtr(angularVelocities), UsdTimeCode.getCPtr(angularVelocitiesSampleTime), SdfPathVector.getCPtr(protoPaths), UsdGeomBoolVector.getCPtr(mask));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeExtentAtTime(VtVec3fArray extent, UsdTimeCode time, UsdTimeCode baseTime) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTime__SWIG_0(swigCPtr, VtVec3fArray.getCPtr(extent), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeExtentAtTime(VtVec3fArray extent, UsdTimeCode time, UsdTimeCode baseTime, GfMatrix4d transform) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTime__SWIG_1(swigCPtr, VtVec3fArray.getCPtr(extent), UsdTimeCode.getCPtr(time), UsdTimeCode.getCPtr(baseTime), GfMatrix4d.getCPtr(transform));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeExtentAtTimes(VtVec3fArrayVector extents, UsdTimeCodeVector times, UsdTimeCode baseTime) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_0(swigCPtr, VtVec3fArrayVector.getCPtr(extents), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ComputeExtentAtTimes(VtVec3fArrayVector extents, UsdTimeCodeVector times, UsdTimeCode baseTime, GfMatrix4d transform) {
-    bool ret = UsdCsPINVOKE.UsdGeomPointInstancer_ComputeExtentAtTimes__SWIG_1(swigCPtr, VtVec3fArrayVector.getCPtr(extents), UsdTimeCodeVector.getCPtr(times), UsdTimeCode.getCPtr(baseTime), GfMatrix4d.getCPtr(transform));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public enum ProtoXformInclusion {
-    IncludeProtoXform,
-    ExcludeProtoXform
-  }
-
-  public enum MaskApplication {
-    ApplyMask,
-    IgnoreMask
-  }
-
-}
-
 }

@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -39,8 +39,8 @@ namespace USD.NET.Tests
                 // The TypeBinder will generate code at runtime as a performance optimization, this must
                 // be disabled when IL2CPP is enabled, since dynamic code generation is not possible.
 #if ENABLE_IL2CPP
-        TypeBinder.EnableCodeGeneration = false;
-        Debug.Log("USD: Dynamic code generation disabled for IL2CPP.");
+                TypeBinder.EnableCodeGeneration = false;
+                Debug.Log("USD: Dynamic code generation disabled for IL2CPP.");
 #endif
 
                 // Type registration enables automatic conversion from Unity-native types to USD types (e.g.
@@ -69,21 +69,21 @@ namespace USD.NET.Tests
             var fileInfo = new System.IO.FileInfo(sourceFilePath);
             var supPath = System.IO.Path.Combine(fileInfo.DirectoryName, "Plugins");
 #else
-      var supPath = UnityEngine.Application.dataPath.Replace("\\", "/") + "/Plugins";
+            var supPath = UnityEngine.Application.dataPath.Replace("\\", "/") + "/Plugins";
 #endif
 
 #if (UNITY_EDITOR_WIN)
             supPath += @"/x86_64/usd/";
 #elif (UNITY_EDITOR_OSX)
-      supPath += @"/x86_64/usd/";
+            supPath += @"/x86_64/usd/";
 #elif (UNITY_EDITOR_LINUX)
-      supPath += @"/x86_64/usd/";
+            supPath += @"/x86_64/usd/";
 #elif (UNITY_STANDALONE_WIN)
-      supPath += @"/usd/";
+            supPath += @"/usd/";
 #elif (UNITY_STANDALONE_OSX)
-      supPath += @"/usd/";
+            supPath += @"/usd/";
 #elif (UNITY_STANDALONE_LINUX)
-      supPath += @"/usd/";
+            supPath += @"/usd/";
 #endif
 
             Debug.LogFormat("Registering plugins: {0}", supPath);

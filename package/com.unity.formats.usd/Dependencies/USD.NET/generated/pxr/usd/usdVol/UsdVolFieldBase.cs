@@ -8,64 +8,75 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdVolFieldBase : UsdGeomBoundable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class UsdVolFieldBase : UsdGeomBoundable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal UsdVolFieldBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdVolFieldBase_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdVolFieldBase obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdVolFieldBase() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdVolFieldBase(swigCPtr);
+        internal UsdVolFieldBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdVolFieldBase_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdVolFieldBase obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdVolFieldBase()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdVolFieldBase(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public UsdVolFieldBase(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdVolFieldBase__SWIG_0(UsdPrim.getCPtr(prim)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdVolFieldBase() : this(UsdCsPINVOKE.new_UsdVolFieldBase__SWIG_1(), true)
+        {
+        }
+
+        public UsdVolFieldBase(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdVolFieldBase__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited)
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdVolFieldBase_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
+            return ret;
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdVolFieldBase_GetSchemaAttributeNames__SWIG_1(), false);
+            return ret;
+        }
+
+        public new static UsdVolFieldBase Get(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdVolFieldBase ret = new UsdVolFieldBase(UsdCsPINVOKE.UsdVolFieldBase_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
-  }
-
-  public UsdVolFieldBase(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdVolFieldBase__SWIG_0(UsdPrim.getCPtr(prim)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdVolFieldBase() : this(UsdCsPINVOKE.new_UsdVolFieldBase__SWIG_1(), true) {
-  }
-
-  public UsdVolFieldBase(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdVolFieldBase__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdVolFieldBase_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
-    return ret;
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdVolFieldBase_GetSchemaAttributeNames__SWIG_1(), false);
-    return ret;
-  }
-
-  public new static UsdVolFieldBase Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdVolFieldBase ret = new UsdVolFieldBase(UsdCsPINVOKE.UsdVolFieldBase_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
-
 }

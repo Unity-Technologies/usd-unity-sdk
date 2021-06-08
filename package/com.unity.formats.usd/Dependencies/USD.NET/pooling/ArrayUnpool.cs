@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,29 +14,33 @@
 
 using System;
 
-namespace USD.NET {
+namespace USD.NET
+{
+    /// <summary>
+    /// An non-pooled array allocator, to avoid forking logic when pooling is not desired.
+    /// </summary>
+    public class ArrayUnpool : ArrayPool
+    {
+        override public T[] Malloc<T>(uint size)
+        {
+            return new T[size];
+        }
 
-  /// <summary>
-  /// An non-pooled array allocator, to avoid forking logic when pooling is not desired.
-  /// </summary>
-  public class ArrayUnpool : ArrayPool {
+        override public void Free(Type type, uint size, Array array)
+        {
+        }
 
-    override public T[] Malloc<T>(uint size) {
-      return new T[size];
+        override public object MallocHandle(Type type)
+        {
+            return type.GetConstructor(sm_defaultCtor).Invoke(sm_noParameters);
+        }
+
+        override public void FreeHandle<T>(T handle)
+        {
+        }
+
+        override public void FreeHandle(Type type, object handle)
+        {
+        }
     }
-
-    override public void Free(Type type, uint size, Array array) {
-    }
-
-    override public object MallocHandle(Type type) {
-      return type.GetConstructor(sm_defaultCtor).Invoke(sm_noParameters);
-    }
-
-    override public void FreeHandle<T>(T handle) {
-    }
-
-    override public void FreeHandle(Type type, object handle) {
-    }
-
-  }
 }

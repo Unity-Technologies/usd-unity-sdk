@@ -8,193 +8,231 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class GfMatrix2f : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class GfMatrix2f : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal GfMatrix2f(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfMatrix2f obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~GfMatrix2f() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_GfMatrix2f(swigCPtr);
+        internal GfMatrix2f(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(GfMatrix2f obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~GfMatrix2f()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_GfMatrix2f(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public GfMatrix2f() : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_0(), true)
+        {
+        }
+
+        public GfMatrix2f(float m00, float m01, float m10, float m11) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_1(m00, m01, m10, m11), true)
+        {
+        }
+
+        public GfMatrix2f(float s) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_2(s), true)
+        {
+        }
+
+        public GfMatrix2f(int s) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_3(s), true)
+        {
+        }
+
+        public GfMatrix2f(GfVec2f v) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_4(GfVec2f.getCPtr(v)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix2f(StdDoubleVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_5(StdDoubleVectorVector.getCPtr(v)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix2f(StdFloatVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_6(StdFloatVectorVector.getCPtr(v)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfMatrix2f(GfMatrix2d m) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_7(GfMatrix2d.getCPtr(m)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetRow(int i, GfVec2f v)
+        {
+            UsdCsPINVOKE.GfMatrix2f_SetRow(swigCPtr, i, GfVec2f.getCPtr(v));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetColumn(int i, GfVec2f v)
+        {
+            UsdCsPINVOKE.GfMatrix2f_SetColumn(swigCPtr, i, GfVec2f.getCPtr(v));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public GfVec2f GetRow(int i)
+        {
+            GfVec2f ret = new GfVec2f(UsdCsPINVOKE.GfMatrix2f_GetRow(swigCPtr, i), true);
+            return ret;
+        }
+
+        public GfVec2f GetColumn(int i)
+        {
+            GfVec2f ret = new GfVec2f(UsdCsPINVOKE.GfMatrix2f_GetColumn(swigCPtr, i), true);
+            return ret;
+        }
+
+        public GfMatrix2f Set(float m00, float m01, float m10, float m11)
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_Set(swigCPtr, m00, m01, m10, m11), false);
+            return ret;
+        }
+
+        public GfMatrix2f SetIdentity()
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetIdentity(swigCPtr), false);
+            return ret;
+        }
+
+        public GfMatrix2f SetZero()
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetZero(swigCPtr), false);
+            return ret;
+        }
+
+        public GfMatrix2f SetDiagonal(float s)
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetDiagonal__SWIG_0(swigCPtr, s), false);
+            return ret;
+        }
+
+        public GfMatrix2f SetDiagonal(GfVec2f arg0)
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetDiagonal__SWIG_1(swigCPtr, GfVec2f.getCPtr(arg0)), false);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SWIGTYPE_p_float Get(SWIGTYPE_p_a_2__float m)
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix2f_Get(swigCPtr, SWIGTYPE_p_a_2__float.getCPtr(m));
+            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
+            return ret;
+        }
+
+        public SWIGTYPE_p_float data()
+        {
+            global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix2f_data__SWIG_0(swigCPtr);
+            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
+            return ret;
+        }
+
+        public GfMatrix2f GetTranspose()
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetTranspose(swigCPtr), true);
+            return ret;
+        }
+
+        public GfMatrix2f GetInverse(ref double det, double eps)
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetInverse__SWIG_0(swigCPtr, ref det, eps), true);
+            return ret;
+        }
+
+        public GfMatrix2f GetInverse(ref double det)
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetInverse__SWIG_1(swigCPtr, ref det), true);
+            return ret;
+        }
+
+        public GfMatrix2f GetInverse()
+        {
+            GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetInverse__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public double GetDeterminant()
+        {
+            double ret = UsdCsPINVOKE.GfMatrix2f_GetDeterminant(swigCPtr);
+            return ret;
+        }
+
+        public static bool Equals(GfMatrix2f lhs, GfMatrix2f rhs)
+        {
+            bool ret = UsdCsPINVOKE.GfMatrix2f_Equals(GfMatrix2f.getCPtr(lhs), GfMatrix2f.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.GfMatrix2f_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(GfMatrix2f lhs, GfMatrix2f rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || GfMatrix2f.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(GfMatrix2f lhs, GfMatrix2f rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return GfMatrix2f.Equals(this, rhs as GfMatrix2f);
+        }
+
+        public override string ToString()
+        {
+            string ret = UsdCsPINVOKE.GfMatrix2f_ToString(swigCPtr);
+            return ret;
+        }
+
+        public void CopyToArray(float[] dest)
+        {
+            UsdCsPINVOKE.GfMatrix2f_CopyToArray(swigCPtr, dest);
+        }
+
+        public void CopyFromArray(float[] src)
+        {
+            UsdCsPINVOKE.GfMatrix2f_CopyFromArray(swigCPtr, src);
+        }
+
+        public static readonly uint numRows = UsdCsPINVOKE.GfMatrix2f_numRows_get();
+        public static readonly uint numColumns = UsdCsPINVOKE.GfMatrix2f_numColumns_get();
     }
-  }
-
-  public GfMatrix2f() : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_0(), true) {
-  }
-
-  public GfMatrix2f(float m00, float m01, float m10, float m11) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_1(m00, m01, m10, m11), true) {
-  }
-
-  public GfMatrix2f(float s) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_2(s), true) {
-  }
-
-  public GfMatrix2f(int s) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_3(s), true) {
-  }
-
-  public GfMatrix2f(GfVec2f v) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_4(GfVec2f.getCPtr(v)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix2f(StdDoubleVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_5(StdDoubleVectorVector.getCPtr(v)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix2f(StdFloatVectorVector v) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_6(StdFloatVectorVector.getCPtr(v)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfMatrix2f(GfMatrix2d m) : this(UsdCsPINVOKE.new_GfMatrix2f__SWIG_7(GfMatrix2d.getCPtr(m)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetRow(int i, GfVec2f v) {
-    UsdCsPINVOKE.GfMatrix2f_SetRow(swigCPtr, i, GfVec2f.getCPtr(v));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetColumn(int i, GfVec2f v) {
-    UsdCsPINVOKE.GfMatrix2f_SetColumn(swigCPtr, i, GfVec2f.getCPtr(v));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public GfVec2f GetRow(int i) {
-    GfVec2f ret = new GfVec2f(UsdCsPINVOKE.GfMatrix2f_GetRow(swigCPtr, i), true);
-    return ret;
-  }
-
-  public GfVec2f GetColumn(int i) {
-    GfVec2f ret = new GfVec2f(UsdCsPINVOKE.GfMatrix2f_GetColumn(swigCPtr, i), true);
-    return ret;
-  }
-
-  public GfMatrix2f Set(float m00, float m01, float m10, float m11) {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_Set(swigCPtr, m00, m01, m10, m11), false);
-    return ret;
-  }
-
-  public GfMatrix2f SetIdentity() {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetIdentity(swigCPtr), false);
-    return ret;
-  }
-
-  public GfMatrix2f SetZero() {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetZero(swigCPtr), false);
-    return ret;
-  }
-
-  public GfMatrix2f SetDiagonal(float s) {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetDiagonal__SWIG_0(swigCPtr, s), false);
-    return ret;
-  }
-
-  public GfMatrix2f SetDiagonal(GfVec2f arg0) {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_SetDiagonal__SWIG_1(swigCPtr, GfVec2f.getCPtr(arg0)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SWIGTYPE_p_float Get(SWIGTYPE_p_a_2__float m) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix2f_Get(swigCPtr, SWIGTYPE_p_a_2__float.getCPtr(m));
-    SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
-    return ret;
-  }
-
-  public SWIGTYPE_p_float data() {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.GfMatrix2f_data__SWIG_0(swigCPtr);
-    SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
-    return ret;
-  }
-
-  public GfMatrix2f GetTranspose() {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetTranspose(swigCPtr), true);
-    return ret;
-  }
-
-  public GfMatrix2f GetInverse(ref double det, double eps) {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetInverse__SWIG_0(swigCPtr, ref det, eps), true);
-    return ret;
-  }
-
-  public GfMatrix2f GetInverse(ref double det) {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetInverse__SWIG_1(swigCPtr, ref det), true);
-    return ret;
-  }
-
-  public GfMatrix2f GetInverse() {
-    GfMatrix2f ret = new GfMatrix2f(UsdCsPINVOKE.GfMatrix2f_GetInverse__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public double GetDeterminant() {
-    double ret = UsdCsPINVOKE.GfMatrix2f_GetDeterminant(swigCPtr);
-    return ret;
-  }
-
-  public static bool Equals(GfMatrix2f lhs, GfMatrix2f rhs) {
-    bool ret = UsdCsPINVOKE.GfMatrix2f_Equals(GfMatrix2f.getCPtr(lhs), GfMatrix2f.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.GfMatrix2f_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(GfMatrix2f lhs, GfMatrix2f rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || GfMatrix2f.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(GfMatrix2f lhs, GfMatrix2f rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return GfMatrix2f.Equals(this, rhs as GfMatrix2f);
-    }
-  
-  public override string ToString() {
-    string ret = UsdCsPINVOKE.GfMatrix2f_ToString(swigCPtr);
-    return ret;
-  }
-
-  public void CopyToArray(float[] dest) {
-    UsdCsPINVOKE.GfMatrix2f_CopyToArray(swigCPtr, dest);
-  }
-
-  public void CopyFromArray(float[] src) {
-    UsdCsPINVOKE.GfMatrix2f_CopyFromArray(swigCPtr, src);
-  }
-
-  public static readonly uint numRows = UsdCsPINVOKE.GfMatrix2f_numRows_get();
-  public static readonly uint numColumns = UsdCsPINVOKE.GfMatrix2f_numColumns_get();
-}
-
 }

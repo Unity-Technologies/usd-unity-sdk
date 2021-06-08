@@ -8,62 +8,73 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdUtilsRegisteredVariantSet : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdUtilsRegisteredVariantSet : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdUtilsRegisteredVariantSet(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdUtilsRegisteredVariantSet obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdUtilsRegisteredVariantSet() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdUtilsRegisteredVariantSet(swigCPtr);
+        internal UsdUtilsRegisteredVariantSet(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdUtilsRegisteredVariantSet obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdUtilsRegisteredVariantSet()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdUtilsRegisteredVariantSet(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public string name
+        {
+            get
+            {
+                string ret = UsdCsPINVOKE.UsdUtilsRegisteredVariantSet_name_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public UsdUtilsRegisteredVariantSet.SelectionExportPolicy selectionExportPolicy
+        {
+            get
+            {
+                UsdUtilsRegisteredVariantSet.SelectionExportPolicy ret = (UsdUtilsRegisteredVariantSet.SelectionExportPolicy)UsdCsPINVOKE.UsdUtilsRegisteredVariantSet_selectionExportPolicy_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public UsdUtilsRegisteredVariantSet(string name, UsdUtilsRegisteredVariantSet.SelectionExportPolicy selectionExportPolicy) : this(UsdCsPINVOKE.new_UsdUtilsRegisteredVariantSet(name, (int)selectionExportPolicy), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public enum SelectionExportPolicy
+        {
+            Never,
+            IfAuthored,
+            Always
+        }
     }
-  }
-
-  public string name {
-    get {
-      string ret = UsdCsPINVOKE.UsdUtilsRegisteredVariantSet_name_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public UsdUtilsRegisteredVariantSet.SelectionExportPolicy selectionExportPolicy {
-    get {
-      UsdUtilsRegisteredVariantSet.SelectionExportPolicy ret = (UsdUtilsRegisteredVariantSet.SelectionExportPolicy)UsdCsPINVOKE.UsdUtilsRegisteredVariantSet_selectionExportPolicy_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public UsdUtilsRegisteredVariantSet(string name, UsdUtilsRegisteredVariantSet.SelectionExportPolicy selectionExportPolicy) : this(UsdCsPINVOKE.new_UsdUtilsRegisteredVariantSet(name, (int)selectionExportPolicy), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public enum SelectionExportPolicy {
-    Never,
-    IfAuthored,
-    Always
-  }
-
-}
-
 }

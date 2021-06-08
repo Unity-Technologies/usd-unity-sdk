@@ -8,125 +8,147 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdGeomCube : UsdGeomGprim
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class UsdGeomCube : UsdGeomGprim {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal UsdGeomCube(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomCube_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomCube obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdGeomCube() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdGeomCube(swigCPtr);
+        internal UsdGeomCube(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomCube_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomCube obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdGeomCube()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdGeomCube(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public UsdGeomCube(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdGeomCube__SWIG_0(UsdPrim.getCPtr(prim)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdGeomCube() : this(UsdCsPINVOKE.new_UsdGeomCube__SWIG_1(), true)
+        {
+        }
+
+        public UsdGeomCube(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdGeomCube__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited)
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomCube_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
+            return ret;
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomCube_GetSchemaAttributeNames__SWIG_1(), false);
+            return ret;
+        }
+
+        public new static UsdGeomCube Get(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdGeomCube ret = new UsdGeomCube(UsdCsPINVOKE.UsdGeomCube_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static UsdGeomCube Define(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdGeomCube ret = new UsdGeomCube(UsdCsPINVOKE.UsdGeomCube_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute GetSizeAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_GetSizeAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateSizeAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateSizeAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateSizeAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateSizeAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateSizeAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateSizeAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public new UsdAttribute GetExtentAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_GetExtentAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public new UsdAttribute CreateExtentAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateExtentAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public new UsdAttribute CreateExtentAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateExtentAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public new UsdAttribute CreateExtentAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateExtentAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public static bool ComputeExtent(double size, VtVec3fArray extent)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomCube_ComputeExtent__SWIG_0(size, VtVec3fArray.getCPtr(extent));
+            return ret;
+        }
+
+        public static bool ComputeExtent(double size, GfMatrix4d transform, VtVec3fArray extent)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomCube_ComputeExtent__SWIG_1(size, GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
-  }
-
-  public UsdGeomCube(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdGeomCube__SWIG_0(UsdPrim.getCPtr(prim)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdGeomCube() : this(UsdCsPINVOKE.new_UsdGeomCube__SWIG_1(), true) {
-  }
-
-  public UsdGeomCube(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdGeomCube__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomCube_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
-    return ret;
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomCube_GetSchemaAttributeNames__SWIG_1(), false);
-    return ret;
-  }
-
-  public new static UsdGeomCube Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomCube ret = new UsdGeomCube(UsdCsPINVOKE.UsdGeomCube_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdGeomCube Define(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomCube ret = new UsdGeomCube(UsdCsPINVOKE.UsdGeomCube_Define(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute GetSizeAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_GetSizeAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateSizeAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateSizeAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateSizeAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateSizeAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateSizeAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateSizeAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public new UsdAttribute GetExtentAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_GetExtentAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public new UsdAttribute CreateExtentAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateExtentAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new UsdAttribute CreateExtentAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateExtentAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public new UsdAttribute CreateExtentAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCube_CreateExtentAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public static bool ComputeExtent(double size, VtVec3fArray extent) {
-    bool ret = UsdCsPINVOKE.UsdGeomCube_ComputeExtent__SWIG_0(size, VtVec3fArray.getCPtr(extent));
-    return ret;
-  }
-
-  public static bool ComputeExtent(double size, GfMatrix4d transform, VtVec3fArray extent) {
-    bool ret = UsdCsPINVOKE.UsdGeomCube_ComputeExtent__SWIG_1(size, GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
-
 }

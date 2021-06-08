@@ -8,12 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum NdrVersionFilter {
-  NdrVersionFilterDefaultOnly,
-  NdrVersionFilterAllVersions,
-  NdrNumVersionFilters
-}
-
+namespace pxr
+{
+    public enum NdrVersionFilter
+    {
+        NdrVersionFilterDefaultOnly,
+        NdrVersionFilterAllVersions,
+        NdrNumVersionFilters
+    }
 }

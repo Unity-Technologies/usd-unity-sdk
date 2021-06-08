@@ -8,22 +8,25 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class SWIGTYPE_p_PcpLayerStackChanges
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class SWIGTYPE_p_PcpLayerStackChanges {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        internal SWIGTYPE_p_PcpLayerStackChanges(global::System.IntPtr cPtr, bool futureUse)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
 
-  internal SWIGTYPE_p_PcpLayerStackChanges(global::System.IntPtr cPtr, bool futureUse) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
+        protected SWIGTYPE_p_PcpLayerStackChanges()
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
 
-  protected SWIGTYPE_p_PcpLayerStackChanges() {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_PcpLayerStackChanges obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-}
-
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_PcpLayerStackChanges obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+    }
 }

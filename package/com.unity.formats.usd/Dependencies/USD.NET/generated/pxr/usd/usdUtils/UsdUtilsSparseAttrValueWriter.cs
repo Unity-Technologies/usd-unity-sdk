@@ -8,57 +8,66 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdUtilsSparseAttrValueWriter : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdUtilsSparseAttrValueWriter : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdUtilsSparseAttrValueWriter(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdUtilsSparseAttrValueWriter obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdUtilsSparseAttrValueWriter() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdUtilsSparseAttrValueWriter(swigCPtr);
+        internal UsdUtilsSparseAttrValueWriter(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdUtilsSparseAttrValueWriter obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdUtilsSparseAttrValueWriter()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdUtilsSparseAttrValueWriter(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public UsdUtilsSparseAttrValueWriter(UsdAttribute attr, VtValue defaultValue) : this(UsdCsPINVOKE.new_UsdUtilsSparseAttrValueWriter__SWIG_0(UsdAttribute.getCPtr(attr), VtValue.getCPtr(defaultValue)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdUtilsSparseAttrValueWriter(UsdAttribute attr) : this(UsdCsPINVOKE.new_UsdUtilsSparseAttrValueWriter__SWIG_1(UsdAttribute.getCPtr(attr)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool SetTimeSample(VtValue value, UsdTimeCode time)
+        {
+            bool ret = UsdCsPINVOKE.UsdUtilsSparseAttrValueWriter_SetTimeSample__SWIG_0(swigCPtr, VtValue.getCPtr(value), UsdTimeCode.getCPtr(time));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute GetAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdUtilsSparseAttrValueWriter_GetAttr(swigCPtr), false);
+            return ret;
+        }
     }
-  }
-
-  public UsdUtilsSparseAttrValueWriter(UsdAttribute attr, VtValue defaultValue) : this(UsdCsPINVOKE.new_UsdUtilsSparseAttrValueWriter__SWIG_0(UsdAttribute.getCPtr(attr), VtValue.getCPtr(defaultValue)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdUtilsSparseAttrValueWriter(UsdAttribute attr) : this(UsdCsPINVOKE.new_UsdUtilsSparseAttrValueWriter__SWIG_1(UsdAttribute.getCPtr(attr)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool SetTimeSample(VtValue value, UsdTimeCode time) {
-    bool ret = UsdCsPINVOKE.UsdUtilsSparseAttrValueWriter_SetTimeSample__SWIG_0(swigCPtr, VtValue.getCPtr(value), UsdTimeCode.getCPtr(time));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute GetAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdUtilsSparseAttrValueWriter_GetAttr(swigCPtr), false);
-    return ret;
-  }
-
-}
-
 }

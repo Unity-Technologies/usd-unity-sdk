@@ -86,7 +86,6 @@ namespace USD.NET.Unity
 
     [USD.NET.UsdSchema(@"Curves")] public class CurvesSample : USD.NET.Unity.PointBasedSample
     {
-        [USD.NET.FusedDisplayColor] [USD.NET.VertexData] public UnityEngine.Color[] colors;
         public int[] curveVertexCounts;
         [USD.NET.UsdVariability(1)] public bool doubleSided;
         public UnityEngine.Vector3[] normals;

@@ -8,79 +8,92 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdPrimSiblingIterator : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class UsdPrimSiblingIterator : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal UsdPrimSiblingIterator(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdPrimSiblingIterator obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdPrimSiblingIterator() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdPrimSiblingIterator(swigCPtr);
+        internal UsdPrimSiblingIterator(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdPrimSiblingIterator obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdPrimSiblingIterator()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdPrimSiblingIterator(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public void MoveNext()
+        {
+            UsdCsPINVOKE.UsdPrimSiblingIterator_MoveNext(swigCPtr);
+        }
+
+        public UsdPrim GetCurrent()
+        {
+            UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdPrimSiblingIterator_GetCurrent(swigCPtr), true);
+            return ret;
+        }
+
+        public static bool Equals(UsdPrimSiblingIterator lhs, UsdPrimSiblingIterator rhs)
+        {
+            bool ret = UsdCsPINVOKE.UsdPrimSiblingIterator_Equals(UsdPrimSiblingIterator.getCPtr(lhs), UsdPrimSiblingIterator.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.UsdPrimSiblingIterator_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(UsdPrimSiblingIterator lhs, UsdPrimSiblingIterator rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || UsdPrimSiblingIterator.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(UsdPrimSiblingIterator lhs, UsdPrimSiblingIterator rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return UsdPrimSiblingIterator.Equals(this, rhs as UsdPrimSiblingIterator);
+        }
+
+        public UsdPrimSiblingIterator() : this(UsdCsPINVOKE.new_UsdPrimSiblingIterator(), true)
+        {
+        }
     }
-  }
-
-  public void MoveNext() {
-    UsdCsPINVOKE.UsdPrimSiblingIterator_MoveNext(swigCPtr);
-  }
-
-  public UsdPrim GetCurrent() {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdPrimSiblingIterator_GetCurrent(swigCPtr), true);
-    return ret;
-  }
-
-  public static bool Equals(UsdPrimSiblingIterator lhs, UsdPrimSiblingIterator rhs) {
-    bool ret = UsdCsPINVOKE.UsdPrimSiblingIterator_Equals(UsdPrimSiblingIterator.getCPtr(lhs), UsdPrimSiblingIterator.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.UsdPrimSiblingIterator_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(UsdPrimSiblingIterator lhs, UsdPrimSiblingIterator rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || UsdPrimSiblingIterator.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(UsdPrimSiblingIterator lhs, UsdPrimSiblingIterator rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return UsdPrimSiblingIterator.Equals(this, rhs as UsdPrimSiblingIterator);
-    }
-  
-  public UsdPrimSiblingIterator() : this(UsdCsPINVOKE.new_UsdPrimSiblingIterator(), true) {
-  }
-
-}
-
 }

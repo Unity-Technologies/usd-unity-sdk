@@ -8,184 +8,218 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class SdfInt64ListOp : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class SdfInt64ListOp : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SdfInt64ListOp(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfInt64ListOp obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfInt64ListOp() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfInt64ListOp(swigCPtr);
+        internal SdfInt64ListOp(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfInt64ListOp obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~SdfInt64ListOp()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfInt64ListOp(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public static SdfInt64ListOp CreateExplicit(UsdGeomLongVector explicitItems)
+        {
+            SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_CreateExplicit__SWIG_0(UsdGeomLongVector.getCPtr(explicitItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfInt64ListOp CreateExplicit()
+        {
+            SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_CreateExplicit__SWIG_1(), true);
+            return ret;
+        }
+
+        public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems, UsdGeomLongVector appendedItems, UsdGeomLongVector deletedItems)
+        {
+            SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_0(UsdGeomLongVector.getCPtr(prependedItems), UsdGeomLongVector.getCPtr(appendedItems), UsdGeomLongVector.getCPtr(deletedItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems, UsdGeomLongVector appendedItems)
+        {
+            SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_1(UsdGeomLongVector.getCPtr(prependedItems), UsdGeomLongVector.getCPtr(appendedItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems)
+        {
+            SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_2(UsdGeomLongVector.getCPtr(prependedItems)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static SdfInt64ListOp Create()
+        {
+            SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_3(), true);
+            return ret;
+        }
+
+        public SdfInt64ListOp() : this(UsdCsPINVOKE.new_SdfInt64ListOp(), true)
+        {
+        }
+
+        public void Swap(SdfInt64ListOp rhs)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_Swap(swigCPtr, SdfInt64ListOp.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool HasKeys()
+        {
+            bool ret = UsdCsPINVOKE.SdfInt64ListOp_HasKeys(swigCPtr);
+            return ret;
+        }
+
+        public bool HasItem(long item)
+        {
+            bool ret = UsdCsPINVOKE.SdfInt64ListOp_HasItem(swigCPtr, item);
+            return ret;
+        }
+
+        public bool IsExplicit()
+        {
+            bool ret = UsdCsPINVOKE.SdfInt64ListOp_IsExplicit(swigCPtr);
+            return ret;
+        }
+
+        public UsdGeomLongVector GetExplicitItems()
+        {
+            UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetExplicitItems(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomLongVector GetAddedItems()
+        {
+            UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetAddedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomLongVector GetPrependedItems()
+        {
+            UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetPrependedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomLongVector GetAppendedItems()
+        {
+            UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetAppendedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomLongVector GetDeletedItems()
+        {
+            UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetDeletedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomLongVector GetOrderedItems()
+        {
+            UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetOrderedItems(swigCPtr), false);
+            return ret;
+        }
+
+        public UsdGeomLongVector GetItems(SdfListOpType type)
+        {
+            UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetItems(swigCPtr, (int)type), false);
+            return ret;
+        }
+
+        public void SetExplicitItems(UsdGeomLongVector items)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_SetExplicitItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetAddedItems(UsdGeomLongVector items)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_SetAddedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetPrependedItems(UsdGeomLongVector items)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_SetPrependedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetAppendedItems(UsdGeomLongVector items)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_SetAppendedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetDeletedItems(UsdGeomLongVector items)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_SetDeletedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetOrderedItems(UsdGeomLongVector items)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_SetOrderedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetItems(UsdGeomLongVector items, SdfListOpType type)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_SetItems(swigCPtr, UsdGeomLongVector.getCPtr(items), (int)type);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Clear()
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_Clear(swigCPtr);
+        }
+
+        public void ClearAndMakeExplicit()
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_ClearAndMakeExplicit(swigCPtr);
+        }
+
+        public bool ReplaceOperations(SdfListOpType op, uint index, uint n, UsdGeomLongVector newItems)
+        {
+            bool ret = UsdCsPINVOKE.SdfInt64ListOp_ReplaceOperations(swigCPtr, (int)op, index, n, UsdGeomLongVector.getCPtr(newItems));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void ComposeOperations(SdfInt64ListOp stronger, SdfListOpType op)
+        {
+            UsdCsPINVOKE.SdfInt64ListOp_ComposeOperations(swigCPtr, SdfInt64ListOp.getCPtr(stronger), (int)op);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
-  }
-
-  public static SdfInt64ListOp CreateExplicit(UsdGeomLongVector explicitItems) {
-    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_CreateExplicit__SWIG_0(UsdGeomLongVector.getCPtr(explicitItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfInt64ListOp CreateExplicit() {
-    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_CreateExplicit__SWIG_1(), true);
-    return ret;
-  }
-
-  public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems, UsdGeomLongVector appendedItems, UsdGeomLongVector deletedItems) {
-    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_0(UsdGeomLongVector.getCPtr(prependedItems), UsdGeomLongVector.getCPtr(appendedItems), UsdGeomLongVector.getCPtr(deletedItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems, UsdGeomLongVector appendedItems) {
-    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_1(UsdGeomLongVector.getCPtr(prependedItems), UsdGeomLongVector.getCPtr(appendedItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfInt64ListOp Create(UsdGeomLongVector prependedItems) {
-    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_2(UsdGeomLongVector.getCPtr(prependedItems)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SdfInt64ListOp Create() {
-    SdfInt64ListOp ret = new SdfInt64ListOp(UsdCsPINVOKE.SdfInt64ListOp_Create__SWIG_3(), true);
-    return ret;
-  }
-
-  public SdfInt64ListOp() : this(UsdCsPINVOKE.new_SdfInt64ListOp(), true) {
-  }
-
-  public void Swap(SdfInt64ListOp rhs) {
-    UsdCsPINVOKE.SdfInt64ListOp_Swap(swigCPtr, SdfInt64ListOp.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool HasKeys() {
-    bool ret = UsdCsPINVOKE.SdfInt64ListOp_HasKeys(swigCPtr);
-    return ret;
-  }
-
-  public bool HasItem(long item) {
-    bool ret = UsdCsPINVOKE.SdfInt64ListOp_HasItem(swigCPtr, item);
-    return ret;
-  }
-
-  public bool IsExplicit() {
-    bool ret = UsdCsPINVOKE.SdfInt64ListOp_IsExplicit(swigCPtr);
-    return ret;
-  }
-
-  public UsdGeomLongVector GetExplicitItems() {
-    UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetExplicitItems(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomLongVector GetAddedItems() {
-    UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetAddedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomLongVector GetPrependedItems() {
-    UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetPrependedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomLongVector GetAppendedItems() {
-    UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetAppendedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomLongVector GetDeletedItems() {
-    UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetDeletedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomLongVector GetOrderedItems() {
-    UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetOrderedItems(swigCPtr), false);
-    return ret;
-  }
-
-  public UsdGeomLongVector GetItems(SdfListOpType type) {
-    UsdGeomLongVector ret = new UsdGeomLongVector(UsdCsPINVOKE.SdfInt64ListOp_GetItems(swigCPtr, (int)type), false);
-    return ret;
-  }
-
-  public void SetExplicitItems(UsdGeomLongVector items) {
-    UsdCsPINVOKE.SdfInt64ListOp_SetExplicitItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetAddedItems(UsdGeomLongVector items) {
-    UsdCsPINVOKE.SdfInt64ListOp_SetAddedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetPrependedItems(UsdGeomLongVector items) {
-    UsdCsPINVOKE.SdfInt64ListOp_SetPrependedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetAppendedItems(UsdGeomLongVector items) {
-    UsdCsPINVOKE.SdfInt64ListOp_SetAppendedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetDeletedItems(UsdGeomLongVector items) {
-    UsdCsPINVOKE.SdfInt64ListOp_SetDeletedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetOrderedItems(UsdGeomLongVector items) {
-    UsdCsPINVOKE.SdfInt64ListOp_SetOrderedItems(swigCPtr, UsdGeomLongVector.getCPtr(items));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetItems(UsdGeomLongVector items, SdfListOpType type) {
-    UsdCsPINVOKE.SdfInt64ListOp_SetItems(swigCPtr, UsdGeomLongVector.getCPtr(items), (int)type);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void Clear() {
-    UsdCsPINVOKE.SdfInt64ListOp_Clear(swigCPtr);
-  }
-
-  public void ClearAndMakeExplicit() {
-    UsdCsPINVOKE.SdfInt64ListOp_ClearAndMakeExplicit(swigCPtr);
-  }
-
-  public bool ReplaceOperations(SdfListOpType op, uint index, uint n, UsdGeomLongVector newItems) {
-    bool ret = UsdCsPINVOKE.SdfInt64ListOp_ReplaceOperations(swigCPtr, (int)op, index, n, UsdGeomLongVector.getCPtr(newItems));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void ComposeOperations(SdfInt64ListOp stronger, SdfListOpType op) {
-    UsdCsPINVOKE.SdfInt64ListOp_ComposeOperations(swigCPtr, SdfInt64ListOp.getCPtr(stronger), (int)op);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-}
-
 }

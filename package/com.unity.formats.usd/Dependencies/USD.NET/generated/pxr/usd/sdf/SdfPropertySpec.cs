@@ -8,258 +8,307 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class SdfPropertySpec : SdfSpec
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class SdfPropertySpec : SdfSpec {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal SdfPropertySpec(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.SdfPropertySpec_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfPropertySpec obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfPropertySpec() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfPropertySpec(swigCPtr);
+        internal SdfPropertySpec(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.SdfPropertySpec_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfPropertySpec obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~SdfPropertySpec()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfPropertySpec(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public string GetName()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetName(swigCPtr);
+            return ret;
+        }
+
+        public TfToken GetNameToken()
+        {
+            TfToken ret = new TfToken(UsdCsPINVOKE.SdfPropertySpec_GetNameToken(swigCPtr), true);
+            return ret;
+        }
+
+        public bool CanSetName(string newName, SWIGTYPE_p_std__string whyNot)
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_CanSetName(swigCPtr, newName, SWIGTYPE_p_std__string.getCPtr(whyNot));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool SetName(string newName, bool validate)
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_SetName__SWIG_0(swigCPtr, newName, validate);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool SetName(string newName)
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_SetName__SWIG_1(swigCPtr, newName);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool IsValidName(string name)
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_IsValidName(name);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public SdfSpecHandle GetOwner()
+        {
+            SdfSpecHandle ret = new SdfSpecHandle(UsdCsPINVOKE.SdfPropertySpec_GetOwner(swigCPtr), true);
+            return ret;
+        }
+
+        public SWIGTYPE_p_SdfDictionaryProxy GetCustomData()
+        {
+            SWIGTYPE_p_SdfDictionaryProxy ret = new SWIGTYPE_p_SdfDictionaryProxy(UsdCsPINVOKE.SdfPropertySpec_GetCustomData(swigCPtr), true);
+            return ret;
+        }
+
+        public SWIGTYPE_p_SdfDictionaryProxy GetAssetInfo()
+        {
+            SWIGTYPE_p_SdfDictionaryProxy ret = new SWIGTYPE_p_SdfDictionaryProxy(UsdCsPINVOKE.SdfPropertySpec_GetAssetInfo(swigCPtr), true);
+            return ret;
+        }
+
+        public void SetCustomData(string name, VtValue value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetCustomData(swigCPtr, name, VtValue.getCPtr(value));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetAssetInfo(string name, VtValue value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetAssetInfo(swigCPtr, name, VtValue.getCPtr(value));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public string GetDisplayGroup()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetDisplayGroup(swigCPtr);
+            return ret;
+        }
+
+        public void SetDisplayGroup(string value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetDisplayGroup(swigCPtr, value);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public string GetDisplayName()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetDisplayName(swigCPtr);
+            return ret;
+        }
+
+        public void SetDisplayName(string value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetDisplayName(swigCPtr, value);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public string GetDocumentation()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetDocumentation(swigCPtr);
+            return ret;
+        }
+
+        public void SetDocumentation(string value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetDocumentation(swigCPtr, value);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool GetHidden()
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_GetHidden(swigCPtr);
+            return ret;
+        }
+
+        public void SetHidden(bool value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetHidden(swigCPtr, value);
+        }
+
+        public SdfPermission GetPermission()
+        {
+            SdfPermission ret = (SdfPermission)UsdCsPINVOKE.SdfPropertySpec_GetPermission(swigCPtr);
+            return ret;
+        }
+
+        public void SetPermission(SdfPermission value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetPermission(swigCPtr, (int)value);
+        }
+
+        public string GetPrefix()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetPrefix(swigCPtr);
+            return ret;
+        }
+
+        public void SetPrefix(string value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetPrefix(swigCPtr, value);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public string GetSuffix()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetSuffix(swigCPtr);
+            return ret;
+        }
+
+        public void SetSuffix(string value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetSuffix(swigCPtr, value);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public string GetSymmetricPeer()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetSymmetricPeer(swigCPtr);
+            return ret;
+        }
+
+        public void SetSymmetricPeer(string peerName)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetSymmetricPeer(swigCPtr, peerName);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SWIGTYPE_p_SdfDictionaryProxy GetSymmetryArguments()
+        {
+            SWIGTYPE_p_SdfDictionaryProxy ret = new SWIGTYPE_p_SdfDictionaryProxy(UsdCsPINVOKE.SdfPropertySpec_GetSymmetryArguments(swigCPtr), true);
+            return ret;
+        }
+
+        public void SetSymmetryArgument(string name, VtValue value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetSymmetryArgument(swigCPtr, name, VtValue.getCPtr(value));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public TfToken GetSymmetryFunction()
+        {
+            TfToken ret = new TfToken(UsdCsPINVOKE.SdfPropertySpec_GetSymmetryFunction(swigCPtr), true);
+            return ret;
+        }
+
+        public void SetSymmetryFunction(TfToken functionName)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetSymmetryFunction(swigCPtr, TfToken.getCPtr(functionName));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t GetTimeSampleMap()
+        {
+            SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t ret = new SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t(UsdCsPINVOKE.SdfPropertySpec_GetTimeSampleMap(swigCPtr), true);
+            return ret;
+        }
+
+        public TfType GetValueType()
+        {
+            TfType ret = new TfType(UsdCsPINVOKE.SdfPropertySpec_GetValueType(swigCPtr), true);
+            return ret;
+        }
+
+        public SdfValueTypeName GetTypeName()
+        {
+            SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfPropertySpec_GetTypeName(swigCPtr), true);
+            return ret;
+        }
+
+        public VtValue GetDefaultValue()
+        {
+            VtValue ret = new VtValue(UsdCsPINVOKE.SdfPropertySpec_GetDefaultValue(swigCPtr), true);
+            return ret;
+        }
+
+        public bool SetDefaultValue(VtValue defaultValue)
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_SetDefaultValue(swigCPtr, VtValue.getCPtr(defaultValue));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public bool HasDefaultValue()
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_HasDefaultValue(swigCPtr);
+            return ret;
+        }
+
+        public void ClearDefaultValue()
+        {
+            UsdCsPINVOKE.SdfPropertySpec_ClearDefaultValue(swigCPtr);
+        }
+
+        public string GetComment()
+        {
+            string ret = UsdCsPINVOKE.SdfPropertySpec_GetComment(swigCPtr);
+            return ret;
+        }
+
+        public void SetComment(string value)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetComment(swigCPtr, value);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public bool IsCustom()
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_IsCustom(swigCPtr);
+            return ret;
+        }
+
+        public void SetCustom(bool custom)
+        {
+            UsdCsPINVOKE.SdfPropertySpec_SetCustom(swigCPtr, custom);
+        }
+
+        public SdfVariability GetVariability()
+        {
+            SdfVariability ret = (SdfVariability)UsdCsPINVOKE.SdfPropertySpec_GetVariability(swigCPtr);
+            return ret;
+        }
+
+        public bool HasOnlyRequiredFields()
+        {
+            bool ret = UsdCsPINVOKE.SdfPropertySpec_HasOnlyRequiredFields(swigCPtr);
+            return ret;
+        }
     }
-  }
-
-  public string GetName() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetName(swigCPtr);
-    return ret;
-  }
-
-  public TfToken GetNameToken() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.SdfPropertySpec_GetNameToken(swigCPtr), true);
-    return ret;
-  }
-
-  public bool CanSetName(string newName, SWIGTYPE_p_std__string whyNot) {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_CanSetName(swigCPtr, newName, SWIGTYPE_p_std__string.getCPtr(whyNot));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool SetName(string newName, bool validate) {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_SetName__SWIG_0(swigCPtr, newName, validate);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool SetName(string newName) {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_SetName__SWIG_1(swigCPtr, newName);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool IsValidName(string name) {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_IsValidName(name);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public SdfSpecHandle GetOwner() {
-    SdfSpecHandle ret = new SdfSpecHandle(UsdCsPINVOKE.SdfPropertySpec_GetOwner(swigCPtr), true);
-    return ret;
-  }
-
-  public SWIGTYPE_p_SdfDictionaryProxy GetCustomData() {
-    SWIGTYPE_p_SdfDictionaryProxy ret = new SWIGTYPE_p_SdfDictionaryProxy(UsdCsPINVOKE.SdfPropertySpec_GetCustomData(swigCPtr), true);
-    return ret;
-  }
-
-  public SWIGTYPE_p_SdfDictionaryProxy GetAssetInfo() {
-    SWIGTYPE_p_SdfDictionaryProxy ret = new SWIGTYPE_p_SdfDictionaryProxy(UsdCsPINVOKE.SdfPropertySpec_GetAssetInfo(swigCPtr), true);
-    return ret;
-  }
-
-  public void SetCustomData(string name, VtValue value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetCustomData(swigCPtr, name, VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void SetAssetInfo(string name, VtValue value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetAssetInfo(swigCPtr, name, VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetDisplayGroup() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetDisplayGroup(swigCPtr);
-    return ret;
-  }
-
-  public void SetDisplayGroup(string value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetDisplayGroup(swigCPtr, value);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetDisplayName() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetDisplayName(swigCPtr);
-    return ret;
-  }
-
-  public void SetDisplayName(string value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetDisplayName(swigCPtr, value);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetDocumentation() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetDocumentation(swigCPtr);
-    return ret;
-  }
-
-  public void SetDocumentation(string value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetDocumentation(swigCPtr, value);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool GetHidden() {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_GetHidden(swigCPtr);
-    return ret;
-  }
-
-  public void SetHidden(bool value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetHidden(swigCPtr, value);
-  }
-
-  public SdfPermission GetPermission() {
-    SdfPermission ret = (SdfPermission)UsdCsPINVOKE.SdfPropertySpec_GetPermission(swigCPtr);
-    return ret;
-  }
-
-  public void SetPermission(SdfPermission value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetPermission(swigCPtr, (int)value);
-  }
-
-  public string GetPrefix() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetPrefix(swigCPtr);
-    return ret;
-  }
-
-  public void SetPrefix(string value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetPrefix(swigCPtr, value);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetSuffix() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetSuffix(swigCPtr);
-    return ret;
-  }
-
-  public void SetSuffix(string value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetSuffix(swigCPtr, value);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public string GetSymmetricPeer() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetSymmetricPeer(swigCPtr);
-    return ret;
-  }
-
-  public void SetSymmetricPeer(string peerName) {
-    UsdCsPINVOKE.SdfPropertySpec_SetSymmetricPeer(swigCPtr, peerName);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SWIGTYPE_p_SdfDictionaryProxy GetSymmetryArguments() {
-    SWIGTYPE_p_SdfDictionaryProxy ret = new SWIGTYPE_p_SdfDictionaryProxy(UsdCsPINVOKE.SdfPropertySpec_GetSymmetryArguments(swigCPtr), true);
-    return ret;
-  }
-
-  public void SetSymmetryArgument(string name, VtValue value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetSymmetryArgument(swigCPtr, name, VtValue.getCPtr(value));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public TfToken GetSymmetryFunction() {
-    TfToken ret = new TfToken(UsdCsPINVOKE.SdfPropertySpec_GetSymmetryFunction(swigCPtr), true);
-    return ret;
-  }
-
-  public void SetSymmetryFunction(TfToken functionName) {
-    UsdCsPINVOKE.SdfPropertySpec_SetSymmetryFunction(swigCPtr, TfToken.getCPtr(functionName));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t GetTimeSampleMap() {
-    SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t ret = new SWIGTYPE_p_std__mapT_double_VtValue_std__lessT_double_t_t(UsdCsPINVOKE.SdfPropertySpec_GetTimeSampleMap(swigCPtr), true);
-    return ret;
-  }
-
-  public TfType GetValueType() {
-    TfType ret = new TfType(UsdCsPINVOKE.SdfPropertySpec_GetValueType(swigCPtr), true);
-    return ret;
-  }
-
-  public SdfValueTypeName GetTypeName() {
-    SdfValueTypeName ret = new SdfValueTypeName(UsdCsPINVOKE.SdfPropertySpec_GetTypeName(swigCPtr), true);
-    return ret;
-  }
-
-  public VtValue GetDefaultValue() {
-    VtValue ret = new VtValue(UsdCsPINVOKE.SdfPropertySpec_GetDefaultValue(swigCPtr), true);
-    return ret;
-  }
-
-  public bool SetDefaultValue(VtValue defaultValue) {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_SetDefaultValue(swigCPtr, VtValue.getCPtr(defaultValue));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool HasDefaultValue() {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_HasDefaultValue(swigCPtr);
-    return ret;
-  }
-
-  public void ClearDefaultValue() {
-    UsdCsPINVOKE.SdfPropertySpec_ClearDefaultValue(swigCPtr);
-  }
-
-  public string GetComment() {
-    string ret = UsdCsPINVOKE.SdfPropertySpec_GetComment(swigCPtr);
-    return ret;
-  }
-
-  public void SetComment(string value) {
-    UsdCsPINVOKE.SdfPropertySpec_SetComment(swigCPtr, value);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public bool IsCustom() {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_IsCustom(swigCPtr);
-    return ret;
-  }
-
-  public void SetCustom(bool custom) {
-    UsdCsPINVOKE.SdfPropertySpec_SetCustom(swigCPtr, custom);
-  }
-
-  public SdfVariability GetVariability() {
-    SdfVariability ret = (SdfVariability)UsdCsPINVOKE.SdfPropertySpec_GetVariability(swigCPtr);
-    return ret;
-  }
-
-  public bool HasOnlyRequiredFields() {
-    bool ret = UsdCsPINVOKE.SdfPropertySpec_HasOnlyRequiredFields(swigCPtr);
-    return ret;
-  }
-
-}
-
 }

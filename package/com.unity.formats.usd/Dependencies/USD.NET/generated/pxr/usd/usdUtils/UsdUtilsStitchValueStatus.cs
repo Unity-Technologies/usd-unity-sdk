@@ -8,12 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum UsdUtilsStitchValueStatus {
-  NoStitchedValue,
-  UseDefaultValue,
-  UseSuppliedValue
-}
-
+namespace pxr
+{
+    public enum UsdUtilsStitchValueStatus
+    {
+        NoStitchedValue,
+        UseDefaultValue,
+        UseSuppliedValue
+    }
 }

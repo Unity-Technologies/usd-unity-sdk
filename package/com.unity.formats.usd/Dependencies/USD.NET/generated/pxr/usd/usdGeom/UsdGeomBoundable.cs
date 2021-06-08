@@ -8,98 +8,115 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class UsdGeomBoundable : UsdGeomXformable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class UsdGeomBoundable : UsdGeomXformable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal UsdGeomBoundable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomBoundable_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomBoundable obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~UsdGeomBoundable() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_UsdGeomBoundable(swigCPtr);
+        internal UsdGeomBoundable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdGeomBoundable_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(UsdGeomBoundable obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~UsdGeomBoundable()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_UsdGeomBoundable(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public UsdGeomBoundable(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdGeomBoundable__SWIG_0(UsdPrim.getCPtr(prim)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public UsdGeomBoundable() : this(UsdCsPINVOKE.new_UsdGeomBoundable__SWIG_1(), true)
+        {
+        }
+
+        public UsdGeomBoundable(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdGeomBoundable__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited)
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomBoundable_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
+            return ret;
+        }
+
+        public new static TfTokenVector GetSchemaAttributeNames()
+        {
+            TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomBoundable_GetSchemaAttributeNames__SWIG_1(), false);
+            return ret;
+        }
+
+        public new static UsdGeomBoundable Get(UsdStageWeakPtr stage, SdfPath path)
+        {
+            UsdGeomBoundable ret = new UsdGeomBoundable(UsdCsPINVOKE.UsdGeomBoundable_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute GetExtentAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_GetExtentAttr(swigCPtr), true);
+            return ret;
+        }
+
+        public UsdAttribute CreateExtentAttr(VtValue defaultValue, bool writeSparsely)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_CreateExtentAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateExtentAttr(VtValue defaultValue)
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_CreateExtentAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public UsdAttribute CreateExtentAttr()
+        {
+            UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_CreateExtentAttr__SWIG_2(swigCPtr), true);
+            return ret;
+        }
+
+        public static bool ComputeExtentFromPlugins(UsdGeomBoundable boundable, UsdTimeCode time, VtVec3fArray extent)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_0(UsdGeomBoundable.getCPtr(boundable), UsdTimeCode.getCPtr(time), VtVec3fArray.getCPtr(extent));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static bool ComputeExtentFromPlugins(UsdGeomBoundable boundable, UsdTimeCode time, GfMatrix4d transform, VtVec3fArray extent)
+        {
+            bool ret = UsdCsPINVOKE.UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_1(UsdGeomBoundable.getCPtr(boundable), UsdTimeCode.getCPtr(time), GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
-  }
-
-  public UsdGeomBoundable(UsdPrim prim) : this(UsdCsPINVOKE.new_UsdGeomBoundable__SWIG_0(UsdPrim.getCPtr(prim)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public UsdGeomBoundable() : this(UsdCsPINVOKE.new_UsdGeomBoundable__SWIG_1(), true) {
-  }
-
-  public UsdGeomBoundable(UsdSchemaBase schemaObj) : this(UsdCsPINVOKE.new_UsdGeomBoundable__SWIG_2(UsdSchemaBase.getCPtr(schemaObj)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomBoundable_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
-    return ret;
-  }
-
-  public new static TfTokenVector GetSchemaAttributeNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdGeomBoundable_GetSchemaAttributeNames__SWIG_1(), false);
-    return ret;
-  }
-
-  public new static UsdGeomBoundable Get(UsdStageWeakPtr stage, SdfPath path) {
-    UsdGeomBoundable ret = new UsdGeomBoundable(UsdCsPINVOKE.UsdGeomBoundable_Get(UsdStageWeakPtr.getCPtr(stage), SdfPath.getCPtr(path)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute GetExtentAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_GetExtentAttr(swigCPtr), true);
-    return ret;
-  }
-
-  public UsdAttribute CreateExtentAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_CreateExtentAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateExtentAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_CreateExtentAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public UsdAttribute CreateExtentAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomBoundable_CreateExtentAttr__SWIG_2(swigCPtr), true);
-    return ret;
-  }
-
-  public static bool ComputeExtentFromPlugins(UsdGeomBoundable boundable, UsdTimeCode time, VtVec3fArray extent) {
-    bool ret = UsdCsPINVOKE.UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_0(UsdGeomBoundable.getCPtr(boundable), UsdTimeCode.getCPtr(time), VtVec3fArray.getCPtr(extent));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool ComputeExtentFromPlugins(UsdGeomBoundable boundable, UsdTimeCode time, GfMatrix4d transform, VtVec3fArray extent) {
-    bool ret = UsdCsPINVOKE.UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_1(UsdGeomBoundable.getCPtr(boundable), UsdTimeCode.getCPtr(time), GfMatrix4d.getCPtr(transform), VtVec3fArray.getCPtr(extent));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-}
-
 }

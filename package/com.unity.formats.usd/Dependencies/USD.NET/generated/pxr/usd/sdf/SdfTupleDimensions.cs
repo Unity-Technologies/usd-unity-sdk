@@ -8,72 +8,87 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class SdfTupleDimensions : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class SdfTupleDimensions : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SdfTupleDimensions(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfTupleDimensions obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfTupleDimensions() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfTupleDimensions(swigCPtr);
+        internal SdfTupleDimensions(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfTupleDimensions obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~SdfTupleDimensions()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfTupleDimensions(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public SdfTupleDimensions() : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_0(), true)
+        {
+        }
+
+        public SdfTupleDimensions(uint m) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_1(m), true)
+        {
+        }
+
+        public SdfTupleDimensions(uint m, uint n) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_2(m, n), true)
+        {
+        }
+
+        public SdfTupleDimensions(SWIGTYPE_p_a_2__size_t s) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_3(SWIGTYPE_p_a_2__size_t.getCPtr(s)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SWIGTYPE_p_size_t d
+        {
+            set
+            {
+                UsdCsPINVOKE.SdfTupleDimensions_d_set(swigCPtr, SWIGTYPE_p_size_t.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.SdfTupleDimensions_d_get(swigCPtr);
+                SWIGTYPE_p_size_t ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_size_t(cPtr, false);
+                return ret;
+            }
+        }
+
+        public uint size
+        {
+            set
+            {
+                UsdCsPINVOKE.SdfTupleDimensions_size_set(swigCPtr, value);
+            }
+            get
+            {
+                uint ret = UsdCsPINVOKE.SdfTupleDimensions_size_get(swigCPtr);
+                return ret;
+            }
+        }
     }
-  }
-
-  public SdfTupleDimensions() : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_0(), true) {
-  }
-
-  public SdfTupleDimensions(uint m) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_1(m), true) {
-  }
-
-  public SdfTupleDimensions(uint m, uint n) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_2(m, n), true) {
-  }
-
-  public SdfTupleDimensions(SWIGTYPE_p_a_2__size_t s) : this(UsdCsPINVOKE.new_SdfTupleDimensions__SWIG_3(SWIGTYPE_p_a_2__size_t.getCPtr(s)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SWIGTYPE_p_size_t d {
-    set {
-      UsdCsPINVOKE.SdfTupleDimensions_d_set(swigCPtr, SWIGTYPE_p_size_t.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.SdfTupleDimensions_d_get(swigCPtr);
-      SWIGTYPE_p_size_t ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_size_t(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public uint size {
-    set {
-      UsdCsPINVOKE.SdfTupleDimensions_size_set(swigCPtr, value);
-    } 
-    get {
-      uint ret = UsdCsPINVOKE.SdfTupleDimensions_size_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-}
-
 }

@@ -8,13 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum UsdListPosition {
-  UsdListPositionFrontOfPrependList,
-  UsdListPositionBackOfPrependList,
-  UsdListPositionFrontOfAppendList,
-  UsdListPositionBackOfAppendList
-}
-
+namespace pxr
+{
+    public enum UsdListPosition
+    {
+        UsdListPositionFrontOfPrependList,
+        UsdListPositionBackOfPrependList,
+        UsdListPositionFrontOfAppendList,
+        UsdListPositionBackOfAppendList
+    }
 }

@@ -8,11 +8,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum UsdInterpolationType {
-  UsdInterpolationTypeHeld,
-  UsdInterpolationTypeLinear
-}
-
+namespace pxr
+{
+    public enum UsdInterpolationType
+    {
+        UsdInterpolationTypeHeld,
+        UsdInterpolationTypeLinear
+    }
 }

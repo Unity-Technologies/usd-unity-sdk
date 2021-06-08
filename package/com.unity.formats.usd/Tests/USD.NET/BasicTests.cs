@@ -21,7 +21,6 @@ namespace USD.NET.Tests
 {
     class BasicTests : VariabilityTests
     {
-
         class MinimalSample : USD.NET.SampleBase
         {
             public int number;
@@ -74,7 +73,6 @@ namespace USD.NET.Tests
 
         class AssetPathSample : USD.NET.SampleBase
         {
-
             public pxr.SdfAssetPath assetPath;
             public pxr.SdfAssetPath[] assetPathArray;
             public List<pxr.SdfAssetPath> assetPathList;
@@ -106,12 +104,11 @@ namespace USD.NET.Tests
 
         class PrimvarSample : USD.NET.SampleBase
         {
-
             public class NestedSample : USD.NET.SampleBase
             {
                 // Because an outer namespace was declared, this results in the namespace
                 // "primvars:nested:foo:bar:baz"
-                [USD.NET.UsdNamespace("foo:bar")] [USD.NET.VertexData(4)]
+                [USD.NET.UsdNamespace("foo:bar")][USD.NET.VertexData(4)]
                 public int[] baz;
 
                 // Not a primvar, so the resulting namespace is:
@@ -132,7 +129,7 @@ namespace USD.NET.Tests
 
             [USD.NET.VertexData(2)] public int[] somePrimvar2;
 
-            [USD.NET.UsdNamespace("skel")] [USD.NET.VertexData(3)]
+            [USD.NET.UsdNamespace("skel")][USD.NET.VertexData(3)]
             public int[] jointIndices;
 
             [USD.NET.UsdNamespace("nested")] public NestedSample nestedSample;
@@ -328,7 +325,6 @@ namespace USD.NET.Tests
             AssertEqual(sampleToWrite.string_, sampleToRead.string_);
             AssertEqual(sampleToWrite.uint_, sampleToRead.uint_);
             AssertEqual(sampleToWrite.ulong_, sampleToRead.ulong_);
-
         }
 
         [Test]

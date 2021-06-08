@@ -8,12 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum SdfPermission {
-  SdfPermissionPublic,
-  SdfPermissionPrivate,
-  SdfNumPermissions
-}
-
+namespace pxr
+{
+    public enum SdfPermission
+    {
+        SdfPermissionPublic,
+        SdfPermissionPrivate,
+        SdfNumPermissions
+    }
 }

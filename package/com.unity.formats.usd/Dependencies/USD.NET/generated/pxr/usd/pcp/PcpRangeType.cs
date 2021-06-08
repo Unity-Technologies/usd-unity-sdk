@@ -8,19 +8,19 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum PcpRangeType {
-  PcpRangeTypeRoot,
-  PcpRangeTypeInherit,
-  PcpRangeTypeVariant,
-  PcpRangeTypeReference,
-  PcpRangeTypePayload,
-  PcpRangeTypeSpecialize,
-  PcpRangeTypeAll,
-  PcpRangeTypeWeakerThanRoot,
-  PcpRangeTypeStrongerThanPayload,
-  PcpRangeTypeInvalid
-}
-
+namespace pxr
+{
+    public enum PcpRangeType
+    {
+        PcpRangeTypeRoot,
+        PcpRangeTypeInherit,
+        PcpRangeTypeVariant,
+        PcpRangeTypeReference,
+        PcpRangeTypePayload,
+        PcpRangeTypeSpecialize,
+        PcpRangeTypeAll,
+        PcpRangeTypeWeakerThanRoot,
+        PcpRangeTypeStrongerThanPayload,
+        PcpRangeTypeInvalid
+    }
 }

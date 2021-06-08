@@ -8,71 +8,85 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class SdfPathPair : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class SdfPathPair : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SdfPathPair(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfPathPair obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfPathPair() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfPathPair(swigCPtr);
+        internal SdfPathPair(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfPathPair obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~SdfPathPair()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfPathPair(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public SdfPathPair() : this(UsdCsPINVOKE.new_SdfPathPair__SWIG_0(), true)
+        {
+        }
+
+        public SdfPathPair(SdfPath t, SdfPath u) : this(UsdCsPINVOKE.new_SdfPathPair__SWIG_1(SdfPath.getCPtr(t), SdfPath.getCPtr(u)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SdfPathPair(SdfPathPair p) : this(UsdCsPINVOKE.new_SdfPathPair__SWIG_2(SdfPathPair.getCPtr(p)), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SdfPath first
+        {
+            set
+            {
+                UsdCsPINVOKE.SdfPathPair_first_set(swigCPtr, SdfPath.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.SdfPathPair_first_get(swigCPtr);
+                SdfPath ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfPath(cPtr, false);
+                return ret;
+            }
+        }
+
+        public SdfPath second
+        {
+            set
+            {
+                UsdCsPINVOKE.SdfPathPair_second_set(swigCPtr, SdfPath.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.SdfPathPair_second_get(swigCPtr);
+                SdfPath ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfPath(cPtr, false);
+                return ret;
+            }
+        }
     }
-  }
-
-  public SdfPathPair() : this(UsdCsPINVOKE.new_SdfPathPair__SWIG_0(), true) {
-  }
-
-  public SdfPathPair(SdfPath t, SdfPath u) : this(UsdCsPINVOKE.new_SdfPathPair__SWIG_1(SdfPath.getCPtr(t), SdfPath.getCPtr(u)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPathPair(SdfPathPair p) : this(UsdCsPINVOKE.new_SdfPathPair__SWIG_2(SdfPathPair.getCPtr(p)), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfPath first {
-    set {
-      UsdCsPINVOKE.SdfPathPair_first_set(swigCPtr, SdfPath.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.SdfPathPair_first_get(swigCPtr);
-      SdfPath ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfPath(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public SdfPath second {
-    set {
-      UsdCsPINVOKE.SdfPathPair_second_set(swigCPtr, SdfPath.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.SdfPathPair_second_get(swigCPtr);
-      SdfPath ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdfPath(cPtr, false);
-      return ret;
-    } 
-  }
-
-}
-
 }

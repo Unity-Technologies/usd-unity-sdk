@@ -8,90 +8,106 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    [Preserve]
+    public class SdfTimeCode : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-[Preserve]
-public class SdfTimeCode : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SdfTimeCode(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfTimeCode obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfTimeCode() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfTimeCode(swigCPtr);
+        internal SdfTimeCode(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
-  }
 
-  public SdfTimeCode(double time) : this(UsdCsPINVOKE.new_SdfTimeCode__SWIG_0(time), true) {
-  }
-
-  public SdfTimeCode() : this(UsdCsPINVOKE.new_SdfTimeCode__SWIG_1(), true) {
-  }
-
-  public uint GetHash() {
-    uint ret = UsdCsPINVOKE.SdfTimeCode_GetHash(swigCPtr);
-    return ret;
-  }
-
-  public class Hash : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Hash() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_SdfTimeCode_Hash(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfTimeCode obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+        ~SdfTimeCode()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfTimeCode(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public SdfTimeCode(double time) : this(UsdCsPINVOKE.new_SdfTimeCode__SWIG_0(time), true)
+        {
+        }
+
+        public SdfTimeCode() : this(UsdCsPINVOKE.new_SdfTimeCode__SWIG_1(), true)
+        {
+        }
+
+        public uint GetHash()
+        {
+            uint ret = UsdCsPINVOKE.SdfTimeCode_GetHash(swigCPtr);
+            return ret;
+        }
+
+        public class Hash : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Hash()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this) {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            UsdCsPINVOKE.delete_SdfTimeCode_Hash(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            public Hash() : this(UsdCsPINVOKE.new_SdfTimeCode_Hash(), true)
+            {
+            }
+        }
+
+        public double GetValue()
+        {
+            double ret = UsdCsPINVOKE.SdfTimeCode_GetValue(swigCPtr);
+            return ret;
+        }
     }
-  
-    public Hash() : this(UsdCsPINVOKE.new_SdfTimeCode_Hash(), true) {
-    }
-  
-  }
-
-  public double GetValue() {
-    double ret = UsdCsPINVOKE.SdfTimeCode_GetValue(swigCPtr);
-    return ret;
-  }
-
-}
-
 }

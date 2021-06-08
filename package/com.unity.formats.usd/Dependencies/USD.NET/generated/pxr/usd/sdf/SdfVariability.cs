@@ -8,12 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum SdfVariability {
-  SdfVariabilityVarying,
-  SdfVariabilityUniform,
-  SdfNumVariabilities
-}
-
+namespace pxr
+{
+    public enum SdfVariability
+    {
+        SdfVariabilityVarying,
+        SdfVariabilityUniform,
+        SdfNumVariabilities
+    }
 }

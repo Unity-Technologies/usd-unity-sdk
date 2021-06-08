@@ -8,104 +8,128 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class PcpArc : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class PcpArc : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal PcpArc(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PcpArc obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~PcpArc() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_PcpArc(swigCPtr);
+        internal PcpArc(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PcpArc obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~PcpArc()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_PcpArc(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public PcpArc() : this(UsdCsPINVOKE.new_PcpArc(), true)
+        {
+        }
+
+        public PcpArcType type
+        {
+            set
+            {
+                UsdCsPINVOKE.PcpArc_type_set(swigCPtr, (int)value);
+            }
+            get
+            {
+                PcpArcType ret = (PcpArcType)UsdCsPINVOKE.PcpArc_type_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public PcpNodeRef parent
+        {
+            set
+            {
+                UsdCsPINVOKE.PcpArc_parent_set(swigCPtr, PcpNodeRef.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.PcpArc_parent_get(swigCPtr);
+                PcpNodeRef ret = (cPtr == global::System.IntPtr.Zero) ? null : new PcpNodeRef(cPtr, false);
+                return ret;
+            }
+        }
+
+        public PcpNodeRef origin
+        {
+            set
+            {
+                UsdCsPINVOKE.PcpArc_origin_set(swigCPtr, PcpNodeRef.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.PcpArc_origin_get(swigCPtr);
+                PcpNodeRef ret = (cPtr == global::System.IntPtr.Zero) ? null : new PcpNodeRef(cPtr, false);
+                return ret;
+            }
+        }
+
+        public SWIGTYPE_p_PcpMapExpression mapToParent
+        {
+            set
+            {
+                UsdCsPINVOKE.PcpArc_mapToParent_set(swigCPtr, SWIGTYPE_p_PcpMapExpression.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = UsdCsPINVOKE.PcpArc_mapToParent_get(swigCPtr);
+                SWIGTYPE_p_PcpMapExpression ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_PcpMapExpression(cPtr, false);
+                return ret;
+            }
+        }
+
+        public int siblingNumAtOrigin
+        {
+            set
+            {
+                UsdCsPINVOKE.PcpArc_siblingNumAtOrigin_set(swigCPtr, value);
+            }
+            get
+            {
+                int ret = UsdCsPINVOKE.PcpArc_siblingNumAtOrigin_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public int namespaceDepth
+        {
+            set
+            {
+                UsdCsPINVOKE.PcpArc_namespaceDepth_set(swigCPtr, value);
+            }
+            get
+            {
+                int ret = UsdCsPINVOKE.PcpArc_namespaceDepth_get(swigCPtr);
+                return ret;
+            }
+        }
     }
-  }
-
-  public PcpArc() : this(UsdCsPINVOKE.new_PcpArc(), true) {
-  }
-
-  public PcpArcType type {
-    set {
-      UsdCsPINVOKE.PcpArc_type_set(swigCPtr, (int)value);
-    } 
-    get {
-      PcpArcType ret = (PcpArcType)UsdCsPINVOKE.PcpArc_type_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public PcpNodeRef parent {
-    set {
-      UsdCsPINVOKE.PcpArc_parent_set(swigCPtr, PcpNodeRef.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.PcpArc_parent_get(swigCPtr);
-      PcpNodeRef ret = (cPtr == global::System.IntPtr.Zero) ? null : new PcpNodeRef(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public PcpNodeRef origin {
-    set {
-      UsdCsPINVOKE.PcpArc_origin_set(swigCPtr, PcpNodeRef.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.PcpArc_origin_get(swigCPtr);
-      PcpNodeRef ret = (cPtr == global::System.IntPtr.Zero) ? null : new PcpNodeRef(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public SWIGTYPE_p_PcpMapExpression mapToParent {
-    set {
-      UsdCsPINVOKE.PcpArc_mapToParent_set(swigCPtr, SWIGTYPE_p_PcpMapExpression.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = UsdCsPINVOKE.PcpArc_mapToParent_get(swigCPtr);
-      SWIGTYPE_p_PcpMapExpression ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_PcpMapExpression(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public int siblingNumAtOrigin {
-    set {
-      UsdCsPINVOKE.PcpArc_siblingNumAtOrigin_set(swigCPtr, value);
-    } 
-    get {
-      int ret = UsdCsPINVOKE.PcpArc_siblingNumAtOrigin_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public int namespaceDepth {
-    set {
-      UsdCsPINVOKE.PcpArc_namespaceDepth_set(swigCPtr, value);
-    } 
-    get {
-      int ret = UsdCsPINVOKE.PcpArc_namespaceDepth_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-}
-
 }

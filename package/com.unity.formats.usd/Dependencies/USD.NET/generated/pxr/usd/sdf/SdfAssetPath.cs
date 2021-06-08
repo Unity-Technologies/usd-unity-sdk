@@ -8,129 +8,152 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    [Preserve]
+    public class SdfAssetPath : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-[Preserve]
-public class SdfAssetPath : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SdfAssetPath(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfAssetPath obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SdfAssetPath() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_SdfAssetPath(swigCPtr);
+        internal SdfAssetPath(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
-  }
 
-  public SdfAssetPath() : this(UsdCsPINVOKE.new_SdfAssetPath__SWIG_0(), true) {
-  }
-
-  public SdfAssetPath(string path) : this(UsdCsPINVOKE.new_SdfAssetPath__SWIG_1(path), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SdfAssetPath(string path, string resolvedPath) : this(UsdCsPINVOKE.new_SdfAssetPath__SWIG_2(path, resolvedPath), true) {
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public uint GetHash() {
-    uint ret = UsdCsPINVOKE.SdfAssetPath_GetHash(swigCPtr);
-    return ret;
-  }
-
-  public class Hash : global::System.IDisposable {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    protected bool swigCMemOwn;
-  
-    internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn) {
-      swigCMemOwn = cMemoryOwn;
-      swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    }
-  
-    internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj) {
-      return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-    }
-  
-    ~Hash() {
-      Dispose();
-    }
-  
-    public virtual void Dispose() {
-      lock(this) {
-        if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-          if (swigCMemOwn) {
-            swigCMemOwn = false;
-            UsdCsPINVOKE.delete_SdfAssetPath_Hash(swigCPtr);
-          }
-          swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfAssetPath obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-        global::System.GC.SuppressFinalize(this);
-      }
+
+        ~SdfAssetPath()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_SdfAssetPath(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public SdfAssetPath() : this(UsdCsPINVOKE.new_SdfAssetPath__SWIG_0(), true)
+        {
+        }
+
+        public SdfAssetPath(string path) : this(UsdCsPINVOKE.new_SdfAssetPath__SWIG_1(path), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public SdfAssetPath(string path, string resolvedPath) : this(UsdCsPINVOKE.new_SdfAssetPath__SWIG_2(path, resolvedPath), true)
+        {
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public uint GetHash()
+        {
+            uint ret = UsdCsPINVOKE.SdfAssetPath_GetHash(swigCPtr);
+            return ret;
+        }
+
+        public class Hash : global::System.IDisposable
+        {
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            protected bool swigCMemOwn;
+
+            internal Hash(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Hash obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            ~Hash()
+            {
+                Dispose();
+            }
+
+            public virtual void Dispose()
+            {
+                lock (this) {
+                    if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                    {
+                        if (swigCMemOwn)
+                        {
+                            swigCMemOwn = false;
+                            UsdCsPINVOKE.delete_SdfAssetPath_Hash(swigCPtr);
+                        }
+                        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    }
+                    global::System.GC.SuppressFinalize(this);
+                }
+            }
+
+            public Hash() : this(UsdCsPINVOKE.new_SdfAssetPath_Hash(), true)
+            {
+            }
+        }
+
+        public string GetAssetPath()
+        {
+            string ret = UsdCsPINVOKE.SdfAssetPath_GetAssetPath(swigCPtr);
+            return ret;
+        }
+
+        public string GetResolvedPath()
+        {
+            string ret = UsdCsPINVOKE.SdfAssetPath_GetResolvedPath(swigCPtr);
+            return ret;
+        }
+
+        public static bool Equals(SdfAssetPath lhs, SdfAssetPath rhs)
+        {
+            bool ret = UsdCsPINVOKE.SdfAssetPath_Equals(SdfAssetPath.getCPtr(lhs), SdfAssetPath.getCPtr(rhs));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        override public int GetHashCode()
+        {
+            int ret = UsdCsPINVOKE.SdfAssetPath_GetHashCode(swigCPtr);
+            return ret;
+        }
+
+        public static bool operator==(SdfAssetPath lhs, SdfAssetPath rhs)
+        {
+            // The Swig binding glue will re-enter this operator comparing to null, so
+            // that case must be handled explicitly to avoid an infinite loop. This is still
+            // not great, since it crosses the C#/C++ barrier twice. A better approache might
+            // be to return a simple value from C++ that can be compared in C#.
+            bool lnull = lhs as object == null;
+            bool rnull = rhs as object == null;
+            return (lnull == rnull) && ((lnull && rnull) || SdfAssetPath.Equals(lhs, rhs));
+        }
+
+        public static bool operator!=(SdfAssetPath lhs, SdfAssetPath rhs)
+        {
+            return !(lhs == rhs);
+        }
+
+        override public bool Equals(object rhs)
+        {
+            return SdfAssetPath.Equals(this, rhs as SdfAssetPath);
+        }
     }
-  
-    public Hash() : this(UsdCsPINVOKE.new_SdfAssetPath_Hash(), true) {
-    }
-  
-  }
-
-  public string GetAssetPath() {
-    string ret = UsdCsPINVOKE.SdfAssetPath_GetAssetPath(swigCPtr);
-    return ret;
-  }
-
-  public string GetResolvedPath() {
-    string ret = UsdCsPINVOKE.SdfAssetPath_GetResolvedPath(swigCPtr);
-    return ret;
-  }
-
-  public static bool Equals(SdfAssetPath lhs, SdfAssetPath rhs) {
-    bool ret = UsdCsPINVOKE.SdfAssetPath_Equals(SdfAssetPath.getCPtr(lhs), SdfAssetPath.getCPtr(rhs));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  override public int GetHashCode() {
-    int ret = UsdCsPINVOKE.SdfAssetPath_GetHashCode(swigCPtr);
-    return ret;
-  }
-
-    public static bool operator==(SdfAssetPath lhs, SdfAssetPath rhs){
-      // The Swig binding glue will re-enter this operator comparing to null, so 
-      // that case must be handled explicitly to avoid an infinite loop. This is still
-      // not great, since it crosses the C#/C++ barrier twice. A better approache might
-      // be to return a simple value from C++ that can be compared in C#.
-      bool lnull = lhs as object == null;
-      bool rnull = rhs as object == null;
-      return (lnull == rnull) && ((lnull && rnull) || SdfAssetPath.Equals(lhs, rhs));
-    }
-
-    public static bool operator !=(SdfAssetPath lhs, SdfAssetPath rhs) {
-        return !(lhs == rhs);
-    }
-
-    override public bool Equals(object rhs) {
-      return SdfAssetPath.Equals(this, rhs as SdfAssetPath);
-    }
-  
-}
-
 }

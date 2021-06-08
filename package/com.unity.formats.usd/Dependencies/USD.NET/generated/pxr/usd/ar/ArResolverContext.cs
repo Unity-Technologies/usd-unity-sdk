@@ -8,51 +8,59 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
+namespace pxr
+{
+    public class ArResolverContext : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class ArResolverContext : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal ArResolverContext(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ArResolverContext obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~ArResolverContext() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          UsdCsPINVOKE.delete_ArResolverContext(swigCPtr);
+        internal ArResolverContext(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ArResolverContext obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~ArResolverContext()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this) {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        UsdCsPINVOKE.delete_ArResolverContext(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public ArResolverContext() : this(UsdCsPINVOKE.new_ArResolverContext(), true)
+        {
+        }
+
+        public bool IsEmpty()
+        {
+            bool ret = UsdCsPINVOKE.ArResolverContext_IsEmpty(swigCPtr);
+            return ret;
+        }
+
+        public string GetDebugString()
+        {
+            string ret = UsdCsPINVOKE.ArResolverContext_GetDebugString(swigCPtr);
+            return ret;
+        }
     }
-  }
-
-  public ArResolverContext() : this(UsdCsPINVOKE.new_ArResolverContext(), true) {
-  }
-
-  public bool IsEmpty() {
-    bool ret = UsdCsPINVOKE.ArResolverContext_IsEmpty(swigCPtr);
-    return ret;
-  }
-
-  public string GetDebugString() {
-    string ret = UsdCsPINVOKE.ArResolverContext_GetDebugString(swigCPtr);
-    return ret;
-  }
-
-}
-
 }

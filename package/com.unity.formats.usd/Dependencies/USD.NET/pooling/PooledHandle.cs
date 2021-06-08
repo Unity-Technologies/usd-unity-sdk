@@ -1,4 +1,4 @@
-﻿// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2017 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,43 +14,51 @@
 
 using System;
 
-namespace USD.NET {
-  internal class PooledHandle<T> : IDisposable {
-    private ArrayPool m_allocator;
+namespace USD.NET
+{
+    internal class PooledHandle<T> : IDisposable
+    {
+        private ArrayPool m_allocator;
 
-    public PooledHandle(ArrayPool allocator) {
-      m_allocator = allocator;
-      Value = (T)m_allocator.MallocHandle(typeof(T));
+        public PooledHandle(ArrayPool allocator)
+        {
+            m_allocator = allocator;
+            Value = (T)m_allocator.MallocHandle(typeof(T));
+        }
+
+        public T Value { get; set; }
+
+        // ------------------------------------------------------------------------------------------ //
+        // Disposable object pattern (for managed objects).
+        // ------------------------------------------------------------------------------------------ //
+
+        bool disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                m_allocator.FreeHandle(Value);
+            }
+
+            disposed = true;
+        }
+
+        ~PooledHandle()
+        {
+            Dispose(false);
+        }
     }
-
-    public T Value { get; set; }
-
-    // ------------------------------------------------------------------------------------------ //
-    // Disposable object pattern (for managed objects).
-    // ------------------------------------------------------------------------------------------ //
-
-    bool disposed = false;
-
-    public void Dispose() {
-      Dispose(true);
-      GC.SuppressFinalize(this);
-    }
-
-    // Protected implementation of Dispose pattern.
-    protected virtual void Dispose(bool disposing) {
-      if (disposed) {
-        return;
-      }
-
-      if (disposing) {
-        m_allocator.FreeHandle(Value);
-      }
-
-      disposed = true;
-    }
-
-    ~PooledHandle() {
-      Dispose(false);
-    }
-  }
 }

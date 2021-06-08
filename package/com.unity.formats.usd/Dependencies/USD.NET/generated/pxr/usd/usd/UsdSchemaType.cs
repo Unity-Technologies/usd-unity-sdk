@@ -8,15 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum UsdSchemaType {
-  AbstractBase,
-  AbstractTyped,
-  ConcreteTyped,
-  NonAppliedAPI,
-  SingleApplyAPI,
-  MultipleApplyAPI
-}
-
+namespace pxr
+{
+    public enum UsdSchemaType
+    {
+        AbstractBase,
+        AbstractTyped,
+        ConcreteTyped,
+        NonAppliedAPI,
+        SingleApplyAPI,
+        MultipleApplyAPI
+    }
 }

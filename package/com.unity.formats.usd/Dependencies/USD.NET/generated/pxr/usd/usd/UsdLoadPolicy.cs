@@ -8,11 +8,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum UsdLoadPolicy {
-  UsdLoadWithDescendants,
-  UsdLoadWithoutDescendants
-}
-
+namespace pxr
+{
+    public enum UsdLoadPolicy
+    {
+        UsdLoadWithDescendants,
+        UsdLoadWithoutDescendants
+    }
 }

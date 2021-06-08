@@ -1,4 +1,4 @@
-﻿// Copyright 2020 Unity Technologies All rights reserved.
+// Copyright 2020 Unity Technologies All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ using System;
 /// <summary>
 /// Add this tag to make callback compatible with IL2CPP
 /// </summary>
-/// 
+///
 /// <remarks>
 /// Why does this class exist?
 /// See: https://github.com/Unity-Technologies/usd-unity-sdk/issues/100#issuecomment-512134215
@@ -26,7 +26,7 @@ using System;
 /// SWIG Callbacks must be explicitly tagged as mono callbacks so the IL2CPP backend can correctly
 /// generate C++ code. This is hack to work around the fact that USD.NET doesn't reference the
 /// Mono runtime libraries.
-/// 
+///
 /// Also see: https://docs.microsoft.com/en-us/dotnet/api/objcruntime.monopinvokecallbackattribute?view=xamarin-ios-sdk-12
 /// </remarks>
 [AttributeUsage(AttributeTargets.Method)]

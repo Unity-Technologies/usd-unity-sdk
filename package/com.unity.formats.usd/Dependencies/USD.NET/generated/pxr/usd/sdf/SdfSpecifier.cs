@@ -8,13 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-namespace pxr {
-
-public enum SdfSpecifier {
-  SdfSpecifierDef,
-  SdfSpecifierOver,
-  SdfSpecifierClass,
-  SdfNumSpecifiers
-}
-
+namespace pxr
+{
+    public enum SdfSpecifier
+    {
+        SdfSpecifierDef,
+        SdfSpecifierOver,
+        SdfSpecifierClass,
+        SdfNumSpecifiers
+    }
 }
