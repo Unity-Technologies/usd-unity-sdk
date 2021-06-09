@@ -18213,6 +18213,156 @@ namespace pxr
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageCacheRequest_Manufacture")]
         public static extern global::System.IntPtr UsdStageCacheRequest_Manufacture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRulesPair__SWIG_0")]
+        public static extern global::System.IntPtr new_UsdStageLoadRulesPair__SWIG_0();
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRulesPair__SWIG_1")]
+        public static extern global::System.IntPtr new_UsdStageLoadRulesPair__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRulesPair__SWIG_2")]
+        public static extern global::System.IntPtr new_UsdStageLoadRulesPair__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesPair_first_set")]
+        public static extern void UsdStageLoadRulesPair_first_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesPair_first_get")]
+        public static extern global::System.IntPtr UsdStageLoadRulesPair_first_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesPair_second_set")]
+        public static extern void UsdStageLoadRulesPair_second_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesPair_second_get")]
+        public static extern int UsdStageLoadRulesPair_second_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_delete_UsdStageLoadRulesPair")]
+        public static extern void delete_UsdStageLoadRulesPair(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_Clear")]
+        public static extern void UsdStageLoadRulesVectorPair_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_Add")]
+        public static extern void UsdStageLoadRulesVectorPair_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_size")]
+        public static extern uint UsdStageLoadRulesVectorPair_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_capacity")]
+        public static extern uint UsdStageLoadRulesVectorPair_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_reserve")]
+        public static extern void UsdStageLoadRulesVectorPair_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRulesVectorPair__SWIG_0")]
+        public static extern global::System.IntPtr new_UsdStageLoadRulesVectorPair__SWIG_0();
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRulesVectorPair__SWIG_1")]
+        public static extern global::System.IntPtr new_UsdStageLoadRulesVectorPair__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRulesVectorPair__SWIG_2")]
+        public static extern global::System.IntPtr new_UsdStageLoadRulesVectorPair__SWIG_2(int jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_getitemcopy")]
+        public static extern global::System.IntPtr UsdStageLoadRulesVectorPair_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_getitem")]
+        public static extern global::System.IntPtr UsdStageLoadRulesVectorPair_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_setitem")]
+        public static extern void UsdStageLoadRulesVectorPair_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_AddRange")]
+        public static extern void UsdStageLoadRulesVectorPair_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_GetRange")]
+        public static extern global::System.IntPtr UsdStageLoadRulesVectorPair_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_Insert")]
+        public static extern void UsdStageLoadRulesVectorPair_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_InsertRange")]
+        public static extern void UsdStageLoadRulesVectorPair_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_RemoveAt")]
+        public static extern void UsdStageLoadRulesVectorPair_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_RemoveRange")]
+        public static extern void UsdStageLoadRulesVectorPair_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_Repeat")]
+        public static extern global::System.IntPtr UsdStageLoadRulesVectorPair_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_Reverse__SWIG_0")]
+        public static extern void UsdStageLoadRulesVectorPair_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_Reverse__SWIG_1")]
+        public static extern void UsdStageLoadRulesVectorPair_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRulesVectorPair_SetRange")]
+        public static extern void UsdStageLoadRulesVectorPair_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_delete_UsdStageLoadRulesVectorPair")]
+        public static extern void delete_UsdStageLoadRulesVectorPair(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRules__SWIG_0")]
+        public static extern global::System.IntPtr new_UsdStageLoadRules__SWIG_0();
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_LoadAll")]
+        public static extern global::System.IntPtr UsdStageLoadRules_LoadAll();
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_LoadNone")]
+        public static extern global::System.IntPtr UsdStageLoadRules_LoadNone();
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdStageLoadRules__SWIG_1")]
+        public static extern global::System.IntPtr new_UsdStageLoadRules__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_LoadWithDescendants")]
+        public static extern void UsdStageLoadRules_LoadWithDescendants(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_LoadWithoutDescendants")]
+        public static extern void UsdStageLoadRules_LoadWithoutDescendants(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_Unload")]
+        public static extern void UsdStageLoadRules_Unload(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_LoadAndUnload")]
+        public static extern void UsdStageLoadRules_LoadAndUnload(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_AddRule")]
+        public static extern void UsdStageLoadRules_AddRule(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_SetRules__SWIG_0")]
+        public static extern void UsdStageLoadRules_SetRules__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_Minimize")]
+        public static extern void UsdStageLoadRules_Minimize(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_IsLoaded")]
+        public static extern bool UsdStageLoadRules_IsLoaded(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_IsLoadedWithAllDescendants")]
+        public static extern bool UsdStageLoadRules_IsLoadedWithAllDescendants(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_IsLoadedWithNoDescendants")]
+        public static extern bool UsdStageLoadRules_IsLoadedWithNoDescendants(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_GetEffectiveRuleForPath")]
+        public static extern int UsdStageLoadRules_GetEffectiveRuleForPath(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_GetRules")]
+        public static extern global::System.IntPtr UsdStageLoadRules_GetRules(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdStageLoadRules_swap")]
+        public static extern void UsdStageLoadRules_swap(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_61")]
+        public static extern uint hash_value__SWIG_61(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_delete_UsdStageLoadRules")]
+        public static extern void delete_UsdStageLoadRules(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_swap__SWIG_10")]
+        public static extern void swap__SWIG_10(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_UsdResolveInfo")]
         public static extern global::System.IntPtr new_UsdResolveInfo();
 
@@ -18249,8 +18399,8 @@ namespace pxr
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdObject_IsValid")]
         public static extern bool UsdObject_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_61")]
-        public static extern uint hash_value__SWIG_61(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_62")]
+        public static extern uint hash_value__SWIG_62(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdObject_GetStage")]
         public static extern global::System.IntPtr UsdObject_GetStage(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -20562,8 +20712,8 @@ namespace pxr
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdGeomPrimvar_SetIdTarget")]
         public static extern bool UsdGeomPrimvar_SetIdTarget(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_62")]
-        public static extern uint hash_value__SWIG_62(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_63")]
+        public static extern uint hash_value__SWIG_63(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_delete_UsdGeomPrimvar")]
         public static extern void delete_UsdGeomPrimvar(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -25392,8 +25542,8 @@ namespace pxr
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdSkelAnimQuery_IsValid")]
         public static extern bool UsdSkelAnimQuery_IsValid(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_63")]
-        public static extern uint hash_value__SWIG_63(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_64")]
+        public static extern uint hash_value__SWIG_64(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdSkelAnimQuery_GetPrim")]
         public static extern global::System.IntPtr UsdSkelAnimQuery_GetPrim(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -25806,8 +25956,8 @@ namespace pxr
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdSkelSkeletonQuery_HasRestPose")]
         public static extern bool UsdSkelSkeletonQuery_HasRestPose(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_64")]
-        public static extern uint hash_value__SWIG_64(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_hash_value__SWIG_65")]
+        public static extern uint hash_value__SWIG_65(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_UsdSkelSkeletonQuery_GetPrim")]
         public static extern global::System.IntPtr UsdSkelSkeletonQuery_GetPrim(global::System.Runtime.InteropServices.HandleRef jarg1);

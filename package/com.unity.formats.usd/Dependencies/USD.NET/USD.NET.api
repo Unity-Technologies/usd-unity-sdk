@@ -7387,6 +7387,7 @@ namespace pxr
         public static System.UInt32 hash_value(pxr.UsdObject obj);
         public static System.UInt32 hash_value(pxr.UsdSkelAnimQuery query);
         public static System.UInt32 hash_value(pxr.UsdSkelSkeletonQuery query);
+        public static System.UInt32 hash_value(pxr.UsdStageLoadRules arg0);
         public static System.UInt32 hash_value(pxr.UsdStagePopulationMask arg0);
         public static System.UInt32 hash_value(pxr.UsdTimeCode time);
         public static System.UInt32 hash_value(pxr.VtDictionary dict);
@@ -7553,6 +7554,7 @@ namespace pxr
         public static void swap(pxr.SWIGTYPE_p_PcpPrimIndexOutputs l, pxr.SWIGTYPE_p_PcpPrimIndexOutputs r);
         public static void swap(pxr.TfToken lhs, pxr.TfToken rhs);
         public static void swap(pxr.UsdStageCache lhs, pxr.UsdStageCache rhs);
+        public static void swap(pxr.UsdStageLoadRules l, pxr.UsdStageLoadRules r);
         public static void swap(pxr.UsdStagePopulationMask l, pxr.UsdStagePopulationMask r);
         public static void swap(pxr.VtDictionary lhs, pxr.VtDictionary rhs);
         public static void swap(pxr.VtValue lhs, pxr.VtValue rhs);
@@ -12755,7 +12757,7 @@ namespace pxr
         public pxr.UsdInterpolationType GetInterpolationType();
         public pxr.SdfLayerHandleVector GetLayerStack();
         public pxr.SdfLayerHandleVector GetLayerStack(bool includeSessionLayers);
-        public pxr.SWIGTYPE_p_UsdStageLoadRules GetLoadRules();
+        public pxr.UsdStageLoadRules GetLoadRules();
         public pxr.SWIGTYPE_p_std__setT_SdfPath_t GetLoadSet();
         public pxr.UsdPrimVector GetMasters();
         public bool GetMetadata(pxr.TfToken key, pxr.VtValue value);
@@ -12829,7 +12831,7 @@ namespace pxr
         public void SetFramesPerSecond(double framesPerSecond);
         public static void SetGlobalVariantFallbacks(pxr.SWIGTYPE_p_std__mapT_std__string_std__vectorT_std__string_t_std__lessT_std__string_t_t fallbacks);
         public void SetInterpolationType(pxr.UsdInterpolationType interpolationType);
-        public void SetLoadRules(pxr.SWIGTYPE_p_UsdStageLoadRules rules);
+        public void SetLoadRules(pxr.UsdStageLoadRules rules);
         public bool SetMetadata(pxr.TfToken key, pxr.VtValue value);
         public bool SetMetadataByDictKey(pxr.TfToken key, pxr.TfToken keyPath, pxr.VtValue value);
         public void SetPopulationMask(pxr.UsdStagePopulationMask mask);
@@ -12905,6 +12907,90 @@ namespace pxr
         public UsdStageCacheResultPair(pxr.UsdStage t, bool u) {}
         public virtual void Dispose();
         protected virtual void Finalize();
+    }
+
+    public class UsdStageLoadRules : System.IDisposable
+    {
+        protected bool swigCMemOwn;
+        public UsdStageLoadRules() {}
+        public UsdStageLoadRules(pxr.UsdStageLoadRules arg0) {}
+        public void AddRule(pxr.SdfPath path, pxr.UsdStageLoadRules.Rule rule);
+        public virtual void Dispose();
+        protected virtual void Finalize();
+        public pxr.UsdStageLoadRules.Rule GetEffectiveRuleForPath(pxr.SdfPath path);
+        public pxr.UsdStageLoadRulesVectorPair GetRules();
+        public bool IsLoaded(pxr.SdfPath path);
+        public bool IsLoadedWithAllDescendants(pxr.SdfPath path);
+        public bool IsLoadedWithNoDescendants(pxr.SdfPath path);
+        public static pxr.UsdStageLoadRules LoadAll();
+        public void LoadAndUnload(pxr.SWIGTYPE_p_std__setT_SdfPath_t loadSet, pxr.SWIGTYPE_p_std__setT_SdfPath_t unloadSet, pxr.UsdLoadPolicy policy);
+        public static pxr.UsdStageLoadRules LoadNone();
+        public void LoadWithDescendants(pxr.SdfPath path);
+        public void LoadWithoutDescendants(pxr.SdfPath path);
+        public void Minimize();
+        public void SetRules(pxr.UsdStageLoadRulesVectorPair rules);
+        public void swap(pxr.UsdStageLoadRules other);
+        public void Unload(pxr.SdfPath path);
+        public enum Rule
+        {
+            public const pxr.UsdStageLoadRules.Rule AllRule = 0;
+            public const pxr.UsdStageLoadRules.Rule NoneRule = 2;
+            public const pxr.UsdStageLoadRules.Rule OnlyRule = 1;
+            public int value__;
+        }
+    }
+
+    public class UsdStageLoadRulesPair : System.IDisposable
+    {
+        protected bool swigCMemOwn;
+        public pxr.SdfPath first { get; set; }
+        public pxr.UsdStageLoadRules.Rule second { get; set; }
+        public UsdStageLoadRulesPair() {}
+        public UsdStageLoadRulesPair(pxr.UsdStageLoadRulesPair p) {}
+        public UsdStageLoadRulesPair(pxr.SdfPath t, pxr.UsdStageLoadRules.Rule u) {}
+        public virtual void Dispose();
+        protected virtual void Finalize();
+    }
+
+    [System.Reflection.DefaultMember(@"Item")] public class UsdStageLoadRulesVectorPair : System.Collections.Generic.IEnumerable<pxr.UsdStageLoadRulesPair>, System.Collections.IEnumerable, System.IDisposable
+    {
+        protected bool swigCMemOwn;
+        public int Capacity { get; set; }
+        public int Count { get; }
+        public bool IsFixedSize { get; }
+        public bool IsReadOnly { get; }
+        public bool IsSynchronized { get; }
+        public pxr.UsdStageLoadRulesPair this[int index] { get; set; }
+        public UsdStageLoadRulesVectorPair() {}
+        public UsdStageLoadRulesVectorPair(pxr.UsdStageLoadRulesVectorPair other) {}
+        public UsdStageLoadRulesVectorPair(System.Collections.ICollection c) {}
+        public UsdStageLoadRulesVectorPair(int capacity) {}
+        public void Add(pxr.UsdStageLoadRulesPair x);
+        public void AddRange(pxr.UsdStageLoadRulesVectorPair values);
+        public void Clear();
+        public void CopyTo(pxr.UsdStageLoadRulesPair[] array);
+        public void CopyTo(pxr.UsdStageLoadRulesPair[] array, int arrayIndex);
+        public void CopyTo(int index, pxr.UsdStageLoadRulesPair[] array, int arrayIndex, int count);
+        public virtual void Dispose();
+        protected virtual void Finalize();
+        public pxr.UsdStageLoadRulesVectorPair.UsdStageLoadRulesVectorPairEnumerator GetEnumerator();
+        public pxr.UsdStageLoadRulesVectorPair GetRange(int index, int count);
+        public void Insert(int index, pxr.UsdStageLoadRulesPair x);
+        public void InsertRange(int index, pxr.UsdStageLoadRulesVectorPair values);
+        public void RemoveAt(int index);
+        public void RemoveRange(int index, int count);
+        public static pxr.UsdStageLoadRulesVectorPair Repeat(pxr.UsdStageLoadRulesPair value, int count);
+        public void Reverse();
+        public void Reverse(int index, int count);
+        public void SetRange(int index, pxr.UsdStageLoadRulesVectorPair values);
+        public sealed class UsdStageLoadRulesVectorPairEnumerator : System.Collections.Generic.IEnumerator<pxr.UsdStageLoadRulesPair>, System.Collections.IEnumerator, System.IDisposable
+        {
+            public virtual pxr.UsdStageLoadRulesPair Current { get; }
+            public UsdStageLoadRulesVectorPairEnumerator(pxr.UsdStageLoadRulesVectorPair collection) {}
+            public virtual void Dispose();
+            public virtual bool MoveNext();
+            public virtual void Reset();
+        }
     }
 
     public class UsdStagePopulationMask : System.IDisposable
@@ -12999,7 +13085,7 @@ namespace pxr
         public pxr.UsdInterpolationType GetInterpolationType();
         public pxr.SdfLayerHandleVector GetLayerStack();
         public pxr.SdfLayerHandleVector GetLayerStack(bool includeSessionLayers);
-        public pxr.SWIGTYPE_p_UsdStageLoadRules GetLoadRules();
+        public pxr.UsdStageLoadRules GetLoadRules();
         public pxr.UsdPrimVector GetMasters();
         public bool GetMetadata(pxr.TfToken key, pxr.VtValue value);
         public bool GetMetadataByDictKey(pxr.TfToken key, pxr.TfToken keyPath, pxr.VtValue value);

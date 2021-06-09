@@ -465,7 +465,8 @@ namespace Unity.Formats.USD
         /// Clear internal data.
         /// Call to <see cref="GetScene">GetScene()</see> to update them with the latest USD data.
         /// </summary>
-        private void ClearLastData() {
+        private void ClearLastData()
+        {
             m_lastScene = null;
             m_lastPrimMap = null;
             m_lastAccessMask = null;
@@ -541,9 +542,10 @@ namespace Unity.Formats.USD
 
                 pxr.UsdStageLoadRules.Rule activeLoadRule = m_lastScene.Stage.GetLoadRules().GetEffectiveRuleForPath(new pxr.SdfPath("/"));
                 if ((activeLoadRule == pxr.UsdStageLoadRules.Rule.AllRule && options.payloadPolicy == PayloadPolicy.DontLoadPayloads)
-                  || (activeLoadRule == pxr.UsdStageLoadRules.Rule.NoneRule && options.payloadPolicy == PayloadPolicy.LoadAll)) {
-                  ClearLastData();
-                  }
+                    || (activeLoadRule == pxr.UsdStageLoadRules.Rule.NoneRule && options.payloadPolicy == PayloadPolicy.LoadAll))
+                {
+                    ClearLastData();
+                }
                 SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
