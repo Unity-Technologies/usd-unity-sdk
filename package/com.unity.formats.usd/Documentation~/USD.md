@@ -31,9 +31,8 @@ settings under Edit > Project Settings > Quality:
 ## Requirements
 
 * Windows / OSX / Linux (experimental)
-* Unity version: 2018.3 (2018.3.4f1 and up) and 2019.1 (2019.1.0b2 and up)   
-See ["2017 users" section](#unity-2017-users) if you want to use the plugin in Unity 2017.4
-* To build a standalone, Api Compatibility Level needs to be set to .NET 4.x   
+* Unity version: 2019.4 and up
+* Api Compatibility Level needs to be set to .NET 4.x   
    In Edit > Project Settings > Player :   
     ![USD .NET version](Images/USD_.NET_version.png)
 
@@ -44,17 +43,12 @@ See ["2017 users" section](#unity-2017-users) if you want to use the plugin in U
 ## Samples
 
 The USD package also includes samples to help you get started.
-Please note, the way to get them varies depending on the Unity version you are using. See below.
-
-### Unity 2019.1 and Later
 
 Use Package Manager to import the samples into your Assets folder :
 
 ![USD .NET version](Images/USD_samples_import.png)
 
-### Previous versions
 
-Samples package can be downloaded from [Unity film-tv-toolbox repository](https://github.com/Unity-Technologies/film-tv-toolbox/tree/master/UsdSamples).
 
 # Features
 

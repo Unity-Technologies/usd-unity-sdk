@@ -31,10 +31,9 @@ settings under Edit > Project Settings > Quality:
 ## Requirements
 
 * Windows / OSX / Linux (experimental)
-* Unity version: 2018.3 (2018.3.4f1 and up) and 2019.1 (2019.1.0b2 and up)
-See ["2017 users" section](#unity-2017-users) if you want to use the plugin in Unity 2017.4
-* To build a standalone, Api Compatibility Level needs to be set to .NET 4.x
-   In Edit > Project Settings > Player :
+* Unity version: 2019.4 and up
+* Api Compatibility Level needs to be set to .NET 4.x   
+   In Edit > Project Settings > Player :   
     ![USD .NET version](Images/USD_.NET_version.png)
 
 ## Limitations
@@ -44,17 +43,12 @@ See ["2017 users" section](#unity-2017-users) if you want to use the plugin in U
 ## Samples
 
 The USD package also includes samples to help you get started.
-Please note, the way to get them varies depending on the Unity version you are using. See below.
-
-### Unity 2019.1 and Later
 
 Use Package Manager to import the samples into your Assets folder :
 
 ![USD .NET version](Images/USD_samples_import.png)
 
-### Previous versions
 
-Samples package can be downloaded from [Unity film-tv-toolbox repository](https://github.com/Unity-Technologies/film-tv-toolbox/tree/master/UsdSamples).
 
 # Features
 
@@ -101,14 +95,18 @@ Timeline playback is multi-threaded using the C# Job System.
 Access to variant selection, model details, and payload state are all accessible via
 the inspector on the game object at which these features were authored.
 
-# Unity 2017 Users
+## Exporting USD files
 
-The official package is not compatible with 2017.4 but a separate branch is maintained to allow 2017 users to benefit from the last developments.
+You can export USD files in 3 ways according to your needs:
 
-Here's how to install the plugin from this branch:
- * Checkout [2017.4 branch](https://github.com/Unity-Technologies/usd-unity-sdk/tree/2017.4) from the GitHub repository.
- * Copy UsdUnitySdk in your Assets folder.
- * Do not rename this folder.
+* To export a USD composition that does not change over time, use the USD export options available from the Editor main menu: select **USD > Export Selected**.
+
+* To export a USD composition that changes over time, use the USD Recorder.  
+  **Note:** You need to install the [Recorder package](https://docs.unity3d.com/Packages/com.unity.recorder@latest/index.html) for this.  
+  You can either use the Recorder Window (from the Editor main menu, select **Window > General > Recorder > Recorder Window**) or a Recorder track (from the Timeline window, right-click and select **UnityEditor.Recorder.Timeline > Recorder Track**).
+
+* To export compositions that change over time _from a standalone build_, use the USD Recorder Track in Timeline (from the Timeline window, right-click and select **Unity.Formats.USD > Usd Recorder Track**).  
+  **Note:** This feature has no dependency on to the Recorder package.
 
 # License
 
