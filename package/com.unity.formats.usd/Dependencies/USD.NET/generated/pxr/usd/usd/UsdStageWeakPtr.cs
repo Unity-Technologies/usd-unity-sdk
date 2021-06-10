@@ -59,9 +59,9 @@ namespace pxr
             return ret;
         }
 
-        public SWIGTYPE_p_UsdStageLoadRules GetLoadRules()
+        public UsdStageLoadRules GetLoadRules()
         {
-            SWIGTYPE_p_UsdStageLoadRules ret = new SWIGTYPE_p_UsdStageLoadRules(UsdCsPINVOKE.UsdStageWeakPtr_GetLoadRules(swigCPtr), false);
+            UsdStageLoadRules ret = new UsdStageLoadRules(UsdCsPINVOKE.UsdStageWeakPtr_GetLoadRules(swigCPtr), false);
             return ret;
         }
 
