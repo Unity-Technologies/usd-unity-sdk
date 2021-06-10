@@ -41,6 +41,7 @@ namespace Unity.Formats.USD
             }
             else
             {
+                Debug.LogWarning("The USD package is not supported in non desktop builds. The USD plugins directory will not be included in the build.");
                 return;
             }
 
