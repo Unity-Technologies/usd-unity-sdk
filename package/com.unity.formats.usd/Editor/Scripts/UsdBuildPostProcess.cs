@@ -39,6 +39,10 @@ namespace Unity.Formats.USD
             {
                 destination = pathToBuiltProject.Replace(".exe", "_Data/Plugins");
             }
+            else
+            {
+                return;
+            }
 
             if (!Directory.Exists(destination))
             {
