@@ -97,13 +97,33 @@ the inspector on the game object at which these features were authored.
 
 ## Exporting USD files
 
-You can export USD files in 3 ways according to your needs:
+### Exporting via Recorder
 
-* To export a USD composition that does not change over time, use the USD export options available from the Editor main menu: select **USD > Export Selected**.
+> **Prerequisite:** You need to install the [Recorder package](https://docs.unity3d.com/Packages/com.unity.recorder@latest/index.html).  
 
-* To export a USD composition that changes over time, use the USD Recorder.  
-  **Note:** You need to install the [Recorder package](https://docs.unity3d.com/Packages/com.unity.recorder@latest/index.html) for this.  
-  You can either use the Recorder Window (from the Editor main menu, select **Window > General > Recorder > Recorder Window**) or a Recorder track (from the Timeline window, right-click and select **UnityEditor.Recorder.Timeline > Recorder Track**).
+To export a USD composition via Recorder, you can either use the Recorder Window :
+ * From the Editor main menu, select **Window > General > Recorder > Recorder Window**,
+ * Then click on **+ Add Recorder**,
+ * And select **USD Clip**.
 
-* To export compositions that change over time _from a standalone build_, use the USD Recorder Track in Timeline (from the Timeline window, right-click and select **Unity.Formats.USD > Usd Recorder Track**).  
-  **Note:** This feature has no dependency on to the Recorder package.
+Or add a Recorder track : 
+* From the Timeline window, right-click and select **UnityEditor.Recorder.Timeline > Recorder Track**,
+* Then right-click on the track and **add Recorder Clip**,
+* And in the **selected recorder**, choose **USD Clip**.
+
+Using Recorder is the recommended option *when compatibility with runtime is not required*.
+
+### Exporting via Usd Recorder Track (Legacy)
+
+When compatibility with runtime is required (i.e for a standalone build), the recommended option is to use the USD package Recorder Track :
+* From the Timeline window, right-click and select **Unity.Formats.USD > Usd Recorder Track**,
+* Then right-click on the track and **add USD Recorder Clip**.
+
+>  **Note:** This feature has no dependency to and is not based on the Recorder package.
+
+### Exporting via USD menu (Legacy)
+
+A last option to export a USD Composition is to use the legacy export via the Editor main menu :
+* Select **USD > Export Selected**.
+
+Note that this option is not recommended as it offers very few export options.
