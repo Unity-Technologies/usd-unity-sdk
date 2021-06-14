@@ -1,21 +1,22 @@
 {
     "name": "Unity.Formats.USD.Runtime",
+    "rootNamespace": "",
     "references": [
         "Unity.Timeline",
         "USD.NET",
         "USD.NET.Unity"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor",
         "macOSStandalone",
-        "WindowsStandalone64",
-        "LinuxStandalone64"
+        "WindowsStandalone64"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

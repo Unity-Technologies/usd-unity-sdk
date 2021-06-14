@@ -6,6 +6,7 @@
 - Added Integration with Recorder (compatible with Recorder 2.2.0 or newer) (#243).
 
 ### Changed
+- Linux support temporarily disabled (#255).
 - USD.NET API is now in the package (#249).
 - USD.NET.Unity API is now in the package (#240).
 - Building USD.NET can now be done with a standalone Mono (#241).
