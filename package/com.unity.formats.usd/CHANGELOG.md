@@ -6,7 +6,8 @@
 - Added Integration with Recorder (compatible with Recorder 2.2.0 or newer) (#243).
 
 ### Changed
-- USD.NET API is now in the package and requires using .NET 4 in Editor (#249).
+- Linux support temporarily disabled (#255).
+- USD.NET API is now in the package (#249).
 - USD.NET.Unity API is now in the package (#240).
 - Building USD.NET can now be done with a standalone Mono (#241).
 - Building the bindings is now done through CMake on all platforms. See BUILDING.md (#235).

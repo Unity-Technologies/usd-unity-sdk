@@ -30,7 +30,7 @@ settings under Edit > Project Settings > Quality:
 
 ## Requirements
 
-* Windows / OSX / Linux (experimental)
+* Windows / OSX
 * Unity version: 2019.4 and up
 * Api profile .NET 4.x is no longer required but still provides better performances than .NET 2
    In Edit > Project Settings > Player :   
