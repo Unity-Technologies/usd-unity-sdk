@@ -84,6 +84,15 @@ namespace USD.NET
             RegisterIntrinsicTypes();
         }
 
+        private bool IsCodeGenEnabled()
+        {
+#if NET_4_6
+            return EnableCodeGeneration;
+#else
+            return false;
+#endif
+        }
+
         public bool GetReverseBinding(pxr.SdfValueTypeName key, out UsdTypeBinding binding)
         {
             // TODO: we could keep a reverse mapping, but waiting for deeper performance analysis first.
@@ -230,15 +239,19 @@ namespace USD.NET
             ToCsConverter toCs = null;
             ToVtConverter toVt = null;
 
-            if (EnableCodeGeneration)
+
+            if (IsCodeGenEnabled())
             {
+                // EmitToCs and EmitToVt are not defined when not using NET_4_6
+#if NET_4_6
                 var copyConverter = (ToCsCopyConverter)CodeGen.EmitToCs<ToCsCopyConverter>(valToVtArray, vtToCsArray);
                 toCs = (vtValue) => ToCsConvertHelper(vtValue, vtArrayType, copyConverter);
                 toVt = (ToVtConverter)CodeGen.EmitToVt<ToVtConverter>(csToVtArray, csType, vtArrayType);
+#endif
             }
             else
             {
-                // When IL2CPP is enabled, we cannot dynamically emit code.
+                // In .NET2 or when IL2CPP is enabled , we cannot dynamically emit code.
                 // Instead, we use late binding, which is slower, but also doesn't crash.
                 // In the future, we should generate code to do these conversions, rather than using late binding.
                 toCs = (vtValue) => ToCsDynamicConvertHelper(vtValue, vtArrayType, valToVtArray, vtToCsArray);
