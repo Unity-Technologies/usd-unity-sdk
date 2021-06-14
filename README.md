@@ -32,7 +32,7 @@ settings under Edit > Project Settings > Quality:
 
 * Windows / OSX
 * Unity version: 2019.4 and up
-* Api profile .NET 4.x is no longer required but still provides better performances than .NET 2   
+* API Compatibility Level .NET 4.x is no longer required but still provides better performances than .NET 2   
    In Edit > Project Settings > Player :   
     ![USD .NET version](Images/USD_.NET_version.png)
 
@@ -126,7 +126,7 @@ When compatibility with runtime is required (i.e for a standalone build), the re
 A last option to export a USD Composition is to use the legacy export via the Editor main menu :
 * Select **USD > Export Selected**.
 
-Note that this option is not recommended as it offers very few export options.
+Note that this option is not recommended as it doesn't offer any export options.
 
 
 # License
