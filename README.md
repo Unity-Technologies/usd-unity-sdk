@@ -32,7 +32,7 @@ settings under Edit > Project Settings > Quality:
 
 * Windows / OSX / Linux (experimental)
 * Unity version: 2019.4 and up
-* Api Compatibility Level needs to be set to .NET 4.x   
+* Api profile .NET 4.x is no longer required but still provides better performances than .NET 2   
    In Edit > Project Settings > Player :   
     ![USD .NET version](Images/USD_.NET_version.png)
 
