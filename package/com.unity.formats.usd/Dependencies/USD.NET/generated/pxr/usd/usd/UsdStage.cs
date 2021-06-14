@@ -484,16 +484,16 @@ namespace pxr
             return ret;
         }
 
-        public SWIGTYPE_p_UsdStageLoadRules GetLoadRules()
+        public UsdStageLoadRules GetLoadRules()
         {
-            SWIGTYPE_p_UsdStageLoadRules ret = new SWIGTYPE_p_UsdStageLoadRules(UsdCsPINVOKE.UsdStage_GetLoadRules(swigCPtr), false);
+            UsdStageLoadRules ret = new UsdStageLoadRules(UsdCsPINVOKE.UsdStage_GetLoadRules(swigCPtr), false);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public void SetLoadRules(SWIGTYPE_p_UsdStageLoadRules rules)
+        public void SetLoadRules(UsdStageLoadRules rules)
         {
-            UsdCsPINVOKE.UsdStage_SetLoadRules(swigCPtr, SWIGTYPE_p_UsdStageLoadRules.getCPtr(rules));
+            UsdCsPINVOKE.UsdStage_SetLoadRules(swigCPtr, UsdStageLoadRules.getCPtr(rules));
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
         }
 

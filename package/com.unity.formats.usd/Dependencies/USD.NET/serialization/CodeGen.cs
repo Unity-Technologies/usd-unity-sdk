@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 
 
+#if NET_4_6
 static internal class CodeGen
 {
     private static int m_funcCount = 0;
@@ -104,3 +105,4 @@ static internal class CodeGen
         return fn.CreateDelegate(typeof(T));
     }
 }
+#endif

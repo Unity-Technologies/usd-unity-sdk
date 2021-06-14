@@ -462,6 +462,17 @@ namespace Unity.Formats.USD
         }
 
         /// <summary>
+        /// Clear internal data.
+        /// Call to <see cref="GetScene">GetScene()</see> to update them with the latest USD data.
+        /// </summary>
+        private void ClearLastData()
+        {
+            m_lastScene = null;
+            m_lastPrimMap = null;
+            m_lastAccessMask = null;
+        }
+
+        /// <summary>
         /// Finds all USD behaviors and destroys them, ignores the GameObject and other components.
         /// </summary>
         public void RemoveAllUsdComponents()
@@ -529,6 +540,12 @@ namespace Unity.Formats.USD
                     DestroyAllImportedObjects();
                 }
 
+                pxr.UsdStageLoadRules.Rule activeLoadRule = m_lastScene.Stage.GetLoadRules().GetEffectiveRuleForPath(new pxr.SdfPath("/"));
+                if ((activeLoadRule == pxr.UsdStageLoadRules.Rule.AllRule && options.payloadPolicy == PayloadPolicy.DontLoadPayloads)
+                    || (activeLoadRule == pxr.UsdStageLoadRules.Rule.NoneRule && options.payloadPolicy == PayloadPolicy.LoadAll))
+                {
+                    ClearLastData();
+                }
                 SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
 
 #if UNITY_EDITOR
@@ -550,10 +567,7 @@ namespace Unity.Formats.USD
                     DestroyAllImportedObjects();
                 }
 
-                m_lastScene = null;
-                m_lastPrimMap = null;
-                m_lastAccessMask = null;
-
+                ClearLastData();
                 SceneImporter.ImportUsd(root, GetScene(), new PrimMap(), options);
             }
         }
