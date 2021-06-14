@@ -61,6 +61,7 @@ typedef TfRefPtr<UsdStage> UsdStageRefPtr;
 %include "usdStagePopulationMask.i"
 %include "usdStage.i"
 %include "usdStageCache.i"
+%include "usdStageLoadRules.i"
 
 %include "usdResolveInfo.i"
 %include "usdObject.i"
