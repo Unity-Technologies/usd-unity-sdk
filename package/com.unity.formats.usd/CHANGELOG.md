@@ -1,6 +1,6 @@
 # Changes in usd-unitysdk for Unity
 
-## Unreleased
+## [3.0.0-exp.1] - 2021-06-15
 ### Features
 - New Import/Export API. See the ImportHelpers and ExportHelpers class (#237).
 - Added Integration with Recorder (compatible with Recorder 2.2.0 or newer) (#243).
