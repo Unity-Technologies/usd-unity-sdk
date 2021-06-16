@@ -130,9 +130,11 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 endif()
 install(FILES ${PIXAR_DEPS} DESTINATION ${DEPENDENCIES_INSTALL_DIR})
 
-# Install the usd plugin folder
+# Install the usd schema folder
 install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/.."
         PATTERN "codegenTemplates" EXCLUDE)
+# Install the usd plugin folder
+install(DIRECTORY "${USD_LIBRARY_DIR}/../plugin/usd" DESTINATION "${SWIG_OUTPUT_DIR}/..")
 
 # Tag the generated folders so they are removed when doing calling the clean target
 # Doesn't work with the VC generator ...
