@@ -35,19 +35,19 @@ class string;
 %typemap(in, canthrow=1) std::string *
 %{  //typemap in
     std::string temp;
-    $1 = &temp; 
+    $1 = &temp;
  %}
 
 //C++
 %typemap(argout) std::string *
-%{ 
+%{
     //Typemap argout in c++ file.
     //This will convert c++ string to c# string
     *$input = SWIG_csharp_string_callback($1->c_str());
 %}
 
 %typemap(argout) const std::string *
-%{ 
+%{
     //argout typemap for const std::string*
 %}
 
@@ -94,7 +94,7 @@ class string;
     TfType schemaBaseType = TfType::Find<UsdSchemaBase>();
 
     TfType baseType = schemaBaseType.FindDerivedByName(typeName);
-    
+
     if (schemaBaseType == TfType::GetUnknownType()) {
       TF_RUNTIME_ERROR("Schema base type is unknown. This should never happen.");
       return targets;
@@ -123,7 +123,7 @@ class string;
       if (curType == TfType::GetUnknownType()) {
         continue;
       }
-      if (curType.IsA(baseType)) {
+      if (curType.IsA(baseType) && !p.IsAbstract()) {
         targets.push_back(p.GetPath());
       }
     }

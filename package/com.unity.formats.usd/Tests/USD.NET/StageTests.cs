@@ -310,5 +310,28 @@ namespace USD.NET.Tests
             Assert.IsTrue(prim.IsValid() == false);
             stage.Dispose();
         }
+
+        [Test]
+        public static void GetAllPathByType_IgnoreAbstract()
+        {
+            var s = UsdStage.CreateInMemory();
+            var meshToken = new TfToken("Mesh");
+
+            var classPrim = s.DefinePrim(new SdfPath("/thisIsAClass"), meshToken);
+            classPrim.SetSpecifier(SdfSpecifier.SdfSpecifierClass);
+
+            var instancePrim = s.DefinePrim(new SdfPath("/inheritedPrim"));
+            instancePrim.GetInherits().AddInherit(classPrim.GetPath());
+
+            var meshPrim = s.DefinePrim(new SdfPath("/meshPrim"), meshToken);
+
+            Assert.True(classPrim.IsAbstract());
+            Assert.AreEqual(meshToken, classPrim.GetTypeName());
+            Assert.False(instancePrim.IsAbstract());
+            Assert.AreEqual(meshToken, instancePrim.GetTypeName());
+            Assert.AreEqual(meshToken, meshPrim.GetTypeName());
+            var allPaths = s.GetAllPathsByType(meshToken, SdfPath.AbsoluteRootPath());
+            Assert.AreEqual(2, allPaths.Count);
+        }
     }
 }
