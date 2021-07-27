@@ -14972,6 +14972,7 @@ namespace USD.NET
     public class TypeBinder
     {
         public static bool EnableCodeGeneration;
+        public System.Collections.Generic.Dictionary<string, string> typeAliases;
         public TypeBinder() {}
         public void BindArrayType<ConverterT>(System.Type csType, System.Type vtArrayType, pxr.SdfValueTypeName sdfName, string methodNamePrefix = );
         public void BindNativeType(System.Type csType, pxr.SdfValueTypeName sdfName);
