@@ -664,18 +664,18 @@ namespace USD.NET.Tests
         public static void ReverseBindingForAliasedType_NotFoundByDefault()
         {
             UsdTypeBinding binding;
-            UsdIo.Bindings.GetReverseBinding(SdfValueTypeNames.TexCoord2f, out binding);
+            UsdIo.Bindings.GetReverseBinding(SdfValueTypeNames.Normal3f, out binding);
             Assert.Null(binding.sdfTypeName);
         }
 
         [Test]
         public static void ReverseBindingForAliasedType_FoundAfterAliasing()
         {
-            UsdIo.Bindings.typeAliases.Add(SdfValueTypeNames.TexCoord2f.GetAsToken(), SdfValueTypeNames.Float2.GetAsToken());
+            UsdIo.Bindings.typeAliases.Add(SdfValueTypeNames.Normal3f.GetAsToken(), SdfValueTypeNames.Float3.GetAsToken());
             UsdTypeBinding binding;
-            UsdIo.Bindings.GetReverseBinding(SdfValueTypeNames.TexCoord2f, out binding);
-            Assert.AreEqual(SdfValueTypeNames.Float2, binding.sdfTypeName);
-            UsdIo.Bindings.typeAliases.Remove(SdfValueTypeNames.TexCoord2f.GetAsToken());
+            UsdIo.Bindings.GetReverseBinding(SdfValueTypeNames.Normal3f, out binding);
+            Assert.AreEqual(SdfValueTypeNames.Float3, binding.sdfTypeName);
+            UsdIo.Bindings.typeAliases.Remove(SdfValueTypeNames.Normal3f.GetAsToken());
         }
     }
 }
