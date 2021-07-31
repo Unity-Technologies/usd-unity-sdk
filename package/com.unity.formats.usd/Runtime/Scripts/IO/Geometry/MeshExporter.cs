@@ -295,21 +295,21 @@ namespace Unity.Formats.USD
                 sample.points = mesh.vertices;
                 sample.tangents = mesh.tangents;
 
-                sample.colors = mesh.colors;
-                if (sample.colors != null && sample.colors.Length == 0)
+                sample.colors.SetValue(mesh.colors);
+                if (sample.colors.value != null && sample.colors.Length == 0)
                 {
-                    sample.colors = null;
+                    sample.colors.value = null;
                 }
 
-                if ((sample.colors == null || sample.colors.Length == 0)
+                if ((sample.colors.value == null || sample.colors.Length == 0)
                     && (sharedMaterial != null && sharedMaterial.HasProperty("_Color")))
                 {
-                    sample.colors = new Color[1];
-                    sample.colors[0] = sharedMaterial.color.linear;
+                    var color = new Color[1] { sharedMaterial.color.linear };
+                    sample.colors.SetValue(color);
                 }
 
                 // Gah. There is no way to inspect a meshes UVs.
-                sample.st = mesh.uv;
+                sample.st.SetValue(mesh.uv);
 
                 // Set face vertex counts and indices.
                 var tris = mesh.triangles;

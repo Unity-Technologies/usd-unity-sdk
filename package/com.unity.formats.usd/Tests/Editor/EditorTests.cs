@@ -1,8 +1,11 @@
-using NUnit.Framework;
 using System.IO;
+using System.Linq;
+using NUnit.Framework;
+using pxr;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
-using Scene = USD.NET.Scene;
+using USD.NET;
 using Assert = UnityEngine.Assertions.Assert;
 
 namespace Unity.Formats.USD.Tests
@@ -17,7 +20,7 @@ namespace Unity.Formats.USD.Tests
         {
             InitUsd.Initialize();
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
-            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
             scene.Close();
@@ -69,7 +72,7 @@ namespace Unity.Formats.USD.Tests
         {
             InitUsd.Initialize();
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
-            var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
+            var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             var importOptions = new SceneImportOptions();
             importOptions.materialImportMode = MaterialImportMode.ImportPreviewSurface;
@@ -90,6 +93,122 @@ namespace Unity.Formats.USD.Tests
             var material = renderer.sharedMaterial;
             Assert.IsNotNull(material);
             Assert.IsTrue(material.name == "lambert3SG");
+        }
+    }
+
+    [TestFixture("a4a575275d6254853ac93b867a1a8471")] // Fully defined prims
+    [TestFixture("b66c9dc38fc1e0044b3d93a196ad1365")] // Prims with references
+    class AttributeScope
+    {
+        GameObject gameObject;
+        Scene scene;
+        string assetGuid;
+
+        public AttributeScope(string assetGuid)
+        {
+            this.assetGuid = assetGuid;
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);
+            var assetPath = AssetDatabase.GUIDToAssetPath(assetGuid);
+
+            scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
+            gameObject = ImportHelpers.ImportSceneAsGameObject(scene, null,
+                new SceneImportOptions { payloadPolicy = PayloadPolicy.LoadAll});
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            scene.Close();
+        }
+
+        [Test]
+        public void ConstantColours_DontWindUpInMeshes() // they get read into the material
+        {
+            var mesh = GameObject.Find("cube_constant_color").GetComponent<MeshFilter>().sharedMesh;
+            CollectionAssert.IsEmpty(mesh.colors);
+        }
+
+        [Test]
+        public void FaceColours_AreReadCorrectly() // they get read into the material
+        {
+            var mesh = GameObject.Find("cube_face_color").GetComponent<MeshFilter>().sharedMesh;
+            var colours = Enumerable.Repeat(new Color(1.0f, 0.0f, 0, 1), 6)
+                .Concat(Enumerable.Repeat(new Color(0.0f, 1.0f, 0, 1), 6))
+                .Concat(Enumerable.Repeat(new Color(0.0f, 0.0f, 1.0f, 1), 6))
+                .Concat(Enumerable.Repeat(new Color(1.0f, 1.0f, 0, 1), 6))
+                .Concat(Enumerable.Repeat(new Color(1.0f, 0.0f, 1.0f, 1), 6))
+                .Concat(Enumerable.Repeat(new Color(0.0f, 1.0f, 1.0f, 1), 6));
+            CollectionAssert.AreEqual(colours, mesh.colors);
+        }
+
+        [TestCase("cube_vertex_color")]
+        [TestCase("cube_varying_color")]
+        public void VaryingAndVertexColours_AreReadCorrectly(string cubeName) // they get read into the material
+        {
+            var mesh = GameObject.Find(cubeName).GetComponent<MeshFilter>().sharedMesh;
+            var colours = new[]
+            {
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(0.0f, 1.0f, 0, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(1.0f, 1.0f, 0, 1),
+                new Color(1.0f, 0.0f, 1.0f, 1),
+                new Color(0.0f, 1.0f, 1.0f, 1),
+                new Color(1.0f, 1.0f, 1.0f, 1),
+                new Color(0.0f, 0.0f, 0.0f, 1),
+            };
+            CollectionAssert.AreEqual(colours, mesh.colors);
+        }
+
+        [Test]
+        public void FaceVaryingColours_AreReadCorrectly() // they get read into the material
+        {
+            var mesh = GameObject.Find("cube_face_varying_color").GetComponent<MeshFilter>().sharedMesh;
+            var colours = new[]
+            {
+                new Color(0.0f, 1.0f, 0, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(1.0f, 1.0f, 0, 1),
+                new Color(0.0f, 1.0f, 0, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(1.0f, 1.0f, 0, 1),
+                new Color(0.0f, 1.0f, 0, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(1.0f, 1.0f, 0, 1),
+                new Color(0.0f, 1.0f, 0, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(1.0f, 1.0f, 0, 1),
+                new Color(0.0f, 1.0f, 0, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(1.0f, 1.0f, 0, 1),
+                new Color(0.0f, 1.0f, 0, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(0.0f, 0.0f, 1.0f, 1),
+                new Color(1.0f, 0.0f, 0, 1),
+                new Color(1.0f, 1.0f, 0, 1),
+            };
+            CollectionAssert.AreEqual(colours, mesh.colors);
         }
     }
 }

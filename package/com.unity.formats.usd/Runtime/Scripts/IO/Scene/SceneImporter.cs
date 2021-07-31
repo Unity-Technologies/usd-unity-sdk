@@ -32,7 +32,7 @@ namespace Unity.Formats.USD
     /// </summary>
     public interface IImporter
     {
-        void BeginReading(Scene scene, PrimMap primMap);
+        void BeginReading(Scene scene, PrimMap primMap, SceneImportOptions importOptions);
 
         IEnumerator Import(Scene scene,
             PrimMap primMap,
@@ -520,16 +520,16 @@ namespace Unity.Formats.USD
             //
             // Start threads.
             //
-            ReadAllJob<XformSample> readXforms;
+            ReadAllJob<SanitizedXformSample> readXforms;
             if (importOptions.importTransforms)
             {
-                readXforms = new ReadAllJob<XformSample>(scene, primMap.Xforms);
+                readXforms = new ReadAllJob<SanitizedXformSample>(scene, primMap.Xforms, importOptions);
                 readXforms.Schedule(primMap.Xforms.Length, 4);
             }
 
             if (importOptions.importMeshes)
             {
-                ActiveMeshImporter.BeginReading(scene, primMap);
+                ActiveMeshImporter.BeginReading(scene, primMap, importOptions);
             }
 
             JobHandle.ScheduleBatchedJobs();
@@ -820,7 +820,7 @@ namespace Unity.Formats.USD
                     if (importOptions.importMeshes)
                     {
                         Profiler.BeginSample("USD: Build Meshes");
-                        foreach (var pathAndSample in scene.ReadAll<MeshSample>(masterRootPath))
+                        foreach (var pathAndSample in scene.ReadAll<SanitizedMeshSample>(masterRootPath))
                         {
                             try
                             {

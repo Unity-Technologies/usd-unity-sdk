@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace USD.NET.Tests
 {
@@ -132,6 +133,8 @@ namespace USD.NET.Tests
             [USD.NET.UsdNamespace("skel")][USD.NET.VertexData(3)]
             public int[] jointIndices;
 
+            public Primvar<Color[]> colors;
+
             [USD.NET.UsdNamespace("nested")] public NestedSample nestedSample;
 
             public static PrimvarSample GetTestSample()
@@ -152,6 +155,39 @@ namespace USD.NET.Tests
                 pv = new USD.NET.Primvar<float[]>();
                 pv.value = new float[] {3245f};
                 sample.nestedSample.vanillaDict["Bar"] = pv;
+
+                sample.colors = new Primvar<Color[]>();
+                sample.colors.SetValue(new Color[1] {Color.red});
+
+                return sample;
+            }
+        }
+
+        class ColorPrimvarSample : USD.NET.SampleBase
+        {
+            [USD.NET.VertexData(), FusedDisplayColor]
+            public Color[] colorVD;
+
+            public Primvar<Color[]> colorPV;
+
+            public Primvar<object> colorObjPV;
+
+            public Primvar<int[]> intPV;
+
+            public static ColorPrimvarSample GetTestSample()
+            {
+                var sample = new ColorPrimvarSample();
+                sample.colorVD = new[] {Color.green};
+
+                sample.colorPV = new Primvar<Color[]>();
+                sample.colorPV.SetValue(new Color[1] {Color.red});
+
+                sample.colorObjPV = new Primvar<object>();
+                sample.colorPV.SetValue(new Color[1] {Color.blue});
+
+                sample.intPV = new Primvar<int[]>();
+                sample.intPV.SetValue(new int[3] {1, 2, 3});
+
                 return sample;
             }
         }
@@ -532,10 +568,15 @@ namespace USD.NET.Tests
                 prim.GetAttribute(new pxr.TfToken("primvars:nested:foo:bar:baz")));
             AssertEqual(primvar.GetElementSize(), 4);
 
+            primvar = new pxr.UsdGeomPrimvar(
+                prim.GetAttribute(new pxr.TfToken("primvars:colors")));
+            AssertEqual(primvar.GetElementSize(), 1);
+
             AssertEqual(sampleToWrite.somePrimvar, sampleToRead.somePrimvar);
             AssertEqual(sampleToWrite.somePrimvar1, sampleToRead.somePrimvar1);
             AssertEqual(sampleToWrite.somePrimvar2, sampleToRead.somePrimvar2);
             AssertEqual(sampleToWrite.jointIndices, sampleToRead.jointIndices);
+            AssertEqual(sampleToWrite.colors, sampleToRead.colors);
             AssertEqual(sampleToWrite.nestedSample.baz, sampleToRead.nestedSample.baz);
             AssertEqual(sampleToWrite.nestedSample.garply, sampleToRead.nestedSample.garply);
             AssertEqual(sampleToWrite.nestedSample.namespacedDict["Foo"].value,
@@ -554,6 +595,22 @@ namespace USD.NET.Tests
             AssertEqual(sampleToWrite.somePrimvar2, sampleToRead.somePrimvar2);
             AssertEqual(sampleToWrite.jointIndices, sampleToRead.jointIndices);
             AssertEqual(null, sampleToRead.nestedSample);
+        }
+
+        [Test]
+        public void ColorPrimvarTest()
+        {
+            var sampleToWrite = ColorPrimvarSample.GetTestSample();
+            var sampleToRead = new ColorPrimvarSample();
+
+            var scene = USD.NET.Scene.Create();
+            scene.Write("/Foo", sampleToWrite);
+            scene.Read("/Foo", sampleToRead);
+
+
+            AssertEqual(sampleToWrite.colorVD, sampleToRead.colorVD);
+            AssertEqual(sampleToWrite.colorPV, sampleToRead.colorPV);
+            AssertEqual(sampleToWrite.colorObjPV, sampleToRead.colorObjPV);
         }
 
         [Test]

@@ -37,7 +37,7 @@ namespace Unity.Formats.USD
         IEnumerator<SampleEnumerator<T>.SampleHolder>,
             IEnumerable<SampleEnumerator<T>.SampleHolder>,
             IJobParallelFor
-        where T : SampleBase, new()
+        where T : SampleBase, ISanitizable, new()
     {
         static private Scene m_scene;
         static private SdfPath[] m_paths;
@@ -52,6 +52,8 @@ namespace Unity.Formats.USD
         static SampleEnumerator<T>.SampleHolder m_current;
         static private AutoResetEvent m_ready;
 
+        static SceneImportOptions m_importOptions;
+
         public SampleEnumerator<T>.SampleHolder Current
         {
             get { return m_current; }
@@ -62,7 +64,7 @@ namespace Unity.Formats.USD
             get { return m_current; }
         }
 
-        public ReadAllJob(Scene scene, SdfPath[] paths)
+        public ReadAllJob(Scene scene, SdfPath[] paths, SceneImportOptions importOptions)
         {
             m_ready = new AutoResetEvent(false);
             m_scene = scene;
@@ -70,6 +72,7 @@ namespace Unity.Formats.USD
             m_done = new object[paths.Length];
             m_current = new SampleEnumerator<T>.SampleHolder();
             m_paths = paths;
+            m_importOptions = importOptions;
         }
 
         private bool ShouldReadPath(Scene scene, SdfPath path)
@@ -93,6 +96,7 @@ namespace Unity.Formats.USD
             if (ShouldReadPath(m_scene, m_paths[index]))
             {
                 m_scene.Read(m_paths[index], sample);
+                sample.Sanitize(m_scene, m_importOptions);
             }
             else
             {

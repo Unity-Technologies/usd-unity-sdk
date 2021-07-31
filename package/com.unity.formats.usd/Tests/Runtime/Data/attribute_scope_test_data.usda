@@ -1,0 +1,313 @@
+#usda 1.0
+(
+    defaultPrim = "box1"
+    doc = """Generated from Composed Stage of root layer 
+"""
+    endTimeCode = 1
+    framesPerSecond = 24
+    metersPerUnit = 1
+    startTimeCode = 1
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
+class Mesh "base_topology"
+{
+    float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+    int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+    int[] faceVertexIndices = [0, 1, 3, 2, 4, 5, 7, 6, 6, 7, 2, 3, 5, 4, 1, 0, 5, 0, 2, 7, 1, 4, 6, 3]
+    uniform token orientation = "leftHanded"
+    point3f[] points = [(0.5, -0.5, 0.5), (-0.5, -0.5, 0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5), (-0.5, -0.5, -0.5), (0.5, -0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, -0.5)] (
+        interpolation = "vertex"
+    )
+}
+
+class Mesh "constant_color"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0)] (
+            interpolation = "constant"
+        )
+}
+
+class Mesh "face_colors"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (0, 1, 1), (1, 1, 1)] (
+            interpolation = "uniform"
+        )
+}
+
+class Mesh "indexed_face_colors"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0), (0, 1, 0)] (
+            interpolation = "uniform"
+        )
+    int[] primvars:displayColor:indices = [0, 1, 0, 1, 0, 1]
+}
+
+class Mesh "vertex_colors"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (0, 1, 1), (1, 1, 1), (1, 0, 0), (0, 1, 0)] (
+        interpolation = "vertex"
+    )
+}
+
+class Mesh "varying_colors"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (0, 1, 1), (1, 1, 1), (1, 0, 0), (0, 1, 0)] (
+        interpolation = "varying"
+    )
+}
+
+class Mesh "indexed_vertex_colors"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0)] (
+        interpolation = "vertex"
+    )
+    int[] primvars:displayColor:indices = [0, 1, 2, 3, 0, 1, 2, 3]
+}
+
+class Mesh "facevarying_colors"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (0, 1, 1), (1, 1, 1), (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (0, 1, 1), (1, 1, 1), (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (0, 1, 1), (1, 1, 1), (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (0, 1, 1), (1, 1, 1)] (
+        interpolation = "faceVarying"
+    )
+}
+
+class Mesh "indexed_facevarying_colors"
+{
+    color3f[] primvars:displayColor = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0)] (
+        interpolation = "faceVarying"
+    )
+    int[] primvars:displayColor:indices = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+}
+
+class Mesh "face_normals"
+{
+    normal3f[] normals = [(0, 0, 1), (0, 0, -1), (0, 1, 0), (0, -1, 0), (1, 0, 0), (-1, 0, 0)] (
+        interpolation = "uniform"
+    )
+}
+
+class Mesh "vertex_normals"
+{
+    normal3f[] normals = [(0.5773503, -0.5773503, 0.5773503), (-0.5773503, -0.5773503, 0.5773503), (0.5773503, 0.5773503, 0.5773503), (-0.5773503, 0.5773503, 0.5773503), (-0.5773503, -0.5773503, -0.5773503), (0.5773503, -0.5773503, -0.5773503), (-0.5773503, 0.5773503, -0.5773503), (0.5773503, 0.5773503, -0.5773503)] (
+        interpolation = "vertex"
+    )
+}
+
+class Mesh "facevarying_normals"
+{
+    normal3f[] normals = [(0, 0, 1), (-0, -0, 1), (-0, -0, 1), (-0, -0, 1), (0, -0, -1), (-0, -0, -1), (-0, 0, -1), (-0, -0, -1), (-0, 1, -0), (-0, 1, -0), (-0, 1, -0), (0, 1, 0), (-0, -1, -0), (-0, -1, 0), (-0, -1, -0), (0, -1, -0), (1, -0, -0), (1, -0, -0), (1, -0, -0), (1, 0, 0), (-1, -0, -0), (-1, 0, -0), (-1, -0, -0), (-1, -0, 0)] (
+        interpolation = "faceVarying"
+    )
+}
+
+class Mesh "facevarying_uvs"
+{
+    texCoord2f[] primvars:st = [(0.62656057, 0.2492598), (0.37389106, 0.2492598), (0.37389106, 0.5000714), (0.62656057, 0.5000714), (0.37389112, 1.0000737), (0.62656057, 1.0000737), (0.62656057, 0.7497488), (0.3738911, 0.7497488), (0.3738911, 0.7497488), (0.62656057, 0.7497488), (0.62656057, 0.5000714), (0.37389106, 0.5000714), (0.62656057, 0.0004950948), (0.37389103, 0.0004950948), (0.37389106, 0.2492598), (0.62656057, 0.2492598), (0.8757771, 0.2492598), (0.62656057, 0.2492598), (0.62656057, 0.5000714), (0.8757771, 0.5000714), (0.37389106, 0.2492598), (0.1228808, 0.2492598), (0.12288082, 0.5000714), (0.37389106, 0.5000714)] (
+        interpolation = "faceVarying"
+    )
+}
+###############
+#             #
+###############
+
+# Standard box with vertex based data
+def Mesh "box" (inherits=</base_topology>)
+{
+    double3 xformOp:translate = (-2, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate"]
+}
+
+# The box with a constant color
+def Mesh "box_constant_colors" (
+    inherits=</constant_color>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (0, 0, 0)
+}
+
+# The same box with colors per face
+def Mesh "box_face_colors" (
+    inherits=</face_colors>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (0, 2, 0)
+}
+
+# This time with vertex colors
+def Mesh "box_vertex_colors" (
+    inherits=</vertex_colors>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (0, 4, 0)
+}
+
+# and varying colors which behave as vertex colors for meshes
+def Mesh "box_varying_colors" (
+    inherits=</varying_colors>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (0, 6, 0)
+}
+
+# Now one color per-vertex per-face
+def Mesh "box_facevarying_colors" (
+    inherits=</facevarying_colors>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (0, 8, 0)
+}
+
+#
+# Now let's do it all over with indexed colors for each scope
+#
+
+# The same box with colors per face
+def Mesh "box_face_colors_indexed" (
+    inherits=</indexed_face_colors>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (2, 2, 0)
+}
+
+# This time with vertex colors
+def Mesh "box_vertex_colors_indexed" (
+    inherits=</indexed_vertex_colors>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (2, 4, 0)
+}
+
+# Now one color per-vertex per-face
+def Mesh "box_facevarying_colors_indexed" (
+    inherits=</indexed_facevarying_colors>
+    prepend references = </box>)
+{
+    double3 xformOp:translate = (2, 8, 0)
+}
+
+#
+# Let's add normals
+#
+
+# With constant colors
+def Mesh "box_constant_colors_face_normals" (
+    inherits=</face_normals>
+    prepend references = </box_constant_colors>)
+{
+    double3 xformOp:translate = (4, 0, 0)
+}
+
+def Mesh "box_constant_colors_vertex_normals" (
+    inherits=</vertex_normals>
+    prepend references = </box_constant_colors>)
+{
+    double3 xformOp:translate = (6, 0, 0)
+}
+
+def Mesh "box_constant_colors_facevarying_normals" (
+    inherits=</facevarying_normals>
+    prepend references = </box_constant_colors>)
+{
+    double3 xformOp:translate = (8, 0, 0)
+}
+
+# With face colors
+def Mesh "box_face_colors_face_normals" (
+    inherits=</face_normals>
+    prepend references = </box_face_colors>)
+{
+    double3 xformOp:translate = (4, 2, 0)
+}
+
+def Mesh "box_face_colors_vertex_normals" (
+    inherits=</vertex_normals>
+    prepend references = </box_face_colors>)
+{
+    double3 xformOp:translate = (6, 2, 0)
+}
+
+def Mesh "box_face_colors_facevarying_normals" (
+    inherits=</facevarying_normals>
+    prepend references = </box_face_colors>)
+{
+    double3 xformOp:translate = (8, 2, 0)
+}
+
+# With vertex colors
+def Mesh "box_vertex_colors_face_normals" (
+    inherits=</face_normals>
+    prepend references = </box_vertex_colors>)
+{
+    double3 xformOp:translate = (4, 4, 0)
+}
+
+def Mesh "box_vertex_colors_vertex_normals" (
+    inherits=</vertex_normals>
+    prepend references = </box_vertex_colors>)
+{
+    double3 xformOp:translate = (6, 4, 0)
+}
+
+def Mesh "box_vertex_colors_facevarying_normals" (
+    inherits=</facevarying_normals>
+    prepend references = </box_vertex_colors>)
+{
+    double3 xformOp:translate = (8, 4, 0)
+}
+
+# With facevarying colors
+def Mesh "box_facevarying_colors_face_normals" (
+    inherits=</face_normals>
+    prepend references = </box_facevarying_colors>)
+{
+    double3 xformOp:translate = (4, 8, 0)
+}
+
+def Mesh "box_facevarying_colors_vertex_normals" (
+    inherits=</vertex_normals>
+    prepend references = </box_facevarying_colors>)
+{
+    double3 xformOp:translate = (6, 8, 0)
+}
+
+def Mesh "box_facevarying_colors_facevarying_normals" (
+    inherits=</facevarying_normals>
+    prepend references = </box_facevarying_colors>)
+{
+    double3 xformOp:translate = (8, 8, 0)
+}
+
+#
+# And now with UV's
+#
+
+def Mesh "box_vertex_colors_facevarying_uvs" (
+    inherits=</facevarying_uvs>
+    prepend references = </box_vertex_colors>)
+{
+    double3 xformOp:translate = (10, 4, 0)
+}
+
+#
+# Simple plane for traingulation test
+#
+def Mesh "grid_righthanded" 
+{
+    int[] faceVertexCounts = [4, 4]
+    int[] faceVertexIndices = [0, 1, 4, 3, 1, 2, 5, 4]
+    point3f[] points = [(0, 0, 0), (1, 0, 0), (2, 0, 0), (0, 1, 0), (1, 1, 0), (2, 1, 0)] (
+        interpolation = "vertex"
+    )
+}
+
+def Mesh "grid_lefthanded" 
+{
+    int[] faceVertexCounts = [4, 4]
+    int[] faceVertexIndices = [0, 1, 4, 3, 1, 2, 5, 4]
+    uniform token orientation = "leftHanded"
+    point3f[] points = [(0, 0, 0), (1, 0, 0), (2, 0, 0), (0, 1, 0), (1, 1, 0), (2, 1, 0)] (
+        interpolation = "vertex"
+    )
+}

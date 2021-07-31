@@ -14782,6 +14782,8 @@ namespace USD.NET
     public class Primvar<T> : USD.NET.PrimvarBase, USD.NET.ValueAccessor
     {
         public T value;
+        public bool IsArray { get; }
+        public int Length { get; }
         public Primvar() {}
         public virtual object GetValue();
         public virtual System.Type GetValueType();
