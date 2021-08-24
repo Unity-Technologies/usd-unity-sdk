@@ -671,11 +671,11 @@ namespace USD.NET.Tests
         [Test]
         public static void ReverseBindingForAliasedType_FoundAfterAliasing()
         {
-            UsdIo.Bindings.typeAliases.Add(SdfValueTypeNames.Normal3f.GetAsToken(), SdfValueTypeNames.Float3.GetAsToken());
+            UsdIo.Bindings.AddTypeAlias(SdfValueTypeNames.Normal3f, SdfValueTypeNames.Float3);
             UsdTypeBinding binding;
             UsdIo.Bindings.GetReverseBinding(SdfValueTypeNames.Normal3f, out binding);
             Assert.AreEqual(SdfValueTypeNames.Float3, binding.sdfTypeName);
-            UsdIo.Bindings.typeAliases.Remove(SdfValueTypeNames.Normal3f.GetAsToken());
+            UsdIo.Bindings.RemoveTypeAlias(SdfValueTypeNames.Normal3f);
         }
     }
 }

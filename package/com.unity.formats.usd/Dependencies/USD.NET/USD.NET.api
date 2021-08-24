@@ -14972,14 +14972,15 @@ namespace USD.NET
     public class TypeBinder
     {
         public static bool EnableCodeGeneration;
-        public System.Collections.Generic.Dictionary<string, string> typeAliases;
         public TypeBinder() {}
+        public void AddTypeAlias(pxr.SdfValueTypeName alias, pxr.SdfValueTypeName target);
         public void BindArrayType<ConverterT>(System.Type csType, System.Type vtArrayType, pxr.SdfValueTypeName sdfName, string methodNamePrefix = );
         public void BindNativeType(System.Type csType, pxr.SdfValueTypeName sdfName);
         public void BindType(System.Type csType, USD.NET.UsdTypeBinding binding);
         public bool GetBinding(System.Type key, out USD.NET.UsdTypeBinding binding);
         public bool GetReverseBinding(pxr.SdfValueTypeName key, out USD.NET.UsdTypeBinding binding);
         public bool GetReverseBinding(System.Type key, out USD.NET.UsdTypeBinding binding);
+        public bool RemoveTypeAlias(pxr.SdfValueTypeName alias);
     }
 
     public class UsdAssetPathAttribute : System.Attribute

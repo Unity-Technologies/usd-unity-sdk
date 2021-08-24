@@ -55,12 +55,12 @@ namespace USD.NET.Unity
                 (object obj) => UnityTypeConverter.Vector2ToVec2f((Vector2)obj),
                 (pxr.VtValue value) => UnityTypeConverter.Vec2fToVector2(value),
                 SdfValueTypeNames.Float2));
-            binder.typeAliases.Add(SdfValueTypeNames.TexCoord2f.GetAsToken(), SdfValueTypeNames.Float2.GetAsToken());
+            binder.AddTypeAlias(SdfValueTypeNames.TexCoord2f, SdfValueTypeNames.Float2);
             binder.BindType(typeof(Vector3), new UsdTypeBinding(
                 (object obj) => UnityTypeConverter.Vector3ToVec3f((Vector3)obj),
                 (pxr.VtValue value) => UnityTypeConverter.Vec3fToVector3(value),
                 SdfValueTypeNames.Float3));
-            binder.typeAliases.Add(SdfValueTypeNames.TexCoord3f.GetAsToken(), SdfValueTypeNames.Float3.GetAsToken());
+            binder.AddTypeAlias(SdfValueTypeNames.TexCoord3f, SdfValueTypeNames.Float3);
             binder.BindType(typeof(Vector4), new UsdTypeBinding(
                 (object obj) => UnityTypeConverter.Vector4ToVec4f((Vector4)obj),
                 (pxr.VtValue value) => UnityTypeConverter.Vec4fToVector4(value),
@@ -79,11 +79,11 @@ namespace USD.NET.Unity
             //
             binder.BindArrayType<UnityTypeConverter>(typeof(Vector2[]), typeof(pxr.VtVec2fArray), SdfValueTypeNames.Float2Array);
             binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector2>), typeof(pxr.VtVec2fArray), SdfValueTypeNames.Float2Array, "List");
-            binder.typeAliases.Add(SdfValueTypeNames.TexCoord2fArray.GetAsToken(), SdfValueTypeNames.Float2Array.GetAsToken());
+            binder.AddTypeAlias(SdfValueTypeNames.TexCoord2fArray, SdfValueTypeNames.Float2Array);
 
             binder.BindArrayType<UnityTypeConverter>(typeof(Vector3[]), typeof(pxr.VtVec3fArray), SdfValueTypeNames.Float3Array);
             binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector3>), typeof(pxr.VtVec3fArray), SdfValueTypeNames.Float3Array, "List");
-            binder.typeAliases.Add(SdfValueTypeNames.TexCoord3fArray.GetAsToken(), SdfValueTypeNames.Float3Array.GetAsToken());
+            binder.AddTypeAlias(SdfValueTypeNames.TexCoord3fArray, SdfValueTypeNames.Float3Array);
 
             binder.BindArrayType<UnityTypeConverter>(typeof(Vector4[]), typeof(pxr.VtVec4fArray), SdfValueTypeNames.Float4Array);
             binder.BindArrayType<UnityTypeConverter>(typeof(List<Vector4>), typeof(pxr.VtVec4fArray), SdfValueTypeNames.Float4Array, "List");

@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using pxr;
 
 namespace USD.NET
@@ -73,7 +74,7 @@ namespace USD.NET
         /// USD types can be aliased to represent different roles float2/texcoord2, vec3/point/color and drive the interpretation
         /// Add aliases if your target application need to map multiple USD types to a single type.
         /// </summary>
-        public Dictionary<string, string> typeAliases = new Dictionary<string, string>();
+        Dictionary<string, string> typeAliases = new Dictionary<string, string>();
 
         public TypeBinder()
         {
@@ -436,6 +437,16 @@ namespace USD.NET
         object GuidToCs_String(pxr.VtValue vtValue)
         {
             return new Guid(pxr.UsdCs.VtValueTostring(vtValue));
+        }
+
+        public void AddTypeAlias(SdfValueTypeName alias, SdfValueTypeName target)
+        {
+            typeAliases.Add(alias.GetAsToken(), target.GetAsToken());
+        }
+
+        public bool RemoveTypeAlias(SdfValueTypeName alias)
+        {
+            return typeAliases.Remove(alias.GetAsToken());
         }
 
         private void RegisterIntrinsicTypes()
