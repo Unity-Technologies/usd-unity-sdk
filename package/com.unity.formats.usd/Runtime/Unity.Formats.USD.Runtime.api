@@ -344,18 +344,8 @@ namespace Unity.Formats.USD
 
     public class SanitizedMeshSample : USD.NET.Unity.MeshSample, Unity.Formats.USD.ISanitizable
     {
-        public System.Collections.Generic.List<System.Collections.Generic.List<int>> faceMapping;
-        public bool meshesUnrolled;
-        public int[] originalFaceVertexIndices;
-        public int[] triangulatedFaceVertexIndices;
         public SanitizedMeshSample() {}
-        public static void Flatten<T>(ref T[] values, int[] indices);
-        public pxr.TfToken GuessInterpolation(int count);
         public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
-        public bool ShouldUnwindVertices(bool changeHandedness);
-        public void Triangulate(bool changeHandedness);
-        public static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCount, bool changeHandedness);
-        public void UniformToFaceVarying<T>(ref T[] values, int[] indices);
     }
 
     public class SanitizedXformSample : USD.NET.Unity.XformSample, Unity.Formats.USD.ISanitizable

@@ -38,7 +38,7 @@ namespace Unity.Formats.USD.Tests
                 var importOptions = new SceneImportOptions();
                 sanitizedSample.Sanitize(scene, importOptions);
 
-                Assert.True(sanitizedSample.meshesUnrolled,
+                Assert.True(sanitizedSample.arePrimvarsFaceVarying,
                     "The mesh has not been unrolled");
 
                 Assert.AreEqual(3, sanitizedSample.faceVertexCounts.Max(),
@@ -66,7 +66,7 @@ namespace Unity.Formats.USD.Tests
                 var importOptions = new SceneImportOptions();
                 sanitizedSample.Sanitize(scene, importOptions);
 
-                Assert.True(sanitizedSample.meshesUnrolled,
+                Assert.True(sanitizedSample.arePrimvarsFaceVarying,
                     "The mesh has not been unrolled");
                 Assert.AreEqual(3, sanitizedSample.faceVertexCounts.Max(),
                     "The mesh has not been triangulated");
@@ -91,7 +91,7 @@ namespace Unity.Formats.USD.Tests
                 var importOptions = new SceneImportOptions();
                 sanitizedSample.Sanitize(scene, importOptions);
 
-                Assert.False(sanitizedSample.meshesUnrolled,
+                Assert.False(sanitizedSample.arePrimvarsFaceVarying,
                     "The mesh has been unrolled");
             }
 
@@ -103,7 +103,7 @@ namespace Unity.Formats.USD.Tests
                 var importOptions = new SceneImportOptions();
                 sanitizedSample.Sanitize(scene, importOptions);
 
-                Assert.False(sanitizedSample.meshesUnrolled,
+                Assert.False(sanitizedSample.arePrimvarsFaceVarying,
                     "The mesh has been unrolled");
             }
 
@@ -116,7 +116,7 @@ namespace Unity.Formats.USD.Tests
                 importOptions.materialImportMode = MaterialImportMode.ImportPreviewSurface;
                 sanitizedSample.Sanitize(scene, importOptions);
 
-                Assert.True(sanitizedSample.meshesUnrolled,
+                Assert.True(sanitizedSample.arePrimvarsFaceVarying,
                     "The mesh has not been unrolled");
             }
         }
@@ -218,7 +218,7 @@ namespace Unity.Formats.USD.Tests
                 scene.Read("/grid_righthanded", sanitizedSample);
                 sanitizedSample.Triangulate(false);
 
-                sanitizedSample.UniformToFaceVarying(ref values, sanitizedSample.faceVertexIndices);
+                sanitizedSample.UniformToFaceVarying(ref values, sanitizedSample.faceVertexIndices.Length);
                 CollectionAssert.AreEqual(new[] {5, 5, 5, 5, 5, 5, 10, 10, 10, 10, 10, 10}, values);
             }
         }

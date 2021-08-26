@@ -366,9 +366,9 @@ namespace Unity.Formats.USD
             var bonesPerVertex = new NativeArray<byte>(unityMesh.vertexCount, Allocator.Temp);
             var boneWeights1 = new NativeArray<BoneWeight1>(unityMesh.vertexCount * weightsElementSize, Allocator.Temp);
 
-            // Remap the vertex indices if meshes have been unrolled
+            // Remap the vertex indices if mesh attribute have been converted to faceVarying
             var remapIndices = weightsInterpolation.GetString() == UsdGeomTokens.vertex
-                && usdMesh.meshesUnrolled;
+                && usdMesh.arePrimvarsFaceVarying;
 
             int isNotConstant = weightsInterpolation.GetString() == UsdGeomTokens.constant ? 0 : 1;
 

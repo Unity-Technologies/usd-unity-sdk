@@ -36,7 +36,7 @@ namespace USD.NET.Unity
         /// When not explicitly specified by the shader, "st" should be considered the default uv set.
         /// </summary>
         /// <remarks>
-        /// UV object types should be Vector{2,3,4}[], List of Vector{2,3,4}, or null.
+        /// UV object types should be Vector{2,3}[], List of Vector{2,3}, or null.
         /// </remarks>
         public Primvar<object> st = new Primvar<object>();
         public Primvar<object> uv = new Primvar<object>();

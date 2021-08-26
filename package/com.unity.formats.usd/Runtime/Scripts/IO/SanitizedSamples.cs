@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using pxr;
 using USD.NET;
 using USD.NET.Unity;
 using UnityEngine;
 
+[assembly: InternalsVisibleToAttribute("Unity.Formats.USD.Tests")]
 namespace Unity.Formats.USD
 {
     public interface ISanitizable
@@ -15,6 +17,9 @@ namespace Unity.Formats.USD
         public void Sanitize(Scene scene, SceneImportOptions importOptions);
     }
 
+    /// <summary>
+    /// A sanitizable version of an XFormSample. Enable automatic change of handedness.
+    /// </summary>
     public class SanitizedXformSample : XformSample, ISanitizable
     {
         public void Sanitize(Scene scene, SceneImportOptions importOptions)
@@ -24,29 +29,43 @@ namespace Unity.Formats.USD
         }
     }
 
+    /// <summary>
+    /// A sanitizable version of a MeshSample. Enable automatic triangulation/handedness change/attribute interpolation conversion.
+    /// </summary>
     public class SanitizedMeshSample : MeshSample, ISanitizable
     {
-        int[] _originalFaceVertexCounts;
-        [NonSerialized] public int[] originalFaceVertexIndices;
-        [NonSerialized] public bool meshesUnrolled;
+        /// <summary>
+        /// Store the face vertex counts straight from USD deserialization
+        /// </summary>
+        int[] originalFaceVertexCounts;
+
+        /// <summary>
+        /// Store the face vertex indices straight from USD deserialization
+        /// </summary>
+        int[] originalFaceVertexIndices;
+
+        /// <summary>
+        /// True when the mesh arrays have been converted to facevarying
+        /// </summary>
+        internal bool arePrimvarsFaceVarying;
 
         /// <summary>
         /// After triangulation face ids are no longer correct. This maps old face ids to the new triangulated face ids.
         /// </summary>
-        [NonSerialized] public List<List<int>> faceMapping;
+        internal List<List<int>> faceMapping;
 
         /// <summary>
         /// To unweld vertex attributes after the fact (skin weights, joint indices, ...) we need to store the face
         /// vertex indices post triangulation but before unweld.
         /// </summary>
-        [NonSerialized] public int[] triangulatedFaceVertexIndices;
+        internal int[] triangulatedFaceVertexIndices;
 
 
         /// <summary>
         /// Sanitize Mesh data for Unity:
         ///     * change basis
         ///     * triangulate
-        ///     * unweld vertices and attributes/primvar if necessary
+        ///     * convert vertices and attributes/primvar to facevarying if necessary
         /// </summary>
         public void Sanitize(Scene scene, SceneImportOptions importOptions)
         {
@@ -126,13 +145,12 @@ namespace Unity.Formats.USD
             }
             else
             {
-                ConvertInterpolation(ref normals, faceVertexIndices, unwindVertices);
+                ConvertInterpolationToFaceVarying(ref normals, faceVertexIndices, unwindVertices);
             }
 
-            ConvertInterpolation(ref tangents, faceVertexIndices, unwindVertices);
+            ConvertInterpolationToFaceVarying(ref tangents, faceVertexIndices, unwindVertices);
 
-            ConvertInterpolation(ref colors.value, faceVertexIndices, unwindVertices);
-            // colors.SetValue(colorValues);
+            ConvertInterpolationToFaceVarying(ref colors.value, faceVertexIndices, unwindVertices);
 
             if (santizePrimvars)
             {
@@ -143,7 +161,7 @@ namespace Unity.Formats.USD
                 UnweldUVs(uv4, unwindVertices);
             }
 
-            // Convert points last, as points count is used to guess the interpolation of other attributes
+            // Convert points last, as points count might be used to guess the interpolation of other attributes
             // also update the vertex mapping
             Flatten(ref points, faceVertexIndices);
 
@@ -152,7 +170,7 @@ namespace Unity.Formats.USD
                 faceVertexIndices[i] = i;
 
 
-            meshesUnrolled = true;
+            arePrimvarsFaceVarying = true;
         }
 
         /// <summary>
@@ -160,9 +178,9 @@ namespace Unity.Formats.USD
         /// and indices to unroll attributes and primvars.
         /// </summary>
         /// <param name="changeHandedness"></param>
-        public void Triangulate(bool changeHandedness)
+        internal void Triangulate(bool changeHandedness)
         {
-            _originalFaceVertexCounts = faceVertexCounts;
+            originalFaceVertexCounts = faceVertexCounts;
             originalFaceVertexIndices = faceVertexIndices;
             faceMapping = new List<List<int>>();
 
@@ -202,15 +220,14 @@ namespace Unity.Formats.USD
             faceVertexCounts = newCounts.ToArray();
         }
 
-        bool ShouldUnweldVertices(bool bindMaterials)
+        internal bool ShouldUnweldVertices(bool bindMaterials)
         {
-            // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be unrolled
-            // Assumes points attribute is of vertex/varying scope.
-            // TODO: expose interpolation for standard mesh attributes (points, normals, colors, ...)
-            return normals != null && (normals.Length == _originalFaceVertexCounts.Length || normals.Length > points.Length) ||
+            // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be converted to face varying
+            // TODO: expose interpolation for standard mesh attributes (normals, tangents)
+            return normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length) ||
                 colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying) ||
                 tangents != null &&
-                (tangents.Length == _originalFaceVertexCounts.Length || tangents.Length > points.Length) ||
+                (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length) ||
                 bindMaterials &&
                 (st.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
                     uv.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
@@ -219,7 +236,7 @@ namespace Unity.Formats.USD
                     uv4.GetInterpolationToken() == UsdGeomTokens.faceVarying);
         }
 
-        public static void Flatten<T>(ref T[] values, int[] indices)
+        internal static void Flatten<T>(ref T[] values, int[] indices)
         {
             if (values == null || indices == null)
                 return;
@@ -250,7 +267,7 @@ namespace Unity.Formats.USD
             if (primvar.value.GetType() == typeof(Vector2[]))
             {
                 var value = primvar.value as Vector2[];
-                ConvertInterpolation(ref value, faceVertexIndices, changeHandedness, primvar.GetInterpolationToken());
+                ConvertInterpolationToFaceVarying(ref value, faceVertexIndices, changeHandedness, primvar.GetInterpolationToken());
                 primvar.SetValue(value);
                 return;
             }
@@ -258,7 +275,7 @@ namespace Unity.Formats.USD
             if (primvar.value.GetType() == typeof(Vector3[]))
             {
                 var value = primvar.value as Vector3[];
-                ConvertInterpolation(ref value, faceVertexIndices, changeHandedness, primvar.GetInterpolationToken());
+                ConvertInterpolationToFaceVarying(ref value, faceVertexIndices, changeHandedness, primvar.GetInterpolationToken());
                 primvar.SetValue(value);
                 return;
             }
@@ -266,7 +283,7 @@ namespace Unity.Formats.USD
             if (primvar.value.GetType() == typeof(Vector4[]))
             {
                 var value = primvar.value as Vector4[];
-                ConvertInterpolation(ref value, faceVertexIndices, changeHandedness, primvar.GetInterpolationToken());
+                ConvertInterpolationToFaceVarying(ref value, faceVertexIndices, changeHandedness, primvar.GetInterpolationToken());
                 primvar.SetValue(value);
                 return;
             }
@@ -304,7 +321,7 @@ namespace Unity.Formats.USD
             }
         }
 
-        public static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCount, bool changeHandedness)
+        internal static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCount, bool changeHandedness)
         {
             var newValues = new List<T>();
             var last = 0;
@@ -331,7 +348,7 @@ namespace Unity.Formats.USD
             values = newValues.ToArray();
         }
 
-        void ConvertInterpolation<T>(ref T[] values, int[] vertexIndices, bool changeHandedness = false, TfToken interpolation = null)
+        void ConvertInterpolationToFaceVarying<T>(ref T[] values, int[] vertexIndices, bool changeHandedness = false, TfToken interpolation = null)
         {
             if (values == null)
                 return;
@@ -341,29 +358,34 @@ namespace Unity.Formats.USD
 
             if (interpolation == UsdGeomTokens.constant)
             {
-                // Ignore, it's supported by the importer
+                // Ignore, constant values are supported by the importer
             }
-            if (interpolation == UsdGeomTokens.uniform) // interpolation is uniform (1 per face)
+            if (interpolation == UsdGeomTokens.uniform) // 1 value per face
             {
-                UniformToFaceVarying(ref values, vertexIndices);
+                UniformToFaceVarying(ref values, vertexIndices.Length);
             }
-            else if (interpolation == UsdGeomTokens.vertex || interpolation == UsdGeomTokens.varying)
+            else if (interpolation == UsdGeomTokens.vertex || interpolation == UsdGeomTokens.varying) // 1 value per point
             {
                 Flatten(ref values, faceVertexIndices);
             }
-            else if (interpolation == UsdGeomTokens.faceVarying)
+            else if (interpolation == UsdGeomTokens.faceVarying) // 1 value per vertex per triangle
             {
-                TriangulateAttributes(ref values, _originalFaceVertexCounts, changeHandedness);
+                TriangulateAttributes(ref values, originalFaceVertexCounts, changeHandedness);
             }
         }
 
-        public TfToken GuessInterpolation(int count)
+        /// <summary>
+        /// Returns the interpolation of an data array based on the number of elements
+        /// </summary>
+        /// <param name="count"> The number of elements in the array</param>
+        /// <remarks> Fallback mechanism when the interpolation token is not available for a given attribute</remarks>
+        internal TfToken GuessInterpolation(int count)
         {
             if (count == 1)
             {
                 return UsdGeomTokens.constant;
             }
-            if (count == _originalFaceVertexCounts.Length)
+            if (count == originalFaceVertexCounts.Length)
             {
                 return UsdGeomTokens.uniform;
             }
@@ -383,12 +405,12 @@ namespace Unity.Formats.USD
         /// Convert an array of data per face to an array of data per vertex per triangle.
         /// Assume the input array is not indexed.
         /// </summary>
-        /// <param name="values"></param>
-        /// <param name="indices"></param>
+        /// <param name="values"> The data to convert</param>
+        /// <param name="vertexCount"> The number of mesh vertices</param>
         /// <typeparam name="T"></typeparam>
-        public void UniformToFaceVarying<T>(ref T[] values, int[] indices)
+        internal void UniformToFaceVarying<T>(ref T[] values, int vertexCount)
         {
-            var newValues = new T[indices.Length];
+            var newValues = new T[vertexCount];
             for (var faceIdx = 0; faceIdx < values.Length; faceIdx++)
             {
                 var newFaceIndices = faceMapping[faceIdx];
@@ -429,7 +451,7 @@ namespace Unity.Formats.USD
             }
         }
 
-        public bool ShouldUnwindVertices(bool changeHandedness)
+        internal bool ShouldUnwindVertices(bool changeHandedness)
         {
             return changeHandedness && orientation == Orientation.RightHanded ||
                 !changeHandedness && orientation == Orientation.LeftHanded;
