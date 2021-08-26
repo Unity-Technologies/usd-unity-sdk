@@ -342,6 +342,12 @@ namespace Unity.Formats.USD
         public void Run();
     }
 
+    public class SanitizedCameraSample : USD.NET.Unity.CameraSample, Unity.Formats.USD.ISanitizable
+    {
+        public SanitizedCameraSample() {}
+        public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
+    }
+
     public class SanitizedMeshSample : USD.NET.Unity.MeshSample, Unity.Formats.USD.ISanitizable
     {
         public SanitizedMeshSample() {}
