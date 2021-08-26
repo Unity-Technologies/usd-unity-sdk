@@ -14,7 +14,7 @@ namespace Unity.Formats.USD
         /// <summary>
         /// Sanitize the USD data held by this sample to your target specifications according to the import options.
         /// </summary>
-        public void Sanitize(Scene scene, SceneImportOptions importOptions);
+        void Sanitize(Scene scene, SceneImportOptions importOptions);
     }
 
     /// <summary>
