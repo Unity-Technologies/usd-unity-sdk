@@ -30,6 +30,18 @@ namespace Unity.Formats.USD
     }
 
     /// <summary>
+    /// A sanitizable version of an CameraSample. Enable automatic change of handedness.
+    /// </summary>
+    public class SanitizedCameraSample : CameraSample, ISanitizable
+    {
+        public void Sanitize(Scene scene, SceneImportOptions importOptions)
+        {
+            if (importOptions.changeHandedness != BasisTransformation.FastWithNegativeScale)
+                ConvertTransform();
+        }
+    }
+
+    /// <summary>
     /// A sanitizable version of a MeshSample. Enable automatic triangulation/handedness change/attribute interpolation conversion.
     /// </summary>
     public class SanitizedMeshSample : MeshSample, ISanitizable
@@ -69,14 +81,15 @@ namespace Unity.Formats.USD
         /// </summary>
         public void Sanitize(Scene scene, SceneImportOptions importOptions)
         {
+            var changeHandedness = importOptions.changeHandedness == BasisTransformation.SlowAndSafe ||
+                importOptions.changeHandedness == BasisTransformation.SlowAndSafeAsFBX;
             // Start with the xform
-            if (importOptions.changeHandedness != BasisTransformation.FastWithNegativeScale)
+            if (changeHandedness)
                 ConvertTransform();
 
             var santizePrimvars = importOptions.ShouldBindMaterials ||
                 scene.IsPopulatingAccessMask || scene.AccessMask != null;                        //this is true when reading from the timeline
 
-            var changeHandedness = true;
             var unwindVertices = ShouldUnwindVertices(changeHandedness);
             if (points == null)
                 return;

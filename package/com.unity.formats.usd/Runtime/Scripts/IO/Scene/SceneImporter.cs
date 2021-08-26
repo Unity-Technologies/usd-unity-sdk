@@ -711,11 +711,12 @@ namespace Unity.Formats.USD
             if (importOptions.importCameras)
             {
                 Profiler.BeginSample("USD: Cameras");
-                foreach (var pathAndSample in scene.ReadAll<CameraSample>(primMap.Cameras))
+                foreach (var pathAndSample in scene.ReadAll<SanitizedCameraSample>(primMap.Cameras))
                 {
                     try
                     {
                         GameObject go = primMap[pathAndSample.path];
+                        pathAndSample.sample.Sanitize(scene, importOptions);
                         NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
                         XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
 
