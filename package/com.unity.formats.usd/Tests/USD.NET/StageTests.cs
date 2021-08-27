@@ -310,5 +310,17 @@ namespace USD.NET.Tests
             Assert.IsTrue(prim.IsValid() == false);
             stage.Dispose();
         }
+
+        [Test]
+        public void WritingInvalidPrims_ShouldNotCrash()
+        {
+            var stage = pxr.UsdStage.CreateInMemory(UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            scene.Write("/Foo", new CubeSample());
+            scene.Stage.RemovePrim(scene.GetSdfPath("/Foo"));
+            scene.Write("/Foo", new CubeSample());
+
+            Assert.IsTrue(scene.GetPrimAtPath("/Foo").IsValid());
+        }
     }
 }
