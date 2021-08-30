@@ -1,10 +1,12 @@
 {
   "dependencies": {
+    "com.unity.analytics": "3.5.3",
     "com.unity.coding": "0.1.0-preview.20",
-    "com.unity.analytics": "3.3.5",
-    "com.unity.ext.nunit": "1.0.0",
+    "com.unity.ext.nunit": "1.0.6",
     "com.unity.formats.usd": "file:../../../package/com.unity.formats.usd/",
-    "com.unity.test-framework": "1.1.11",
+    "com.unity.ide.rider": "1.1.4",
+    "com.unity.recorder": "2.5.5",
+    "com.unity.test-framework": "1.1.24",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.assetbundle": "1.0.0",
