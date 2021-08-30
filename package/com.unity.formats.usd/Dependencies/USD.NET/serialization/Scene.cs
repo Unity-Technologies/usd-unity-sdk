@@ -782,7 +782,8 @@ namespace USD.NET
                 // TODO(jcowles): there is a potential issue here if the cache gets out of sync with the
                 // underlying USD scene. The correct fix is to listen for change processing events and
                 // clear the cache accordingly.
-                if (!m_primMap.TryGetValue(path, out prim))
+                prim = GetUsdPrim(path);
+                if (!prim.IsValid())
                 {
                     if (WriteMode == WriteModes.Define)
                     {
@@ -850,13 +851,19 @@ namespace USD.NET
         private pxr.UsdPrim GetUsdPrim(SdfPath path)
         {
             UsdPrim prim;
-            lock (m_stageLock) {
-                if (!m_primMap.TryGetValue(path, out prim) || !prim.IsValid())
+            lock (m_stageLock)
+            {
+                var has = m_primMap.TryGetValue(path, out prim);
+                if (!has || !prim.IsValid())
                 {
                     prim = Stage.GetPrimAtPath(path);
                     if (prim.IsValid())
                     {
                         m_primMap[path] = prim;
+                    }
+                    else if (has)
+                    {
+                        m_primMap.Remove(path);
                     }
                 }
             }

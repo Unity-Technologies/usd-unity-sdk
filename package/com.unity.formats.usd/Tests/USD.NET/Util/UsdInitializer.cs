@@ -67,7 +67,7 @@ namespace USD.NET.Tests
         {
 #if UNITY_EDITOR
             var fileInfo = new System.IO.FileInfo(sourceFilePath);
-            var supPath = System.IO.Path.Combine(fileInfo.DirectoryName, "Plugins");
+            var supPath = System.IO.Path.Combine(fileInfo.DirectoryName, "..", "..", "..", "Runtime", "Plugins");
 #else
             var supPath = UnityEngine.Application.dataPath.Replace("\\", "/") + "/Plugins";
 #endif

@@ -333,5 +333,17 @@ namespace USD.NET.Tests
             var allPaths = s.GetAllPathsByType(meshToken, SdfPath.AbsoluteRootPath());
             Assert.AreEqual(2, allPaths.Count);
         }
+        
+        [Test]
+        public void WritingInvalidPrims_ShouldNotCrash()
+        {
+            var stage = pxr.UsdStage.CreateInMemory(UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            scene.Write("/Foo", new CubeSample());
+            scene.Stage.RemovePrim(scene.GetSdfPath("/Foo"));
+            scene.Write("/Foo", new CubeSample());
+
+            Assert.IsTrue(scene.GetPrimAtPath("/Foo").IsValid());
+        }
     }
 }
