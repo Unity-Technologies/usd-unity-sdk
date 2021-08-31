@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using System.Runtime.CompilerServices;
 
 namespace USD.NET.Tests
 {
@@ -156,6 +157,12 @@ namespace USD.NET.Tests
             {
                 throw new Exception("Values do not match for " + typeof(T).Name);
             }
+        }
+
+        internal static string GetTestDataDirectoryPath([CallerFilePath] string sourceFilePath = "")
+        {
+            var fileInfo = new System.IO.FileInfo(sourceFilePath);
+            return System.IO.Path.Combine(fileInfo.DirectoryName, "Data");
         }
     }
 }
