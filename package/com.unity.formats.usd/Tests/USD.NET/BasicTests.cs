@@ -659,5 +659,23 @@ namespace USD.NET.Tests
             Assert.True(sample3.number == 0);
             Assert.True(sample3.rel == null);
         }
+
+        [Test]
+        public static void ReverseBindingForAliasedType_NotFoundByDefault()
+        {
+            UsdTypeBinding binding;
+            UsdIo.Bindings.GetReverseBinding(SdfValueTypeNames.Normal3f, out binding);
+            Assert.Null(binding.sdfTypeName);
+        }
+
+        [Test]
+        public static void ReverseBindingForAliasedType_FoundAfterAliasing()
+        {
+            UsdIo.Bindings.AddTypeAlias(SdfValueTypeNames.Normal3f, SdfValueTypeNames.Float3);
+            UsdTypeBinding binding;
+            UsdIo.Bindings.GetReverseBinding(SdfValueTypeNames.Normal3f, out binding);
+            Assert.AreEqual(SdfValueTypeNames.Float3, binding.sdfTypeName);
+            UsdIo.Bindings.RemoveTypeAlias(SdfValueTypeNames.Normal3f);
+        }
     }
 }

@@ -14,6 +14,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using pxr;
 
 namespace USD.NET
 {
@@ -68,6 +70,12 @@ namespace USD.NET
         Dictionary<string, string> typeNameMapping = new Dictionary<string, string>();
         Dictionary<Type, Dictionary<pxr.TfToken, Enum>> enumMaps = new Dictionary<Type, Dictionary<pxr.TfToken, Enum>>();
 
+        /// <summary>
+        /// USD types can be aliased to represent different roles float2/texcoord2, vec3/point/color and drive the interpretation
+        /// Add aliases if your target application need to map multiple USD types to a single type.
+        /// </summary>
+        Dictionary<string, string> typeAliases = new Dictionary<string, string>();
+
         public TypeBinder()
         {
             // TODO: kill this, see above.
@@ -93,12 +101,29 @@ namespace USD.NET
 #endif
         }
 
+        /// <summary>
+        /// Get a binding from a USD type
+        /// </summary>
+        /// <remarks>
+        /// Used the C# type needs to be derived from the USD type.
+        /// Example: UVs can be of type float2, float3, texcoord2f, texcoord2f
+        /// </remarks>
         public bool GetReverseBinding(pxr.SdfValueTypeName key, out UsdTypeBinding binding)
         {
+            // Check if the given sdf type name is an alias
+            // https://graphics.pixar.com/usd/docs/api/_usd__page__datatypes.html#Usd_Roles
+            string name;
+            bool match = true;
+            if (!typeAliases.TryGetValue(key.GetAsToken(), out name))
+            {
+                name = key.GetAsToken();
+                match = false;
+            }
+
             // TODO: we could keep a reverse mapping, but waiting for deeper performance analysis first.
             foreach (var kvp in bindings)
             {
-                if (kvp.Value.sdfTypeName == key)
+                if (kvp.Value.sdfTypeName.GetAsToken() == name)
                 {
                     binding = kvp.Value;
                     return true;
@@ -412,6 +437,16 @@ namespace USD.NET
         object GuidToCs_String(pxr.VtValue vtValue)
         {
             return new Guid(pxr.UsdCs.VtValueTostring(vtValue));
+        }
+
+        public void AddTypeAlias(SdfValueTypeName alias, SdfValueTypeName target)
+        {
+            typeAliases.Add(alias.GetAsToken(), target.GetAsToken());
+        }
+
+        public bool RemoveTypeAlias(SdfValueTypeName alias)
+        {
+            return typeAliases.Remove(alias.GetAsToken());
         }
 
         private void RegisterIntrinsicTypes()
