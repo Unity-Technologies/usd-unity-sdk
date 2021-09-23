@@ -150,6 +150,10 @@ namespace Unity.Formats.USD
             if (!ShouldUnweldVertices(santizePrimvars))
                 return;
 
+            // At that point we know that primvars are of different interpolation type.
+            // For now we use the worst case scenario which is to unroll all the values to faceVarying interpolation.
+            // TODO: A more efficient solution would be to detect the larger interpolation type used across all primvars
+            // and unroll values up to that interpolation type.
             if (normals == null)
             {
                 normals = new Vector3[points.Length];
@@ -361,6 +365,10 @@ namespace Unity.Formats.USD
             values = newValues.ToArray();
         }
 
+        /// <summary>
+        /// Utility method to convert a given array of values to the equivalent faceVarying array (one value per vertex per face).
+        /// </summary>
+        /// <remarks> If the interpolation of the array to convert is not known, it will be guessed based on the length of the array. </remarks
         void ConvertInterpolationToFaceVarying<T>(ref T[] values, int[] vertexIndices, bool changeHandedness = false, TfToken interpolation = null)
         {
             if (values == null)

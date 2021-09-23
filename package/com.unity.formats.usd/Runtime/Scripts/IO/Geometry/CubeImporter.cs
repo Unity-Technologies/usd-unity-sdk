@@ -79,7 +79,6 @@ namespace Unity.Formats.USD
                 {
                     // Constant color can just be set on the material.
                     mat = options.materialMap.InstantiateSolidColor(usdCube.colors.value[0].gamma);
-                    Debug.Log("constant colors assigned");
                 }
                 else if (usdCube.colors.Length == 6)
                 {

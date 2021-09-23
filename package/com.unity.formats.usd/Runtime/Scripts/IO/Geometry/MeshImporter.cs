@@ -488,7 +488,7 @@ namespace Unity.Formats.USD
                     var subsetIndex = 0;
                     foreach (var kvp in geomSubsets.Subsets)
                     {
-                        var faceIndices = kvp.Value;
+                        int[] faceIndices = kvp.Value;
                         var triangleIndices = new int[faceIndices.Length * 3];
 
                         for (var i = 0; i < faceIndices.Length; i++)
