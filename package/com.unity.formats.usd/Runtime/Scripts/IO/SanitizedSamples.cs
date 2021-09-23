@@ -399,7 +399,10 @@ namespace Unity.Formats.USD
         /// Returns the interpolation of an data array based on the number of elements
         /// </summary>
         /// <param name="count"> The number of elements in the array</param>
-        /// <remarks> Fallback mechanism when the interpolation token is not available for a given attribute</remarks>
+        /// <remarks>
+        /// This is a fallback mechanism when the interpolation token is not available for a given attribute.
+        /// It might also fail in the case of degenerate polygons or single face mesh (vertex & face-varying are undistinguishable)
+        /// </remarks>
         internal TfToken GuessInterpolation(int count)
         {
             if (count == 1)
