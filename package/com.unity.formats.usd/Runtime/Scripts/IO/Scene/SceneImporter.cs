@@ -750,6 +750,42 @@ namespace Unity.Formats.USD
                 Profiler.EndSample();
             }
 
+            // Lights.
+            if (importOptions.importLights)
+            {
+                Profiler.BeginSample("USD: Lights");
+
+                void importLights<T>(pxr.SdfPath[] dest) where T : LightSampleBase, new()
+                {
+                    foreach (var pathAndSample in scene.ReadAll<T>(dest))
+                    {
+                        try
+                        {
+                            GameObject go = primMap[pathAndSample.path];
+                            NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path), importOptions);
+                            XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions, scene);
+
+                            if (scene.AccessMask == null || scene.IsPopulatingAccessMask)
+                            {
+                                LightImporter<T>.BuildLight(pathAndSample.sample, go, importOptions);
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            Debug.LogException(
+                                new ImportException("Error processing light <" + pathAndSample.path + ">", ex));
+                        }
+                    }
+                }
+
+                importLights<DistantLightSample>(primMap.DirectionalLights);
+                importLights<SphereLightSample>(primMap.SphereLights);
+                importLights<RectLightSample>(primMap.RectLights);
+                importLights<DiskLightSample>(primMap.DiscLights);
+
+                Profiler.EndSample();
+            }
+
             // Build out masters for instancing.
             Profiler.BeginSample("USD: Build Instances");
             foreach (var masterRootPath in primMap.GetMasterRootPaths())

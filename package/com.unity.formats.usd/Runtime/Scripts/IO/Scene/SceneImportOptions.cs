@@ -100,6 +100,7 @@ namespace Unity.Formats.USD
 
         public bool importHierarchy = true;
         public bool importCameras = true;
+        public bool importLights = true;
         public bool importMeshes = true;
         public bool importSkinning = true;
         public bool importSkinWeights = true;

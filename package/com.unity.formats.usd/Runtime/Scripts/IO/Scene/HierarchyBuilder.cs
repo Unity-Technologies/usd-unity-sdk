@@ -133,8 +133,8 @@ namespace Unity.Formats.USD
         {
             FindPathsJob.usdRoot = usdRoot;
             FindPathsJob.scene = scene;
-            FindPathsJob.results = new SdfPath[9][];
-            FindPathsJob.queries = new FindPathsJob.IQuery[9];
+            FindPathsJob.results = new SdfPath[13][];
+            FindPathsJob.queries = new FindPathsJob.IQuery[13];
 
             if (options.ShouldBindMaterials)
             {
@@ -167,6 +167,15 @@ namespace Unity.Formats.USD
 
             FindPathsJob.queries[8] = (FindPathsJob.IQuery) new FindPathsJob.Query<ScopeSample>();
 
+            if (options.importLights)
+            {
+                FindPathsJob.queries[9] = (FindPathsJob.IQuery) new FindPathsJob.Query<DistantLightSample>();
+                FindPathsJob.queries[10] = (FindPathsJob.IQuery) new FindPathsJob.Query<SphereLightSample>();
+                FindPathsJob.queries[11] = (FindPathsJob.IQuery) new FindPathsJob.Query<RectLightSample>();
+                FindPathsJob.queries[12] = (FindPathsJob.IQuery) new FindPathsJob.Query<DiskLightSample>();
+
+            }
+
             var findPathsJob = new FindPathsJob();
             var findHandle = findPathsJob.Schedule(FindPathsJob.queries.Length, 1);
             findHandle.Complete();
@@ -185,6 +194,10 @@ namespace Unity.Formats.USD
             map.SkelRoots = FindPathsJob.results[5];
             map.Skeletons = FindPathsJob.results[6];
             map.Xforms = FindPathsJob.results[7];
+            map.DirectionalLights = FindPathsJob.results[9];
+            map.SphereLights = FindPathsJob.results[10];
+            map.RectLights = FindPathsJob.results[11];
+            map.DiscLights = FindPathsJob.results[12];
 
             ReadHierJob.paths = FindPathsJob.results.Where(i => i != null).SelectMany(i => i).ToArray();
             ReadHierJob.result = new HierInfo[ReadHierJob.paths.Length];
