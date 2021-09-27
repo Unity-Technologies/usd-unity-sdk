@@ -142,6 +142,10 @@ namespace USD.NET
             return typeof(T);
         }
 
+        public bool IsArray => typeof(T).IsArray;
+
+        public int Length => (IsArray && value != null) ? (value as Array).Length : 0;
+
         // Furture work: support IdTargets. See "ID Attribute API" here:
         // http://graphics.pixar.com/usd/docs/api/class_usd_geom_primvar.html
     }

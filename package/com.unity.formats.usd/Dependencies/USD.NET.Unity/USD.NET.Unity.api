@@ -107,7 +107,7 @@ namespace USD.NET.Unity
 
     [USD.NET.UsdSchema(@"UsdGeomGprim")] public class GprimSample : USD.NET.Unity.BoundableSample
     {
-        [USD.NET.FusedDisplayColor] [USD.NET.VertexData] public UnityEngine.Color[] colors;
+        [USD.NET.FusedDisplayColor] [USD.NET.VertexData] public USD.NET.Primvar<UnityEngine.Color[]> colors;
         public GprimSample() {}
     }
 
@@ -164,15 +164,14 @@ namespace USD.NET.Unity
     [USD.NET.UsdSchema(@"Mesh")] public class MeshSampleBase : USD.NET.Unity.PointBasedSample
     {
         public int[] faceVertexIndices;
-        [USD.NET.UsdNamespace(@"primvars:st")] public int[] indices;
         public UnityEngine.Vector3[] normals;
         public UnityEngine.Vector3[] points;
-        [USD.NET.VertexData] public object st;
+        public USD.NET.Primvar<object> st;
         [USD.NET.VertexData] public UnityEngine.Vector4[] tangents;
-        [USD.NET.VertexData] public object uv;
-        [USD.NET.VertexData] public object uv2;
-        [USD.NET.VertexData] public object uv3;
-        [USD.NET.VertexData] public object uv4;
+        public USD.NET.Primvar<object> uv;
+        public USD.NET.Primvar<object> uv2;
+        public USD.NET.Primvar<object> uv3;
+        public USD.NET.Primvar<object> uv4;
         public MeshSampleBase() {}
     }
 

@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using pxr;
 
 namespace USD.NET
 {
@@ -591,8 +592,8 @@ namespace USD.NET
         {
             bool isNewPrimvar = csValue != null
                 && csType.IsGenericType
-                && csType.GetGenericTypeDefinition() == typeof(Primvar<>);
-            bool isPrimvar = Reflect.IsPrimvar(memberInfo) || isNewPrimvar;
+                && csType.GetGenericTypeDefinition() == typeof(Primvar<>);  // This is true for Primvar type only
+            bool isPrimvar = Reflect.IsPrimvar(memberInfo) || isNewPrimvar; // This is true for VertexData + Primvar type...
             string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
                 Reflect.GetNamespace(memberInfo));
 
@@ -827,7 +828,18 @@ namespace USD.NET
                 // If this is a Primvar<T>, read the associated primvar metadata and indices.
                 if (pvBase != null)
                 {
-                    var attr = prim.GetAttribute(sdfAttrName);
+                    UsdAttribute attr = null;
+                    if (Reflect.IsFusedDisplayColor(memberInfo))
+                    {
+                        var gprim = new pxr.UsdGeomGprim(prim);
+                        if (gprim)
+                            attr = gprim.GetDisplayColorAttr();
+                    }
+                    else
+                    {
+                        attr = prim.GetAttribute(sdfAttrName);
+                    }
+
                     if (attr)
                     {
                         var pv = new pxr.UsdGeomPrimvar(attr);
@@ -835,14 +847,14 @@ namespace USD.NET
                         pvBase.elementSize = pv.GetElementSize();
                         pvBase.SetInterpolationToken(pv.GetInterpolation());
 
-                        // Indices are a first class attribute and may vary over time.
+                        // Primvars can be indexed and indices are a first class attribute and may vary over time.
                         var indices = pv.GetIndicesAttr();
                         if (indices)
                         {
                             if (accessMap != null)
                             {
                                 if (indices.GetVariability() == pxr.SdfVariability.SdfVariabilityVarying
-                                    || indices.ValueMightBeTimeVarying())
+                                    && indices.ValueMightBeTimeVarying())
                                 {
                                     accessMap.Add(memberInfo);
                                     mayVary |= true;

@@ -22,7 +22,7 @@ namespace Unity.Formats.USD
         [UnityEditor.Callbacks.PostProcessBuild(1)] public static void OnPostprocessBuild(UnityEditor.BuildTarget target, string pathToBuiltProject);
     }
 
-    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.UsdLayerStack))] public class UsdLayerStackEditor : UnityEditor.Experimental.AssetImporters.ScriptedImporterEditor
+    [UnityEditor.CustomEditor(typeof(Unity.Formats.USD.UsdLayerStack))] public class UsdLayerStackEditor : UnityEditor.AssetImporters.ScriptedImporterEditor
     {
         public UsdLayerStackEditor() {}
         public virtual void OnInspectorGUI();

@@ -78,7 +78,7 @@ namespace Unity.Formats.USD
                 if (usdSphere.colors.Length == 1)
                 {
                     // Constant color can just be set on the material.
-                    mat = options.materialMap.InstantiateSolidColor(usdSphere.colors[0].gamma);
+                    mat = options.materialMap.InstantiateSolidColor(usdSphere.colors.value[0].gamma);
                 }
                 else
                 {

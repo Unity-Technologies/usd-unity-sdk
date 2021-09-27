@@ -78,8 +78,7 @@ namespace Unity.Formats.USD
                 if (usdCube.colors.Length == 1)
                 {
                     // Constant color can just be set on the material.
-                    mat = options.materialMap.InstantiateSolidColor(usdCube.colors[0].gamma);
-                    Debug.Log("constant colors assigned");
+                    mat = options.materialMap.InstantiateSolidColor(usdCube.colors.value[0].gamma);
                 }
                 else if (usdCube.colors.Length == 6)
                 {
@@ -89,40 +88,40 @@ namespace Unity.Formats.USD
                     Debug.Log(unityMesh.vertexCount);
                     for (int i = 0; i < usdCube.colors.Length; i++)
                     {
-                        usdCube.colors[i] = usdCube.colors[i];
+                        usdCube.colors.value[i] = usdCube.colors.value[i];
                     }
 
                     var unityColors = new Color[24];
                     // Front:0, Back:1, Top:2, Bottom:3, Right:4, Left:5
-                    unityColors[0] = usdCube.colors[0]; // front bottom right
-                    unityColors[1] = usdCube.colors[0]; // front bottom left
-                    unityColors[2] = usdCube.colors[0]; // front top right
-                    unityColors[3] = usdCube.colors[0]; // front top left
+                    unityColors[0] = usdCube.colors.value[0]; // front bottom right
+                    unityColors[1] = usdCube.colors.value[0]; // front bottom left
+                    unityColors[2] = usdCube.colors.value[0]; // front top right
+                    unityColors[3] = usdCube.colors.value[0]; // front top left
 
-                    unityColors[4] = usdCube.colors[2]; // top back right
-                    unityColors[5] = usdCube.colors[2]; // top back left
-                    unityColors[6] = usdCube.colors[1]; // back bottom right
-                    unityColors[7] = usdCube.colors[1]; // back bottom left
+                    unityColors[4] = usdCube.colors.value[2]; // top back right
+                    unityColors[5] = usdCube.colors.value[2]; // top back left
+                    unityColors[6] = usdCube.colors.value[1]; // back bottom right
+                    unityColors[7] = usdCube.colors.value[1]; // back bottom left
 
-                    unityColors[8] = usdCube.colors[2]; // top front right
-                    unityColors[9] = usdCube.colors[2]; // top front left
-                    unityColors[10] = usdCube.colors[1]; // back top right
-                    unityColors[11] = usdCube.colors[1]; // back top left
+                    unityColors[8] = usdCube.colors.value[2]; // top front right
+                    unityColors[9] = usdCube.colors.value[2]; // top front left
+                    unityColors[10] = usdCube.colors.value[1]; // back top right
+                    unityColors[11] = usdCube.colors.value[1]; // back top left
 
-                    unityColors[12] = usdCube.colors[3]; // Bottom back right
-                    unityColors[13] = usdCube.colors[3]; // Bottom front right
-                    unityColors[14] = usdCube.colors[3]; // Bottom front left
-                    unityColors[15] = usdCube.colors[3]; // Bottom back left
+                    unityColors[12] = usdCube.colors.value[3]; // Bottom back right
+                    unityColors[13] = usdCube.colors.value[3]; // Bottom front right
+                    unityColors[14] = usdCube.colors.value[3]; // Bottom front left
+                    unityColors[15] = usdCube.colors.value[3]; // Bottom back left
 
-                    unityColors[16] = usdCube.colors[5]; // left front bottom
-                    unityColors[17] = usdCube.colors[5]; // left front top
-                    unityColors[18] = usdCube.colors[5]; // left back top
-                    unityColors[19] = usdCube.colors[5]; // left back bottom
+                    unityColors[16] = usdCube.colors.value[5]; // left front bottom
+                    unityColors[17] = usdCube.colors.value[5]; // left front top
+                    unityColors[18] = usdCube.colors.value[5]; // left back top
+                    unityColors[19] = usdCube.colors.value[5]; // left back bottom
 
-                    unityColors[20] = usdCube.colors[4]; // right back bottom
-                    unityColors[21] = usdCube.colors[4]; // right back top
-                    unityColors[22] = usdCube.colors[4]; // right front top
-                    unityColors[23] = usdCube.colors[4]; // right front bottom
+                    unityColors[20] = usdCube.colors.value[4]; // right back bottom
+                    unityColors[21] = usdCube.colors.value[4]; // right back top
+                    unityColors[22] = usdCube.colors.value[4]; // right front top
+                    unityColors[23] = usdCube.colors.value[4]; // right front bottom
 
                     unityMesh.colors = unityColors;
                 }
@@ -134,40 +133,40 @@ namespace Unity.Formats.USD
                     Debug.Log(unityMesh.vertexCount);
                     for (int i = 0; i < usdCube.colors.Length; i++)
                     {
-                        usdCube.colors[i] = usdCube.colors[i];
+                        usdCube.colors.value[i] = usdCube.colors.value[i];
                     }
 
                     // USD order: front, back, top, bottom, right, left
                     var unityColors = new Color[24];
-                    unityColors[0] = usdCube.colors[3]; // front bottom right
-                    unityColors[1] = usdCube.colors[2]; // front bottom left
-                    unityColors[2] = usdCube.colors[0]; // front top right
-                    unityColors[3] = usdCube.colors[1]; // front top left
+                    unityColors[0] = usdCube.colors.value[3]; // front bottom right
+                    unityColors[1] = usdCube.colors.value[2]; // front bottom left
+                    unityColors[2] = usdCube.colors.value[0]; // front top right
+                    unityColors[3] = usdCube.colors.value[1]; // front top left
 
-                    unityColors[4] = usdCube.colors[8 + 1]; // top back right
-                    unityColors[5] = usdCube.colors[8 + 2]; // top back left
-                    unityColors[6] = usdCube.colors[4 + 3]; // back bottom right
-                    unityColors[7] = usdCube.colors[4 + 0]; // back bottom left
+                    unityColors[4] = usdCube.colors.value[8 + 1]; // top back right
+                    unityColors[5] = usdCube.colors.value[8 + 2]; // top back left
+                    unityColors[6] = usdCube.colors.value[4 + 3]; // back bottom right
+                    unityColors[7] = usdCube.colors.value[4 + 0]; // back bottom left
 
-                    unityColors[8] = usdCube.colors[8 + 0]; // top front right
-                    unityColors[9] = usdCube.colors[8 + 3]; // top front left
-                    unityColors[10] = usdCube.colors[4 + 2]; // back top right
-                    unityColors[11] = usdCube.colors[4 + 1]; // back top left
+                    unityColors[8] = usdCube.colors.value[8 + 0]; // top front right
+                    unityColors[9] = usdCube.colors.value[8 + 3]; // top front left
+                    unityColors[10] = usdCube.colors.value[4 + 2]; // back top right
+                    unityColors[11] = usdCube.colors.value[4 + 1]; // back top left
 
-                    unityColors[12] = usdCube.colors[12 + 1]; // Bottom back right
-                    unityColors[13] = usdCube.colors[12 + 2]; // Bottom front right
-                    unityColors[14] = usdCube.colors[12 + 3]; // Bottom front left
-                    unityColors[15] = usdCube.colors[12 + 0]; // Bottom back left
+                    unityColors[12] = usdCube.colors.value[12 + 1]; // Bottom back right
+                    unityColors[13] = usdCube.colors.value[12 + 2]; // Bottom front right
+                    unityColors[14] = usdCube.colors.value[12 + 3]; // Bottom front left
+                    unityColors[15] = usdCube.colors.value[12 + 0]; // Bottom back left
 
-                    unityColors[16] = usdCube.colors[20 + 1]; // left front bottom
-                    unityColors[17] = usdCube.colors[20 + 2]; // left front top
-                    unityColors[18] = usdCube.colors[20 + 3]; // left back top
-                    unityColors[19] = usdCube.colors[20 + 0]; // left back bottom
+                    unityColors[16] = usdCube.colors.value[20 + 1]; // left front bottom
+                    unityColors[17] = usdCube.colors.value[20 + 2]; // left front top
+                    unityColors[18] = usdCube.colors.value[20 + 3]; // left back top
+                    unityColors[19] = usdCube.colors.value[20 + 0]; // left back bottom
 
-                    unityColors[20] = usdCube.colors[16 + 2]; // right back bottom
-                    unityColors[21] = usdCube.colors[16 + 3]; // right back top
-                    unityColors[22] = usdCube.colors[16 + 0]; // right front top
-                    unityColors[23] = usdCube.colors[16 + 1]; // right front bottom
+                    unityColors[20] = usdCube.colors.value[16 + 2]; // right back bottom
+                    unityColors[21] = usdCube.colors.value[16 + 3]; // right back top
+                    unityColors[22] = usdCube.colors.value[16 + 0]; // right front top
+                    unityColors[23] = usdCube.colors.value[16 + 1]; // right front bottom
 
                     unityMesh.colors = unityColors;
                 }
@@ -179,41 +178,41 @@ namespace Unity.Formats.USD
                     Debug.Log(unityMesh.vertexCount);
                     for (int i = 0; i < usdCube.colors.Length; i++)
                     {
-                        usdCube.colors[i] = usdCube.colors[i];
+                        usdCube.colors.value[i] = usdCube.colors.value[i];
                     }
 
                     // USD order: front (top-right -> ccw)
                     //            back (bottom-left -> ccw (from back perspective))
                     var unityColors = new Color[24];
-                    unityColors[0] = usdCube.colors[3]; // front bottom right
-                    unityColors[1] = usdCube.colors[2]; // front bottom left
-                    unityColors[2] = usdCube.colors[0]; // front top right
-                    unityColors[3] = usdCube.colors[1]; // front top left
+                    unityColors[0] = usdCube.colors.value[3]; // front bottom right
+                    unityColors[1] = usdCube.colors.value[2]; // front bottom left
+                    unityColors[2] = usdCube.colors.value[0]; // front top right
+                    unityColors[3] = usdCube.colors.value[1]; // front top left
 
-                    unityColors[4] = usdCube.colors[6]; // top back right
-                    unityColors[5] = usdCube.colors[5]; // top back left
-                    unityColors[6] = usdCube.colors[7]; // back bottom right
-                    unityColors[7] = usdCube.colors[4]; // back bottom left
+                    unityColors[4] = usdCube.colors.value[6]; // top back right
+                    unityColors[5] = usdCube.colors.value[5]; // top back left
+                    unityColors[6] = usdCube.colors.value[7]; // back bottom right
+                    unityColors[7] = usdCube.colors.value[4]; // back bottom left
 
-                    unityColors[8] = usdCube.colors[0]; // top front right
-                    unityColors[9] = usdCube.colors[1]; // top front left
-                    unityColors[10] = usdCube.colors[6]; // back top right
-                    unityColors[11] = usdCube.colors[5]; // back top left
+                    unityColors[8] = usdCube.colors.value[0]; // top front right
+                    unityColors[9] = usdCube.colors.value[1]; // top front left
+                    unityColors[10] = usdCube.colors.value[6]; // back top right
+                    unityColors[11] = usdCube.colors.value[5]; // back top left
 
-                    unityColors[12] = usdCube.colors[7]; // Bottom back right
-                    unityColors[13] = usdCube.colors[3]; // Bottom front right
-                    unityColors[14] = usdCube.colors[2]; // Bottom front left
-                    unityColors[15] = usdCube.colors[4]; // Bottom back left
+                    unityColors[12] = usdCube.colors.value[7]; // Bottom back right
+                    unityColors[13] = usdCube.colors.value[3]; // Bottom front right
+                    unityColors[14] = usdCube.colors.value[2]; // Bottom front left
+                    unityColors[15] = usdCube.colors.value[4]; // Bottom back left
 
-                    unityColors[16] = usdCube.colors[2]; // left front bottom
-                    unityColors[17] = usdCube.colors[1]; // left front top
-                    unityColors[18] = usdCube.colors[5]; // left back top
-                    unityColors[19] = usdCube.colors[4]; // left back bottom
+                    unityColors[16] = usdCube.colors.value[2]; // left front bottom
+                    unityColors[17] = usdCube.colors.value[1]; // left front top
+                    unityColors[18] = usdCube.colors.value[5]; // left back top
+                    unityColors[19] = usdCube.colors.value[4]; // left back bottom
 
-                    unityColors[20] = usdCube.colors[7]; // right back bottom
-                    unityColors[21] = usdCube.colors[6]; // right back top
-                    unityColors[22] = usdCube.colors[0]; // right front top
-                    unityColors[23] = usdCube.colors[3]; // right front bottom
+                    unityColors[20] = usdCube.colors.value[7]; // right back bottom
+                    unityColors[21] = usdCube.colors.value[6]; // right back top
+                    unityColors[22] = usdCube.colors.value[0]; // right front top
+                    unityColors[23] = usdCube.colors.value[3]; // right front bottom
 
                     unityMesh.colors = unityColors;
                     Debug.Log("vertex colors assigned");

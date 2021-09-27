@@ -123,14 +123,6 @@ namespace Unity.Formats.USD
         [Tooltip("Import policy for primvars:tangent")]
         public ImportMode m_tangents;
 
-        [Tooltip("Import policy for primvars:st")]
-        public ImportMode m_st;
-
-        // Obselete, will be removed in the future.
-        [HideInInspector] public ImportMode m_texcoord1;
-        [HideInInspector] public ImportMode m_texcoord2;
-        [HideInInspector] public ImportMode m_texcoord3;
-
         // ----------------------------------------------------------------------------------------- //
         // Lightmap UV Unwrapping.
         // ----------------------------------------------------------------------------------------- //
@@ -278,10 +270,6 @@ namespace Unity.Formats.USD
             m_color = options.meshOptions.color;
             m_normals = options.meshOptions.normals;
             m_tangents = options.meshOptions.tangents;
-            m_st = options.meshOptions.texcoord0;
-            m_texcoord1 = options.meshOptions.texcoord1;
-            m_texcoord2 = options.meshOptions.texcoord2;
-            m_texcoord3 = options.meshOptions.texcoord3;
             m_generateLightmapUVs = options.meshOptions.generateLightmapUVs;
 
             m_unwrapAngleError = options.meshOptions.unwrapAngleError;
@@ -331,10 +319,6 @@ namespace Unity.Formats.USD
             options.meshOptions.color = m_color;
             options.meshOptions.normals = m_normals;
             options.meshOptions.tangents = m_tangents;
-            options.meshOptions.texcoord0 = m_st;
-            options.meshOptions.texcoord1 = m_texcoord1;
-            options.meshOptions.texcoord2 = m_texcoord2;
-            options.meshOptions.texcoord3 = m_texcoord3;
             options.meshOptions.generateLightmapUVs = m_generateLightmapUVs;
 
             options.meshOptions.unwrapAngleError = m_unwrapAngleError;
@@ -373,7 +357,7 @@ namespace Unity.Formats.USD
         {
             InitUsd.Initialize();
 
-            if (m_lastScene == null || m_lastScene.Stage == null || SceneFileChanged())
+            if (m_lastScene?.Stage == null || SceneFileChanged())
             {
                 pxr.UsdStage stage = null;
                 if (string.IsNullOrEmpty(usdFullPath))
@@ -769,11 +753,6 @@ namespace Unity.Formats.USD
 
             // Note that tangent and Normals must be updated when the mesh deforms.
             options.importHierarchy = false;
-
-            options.meshOptions.texcoord0 = ImportMode.Ignore;
-            options.meshOptions.texcoord1 = ImportMode.Ignore;
-            options.meshOptions.texcoord2 = ImportMode.Ignore;
-            options.meshOptions.texcoord3 = ImportMode.Ignore;
         }
 
         /// <summary>
