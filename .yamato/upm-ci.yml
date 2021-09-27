@@ -1,12 +1,12 @@
 test_editors:
   - version: trunk
-  - version: 2021.1
+  - version: 2021.2
   - version: 2020.3
   - version: 2019.4
 test_platforms:
   - name: win
     type: Unity::VM
-    image: package-ci/win10:v1.15.0
+    image: package-ci/win10:stable
     flavor: b1.large
   - name: mac
     type: Unity::VM::osx

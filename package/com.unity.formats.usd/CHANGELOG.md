@@ -1,5 +1,15 @@
 # Changes in usd-unitysdk for Unity
 
+## [3.0.0-exp.2] - 2021-09-29
+### Features
+- All interpolation types are now properly supported for Mesh standard attributes (normals, tangents, uvs, colors)
+
+### Bug Fixes
+- Fixed the import of facevarying UVs which showing seams on Meshes
+- Fixed a import bug causing abstract primitives to be loaded as Game Objects
+- Fixed the Alembic support
+- Fixed a crash caused by writing to an invalid USD primitive
+
 ## [3.0.0-exp.1] - 2021-06-15
 ### Features
 - New Import/Export API. See the ImportHelpers and ExportHelpers class (#237).
