@@ -7,7 +7,7 @@
 ### Bug Fixes
 - Fixed the import of facevarying UVs which showed seams on Meshes.
 - Fixed an import bug causing abstract primitives to be loaded as Game Objects.
-- Fixed the Alembic support.
+- Fixed the broken Alembic Import.
 - Fixed a crash caused by writing to an invalid USD primitive.
 
 ## [3.0.0-exp.1] - 2021-06-15
