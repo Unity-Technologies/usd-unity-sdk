@@ -541,6 +541,7 @@ namespace Unity.Formats.USD
             var mr = go.GetComponent<MeshRenderer>();
             var mf = go.GetComponent<MeshFilter>();
             var cam = go.GetComponent<Camera>();
+            var lig = go.GetComponent<Light>();
             Transform expRoot = context.exportRoot;
 
             var tmpPath = new pxr.SdfPath(UnityTypeConverter.GetPath(go.transform, expRoot));
@@ -621,6 +622,22 @@ namespace Unity.Formats.USD
             {
                 CreateExportPlan(go, CreateSample<CameraSample>(context), CameraExporter.ExportCamera, context);
                 CreateExportPlan(go, CreateSample<CameraSample>(context), NativeExporter.ExportObject, context,
+                    insertFirst: false);
+            }
+            else if (lig != null)
+            {
+                if (lig.type == LightType.Directional)
+                    CreateExportPlan(go, CreateSample<DistantLightSample>(context), LightExporter.ExportLight<DistantLightSample>, context);
+                else if (lig.type == LightType.Spot)
+                    CreateExportPlan(go, CreateSample<SphereLightSample>(context), LightExporter.ExportLight<SphereLightSample>, context);
+                else if (lig.type == LightType.Point)
+                    CreateExportPlan(go, CreateSample<SphereLightSample>(context), LightExporter.ExportLight<SphereLightSample>, context);
+                else if (lig.type == LightType.Rectangle)
+                    CreateExportPlan(go, CreateSample<RectLightSample>(context), LightExporter.ExportLight<RectLightSample>, context);
+                else if (lig.type == LightType.Disc)
+                    CreateExportPlan(go, CreateSample<DiskLightSample>(context), LightExporter.ExportLight<DiskLightSample>, context);
+
+                CreateExportPlan(go, CreateSample<DistantLightSample>(context), NativeExporter.ExportObject, context,
                     insertFirst: false);
             }
         }

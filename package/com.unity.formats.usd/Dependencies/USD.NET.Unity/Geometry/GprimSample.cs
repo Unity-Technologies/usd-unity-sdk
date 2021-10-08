@@ -25,6 +25,6 @@ namespace USD.NET.Unity
         // writing color, however the cost of recombining these in C# is too great (time/memory), so
         // instead, they are fused during serialization in C++.
         [VertexData, FusedDisplayColor]
-        public Color[] colors;
+        public Primvar<Color[]> colors =  new Primvar<Color[]>();
     }
 }

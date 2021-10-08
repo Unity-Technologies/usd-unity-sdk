@@ -67,9 +67,14 @@ namespace USD.NET.Unity.Tests
             basisCurves.basis = BasisCurvesSample.Basis.Bspline;
             basisCurves.type = BasisCurvesSample.CurveType.Cubic;
             basisCurves.wrap = BasisCurvesSample.WrapMode.Nonperiodic;
-            basisCurves.colors = new UnityEngine.Color[4];
-            basisCurves.colors[0] = new UnityEngine.Color(1, 2, 3, 4);
-            basisCurves.colors[3] = new UnityEngine.Color(6, 7, 8, 9);
+            var colors = new UnityEngine.Color[4]
+            {
+                new UnityEngine.Color(1, 2, 3, 4),
+                new Color(), new Color(),
+                new Color(6, 7, 8, 9)
+            };
+            // basisCurves.colors = colors;
+            basisCurves.colors.SetValue(colors);
             basisCurves.curveVertexCounts = new int[1] {4};
             basisCurves.doubleSided = true;
             basisCurves.normals = new UnityEngine.Vector3[4];

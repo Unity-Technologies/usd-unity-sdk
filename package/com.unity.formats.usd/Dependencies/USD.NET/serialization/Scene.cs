@@ -710,8 +710,7 @@ namespace USD.NET
             memberValue = (T)o;
         }
 
-        static readonly HashSet<System.Reflection.MemberInfo> m_empty = new HashSet<System.Reflection.MemberInfo>();
-        private void ReadInternal<T>(SdfPath path,
+        void  ReadInternal<T>(SdfPath path,
             T sample,
             UsdTimeCode timeCode) where T : SampleBase
         {
@@ -719,29 +718,47 @@ namespace USD.NET
             if (!prim) { return; }
 
             var accessMap = AccessMask;
-            bool? mayVary = false;
             HashSet<System.Reflection.MemberInfo> dynamicMembers = null;
 
+            // mayVary is nullable and has an accumulation semantic:
+            //   null = members have already been checked for animation
+            //   false = no dynamic members found
+            //   true =  at least one member has been found dynamic
+            bool? mayVary = false;
+
+            // When reading animation data, the access map optimizes which prim members need to be read
             if (accessMap != null)
             {
-                lock (m_stageLock) {
-                    if (!accessMap.Included.TryGetValue(path, out dynamicMembers)
-                        && IsPopulatingAccessMask)
+                var populatingAccessMask = IsPopulatingAccessMask;
+                lock (m_stageLock)
+                {
+                    // Check which attributes of the prim are dynamic
+                    var primFound = accessMap.Included.TryGetValue(path, out dynamicMembers);
+
+                    // Populating the access map happens when reading the first frame of animation
+                    // so if the prim is not already in the map add it and everything will be deserialized
+                    if (!primFound && populatingAccessMask)
                     {
                         dynamicMembers = new HashSet<System.Reflection.MemberInfo>();
                         accessMap.Included.Add(path, dynamicMembers);
                     }
                 }
 
-                if (!IsPopulatingAccessMask)
+                // If we are not populating the access map it means it's been done already so only dynamic members should be deserialized
+                if (!populatingAccessMask)
                 {
+                    // If there are no dynamic members, then no need to call deserialize
+                    if (dynamicMembers == null)
+                        return;
+
+                    // Notify the deserialization service that only dynamic members should be read
                     mayVary = null;
-                    dynamicMembers = dynamicMembers ?? m_empty;
                 }
             }
 
             m_usdIo.Deserialize(sample, prim, timeCode, dynamicMembers, ref mayVary);
 
+            // If no members are varying, remove the prim from the access map.
             lock (m_stageLock) {
                 if (accessMap != null && mayVary != null)
                 {

@@ -106,7 +106,7 @@ namespace Unity.Formats.USD
 
     public interface IImporter
     {
-        public abstract void BeginReading(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap);
+        public abstract void BeginReading(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions importOptions);
         public abstract System.Collections.IEnumerator Import(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions importOptions);
     }
 
@@ -160,6 +160,11 @@ namespace Unity.Formats.USD
     {
         public static void BuildPointInstances(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, string pointInstancerPath, USD.NET.Unity.PointInstancerSample sample, UnityEngine.GameObject root, Unity.Formats.USD.SceneImportOptions options);
         public static void BuildSceneInstances(Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions options);
+    }
+
+    public interface ISanitizable
+    {
+        public abstract void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
     }
 
     public static class MaterialExporter
@@ -217,9 +222,12 @@ namespace Unity.Formats.USD
 
     public static class MeshImporter
     {
-        public static void BuildMesh(string path, USD.NET.Unity.MeshSample usdMesh, Unity.Formats.USD.MeshImporter.GeometrySubsets geomSubsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool isDynamic);
-        public static void BuildSkinnedMesh(string path, USD.NET.Unity.MeshSample usdMesh, Unity.Formats.USD.MeshImporter.GeometrySubsets geomSubsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool isDynamic);
+        public static void BuildMesh(string path, Unity.Formats.USD.SanitizedMeshSample usdMesh, Unity.Formats.USD.MeshImporter.GeometrySubsets geomSubsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool isDynamic, pxr.UsdSkelSkinningQuery skinQuery = default(pxr.UsdSkelSkinningQuery));
+        public static void BuildSkinnedMesh(string path, Unity.Formats.USD.SanitizedMeshSample usdMesh, Unity.Formats.USD.MeshImporter.GeometrySubsets geomSubsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions options, bool isDynamic, pxr.UsdSkelSkinningQuery skinningQuery = default(pxr.UsdSkelSkinningQuery));
+        public static void ImportSkinning(string path, Unity.Formats.USD.SanitizedMeshSample usdMesh, UnityEngine.Mesh unityMesh, pxr.UsdSkelSkinningQuery skinningQuery);
         public static Unity.Formats.USD.MeshImporter.GeometrySubsets ReadGeomSubsets(USD.NET.Scene scene, string path);
+        public static bool ShouldCompute(Unity.Formats.USD.ImportMode mode);
+        public static bool ShouldImport(Unity.Formats.USD.ImportMode mode);
         public class GeometrySubsets
         {
             public System.Collections.Generic.Dictionary<string, int[]> Subsets { get; set; }
@@ -227,7 +235,7 @@ namespace Unity.Formats.USD
         }
     }
 
-    public delegate void MeshImportFunction<T>(string path, T sample, Unity.Formats.USD.MeshImporter.GeometrySubsets subsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions option, bool isDynamic) where T : USD.NET.SampleBase, new();
+    public delegate void MeshImportFunction<T>(string path, T sample, Unity.Formats.USD.MeshImporter.GeometrySubsets subsets, UnityEngine.GameObject go, Unity.Formats.USD.SceneImportOptions option, bool isDynamic, pxr.UsdSkelSkinningQuery query = default(pxr.UsdSkelSkinningQuery)) where T : USD.NET.SampleBase, new();
 
     public class MeshImportOptions
     {
@@ -239,10 +247,6 @@ namespace Unity.Formats.USD
         public Unity.Formats.USD.ImportMode normals;
         public Unity.Formats.USD.ImportMode points;
         public Unity.Formats.USD.ImportMode tangents;
-        public Unity.Formats.USD.ImportMode texcoord0;
-        public Unity.Formats.USD.ImportMode texcoord1;
-        public Unity.Formats.USD.ImportMode texcoord2;
-        public Unity.Formats.USD.ImportMode texcoord3;
         public Unity.Formats.USD.ImportMode topology;
         public bool triangulateMesh;
         public float unwrapAngleError;
@@ -254,8 +258,8 @@ namespace Unity.Formats.USD
 
     public class MeshImportStrategy : Unity.Formats.USD.IImporter
     {
-        public MeshImportStrategy(Unity.Formats.USD.MeshImportFunction<USD.NET.Unity.MeshSample> meshImporter, Unity.Formats.USD.MeshImportFunction<USD.NET.Unity.MeshSample> skinnedMeshImporter) {}
-        public virtual void BeginReading(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap);
+        public MeshImportStrategy(Unity.Formats.USD.MeshImportFunction<Unity.Formats.USD.SanitizedMeshSample> meshImporter, Unity.Formats.USD.MeshImportFunction<Unity.Formats.USD.SanitizedMeshSample> skinnedMeshImporter) {}
+        public virtual void BeginReading(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions importOptions);
         [System.Runtime.CompilerServices.IteratorStateMachine(typeof(Unity.Formats.USD.MeshImportStrategy.<Import>d__5))] public virtual System.Collections.IEnumerator Import(USD.NET.Scene scene, Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions importOptions);
     }
 
@@ -326,16 +330,34 @@ namespace Unity.Formats.USD
         }
     }
 
-    public struct ReadAllJob<T> : System.Collections.Generic.IEnumerable<USD.NET.SampleEnumerator<T>>, System.Collections.Generic.IEnumerator<USD.NET.SampleEnumerator<T>>, System.Collections.IEnumerable, System.Collections.IEnumerator, System.IDisposable, Unity.Jobs.IJobParallelFor where T : USD.NET.SampleBase, new()
+    public struct ReadAllJob<T> : System.Collections.Generic.IEnumerable<USD.NET.SampleEnumerator<T>>, System.Collections.Generic.IEnumerator<USD.NET.SampleEnumerator<T>>, System.Collections.IEnumerable, System.Collections.IEnumerator, System.IDisposable, Unity.Jobs.IJobParallelFor where T : USD.NET.SampleBase, Unity.Formats.USD.ISanitizable, new()
     {
         public virtual USD.NET.SampleEnumerator<T> Current { get; }
-        public ReadAllJob(USD.NET.Scene scene, pxr.SdfPath[] paths) {}
+        public ReadAllJob(USD.NET.Scene scene, pxr.SdfPath[] paths, Unity.Formats.USD.SceneImportOptions importOptions) {}
         public virtual void Dispose();
         public virtual void Execute(int index);
         public virtual System.Collections.Generic.IEnumerator<USD.NET.SampleEnumerator<T>> GetEnumerator();
         public virtual bool MoveNext();
         public virtual void Reset();
         public void Run();
+    }
+
+    public class SanitizedCameraSample : USD.NET.Unity.CameraSample, Unity.Formats.USD.ISanitizable
+    {
+        public SanitizedCameraSample() {}
+        public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
+    }
+
+    public class SanitizedMeshSample : USD.NET.Unity.MeshSample, Unity.Formats.USD.ISanitizable
+    {
+        public SanitizedMeshSample() {}
+        public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
+    }
+
+    public class SanitizedXformSample : USD.NET.Unity.XformSample, Unity.Formats.USD.ISanitizable
+    {
+        public SanitizedXformSample() {}
+        public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
     }
 
     public static class SceneExporter
@@ -587,11 +609,7 @@ namespace Unity.Formats.USD
         [UnityEngine.HideInInspector] [UnityEngine.Tooltip(@"The Unity project path into which imported files (such as textures) will be placed.")] public string m_projectAssetPath;
         [UnityEngine.Header(@"Conversions")] [UnityEngine.Tooltip(@"A scale to be applied to the root asset, useful for converting asset units to meters.")] public float m_scale;
         [UnityEngine.Tooltip(@"The default material to use when importing specular workflow USD Preview Surface materials.")] public UnityEngine.Material m_specularWorkflowMaterial;
-        [UnityEngine.Tooltip(@"Import policy for primvars:st")] public Unity.Formats.USD.ImportMode m_st;
         [UnityEngine.Tooltip(@"Import policy for primvars:tangent")] public Unity.Formats.USD.ImportMode m_tangents;
-        [UnityEngine.HideInInspector] public Unity.Formats.USD.ImportMode m_texcoord1;
-        [UnityEngine.HideInInspector] public Unity.Formats.USD.ImportMode m_texcoord2;
-        [UnityEngine.HideInInspector] public Unity.Formats.USD.ImportMode m_texcoord3;
         public Unity.Formats.USD.ImportMode m_topology;
         [UnityEngine.Range(0, 1)] [UnityEngine.Tooltip(@"Maximum allowed angle distortion")] public float m_unwrapAngleError;
         [UnityEngine.Range(0, 1)] [UnityEngine.Tooltip(@"Maximum allowed area distortion")] public float m_unwrapAreaError;

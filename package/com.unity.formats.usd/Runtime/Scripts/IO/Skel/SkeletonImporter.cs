@@ -18,7 +18,6 @@ using pxr;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
-using Unity.Collections;
 
 namespace Unity.Formats.USD
 {
@@ -160,14 +159,6 @@ namespace Unity.Formats.USD
                 return true;
             }
 
-            for (int i = 0; i < lhs.Length; i++)
-            {
-                if (lhs[i] != rhs[i])
-                {
-                    return false;
-                }
-            }
-
             return true;
         }
 
@@ -184,45 +175,7 @@ namespace Unity.Formats.USD
             if (!smr)
             {
                 throw new Exception(
-                    "Error importing "
-                    + meshPath
-                    + " SkinnnedMeshRenderer not present on GameObject"
-                );
-            }
-
-            // Get and validate the joint weights and indices informations.
-            UsdGeomPrimvar jointWeights = skinningQuery.GetJointWeightsPrimvar();
-            UsdGeomPrimvar jointIndices = skinningQuery.GetJointIndicesPrimvar();
-
-            if (!jointWeights.IsDefined() || !jointIndices.IsDefined())
-            {
-                throw new Exception("Joints information (indices and/or weights) are missing for: " + meshPath);
-            }
-
-            // TODO: Both indices and weights attributes can be animated. It's not handled yet.
-            // TODO: Having something that convert a UsdGeomPrimvar into a PrimvarSample could help simplify this code.
-            int[] indices = IntrinsicTypeConverter.FromVtArray((VtIntArray)jointIndices.GetAttr().Get());
-            int indicesElementSize = jointIndices.GetElementSize();
-            pxr.TfToken indicesInterpolation = jointIndices.GetInterpolation();
-
-            if (indices.Length == 0
-                || indicesElementSize == 0
-                || indices.Length % indicesElementSize != 0
-                || !pxr.UsdGeomPrimvar.IsValidInterpolation(indicesInterpolation))
-            {
-                throw new Exception("Joint indices information are invalid or empty for: " + meshPath);
-            }
-
-            float[] weights = IntrinsicTypeConverter.FromVtArray((VtFloatArray)jointWeights.GetAttr().Get());
-            int weightsElementSize = jointWeights.GetElementSize();
-            pxr.TfToken weightsInterpolation = jointWeights.GetInterpolation();
-
-            if (weights.Length == 0
-                || weightsElementSize == 0
-                || weights.Length % weightsElementSize != 0
-                || !pxr.UsdGeomPrimvar.IsValidInterpolation(weightsInterpolation))
-            {
-                throw new Exception("Joints weights information are invalid or empty for: " + meshPath);
+                    "Error importing " + meshPath + " SkinnnedMeshRenderer not present on GameObject");
             }
 
             // Get and validate the local list of joints.
@@ -246,8 +199,6 @@ namespace Unity.Formats.USD
                     joints = skelJoints;
                 }
             }
-
-            var mesh = smr.sharedMesh;
 
             // TODO: bind transform attribute can be animated. It's not handled yet.
             Matrix4x4 geomXf = UnityTypeConverter.FromMatrix(skinningQuery.GetGeomBindTransform());
@@ -295,8 +246,7 @@ namespace Unity.Formats.USD
                     bindPoses[i] = bindPoses[i] * geomXf;
                 }
             }
-
-            mesh.bindposes = bindPoses;
+            smr.sharedMesh.bindposes = bindPoses;
 
             var bones = new Transform[joints.Length];
             var sdfSkelPath = new SdfPath(skelPath);
@@ -329,95 +279,7 @@ namespace Unity.Formats.USD
 
                 bones[i] = jointGo.transform;
             }
-
             smr.bones = bones;
-
-            bool isConstant = weightsInterpolation.GetString() == pxr.UsdGeomTokens.constant;
-
-            // Unity 2019 supports many-bone rigs, older versions of Unity only support four bones.
-#if UNITY_2019
-            var bonesPerVertex = new NativeArray<byte>(mesh.vertexCount, Allocator.Persistent);
-            var boneWeights1 =
-                new NativeArray<BoneWeight1>(mesh.vertexCount * weightsElementSize, Allocator.Persistent);
-            for (int i = 0; i < mesh.vertexCount; i++)
-            {
-                int unityIndex = i * weightsElementSize;
-                int usdIndex = isConstant
-                    ? 0
-                    : unityIndex;
-
-                bonesPerVertex[i] = (byte)weightsElementSize;
-
-                for (int wi = 0; wi < weightsElementSize; wi++)
-                {
-                    var bw = boneWeights1[unityIndex + wi];
-                    bw.boneIndex = indices[usdIndex + wi];
-                    bw.weight = weights[usdIndex + wi];
-                    boneWeights1[unityIndex + wi] = bw;
-                }
-            }
-
-            // TODO: Investigate if bone weights should be normalized before this line.
-            mesh.SetBoneWeights(bonesPerVertex, boneWeights1);
-            bonesPerVertex.Dispose();
-            boneWeights1.Dispose();
-#else
-            var boneWeights = new BoneWeight[mesh.vertexCount];
-            for (int i = 0; i < boneWeights.Length; i++)
-            {
-                // When interpolation is constant, the base usdIndex should always be zero.
-                // When non-constant, the offset is the index times the number of weights per vertex.
-                int usdIndex = isConstant
-                    ? 0
-                    : i * weightsElementSize;
-
-                var boneWeight = boneWeights[i];
-
-                if (usdIndex >= indices.Length)
-                {
-                    Debug.Log("UsdIndex out of bounds: " + usdIndex
-                        + " indices.Length: " + indices.Length
-                        + " boneWeights.Length: " + boneWeights.Length
-                        + " mesh: " + meshPath);
-                }
-
-                boneWeight.boneIndex0 = indices[usdIndex];
-                boneWeight.weight0 = weights[usdIndex];
-
-                if (indicesElementSize >= 2)
-                {
-                    boneWeight.boneIndex1 = indices[usdIndex + 1];
-                    boneWeight.weight1 = weights[usdIndex + 1];
-                }
-                if (indicesElementSize >= 3)
-                {
-                    boneWeight.boneIndex2 = indices[usdIndex + 2];
-                    boneWeight.weight2 = weights[usdIndex + 2];
-                }
-                if (indicesElementSize >= 4)
-                {
-                    boneWeight.boneIndex3 = indices[usdIndex + 3];
-                    boneWeight.weight3 = weights[usdIndex + 3];
-                }
-
-                // If weights are less than 1, Unity will not automatically renormalize.
-                // If weights are greater than 1, Unity will renormalize.
-                // Only normalize when less than one to make it easier to diff bone weights which were
-                // round-tripped and were being normalized by Unity.
-                float sum = boneWeight.weight0 + boneWeight.weight1 + boneWeight.weight2 + boneWeight.weight3;
-                if (sum < 1)
-                {
-                    boneWeight.weight0 /= sum;
-                    boneWeight.weight1 /= sum;
-                    boneWeight.weight2 /= sum;
-                    boneWeight.weight3 /= sum;
-                }
-
-                boneWeights[i] = boneWeight;
-            }
-
-            mesh.boneWeights = boneWeights;
-#endif
         }
-    } // class
-} // namespace
+    }
+}

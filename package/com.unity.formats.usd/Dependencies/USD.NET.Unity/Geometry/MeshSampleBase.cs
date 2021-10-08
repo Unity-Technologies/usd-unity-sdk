@@ -24,8 +24,7 @@ namespace USD.NET.Unity
         public int[] faceVertexIndices;
         public Vector3[] points;
         public Vector3[] normals;
-        [VertexData]
-        public Vector4[] tangents;
+        [VertexData] public Vector4[] tangents;
 
         // Regarding UVs: this feels like a very specific solution for "default primvar data", which
         // is fine, but this type of data may be specific to a given pipeline, though here it is
@@ -37,21 +36,12 @@ namespace USD.NET.Unity
         /// When not explicitly specified by the shader, "st" should be considered the default uv set.
         /// </summary>
         /// <remarks>
-        /// UV object types should be Vector{2,3,4}[], List of Vector{2,3,4}, or null.
+        /// UV object types should be Vector{2,3}[], List of Vector{2,3}, or null.
         /// </remarks>
-        [VertexData] public object st;
-
-        /// <summary>
-        /// When primvars:st:indices are specified, the st texture coordinates are indexed like
-        /// vertex positions.
-        /// </summary>
-        [UsdNamespace("primvars:st")]
-        public int[] indices;
-
-        // These are Unity friendly UV sets.
-        [VertexData] public object uv;
-        [VertexData] public object uv2;
-        [VertexData] public object uv3;
-        [VertexData] public object uv4;
+        public Primvar<object> st = new Primvar<object>();
+        public Primvar<object> uv = new Primvar<object>();
+        public Primvar<object> uv2 = new Primvar<object>();
+        public Primvar<object> uv3 = new Primvar<object>();
+        public Primvar<object> uv4 = new Primvar<object>();
     }
 }

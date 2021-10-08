@@ -57,10 +57,6 @@ namespace Unity.Formats.USD
             GameObject go,
             SceneImportOptions options)
         {
-            UnityEngine.Profiling.Profiler.BeginSample("Change Handedness");
-            ImportXform(ref xf, options);
-            UnityEngine.Profiling.Profiler.EndSample();
-
             Vector3 localPos;
             Quaternion localRot;
             Vector3 localScale;
