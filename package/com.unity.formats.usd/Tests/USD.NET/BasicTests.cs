@@ -22,13 +22,6 @@ namespace USD.NET.Tests
 {
     class BasicTests : VariabilityTests
     {
-        class MinimalSample : USD.NET.SampleBase
-        {
-            public int number;
-            public int? number2;
-            public USD.NET.Relationship rel;
-        }
-
         class IntrinsicsSample : USD.NET.SampleBase
         {
             public bool bool_;
@@ -222,19 +215,6 @@ namespace USD.NET.Tests
                     floatValue = v;
                 }
             }
-        }
-
-        [Test]
-        public static void SmokeTest()
-        {
-            var sample = new MinimalSample();
-            var sample2 = new MinimalSample();
-
-            sample.number = 42;
-            sample.number2 = null;
-            WriteAndRead(ref sample, ref sample2);
-
-            AssertEqual(sample2.number, sample.number);
         }
 
         void InitIntrinsicSample(ref IntrinsicsSample sample)
@@ -667,54 +647,6 @@ namespace USD.NET.Tests
             WriteAndRead(ref late1, ref late2);
 
             scene.Close();
-        }
-
-        [Test]
-        public static void GetUsdObjectsTest()
-        {
-            var scene = USD.NET.Scene.Create();
-            var sample = new MinimalSample();
-            sample.number = 45;
-            sample.rel = new USD.NET.Relationship("/Foo");
-
-            scene.Write("/Foo", sample);
-
-            Assert.True(scene.GetPrimAtPath("/Foo") != null);
-            Assert.True(scene.GetAttributeAtPath("/Foo.number") != null);
-            Assert.True(scene.GetRelationshipAtPath("/Foo.rel") != null);
-
-            Assert.True(scene.GetPrimAtPath("/Prim/Does/Not/Exist") == null);
-            Assert.True(scene.GetRelationshipAtPath("/Foo.number") == null);
-            Assert.True(scene.GetAttributeAtPath("/Foo.rel") == null);
-        }
-
-        [Test]
-        public static void ReadNonExistingPrimsTest()
-        {
-            var scene = USD.NET.Scene.Create();
-
-            var sample = new MinimalSample();
-            // Read non existing prim, not in the prim map
-            scene.Read<MinimalSample>("/Foo", sample);
-            Assert.True(sample.number == 0);
-            Assert.True(sample.rel == null);
-
-            sample.number = 45;
-            sample.rel = new USD.NET.Relationship("/Foo");
-            scene.Write("/Foo", sample);
-
-            //// Reading the prim adds it the internal prim map
-            var sample2 = new MinimalSample();
-            scene.Read<MinimalSample>("/Foo", sample2);
-            Assert.True(sample.number == sample2.number);
-            Assert.True(sample.rel != null);
-
-            // Reading a non existing prim that is still in the prim map
-            scene.Stage.RemovePrim(new pxr.SdfPath("/Foo"));
-            var sample3 = new MinimalSample();
-            scene.Read<MinimalSample>("/Foo", sample3);
-            Assert.True(sample3.number == 0);
-            Assert.True(sample3.rel == null);
         }
 
         [Test]
