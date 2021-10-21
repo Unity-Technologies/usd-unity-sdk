@@ -335,12 +335,7 @@ namespace USD.NET
         public UsdAttribute GetAttributeAtPath(string attrPath)
         {
             var attrSdfPath = new SdfPath(attrPath);
-            var p = Stage.GetPrimAtPath(attrSdfPath.GetPrimPath());
-            if (p == null || !p.IsValid())
-            {
-                return null;
-            }
-            var a = p.GetAttribute(attrSdfPath.GetNameToken());
+            var a = Stage.GetAttributeAtPath(attrSdfPath);
             if (a == null || !a.IsValid())
             {
                 return null;
@@ -355,12 +350,7 @@ namespace USD.NET
         public UsdRelationship GetRelationshipAtPath(string relPath)
         {
             var relSdfPath = new SdfPath(relPath);
-            var p = Stage.GetPrimAtPath(relSdfPath.GetPrimPath());
-            if (p == null || !p.IsValid())
-            {
-                return null;
-            }
-            var rel = p.GetRelationship(relSdfPath.GetNameToken());
+            var rel = Stage.GetRelationshipAtPath(relSdfPath);
             if (rel == null || !rel.IsValid())
             {
                 return null;
