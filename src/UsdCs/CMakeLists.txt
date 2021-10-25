@@ -5,7 +5,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set(CMAKE_INSTALL_RPATH "@loader_path/../Frameworks")
     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(CMAKE_INSTALL_RPATH "\$ORIGIN/../Frameworks")
+    set(CMAKE_INSTALL_RPATH "\$ORIGIN/lib")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX /bigobj /EHsc")
 endif ()
@@ -72,7 +72,7 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         PREFIX lib
         CXX_STANDARD_REQUIRED 14
         )
-    set(LINK_DEPENDENCIES Alembic.1.7 Iex-2_2.12 IexMath-2_2.12 Imath-2_2.12 IlmThread-2_2.12 IlmImf-2_2.22 Half.12 tbb)
+    set(LINK_DEPENDENCIES Alembic Iex-2_2 IexMath-2_2 Imath-2_2 IlmThread-2_2 IlmImf-2_2 Half tbb)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
      set_target_properties(${USD_SWIG_LIBRARY}
         PROPERTIES

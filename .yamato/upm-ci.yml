@@ -12,6 +12,10 @@ test_platforms:
     type: Unity::VM::osx
     image: package-ci/mac:stable
     flavor: m1.mac
+  - name: linux
+    type: Unity::VM
+    image: package-ci/ubuntu:stable
+    flavor: b1.large
 test_backends:
   - name: il2cpp
     editor: 2020.3
