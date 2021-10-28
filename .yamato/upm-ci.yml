@@ -14,7 +14,7 @@ test_platforms:
     flavor: m1.mac
   - name: linux
     type: Unity::VM
-    image: package-ci/ubuntu:stable
+    image: package-ci/centos:stable
     flavor: b1.large
 test_backends:
   - name: il2cpp
