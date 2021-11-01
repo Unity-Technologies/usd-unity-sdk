@@ -13,7 +13,7 @@ test_platforms:
     image: package-ci/mac:stable
     flavor: m1.mac
   - name: linux
-    type: Unity::VM
+    type: Unity::VM::GPU
     image: package-ci/centos:stable
     flavor: b1.large
 test_backends:
