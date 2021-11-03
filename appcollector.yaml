@@ -1,0 +1,19 @@
+application_name: com.unity.formats.usd
+application_type: Package
+language: C#
+development_stage: Alpha
+findings_access:
+- markv@unity3d.com
+- marief@unity3d.com
+organization: 5d8b8596cadf01000a30db1f
+poc: marief@unity3d.com
+slack_channel: devs-usd
+description: "The Unity USD package contains a set of libraries designed to support the use of Pixar's Universal Scene Description (USD) in Unity. The goal of this package is to make it maximally easy to integrate USD using native Unity & C# data types with a familiar serialization paradigm and little prior knowledge of USD. USD enables round-trip asset workflows between digital content creation tools like Maya, 3ds Max, Houdini, Katana, Nuke, Modo, Sketchup, Substance Designer, and Substance Painter. \n\nUnlike other asset file formats, Universal Scene Description is designed to support an entire asset pipeline and to enable teams to work in parallel using asset references and overrides. \n\nThis package includes ready-to-use binaries and examples to allow anyone to easily jump-in."
+risk_assessment:
+  internet_facing: false
+  personal_info: false
+  payment_info: false
+  authentication: No Authentication
+  hosting: N/A
+  revenue_impact: false
+  pci: false
