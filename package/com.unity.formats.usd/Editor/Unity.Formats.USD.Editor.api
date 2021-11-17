@@ -50,3 +50,55 @@ namespace Unity.Formats.USD
         public virtual void OnInspectorGUI();
     }
 }
+
+namespace UnityEditor.Formats.USD.Recorder
+{
+    public class UsdRecorder : UnityEditor.Recorder.GenericRecorder<UnityEditor.Formats.USD.Recorder.UsdRecorderSettings>
+    {
+        public UsdRecorder() {}
+        protected virtual void EndRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void RecordFrame(UnityEditor.Recorder.RecordingSession ctx);
+        protected virtual void SessionCreated(UnityEditor.Recorder.RecordingSession session);
+    }
+
+    public class UsdRecorderInput : UnityEditor.Recorder.RecorderInput
+    {
+        public UsdRecorderInput() {}
+        protected virtual void BeginRecording(UnityEditor.Recorder.RecordingSession session);
+        protected virtual void NewFrameReady(UnityEditor.Recorder.RecordingSession session);
+    }
+
+    public class UsdRecorderInputSettings : UnityEditor.Recorder.RecorderInputSettings
+    {
+        public UnityEngine.GameObject GameObject { get; set; }
+        protected virtual System.Type InputType { get; }
+        public UsdRecorderInputSettings() {}
+        protected virtual bool ValidityCheck(System.Collections.Generic.List<string> errors);
+    }
+
+    [UnityEditor.Recorder.RecorderSettings(typeof(UnityEditor.Formats.USD.Recorder.UsdRecorder), @"USD Clip", @"usd_recorder")] public class UsdRecorderSettings : UnityEditor.Recorder.RecorderSettings
+    {
+        public Unity.Formats.USD.ActiveExportPolicy ActivePolicy { get; set; }
+        public Unity.Formats.USD.BasisTransformation BasisTransformation { get; set; }
+        public UnityEditor.Formats.USD.Recorder.UsdRecorderSettings.Format ExportFormat { get; }
+        public bool ExportMaterials { get; set; }
+        protected virtual string Extension { get; }
+        public virtual System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderInputSettings> InputsSettings { get; }
+        public pxr.UsdInterpolationType InterpolationType { get; set; }
+        public float Scale { get; set; }
+        public UsdRecorderSettings() {}
+        public enum Format
+        {
+            public const UnityEditor.Formats.USD.Recorder.UsdRecorderSettings.Format USD = 0;
+            public const UnityEditor.Formats.USD.Recorder.UsdRecorderSettings.Format USDA = 1;
+            public const UnityEditor.Formats.USD.Recorder.UsdRecorderSettings.Format USDZ = 2;
+            public int value__;
+        }
+    }
+
+    [UnityEditor.CustomEditor(typeof(UnityEditor.Formats.USD.Recorder.UsdRecorderSettings))] public class UsdRecorderSettingsEditor : UnityEditor.Recorder.RecorderEditor
+    {
+        public UsdRecorderSettingsEditor() {}
+        protected virtual void FileTypeAndFormatGUI();
+    }
+}
