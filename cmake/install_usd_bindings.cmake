@@ -29,8 +29,8 @@ FILE(INSTALL ${usd_sdf} DESTINATION ${INSTALL_DIR}/pxr/usd/sdf)
 LIST(APPEND SWIG_FILES pxr/usd/sdf/*.cs)
 
 FILE(GLOB usd_usdcs ${CMAKE_BINARY_DIR}/generated/UsdCs*.cs)
-FILE(INSTALL ${usd_usdcs} DESTINATION ${INSTALL_DIR}/usdCs)
-LIST(APPEND SWIG_FILES usdCs/*.cs)
+FILE(INSTALL ${usd_usdcs} DESTINATION ${INSTALL_DIR}/UsdCs)
+LIST(APPEND SWIG_FILES UsdCs/*.cs)
 
 FILE(GLOB usd_usdgeom ${CMAKE_BINARY_DIR}/generated/UsdGeom*.cs)
 FILE(INSTALL ${usd_usdgeom} DESTINATION ${INSTALL_DIR}/pxr/usd/usdGeom)
