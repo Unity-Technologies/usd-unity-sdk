@@ -61,6 +61,7 @@ namespace Unity.Formats.USD
         public bool exportMaterials = true;
         public bool exportNative = false;
         public float scale = 1.0f;
+        public bool exportXFormOverrides = false;
 
         public BasisTransformation basisTransform = BasisTransformation.FastWithNegativeScale;
         public ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
@@ -121,12 +122,14 @@ namespace Unity.Formats.USD
             bool exportUnvarying,
             bool zeroRootTransform,
             bool exportMaterials = false,
-            bool exportMonoBehaviours = false)
+            bool exportMonoBehaviours = false,
+            bool exportOverrides = false)
         {
             var context = new ExportContext();
             context.scene = scene;
             context.basisTransform = basisTransform;
             context.exportRoot = root.transform.parent;
+            context.exportXFormOverrides = exportOverrides;
             SyncExportContext(root, context);
 
             // Since this is a one-shot convenience function, we will automatically split the export
@@ -537,91 +540,99 @@ namespace Unity.Formats.USD
         static void InitExportableObjects(GameObject go,
             ExportContext context)
         {
-            var smr = go.GetComponent<SkinnedMeshRenderer>();
-            var mr = go.GetComponent<MeshRenderer>();
-            var mf = go.GetComponent<MeshFilter>();
-            var cam = go.GetComponent<Camera>();
-            Transform expRoot = context.exportRoot;
-
-            var tmpPath = new pxr.SdfPath(UnityTypeConverter.GetPath(go.transform, expRoot));
-            while (!tmpPath.IsRootPrimPath())
+            if (context.exportXFormOverrides)
             {
-                tmpPath = tmpPath.GetParentPath();
+                CreateExportPlan(go, CreateSample<XformableSample>(context), XformExporter.ExportXform, context);
             }
-
-            // TODO: What if this path is in use?
-            string materialBasePath = tmpPath.ToString() + "/Materials/";
-
-            // Ensure the "Materials" prim is defined with a valid prim type.
-            context.scene.Write(materialBasePath.TrimEnd('/'), new ScopeSample());
-
-            if (smr != null)
+            else
             {
-                foreach (var mat in smr.sharedMaterials)
+                var smr = go.GetComponent<SkinnedMeshRenderer>();
+
+                var mr = go.GetComponent<MeshRenderer>();
+                var mf = go.GetComponent<MeshFilter>();
+                var cam = go.GetComponent<Camera>();
+                Transform expRoot = context.exportRoot;
+
+                var tmpPath = new pxr.SdfPath(UnityTypeConverter.GetPath(go.transform, expRoot));
+                while (!tmpPath.IsRootPrimPath())
                 {
-                    if (!context.matMap.ContainsKey(mat))
-                    {
-                        string usdPath = materialBasePath +
-                            pxr.UsdCs.TfMakeValidIdentifier(
-                            mat.name + "_" + mat.GetInstanceID().ToString());
-                        context.matMap.Add(mat, usdPath);
-                    }
+                    tmpPath = tmpPath.GetParentPath();
                 }
 
-                CreateExportPlan(go, CreateSample<MeshSample>(context), MeshExporter.ExportSkinnedMesh, context);
-                CreateExportPlan(go, CreateSample<MeshSample>(context), NativeExporter.ExportObject, context,
-                    insertFirst: false);
-                if (smr.rootBone == null)
+                // TODO: What if this path is in use?
+                string materialBasePath = tmpPath.ToString() + "/Materials/";
+
+                // Ensure the "Materials" prim is defined with a valid prim type.
+                context.scene.Write(materialBasePath.TrimEnd('/'), new ScopeSample());
+
+                if (smr != null)
                 {
-                    Debug.LogWarning("No root bone at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
-                }
-                else if (smr.bones == null || smr.bones.Length == 0)
-                {
-                    Debug.LogWarning("No bones at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
-                }
-                else
-                {
-                    // Each mesh in a model may have a different root bone, which now must be merged into a
-                    // single skeleton for export to USD.
-                    try
+                    foreach (var mat in smr.sharedMaterials)
                     {
-                        MergeBonesSimple(smr.transform, smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogException(
-                            new Exception("Failed to merge bones for " + UnityTypeConverter.GetPath(smr.transform),
-                                ex));
-                    }
-                }
-            }
-            else if (mf != null && mr != null)
-            {
-                foreach (var mat in mr.sharedMaterials)
-                {
-                    if (mat == null)
-                    {
-                        continue;
+                        if (!context.matMap.ContainsKey(mat))
+                        {
+                            string usdPath = materialBasePath +
+                                pxr.UsdCs.TfMakeValidIdentifier(
+                                mat.name + "_" + mat.GetInstanceID().ToString());
+                            context.matMap.Add(mat, usdPath);
+                        }
                     }
 
-                    if (!context.matMap.ContainsKey(mat))
+                    CreateExportPlan(go, CreateSample<MeshSample>(context), MeshExporter.ExportSkinnedMesh, context);
+                    CreateExportPlan(go, CreateSample<MeshSample>(context), NativeExporter.ExportObject, context,
+                        insertFirst: false);
+                    if (smr.rootBone == null)
                     {
-                        string usdPath = materialBasePath +
-                            pxr.UsdCs.TfMakeValidIdentifier(
-                            mat.name + "_" + mat.GetInstanceID().ToString());
-                        context.matMap.Add(mat, usdPath);
+                        Debug.LogWarning("No root bone at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
+                    }
+                    else if (smr.bones == null || smr.bones.Length == 0)
+                    {
+                        Debug.LogWarning("No bones at: " + UnityTypeConverter.GetPath(go.transform, expRoot));
+                    }
+                    else
+                    {
+                        // Each mesh in a model may have a different root bone, which now must be merged into a
+                        // single skeleton for export to USD.
+                        try
+                        {
+                            MergeBonesSimple(smr.transform, smr.rootBone, smr.bones, smr.sharedMesh.bindposes, context);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.LogException(
+                                new Exception("Failed to merge bones for " + UnityTypeConverter.GetPath(smr.transform),
+                                    ex));
+                        }
                     }
                 }
+                else if (mf != null && mr != null)
+                {
+                    foreach (var mat in mr.sharedMaterials)
+                    {
+                        if (mat == null)
+                        {
+                            continue;
+                        }
 
-                CreateExportPlan(go, CreateSample<MeshSample>(context), MeshExporter.ExportMesh, context);
-                CreateExportPlan(go, CreateSample<MeshSample>(context), NativeExporter.ExportObject, context,
-                    insertFirst: false);
-            }
-            else if (cam)
-            {
-                CreateExportPlan(go, CreateSample<CameraSample>(context), CameraExporter.ExportCamera, context);
-                CreateExportPlan(go, CreateSample<CameraSample>(context), NativeExporter.ExportObject, context,
-                    insertFirst: false);
+                        if (!context.matMap.ContainsKey(mat))
+                        {
+                            string usdPath = materialBasePath +
+                                pxr.UsdCs.TfMakeValidIdentifier(
+                                mat.name + "_" + mat.GetInstanceID().ToString());
+                            context.matMap.Add(mat, usdPath);
+                        }
+                    }
+
+                    CreateExportPlan(go, CreateSample<MeshSample>(context), MeshExporter.ExportMesh, context);
+                    CreateExportPlan(go, CreateSample<MeshSample>(context), NativeExporter.ExportObject, context,
+                        insertFirst: false);
+                }
+                else if (cam)
+                {
+                    CreateExportPlan(go, CreateSample<CameraSample>(context), CameraExporter.ExportCamera, context);
+                    CreateExportPlan(go, CreateSample<CameraSample>(context), NativeExporter.ExportObject, context,
+                        insertFirst: false);
+                }
             }
         }
 

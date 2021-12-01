@@ -1,6 +1,7 @@
 #if RECORDER_AVAILABLE
 using Unity.Formats.USD;
 using UnityEditor.Recorder;
+using USD.NET;
 
 namespace UnityEditor.Formats.USD.Recorder
 {
@@ -11,6 +12,12 @@ namespace UnityEditor.Formats.USD.Recorder
 
         protected override void BeginRecording(RecordingSession session)
         {
+            if (Context.exportXFormOverrides)
+            {
+                // Settings.
+                Context.scene.AddSubLayer(Settings.GameObject.GetComponent<UsdAsset>().GetScene());
+                Context.scene.WriteMode = Scene.WriteModes.Over;
+            }
             SceneExporter.SyncExportContext(Settings.GameObject, Context);
             SceneExporter.Export(Settings.GameObject,
                 Context,

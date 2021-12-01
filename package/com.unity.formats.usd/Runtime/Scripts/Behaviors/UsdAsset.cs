@@ -590,6 +590,7 @@ namespace Unity.Formats.USD
             {
                 throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
             }
+            overs.AddSubLayer(baseLayer);
 
             overs.Time = baseLayer.Time;
             overs.StartTime = baseLayer.StartTime;
@@ -604,7 +605,8 @@ namespace Unity.Formats.USD
                     overs,
                     BasisTransformation.SlowAndSafe,
                     exportUnvarying: false,
-                    zeroRootTransform: true);
+                    zeroRootTransform: true,
+                    exportOverrides: true);
 
                 var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.usdFullPath);
                 GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());

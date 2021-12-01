@@ -18,6 +18,7 @@ namespace UnityEditor.Formats.USD.Recorder
         [SerializeField] ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
         [SerializeField] bool exportMaterials = true;
         [SerializeField] float scale = 1;
+        [SerializeField] bool exportXFormOverrides = false;
 
         public UsdRecorderSettings()
         {
@@ -47,6 +48,12 @@ namespace UnityEditor.Formats.USD.Recorder
         {
             get => exportMaterials;
             set => exportMaterials = value;
+        }
+
+        public bool ExportXFormOverrides
+        {
+            get => exportXFormOverrides;
+            set => exportXFormOverrides = value;
         }
 
         public ActiveExportPolicy ActivePolicy
