@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using USD.NET;
+using USD.NET.Unity;
 using Assert = UnityEngine.Assertions.Assert;
 
 namespace Unity.Formats.USD.Tests
@@ -207,6 +208,33 @@ namespace Unity.Formats.USD.Tests
                 new Color(1.0f, 1.0f, 0, 1),
             };
             CollectionAssert.AreEqual(colours, mesh.colors);
+        }
+    }
+
+    class ExportScope
+    {
+        static string testFilePath = Path.ChangeExtension(Path.GetTempFileName(), "usd");
+
+        [Test]
+        public void ExportXFormOverride_OnlyExportChanges_Success()
+        {
+            UsdStage stage = UsdStage.CreateInMemory();
+            var xformToken = new TfToken("Xform");
+            stage.DefinePrim(new SdfPath("/root/A"), xformToken);
+            stage.DefinePrim(new SdfPath("/root/B"), xformToken);
+
+            var scene = Scene.Open(stage);
+            var root = ImportHelpers.ImportSceneAsGameObject(scene);
+            scene.Close();
+
+            var primA = root.transform.Find("A");
+            primA.transform.position.Set(10.0f, 0.0f, 0.0f);
+
+            var overs = ExportHelpers.InitForSave(testFilePath);
+            root.GetComponentInParent<UsdAsset>().ExportOverrides(overs);
+
+            var outScene = Scene.Open(testFilePath);
+            NUnit.Framework.Assert.AreEqual(1, outScene.Find<XformableSample>("/root").Length);
         }
     }
 }
