@@ -12,7 +12,7 @@ namespace UnityEditor.Formats.USD.Recorder
 
         protected override void BeginRecording(RecordingSession session)
         {
-            if (Context.exportXFormOverrides)
+            if (Context.exportTransformOverrides)
             {
                 // Settings.
                 Context.scene.AddSubLayer(Settings.GameObject.GetComponent<UsdAsset>().GetScene());
