@@ -1,6 +1,12 @@
 # Changes in usd-unitysdk for Unity
 
 ## Unreleased
+### Features
+- The USD Recorder now has an option to export transform overrides 
+
+### Bug Fixes
+- "Export Transform Override" now only exports modified transforms
+
 ### Changed
 - GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
 
