@@ -52,7 +52,7 @@ namespace Unity.Formats.USD
         public bool exportMaterials;
         public bool exportNative;
         public UnityEngine.Transform exportRoot;
-        public bool exportXFormOverrides;
+        public bool exportTransformOverrides;
         public System.Collections.Generic.Dictionary<UnityEngine.Material, string> matMap;
         public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Transform[]> meshToBones;
         public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Transform> meshToSkelRoot;

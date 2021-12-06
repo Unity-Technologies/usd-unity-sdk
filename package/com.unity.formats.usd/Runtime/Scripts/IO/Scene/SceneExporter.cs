@@ -61,7 +61,7 @@ namespace Unity.Formats.USD
         public bool exportMaterials = true;
         public bool exportNative = false;
         public float scale = 1.0f;
-        public bool exportXFormOverrides = false;
+        public bool exportTransformOverrides = false;
 
         public BasisTransformation basisTransform = BasisTransformation.FastWithNegativeScale;
         public ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
@@ -129,7 +129,7 @@ namespace Unity.Formats.USD
             context.scene = scene;
             context.basisTransform = basisTransform;
             context.exportRoot = root.transform.parent;
-            context.exportXFormOverrides = exportOverrides;
+            context.exportTransformOverrides = exportOverrides;
             SyncExportContext(root, context);
 
             // Since this is a one-shot convenience function, we will automatically split the export
@@ -540,7 +540,7 @@ namespace Unity.Formats.USD
         static void InitExportableObjects(GameObject go,
             ExportContext context)
         {
-            if (context.exportXFormOverrides)
+            if (context.exportTransformOverrides)
             {
                 CreateExportPlan(go, CreateSample<XformableSample>(context), XformExporter.ExportXform, context);
             }

@@ -38,7 +38,7 @@ namespace Unity.Formats.USD
             UnityEngine.Profiling.Profiler.EndSample();
 
             // If exporting overrides, only export what changed
-            if (exportContext.exportXFormOverrides)
+            if (exportContext.exportTransformOverrides)
             {
                 UnityEngine.Profiling.Profiler.BeginSample("USD: Xform override check");
                 var sourceSample = new XformSample();

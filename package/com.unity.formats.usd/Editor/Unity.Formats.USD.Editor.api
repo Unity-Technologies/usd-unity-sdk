@@ -82,7 +82,7 @@ namespace UnityEditor.Formats.USD.Recorder
         public Unity.Formats.USD.BasisTransformation BasisTransformation { get; set; }
         public UnityEditor.Formats.USD.Recorder.UsdRecorderSettings.Format ExportFormat { get; }
         public bool ExportMaterials { get; set; }
-        public bool ExportXFormOverrides { get; set; }
+        public bool ExportTransformOverrides { get; set; }
         protected virtual string Extension { get; }
         public virtual System.Collections.Generic.IEnumerable<UnityEditor.Recorder.RecorderInputSettings> InputsSettings { get; }
         public pxr.UsdInterpolationType InterpolationType { get; set; }

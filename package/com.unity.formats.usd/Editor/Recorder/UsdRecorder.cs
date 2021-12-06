@@ -70,7 +70,7 @@ namespace UnityEditor.Formats.USD.Recorder
             context.basisTransform = Settings.BasisTransformation;
             context.activePolicy = Settings.ActivePolicy;
             context.exportMaterials = Settings.ExportMaterials;
-            context.exportXFormOverrides = Settings.ExportXFormOverrides;
+            context.exportTransformOverrides = Settings.ExportTransformOverrides;
 
             context.scale = Settings.Scale;
 

@@ -607,7 +607,6 @@ namespace Unity.Formats.USD
                     exportUnvarying: false,
                     zeroRootTransform: true,
                     exportOverrides: true);
-
             }
             catch (Exception ex)
             {
