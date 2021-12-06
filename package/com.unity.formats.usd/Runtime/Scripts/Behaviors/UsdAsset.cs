@@ -618,18 +618,16 @@ namespace Unity.Formats.USD
                     zeroRootTransform: true,
                     exportOverrides: true);
 
-                var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.usdFullPath);
-                GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 Debug.LogException(ex);
-                return;
             }
             finally
             {
                 if (overs != null)
                 {
+                    overs.Stage.GetRootLayer().GetSubLayerPaths().Erase(0);
                     overs.Save();
                     overs.Close();
                 }

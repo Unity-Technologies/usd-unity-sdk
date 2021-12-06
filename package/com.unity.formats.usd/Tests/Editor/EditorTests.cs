@@ -211,30 +211,64 @@ namespace Unity.Formats.USD.Tests
         }
     }
 
-    class ExportScope
+    class ExportXFormOverride
     {
-        static string testFilePath = Path.ChangeExtension(Path.GetTempFileName(), "usd");
+        static readonly string SourceFilePath = Path.ChangeExtension(Path.GetTempFileName(), "usda");
+        static readonly string OverFilePath = Path.ChangeExtension(Path.GetTempFileName(), "usda");
+
+        [OneTimeSetUp]
+        public void CreateLoadExport()
+        {
+            // Create a new Stage
+            var scene = ExportHelpers.InitForSave(SourceFilePath);
+            var xformToken = new TfToken("Xform");
+            scene.Stage.DefinePrim(new SdfPath("/root/A"), xformToken);
+            scene.Stage.DefinePrim(new SdfPath("/root/B"), xformToken);
+            scene.Save();
+
+            // Load the stage and modify /root/A transform
+            var root = ImportHelpers.ImportSceneAsGameObject(scene);
+            scene.Close();
+            var primA = root.transform.Find("A");
+            primA.transform.localPosition = new Vector3(10.0f, 10.0f, 10.0f);
+
+            // Export overrides
+            var usdAsset = root.GetComponentInParent<UsdAsset>();
+            var overs = ExportHelpers.InitForSave(OverFilePath);
+            usdAsset.ExportOverrides(overs);
+        }
 
         [Test]
         public void ExportXFormOverride_OnlyExportChanges_Success()
         {
-            UsdStage stage = UsdStage.CreateInMemory();
-            var xformToken = new TfToken("Xform");
-            stage.DefinePrim(new SdfPath("/root/A"), xformToken);
-            stage.DefinePrim(new SdfPath("/root/B"), xformToken);
+            var outScene = Scene.Open(OverFilePath);
+            NUnit.Framework.Assert.IsTrue(outScene.Stage.GetPrimAtPath(new SdfPath("/root/A")).IsValid());
+            NUnit.Framework.Assert.IsFalse(outScene.Stage.GetPrimAtPath(new SdfPath("/root/B")).IsValid());
+        }
 
-            var scene = Scene.Open(stage);
-            var root = ImportHelpers.ImportSceneAsGameObject(scene);
-            scene.Close();
+        [Test]
+        public void ExportXFormOverride_NoSublayers_True()
+        {
+            var outScene = Scene.Open(OverFilePath);
+            NUnit.Framework.Assert.Zero(outScene.Stage.GetRootLayer().GetNumSubLayerPaths());
+        }
 
-            var primA = root.transform.Find("A");
-            primA.transform.position.Set(10.0f, 0.0f, 0.0f);
+        [Test]
+        public void ExportXFormOverride_NoPrimDefined_True()
+        {
+            var outScene = Scene.Open(OverFilePath);
+            foreach (var prim in outScene.Stage.GetAllPrims())
+            {
+                Debug.Log(prim.GetPath().ToString());
+                NUnit.Framework.Assert.AreEqual(SdfSpecifier.SdfSpecifierOver, prim.GetSpecifier());
+            }
+        }
 
-            var overs = ExportHelpers.InitForSave(testFilePath);
-            root.GetComponentInParent<UsdAsset>().ExportOverrides(overs);
-
-            var outScene = Scene.Open(testFilePath);
-            NUnit.Framework.Assert.AreEqual(1, outScene.Find<XformableSample>("/root").Length);
+        [OneTimeTearDown]
+        public void DeleteTestFiles()
+        {
+            File.Delete(OverFilePath);
+            File.Delete(SourceFilePath);
         }
     }
 }
