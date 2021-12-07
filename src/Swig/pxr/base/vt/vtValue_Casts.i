@@ -250,16 +250,16 @@
         return UsdCs.VtValueTostring(value);
     }
 
-    public static implicit operator ulong (VtValue value) {
-        return UsdCs.VtValueToulong(value);
-    }
-
     public static implicit operator byte (VtValue value) {
         return UsdCs.VtValueTobyte(value);
     }
 
     public static implicit operator uint (VtValue value) {
         return UsdCs.VtValueTouint(value);
+    }
+
+    public static implicit operator ulong (VtValue value) {
+        return UsdCs.VtValueToulong(value);
     }
 
     public static implicit operator VtValue (GfHalf value) {
@@ -498,15 +498,15 @@
         return new VtValue(value);
     }
 
-    public static implicit operator VtValue (ulong value) {
-        return new VtValue(value);
-    }
-
     public static implicit operator VtValue (byte value) {
         return new VtValue(value);
     }
 
     public static implicit operator VtValue (uint value) {
+        return new VtValue(value);
+    }
+
+    public static implicit operator VtValue (ulong value) {
         return new VtValue(value);
     }
 %}

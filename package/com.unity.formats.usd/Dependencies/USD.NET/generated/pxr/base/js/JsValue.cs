@@ -78,11 +78,7 @@ namespace pxr
         {
         }
 
-        public JsValue(long value) : this(UsdCsPINVOKE.new_JsValue__SWIG_10(value), true)
-        {
-        }
-
-        public JsValue(ulong value) : this(UsdCsPINVOKE.new_JsValue__SWIG_11(value), true)
+        public JsValue(uint value) : this(UsdCsPINVOKE.new_JsValue__SWIG_11(value), true)
         {
         }
 
@@ -120,15 +116,15 @@ namespace pxr
             return ret;
         }
 
-        public long GetInt64()
+        public int GetInt64()
         {
-            long ret = UsdCsPINVOKE.JsValue_GetInt64(swigCPtr);
+            int ret = UsdCsPINVOKE.JsValue_GetInt64(swigCPtr);
             return ret;
         }
 
-        public ulong GetUInt64()
+        public uint GetUInt64()
         {
-            ulong ret = UsdCsPINVOKE.JsValue_GetUInt64(swigCPtr);
+            uint ret = UsdCsPINVOKE.JsValue_GetUInt64(swigCPtr);
             return ret;
         }
 

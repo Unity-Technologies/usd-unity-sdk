@@ -65,30 +65,30 @@ namespace pxr
             return ret;
         }
 
-        public static long TfStringToInt64(string txt, ref bool outOfRange)
+        public static int TfStringToInt64(string txt, ref bool outOfRange)
         {
-            long ret = UsdCsPINVOKE.TfStringToInt64__SWIG_0(txt, ref outOfRange);
+            int ret = UsdCsPINVOKE.TfStringToInt64__SWIG_0(txt, ref outOfRange);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public static long TfStringToInt64(string txt)
+        public static int TfStringToInt64(string txt)
         {
-            long ret = UsdCsPINVOKE.TfStringToInt64__SWIG_1(txt);
+            int ret = UsdCsPINVOKE.TfStringToInt64__SWIG_1(txt);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public static ulong TfStringToUInt64(string txt, ref bool outOfRange)
+        public static uint TfStringToUInt64(string txt, ref bool outOfRange)
         {
-            ulong ret = UsdCsPINVOKE.TfStringToUInt64__SWIG_0(txt, ref outOfRange);
+            uint ret = UsdCsPINVOKE.TfStringToUInt64__SWIG_0(txt, ref outOfRange);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public static ulong TfStringToUInt64(string txt)
+        public static uint TfStringToUInt64(string txt)
         {
-            ulong ret = UsdCsPINVOKE.TfStringToUInt64__SWIG_1(txt);
+            uint ret = UsdCsPINVOKE.TfStringToUInt64__SWIG_1(txt);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -2614,7 +2614,7 @@ namespace pxr
         }
 
         [Preserve]
-        public static void VtValueTolong(VtValue value, ref long output)
+        public static void VtValueTolong(VtValue value, ref int output)
         {
             UsdCsPINVOKE.VtValueTolong__SWIG_1(VtValue.getCPtr(value), ref output);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -2632,21 +2632,6 @@ namespace pxr
         public static void VtValueTostring(VtValue value, SWIGTYPE_p_std__string output)
         {
             UsdCsPINVOKE.VtValueTostring__SWIG_1(VtValue.getCPtr(value), SWIGTYPE_p_std__string.getCPtr(output));
-            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        [Preserve]
-        public static ulong VtValueToulong(VtValue value)
-        {
-            ulong ret = UsdCsPINVOKE.VtValueToulong__SWIG_0(VtValue.getCPtr(value));
-            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        [Preserve]
-        public static void VtValueToulong(VtValue value, ref ulong output)
-        {
-            UsdCsPINVOKE.VtValueToulong__SWIG_1(VtValue.getCPtr(value), ref output);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -2677,6 +2662,21 @@ namespace pxr
         public static void VtValueTouint(VtValue value, ref uint output)
         {
             UsdCsPINVOKE.VtValueTouint__SWIG_1(VtValue.getCPtr(value), ref output);
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [Preserve]
+        public static ulong VtValueToulong(VtValue value)
+        {
+            ulong ret = UsdCsPINVOKE.VtValueToulong__SWIG_0(VtValue.getCPtr(value));
+            if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [Preserve]
+        public static void VtValueToulong(VtValue value, ref uint output)
+        {
+            UsdCsPINVOKE.VtValueToulong__SWIG_1(VtValue.getCPtr(value), ref output);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
         }
 

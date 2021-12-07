@@ -342,11 +342,6 @@ namespace pxr
             return UsdCs.VtValueTostring(value);
         }
 
-        public static implicit operator ulong(VtValue value)
-        {
-            return UsdCs.VtValueToulong(value);
-        }
-
         public static implicit operator byte(VtValue value)
         {
             return UsdCs.VtValueTobyte(value);
@@ -355,6 +350,11 @@ namespace pxr
         public static implicit operator uint(VtValue value)
         {
             return UsdCs.VtValueTouint(value);
+        }
+
+        public static implicit operator ulong(VtValue value)
+        {
+            return UsdCs.VtValueToulong(value);
         }
 
         public static implicit operator VtValue(GfHalf value)
@@ -652,17 +652,17 @@ namespace pxr
             return new VtValue(value);
         }
 
-        public static implicit operator VtValue(ulong value)
-        {
-            return new VtValue(value);
-        }
-
         public static implicit operator VtValue(byte value)
         {
             return new VtValue(value);
         }
 
         public static implicit operator VtValue(uint value)
+        {
+            return new VtValue(value);
+        }
+
+        public static implicit operator VtValue(ulong value)
         {
             return new VtValue(value);
         }
@@ -1068,15 +1068,15 @@ namespace pxr
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public VtValue(ulong obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_63(obj), true)
+        public VtValue(byte obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_63(obj), true)
         {
         }
 
-        public VtValue(byte obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_64(obj), true)
+        public VtValue(uint obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_64(obj), true)
         {
         }
 
-        public VtValue(uint obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_65(obj), true)
+        public VtValue(ulong obj) : this(UsdCsPINVOKE.new_VtValue__SWIG_65(obj), true)
         {
         }
 
