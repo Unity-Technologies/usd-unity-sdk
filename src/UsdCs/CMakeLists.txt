@@ -1,4 +1,4 @@
-﻿project(usdcs LANGUAGES CXX)
+project(usdcs LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
@@ -83,9 +83,13 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 endif ()
 
 
-add_dependencies(${USD_SWIG_LIBRARY}
-    USD_TYPE_INFO
-    )
+if (WIN32)
+   add_dependencies(${USD_SWIG_LIBRARY} USD_TYPE_INFO)
+else ()
+   add_dependencies(${USD_SWIG_LIBRARY}_swig_compilation USD_TYPE_INFO)
+endif ()
+
+
 
 swig_link_libraries(${USD_SWIG_LIBRARY}
     usd_ms
