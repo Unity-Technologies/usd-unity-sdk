@@ -26,6 +26,7 @@
 %apply char    * INOUT { char    * output };
 %apply unsigned char    * INOUT { unsigned char    * output };
 %apply unsigned int     * INOUT { unsigned int     * output };
+%apply unsigned long     * INOUT { unsigned long     * output };
 %apply uint64_t * INOUT { uint64_t * output };
 
 %include "vtValue.i"
