@@ -790,7 +790,20 @@ namespace USD.NET
                 // underlying USD scene. The correct fix is to listen for change processing events and
                 // clear the cache accordingly.
                 prim = GetUsdPrim(path);
-                if (!prim.IsValid())
+
+                // When writing a prim at the bottom of a hierarchy, all the prims of the hierarchy become valid even though
+                // their type has not been defined. Make sure the prim type is defined and matches the sample type
+                // before serializing the sample.
+                // Note that we don't currently support type override when writing override layers
+                if (prim.IsValid() && WriteMode == WriteModes.Define)
+                {
+                    var primTypeName = new TfToken(Reflect.GetSchema(typeof(T)));
+                    if (primTypeName != prim.GetTypeName())
+                    {
+                        prim.SetTypeName(primTypeName);
+                    }
+                }
+                else if (!prim.IsValid())
                 {
                     if (WriteMode == WriteModes.Define)
                     {

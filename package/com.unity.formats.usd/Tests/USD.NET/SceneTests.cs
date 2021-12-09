@@ -151,5 +151,24 @@ namespace USD.NET.Tests
 
             Assert.IsTrue(scene.GetPrimAtPath("/Foo").IsValid());
         }
+
+        [Test]
+        public void WritingHierarchyBottomUp_EveryTypedPrimShouldHaveAType()
+        {
+            var paths = new[] {"/Foo/Bar/Cube", "/Foo/Bar", "/Foo"};
+            var stage = UsdStage.CreateInMemory(UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            scene.Write("/Foo/Bar/Cube", new CubeSample());
+            scene.Write("/Foo/Bar", new CubeSample());
+            scene.Write("/Foo", new SampleBase());
+
+
+            var prim = scene.Stage.GetPrimAtPath(new SdfPath("/Foo/Bar/Cube"));
+            Assert.AreEqual("UsdGeomCube", prim.GetTypeName().ToString(), "Prim type is not defined for " + prim.GetPath());
+            prim = scene.Stage.GetPrimAtPath(new SdfPath("/Foo/Bar"));
+            Assert.AreEqual("UsdGeomCube", prim.GetTypeName().ToString(), "Prim type is not defined for " + prim.GetPath());
+            prim = scene.Stage.GetPrimAtPath(new SdfPath("/Foo"));
+            Assert.AreEqual("", prim.GetTypeName().ToString(), "Prim type should be empty for " + prim.GetPath());
+        }
     }
 }
