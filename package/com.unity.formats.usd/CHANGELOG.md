@@ -1,5 +1,12 @@
 # Changes in usd-unitysdk for Unity
 
+## Unreleased
+### Bug Fixes
+- Fixed an import bug causing instanced primitives not to be sanitized.
+
+### Changed
+- GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
+
 ## [3.0.0-exp.2] - 2021-09-29
 ### Features
 - All interpolation types are now properly supported for Mesh standard attributes (normals, tangents, uvs, colors).
