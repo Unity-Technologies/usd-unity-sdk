@@ -108,5 +108,48 @@ namespace USD.NET.Tests
         {
             Assert.Null(scene.GetRelationshipAtPath(path));
         }
+
+        [Test]
+        public static void StartEndTimeTest()
+        {
+            USD.NET.Scene scene = USD.NET.Scene.Create();
+            scene.StartTime = 0;
+            scene.EndTime = 1;
+            AssertEqual(scene.StartTime, 0);
+            AssertEqual(scene.EndTime, 1);
+            scene.Close();
+        }
+
+        [Test]
+        public static void FrameRateTest()
+        {
+            USD.NET.Scene scene = USD.NET.Scene.Create();
+            scene.FrameRate = 30;
+            AssertEqual(scene.FrameRate, 30);
+            scene.Close();
+        }
+
+        [Test]
+        public static void YUpTest()
+        {
+            USD.NET.Scene scene = USD.NET.Scene.Create();
+            AssertEqual(scene.UpAxis, USD.NET.Scene.UpAxes.Y);
+            scene.Close();
+        }
+    }
+
+    class SceneWriteTests : UsdTests
+    {
+        [Test]
+        public void WritingInvalidPrims_ShouldNotCrash()
+        {
+            var stage = pxr.UsdStage.CreateInMemory(UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            scene.Write("/Foo", new CubeSample());
+            scene.Stage.RemovePrim(scene.GetSdfPath("/Foo"));
+            scene.Write("/Foo", new CubeSample());
+
+            Assert.IsTrue(scene.GetPrimAtPath("/Foo").IsValid());
+        }
     }
 }
