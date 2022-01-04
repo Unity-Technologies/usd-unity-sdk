@@ -123,8 +123,10 @@ nightly_test_trigger:
     recurring:
       - branch: dev
         frequency: daily
+        rerun: always
       - branch: stable
         frequency: daily
+        rerun: always
   dependencies:
     - .yamato/upm-ci.yml#pack
       {% for editor in test_editors %}

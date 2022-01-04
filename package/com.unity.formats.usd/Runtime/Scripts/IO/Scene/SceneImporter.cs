@@ -763,13 +763,14 @@ namespace Unity.Formats.USD
                     if (importOptions.importTransforms)
                     {
                         Profiler.BeginSample("USD: Build Xforms");
-                        foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath))
+                        foreach (var pathAndSample in scene.ReadAll<SanitizedXformSample>(masterRootPath))
                         {
                             try
                             {
                                 GameObject go = primMap[pathAndSample.path];
                                 NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path),
                                     importOptions);
+                                pathAndSample.sample.Sanitize(scene, importOptions);
                                 XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions,
                                     scene);
                             }
@@ -780,30 +781,14 @@ namespace Unity.Formats.USD
                             }
                         }
 
-                        foreach (var pathAndSample in scene.ReadAll<XformSample>(masterRootPath))
+                        foreach (var pathAndSample in scene.ReadAll<SanitizedXformSample>(primMap.Skeletons))
                         {
                             try
                             {
                                 GameObject go = primMap[pathAndSample.path];
                                 NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path),
                                     importOptions);
-                                XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions,
-                                    scene);
-                            }
-                            catch (System.Exception ex)
-                            {
-                                Debug.LogException(
-                                    new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
-                            }
-                        }
-
-                        foreach (var pathAndSample in scene.ReadAll<XformSample>(primMap.Skeletons))
-                        {
-                            try
-                            {
-                                GameObject go = primMap[pathAndSample.path];
-                                NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path),
-                                    importOptions);
+                                pathAndSample.sample.Sanitize(scene, importOptions);
                                 XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions,
                                     scene);
                             }
@@ -828,6 +813,7 @@ namespace Unity.Formats.USD
                                 GameObject go = primMap[pathAndSample.path];
                                 NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path),
                                     importOptions);
+                                pathAndSample.sample.Sanitize(scene, importOptions);
                                 XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions,
                                     scene);
                                 var subsets = MeshImporter.ReadGeomSubsets(scene, pathAndSample.path);
@@ -896,11 +882,12 @@ namespace Unity.Formats.USD
                     if (importOptions.importCameras)
                     {
                         Profiler.BeginSample("USD: Build Cameras");
-                        foreach (var pathAndSample in scene.ReadAll<CameraSample>(masterRootPath))
+                        foreach (var pathAndSample in scene.ReadAll<SanitizedCameraSample>(masterRootPath))
                         {
                             try
                             {
                                 GameObject go = primMap[pathAndSample.path];
+                                pathAndSample.sample.Sanitize(scene, importOptions);
                                 NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path),
                                     importOptions);
                                 XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions,

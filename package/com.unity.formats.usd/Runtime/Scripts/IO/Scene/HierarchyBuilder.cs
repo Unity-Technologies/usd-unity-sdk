@@ -272,7 +272,7 @@ namespace Unity.Formats.USD
                         Debug.LogException(new Exception("Error processing " + masterRootPrim.GetPath(), ex));
                     }
 
-                    foreach (var usdPrim in masterRootPrim.GetDescendants())
+                    foreach (var usdPrim in masterRootPrim.GetAllDescendants())
                     {
                         var parentPath = usdPrim.GetPath().GetParentPath();
                         Transform parentXf = null;

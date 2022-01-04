@@ -2,13 +2,14 @@
 
 ## Unreleased
 ### Features
-- The USD Recorder now has an option to export transform overrides 
+- The USD Recorder now has an option to export transform overrides.
 
 ### Bug Fixes
-- "Export Transform Override" now only exports modified transforms
+- "Export Transform Override" now properly exports modified transforms only.
+- Fixed an import bug causing instanced primitives not to be sanitized.
 
 ### Changed
-- GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
+- GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath.
 
 ## [3.0.0-exp.2] - 2021-09-29
 ### Features

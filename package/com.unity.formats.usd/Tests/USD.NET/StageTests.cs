@@ -333,7 +333,7 @@ namespace USD.NET.Tests
             var allPaths = s.GetAllPathsByType(meshToken, SdfPath.AbsoluteRootPath());
             Assert.AreEqual(2, allPaths.Count);
         }
-        
+
         [Test]
         public void WritingInvalidPrims_ShouldNotCrash()
         {

@@ -3,6 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using pxr;
 using UnityEditor;
+using UnityEngine;
 using USD.NET;
 
 namespace Unity.Formats.USD.Tests
@@ -222,6 +223,56 @@ namespace Unity.Formats.USD.Tests
                 sanitizedSample.UniformToFaceVarying(ref values, sanitizedSample.faceVertexIndices.Length);
                 CollectionAssert.AreEqual(new[] {5, 5, 5, 5, 5, 5, 10, 10, 10, 10, 10, 10}, values);
             }
+        }
+    }
+
+    public class SanitizedInstancesTests
+    {
+        GameObject m_usdRoot;
+        string m_usdGUID = "c5046ed8700c010469c4c557353bc241"; // GUI of mesh_instances.usda
+
+        [SetUp]
+        public void SetUp()
+        {
+            InitUsd.Initialize();
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
+            var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
+            var scene = Scene.Open(stage);
+            m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
+            scene.Close();
+        }
+
+        [Test]
+        public void MeshInstancesLoading_MeshesSanitized_True()
+        {
+            var mesh = m_usdRoot.transform.Find("cube_01/cube_geo").GetComponent<MeshFilter>().sharedMesh;
+            var vertices = new[]
+            {
+                new Vector3(-0.5f, -0.5f, -0.5f),
+                new Vector3(0.5f, -0.5f, -0.5f),
+                new Vector3(-0.5f, 0.5f, -0.5f),
+                new Vector3(0.5f, 0.5f, -0.5f),
+                new Vector3(-0.5f, 0.5f, 0.5f),
+                new Vector3(0.5f, 0.5f, 0.5f),
+                new Vector3(-0.5f, -0.5f, 0.5f),
+                new Vector3(0.5f, -0.5f, 0.5f)
+            };
+            CollectionAssert.AreEqual(vertices, mesh.vertices);
+        }
+
+        [Test]
+        public void MeshInstancesLoading_XformsAreSanitized_True()
+        {
+            var xform = m_usdRoot.transform.Find("cube_01");
+            Assert.AreEqual(new Vector3(2, 0 , -2), xform.position);
+        }
+
+        [Test]
+        public void MeshInstancesLoading_MeshesAreShared_True()
+        {
+            var mesh1 = m_usdRoot.transform.Find("cube_01/cube_geo").GetComponent<MeshFilter>().sharedMesh;
+            var mesh2 = m_usdRoot.transform.Find("cube_02/cube_geo").GetComponent<MeshFilter>().sharedMesh;
+            Assert.AreEqual(mesh1, mesh2);
         }
     }
 #endif
