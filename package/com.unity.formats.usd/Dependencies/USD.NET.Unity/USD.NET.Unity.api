@@ -167,7 +167,7 @@ namespace USD.NET.Unity
         public UnityEngine.Vector3[] normals;
         public UnityEngine.Vector3[] points;
         public USD.NET.Primvar<object> st;
-        [USD.NET.VertexData] public UnityEngine.Vector4[] tangents;
+        public USD.NET.Primvar<UnityEngine.Vector4[]> tangents;
         public USD.NET.Primvar<object> uv;
         public USD.NET.Primvar<object> uv2;
         public USD.NET.Primvar<object> uv3;

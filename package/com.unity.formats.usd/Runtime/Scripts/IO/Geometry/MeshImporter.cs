@@ -550,7 +550,7 @@ namespace Unity.Formats.USD
                 Profiler.BeginSample("Import Tangents");
                 // TODO: We should check the interpolation of tangents and treat them accordingly (for now, we assume they
                 //       are always face varying).
-                unityMesh.tangents = usdMesh.tangents;
+                unityMesh.tangents = usdMesh.tangents.value;
                 Profiler.EndSample(); // Import Tangents
             }
             else if (ShouldCompute(options.meshOptions.tangents))
