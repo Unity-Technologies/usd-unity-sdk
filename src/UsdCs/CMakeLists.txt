@@ -10,7 +10,7 @@ else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX /bigobj /EHsc")
 endif ()
 
-find_package(SWIG 3.0.12 REQUIRED)
+find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../Swig/CMakeLists.txt)

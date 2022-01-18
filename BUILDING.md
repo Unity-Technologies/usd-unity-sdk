@@ -30,7 +30,7 @@ and can build the native library (UsdCs), the C# library (USD.NET) and the tests
  * USD 20.08 with python 3.6 support (used to generate type information for the SWIG bindings)
  * USD 20.08 without python support` (used to minimize runtime dependencies of the bindings)
  * CMake 3.19 (available in your system PATH)
- * Swig 3.0.12 (available in your system PATH)
+ * Swig 4.0.2 (available in your system PATH)
  * Mono 5.1x (available in your system PATH). As of v3.0.0 of this package, USD.NET sources are included in the package folder so you only need this if you intend to build USD.NET manually.
  
  ##### Windows
