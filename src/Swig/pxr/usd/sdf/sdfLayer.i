@@ -26,10 +26,13 @@
 
 %include "std_string.i"
 %include "std_vector.i"
+%include "std_set.i"
 
 // ---------------------------------------------------------------------------------------------- //
 // SMART POINTERS
 // ---------------------------------------------------------------------------------------------- //
+%template(StdStringSet) std::set<std::string>;
+typedef std::set<std::string> StdStringSet;
 
 %template(SdfLayerHandleVector) std::vector<SdfLayerHandle>;
 typedef std::vector<SdfLayerHandle> SdfLayerHandleVector;
@@ -69,21 +72,21 @@ public:
 %ignore SdfLayer::ListFields(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::ListTimeSamplesForPath(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::GetNumTimeSamplesForPath(const SdfAbstractDataSpecId& id) const;
-%ignore SdfLayer::GetBracketingTimeSamplesForPath(const SdfAbstractDataSpecId& id, 
+%ignore SdfLayer::GetBracketingTimeSamplesForPath(const SdfAbstractDataSpecId& id,
                                          double time,
                                          double* tLower, double* tUpper);
-%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time, 
+%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time,
                        const VtValue & value);
-%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time, 
+%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time,
                        const SdfAbstractDataConstValue& value);
 %ignore SdfLayer::EraseTimeSample(const SdfAbstractDataSpecId& id, double time);
 %ignore SdfLayer::GetSpecType(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::ListFields(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::ListTimeSamplesForPath(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::GetRootPrimOrder;
-%ignore SdfLayer::QueryTimeSample(const SdfAbstractDataSpecId& id, double time, 
+%ignore SdfLayer::QueryTimeSample(const SdfAbstractDataSpecId& id, double time,
                          VtValue *value=NULL) const;
-%ignore SdfLayer::QueryTimeSample(const SdfAbstractDataSpecId& id, double time, 
+%ignore SdfLayer::QueryTimeSample(const SdfAbstractDataSpecId& id, double time,
                          SdfAbstractDataValue *value) const;
 %ignore SdfLayer::HasSpec(const SdfAbstractDataSpecId& id) const;
 %ignore SdfLayer::HasField(const SdfAbstractDataSpecId& id, const TfToken& fieldName,
@@ -107,9 +110,9 @@ public:
         const VtValue& value);
 %ignore SdfLayer::SetField(const SdfAbstractDataSpecId& id, const TfToken& fieldName,
         const SdfAbstractDataConstValue& value);
-%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time, 
+%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time,
                        const VtValue & value);
-%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time, 
+%ignore SdfLayer::SetTimeSample(const SdfAbstractDataSpecId& id, double time,
                        const SdfAbstractDataConstValue& value);
 %ignore SdfLayer::SetFieldDictValueByKey(const SdfAbstractDataSpecId& id,
                                 const TfToken& fieldName,
