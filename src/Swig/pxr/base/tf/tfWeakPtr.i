@@ -28,7 +28,7 @@
 %naturalvar TfWeakPtr< CONST TYPE >;
 
 // destructor mods
-%feature("unref") TYPE 
+%feature("unref") TYPE
 //"if (debug_shared) { cout << \"deleting use_count: \" << (*smartarg1).use_count() << \" [\" << (boost::get_deleter<SWIG_null_deleter>(*smartarg1) ? std::string(\"CANNOT BE DETERMINED SAFELY\") : ( (*smartarg1).get() ? (*smartarg1)->getValue() : std::string(\"NULL PTR\") )) << \"]\" << endl << flush; }\n"
                                "(void)arg1; delete smartarg1;"
 
@@ -42,7 +42,7 @@
     return $null;
   }
   $1 = *argp; %}
-%typemap(out) CONST TYPE 
+%typemap(out) CONST TYPE
 %{ $result = new TfWeakPtr< CONST TYPE >(new $1_ltype(($1_ltype &)$1)); %}
 
 // plain pointer
@@ -81,7 +81,7 @@
 %typemap(in, canthrow=1) TfWeakPtr< CONST TYPE > & ($*1_ltype tempnull)
 %{ $1 = $input ? ($1_ltype)$input : &tempnull; %}
 %typemap(out) TfWeakPtr< CONST TYPE > &
-%{ $result = *$1 ? new $*1_ltype(*$1) : 0; %} 
+%{ $result = *$1 ? new $*1_ltype(*$1) : 0; %}
 
 // TfWeakPtr by pointer
 %typemap(in) TfWeakPtr< CONST TYPE > * ($*1_ltype tempnull)
@@ -95,7 +95,7 @@
 %{ temp = $input ? *($1_ltype)&$input : &tempnull;
    $1 = &temp; %}
 %typemap(out) TfWeakPtr< CONST TYPE > *&
-%{ *($1_ltype)&$result = (*$1 && **$1) ? new TfWeakPtr< CONST TYPE >(**$1) : 0; %} 
+%{ *($1_ltype)&$result = (*$1 && **$1) ? new TfWeakPtr< CONST TYPE >(**$1) : 0; %}
 
 // various missing typemaps - If ever used (unlikely) ensure compilation error rather than runtime bug
 %typemap(in) CONST TYPE[], CONST TYPE[ANY], CONST TYPE (CLASS::*) %{
@@ -106,20 +106,20 @@
 %}
 
 
-%typemap (ctype)  TfWeakPtr< CONST TYPE >, 
+%typemap (ctype)  TfWeakPtr< CONST TYPE >,
                   TfWeakPtr< CONST TYPE > &,
                   TfWeakPtr< CONST TYPE > *,
                   TfWeakPtr< CONST TYPE > *& "void *"
-%typemap (imtype, out="global::System.IntPtr") TfWeakPtr< CONST TYPE >, 
+%typemap (imtype, out="global::System.IntPtr") TfWeakPtr< CONST TYPE >,
                                 TfWeakPtr< CONST TYPE > &,
                                 TfWeakPtr< CONST TYPE > *,
                                 TfWeakPtr< CONST TYPE > *& "global::System.Runtime.InteropServices.HandleRef"
-%typemap (cstype) TfWeakPtr< CONST TYPE >, 
+%typemap (cstype) TfWeakPtr< CONST TYPE >,
                   TfWeakPtr< CONST TYPE > &,
                   TfWeakPtr< CONST TYPE > *,
                   TfWeakPtr< CONST TYPE > *& "$typemap(cstype, TYPE)"
 
-%typemap(csin) TfWeakPtr< CONST TYPE >, 
+%typemap(csin) TfWeakPtr< CONST TYPE >,
                TfWeakPtr< CONST TYPE > &,
                TfWeakPtr< CONST TYPE > *,
                TfWeakPtr< CONST TYPE > *& "$typemap(cstype, TYPE).getCPtr($csinput)"
@@ -223,7 +223,7 @@
 %}
 */
 /*
-%typemap(csdestruct, methodname="Dispose", methodmodifiers="public") TYPE {
+%typemap(csdispose, methodname="Dispose", methodmodifiers="public") TYPE {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwnBase) {
@@ -236,7 +236,7 @@
     }
   }
 
-%typemap(csdestruct_derived, methodname="Dispose", methodmodifiers="public") TYPE {
+%typemap(csdispose_derived, methodname="Dispose", methodmodifiers="public") TYPE {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwnDerived) {
