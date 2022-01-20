@@ -22,17 +22,10 @@ public class SdfLayerTree : global::System.IDisposable {
   internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SdfLayerTree obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
-{
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwnBase) {
-          swigCMemOwnBase = false;
-          $imcall;
-        }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
+
+  protected virtual void Dispose()
+  {
+      Dispose(true);
   }
   protected virtual void Dispose(bool disposing) {
     lock(this) {
