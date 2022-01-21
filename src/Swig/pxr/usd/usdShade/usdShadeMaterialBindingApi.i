@@ -29,4 +29,4 @@
 %template(UsdShadeMaterialBindingAPICollectionBindingVector) std::vector<UsdShadeMaterialBindingAPI::CollectionBinding>;
 
 //%include "pxr/usd/usdShade/materialBindingAPI.h"
-%include "third_party/include/pxr/usd/usdShade/materialBindingAPI.h"
+%include "pxr/usd/usdShade/materialBindingAPI.h"

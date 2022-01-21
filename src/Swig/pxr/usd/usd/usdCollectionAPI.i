@@ -48,4 +48,4 @@ namespace std {
 %ignore UsdCollectionAPI::IsCollectionPath;
 
 //%include "pxr/usd/usd/collectionAPI.h"
-%include "third_party/include/pxr/usd/usd/collectionAPI.h"
+%include "pxr/usd/usd/collectionAPI.h"

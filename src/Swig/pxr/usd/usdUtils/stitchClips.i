@@ -17,5 +17,5 @@
 #include "pxr/usd/usdUtils/stitchClips.h"
 %}
 
-%include "third_party/include/pxr/usd/usdUtils/stitchClips.h"
+%include "pxr/usd/usdUtils/stitchClips.h"
 //%include "pxr/usd/usdUtils/stitchClips.h"

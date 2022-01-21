@@ -20,7 +20,7 @@
 
 // %include "pxr/usd/usdShade/shader.h"
 
-%include "third_party/include/pxr/usd/usdShade/shader.h"
+%include "pxr/usd/usdShade/shader.h"
 
 %include "std_vector.i"
 namespace std {
