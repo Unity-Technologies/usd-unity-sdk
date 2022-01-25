@@ -30,6 +30,7 @@
 %include "usdGeomXform.i"
 %include "usdGeomCamera.i"
 %include "usdGeomBoundable.i"
+%include "usdGeomMetrics.i"
 
 %include "usdGeomPointInstancer.i"
 

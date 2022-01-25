@@ -58,6 +58,7 @@ typedef TfRefPtr<UsdStage> UsdStageRefPtr;
 %include "usdPrimFlags.i"
 %include "usdPrimRange.i"
 
+%include "usdPrimCompositionQuery.i"
 %include "usdStagePopulationMask.i"
 %include "usdStage.i"
 %include "usdStageCache.i"

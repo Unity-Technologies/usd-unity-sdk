@@ -12,19 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module UsdShadeMaterial
+%module UsdGeomMetrics
+
 %{
-#include "pxr/usd/usdShade/material.h"
+#include "pxr/usd/usdGeom/metrics.h"
 %}
 
-%include <std_pair.i>
-%template() std::pair<UsdStagePtr,UsdEditTarget>;
+%include "pxr/usd/usdGeom/metrics.h"
 
-%ignore UsdShadeMaterial::FindBaseMaterialPathInPrimIndex;
-%ignore UsdShadeMaterial::CreateMaterialBindSubset;
-
-%template(UsdShadeMaterialVector) std::vector<UsdShadeMaterial>;
-
-%include "pxr/usd/usdShade/material.h"
-
-//%include "third_party/include/pxr/usd/usdShade/material.h"
