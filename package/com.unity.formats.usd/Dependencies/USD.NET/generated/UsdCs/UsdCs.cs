@@ -3556,6 +3556,51 @@ public class UsdCs {
     return ret;
   }
 
+  public static TfToken UsdGeomGetStageUpAxis(UsdStageWeakPtr stage) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomGetStageUpAxis(UsdStageWeakPtr.getCPtr(stage)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdGeomSetStageUpAxis(UsdStageWeakPtr stage, TfToken axis) {
+    bool ret = UsdCsPINVOKE.UsdGeomSetStageUpAxis(UsdStageWeakPtr.getCPtr(stage), TfToken.getCPtr(axis));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken UsdGeomGetFallbackUpAxis() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomGetFallbackUpAxis(), true);
+    return ret;
+  }
+
+  public static double UsdGeomGetStageMetersPerUnit(UsdStageWeakPtr stage) {
+    double ret = UsdCsPINVOKE.UsdGeomGetStageMetersPerUnit(UsdStageWeakPtr.getCPtr(stage));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdGeomStageHasAuthoredMetersPerUnit(UsdStageWeakPtr stage) {
+    bool ret = UsdCsPINVOKE.UsdGeomStageHasAuthoredMetersPerUnit(UsdStageWeakPtr.getCPtr(stage));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdGeomSetStageMetersPerUnit(UsdStageWeakPtr stage, double metersPerUnit) {
+    bool ret = UsdCsPINVOKE.UsdGeomSetStageMetersPerUnit(UsdStageWeakPtr.getCPtr(stage), metersPerUnit);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool UsdGeomLinearUnitsAre(double authoredUnits, double standardUnits, double epsilon) {
+    bool ret = UsdCsPINVOKE.UsdGeomLinearUnitsAre__SWIG_0(authoredUnits, standardUnits, epsilon);
+    return ret;
+  }
+
+  public static bool UsdGeomLinearUnitsAre(double authoredUnits, double standardUnits) {
+    bool ret = UsdCsPINVOKE.UsdGeomLinearUnitsAre__SWIG_1(authoredUnits, standardUnits);
+    return ret;
+  }
+
   public static bool UsdGeomPointInstancerApplyNewStyleListOps() {
     bool ret = UsdCsPINVOKE.UsdGeomPointInstancerApplyNewStyleListOps();
     return ret;

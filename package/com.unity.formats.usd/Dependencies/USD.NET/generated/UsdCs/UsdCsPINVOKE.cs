@@ -17549,6 +17549,108 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimRange")]
   public static extern void delete_UsdPrimRange(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimCompositionQueryArc")]
+  public static extern void delete_UsdPrimCompositionQueryArc(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetTargetNode")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArc_GetTargetNode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetIntroducingNode")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArc_GetIntroducingNode(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetIntroducingLayer")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArc_GetIntroducingLayer(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetIntroducingPrimPath")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArc_GetIntroducingPrimPath(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_0")]
+  public static extern bool UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_1")]
+  public static extern bool UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_2")]
+  public static extern bool UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_3")]
+  public static extern bool UsdPrimCompositionQueryArc_GetIntroducingListEditor__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_GetArcType")]
+  public static extern int UsdPrimCompositionQueryArc_GetArcType(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_IsImplicit")]
+  public static extern bool UsdPrimCompositionQueryArc_IsImplicit(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_IsAncestral")]
+  public static extern bool UsdPrimCompositionQueryArc_IsAncestral(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_HasSpecs")]
+  public static extern bool UsdPrimCompositionQueryArc_HasSpecs(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_IsIntroducedInRootLayerStack")]
+  public static extern bool UsdPrimCompositionQueryArc_IsIntroducedInRootLayerStack(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArc_IsIntroducedInRootLayerPrimSpec")]
+  public static extern bool UsdPrimCompositionQueryArc_IsIntroducedInRootLayerPrimSpec(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_arcTypeFilter_set")]
+  public static extern void UsdPrimCompositionQuery_Filter_arcTypeFilter_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_arcTypeFilter_get")]
+  public static extern int UsdPrimCompositionQuery_Filter_arcTypeFilter_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_dependencyTypeFilter_set")]
+  public static extern void UsdPrimCompositionQuery_Filter_dependencyTypeFilter_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_dependencyTypeFilter_get")]
+  public static extern int UsdPrimCompositionQuery_Filter_dependencyTypeFilter_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_arcIntroducedFilter_set")]
+  public static extern void UsdPrimCompositionQuery_Filter_arcIntroducedFilter_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_arcIntroducedFilter_get")]
+  public static extern int UsdPrimCompositionQuery_Filter_arcIntroducedFilter_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_hasSpecsFilter_set")]
+  public static extern void UsdPrimCompositionQuery_Filter_hasSpecsFilter_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_Filter_hasSpecsFilter_get")]
+  public static extern int UsdPrimCompositionQuery_Filter_hasSpecsFilter_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimCompositionQuery_Filter")]
+  public static extern global::System.IntPtr new_UsdPrimCompositionQuery_Filter();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimCompositionQuery_Filter")]
+  public static extern void delete_UsdPrimCompositionQuery_Filter(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_GetDirectReferences")]
+  public static extern global::System.IntPtr UsdPrimCompositionQuery_GetDirectReferences(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_GetDirectInherits")]
+  public static extern global::System.IntPtr UsdPrimCompositionQuery_GetDirectInherits(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_GetDirectRootLayerArcs")]
+  public static extern global::System.IntPtr UsdPrimCompositionQuery_GetDirectRootLayerArcs(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimCompositionQuery__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdPrimCompositionQuery__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimCompositionQuery__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdPrimCompositionQuery__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimCompositionQuery")]
+  public static extern void delete_UsdPrimCompositionQuery(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_SetFilter")]
+  public static extern void UsdPrimCompositionQuery_SetFilter(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_GetFilter")]
+  public static extern global::System.IntPtr UsdPrimCompositionQuery_GetFilter(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQuery_GetCompositionArcs")]
+  public static extern global::System.IntPtr UsdPrimCompositionQuery_GetCompositionArcs(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdStagePopulationMask_All")]
   public static extern global::System.IntPtr UsdStagePopulationMask_All();
 
@@ -21814,6 +21916,69 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_1")]
   public static extern bool UsdGeomBoundable_ComputeExtentFromPlugins__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGetStageUpAxis")]
+  public static extern global::System.IntPtr UsdGeomGetStageUpAxis(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSetStageUpAxis")]
+  public static extern bool UsdGeomSetStageUpAxis(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGetFallbackUpAxis")]
+  public static extern global::System.IntPtr UsdGeomGetFallbackUpAxis();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomGetStageMetersPerUnit")]
+  public static extern double UsdGeomGetStageMetersPerUnit(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomStageHasAuthoredMetersPerUnit")]
+  public static extern bool UsdGeomStageHasAuthoredMetersPerUnit(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomSetStageMetersPerUnit")]
+  public static extern bool UsdGeomSetStageMetersPerUnit(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnitsAre__SWIG_0")]
+  public static extern bool UsdGeomLinearUnitsAre__SWIG_0(double jarg1, double jarg2, double jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnitsAre__SWIG_1")]
+  public static extern bool UsdGeomLinearUnitsAre__SWIG_1(double jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_nanometers_get")]
+  public static extern double UsdGeomLinearUnits_nanometers_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_micrometers_get")]
+  public static extern double UsdGeomLinearUnits_micrometers_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_millimeters_get")]
+  public static extern double UsdGeomLinearUnits_millimeters_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_centimeters_get")]
+  public static extern double UsdGeomLinearUnits_centimeters_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_meters_get")]
+  public static extern double UsdGeomLinearUnits_meters_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_kilometers_get")]
+  public static extern double UsdGeomLinearUnits_kilometers_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_lightYears_get")]
+  public static extern double UsdGeomLinearUnits_lightYears_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_inches_get")]
+  public static extern double UsdGeomLinearUnits_inches_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_feet_get")]
+  public static extern double UsdGeomLinearUnits_feet_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_yards_get")]
+  public static extern double UsdGeomLinearUnits_yards_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomLinearUnits_miles_get")]
+  public static extern double UsdGeomLinearUnits_miles_get();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdGeomLinearUnits")]
+  public static extern global::System.IntPtr new_UsdGeomLinearUnits();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdGeomLinearUnits")]
+  public static extern void delete_UsdGeomLinearUnits(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdGeomBoolVector_Clear")]
   public static extern void UsdGeomBoolVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
