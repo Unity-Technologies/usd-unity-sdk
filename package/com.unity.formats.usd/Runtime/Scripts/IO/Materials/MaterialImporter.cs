@@ -208,16 +208,23 @@ namespace Unity.Formats.USD
 
             scene.Read(connectedPrimPath, textureSample);
 
-            if (textureSample.file.defaultValue != null &&
-                !string.IsNullOrEmpty(textureSample.file.defaultValue.GetResolvedPath()))
+            if (textureSample.file.defaultValue != null)
             {
-                if (OnResolveTexture != null)
+                if (textureSample.file.defaultValue.GetAssetPath().Contains("UDIM"))
                 {
-                    result = OnResolveTexture(textureSample.file.defaultValue, isNormalMap, options);
+                    Debug.LogError("<UDIM> UV mapping not supported on TextureSample at path : " + textureSample.file.defaultValue.GetAssetPath());
                 }
-                else
+
+                if (!string.IsNullOrEmpty(textureSample.file.defaultValue.GetResolvedPath()))
                 {
-                    result = DefaultTextureResolver(textureSample.file.defaultValue, isNormalMap, options);
+                    if (OnResolveTexture != null)
+                    {
+                        result = OnResolveTexture(textureSample.file.defaultValue, isNormalMap, options);
+                    }
+                    else
+                    {
+                        result = DefaultTextureResolver(textureSample.file.defaultValue, isNormalMap, options);
+                    }
                 }
             }
 
