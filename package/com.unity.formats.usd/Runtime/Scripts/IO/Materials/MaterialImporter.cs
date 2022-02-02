@@ -179,7 +179,7 @@ namespace Unity.Formats.USD
             else
             {
                 // Fallback to the Standard importer, which may pickup some attributes by luck.
-                var matAdapter = new StandardShaderImporter(mat);
+                var matAdapter = new UrpShaderImporter(mat);
                 matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
                 matAdapter.ImportFromUsd();
             }
