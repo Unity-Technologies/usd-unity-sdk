@@ -17549,6 +17549,72 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimRange")]
   public static extern void delete_UsdPrimRange(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_Clear")]
+  public static extern void UsdPrimCompositionQueryArcVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_Add")]
+  public static extern void UsdPrimCompositionQueryArcVector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_size")]
+  public static extern uint UsdPrimCompositionQueryArcVector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_capacity")]
+  public static extern uint UsdPrimCompositionQueryArcVector_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_reserve")]
+  public static extern void UsdPrimCompositionQueryArcVector_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimCompositionQueryArcVector__SWIG_0")]
+  public static extern global::System.IntPtr new_UsdPrimCompositionQueryArcVector__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimCompositionQueryArcVector__SWIG_1")]
+  public static extern global::System.IntPtr new_UsdPrimCompositionQueryArcVector__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_UsdPrimCompositionQueryArcVector__SWIG_2")]
+  public static extern global::System.IntPtr new_UsdPrimCompositionQueryArcVector__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_getitemcopy")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArcVector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_getitem")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArcVector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_setitem")]
+  public static extern void UsdPrimCompositionQueryArcVector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_AddRange")]
+  public static extern void UsdPrimCompositionQueryArcVector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_GetRange")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArcVector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_Insert")]
+  public static extern void UsdPrimCompositionQueryArcVector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_InsertRange")]
+  public static extern void UsdPrimCompositionQueryArcVector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_RemoveAt")]
+  public static extern void UsdPrimCompositionQueryArcVector_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_RemoveRange")]
+  public static extern void UsdPrimCompositionQueryArcVector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_Repeat")]
+  public static extern global::System.IntPtr UsdPrimCompositionQueryArcVector_Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_Reverse__SWIG_0")]
+  public static extern void UsdPrimCompositionQueryArcVector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_Reverse__SWIG_1")]
+  public static extern void UsdPrimCompositionQueryArcVector_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_UsdPrimCompositionQueryArcVector_SetRange")]
+  public static extern void UsdPrimCompositionQueryArcVector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimCompositionQueryArcVector")]
+  public static extern void delete_UsdPrimCompositionQueryArcVector(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_UsdPrimCompositionQueryArc")]
   public static extern void delete_UsdPrimCompositionQueryArc(global::System.Runtime.InteropServices.HandleRef jarg1);
 

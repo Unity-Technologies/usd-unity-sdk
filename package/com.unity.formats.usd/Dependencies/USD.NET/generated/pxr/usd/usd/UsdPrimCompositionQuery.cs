@@ -159,8 +159,8 @@ public class UsdPrimCompositionQuery : global::System.IDisposable {
     return ret;
   }
 
-  public SWIGTYPE_p_std__vectorT_UsdPrimCompositionQueryArc_t GetCompositionArcs() {
-    SWIGTYPE_p_std__vectorT_UsdPrimCompositionQueryArc_t ret = new SWIGTYPE_p_std__vectorT_UsdPrimCompositionQueryArc_t(UsdCsPINVOKE.UsdPrimCompositionQuery_GetCompositionArcs(swigCPtr), true);
+  public UsdPrimCompositionQueryArcVector GetCompositionArcs() {
+    UsdPrimCompositionQueryArcVector ret = new UsdPrimCompositionQueryArcVector(UsdCsPINVOKE.UsdPrimCompositionQuery_GetCompositionArcs(swigCPtr), true);
     return ret;
   }
 
