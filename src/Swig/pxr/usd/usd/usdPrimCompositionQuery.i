@@ -18,4 +18,6 @@
 #include "pxr/usd/usd/primCompositionQuery.h"
 %}
 
+%template (UsdPrimCompositionQueryArcVector) std::vector<UsdPrimCompositionQueryArc>;
+
 %include "pxr/usd/usd/primCompositionQuery.h"
