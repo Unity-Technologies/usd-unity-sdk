@@ -309,7 +309,7 @@ namespace Unity.Formats.USD.Examples
             // Various shader keywords are required to enable the standard shader to work as intended,
             // while these can be encoded as part of the schema, often they require some logic (e.g. is
             // emission color != black?).
-            material.requiredKeywords = new string[] {"_EMISSION"};
+            material.requiredKeywords = new string[] { "_EMISSION" };
 
             //
             // Setup Shader.

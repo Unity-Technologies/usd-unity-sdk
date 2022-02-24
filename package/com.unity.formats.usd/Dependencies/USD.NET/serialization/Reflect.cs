@@ -39,7 +39,8 @@ namespace USD.NET
         public static PropertyInfo[] GetCachedProperties(Type type)
         {
             PropertyInfo[] pi;
-            lock (propertyInfoCache) {
+            lock (propertyInfoCache)
+            {
                 if (!propertyInfoCache.TryGetValue(type, out pi))
                 {
                     pi = type.GetProperties(GetPublicBindingFlags());
@@ -58,7 +59,8 @@ namespace USD.NET
         public static FieldInfo[] GetCachedFields(Type type)
         {
             FieldInfo[] fi;
-            lock (fieldInfoCache) {
+            lock (fieldInfoCache)
+            {
                 if (!fieldInfoCache.TryGetValue(type, out fi))
                 {
                     fi = type.GetFields(GetPublicBindingFlags());
@@ -264,7 +266,8 @@ namespace USD.NET
         private static InfoEntry GetCacheEntry(MemberInfo info)
         {
             InfoEntry cachedInfo = new InfoEntry();
-            lock (infoCache) {
+            lock (infoCache)
+            {
                 if (infoCache.TryGetValue(info, out cachedInfo))
                 {
                     return cachedInfo;
@@ -347,7 +350,8 @@ namespace USD.NET
             //
             // Cache & return.
             //
-            lock (infoCache) {
+            lock (infoCache)
+            {
                 infoCache[info] = cachedInfo;
             }
             return cachedInfo;

@@ -150,7 +150,8 @@ namespace USD.NET
 
         public bool GetBinding(Type key, out UsdTypeBinding binding)
         {
-            lock (UsdIo.Bindings) {
+            lock (UsdIo.Bindings)
+            {
                 // First try the exact type requested.
                 if (bindings.TryGetValue(key, out binding))
                 {
@@ -390,7 +391,8 @@ namespace USD.NET
                 pxr.UsdCs.VtValueToTfToken(vtValue, t);
                 Enum enm;
                 Dictionary<pxr.TfToken, Enum> enumMap;
-                lock (UsdIo.Bindings) {
+                lock (UsdIo.Bindings)
+                {
                     if (!enumMaps.TryGetValue(enumType, out enumMap))
                     {
                         enumMap = new Dictionary<pxr.TfToken, Enum>();

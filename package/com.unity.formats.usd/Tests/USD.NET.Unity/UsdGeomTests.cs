@@ -25,7 +25,7 @@ namespace USD.NET.Unity.Tests
             sample.serialized.value = new float[10];
             sample.serialized.interpolation = PrimvarInterpolation.FaceVarying;
             sample.serialized.elementSize = 3;
-            sample.serialized.indices = new int[] {1, 2, 3, 4, 1};
+            sample.serialized.indices = new int[] { 1, 2, 3, 4, 1 };
 
             sample.scalar.value = 2.1f;
             Assert.AreEqual(PrimvarInterpolation.Constant, sample.scalar.interpolation);
@@ -60,7 +60,7 @@ namespace USD.NET.Unity.Tests
             UsdStage stage = UsdStage.CreateInMemory();
             var path = new SdfPath("/Parent/Curves");
             var curvesGprim = UsdGeomBasisCurves.Define(new UsdStageWeakPtr(stage), path);
-            var vertCounts = IntrinsicTypeConverter.ToVtArray(new[] {4});
+            var vertCounts = IntrinsicTypeConverter.ToVtArray(new[] { 4 });
             curvesGprim.CreateCurveVertexCountsAttr(vertCounts);
 
             var basisCurves = new BasisCurvesSample();
@@ -75,7 +75,7 @@ namespace USD.NET.Unity.Tests
             };
             // basisCurves.colors = colors;
             basisCurves.colors.SetValue(colors);
-            basisCurves.curveVertexCounts = new int[1] {4};
+            basisCurves.curveVertexCounts = new int[1] { 4 };
             basisCurves.doubleSided = true;
             basisCurves.normals = new UnityEngine.Vector3[4];
             basisCurves.normals[0] = new UnityEngine.Vector3(1, 0, 0);
@@ -123,7 +123,7 @@ namespace USD.NET.Unity.Tests
             var cam = new CameraSample
             {
                 projection = CameraSample.ProjectionType.Perspective,
-                clippingPlanes = new[] {new Vector4(0, 1, 2, 3), new UnityEngine.Vector4(4, 5, 6, 7)},
+                clippingPlanes = new[] { new Vector4(0, 1, 2, 3), new UnityEngine.Vector4(4, 5, 6, 7) },
                 clippingRange = new Vector2(0.01f, 1000.0f),
                 focalLength = 50,
                 focusDistance = 1.0f,
@@ -133,11 +133,11 @@ namespace USD.NET.Unity.Tests
                 stereoRole = CameraSample.StereoRole.Mono,
                 verticalAperture = 15.2908f,
                 verticalApertureOffset = 0.002f,
-                shutter = new CameraSample.Shutter {open = 0.001, close = 0.002}
+                shutter = new CameraSample.Shutter { open = 0.001, close = 0.002 }
             };
 
             // Prep a new camera sample to be populated.
-            var cam2 = new CameraSample {shutter = new CameraSample.Shutter()};
+            var cam2 = new CameraSample { shutter = new CameraSample.Shutter() };
 
             WriteAndRead(ref cam, ref cam2);
 

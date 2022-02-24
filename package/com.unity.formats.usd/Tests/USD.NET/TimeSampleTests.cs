@@ -32,9 +32,9 @@ namespace USD.NET.Tests
             var scene = Scene.Create();
             var s1 = new KeyFramesTestSample();
             var baseline = new Dictionary<string, double[]>();
-            baseline["/Foo"] = new double[] {1.0, 2.0, 3.0};
-            baseline["/Foo/Bar"] = new double[] {5.0, 6.0, 7.0};
-            baseline["/Baz"] = new double[] {1.0, 2.0, 3.0};
+            baseline["/Foo"] = new double[] { 1.0, 2.0, 3.0 };
+            baseline["/Foo/Bar"] = new double[] { 5.0, 6.0, 7.0 };
+            baseline["/Baz"] = new double[] { 1.0, 2.0, 3.0 };
 
             foreach (var kvp in baseline)
             {

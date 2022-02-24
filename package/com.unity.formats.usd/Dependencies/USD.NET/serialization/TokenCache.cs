@@ -38,7 +38,8 @@ namespace USD.NET
             if (token == null) { token = string.Empty; }
 
             pxr.TfToken val;
-            lock (this) {
+            lock (this)
+            {
                 // TODO: the lock and nested lookup here could be more efficient.
 
                 // First lookup the namespace cache.

@@ -22,7 +22,7 @@ namespace Unity.Formats.USD
         [SerializeField] private bool m_isLoaded = true;
 
         // Variable used to track dirty load state.
-        [SerializeField][HideInInspector] private bool m_wasLoaded = true;
+        [SerializeField] [HideInInspector] private bool m_wasLoaded = true;
 
         /// <summary>
         /// Returns true of the prim is currently loaded. Note that this will return the currently

@@ -100,7 +100,7 @@ namespace USD.NET
                         csType = o.GetType();
                     }
                 }
-                if (!WriteAttr(csProp.Name, csType, csProp.GetValue(t, index:null),
+                if (!WriteAttr(csProp.Name, csType, csProp.GetValue(t, index: null),
                     usdTime, prim, imgble, csProp, usdNamespace))
                 {
                     // TODO: add options to dictate behavior here
@@ -381,7 +381,8 @@ namespace USD.NET
                     }
 
                     pxr.UsdRelationship rel = null;
-                    lock (m_stageLock) {
+                    lock (m_stageLock)
+                    {
                         rel = prim.CreateRelationship(elts, custom: false);
                     }
 
@@ -398,7 +399,8 @@ namespace USD.NET
                     {
                         targets.Add(new pxr.SdfPath(path));
                     }
-                    lock (m_stageLock) {
+                    lock (m_stageLock)
+                    {
                         rel.SetTargets(targets);
                     }
                 }
@@ -468,7 +470,8 @@ namespace USD.NET
                     //
                     // Create non-namespaced attribute.
                     //
-                    lock (m_stageLock) {
+                    lock (m_stageLock)
+                    {
                         attr = prim.CreateAttribute(sdfAttrName, csType.IsEnum ? SdfValueTypeNames.Token : sdfTypeName, custom, variability);
                     }
                 }
@@ -483,7 +486,8 @@ namespace USD.NET
                     {
                         elts.Add(s);
                     }
-                    lock (m_stageLock) {
+                    lock (m_stageLock)
+                    {
                         attr = prim.CreateAttribute(elts, sdfTypeName, custom, variability);
                     }
                 }
@@ -493,7 +497,8 @@ namespace USD.NET
                 //
                 // Create Primvar attribute.
                 //
-                lock (m_stageLock) {
+                lock (m_stageLock)
+                {
                     var fullAttrName = IntrinsicTypeConverter.JoinNamespace(ns, sdfAttrName);
                     var primvar = imgble.CreatePrimvar(new pxr.TfToken(fullAttrName), sdfTypeName,
                         VertexDataAttribute.Interpolation);
@@ -537,7 +542,8 @@ namespace USD.NET
 
 
             pxr.VtValue vtValue = binding.toVtValue(csValue);
-            lock (m_stageLock) {
+            lock (m_stageLock)
+            {
                 if (isMetaData)
                 {
                     prim.SetMetadata(sdfAttrName, vtValue);
@@ -559,7 +565,8 @@ namespace USD.NET
 
             if (!isCustomData && srcObject != null)
             {
-                lock (m_stageLock) {
+                lock (m_stageLock)
+                {
                     attr.SetCustomDataByKey(sm_tokenCache["sourceMember"], srcObject);
                 }
             }
@@ -679,7 +686,8 @@ namespace USD.NET
                 //   mayVary = mayVary;
 
                 pxr.UsdRelationship rel = null;
-                lock (m_stageLock) {
+                lock (m_stageLock)
+                {
                     rel = prim.GetRelationship(sm_tokenCache[sdfAttrName]);
                 }
 

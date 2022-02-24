@@ -167,7 +167,7 @@ namespace USD.NET
             var output = new VtBoolArray((uint)input.Length);
             unsafe
             {
-                fixed(bool* p = input)
+                fixed (bool* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -193,7 +193,7 @@ namespace USD.NET
             }
             unsafe
             {
-                fixed(bool* p = output)
+                fixed (bool* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -212,7 +212,7 @@ namespace USD.NET
             bool[] tmp = UsdIo.ArrayAllocator.Malloc<bool>(input.size());
             unsafe
             {
-                fixed(bool* p = tmp)
+                fixed (bool* p = tmp)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -229,7 +229,7 @@ namespace USD.NET
             var output = new VtUCharArray((uint)input.Length);
             unsafe
             {
-                fixed(byte* p = input)
+                fixed (byte* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -267,7 +267,7 @@ namespace USD.NET
             }
             unsafe
             {
-                fixed(byte* p = output)
+                fixed (byte* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -296,7 +296,7 @@ namespace USD.NET
             var output = new VtIntArray((uint)input.Length);
             unsafe
             {
-                fixed(int* p = input)
+                fixed (int* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -322,7 +322,7 @@ namespace USD.NET
             }
             unsafe
             {
-                fixed(int* p = output)
+                fixed (int* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -350,7 +350,7 @@ namespace USD.NET
             var output = new VtUIntArray((uint)input.Length);
             unsafe
             {
-                fixed(uint* p = input)
+                fixed (uint* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -376,7 +376,7 @@ namespace USD.NET
             }
             unsafe
             {
-                fixed(uint* p = output)
+                fixed (uint* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -404,7 +404,7 @@ namespace USD.NET
             var output = new VtInt64Array((uint)input.Length);
             unsafe
             {
-                fixed(long* p = input)
+                fixed (long* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -430,7 +430,7 @@ namespace USD.NET
             }
             unsafe
             {
-                fixed(long* p = output)
+                fixed (long* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -458,7 +458,7 @@ namespace USD.NET
             var output = new VtUInt64Array((uint)input.Length);
             unsafe
             {
-                fixed(ulong* p = input)
+                fixed (ulong* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -484,7 +484,7 @@ namespace USD.NET
             }
             unsafe
             {
-                fixed(ulong* p = output)
+                fixed (ulong* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -512,7 +512,7 @@ namespace USD.NET
             var output = new VtFloatArray((uint)input.Length);
             unsafe
             {
-                fixed(float* p = input)
+                fixed (float* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -526,7 +526,7 @@ namespace USD.NET
             var output = UsdIo.ArrayAllocator.Malloc<float>(input.size());
             unsafe
             {
-                fixed(float* p = output)
+                fixed (float* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
@@ -555,7 +555,7 @@ namespace USD.NET
             var output = new VtDoubleArray((uint)input.Length);
             unsafe
             {
-                fixed(double* p = input)
+                fixed (double* p = input)
                 {
                     output.CopyFromArray(new IntPtr(p));
                 }
@@ -569,7 +569,7 @@ namespace USD.NET
             var output = UsdIo.ArrayAllocator.Malloc<double>(input.size());
             unsafe
             {
-                fixed(double* p = output)
+                fixed (double* p = output)
                 {
                     input.CopyToArray(new IntPtr(p));
                 }
