@@ -15,7 +15,8 @@
 
 using System;
 using pxr;
-public static class SdfValueTypeNames {
+public static class SdfValueTypeNames
+{
     static public SdfValueTypeName Bool = UsdCs.SdfGetValueTypeBool();
     static public SdfValueTypeName UChar = UsdCs.SdfGetValueTypeUChar();
     static public SdfValueTypeName Int = UsdCs.SdfGetValueTypeInt();

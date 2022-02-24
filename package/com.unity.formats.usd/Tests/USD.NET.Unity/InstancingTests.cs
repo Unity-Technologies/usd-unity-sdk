@@ -15,7 +15,7 @@ namespace USD.NET.Unity.Tests
             var pi = new PointInstancerSample();
             var cube = new CubeSample();
 
-            pi.prototypes.targetPaths = new[] {"/Instancer/Cube"};
+            pi.prototypes.targetPaths = new[] { "/Instancer/Cube" };
 
             // Three instances, all prototype index zero.
             pi.protoIndices = new int[3];

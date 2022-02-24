@@ -27,7 +27,7 @@ namespace DefaultNamespace
         public void SetUp()
         {
             var curve = AnimationCurve.Linear(0, 0, 10, 10);
-            var clip = new AnimationClip {hideFlags = HideFlags.DontSave};
+            var clip = new AnimationClip { hideFlags = HideFlags.DontSave };
             clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
             var timeline = ScriptableObject.CreateInstance<TimelineAsset>();
             timeline.hideFlags = HideFlags.DontSave;
@@ -60,12 +60,12 @@ namespace DefaultNamespace
         public void TearDown()
         {
             // For some reason Yamato throws System.UnauthorizedAccessException 
-        /*    foreach (var file in deleteFileList)
-            {
-                File.Delete(file);
-            }
+            /*    foreach (var file in deleteFileList)
+                {
+                    File.Delete(file);
+                }
 
-            deleteFileList.Clear();*/
+                deleteFileList.Clear();*/
         }
 
         [UnityTest]
@@ -73,7 +73,7 @@ namespace DefaultNamespace
         {
             var sampleT = 3f;
             director.Play();
-            while (Time.time < director.duration )
+            while (Time.time < director.duration)
             {
                 yield return null;
             }

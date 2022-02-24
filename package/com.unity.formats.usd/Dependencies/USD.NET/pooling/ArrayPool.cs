@@ -45,7 +45,8 @@ namespace USD.NET
             {
                 return new T[size];
             }
-            lock (this) {
+            lock (this)
+            {
                 Dictionary<uint, List<Array>> pool;
                 List<Array> vec;
                 Type arrayType = typeof(T[]);
@@ -87,7 +88,8 @@ namespace USD.NET
         {
             List<object> pool;
 
-            lock (this) {
+            lock (this)
+            {
                 if (!m_hndData.TryGetValue(type, out pool))
                 {
                     pool = new List<object>();
@@ -132,7 +134,8 @@ namespace USD.NET
         {
             List<object> pool;
 
-            lock (this) {
+            lock (this)
+            {
                 if (!m_hndData.TryGetValue(type, out pool))
                 {
                     pool = new List<object>();
@@ -159,7 +162,8 @@ namespace USD.NET
             Dictionary<uint, List<Array>> pool;
             List<Array> vec;
 
-            lock (this) {
+            lock (this)
+            {
                 if (!m_data.TryGetValue(arrayType, out pool))
                 {
                     pool = new Dictionary<uint, List<Array>>();

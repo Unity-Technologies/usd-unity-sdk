@@ -27,7 +27,7 @@ namespace Unity.Formats.USD
     [CustomEditor(typeof(UsdAsset))]
     public class UsdAssetEditor : Editor
     {
-        private readonly string[] kTabNames = new string[] {"Simple", "Advanced"};
+        private readonly string[] kTabNames = new string[] { "Simple", "Advanced" };
         private int m_tab;
 
         private Texture2D m_usdLogo;
@@ -233,7 +233,7 @@ namespace Unity.Formats.USD
                 else
                     lastDir = Path.GetDirectoryName(usdAsset.usdFullPath);
                 string importFilepath =
-                    EditorUtility.OpenFilePanelWithFilters("Usd Asset", lastDir, new string[] {"Usd", "us*"});
+                    EditorUtility.OpenFilePanelWithFilters("Usd Asset", lastDir, new string[] { "Usd", "us*" });
                 if (string.IsNullOrEmpty(importFilepath)) return;
                 usdAsset.usdFullPath = importFilepath;
             }

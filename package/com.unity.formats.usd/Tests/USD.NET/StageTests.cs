@@ -152,7 +152,7 @@ namespace USD.NET.Tests
         {
             var s = CreateStageHierarchy();
             var prePostRange = new USD.NET.RangeIterator(UsdPrimRange.PreAndPostVisit(s.GetPseudoRoot()));
-            bool[] expected = {false, false, true, false, true, true};
+            bool[] expected = { false, false, true, false, true, true };
             bool[] actual = new bool[6];
             var i = 0;
             foreach (UsdPrim curPrim in prePostRange)
@@ -251,7 +251,7 @@ namespace USD.NET.Tests
 
             var material = new MaterialSampleTest();
             material.surface = shaderPath;
-            material.surfaces = new string[] {"/Foo", "/Bar/Baz"};
+            material.surfaces = new string[] { "/Foo", "/Bar/Baz" };
 
             var mat2 = new MaterialSampleTest();
             WriteAndRead(ref material, ref mat2);
