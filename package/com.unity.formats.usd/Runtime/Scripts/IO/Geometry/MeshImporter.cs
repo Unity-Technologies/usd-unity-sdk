@@ -55,6 +55,24 @@ namespace Unity.Formats.USD
 
         public void BeginReading(Scene scene, PrimMap primMap, SceneImportOptions importOptions)
         {
+            // Gather context information from the PrimSource component
+            // var contexts = new UsdPrimSource[primMap.Meshes.Length];
+            // SdfPath meshPath;
+            // for (var i = 0; i < contexts.Length; i++)
+            // {
+            //     meshPath = primMap.Meshes[i];
+            //     UsdPrimSource primSource;
+            //     var hasPrimSource = primMap[meshPath].TryGetComponent(out primSource);
+            //     if (hasPrimSource)
+            //     {
+            //         contexts[i] = primSource;
+            //     }
+            //     else
+            //     {
+            //         contexts[i] = null;
+            //     }
+            // }
+
             m_readMeshesJob = new ReadAllJob<SanitizedMeshSample>(scene, primMap.Meshes, importOptions);
             m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
         }
@@ -100,43 +118,43 @@ namespace Unity.Formats.USD
             {
                 if (scene.AccessMask != null && scene.IsPopulatingAccessMask)
                 {
-                    HashSet<System.Reflection.MemberInfo> members;
-                    if (scene.AccessMask.Included.TryGetValue(pathAndSample.path, out members))
+                    DeserializationContext deserializationContext;
+                    if (scene.AccessMask.Included.TryGetValue(pathAndSample.path, out deserializationContext))
                     {
-                        if (members.Contains(faceVertexCounts)
-                            || members.Contains(orientation)
-                            || members.Contains(faceVertexIndices)
-                            || members.Contains(points)
-                            || members.Contains(normals)
-                            || members.Contains(colors)
-                            || members.Contains(st)
-                            || members.Contains(uv)
-                            || members.Contains(uv2)
-                            || members.Contains(uv3)
-                            || members.Contains(uv4)
+                        if (deserializationContext.dynamicMembers.Contains(faceVertexCounts)
+                            || deserializationContext.dynamicMembers.Contains(orientation)
+                            || deserializationContext.dynamicMembers.Contains(faceVertexIndices)
+                            || deserializationContext.dynamicMembers.Contains(points)
+                            || deserializationContext.dynamicMembers.Contains(normals)
+                            || deserializationContext.dynamicMembers.Contains(colors)
+                            || deserializationContext.dynamicMembers.Contains(st)
+                            || deserializationContext.dynamicMembers.Contains(uv)
+                            || deserializationContext.dynamicMembers.Contains(uv2)
+                            || deserializationContext.dynamicMembers.Contains(uv3)
+                            || deserializationContext.dynamicMembers.Contains(uv4)
                         )
                         {
-                            members.Add(faceVertexCounts);
-                            members.Add(faceVertexIndices);
-                            members.Add(orientation);
-                            members.Add(points);
-                            members.Add(normals);
-                            members.Add(colors);
-                            members.Add(st);
-                            members.Add(uv);
-                            members.Add(uv2);
-                            members.Add(uv3);
-                            members.Add(uv4);
+                            deserializationContext.dynamicMembers.Add(faceVertexCounts);
+                            deserializationContext.dynamicMembers.Add(faceVertexIndices);
+                            deserializationContext.dynamicMembers.Add(orientation);
+                            deserializationContext.dynamicMembers.Add(points);
+                            deserializationContext.dynamicMembers.Add(normals);
+                            deserializationContext.dynamicMembers.Add(colors);
+                            deserializationContext.dynamicMembers.Add(st);
+                            deserializationContext.dynamicMembers.Add(uv);
+                            deserializationContext.dynamicMembers.Add(uv2);
+                            deserializationContext.dynamicMembers.Add(uv3);
+                            deserializationContext.dynamicMembers.Add(uv4);
                         }
 
-                        if (pathAndSample.sample.purpose != Purpose.Default && !members.Contains(purpose))
+                        if (pathAndSample.sample.purpose != Purpose.Default && !deserializationContext.dynamicMembers.Contains(purpose))
                         {
-                            members.Add(purpose);
+                            deserializationContext.dynamicMembers.Add(purpose);
                         }
 
-                        if (pathAndSample.sample.visibility != Visibility.Inherited && !members.Contains(visibility))
+                        if (pathAndSample.sample.visibility != Visibility.Inherited && !deserializationContext.dynamicMembers.Contains(visibility))
                         {
-                            members.Add(visibility);
+                            deserializationContext.dynamicMembers.Add(visibility);
                         }
 
                         isDynamic = true;
@@ -298,6 +316,9 @@ namespace Unity.Formats.USD
             bool isDynamic,
             UsdSkelSkinningQuery skinningQuery = null)
         {
+            if (usdMesh.points == null)
+                return;
+
             var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
             if (smr.sharedMesh == null)
             {
@@ -404,6 +425,9 @@ namespace Unity.Formats.USD
             bool isDynamic,
             UsdSkelSkinningQuery skinQuery = null)
         {
+            if (usdMesh.points == null)
+                return;
+
             var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
             var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
             if (mf.sharedMesh == null)
@@ -441,7 +465,7 @@ namespace Unity.Formats.USD
             //
             // Points.
             //
-            if (options.meshOptions.points == ImportMode.Import && usdMesh.points != null)
+            if (ShouldImport(options.meshOptions.points) && usdMesh.points != null)
             {
                 if (usdMesh.faceVertexIndices != null)
                 {
@@ -457,7 +481,7 @@ namespace Unity.Formats.USD
             //
             // Mesh Topology.
             //
-            if (options.meshOptions.topology == ImportMode.Import && usdMesh.faceVertexIndices != null)
+            if (ShouldImport(options.meshOptions.topology) && usdMesh.faceVertexIndices != null)
             {
                 // Remap subsets
                 var newSubsets = new GeometrySubsets();
@@ -535,7 +559,8 @@ namespace Unity.Formats.USD
                 unityMesh.normals = usdMesh.normals;
                 Profiler.EndSample(); // Import Normals
             }
-            else if (ShouldCompute(options.meshOptions.tangents))
+            // If the mesh had normals have been sanitized don't
+            else if (ShouldCompute(options.meshOptions.normals))
             {
                 Profiler.BeginSample("Calculate Normals");
                 unityMesh.RecalculateNormals();

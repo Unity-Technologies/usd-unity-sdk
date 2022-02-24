@@ -140,9 +140,9 @@ namespace USD.NET.Tests
             // }
 
             Assert.NotZero(varMap.Included.Count);
-            Assert.NotZero(varMap.Included[new pxr.SdfPath("/Foo")].Count);
+            Assert.NotZero(varMap.Included[new pxr.SdfPath("/Foo")].dynamicMembers.Count);
 
-            foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo")])
+            foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo")].dynamicMembers)
             {
                 var fi = memberInfo as System.Reflection.FieldInfo;
                 var pi = memberInfo as System.Reflection.PropertyInfo;
@@ -234,7 +234,7 @@ namespace USD.NET.Tests
             }
 
             // Assert that all </Bar> values are non-default.
-            foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo/Bar")])
+            foreach (var memberInfo in varMap.Included[new pxr.SdfPath("/Foo/Bar")].dynamicMembers)
             {
                 var fi = memberInfo as System.Reflection.FieldInfo;
                 var pi = memberInfo as System.Reflection.PropertyInfo;

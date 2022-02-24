@@ -12,13 +12,43 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using pxr;
 
 namespace USD.NET
 {
+    /// <summary>
+    /// An interface to enable storage of the conversion state.
+    /// </summary>
+    /// <remarks>
+    /// In order to speed up the deserialization of animated prims we only load the dynamic properties. If the
+    /// downstream logic needs some static properties they can be stored temporarily in a ConversionContext.
+    /// </remarks>
+    public interface IConversionState
+    {
+    }
+
+    /// <summary>
+    /// This class holds the data required by the deserializer to optimize reading of primitive with dynamic properties
+    /// </summary>
+    public class DeserializationContext : IEnumerable
+    {
+        public HashSet<MemberInfo> dynamicMembers;
+        public IConversionState state;
+
+        public DeserializationContext()
+        {
+            dynamicMembers = new HashSet<MemberInfo>();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return dynamicMembers.GetEnumerator();
+        }
+    }
+
     /// <summary>
     /// Records what Prims and Attributes should be read over time.
     /// </summary>
@@ -28,6 +58,6 @@ namespace USD.NET
     /// </remarks>
     public class AccessMask
     {
-        public Dictionary<SdfPath, HashSet<MemberInfo>> Included = new Dictionary<SdfPath, HashSet<MemberInfo>>();
+        public Dictionary<SdfPath, DeserializationContext> Included = new Dictionary<SdfPath, DeserializationContext>();
     }
 }

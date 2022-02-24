@@ -14645,7 +14645,7 @@ namespace USD.NET
 {
     public class AccessMask
     {
-        public System.Collections.Generic.Dictionary<pxr.SdfPath, System.Collections.Generic.HashSet<System.Reflection.MemberInfo>> Included;
+        public System.Collections.Generic.Dictionary<pxr.SdfPath, USD.NET.DeserializationContext> Included;
         public AccessMask() {}
     }
 
@@ -14707,6 +14707,14 @@ namespace USD.NET
         public static pxr.VtValue ToVtValue(object value);
     }
 
+    public class DeserializationContext : System.Collections.IEnumerable
+    {
+        public System.Collections.Generic.HashSet<System.Reflection.MemberInfo> dynamicMembers;
+        public USD.NET.IConversionState state;
+        public DeserializationContext() {}
+        public virtual System.Collections.IEnumerator GetEnumerator();
+    }
+
     public class FusedDisplayColorAttribute : System.Attribute
     {
         public FusedDisplayColorAttribute() {}
@@ -14715,6 +14723,10 @@ namespace USD.NET
     public class FusedTransformAttribute : System.Attribute
     {
         public FusedTransformAttribute() {}
+    }
+
+    public interface IConversionState
+    {
     }
 
     public class IntrinsicTypeConverter

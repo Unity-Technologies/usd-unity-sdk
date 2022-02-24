@@ -162,6 +162,13 @@ namespace Unity.Formats.USD
         public static void BuildSceneInstances(Unity.Formats.USD.PrimMap primMap, Unity.Formats.USD.SceneImportOptions options);
     }
 
+    public interface IRestorable
+    {
+        public abstract void FromState(USD.NET.IConversionState state);
+        public abstract bool IsRestored();
+        public abstract USD.NET.IConversionState ToState();
+    }
+
     public interface ISanitizable
     {
         public abstract void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
@@ -212,6 +219,11 @@ namespace Unity.Formats.USD
         public void RequestBinding(string usdPath, Unity.Formats.USD.MaterialMap.MaterialBinder binder);
         public void SetPrimvars(string materialPath, System.Collections.Generic.List<string> primvars);
         public delegate void MaterialBinder(USD.NET.Scene scene, UnityEngine.Material mat, System.Collections.Generic.List<string> uvPrimvars);
+    }
+
+    public class MeshConversionState : USD.NET.IConversionState
+    {
+        public MeshConversionState() {}
     }
 
     public static class MeshExporter
@@ -348,10 +360,13 @@ namespace Unity.Formats.USD
         public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
     }
 
-    public class SanitizedMeshSample : USD.NET.Unity.MeshSample, Unity.Formats.USD.ISanitizable
+    public class SanitizedMeshSample : USD.NET.Unity.MeshSample, Unity.Formats.USD.IRestorable, Unity.Formats.USD.ISanitizable
     {
         public SanitizedMeshSample() {}
+        public virtual void FromState(USD.NET.IConversionState state);
+        public virtual bool IsRestored();
         public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
+        public virtual USD.NET.IConversionState ToState();
     }
 
     public class SanitizedXformSample : USD.NET.Unity.XformSample, Unity.Formats.USD.ISanitizable
