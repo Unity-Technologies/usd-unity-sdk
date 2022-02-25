@@ -127,27 +127,27 @@ namespace Unity.Formats.USD
             if (state == null)
                 return;
 
-            var meshContext = state as MeshConversionState;
-            arePrimvarsFaceVarying = meshContext.arePrimvarsFaceVarying;
+            var meshState = state as MeshConversionState;
+            arePrimvarsFaceVarying = meshState.arePrimvarsFaceVarying;
 
             if (faceVertexCounts == null)
-                faceVertexCounts = meshContext.originalFaceVertexCounts;
+                faceVertexCounts = meshState.originalFaceVertexCounts;
 
             if (faceVertexIndices == null)
-                faceVertexIndices = meshContext.originalFaceVertexIndices;
+                faceVertexIndices = meshState.originalFaceVertexIndices;
 
             isRestored = true;
         }
 
         public IConversionState ToState()
         {
-            var context = new MeshConversionState()
+            var state = new MeshConversionState()
             {
                 originalFaceVertexCounts = originalFaceVertexCounts,
                 originalFaceVertexIndices = originalFaceVertexIndices,
                 arePrimvarsFaceVarying = arePrimvarsFaceVarying
             };
-            return context;
+            return state;
         }
 
         public void BackupTopology()
