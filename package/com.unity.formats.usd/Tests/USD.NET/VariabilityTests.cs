@@ -129,16 +129,6 @@ namespace USD.NET.Tests
             scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
             scene2.Close();
 
-            // Console.WriteLine("(Expect only </Foo>)");
-            // foreach (var pathAndMembers in varMap.Included)
-            // {
-            //     Console.WriteLine("  Dynamic Members: " + pathAndMembers.Key);
-            //     foreach (var memberInfo in pathAndMembers.Value)
-            //     {
-            //         Console.WriteLine("    ." + memberInfo.Name);
-            //     }
-            // }
-
             Assert.NotZero(varMap.Included.Count);
             Assert.NotZero(varMap.Included[new pxr.SdfPath("/Foo")].dynamicMembers.Count);
 
@@ -202,17 +192,6 @@ namespace USD.NET.Tests
             scene2.Read(new pxr.SdfPath("/Foo"), outputSample);
             scene2.Read(new pxr.SdfPath("/Foo/Bar"), barSample);
             scene2.Close();
-
-            // Console.WriteLine("");
-            // Console.WriteLine("(Expect only </Foo/Bar>)");
-            // foreach (var pathAndMembers in varMap.Included)
-            // {
-            //     Console.WriteLine("  Dynamic Members: " + pathAndMembers.Key);
-            //     foreach (var memberInfo in pathAndMembers.Value)
-            //     {
-            //         Console.WriteLine("    ." + memberInfo.Name);
-            //     }
-            // }
 
             // Assert that all </Foo> values are default.
             var defaultSample = new T();

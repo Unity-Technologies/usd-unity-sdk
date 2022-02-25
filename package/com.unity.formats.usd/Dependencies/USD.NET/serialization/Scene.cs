@@ -738,7 +738,7 @@ namespace USD.NET
                 if (!populatingAccessMask)
                 {
                     // If there are no dynamic members, then no need to call deserialize
-                    if (deserializationContext.dynamicMembers == null)
+                    if (deserializationContext?.dynamicMembers == null)
                         return;
 
                     // Notify the deserialization service that only dynamic members should be read

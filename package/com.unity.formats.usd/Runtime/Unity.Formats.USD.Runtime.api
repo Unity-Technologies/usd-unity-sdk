@@ -363,8 +363,10 @@ namespace Unity.Formats.USD
     public class SanitizedMeshSample : USD.NET.Unity.MeshSample, Unity.Formats.USD.IRestorable, Unity.Formats.USD.ISanitizable
     {
         public SanitizedMeshSample() {}
+        public void BackupTopology();
         public virtual void FromState(USD.NET.IConversionState state);
         public virtual bool IsRestored();
+        public bool IsTopologyBackedUp();
         public virtual void Sanitize(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions);
         public virtual USD.NET.IConversionState ToState();
     }

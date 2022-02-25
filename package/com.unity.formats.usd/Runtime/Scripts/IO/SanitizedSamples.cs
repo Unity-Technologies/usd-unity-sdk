@@ -130,18 +130,11 @@ namespace Unity.Formats.USD
             var meshContext = state as MeshConversionState;
             arePrimvarsFaceVarying = meshContext.arePrimvarsFaceVarying;
 
-            // Sample properties will be null if not timeVarying, so read from the context
-            // otherwise read data from the sample
-
             if (faceVertexCounts == null)
                 faceVertexCounts = meshContext.originalFaceVertexCounts;
-            originalFaceVertexCounts = faceVertexCounts;
 
             if (faceVertexIndices == null)
                 faceVertexIndices = meshContext.originalFaceVertexIndices;
-            originalFaceVertexIndices = faceVertexIndices;
-
-            arePrimvarsFaceVarying = meshContext.arePrimvarsFaceVarying;
 
             isRestored = true;
         }
@@ -157,6 +150,17 @@ namespace Unity.Formats.USD
             return context;
         }
 
+        public void BackupTopology()
+        {
+            originalFaceVertexCounts = faceVertexCounts;
+            originalFaceVertexIndices = faceVertexIndices;
+        }
+
+        public bool IsTopologyBackedUp()
+        {
+            return originalFaceVertexCounts != null && originalFaceVertexIndices != null;
+        }
+
         /// <summary>
         /// Sanitize Mesh data for Unity:
         ///     * change basis
@@ -170,14 +174,6 @@ namespace Unity.Formats.USD
             // Start with the xform
             if (changeHandedness)
                 ConvertTransform();
-
-            // If the sample has not been restored backup the original topology
-            if (!IsRestored())
-            {
-                originalFaceVertexCounts = faceVertexCounts;
-                originalFaceVertexIndices = faceVertexIndices;
-            }
-
 
             var santizePrimvars = IsRestored() && arePrimvarsFaceVarying || // if the sample is restored we already know
                 importOptions.ShouldBindMaterials ||
@@ -295,6 +291,9 @@ namespace Unity.Formats.USD
         /// <param name="changeHandedness"></param>
         internal void Triangulate(bool changeHandedness)
         {
+            // Start by backing up the topology
+            BackupTopology();
+
             faceMapping = new List<List<int>>();
             var newIndices = new List<int>();
             var newCounts = new List<int>();
@@ -504,7 +503,7 @@ namespace Unity.Formats.USD
             {
                 return UsdGeomTokens.constant;
             }
-            if (count == originalFaceVertexCounts.Length)
+            if (IsTopologyBackedUp() && count == originalFaceVertexCounts.Length)
             {
                 return UsdGeomTokens.uniform;
             }
@@ -512,7 +511,7 @@ namespace Unity.Formats.USD
             {
                 return UsdGeomTokens.vertex;
             }
-            if (count == originalFaceVertexIndices.Length)
+            if (IsTopologyBackedUp() && count == originalFaceVertexIndices.Length)
             {
                 return UsdGeomTokens.faceVarying;
             }
