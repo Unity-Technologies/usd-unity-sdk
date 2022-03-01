@@ -155,6 +155,11 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public UsdShadeOutputVector GetSurfaceOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeMaterial_GetSurfaceOutputs(swigCPtr), true);
+    return ret;
+  }
+
   public UsdShadeShader ComputeSurfaceSource(TfToken renderContext, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
     UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -173,8 +178,26 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public UsdShadeShader ComputeSurfaceSource(TfTokenVector contextVector, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_3(swigCPtr, TfTokenVector.getCPtr(contextVector), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeSurfaceSource(TfTokenVector contextVector, TfToken sourceName) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_4(swigCPtr, TfTokenVector.getCPtr(contextVector), TfToken.getCPtr(sourceName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeSurfaceSource(TfTokenVector contextVector) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_5(swigCPtr, TfTokenVector.getCPtr(contextVector)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdShadeShader ComputeSurfaceSource() {
-    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_3(swigCPtr), true);
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeSurfaceSource__SWIG_6(swigCPtr), true);
     return ret;
   }
 
@@ -200,6 +223,11 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public UsdShadeOutputVector GetDisplacementOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeMaterial_GetDisplacementOutputs(swigCPtr), true);
+    return ret;
+  }
+
   public UsdShadeShader ComputeDisplacementSource(TfToken renderContext, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
     UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -218,8 +246,26 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public UsdShadeShader ComputeDisplacementSource(TfTokenVector contextVector, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_3(swigCPtr, TfTokenVector.getCPtr(contextVector), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeDisplacementSource(TfTokenVector contextVector, TfToken sourceName) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_4(swigCPtr, TfTokenVector.getCPtr(contextVector), TfToken.getCPtr(sourceName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeDisplacementSource(TfTokenVector contextVector) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_5(swigCPtr, TfTokenVector.getCPtr(contextVector)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdShadeShader ComputeDisplacementSource() {
-    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_3(swigCPtr), true);
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeDisplacementSource__SWIG_6(swigCPtr), true);
     return ret;
   }
 
@@ -245,6 +291,11 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public UsdShadeOutputVector GetVolumeOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeMaterial_GetVolumeOutputs(swigCPtr), true);
+    return ret;
+  }
+
   public UsdShadeShader ComputeVolumeSource(TfToken renderContext, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
     UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -263,8 +314,26 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public UsdShadeShader ComputeVolumeSource(TfTokenVector contextVector, TfToken sourceName, SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_3(swigCPtr, TfTokenVector.getCPtr(contextVector), TfToken.getCPtr(sourceName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeVolumeSource(TfTokenVector contextVector, TfToken sourceName) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_4(swigCPtr, TfTokenVector.getCPtr(contextVector), TfToken.getCPtr(sourceName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeShader ComputeVolumeSource(TfTokenVector contextVector) {
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_5(swigCPtr, TfTokenVector.getCPtr(contextVector)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdShadeShader ComputeVolumeSource() {
-    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_3(swigCPtr), true);
+    UsdShadeShader ret = new UsdShadeShader(UsdCsPINVOKE.UsdShadeMaterial_ComputeVolumeSource__SWIG_6(swigCPtr), true);
     return ret;
   }
 
@@ -326,6 +395,7 @@ public class UsdShadeMaterial : UsdShadeNodeGraph {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdShadeMaterial_schemaKind_get();
 }
 
 }

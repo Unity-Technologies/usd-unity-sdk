@@ -77,28 +77,51 @@ public class UsdVolOpenVDBAsset : global::System.IDisposable {
     return ret;
   }
 
-  public UsdAttribute GetFieldNameAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_GetFieldNameAttr(swigCPtr), true);
+  public UsdAttribute GetFieldDataTypeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_GetFieldDataTypeAttr(swigCPtr), true);
     return ret;
   }
 
-  public UsdAttribute CreateFieldNameAttr(VtValue defaultValue, bool writeSparsely) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldNameAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+  public UsdAttribute CreateFieldDataTypeAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldDataTypeAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateFieldNameAttr(VtValue defaultValue) {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldNameAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+  public UsdAttribute CreateFieldDataTypeAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldDataTypeAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdAttribute CreateFieldNameAttr() {
-    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldNameAttr__SWIG_2(swigCPtr), true);
+  public UsdAttribute CreateFieldDataTypeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldDataTypeAttr__SWIG_2(swigCPtr), true);
     return ret;
   }
 
+  public UsdAttribute GetFieldClassAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_GetFieldClassAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldClassAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldClassAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldClassAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldClassAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldClassAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolOpenVDBAsset_CreateFieldClassAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdVolOpenVDBAsset_schemaKind_get();
 }
 
 }

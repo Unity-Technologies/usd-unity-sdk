@@ -61,6 +61,18 @@ public class UsdShadeMaterialBindingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static bool CanApply(UsdPrim prim, /*cstype*/ out string whyNot) {
+    bool ret = UsdCsPINVOKE.UsdShadeMaterialBindingAPI_CanApply__SWIG_0(UsdPrim.getCPtr(prim), out whyNot);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool CanApply(UsdPrim prim) {
+    bool ret = UsdCsPINVOKE.UsdShadeMaterialBindingAPI_CanApply__SWIG_1(UsdPrim.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static UsdShadeMaterialBindingAPI Apply(UsdPrim prim) {
     UsdShadeMaterialBindingAPI ret = new UsdShadeMaterialBindingAPI(UsdCsPINVOKE.UsdShadeMaterialBindingAPI_Apply(UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -416,6 +428,13 @@ public class UsdShadeMaterialBindingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static bool CanContainPropertyName(TfToken name) {
+    bool ret = UsdCsPINVOKE.UsdShadeMaterialBindingAPI_CanContainPropertyName(TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdShadeMaterialBindingAPI_schemaKind_get();
 }
 
 }

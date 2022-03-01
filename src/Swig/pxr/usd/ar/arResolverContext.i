@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 %module arResolverContext
+#define AR_VERSION 2
 
 %{
 #include "pxr/usd/ar/resolverContext.h"

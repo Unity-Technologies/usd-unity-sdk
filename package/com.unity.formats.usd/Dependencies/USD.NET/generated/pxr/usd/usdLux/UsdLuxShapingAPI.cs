@@ -61,6 +61,18 @@ public class UsdLuxShapingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static bool CanApply(UsdPrim prim, /*cstype*/ out string whyNot) {
+    bool ret = UsdCsPINVOKE.UsdLuxShapingAPI_CanApply__SWIG_0(UsdPrim.getCPtr(prim), out whyNot);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool CanApply(UsdPrim prim) {
+    bool ret = UsdCsPINVOKE.UsdLuxShapingAPI_CanApply__SWIG_1(UsdPrim.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static UsdLuxShapingAPI Apply(UsdPrim prim) {
     UsdLuxShapingAPI ret = new UsdLuxShapingAPI(UsdCsPINVOKE.UsdLuxShapingAPI_Apply(UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -221,6 +233,60 @@ public class UsdLuxShapingAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public UsdLuxShapingAPI(UsdShadeConnectableAPI connectable) : this(UsdCsPINVOKE.new_UsdLuxShapingAPI__SWIG_3(UsdShadeConnectableAPI.getCPtr(connectable)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public UsdShadeConnectableAPI ConnectableAPI() {
+    UsdShadeConnectableAPI ret = new UsdShadeConnectableAPI(UsdCsPINVOKE.UsdLuxShapingAPI_ConnectableAPI(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeOutput CreateOutput(TfToken name, SdfValueTypeName typeName) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdLuxShapingAPI_CreateOutput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput GetOutput(TfToken name) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdLuxShapingAPI_GetOutput(swigCPtr, TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutputVector GetOutputs(bool onlyAuthored) {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdLuxShapingAPI_GetOutputs__SWIG_0(swigCPtr, onlyAuthored), true);
+    return ret;
+  }
+
+  public UsdShadeOutputVector GetOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdLuxShapingAPI_GetOutputs__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeInput CreateInput(TfToken name, SdfValueTypeName typeName) {
+    UsdShadeInput ret = new UsdShadeInput(UsdCsPINVOKE.UsdLuxShapingAPI_CreateInput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeInput GetInput(TfToken name) {
+    UsdShadeInput ret = new UsdShadeInput(UsdCsPINVOKE.UsdLuxShapingAPI_GetInput(swigCPtr, TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeInputVector GetInputs(bool onlyAuthored) {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdLuxShapingAPI_GetInputs__SWIG_0(swigCPtr, onlyAuthored), true);
+    return ret;
+  }
+
+  public UsdShadeInputVector GetInputs() {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdLuxShapingAPI_GetInputs__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxShapingAPI_schemaKind_get();
 }
 
 }

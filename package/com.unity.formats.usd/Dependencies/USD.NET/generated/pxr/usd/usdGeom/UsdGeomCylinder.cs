@@ -167,6 +167,7 @@ public class UsdGeomCylinder : UsdGeomGprim {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomCylinder_schemaKind_get();
 }
 
 }

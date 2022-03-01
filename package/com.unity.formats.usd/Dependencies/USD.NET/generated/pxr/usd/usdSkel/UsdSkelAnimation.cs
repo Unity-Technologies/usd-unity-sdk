@@ -222,6 +222,7 @@ public class UsdSkelAnimation : UsdTyped {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdSkelAnimation_schemaKind_get();
 }
 
 }

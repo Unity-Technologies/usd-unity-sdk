@@ -57,7 +57,7 @@ public class PcpCache : global::System.IDisposable {
   }
 
   public PcpLayerStackIdentifier GetLayerStackIdentifier() {
-    PcpLayerStackIdentifier ret = new PcpLayerStackIdentifier(UsdCsPINVOKE.PcpCache_GetLayerStackIdentifier(swigCPtr), true);
+    PcpLayerStackIdentifier ret = new PcpLayerStackIdentifier(UsdCsPINVOKE.PcpCache_GetLayerStackIdentifier(swigCPtr), false);
     return ret;
   }
 
@@ -112,13 +112,23 @@ public class PcpCache : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public void RequestLayerMuting(StdStringVector layersToMute, StdStringVector layersToUnmute, SWIGTYPE_p_PcpChanges changes, StdStringVector newLayersMuted, StdStringVector newLayersUnmuted) {
+    UsdCsPINVOKE.PcpCache_RequestLayerMuting__SWIG_0(swigCPtr, StdStringVector.getCPtr(layersToMute), StdStringVector.getCPtr(layersToUnmute), SWIGTYPE_p_PcpChanges.getCPtr(changes), StdStringVector.getCPtr(newLayersMuted), StdStringVector.getCPtr(newLayersUnmuted));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void RequestLayerMuting(StdStringVector layersToMute, StdStringVector layersToUnmute, SWIGTYPE_p_PcpChanges changes, StdStringVector newLayersMuted) {
+    UsdCsPINVOKE.PcpCache_RequestLayerMuting__SWIG_1(swigCPtr, StdStringVector.getCPtr(layersToMute), StdStringVector.getCPtr(layersToUnmute), SWIGTYPE_p_PcpChanges.getCPtr(changes), StdStringVector.getCPtr(newLayersMuted));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public void RequestLayerMuting(StdStringVector layersToMute, StdStringVector layersToUnmute, SWIGTYPE_p_PcpChanges changes) {
-    UsdCsPINVOKE.PcpCache_RequestLayerMuting__SWIG_0(swigCPtr, StdStringVector.getCPtr(layersToMute), StdStringVector.getCPtr(layersToUnmute), SWIGTYPE_p_PcpChanges.getCPtr(changes));
+    UsdCsPINVOKE.PcpCache_RequestLayerMuting__SWIG_2(swigCPtr, StdStringVector.getCPtr(layersToMute), StdStringVector.getCPtr(layersToUnmute), SWIGTYPE_p_PcpChanges.getCPtr(changes));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void RequestLayerMuting(StdStringVector layersToMute, StdStringVector layersToUnmute) {
-    UsdCsPINVOKE.PcpCache_RequestLayerMuting__SWIG_1(swigCPtr, StdStringVector.getCPtr(layersToMute), StdStringVector.getCPtr(layersToUnmute));
+    UsdCsPINVOKE.PcpCache_RequestLayerMuting__SWIG_3(swigCPtr, StdStringVector.getCPtr(layersToMute), StdStringVector.getCPtr(layersToUnmute));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
@@ -163,6 +173,12 @@ public class PcpCache : global::System.IDisposable {
     return ret;
   }
 
+  public bool UsesLayerStack(PcpLayerStackPtr layerStack) {
+    bool ret = UsdCsPINVOKE.PcpCache_UsesLayerStack(swigCPtr, PcpLayerStackPtr.getCPtr(layerStack));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public PcpPrimIndex ComputePrimIndex(SdfPath primPath, SWIGTYPE_p_PcpErrorVector allErrors) {
     PcpPrimIndex ret = new PcpPrimIndex(UsdCsPINVOKE.PcpCache_ComputePrimIndex(swigCPtr, SdfPath.getCPtr(primPath), SWIGTYPE_p_PcpErrorVector.getCPtr(allErrors)), false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -201,6 +217,11 @@ public class PcpCache : global::System.IDisposable {
 
   public SWIGTYPE_p_SdfLayerHandleSet GetUsedLayers() {
     SWIGTYPE_p_SdfLayerHandleSet ret = new SWIGTYPE_p_SdfLayerHandleSet(UsdCsPINVOKE.PcpCache_GetUsedLayers(swigCPtr), true);
+    return ret;
+  }
+
+  public uint GetUsedLayersRevision() {
+    uint ret = UsdCsPINVOKE.PcpCache_GetUsedLayersRevision(swigCPtr);
     return ret;
   }
 

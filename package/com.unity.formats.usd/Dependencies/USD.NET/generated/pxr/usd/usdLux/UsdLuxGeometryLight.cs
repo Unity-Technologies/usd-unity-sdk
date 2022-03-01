@@ -87,6 +87,7 @@ public class UsdLuxGeometryLight : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxGeometryLight_schemaKind_get();
 }
 
 }

@@ -193,6 +193,7 @@ public class UsdGeomGprim : UsdGeomBoundable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomGprim_schemaKind_get();
 }
 
 }

@@ -79,6 +79,7 @@ public class UsdGeomTokens : global::System.IDisposable {
   public static TfToken edgeOnly = new TfToken("edgeOnly");
   public static TfToken elementSize = new TfToken("elementSize");
   public static TfToken elementType = new TfToken("elementType");
+  public static TfToken exposure = new TfToken("exposure");
   public static TfToken extent = new TfToken("extent");
   public static TfToken extentsHint = new TfToken("extentsHint");
   public static TfToken fStop = new TfToken("fStop");
@@ -92,6 +93,7 @@ public class UsdGeomTokens : global::System.IDisposable {
   public static TfToken focusDistance = new TfToken("focusDistance");
   public static TfToken fromTexture = new TfToken("fromTexture");
   public static TfToken guide = new TfToken("guide");
+  public static TfToken guideVisibility = new TfToken("guideVisibility");
   public static TfToken height = new TfToken("height");
   public static TfToken hermite = new TfToken("hermite");
   public static TfToken holeIndices = new TfToken("holeIndices");
@@ -149,10 +151,12 @@ public class UsdGeomTokens : global::System.IDisposable {
   public static TfToken prototypes = new TfToken("prototypes");
   public static TfToken proxy = new TfToken("proxy");
   public static TfToken proxyPrim = new TfToken("proxyPrim");
+  public static TfToken proxyVisibility = new TfToken("proxyVisibility");
   public static TfToken purpose = new TfToken("purpose");
   public static TfToken radius = new TfToken("radius");
   public static TfToken ranges = new TfToken("ranges");
   public static TfToken render = new TfToken("render");
+  public static TfToken renderVisibility = new TfToken("renderVisibility");
   public static TfToken right = new TfToken("right");
   public static TfToken rightHanded = new TfToken("rightHanded");
   public static TfToken scales = new TfToken("scales");
@@ -191,6 +195,7 @@ public class UsdGeomTokens : global::System.IDisposable {
   public static TfToken verticalAperture = new TfToken("verticalAperture");
   public static TfToken verticalApertureOffset = new TfToken("verticalApertureOffset");
   public static TfToken visibility = new TfToken("visibility");
+  public static TfToken visible = new TfToken("visible");
   public static TfToken widths = new TfToken("widths");
   public static TfToken wrap = new TfToken("wrap");
   public static TfToken x = new TfToken("X");

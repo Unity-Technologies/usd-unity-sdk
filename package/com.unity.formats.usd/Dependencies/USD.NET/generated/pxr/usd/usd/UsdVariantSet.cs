@@ -94,6 +94,11 @@ public class UsdVariantSet : global::System.IDisposable {
     return ret;
   }
 
+  public bool BlockVariantSelection() {
+    bool ret = UsdCsPINVOKE.UsdVariantSet_BlockVariantSelection(swigCPtr);
+    return ret;
+  }
+
   public UsdEditTarget GetVariantEditTarget(SdfLayerHandle layer) {
     UsdEditTarget ret = new UsdEditTarget(UsdCsPINVOKE.UsdVariantSet_GetVariantEditTarget__SWIG_0(swigCPtr, SdfLayerHandle.getCPtr(layer)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

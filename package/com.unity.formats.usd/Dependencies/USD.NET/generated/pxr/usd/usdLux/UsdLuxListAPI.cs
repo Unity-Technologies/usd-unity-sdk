@@ -61,6 +61,18 @@ public class UsdLuxListAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static bool CanApply(UsdPrim prim, /*cstype*/ out string whyNot) {
+    bool ret = UsdCsPINVOKE.UsdLuxListAPI_CanApply__SWIG_0(UsdPrim.getCPtr(prim), out whyNot);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool CanApply(UsdPrim prim) {
+    bool ret = UsdCsPINVOKE.UsdLuxListAPI_CanApply__SWIG_1(UsdPrim.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static UsdLuxListAPI Apply(UsdPrim prim) {
     UsdLuxListAPI ret = new UsdLuxListAPI(UsdCsPINVOKE.UsdLuxListAPI_Apply(UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -113,6 +125,7 @@ public class UsdLuxListAPI : UsdAPISchemaBase {
     UsdCsPINVOKE.UsdLuxListAPI_InvalidateLightList(swigCPtr);
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxListAPI_schemaKind_get();
   public enum ComputeMode {
     ComputeModeConsultModelHierarchyCache,
     ComputeModeIgnoreCache

@@ -153,14 +153,11 @@ def Shader "HwUvTexture_1" (
     )
 }
 
-def Shader "HwFieldReader" (
+def Shader "HwFieldReader_1" (
     sdrMetadata = {
         token role = "field"
     }
-    doc = """Samples from a UsdVolFieldAsset.
-
-             Note that the output is always a float3.
-             If the field asset (e.g., OpenVDB file) contains a FloatGrid, the float will be padded with zeros to give a float3."""
+    doc = """Samples from a usdVol FieldAsset."""
 )
 {
     uniform asset info:glslfx:sourceAsset = @./empty.glslfx@
@@ -173,15 +170,60 @@ def Shader "HwFieldReader" (
             token fieldProperty = "1"
         }
     )
+}
 
-    float3 inputs:fallback = (0.0, 0.0, 0.0) (
-        doc = """Fallback value to be returned when fetch failed."""
+def Shader "HwFieldReader_float" ( 
+    inherits = </HwFieldReader_1>
+)
+{
+    uniform token info:id = "HwFieldReader_float"
+    float inputs:fallback = 0 (
+        doc = "Fallback value to be returned when fetch failed."
         sdrMetadata = {
             token defaultInput = "1"
         }
     )
+    float outputs:result (
+        sdrMetadata = {
+            token swizzle = "x"
+        }
+    )
+}
 
-    float3 outputs:result
+def Shader "HwFieldReader_float2" (
+    inherits = </HwFieldReader_1>
+)
+{
+    uniform token info:id = "HwFieldReader_float2"
+    float2 inputs:fallback = (0, 0) (
+        doc = "Fallback value to be returned when fetch failed."
+        sdrMetadata = {
+            token defaultInput = "1"
+        }
+    )
+    float2 outputs:result (
+        sdrMetadata = {
+            token swizzle = "xy"
+        }
+    )
+}
+
+def Shader "HwFieldReader_float3" (
+    inherits = </HwFieldReader_1>
+)
+{
+    uniform token info:id = "HwFieldReader_float3"
+    float3 inputs:fallback = (0, 0, 0) (
+        doc = "Fallback value to be returned when fetch failed."
+        sdrMetadata = {
+            token defaultInput = "1"
+        }
+    )
+    float3 outputs:result (
+        sdrMetadata = {
+            token swizzle = "xyz"
+        }
+    )
 }
 
 def Shader "HwPrimvar_1" (

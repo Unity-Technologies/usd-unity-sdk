@@ -163,6 +163,7 @@ public class UsdGeomBasisCurves : UsdGeomCurves {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomBasisCurves_schemaKind_get();
 }
 
 }

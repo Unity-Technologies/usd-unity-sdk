@@ -67,11 +67,117 @@ public class UsdLuxLightFilter : UsdGeomXformable {
     return ret;
   }
 
+  public UsdAttribute GetShaderIdAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_GetShaderIdAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateShaderIdAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_CreateShaderIdAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateShaderIdAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_CreateShaderIdAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateShaderIdAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_CreateShaderIdAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdLuxLightFilter(UsdShadeConnectableAPI connectable) : this(UsdCsPINVOKE.new_UsdLuxLightFilter__SWIG_3(UsdShadeConnectableAPI.getCPtr(connectable)), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public UsdShadeConnectableAPI ConnectableAPI() {
+    UsdShadeConnectableAPI ret = new UsdShadeConnectableAPI(UsdCsPINVOKE.UsdLuxLightFilter_ConnectableAPI(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeOutput CreateOutput(TfToken name, SdfValueTypeName typeName) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdLuxLightFilter_CreateOutput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutput GetOutput(TfToken name) {
+    UsdShadeOutput ret = new UsdShadeOutput(UsdCsPINVOKE.UsdLuxLightFilter_GetOutput(swigCPtr, TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeOutputVector GetOutputs(bool onlyAuthored) {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdLuxLightFilter_GetOutputs__SWIG_0(swigCPtr, onlyAuthored), true);
+    return ret;
+  }
+
+  public UsdShadeOutputVector GetOutputs() {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdLuxLightFilter_GetOutputs__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdShadeInput CreateInput(TfToken name, SdfValueTypeName typeName) {
+    UsdShadeInput ret = new UsdShadeInput(UsdCsPINVOKE.UsdLuxLightFilter_CreateInput(swigCPtr, TfToken.getCPtr(name), SdfValueTypeName.getCPtr(typeName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeInput GetInput(TfToken name) {
+    UsdShadeInput ret = new UsdShadeInput(UsdCsPINVOKE.UsdLuxLightFilter_GetInput(swigCPtr, TfToken.getCPtr(name)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdShadeInputVector GetInputs(bool onlyAuthored) {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdLuxLightFilter_GetInputs__SWIG_0(swigCPtr, onlyAuthored), true);
+    return ret;
+  }
+
+  public UsdShadeInputVector GetInputs() {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdLuxLightFilter_GetInputs__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
   public UsdCollectionAPI GetFilterLinkCollectionAPI() {
     UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdLuxLightFilter_GetFilterLinkCollectionAPI(swigCPtr), true);
     return ret;
   }
 
+  public UsdAttribute GetShaderIdAttrForRenderContext(TfToken renderContext) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_GetShaderIdAttrForRenderContext(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateShaderIdAttrForRenderContext(TfToken renderContext, VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_CreateShaderIdAttrForRenderContext__SWIG_0(swigCPtr, TfToken.getCPtr(renderContext), VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateShaderIdAttrForRenderContext(TfToken renderContext, VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_CreateShaderIdAttrForRenderContext__SWIG_1(swigCPtr, TfToken.getCPtr(renderContext), VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateShaderIdAttrForRenderContext(TfToken renderContext) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxLightFilter_CreateShaderIdAttrForRenderContext__SWIG_2(swigCPtr, TfToken.getCPtr(renderContext)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public TfToken GetShaderId(TfTokenVector renderContexts) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdLuxLightFilter_GetShaderId(swigCPtr, TfTokenVector.getCPtr(renderContexts)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxLightFilter_schemaKind_get();
 }
 
 }

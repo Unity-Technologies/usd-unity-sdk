@@ -47,6 +47,7 @@ typedef std::vector<UsdPrim> UsdPrimVector;
 
 %ignore UsdPrim::FindAllRelationshipTargetPaths;
 %ignore UsdPrim::FindAllAttributeConnectionPaths;
+%ignore Usd_PrimGetSourcePrimIndex;
 
 // ---------------------------------------------------------------------------------------------- //
 // UsdPrimSiblingIterator
@@ -159,5 +160,5 @@ namespace boost {
   %template(UsdPrimSubtreeRange) iterator_range<UsdPrimSubtreeIterator>;
 }
 
-%include "third_party/include/pxr/usd/usd/prim.h"
+%include "pxr/usd/usd/prim.h"
 

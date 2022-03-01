@@ -13,9 +13,7 @@
 // limitations under the License.
 
 #pragma once
-
 #include <string>
-
 #include "pxr/pxr.h"
 PXR_NAMESPACE_USING_DIRECTIVE
 

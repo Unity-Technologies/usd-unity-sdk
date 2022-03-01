@@ -128,6 +128,12 @@ public class GfQuatd : global::System.IDisposable {
     return ret;
   }
 
+  public GfVec3d Transform(GfVec3d point) {
+    GfVec3d ret = new GfVec3d(UsdCsPINVOKE.GfQuatd_Transform(swigCPtr, GfVec3d.getCPtr(point)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool Equals(GfQuatd lhs, GfQuatd rhs) {
     bool ret = UsdCsPINVOKE.GfQuatd_Equals(GfQuatd.getCPtr(lhs), GfQuatd.getCPtr(rhs));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

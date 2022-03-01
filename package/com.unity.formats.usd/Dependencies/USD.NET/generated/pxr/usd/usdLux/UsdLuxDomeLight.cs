@@ -121,6 +121,28 @@ public class UsdLuxDomeLight : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetGuideRadiusAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxDomeLight_GetGuideRadiusAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateGuideRadiusAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxDomeLight_CreateGuideRadiusAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateGuideRadiusAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxDomeLight_CreateGuideRadiusAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateGuideRadiusAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdLuxDomeLight_CreateGuideRadiusAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public UsdRelationship GetPortalsRel() {
     UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdLuxDomeLight_GetPortalsRel(swigCPtr), true);
     return ret;
@@ -135,6 +157,7 @@ public class UsdLuxDomeLight : global::System.IDisposable {
     UsdCsPINVOKE.UsdLuxDomeLight_OrientToStageUpAxis(swigCPtr);
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxDomeLight_schemaKind_get();
 }
 
 }

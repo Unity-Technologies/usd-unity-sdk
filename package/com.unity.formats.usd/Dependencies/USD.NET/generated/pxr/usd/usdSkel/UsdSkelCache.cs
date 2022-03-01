@@ -51,8 +51,8 @@ public class UsdSkelCache : global::System.IDisposable {
     UsdCsPINVOKE.UsdSkelCache_Clear(swigCPtr);
   }
 
-  public bool Populate(UsdSkelRoot root) {
-    bool ret = UsdCsPINVOKE.UsdSkelCache_Populate(swigCPtr, UsdSkelRoot.getCPtr(root));
+  public bool Populate(UsdSkelRoot root, Usd_PrimFlagsPredicate predicate) {
+    bool ret = UsdCsPINVOKE.UsdSkelCache_Populate(swigCPtr, UsdSkelRoot.getCPtr(root), Usd_PrimFlagsPredicate.getCPtr(predicate));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -81,14 +81,14 @@ public class UsdSkelCache : global::System.IDisposable {
     return ret;
   }
 
-  public bool ComputeSkelBindings(UsdSkelRoot skelRoot, UsdSkelBindingVector bindings) {
-    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBindings(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), UsdSkelBindingVector.getCPtr(bindings));
+  public bool ComputeSkelBindings(UsdSkelRoot skelRoot, UsdSkelBindingVector bindings, Usd_PrimFlagsPredicate predicate) {
+    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBindings(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), UsdSkelBindingVector.getCPtr(bindings), Usd_PrimFlagsPredicate.getCPtr(predicate));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool ComputeSkelBinding(UsdSkelRoot skelRoot, UsdSkelSkeleton skel, UsdSkelBinding binding) {
-    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBinding(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), UsdSkelSkeleton.getCPtr(skel), UsdSkelBinding.getCPtr(binding));
+  public bool ComputeSkelBinding(UsdSkelRoot skelRoot, UsdSkelSkeleton skel, UsdSkelBinding binding, Usd_PrimFlagsPredicate predicate) {
+    bool ret = UsdCsPINVOKE.UsdSkelCache_ComputeSkelBinding(swigCPtr, UsdSkelRoot.getCPtr(skelRoot), UsdSkelSkeleton.getCPtr(skel), UsdSkelBinding.getCPtr(binding), Usd_PrimFlagsPredicate.getCPtr(predicate));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

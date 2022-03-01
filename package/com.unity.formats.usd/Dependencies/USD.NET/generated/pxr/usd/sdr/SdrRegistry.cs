@@ -34,7 +34,7 @@ public class SdrRegistry : NdrRegistry {
     }
   }
 
-  public new static SdrRegistry GetInstance() {
+  public static SdrRegistry GetInstance() {
     SdrRegistry ret = new SdrRegistry(UsdCsPINVOKE.SdrRegistry_GetInstance(), false);
     return ret;
   }

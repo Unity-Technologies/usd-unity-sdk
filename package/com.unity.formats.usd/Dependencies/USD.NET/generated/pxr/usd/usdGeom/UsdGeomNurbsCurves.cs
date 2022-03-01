@@ -133,6 +133,7 @@ public class UsdGeomNurbsCurves : UsdGeomCurves {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomNurbsCurves_schemaKind_get();
 }
 
 }

@@ -44,13 +44,44 @@ public class UsdShadeUtils : global::System.IDisposable {
     }
   }
 
-  public static string GetPrefixForAttributeType(UsdShadeAttributeType sourceType) {
-    string ret = UsdCsPINVOKE.UsdShadeUtils_GetPrefixForAttributeType((int)sourceType);
+  public static string GetPrefixForAttributeType(SWIGTYPE_p_UsdShadeAttributeType sourceType) {
+    string ret = UsdCsPINVOKE.UsdShadeUtils_GetPrefixForAttributeType(SWIGTYPE_p_UsdShadeAttributeType.getCPtr(sourceType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static TfToken GetFullName(TfToken baseName, UsdShadeAttributeType type) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeUtils_GetFullName(TfToken.getCPtr(baseName), (int)type), true);
+  public static SWIGTYPE_p_UsdShadeAttributeType GetType(TfToken fullName) {
+    SWIGTYPE_p_UsdShadeAttributeType ret = new SWIGTYPE_p_UsdShadeAttributeType(UsdCsPINVOKE.UsdShadeUtils_GetType(TfToken.getCPtr(fullName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static TfToken GetFullName(TfToken baseName, SWIGTYPE_p_UsdShadeAttributeType type) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdShadeUtils_GetFullName(TfToken.getCPtr(baseName), SWIGTYPE_p_UsdShadeAttributeType.getCPtr(type)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_UsdShadeAttributeVector GetValueProducingAttributes(UsdShadeInput input, bool shaderOutputsOnly) {
+    SWIGTYPE_p_UsdShadeAttributeVector ret = new SWIGTYPE_p_UsdShadeAttributeVector(UsdCsPINVOKE.UsdShadeUtils_GetValueProducingAttributes__SWIG_0(UsdShadeInput.getCPtr(input), shaderOutputsOnly), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_UsdShadeAttributeVector GetValueProducingAttributes(UsdShadeInput input) {
+    SWIGTYPE_p_UsdShadeAttributeVector ret = new SWIGTYPE_p_UsdShadeAttributeVector(UsdCsPINVOKE.UsdShadeUtils_GetValueProducingAttributes__SWIG_1(UsdShadeInput.getCPtr(input)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_UsdShadeAttributeVector GetValueProducingAttributes(UsdShadeOutput output, bool shaderOutputsOnly) {
+    SWIGTYPE_p_UsdShadeAttributeVector ret = new SWIGTYPE_p_UsdShadeAttributeVector(UsdCsPINVOKE.UsdShadeUtils_GetValueProducingAttributes__SWIG_2(UsdShadeOutput.getCPtr(output), shaderOutputsOnly), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_UsdShadeAttributeVector GetValueProducingAttributes(UsdShadeOutput output) {
+    SWIGTYPE_p_UsdShadeAttributeVector ret = new SWIGTYPE_p_UsdShadeAttributeVector(UsdCsPINVOKE.UsdShadeUtils_GetValueProducingAttributes__SWIG_3(UsdShadeOutput.getCPtr(output)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

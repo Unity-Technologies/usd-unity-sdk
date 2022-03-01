@@ -140,6 +140,11 @@ public class UsdGeomXformable : UsdGeomImageable {
       return ret;
     }
   
+    public bool HasNonEmptyXformOpOrder() {
+      bool ret = UsdCsPINVOKE.UsdGeomXformable_XformQuery_HasNonEmptyXformOpOrder(swigCPtr);
+      return ret;
+    }
+  
     public bool GetTimeSamples(StdDoubleVector times) {
       bool ret = UsdCsPINVOKE.UsdGeomXformable_XformQuery_GetTimeSamples(swigCPtr, StdDoubleVector.getCPtr(times));
       return ret;
@@ -561,6 +566,7 @@ public class UsdGeomXformable : UsdGeomImageable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomXformable_schemaKind_get();
 }
 
 }

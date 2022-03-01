@@ -47,19 +47,23 @@ public class GfFrustum : global::System.IDisposable {
   public GfFrustum() : this(UsdCsPINVOKE.new_GfFrustum__SWIG_0(), true) {
   }
 
-  public GfFrustum(GfVec3d position, GfRotation rotation, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType, double viewDistance) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_1(GfVec3d.getCPtr(position), GfRotation.getCPtr(rotation), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType, viewDistance), true) {
+  public GfFrustum(GfFrustum o) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_1(GfFrustum.getCPtr(o)), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfFrustum(GfVec3d position, GfRotation rotation, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_2(GfVec3d.getCPtr(position), GfRotation.getCPtr(rotation), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType), true) {
+  public GfFrustum(GfVec3d position, GfRotation rotation, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType, double viewDistance) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_3(GfVec3d.getCPtr(position), GfRotation.getCPtr(rotation), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType, viewDistance), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfFrustum(GfMatrix4d camToWorldXf, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType, double viewDistance) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_3(GfMatrix4d.getCPtr(camToWorldXf), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType, viewDistance), true) {
+  public GfFrustum(GfVec3d position, GfRotation rotation, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_4(GfVec3d.getCPtr(position), GfRotation.getCPtr(rotation), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public GfFrustum(GfMatrix4d camToWorldXf, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_4(GfMatrix4d.getCPtr(camToWorldXf), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType), true) {
+  public GfFrustum(GfMatrix4d camToWorldXf, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType, double viewDistance) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_5(GfMatrix4d.getCPtr(camToWorldXf), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType, viewDistance), true) {
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public GfFrustum(GfMatrix4d camToWorldXf, GfRange2d window, GfRange1d nearFar, GfFrustum.ProjectionType projectionType) : this(UsdCsPINVOKE.new_GfFrustum__SWIG_6(GfMatrix4d.getCPtr(camToWorldXf), GfRange2d.getCPtr(window), GfRange1d.getCPtr(nearFar), (int)projectionType), true) {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 

@@ -56,6 +56,12 @@ public class UsdShadeShaderDefUtils : global::System.IDisposable {
     return ret;
   }
 
+  public static string GetPrimvarNamesMetadataString(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t metadata, UsdShadeConnectableAPI shaderDef) {
+    string ret = UsdCsPINVOKE.UsdShadeShaderDefUtils_GetPrimvarNamesMetadataString(SWIGTYPE_p_std__unordered_mapT_TfToken_std__string_TfToken__HashFunctor_t.getCPtr(metadata), UsdShadeConnectableAPI.getCPtr(shaderDef));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdShadeShaderDefUtils() : this(UsdCsPINVOKE.new_UsdShadeShaderDefUtils(), true) {
   }
 

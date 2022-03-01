@@ -98,15 +98,15 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public UsdStage FindOneMatching(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageCache_FindOneMatching__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext));
+  public UsdStage FindOneMatching(SdfLayerHandle rootLayer, SWIGTYPE_p_ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageCache_FindOneMatching__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SWIGTYPE_p_ArResolverContext.getCPtr(pathResolverContext));
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdStage FindOneMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageCache_FindOneMatching__SWIG_3(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+  public UsdStage FindOneMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, SWIGTYPE_p_ArResolverContext pathResolverContext) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.UsdStageCache_FindOneMatching__SWIG_3(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), SWIGTYPE_p_ArResolverContext.getCPtr(pathResolverContext));
     UsdStage ret = (cPtr == global::System.IntPtr.Zero) ? null : new UsdStage(cPtr, true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -124,14 +124,14 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer, ArResolverContext pathResolverContext) {
-    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer, SWIGTYPE_p_ArResolverContext pathResolverContext) {
+    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SWIGTYPE_p_ArResolverContext.getCPtr(pathResolverContext)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_3(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext)), true);
+  public UsdStageRefPtrVector FindAllMatching(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, SWIGTYPE_p_ArResolverContext pathResolverContext) {
+    UsdStageRefPtrVector ret = new UsdStageRefPtrVector(UsdCsPINVOKE.UsdStageCache_FindAllMatching__SWIG_3(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), SWIGTYPE_p_ArResolverContext.getCPtr(pathResolverContext)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -184,8 +184,8 @@ public class UsdStageCache : global::System.IDisposable {
     return ret;
   }
 
-  public uint EraseAll(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, ArResolverContext pathResolverContext) {
-    uint ret = UsdCsPINVOKE.UsdStageCache_EraseAll__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), ArResolverContext.getCPtr(pathResolverContext));
+  public uint EraseAll(SdfLayerHandle rootLayer, SdfLayerHandle sessionLayer, SWIGTYPE_p_ArResolverContext pathResolverContext) {
+    uint ret = UsdCsPINVOKE.UsdStageCache_EraseAll__SWIG_2(swigCPtr, SdfLayerHandle.getCPtr(rootLayer), SdfLayerHandle.getCPtr(sessionLayer), SWIGTYPE_p_ArResolverContext.getCPtr(pathResolverContext));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

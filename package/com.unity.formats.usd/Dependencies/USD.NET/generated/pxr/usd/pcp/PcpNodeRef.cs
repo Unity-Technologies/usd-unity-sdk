@@ -96,14 +96,14 @@ public class PcpNodeRef : global::System.IDisposable {
     return ret;
   }
 
-  public PcpNodeRef InsertChild(SWIGTYPE_p_PcpLayerStackSite site, PcpArc arc) {
-    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpNodeRef_InsertChild(swigCPtr, SWIGTYPE_p_PcpLayerStackSite.getCPtr(site), PcpArc.getCPtr(arc)), true);
+  public PcpNodeRef InsertChild(SWIGTYPE_p_PcpLayerStackSite site, PcpArc arc, SWIGTYPE_p_std__shared_ptrT_PcpErrorBase_t error) {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpNodeRef_InsertChild(swigCPtr, SWIGTYPE_p_PcpLayerStackSite.getCPtr(site), PcpArc.getCPtr(arc), SWIGTYPE_p_std__shared_ptrT_PcpErrorBase_t.getCPtr(error)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public PcpNodeRef InsertChildSubgraph(SWIGTYPE_p_TfDeclarePtrsT_PcpPrimIndex_Graph_t__Ptr subgraph, PcpArc arc) {
-    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpNodeRef_InsertChildSubgraph(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_PcpPrimIndex_Graph_t__Ptr.getCPtr(subgraph), PcpArc.getCPtr(arc)), true);
+  public PcpNodeRef InsertChildSubgraph(SWIGTYPE_p_TfDeclarePtrsT_PcpPrimIndex_Graph_t__Ptr subgraph, PcpArc arc, SWIGTYPE_p_std__shared_ptrT_PcpErrorBase_t error) {
+    PcpNodeRef ret = new PcpNodeRef(UsdCsPINVOKE.PcpNodeRef_InsertChildSubgraph(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_PcpPrimIndex_Graph_t__Ptr.getCPtr(subgraph), PcpArc.getCPtr(arc), SWIGTYPE_p_std__shared_ptrT_PcpErrorBase_t.getCPtr(error)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

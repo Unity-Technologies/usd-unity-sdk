@@ -160,6 +160,16 @@ public class GfCamera : global::System.IDisposable {
     UsdCsPINVOKE.GfCamera_SetOrthographicFromAspectRatioAndSize(swigCPtr, aspectRatio, orthographicSize, (int)direction);
   }
 
+  public void SetFromViewAndProjectionMatrix(GfMatrix4d viewMatrix, GfMatrix4d projMatix, float focalLength) {
+    UsdCsPINVOKE.GfCamera_SetFromViewAndProjectionMatrix__SWIG_0(swigCPtr, GfMatrix4d.getCPtr(viewMatrix), GfMatrix4d.getCPtr(projMatix), focalLength);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetFromViewAndProjectionMatrix(GfMatrix4d viewMatrix, GfMatrix4d projMatix) {
+    UsdCsPINVOKE.GfCamera_SetFromViewAndProjectionMatrix__SWIG_1(swigCPtr, GfMatrix4d.getCPtr(viewMatrix), GfMatrix4d.getCPtr(projMatix));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public void SetClippingRange(GfRange1f val) {
     UsdCsPINVOKE.GfCamera_SetClippingRange(swigCPtr, GfRange1f.getCPtr(val));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

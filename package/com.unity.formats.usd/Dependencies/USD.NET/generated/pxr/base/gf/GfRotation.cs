@@ -149,6 +149,10 @@ public class GfRotation : global::System.IDisposable {
     return ret;
   }
 
+  public static void MatchClosestEulerRotation(double targetTw, double targetFB, double targetLR, double targetSw, ref double thetaTw, ref double thetaFB, ref double thetaLR, ref double thetaSw) {
+    UsdCsPINVOKE.GfRotation_MatchClosestEulerRotation(targetTw, targetFB, targetLR, targetSw, ref thetaTw, ref thetaFB, ref thetaLR, ref thetaSw);
+  }
+
   public GfVec3f TransformDir(GfVec3f vec) {
     GfVec3f ret = new GfVec3f(UsdCsPINVOKE.GfRotation_TransformDir__SWIG_0(swigCPtr, GfVec3f.getCPtr(vec)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -99,6 +99,7 @@ public class UsdLuxDiskLight : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxDiskLight_schemaKind_get();
 }
 
 }

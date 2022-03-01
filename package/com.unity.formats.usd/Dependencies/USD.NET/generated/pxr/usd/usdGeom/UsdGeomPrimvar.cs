@@ -94,12 +94,6 @@ public class UsdGeomPrimvar : global::System.IDisposable {
     return ret;
   }
 
-  public static bool IsPrimvarRelatedPropertyName(TfToken name) {
-    bool ret = UsdCsPINVOKE.UsdGeomPrimvar_IsPrimvarRelatedPropertyName(TfToken.getCPtr(name));
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public static TfToken StripPrimvarsName(TfToken name) {
     TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomPrimvar_StripPrimvarsName(TfToken.getCPtr(name)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

@@ -173,6 +173,7 @@ public class UsdSkelBlendShape : UsdTyped {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdSkelBlendShape_schemaKind_get();
 }
 
 }

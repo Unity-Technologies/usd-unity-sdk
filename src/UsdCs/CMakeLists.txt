@@ -1,4 +1,4 @@
-﻿project(usdcs LANGUAGES CXX)
+project(usdcs LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
@@ -65,21 +65,21 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         CXX_STANDARD_REQUIRED 14
         BUNDLE TRUE
         )
-    set(LINK_DEPENDENCIES Alembic.1.7 Iex-2_2.12 IexMath-2_2.12 Imath-2_2.12 IlmThread-2_2.12 IlmImf-2_2.22 Half.12 tbb)
+    set(LINK_DEPENDENCIES Alembic.1.7 Iex-2_3.2.3.0 IexMath-2_3.2.3.0 Imath-2_3.2.3.0 IlmThread-2_3.2.3.0 IlmImf-2_3.2.3.0 Half-2_3.2.3.0 tbb)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set_target_properties(${USD_SWIG_LIBRARY}
         PROPERTIES
         PREFIX lib
         CXX_STANDARD_REQUIRED 14
         )
-    set(LINK_DEPENDENCIES Alembic.1.7 Iex-2_2.12 IexMath-2_2.12 Imath-2_2.12 IlmThread-2_2.12 IlmImf-2_2.22 Half.12 tbb)
+    set(LINK_DEPENDENCIES Alembic.1.7 Iex-2_3.2.3.0 IexMath-2_3.2.3.0 Imath-2_3.2.3.0 IlmThread-2_3.2.3.0 IlmImf-2_3.2.3.0 Half-2_3.2.3.0 tbb)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
      set_target_properties(${USD_SWIG_LIBRARY}
         PROPERTIES
         CXX_STANDARD_REQUIRED 14
         # USE_TARGET_INCLUDE_DIRECTORIES TRUE
         )
-     set(LINK_DEPENDENCIES Alembic Iex-2_2 IexMath-2_2 Imath-2_2 IlmThread-2_2 IlmImf-2_2 Half)
+     set(LINK_DEPENDENCIES Alembic Iex-2_3 IexMath-2_3 Imath-2_3 IlmThread-2_3 IlmImf-2_3 Half)
 endif ()
 
 

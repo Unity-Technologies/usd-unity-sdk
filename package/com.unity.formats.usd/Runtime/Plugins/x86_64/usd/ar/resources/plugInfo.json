@@ -4,6 +4,12 @@
             "Info": {
                 "Types": {
                     "ArResolver": {},
+                    "ArDefaultResolver": {
+                        "bases": [
+                            "ArResolver"
+                        ],
+                        "implementsContexts": true
+                    },
                     "ArPackageResolver": {}
                 }
             },

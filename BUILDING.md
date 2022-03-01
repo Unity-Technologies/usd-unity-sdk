@@ -68,11 +68,11 @@ The build script expects the following folder structure:
 
 In a terminal, running the following command from the root of the repository will build UsdCs by default:
 
-`python3 bin/build.py --usd_version 20.08 --library_path $USD_LOCATION`
+python3 bin/build.py --usd_version 22.03--library_path $USD_LOCATION
 
 You can specify the component using the --component option. The following command will build USD.NET, using the mono compiler installed on your machine:
 
-`python3 bin/build.py --usd_version 20.08 --library_path $USD_LOCATION --use_custom_mono --component usdnet`
+python3 bin/build.py --usd_version 22.03 --library_path $USD_LOCATION --use_custom_mono --component usdnet`
 
 **Unity developers**: to download the USD binaries from stevedore use the `--download` option
 

@@ -128,6 +128,18 @@ public class UsdGeomCurves : UsdGeomPointBased {
     return ret;
   }
 
+  public uint GetCurveCount(UsdTimeCode timeCode) {
+    uint ret = UsdCsPINVOKE.UsdGeomCurves_GetCurveCount__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(timeCode));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public uint GetCurveCount() {
+    uint ret = UsdCsPINVOKE.UsdGeomCurves_GetCurveCount__SWIG_1(swigCPtr);
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomCurves_schemaKind_get();
 }
 
 }

@@ -93,6 +93,95 @@ public class UsdVolFieldAsset : global::System.IDisposable {
     return ret;
   }
 
+  public UsdAttribute GetFieldNameAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_GetFieldNameAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldNameAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldNameAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldNameAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldNameAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldNameAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldNameAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute GetFieldIndexAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_GetFieldIndexAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldIndexAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldIndexAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldIndexAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldIndexAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldIndexAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldIndexAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute GetFieldDataTypeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_GetFieldDataTypeAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldDataTypeAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldDataTypeAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldDataTypeAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldDataTypeAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateFieldDataTypeAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateFieldDataTypeAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute GetVectorDataRoleHintAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_GetVectorDataRoleHintAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateVectorDataRoleHintAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateVectorDataRoleHintAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateVectorDataRoleHintAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateVectorDataRoleHintAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateVectorDataRoleHintAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdVolFieldAsset_CreateVectorDataRoleHintAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdVolFieldAsset_schemaKind_get();
 }
 
 }

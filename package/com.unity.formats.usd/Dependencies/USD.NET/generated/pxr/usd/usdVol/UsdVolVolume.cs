@@ -96,6 +96,7 @@ public class UsdVolVolume : UsdGeomGprim {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdVolVolume_schemaKind_get();
 }
 
 }

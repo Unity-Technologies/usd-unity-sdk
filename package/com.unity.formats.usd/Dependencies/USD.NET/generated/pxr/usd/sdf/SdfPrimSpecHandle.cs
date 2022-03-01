@@ -574,6 +574,11 @@ public class SdfPrimSpecHandle : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public void BlockVariantSelection(string variantSetName) {
+    UsdCsPINVOKE.SdfPrimSpecHandle_BlockVariantSelection(swigCPtr, variantSetName);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public SWIGTYPE_p_SdfRelocatesMapProxy GetRelocates() {
     SWIGTYPE_p_SdfRelocatesMapProxy ret = new SWIGTYPE_p_SdfRelocatesMapProxy(UsdCsPINVOKE.SdfPrimSpecHandle_GetRelocates(swigCPtr), true);
     return ret;

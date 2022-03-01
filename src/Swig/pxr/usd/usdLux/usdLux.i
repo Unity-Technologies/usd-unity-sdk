@@ -17,7 +17,6 @@
 #define USDLUX_API
 
 %include "lightFilter.i"
-%include "lightPortal.i"
 %include "listAPI.i"
 %include "rectLight.i"
 %include "shadowAPI.i"
@@ -29,4 +28,5 @@
 %include "distantLight.i"
 %include "domeLight.i"
 %include "geometryLight.i"
-%include "light.i"
+%include "portalLight.i"
+%include "lightAPI.i"

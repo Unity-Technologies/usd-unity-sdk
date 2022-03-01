@@ -61,6 +61,7 @@ public class UsdTyped : UsdSchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdTyped_schemaKind_get();
 }
 
 }

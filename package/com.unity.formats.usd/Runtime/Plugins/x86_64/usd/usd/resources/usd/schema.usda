@@ -75,13 +75,12 @@ class "APISchemaBase"
     If there is a need to discover (or record) whether a prim contains or 
     subscribes to a given API schema, it would be advantageous to make the API 
     schema be "applied". In general, API schemas that add one or more properties 
-    to a prim should be tagged as applied API schemas. A public Apply() (or 
-    private _Apply()) method is generated for applied API schemas by 
-    usdGenSchema. An applied API schema must be applied to a prim via a call to 
-    the generated Apply() method, for the schema object to evaluate to true when
-    converted to a bool using the explicit bool conversion operator. Examples of
-    applied API schemas include  UsdCollectionAPI, UsdGeomModelAPI and 
-    UsdGeomMotionAPI
+    to a prim should be tagged as applied API schemas. A public Apply() method 
+    is generated for applied API schemas by usdGenSchema. An applied API schema 
+    must be applied to a prim via a call to the generated Apply() method, for 
+    the schema object to evaluate to true when converted to a bool using the 
+    explicit bool conversion operator. Examples of applied API schemas include
+    UsdCollectionAPI, UsdGeomModelAPI and UsdGeomMotionAPI
 
     \\anchor UsdAPISchemaBase_SingleVsMultipleApply
     \\name Single vs. Multiple Apply API Schemas
@@ -97,7 +96,7 @@ class "APISchemaBase"
     schema or directly from APISchemaBase. Similarly, a non-applied API schema 
     can only inherit from a non-applied API Schema or directly from 
     APISchemaBase. 'usdGenSchema' attempts to issue a warning if it detects 
-    an incompability.
+    an incompatibility.
 
     \\note A multiple-apply API schema may not inherit from a single-apply API 
     schema and vice versa. 
@@ -238,7 +237,6 @@ class "CollectionAPI"
 #include "pxr/usd/usd/tokens.h"
 """
         token apiSchemaType = "multipleApply"
-        bool isPrivateApply  = true
         token propertyNamespacePrefix  = "collection"
         dictionary schemaTokens = {
             dictionary exclude = {

@@ -18,7 +18,6 @@
 %{
 #include "pxr/usd/ndr/property.h"
 %}
-
 %rename (GetTfType) NdrProperty::GetType;
 
 %include "pxr/usd/ndr/property.h"

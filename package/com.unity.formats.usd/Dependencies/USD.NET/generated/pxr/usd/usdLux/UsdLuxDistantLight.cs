@@ -121,6 +121,7 @@ public class UsdLuxDistantLight : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxDistantLight_schemaKind_get();
 }
 
 }

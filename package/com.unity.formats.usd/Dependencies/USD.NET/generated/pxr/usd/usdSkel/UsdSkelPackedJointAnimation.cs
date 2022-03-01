@@ -67,6 +67,7 @@ public class UsdSkelPackedJointAnimation : UsdSkelAnimation {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdSkelPackedJointAnimation_schemaKind_get();
 }
 
 }

@@ -49,19 +49,19 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited, TfToken instanceName) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdCollectionAPI_GetSchemaAttributeNames__SWIG_0(includeInherited, TfToken.getCPtr(instanceName)), false);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public new static TfTokenVector GetSchemaAttributeNames(bool includeInherited) {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdCollectionAPI_GetSchemaAttributeNames__SWIG_1(includeInherited), false);
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdCollectionAPI_GetSchemaAttributeNames__SWIG_0(includeInherited), false);
     return ret;
   }
 
   public new static TfTokenVector GetSchemaAttributeNames() {
-    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdCollectionAPI_GetSchemaAttributeNames__SWIG_2(), false);
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdCollectionAPI_GetSchemaAttributeNames__SWIG_1(), false);
+    return ret;
+  }
+
+  public static TfTokenVector GetSchemaAttributeNames(bool includeInherited, TfToken instanceName) {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdCollectionAPI_GetSchemaAttributeNames__SWIG_2(includeInherited, TfToken.getCPtr(instanceName)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -90,6 +90,24 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
 
   public static bool IsCollectionAPIPath(SdfPath path, TfToken name) {
     bool ret = UsdCsPINVOKE.UsdCollectionAPI_IsCollectionAPIPath(SdfPath.getCPtr(path), TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool CanApply(UsdPrim prim, TfToken name, /*cstype*/ out string whyNot) {
+    bool ret = UsdCsPINVOKE.UsdCollectionAPI_CanApply__SWIG_0(UsdPrim.getCPtr(prim), TfToken.getCPtr(name), out whyNot);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool CanApply(UsdPrim prim, TfToken name) {
+    bool ret = UsdCsPINVOKE.UsdCollectionAPI_CanApply__SWIG_1(UsdPrim.getCPtr(prim), TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static UsdCollectionAPI Apply(UsdPrim prim, TfToken name) {
+    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdCollectionAPI_Apply(UsdPrim.getCPtr(prim), TfToken.getCPtr(name)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -155,18 +173,6 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
 
   public UsdRelationship CreateExcludesRel() {
     UsdRelationship ret = new UsdRelationship(UsdCsPINVOKE.UsdCollectionAPI_CreateExcludesRel(swigCPtr), true);
-    return ret;
-  }
-
-  public static UsdCollectionAPI ApplyCollection(UsdPrim prim, TfToken name, TfToken expansionRule) {
-    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdCollectionAPI_ApplyCollection__SWIG_0(UsdPrim.getCPtr(prim), TfToken.getCPtr(name), TfToken.getCPtr(expansionRule)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static UsdCollectionAPI ApplyCollection(UsdPrim prim, TfToken name) {
-    UsdCollectionAPI ret = new UsdCollectionAPI(UsdCsPINVOKE.UsdCollectionAPI_ApplyCollection__SWIG_1(UsdPrim.getCPtr(prim), TfToken.getCPtr(name)), true);
-    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
@@ -253,12 +259,19 @@ public class UsdCollectionAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static bool CanContainPropertyName(TfToken name) {
+    bool ret = UsdCsPINVOKE.UsdCollectionAPI_CanContainPropertyName(TfToken.getCPtr(name));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static UsdObjectVector ComputeIncludedObjects(SWIGTYPE_p_UsdCollectionMembershipQuery query, UsdStageWeakPtr stage) {
     UsdObjectVector ret = new UsdObjectVector(UsdCsPINVOKE.UsdCollectionAPI_ComputeIncludedObjects(SWIGTYPE_p_UsdCollectionMembershipQuery.getCPtr(query), UsdStageWeakPtr.getCPtr(stage)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdCollectionAPI_schemaKind_get();
 }
 
 }

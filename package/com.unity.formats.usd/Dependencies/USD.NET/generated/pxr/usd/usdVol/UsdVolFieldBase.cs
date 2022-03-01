@@ -10,7 +10,7 @@
 
 namespace pxr {
 
-public class UsdVolFieldBase : UsdGeomBoundable {
+public class UsdVolFieldBase : UsdGeomXformable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
   internal UsdVolFieldBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(UsdCsPINVOKE.UsdVolFieldBase_SWIGUpcast(cPtr), cMemoryOwn) {
@@ -61,6 +61,7 @@ public class UsdVolFieldBase : UsdGeomBoundable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdVolFieldBase_schemaKind_get();
 }
 
 }

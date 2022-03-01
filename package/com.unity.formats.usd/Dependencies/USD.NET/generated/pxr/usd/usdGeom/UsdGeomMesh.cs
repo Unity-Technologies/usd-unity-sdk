@@ -355,11 +355,23 @@ public class UsdGeomMesh : UsdGeomPointBased {
     } 
   }
 
+  public uint GetFaceCount(UsdTimeCode timeCode) {
+    uint ret = UsdCsPINVOKE.UsdGeomMesh_GetFaceCount__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(timeCode));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public uint GetFaceCount() {
+    uint ret = UsdCsPINVOKE.UsdGeomMesh_GetFaceCount__SWIG_1(swigCPtr);
+    return ret;
+  }
+
   public static void Triangulate(VtIntArray faceVertexIndices, VtIntArray faceVertexCounts) {
     UsdCsPINVOKE.UsdGeomMesh_Triangulate(VtIntArray.getCPtr(faceVertexIndices), VtIntArray.getCPtr(faceVertexCounts));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomMesh_schemaKind_get();
 }
 
 }

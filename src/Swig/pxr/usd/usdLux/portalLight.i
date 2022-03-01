@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module usdRipxrAovLight
+%module usdLuxPortalLight
 %{
-#include "pxr/usd/usdRi/pxrAovLight.h"
+#include "pxr/usd/usdLux/portalLight.h"
 %}
 
-%include "pxr/usd/usdRi/pxrAovLight.h"
+%ignore UsdLuxLightPortal::schemaType;
+
+%include "pxr/usd/usdLux/portalLight.h"

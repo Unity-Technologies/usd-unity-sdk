@@ -134,6 +134,18 @@ public class UsdGeomPoints : UsdGeomPointBased {
     return ret;
   }
 
+  public uint GetPointCount(UsdTimeCode timeCode) {
+    uint ret = UsdCsPINVOKE.UsdGeomPoints_GetPointCount__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(timeCode));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public uint GetPointCount() {
+    uint ret = UsdCsPINVOKE.UsdGeomPoints_GetPointCount__SWIG_1(swigCPtr);
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomPoints_schemaKind_get();
 }
 
 }

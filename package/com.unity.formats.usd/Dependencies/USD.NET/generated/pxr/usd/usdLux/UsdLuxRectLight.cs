@@ -143,6 +143,7 @@ public class UsdLuxRectLight : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxRectLight_schemaKind_get();
 }
 
 }

@@ -121,6 +121,7 @@ public class UsdLuxSphereLight : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdLuxSphereLight_schemaKind_get();
 }
 
 }

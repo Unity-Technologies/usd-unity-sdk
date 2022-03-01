@@ -88,8 +88,13 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
+  public UsdShadeOutputVector GetOutputs(bool onlyAuthored) {
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetOutputs__SWIG_0(swigCPtr, onlyAuthored), true);
+    return ret;
+  }
+
   public UsdShadeOutputVector GetOutputs() {
-    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetOutputs(swigCPtr), true);
+    UsdShadeOutputVector ret = new UsdShadeOutputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetOutputs__SWIG_1(swigCPtr), true);
     return ret;
   }
 
@@ -111,8 +116,13 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
+  public UsdShadeInputVector GetInputs(bool onlyAuthored) {
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetInputs__SWIG_0(swigCPtr, onlyAuthored), true);
+    return ret;
+  }
+
   public UsdShadeInputVector GetInputs() {
-    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetInputs(swigCPtr), true);
+    UsdShadeInputVector ret = new UsdShadeInputVector(UsdCsPINVOKE.UsdShadeNodeGraph_GetInputs__SWIG_1(swigCPtr), true);
     return ret;
   }
 
@@ -209,6 +219,7 @@ public class UsdShadeNodeGraph : UsdTyped {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdShadeNodeGraph_schemaKind_get();
 }
 
 }

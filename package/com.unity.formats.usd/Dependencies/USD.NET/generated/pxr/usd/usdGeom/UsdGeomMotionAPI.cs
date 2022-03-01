@@ -61,6 +61,18 @@ public class UsdGeomMotionAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static bool CanApply(UsdPrim prim, /*cstype*/ out string whyNot) {
+    bool ret = UsdCsPINVOKE.UsdGeomMotionAPI_CanApply__SWIG_0(UsdPrim.getCPtr(prim), out whyNot);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool CanApply(UsdPrim prim) {
+    bool ret = UsdCsPINVOKE.UsdGeomMotionAPI_CanApply__SWIG_1(UsdPrim.getCPtr(prim));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static UsdGeomMotionAPI Apply(UsdPrim prim) {
     UsdGeomMotionAPI ret = new UsdGeomMotionAPI(UsdCsPINVOKE.UsdGeomMotionAPI_Apply(UsdPrim.getCPtr(prim)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -100,6 +112,7 @@ public class UsdGeomMotionAPI : UsdAPISchemaBase {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomMotionAPI_schemaKind_get();
 }
 
 }

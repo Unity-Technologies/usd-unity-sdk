@@ -119,6 +119,11 @@ public class SdrShaderProperty : NdrProperty {
     return ret;
   }
 
+  public override VtValue GetDefaultValueAsSdfType() {
+    VtValue ret = new VtValue(UsdCsPINVOKE.SdrShaderProperty_GetDefaultValueAsSdfType(swigCPtr), false);
+    return ret;
+  }
+
   public bool IsAssetIdentifier() {
     bool ret = UsdCsPINVOKE.SdrShaderProperty_IsAssetIdentifier(swigCPtr);
     return ret;

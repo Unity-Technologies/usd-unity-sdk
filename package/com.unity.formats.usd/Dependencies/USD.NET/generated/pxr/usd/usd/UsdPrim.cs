@@ -216,6 +216,10 @@ public class UsdPrim : UsdObject {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public void ClearPropertyOrder() {
+    UsdCsPINVOKE.UsdPrim_ClearPropertyOrder(swigCPtr);
+  }
+
   public bool RemoveProperty(TfToken propName) {
     bool ret = UsdCsPINVOKE.UsdPrim_RemoveProperty(swigCPtr, TfToken.getCPtr(propName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -252,26 +256,50 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public bool ApplyAPI(TfType schemaType, TfToken instanceName) {
-    bool ret = UsdCsPINVOKE.UsdPrim_ApplyAPI__SWIG_2(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName));
+  public bool CanApplyAPI(TfType schemaType, /*cstype*/ out string whyNot) {
+    bool ret = UsdCsPINVOKE.UsdPrim_CanApplyAPI__SWIG_2(swigCPtr, TfType.getCPtr(schemaType), out whyNot);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool CanApplyAPI(TfType schemaType) {
+    bool ret = UsdCsPINVOKE.UsdPrim_CanApplyAPI__SWIG_3(swigCPtr, TfType.getCPtr(schemaType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool CanApplyAPI(TfType schemaType, TfToken instanceName, /*cstype*/ out string whyNot) {
+    bool ret = UsdCsPINVOKE.UsdPrim_CanApplyAPI__SWIG_6(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName), out whyNot);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool CanApplyAPI(TfType schemaType, TfToken instanceName) {
+    bool ret = UsdCsPINVOKE.UsdPrim_CanApplyAPI__SWIG_7(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool ApplyAPI(TfType schemaType) {
-    bool ret = UsdCsPINVOKE.UsdPrim_ApplyAPI__SWIG_3(swigCPtr, TfType.getCPtr(schemaType));
+    bool ret = UsdCsPINVOKE.UsdPrim_ApplyAPI__SWIG_1(swigCPtr, TfType.getCPtr(schemaType));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool RemoveAPI(TfType schemaType, TfToken instanceName) {
-    bool ret = UsdCsPINVOKE.UsdPrim_RemoveAPI__SWIG_2(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName));
+  public bool ApplyAPI(TfType schemaType, TfToken instanceName) {
+    bool ret = UsdCsPINVOKE.UsdPrim_ApplyAPI__SWIG_3(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool RemoveAPI(TfType schemaType) {
-    bool ret = UsdCsPINVOKE.UsdPrim_RemoveAPI__SWIG_3(swigCPtr, TfType.getCPtr(schemaType));
+    bool ret = UsdCsPINVOKE.UsdPrim_RemoveAPI__SWIG_1(swigCPtr, TfType.getCPtr(schemaType));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool RemoveAPI(TfType schemaType, TfToken instanceName) {
+    bool ret = UsdCsPINVOKE.UsdPrim_RemoveAPI__SWIG_3(swigCPtr, TfType.getCPtr(schemaType), TfToken.getCPtr(instanceName));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -310,6 +338,22 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
+  public TfTokenVector GetChildrenNames() {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetChildrenNames(swigCPtr), true);
+    return ret;
+  }
+
+  public TfTokenVector GetAllChildrenNames() {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetAllChildrenNames(swigCPtr), true);
+    return ret;
+  }
+
+  public TfTokenVector GetFilteredChildrenNames(Usd_PrimFlagsPredicate predicate) {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetFilteredChildrenNames(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public UsdPrimSubtreeRange GetDescendants() {
     UsdPrimSubtreeRange ret = new UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetDescendants(swigCPtr), true);
     return ret;
@@ -324,6 +368,20 @@ public class UsdPrim : UsdObject {
     UsdPrimSubtreeRange ret = new UsdPrimSubtreeRange(UsdCsPINVOKE.UsdPrim_GetFilteredDescendants(swigCPtr, Usd_PrimFlagsPredicate.getCPtr(predicate)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
+  }
+
+  public TfTokenVector GetChildrenReorder() {
+    TfTokenVector ret = new TfTokenVector(UsdCsPINVOKE.UsdPrim_GetChildrenReorder(swigCPtr), true);
+    return ret;
+  }
+
+  public void SetChildrenReorder(TfTokenVector order) {
+    UsdCsPINVOKE.UsdPrim_SetChildrenReorder(swigCPtr, TfTokenVector.getCPtr(order));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void ClearChildrenReorder() {
+    UsdCsPINVOKE.UsdPrim_ClearChildrenReorder(swigCPtr);
   }
 
   public UsdPrim GetParent() {
@@ -619,23 +677,35 @@ public class UsdPrim : UsdObject {
     return ret;
   }
 
-  public bool IsMaster() {
-    bool ret = UsdCsPINVOKE.UsdPrim_IsMaster(swigCPtr);
+  public static bool IsPrototypePath(SdfPath path) {
+    bool ret = UsdCsPINVOKE.UsdPrim_IsPrototypePath(SdfPath.getCPtr(path));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool IsInMaster() {
-    bool ret = UsdCsPINVOKE.UsdPrim_IsInMaster(swigCPtr);
+  public static bool IsPathInPrototype(SdfPath path) {
+    bool ret = UsdCsPINVOKE.UsdPrim_IsPathInPrototype(SdfPath.getCPtr(path));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public UsdPrim GetMaster() {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdPrim_GetMaster(swigCPtr), true);
+  public bool IsPrototype() {
+    bool ret = UsdCsPINVOKE.UsdPrim_IsPrototype(swigCPtr);
     return ret;
   }
 
-  public UsdPrim GetPrimInMaster() {
-    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdPrim_GetPrimInMaster(swigCPtr), true);
+  public bool IsInPrototype() {
+    bool ret = UsdCsPINVOKE.UsdPrim_IsInPrototype(swigCPtr);
+    return ret;
+  }
+
+  public UsdPrim GetPrototype() {
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdPrim_GetPrototype(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdPrim GetPrimInPrototype() {
+    UsdPrim ret = new UsdPrim(UsdCsPINVOKE.UsdPrim_GetPrimInPrototype(swigCPtr), true);
     return ret;
   }
 

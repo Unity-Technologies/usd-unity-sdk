@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module usdRipxrCookieLightFilter
+%module usdLuxlightAPI
 %{
-#include "pxr/usd/usdRi/pxrCookieLightFilter.h"
+#include "pxr/usd/usdLux/lightAPI.h"
 %}
 
-%include "pxr/usd/usdRi/pxrCookieLightFilter.h"
+%ignore UsdLuxLightAPI::schemaType;
+
+%include "pxr/usd/usdLux/lightAPI.h"

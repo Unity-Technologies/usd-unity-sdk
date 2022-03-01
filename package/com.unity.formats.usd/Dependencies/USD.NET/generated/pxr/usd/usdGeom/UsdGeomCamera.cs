@@ -353,6 +353,28 @@ public class UsdGeomCamera : UsdGeomXformable {
     return ret;
   }
 
+  public UsdAttribute GetExposureAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCamera_GetExposureAttr(swigCPtr), true);
+    return ret;
+  }
+
+  public UsdAttribute CreateExposureAttr(VtValue defaultValue, bool writeSparsely) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCamera_CreateExposureAttr__SWIG_0(swigCPtr, VtValue.getCPtr(defaultValue), writeSparsely), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateExposureAttr(VtValue defaultValue) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCamera_CreateExposureAttr__SWIG_1(swigCPtr, VtValue.getCPtr(defaultValue)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public UsdAttribute CreateExposureAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomCamera_CreateExposureAttr__SWIG_2(swigCPtr), true);
+    return ret;
+  }
+
   public GfCamera GetCamera(UsdTimeCode time) {
     GfCamera ret = new GfCamera(UsdCsPINVOKE.UsdGeomCamera_GetCamera(swigCPtr, UsdTimeCode.getCPtr(time)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -364,6 +386,7 @@ public class UsdGeomCamera : UsdGeomXformable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomCamera_schemaKind_get();
 }
 
 }

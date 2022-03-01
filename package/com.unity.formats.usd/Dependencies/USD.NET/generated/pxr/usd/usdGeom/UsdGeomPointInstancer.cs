@@ -416,6 +416,18 @@ public class UsdGeomPointInstancer : UsdGeomBoundable {
     return ret;
   }
 
+  public uint GetInstanceCount(UsdTimeCode timeCode) {
+    uint ret = UsdCsPINVOKE.UsdGeomPointInstancer_GetInstanceCount__SWIG_0(swigCPtr, UsdTimeCode.getCPtr(timeCode));
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public uint GetInstanceCount() {
+    uint ret = UsdCsPINVOKE.UsdGeomPointInstancer_GetInstanceCount__SWIG_1(swigCPtr);
+    return ret;
+  }
+
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomPointInstancer_schemaKind_get();
   public enum ProtoXformInclusion {
     IncludeProtoXform,
     ExcludeProtoXform

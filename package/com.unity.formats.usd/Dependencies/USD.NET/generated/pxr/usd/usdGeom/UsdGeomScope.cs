@@ -77,6 +77,7 @@ public class UsdGeomScope : global::System.IDisposable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomScope_schemaKind_get();
 }
 
 }

@@ -44,11 +44,6 @@ public class NdrRegistry : global::System.IDisposable {
     }
   }
 
-  public static NdrRegistry GetInstance() {
-    NdrRegistry ret = new NdrRegistry(UsdCsPINVOKE.NdrRegistry_GetInstance(), false);
-    return ret;
-  }
-
   public void SetExtraDiscoveryPlugins(SWIGTYPE_p_TfDeclarePtrsT_NdrDiscoveryPlugin_t__RefPtrVector plugins) {
     UsdCsPINVOKE.NdrRegistry_SetExtraDiscoveryPlugins__SWIG_0(swigCPtr, SWIGTYPE_p_TfDeclarePtrsT_NdrDiscoveryPlugin_t__RefPtrVector.getCPtr(plugins));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -125,8 +120,8 @@ public class NdrRegistry : global::System.IDisposable {
     return ret;
   }
 
-  public NdrNode GetNodeByIdentifier(TfToken identifier, TfTokenVector typePriority) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByIdentifier__SWIG_0(swigCPtr, TfToken.getCPtr(identifier), TfTokenVector.getCPtr(typePriority));
+  public NdrNode GetNodeByIdentifier(TfToken identifier, TfTokenVector sourceTypePriority) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByIdentifier__SWIG_0(swigCPtr, TfToken.getCPtr(identifier), TfTokenVector.getCPtr(sourceTypePriority));
     NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -139,22 +134,22 @@ public class NdrRegistry : global::System.IDisposable {
     return ret;
   }
 
-  public NdrNode GetNodeByIdentifierAndType(TfToken identifier, TfToken nodeType) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByIdentifierAndType(swigCPtr, TfToken.getCPtr(identifier), TfToken.getCPtr(nodeType));
+  public NdrNode GetNodeByIdentifierAndType(TfToken identifier, TfToken sourceType) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByIdentifierAndType(swigCPtr, TfToken.getCPtr(identifier), TfToken.getCPtr(sourceType));
     NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public NdrNode GetNodeByName(string name, TfTokenVector typePriority, NdrVersionFilter filter) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByName__SWIG_0(swigCPtr, name, TfTokenVector.getCPtr(typePriority), (int)filter);
+  public NdrNode GetNodeByName(string name, TfTokenVector sourceTypePriority, NdrVersionFilter filter) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByName__SWIG_0(swigCPtr, name, TfTokenVector.getCPtr(sourceTypePriority), (int)filter);
     NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public NdrNode GetNodeByName(string name, TfTokenVector typePriority) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByName__SWIG_1(swigCPtr, name, TfTokenVector.getCPtr(typePriority));
+  public NdrNode GetNodeByName(string name, TfTokenVector sourceTypePriority) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByName__SWIG_1(swigCPtr, name, TfTokenVector.getCPtr(sourceTypePriority));
     NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
@@ -167,15 +162,15 @@ public class NdrRegistry : global::System.IDisposable {
     return ret;
   }
 
-  public NdrNode GetNodeByNameAndType(string name, TfToken nodeType, NdrVersionFilter filter) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByNameAndType__SWIG_0(swigCPtr, name, TfToken.getCPtr(nodeType), (int)filter);
+  public NdrNode GetNodeByNameAndType(string name, TfToken sourceType, NdrVersionFilter filter) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByNameAndType__SWIG_0(swigCPtr, name, TfToken.getCPtr(sourceType), (int)filter);
     NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public NdrNode GetNodeByNameAndType(string name, TfToken nodeType) {
-    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByNameAndType__SWIG_1(swigCPtr, name, TfToken.getCPtr(nodeType));
+  public NdrNode GetNodeByNameAndType(string name, TfToken sourceType) {
+    global::System.IntPtr cPtr = UsdCsPINVOKE.NdrRegistry_GetNodeByNameAndType__SWIG_1(swigCPtr, name, TfToken.getCPtr(sourceType));
     NdrNode ret = (cPtr == global::System.IntPtr.Zero) ? null : new NdrNode(cPtr, false);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;

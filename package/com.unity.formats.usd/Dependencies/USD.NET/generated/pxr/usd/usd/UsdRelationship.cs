@@ -55,11 +55,6 @@ public class UsdRelationship : UsdProperty {
     return ret;
   }
 
-  public bool BlockTargets() {
-    bool ret = UsdCsPINVOKE.UsdRelationship_BlockTargets(swigCPtr);
-    return ret;
-  }
-
   public bool SetTargets(SdfPathVector targets) {
     bool ret = UsdCsPINVOKE.UsdRelationship_SetTargets(swigCPtr, SdfPathVector.getCPtr(targets));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

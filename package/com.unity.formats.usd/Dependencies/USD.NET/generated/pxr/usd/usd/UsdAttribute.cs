@@ -177,11 +177,6 @@ public class UsdAttribute : UsdProperty {
     return ret;
   }
 
-  public bool BlockConnections() {
-    bool ret = UsdCsPINVOKE.UsdAttribute_BlockConnections(swigCPtr);
-    return ret;
-  }
-
   public bool SetConnections(SdfPathVector sources) {
     bool ret = UsdCsPINVOKE.UsdAttribute_SetConnections(swigCPtr, SdfPathVector.getCPtr(sources));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();

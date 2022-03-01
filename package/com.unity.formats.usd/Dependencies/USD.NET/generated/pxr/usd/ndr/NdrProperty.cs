@@ -109,6 +109,11 @@ public class NdrProperty : global::System.IDisposable {
     return ret;
   }
 
+  public virtual VtValue GetDefaultValueAsSdfType() {
+    VtValue ret = new VtValue(UsdCsPINVOKE.NdrProperty_GetDefaultValueAsSdfType(swigCPtr), false);
+    return ret;
+  }
+
 }
 
 }

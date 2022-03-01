@@ -189,15 +189,31 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
-  public TfToken ComputeVisibility(TfToken parentVisibility, UsdTimeCode time) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputeVisibility__SWIG_2(swigCPtr, TfToken.getCPtr(parentVisibility), UsdTimeCode.getCPtr(time)), true);
+  public UsdAttribute GetPurposeVisibilityAttr(TfToken purpose) {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomImageable_GetPurposeVisibilityAttr__SWIG_0(swigCPtr, TfToken.getCPtr(purpose)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public TfToken ComputeVisibility(TfToken parentVisibility) {
-    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputeVisibility__SWIG_3(swigCPtr, TfToken.getCPtr(parentVisibility)), true);
+  public UsdAttribute GetPurposeVisibilityAttr() {
+    UsdAttribute ret = new UsdAttribute(UsdCsPINVOKE.UsdGeomImageable_GetPurposeVisibilityAttr__SWIG_1(swigCPtr), true);
+    return ret;
+  }
+
+  public TfToken ComputeEffectiveVisibility(TfToken purpose, UsdTimeCode time) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputeEffectiveVisibility__SWIG_0(swigCPtr, TfToken.getCPtr(purpose), UsdTimeCode.getCPtr(time)), true);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public TfToken ComputeEffectiveVisibility(TfToken purpose) {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputeEffectiveVisibility__SWIG_1(swigCPtr, TfToken.getCPtr(purpose)), true);
+    if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public TfToken ComputeEffectiveVisibility() {
+    TfToken ret = new TfToken(UsdCsPINVOKE.UsdGeomImageable_ComputeEffectiveVisibility__SWIG_2(swigCPtr), true);
     return ret;
   }
 
@@ -410,6 +426,7 @@ public class UsdGeomImageable : UsdTyped {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomImageable_schemaKind_get();
 }
 
 }

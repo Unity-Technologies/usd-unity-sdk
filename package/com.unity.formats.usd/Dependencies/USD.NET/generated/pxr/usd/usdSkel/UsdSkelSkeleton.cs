@@ -155,6 +155,7 @@ public class UsdSkelSkeleton : UsdGeomBoundable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdSkelSkeleton_schemaKind_get();
 }
 
 }

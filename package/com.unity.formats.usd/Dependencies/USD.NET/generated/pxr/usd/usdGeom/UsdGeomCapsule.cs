@@ -167,6 +167,7 @@ public class UsdGeomCapsule : UsdGeomGprim {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomCapsule_schemaKind_get();
 }
 
 }

@@ -95,6 +95,7 @@ public class UsdGeomBoundable : UsdGeomXformable {
     return ret;
   }
 
+  public static readonly UsdSchemaKind schemaKind = (UsdSchemaKind)UsdCsPINVOKE.UsdGeomBoundable_schemaKind_get();
 }
 
 }
