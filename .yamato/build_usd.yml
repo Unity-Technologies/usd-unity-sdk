@@ -3,6 +3,8 @@ usd_versions:
     dir_name: USD-20.08
   - version: v21.02
     dir_name: USD-21.02
+  - version: v22.03
+    dir_name: USD-22.03
 build_platforms:
   - name: win
     type: Unity::VM
