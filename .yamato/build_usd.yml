@@ -8,7 +8,7 @@ build_platforms:
     type: Unity::VM
     image: filmtv/usd_build_win10_image:latest
     flavor: b1.xlarge
-    setenv_cmd: call "C:\\Program Files (x86)\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
+    setenv_cmd: call "C:\\Program Files (x86)\Microsoft Visual Studio\\2019\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
     stevedore_url: "%STEVEDORE_UPLOAD_TOOL_URL%"
     stevedore_exe: "StevedoreUpload.exe"
     install_path: package/com.unity.formats.usd/Runtime/Plugins/x86_64/Windows/**
