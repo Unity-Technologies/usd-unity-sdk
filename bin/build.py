@@ -10,7 +10,7 @@ import argparse
 import zipfile
 
 STEVEDORE_REPO = "https://artifactory.prd.it.unity3d.com/artifactory/stevedore-testing"
-USD_BINARIES = {"20.08": {"Windows": "usd-win-python36-x86_64/v22.03_ad25f6b6e52e2b9496e36ba04a1136742e90ea975ffae54fc6206751bfed9402.zip" ,
+USD_BINARIES = {"22.03": {"Windows": "usd-win-python36-x86_64/v22.03_ad25f6b6e52e2b9496e36ba04a1136742e90ea975ffae54fc6206751bfed9402.zip" ,
                           "Linux": "usd-linux-python36-x86_64/v20.08_a47ac54028df326afe4f871a1cd2b01aa3eab2b0819cc56abe1e90883d2ef97b.zip",
                           "Darwin": "usd-mac-python36-x86_64/v22.03_1e727466bd4747df371aa7ec52376615629d125036b405ff3d606d299b4e900f.zip"}}
 PYTHON_VERSION = "36"
@@ -68,13 +68,13 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Build script for the USD C# bindings.")
 
-    parser.add_argument("--usd_version", dest="usd_version", default="20.08",
-                        help="Version of the USD library (ex: 20.08).")
+    parser.add_argument("--usd_version", dest="usd_version", default="22.03",
+                        help="Version of the USD library (ex: 22.03).")
     parser.add_argument("--unity_version", dest="unity_version", default="2019.4",
                         help="Version of Unity (ex: 2019.4). "
                              "Used to find the C# compiler when building the usdnet component")
     parser.add_argument("--library_path", dest="library_path", default="./artifacts",
-                        help="Path to the root of the usd install folders (ex: usd-v20.08 and usd-v20.08_no_python)")
+                        help="Path to the root of the usd install folders (ex: usd-v22.03 and usd-v22.03_no_python)")
     parser.add_argument("--download", dest="download_usd_binaries", action="store_true", default=False,
                         help="Download USD binaries from Unity's Stevedore internal repository. "
                         "Refer to BUILDING.md for command used to build the libraries")
