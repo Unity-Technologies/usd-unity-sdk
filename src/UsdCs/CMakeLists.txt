@@ -88,7 +88,7 @@ add_dependencies(${USD_SWIG_LIBRARY}
     )
 
 swig_link_libraries(${USD_SWIG_LIBRARY}
-    usd_ms
+    usd_usd_ms
     ${LINK_DEPENDENCIES}
     )
 
@@ -122,7 +122,7 @@ endif()
 install(SCRIPT ${CMAKE_SOURCE_DIR}/cmake/install_usd_bindings.cmake)
 
 # Install the runtime dependencies (usd and its dependencies)
-set(PIXAR_DEPS usd_ms ${LINK_DEPENDENCIES})
+set(PIXAR_DEPS usd_usd_ms ${LINK_DEPENDENCIES})
 list(TRANSFORM PIXAR_DEPS PREPEND ${USD_LIBRARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX})
 list(TRANSFORM PIXAR_DEPS APPEND ${CMAKE_SHARED_LIBRARY_SUFFIX})
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
