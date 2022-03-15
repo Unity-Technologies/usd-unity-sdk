@@ -42,7 +42,7 @@ find_path(USD_INCLUDE_DIR
 
 find_library(USD_LIBRARY
     NAMES
-        ${USD_LIB_PREFIX}usd${USD_LIB_SUFFIX}
+        ${USD_LIB_PREFIX}usd_usd${USD_LIB_SUFFIX}
     HINTS
         ${PXR_USD_LOCATION}
         $ENV{PXR_USD_LOCATION}
