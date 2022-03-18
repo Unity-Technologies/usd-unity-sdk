@@ -79,7 +79,7 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         CXX_STANDARD_REQUIRED 14
         # USE_TARGET_INCLUDE_DIRECTORIES TRUE
         )
-     set(LINK_DEPENDENCIES Alembic Iex-2_3 IexMath-2_3 Imath-2_3 IlmThread-2_3 IlmImf-2_3 Half)
+     set(LINK_DEPENDENCIES Alembic Iex-2_3 IexMath-2_3 Imath-2_3 IlmThread-2_3 IlmImf-2_3 Half-2_3)
 endif ()
 
 
