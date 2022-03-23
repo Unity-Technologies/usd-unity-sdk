@@ -40,6 +40,7 @@ OUTPUT_TYPEMAP(UsdShadeAttributeType, UsdShadeAttributeType, UsdShadeAttributeTy
 // ---------------------------------------------------------------------------------------------- //
 
 %include "usdShadeUtils.i"
+%include "usdShadeTypes.i"
 %include "usdShadeNodeGraph.i"
 %include "usdShadeMaterial.i"
 %include "usdShadeMaterialBindingApi.i"
