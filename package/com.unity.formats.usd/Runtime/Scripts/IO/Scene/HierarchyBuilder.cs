@@ -248,7 +248,7 @@ namespace Unity.Formats.USD
             if (options.importPointInstances || options.importSceneInstances)
             {
                 Profiler.BeginSample("Build Masters");
-                foreach (var masterRootPrim in scene.Stage.GetMasters())
+                foreach (var masterRootPrim in scene.Stage.GetPrototypes())
                 {
                     var goMaster = FindOrCreateGameObject(unityRoot.transform,
                         masterRootPrim.GetPath(),
@@ -294,7 +294,7 @@ namespace Unity.Formats.USD
 
                         if (usdPrim.IsInstance())
                         {
-                            map.AddInstanceRoot(usdPrim.GetPath(), goPrim, usdPrim.GetMaster().GetPath());
+                            map.AddInstanceRoot(usdPrim.GetPath(), goPrim, usdPrim.GetPrototype().GetPath());
                         }
 
                         try
@@ -494,7 +494,7 @@ namespace Unity.Formats.USD
                     Profiler.BeginSample("Add Scene Instance Root");
                     if (prim.IsInstance())
                     {
-                        map.AddInstanceRoot(prim.GetPath(), go, prim.GetMaster().GetPath());
+                        map.AddInstanceRoot(prim.GetPath(), go, prim.GetPrototype().GetPath());
                     }
 
                     Profiler.EndSample();
@@ -541,7 +541,7 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            if (!skelCache.Populate(skelRoot))
+            if (!skelCache.Populate(skelRoot, pxr.UsdCs.UsdPrimDefaultPredicate))
             {
                 Debug.LogWarning("Failed to populate skel cache: " + skelRootInfo.prim.GetPath());
                 return;
@@ -550,7 +550,7 @@ namespace Unity.Formats.USD
             try
             {
                 var binding = new UsdSkelBindingVector();
-                if (!skelCache.ComputeSkelBindings(skelRoot, binding))
+                if (!skelCache.ComputeSkelBindings(skelRoot, binding, pxr.UsdCs.UsdPrimDefaultPredicate))
                 {
                     Debug.LogWarning("ComputeSkelBindings failed: " + skelRootInfo.prim.GetPath());
                     return;

@@ -73,3 +73,5 @@ TestProject/**/*.csproj
 TestProject/**/*.sln
 TestProject/Usd-Development/Library
 build_usdcs
+build_usdnet
+package/com.unity.formats.usd/Dependencies/USD.NET/generated

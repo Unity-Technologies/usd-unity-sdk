@@ -22,8 +22,11 @@ if __name__ == "__main__":
     new_env["PYTHONPATH"] = os.pathsep.join([usd_python_path, new_env.get("PYTHONPATH", "")])
 
     # Spawn a python process with the new environment
-    cmd = ["python3", "src/Swig/scripts/gen.py", out_path]
-    p = subprocess.Popen(cmd, env=new_env, cwd=os.path.join(os.getcwd(), '..'))
+    root_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+    genpy_path = os.path.join(root_path, "src/Swig/scripts/gen.py")
+    cmd = ["python3", genpy_path, out_path]
+    print(os.path.join(os.getcwd(), '..'))
+    p = subprocess.Popen(cmd, env=new_env, cwd=root_path)
     p.wait()
     if p.returncode != 0:
         raise RuntimeError("Failed to run '{cmd}'\n.".format(cmd=cmd))
