@@ -18,17 +18,17 @@ namespace Unity.Formats.USD
         /// <summary>
         /// Returns true if the internal data has been restored from State data
         /// </summary>
-        public bool IsRestored();
+        bool IsRestored();
 
         /// <summary>
         /// Restore internal data from the State data
         /// </summary>
-        public void FromState(IConversionState state);
+        void FromState(IConversionState state);
 
         /// <summary>
         /// Return State data from internal data
         /// </summary>
-        public IConversionState ToState();
+        IConversionState ToState();
     }
 
     /// <summary>
@@ -92,12 +92,12 @@ namespace Unity.Formats.USD
         /// <summary>
         /// Store the face vertex counts straight from USD deserialization
         /// </summary>
-        int[] originalFaceVertexCounts;
+        internal int[] originalFaceVertexCounts;
 
         /// <summary>
         /// Store the face vertex indices straight from USD deserialization
         /// </summary>
-        int[] originalFaceVertexIndices;
+        internal int[] originalFaceVertexIndices;
 
         /// <summary>
         /// True when the mesh arrays have been converted to facevarying
