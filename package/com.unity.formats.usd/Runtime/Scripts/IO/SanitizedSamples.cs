@@ -58,6 +58,11 @@ namespace Unity.Formats.USD
         /// True when the mesh arrays have been converted to facevarying
         /// </summary>
         internal bool arePrimvarsFaceVarying;
+
+        /// <summary>
+        /// Store the mesh orientation
+        /// </summary>
+        internal Orientation orientation;
     }
 
     /// <summary>
@@ -136,6 +141,9 @@ namespace Unity.Formats.USD
             if (faceVertexIndices == null)
                 faceVertexIndices = meshState.originalFaceVertexIndices;
 
+            // Orientation can't be animated and defaults to RightHanded, so restore it in the case the mesh is leftHanded
+            orientation = meshState.orientation;
+
             isRestored = true;
         }
 
@@ -145,7 +153,8 @@ namespace Unity.Formats.USD
             {
                 originalFaceVertexCounts = originalFaceVertexCounts,
                 originalFaceVertexIndices = originalFaceVertexIndices,
-                arePrimvarsFaceVarying = arePrimvarsFaceVarying
+                arePrimvarsFaceVarying = arePrimvarsFaceVarying,
+                orientation = orientation
             };
             return state;
         }
@@ -335,7 +344,8 @@ namespace Unity.Formats.USD
         {
             // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be converted to face varying
             // TODO: expose interpolation for standard mesh attributes (normals, tangents)
-            return normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length) ||
+            return arePrimvarsFaceVarying ||
+                normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length) ||
                 colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying) ||
                 tangents != null &&
                 (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length) ||

@@ -104,7 +104,9 @@ namespace Unity.Formats.USD
                 {
                     restorableSample.FromState(deserializationContext.state);
                     sample.Sanitize(m_scene, m_importOptions);
-                    deserializationContext.state = restorableSample.ToState();
+                    //Don't update the state after the first frame
+                    if (deserializationContext.state == null)
+                        deserializationContext.state = restorableSample.ToState();
                 }
                 else
                 {
