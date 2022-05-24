@@ -309,7 +309,8 @@ namespace Unity.Formats.USD
                 }
 
                 // Gah. There is no way to inspect a meshes UVs.
-                sample.st.SetValue(mesh.uv);
+                sample.AddPrimvars(new List<string>(){"st"});
+                sample.ArbitraryPrimvars["st"].SetValue(mesh.uv);
 
                 // Set face vertex counts and indices.
                 var tris = mesh.triangles;

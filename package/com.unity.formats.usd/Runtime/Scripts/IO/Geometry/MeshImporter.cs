@@ -87,29 +87,19 @@ namespace Unity.Formats.USD
             System.Reflection.MemberInfo points = null;
             System.Reflection.MemberInfo normals = null;
             System.Reflection.MemberInfo colors = null;
-            System.Reflection.MemberInfo st = null;
-            System.Reflection.MemberInfo uv = null;
-            System.Reflection.MemberInfo uv2 = null;
-            System.Reflection.MemberInfo uv3 = null;
-            System.Reflection.MemberInfo uv4 = null;
             System.Reflection.MemberInfo purpose = null;
             System.Reflection.MemberInfo visibility = null;
             var isDynamic = false;
 
             if (scene.AccessMask != null && scene.IsPopulatingAccessMask)
             {
-                var meshType = typeof(MeshSample);
+                var meshType = typeof(SanitizedMeshSample);
                 faceVertexCounts = meshType.GetMember("faceVertexCounts")[0];
                 faceVertexIndices = meshType.GetMember("faceVertexIndices")[0];
                 orientation = meshType.GetMember("orientation")[0];
                 points = meshType.GetMember("points")[0];
                 normals = meshType.GetMember("normals")[0];
                 colors = meshType.GetMember("colors")[0];
-                st = meshType.GetMember("st")[0];
-                uv = meshType.GetMember("uv")[0];
-                uv2 = meshType.GetMember("uv2")[0];
-                uv3 = meshType.GetMember("uv3")[0];
-                uv4 = meshType.GetMember("uv4")[0];
                 purpose = meshType.GetMember("purpose")[0];
                 visibility = meshType.GetMember("visibility")[0];
             }
@@ -127,11 +117,6 @@ namespace Unity.Formats.USD
                             || deserializationContext.dynamicMembers.Contains(points)
                             || deserializationContext.dynamicMembers.Contains(normals)
                             || deserializationContext.dynamicMembers.Contains(colors)
-                            || deserializationContext.dynamicMembers.Contains(st)
-                            || deserializationContext.dynamicMembers.Contains(uv)
-                            || deserializationContext.dynamicMembers.Contains(uv2)
-                            || deserializationContext.dynamicMembers.Contains(uv3)
-                            || deserializationContext.dynamicMembers.Contains(uv4)
                         )
                         {
                             deserializationContext.dynamicMembers.Add(faceVertexCounts);
@@ -140,11 +125,6 @@ namespace Unity.Formats.USD
                             deserializationContext.dynamicMembers.Add(points);
                             deserializationContext.dynamicMembers.Add(normals);
                             deserializationContext.dynamicMembers.Add(colors);
-                            deserializationContext.dynamicMembers.Add(st);
-                            deserializationContext.dynamicMembers.Add(uv);
-                            deserializationContext.dynamicMembers.Add(uv2);
-                            deserializationContext.dynamicMembers.Add(uv3);
-                            deserializationContext.dynamicMembers.Add(uv4);
                         }
 
                         if (pathAndSample.sample.purpose != Purpose.Default && !deserializationContext.dynamicMembers.Contains(purpose))
@@ -630,7 +610,7 @@ namespace Unity.Formats.USD
                         options.materialMap.RequestBinding(
                             path,
                             (scene, boundMat, primvars) => BindMat(
-                                scene, unityMesh, boundMat, renderer, path, primvars, usdMesh));
+                                unityMesh, boundMat, renderer, path, primvars, usdMesh));
                 }
                 else
                 {
@@ -647,8 +627,7 @@ namespace Unity.Formats.USD
                             options.materialMap.RequestBinding(
                                 kvp.Key,
                                 (scene, boundMat, primvars) => BindMat(
-                                    scene, unityMesh, boundMat, renderer, idx, path, primvars,
-                                    usdMesh));
+                                    unityMesh, boundMat, renderer, idx, path, primvars, usdMesh));
                         }
                     }
                 }
@@ -686,7 +665,6 @@ namespace Unity.Formats.USD
         }
 
         static void LoadPrimvars(
-            Scene scene,
             Mesh unityMesh,
             string usdMeshPath,
             List<string> primvars,
@@ -698,36 +676,16 @@ namespace Unity.Formats.USD
             {
                 try
                 {
-                    if (primvars[i] == "st")
-                    {
-                        ImportUv(unityMesh, i, sample.st);
-                    }
-                    else if (primvars[i] == "uv")
-                    {
-                        ImportUv(unityMesh, i, sample.uv);
-                    }
-                    else if (primvars[i] == "uv2")
-                    {
-                        ImportUv(unityMesh, i, sample.uv2);
-                    }
-                    else if (primvars[i] == "uv3")
-                    {
-                        ImportUv(unityMesh, i, sample.uv3);
-                    }
-                    else if (primvars[i] == "uv4")
-                    {
-                        ImportUv(unityMesh, i, sample.uv4);
-                    }
+                    ImportUv(unityMesh, i, sample.ArbitraryPrimvars ? [primvars[i]]);
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError(new Exception("Error reading UVs at " +  usdMeshPath + "> uv-index: " + i, ex));
+                    Debug.LogError(new Exception($"Error reading UVs at {usdMeshPath} > uv attribute: {primvars[i]}. ", ex));
                 }
             }
         }
 
-        static void BindMat(Scene scene,
-            Mesh unityMesh,
+        static void BindMat(Mesh unityMesh,
             Material mat,
             Renderer renderer,
             string usdMeshPath,
@@ -735,7 +693,7 @@ namespace Unity.Formats.USD
             MeshSample sample)
         {
             renderer.sharedMaterial = mat;
-            LoadPrimvars(scene, unityMesh, usdMeshPath, primvars, sample);
+            LoadPrimvars(unityMesh, usdMeshPath, primvars, sample);
         }
 
         // Pass in Unity Mesh from registration.
@@ -744,8 +702,7 @@ namespace Unity.Formats.USD
         // Read primvars from USD mesh.
         // Assign to UnityMesh sequentially.
         // Material must assign both primvar and Unity Mesh texcoord slots.
-        static void BindMat(Scene scene,
-            Mesh unityMesh,
+        static void BindMat(Mesh unityMesh,
             Material mat,
             Renderer renderer,
             int index,
@@ -756,7 +713,7 @@ namespace Unity.Formats.USD
             var sharedMats = renderer.sharedMaterials;
             sharedMats[index] = mat;
             renderer.sharedMaterials = sharedMats;
-            LoadPrimvars(scene, unityMesh, usdMeshPath, primvars, sample);
+            LoadPrimvars(unityMesh, usdMeshPath, primvars, sample);
         }
 
         /// <summary>

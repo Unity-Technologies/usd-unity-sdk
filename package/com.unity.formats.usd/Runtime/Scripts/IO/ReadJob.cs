@@ -95,6 +95,12 @@ namespace Unity.Formats.USD
             var sample = new T();
             if (ShouldReadPath(m_scene, m_paths[index]))
             {
+                var sampleWithExtraPrimvars = sample as IArbitraryPrimvars;
+                if (sampleWithExtraPrimvars != null)
+                {
+                    AddPrimvarsFromMaterial(index, ref sampleWithExtraPrimvars);
+                }
+
                 m_scene.Read(m_paths[index], sample);
 
                 var restorableSample = sample as IRestorable;
@@ -123,6 +129,29 @@ namespace Unity.Formats.USD
             m_results[index] = sample;
 
             m_ready.Set();
+        }
+
+        /// <summary>
+        /// Add all the primvars needed by the material to the sample arbitrary primvars list.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="sample"></param>
+        static void AddPrimvarsFromMaterial(int index, ref IArbitraryPrimvars sample)
+        {
+            var materialPath = "";
+            var bind = new UsdShadeMaterialBindingAPI(m_scene.GetPrimAtPath(m_paths[index]));
+            //what happens for materials per face?
+            var rel = bind.GetDirectBindingRel();
+            if (rel.GetTargets().Count > 0)
+            {
+                materialPath = rel.GetTargets()[0].GetPrimPath();
+            }
+
+            var primvars = m_importOptions.materialMap.GetPrimvars(materialPath);
+            if (primvars != null)
+            {
+                sample.AddPrimvars(primvars);
+            }
         }
 
         public bool MoveNext()

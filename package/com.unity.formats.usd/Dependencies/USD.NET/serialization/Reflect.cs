@@ -178,6 +178,16 @@ namespace USD.NET
         }
 
         /// <summary>
+        /// Returns true if the member should not be namespaced
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public static bool ForceNoNamespace(MemberInfo info)
+        {
+            return GetCacheEntry(info).forceNoNamespace;
+        }
+
+        /// <summary>
         /// Visits all properties and fields which are an Array type and returns the held array value,
         /// if not null. Sets each extracted value to null on the object.
         /// </summary>
@@ -242,6 +252,7 @@ namespace USD.NET
             public bool isFusedTransform;
             public bool isRelationship;
             public bool isAssetPath;
+            public bool forceNoNamespace;
         }
 
         /// <summary>
@@ -344,6 +355,9 @@ namespace USD.NET
                 GetCustomAttributes(typeof(UsdAssetPathAttribute), true);
             cachedInfo.isAssetPath = attrs10.Length > 0;
 
+            // ForceNoNamespace
+            var attrs12 = (ForceNoNamespaceAttribute[])info.GetCustomAttributes(typeof(ForceNoNamespaceAttribute), true);
+            cachedInfo.forceNoNamespace = attrs12.Length > 0;
             //
             // Cache & return.
             //

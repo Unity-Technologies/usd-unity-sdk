@@ -237,14 +237,13 @@ namespace Unity.Formats.USD
                 Flatten(ref colors.value, colors.indices);
             }
 
-            // UVs
-            if (santizePrimvars)
+            // Arbitrary primvars
+            if (santizePrimvars && ArbitraryPrimvars != null)
             {
-                FlattenUVs(st);
-                FlattenUVs(uv);
-                FlattenUVs(uv2);
-                FlattenUVs(uv3);
-                FlattenUVs(uv4);
+                foreach (var primvar in ArbitraryPrimvars)
+                {
+                    FlattenPrimvar(primvar.Value);
+                }
             }
 
             if (!ShouldUnweldVertices(santizePrimvars))
@@ -272,13 +271,12 @@ namespace Unity.Formats.USD
 
             ConvertInterpolationToFaceVarying(ref colors.value, faceVertexIndices, unwindVertices);
 
-            if (santizePrimvars)
+            if (santizePrimvars && ArbitraryPrimvars != null)
             {
-                UnweldUVs(st, unwindVertices);
-                UnweldUVs(uv, unwindVertices);
-                UnweldUVs(uv2, unwindVertices);
-                UnweldUVs(uv3, unwindVertices);
-                UnweldUVs(uv4, unwindVertices);
+                foreach (var primvar in ArbitraryPrimvars)
+                {
+                    UnweldPrimvar(primvar.Value, unwindVertices);
+                }
             }
 
             // Convert points last, as points count might be used to guess the interpolation of other attributes
@@ -345,16 +343,25 @@ namespace Unity.Formats.USD
             // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be converted to face varying
             // TODO: expose interpolation for standard mesh attributes (normals, tangents)
             return arePrimvarsFaceVarying ||
-                normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length) ||
-                colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying) ||
+                normals != null && (normals.Length == originalFaceVertexCounts.Length ||
+                    normals.Length > points.Length) ||
+                colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform ||
+                    colors.GetInterpolationToken() == UsdGeomTokens.faceVarying) ||
                 tangents != null &&
                 (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length) ||
-                bindMaterials &&
-                (st.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                    uv.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                    uv2.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                    uv3.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                    uv4.GetInterpolationToken() == UsdGeomTokens.faceVarying);
+                bindMaterials && AreArbitraryPrimvarsFaceVarying();
+        }
+
+        internal bool AreArbitraryPrimvarsFaceVarying()
+        {
+            if (ArbitraryPrimvars == null) return false;
+            foreach (var primvar in ArbitraryPrimvars)
+            {
+                if (primvar.Value.GetInterpolationToken() == UsdGeomTokens.faceVarying)
+                    return true;
+            }
+
+            return false;
         }
 
         internal static void Flatten<T>(ref T[] values, int[] indices)
@@ -371,7 +378,7 @@ namespace Unity.Formats.USD
             values = newValues;
         }
 
-        void UnweldUVs(Primvar<object> primvar, bool changeHandedness)
+        void UnweldPrimvar(Primvar<object> primvar, bool changeHandedness)
         {
             if (primvar.value == null)
                 return;
@@ -410,7 +417,7 @@ namespace Unity.Formats.USD
             }
         }
 
-        static void FlattenUVs(Primvar<object> primvar)
+        static void FlattenPrimvar(Primvar<object> primvar)
         {
             if (primvar.value == null)
                 return;

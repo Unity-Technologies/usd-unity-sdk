@@ -186,4 +186,20 @@ namespace USD.NET
         {
         }
     }
+
+
+    /// <summary>
+    /// Indicates that no namespace should be added to this field.
+    /// </summary>
+    /// <remarks>
+    /// The serialization code typically add an extra namespace to dictionary fields.
+    /// If you want to hold multiple primvars into a dictionary without adding the extra namespace
+    /// you should add this attribute yo tour field.
+    /// </remarks>
+    public class ForceNoNamespaceAttribute : Attribute
+    {
+        public ForceNoNamespaceAttribute()
+        {
+        }
+    }
 }

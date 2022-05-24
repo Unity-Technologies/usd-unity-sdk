@@ -348,7 +348,7 @@ namespace USD.NET
                     && csType.GetGenericArguments()[1].GetGenericTypeDefinition() == typeof(Primvar<>);
 
                 // Ensure the immediate dictionary member is always namespaced.
-                if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
+                if (!Reflect.ForceNoNamespace(memberInfo) && string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
                 {
                     usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);
                 }
@@ -620,7 +620,7 @@ namespace USD.NET
                 // the dictionary becomes an attribute on the prim.
 
                 // Ensure there is always a namespace immediately around this member.
-                if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
+                if (!Reflect.ForceNoNamespace(memberInfo) && string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
                 {
                     ns = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
                     usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);

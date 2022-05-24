@@ -14715,6 +14715,11 @@ namespace USD.NET
         public virtual System.Collections.IEnumerator GetEnumerator();
     }
 
+    public class ForceNoNamespaceAttribute : System.Attribute
+    {
+        public ForceNoNamespaceAttribute() {}
+    }
+
     public class FusedDisplayColorAttribute : System.Attribute
     {
         public FusedDisplayColorAttribute() {}
@@ -14723,6 +14728,12 @@ namespace USD.NET
     public class FusedTransformAttribute : System.Attribute
     {
         public FusedTransformAttribute() {}
+    }
+
+    public interface IArbitraryPrimvars
+    {
+        public abstract void AddPrimvars(System.Collections.Generic.List<string> primvars);
+        public abstract System.Collections.Generic.Dictionary<string, USD.NET.Primvar<object>> GetArbitraryPrimvars();
     }
 
     public interface IConversionState
