@@ -83,8 +83,11 @@ namespace Unity.Formats.USD
                         // normal needs to be converted if the one on disk isn't really a normal map
                         // (e.g. created from greyscale)
                         UnityEditor.TextureImporter importer =
-                            (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(
-                                UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d));
+                            UnityEditor.AssetImporter.GetAtPath(
+                                UnityEditor.AssetDatabase.GetAssetPath(srcTexture2d)) as UnityEditor.TextureImporter;
+
+                        if (!importer) break;
+
                         if (importer.textureType != UnityEditor.TextureImporterType.NormalMap)
                         {
                             Debug.LogWarning("Texture " + textureName + " is set as NormalMap but isn't marked as such",
@@ -304,15 +307,25 @@ namespace Unity.Formats.USD
                 scene.Write(usdShaderPath + "/uvReader", uvReader);
                 var connectionPath = "/uvReader.outputs:result";
 
-                var textureOffset = material.mainTextureOffset;
-                var textureScale = material.mainTextureScale;
+                var textureOffset = material.GetTextureOffset(textureName);
+                var textureScale = material.GetTextureScale(textureName);
+                var textureRotation = material.HasProperty(textureName + "Rotation") ? Mathf.Rad2Deg * material.GetFloat(textureName + "Rotation") : 0f;
+
+                // Workaround: texture rotation in USDZ rotates around top left corner while glTF rotates around bottom left corner.
+                // Since shaders are built for the latter we need to compensate here.
+                var v = new Vector2(0 * textureScale.x, 1 * textureScale.y);
+                v = Matrix4x4.Rotate(Quaternion.Euler(0, 0, textureRotation)) * new Vector4(v.x, v.y, 0, 1);
+                v.y -= 1 * textureScale.y;
+                textureOffset -= v;
 
                 // export UsdTransform2d, only if non-default offset/scale
-                if(textureOffset != Vector2.zero || textureScale != Vector2.one)
+                if(textureOffset != Vector2.zero || textureScale != Vector2.one || textureRotation != 0)
                 {
                     var usdTransform = new UsdTransform2dSample();
                     usdTransform.scale = new Connectable<Vector2>(textureScale);
                     usdTransform.translation = new Connectable<Vector2>(textureOffset);
+                    if(textureRotation != 0)
+                        usdTransform.rotation = new Connectable<float>(textureRotation);
                     usdTransform.@in.SetConnectedPath(usdShaderPath + "/uvReader.outputs:result");
                     scene.Write(usdShaderPath + "/usdTransform", usdTransform);
                     connectionPath = "/usdTransform.outputs:result";
