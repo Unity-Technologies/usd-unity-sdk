@@ -298,10 +298,28 @@ namespace Unity.Formats.USD
                 filePath = ImporterBase.MakeRelativePath(scene.FilePath, filePath);
                 filePath = filePath.Replace("\\", "/");
 
+                // uvReader - gets UV data from mesh
                 var uvReader = new PrimvarReaderSample<Vector2>();
                 uvReader.varname.defaultValue = new TfToken("st");
                 scene.Write(usdShaderPath + "/uvReader", uvReader);
-                var usdTexReader = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
+                var connectionPath = "/uvReader.outputs:result";
+
+                var textureOffset = material.mainTextureOffset;
+                var textureScale = material.mainTextureScale;
+
+                // export UsdTransform2d, only if non-default offset/scale
+                if(textureOffset != Vector2.zero || textureScale != Vector2.one)
+                {
+                    var usdTransform = new UsdTransform2dSample();
+                    usdTransform.scale = new Connectable<Vector2>(textureScale);
+                    usdTransform.translation = new Connectable<Vector2>(textureOffset);
+                    usdTransform.@in.SetConnectedPath(usdShaderPath + "/uvReader.outputs:result");
+                    scene.Write(usdShaderPath + "/usdTransform", usdTransform);
+                    connectionPath = "/usdTransform.outputs:result";
+                }
+
+                // texture reader - actual texture data based on transformed UV coordinates
+                var usdTexReader = new TextureReaderSample(filePath, usdShaderPath + connectionPath);
                 usdTexReader.wrapS =
                     new Connectable<TextureReaderSample.WrapMode>(
                         TextureReaderSample.GetWrapMode(srcTexture2d.wrapModeU));
@@ -312,9 +330,9 @@ namespace Unity.Formats.USD
                 {
                     usdTexReader.scale = new Connectable<Vector4>(scale);
                 }
-
                 // usdTexReader.isSRGB = new Connectable<TextureReaderSample.SRGBMode>(TextureReaderSample.SRGBMode.Auto);
                 scene.Write(usdShaderPath + "/" + textureName, usdTexReader);
+
                 return usdShaderPath + "/" + textureName + ".outputs:" + textureOutput;
             }
             else
