@@ -184,8 +184,8 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
-  public static SdfLayerHandleSet GetLoadedLayers() {
-    SdfLayerHandleSet ret = new SdfLayerHandleSet(UsdCsPINVOKE.SdfLayer_GetLoadedLayers(), true);
+  public static SWIGTYPE_p_SdfLayerHandleSet GetLoadedLayers() {
+    SWIGTYPE_p_SdfLayerHandleSet ret = new SWIGTYPE_p_SdfLayerHandleSet(UsdCsPINVOKE.SdfLayer_GetLoadedLayers(), true);
     return ret;
   }
 
@@ -311,14 +311,14 @@ public class SdfLayer : global::System.IDisposable {
     return ret;
   }
 
-  public static bool ReloadLayers(SdfLayerHandleSet layers, bool force) {
-    bool ret = UsdCsPINVOKE.SdfLayer_ReloadLayers__SWIG_0(SdfLayerHandleSet.getCPtr(layers), force);
+  public static bool ReloadLayers(SWIGTYPE_p_std__setT_SdfLayerHandle_t layers, bool force) {
+    bool ret = UsdCsPINVOKE.SdfLayer_ReloadLayers__SWIG_0(SWIGTYPE_p_std__setT_SdfLayerHandle_t.getCPtr(layers), force);
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool ReloadLayers(SdfLayerHandleSet layers) {
-    bool ret = UsdCsPINVOKE.SdfLayer_ReloadLayers__SWIG_1(SdfLayerHandleSet.getCPtr(layers));
+  public static bool ReloadLayers(SWIGTYPE_p_std__setT_SdfLayerHandle_t layers) {
+    bool ret = UsdCsPINVOKE.SdfLayer_ReloadLayers__SWIG_1(SWIGTYPE_p_std__setT_SdfLayerHandle_t.getCPtr(layers));
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

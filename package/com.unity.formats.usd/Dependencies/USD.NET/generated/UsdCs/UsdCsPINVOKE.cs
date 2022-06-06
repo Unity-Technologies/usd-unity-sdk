@@ -14441,45 +14441,6 @@ class UsdCsPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerHandleVector")]
   public static extern void delete_SdfLayerHandleVector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerHandleSet__SWIG_0")]
-  public static extern global::System.IntPtr new_SdfLayerHandleSet__SWIG_0();
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerHandleSet__SWIG_1")]
-  public static extern global::System.IntPtr new_SdfLayerHandleSet__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_size")]
-  public static extern uint SdfLayerHandleSet_size(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_empty")]
-  public static extern bool SdfLayerHandleSet_empty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_Clear")]
-  public static extern void SdfLayerHandleSet_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_Add")]
-  public static extern bool SdfLayerHandleSet_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_Contains")]
-  public static extern bool SdfLayerHandleSet_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_Remove")]
-  public static extern bool SdfLayerHandleSet_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_getitem")]
-  public static extern global::System.IntPtr SdfLayerHandleSet_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_create_iterator_begin")]
-  public static extern global::System.IntPtr SdfLayerHandleSet_create_iterator_begin(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_get_next")]
-  public static extern global::System.IntPtr SdfLayerHandleSet_get_next(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerHandleSet_destroy_iterator")]
-  public static extern void SdfLayerHandleSet_destroy_iterator(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerHandleSet")]
-  public static extern void delete_SdfLayerHandleSet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrVector_Clear")]
   public static extern void SdfLayerRefPtrVector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -14545,45 +14506,6 @@ class UsdCsPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerRefPtrVector")]
   public static extern void delete_SdfLayerRefPtrVector(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerRefPtrSet__SWIG_0")]
-  public static extern global::System.IntPtr new_SdfLayerRefPtrSet__SWIG_0();
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerRefPtrSet__SWIG_1")]
-  public static extern global::System.IntPtr new_SdfLayerRefPtrSet__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_size")]
-  public static extern uint SdfLayerRefPtrSet_size(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_empty")]
-  public static extern bool SdfLayerRefPtrSet_empty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_Clear")]
-  public static extern void SdfLayerRefPtrSet_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_Add")]
-  public static extern bool SdfLayerRefPtrSet_Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_Contains")]
-  public static extern bool SdfLayerRefPtrSet_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_Remove")]
-  public static extern bool SdfLayerRefPtrSet_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_getitem")]
-  public static extern global::System.IntPtr SdfLayerRefPtrSet_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_create_iterator_begin")]
-  public static extern global::System.IntPtr SdfLayerRefPtrSet_create_iterator_begin(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_get_next")]
-  public static extern global::System.IntPtr SdfLayerRefPtrSet_get_next(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_SdfLayerRefPtrSet_destroy_iterator")]
-  public static extern void SdfLayerRefPtrSet_destroy_iterator(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_delete_SdfLayerRefPtrSet")]
-  public static extern void delete_SdfLayerRefPtrSet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint="CSharp_pxr_new_SdfLayerHandle")]
   public static extern global::System.IntPtr new_SdfLayerHandle(global::System.Runtime.InteropServices.HandleRef jarg1);

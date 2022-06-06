@@ -37,9 +37,6 @@ typedef std::set<std::string> StdStringSet;
 %template(SdfLayerHandleVector) std::vector<SdfLayerHandle>;
 typedef std::vector<SdfLayerHandle> SdfLayerHandleVector;
 
-%template(SdfLayerHandleSet) std::set<SdfLayerHandle>;
-typedef std::set<SdfLayerHandle> SdfLayerHandleSet;
-
 // Must be defined before interfaces to which it applies
 %extend SdfLayer {
   std::string ExportToString() const {
@@ -57,9 +54,6 @@ typedef TfRefPtr<SdfLayer> SdfLayerRefPtr;
 
 %template(SdfLayerRefPtrVector) std::vector<SdfLayerRefPtr>;
 typedef std::vector<SdfLayerRefPtr> SdfLayerRefPtrVector;
-
-%template(SdfLayerRefPtrSet) std::set<SdfLayerRefPtr>;
-typedef std::set<SdfLayerRefPtr> SdfLayerRefPtrSet;
 
 class SdfLayerBase;
 

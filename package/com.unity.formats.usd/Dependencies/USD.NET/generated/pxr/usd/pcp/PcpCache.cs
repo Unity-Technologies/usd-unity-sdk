@@ -199,13 +199,13 @@ public class PcpCache : global::System.IDisposable {
     if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public SdfLayerHandleSet GetUsedLayers() {
-    SdfLayerHandleSet ret = new SdfLayerHandleSet(UsdCsPINVOKE.PcpCache_GetUsedLayers(swigCPtr), true);
+  public SWIGTYPE_p_SdfLayerHandleSet GetUsedLayers() {
+    SWIGTYPE_p_SdfLayerHandleSet ret = new SWIGTYPE_p_SdfLayerHandleSet(UsdCsPINVOKE.PcpCache_GetUsedLayers(swigCPtr), true);
     return ret;
   }
 
-  public SdfLayerHandleSet GetUsedRootLayers() {
-    SdfLayerHandleSet ret = new SdfLayerHandleSet(UsdCsPINVOKE.PcpCache_GetUsedRootLayers(swigCPtr), true);
+  public SWIGTYPE_p_SdfLayerHandleSet GetUsedRootLayers() {
+    SWIGTYPE_p_SdfLayerHandleSet ret = new SWIGTYPE_p_SdfLayerHandleSet(UsdCsPINVOKE.PcpCache_GetUsedRootLayers(swigCPtr), true);
     return ret;
   }
 
