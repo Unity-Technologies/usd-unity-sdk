@@ -311,6 +311,12 @@ namespace Unity.Formats.USD
                 var textureScale = material.GetTextureScale(textureName);
                 var textureRotation = material.HasProperty(textureName + "Rotation") ? Mathf.Rad2Deg * material.GetFloat(textureName + "Rotation") : 0f;
 
+                if (textureOffset == Vector2.zero && textureScale == Vector2.one)
+                {
+                    textureOffset = material.mainTextureOffset;
+                    textureScale = material.mainTextureScale;
+                }
+
                 // Workaround: texture rotation in USDZ rotates around top left corner while glTF rotates around bottom left corner.
                 // Since shaders are built for the latter we need to compensate here.
                 var v = new Vector2(0 * textureScale.x, 1 * textureScale.y);
