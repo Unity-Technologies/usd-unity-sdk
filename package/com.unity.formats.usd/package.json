@@ -30,5 +30,37 @@
         "url": "ssh://git@github.com:Unity-Technologies/usd-unity-sdk.git"
     },
     "unity": "2019.4",
-    "version": "3.0.0-exp.2"
+    "version": "3.0.0-exp.2",
+    "samples": [
+        {
+            "displayName": "ExportMesh",
+            "description": "Shows how to record a scene to a USD file",
+            "path": "Samples/ExportMesh"
+        },
+        {
+            "displayName": "HelloUsd",
+            "description": "Shows how to write custom data to USD",
+            "path": "Samples/HelloUsd"
+        },
+        {
+            "displayName": "ImportMaterials",
+            "description": "Shows how to import materials from USD into Unity",
+            "path": "Samples/ImportMaterials"
+        },
+        {
+            "displayName": "ImportMesh",
+            "description": "Shows how to import a scene from USD into Unity",
+            "path": "Samples/ImportMesh"
+        },
+        {
+            "displayName": "ImportProcessor",
+            "description": "Shows how to implement pre-import and post-import processors",
+            "path": "Samples/ImportProcessor"
+        },
+        {
+            "displayName": "UsdTimelinePlayable",
+            "description": "Shows how to use the USD integration in Timeline.",
+            "path": "Samples/UsdTimelinePlayable"
+        }
+    ]
 }
