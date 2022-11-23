@@ -41,7 +41,7 @@
   }
   %apply ELEM OUTPUT[] { ELEM* dest }
     void CopyToArray(ELEM* dest) { 
-    memcpy(dest, self->data(), self->size() * sizeof(ELEM));
+    memcpy(dest, self->cdata(), self->size() * sizeof(ELEM));
   }
   %apply ELEM INPUT[] { ELEM* src }
   void CopyFromArray(ELEM* src) { 
@@ -52,6 +52,18 @@
   %typemap(imtype) void* "System.IntPtr"
   %typemap(cstype) void* "System.IntPtr"
   %typemap(csin)   void* "$csinput"
+  %typemap(in)     void* %{ $1 = $input; %}
+  %typemap(out)    void* %{ $result = $1; %}
+  %typemap(csout, excode=SWIGEXCODE)  void* { 
+      System.IntPtr cPtr = $imcall;$excode
+      return cPtr;
+  }
+  %typemap(csvarout, excode=SWIGEXCODE2) void* %{ 
+    get {
+        System.IntPtr cPtr = $imcall;$excode 
+        return cPtr; 
+    } 
+  %}
   void CopyToArray(void* dest) { 
     memcpy(dest, self->data(), self->size() * sizeof(ELEM));
   }
@@ -67,6 +79,12 @@
   %csmethodmodifiers SetValue(int index, ELEM const& value) "protected";
   void SetValue(int index, ELEM const& value) {
     (*self)[index] = value;
+  }
+
+  %csmethodmodifiers cdata() "public";
+  void* cdata()
+  {
+    return (void*)(*self).cdata();
   }
 }
 

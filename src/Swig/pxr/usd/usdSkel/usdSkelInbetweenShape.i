@@ -21,3 +21,12 @@
 %template(UsdSkelInbetweenShapeVector) std::vector<UsdSkelInbetweenShape>;
 
 %include "pxr/usd/usdSkel/inbetweenShape.h"
+
+%extend UsdSkelInbetweenShape {
+    float GetWeightValue()
+    {
+        float value;   
+        (*self).GetWeight(&value);
+        return value;
+    }
+}
