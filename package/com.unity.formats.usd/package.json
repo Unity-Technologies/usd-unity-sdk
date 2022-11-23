@@ -25,10 +25,6 @@
     ],
     "name": "com.unity.formats.usd",
     "repoPackagePath": "package/com.unity.formats.usd",
-    "repository": {
-        "type": "git",
-        "url": "ssh://git@github.com:Unity-Technologies/usd-unity-sdk.git"
-    },
     "unity": "2019.4",
     "version": "3.0.0-exp.2"
 }
