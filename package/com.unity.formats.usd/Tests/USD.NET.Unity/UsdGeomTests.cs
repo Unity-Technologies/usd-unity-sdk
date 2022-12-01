@@ -25,7 +25,7 @@ namespace USD.NET.Unity.Tests
             sample.serialized.value = new float[10];
             sample.serialized.interpolation = PrimvarInterpolation.FaceVarying;
             sample.serialized.elementSize = 3;
-            sample.serialized.indices = new int[] {1, 2, 3, 4, 1};
+            sample.serialized.indices = new int[] { 1, 2, 3, 4, 1 };
 
             sample.scalar.value = 2.1f;
             Assert.AreEqual(PrimvarInterpolation.Constant, sample.scalar.interpolation);
@@ -60,7 +60,7 @@ namespace USD.NET.Unity.Tests
             UsdStage stage = UsdStage.CreateInMemory();
             var path = new SdfPath("/Parent/Curves");
             var curvesGprim = UsdGeomBasisCurves.Define(new UsdStageWeakPtr(stage), path);
-            var vertCounts = IntrinsicTypeConverter.ToVtArray(new[] {4});
+            var vertCounts = IntrinsicTypeConverter.ToVtArray(new[] { 4 });
             curvesGprim.CreateCurveVertexCountsAttr(vertCounts);
 
             var basisCurves = new BasisCurvesSample();
@@ -75,7 +75,7 @@ namespace USD.NET.Unity.Tests
             };
             // basisCurves.colors = colors;
             basisCurves.colors.SetValue(colors);
-            basisCurves.curveVertexCounts = new int[1] {4};
+            basisCurves.curveVertexCounts = new int[1] { 4 };
             basisCurves.doubleSided = true;
             basisCurves.normals = new UnityEngine.Vector3[4];
             basisCurves.normals[0] = new UnityEngine.Vector3(1, 0, 0);
@@ -123,7 +123,7 @@ namespace USD.NET.Unity.Tests
             var cam = new CameraSample
             {
                 projection = CameraSample.ProjectionType.Perspective,
-                clippingPlanes = new[] {new Vector4(0, 1, 2, 3), new UnityEngine.Vector4(4, 5, 6, 7)},
+                clippingPlanes = new[] { new Vector4(0, 1, 2, 3), new UnityEngine.Vector4(4, 5, 6, 7) },
                 clippingRange = new Vector2(0.01f, 1000.0f),
                 focalLength = 50,
                 focusDistance = 1.0f,
@@ -133,11 +133,11 @@ namespace USD.NET.Unity.Tests
                 stereoRole = CameraSample.StereoRole.Mono,
                 verticalAperture = 15.2908f,
                 verticalApertureOffset = 0.002f,
-                shutter = new CameraSample.Shutter {open = 0.001, close = 0.002}
+                shutter = new CameraSample.Shutter { open = 0.001, close = 0.002 }
             };
 
             // Prep a new camera sample to be populated.
-            var cam2 = new CameraSample {shutter = new CameraSample.Shutter()};
+            var cam2 = new CameraSample { shutter = new CameraSample.Shutter() };
 
             WriteAndRead(ref cam, ref cam2);
 
@@ -176,35 +176,34 @@ namespace USD.NET.Unity.Tests
 
             sampleIn.CopyToCamera(unityCamCopied, false);
 
-
-            Assert.AreEqual(unityCamOrig.orthographic, unityCamCopied.orthographic);
-            Assert.AreEqual(unityCamOrig.orthographicSize, unityCamCopied.orthographicSize);
-            Assert.AreEqual(unityCamOrig.fieldOfView, unityCamCopied.fieldOfView);
-            Assert.AreEqual(unityCamOrig.aspect, unityCamCopied.aspect);
-            Assert.AreEqual(unityCamOrig.nearClipPlane, unityCamCopied.nearClipPlane);
-            Assert.AreEqual(unityCamOrig.farClipPlane, unityCamCopied.farClipPlane);
+            Assert.That(unityCamOrig.orthographic, Is.EqualTo(unityCamCopied.orthographic).Within(1e-5));
+            Assert.That(unityCamOrig.orthographicSize, Is.EqualTo(unityCamCopied.orthographicSize).Within(1e-5));
+            Assert.That(unityCamOrig.fieldOfView, Is.EqualTo(unityCamCopied.fieldOfView).Within(1e-5));
+            Assert.That(unityCamOrig.aspect, Is.EqualTo(unityCamCopied.aspect).Within(1e-5));
+            Assert.That(unityCamOrig.nearClipPlane, Is.EqualTo(unityCamCopied.nearClipPlane).Within(1e-5));
+            Assert.That(unityCamOrig.farClipPlane, Is.EqualTo(unityCamCopied.farClipPlane).Within(1e-5));
             Assert.AreNotEqual(unityCamOrig.transform.localToWorldMatrix, unityCamCopied.transform.localToWorldMatrix);
             Assert.IsFalse(unityCamCopied.usePhysicalProperties);
 
             sampleIn.CopyToCamera(unityCamCopied, true);
 
             var copiedTransformConverted = UnityTypeConverter.ChangeBasis(unityCamCopied.transform.localToWorldMatrix);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m00, copiedTransformConverted.m00, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m01, copiedTransformConverted.m01, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m02, copiedTransformConverted.m02, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m03, copiedTransformConverted.m03, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m10, copiedTransformConverted.m10, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m11, copiedTransformConverted.m11, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m12, copiedTransformConverted.m12, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m13, copiedTransformConverted.m13, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m20, copiedTransformConverted.m20, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m21, copiedTransformConverted.m21, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m22, copiedTransformConverted.m22, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m23, copiedTransformConverted.m23, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m30, copiedTransformConverted.m30, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m31, copiedTransformConverted.m31, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m32, copiedTransformConverted.m32, 0.00001);
-            Assert.AreEqual(unityCamOrig.transform.localToWorldMatrix.m33, copiedTransformConverted.m33, 0.00001);
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m00, Is.EqualTo(copiedTransformConverted.m00).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m01, Is.EqualTo(copiedTransformConverted.m01).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m02, Is.EqualTo(copiedTransformConverted.m02).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m03, Is.EqualTo(copiedTransformConverted.m03).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m10, Is.EqualTo(copiedTransformConverted.m10).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m11, Is.EqualTo(copiedTransformConverted.m11).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m12, Is.EqualTo(copiedTransformConverted.m12).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m13, Is.EqualTo(copiedTransformConverted.m13).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m20, Is.EqualTo(copiedTransformConverted.m20).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m21, Is.EqualTo(copiedTransformConverted.m21).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m22, Is.EqualTo(copiedTransformConverted.m22).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m23, Is.EqualTo(copiedTransformConverted.m23).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m30, Is.EqualTo(copiedTransformConverted.m30).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m31, Is.EqualTo(copiedTransformConverted.m31).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m32, Is.EqualTo(copiedTransformConverted.m32).Within(1e-5));
+            Assert.That(unityCamOrig.transform.localToWorldMatrix.m33, Is.EqualTo(copiedTransformConverted.m33).Within(1e-5));
         }
     }
 }
