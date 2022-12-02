@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Unity.Formats.USD
