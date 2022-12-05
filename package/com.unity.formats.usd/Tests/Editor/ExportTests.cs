@@ -1,32 +1,40 @@
+// Copyright 2022 Unity Technologies. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 using NUnit.Framework;
-using UnityEditor.SceneManagement;
+using System.Collections.Generic;
 using UnityEngine;
 
-using USDScene = USD.NET.Scene;
-using UnityScene = UnityEngine.SceneManagement.Scene;
-using NUnit.Framework.Constraints;
+using USD.NET;
 using USD.NET.Unity;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class USDExportTests : BaseFixture
+    public class USDExportTests : BaseFixtureEditor
     {
-        private string m_USDFilePath;
-        private USDScene m_USDScene;
-        private UnityScene m_UnityScene;
+        private Scene m_USDScene;
+        private string m_USDScenePath;
 
         [SetUp]
         public void SetUp()
         {
-            m_UnityScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
-            m_USDFilePath = CreateTmpUsdFile("USDExportTests.usda");
-            m_USDScene = USDScene.Create(m_USDFilePath);
+            m_USDScenePath = GetUSDScenePath("USDExportTests");
         }
 
         [TearDown]
         public void TearDown()
         {
-            m_UnityScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
             if (m_USDScene != null)
             {
                 m_USDScene.Close();
@@ -41,14 +49,13 @@ namespace Unity.Formats.USD.Tests
             return m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(gameObject.transform)));
         }
 
-
         [Test]
         public void ExportRootGameObjectWithMesh_ExportedPrimHasMeshType()
         {
             var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            ExportHelpers.ExportGameObjects(new[] { cube }, m_USDScene, BasisTransformation.SlowAndSafe);
+            ExportHelpers.ExportGameObjects(new[] { cube }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
 
-            m_USDScene = USDScene.Open(m_USDFilePath);
+            m_USDScene = Scene.Open(m_USDScenePath);
 
             var cubePrim = GetPrim(cube);
             Assert.IsNotNull(cubePrim);
@@ -60,43 +67,55 @@ namespace Unity.Formats.USD.Tests
         }
 
         [Test]
-        public void ExportMultipleRootGameObjectsWithSameName_AllGameObjecsHaveCorrespondingPrims()
+        public void ExportMultipleRootGameObjectsWithSameName_AllGameObjectsHaveCorrespondingPrims()
         {
             var cubes = new GameObject[] { GameObject.CreatePrimitive(PrimitiveType.Cube), GameObject.CreatePrimitive(PrimitiveType.Cube), GameObject.CreatePrimitive(PrimitiveType.Cube) };
-            foreach (GameObject cube in cubes)
-            {
-                cube.name = "Cube";
-            }
-            ExportHelpers.ExportGameObjects(cubes, m_USDScene, BasisTransformation.SlowAndSafe);
+            cubes[0].name = "Cube_1"; // Name deduplication appends _GetSiblingIndex() and in this case cubes[1] needs 2 iterations
+            cubes[1].name = "Cube";
+            cubes[2].name = "Cube";
 
-            m_USDScene = USDScene.Open(m_USDFilePath);
+            ExportHelpers.ExportGameObjects(cubes, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+
+            m_USDScene = Scene.Open(m_USDScenePath);
+            var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
                 var cubePrim = GetPrim(cube);
-                Assert.IsNotNull(cubePrim);
-                Assert.IsTrue(cubePrim.IsValid());
+                Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
+                Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
+
+                exportedPrims.Add(cubePrim);
             }
+            Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
         }
 
         [Test]
-        public void ExportMultipleSiblingGameObjectsWithSameName_AllGameObjecsHaveCorrespondingPrims()
+        public void ExportMultipleSiblingGameObjectsWithSameName_AllGameObjectsHaveCorrespondingPrims()
         {
-            var parent = new GameObject("parent");
             var cubes = new GameObject[] { GameObject.CreatePrimitive(PrimitiveType.Cube), GameObject.CreatePrimitive(PrimitiveType.Cube), GameObject.CreatePrimitive(PrimitiveType.Cube) };
-            foreach (GameObject cube in cubes)
+            cubes[0].name = "Cube_1"; // Name deduplication appends _GetSiblingIndex() and in this case cubes[1] needs 2 iterations
+            cubes[1].name = "Cube";
+            cubes[2].name = "Cube";
+
+            var parent = new GameObject("parent");
+            foreach (var cube in cubes)
             {
-                cube.name = "Cube";
                 cube.transform.parent = parent.transform;
             }
-            ExportHelpers.ExportGameObjects(new GameObject[] { parent }, m_USDScene, BasisTransformation.SlowAndSafe);
 
-            m_USDScene = USDScene.Open(m_USDFilePath);
+            ExportHelpers.ExportGameObjects(new GameObject[] { parent }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+
+            m_USDScene = Scene.Open(m_USDScenePath);
+            var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
                 var cubePrim = GetPrim(cube);
-                Assert.IsNotNull(cubePrim);
-                Assert.IsTrue(cubePrim.IsValid());
+                Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
+                Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
+
+                exportedPrims.Add(cubePrim);
             }
+            Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Unity.Formats.USD
         }
 
 #if UNITY_EDITOR
-        public static string ImportAsPrefab(Scene scene)
+        public static string ImportAsPrefab(Scene scene, string prefabPath)
         {
             string path = scene.FilePath;
 
@@ -72,7 +72,10 @@ namespace Unity.Formats.USD
             importOptions.projectAssetPath = GetSelectedAssetPath();
             importOptions.usdRootPath = GetDefaultRoot(scene);
 
-            string prefabPath = GetPrefabPath(path, importOptions.projectAssetPath);
+            if (string.IsNullOrEmpty(prefabPath))
+            {
+                prefabPath = GetPrefabPath(path, importOptions.projectAssetPath);
+            }
             string clipName = Path.GetFileNameWithoutExtension(path);
 
             var go = new GameObject(GetObjectName(importOptions.usdRootPath, path));
@@ -89,7 +92,7 @@ namespace Unity.Formats.USD
             }
         }
 
-        public static string ImportAsTimelineClip(Scene scene)
+        public static string ImportAsTimelineClip(Scene scene, string prefabPath)
         {
             string path = scene.FilePath;
 
@@ -98,7 +101,10 @@ namespace Unity.Formats.USD
             importOptions.usdRootPath = GetDefaultRoot(scene);
             importOptions.changeHandedness = BasisTransformation.FastWithNegativeScale;
 
-            string prefabPath = GetPrefabPath(path, importOptions.projectAssetPath);
+            if (string.IsNullOrEmpty(prefabPath))
+            {
+                prefabPath = GetPrefabPath(path, importOptions.projectAssetPath);
+            }
             string clipName = Path.GetFileNameWithoutExtension(path);
 
             var go = new GameObject(GetObjectName(importOptions.usdRootPath, path));

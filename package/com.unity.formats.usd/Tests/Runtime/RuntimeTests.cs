@@ -11,7 +11,7 @@ using Scene = USD.NET.Scene;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class SanityTest : BaseFixture
+    public class SanityTest : BaseFixtureRuntime
     {
         class MyCustomData : SampleBase
         {
@@ -20,19 +20,13 @@ namespace Unity.Formats.USD.Tests
             public Bounds aBoundingBox;
         }
 
-        [SetUp]
-        public void SetUp()
-        {
-            InitUsd.Initialize();
-        }
-
         [Test]
         public void CanWriteCustomData()
         {
             // Populate Values.
             var value = new MyCustomData();
             value.aString = "IT'S ALIIIIIIIIIIIIIVE!";
-            value.anArrayOfInts = new int[] {1, 2, 3, 4};
+            value.anArrayOfInts = new int[] { 1, 2, 3, 4 };
             value.aBoundingBox = new UnityEngine.Bounds();
 
             // Writing the value.

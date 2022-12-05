@@ -287,16 +287,16 @@ namespace USD.NET.Unity
             return scale;
         }
 
-        private static bool HasAnySiblingsWithSameName(Transform transform)
+        private static bool HasAnySiblingsWithName(Transform transform, string name)
         {
             if (transform.parent == null)
             {
-                return transform.gameObject.scene.GetRootGameObjects().Any(sibling => sibling != transform.gameObject && sibling.name == transform.gameObject.name);
+                return transform.gameObject.scene.GetRootGameObjects().Any(sibling => sibling != transform.gameObject && sibling.name == name);
             }
 
             foreach (Transform sibling in transform.parent)
             {
-                if (sibling != transform && sibling.gameObject.name == transform.gameObject.name)
+                if (sibling != transform && sibling.name == name)
                 {
                     return true;
                 }
@@ -306,12 +306,13 @@ namespace USD.NET.Unity
 
         static public string GetUniqueName(Transform transform)
         {
-            if (HasAnySiblingsWithSameName(transform))
+            var uniqueName = transform.name;
+            while (HasAnySiblingsWithName(transform, uniqueName))
             {
-                return $"{transform.gameObject.name}{transform.GetSiblingIndex()}";
+                uniqueName = $"{uniqueName}_{transform.GetSiblingIndex()}";
             }
 
-            return transform.gameObject.name;
+            return uniqueName;
         }
 
         // ----------------------------------------------------------------------------------------- //
@@ -337,8 +338,7 @@ namespace USD.NET.Unity
         /// Note that illegal characters are converted into legal characters, so invalid names may
         /// collide in the USD namespace.
         /// </remarks>
-        static public string GetPath(UnityEngine.Transform unityObj,
-            UnityEngine.Transform unityObjRoot)
+        static public string GetPath(Transform unityObj, Transform unityObjRoot)
         {
             // Base case.
             if (unityObjRoot != null && unityObj == null)
@@ -352,8 +352,7 @@ namespace USD.NET.Unity
             }
 
             // Build the path from root to leaf.
-            return GetPath(unityObj.transform.parent, unityObjRoot)
-                + "/" + UnityTypeConverter.MakeValidIdentifier(GetUniqueName(unityObj));
+            return GetPath(unityObj.transform.parent, unityObjRoot) + "/" + UnityTypeConverter.MakeValidIdentifier(GetUniqueName(unityObj));
         }
 
         // ----------------------------------------------------------------------------------------- //
@@ -600,7 +599,7 @@ namespace USD.NET.Unity
         {
             // Unfortunate, but faster than using the USD bindings currently.
             var unityRgb = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>((uint)input.Length);
-            float[] unityAlpha = UsdIo.ArrayAllocator.Malloc<float>((uint)input.Length); ;
+            float[] unityAlpha = UsdIo.ArrayAllocator.Malloc<float>((uint)input.Length);
             for (int i = 0; i < input.Length; i++)
             {
                 unityAlpha[i] = input[i].a;
@@ -908,7 +907,7 @@ namespace USD.NET.Unity
         [Preserve]
         static public UnityEngine.Vector3[] FromVtArray(VtVec3fArray input)
         {
-            var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size()); ;
+            var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size());
             FromVtArray(input, ref output);
             return output;
         }

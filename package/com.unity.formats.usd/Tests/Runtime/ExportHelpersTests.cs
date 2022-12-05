@@ -1,3 +1,17 @@
+// Copyright 2022 Unity Technologies. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 using System.IO;
 using NUnit.Framework;
 using UnityEngine;
@@ -5,7 +19,7 @@ using USD.NET;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class ExportHelpersTests : BaseFixture
+    public class ExportHelpersTests : BaseFixtureRuntime
     {
         [Test]
         public void InitForSave_EmptyFile()
@@ -24,8 +38,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void InitForSave_ValidPath()
         {
-            var filePath = System.IO.Path.Combine(Application.dataPath, "dummyUsd.usd");
-            m_filesToDelete.Add(filePath);
+            var filePath = GetUSDScenePath("dummyUsd.usd");
             var scene = ExportHelpers.InitForSave(filePath);
             Assert.IsNotNull(scene);
             Assert.IsNotNull(scene.Stage);
@@ -40,7 +53,7 @@ namespace Unity.Formats.USD.Tests
             scene.Close();
             var fileInfoBefore = new FileInfo(filePath);
 
-            Assert.DoesNotThrow(delegate()
+            Assert.DoesNotThrow(delegate ()
             {
                 ExportHelpers.ExportGameObjects(null, null, BasisTransformation.SlowAndSafe);
             });
@@ -54,9 +67,9 @@ namespace Unity.Formats.USD.Tests
             var filePath = CreateTmpUsdFile("dummyUsd.usda");
             var scene = Scene.Open(filePath);
             var fileInfoBefore = new FileInfo(filePath);
-            Assert.DoesNotThrow(delegate()
+            Assert.DoesNotThrow(delegate ()
             {
-                ExportHelpers.ExportGameObjects(new GameObject[] {}, scene, BasisTransformation.SlowAndSafe);
+                ExportHelpers.ExportGameObjects(new GameObject[] { }, scene, BasisTransformation.SlowAndSafe);
             });
             var fileInfoAfter = new FileInfo(filePath);
             Assert.AreEqual(fileInfoBefore.Length, fileInfoAfter.Length);
@@ -68,9 +81,9 @@ namespace Unity.Formats.USD.Tests
         {
             var filePath = CreateTmpUsdFile("dummyUsd.usda");
             var scene = Scene.Open(filePath);
-            Assert.DoesNotThrow(delegate()
+            Assert.DoesNotThrow(delegate ()
             {
-                ExportHelpers.ExportGameObjects(new GameObject[] {null}, scene, BasisTransformation.SlowAndSafe);
+                ExportHelpers.ExportGameObjects(new GameObject[] { null }, scene, BasisTransformation.SlowAndSafe);
             });
 
             UnityEngine.TestTools.LogAssert.Expect(LogType.Exception, "NullReferenceException: Object reference not set to an instance of an object");
@@ -81,7 +94,7 @@ namespace Unity.Formats.USD.Tests
         {
             var filePath = CreateTmpUsdFile("dummyUsd.usda");
             var scene = Scene.Open(filePath);
-            ExportHelpers.ExportGameObjects(new[] {new GameObject("test")}, scene, BasisTransformation.SlowAndSafe);
+            ExportHelpers.ExportGameObjects(new[] { new GameObject("test") }, scene, BasisTransformation.SlowAndSafe);
             scene = Scene.Open(filePath);
             var paths = scene.Stage.GetAllPaths();
             Debug.Log(scene.Stage.GetRootLayer().ExportToString());
@@ -94,7 +107,7 @@ namespace Unity.Formats.USD.Tests
         {
             var filePath = CreateTmpUsdFile("dummyUsd.usda");
             var scene = Scene.Open(filePath);
-            ExportHelpers.ExportGameObjects(new[] {new GameObject("test")}, scene, BasisTransformation.SlowAndSafe);
+            ExportHelpers.ExportGameObjects(new[] { new GameObject("test") }, scene, BasisTransformation.SlowAndSafe);
             Assert.IsNull(scene.Stage);
         }
     }
