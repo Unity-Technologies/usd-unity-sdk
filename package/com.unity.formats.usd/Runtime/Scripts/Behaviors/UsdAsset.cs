@@ -222,7 +222,12 @@ namespace Unity.Formats.USD
 #if UNITY_EDITOR
             if (!UnityEditor.EditorUtility.IsPersistent(root))
             {
+#if UNITY_2021_2_OR_NEWER
+                var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
+#else
                 var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
+#endif
+
                 if (prefabStage != null)
                 {
                     if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root))

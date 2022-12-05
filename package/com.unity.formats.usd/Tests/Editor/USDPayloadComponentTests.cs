@@ -1,5 +1,20 @@
+// Copyright 2022 Unity Technologies. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEditor.SceneManagement;
 using USD.NET;
 using System.IO;
 using UnityEditor;
@@ -8,7 +23,7 @@ using System.Collections;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class USDPayloadComponentTests
+    public class USDPayloadComponentTests : CleanTestEnvironment
     {
         const string k_USDGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUID of test_collections.usda
 
@@ -191,6 +206,40 @@ namespace Unity.Formats.USD.Tests
             usdPayload = m_usdRoot.GetComponentInChildren<UsdPayload>();
             Assume.That(usdPayload, Is.Not.Null, "Could not find USDPayload in the subtree.");
             Assume.That(usdPayload.IsLoaded, Is.False, "UsdPayload.IsLoaded should be set to false.");
+        }
+
+        [UnityTest]
+        public IEnumerator ChangingUsdPayloadStateFromUnloadedToLoaded_MarksSceneDirty()
+        {
+            m_usdAsset.m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
+            m_usdAsset.Reload(forceRebuild: true);
+            yield return null;
+
+            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath("PayloadTests"));
+            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
+
+            // Change payload state and wait one frame to ensure Update runs
+            m_usdRoot.GetComponentInChildren<UsdPayload>().Load();
+            yield return null;
+
+            Assert.IsTrue(m_UnityScene.isDirty, "Scene should be dirty after changing UsdPayload objects");
+        }
+
+        [UnityTest]
+        public IEnumerator ChangingUsdPayloadStateFromLoadedToUnloaded_MarksSceneDirty()
+        {
+            m_usdAsset.m_payloadPolicy = PayloadPolicy.LoadAll;
+            m_usdAsset.Reload(forceRebuild: true);
+            yield return null;
+
+            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath("PayloadTests"));
+            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
+
+            // Change payload state and wait one frame to ensure Update runs
+            m_usdRoot.GetComponentInChildren<UsdPayload>().Unload();
+            yield return null;
+
+            Assert.IsTrue(m_UnityScene.isDirty, "Scene should be dirty after changing UsdPayload objects");
         }
     }
 }
