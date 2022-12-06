@@ -59,7 +59,7 @@ namespace Unity.Formats.USD
         }
 
 #if UNITY_EDITOR
-        public static string ImportAsPrefab(Scene scene, string prefabPath)
+        public static string ImportAsPrefab(Scene scene, string prefabPath = null)
         {
             string path = scene.FilePath;
 
@@ -92,7 +92,7 @@ namespace Unity.Formats.USD
             }
         }
 
-        public static string ImportAsTimelineClip(Scene scene, string prefabPath)
+        public static string ImportAsTimelineClip(Scene scene, string prefabPath = null)
         {
             string path = scene.FilePath;
 
