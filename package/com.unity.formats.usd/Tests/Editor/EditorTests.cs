@@ -10,7 +10,7 @@ using Assert = UnityEngine.Assertions.Assert;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class UsdPrimTypeTest_Scope
+    public class UsdPrimTypeTest_Scope : BaseFixtureEditor
     {
         private GameObject m_usdRoot;
         private string m_usdGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUI of test_collections.usda
@@ -18,7 +18,6 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            InitUsd.Initialize();
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
@@ -62,7 +61,7 @@ namespace Unity.Formats.USD.Tests
         }
     }
 
-    public class UsdMaterialTest
+    public class UsdMaterialTest : BaseFixtureEditor
     {
         private GameObject m_usdRoot;
         private string m_usdGUID = "c06c7eba08022b74ca49dce5f79ef3ba"; // GUI of simpleMaterialTest.usd
@@ -70,7 +69,6 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            InitUsd.Initialize();
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
@@ -98,7 +96,7 @@ namespace Unity.Formats.USD.Tests
 
     [TestFixture("a4a575275d6254853ac93b867a1a8471")] // Fully defined prims
     [TestFixture("b66c9dc38fc1e0044b3d93a196ad1365")] // Prims with references
-    class AttributeScope
+    class AttributeScope : BaseFixtureEditor
     {
         GameObject gameObject;
         Scene scene;

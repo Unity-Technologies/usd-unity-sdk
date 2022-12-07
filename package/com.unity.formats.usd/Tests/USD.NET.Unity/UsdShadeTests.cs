@@ -1,6 +1,7 @@
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
+using USD.NET.Tests;
 
 namespace USD.NET.Unity.Tests
 {

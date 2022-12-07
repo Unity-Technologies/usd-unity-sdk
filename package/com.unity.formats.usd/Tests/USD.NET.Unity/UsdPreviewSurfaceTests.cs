@@ -2,6 +2,7 @@ using System.Linq;
 using NUnit.Framework;
 using pxr;
 using UnityEngine;
+using USD.NET.Tests;
 
 namespace USD.NET.Unity.Tests
 {
