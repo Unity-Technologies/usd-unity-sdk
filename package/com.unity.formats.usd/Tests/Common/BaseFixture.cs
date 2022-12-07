@@ -87,9 +87,9 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void InitUSDAndArtifactsDirectory()
         {
-            InitUsd.Initialize();
-
+            Unity.Formats.USD.InitUsd.Initialize();
             CleanupTestArtifacts();
+
             if (!Directory.Exists(ArtifactsDirectoryFullPath))
             {
                 Directory.CreateDirectory(ArtifactsDirectoryFullPath);
