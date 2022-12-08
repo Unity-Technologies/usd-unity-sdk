@@ -161,7 +161,7 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            ImportHelpers.ImportAsPrefab(scene);
+            ImportHelpers.ImportAsPrefab(scene, null);
         }
 
         [MenuItem("USD/Import as Timeline Clip", priority = 2)]
@@ -173,7 +173,7 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            ImportHelpers.ImportAsTimelineClip(scene);
+            ImportHelpers.ImportAsTimelineClip(scene, null);
         }
 
         [MenuItem("USD/Unload Subtree", true)]
