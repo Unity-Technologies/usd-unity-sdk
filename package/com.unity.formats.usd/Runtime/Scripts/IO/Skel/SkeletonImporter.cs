@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using pxr;
 using UnityEngine;
 using USD.NET;
@@ -144,22 +145,12 @@ namespace Unity.Formats.USD
 
         static bool JointsMatch(string[] lhs, string[] rhs)
         {
-            if (lhs == null && rhs == null)
-            {
-                return true;
-            }
-
             if (lhs == null || rhs == null)
             {
-                return false;
+                return lhs == rhs;
             }
 
-            if (lhs == rhs)
-            {
-                return true;
-            }
-
-            return true;
+            return lhs.SequenceEqual(rhs);
         }
 
         public static void BuildSkinnedMesh(string meshPath,
