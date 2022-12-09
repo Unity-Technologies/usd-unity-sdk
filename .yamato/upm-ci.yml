@@ -116,6 +116,7 @@ test_trigger:
     - .yamato/upm-ci.yml#test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}
       {% endfor %}
       {% endfor %}
+    - .yamato/formatting.yml#formatting
 
 nightly_test_trigger:
   name: Nightly tests Trigger
