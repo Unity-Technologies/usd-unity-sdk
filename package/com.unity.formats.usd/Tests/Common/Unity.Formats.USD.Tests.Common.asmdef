@@ -1,10 +1,9 @@
 {
-    "name": "Unity.Formats.USD.Tests",
+    "name": "Unity.Formats.USD.Tests.Common",
     "references": [
         "USD.NET",
         "USD.NET.Unity",
-        "Unity.Formats.USD.Runtime",
-        "Unity.Timeline",
+        "USD.NET.Tests",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

@@ -24,10 +24,8 @@ namespace Unity.Formats.USD.Tests
         public void ImportAsPrefabTest_ContentOk()
         {
             var scene = CreateTestAsset("dummyUsd.usda");
-            var assetPath = ImportHelpers.ImportAsPrefab(scene);
+            var assetPath = ImportHelpers.ImportAsPrefab(scene, GetPrefabPath());
             Assert.IsNull(scene.Stage, "Scene was not closed after import.");
-
-            m_assetsToDelete.Add(assetPath);
 
             Assert.IsTrue(File.Exists(assetPath));
             var allObjects = AssetDatabase.LoadAllAssetsAtPath(assetPath);
@@ -63,9 +61,8 @@ namespace Unity.Formats.USD.Tests
         {
             // Import as timeline clip should not create a hierarchy, only the root and the playable
             var scene = CreateTestAsset("dummyUsd.usda");
-            var assetPath = ImportHelpers.ImportAsTimelineClip(scene);
+            var assetPath = ImportHelpers.ImportAsTimelineClip(scene, GetPrefabPath());
             Assert.IsNull(scene.Stage, "Scene was not closed after import.");
-            m_assetsToDelete.Add(assetPath);
 
             Assert.IsTrue(File.Exists(assetPath));
             var allObjects = AssetDatabase.LoadAllAssetsAtPath(assetPath);

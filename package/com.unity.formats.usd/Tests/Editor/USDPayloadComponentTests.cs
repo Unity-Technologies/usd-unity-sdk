@@ -23,7 +23,7 @@ using System.Collections;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class USDPayloadComponentTests : CleanTestEnvironment
+    public class USDPayloadComponentTests : BaseFixtureEditor
     {
         const string k_USDGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUID of test_collections.usda
 
@@ -33,7 +33,6 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void Setup()
         {
-            InitUsd.Initialize();
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDGUID));
             var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
@@ -215,7 +214,7 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.Reload(forceRebuild: true);
             yield return null;
 
-            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath("PayloadTests"));
+            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
 
             // Change payload state and wait one frame to ensure Update runs
@@ -232,7 +231,7 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.Reload(forceRebuild: true);
             yield return null;
 
-            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath("PayloadTests"));
+            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
 
             // Change payload state and wait one frame to ensure Update runs

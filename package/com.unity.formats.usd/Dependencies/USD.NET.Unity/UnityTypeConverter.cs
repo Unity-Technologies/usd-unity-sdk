@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using pxr;
+using UnityEngine;
 
 namespace USD.NET.Unity
 {
@@ -286,6 +287,34 @@ namespace USD.NET.Unity
             return scale;
         }
 
+        private static bool HasAnySiblingsWithName(Transform transform, string name)
+        {
+            if (transform.parent == null)
+            {
+                return transform.gameObject.scene.GetRootGameObjects().Any(sibling => sibling != transform.gameObject && sibling.name == name);
+            }
+
+            foreach (Transform sibling in transform.parent)
+            {
+                if (sibling != transform && sibling.name == name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        static public string GetUniqueName(Transform transform)
+        {
+            var uniqueName = transform.name;
+            while (HasAnySiblingsWithName(transform, uniqueName))
+            {
+                uniqueName = $"{uniqueName}_{transform.GetSiblingIndex()}";
+            }
+
+            return uniqueName;
+        }
+
         // ----------------------------------------------------------------------------------------- //
         // Paths
         // ----------------------------------------------------------------------------------------- //
@@ -309,8 +338,7 @@ namespace USD.NET.Unity
         /// Note that illegal characters are converted into legal characters, so invalid names may
         /// collide in the USD namespace.
         /// </remarks>
-        static public string GetPath(UnityEngine.Transform unityObj,
-            UnityEngine.Transform unityObjRoot)
+        static public string GetPath(Transform unityObj, Transform unityObjRoot)
         {
             // Base case.
             if (unityObjRoot != null && unityObj == null)
@@ -324,8 +352,7 @@ namespace USD.NET.Unity
             }
 
             // Build the path from root to leaf.
-            return GetPath(unityObj.transform.parent, unityObjRoot)
-                + "/" + UnityTypeConverter.MakeValidIdentifier(unityObj.name);
+            return GetPath(unityObj.transform.parent, unityObjRoot) + "/" + UnityTypeConverter.MakeValidIdentifier(GetUniqueName(unityObj));
         }
 
         // ----------------------------------------------------------------------------------------- //
@@ -529,7 +556,7 @@ namespace USD.NET.Unity
             var output = new VtVec4fArray((uint)input.Length);
             unsafe
             {
-                fixed(UnityEngine.Color* p = input)
+                fixed (UnityEngine.Color* p = input)
                 {
                     output.CopyFromArray((IntPtr)p);
                 }
@@ -554,7 +581,7 @@ namespace USD.NET.Unity
             }
             unsafe
             {
-                fixed(UnityEngine.Color* p = output)
+                fixed (UnityEngine.Color* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -572,7 +599,7 @@ namespace USD.NET.Unity
         {
             // Unfortunate, but faster than using the USD bindings currently.
             var unityRgb = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>((uint)input.Length);
-            float[] unityAlpha = UsdIo.ArrayAllocator.Malloc<float>((uint)input.Length);;
+            float[] unityAlpha = UsdIo.ArrayAllocator.Malloc<float>((uint)input.Length);
             for (int i = 0; i < input.Length; i++)
             {
                 unityAlpha[i] = input[i].a;
@@ -718,7 +745,7 @@ namespace USD.NET.Unity
             unsafe
             {
                 // Copy to USD/C++
-                fixed(UnityEngine.Quaternion* p = input)
+                fixed (UnityEngine.Quaternion* p = input)
                 {
                     output.CopyFromArray((IntPtr)p);
                 }
@@ -736,7 +763,7 @@ namespace USD.NET.Unity
             var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Quaternion>(input.size());
             unsafe
             {
-                fixed(UnityEngine.Quaternion* p = output)
+                fixed (UnityEngine.Quaternion* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -758,7 +785,7 @@ namespace USD.NET.Unity
             var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Quaternion>(input.size());
             unsafe
             {
-                fixed(UnityEngine.Quaternion* p = output)
+                fixed (UnityEngine.Quaternion* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -777,7 +804,7 @@ namespace USD.NET.Unity
             var output = new VtVec4fArray((uint)input.Length);
             unsafe
             {
-                fixed(UnityEngine.Vector4* p = input)
+                fixed (UnityEngine.Vector4* p = input)
                 {
                     output.CopyFromArray((IntPtr)p);
                 }
@@ -791,7 +818,7 @@ namespace USD.NET.Unity
             var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector4>(input.size());
             unsafe
             {
-                fixed(UnityEngine.Vector4* p = output)
+                fixed (UnityEngine.Vector4* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -811,7 +838,7 @@ namespace USD.NET.Unity
             var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector4>(input.size());
             unsafe
             {
-                fixed(UnityEngine.Vector4* p = output)
+                fixed (UnityEngine.Vector4* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -868,7 +895,7 @@ namespace USD.NET.Unity
             var output = new VtVec3fArray((uint)input.Length);
             unsafe
             {
-                fixed(UnityEngine.Vector3* p = input)
+                fixed (UnityEngine.Vector3* p = input)
                 {
                     output.CopyFromArray((IntPtr)p);
                 }
@@ -880,7 +907,7 @@ namespace USD.NET.Unity
         [Preserve]
         static public UnityEngine.Vector3[] FromVtArray(VtVec3fArray input)
         {
-            var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size());;
+            var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size());
             FromVtArray(input, ref output);
             return output;
         }
@@ -894,7 +921,7 @@ namespace USD.NET.Unity
             }
             unsafe
             {
-                fixed(UnityEngine.Vector3* p = output)
+                fixed (UnityEngine.Vector3* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -913,7 +940,7 @@ namespace USD.NET.Unity
             var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector3>(input.size());
             unsafe
             {
-                fixed(UnityEngine.Vector3* p = output)
+                fixed (UnityEngine.Vector3* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -930,7 +957,7 @@ namespace USD.NET.Unity
             var output = new VtVec2fArray((uint)input.Length);
             unsafe
             {
-                fixed(UnityEngine.Vector2* p = input)
+                fixed (UnityEngine.Vector2* p = input)
                 {
                     output.CopyFromArray((IntPtr)p);
                 }
@@ -944,7 +971,7 @@ namespace USD.NET.Unity
             var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector2>(input.size());
             unsafe
             {
-                fixed(UnityEngine.Vector2* p = output)
+                fixed (UnityEngine.Vector2* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }
@@ -964,7 +991,7 @@ namespace USD.NET.Unity
             var output = UsdIo.ArrayAllocator.Malloc<UnityEngine.Vector2>(input.size());
             unsafe
             {
-                fixed(UnityEngine.Vector2* p = output)
+                fixed (UnityEngine.Vector2* p = output)
                 {
                     input.CopyToArray((IntPtr)p);
                 }

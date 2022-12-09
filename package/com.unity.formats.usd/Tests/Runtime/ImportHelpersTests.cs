@@ -7,7 +7,7 @@ using Scene = USD.NET.Scene;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class ImportHelpersTests : BaseFixture
+    public class ImportHelpersTests : BaseFixtureRuntime
     {
         Scene CreateTmpUsdWithData(string fileName)
         {

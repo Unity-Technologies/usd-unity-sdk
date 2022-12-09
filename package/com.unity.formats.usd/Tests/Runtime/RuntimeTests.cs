@@ -11,19 +11,13 @@ using Scene = USD.NET.Scene;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class SanityTest : BaseFixture
+    public class SanityTest : BaseFixtureRuntime
     {
         class MyCustomData : SampleBase
         {
             public string aString;
             public int[] anArrayOfInts;
             public Bounds aBoundingBox;
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            InitUsd.Initialize();
         }
 
         [Test]

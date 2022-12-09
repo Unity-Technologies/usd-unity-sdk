@@ -233,7 +233,6 @@ namespace Unity.Formats.USD
 #else
                 var prefabStage = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetPrefabStage(root);
 #endif
-
                 if (prefabStage != null)
                 {
                     if (!UnityEditor.PrefabUtility.IsPartOfPrefabInstance(root))

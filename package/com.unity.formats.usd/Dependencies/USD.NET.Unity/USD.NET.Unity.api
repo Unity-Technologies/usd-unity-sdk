@@ -395,6 +395,7 @@ namespace USD.NET.Unity
         public static UnityEngine.Matrix4x4 GetLocalToParentXf(UnityEngine.Transform unityXf);
         public static string GetPath(UnityEngine.Transform unityObj);
         public static string GetPath(UnityEngine.Transform unityObj, UnityEngine.Transform unityObjRoot);
+        public static string GetUniqueName(UnityEngine.Transform transform);
         public static System.Collections.Generic.List<UnityEngine.Matrix4x4> ListFromVtArray(pxr.VtMatrix4dArray input);
         public static System.Collections.Generic.List<UnityEngine.Quaternion> ListFromVtArray(pxr.VtQuatfArray input);
         public static System.Collections.Generic.List<UnityEngine.Vector2> ListFromVtArray(pxr.VtVec2fArray input);
