@@ -1,5 +1,5 @@
 formatting:
-    name: Formatting
+    name: Validate Formatting
     agent:
         type: Unity::VM
         image: package-ci/ubuntu:v1.3.1-719011
@@ -24,7 +24,7 @@ formatting_apply:
         - git clone --depth 1 --branch stable git@github.cds.internal.unity3d.com:unity/unity-meta.git
         - mv unity-meta ~/unity-meta
         - perl ~/unity-meta/Tools/Format/format.pl TestProject package/com.unity.formats.usd --nobackups
-        - git add .
+        - git add . # Take care not to add commands that might create unexpected changes
         - git commit -m "Apply formatting changes"
         - git push --set-upstream origin $GIT_BRANCH
     timeout: 1
