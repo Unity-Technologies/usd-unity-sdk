@@ -28,20 +28,20 @@ namespace USD.NET.Unity.Tests
             var texturePath = "/Model/Materials/SimpleMat/TextureReader";
             var primvarReaderPath = "/Model/Materials/SimpleMat/UvReader";
 
-            var cube = new CubeSample {size = 1};
+            var cube = new CubeSample { size = 1 };
 
             var material = new MaterialSample();
             material.surface.SetConnectedPath(shaderPath, "outputs:result");
 
-            var shader = new PreviewSurfaceSample {diffuseColor = {defaultValue = Vector3.one}};
+            var shader = new PreviewSurfaceSample { diffuseColor = { defaultValue = Vector3.one } };
             shader.diffuseColor.SetConnectedPath(texturePath, "outputs:rgb");
 
             var texture = new TextureReaderSample
             {
-                file = {defaultValue = new SdfAssetPath(@"C:\A\Bogus\Texture\Path.png")}
+                file = { defaultValue = new SdfAssetPath(@"C:\A\Bogus\Texture\Path.png") }
             };
 
-            var primvarReader = new PrimvarReaderSample<Vector2> {varname = {defaultValue = new TfToken("st")}};
+            var primvarReader = new PrimvarReaderSample<Vector2> { varname = { defaultValue = new TfToken("st") } };
 
             scene.Write("/Model", new XformSample());
             scene.Write("/Model/Geom", new XformSample());

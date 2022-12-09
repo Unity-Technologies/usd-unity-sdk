@@ -29,7 +29,8 @@ namespace Unity.Formats.USD
     public class SkelBindingSample : SampleBase
     {
         // Blend Shapes.
-        [UsdNamespace("skel")][UsdVariability(Variability.Uniform)]
+        [UsdNamespace("skel")]
+        [UsdVariability(Variability.Uniform)]
         public string[] blendShapes;
 
         [UsdNamespace("skel")] public Relationship blendShapeTargets = new Relationship();
@@ -40,16 +41,20 @@ namespace Unity.Formats.USD
         [UsdNamespace("skel")] public Relationship skeleton = new Relationship();
 
         // Skeleton Binding Data.
-        [UsdNamespace("skel")][UsdVariability(Variability.Uniform)]
+        [UsdNamespace("skel")]
+        [UsdVariability(Variability.Uniform)]
         public string[] joints;
 
-        [UsdNamespace("skel")][UsdVariability(Variability.Uniform)]
+        [UsdNamespace("skel")]
+        [UsdVariability(Variability.Uniform)]
         public Primvar<int[]> jointIndices = new Primvar<int[]>();
 
-        [UsdNamespace("skel")][UsdVariability(Variability.Uniform)]
+        [UsdNamespace("skel")]
+        [UsdVariability(Variability.Uniform)]
         public Primvar<Matrix4x4> geomBindTransform = new Primvar<Matrix4x4>();
 
-        [UsdNamespace("skel")][UsdVariability(Variability.Uniform)]
+        [UsdNamespace("skel")]
+        [UsdVariability(Variability.Uniform)]
         public Primvar<float[]> jointWeights = new Primvar<float[]>();
     }
 
