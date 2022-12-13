@@ -14,7 +14,6 @@
 
 using System.IO;
 using NUnit.Framework;
-using USD.NET.Tests;
 using UnityEngine;
 using UnityEditor;
 
@@ -88,8 +87,8 @@ namespace Unity.Formats.USD.Tests
         public void InitUSDAndArtifactsDirectory()
         {
             InitUsd.Initialize();
-
             CleanupTestArtifacts();
+
             if (!Directory.Exists(ArtifactsDirectoryFullPath))
             {
                 Directory.CreateDirectory(ArtifactsDirectoryFullPath);

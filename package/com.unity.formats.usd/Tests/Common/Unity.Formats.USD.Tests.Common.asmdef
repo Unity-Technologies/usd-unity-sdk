@@ -1,11 +1,12 @@
 {
     "name": "Unity.Formats.USD.Tests.Common",
+    "rootNamespace": "",
     "references": [
         "USD.NET",
         "USD.NET.Unity",
-        "USD.NET.Tests",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Runtime"
     ],
     "includePlatforms": [
         "Editor",
