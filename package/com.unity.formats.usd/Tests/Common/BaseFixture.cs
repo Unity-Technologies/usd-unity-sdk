@@ -16,9 +16,10 @@ using System.IO;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEditor;
-
 using USDScene = USD.NET.Scene;
 using UnityScene = UnityEngine.SceneManagement.Scene;
+using USD.NET;
+using USD.NET.Unity;
 
 namespace Unity.Formats.USD.Tests
 {
@@ -74,13 +75,23 @@ namespace Unity.Formats.USD.Tests
             return Path.Combine(ArtifactsDirectoryRelativePath, prefabName);
         }
 
-        public string CreateTmpUsdFile(string fileName)
+        public string CreateTmpUsdFile(string fileName = "tempUsd.usda")
         {
             var usdScenePath = GetUSDScenePath(fileName);
             var scene = USDScene.Create(usdScenePath);
             scene.Save();
             scene.Close();
             return usdScenePath;
+        }
+
+        public Scene CreateTestUsdScene(string fileName = "testUsd.usda")
+        {
+            var dummyUsdPath = CreateTmpUsdFile(fileName);
+            var scene = ImportHelpers.InitForOpen(dummyUsdPath);
+            scene.Write("/root", new XformSample());
+            scene.Write("/root/sphere", new SphereSample());
+            scene.Save();
+            return scene;
         }
 
         [SetUp]
