@@ -135,7 +135,7 @@ namespace Unity.Formats.USD.Tests
         [Ignore("[USDU-275] | [USDU-230] | [FTV-202]")]
         [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
         [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture")]
-        public void ExportGameObject_TextureData_UsdaToUsdz(string fileName)
+        public void ImportAsGameObject_TextureDataImported_FromUsdz(string fileName)
         {
             var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
             var usdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
