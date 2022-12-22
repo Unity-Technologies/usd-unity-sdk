@@ -136,7 +136,10 @@ namespace Unity.Formats.USD
 
     public static class ImportHelpers
     {
+        public static pxr.SdfPath GetDefaultRoot(USD.NET.Scene scene);
+        public static string GetSelectedAssetPath();
         public static string ImportAsPrefab(USD.NET.Scene scene, string prefabPath = default(string));
+        public static string ImportAsPrefab(USD.NET.Scene scene, Unity.Formats.USD.SceneImportOptions importOptions, string prefabPath = default(string));
         public static string ImportAsTimelineClip(USD.NET.Scene scene, string prefabPath = default(string));
         public static UnityEngine.GameObject ImportSceneAsGameObject(USD.NET.Scene scene, UnityEngine.GameObject parent = default(UnityEngine.GameObject), Unity.Formats.USD.SceneImportOptions importOptions = default(Unity.Formats.USD.SceneImportOptions));
         public static USD.NET.Scene InitForOpen(string path = , pxr.UsdStage.InitialLoadSet loadSet = 1);

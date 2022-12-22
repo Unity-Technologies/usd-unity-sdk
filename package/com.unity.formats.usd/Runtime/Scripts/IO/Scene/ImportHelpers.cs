@@ -59,7 +59,7 @@ namespace Unity.Formats.USD
         }
 
 #if UNITY_EDITOR
-        public static string ImportAsPrefab(Scene scene, string prefabPath = null)
+        public static string ImportAsPrefab(Scene scene, SceneImportOptions importOptions, string prefabPath = null)
         {
             string path = scene.FilePath;
 
@@ -67,10 +67,6 @@ namespace Unity.Formats.USD
             // values, which makes setting an arbitrary time safer (because if only default was authored
             // the time will be ignored and values will resolve to default time automatically).
             scene.Time = 1.0;
-
-            var importOptions = new SceneImportOptions();
-            importOptions.projectAssetPath = GetSelectedAssetPath();
-            importOptions.usdRootPath = GetDefaultRoot(scene);
 
             if (string.IsNullOrEmpty(prefabPath))
             {
@@ -90,6 +86,15 @@ namespace Unity.Formats.USD
                 Object.DestroyImmediate(go);
                 scene.Close();
             }
+        }
+
+        public static string ImportAsPrefab(Scene scene, string prefabPath = null)
+        {
+            var importOptions = new SceneImportOptions();
+            importOptions.projectAssetPath = GetSelectedAssetPath();
+            importOptions.usdRootPath = GetDefaultRoot(scene);
+
+            return ImportAsPrefab(scene, importOptions, prefabPath);
         }
 
         public static string ImportAsTimelineClip(Scene scene, string prefabPath = null)
@@ -125,7 +130,7 @@ namespace Unity.Formats.USD
         /// <summary>
         /// Returns the selected object path or "Assets/" if no object is selected.
         /// </summary>
-        static string GetSelectedAssetPath()
+        public static string GetSelectedAssetPath()
         {
             Object[] selectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.Assets);
             foreach (Object obj in selectedAsset)
@@ -170,7 +175,7 @@ namespace Unity.Formats.USD
             return Scene.Open(stage);
         }
 
-        static pxr.SdfPath GetDefaultRoot(Scene scene)
+        public static pxr.SdfPath GetDefaultRoot(Scene scene)
         {
             // We can't safely assume the default prim is the model root, because Alembic files will
             // always have a default prim set arbitrarily.

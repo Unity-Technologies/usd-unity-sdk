@@ -116,5 +116,48 @@ namespace Unity.Formats.USD.Tests
             Assert.IsFalse(usdObject.activeInHierarchy);
             Assert.IsTrue(usdObject.activeSelf, "The USD Scene is self-inactive when imported under an inactive parent");
         }
+
+        [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
+        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture"), Ignore("[USDU-232] Test On HDRP")]
+        public void ImportAsGameObjects_TextureDataImported(string fileName)
+        {
+            var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
+            var usdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
+                new SceneImportOptions()
+                {
+                    materialImportMode = MaterialImportMode.ImportPreviewSurface
+                }
+            );
+
+            ImportAssert.IsTextureDataSaved(usdObject, fileName);
+        }
+
+        [Ignore("[USDU-275] | [USDU-230] | [FTV-202]")]
+        [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
+        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture")]
+        public void ExportGameObject_TextureData_UsdaToUsdz(string fileName)
+        {
+            var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
+            var usdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
+                new SceneImportOptions()
+                {
+                    materialImportMode = MaterialImportMode.ImportPreviewSurface
+                }
+            );
+
+            var usdzPath = GetUSDScenePath(usdObject.name + ".usdz");
+            UsdzExporter.ExportUsdz(usdzPath, usdObject);
+
+            var usdzScene = ImportHelpers.InitForOpen(usdzPath);
+            var usdzObject = ImportHelpers.ImportSceneAsGameObject(usdzScene, importOptions:
+                new SceneImportOptions()
+                {
+                    materialImportMode = MaterialImportMode.ImportPreviewSurface
+                }
+            );
+
+            // [USDU-275] | [FTV-202] | [USDU-230]
+            ImportAssert.IsTextureDataSaved(usdzObject.transform.GetChild(0).gameObject, fileName);
+        }
     }
 }
