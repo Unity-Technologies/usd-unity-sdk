@@ -125,7 +125,7 @@ namespace Unity.Formats.USD.Tests
         {
             if (Directory.Exists(ArtifactsDirectoryFullPath))
             {
-                UnityEngine.Windows.Directory.Delete(ArtifactsDirectoryFullPath);
+                Directory.Delete(ArtifactsDirectoryFullPath, true);
             }
 
             if (File.Exists(ArtifactsDirectoryFullPath.TrimEnd('/') + ".meta"))
