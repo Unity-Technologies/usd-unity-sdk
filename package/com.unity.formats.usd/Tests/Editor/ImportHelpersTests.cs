@@ -74,7 +74,7 @@ namespace Unity.Formats.USD.Tests
         }
 
         [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
-        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture")]
+        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture"), Ignore("[USDU-232] Test On HDRP")]
         public void ImportAsPrefab_TextureDataImported(string fileName)
         {
             var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
