@@ -128,21 +128,28 @@ namespace Unity.Formats.USD.Tests
                 Directory.Delete(ArtifactsDirectoryFullPath, true);
             }
 
-            if (File.Exists(ArtifactsDirectoryFullPath.TrimEnd('/') + ".meta"))
-            {
-                File.Delete(ArtifactsDirectoryFullPath.TrimEnd('/') + ".meta");
-            }
+            DeleteMetaFile(ArtifactsDirectoryFullPath);
 
+#if UNITY_EDITOR
             // TODO: If materialImportMode = MaterialImportMode.ImportPreviewSurface, it creates all the texture2d files on the root assets
             // Figure out if the texture2ds can be set into a different location - such as our artifacts directory
             foreach (var textureArtifactGUID in AssetDatabase.FindAssets("t:texture2D", new string[] { "Assets" }))
             {
-                File.Delete(Path.GetFullPath(AssetDatabase.GUIDToAssetPath(textureArtifactGUID)));
+                var textureFilePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(textureArtifactGUID));
+                File.Delete(textureFilePath);
+                DeleteMetaFile(textureFilePath);
             }
 
-#if UNITY_EDITOR
             AssetDatabase.Refresh();
 #endif
+        }
+
+        private void DeleteMetaFile(string fullPath)
+        {
+            if (File.Exists(fullPath.TrimEnd('/') + ".meta"))
+            {
+                File.Delete(fullPath.TrimEnd('/') + ".meta");
+            }
         }
     }
 }

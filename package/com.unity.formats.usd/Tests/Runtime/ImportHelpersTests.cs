@@ -129,7 +129,7 @@ namespace Unity.Formats.USD.Tests
                 }
             );
 
-            ImportAssert.IsTextureDataSaved(usdObject, fileName);
+            ImportAssert.IsTextureDataSaved(usdObject, fileName, isPrefab: false);
         }
 
         [Ignore("[USDU-275] | [USDU-230] | [FTV-202]")]
@@ -157,7 +157,7 @@ namespace Unity.Formats.USD.Tests
             );
 
             // [USDU-275] | [FTV-202] | [USDU-230]
-            ImportAssert.IsTextureDataSaved(usdzObject.transform.GetChild(0).gameObject, fileName);
+            ImportAssert.IsTextureDataSaved(usdzObject.transform.GetChild(0).gameObject, fileName, isPrefab: false);
         }
     }
 }

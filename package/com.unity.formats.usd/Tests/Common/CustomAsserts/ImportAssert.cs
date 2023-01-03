@@ -56,7 +56,7 @@ namespace Unity.Formats.USD.Tests
             }
         }
 
-        public static void IsTextureDataSaved(GameObject usdObject, string fileName)
+        public static void IsTextureDataSaved(GameObject usdObject, string fileName, bool isPrefab)
         {
             var materials = usdObject.transform.Find(TestAssetData.ImportGameObjectName.Material);
             var rootPrim = usdObject.transform.Find(TestAssetData.ImportGameObjectName.RootPrim);
@@ -73,13 +73,13 @@ namespace Unity.Formats.USD.Tests
             var renderer = rootPrim.Find(fileName).GetComponent<MeshRenderer>();
 
             Material[] allMaterials;
-            if (UnityEditor.PrefabUtility.GetPrefabAssetType(usdObject) == UnityEditor.PrefabAssetType.NotAPrefab)
+            if (isPrefab)
             {
-                allMaterials = renderer.materials;
+                allMaterials = renderer.sharedMaterials;
             }
             else
             {
-                allMaterials = renderer.sharedMaterials;
+                allMaterials = renderer.materials;
             }
 
             foreach (var material in allMaterials)

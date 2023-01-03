@@ -2,6 +2,7 @@ using System.IO;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Unity.Formats.USD.Tests
 {
@@ -73,7 +74,7 @@ namespace Unity.Formats.USD.Tests
         }
 
         [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
-        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture"), Ignore("[USDU-232] Test On HDRP")]
+        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture")]
         public void ImportAsPrefab_TextureDataImported(string fileName)
         {
             var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
@@ -91,7 +92,7 @@ namespace Unity.Formats.USD.Tests
 
             Assert.IsTrue(File.Exists(assetPath));
             var prefabGameObject = (GameObject)Resources.Load(Path.GetFileNameWithoutExtension(assetPath), typeof(GameObject));
-            ImportAssert.IsTextureDataSaved(prefabGameObject, fileName);
+            ImportAssert.IsTextureDataSaved(prefabGameObject, fileName, isPrefab: true);
         }
     }
 }
