@@ -65,7 +65,9 @@ public class InitUsdTests
         var method = typeof(InitUsd).GetMethod(methodName, (BindingFlags.NonPublic | BindingFlags.Static));
 
         if (method == null)
+        {
             Assert.Fail(string.Format("{0} method not found", methodName));
+        }
 
         return method;
     }
