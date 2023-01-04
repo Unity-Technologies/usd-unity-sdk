@@ -30,7 +30,7 @@ namespace Unity.Formats.USD.Tests
         protected string ArtifactsDirectoryFullPath => Path.Combine(Application.dataPath, ArtifactsDirectoryName);
         protected string ArtifactsDirectoryRelativePath => Path.Combine("Assets", ArtifactsDirectoryName);
         protected string TestAssetDirectoryName => TestAssetData.Directory.FolderName;
-        protected string TestUsdAssetDirectoryRelativePath => Path.Combine("Packages", "com.unity.formats.usd", "Tests", TestAssetDirectoryName);
+        protected string TestUsdAssetDirectoryRelativePath => Path.Combine("Packages", "com.unity.formats.usd", "Tests", "Common", "Data", TestAssetDirectoryName);
 
         public string GetUnityScenePath(string sceneName = null)
         {

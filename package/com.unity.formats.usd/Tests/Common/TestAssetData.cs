@@ -4,7 +4,7 @@ namespace Unity.Formats.USD.Tests
     {
         public struct Directory
         {
-            public const string FolderName = "TestAsset";
+            public const string FolderName = "UsdImportTests";
         }
         public struct FileName
         {
