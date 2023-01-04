@@ -55,10 +55,16 @@ public class InitUsdTests
     public void InitUsd_Initialize()
     {
         // Reset 'm_usdInitialized' for accurate testing
-        var isUsdInitialized = typeof(InitUsd).GetField("m_usdInitialized", (BindingFlags.Static | BindingFlags.NonPublic));
-        isUsdInitialized.SetValue(null, false);
+        ResetInitUsd();
 
         Assert.True(InitUsd.Initialize());
+    }
+
+    [TearDown]
+    public void ResetInitUsd()
+    {
+        var isUsdInitialized = typeof(InitUsd).GetField("m_usdInitialized", (BindingFlags.Static | BindingFlags.NonPublic));
+        isUsdInitialized.SetValue(null, false);
     }
 
     private MethodInfo GetMethod(string methodName)
