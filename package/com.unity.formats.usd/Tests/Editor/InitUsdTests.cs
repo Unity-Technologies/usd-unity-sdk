@@ -1,14 +1,7 @@
-using System.Collections;
 using System.IO;
 using NUnit.Framework;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.TestTools;
-using USD.NET;
-using USD.NET.Unity;
 using System.Reflection;
 using Unity.Formats.USD;
-using System.Runtime.CompilerServices;
 
 public class InitUsdTests
 {
