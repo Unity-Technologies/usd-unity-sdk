@@ -113,7 +113,7 @@ namespace USD.NET.Tests
         [TestCase("invalidPath", Description = "Invalid path value")]
         [TestCase("", Description = "Empty path value")]
         [TestCase("../sibling", Description = "Relative path value")]
-        public void WriteInvalidPathDataToScene(string path)
+        public void WritePathToSceneFile_WithInvalidPath_ThrowsException(string path)
         {
             scene = Scene.Create();
             Assert.Throws<System.Exception>(() => scene.Write(path, new SampleBase()));
