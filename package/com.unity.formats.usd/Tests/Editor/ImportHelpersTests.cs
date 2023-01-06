@@ -76,6 +76,12 @@ namespace Unity.Formats.USD.Tests
             // ExpectedMaterialCount: The 3 default materials
             EditorImportAssert.IsValidImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
         }
+
+        [TearDown]
+        public void ClearTestScene()
+        {
+            m_scene = null;
+        }
     }
 
     public static class EditorImportAssert
