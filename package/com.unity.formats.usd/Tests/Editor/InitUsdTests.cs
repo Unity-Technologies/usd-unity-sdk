@@ -2,6 +2,7 @@ using System.IO;
 using NUnit.Framework;
 using System.Reflection;
 using Unity.Formats.USD;
+using UnityEngine;
 
 public class InitUsdTests
 {
@@ -9,20 +10,14 @@ public class InitUsdTests
     [Ignore("[USDU-249]")]
     public void SetupUsdPath_InvalidPath_Error()
     {
+        var invalidFilePath = "\\NonExisting\\Path\\";
+
         // SetupUsdPath function is a private function
         var setUpMethod = GetMethod("SetupUsdPath");
 
-        try
-        {
-            setUpMethod.Invoke(null, new object[] { "\\NonExisting\\Path\\" });
-        }
-        catch (TargetInvocationException e)
-        {
-            Assert.AreEqual(e.InnerException.GetType(), typeof(FileNotFoundException));
-            return;
-        }
-
-        Assert.Fail("Exception was expected but none was thrown");
+        var expectedError = Assert.Throws<TargetInvocationException>(() => setUpMethod.Invoke(null, new object[] { invalidFilePath }), "Error was expected but not thrown");
+        Assert.IsInstanceOf<FileNotFoundException>(expectedError.InnerException);
+        Assert.AreEqual(string.Format("Could not find file '{0}'.", invalidFilePath), expectedError.InnerException.Message, "Unexpected error message was given");
     }
 
     [Test]
@@ -31,17 +26,9 @@ public class InitUsdTests
         // SetupUsdPath function is a private function
         var setUpMethod = GetMethod("SetupUsdPath");
 
-        try
-        {
-            setUpMethod.Invoke(null, new object[] { "" });
-        }
-        catch (TargetInvocationException e)
-        {
-            Assert.AreEqual(e.InnerException.GetType(), typeof(System.ArgumentException));
-            return;
-        }
-
-        Assert.Fail("Exception was expected but none was thrown");
+        var expectedError = Assert.Throws<TargetInvocationException>(() => setUpMethod.Invoke(null, new object[] { "" }), "Error was expected but not thrown");
+        Assert.IsInstanceOf<System.ArgumentException>(expectedError.InnerException);
+        Assert.AreEqual("The specified path is not of a legal form (empty).", expectedError.InnerException.Message, "Unexpected error message was given");
     }
 
     [Test]
@@ -50,7 +37,7 @@ public class InitUsdTests
         // Reset 'm_usdInitialized' for accurate testing
         ResetInitUsd();
 
-        Assert.True(InitUsd.Initialize());
+        Assert.True(InitUsd.Initialize(), "USD Initialize failed");
     }
 
     [TearDown]
