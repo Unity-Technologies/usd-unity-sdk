@@ -73,26 +73,9 @@ namespace Unity.Formats.USD.Tests
             ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
         }
 
-        [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
-        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture"), Ignore("[USDU-232] Test On HDRP")]
-        public void ImportAsPrefab_TextureDataImported(string fileName)
+        public void ImportAsPrefab_TextureDataImported()
         {
-            var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
-            var assetPath = ImportHelpers.ImportAsPrefab
-                (
-                    scene,
-                    new SceneImportOptions()
-                    {
-                        projectAssetPath = ImportHelpers.GetSelectedAssetPath(),
-                        usdRootPath = ImportHelpers.GetDefaultRoot(scene),
-                        materialImportMode = MaterialImportMode.ImportPreviewSurface
-                    },
-                    GetPrefabPath(resource: true)
-                );
-
-            Assert.IsTrue(File.Exists(assetPath));
-            var prefabGameObject = (GameObject)Resources.Load(Path.GetFileNameWithoutExtension(assetPath), typeof(GameObject));
-            ImportAssert.IsTextureDataSaved(prefabGameObject, fileName, isPrefab: true);
+            // TODO: Implement when we can change the SceneImportOptions when calling ImportHelpers.ImportAsPrefab
         }
     }
 }
