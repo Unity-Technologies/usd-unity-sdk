@@ -3,6 +3,7 @@
 ## Unreleased
 ### Bug Fixes
 - Fixed an import bug causing instanced primitives not to be sanitized.
+- Fixed a bug causing PointInstances to be duplicated.
 
 ### Changed
 - GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
