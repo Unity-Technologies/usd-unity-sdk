@@ -133,7 +133,7 @@ namespace Unity.Formats.USD
                 var instanceName = $"{goMaster.name}_{i}";
 
                 // If the old instance exists, we must destroy it to avoid a duplicate
-                // because the prototypse may have changed during re-import
+                // because the prototypes may have changed during re-import
                 var existingInstance = root.transform.Find(instanceName);
                 if (existingInstance != null)
                 {
