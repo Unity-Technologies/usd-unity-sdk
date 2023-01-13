@@ -159,6 +159,15 @@ namespace Unity.Formats.USD
                 return true;
             }
 
+            if (lhs.Length != rhs.Length)
+                return false;
+
+            for (int i = 0; i < lhs.Length; i++)
+            {
+                if (lhs[i] != rhs[i])
+                    return false;
+            }
+
             return true;
         }
 
