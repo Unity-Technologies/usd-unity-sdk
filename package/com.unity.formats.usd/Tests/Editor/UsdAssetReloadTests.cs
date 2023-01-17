@@ -118,15 +118,13 @@ namespace Unity.Formats.USD.Tests
         }
 
         [Test]
-        [Ignore("USDU-199")]
         public void UsdInstancerAsset_Reload_NoDuplicateObjects()
         {
-            var instancerChildNamePrefix = "Root";
+            const int expectedChildrenCount = 101;
+            const string instancerChildNamePrefix = "Root";
 
             var scene = OpenUSDGUIDAssetScene(k_USDInstancerGUID, out _);
             var instancerObject = ImportHelpers.ImportSceneAsGameObject(scene);
-
-            var originalChildrenCount = instancerObject.transform.childCount;
 
             var originalChildrenData = new Dictionary<string, int>();
             foreach (Transform child in instancerObject.transform)
@@ -137,7 +135,7 @@ namespace Unity.Formats.USD.Tests
             instancerObject.GetComponent<UsdAsset>().Reload(false);
 
             var newChildrenCount = instancerObject.transform.childCount;
-            Assert.AreEqual(newChildrenCount, originalChildrenCount);
+            Assert.AreEqual(newChildrenCount, expectedChildrenCount);
 
             foreach (Transform child in instancerObject.transform)
             {
