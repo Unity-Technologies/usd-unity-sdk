@@ -7,7 +7,7 @@ namespace Unity.Formats.USD.Tests
     {
         public static class Editor
         {
-            enum UsdPartType
+            enum ObjectTypeName
             {
                 UsdPlayableAsset = 0,
                 GameObject = 1,
@@ -24,23 +24,23 @@ namespace Unity.Formats.USD.Tests
                 int materialCount = 0;
                 int usdPrimSourceCount = 0;
 
-                foreach (Object usdPart in usdAsObjects)
+                foreach (Object childObject in usdAsObjects)
                 {
-                    switch (usdPart.GetType().Name)
+                    switch (childObject.GetType().Name)
                     {
-                        case nameof(UsdPartType.UsdPlayableAsset):
+                        case nameof(ObjectTypeName.UsdPlayableAsset):
                             playableAssetFound = true;
                             break;
 
-                        case nameof(UsdPartType.GameObject):
+                        case nameof(ObjectTypeName.GameObject):
                             gameObjectCount++;
                             break;
 
-                        case nameof(UsdPartType.Material):
+                        case nameof(ObjectTypeName.Material):
                             materialCount++;
                             break;
 
-                        case nameof(UsdPartType.UsdPrimSource):
+                        case nameof(ObjectTypeName.UsdPrimSource):
                             usdPrimSourceCount++;
                             break;
 

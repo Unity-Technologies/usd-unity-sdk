@@ -1,8 +1,7 @@
 using System.IO;
 using NUnit.Framework;
 using UnityEditor;
-using UnityEngine;
-using UnityEngine.TestTools;
+using USD.NET;
 
 namespace Unity.Formats.USD.Tests
 {

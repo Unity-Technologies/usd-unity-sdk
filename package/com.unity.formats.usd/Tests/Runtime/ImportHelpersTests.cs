@@ -138,15 +138,15 @@ namespace Unity.Formats.USD.Tests
         public void ImportAsGameObject_TextureDataImported_FromUsdz(string fileName)
         {
             var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
-            var usdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
+            var importedUsdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
                 new SceneImportOptions()
                 {
                     materialImportMode = MaterialImportMode.ImportPreviewSurface
                 }
             );
 
-            var usdzPath = GetUSDScenePath(usdObject.name + ".usdz");
-            UsdzExporter.ExportUsdz(usdzPath, usdObject);
+            var usdzPath = GetUSDScenePath(importedUsdObject.name + ".usdz");
+            UsdzExporter.ExportUsdz(usdzPath, importedUsdObject);
 
             var usdzScene = ImportHelpers.InitForOpen(usdzPath);
             var usdzObject = ImportHelpers.ImportSceneAsGameObject(usdzScene, importOptions:
