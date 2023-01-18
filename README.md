@@ -8,8 +8,10 @@ integrate and explore Universal Scene Description.
 
 # Getting Started
 
-To get started, install USD via the Unity Package manager, either by using
-an official repository, or by browsing for a local package while working with
+To get started, install the USD package via the Unity Package manager. You can do this by either:
+* Installing by name, "com.unity.formats.usd";
+* Installing by Git URL;
+* or browsing for a local package while working with
 source.
 
 Once the USD package is installed, a USD menu will appear, enabling you to
@@ -30,7 +32,7 @@ settings under Edit > Project Settings > Quality:
 
 ## Requirements
 
-* Windows / OSX
+* Windows / OSX (Intel only)
 * Unity version: 2019.4 and up
 * API Compatibility Level .NET 4.x is no longer required but still provides better performances than .NET 2   
    In Edit > Project Settings > Player :   
@@ -38,7 +40,7 @@ settings under Edit > Project Settings > Quality:
 
 ## Limitations
 
-* Versions of USD **prior to 19.05** do not handle Alembic playback correctly, resulting significantly slower frame rate than authored in the Alembic cache (24x exactly). This will be fixed with the adoption of the USD 19.05 release and all assets will play back correctly, a priori.
+* Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
 
 ## Samples
 
@@ -48,7 +50,7 @@ Use Package Manager to import the samples into your Assets folder :
 
 ![USD .NET version](Images/USD_samples_import.png)
 
-
+Note that Samples will not work as expected when installed from Source. In these cases, you will have to copy the Samples files into the project to use them.
 
 # Features
 
