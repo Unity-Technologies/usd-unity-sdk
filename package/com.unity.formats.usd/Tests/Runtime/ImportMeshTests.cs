@@ -25,25 +25,22 @@ namespace Unity.Formats.USD.Tests
 
         public void MatrixCompare(Matrix4x4 actual, Matrix4x4 expected, float epsilon = 1e-5f)
         {
-            for (int i = 0; i < 16; ++i)
-            {
-                Assert.That(actual.m00, Is.EqualTo(expected.m00).Within(epsilon));
-                Assert.That(actual.m01, Is.EqualTo(expected.m01).Within(epsilon));
-                Assert.That(actual.m02, Is.EqualTo(expected.m02).Within(epsilon));
-                Assert.That(actual.m03, Is.EqualTo(expected.m03).Within(epsilon));
-                Assert.That(actual.m10, Is.EqualTo(expected.m10).Within(epsilon));
-                Assert.That(actual.m11, Is.EqualTo(expected.m11).Within(epsilon));
-                Assert.That(actual.m12, Is.EqualTo(expected.m12).Within(epsilon));
-                Assert.That(actual.m13, Is.EqualTo(expected.m13).Within(epsilon));
-                Assert.That(actual.m20, Is.EqualTo(expected.m20).Within(epsilon));
-                Assert.That(actual.m21, Is.EqualTo(expected.m21).Within(epsilon));
-                Assert.That(actual.m22, Is.EqualTo(expected.m22).Within(epsilon));
-                Assert.That(actual.m23, Is.EqualTo(expected.m23).Within(epsilon));
-                Assert.That(actual.m30, Is.EqualTo(expected.m30).Within(epsilon));
-                Assert.That(actual.m31, Is.EqualTo(expected.m31).Within(epsilon));
-                Assert.That(actual.m32, Is.EqualTo(expected.m32).Within(epsilon));
-                Assert.That(actual.m33, Is.EqualTo(expected.m33).Within(epsilon));
-            }
+            Assert.That(actual.m00, Is.EqualTo(expected.m00).Within(epsilon));
+            Assert.That(actual.m01, Is.EqualTo(expected.m01).Within(epsilon));
+            Assert.That(actual.m02, Is.EqualTo(expected.m02).Within(epsilon));
+            Assert.That(actual.m03, Is.EqualTo(expected.m03).Within(epsilon));
+            Assert.That(actual.m10, Is.EqualTo(expected.m10).Within(epsilon));
+            Assert.That(actual.m11, Is.EqualTo(expected.m11).Within(epsilon));
+            Assert.That(actual.m12, Is.EqualTo(expected.m12).Within(epsilon));
+            Assert.That(actual.m13, Is.EqualTo(expected.m13).Within(epsilon));
+            Assert.That(actual.m20, Is.EqualTo(expected.m20).Within(epsilon));
+            Assert.That(actual.m21, Is.EqualTo(expected.m21).Within(epsilon));
+            Assert.That(actual.m22, Is.EqualTo(expected.m22).Within(epsilon));
+            Assert.That(actual.m23, Is.EqualTo(expected.m23).Within(epsilon));
+            Assert.That(actual.m30, Is.EqualTo(expected.m30).Within(epsilon));
+            Assert.That(actual.m31, Is.EqualTo(expected.m31).Within(epsilon));
+            Assert.That(actual.m32, Is.EqualTo(expected.m32).Within(epsilon));
+            Assert.That(actual.m33, Is.EqualTo(expected.m33).Within(epsilon));
         }
 
         [Test]
