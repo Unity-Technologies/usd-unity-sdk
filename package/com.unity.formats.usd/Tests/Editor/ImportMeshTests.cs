@@ -7,7 +7,7 @@ using USD.NET;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class ImportSkinnedMeshTests : BaseFixtureRuntime
+    public class ImportSkinnedMeshTests : BaseFixtureEditor
     {
         static string k_testAssetGUID = "3d00d71254d14bdda401019eb84373ce";
         GameObject m_usdRoot;
