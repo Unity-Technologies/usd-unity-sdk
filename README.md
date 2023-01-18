@@ -41,6 +41,7 @@ settings under Edit > Project Settings > Quality:
 ## Limitations
 
 * Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
+* The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
 
 ## Samples
 
