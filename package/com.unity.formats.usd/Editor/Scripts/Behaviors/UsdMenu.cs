@@ -32,7 +32,13 @@ namespace Unity.Formats.USD
         static void MenuExportSelectedWithChildren()
         {
             var go = Selection.gameObjects.First();
-            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, "usd");
+            string fileExtensions;
+#if UNITY_EDITOR_WIN
+            fileExtensions = "usd,usda,usdc";
+#else
+            fileExtensions = "usd";
+#endif
+            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, fileExtensions);
             var scene = ExportHelpers.InitForSave(filePath);
             ExportHelpers.ExportGameObjects(Selection.gameObjects, scene, BasisTransformation.SlowAndSafe);
         }
@@ -47,7 +53,13 @@ namespace Unity.Formats.USD
         static public void MenuExportTransforms()
         {
             var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
-            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs", "usd");
+            string fileExtensions;
+#if UNITY_EDITOR_WIN
+            fileExtensions = "usd,usda,usdc";
+#else
+            fileExtensions = "usd";
+#endif
+            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs", fileExtensions);
             var overs = ExportHelpers.InitForSave(filePath);
             root.ExportOverrides(overs);
         }
