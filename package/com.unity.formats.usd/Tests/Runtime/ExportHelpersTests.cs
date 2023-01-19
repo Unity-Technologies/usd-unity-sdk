@@ -113,7 +113,7 @@ namespace Unity.Formats.USD.Tests
 
         [Ignore("[USDU-275] | [USDU-279]")]
         [Test]
-        public void ExportAsUsdz_DataStructureKept()
+        public void ExportAsUsdz_DataStructureKeptOnImport()
         {
             var scene = ImportHelpers.InitForOpen(GetTestAssetPath(TestAssetData.FileName.TexturedOpaque));
             var importedUsdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
