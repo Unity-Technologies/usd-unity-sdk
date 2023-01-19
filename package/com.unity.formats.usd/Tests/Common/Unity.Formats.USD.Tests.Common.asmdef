@@ -3,13 +3,12 @@
     "references": [
         "USD.NET",
         "USD.NET.Unity",
-        "USD.NET.Tests",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Runtime"
     ],
     "includePlatforms": [
         "Editor",
-        "LinuxStandalone64",
         "macOSStandalone",
         "WindowsStandalone64"
     ],

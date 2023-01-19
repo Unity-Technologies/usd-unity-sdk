@@ -1,0 +1,114 @@
+#usda 1.0
+(
+"""
+USDA 1.0 file created for Unity USD Import test
+"""
+    defaultPrim = "RootPrim"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "RootPrim"
+{
+    def Mesh "TexturedOpaque"
+    {
+        int[] faceVertexCounts = [4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        rel material:binding = </Material/TexturedOpaque>
+        normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)]
+        point3f[] points = [(0, 1, -2), (0, 1, -1), (0, 2, -1), (0, 2, -2), (1, 1, -2), (0, 1, -2), (0, 2, -2), (1, 2, -2), (1, 1, -1), (1, 1, -2), (1, 2, -2), (1, 2, -1), (0, 2, -1), (1, 2, -1), (1, 2, -2), (0, 2, -2), (0, 1, -1), (1, 1, -1), (1, 2, -1), (0, 2, -1)]
+        texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1)] (
+            interpolation = "vertex"
+        )
+    }
+}
+
+def Scope "Material" (
+    kind = "model"
+)
+{
+    def Material "TexturedOpaque"
+    {
+        token outputs:displacement.connect = </Material/TexturedOpaque/PreviewSurface.outputs:displacement>
+        token outputs:surface.connect = </Material/TexturedOpaque/PreviewSurface.outputs:surface>
+        
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor.connect = </Material/TexturedOpaque/main_texture.outputs:rgb>
+            float inputs:metallic.connect = </Material/TexturedOpaque/metallic_texture.outputs:r>
+            color3f inputs:emissiveColor.connect = </Material/TexturedOpaque/emissive_texture.outputs:rgb>
+            normal3f inputs:normal.connect = </Material/TexturedOpaque/normal_texture.outputs:rgb>
+            float inputs:opacity = 1
+            float inputs:roughness.connect = </Material/TexturedOpaque/roughness_texture.outputs:r>
+            int inputs:useSpecularWorkflow = 0
+            token outputs:out
+            token outputs:surface
+        }
+
+        def Shader "uv_reader"
+        {
+            uniform token info:id = "UsdPrimvarReader_float2"
+            float2 inputs:fallback = (0, 0)
+            token inputs:varname = "st"
+            float2 outputs:result
+        }
+
+        def Shader "roughness_texture"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @./Textures/textured_rough.png@
+            token inputs:sourceColorSpace = "raw"
+            float2 inputs:st.connect = </Material/TexturedOpaque/uv_reader.outputs:result>
+            token inputs:wrapS = "repeat"
+            token inputs:wrapT = "repeat"
+            float outputs:r
+        }
+
+        def Shader "normal_texture"
+        {
+            uniform token info:id = "UsdUVTexture"
+            float4 inputs:bias = (-1, 1, -1, -1)
+            asset inputs:file = @./Textures/textured_normal.png@
+            float4 inputs:scale = (2, -2, 2, 2)
+            token inputs:sourceColorSpace = "raw"
+            float2 inputs:st.connect = </Material/TexturedOpaque/uv_reader.outputs:result>
+            token inputs:wrapS = "repeat"
+            token inputs:wrapT = "repeat"
+            float3 outputs:rgb
+        }
+
+        def Shader "main_texture"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @./Textures/textured.png@
+            token inputs:sourceColorSpace = "sRGB"
+            float2 inputs:st.connect = </Material/TexturedOpaque/uv_reader.outputs:result>
+            token inputs:wrapS = "repeat"
+            token inputs:wrapT = "repeat"
+            color3f outputs:rgb
+        }
+
+        def Shader "metallic_texture"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @./Textures/textured_metallic.png@
+            token inputs:sourceColorSpace = "raw"
+            float2 inputs:st.connect = </Material/TexturedOpaque/uv_reader.outputs:result>
+            token inputs:wrapS = "repeat"
+            token inputs:wrapT = "repeat"
+            float outputs:r
+        }
+
+        def Shader "emissive_texture"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @./Textures/textured_emissive.png@
+            float4 inputs:scale = (1000, 1000, 1000, 1)
+            float2 inputs:st.connect = </Material/TexturedOpaque/uv_reader.outputs:result>
+            token inputs:wrapS = "repeat"
+            token inputs:wrapT = "repeat"
+            float3 outputs:rgb
+        }
+    }
+}

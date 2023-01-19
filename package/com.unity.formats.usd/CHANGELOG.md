@@ -3,6 +3,7 @@
 ## Unreleased
 ### Bug Fixes
 - Fixed an import bug causing instanced primitives not to be sanitized.
+- Disabled plugins on unsupported platforms.
 - Fixed a bug causing PointInstances to be duplicated.
 
 ### Changed

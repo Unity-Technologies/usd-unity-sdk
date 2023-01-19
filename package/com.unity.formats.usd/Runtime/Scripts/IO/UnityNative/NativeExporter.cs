@@ -201,7 +201,7 @@ namespace Unity.Formats.USD
 {
     public class NativeExporter
     {
-        public static void ExportObject(ObjectContext objContext, ExportContext exportContext) {}
+        public static void ExportObject(ObjectContext objContext, ExportContext exportContext) { }
     }
 }
 #endif

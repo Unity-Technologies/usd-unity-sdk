@@ -9,7 +9,7 @@ using USD.NET.Unity;
 
 namespace Unity.Formats.USD.Tests
 {
-    public class UsdAssetReloadTests
+    public class UsdAssetReloadTests : BaseFixtureEditor
     {
         const string k_USDGUID = "68d552f46d3740c47b17d0ac1c531e76";  // reloadTest.usda
         const string k_USDModifiedGUID = "4eccf405e5254fd4089cef2f9bcbd882"; // reloadTest_modified.usda
@@ -24,7 +24,6 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void Setup()
         {
-            InitUsd.Initialize();
             testFilePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDGUID));
             var stage = pxr.UsdStage.Open(testFilePath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);

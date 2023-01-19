@@ -102,7 +102,8 @@ namespace USD.NET.Tests
             {
                 // Because an outer namespace was declared, this results in the namespace
                 // "primvars:nested:foo:bar:baz"
-                [USD.NET.UsdNamespace("foo:bar")][USD.NET.VertexData(4)]
+                [USD.NET.UsdNamespace("foo:bar")]
+                [USD.NET.VertexData(4)]
                 public int[] baz;
 
                 // Not a primvar, so the resulting namespace is:
@@ -123,7 +124,8 @@ namespace USD.NET.Tests
 
             [USD.NET.VertexData(2)] public int[] somePrimvar2;
 
-            [USD.NET.UsdNamespace("skel")][USD.NET.VertexData(3)]
+            [USD.NET.UsdNamespace("skel")]
+            [USD.NET.VertexData(3)]
             public int[] jointIndices;
 
             public Primvar<Color[]> colors;
@@ -133,24 +135,24 @@ namespace USD.NET.Tests
             public static PrimvarSample GetTestSample()
             {
                 var sample = new PrimvarSample();
-                sample.somePrimvar = new int[] {1, 2, 3, 4};
-                sample.somePrimvar1 = new int[] {2, 4, 6, 8};
-                sample.somePrimvar2 = new int[] {9, 8, 7, 6};
-                sample.jointIndices = new int[] {9, 8, 7, 6, 5, 3};
+                sample.somePrimvar = new int[] { 1, 2, 3, 4 };
+                sample.somePrimvar1 = new int[] { 2, 4, 6, 8 };
+                sample.somePrimvar2 = new int[] { 9, 8, 7, 6 };
+                sample.jointIndices = new int[] { 9, 8, 7, 6, 5, 3 };
                 sample.nestedSample = new NestedSample();
-                sample.nestedSample.baz = new int[] {9, 8, 7, 1};
-                sample.nestedSample.garply = new int[] {99, 88, 77};
+                sample.nestedSample.baz = new int[] { 9, 8, 7, 1 };
+                sample.nestedSample.garply = new int[] { 99, 88, 77 };
 
                 var pv = new USD.NET.Primvar<float[]>();
-                pv.value = new float[] {123f};
+                pv.value = new float[] { 123f };
                 sample.nestedSample.namespacedDict["Foo"] = pv;
 
                 pv = new USD.NET.Primvar<float[]>();
-                pv.value = new float[] {3245f};
+                pv.value = new float[] { 3245f };
                 sample.nestedSample.vanillaDict["Bar"] = pv;
 
                 sample.colors = new Primvar<Color[]>();
-                sample.colors.SetValue(new Color[1] {Color.red});
+                sample.colors.SetValue(new Color[1] { Color.red });
 
                 return sample;
             }
@@ -170,16 +172,16 @@ namespace USD.NET.Tests
             public static ColorPrimvarSample GetTestSample()
             {
                 var sample = new ColorPrimvarSample();
-                sample.colorVD = new[] {Color.green};
+                sample.colorVD = new[] { Color.green };
 
                 sample.colorPV = new Primvar<Color[]>();
-                sample.colorPV.SetValue(new Color[1] {Color.red});
+                sample.colorPV.SetValue(new Color[1] { Color.red });
 
                 sample.colorObjPV = new Primvar<object>();
-                sample.colorPV.SetValue(new Color[1] {Color.blue});
+                sample.colorPV.SetValue(new Color[1] { Color.blue });
 
                 sample.intPV = new Primvar<int[]>();
-                sample.intPV.SetValue(new int[3] {1, 2, 3});
+                sample.intPV.SetValue(new int[3] { 1, 2, 3 });
 
                 return sample;
             }
@@ -219,39 +221,39 @@ namespace USD.NET.Tests
 
         void InitIntrinsicSample(ref IntrinsicsSample sample)
         {
-            sample.boolArray_ = new bool[] {false, true};
+            sample.boolArray_ = new bool[] { false, true };
             sample.boolList_ = sample.boolArray_.ToList();
             sample.bool_ = true;
 
-            sample.byteArray_ = new byte[] {1, 2, 3};
+            sample.byteArray_ = new byte[] { 1, 2, 3 };
             sample.byteList_ = sample.byteArray_.ToList();
             sample.byte_ = 42;
 
-            sample.doubleArray_ = new double[] {-1.1, 2.2, double.MaxValue, double.MinValue};
+            sample.doubleArray_ = new double[] { -1.1, 2.2, double.MaxValue, double.MinValue };
             sample.doubleList_ = sample.doubleArray_.ToList();
             sample.double_ = double.MaxValue;
 
-            sample.floatArray_ = new float[] {-1.1f, 2.2f, float.MaxValue, float.MinValue};
+            sample.floatArray_ = new float[] { -1.1f, 2.2f, float.MaxValue, float.MinValue };
             sample.floatList_ = sample.floatArray_.ToList();
             sample.float_ = float.MaxValue;
 
-            sample.intArray_ = new int[] {-1, 0, 1, 2, int.MaxValue, int.MinValue};
+            sample.intArray_ = new int[] { -1, 0, 1, 2, int.MaxValue, int.MinValue };
             sample.intList_ = sample.intArray_.ToList();
             sample.int_ = int.MaxValue;
 
-            sample.longArray_ = new long[] {-1, 0, 2, long.MaxValue, long.MinValue};
+            sample.longArray_ = new long[] { -1, 0, 2, long.MaxValue, long.MinValue };
             sample.longList_ = sample.longArray_.ToList();
             sample.long_ = long.MinValue;
 
-            sample.stringArray_ = new string[] {"hello", "world"};
+            sample.stringArray_ = new string[] { "hello", "world" };
             sample.stringList_ = sample.stringArray_.ToList();
             sample.string_ = "foobar";
 
-            sample.uintArray_ = new uint[] {0, 1, 2, uint.MaxValue, uint.MinValue};
+            sample.uintArray_ = new uint[] { 0, 1, 2, uint.MaxValue, uint.MinValue };
             sample.uintList_ = sample.uintArray_.ToList();
             sample.uint_ = uint.MaxValue;
 
-            sample.ulongArray_ = new ulong[] {0, 2, ulong.MaxValue, ulong.MinValue};
+            sample.ulongArray_ = new ulong[] { 0, 2, ulong.MaxValue, ulong.MinValue };
             sample.ulongList_ = sample.ulongArray_.ToList();
             sample.ulong_ = ulong.MaxValue;
 
@@ -262,11 +264,11 @@ namespace USD.NET.Tests
             sample.dictTyped["Bar"] = "baz";
 
             sample.dictVertexData = new Dictionary<string, float[]>();
-            sample.dictVertexData["VertexData"] = new float[] {42.3f};
+            sample.dictVertexData["VertexData"] = new float[] { 42.3f };
 
             sample.dictPrimvar = new Dictionary<string, USD.NET.Primvar<float[]>>();
             var pv = new USD.NET.Primvar<float[]>();
-            pv.value = new float[] {423.2f};
+            pv.value = new float[] { 423.2f };
             pv.interpolation = USD.NET.PrimvarInterpolation.FaceVarying;
             sample.dictPrimvar["PrimvarValue"] = pv;
         }
@@ -517,7 +519,7 @@ namespace USD.NET.Tests
             var sampleToRead = new PrimvarSample();
             sampleToRead.nestedSample = new PrimvarSample.NestedSample();
             var sampleToWrite2 = PrimvarSample.GetTestSample();
-            sampleToWrite2.somePrimvar = new int[] {3, 4, 5, 6};
+            sampleToWrite2.somePrimvar = new int[] { 3, 4, 5, 6 };
 
             var scene = USD.NET.Scene.Create();
             scene.Write("/Foo", sampleToWrite);
@@ -598,7 +600,7 @@ namespace USD.NET.Tests
         {
             var sampleToWrite = PrimvarSample.GetTestSample();
             var sampleToWrite2 = PrimvarSample.GetTestSample();
-            sampleToWrite2.somePrimvar = new int[] {3, 4, 5, 6};
+            sampleToWrite2.somePrimvar = new int[] { 3, 4, 5, 6 };
 
             //Check animated data
             TestDefaultTime_NotVarying(sampleToWrite);
