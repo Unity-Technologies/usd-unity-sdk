@@ -1,6 +1,5 @@
 {
     "name": "USD.NET.Tests",
-    "rootNamespace": "",
     "references": [
         "USD.NET",
         "UnityEngine.TestRunner",
@@ -9,7 +8,6 @@
     ],
     "includePlatforms": [
         "Editor",
-        "LinuxStandalone64",
         "macOSStandalone",
         "WindowsStandalone64"
     ],
