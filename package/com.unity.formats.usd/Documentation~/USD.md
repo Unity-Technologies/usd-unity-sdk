@@ -77,9 +77,7 @@ The following is a brief listing of currently supported features:
 
 ## Importing Materials
 
-To import materials from USD, import the USD file using the USD menu. Next, click
-on the root GameObject and select either DisplayColor or Preview Surface from the
-materials dropdown menu.
+To import materials from USD, import the USD file using the USD menu. For the materials to render in the scene, in the Inspector change the Import Settings > Materials to 'Import Preview Surface' and reimport the USD file.
 
 ## Streaming Playback via Timeline
 
