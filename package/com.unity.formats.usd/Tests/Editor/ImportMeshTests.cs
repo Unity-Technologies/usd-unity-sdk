@@ -15,7 +15,6 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            InitUsd.Initialize();
             var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_testAssetGUID));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
