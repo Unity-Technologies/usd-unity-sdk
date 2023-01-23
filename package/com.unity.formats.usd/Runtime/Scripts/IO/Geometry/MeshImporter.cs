@@ -301,7 +301,7 @@ namespace Unity.Formats.USD
             var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
             if (smr.sharedMesh == null)
             {
-                smr.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
+                smr.sharedMesh = new Mesh { name = UniqueMeshName(go.name) };
             }
 
             // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
@@ -408,7 +408,7 @@ namespace Unity.Formats.USD
             var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
             if (mf.sharedMesh == null)
             {
-                mf.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
+                mf.sharedMesh = new Mesh { name = UniqueMeshName(go.name) };
             }
 
             // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
@@ -448,7 +448,7 @@ namespace Unity.Formats.USD
                     // Annoyingly, there is a circular dependency between vertices and triangles, which makes
                     // it impossible to have a fixed update order in this function. As a result, we must clear
                     // the triangles before setting the points, to break that dependency.
-                    unityMesh.SetTriangles(new int[0] {}, 0);
+                    unityMesh.SetTriangles(new int[0] { }, 0);
                 }
 
                 unityMesh.vertices = usdMesh.points;
@@ -696,7 +696,7 @@ namespace Unity.Formats.USD
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError(new Exception("Error reading UVs at " +  usdMeshPath + "> uv-index: " + i, ex));
+                    Debug.LogError(new Exception("Error reading UVs at " + usdMeshPath + "> uv-index: " + i, ex));
                 }
             }
         }

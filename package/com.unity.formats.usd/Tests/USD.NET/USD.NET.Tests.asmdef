@@ -2,11 +2,12 @@
     "name": "USD.NET.Tests",
     "references": [
         "USD.NET",
-        "UnityEngine.TestRunner"
+        "UnityEngine.TestRunner",
+        "Unity.Formats.USD.Runtime",
+        "Unity.Formats.USD.Tests.Common"
     ],
     "includePlatforms": [
         "Editor",
-        "LinuxStandalone64",
         "macOSStandalone",
         "WindowsStandalone64"
     ],
@@ -18,9 +19,8 @@
     ],
     "autoReferenced": false,
     "defineConstraints": [
-      "UNITY_INCLUDE_TESTS"
+        "UNITY_INCLUDE_TESTS"
     ],
-    "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
 }

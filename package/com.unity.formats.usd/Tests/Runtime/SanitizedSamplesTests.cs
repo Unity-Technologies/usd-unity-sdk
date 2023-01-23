@@ -9,7 +9,7 @@ using USD.NET;
 namespace Unity.Formats.USD.Tests
 {
 #if UNITY_EDITOR
-    public class SanitizedMeshesTests : BaseFixture
+    public class SanitizedMeshesTests : BaseFixtureRuntime
     {
         class SanitizeTests
         {

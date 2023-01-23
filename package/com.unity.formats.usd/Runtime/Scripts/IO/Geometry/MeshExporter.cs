@@ -80,7 +80,7 @@ namespace Unity.Formats.USD
             sample.joints = new string[bones.Length];
             if (!string.IsNullOrEmpty(skeletonPath))
             {
-                sample.skeleton.targetPaths = new string[] {skeletonPath};
+                sample.skeleton.targetPaths = new string[] { skeletonPath };
             }
 
             int b = 0;

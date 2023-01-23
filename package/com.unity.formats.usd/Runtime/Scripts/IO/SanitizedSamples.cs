@@ -6,7 +6,7 @@ using USD.NET;
 using USD.NET.Unity;
 using UnityEngine;
 
-[assembly: InternalsVisibleToAttribute("Unity.Formats.USD.Tests")]
+[assembly: InternalsVisibleToAttribute("Unity.Formats.USD.Tests.Runtime")]
 namespace Unity.Formats.USD
 {
     public interface ISanitizable

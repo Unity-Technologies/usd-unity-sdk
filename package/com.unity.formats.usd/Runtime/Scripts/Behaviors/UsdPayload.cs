@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using UnityEditor;
 using UnityEngine;
 
 namespace Unity.Formats.USD
@@ -19,10 +20,13 @@ namespace Unity.Formats.USD
     [ExecuteInEditMode]
     public class UsdPayload : MonoBehaviour
     {
-        [SerializeField] private bool m_isLoaded = true;
+        [SerializeField]
+        private bool m_isLoaded = true;
 
         // Variable used to track dirty load state.
-        [SerializeField][HideInInspector] private bool m_wasLoaded = true;
+        [SerializeField]
+        [HideInInspector]
+        private bool m_wasLoaded = true;
 
         /// <summary>
         /// Returns true of the prim is currently loaded. Note that this will return the currently
@@ -70,6 +74,10 @@ namespace Unity.Formats.USD
             }
 
             m_wasLoaded = m_isLoaded;
+
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(this);
+#endif
 
             var stageRoot = transform.GetComponentInParent<UsdAsset>();
             stageRoot.SetPayloadState(this.gameObject, m_isLoaded);

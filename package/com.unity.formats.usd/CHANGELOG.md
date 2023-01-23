@@ -3,6 +3,7 @@
 ## Unreleased
 ### Bug Fixes
 - Fixed an import bug causing instanced primitives not to be sanitized.
+- Disabled plugins on unsupported platforms.
 
 ### Changed
 - GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
