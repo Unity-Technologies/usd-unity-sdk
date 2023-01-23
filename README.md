@@ -96,9 +96,11 @@ Timeline playback is multi-threaded using the C# Job System.
 ## Variants, Models, & Payloads
 
 Access to variant selection, model details, and payload state are all accessible via
-the inspector on the game object at which these features were authored.
+the inspector on the game object at which these features were authored. Note that Payloads *are not loaded by default*, and USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene. 
 
 ## Exporting USD files
+
+USD files can be created by exporting GameObjects selected in the Hierarchy using the USD context menu options, or using the Recorder.
 
 ### Exporting via Recorder
 
@@ -123,14 +125,6 @@ When compatibility with runtime is required (i.e for a standalone build), the re
 * Then right-click on the track and **add USD Recorder Clip**.
 
 >  **Note:** This feature has no dependency to and is not based on the Recorder package.
-
-### Exporting via USD menu (Legacy)
-
-A last option to export a USD Composition is to use the legacy export via the Editor main menu :
-* Select **USD > Export Selected**.
-
-Note that this option is not recommended as it doesn't offer any export options.
-
 
 # License
 
