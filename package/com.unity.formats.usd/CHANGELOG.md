@@ -5,6 +5,7 @@
 - Fixed an import bug causing instanced primitives not to be sanitized.
 - Disabled plugins on unsupported platforms.
 - Fixed a bug causing PointInstances to be duplicated.
+- Fixed a bug causing an exception to be thrown when refreshing a PointInstancer.
 
 ### Changed
 - GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
