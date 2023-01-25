@@ -1,6 +1,5 @@
 {
     "name": "Unity.Formats.USD.Tests.Common",
-    "rootNamespace": "",
     "references": [
         "USD.NET",
         "USD.NET.Unity",
@@ -10,7 +9,6 @@
     ],
     "includePlatforms": [
         "Editor",
-        "LinuxStandalone64",
         "macOSStandalone",
         "WindowsStandalone64"
     ],
