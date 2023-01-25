@@ -45,16 +45,16 @@ namespace Unity.Formats.USD
                 foreach (Transform child in goMaster.transform)
                 {
                     Transform newChild = goInstance.transform.Find(child.name);
-                    
+
                     // If the old instance exists, we must destroy it to avoid a duplicate
                     // because the prototypes may have changed during re-import
                     if (newChild != null)
                         GameObject.DestroyImmediate(newChild.gameObject);
-                    
+
                     newChild = GameObject.Instantiate(child.gameObject).transform;
                     newChild.name = child.name;
                     newChild.transform.SetParent(goInstance.transform, worldPositionStays: false);
-                    
+
                     primMap.AddInstance(newChild.gameObject);
                 }
             }
