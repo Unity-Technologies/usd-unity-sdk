@@ -130,10 +130,10 @@ namespace Unity.Formats.USD.Tests
             m_USDScene = Scene.Open(m_USDScenePath);
             pxr.UsdPrim cubePrim = GetPrim(cube);
 
-            UsdGeomMesh usdGeomMesh = new UsdGeomMesh(cubePrim);
-            var stPrimvar = usdGeomMesh.GetPrimvar(new TfToken("st"));
+            pxr.UsdGeomMesh usdGeomMesh = new pxr.UsdGeomMesh(cubePrim);
+            var stPrimvar = usdGeomMesh.GetPrimvar(new pxr.TfToken("st"));
             Assert.IsNotNull(stPrimvar, $"Mesh {cube.name} has no 'st' primvar.");
-            Assert.AreEqual(new TfToken("varying"), stPrimvar.GetInterpolation(), $"st on mesh {cube.name} is not set to varying interpolation.");
+            Assert.AreEqual(new pxr.TfToken("varying"), stPrimvar.GetInterpolation(), $"st on mesh {cube.name} is not set to varying interpolation.");
         }
     }
 }
