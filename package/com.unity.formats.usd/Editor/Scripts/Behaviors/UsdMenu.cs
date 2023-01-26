@@ -30,17 +30,14 @@ namespace Unity.Formats.USD
             return Selection.gameObjects.Length > 0;
         }
 
+#if UNITY_EDITOR_WIN
         [MenuItem("USD/Export Selected with Children", priority = 50)]
         static void MenuExportSelectedWithChildren()
         {
-#if UNITY_EDITOR_WIN
             ExportSelectedWithChildren("usd,usda,usdc");
-#else
-            ExportSelectedWithChildren("usd");
-#endif
         }
+#else
 
-#if !UNITY_EDITOR_WIN
         [MenuItem("USD/Export Selected with Children to USDA", priority = 50)]
         static void MenuExportSelectedWithChildrenToUSDA()
         {
