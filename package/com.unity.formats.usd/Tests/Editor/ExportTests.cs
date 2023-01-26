@@ -133,7 +133,7 @@ namespace Unity.Formats.USD.Tests
             pxr.UsdGeomMesh usdGeomMesh = new pxr.UsdGeomMesh(cubePrim);
             var stPrimvar = usdGeomMesh.GetPrimvar(new pxr.TfToken("st"));
             Assert.IsNotNull(stPrimvar, $"Mesh {cube.name} has no 'st' primvar.");
-            Assert.AreEqual(new pxr.TfToken("varying"), stPrimvar.GetInterpolation(), $"st on mesh {cube.name} is not set to varying interpolation.");
+            Assert.AreEqual(pxr.UsdGeomTokens.varying, stPrimvar.GetInterpolation(), $"st on mesh {cube.name} is not set to varying interpolation.");
         }
     }
 }
