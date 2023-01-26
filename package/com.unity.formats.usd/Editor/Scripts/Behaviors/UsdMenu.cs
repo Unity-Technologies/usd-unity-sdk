@@ -23,6 +23,8 @@ namespace Unity.Formats.USD
     public static class UsdMenu
     {
         [MenuItem("USD/Export Selected with Children", true)]
+        [MenuItem("USD/Export Selected with Children as USDA", true)]
+        [MenuItem("USD/Export Selected with Children as USDC", true)]
         static bool EnableMenuExportSelectedWithChildren()
         {
             return Selection.gameObjects.Length > 0;
@@ -31,13 +33,30 @@ namespace Unity.Formats.USD
         [MenuItem("USD/Export Selected with Children", priority = 50)]
         static void MenuExportSelectedWithChildren()
         {
-            var go = Selection.gameObjects.First();
-            string fileExtensions;
 #if UNITY_EDITOR_WIN
-            fileExtensions = "usd,usda,usdc";
+            ExportSelectedWithChildren("usd,usda,usdc");
 #else
-            fileExtensions = "usd";
+            ExportSelectedWithChildren("usd");
 #endif
+        }
+
+#if !UNITY_EDITOR_WIN
+        [MenuItem("USD/Export Selected with Children to USDA", priority = 50)]
+        static void MenuExportSelectedWithChildrenToUSDA()
+        {
+            ExportSelectedWithChildren("usda");
+        }
+
+        [MenuItem("USD/Export Selected with Children to USDC", priority = 50)]
+        static void MenuExportSelectedWithChildrenToUSDC()
+        {
+            ExportSelectedWithChildren("usdc");
+        }
+#endif
+
+        static void ExportSelectedWithChildren(string fileExtensions)
+        {
+            var go = Selection.gameObjects.First();
             var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, fileExtensions);
             var scene = ExportHelpers.InitForSave(filePath);
             ExportHelpers.ExportGameObjects(Selection.gameObjects, scene, BasisTransformation.SlowAndSafe);
