@@ -38,13 +38,13 @@ namespace Unity.Formats.USD
         }
 #else
 
-        [MenuItem("USD/Export Selected with Children to USDA", priority = 50)]
+        [MenuItem("USD/Export Selected with Children as USDA", priority = 50)]
         static void MenuExportSelectedWithChildrenToUSDA()
         {
             ExportSelectedWithChildren("usda");
         }
 
-        [MenuItem("USD/Export Selected with Children to USDC", priority = 50)]
+        [MenuItem("USD/Export Selected with Children as USDC", priority = 50)]
         static void MenuExportSelectedWithChildrenToUSDC()
         {
             ExportSelectedWithChildren("usdc");
