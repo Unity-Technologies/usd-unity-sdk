@@ -49,7 +49,9 @@ namespace USD.NET.Unity
             var pi = new pxr.UsdGeomPointInstancer(prim);
             var xforms = new pxr.VtMatrix4dArray();
 
-            pi.ComputeInstanceTransformsAtTime(xforms, scene.Time == null ? pxr.UsdTimeCode.Default() : scene.Time, pxr.UsdTimeCode.Default());
+            // For the base time from Pixar docs:
+            // "If your application does not care about off-sample interpolation, it can supply the same value for baseTime that it does for time."
+            pi.ComputeInstanceTransformsAtTime(xforms, scene.Time == null ? pxr.UsdTimeCode.Default() : scene.Time, scene.Time == null ? pxr.UsdTimeCode.Default() : scene.Time);
 
             // Slow, but works.
             var matrices = new Matrix4x4[xforms.size()];
