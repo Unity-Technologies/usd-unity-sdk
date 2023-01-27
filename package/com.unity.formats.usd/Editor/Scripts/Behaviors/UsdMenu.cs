@@ -24,30 +24,26 @@ namespace Unity.Formats.USD
     {
         [MenuItem("USD/Export Selected with Children", true)]
         [MenuItem("USD/Export Selected with Children as USDA", true)]
-        [MenuItem("USD/Export Selected with Children as USDC", true)]
         static bool EnableMenuExportSelectedWithChildren()
         {
             return Selection.gameObjects.Length > 0;
         }
 
-#if UNITY_EDITOR_WIN
         [MenuItem("USD/Export Selected with Children", priority = 50)]
         static void MenuExportSelectedWithChildren()
         {
+#if UNITY_EDITOR_WIN
             ExportSelectedWithChildren("usd,usda,usdc");
-        }
 #else
+            ExportSelectedWithChildren("usd");
+#endif
+        }
 
+#if !UNITY_EDITOR_WIN
         [MenuItem("USD/Export Selected with Children as USDA", priority = 50)]
         static void MenuExportSelectedWithChildrenToUSDA()
         {
             ExportSelectedWithChildren("usda");
-        }
-
-        [MenuItem("USD/Export Selected with Children as USDC", priority = 50)]
-        static void MenuExportSelectedWithChildrenToUSDC()
-        {
-            ExportSelectedWithChildren("usdc");
         }
 #endif
 
