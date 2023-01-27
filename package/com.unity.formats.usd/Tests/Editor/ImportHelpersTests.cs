@@ -1,12 +1,7 @@
 using System.IO;
 using NUnit.Framework;
 using UnityEditor;
-using UnityEngine;
 using USD.NET;
-using USD.NET.Unity;
-using System.Linq;
-using Object = UnityEngine.Object;
-using System;
 
 namespace Unity.Formats.USD.Tests
 {
@@ -59,7 +54,7 @@ namespace Unity.Formats.USD.Tests
             // ExpectedGameObjectCount: The Root GameObject + Sphere GameObject added
             // ExpectedPrimSourceCount: Root Source + Sphere Source
             // ExpectedMaterialCount: The 3 default materials + 1 material from Sphere meshRender
-            EditorImportAssert.IsValidImport(usdAsObjects, expectedGameObjectCount: 2, expectedPrimSourceCount: 2, expectedMaterialCount: 4);
+            ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 2, expectedPrimSourceCount: 2, expectedMaterialCount: 4);
         }
 
         [Test]
@@ -74,65 +69,12 @@ namespace Unity.Formats.USD.Tests
             // ExpectedGameObjectCount: The Root GameObject
             // ExpectedPrimSourceCount: 0 TODO: Shouldnt there be a prim source object for the root object?
             // ExpectedMaterialCount: The 3 default materials
-            EditorImportAssert.IsValidImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
+            ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
         }
 
-        [TearDown]
-        public void ClearTestScene()
+        public void ImportAsPrefab_TextureDataImported()
         {
-            m_scene = null;
-        }
-    }
-
-    public static class EditorImportAssert
-    {
-        enum ObjectTypeName
-        {
-            UsdPlayableAsset = 0,
-            GameObject = 1,
-            Material = 2,
-            UsdPrimSource = 3
-        }
-
-
-        public static void IsValidImport(Object[] usdAsObjects, int expectedGameObjectCount, int expectedPrimSourceCount, int expectedMaterialCount)
-        {
-            Assert.NotZero(usdAsObjects.Length);
-
-            bool playableAssetFound = false;
-            int gameObjectCount = 0;
-            int materialCount = 0;
-            int usdPrimSourceCount = 0;
-
-            foreach (Object childObject in usdAsObjects)
-            {
-                switch (childObject.GetType().Name)
-                {
-                    case nameof(ObjectTypeName.UsdPlayableAsset):
-                        playableAssetFound = true;
-                        break;
-
-                    case nameof(ObjectTypeName.GameObject):
-                        gameObjectCount++;
-                        break;
-
-                    case nameof(ObjectTypeName.Material):
-                        materialCount++;
-                        break;
-
-                    case nameof(ObjectTypeName.UsdPrimSource):
-                        usdPrimSourceCount++;
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-
-            Assert.IsTrue(playableAssetFound, "No PlayableAssset was found in the prefab.");
-            Assert.AreEqual(expectedGameObjectCount, gameObjectCount, "Wrong GameObjects count in the prefab.");
-            Assert.AreEqual(expectedPrimSourceCount, usdPrimSourceCount, "Wrong USD Prim Source object count in the prefab");
-            Assert.AreEqual(expectedMaterialCount, materialCount, "Wrong Materials count in the prefab");
+            // TODO: Implement when we can change the SceneImportOptions when calling ImportHelpers.ImportAsPrefab
         }
     }
 }

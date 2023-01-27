@@ -159,6 +159,21 @@ namespace Unity.Formats.USD
                 return true;
             }
 
+            // The prim can use a subset of the joints
+            if (lhs.Length != rhs.Length)
+            {
+                return false;
+            }
+
+            // The prim can have a custom joint order if skel:joints is set on it
+            for (int i = 0; i < lhs.Length; i++)
+            {
+                if (lhs[i] != rhs[i])
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -203,9 +218,10 @@ namespace Unity.Formats.USD
             // TODO: bind transform attribute can be animated. It's not handled yet.
             Matrix4x4 geomXf = UnityTypeConverter.FromMatrix(skinningQuery.GetGeomBindTransform());
 
-            // If the joints list is a different length than the bind transforms, then this is likely
-            // a mesh using a subset of the total bones in the skeleton and the bindTransforms must be
-            // reconstructed.
+            // A mesh prim can have a custom joint definition order or use a subset of the joints.
+            // If it's the case reconstruct the bindpose accordingly.
+            // TODO: a better way of doing this would be to get a jointMapper with skinningQuery.GetJointMapper
+            //       and use it to map the bindTransforms to the joints list. But the UsdSkelAnimMapper is not in the bindings yet.
             var bindPoses = skeleton.bindTransforms;
             if (!JointsMatch(skeleton.joints, joints))
             {
