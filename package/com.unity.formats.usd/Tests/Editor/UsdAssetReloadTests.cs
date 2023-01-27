@@ -16,12 +16,10 @@ namespace Unity.Formats.USD.Tests
         const string k_USDGUID = "68d552f46d3740c47b17d0ac1c531e76";  // reloadTest.usda
         const string k_USDModifiedGUID = "4eccf405e5254fd4089cef2f9bcbd882"; // reloadTest_modified.usda
         const string k_USDOriginGUID = "069ae5d2d8a36fd4b8a0395de731eda0"; // reloadTest_origin.usda
-        const string k_USDZGUID = "a90ff3ebef4a2aa42b559da07e4151f5"; // test-roughness.usdz
         const string k_USDInstancerGUID = "bfb4012f0c339574296e64f4d3c6c595"; // instanced_cubes.usda
 
         string testFilePath;
         string testFileModifiedPath;
-        string prefabUsdPath;
 
         GameObject m_usdRoot;
         UsdAsset m_usdAsset;
@@ -38,23 +36,11 @@ namespace Unity.Formats.USD.Tests
             Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
         }
 
-        private Scene OpenUSDGUIDAssetScene(string guid, out string filePath)
-        {
-            filePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(guid));
-            var stage = pxr.UsdStage.Open(filePath, pxr.UsdStage.InitialLoadSet.LoadNone);
-            return Scene.Open(stage);
-        }
-
         [TearDown]
         public void TearDown()
         {
             m_usdAsset.DestroyAllImportedObjects();
             GameObject.DestroyImmediate(m_usdRoot);
-
-            if (!string.IsNullOrEmpty(prefabUsdPath))
-            {
-                AssetDatabase.DeleteAsset(prefabUsdPath);
-            }
 
             // Restore test files.
             ResetTestFile();
