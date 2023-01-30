@@ -207,8 +207,8 @@ namespace Unity.Formats.USD
             int newCountsLength = 0, newIndicesLength = 0;
             for (int i = 0; i < faceVertexCounts.Length; i++)
             {
-                newCountsLength += faceVertexCounts[i] - 1;
-                newIndicesLength += 3 * (faceVertexCounts[i] - 1);
+                newCountsLength += faceVertexCounts[i] - 2;
+                newIndicesLength += 3 * (faceVertexCounts[i] - 2);
             }
 
             var newCounts = new int[newCountsLength];
@@ -219,7 +219,7 @@ namespace Unity.Formats.USD
             for (var i = 0; i < faceVertexCounts.Length; i++)
             {
                 // This could be faster if we had a fixed vertex count so we could allocate one single large array
-                faceMapping[i] = new int[faceVertexCounts[i]];
+                faceMapping[i] = new int[faceVertexCounts[i] - 2];
 
                 var next = last + 1;
                 var t = 0;
