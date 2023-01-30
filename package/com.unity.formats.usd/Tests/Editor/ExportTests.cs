@@ -117,5 +117,34 @@ namespace Unity.Formats.USD.Tests
             }
             Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
         }
+
+        [Test]
+        [Ignore("USDU-245")]
+        public void ExportObjectWithEditorOnlyTag_DoesNotExportEditorOnly()
+        {
+            const string editorOnly = "EditorOnly";
+
+            var rootObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var defaultChild = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            defaultChild.transform.SetParent(rootObject.transform);
+
+            var editorOnlyChild = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            editorOnlyChild.name = "EditorOnlyTag_Object";
+            editorOnlyChild.tag = editorOnly;
+            editorOnlyChild.transform.SetParent(rootObject.transform);
+
+            ExportHelpers.ExportGameObjects(new GameObject[] { rootObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+            m_USDScene = Scene.Open(m_USDScenePath);
+
+            foreach (Transform child in rootObject.transform)
+            {
+                if (child.tag == editorOnly)
+                {
+                    var childPrim = GetPrim(child.gameObject);
+
+                    Assert.IsNull(childPrim, $"GameObject <{child.name}> with Tag 'EditorOnly' Shouldn't have been exported");
+                }
+            }
+        }
     }
 }
