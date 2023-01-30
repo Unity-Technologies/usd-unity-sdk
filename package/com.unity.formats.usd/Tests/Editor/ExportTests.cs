@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -116,6 +117,40 @@ namespace Unity.Formats.USD.Tests
                 exportedPrims.Add(cubePrim);
             }
             Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
+        }
+
+        [Test]
+        public void ExportPhysicalCamera_RetainsPhysicalRelatedData()
+        {
+            var physicalPropertyNames = new List<string> { "focalLength", "sensorSize", "lensShift", "gateFit" };
+
+            var testFocalLength = 100;
+            var testSensorSize = new Vector2() { x = 10, y = 10 };
+            var testLensShift = new Vector2() { x = 1, y = 1 };
+            var testGateFit = Camera.GateFitMode.Overscan;
+
+            var cameraObject = new GameObject("CameraContainer");
+            var camera = cameraObject.AddComponent<Camera>();
+            camera.usePhysicalProperties = true;
+            camera.focalLength = testFocalLength;
+            camera.sensorSize = testSensorSize;
+            camera.lensShift = testLensShift;
+            camera.gateFit = testGateFit;
+
+            ExportHelpers.ExportGameObjects(new GameObject[] { camera.gameObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+            m_USDScene = Scene.Open(m_USDScenePath);
+
+            var cameraPrim = GetPrim(camera.gameObject);
+
+            Assert.AreEqual(cameraPrim.GetTypeName().ToString(), "Camera");
+
+            foreach (var camProperty in cameraPrim.GetProperties())
+            {
+                physicalPropertyNames.Remove(camProperty.GetBaseName());
+            }
+
+            Assert.IsEmpty(physicalPropertyNames, string.Format("Not all Physical Camera properties were found: {0}", String.Join(", ", physicalPropertyNames.ToArray())));
+            // TODO: Not sure how to check for property value, would like to do Assertion on value as well if property has been found
         }
     }
 }
