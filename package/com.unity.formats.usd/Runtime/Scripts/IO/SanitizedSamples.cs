@@ -5,6 +5,7 @@ using pxr;
 using USD.NET;
 using USD.NET.Unity;
 using UnityEngine;
+using System.Linq;
 
 [assembly: InternalsVisibleToAttribute("Unity.Formats.USD.Tests.Runtime")]
 namespace Unity.Formats.USD
@@ -64,7 +65,7 @@ namespace Unity.Formats.USD
         /// <summary>
         /// After triangulation face ids are no longer correct. This maps old face ids to the new triangulated face ids.
         /// </summary>
-        internal List<List<int>> faceMapping;
+        internal int[][] faceMapping;
 
         /// <summary>
         /// To unweld vertex attributes after the fact (skin weights, joint indices, ...) we need to store the face
@@ -199,42 +200,52 @@ namespace Unity.Formats.USD
         {
             originalFaceVertexCounts = faceVertexCounts;
             originalFaceVertexIndices = faceVertexIndices;
-            faceMapping = new List<List<int>>();
+            faceMapping = new int[faceVertexCounts.Length][];
 
-            var newIndices = new List<int>();
-            var newCounts = new List<int>();
+            // count the lengths of newCounts and newIndices to pre-allocate as arrays-
+            // this extra loop is more performant than using a dynamically-sized List
+            int newCountsLength = 0, newIndicesLength = 0;
+            for (int i = 0; i < faceVertexCounts.Length; i++)
+            {
+                newCountsLength += faceVertexCounts[i] - 1;
+                newIndicesLength += 3 * (faceVertexCounts[i] - 1);
+            }
+
+            var newCounts = new int[newCountsLength];
+            var newIndices = new int[newIndicesLength];
 
             var last = 0;
-            var currentOffset = 0;
+            int currentFaceOffset = 0, currentIndexOffset = 0;
             for (var i = 0; i < faceVertexCounts.Length; i++)
             {
-                faceMapping.Add(new List<int>());
+                // This could be faster if we had a fixed vertex count so we could allocate one single large array
+                faceMapping[i] = new int[faceVertexCounts[i]];
 
                 var next = last + 1;
                 var t = 0;
                 for (; t < faceVertexCounts[i] - 2; t++)
                 {
-                    newCounts.Add(3);
+                    newCounts[currentFaceOffset] = 3;
                     if (changeHandedness)
                     {
-                        newIndices.Add(faceVertexIndices[next++]);
-                        newIndices.Add(faceVertexIndices[last]);
-                        newIndices.Add(faceVertexIndices[next]);
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next++];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[last];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next];
                     }
                     else
                     {
-                        newIndices.Add(faceVertexIndices[last]);
-                        newIndices.Add(faceVertexIndices[next++]);
-                        newIndices.Add(faceVertexIndices[next]);
+                        newIndices[currentIndexOffset++] = faceVertexIndices[last];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next++];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next];
                     }
-                    faceMapping[i].Add(currentOffset++);
+                    faceMapping[i][t] = currentFaceOffset++;
                 }
                 last += faceVertexCounts[i];
             }
 
-            faceVertexIndices = newIndices.ToArray();
-            triangulatedFaceVertexIndices = newIndices.ToArray();
-            faceVertexCounts = newCounts.ToArray();
+            faceVertexIndices = newIndices;
+            triangulatedFaceVertexIndices = newIndices;
+            faceVertexCounts = newCounts;
         }
 
         internal bool ShouldUnweldVertices(bool bindMaterials)
