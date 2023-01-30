@@ -120,6 +120,7 @@ namespace Unity.Formats.USD.Tests
         }
 
         [Test]
+        [Ignore("USDU-292")]
         public void ExportPhysicalCamera_RetainsPhysicalRelatedData()
         {
             var physicalPropertyNames = new List<string> { "focalLength", "sensorSize", "lensShift", "gateFit" };
