@@ -13,10 +13,8 @@
 // limitations under the License.
 
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 using USD.NET;
 using USD.NET.Unity;
 
