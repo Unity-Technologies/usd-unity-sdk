@@ -1,0 +1,24 @@
+#usda 1.0
+(
+    doc = "Blender v3.3.1"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Camera"
+{
+    matrix4d xformOp:transform = ( (0.6859206557273865, 0.7276763319969177, 0, 0), (-0.32401347160339355, 0.305420845746994, 0.8953956365585327, 0), (0.6515582203865051, -0.6141703724861145, 0.44527140259742737, 0), (7.358890056610107, -6.925790786743164, 4.958309173583984, 1) )
+    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+    def Camera "Camera"
+    {
+        float2 clippingRange = (0.1, 100)
+        float focalLength = 100
+        float horizontalAperture = 30
+        float horizontalApertureOffset = 0
+        token projection = "perspective"
+        float verticalAperture = 16.875
+        float verticalApertureOffset = 0
+    }
+}
+

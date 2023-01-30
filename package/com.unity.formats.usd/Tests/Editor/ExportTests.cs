@@ -119,39 +119,45 @@ namespace Unity.Formats.USD.Tests
             Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
         }
 
-        [Test]
-        [Ignore("USDU-292")]
-        public void ExportPhysicalCamera_RetainsPhysicalRelatedData()
+        class CameraRelated : USDExportTests
         {
-            var physicalPropertyNames = new List<string> { "focalLength", "sensorSize", "lensShift", "gateFit" };
-
-            var testFocalLength = 100;
-            var testSensorSize = new Vector2() { x = 10, y = 10 };
-            var testLensShift = new Vector2() { x = 1, y = 1 };
-            var testGateFit = Camera.GateFitMode.Overscan;
-
-            var cameraObject = new GameObject("CameraContainer");
-            var camera = cameraObject.AddComponent<Camera>();
-            camera.usePhysicalProperties = true;
-            camera.focalLength = testFocalLength;
-            camera.sensorSize = testSensorSize;
-            camera.lensShift = testLensShift;
-            camera.gateFit = testGateFit;
-
-            ExportHelpers.ExportGameObjects(new GameObject[] { camera.gameObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
-            m_USDScene = Scene.Open(m_USDScenePath);
-
-            var cameraPrim = GetPrim(camera.gameObject);
-
-            Assert.AreEqual(cameraPrim.GetTypeName().ToString(), "Camera");
-
-            foreach (var camProperty in cameraPrim.GetProperties())
+            class PhysicalCameraMembers : SampleBase
             {
-                physicalPropertyNames.Remove(camProperty.GetBaseName());
+                public float focalLength;
+                public float horizontalAperture;
+                public float horizontalApertureOffset;
+                public float verticalAperture;
+                public float verticalApertureOffset;
             }
 
-            Assert.IsEmpty(physicalPropertyNames, string.Format("Not all Physical Camera properties were found: {0}", String.Join(", ", physicalPropertyNames.ToArray())));
-            // TODO: Not sure how to check for property value, would like to do Assertion on value as well if property has been found
+            [Test]
+            [Ignore("USDU-292")]
+            public void ExportPhysicalCamera_RetainsPhysicalRelatedData()
+            {
+                var testFocalLength = 75;
+                var testSensorSize = new Vector2() { x = 30, y = 20 };
+                var testLensShift = new Vector2() { x = 1, y = 2 };
+
+                var cameraObject = new GameObject("CameraContainer");
+                var camera = cameraObject.AddComponent<Camera>();
+                camera.usePhysicalProperties = true;
+                camera.focalLength = testFocalLength;
+                camera.sensorSize = testSensorSize;
+                camera.lensShift = testLensShift;
+
+                ExportHelpers.ExportGameObjects(new GameObject[] { camera.gameObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+                m_USDScene = Scene.Open(m_USDScenePath);
+                var physicalCameraData = new PhysicalCameraMembers();
+                m_USDScene.Read("/CameraContainer", physicalCameraData);
+
+                var cameraPrim = GetPrim(camera.gameObject);
+                Assert.AreEqual(cameraPrim.GetTypeName().ToString(), "Camera");
+                Assert.AreEqual(testFocalLength, physicalCameraData.focalLength);
+                Assert.AreEqual(testSensorSize.x, physicalCameraData.horizontalAperture);
+                Assert.AreEqual(testLensShift.x, physicalCameraData.horizontalApertureOffset);
+                Assert.AreEqual(testSensorSize.y, physicalCameraData.verticalAperture);
+                Assert.AreEqual(testLensShift.y, physicalCameraData.verticalApertureOffset);
+            }
         }
     }
 }
