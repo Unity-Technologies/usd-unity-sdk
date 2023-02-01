@@ -136,15 +136,8 @@ namespace Unity.Formats.USD.Tests
             ExportHelpers.ExportGameObjects(new GameObject[] { rootObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
             m_USDScene = Scene.Open(m_USDScenePath);
 
-            foreach (Transform child in rootObject.transform)
-            {
-                if (child.tag == editorOnly)
-                {
-                    var childPrim = GetPrim(child.gameObject);
-
-                    Assert.IsNull(childPrim, $"GameObject <{child.name}> with Tag 'EditorOnly' Shouldn't have been exported");
-                }
-            }
+            Assert.IsNotNull(GetPrim(defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
+            Assert.IsNull(GetPrim(editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
         }
     }
 }
