@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using pxr;
+using UnityEngine;
 
 namespace USD.NET.Tests
 {
@@ -107,6 +108,16 @@ namespace USD.NET.Tests
         public void GetRelationshipAtPath_InvalidPath_ReturnNull(string path)
         {
             Assert.Null(scene.GetRelationshipAtPath(path));
+        }
+
+        [TestCase("invalidPath", Description = "Invalid path value")]
+        [TestCase("", Description = "Empty path value")]
+        [TestCase("../sibling", Description = "Relative path value")]
+        public void WritePathToSceneFile_WithInvalidPath_ThrowsException(string path)
+        {
+            scene = Scene.Create();
+            Assert.Throws<System.Exception>(() => scene.Write(path, new SampleBase()));
+            UnityEngine.TestTools.LogAssert.Expect(LogType.Exception, string.Format("ApplicationException: USD ERROR: Path must be an absolute path: <{0}>", path));
         }
     }
 }
