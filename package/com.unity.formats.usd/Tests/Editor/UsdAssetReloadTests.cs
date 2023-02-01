@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using UnityEditor;
@@ -14,6 +16,7 @@ namespace Unity.Formats.USD.Tests
         const string k_USDGUID = "68d552f46d3740c47b17d0ac1c531e76";  // reloadTest.usda
         const string k_USDModifiedGUID = "4eccf405e5254fd4089cef2f9bcbd882"; // reloadTest_modified.usda
         const string k_USDOriginGUID = "069ae5d2d8a36fd4b8a0395de731eda0"; // reloadTest_origin.usda
+        const string k_USDInstancerGUID = "bfb4012f0c339574296e64f4d3c6c595"; // instanced_cubes.usda
 
         string testFilePath;
         string testFileModifiedPath;
@@ -24,9 +27,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void Setup()
         {
-            testFilePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDGUID));
-            var stage = pxr.UsdStage.Open(testFilePath, pxr.UsdStage.InitialLoadSet.LoadNone);
-            var scene = Scene.Open(stage);
+            var scene = OpenUSDGUIDAssetScene(k_USDGUID, out testFilePath);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
             scene.Close();
 
@@ -107,6 +108,36 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.GetScene().Read("/TestPrim", xform);
             translate = xform.transform.GetColumn(3);
             Assert.AreEqual(new Vector4(1, 1, 1, 1), translate);
+        }
+
+        [Test]
+        public void UsdInstancerAsset_Reload_NoDuplicateObjects()
+        {
+            const int expectedChildrenCount = 101;
+            const string instancerChildNamePrefix = "Root";
+
+            var scene = OpenUSDGUIDAssetScene(k_USDInstancerGUID, out _);
+            var instancerObject = ImportHelpers.ImportSceneAsGameObject(scene);
+
+            var originalChildrenData = new Dictionary<string, int>();
+            foreach (Transform child in instancerObject.transform)
+            {
+                originalChildrenData.Add(child.name, child.GetInstanceID());
+            }
+
+            instancerObject.GetComponent<UsdAsset>().Reload(false);
+
+            var newChildrenCount = instancerObject.transform.childCount;
+            Assert.AreEqual(newChildrenCount, expectedChildrenCount);
+
+            foreach (Transform child in instancerObject.transform)
+            {
+                if (child.name.StartsWith(instancerChildNamePrefix))
+                {
+                    Assert.True(originalChildrenData.ContainsKey(child.name));
+                    Assert.That(originalChildrenData[child.name] != child.GetInstanceID());
+                }
+            }
         }
 
         void UpdateTestFile()
