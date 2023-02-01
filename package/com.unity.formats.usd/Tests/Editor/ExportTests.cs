@@ -40,14 +40,6 @@ namespace Unity.Formats.USD.Tests
             }
         }
 
-        private pxr.UsdPrim GetPrim(GameObject gameObject)
-        {
-            Assert.IsNotNull(m_USDScene);
-            Assert.IsNotNull(m_USDScene.Stage);
-
-            return m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(gameObject.transform)));
-        }
-
         [Test]
         public void ExportRootGameObjectWithMesh_ExportedPrimHasMeshType()
         {
@@ -56,7 +48,7 @@ namespace Unity.Formats.USD.Tests
 
             m_USDScene = Scene.Open(m_USDScenePath);
 
-            var cubePrim = GetPrim(cube);
+            var cubePrim = TestUtilityFunction.ExportTest.GetPrim(m_USDScene, cube);
             Assert.IsNotNull(cubePrim);
             Assert.IsTrue(cubePrim.IsValid());
 
@@ -79,7 +71,7 @@ namespace Unity.Formats.USD.Tests
             var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
-                var cubePrim = GetPrim(cube);
+                var cubePrim = TestUtilityFunction.ExportTest.GetPrim(m_USDScene, cube);
                 Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
                 Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
 
@@ -108,54 +100,13 @@ namespace Unity.Formats.USD.Tests
             var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
-                var cubePrim = GetPrim(cube);
+                var cubePrim = TestUtilityFunction.ExportTest.GetPrim(m_USDScene, cube);
                 Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
                 Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
 
                 exportedPrims.Add(cubePrim);
             }
             Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
-        }
-
-        class CameraRelated : USDExportTests
-        {
-            class PhysicalCameraMembers : SampleBase
-            {
-                public float focalLength;
-                public float horizontalAperture;
-                public float horizontalApertureOffset;
-                public float verticalAperture;
-                public float verticalApertureOffset;
-            }
-
-            [Test]
-            [Ignore("USDU-292")]
-            public void ExportPhysicalCamera_RetainsPhysicalRelatedData()
-            {
-                var testFocalLength = 75;
-                var testSensorSize = new Vector2() { x = 30, y = 20 };
-                var testLensShift = new Vector2() { x = 1, y = 2 };
-
-                var cameraObject = new GameObject("CameraContainer");
-                var camera = cameraObject.AddComponent<Camera>();
-                camera.usePhysicalProperties = true;
-                camera.focalLength = testFocalLength;
-                camera.sensorSize = testSensorSize;
-                camera.lensShift = testLensShift;
-
-                ExportHelpers.ExportGameObjects(new GameObject[] { camera.gameObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
-                m_USDScene = Scene.Open(m_USDScenePath);
-                var physicalCameraData = new PhysicalCameraMembers();
-                m_USDScene.Read("/CameraContainer", physicalCameraData);
-
-                var cameraPrim = GetPrim(camera.gameObject);
-                Assert.AreEqual(cameraPrim.GetTypeName().ToString(), "Camera");
-                Assert.AreEqual(testFocalLength, physicalCameraData.focalLength);
-                Assert.AreEqual(testSensorSize.x, physicalCameraData.horizontalAperture);
-                Assert.AreEqual(testLensShift.x, physicalCameraData.horizontalApertureOffset);
-                Assert.AreEqual(testSensorSize.y, physicalCameraData.verticalAperture);
-                Assert.AreEqual(testLensShift.y, physicalCameraData.verticalApertureOffset);
-            }
         }
     }
 }
