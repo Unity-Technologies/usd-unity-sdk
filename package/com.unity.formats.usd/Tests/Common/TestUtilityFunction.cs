@@ -8,6 +8,7 @@ using USD.NET.Unity;
 
 public static class TestUtilityFunction
 {
+#if UNITY_EDITOR
     public static class EditorTest
     {
         public static Scene OpenUSDScene(string usdGUID, UsdStage.InitialLoadSet loadSet = UsdStage.InitialLoadSet.LoadNone)
@@ -19,7 +20,7 @@ public static class TestUtilityFunction
             return scene;
         }
     }
-
+#endif
     public static class ExportTest
     {
         public static pxr.UsdPrim GetPrim(Scene usdScene, GameObject gameObject)
