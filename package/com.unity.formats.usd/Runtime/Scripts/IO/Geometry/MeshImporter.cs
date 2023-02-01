@@ -466,7 +466,12 @@ namespace Unity.Formats.USD
                     var newFaceIndices = new List<int>();
                     foreach (var faceIndex in nameAndSubset.Value)
                     {
-                        newFaceIndices.AddRange(usdMesh.faceMapping[faceIndex]);
+                        int firstFace = usdMesh.faceMapping[faceIndex];
+                        int faceCount = usdMesh.originalFaceVertexCounts[faceIndex] - 2;
+                        for (int mappedFaceIndex = 0; mappedFaceIndex < faceCount; mappedFaceIndex++)
+                        {
+                            newFaceIndices.Add(firstFace + mappedFaceIndex);
+                        }
                     }
 
                     newSubsets.Subsets.Add(nameAndSubset.Key, newFaceIndices.ToArray());
