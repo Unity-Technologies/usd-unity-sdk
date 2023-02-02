@@ -110,42 +110,5 @@ namespace Unity.Formats.USD.Tests
             ExportHelpers.ExportGameObjects(new[] { new GameObject("test") }, scene, BasisTransformation.SlowAndSafe);
             Assert.IsNull(scene.Stage);
         }
-
-        [Ignore("[USDU-275] | [USDU-279]")]
-        [Test]
-        public void ExportAsUsdz_DataStructureKeptOnImport()
-        {
-            var scene = ImportHelpers.InitForOpen(GetTestAssetPath(TestAssetData.FileName.TexturedOpaque));
-            var importedUsdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
-                new SceneImportOptions()
-                {
-                    materialImportMode = MaterialImportMode.ImportPreviewSurface
-                }
-            );
-
-            var usdzPath = GetUSDScenePath(importedUsdObject.name + ".usdz");
-            UsdzExporter.ExportUsdz(usdzPath, importedUsdObject);
-
-            var usdObjectRootPath = importedUsdObject.GetComponent<UsdAsset>().m_usdRootPath;
-
-            Assert.AreEqual(usdObjectRootPath, "/");
-
-            var usdzScene = ImportHelpers.InitForOpen(usdzPath);
-            var usdzObject = ImportHelpers.ImportSceneAsGameObject(usdzScene, importOptions:
-                new SceneImportOptions()
-                {
-                    materialImportMode = MaterialImportMode.ImportPreviewSurface
-                }
-            );
-
-            Assert.AreEqual(usdzObject.GetComponent<UsdAsset>().m_usdRootPath, usdObjectRootPath);
-
-            ExportAssert.Runtime.IsDataStructureKeptInUsdz(
-                usdzObject,
-                expectedMaterialsName: TestAssetData.ImportGameObjectName.Material,
-                expectedRootPrimName: TestAssetData.ImportGameObjectName.RootPrim,
-                expectedObjectName: TestAssetData.FileName.TexturedOpaque
-            );
-        }
     }
 }

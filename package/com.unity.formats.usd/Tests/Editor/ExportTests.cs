@@ -117,5 +117,40 @@ namespace Unity.Formats.USD.Tests
             }
             Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
         }
+
+        [Test]
+        [Ignore("[USDU-275] | [USDU-279]")]
+        public void ExportAsUsdz_DataStructureKeptOnImport()
+        {
+            var scene = ImportHelpers.InitForOpen(GetTestAssetPath(TestAssetData.FileName.TexturedOpaque));
+            var importedUsdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
+                new SceneImportOptions()
+                {
+                    materialImportMode = MaterialImportMode.ImportPreviewSurface
+                }
+            );
+
+            var usdzPath = GetUSDScenePath(importedUsdObject.name + ".usdz");
+            UsdzExporter.ExportUsdz(usdzPath, importedUsdObject);
+
+            var usdObjectRootPath = importedUsdObject.GetComponent<UsdAsset>().m_usdRootPath;
+
+            var usdzScene = ImportHelpers.InitForOpen(usdzPath);
+            var usdzObject = ImportHelpers.ImportSceneAsGameObject(usdzScene, importOptions:
+                new SceneImportOptions()
+                {
+                    materialImportMode = MaterialImportMode.ImportPreviewSurface
+                }
+            );
+
+            Assert.AreEqual(usdzObject.GetComponent<UsdAsset>().m_usdRootPath, usdObjectRootPath);
+
+            ExportAssert.IsDataStructureKeptInUsdz(
+                usdzObject,
+                expectedMaterialsName: TestAssetData.ImportGameObjectName.Material,
+                expectedRootPrimName: TestAssetData.ImportGameObjectName.RootPrim,
+                expectedObjectName: TestAssetData.FileName.TexturedOpaque
+            );
+        }
     }
 }
