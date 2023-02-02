@@ -36,13 +36,6 @@ namespace Unity.Formats.USD.Tests
             Assume.That(m_usdAsset, Is.Not.Null, "Could not find USDAsset component on root gameobject.");
         }
 
-        private Scene OpenUSDGUIDAssetScene(string guid, out string filePath)
-        {
-            filePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(guid));
-            var stage = pxr.UsdStage.Open(filePath, pxr.UsdStage.InitialLoadSet.LoadNone);
-            return Scene.Open(stage);
-        }
-
         [TearDown]
         public void TearDown()
         {
