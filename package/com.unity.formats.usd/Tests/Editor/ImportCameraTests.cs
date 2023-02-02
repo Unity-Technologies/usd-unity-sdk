@@ -15,7 +15,7 @@ namespace Unity.Formats.USD.Tests
         [Ignore("USDU-292")]
         public void ImportPhysicalCamera_PhysicalDataKept()
         {
-            var cameraScene = TestUtilityFunction.EditorTest.OpenUSDScene(k_testCameraGUID);
+            var cameraScene = TestUtilityFunction.OpenUSDScene(k_testCameraGUID);
             var m_testCamera = ImportHelpers.ImportSceneAsGameObject(cameraScene).transform.GetChild(0).GetComponent<Camera>();
             cameraScene.Close();
 

@@ -43,7 +43,7 @@ class CameraRelated : BaseFixtureEditor
         var physicalCameraData = new PhysicalCameraMembers();
 
         cameraUsdScene.Read("/CameraContainer", physicalCameraData);
-        var cameraPrim = TestUtilityFunction.ExportTest.GetPrim(cameraUsdScene, camera.gameObject);
+        var cameraPrim = TestUtilityFunction.GetGameObjectPrimInScene(cameraUsdScene, camera.gameObject);
         cameraUsdScene.Close();
 
         Assert.AreEqual(cameraPrim.GetTypeName().ToString(), "Camera");

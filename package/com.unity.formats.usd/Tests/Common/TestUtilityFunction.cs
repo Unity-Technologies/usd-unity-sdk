@@ -9,26 +9,22 @@ using USD.NET.Unity;
 public static class TestUtilityFunction
 {
 #if UNITY_EDITOR
-    public static class EditorTest
+    public static Scene OpenUSDScene(string usdGUID, UsdStage.InitialLoadSet loadSet = UsdStage.InitialLoadSet.LoadNone)
     {
-        public static Scene OpenUSDScene(string usdGUID, UsdStage.InitialLoadSet loadSet = UsdStage.InitialLoadSet.LoadNone)
-        {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(usdGUID));
-            var stage = UsdStage.Open(usdPath, loadSet);
-            var scene = Scene.Open(stage);
+        var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(usdGUID));
+        var stage = UsdStage.Open(usdPath, loadSet);
+        var scene = Scene.Open(stage);
 
-            return scene;
-        }
+        return scene;
     }
-#endif
-    public static class ExportTest
-    {
-        public static pxr.UsdPrim GetPrim(Scene usdScene, GameObject gameObject)
-        {
-            Assert.IsNotNull(usdScene);
-            Assert.IsNotNull(usdScene.Stage);
 
-            return usdScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(gameObject.transform)));
-        }
+#endif
+
+    public static pxr.UsdPrim GetGameObjectPrimInScene(Scene usdScene, GameObject gameObject)
+    {
+        Assert.IsNotNull(usdScene);
+        Assert.IsNotNull(usdScene.Stage);
+
+        return usdScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(gameObject.transform)));
     }
 }
