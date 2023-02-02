@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using UnityEngine;
 using USD.NET;
 using PointInstancerSample = USD.NET.Unity.PointInstancerSample;
@@ -68,7 +69,6 @@ namespace Unity.Formats.USD
             SceneImportOptions options)
         {
             Matrix4x4[] transforms = sample.ComputeInstanceMatrices(scene, pointInstancerPath);
-            int i = 0;
 
             foreach (var protoRoot in sample.prototypes.targetPaths)
             {
@@ -98,6 +98,8 @@ namespace Unity.Formats.USD
             }
             */
 
+            Tuple<Matrix4x4, string, GameObject>[] instancesToCreate = new Tuple<Matrix4x4, string, GameObject>[sample.protoIndices.Length];
+            int i = 0;
             foreach (var index in sample.protoIndices)
             {
                 if (inactiveIds.Contains(index))
@@ -140,13 +142,19 @@ namespace Unity.Formats.USD
                     GameObject.DestroyImmediate(existingInstance.gameObject);
                 }
 
-                var goInstance = GameObject.Instantiate(goMaster, root.transform);
-                goInstance.SetActive(true);
-                goInstance.name = instanceName;
-                XformImporter.BuildXform(xf, goInstance, options);
+                instancesToCreate[i] = new Tuple<Matrix4x4, string, GameObject>(xf, instanceName, goMaster);
 
-                primMap.AddInstance(goInstance);
                 i++;
+            }
+
+            for (int instanceNum = 0; instanceNum < i; instanceNum++)
+            {
+                var goInstance = GameObject.Instantiate(instancesToCreate[instanceNum].Item3, root.transform);
+                goInstance.SetActive(true);
+                goInstance.name = instancesToCreate[instanceNum].Item2;
+                XformImporter.BuildXform(instancesToCreate[instanceNum].Item1, goInstance, options);
+                
+                primMap.AddInstance(goInstance);
             }
         }
 
