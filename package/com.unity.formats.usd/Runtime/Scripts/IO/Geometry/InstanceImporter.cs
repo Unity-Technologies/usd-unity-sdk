@@ -153,7 +153,7 @@ namespace Unity.Formats.USD
                 goInstance.SetActive(true);
                 goInstance.name = instancesToCreate[instanceNum].Item2;
                 XformImporter.BuildXform(instancesToCreate[instanceNum].Item1, goInstance, options);
-                
+
                 primMap.AddInstance(goInstance);
             }
         }
