@@ -77,7 +77,7 @@ The following is a brief listing of currently supported features:
 
 ## Importing Materials
 
-To import materials from USD, import the USD file using the USD menu. For the materials to render in the scene, in the Inspector change the Import Settings > Materials to 'Import Preview Surface' and reimport the USD file.
+To import materials from USD, firstly import the USD file using the USD menu. Then, to get the materials to render in the scene, change the Import Settings > Materials in the Inspector to 'Import Preview Surface'. Finally reimport the USD file.
 
 ## Streaming Playback via Timeline
 
@@ -94,7 +94,7 @@ Timeline playback is multi-threaded using the C# Job System.
 ## Variants, Models, & Payloads
 
 Access to variant selection, model details, and payload state are all accessible via
-the inspector on the game object at which these features were authored. Note that Payloads *are not loaded by default*, and USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene. 
+the inspector on the game object at which these features were authored. Note that Payloads *are not loaded by default*. USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene. 
 
 ## Exporting USD files
 

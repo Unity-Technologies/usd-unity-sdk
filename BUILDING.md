@@ -51,7 +51,7 @@ We typically use the standard build steps from the [USD repo instructions](https
 * with python support: `python3 build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../artifacts/usd-v20.08-python36/usd-v20.08`
 * no python support:   `python3 build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-v20.08-python36/usd-v20.08_no_python`
 
-**Unity developers**: USD binaries are built with each new release and pushed on Stevedore. See next section to download them automatically when building the bindings instead of building them.
+**Unity developers**: USD binaries are built with each new release and pushed on Stevedore. Instead of building them, see the next section to download them automatically when building the bindings.
 
 #### Building the C# bindings
 
