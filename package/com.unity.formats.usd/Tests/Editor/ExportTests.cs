@@ -135,5 +135,27 @@ namespace Unity.Formats.USD.Tests
             Assert.IsNotNull(stPrimvar, $"Mesh {cube.name} has no 'st' primvar.");
             Assert.AreEqual(pxr.UsdGeomTokens.varying, stPrimvar.GetInterpolation(), $"st on mesh {cube.name} is not set to varying interpolation.");
         }
+
+        [Test]
+        [Ignore("USDU-245")]
+        public void ExportObjectWithEditorOnlyTag_DoesNotExportEditorOnly()
+        {
+            const string editorOnly = "EditorOnly";
+
+            var rootObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var defaultChild = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            defaultChild.transform.SetParent(rootObject.transform);
+
+            var editorOnlyChild = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            editorOnlyChild.name = "EditorOnlyTag_Object";
+            editorOnlyChild.tag = editorOnly;
+            editorOnlyChild.transform.SetParent(rootObject.transform);
+
+            ExportHelpers.ExportGameObjects(new GameObject[] { rootObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+            m_USDScene = Scene.Open(m_USDScenePath);
+
+            Assert.IsNotNull(GetPrim(defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
+            Assert.IsNull(GetPrim(editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
+        }
     }
 }

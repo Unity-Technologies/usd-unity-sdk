@@ -45,12 +45,15 @@ namespace Unity.Formats.USD
                 foreach (Transform child in goMaster.transform)
                 {
                     Transform newChild = goInstance.transform.Find(child.name);
-                    if (newChild == null)
-                    {
-                        newChild = GameObject.Instantiate(child.gameObject).transform;
-                        newChild.name = child.name;
-                        newChild.transform.SetParent(goInstance.transform, worldPositionStays: false);
-                    }
+
+                    // If the old instance exists, we must destroy it to avoid a duplicate
+                    // because the prototypes may have changed during re-import
+                    if (newChild != null)
+                        GameObject.DestroyImmediate(newChild.gameObject);
+
+                    newChild = GameObject.Instantiate(child.gameObject).transform;
+                    newChild.name = child.name;
+                    newChild.transform.SetParent(goInstance.transform, worldPositionStays: false);
 
                     primMap.AddInstance(newChild.gameObject);
                 }
@@ -126,11 +129,23 @@ namespace Unity.Formats.USD
                 }
 
                 var xf = transforms[i];
+
+                var instanceName = $"{goMaster.name}_{i}";
+
+                // If the old instance exists, we must destroy it to avoid a duplicate
+                // because the prototypes may have changed during re-import
+                var existingInstance = root.transform.Find(instanceName);
+                if (existingInstance != null)
+                {
+                    GameObject.DestroyImmediate(existingInstance.gameObject);
+                }
+
                 var goInstance = GameObject.Instantiate(goMaster, root.transform);
                 goInstance.SetActive(true);
-                goInstance.name = goMaster.name + "_" + i;
+                goInstance.name = instanceName;
                 XformImporter.BuildXform(xf, goInstance, options);
 
+                primMap.AddInstance(goInstance);
                 i++;
             }
         }

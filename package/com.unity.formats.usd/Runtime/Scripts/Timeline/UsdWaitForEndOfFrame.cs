@@ -30,7 +30,11 @@ namespace Unity.Formats.USD
         {
             if (s_instance == null)
             {
+#if UNITY_2023_1_OR_NEWER
+                s_instance = GameObject.FindAnyObjectByType<UsdWaitForEndOfFrame>();
+#else
                 s_instance = GameObject.FindObjectOfType<UsdWaitForEndOfFrame>();
+#endif
                 if (s_instance == null)
                 {
                     var go = new GameObject();
