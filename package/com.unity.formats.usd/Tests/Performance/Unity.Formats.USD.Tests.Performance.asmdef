@@ -1,16 +1,15 @@
 {
-    "name": "USD.NET.Tests",
+    "name": "Unity.Formats.USD.Tests.Performance",
     "rootNamespace": "",
     "references": [
-        "USD.NET",
-        "UnityEngine.TestRunner",
-        "Unity.Formats.USD.Runtime",
-        "Unity.Formats.USD.Tests.Common"
+        "GUID:ff4f2b49d51b1be44b50586a72af45e7",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:88d59bdd77f09d744b8708dbf107c107",
+        "GUID:7263a266704d56b44818388e07b5f09b"
     ],
     "includePlatforms": [
-        "Editor",
-        "macOSStandalone",
-        "WindowsStandalone64"
+        "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
@@ -21,7 +20,7 @@
     "autoReferenced": false,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS",
-        "UNITY_FUNCTIONAL_TESTS"
+        "UNITY_PERFORMANCE_TESTS"
     ],
     "versionDefines": [],
     "noEngineReferences": false

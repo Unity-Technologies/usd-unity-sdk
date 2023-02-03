@@ -22,7 +22,8 @@
     ],
     "autoReferenced": true,
     "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
+        "UNITY_INCLUDE_TESTS",
+        "UNITY_FUNCTIONAL_TESTS"
     ],
     "versionDefines": [],
     "noEngineReferences": false

@@ -1,5 +1,6 @@
 {
     "name": "USD.NET.Unity.Tests",
+    "rootNamespace": "",
     "references": [
         "Unity.Formats.USD.Runtime",
         "USD.NET.Unity",
@@ -20,7 +21,8 @@
     ],
     "autoReferenced": false,
     "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
+        "UNITY_INCLUDE_TESTS",
+        "UNITY_FUNCTIONAL_TESTS"
     ],
     "versionDefines": [],
     "noEngineReferences": false
