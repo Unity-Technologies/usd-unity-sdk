@@ -86,11 +86,11 @@ namespace Unity.Formats.USD
                 }
             }
 
-            var inactiveIds = new System.Collections.Generic.HashSet<long>();
             /*
              * Disabled until this bug is resolved:
              * https://github.com/PixarAnimationStudios/USD/issues/639
              *
+            var inactiveIds = new System.Collections.Generic.HashSet<long>();
             if (sample.inactiveIds != null) {
               foreach (long id in sample.inactiveIds.GetExplicitItems()) {
                 inactiveIds.Add(id);
@@ -104,10 +104,12 @@ namespace Unity.Formats.USD
             int instanceCount = 0;
             foreach (var index in sample.protoIndices)
             {
+                /*
                 if (inactiveIds.Contains(index))
                 {
                     continue;
                 }
+                */
 
                 if (index >= sample.prototypes.targetPaths.Length)
                 {
