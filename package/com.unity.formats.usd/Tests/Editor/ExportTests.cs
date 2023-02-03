@@ -127,8 +127,8 @@ namespace Unity.Formats.USD.Tests
             ExportHelpers.ExportGameObjects(new GameObject[] { rootObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
             m_USDScene = Scene.Open(m_USDScenePath);
 
-            Assert.IsNotNull(GetPrim(defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
-            Assert.IsNull(GetPrim(editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
+            Assert.IsNotNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
+            Assert.IsNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
         }
     }
 }
