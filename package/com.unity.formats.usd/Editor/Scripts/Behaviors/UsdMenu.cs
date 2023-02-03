@@ -22,8 +22,10 @@ namespace Unity.Formats.USD
 {
     public static class UsdMenu
     {
-        [MenuItem("USD/Export Selected with Children", true)]
+#if !UNITY_EDITOR_WIN
         [MenuItem("USD/Export Selected with Children as USDA", true)]
+#endif
+        [MenuItem("USD/Export Selected with Children", true)]
         static bool EnableMenuExportSelectedWithChildren()
         {
             return Selection.gameObjects.Length > 0;
@@ -45,6 +47,7 @@ namespace Unity.Formats.USD
         {
             ExportSelectedWithChildren("usda");
         }
+
 #endif
 
         static void ExportSelectedWithChildren(string fileExtensions)
