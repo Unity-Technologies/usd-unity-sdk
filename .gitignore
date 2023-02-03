@@ -74,3 +74,4 @@ TestProject/**/*.sln
 TestProject/Usd-Development/Library
 TestProject/Usd-Development/.vs
 build_usdcs
+TestProject/Usd-Development-Performance/Library
