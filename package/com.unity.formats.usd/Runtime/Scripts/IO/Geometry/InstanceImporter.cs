@@ -98,8 +98,10 @@ namespace Unity.Formats.USD
             }
             */
 
+            // Validate each of the instances we're about to create and store them to be created after.
+            // If the instances exist from a previous import, destroy them so they are not duplicated.
             Tuple<Matrix4x4, string, GameObject>[] instancesToCreate = new Tuple<Matrix4x4, string, GameObject>[sample.protoIndices.Length];
-            int i = 0;
+            int instanceCount = 0;
             foreach (var index in sample.protoIndices)
             {
                 if (inactiveIds.Contains(index))
@@ -123,31 +125,35 @@ namespace Unity.Formats.USD
                     continue;
                 }
 
-                if (i >= transforms.Length)
+                if (instanceCount >= transforms.Length)
                 {
-                    Debug.LogWarning("No transform for instance index [" + i + "] " +
+                    Debug.LogWarning("No transform for instance index [" + instanceCount + "] " +
                         "for instancer: " + pointInstancerPath);
                     break;
                 }
 
-                var xf = transforms[i];
+                var xf = transforms[instanceCount];
 
-                var instanceName = $"{goMaster.name}_{i}";
+                var instanceName = $"{goMaster.name}_{instanceCount}";
 
                 // If the old instance exists, we must destroy it to avoid a duplicate
-                // because the prototypes may have changed during re-import
+                // because the prototypes may have changed during re-import.
+                // The Transform hierarchy was created in the same order as it is now deleted,
+                // so this Find() operation is best-case performance.
                 var existingInstance = root.transform.Find(instanceName);
                 if (existingInstance != null)
                 {
                     GameObject.DestroyImmediate(existingInstance.gameObject);
                 }
 
-                instancesToCreate[i] = new Tuple<Matrix4x4, string, GameObject>(xf, instanceName, goMaster);
+                instancesToCreate[instanceCount] = new Tuple<Matrix4x4, string, GameObject>(xf, instanceName, goMaster);
 
-                i++;
+                instanceCount++;
             }
 
-            for (int instanceNum = 0; instanceNum < i; instanceNum++)
+            // Perform the re-instantiation in a secondary loop, so that these new instances are not being
+            // looped over during the Transform.Find() in the previous for-loop and wasting cycles.
+            for (int instanceNum = 0; instanceNum < instanceCount; instanceNum++)
             {
                 var goInstance = GameObject.Instantiate(instancesToCreate[instanceNum].Item3, root.transform);
                 goInstance.SetActive(true);
