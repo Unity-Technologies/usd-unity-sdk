@@ -220,6 +220,7 @@ namespace Unity.Formats.USD
             int last = 0, next = 0, triCount = 0;
             int currentFaceOffset = 0, currentIndexOffset = 0;
 
+            // Unity uses a left handed basis and clockwise winding, so if the source mesh does not, we have to convert
             if (changeHandedness)
             {
                 for (var i = 0; i < faceVertexCounts.Length; i++)
