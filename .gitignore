@@ -54,14 +54,6 @@ packages.config
 # UPM
 upm-ci~
 
-TestProject/Library
-TestProject/ProjectSettings
-TestProject/Temp
-TestProject/*.sln*
-TestProject/*.csproj
-TestProject/.idea
-TestProject/Logs
-TestProject/Assets/*
 inst-dbg/
 package/com.unity.formats.usd/TestRunnerOptions.json.meta
 /artifacts/
