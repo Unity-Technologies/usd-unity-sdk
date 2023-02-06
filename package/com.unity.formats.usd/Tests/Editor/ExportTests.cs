@@ -15,7 +15,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-
 using USD.NET;
 using USD.NET.Unity;
 
@@ -41,14 +40,6 @@ namespace Unity.Formats.USD.Tests
             }
         }
 
-        private pxr.UsdPrim GetPrim(GameObject gameObject)
-        {
-            Assert.IsNotNull(m_USDScene);
-            Assert.IsNotNull(m_USDScene.Stage);
-
-            return m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(gameObject.transform)));
-        }
-
         [Test]
         public void ExportRootGameObjectWithMesh_ExportedPrimHasMeshType()
         {
@@ -57,7 +48,7 @@ namespace Unity.Formats.USD.Tests
 
             m_USDScene = Scene.Open(m_USDScenePath);
 
-            var cubePrim = GetPrim(cube);
+            var cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
             Assert.IsNotNull(cubePrim);
             Assert.IsTrue(cubePrim.IsValid());
 
@@ -80,7 +71,7 @@ namespace Unity.Formats.USD.Tests
             var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
-                var cubePrim = GetPrim(cube);
+                var cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
                 Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
                 Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
 
@@ -109,13 +100,35 @@ namespace Unity.Formats.USD.Tests
             var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
-                var cubePrim = GetPrim(cube);
+                var cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
                 Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
                 Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
 
                 exportedPrims.Add(cubePrim);
             }
             Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
+        }
+
+        [Test]
+        [Ignore("USDU-245")]
+        public void ExportObjectWithEditorOnlyTag_DoesNotExportEditorOnly()
+        {
+            const string editorOnly = "EditorOnly";
+
+            var rootObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var defaultChild = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            defaultChild.transform.SetParent(rootObject.transform);
+
+            var editorOnlyChild = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            editorOnlyChild.name = "EditorOnlyTag_Object";
+            editorOnlyChild.tag = editorOnly;
+            editorOnlyChild.transform.SetParent(rootObject.transform);
+
+            ExportHelpers.ExportGameObjects(new GameObject[] { rootObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+            m_USDScene = Scene.Open(m_USDScenePath);
+
+            Assert.IsNotNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
+            Assert.IsNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
         }
     }
 }
