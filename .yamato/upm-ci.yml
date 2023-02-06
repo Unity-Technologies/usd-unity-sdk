@@ -56,6 +56,26 @@ test_{{ platform.name }}_{{ editor.version }}:
 
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
+test_performance_{{ platform.name }}_{{ editor.version }}:
+  name : Test {{ editor.version }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  commands:
+      - perl utr.pl --suite=editor --category="Performance" --testproject="TestProject\Usd-Development-Performance" --report-performance-data
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+  dependencies:
+    - .yamato/upm-ci.yml#pack
+{% endfor %}
+{% endfor %}
+
+
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
 test_recorder{{ platform.name }}_{{ editor.version }}:
   name : Test Recorder{{ editor.version }} on {{ platform.name }}
   agent:
@@ -109,6 +129,7 @@ test_trigger:
       {% for platform in test_platforms %}
     - .yamato/upm-ci.yml#test_{{platform.name}}_{{editor.version}}
     - .yamato/upm-ci.yml#test_recorder{{platform.name}}_{{editor.version}}
+    - .yamato/upm-ci.yml#test_performance{{platform.name}}_{{editor.version}}
       {% endfor %}
       {% endfor %}
       {% for backend in test_backends %}
@@ -117,6 +138,7 @@ test_trigger:
       {% endfor %}
       {% endfor %}
     - .yamato/formatting.yml#formatting
+
 
 nightly_test_trigger:
   name: Nightly tests Trigger
