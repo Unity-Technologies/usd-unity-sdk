@@ -75,7 +75,7 @@ namespace Unity.Formats.USD
                 GameObject go;
                 if (!primMap.TryGetValue(new pxr.SdfPath(protoRoot), out go))
                 {
-                    Debug.LogWarning("Proto not found in PrimMap: " + protoRoot);
+                    Debug.LogWarning($"Proto not found in PrimMap: {protoRoot}. Instances of this prototype cannot be instantiated.");
                     continue;
                 }
 
@@ -123,7 +123,6 @@ namespace Unity.Formats.USD
                 GameObject goMaster;
                 if (!primMap.TryGetValue(new pxr.SdfPath(targetPath), out goMaster))
                 {
-                    Debug.LogWarning("Proto not found in PrimMap: " + targetPath);
                     continue;
                 }
 
