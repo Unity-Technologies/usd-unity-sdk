@@ -63,7 +63,7 @@ test_performance_{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - utr --suite=editor --category="Performance" --testproject="TestProject\Usd-Development-Performance" --editor-location={{ UNITY_EDITOR_PATH }} --report-performance-data
+      - utr --suite=editor --category="Performance" --testproject="TestProject\Usd-Development-Performance" --editor-location="$UNITY_EDITOR_PATH" --report-performance-data
   artifacts:
     logs:
       paths:
