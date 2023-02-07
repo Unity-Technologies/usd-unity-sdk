@@ -109,6 +109,24 @@ namespace Unity.Formats.USD.Tests
             Assert.AreEqual(cubes.Length, exportedPrims.Count, "One or more GameObjects don't have a corresponding Prim");
         }
 
+        // TODO: This test will need to be updated in later versions of the package where the UsdGeomPrimvarsAPI is implemented
+        [Test]
+        public void ExportGameObjectWithMesh_STPrimVarInterpolationSetToVarying()
+        {
+            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.name = "cube";
+
+            ExportHelpers.ExportGameObjects(new GameObject[] { cube }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+
+            m_USDScene = Scene.Open(m_USDScenePath);
+            pxr.UsdPrim cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
+
+            pxr.UsdGeomMesh usdGeomMesh = new pxr.UsdGeomMesh(cubePrim);
+            var stPrimvar = usdGeomMesh.GetPrimvar(new pxr.TfToken("st"));
+            Assert.IsNotNull(stPrimvar, $"Mesh {cube.name} has no 'st' primvar.");
+            Assert.AreEqual(pxr.UsdGeomTokens.varying, stPrimvar.GetInterpolation(), $"st on mesh {cube.name} is not set to varying interpolation.");
+        }
+
         [Test]
         [Ignore("USDU-245")]
         public void ExportObjectWithEditorOnlyTag_DoesNotExportEditorOnly()
