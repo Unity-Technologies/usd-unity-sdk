@@ -8,10 +8,12 @@ test_platforms:
     type: Unity::VM
     image: package-ci/win10:stable
     flavor: b1.large
+    editor_path: "$UNITY_EDITOR_PATH"
   - name: mac
     type: Unity::VM::osx
     image: package-ci/mac:stable
     flavor: m1.mac
+    editor_path: "$UNITY_EDITOR_PATH"
 test_backends:
   - name: il2cpp
     editor: 2020.3
@@ -63,7 +65,7 @@ test_performance{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location="$UNITY_EDITOR_PATH" --report-performance-data
+      - UnifiedTestRunner --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location={{platform.editor_path}} --report-performance-data
   artifacts:
     logs:
       paths:
