@@ -19,7 +19,7 @@ The following directories are important to be aware of during the build process.
 
 ## Compiling
 
-Note that currently only Windows, OSX, and Linux builds are officially supported.
+Note that currently only Windows, OSX (Intel CPU), and Linux builds are officially supported.
 
 ### Generating Bindings
 
@@ -31,7 +31,7 @@ and can build the native library (UsdCs), the C# library (USD.NET) and the tests
 ##### Cross Platforms
  * Python 3.6 (available as python3 in your system PATH, note that Python 3.8 is not supported by USD 20.08)
  * USD 20.08 with python 3.6 support (used to generate type information for the SWIG bindings)
- * USD 20.08 without python support` (used to minimize runtime dependencies of the bindings)
+ * USD 20.08 without python support (used to minimize runtime dependencies of the bindings)
  * CMake 3.19 (available in your system PATH)
  * Swig 3.0.12 (available in your system PATH)
  * Mono 5.1x (available in your system PATH). As of v3.0.0 of this package, USD.NET sources are included in the package folder so you only need this if you intend to build USD.NET manually.
@@ -43,15 +43,15 @@ and can build the native library (UsdCs), the C# library (USD.NET) and the tests
  * gcc 7
  
  ##### OSX
- * xcode
+ * XCode
  
 #### Building USD 
 
-We typically use the standard build steps from the USD repo instructions. The exact command line we are using are:
+We typically use the standard build steps from the [USD repo instructions](https://github.com/PixarAnimationStudios/USD#getting-and-building-the-code). The exact command lines we are using are:
 * with python support: `python3 build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../artifacts/usd-v20.08-python36/usd-v20.08`
 * no python support:   `python3 build_scripts/build_usd.py --build-monolithic --alembic --no-python --no-imaging --no-examples --no-tutorials ../artifacts/usd-v20.08-python36/usd-v20.08_no_python`
 
-**Unity developers**: USD binaries are built with each new release and pushed on Stevedore. See next section to download them automatically when building the bindings.
+**Unity developers**: USD binaries are built with each new release and pushed on Stevedore. Instead of building them, see the next section to download them automatically when building the bindings.
 
 #### Building the C# bindings
 
@@ -60,24 +60,23 @@ The bindings are made of two libraries:
 * USD.NET: the C# library (serialization API)
 
 The simplest way to build the bindings is to use the provided python build script with the corresponding component (usdcs or usdnet).
-Note that USD.NET sources are now included in the package folder and will be automatically compield by Unity. Use the CMake usdnet component if you are only interested in the C# bindings.
+Note that USD.NET sources are now included in the package folder and will be automatically compiled by Unity. Use the `--component usdnet` argument if you are only interested in the C# bindings.
 
-Start by setting a USD_LOCATION environment variable pointing to a directory containing the 2 different flavors of USD (python and no python).
 The build script expects the following folder structure:
-* $USD_LOCATION
+* <path/to/artifacts>
     * usd-v20.08-python36
         * usd-v20.08
         * usd-v20.08_no_python
 
 In a terminal, running the following command from the root of the repository will build UsdCs by default:
 
-`python3 bin/build.py --usd_version 20.08 --library_path $USD_LOCATION --unity_version 2021.2.8f1`
+`python3 bin/build.py --usd_version 20.08 --library_path <path/to/artifacts> --unity_version 2021.2.8f1`
 
 You can specify the component using the --component option. The following command will build USD.NET, using the mono compiler installed on your machine:
 
-`python3 bin/build.py --usd_version 20.08 --library_path $USD_LOCATION --use_custom_mono --component usdnet`
+`python3 bin/build.py --usd_version 20.08 --library_path <path/to/artifacts> --use_custom_mono --component usdnet`
 
-**Unity developers**: to download the USD binaries from stevedore use the `--download` option
+**Unity developers**: to download the USD binaries from Stevedore instead of building, use the `--download` option.
 
 #### Bindings building steps (advanced)
 
@@ -104,5 +103,5 @@ Whenever the USD core libs are updated, the following steps are critical:
  3. Generate new C# bindings (described above).
 
 If the new libray fails to load, the most common issue is that the library
-dependencies where not correctly updated. Using a tool like otool or
+dependencies were not correctly updated. Using a tool like otool or
 DependencyWalker is a great way to inspect the dynamic linkage issues.
