@@ -8,12 +8,12 @@ test_platforms:
     type: Unity::VM
     image: package-ci/win10:stable
     flavor: b1.large
-    editor_path: "%UNITY_EDITOR_PATH%"
+    utr_install: curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr.bat --output utr.bat
   - name: mac
     type: Unity::VM::osx
     image: package-ci/mac:stable
     flavor: m1.mac
-    editor_path: "$UNITY_EDITOR_PATH"
+    utr_install: curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr --output utr
 test_backends:
   - name: il2cpp
     editor: 2020.3
@@ -66,7 +66,7 @@ test_performance_{{ platform.name }}_{{ editor.version }}:
     flavor: {{ platform.flavor}}
   commands:
       - curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr.bat --output utr.bat
-      - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location={{platform.editor_path}} --report-performance-data
+      - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location={{env "UNITY_EDITOR_PATH"}} --report-performance-data
   artifacts:
     logs:
       paths:
