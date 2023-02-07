@@ -8,7 +8,7 @@ test_platforms:
     type: Unity::VM
     image: package-ci/win10:stable
     flavor: b1.large
-    editor_path: "$UNITY_EDITOR_PATH"
+    editor_path: "%UNITY_EDITOR_PATH%"
   - name: mac
     type: Unity::VM::osx
     image: package-ci/mac:stable
@@ -58,8 +58,8 @@ test_{{ platform.name }}_{{ editor.version }}:
 
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
-test_performance{{ platform.name }}_{{ editor.version }}:
-  name : Test {{ editor.version }} on {{ platform.name }}
+test_performance_{{ platform.name }}_{{ editor.version }}:
+  name : Performance Test {{ editor.version }} on {{ platform.name }}
   agent:
     type: {{ platform.type }}
     image: {{ platform.image }}
@@ -79,7 +79,7 @@ test_performance{{ platform.name }}_{{ editor.version }}:
 
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
-test_recorder{{ platform.name }}_{{ editor.version }}:
+test_recorder_{{ platform.name }}_{{ editor.version }}:
   name : Test Recorder{{ editor.version }} on {{ platform.name }}
   agent:
     type: {{ platform.type }}
@@ -131,8 +131,8 @@ test_trigger:
       {% for editor in test_editors %}
       {% for platform in test_platforms %}
     - .yamato/upm-ci.yml#test_{{platform.name}}_{{editor.version}}
-    - .yamato/upm-ci.yml#test_recorder{{platform.name}}_{{editor.version}}
-    - .yamato/upm-ci.yml#test_performance{{platform.name}}_{{editor.version}}
+    - .yamato/upm-ci.yml#test_recorder_{{platform.name}}_{{editor.version}}
+    - .yamato/upm-ci.yml#test_performance_{{platform.name}}_{{editor.version}}
       {% endfor %}
       {% endfor %}
       {% for backend in test_backends %}
