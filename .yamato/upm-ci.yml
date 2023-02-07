@@ -65,7 +65,8 @@ test_performance{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - UnifiedTestRunner --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location={{platform.editor_path}} --report-performance-data
+      - curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr.bat --output utr.bat
+      - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location={{platform.editor_path}} --report-performance-data
   artifacts:
     logs:
       paths:
