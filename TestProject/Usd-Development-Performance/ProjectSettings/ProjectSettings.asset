@@ -805,7 +805,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: UNITY_PERFORMANCE_TESTS
+    Standalone: UNITY_TESTS_PERFORMANCE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
