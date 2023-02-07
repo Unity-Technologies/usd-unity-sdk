@@ -56,14 +56,14 @@ test_{{ platform.name }}_{{ editor.version }}:
 
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
-test_performance_{{ platform.name }}_{{ editor.version }}:
+test_performance{{ platform.name }}_{{ editor.version }}:
   name : Test {{ editor.version }} on {{ platform.name }}
   agent:
     type: {{ platform.type }}
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - utr --suite=editor --category="Performance" --testproject="TestProject\Usd-Development-Performance" --editor-location="$UNITY_EDITOR_PATH" --report-performance-data
+      - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location="$UNITY_EDITOR_PATH" --report-performance-data
   artifacts:
     logs:
       paths:
