@@ -22,6 +22,9 @@ namespace Unity.Formats.USD
 {
     public static class UsdMenu
     {
+#if !UNITY_EDITOR_WIN
+        [MenuItem("USD/Export Selected with Children as USDA", true)]
+#endif
         [MenuItem("USD/Export Selected with Children", true)]
         static bool EnableMenuExportSelectedWithChildren()
         {
@@ -31,8 +34,26 @@ namespace Unity.Formats.USD
         [MenuItem("USD/Export Selected with Children", priority = 50)]
         static void MenuExportSelectedWithChildren()
         {
+#if UNITY_EDITOR_WIN
+            ExportSelectedWithChildren("usd,usda,usdc");
+#else
+            ExportSelectedWithChildren("usd");
+#endif
+        }
+
+#if !UNITY_EDITOR_WIN
+        [MenuItem("USD/Export Selected with Children as USDA", priority = 50)]
+        static void MenuExportSelectedWithChildrenToUSDA()
+        {
+            ExportSelectedWithChildren("usda");
+        }
+
+#endif
+
+        static void ExportSelectedWithChildren(string fileExtensions)
+        {
             var go = Selection.gameObjects.First();
-            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, "usd,usda,usdc");
+            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, fileExtensions);
             var scene = ExportHelpers.InitForSave(filePath);
             ExportHelpers.ExportGameObjects(Selection.gameObjects, scene, BasisTransformation.SlowAndSafe);
         }
@@ -47,7 +68,13 @@ namespace Unity.Formats.USD
         static public void MenuExportTransforms()
         {
             var root = Selection.activeGameObject.GetComponentInParent<UsdAsset>();
-            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs", "usd,usda,usdc");
+            string fileExtensions;
+#if UNITY_EDITOR_WIN
+            fileExtensions = "usd,usda,usdc";
+#else
+            fileExtensions = "usd";
+#endif
+            var filePath = EditorUtility.SaveFilePanel("Export USD File", "", Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs", fileExtensions);
             var overs = ExportHelpers.InitForSave(filePath);
             root.ExportOverrides(overs);
         }
