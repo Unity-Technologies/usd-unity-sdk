@@ -119,7 +119,7 @@ namespace Unity.Formats.USD.Tests
             ExportHelpers.ExportGameObjects(new GameObject[] { cube }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
 
             m_USDScene = Scene.Open(m_USDScenePath);
-            pxr.UsdPrim cubePrim = GetPrim(cube);
+            pxr.UsdPrim cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
 
             pxr.UsdGeomMesh usdGeomMesh = new pxr.UsdGeomMesh(cubePrim);
             var stPrimvar = usdGeomMesh.GetPrimvar(new pxr.TfToken("st"));
