@@ -66,7 +66,7 @@ test_performance_{{ platform.name }}_{{ editor.version }}:
     flavor: {{ platform.flavor}}
   commands:
       - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-      - upm-ci project test  --project-path TestProject/Usd-Development-Performance --type project-tests --unity-version {{ editor.version }} --extra-utr-arg="--suite=editor --category=Performance --report-performance-data"
+      - upm-ci project test  --project-path TestProject/Usd-Development-Performance --type package-test --package-path package/com.unity.formats.usd --unity-version {{ editor.version }} --extra-utr-arg="--suite=editor --category=Performance --report-performance-data"
   artifacts:
     logs:
       paths:
