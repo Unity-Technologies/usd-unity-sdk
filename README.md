@@ -8,8 +8,10 @@ integrate and explore Universal Scene Description.
 
 # Getting Started
 
-To get started, install USD via the Unity Package manager, either by using
-an official repository, or by browsing for a local package while working with
+To get started, install the USD package via the Unity Package manager. You can do this by either:
+* Installing by name, "com.unity.formats.usd";
+* Installing by Git URL;
+* or browsing for a local package while working with
 source.
 
 Once the USD package is installed, a USD menu will appear, enabling you to
@@ -30,7 +32,7 @@ settings under Edit > Project Settings > Quality:
 
 ## Requirements
 
-* Windows / OSX
+* Windows / OSX (Intel only)
 * Unity version: 2019.4 and up
 * API Compatibility Level .NET 4.x is no longer required but still provides better performances than .NET 2   
    In Edit > Project Settings > Player :   
@@ -38,7 +40,8 @@ settings under Edit > Project Settings > Quality:
 
 ## Limitations
 
-* Versions of USD **prior to 19.05** do not handle Alembic playback correctly, resulting significantly slower frame rate than authored in the Alembic cache (24x exactly). This will be fixed with the adoption of the USD 19.05 release and all assets will play back correctly, a priori.
+* Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
+* The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
 
 ## Samples
 
@@ -48,7 +51,7 @@ Use Package Manager to import the samples into your Assets folder :
 
 ![USD .NET version](Images/USD_samples_import.png)
 
-
+Note that Samples will not work as expected when installed from Source. In these cases, you will have to copy the Samples files into the project to use them.
 
 # Features
 
@@ -74,9 +77,7 @@ The following is a brief listing of currently supported features:
 
 ## Importing Materials
 
-To import materials from USD, import the USD file using the USD menu. Next, click
-on the root GameObject and select either DisplayColor or Preview Surface from the
-materials dropdown menu.
+To import materials from USD, firstly import the USD file using the USD menu. Then, to get the materials to render in the scene, change the Import Settings > Materials in the Inspector to 'Import Preview Surface'. Finally reimport the USD file.
 
 ## Streaming Playback via Timeline
 
@@ -93,9 +94,11 @@ Timeline playback is multi-threaded using the C# Job System.
 ## Variants, Models, & Payloads
 
 Access to variant selection, model details, and payload state are all accessible via
-the inspector on the game object at which these features were authored.
+the inspector on the game object at which these features were authored. Note that Payloads *are not loaded by default*. USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene. 
 
 ## Exporting USD files
+
+USD files can be created by exporting GameObjects selected in the Hierarchy using the USD context menu options, or using the Recorder.
 
 ### Exporting via Recorder
 
@@ -120,14 +123,6 @@ When compatibility with runtime is required (i.e for a standalone build), the re
 * Then right-click on the track and **add USD Recorder Clip**.
 
 >  **Note:** This feature has no dependency to and is not based on the Recorder package.
-
-### Exporting via USD menu (Legacy)
-
-A last option to export a USD Composition is to use the legacy export via the Editor main menu :
-* Select **USD > Export Selected**.
-
-Note that this option is not recommended as it doesn't offer any export options.
-
 
 # License
 
