@@ -6,10 +6,11 @@ using Unity.PerformanceTesting;
 
 namespace Unity.Formats.USD.Tests
 {
+    [Category("Performance")]
     public class PerformanceTests : BaseFixture
     {
         [Test, Performance]
-        public void TestTest()
+        public void Performance_TestTest()
         {
             var a = Vector2.one;
             var b = Vector2.zero;
