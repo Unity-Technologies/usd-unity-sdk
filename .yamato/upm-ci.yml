@@ -48,7 +48,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     flavor: {{ platform.flavor}}
   commands:
       - npm install upm-ci-utils@latest -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-      - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--api-profile=NET_4_6"
+      - upm-ci package test --unity-version {{ editor.version }} --package-path package/com.unity.formats.usd --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--api-profile=NET_4_6 --category=!Performance"
   artifacts:
     logs:
       paths:
@@ -67,7 +67,7 @@ test_performance_{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
-      - unity-downloader-cli -u {{ platform.version }} -c editor
+      - unity-downloader-cli -u {{ editor.version }} -c editor
       - {{ platform.utr_install }}
       - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location=.Editor --report-performance-data
   artifacts:
