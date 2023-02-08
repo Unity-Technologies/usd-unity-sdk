@@ -9,13 +9,11 @@ test_platforms:
     image: package-ci/win10:stable
     flavor: b1.large
     utr_install: curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr.bat --output utr.bat
-    editor_path: C:\build\output\Unity-Technologies\usd-unity-sdk\.Editor
   - name: mac
     type: Unity::VM::osx
     image: package-ci/mac:stable
     flavor: m1.mac
-    utr_install: curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr --output utr && chmod +x utr
-    editor_path: /Users/bokken/build/output/Unity-Technologies/usd-unity-sdk/.Editor
+    utr_install: curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr --output utr; chmod +x utr
 test_backends:
   - name: il2cpp
     editor: 2020.3
