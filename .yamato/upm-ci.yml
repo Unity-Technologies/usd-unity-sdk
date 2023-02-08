@@ -14,7 +14,7 @@ test_platforms:
     type: Unity::VM::osx
     image: package-ci/mac:stable
     flavor: m1.mac
-    utr_install: curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr --output utr
+    utr_install: curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr --output utr && chmod +x utr
     editor_path: /Users/bokken/build/output/Unity-Technologies/usd-unity-sdk/.Editor
 test_backends:
   - name: il2cpp
