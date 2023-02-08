@@ -67,8 +67,9 @@ test_performance_{{ platform.name }}_{{ editor.version }}:
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
   commands:
+      - unity-downloader-cli -u {{ platform.version }} -c editor
       - {{ platform.utr_install }}
-      - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location={{ platform.editor_path }} --report-performance-data
+      - utr --suite=editor --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location=.Editor --report-performance-data
   artifacts:
     logs:
       paths:
