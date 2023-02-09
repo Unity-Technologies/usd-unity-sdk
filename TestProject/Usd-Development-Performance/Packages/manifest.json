@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.unity.analytics": "3.6.12",
-    "com.unity.coding": "0.1.0-preview.20",
     "com.unity.ext.nunit": "1.0.6",
     "com.unity.formats.usd": "file:../../../package/com.unity.formats.usd/",
     "com.unity.ide.rider": "3.0.16",
