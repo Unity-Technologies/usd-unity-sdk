@@ -14,6 +14,7 @@
 
 using NUnit.Framework;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -147,6 +148,31 @@ namespace Unity.Formats.USD.Tests
 
             Assert.IsNotNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
             Assert.IsNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
+        }
+
+        [Test]
+        public void ExportSkeletalAnimation_ExportedPrimsHaveSkeletalTypes()
+        {
+            EditorSceneManager.OpenScene("Packages/com.unity.formats.usd/Tests/Editor/Data/SkinnedCharacter/SkinnedCharacterScene.unity");
+            var skeletalRoot = GameObject.Find("Player");
+            Assert.IsTrue(skeletalRoot != null, "Failed to find Skeletal root GameObject");
+
+            var skeleton = GameObject.Find("Skeleton");
+            Assert.IsTrue(skeleton != null, "Failed to find Skeleton GameObject");
+
+            ExportHelpers.ExportGameObjects(new GameObject[] { skeletalRoot }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+
+            m_USDScene = Scene.Open(m_USDScenePath);
+
+            var skeletalRootInUsd = m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(skeletalRoot.transform)));
+            var skeletalRootInUsdType = skeletalRootInUsd.GetTypeName();
+            var expectedSkeletalRootInUsdType = new pxr.TfToken("SkelRoot");
+            Assert.AreEqual(skeletalRootInUsdType, expectedSkeletalRootInUsdType);
+
+            var skeletonInUsd = m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(skeleton.transform)));
+            var skeletonInUsdType = skeletonInUsd.GetTypeName();
+            var expectedSkeletonInUsdType = new pxr.TfToken("Skeleton");
+            Assert.AreEqual(skeletonInUsdType, expectedSkeletonInUsdType);
         }
     }
 }
