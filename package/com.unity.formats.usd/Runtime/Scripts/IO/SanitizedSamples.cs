@@ -125,8 +125,8 @@ namespace Unity.Formats.USD
                 var newTangents = new Vector4[tangents.Length];
                 for (var i = 0; i < tangents.Length; i++)
                 {
-                    var w = tangents[i].w;
-                    var t = UnityTypeConverter.ChangeBasis(tangents[i]);
+                    var w = tangents.value[i].w;
+                    var t = UnityTypeConverter.ChangeBasis(tangents.value[i]);
                     newTangents[i] = new Vector4(t.x, t.y, t.z, w);
                 }
             }
@@ -165,7 +165,7 @@ namespace Unity.Formats.USD
                 ConvertInterpolationToFaceVarying(ref normals, faceVertexIndices, unwindVertices);
             }
 
-            ConvertInterpolationToFaceVarying(ref tangents, faceVertexIndices, unwindVertices);
+            ConvertInterpolationToFaceVarying(ref tangents.value, faceVertexIndices, unwindVertices);
 
             ConvertInterpolationToFaceVarying(ref colors.value, faceVertexIndices, unwindVertices);
 

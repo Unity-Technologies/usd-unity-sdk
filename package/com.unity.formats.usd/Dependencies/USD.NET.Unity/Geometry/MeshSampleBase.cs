@@ -24,7 +24,7 @@ namespace USD.NET.Unity
         public int[] faceVertexIndices;
         public Vector3[] points;
         public Vector3[] normals;
-        [VertexData] public Vector4[] tangents;
+        public Primvar<Vector4[]> tangents = new Primvar<Vector4[]>() {interpolation = PrimvarInterpolation.Varying};
 
         // Regarding UVs: this feels like a very specific solution for "default primvar data", which
         // is fine, but this type of data may be specific to a given pipeline, though here it is
@@ -37,11 +37,13 @@ namespace USD.NET.Unity
         /// </summary>
         /// <remarks>
         /// UV object types should be Vector{2,3}[], List of Vector{2,3}, or null.
+        /// In unity mesh attributes are the same size as the vertex array so let's set the default interpolation to varying.
+        /// When reading from USD the actual interpolation mode will be set.
         /// </remarks>
-        public Primvar<object> st = new Primvar<object>();
-        public Primvar<object> uv = new Primvar<object>();
-        public Primvar<object> uv2 = new Primvar<object>();
-        public Primvar<object> uv3 = new Primvar<object>();
-        public Primvar<object> uv4 = new Primvar<object>();
+        public Primvar<object> st = new Primvar<object>() {interpolation = PrimvarInterpolation.Varying};
+        public Primvar<object> uv = new Primvar<object>() {interpolation = PrimvarInterpolation.Varying};
+        public Primvar<object> uv2 = new Primvar<object>() {interpolation = PrimvarInterpolation.Varying};
+        public Primvar<object> uv3 = new Primvar<object>() {interpolation = PrimvarInterpolation.Varying};
+        public Primvar<object> uv4 = new Primvar<object>() {interpolation = PrimvarInterpolation.Varying};
     }
 }
