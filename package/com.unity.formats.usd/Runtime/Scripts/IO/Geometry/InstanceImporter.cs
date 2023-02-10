@@ -70,12 +70,12 @@ namespace Unity.Formats.USD
         {
             Matrix4x4[] transforms = sample.ComputeInstanceMatrices(scene, pointInstancerPath);
 
-            foreach (var protoRoot in sample.prototypes.targetPaths)
+            foreach (var prototypeRoot in sample.prototypes.targetPaths)
             {
                 GameObject go;
-                if (!primMap.TryGetValue(new pxr.SdfPath(protoRoot), out go))
+                if (!primMap.TryGetValue(new pxr.SdfPath(prototypeRoot), out go))
                 {
-                    Debug.LogWarning($"Proto not found in PrimMap: {protoRoot}. Instances of this prototype cannot be instantiated.");
+                    Debug.LogWarning($"Prototype not found in PrimMap: {prototypeRoot}. Instances of this prototype cannot be instantiated.");
                     continue;
                 }
 
@@ -100,7 +100,7 @@ namespace Unity.Formats.USD
 
             // Validate each of the instances we're about to create and store them to be created after.
             // If the instances exist from a previous import, destroy them so they are not duplicated.
-            Tuple<Matrix4x4, string, GameObject>[] instancesToCreate = new Tuple<Matrix4x4, string, GameObject>[sample.protoIndices.Length];
+            (Matrix4x4 transform, string instanceName, GameObject goMaster)[] instancesToCreate = new (Matrix4x4, string, GameObject)[sample.protoIndices.Length];
             int instanceCount = 0;
             foreach (var index in sample.protoIndices)
             {
@@ -133,7 +133,7 @@ namespace Unity.Formats.USD
                     break;
                 }
 
-                var xf = transforms[instanceCount];
+                var transform = transforms[instanceCount];
 
                 var instanceName = $"{goMaster.name}_{instanceCount}";
 
@@ -147,7 +147,7 @@ namespace Unity.Formats.USD
                     GameObject.DestroyImmediate(existingInstance.gameObject);
                 }
 
-                instancesToCreate[instanceCount] = new Tuple<Matrix4x4, string, GameObject>(xf, instanceName, goMaster);
+                instancesToCreate[instanceCount] = (transform, instanceName, goMaster);
 
                 instanceCount++;
             }
@@ -156,10 +156,10 @@ namespace Unity.Formats.USD
             // looped over during the Transform.Find() in the previous for-loop and wasting cycles.
             for (int instanceNum = 0; instanceNum < instanceCount; instanceNum++)
             {
-                var goInstance = GameObject.Instantiate(instancesToCreate[instanceNum].Item3, root.transform);
+                var goInstance = GameObject.Instantiate(instancesToCreate[instanceNum].goMaster, root.transform);
                 goInstance.SetActive(true);
-                goInstance.name = instancesToCreate[instanceNum].Item2;
-                XformImporter.BuildXform(instancesToCreate[instanceNum].Item1, goInstance, options);
+                goInstance.name = instancesToCreate[instanceNum].instanceName;
+                XformImporter.BuildXform(instancesToCreate[instanceNum].transform, goInstance, options);
 
                 primMap.AddInstance(goInstance);
             }
