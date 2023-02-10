@@ -140,7 +140,7 @@ namespace Unity.Formats.USD
                 }
 
                 j++;
-                if (!m_ready.WaitOne(1000))
+                if (!m_ready.WaitOne(10000))
                 {
                     Debug.LogError("Timed out while waiting for thread read");
                     return false;
