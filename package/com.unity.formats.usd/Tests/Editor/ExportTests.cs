@@ -14,7 +14,7 @@
 
 using NUnit.Framework;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
+using UnityEditor;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -153,8 +153,12 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportSkeletalAnimation_ExportedPrimsHaveSkeletalTypes()
         {
-            EditorSceneManager.OpenScene("Packages/com.unity.formats.usd/Tests/Editor/Data/SkinnedCharacter/SkinnedCharacterScene.unity");
-            var skeletalRoot = GameObject.Find("Player");
+            // "Packages/com.unity.formats.usd/Tests/Editor/Data/SkinnedCharacter/Player/Player.prefab"
+            // When running the tests on CI usd package paths get changed and the Prefab can't be loaded by path
+            var animationPrefabGUID = "7c508a5d4c9764686a6bcd60561eb2f2";
+            var animationPrefabPath = AssetDatabase.GUIDToAssetPath(animationPrefabGUID);
+            var animationPrefab = AssetDatabase.LoadMainAssetAtPath(animationPrefabPath) as GameObject;
+            var skeletalRoot = GameObject.Instantiate(animationPrefab) as GameObject;
             Assert.IsTrue(skeletalRoot != null, "Failed to find Skeletal root GameObject");
 
             var skeleton = GameObject.Find("Skeleton");
