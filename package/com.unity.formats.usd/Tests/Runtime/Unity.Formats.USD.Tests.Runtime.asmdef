@@ -1,16 +1,16 @@
 {
-    "name": "Unity.Formats.USD.Tests",
+    "name": "Unity.Formats.USD.Tests.Runtime",
     "references": [
         "USD.NET",
         "USD.NET.Unity",
         "Unity.Formats.USD.Runtime",
         "Unity.Timeline",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Tests.Common"
     ],
     "includePlatforms": [
         "Editor",
-        "LinuxStandalone64",
         "macOSStandalone",
         "WindowsStandalone64"
     ],

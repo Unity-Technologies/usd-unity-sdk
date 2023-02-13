@@ -5,7 +5,7 @@
         "USD.NET.Unity",
         "Unity.Formats.USD.Runtime",
         "Unity.Formats.USD.Editor",
-        "Unity.Formats.USD.Tests"
+        "Unity.Formats.USD.Tests.Common"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

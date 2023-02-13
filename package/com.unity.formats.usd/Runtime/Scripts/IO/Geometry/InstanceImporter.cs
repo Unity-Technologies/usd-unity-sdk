@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using UnityEngine;
 using USD.NET;
 using PointInstancerSample = USD.NET.Unity.PointInstancerSample;
@@ -45,12 +46,15 @@ namespace Unity.Formats.USD
                 foreach (Transform child in goMaster.transform)
                 {
                     Transform newChild = goInstance.transform.Find(child.name);
-                    if (newChild == null)
-                    {
-                        newChild = GameObject.Instantiate(child.gameObject).transform;
-                        newChild.name = child.name;
-                        newChild.transform.SetParent(goInstance.transform, worldPositionStays: false);
-                    }
+
+                    // If the old instance exists, we must destroy it to avoid a duplicate
+                    // because the prototypes may have changed during re-import
+                    if (newChild != null)
+                        GameObject.DestroyImmediate(newChild.gameObject);
+
+                    newChild = GameObject.Instantiate(child.gameObject).transform;
+                    newChild.name = child.name;
+                    newChild.transform.SetParent(goInstance.transform, worldPositionStays: false);
 
                     primMap.AddInstance(newChild.gameObject);
                 }
@@ -65,14 +69,13 @@ namespace Unity.Formats.USD
             SceneImportOptions options)
         {
             Matrix4x4[] transforms = sample.ComputeInstanceMatrices(scene, pointInstancerPath);
-            int i = 0;
 
-            foreach (var protoRoot in sample.prototypes.targetPaths)
+            foreach (var prototypeRoot in sample.prototypes.targetPaths)
             {
                 GameObject go;
-                if (!primMap.TryGetValue(new pxr.SdfPath(protoRoot), out go))
+                if (!primMap.TryGetValue(new pxr.SdfPath(prototypeRoot), out go))
                 {
-                    Debug.LogWarning("Proto not found in PrimMap: " + protoRoot);
+                    Debug.LogWarning($"Prototype not found in PrimMap: {prototypeRoot}. Instances of this prototype cannot be instantiated.");
                     continue;
                 }
 
@@ -83,11 +86,11 @@ namespace Unity.Formats.USD
                 }
             }
 
-            var inactiveIds = new System.Collections.Generic.HashSet<long>();
             /*
              * Disabled until this bug is resolved:
              * https://github.com/PixarAnimationStudios/USD/issues/639
              *
+            var inactiveIds = new System.Collections.Generic.HashSet<long>();
             if (sample.inactiveIds != null) {
               foreach (long id in sample.inactiveIds.GetExplicitItems()) {
                 inactiveIds.Add(id);
@@ -95,12 +98,18 @@ namespace Unity.Formats.USD
             }
             */
 
+            // Validate each of the instances we're about to create and store them to be created after.
+            // If the instances exist from a previous import, destroy them so they are not duplicated.
+            (Matrix4x4 transform, string instanceName, GameObject goMaster)[] instancesToCreate = new (Matrix4x4, string, GameObject)[sample.protoIndices.Length];
+            int instanceCount = 0;
             foreach (var index in sample.protoIndices)
             {
+                /*
                 if (inactiveIds.Contains(index))
                 {
                     continue;
                 }
+                */
 
                 if (index >= sample.prototypes.targetPaths.Length)
                 {
@@ -114,24 +123,45 @@ namespace Unity.Formats.USD
                 GameObject goMaster;
                 if (!primMap.TryGetValue(new pxr.SdfPath(targetPath), out goMaster))
                 {
-                    Debug.LogWarning("Proto not found in PrimMap: " + targetPath);
                     continue;
                 }
 
-                if (i >= transforms.Length)
+                if (instanceCount >= transforms.Length)
                 {
-                    Debug.LogWarning("No transform for instance index [" + i + "] " +
+                    Debug.LogWarning("No transform for instance index [" + instanceCount + "] " +
                         "for instancer: " + pointInstancerPath);
                     break;
                 }
 
-                var xf = transforms[i];
-                var goInstance = GameObject.Instantiate(goMaster, root.transform);
-                goInstance.SetActive(true);
-                goInstance.name = goMaster.name + "_" + i;
-                XformImporter.BuildXform(xf, goInstance, options);
+                var transform = transforms[instanceCount];
 
-                i++;
+                var instanceName = $"{goMaster.name}_{instanceCount}";
+
+                // If the old instance exists, we must destroy it to avoid a duplicate
+                // because the prototypes may have changed during re-import.
+                // The Transform hierarchy was created in the same order as it is now deleted,
+                // so this Find() operation is best-case performance.
+                var existingInstance = root.transform.Find(instanceName);
+                if (existingInstance != null)
+                {
+                    GameObject.DestroyImmediate(existingInstance.gameObject);
+                }
+
+                instancesToCreate[instanceCount] = (transform, instanceName, goMaster);
+
+                instanceCount++;
+            }
+
+            // Perform the re-instantiation in a secondary loop, so that these new instances are not being
+            // looped over during the Transform.Find() in the previous for-loop and wasting cycles.
+            for (int instanceNum = 0; instanceNum < instanceCount; instanceNum++)
+            {
+                var goInstance = GameObject.Instantiate(instancesToCreate[instanceNum].goMaster, root.transform);
+                goInstance.SetActive(true);
+                goInstance.name = instancesToCreate[instanceNum].instanceName;
+                XformImporter.BuildXform(instancesToCreate[instanceNum].transform, goInstance, options);
+
+                primMap.AddInstance(goInstance);
             }
         }
 

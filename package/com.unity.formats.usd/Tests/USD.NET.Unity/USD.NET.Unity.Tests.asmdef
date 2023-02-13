@@ -1,14 +1,14 @@
 {
     "name": "USD.NET.Unity.Tests",
-    "rootNamespace": "",
     "references": [
         "Unity.Formats.USD.Runtime",
         "USD.NET.Unity",
-        "USD.NET"
+        "USD.NET",
+        "USD.NET.Tests",
+        "Unity.Formats.USD.Tests.Common"
     ],
     "includePlatforms": [
         "Editor",
-        "LinuxStandalone64",
         "macOSStandalone",
         "WindowsStandalone64"
     ],
