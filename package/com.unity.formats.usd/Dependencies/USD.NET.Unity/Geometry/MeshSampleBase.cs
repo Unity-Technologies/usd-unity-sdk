@@ -56,7 +56,7 @@ namespace USD.NET.Unity
             if (ArbitraryPrimvars == null)
                 ArbitraryPrimvars = new Dictionary<string, Primvar<object>>();
             foreach (var primvar in primvars)
-                ArbitraryPrimvars[primvar] = new Primvar<object>(interpolation = PrimvarInterpolation.Varying);
+                ArbitraryPrimvars[primvar] = new Primvar<object> { interpolation = PrimvarInterpolation.Varying };
         }
     }
 }
