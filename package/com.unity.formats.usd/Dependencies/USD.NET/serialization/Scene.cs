@@ -792,7 +792,21 @@ namespace USD.NET
             {
                 if (WriteMode == WriteModes.Define)
                 {
-                    prim = m_stage.DefinePrim(path, new TfToken(Reflect.GetSchema(typeof(T))));
+                    // At the moment multiple ExportPlans end up having the same SdfPath which make Xform schema type override the actual schema type
+                    // The next code is a hacky way to maintain the desired schema type until we refactor the export code
+                    var schema = Reflect.GetSchema(typeof(T));
+                    if (schema != "Xform")
+                    {
+                        prim = m_stage.DefinePrim(path, new TfToken(schema));
+                    }
+                    else
+                    {
+                        prim = m_stage.GetPrimAtPath(path);
+                        if (prim == null || !prim.IsValid())
+                        {
+                            prim = m_stage.DefinePrim(path, new TfToken(schema));
+                        }
+                    }
                 }
                 else
                 {
