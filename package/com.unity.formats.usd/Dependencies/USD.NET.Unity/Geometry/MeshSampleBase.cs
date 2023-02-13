@@ -25,7 +25,7 @@ namespace USD.NET.Unity
         public int[] faceVertexIndices;
         public Vector3[] points;
         public Vector3[] normals;
-        [VertexData] public Vector4[] tangents;
+        public Primvar<Vector4[]> tangents = new Primvar<Vector4[]>() {interpolation = PrimvarInterpolation.Varying};
 
         /// <summary>
         /// Container to hold extra primvars properties
@@ -36,6 +36,9 @@ namespace USD.NET.Unity
         /// This could be extended to contains user defined primvars.
         /// Note the ForceNoNamespace attribute that instruct the deserialization code to keep the attributes in the "primvars"
         /// namespace.
+        /// In unity mesh attributes are the same size as the vertex array so let's set the default interpolation to varying.
+        /// When reading from USD the actual interpolation mode will be set.
+
         /// </details>
         [ForceNoNamespace] public Dictionary<string, Primvar<object>> ArbitraryPrimvars;
 
@@ -53,7 +56,7 @@ namespace USD.NET.Unity
             if (ArbitraryPrimvars == null)
                 ArbitraryPrimvars = new Dictionary<string, Primvar<object>>();
             foreach (var primvar in primvars)
-                ArbitraryPrimvars[primvar] = new Primvar<object>();
+                ArbitraryPrimvars[primvar] = new Primvar<object>(interpolation = PrimvarInterpolation.Varying);
         }
     }
 }

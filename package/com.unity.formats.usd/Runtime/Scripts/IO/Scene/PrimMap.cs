@@ -107,7 +107,7 @@ namespace Unity.Formats.USD
 
         public void AddInstanceRoot(SdfPath instancePath, GameObject go, SdfPath masterPath)
         {
-            m_instanceRoots[instancePath] = new InstanceRoot {gameObject = go, masterPath = masterPath};
+            m_instanceRoots[instancePath] = new InstanceRoot { gameObject = go, masterPath = masterPath };
         }
 
         public Dictionary<SdfPath, GameObject>.KeyCollection GetMasterRootPaths()

@@ -3,6 +3,10 @@
 ## Unreleased
 ### Bug Fixes
 - Fixed an import bug causing instanced primitives not to be sanitized.
+- Disabled plugins on unsupported platforms.
+- Fixed a bug causing PointInstances to be duplicated.
+- Fixed a bug causing an ApplicationException "all sample times in times and baseTime must either all be numeric or all be default" to be thrown when refreshing a PointInstancer.
+- Optimized triangulation to reduce the chance of a "Timed out while waiting for thread" error on importing a complex mesh.
 
 ### Changed
 - GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath

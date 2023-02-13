@@ -1,6 +1,7 @@
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
+using USD.NET.Tests;
 
 namespace USD.NET.Unity.Tests
 {
@@ -53,18 +54,19 @@ namespace USD.NET.Unity.Tests
             var shaderPath = "/Model/Materials/SimpleMat/StandardShader";
             var texturePath = "/Model/Materials/SimpleMat/AlbedoTexture";
 
-            var cube = new CubeSample {size = 1};
+            var cube = new CubeSample { size = 1 };
 
             var material = new MaterialSample();
             material.surface.SetConnectedPath(shaderPath, "outputs:out");
 
-            var shader = new StandardShaderSample {albedo = {defaultValue = Color.white}};
+            var shader = new StandardShaderSample { albedo = { defaultValue = Color.white } };
             shader.albedo.SetConnectedPath(texturePath, "outputs:out");
             Assert.AreEqual(shader.albedo.connectedPath, texturePath + ".outputs:out");
 
             var texture = new Texture2DSample
             {
-                sourceFile = {defaultValue = @"C:\A\Bogus\Texture\Path.png"}, sRgb = true
+                sourceFile = { defaultValue = @"C:\A\Bogus\Texture\Path.png" },
+                sRgb = true
             };
 
             scene.Write("/Model", new XformSample());
