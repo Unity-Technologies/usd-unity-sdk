@@ -138,34 +138,34 @@ namespace Unity.Formats.USD
 
             if (options.ShouldBindMaterials)
             {
-                FindPathsJob.queries[0] = (FindPathsJob.IQuery)new FindPathsJob.Query<MaterialSample>();
+                FindPathsJob.queries[0] = (FindPathsJob.IQuery) new FindPathsJob.Query<MaterialSample>();
             }
 
             if (options.importCameras)
             {
-                FindPathsJob.queries[1] = (FindPathsJob.IQuery)new FindPathsJob.Query<CameraSample>();
+                FindPathsJob.queries[1] = (FindPathsJob.IQuery) new FindPathsJob.Query<CameraSample>();
             }
 
             if (options.importMeshes)
             {
-                FindPathsJob.queries[2] = (FindPathsJob.IQuery)new FindPathsJob.Query<MeshSample>();
-                FindPathsJob.queries[3] = (FindPathsJob.IQuery)new FindPathsJob.Query<CubeSample>();
-                FindPathsJob.queries[4] = (FindPathsJob.IQuery)new FindPathsJob.Query<SphereSample>();
+                FindPathsJob.queries[2] = (FindPathsJob.IQuery) new FindPathsJob.Query<MeshSample>();
+                FindPathsJob.queries[3] = (FindPathsJob.IQuery) new FindPathsJob.Query<CubeSample>();
+                FindPathsJob.queries[4] = (FindPathsJob.IQuery) new FindPathsJob.Query<SphereSample>();
             }
 
-            FindPathsJob.queries[5] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkelRootSample>();
+            FindPathsJob.queries[5] = (FindPathsJob.IQuery) new FindPathsJob.Query<SkelRootSample>();
 
             if (options.importSkinning)
             {
-                FindPathsJob.queries[6] = (FindPathsJob.IQuery)new FindPathsJob.Query<SkeletonSample>();
+                FindPathsJob.queries[6] = (FindPathsJob.IQuery) new FindPathsJob.Query<SkeletonSample>();
             }
 
             if (options.importTransforms)
             {
-                FindPathsJob.queries[7] = (FindPathsJob.IQuery)new FindPathsJob.Query<XformSample>();
+                FindPathsJob.queries[7] = (FindPathsJob.IQuery) new FindPathsJob.Query<XformSample>();
             }
 
-            FindPathsJob.queries[8] = (FindPathsJob.IQuery)new FindPathsJob.Query<ScopeSample>();
+            FindPathsJob.queries[8] = (FindPathsJob.IQuery) new FindPathsJob.Query<ScopeSample>();
 
             var findPathsJob = new FindPathsJob();
             var findHandle = findPathsJob.Schedule(FindPathsJob.queries.Length, 1);

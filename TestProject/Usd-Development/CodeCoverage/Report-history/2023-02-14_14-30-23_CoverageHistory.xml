@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2023-02-14_14-30-23" tag="">
+  <assembly name="Unity.Formats.USD.Editor">
+    <class name="Unity.Formats.USD.PackageUtils" coveredlines="13" coverablelines="16" totallines="49" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdAssetEditor" coveredlines="0" coverablelines="213" totallines="350" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdBuildPostProcess" coveredlines="0" coverablelines="34" totallines="70" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdLayerStackEditor" coveredlines="0" coverablelines="22" totallines="59" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdMenu" coveredlines="28" coverablelines="100" totallines="247" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdPrimSourceEditor" coveredlines="0" coverablelines="202" totallines="367" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdVariantSetEditor" coveredlines="0" coverablelines="40" totallines="76" coveredbranches="0" totalbranches="0" />
+    <class name="UnityEditor.Formats.USD.Recorder.TargetedPropertyDrawer[T]" coveredlines="0" coverablelines="13" totallines="28" coveredbranches="0" totalbranches="0" />
+    <class name="UnityEditor.Formats.USD.Recorder.UsdRecorder" coveredlines="0" coverablelines="71" totallines="137" coveredbranches="0" totalbranches="0" />
+    <class name="UnityEditor.Formats.USD.Recorder.UsdRecorderInput" coveredlines="0" coverablelines="11" totallines="29" coveredbranches="0" totalbranches="0" />
+    <class name="UnityEditor.Formats.USD.Recorder.UsdRecorderInputSettings" coveredlines="0" coverablelines="22" totallines="50" coveredbranches="0" totalbranches="0" />
+    <class name="UnityEditor.Formats.USD.Recorder.UsdRecorderInputSettingsPropertyDrawer" coveredlines="0" coverablelines="11" totallines="23" coveredbranches="0" totalbranches="0" />
+    <class name="UnityEditor.Formats.USD.Recorder.UsdRecorderSettings" coveredlines="0" coverablelines="29" totallines="91" coveredbranches="0" totalbranches="0" />
+    <class name="UnityEditor.Formats.USD.Recorder.UsdRecorderSettingsEditor" coveredlines="0" coverablelines="8" totallines="20" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Unity.Formats.USD.ExportMesh">
+    <class name="Unity.Formats.USD.Examples.ExportMeshExample" coveredlines="0" coverablelines="109" totallines="291" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.Examples.ExportMeshExampleEditor" coveredlines="0" coverablelines="25" totallines="55" coveredbranches="0" totalbranches="0" />
+    <class name="USD.NET.Examples.Explode" coveredlines="0" coverablelines="19" totallines="51" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Unity.Formats.USD.HelloUsd">
+    <class name="Unity.Formats.USD.Examples.HelloUsdExample" coveredlines="0" coverablelines="27" totallines="71" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Unity.Formats.USD.ImportMaterials">
+    <class name="Unity.Formats.USD.Examples.ImportMaterialsExample" coveredlines="0" coverablelines="219" totallines="415" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Unity.Formats.USD.ImportMesh">
+    <class name="Unity.Formats.USD.Examples.ImportMeshExample" coveredlines="0" coverablelines="58" totallines="153" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.Examples.UsdImportMeshEditor" coveredlines="0" coverablelines="23" totallines="60" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Unity.Formats.USD.ImportProcessor">
+    <class name="Unity.Formats.USD.Examples.CombineMeshes" coveredlines="0" coverablelines="86" totallines="149" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.Examples.RegexImportProcessor" coveredlines="0" coverablelines="16" totallines="76" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.Examples.SetHideFlags" coveredlines="0" coverablelines="24" totallines="72" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Unity.Formats.USD.Runtime">
+    <class name="Unity.Formats.USD.CameraExporter" coveredlines="14" coverablelines="23" totallines="61" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.CameraImporter" coveredlines="6" coverablelines="6" totallines="38" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.CubeImporter" coveredlines="49" coverablelines="175" totallines="290" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ExportContext" coveredlines="14" coverablelines="14" totallines="791" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ExportHelpers" coveredlines="29" coverablelines="36" totallines="60" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ExportPlan" coveredlines="1" coverablelines="1" totallines="791" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.HdrpShaderExporter" coveredlines="0" coverablelines="162" totallines="246" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.HdrpShaderImporter" coveredlines="0" coverablelines="121" totallines="190" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.HierarchyBuilder" coveredlines="354" coverablelines="506" totallines="883" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.HierarchyBuilderFindPathsJobQuery[T]" coveredlines="0" coverablelines="3" totallines="883" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ImporterBase" coveredlines="25" coverablelines="49" totallines="116" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ImportHelpers" coveredlines="92" coverablelines="128" totallines="237" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.InitUsd" coveredlines="19" coverablelines="23" totallines="95" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.InstanceImporter" coveredlines="49" coverablelines="92" totallines="177" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.MaterialExporter" coveredlines="44" coverablelines="50" totallines="119" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.MaterialImporter" coveredlines="53" coverablelines="220" totallines="389" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.MaterialMap" coveredlines="65" coverablelines="80" totallines="211" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.MeshExporter" coveredlines="120" coverablelines="255" totallines="485" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.MeshImporter" coveredlines="168" coverablelines="326" totallines="818" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.MeshImportOptions" coveredlines="14" coverablelines="14" totallines="114" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.MeshImportStrategy" coveredlines="75" coverablelines="123" totallines="818" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.NativeExporter" coveredlines="5" coverablelines="101" totallines="207" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.NativeImporter" coveredlines="5" coverablelines="103" totallines="184" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.NativeSerialization" coveredlines="0" coverablelines="182" totallines="405" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.PrimMap" coveredlines="57" coverablelines="83" totallines="171" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ReadAllJob[T]" coveredlines="55" coverablelines="79" totallines="176" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SanitizedCameraSample" coveredlines="4" coverablelines="4" totallines="484" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SanitizedMeshSample" coveredlines="226" coverablelines="263" totallines="484" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SanitizedXformSample" coveredlines="4" coverablelines="4" totallines="484" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SceneExporter" coveredlines="158" coverablelines="377" totallines="791" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SceneImporter" coveredlines="523" coverablelines="790" totallines="1277" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SceneImportOptions" coveredlines="22" coverablelines="22" totallines="164" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ShaderExporterBase" coveredlines="0" coverablelines="155" totallines="329" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.ShaderImporterBase" coveredlines="52" coverablelines="67" totallines="174" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SkelBindingSample" coveredlines="0" coverablelines="6" totallines="121" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SkeletonExporter" coveredlines="0" coverablelines="114" totallines="209" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SkeletonImporter" coveredlines="102" coverablelines="179" totallines="301" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SkeletonIo" coveredlines="0" coverablelines="7" totallines="121" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SkelRootSample" coveredlines="0" coverablelines="2" totallines="121" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SkinnedMeshUnityDiff" coveredlines="0" coverablelines="70" totallines="161" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SkinnedMeshUsdDiff" coveredlines="0" coverablelines="215" totallines="369" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.SphereImporter" coveredlines="56" coverablelines="72" totallines="157" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.StandardShaderExporter" coveredlines="56" coverablelines="294" totallines="463" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.StandardShaderImporter" coveredlines="39" coverablelines="104" totallines="162" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UnityMaterialData" coveredlines="3" coverablelines="3" totallines="38" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UnityPreviewSurfaceSample" coveredlines="1" coverablelines="1" totallines="38" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdAsset" coveredlines="216" coverablelines="463" totallines="942" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdLayerStack" coveredlines="0" coverablelines="59" totallines="127" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdPayload" coveredlines="20" coverablelines="22" totallines="86" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdPlayableAsset" coveredlines="0" coverablelines="27" totallines="72" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdPlayableBehaviour" coveredlines="0" coverablelines="39" totallines="94" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdPlayableTrack" coveredlines="0" coverablelines="4" totallines="31" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdRecorderBehaviour" coveredlines="93" coverablelines="160" totallines="315" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdRecorderClip" coveredlines="19" coverablelines="21" totallines="72" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdVariantSet" coveredlines="18" coverablelines="22" totallines="92" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdWaitForEndOfFrame" coveredlines="31" coverablelines="35" totallines="78" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.UsdzExporter" coveredlines="0" coverablelines="34" totallines="95" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.XformExporter" coveredlines="25" coverablelines="69" totallines="145" coveredbranches="0" totalbranches="0" />
+    <class name="Unity.Formats.USD.XformImporter" coveredlines="59" coverablelines="98" totallines="196" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Unity.Formats.USD.UsdTimelinePlayable">
+    <class name="Unity.Formats.USD.Examples.SetDefaultUSDMesh" coveredlines="0" coverablelines="7" totallines="38" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

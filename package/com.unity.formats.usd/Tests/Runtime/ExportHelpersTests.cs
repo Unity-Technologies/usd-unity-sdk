@@ -53,7 +53,7 @@ namespace Unity.Formats.USD.Tests
             scene.Close();
             var fileInfoBefore = new FileInfo(filePath);
 
-            Assert.DoesNotThrow(delegate ()
+            Assert.DoesNotThrow(delegate()
             {
                 ExportHelpers.ExportGameObjects(null, null, BasisTransformation.SlowAndSafe);
             });
@@ -67,9 +67,9 @@ namespace Unity.Formats.USD.Tests
             var filePath = CreateTmpUsdFile();
             var scene = Scene.Open(filePath);
             var fileInfoBefore = new FileInfo(filePath);
-            Assert.DoesNotThrow(delegate ()
+            Assert.DoesNotThrow(delegate()
             {
-                ExportHelpers.ExportGameObjects(new GameObject[] { }, scene, BasisTransformation.SlowAndSafe);
+                ExportHelpers.ExportGameObjects(new GameObject[] {}, scene, BasisTransformation.SlowAndSafe);
             });
             var fileInfoAfter = new FileInfo(filePath);
             Assert.AreEqual(fileInfoBefore.Length, fileInfoAfter.Length);
@@ -81,7 +81,7 @@ namespace Unity.Formats.USD.Tests
         {
             var filePath = CreateTmpUsdFile();
             var scene = Scene.Open(filePath);
-            Assert.DoesNotThrow(delegate ()
+            Assert.DoesNotThrow(delegate()
             {
                 ExportHelpers.ExportGameObjects(new GameObject[] { null }, scene, BasisTransformation.SlowAndSafe);
             });

@@ -178,7 +178,7 @@ namespace Unity.Formats.USD
             GameObject go,
             pxr.UsdPrim usdPrim,
             SceneImportOptions options)
-        { }
+        {}
     }
 }
 #endif

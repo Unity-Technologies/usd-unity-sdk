@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>2023-02-13 - 1:28:17 PM</Generatedon>
-    <Parser>OpenCoverParser</Parser>
+    <Generatedon>2023-02-14 - 2:32:54 PM</Generatedon>
+    <Parser>MultiReportParser (2x OpenCoverParser)</Parser>
     <Assemblies>8</Assemblies>
     <Classes>84</Classes>
     <Files>75</Files>
-    <Coveredlines>2770</Coveredlines>
-    <Uncoveredlines>5392</Uncoveredlines>
+    <Coveredlines>3150</Coveredlines>
+    <Uncoveredlines>5012</Uncoveredlines>
     <Coverablelines>8162</Coverablelines>
     <Totallines>16244</Totallines>
-    <Linecoverage>33.9</Linecoverage>
+    <Linecoverage>38.5</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
   </Summary>
@@ -51,38 +51,38 @@
       <Class name="Unity.Formats.USD.Examples.RegexImportProcessor" coverage="0" coveredlines="0" coverablelines="16" totallines="76" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.Examples.SetHideFlags" coverage="0" coveredlines="0" coverablelines="24" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>
-    <Assembly name="Unity.Formats.USD.Runtime" classes="59" coverage="39.5" coveredlines="2670" coverablelines="6757" totallines="17748" branchcoverage="" coveredbranches="0" totalbranches="0">
-      <Class name="Unity.Formats.USD.CameraExporter" coverage="0" coveredlines="0" coverablelines="23" totallines="61" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    <Assembly name="Unity.Formats.USD.Runtime" classes="59" coverage="45.1" coveredlines="3050" coverablelines="6757" totallines="17748" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="Unity.Formats.USD.CameraExporter" coverage="60.8" coveredlines="14" coverablelines="23" totallines="61" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.CameraImporter" coverage="100" coveredlines="6" coverablelines="6" totallines="38" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.CubeImporter" coverage="28" coveredlines="49" coverablelines="175" totallines="290" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.ExportContext" coverage="100" coveredlines="14" coverablelines="14" totallines="791" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.ExportHelpers" coverage="61.1" coveredlines="22" coverablelines="36" totallines="60" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.ExportHelpers" coverage="80.5" coveredlines="29" coverablelines="36" totallines="60" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.ExportPlan" coverage="100" coveredlines="1" coverablelines="1" totallines="791" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.HdrpShaderExporter" coverage="0" coveredlines="0" coverablelines="162" totallines="246" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.HdrpShaderImporter" coverage="0" coveredlines="0" coverablelines="121" totallines="190" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.HierarchyBuilder" coverage="62.8" coveredlines="318" coverablelines="506" totallines="883" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.HierarchyBuilder" coverage="69.9" coveredlines="354" coverablelines="506" totallines="883" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.HierarchyBuilderFindPathsJobQuery[T]" coverage="0" coveredlines="0" coverablelines="3" totallines="883" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.ImporterBase" coverage="51" coveredlines="25" coverablelines="49" totallines="116" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.ImportHelpers" coverage="65.6" coveredlines="84" coverablelines="128" totallines="237" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.InitUsd" coverage="21.7" coveredlines="5" coverablelines="23" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.InstanceImporter" coverage="39.1" coveredlines="36" coverablelines="92" totallines="177" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.MaterialExporter" coverage="52" coveredlines="26" coverablelines="50" totallines="119" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.MaterialImporter" coverage="23.6" coveredlines="52" coverablelines="220" totallines="389" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.ImportHelpers" coverage="71.8" coveredlines="92" coverablelines="128" totallines="237" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.InitUsd" coverage="82.6" coveredlines="19" coverablelines="23" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.InstanceImporter" coverage="53.2" coveredlines="49" coverablelines="92" totallines="177" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.MaterialExporter" coverage="88" coveredlines="44" coverablelines="50" totallines="119" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.MaterialImporter" coverage="24" coveredlines="53" coverablelines="220" totallines="389" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.MaterialMap" coverage="81.2" coveredlines="65" coverablelines="80" totallines="211" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.MeshExporter" coverage="46.2" coveredlines="118" coverablelines="255" totallines="485" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.MeshExporter" coverage="47" coveredlines="120" coverablelines="255" totallines="485" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.MeshImporter" coverage="51.5" coveredlines="168" coverablelines="326" totallines="818" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.MeshImportOptions" coverage="100" coveredlines="14" coverablelines="14" totallines="114" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.MeshImportStrategy" coverage="56.9" coveredlines="70" coverablelines="123" totallines="818" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.MeshImportStrategy" coverage="60.9" coveredlines="75" coverablelines="123" totallines="818" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.NativeExporter" coverage="4.9" coveredlines="5" coverablelines="101" totallines="207" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.NativeImporter" coverage="4.8" coveredlines="5" coverablelines="103" totallines="184" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.NativeSerialization" coverage="0" coveredlines="0" coverablelines="182" totallines="405" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.PrimMap" coverage="60.2" coveredlines="50" coverablelines="83" totallines="171" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.ReadAllJob[T]" coverage="53.1" coveredlines="42" coverablelines="79" totallines="176" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.PrimMap" coverage="68.6" coveredlines="57" coverablelines="83" totallines="171" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.ReadAllJob[T]" coverage="69.6" coveredlines="55" coverablelines="79" totallines="176" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.SanitizedCameraSample" coverage="100" coveredlines="4" coverablelines="4" totallines="484" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.SanitizedMeshSample" coverage="76.4" coveredlines="201" coverablelines="263" totallines="484" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.SanitizedMeshSample" coverage="85.9" coveredlines="226" coverablelines="263" totallines="484" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.SanitizedXformSample" coverage="100" coveredlines="4" coverablelines="4" totallines="484" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.SceneExporter" coverage="40.8" coveredlines="154" coverablelines="377" totallines="791" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.SceneImporter" coverage="58.3" coveredlines="461" coverablelines="790" totallines="1277" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.SceneExporter" coverage="41.9" coveredlines="158" coverablelines="377" totallines="791" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.SceneImporter" coverage="67.2" coveredlines="531" coverablelines="790" totallines="1277" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.SceneImportOptions" coverage="100" coveredlines="22" coverablelines="22" totallines="164" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.ShaderExporterBase" coverage="0" coveredlines="0" coverablelines="155" totallines="329" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.ShaderImporterBase" coverage="77.6" coveredlines="52" coverablelines="67" totallines="174" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -104,10 +104,10 @@
       <Class name="Unity.Formats.USD.UsdPlayableAsset" coverage="0" coveredlines="0" coverablelines="27" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.UsdPlayableBehaviour" coverage="0" coveredlines="0" coverablelines="39" totallines="94" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.UsdPlayableTrack" coverage="0" coveredlines="0" coverablelines="4" totallines="31" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.UsdRecorderBehaviour" coverage="0" coveredlines="0" coverablelines="160" totallines="315" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.UsdRecorderClip" coverage="0" coveredlines="0" coverablelines="21" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.UsdRecorderBehaviour" coverage="58.1" coveredlines="93" coverablelines="160" totallines="315" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.UsdRecorderClip" coverage="90.4" coveredlines="19" coverablelines="21" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.UsdVariantSet" coverage="81.8" coveredlines="18" coverablelines="22" totallines="92" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Unity.Formats.USD.UsdWaitForEndOfFrame" coverage="0" coveredlines="0" coverablelines="35" totallines="78" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Unity.Formats.USD.UsdWaitForEndOfFrame" coverage="88.5" coveredlines="31" coverablelines="35" totallines="78" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.UsdzExporter" coverage="0" coveredlines="0" coverablelines="34" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.XformExporter" coverage="36.2" coveredlines="25" coverablelines="69" totallines="145" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Unity.Formats.USD.XformImporter" coverage="60.2" coveredlines="59" coverablelines="98" totallines="196" branchcoverage="" coveredbranches="0" totalbranches="0" />
