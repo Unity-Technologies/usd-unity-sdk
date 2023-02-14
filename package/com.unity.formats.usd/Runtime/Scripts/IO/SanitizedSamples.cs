@@ -5,8 +5,9 @@ using pxr;
 using USD.NET;
 using USD.NET.Unity;
 using UnityEngine;
+using System.Linq;
 
-[assembly: InternalsVisibleToAttribute("Unity.Formats.USD.Tests")]
+[assembly: InternalsVisibleToAttribute("Unity.Formats.USD.Tests.Runtime")]
 namespace Unity.Formats.USD
 {
     public interface ISanitizable
@@ -49,12 +50,12 @@ namespace Unity.Formats.USD
         /// <summary>
         /// Store the face vertex counts straight from USD deserialization
         /// </summary>
-        int[] originalFaceVertexCounts;
+        internal int[] originalFaceVertexCounts;
 
         /// <summary>
         /// Store the face vertex indices straight from USD deserialization
         /// </summary>
-        int[] originalFaceVertexIndices;
+        internal int[] originalFaceVertexIndices;
 
         /// <summary>
         /// True when the mesh arrays have been converted to facevarying
@@ -62,9 +63,10 @@ namespace Unity.Formats.USD
         internal bool arePrimvarsFaceVarying;
 
         /// <summary>
-        /// After triangulation face ids are no longer correct. This maps old face ids to the new triangulated face ids.
+        /// After triangulation face ids are no longer correct. This maps each old face id to the first of the new triangulated face ids.
+        /// The new face IDs are sequential, so you can use originalFaceVertexCounts (minus 2) to work out the extent of the new face IDs.
         /// </summary>
-        internal List<List<int>> faceMapping;
+        internal int[] faceMapping;
 
         /// <summary>
         /// To unweld vertex attributes after the fact (skin weights, joint indices, ...) we need to store the face
@@ -125,8 +127,8 @@ namespace Unity.Formats.USD
                 var newTangents = new Vector4[tangents.Length];
                 for (var i = 0; i < tangents.Length; i++)
                 {
-                    var w = tangents[i].w;
-                    var t = UnityTypeConverter.ChangeBasis(tangents[i]);
+                    var w = tangents.value[i].w;
+                    var t = UnityTypeConverter.ChangeBasis(tangents.value[i]);
                     newTangents[i] = new Vector4(t.x, t.y, t.z, w);
                 }
             }
@@ -165,7 +167,7 @@ namespace Unity.Formats.USD
                 ConvertInterpolationToFaceVarying(ref normals, faceVertexIndices, unwindVertices);
             }
 
-            ConvertInterpolationToFaceVarying(ref tangents, faceVertexIndices, unwindVertices);
+            ConvertInterpolationToFaceVarying(ref tangents.value, faceVertexIndices, unwindVertices);
 
             ConvertInterpolationToFaceVarying(ref colors.value, faceVertexIndices, unwindVertices);
 
@@ -199,42 +201,72 @@ namespace Unity.Formats.USD
         {
             originalFaceVertexCounts = faceVertexCounts;
             originalFaceVertexIndices = faceVertexIndices;
-            faceMapping = new List<List<int>>();
+            faceMapping = new int[faceVertexCounts.Length];
 
-            var newIndices = new List<int>();
-            var newCounts = new List<int>();
-
-            var last = 0;
-            var currentOffset = 0;
-            for (var i = 0; i < faceVertexCounts.Length; i++)
+            // count the length of newCounts to pre-allocate the array-
+            // this extra loop is more performant than using a dynamically-sized List
+            int newFaceCountsLength = 0;
+            for (int i = 0; i < faceVertexCounts.Length; i++)
             {
-                faceMapping.Add(new List<int>());
-
-                var next = last + 1;
-                var t = 0;
-                for (; t < faceVertexCounts[i] - 2; t++)
-                {
-                    newCounts.Add(3);
-                    if (changeHandedness)
-                    {
-                        newIndices.Add(faceVertexIndices[next++]);
-                        newIndices.Add(faceVertexIndices[last]);
-                        newIndices.Add(faceVertexIndices[next]);
-                    }
-                    else
-                    {
-                        newIndices.Add(faceVertexIndices[last]);
-                        newIndices.Add(faceVertexIndices[next++]);
-                        newIndices.Add(faceVertexIndices[next]);
-                    }
-                    faceMapping[i].Add(currentOffset++);
-                }
-                last += faceVertexCounts[i];
+                newFaceCountsLength += faceVertexCounts[i] - 2;
             }
 
-            faceVertexIndices = newIndices.ToArray();
-            triangulatedFaceVertexIndices = newIndices.ToArray();
-            faceVertexCounts = newCounts.ToArray();
+            // We only have tris, so 3 indices per face
+            int newIndicesLength = 3 * newFaceCountsLength;
+
+            var newCounts = new int[newFaceCountsLength];
+            var newIndices = new int[newIndicesLength];
+
+            int last = 0, next = 0, triCount = 0;
+            int currentFaceOffset = 0, currentIndexOffset = 0;
+
+            // Unity uses a left handed basis and clockwise winding, so if the source mesh does not, we have to convert
+            if (changeHandedness)
+            {
+                for (var i = 0; i < faceVertexCounts.Length; i++)
+                {
+                    faceMapping[i] = currentFaceOffset;
+
+                    next = last + 1;
+                    triCount = faceVertexCounts[i] - 2;
+
+                    for (int t = 0; t < triCount; t++)
+                    {
+                        newCounts[currentFaceOffset] = 3;
+
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next++];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[last];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next];
+                    }
+                    currentFaceOffset += triCount;
+                    last += faceVertexCounts[i];
+                }
+            }
+            else
+            {
+                for (var i = 0; i < faceVertexCounts.Length; i++)
+                {
+                    faceMapping[i] = currentFaceOffset;
+
+                    next = last + 1;
+                    triCount = faceVertexCounts[i] - 2;
+
+                    for (int t = 0; t < triCount; t++)
+                    {
+                        newCounts[currentFaceOffset] = 3;
+
+                        newIndices[currentIndexOffset++] = faceVertexIndices[last];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next++];
+                        newIndices[currentIndexOffset++] = faceVertexIndices[next];
+                    }
+                    currentFaceOffset += triCount;
+                    last += faceVertexCounts[i];
+                }
+            }
+
+            faceVertexIndices = newIndices;
+            triangulatedFaceVertexIndices = newIndices;
+            faceVertexCounts = newCounts;  // TODO: As this is always 3, remove it and only create on export to USD
         }
 
         internal bool ShouldUnweldVertices(bool bindMaterials)
@@ -435,15 +467,20 @@ namespace Unity.Formats.USD
         internal void UniformToFaceVarying<T>(ref T[] values, int vertexCount)
         {
             var newValues = new T[vertexCount];
-            for (var faceIdx = 0; faceIdx < values.Length; faceIdx++)
+
+            // for each original face
+            for (int oldFaceIndex = 0, vertexIndex = 0; oldFaceIndex < values.Length; oldFaceIndex++)
             {
-                var newFaceIndices = faceMapping[faceIdx];
-                var value = values[faceIdx];
-                foreach (var newFaceIdx in newFaceIndices)
+                var value = values[oldFaceIndex];
+                // for each new face created
+                for (int newFaceIndex = 0; newFaceIndex < originalFaceVertexCounts[oldFaceIndex] - 2; newFaceIndex++)
                 {
-                    newValues[newFaceIdx * 3] = value;
-                    newValues[newFaceIdx * 3 + 1] = value;
-                    newValues[newFaceIdx * 3 + 2] = value;
+                    // copy the old value for each vertex of the new triangle
+                    newValues[vertexIndex] = value;
+                    newValues[vertexIndex + 1] = value;
+                    newValues[vertexIndex + 2] = value;
+
+                    vertexIndex += 3;
                 }
             }
 

@@ -1,0 +1,29 @@
+{
+    "name": "Unity.Formats.USD.Tests.Runtime",
+    "references": [
+        "USD.NET",
+        "USD.NET.Unity",
+        "Unity.Formats.USD.Runtime",
+        "Unity.Timeline",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Tests.Common"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "macOSStandalone",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

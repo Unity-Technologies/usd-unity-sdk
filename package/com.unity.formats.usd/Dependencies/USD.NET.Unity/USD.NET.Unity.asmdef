@@ -1,9 +1,13 @@
 {
     "name": "USD.NET.Unity",
     "references": [
-      "USD.NET"
+        "USD.NET"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor",
+        "macOSStandalone",
+        "WindowsStandalone64"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
     "overrideReferences": false,

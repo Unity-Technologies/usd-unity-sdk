@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using pxr;
+using UnityEngine;
 
 namespace USD.NET.Tests
 {
@@ -109,6 +110,16 @@ namespace USD.NET.Tests
             Assert.Null(scene.GetRelationshipAtPath(path));
         }
 
+        [TestCase("invalidPath", Description = "Invalid path value")]
+        [TestCase("", Description = "Empty path value")]
+        [TestCase("../sibling", Description = "Relative path value")]
+        public void WritePathToSceneFile_WithInvalidPath_ThrowsException(string path)
+        {
+            scene = Scene.Create();
+            Assert.Throws<System.Exception>(() => scene.Write(path, new SampleBase()));
+            UnityEngine.TestTools.LogAssert.Expect(LogType.Exception, string.Format("ApplicationException: USD ERROR: Path must be an absolute path: <{0}>", path));
+        }
+
         [Test]
         public static void StartEndTimeTest()
         {
@@ -155,7 +166,6 @@ namespace USD.NET.Tests
         [Test]
         public void WritingHierarchyBottomUp_EveryTypedPrimShouldHaveAType()
         {
-            var paths = new[] {"/Foo/Bar/Cube", "/Foo/Bar", "/Foo"};
             var stage = UsdStage.CreateInMemory(UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             scene.Write("/Foo/Bar/Cube", new CubeSample());

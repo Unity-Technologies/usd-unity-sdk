@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using pxr;
+using USD.NET.Tests;
 
 namespace USD.NET.Unity.Tests
 {

@@ -1,0 +1,30 @@
+formatting:
+    name: Validate Formatting
+    agent:
+        type: Unity::VM
+        image: package-ci/ubuntu:v1.3.1-719011
+        flavor: b1.small
+    commands:
+        - git clone --depth 1 --branch stable git@github.cds.internal.unity3d.com:unity/unity-meta.git
+        - mv unity-meta ~/unity-meta
+        - perl ~/unity-meta/Tools/Format/format.pl --dry-run TestProject package/com.unity.formats.usd
+    timeout: 1
+
+formatting_apply:
+    name: Formatting (Apply requested changes)
+    agent:
+        type: Unity::VM
+        image: package-ci/ubuntu:v1.3.1-719011
+        flavor: b1.small
+    commands:
+        - git config --global user.name "noreply@unity3d.com"
+        - git config --global user.email "noreply@unity3d.com"
+        - git checkout $GIT_BRANCH
+        - git pull origin $GIT_BRANCH # In case the job was not run on the latest commit, attempt to get it. There may be situations with merge conflicts, in that case wait for everyone to push their changes and then only run the formatting job on HEAD.
+        - git clone --depth 1 --branch stable git@github.cds.internal.unity3d.com:unity/unity-meta.git
+        - mv unity-meta ~/unity-meta
+        - perl ~/unity-meta/Tools/Format/format.pl TestProject package/com.unity.formats.usd --nobackups
+        - git add . # Take care not to add commands that might create unexpected changes
+        - git commit -m "Apply formatting changes"
+        - git push --set-upstream origin $GIT_BRANCH
+    timeout: 1
