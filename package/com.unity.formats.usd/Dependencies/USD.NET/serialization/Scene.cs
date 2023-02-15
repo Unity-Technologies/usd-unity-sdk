@@ -793,19 +793,18 @@ namespace USD.NET
                 if (WriteMode == WriteModes.Define)
                 {
                     // At the moment multiple ExportPlans end up having the same SdfPath which make Xform schema type override the actual schema type
+                    // Also typeless Prims may be created when Child objects are created before Parents in the export plans and we need to make sure their type is updated
                     // The next code is a hacky way to maintain the desired schema type until we refactor the export code
-                    var schema = Reflect.GetSchema(typeof(T));
-                    if (schema != "Xform")
+                    var primTypeName = Reflect.GetSchema(typeof(T));
+
+                    prim = m_stage.GetPrimAtPath(path);
+                    if (prim == null || !prim.IsValid())
                     {
-                        prim = m_stage.DefinePrim(path, new TfToken(schema));
+                        prim = m_stage.DefinePrim(path, new TfToken(primTypeName));
                     }
-                    else
+                    else if (!string.IsNullOrEmpty(primTypeName) && (string.IsNullOrEmpty(prim.GetTypeName().GetText()) || primTypeName != "Xform"))
                     {
-                        prim = m_stage.GetPrimAtPath(path);
-                        if (prim == null || !prim.IsValid())
-                        {
-                            prim = m_stage.DefinePrim(path, new TfToken(schema));
-                        }
+                        prim.SetTypeName(new TfToken(primTypeName));
                     }
                 }
                 else
