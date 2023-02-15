@@ -26,26 +26,21 @@ namespace USD.NET
     /// In order to speed up the deserialization of animated prims we only load the dynamic properties. If the
     /// downstream logic needs some static properties they can be stored temporarily in a ConversionContext.
     /// </remarks>
-    public interface IConversionState
+    public interface IRestorableData
     {
     }
 
     /// <summary>
     /// This class holds the data required by the deserializer to optimize reading of primitive with dynamic properties
     /// </summary>
-    public class DeserializationContext : IEnumerable
+    public class DeserializationContext
     {
         public HashSet<MemberInfo> dynamicMembers;
-        public IConversionState state;
+        public IRestorableData cachedData;
 
         public DeserializationContext()
         {
             dynamicMembers = new HashSet<MemberInfo>();
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            return dynamicMembers.GetEnumerator();
         }
     }
 

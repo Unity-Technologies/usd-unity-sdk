@@ -14707,12 +14707,11 @@ namespace USD.NET
         public static pxr.VtValue ToVtValue(object value);
     }
 
-    public class DeserializationContext : System.Collections.IEnumerable
+    public class DeserializationContext
     {
         public System.Collections.Generic.HashSet<System.Reflection.MemberInfo> dynamicMembers;
-        public USD.NET.IConversionState state;
+        public USD.NET.IRestorableData cachedData;
         public DeserializationContext() {}
-        public virtual System.Collections.IEnumerator GetEnumerator();
     }
 
     public class FusedDisplayColorAttribute : System.Attribute
@@ -14725,7 +14724,7 @@ namespace USD.NET
         public FusedTransformAttribute() {}
     }
 
-    public interface IConversionState
+    public interface IRestorableData
     {
     }
 

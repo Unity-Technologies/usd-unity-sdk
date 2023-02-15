@@ -9,7 +9,7 @@ namespace USD.NET.Tests
     {
         Scene scene;
 
-        class TestState : IConversionState
+        class TestRestorableData : IRestorableData
         {
             public string something;
         }
@@ -48,22 +48,22 @@ namespace USD.NET.Tests
             var newsample = new MySample();
             var primPath = new SdfPath("/foo");
 
-            var testState = new TestState() { something = "not null" };
+            var testData = new TestRestorableData() { something = "not null" };
 
             // Initialize the access mask and store the state
             scene.Time = 1;
             scene.AccessMask = new AccessMask();
             scene.IsPopulatingAccessMask = true;
             scene.Read(primPath, newsample);
-            scene.AccessMask.Included[primPath].state = testState;
+            scene.AccessMask.Included[primPath].cachedData = testData;
 
             // Read a different frame and check the state
             scene.Time = 2;
             scene.IsPopulatingAccessMask = false;
             scene.Read(primPath, newsample);
-            var state = scene.AccessMask.Included[primPath].state;
+            var state = scene.AccessMask.Included[primPath].cachedData;
             Assert.NotNull(state);
-            Assert.AreSame(testState, state);
+            Assert.AreSame(testData, state);
         }
     }
 }
