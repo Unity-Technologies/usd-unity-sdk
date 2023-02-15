@@ -186,9 +186,9 @@ namespace Unity.Formats.USD
             if (changeHandedness)
                 ConvertTransform();
 
-            var santizePrimvars = IsRestored() && arePrimvarsFaceVarying || // if the sample is restored we already know
+            var sanitizePrimvars = IsRestored() && arePrimvarsFaceVarying || // if the sample is restored we already know
                 importOptions.ShouldBindMaterials ||
-                scene.IsPopulatingAccessMask ||                                  // this is true when initializign prims from the timeline
+                scene.IsPopulatingAccessMask ||                                  // this is true when initializing prims from the timeline
                 scene.AccessMask != null;                                        // this is true when reading from the timeline
 
             var unwindVertices = ShouldUnwindVertices(changeHandedness);
@@ -222,7 +222,7 @@ namespace Unity.Formats.USD
 
             // Tangents
             // TODO: we should check interpolation
-            if (tangents != null && changeHandedness)
+            if (tangents != null && tangents.value != null && changeHandedness)
             {
                 var newTangents = new Vector4[tangents.Length];
                 for (var i = 0; i < tangents.Length; i++)
@@ -231,6 +231,7 @@ namespace Unity.Formats.USD
                     var t = UnityTypeConverter.ChangeBasis(tangents.value[i]);
                     newTangents[i] = new Vector4(t.x, t.y, t.z, w);
                 }
+                tangents.value = newTangents;
             }
 
             // Colors
@@ -240,7 +241,7 @@ namespace Unity.Formats.USD
             }
 
             // Arbitrary primvars
-            if (santizePrimvars && ArbitraryPrimvars != null)
+            if (sanitizePrimvars && ArbitraryPrimvars != null)
             {
                 foreach (var primvar in ArbitraryPrimvars)
                 {
@@ -248,7 +249,7 @@ namespace Unity.Formats.USD
                 }
             }
 
-            if (!ShouldUnweldVertices(santizePrimvars))
+            if (!ShouldUnweldVertices(sanitizePrimvars))
                 return;
 
             // At that point we know that primvars are of different interpolation type.
@@ -273,7 +274,7 @@ namespace Unity.Formats.USD
 
             ConvertInterpolationToFaceVarying(ref colors.value, faceVertexIndices, unwindVertices);
 
-            if (santizePrimvars && ArbitraryPrimvars != null)
+            if (sanitizePrimvars && ArbitraryPrimvars != null)
             {
                 foreach (var primvar in ArbitraryPrimvars)
                 {
@@ -381,10 +382,10 @@ namespace Unity.Formats.USD
                     colors.GetInterpolationToken() == UsdGeomTokens.faceVarying) ||
                 tangents != null &&
                 (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length) ||
-                bindMaterials && AreArbitraryPrimvarsFaceVarying();
+                bindMaterials && AreAnyArbitraryPrimvarsFaceVarying();
         }
 
-        internal bool AreArbitraryPrimvarsFaceVarying()
+        internal bool AreAnyArbitraryPrimvarsFaceVarying()
         {
             if (ArbitraryPrimvars == null) return false;
             foreach (var primvar in ArbitraryPrimvars)

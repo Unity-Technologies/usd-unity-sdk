@@ -55,24 +55,6 @@ namespace Unity.Formats.USD
 
         public void BeginReading(Scene scene, PrimMap primMap, SceneImportOptions importOptions)
         {
-            // Gather context information from the PrimSource component
-            // var contexts = new UsdPrimSource[primMap.Meshes.Length];
-            // SdfPath meshPath;
-            // for (var i = 0; i < contexts.Length; i++)
-            // {
-            //     meshPath = primMap.Meshes[i];
-            //     UsdPrimSource primSource;
-            //     var hasPrimSource = primMap[meshPath].TryGetComponent(out primSource);
-            //     if (hasPrimSource)
-            //     {
-            //         contexts[i] = primSource;
-            //     }
-            //     else
-            //     {
-            //         contexts[i] = null;
-            //     }
-            // }
-
             m_readMeshesJob = new ReadAllJob<SanitizedMeshSample>(scene, primMap.Meshes, importOptions);
             m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
         }
@@ -556,7 +538,7 @@ namespace Unity.Formats.USD
             //
             // Tangents.
             // TODO: move the tangents calculation to SanitizedMeshSample
-            if (usdMesh.tangents != null && ShouldImport(options.meshOptions.tangents))
+            if (usdMesh.tangents != null && usdMesh.tangents.value != null && ShouldImport(options.meshOptions.tangents))
             {
                 Profiler.BeginSample("Import Tangents");
                 // TODO: We should check the interpolation of tangents and treat them accordingly (for now, we assume they
