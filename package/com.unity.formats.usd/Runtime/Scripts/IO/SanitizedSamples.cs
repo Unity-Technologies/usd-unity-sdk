@@ -377,7 +377,7 @@ namespace Unity.Formats.USD
             // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be converted to face varying
             // TODO: expose interpolation for standard mesh attributes (normals, tangents)
             bool shouldUnweldNormals = normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length);
-            bool shouldUweldColors = colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying);
+            bool shouldUnweldColors = colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying);
             bool shouldUnweldTangents = tangents != null && (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length);
             bool isTextureMappingFaceVarying = st.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
                                                uv.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
@@ -385,7 +385,7 @@ namespace Unity.Formats.USD
                                                uv3.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
                                                uv4.GetInterpolationToken() == UsdGeomTokens.faceVarying;
 
-            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUweldColors || shouldUnweldTangents || (bindMaterials && isTextureMappingFaceVarying);
+            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || (bindMaterials && isTextureMappingFaceVarying);
         }
 
         internal static void Flatten<T>(ref T[] values, int[] indices)

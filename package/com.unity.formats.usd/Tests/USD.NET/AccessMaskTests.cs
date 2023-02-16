@@ -50,20 +50,20 @@ namespace USD.NET.Tests
 
             var testData = new TestRestorableData() { something = "not null" };
 
-            // Initialize the access mask and store the state
+            // Initialize the access mask and store the cachedData
             scene.Time = 1;
             scene.AccessMask = new AccessMask();
             scene.IsPopulatingAccessMask = true;
             scene.Read(primPath, newsample);
             scene.AccessMask.Included[primPath].cachedData = testData;
 
-            // Read a different frame and check the state
+            // Read a different frame and check the cachedData
             scene.Time = 2;
             scene.IsPopulatingAccessMask = false;
             scene.Read(primPath, newsample);
-            var state = scene.AccessMask.Included[primPath].cachedData;
-            Assert.NotNull(state);
-            Assert.AreSame(testData, state);
+            var cachedData = scene.AccessMask.Included[primPath].cachedData;
+            Assert.NotNull(cachedData);
+            Assert.AreSame(testData, cachedData);
         }
     }
 }

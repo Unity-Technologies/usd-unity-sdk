@@ -24,7 +24,7 @@ namespace USD.NET
     /// </summary>
     /// <remarks>
     /// In order to speed up the deserialization of animated prims we only load the dynamic properties. If the
-    /// downstream logic needs some static properties they can be stored temporarily in a ConversionContext.
+    /// downstream logic needs some static properties they can be stored temporarily in a DeserializationContext.
     /// </remarks>
     public interface IRestorableData
     {
