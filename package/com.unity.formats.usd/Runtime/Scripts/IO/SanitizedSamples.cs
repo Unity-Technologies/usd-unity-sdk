@@ -12,7 +12,7 @@ namespace Unity.Formats.USD
 {
     /// <summary>
     /// When a prim is sparsely animated only dynamic properties are read into the Sample.
-    /// The ConversionSate purpose is to hold the data (static properties or computed data) to ensure proper conversion.
+    /// This interface's purpose is to enable holding the time-invariant data (static properties or computed data) to ensure proper deserialization.
     /// </summary>
     public interface IRestorable
     {
@@ -92,6 +92,7 @@ namespace Unity.Formats.USD
 
     /// <summary>
     /// A sanitizable version of a MeshSample. Enable automatic triangulation/handedness change/attribute interpolation conversion.
+    /// IRestorable allows static data to be stored once for multiple samples in the case of animated meshes.
     /// </summary>
     public class SanitizedMeshSample : MeshSample, ISanitizable, IRestorable
     {
@@ -129,6 +130,9 @@ namespace Unity.Formats.USD
             return isRestoredFromCachedData;
         }
 
+        /// <summary>
+        /// Restore internal data from a copy of the data held in Deserialization Context for animated meshes.
+        /// </summary>
         public void FromCachedData(IRestorableData restorableData)
         {
             var staticPropertiesData = restorableData as MeshStaticPropertiesData;
@@ -149,6 +153,9 @@ namespace Unity.Formats.USD
             isRestoredFromCachedData = true;
         }
 
+        /// <summary>
+        /// Create a copy of static data in a format that can be stored in a DeserializationContext.
+        /// </summary>
         public IRestorableData ToCachedData()
         {
             var staticPropertiesData = new MeshStaticPropertiesData()
@@ -186,7 +193,7 @@ namespace Unity.Formats.USD
             if (changeHandedness)
                 ConvertTransform();
 
-            var santizePrimvars = (IsRestoredFromCachedData() && arePrimvarsFaceVarying) ||
+            var sanitizePrimvars = (IsRestoredFromCachedData() && arePrimvarsFaceVarying) ||
                 importOptions.ShouldBindMaterials ||
                 scene.IsPopulatingAccessMask ||                                  // this is true when initializing prims from the timeline
                 scene.AccessMask != null;                                        // this is true when reading from the timeline
@@ -240,7 +247,7 @@ namespace Unity.Formats.USD
             }
 
             // UVs
-            if (santizePrimvars)
+            if (sanitizePrimvars)
             {
                 FlattenUVs(st);
                 FlattenUVs(uv);
@@ -249,7 +256,7 @@ namespace Unity.Formats.USD
                 FlattenUVs(uv4);
             }
 
-            if (!ShouldUnweldVertices(santizePrimvars))
+            if (!ShouldUnweldVertices(sanitizePrimvars))
                 return;
 
             // At that point we know that primvars are of different interpolation type.
@@ -274,7 +281,7 @@ namespace Unity.Formats.USD
 
             ConvertInterpolationToFaceVarying(ref colors.value, faceVertexIndices, unwindVertices);
 
-            if (santizePrimvars)
+            if (sanitizePrimvars)
             {
                 UnweldUVs(st, unwindVertices);
                 UnweldUVs(uv, unwindVertices);

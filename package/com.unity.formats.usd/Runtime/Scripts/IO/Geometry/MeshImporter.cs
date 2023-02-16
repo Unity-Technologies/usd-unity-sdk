@@ -55,24 +55,6 @@ namespace Unity.Formats.USD
 
         public void BeginReading(Scene scene, PrimMap primMap, SceneImportOptions importOptions)
         {
-            // Gather context information from the PrimSource component
-            // var contexts = new UsdPrimSource[primMap.Meshes.Length];
-            // SdfPath meshPath;
-            // for (var i = 0; i < contexts.Length; i++)
-            // {
-            //     meshPath = primMap.Meshes[i];
-            //     UsdPrimSource primSource;
-            //     var hasPrimSource = primMap[meshPath].TryGetComponent(out primSource);
-            //     if (hasPrimSource)
-            //     {
-            //         contexts[i] = primSource;
-            //     }
-            //     else
-            //     {
-            //         contexts[i] = null;
-            //     }
-            // }
-
             m_readMeshesJob = new ReadAllJob<SanitizedMeshSample>(scene, primMap.Meshes, importOptions);
             m_readMeshesJob.Schedule(primMap.Meshes.Length, 2);
         }
@@ -565,7 +547,7 @@ namespace Unity.Formats.USD
                 unityMesh.normals = usdMesh.normals;
                 Profiler.EndSample(); // Import Normals
             }
-            // If the mesh had normals have been sanitized don't
+            // If the mesh has normals that have already been sanitized and restored from cache don't compute again
             else if (!usdMesh.IsRestoredFromCachedData() && ShouldCompute(options.meshOptions.normals))
             {
                 Profiler.BeginSample("Calculate Normals");
