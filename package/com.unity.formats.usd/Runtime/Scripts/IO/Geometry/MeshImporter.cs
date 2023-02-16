@@ -664,7 +664,7 @@ namespace Unity.Formats.USD
             {
                 try
                 {
-                    ImportUv(unityMesh, i, sample.ArbitraryPrimvars ? [primvars[i]]);
+                    ImportUv(unityMesh, i, sample.ArbitraryPrimvars?[primvars[i]]);
                 }
                 catch (Exception ex)
                 {

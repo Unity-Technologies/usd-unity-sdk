@@ -48,7 +48,7 @@ namespace USD.NET.Tests
             var newsample = new MySample();
             var primPath = new SdfPath("/foo");
 
-            var testState = new TestState() {something = "not null"};
+            var testState = new TestState() { something = "not null" };
 
             // Initialize the access mask and store the state
             scene.Time = 1;
