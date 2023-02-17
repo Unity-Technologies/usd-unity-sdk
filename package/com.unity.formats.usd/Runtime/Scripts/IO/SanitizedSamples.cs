@@ -386,7 +386,7 @@ namespace Unity.Formats.USD
             bool shouldUnweldNormals = normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length);
             bool shouldUnweldTangents = tangents != null && (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length);
 
-            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || (bindMaterials && AreAnyArbitraryPrimvarsFaceVarying);
+            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || (bindMaterials && AreAnyArbitraryPrimvarsFaceVarying());
         }
 
         internal bool AreAnyArbitraryPrimvarsFaceVarying()
