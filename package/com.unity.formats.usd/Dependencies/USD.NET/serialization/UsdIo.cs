@@ -658,7 +658,7 @@ namespace USD.NET
                     {
                         if (value != null)
                         {
-                            dict.Add(prop.GetBaseName().ToString(), value);
+                            dict.Add(prop.GetName().ToString(), value);
                         }
                     }
                 }

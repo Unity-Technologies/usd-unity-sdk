@@ -429,15 +429,21 @@ namespace USD.NET
             return ret;
         }
 
+        /*
         pxr.VtValue GuidToVt_String(object guid)
         {
             return new pxr.VtValue(((Guid)guid).ToString());
         }
 
+        // Removing so that strings default to the native binding instead.
         object GuidToCs_String(pxr.VtValue vtValue)
         {
-            return new Guid(pxr.UsdCs.VtValueTostring(vtValue));
+            string newString = pxr.UsdCs.VtValueTostring(vtValue);
+            Guid newGuid;
+            bool result = Guid.TryParse(newString, out newGuid);
+            return result ? newGuid : newString;
         }
+        */
 
         public void AddTypeAlias(SdfValueTypeName alias, SdfValueTypeName target)
         {
@@ -470,7 +476,12 @@ namespace USD.NET
             // more fully supported.
 
             //bindings[typeof(Guid)] = new UsdTypeBinding(GuidToVt_Bytes, GuidToCs_Bytes, SdfValueTypeNames.UCharArray);
-            bindings[typeof(Guid)] = new UsdTypeBinding(GuidToVt_String, GuidToCs_String, SdfValueTypeNames.String);
+
+            // With arbitrary primvars supported, we have a lot more attributes coming through with string types.
+            // This binding causes any SdfValueTypeNames.String to be treated as a Guid when trying to use reverse bindings,
+            // which causes errors when attempting to create a Guid object with a string not in Guid format.
+            // As USD doesn't really use Guids, removing for now.
+            //bindings[typeof(Guid)] = new UsdTypeBinding(GuidToVt_String, GuidToCs_String, SdfValueTypeNames.String); 
 
             /*
              * These throw exceptions because there is no VtValueTo...ListOp, because those types are not declared in
