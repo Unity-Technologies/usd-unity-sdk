@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -42,9 +41,9 @@ namespace Unity.Formats.USD
             {
                 System.Reflection.MemberInfo transformMember = null;
                 transformMember = usdXf.GetType().GetMember("transform")[0];
-                HashSet<System.Reflection.MemberInfo> members;
-                if (!scene.AccessMask.Included.TryGetValue(path, out members) ||
-                    !members.Contains(transformMember))
+                DeserializationContext deserializationContext;
+                if (!scene.AccessMask.Included.TryGetValue(path, out deserializationContext) ||
+                    !deserializationContext.dynamicMembers.Contains(transformMember))
                 {
                     return;
                 }

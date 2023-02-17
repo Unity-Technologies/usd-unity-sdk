@@ -96,7 +96,22 @@ namespace Unity.Formats.USD
             if (ShouldReadPath(m_scene, m_paths[index]))
             {
                 m_scene.Read(m_paths[index], sample);
-                sample.Sanitize(m_scene, m_importOptions);
+
+                var restorableSample = sample as IRestorable;
+                DeserializationContext deserializationContext = null;
+                m_scene.AccessMask?.Included.TryGetValue(m_paths[index], out deserializationContext);
+                if (restorableSample != null && deserializationContext != null)
+                {
+                    restorableSample.FromCachedData(deserializationContext.cachedData);
+                    sample.Sanitize(m_scene, m_importOptions);
+                    //Don't update the state after the first frame
+                    if (deserializationContext.cachedData == null)
+                        deserializationContext.cachedData = restorableSample.ToCachedData();
+                }
+                else
+                {
+                    sample.Sanitize(m_scene, m_importOptions);
+                }
             }
             else
             {

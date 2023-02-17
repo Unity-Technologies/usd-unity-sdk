@@ -712,7 +712,7 @@ namespace Unity.Formats.USD
                 foreach (var kvp in m_lastAccessMask.Included)
                 {
                     sb.AppendLine(kvp.Key);
-                    foreach (var member in kvp.Value)
+                    foreach (var member in kvp.Value.dynamicMembers)
                     {
                         sb.AppendLine("  ." + member.Name);
                     }

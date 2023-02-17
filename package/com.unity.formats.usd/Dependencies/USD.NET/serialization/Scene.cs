@@ -710,7 +710,7 @@ namespace USD.NET
             if (!prim) { return; }
 
             var accessMap = AccessMask;
-            HashSet<System.Reflection.MemberInfo> dynamicMembers = null;
+            DeserializationContext deserializationContext = null;
 
             // mayVary is nullable and has an accumulation semantic:
             //   null = members have already been checked for animation
@@ -725,14 +725,14 @@ namespace USD.NET
                 lock (m_stageLock)
                 {
                     // Check which attributes of the prim are dynamic
-                    var primFound = accessMap.Included.TryGetValue(path, out dynamicMembers);
+                    var primFound = accessMap.Included.TryGetValue(path, out deserializationContext);
 
                     // Populating the access map happens when reading the first frame of animation
                     // so if the prim is not already in the map add it and everything will be deserialized
                     if (!primFound && populatingAccessMask)
                     {
-                        dynamicMembers = new HashSet<System.Reflection.MemberInfo>();
-                        accessMap.Included.Add(path, dynamicMembers);
+                        deserializationContext = new DeserializationContext();
+                        accessMap.Included.Add(path, deserializationContext);
                     }
                 }
 
@@ -740,7 +740,7 @@ namespace USD.NET
                 if (!populatingAccessMask)
                 {
                     // If there are no dynamic members, then no need to call deserialize
-                    if (dynamicMembers == null)
+                    if (deserializationContext?.dynamicMembers == null)
                         return;
 
                     // Notify the deserialization service that only dynamic members should be read
@@ -748,7 +748,7 @@ namespace USD.NET
                 }
             }
 
-            m_usdIo.Deserialize(sample, prim, timeCode, dynamicMembers, ref mayVary);
+            m_usdIo.Deserialize(sample, prim, timeCode, deserializationContext?.dynamicMembers, ref mayVary);
 
             // If no members are varying, remove the prim from the access map.
             lock (m_stageLock)
