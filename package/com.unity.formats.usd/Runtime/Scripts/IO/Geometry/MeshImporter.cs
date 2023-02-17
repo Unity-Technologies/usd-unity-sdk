@@ -511,7 +511,7 @@ namespace Unity.Formats.USD
                 unityMesh.bounds = usdMesh.extent;
                 Profiler.EndSample();
             }
-            else if (!usdMesh.IsRestored() && ShouldCompute(options.meshOptions.boundingBox))
+            else if (!usdMesh.IsRestoredFromCachedData() && ShouldCompute(options.meshOptions.boundingBox))
             {
                 Profiler.BeginSample("Calculate Bounds");
                 unityMesh.RecalculateBounds();
@@ -527,8 +527,8 @@ namespace Unity.Formats.USD
                 unityMesh.normals = usdMesh.normals;
                 Profiler.EndSample(); // Import Normals
             }
-            // If the mesh had normals have been sanitized don't
-            else if (!usdMesh.IsRestored() && ShouldCompute(options.meshOptions.normals))
+            // If the mesh has normals that have already been sanitized and restored from cache don't compute again
+            else if (!usdMesh.IsRestoredFromCachedData() && ShouldCompute(options.meshOptions.normals))
             {
                 Profiler.BeginSample("Calculate Normals");
                 unityMesh.RecalculateNormals();
@@ -546,7 +546,7 @@ namespace Unity.Formats.USD
                 unityMesh.tangents = usdMesh.tangents.value;
                 Profiler.EndSample(); // Import Tangents
             }
-            else if (!usdMesh.IsRestored() && ShouldCompute(options.meshOptions.tangents))
+            else if (!usdMesh.IsRestoredFromCachedData() && ShouldCompute(options.meshOptions.tangents))
             {
                 Profiler.BeginSample("Calculate Tangents");
                 unityMesh.RecalculateTangents();

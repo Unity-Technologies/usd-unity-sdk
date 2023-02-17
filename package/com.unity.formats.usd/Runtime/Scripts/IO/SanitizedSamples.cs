@@ -12,24 +12,24 @@ namespace Unity.Formats.USD
 {
     /// <summary>
     /// When a prim is sparsely animated only dynamic properties are read into the Sample.
-    /// The ConversionSate purpose is to hold the data (static properties or computed data) to ensure proper conversion.
+    /// This interface's purpose is to enable holding the time-invariant data (static properties or computed data) to ensure proper deserialization.
     /// </summary>
     public interface IRestorable
     {
         /// <summary>
-        /// Returns true if the internal data has been restored from State data
+        /// Returns true if the internal data has been restored from cached data
         /// </summary>
-        bool IsRestored();
+        bool IsRestoredFromCachedData();
 
         /// <summary>
-        /// Restore internal data from the State data
+        /// Restore internal data from the cached data
         /// </summary>
-        void FromState(IConversionState state);
+        void FromCachedData(IRestorableData data);
 
         /// <summary>
-        /// Return State data from internal data
+        /// Return data from internal data
         /// </summary>
-        IConversionState ToState();
+        IRestorableData ToCachedData();
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace Unity.Formats.USD
         void Sanitize(Scene scene, SceneImportOptions importOptions);
     }
 
-    public class MeshConversionState : IConversionState
+    public class MeshStaticPropertiesData : IRestorableData
     {
         /// <summary>
         /// Store the face vertex counts straight from USD deserialization
@@ -92,6 +92,7 @@ namespace Unity.Formats.USD
 
     /// <summary>
     /// A sanitizable version of a MeshSample. Enable automatic triangulation/handedness change/attribute interpolation conversion.
+    /// IRestorable allows static data to be stored once for multiple samples in the case of animated meshes.
     /// </summary>
     public class SanitizedMeshSample : MeshSample, ISanitizable, IRestorable
     {
@@ -122,43 +123,49 @@ namespace Unity.Formats.USD
         /// </summary>
         internal int[] triangulatedFaceVertexIndices;
 
-        bool isRestored;
+        bool isRestoredFromCachedData;
 
-        public bool IsRestored()
+        public bool IsRestoredFromCachedData()
         {
-            return isRestored;
+            return isRestoredFromCachedData;
         }
 
-        public void FromState(IConversionState state)
+        /// <summary>
+        /// Restore internal data from a copy of the data held in Deserialization Context for animated meshes.
+        /// </summary>
+        public void FromCachedData(IRestorableData restorableData)
         {
-            if (state == null)
+            var staticPropertiesData = restorableData as MeshStaticPropertiesData;
+            if (staticPropertiesData == null)
                 return;
 
-            var meshState = state as MeshConversionState;
-            arePrimvarsFaceVarying = meshState.arePrimvarsFaceVarying;
+            arePrimvarsFaceVarying = staticPropertiesData.arePrimvarsFaceVarying;
 
             if (faceVertexCounts == null)
-                faceVertexCounts = meshState.originalFaceVertexCounts;
+                faceVertexCounts = staticPropertiesData.originalFaceVertexCounts;
 
             if (faceVertexIndices == null)
-                faceVertexIndices = meshState.originalFaceVertexIndices;
+                faceVertexIndices = staticPropertiesData.originalFaceVertexIndices;
 
             // Orientation can't be animated and defaults to RightHanded, so restore it in the case the mesh is leftHanded
-            orientation = meshState.orientation;
+            orientation = staticPropertiesData.orientation;
 
-            isRestored = true;
+            isRestoredFromCachedData = true;
         }
 
-        public IConversionState ToState()
+        /// <summary>
+        /// Create a copy of static data in a format that can be stored in a DeserializationContext.
+        /// </summary>
+        public IRestorableData ToCachedData()
         {
-            var state = new MeshConversionState()
+            var staticPropertiesData = new MeshStaticPropertiesData()
             {
                 originalFaceVertexCounts = originalFaceVertexCounts,
                 originalFaceVertexIndices = originalFaceVertexIndices,
                 arePrimvarsFaceVarying = arePrimvarsFaceVarying,
                 orientation = orientation
             };
-            return state;
+            return staticPropertiesData;
         }
 
         public void BackupTopology()
@@ -186,7 +193,7 @@ namespace Unity.Formats.USD
             if (changeHandedness)
                 ConvertTransform();
 
-            var sanitizePrimvars = IsRestored() && arePrimvarsFaceVarying || // if the sample is restored we already know
+            var sanitizePrimvars = (IsRestoredFromCachedData() && arePrimvarsFaceVarying) ||
                 importOptions.ShouldBindMaterials ||
                 scene.IsPopulatingAccessMask ||                                  // this is true when initializing prims from the timeline
                 scene.AccessMask != null;                                        // this is true when reading from the timeline
@@ -374,15 +381,12 @@ namespace Unity.Formats.USD
         internal bool ShouldUnweldVertices(bool bindMaterials)
         {
             // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be converted to face varying
+            bool shouldUnweldColors = colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying);
             // TODO: expose interpolation for standard mesh attributes (normals, tangents)
-            return arePrimvarsFaceVarying ||
-                normals != null && (normals.Length == originalFaceVertexCounts.Length ||
-                    normals.Length > points.Length) ||
-                colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform ||
-                    colors.GetInterpolationToken() == UsdGeomTokens.faceVarying) ||
-                tangents != null &&
-                (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length) ||
-                bindMaterials && AreAnyArbitraryPrimvarsFaceVarying();
+            bool shouldUnweldNormals = normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length);
+            bool shouldUnweldTangents = tangents != null && (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length);
+
+            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || (bindMaterials && AreAnyArbitraryPrimvarsFaceVarying);
         }
 
         internal bool AreAnyArbitraryPrimvarsFaceVarying()

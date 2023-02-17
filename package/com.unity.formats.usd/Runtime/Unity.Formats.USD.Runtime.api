@@ -164,9 +164,9 @@ namespace Unity.Formats.USD
 
     public interface IRestorable
     {
-        public abstract void FromState(USD.NET.IConversionState state);
-        public abstract bool IsRestored();
-        public abstract USD.NET.IConversionState ToState();
+        public abstract void FromCachedData(USD.NET.IRestorableData state);
+        public abstract bool IsRestoredFromCachedData();
+        public abstract USD.NET.IRestorableData ToCachedData();
     }
 
     public interface ISanitizable
@@ -221,9 +221,9 @@ namespace Unity.Formats.USD
         public delegate void MaterialBinder(USD.NET.Scene scene, UnityEngine.Material mat, System.Collections.Generic.List<string> uvPrimvars);
     }
 
-    public class MeshConversionState : USD.NET.IConversionState
+    public class MeshStaticPropertiesData : USD.NET.IRestorableData
     {
-        public MeshConversionState() {}
+        public MeshStaticPropertiesData() {}
     }
 
     public static class MeshExporter

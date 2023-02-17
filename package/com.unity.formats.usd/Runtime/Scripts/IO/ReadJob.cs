@@ -108,11 +108,11 @@ namespace Unity.Formats.USD
                 m_scene.AccessMask?.Included.TryGetValue(m_paths[index], out deserializationContext);
                 if (restorableSample != null && deserializationContext != null)
                 {
-                    restorableSample.FromState(deserializationContext.state);
+                    restorableSample.FromCachedData(deserializationContext.cachedData);
                     sample.Sanitize(m_scene, m_importOptions);
                     //Don't update the state after the first frame
-                    if (deserializationContext.state == null)
-                        deserializationContext.state = restorableSample.ToState();
+                    if (deserializationContext.cachedData == null)
+                        deserializationContext.cachedData = restorableSample.ToCachedData();
                 }
                 else
                 {

@@ -8,7 +8,7 @@ namespace Unity.Formats.USD.Tests
     {
         Scene scene;
 
-        class TestState : IConversionState
+        class TestRestorableData : IRestorableData
         {
             public float staticValue;
             public string extraData;
@@ -19,7 +19,7 @@ namespace Unity.Formats.USD.Tests
             bool isRestored;
             public float dynamicValue; // property that will be animated and always deserialized
             public float staticValue; // property that will be static and only deserialized the first frame
-            string extraData; // private data that won't be (de)serialized from/to USD and will persist only through the state
+            string extraData; // private data that won't be (de)serialized from/to USD and will persist only through the data
 
             public string ExtraData
             {
@@ -27,21 +27,21 @@ namespace Unity.Formats.USD.Tests
                 set => extraData = value;
             }
 
-            public bool IsRestored()
+            public bool IsRestoredFromCachedData()
             {
                 return isRestored;
             }
 
-            public void FromState(IConversionState state)
+            public void FromCachedData(IRestorableData data)
             {
-                var testState = state as TestState;
-                staticValue = testState.staticValue;
-                extraData = testState.extraData;
+                var testData = data as TestRestorableData;
+                staticValue = testData.staticValue;
+                extraData = testData.extraData;
             }
 
-            public IConversionState ToState()
+            public IRestorableData ToCachedData()
             {
-                return new TestState()
+                return new TestRestorableData()
                 {
                     staticValue = staticValue,
                     extraData = extraData
@@ -74,12 +74,12 @@ namespace Unity.Formats.USD.Tests
         }
 
         [Test]
-        public void ReadSample_StateIsPreserved()
+        public void ReadSample_DataIsPreserved()
         {
             var newsample = new RestorableSample();
             var primPath = new SdfPath("/foo");
 
-            // Initialize the access mask and store the state
+            // Initialize the access mask and store the data
             scene.Time = 1;
             scene.AccessMask = new AccessMask();
             scene.IsPopulatingAccessMask = true;
@@ -89,8 +89,8 @@ namespace Unity.Formats.USD.Tests
             Assert.IsNull(newsample.ExtraData);
             // Fake some sample extra processing
             newsample.ExtraData = "this is not USD data";
-            // Save the sample state to the access mask
-            scene.AccessMask.Included[primPath].state = newsample.ToState();
+            // Save the sample data to the access mask
+            scene.AccessMask.Included[primPath].cachedData = newsample.ToCachedData();
 
             // Now read the second frame
             var anothersample = new RestorableSample();
@@ -102,8 +102,8 @@ namespace Unity.Formats.USD.Tests
             // static value and extra data are default value
             Assert.AreEqual(anothersample.staticValue, 0.0f);
             Assert.IsNull(anothersample.ExtraData);
-            // restore from state
-            anothersample.FromState(scene.AccessMask.Included[primPath].state);
+            // restore from data
+            anothersample.FromCachedData(scene.AccessMask.Included[primPath].cachedData);
             // static value and extra have been restored
             Assert.AreEqual(anothersample.staticValue, 100.0f);
             Assert.AreEqual(anothersample.ExtraData, "this is not USD data");
