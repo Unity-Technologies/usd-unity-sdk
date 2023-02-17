@@ -112,24 +112,15 @@ namespace Unity.Formats.USD.Tests
             InitUsd.Initialize();
             CleanupTestArtifacts();
 
-            if (!Directory.Exists(ArtifactsDirectoryFullPath))
-            {
-                Directory.CreateDirectory(ArtifactsDirectoryFullPath);
-#if UNITY_EDITOR
-                AssetDatabase.Refresh();
-#endif
-            }
+            TestUtilityFunction.CreateFolder(ArtifactsDirectoryFullPath);
         }
 
         [TearDown]
         public void CleanupTestArtifacts()
         {
-            if (Directory.Exists(ArtifactsDirectoryFullPath))
-            {
-                Directory.Delete(ArtifactsDirectoryFullPath, true);
-            }
+            TestUtilityFunction.DeleteFolder(ArtifactsDirectoryFullPath);
 
-            DeleteMetaFile(ArtifactsDirectoryFullPath);
+            TestUtilityFunction.DeleteMetaFile(ArtifactsDirectoryFullPath);
 
 #if UNITY_EDITOR
             // TODO: If materialImportMode = MaterialImportMode.ImportPreviewSurface, it creates all the texture2d files on the root assets
@@ -138,19 +129,11 @@ namespace Unity.Formats.USD.Tests
             {
                 var textureFilePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(textureArtifactGUID));
                 File.Delete(textureFilePath);
-                DeleteMetaFile(textureFilePath);
+                TestUtilityFunction.DeleteMetaFile(textureFilePath);
             }
 
             AssetDatabase.Refresh();
 #endif
-        }
-
-        private void DeleteMetaFile(string fullPath)
-        {
-            if (File.Exists(fullPath.TrimEnd('/') + ".meta"))
-            {
-                File.Delete(fullPath.TrimEnd('/') + ".meta");
-            }
         }
     }
 }

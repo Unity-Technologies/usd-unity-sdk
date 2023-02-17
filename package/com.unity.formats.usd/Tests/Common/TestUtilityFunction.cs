@@ -27,4 +27,31 @@ public static class TestUtilityFunction
 
         return usdScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(gameObject.transform)));
     }
+
+    public static void CreateFolder(string path)
+    {
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+        }
+    }
+
+    public static void DeleteFolder(string path)
+    {
+        if (Directory.Exists(path))
+        {
+            Directory.Delete(path, true);
+        }
+    }
+
+    public static void DeleteMetaFile(string fullPath)
+    {
+        if (File.Exists(fullPath.TrimEnd('/') + ".meta"))
+        {
+            File.Delete(fullPath.TrimEnd('/') + ".meta");
+        }
+    }
 }

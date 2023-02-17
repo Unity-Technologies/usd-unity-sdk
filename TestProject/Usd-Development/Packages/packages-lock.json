@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.analytics": {
-      "version": "3.6.12",
+      "version": "3.5.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -23,7 +23,8 @@
       "dependencies": {
         "com.unity.timeline": "1.0.0",
         "com.unity.modules.screencapture": "1.0.0",
-        "com.unity.modules.physics": "1.0.0"
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.test-framework.performance": "2.8.1-preview"
       }
     },
     "com.unity.ide.rider": {
@@ -75,7 +76,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.6.4",
+      "version": "1.2.18",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -94,22 +95,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "nuget.castle-core": {
-      "version": "1.0.1",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "nuget.moq": {
-      "version": "1.0.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "nuget.castle-core": "1.0.1"
-      },
-      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
@@ -238,18 +223,6 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.modules.ui": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0",
-        "com.unity.modules.uielementsnative": "1.0.0"
-      }
-    },
-    "com.unity.modules.uielementsnative": {
-      "version": "1.0.0",
-      "depth": 1,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
       }
