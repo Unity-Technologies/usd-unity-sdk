@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using NUnit.Framework;
-using Unity.PerformanceTesting;
-using USD.NET;
 using Unity.Formats.USD;
 using UnityEngine.TestTools;
 using UnityEditor;
 using System.IO;
 
-public abstract class PerformanceBaseFixture: IPrebuildSetup, IPostBuildCleanup
+public abstract class PerformanceBaseFixture : IPrebuildSetup, IPostBuildCleanup
 {
     protected string ArtifactsDirectoryName => "Artifacts";
     protected string ArtifactsDirectoryFullPath => Path.Combine(Application.dataPath, ArtifactsDirectoryName);
