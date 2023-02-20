@@ -1,6 +1,5 @@
 {
     "name": "USD.NET.Tests",
-    "rootNamespace": "",
     "references": [
         "USD.NET",
         "UnityEngine.TestRunner",

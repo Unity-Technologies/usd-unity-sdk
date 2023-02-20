@@ -1,6 +1,5 @@
 {
     "name": "Unity.Formats.USD.Tests.Editor",
-    "rootNamespace": "",
     "references": [
         "USD.NET",
         "USD.NET.Unity",

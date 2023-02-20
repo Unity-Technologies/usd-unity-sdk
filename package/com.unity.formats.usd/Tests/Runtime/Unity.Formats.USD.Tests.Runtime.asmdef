@@ -1,6 +1,5 @@
 {
     "name": "Unity.Formats.USD.Tests.Runtime",
-    "rootNamespace": "",
     "references": [
         "USD.NET",
         "USD.NET.Unity",
