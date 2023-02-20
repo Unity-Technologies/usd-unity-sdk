@@ -5,7 +5,7 @@ using System.IO;
 namespace Unity.Formats.USD.Tests
 {
     [Category("Performance")]
-    public class PointInstancerPerformanceTests: PerformanceBaseFixture
+    public class PointInstancerPerformanceTests : PerformanceBaseFixture
     {
         public enum InstancerSize
         {
