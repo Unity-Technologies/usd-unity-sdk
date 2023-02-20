@@ -1,12 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using NUnit.Framework;
 using Unity.PerformanceTesting;
-using USD.NET;
-using Unity.Formats.USD;
-using UnityEngine.TestTools;
-using UnityEditor;
 using System.IO;
 
 namespace Unity.Formats.USD.Tests
@@ -25,7 +18,7 @@ namespace Unity.Formats.USD.Tests
         const string k_PointInstancerPrim10GUID = "ddba66229ec63364d8ce36112afcdbec";
         const string k_PointInstancerPrim100GUID = "567d2c32dba4a364bb1fb80b134dc92d";
         const string k_PointInstancerPrim1000GUID = "9ca154d52e7e03e4c989b66e33e08212";
-        // 10k objects seem like its too much for Unity to handle atm, should we not consider it as part of testing?
+        // For Import as Prefab / Timeline it takes more than 3 minutes to run the test, so it wont be included there
         const string k_PointInstancerPrim10000GUID = "b4f2b0c08e1cc0d43aa738154881fcfc";
 
         private string DeterminePointInstancerSize(InstancerSize testSize)
@@ -49,6 +42,7 @@ namespace Unity.Formats.USD.Tests
         [TestCase(InstancerSize.Small)]
         [TestCase(InstancerSize.Med)]
         [TestCase(InstancerSize.Large)]
+        [TestCase(InstancerSize.Larger)]
         public void ImportPointInstancerAsGameObjectImport_PerformanceTest(InstancerSize testSize)
         {
             Measure.Method(() =>
@@ -100,6 +94,7 @@ namespace Unity.Formats.USD.Tests
         [TestCase(InstancerSize.Small)]
         [TestCase(InstancerSize.Med)]
         [TestCase(InstancerSize.Large)]
+        [TestCase(InstancerSize.Larger)]
         public void PointInstancerGameObjectReload_PerformanceTest(InstancerSize testSize)
         {
             var scene = TestUtilityFunction.OpenUSDScene(DeterminePointInstancerSize(testSize));
