@@ -658,7 +658,9 @@ namespace USD.NET
                     {
                         if (value != null)
                         {
-                            dict.Add(prop.GetName().ToString(), value);
+                            // trim off the dictionary namespace - keep the rest of the namespace to avoid key collisions
+                            var fullName = prop.GetName().ToString();
+                            dict.Add(fullName.Substring(ns.Length + 1), value);
                         }
                     }
                 }

@@ -420,7 +420,7 @@ namespace Unity.Formats.USD
             if (primvar.value == null)
                 return;
 
-            if (primvar.GetInterpolationToken() == UsdGeomTokens.constant)
+            if (primvar.GetInterpolationToken() == UsdGeomTokens.constant && primvar.IsArray)
             {
                 UsdIo.ArrayAllocator.Free(primvar.value.GetType(), (uint)(primvar.value as Array).GetLength(0),
                     primvar.value as Array);

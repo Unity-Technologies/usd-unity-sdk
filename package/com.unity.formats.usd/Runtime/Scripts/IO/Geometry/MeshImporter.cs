@@ -664,8 +664,7 @@ namespace Unity.Formats.USD
             {
                 try
                 {
-                    // forcing the primvar namespace is potentially brittle but works for now
-                    ImportUv(unityMesh, i, sample.ArbitraryPrimvars?["primvars:" + primvars[i]]);
+                    ImportUv(unityMesh, i, sample.ArbitraryPrimvars?[primvars[i]]);
                 }
                 catch (Exception ex)
                 {
