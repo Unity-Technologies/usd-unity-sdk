@@ -38,7 +38,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void InitForSave_ValidPath()
         {
-            var filePath = GetUSDScenePath("dummyUsd.usd");
+            var filePath = TestUtilityFunction.GetUSDScenePath(ArtifactsDirectoryFullPath, "dummyUsd.usd");
             var scene = ExportHelpers.InitForSave(filePath);
             Assert.IsNotNull(scene);
             Assert.IsNotNull(scene.Stage);

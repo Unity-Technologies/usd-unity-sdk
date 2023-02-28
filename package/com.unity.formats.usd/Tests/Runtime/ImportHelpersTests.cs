@@ -145,7 +145,7 @@ namespace Unity.Formats.USD.Tests
                 }
             );
 
-            var usdzPath = GetUSDScenePath(importedUsdObject.name + ".usdz");
+            var usdzPath = TestUtilityFunction.GetUSDScenePath(ArtifactsDirectoryFullPath, importedUsdObject.name + ".usdz");
             UsdzExporter.ExportUsdz(usdzPath, importedUsdObject);
 
             var usdzScene = ImportHelpers.InitForOpen(usdzPath);

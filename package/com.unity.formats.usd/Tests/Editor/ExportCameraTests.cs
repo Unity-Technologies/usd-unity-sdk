@@ -11,7 +11,7 @@ class CameraRelated : BaseFixtureEditor
     [SetUp]
     public void SetUp()
     {
-        m_USDScenePath = GetUSDScenePath("USDExportTests");
+        m_USDScenePath = TestUtilityFunction.GetUSDScenePath(ArtifactsDirectoryFullPath, "USDExportTests");
     }
 
     class PhysicalCameraMembers : SampleBase
