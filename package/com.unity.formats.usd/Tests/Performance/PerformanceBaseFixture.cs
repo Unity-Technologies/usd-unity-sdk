@@ -20,8 +20,7 @@ public abstract class PerformanceBaseFixture : IPrebuildSetup, IPostBuildCleanup
         InitUsd.Initialize();
         if (Directory.Exists(ArtifactsDirectoryFullPath))
         {
-            TestUtilityFunction.DeleteFolder(ArtifactsDirectoryFullPath);
-            TestUtilityFunction.DeleteMetaFile(ArtifactsDirectoryFullPath);
+            Cleanup();
         }
         AssetDatabase.Refresh();
         TestUtilityFunction.CreateFolder(ArtifactsDirectoryFullPath);
@@ -33,6 +32,10 @@ public abstract class PerformanceBaseFixture : IPrebuildSetup, IPostBuildCleanup
         {
             TestUtilityFunction.DeleteFolder(ArtifactsDirectoryFullPath);
             TestUtilityFunction.DeleteMetaFile(ArtifactsDirectoryFullPath);
+
+#if UNITY_EDITOR
+            TestUtilityFunction.DeleteAllTexture2DFiles();
+#endif
         }
         catch (IOException)
         {

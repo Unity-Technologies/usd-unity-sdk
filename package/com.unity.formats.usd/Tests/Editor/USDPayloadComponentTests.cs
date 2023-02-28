@@ -214,7 +214,7 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.Reload(forceRebuild: true);
             yield return null;
 
-            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
+            EditorSceneManager.SaveScene(m_UnityScene, TestUtilityFunction.GetUnityScenePath(ArtifactsDirectoryRelativePath));
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
 
             // Change payload state and wait one frame to ensure Update runs
@@ -231,7 +231,7 @@ namespace Unity.Formats.USD.Tests
             m_usdAsset.Reload(forceRebuild: true);
             yield return null;
 
-            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
+            EditorSceneManager.SaveScene(m_UnityScene, TestUtilityFunction.GetUnityScenePath(ArtifactsDirectoryRelativePath));
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
 
             // Change payload state and wait one frame to ensure Update runs

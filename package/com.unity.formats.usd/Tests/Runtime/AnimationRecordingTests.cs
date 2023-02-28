@@ -49,7 +49,7 @@ namespace Unity.Formats.USD.Tests
             var usdRecorderAsset = usdRecorderClip.asset as UsdRecorderClip;
 
             // set path to record to
-            var recordedUsdFile = GetUSDScenePath();
+            var recordedUsdFile = TestUtilityFunction.GetUSDScenePath(ArtifactsDirectoryFullPath);
             usdRecorderAsset.m_usdFile = recordedUsdFile;
 
             usdRecorderAsset.m_exportRoot = new ExposedReference<GameObject> { exposedName = Guid.NewGuid().ToString() };

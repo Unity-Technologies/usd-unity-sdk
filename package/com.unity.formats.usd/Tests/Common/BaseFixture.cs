@@ -32,36 +32,6 @@ namespace Unity.Formats.USD.Tests
         protected string TestAssetDirectoryName => TestAssetData.Directory.FolderName;
         protected string TestUsdAssetDirectoryRelativePath => Path.Combine("Packages", "com.unity.formats.usd", "Tests", "Common", "Data", TestAssetDirectoryName);
 
-        public string GetUnityScenePath(string sceneName = null)
-        {
-            if (string.IsNullOrEmpty(sceneName))
-            {
-                sceneName = System.Guid.NewGuid().ToString();
-            }
-
-            if (!sceneName.EndsWith(".unity"))
-            {
-                sceneName += ".unity";
-            }
-
-            return Path.Combine(ArtifactsDirectoryRelativePath, sceneName);
-        }
-
-        public string GetUSDScenePath(string usdFileName = null)
-        {
-            if (string.IsNullOrEmpty(usdFileName))
-            {
-                usdFileName = System.Guid.NewGuid().ToString();
-            }
-
-            if (!usdFileName.EndsWith(".usd") && !usdFileName.EndsWith(".usda") && !usdFileName.EndsWith(".usdz"))
-            {
-                usdFileName += ".usda";
-            }
-
-            return Path.Combine(ArtifactsDirectoryFullPath, usdFileName);
-        }
-
         public string GetPrefabPath(string prefabName = null, bool resource = false)
         {
             if (string.IsNullOrEmpty(prefabName))
@@ -88,7 +58,7 @@ namespace Unity.Formats.USD.Tests
 
         public string CreateTmpUsdFile(string fileName = "tempUsd.usda")
         {
-            var usdScenePath = GetUSDScenePath(fileName);
+            var usdScenePath = TestUtilityFunction.GetUSDScenePath(ArtifactsDirectoryFullPath, fileName);
             var scene = USDScene.Create(usdScenePath);
             scene.Save();
             scene.Close();
@@ -118,20 +88,10 @@ namespace Unity.Formats.USD.Tests
         public void CleanupTestArtifacts()
         {
             TestUtilityFunction.DeleteFolder(ArtifactsDirectoryFullPath);
-
             TestUtilityFunction.DeleteMetaFile(ArtifactsDirectoryFullPath);
 
 #if UNITY_EDITOR
-            // TODO: If materialImportMode = MaterialImportMode.ImportPreviewSurface, it creates all the texture2d files on the root assets
-            // Figure out if the texture2ds can be set into a different location - such as our artifacts directory
-            foreach (var textureArtifactGUID in AssetDatabase.FindAssets("t:texture2D", new string[] { "Assets" }))
-            {
-                var textureFilePath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(textureArtifactGUID));
-                File.Delete(textureFilePath);
-                TestUtilityFunction.DeleteMetaFile(textureFilePath);
-            }
-
-            AssetDatabase.Refresh();
+            TestUtilityFunction.DeleteAllTexture2DFiles();
 #endif
         }
     }
