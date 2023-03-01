@@ -64,7 +64,7 @@ test_performance_{{ platform.name }}_{{ editor.version }}:
     flavor: {{ platform.flavor}}
   commands:
       - unity-downloader-cli -u {{ editor.version }} -c editor
-      {% if editor.name == "win" %}
+      {% if platform.name == "win" %}
       - curl -s https://artifactory.prd.it.unity3d.com/artifactory/unity-tools-local/utr-standalone/utr.bat --output utr.bat
       - utr --suite=editor --clean-library --category="Performance" --testproject=TestProject/Usd-Development-Performance --editor-location=.Editor --report-performance-data --performance-project-id=com.unity.formats.usd
       {% else %}
