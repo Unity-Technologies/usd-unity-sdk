@@ -80,7 +80,7 @@ namespace Unity.Formats.USD.Tests
             var scene = TestUtilityFunction.OpenUSDSceneWithGUID(k_SmallBaseUsdPrimGUID);
             var usdAsset = ImportHelpers.ImportSceneAsGameObject(scene).GetComponent<UsdAsset>();
             usdAsset.m_materialImportMode = mode;
-            
+
             Measure.Method(() =>
             {
                 usdAsset.Reload(reload);
@@ -125,7 +125,7 @@ namespace Unity.Formats.USD.Tests
         {
             var testGameObject = CreateExportTestGameObject(childCount);
             var exportPath = TestUtilityFunction.GetUSDScenePath(ArtifactsDirectoryFullPath);
-            
+
             Measure.Method(() =>
             {
                 ExportHelpers.ExportGameObjects(new GameObject[] { testGameObject }, ExportHelpers.InitForSave(exportPath), basisTransformation);
