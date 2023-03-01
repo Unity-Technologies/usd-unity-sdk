@@ -348,7 +348,7 @@ namespace USD.NET
                     && csType.GetGenericArguments()[1].GetGenericTypeDefinition() == typeof(Primvar<>);
 
                 // Ensure the immediate dictionary member is always namespaced.
-                if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
+                if (!Reflect.ForceNoNamespace(memberInfo) && string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
                 {
                     usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);
                 }
@@ -594,7 +594,7 @@ namespace USD.NET
                 && csType.IsGenericType
                 && csType.GetGenericTypeDefinition() == typeof(Primvar<>);  // This is true for Primvar type only
             bool isPrimvar = Reflect.IsPrimvar(memberInfo) || isNewPrimvar; // This is true for VertexData + Primvar type...
-            string ns = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
+            string namespaceToRead = IntrinsicTypeConverter.JoinNamespace(usdNamespace,
                 Reflect.GetNamespace(memberInfo));
 
 
@@ -620,9 +620,9 @@ namespace USD.NET
                 // the dictionary becomes an attribute on the prim.
 
                 // Ensure there is always a namespace immediately around this member.
-                if (string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
+                if (!Reflect.ForceNoNamespace(memberInfo) && string.IsNullOrEmpty(Reflect.GetNamespace(memberInfo)))
                 {
-                    ns = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
+                    namespaceToRead = IntrinsicTypeConverter.JoinNamespace(namespaceToRead, attrName);
                     usdNamespace = IntrinsicTypeConverter.JoinNamespace(usdNamespace, attrName);
                 }
 
@@ -630,7 +630,7 @@ namespace USD.NET
                 // the dictionary member from USD.
                 if (isPrimvar || isNewPrimvar)
                 {
-                    ns = IntrinsicTypeConverter.JoinNamespace("primvars", ns);
+                    namespaceToRead = IntrinsicTypeConverter.JoinNamespace("primvars", namespaceToRead);
                 }
 
                 var dict = csValue as System.Collections.IDictionary;
@@ -638,7 +638,7 @@ namespace USD.NET
                     ? csType.GetGenericArguments()[1].GetConstructor(new Type[0])
                     : null;
                 dict.Clear();
-                foreach (var prop in prim.GetAuthoredPropertiesInNamespace(ns))
+                foreach (var prop in prim.GetAuthoredPropertiesInNamespace(namespaceToRead))
                 {
                     object value = null;
                     if (ctor != null)
@@ -658,14 +658,16 @@ namespace USD.NET
                     {
                         if (value != null)
                         {
-                            dict.Add(prop.GetBaseName().ToString(), value);
+                            // trim off the dictionary namespace - keep the rest of the namespace to avoid key collisions
+                            var fullName = prop.GetName().ToString();
+                            dict.Add(fullName.Substring(namespaceToRead.Length + 1), value);
                         }
                     }
                 }
                 return true;
             }
 
-            pxr.TfToken sdfAttrName = sm_tokenCache[ns, attrName];
+            pxr.TfToken sdfAttrName = sm_tokenCache[namespaceToRead, attrName];
 
             // ----------------------------------------- //
             // Relationship, read + early exit.
@@ -752,7 +754,7 @@ namespace USD.NET
                 && !csType.IsEnum
                 && csType != typeof(object))
             {
-                if (string.IsNullOrEmpty(ns))
+                if (string.IsNullOrEmpty(namespaceToRead))
                 {
                     return false;
                 }
@@ -770,7 +772,7 @@ namespace USD.NET
                     throw new ArgumentException("Type does not inherit from SampleBase: " + attrName);
                 }
 
-                Deserialize((SampleBase)csValue, prim, usdTime, accessMap, ref mayVary, usdNamespace: ns);
+                Deserialize((SampleBase)csValue, prim, usdTime, accessMap, ref mayVary, usdNamespace: namespaceToRead);
                 return true;
             }
 
@@ -791,7 +793,7 @@ namespace USD.NET
             // Append "primvars:" namespace to primvars.
             if (isPrimvar)
             {
-                var joinedName = IntrinsicTypeConverter.JoinNamespace(ns, attrName);
+                var joinedName = IntrinsicTypeConverter.JoinNamespace(namespaceToRead, attrName);
                 sdfAttrName = sm_tokenCache["primvars", joinedName];
             }
 
@@ -979,7 +981,7 @@ namespace USD.NET
                         // a List<Vector2> may have been serialized, but Vector2[] may be read.
                         if (!sm_bindings.GetReverseBinding(attr.GetTypeName(), out binding))
                         {
-                            if (string.IsNullOrEmpty(ns))
+                            if (string.IsNullOrEmpty(namespaceToRead))
                             {
                                 return false;
                             }

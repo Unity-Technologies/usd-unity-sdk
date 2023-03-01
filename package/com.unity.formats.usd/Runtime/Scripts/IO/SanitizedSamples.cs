@@ -229,7 +229,7 @@ namespace Unity.Formats.USD
 
             // Tangents
             // TODO: we should check interpolation
-            if (tangents != null && changeHandedness)
+            if (tangents != null && tangents.value != null && changeHandedness)
             {
                 var newTangents = new Vector4[tangents.Length];
                 for (var i = 0; i < tangents.Length; i++)
@@ -238,6 +238,7 @@ namespace Unity.Formats.USD
                     var t = UnityTypeConverter.ChangeBasis(tangents.value[i]);
                     newTangents[i] = new Vector4(t.x, t.y, t.z, w);
                 }
+                tangents.value = newTangents;
             }
 
             // Colors
@@ -246,14 +247,13 @@ namespace Unity.Formats.USD
                 Flatten(ref colors.value, colors.indices);
             }
 
-            // UVs
-            if (sanitizePrimvars)
+            // Arbitrary primvars
+            if (sanitizePrimvars && ArbitraryPrimvars != null)
             {
-                FlattenUVs(st);
-                FlattenUVs(uv);
-                FlattenUVs(uv2);
-                FlattenUVs(uv3);
-                FlattenUVs(uv4);
+                foreach (var primvar in ArbitraryPrimvars)
+                {
+                    FlattenPrimvar(primvar.Value);
+                }
             }
 
             if (!ShouldUnweldVertices(sanitizePrimvars))
@@ -281,13 +281,12 @@ namespace Unity.Formats.USD
 
             ConvertInterpolationToFaceVarying(ref colors.value, faceVertexIndices, unwindVertices);
 
-            if (sanitizePrimvars)
+            if (sanitizePrimvars && ArbitraryPrimvars != null)
             {
-                UnweldUVs(st, unwindVertices);
-                UnweldUVs(uv, unwindVertices);
-                UnweldUVs(uv2, unwindVertices);
-                UnweldUVs(uv3, unwindVertices);
-                UnweldUVs(uv4, unwindVertices);
+                foreach (var primvar in ArbitraryPrimvars)
+                {
+                    UnweldPrimvar(primvar.Value, unwindVertices);
+                }
             }
 
             // Convert points last, as points count might be used to guess the interpolation of other attributes
@@ -382,17 +381,24 @@ namespace Unity.Formats.USD
         internal bool ShouldUnweldVertices(bool bindMaterials)
         {
             // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be converted to face varying
+            bool shouldUnweldColors = colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying);
             // TODO: expose interpolation for standard mesh attributes (normals, tangents)
             bool shouldUnweldNormals = normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length);
-            bool shouldUnweldColors = colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying);
             bool shouldUnweldTangents = tangents != null && (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length);
-            bool isTextureMappingFaceVarying = st.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                                               uv.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                                               uv2.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                                               uv3.GetInterpolationToken() == UsdGeomTokens.faceVarying ||
-                                               uv4.GetInterpolationToken() == UsdGeomTokens.faceVarying;
 
-            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || (bindMaterials && isTextureMappingFaceVarying);
+            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || (bindMaterials && AreAnyArbitraryPrimvarsFaceVarying());
+        }
+
+        internal bool AreAnyArbitraryPrimvarsFaceVarying()
+        {
+            if (ArbitraryPrimvars == null) return false;
+            foreach (var primvar in ArbitraryPrimvars)
+            {
+                if (primvar.Value.GetInterpolationToken() == UsdGeomTokens.faceVarying)
+                    return true;
+            }
+
+            return false;
         }
 
         internal static void Flatten<T>(ref T[] values, int[] indices)
@@ -409,12 +415,12 @@ namespace Unity.Formats.USD
             values = newValues;
         }
 
-        void UnweldUVs(Primvar<object> primvar, bool changeHandedness)
+        void UnweldPrimvar(Primvar<object> primvar, bool changeHandedness)
         {
             if (primvar.value == null)
                 return;
 
-            if (primvar.GetInterpolationToken() == UsdGeomTokens.constant)
+            if (primvar.GetInterpolationToken() == UsdGeomTokens.constant && primvar.IsArray)
             {
                 UsdIo.ArrayAllocator.Free(primvar.value.GetType(), (uint)(primvar.value as Array).GetLength(0),
                     primvar.value as Array);
@@ -448,7 +454,7 @@ namespace Unity.Formats.USD
             }
         }
 
-        static void FlattenUVs(Primvar<object> primvar)
+        static void FlattenPrimvar(Primvar<object> primvar)
         {
             if (primvar.value == null)
                 return;

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace USD.NET
 {
@@ -24,6 +25,16 @@ namespace USD.NET
         object GetValue();
         void SetValue(object value);
         Type GetValueType();
+    }
+
+    /// <summary>
+    /// This allows to add arbitrary primvars to a sample
+    /// </summary>
+    public interface IArbitraryPrimvars
+    {
+        void AddPrimvars(List<string> primvars);
+
+        Dictionary<string, Primvar<object>> GetArbitraryPrimvars();
     }
 
     /// <summary>

@@ -161,18 +161,16 @@ namespace USD.NET.Unity
         public void SetTriangles(int[] triangleIndices);
     }
 
-    [USD.NET.UsdSchema(@"Mesh")] public class MeshSampleBase : USD.NET.Unity.PointBasedSample
+    [USD.NET.UsdSchema(@"Mesh")] public class MeshSampleBase : USD.NET.Unity.PointBasedSample, USD.NET.IArbitraryPrimvars
     {
+        [USD.NET.ForceNoNamespace] public System.Collections.Generic.Dictionary<string, USD.NET.Primvar<object>> ArbitraryPrimvars;
         public int[] faceVertexIndices;
         public UnityEngine.Vector3[] normals;
         public UnityEngine.Vector3[] points;
-        public USD.NET.Primvar<object> st;
         public USD.NET.Primvar<UnityEngine.Vector4[]> tangents;
-        public USD.NET.Primvar<object> uv;
-        public USD.NET.Primvar<object> uv2;
-        public USD.NET.Primvar<object> uv3;
-        public USD.NET.Primvar<object> uv4;
         public MeshSampleBase() {}
+        public virtual void AddPrimvars(System.Collections.Generic.List<string> primvars);
+        public virtual System.Collections.Generic.Dictionary<string, USD.NET.Primvar<object>> GetArbitraryPrimvars();
     }
 
     public struct ParameterInfo
