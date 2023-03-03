@@ -10,8 +10,8 @@ test_platforms:
     flavor: b1.large
   - name: mac
     type: Unity::VM::osx
-    image: package-ci/macos-12:stable
-    flavor: m1.mac
+    image: slough-ops/macos-11-base:stable
+    flavor: b1.large
 test_backends:
   - name: il2cpp
     editor: 2020.3
