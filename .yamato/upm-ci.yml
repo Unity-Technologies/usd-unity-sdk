@@ -10,7 +10,8 @@ test_platforms:
     flavor: b1.large
   - name: mac
     type: Unity::VM::osx
-    image: package-ci/mac:stable
+    model: M1
+    image: package-ci/macos-12-arm-base
     flavor: m1.mac
 test_backends:
   - name: il2cpp
