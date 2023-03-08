@@ -15,8 +15,14 @@ namespace UnityEditor.Formats.USD.Recorder
             if (Context.exportTransformOverrides)
             {
                 // Settings.
-                Context.scene.AddSubLayer(Settings.GameObject.GetComponent<UsdAsset>().GetScene());
-                Context.scene.WriteMode = Scene.WriteModes.Over;
+                UsdAsset usdAsset = Settings.GameObject.GetComponentInParent<UsdAsset>(); // Get the UsdAsset component in this GameObject or its nearest parent
+                if (usdAsset != null)
+                {
+                    Context.scene.AddSubLayer(usdAsset.GetScene());
+                    Context.scene.WriteMode = Scene.WriteModes.Over;
+                }
+                else
+                    UnityEngine.Debug.LogError($"Unable to perform a 'transform overrides only' recording as <{Settings.GameObject.name}> is not a UsdAsset.");
             }
             SceneExporter.SyncExportContext(Settings.GameObject, Context);
             SceneExporter.Export(Settings.GameObject,
