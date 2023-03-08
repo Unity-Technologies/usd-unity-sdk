@@ -18,7 +18,7 @@ namespace UnityEditor.Formats.USD.Recorder
         [SerializeField] ActiveExportPolicy activePolicy = ActiveExportPolicy.ExportAsVisibility;
         [SerializeField] bool exportMaterials = true;
         [SerializeField] float scale = 1;
-        [SerializeField] bool exportTransformOverrides = false;
+        [SerializeField] ExportOverridesSetting exportTransformOverrides;
 
         public UsdRecorderSettings()
         {
@@ -30,6 +30,12 @@ namespace UnityEditor.Formats.USD.Recorder
             USD,
             USDA,
             USDZ,
+        }
+
+        public enum ExportOverridesSetting
+        {
+            ExportInFull,
+            ExportTransformOverridesOnly
         }
 
         public UsdInterpolationType InterpolationType
@@ -52,8 +58,8 @@ namespace UnityEditor.Formats.USD.Recorder
 
         public bool ExportTransformOverrides
         {
-            get => exportTransformOverrides;
-            set => exportTransformOverrides = value;
+            get => exportTransformOverrides == ExportOverridesSetting.ExportTransformOverridesOnly ? true : false;
+            set => exportTransformOverrides = value ? ExportOverridesSetting.ExportTransformOverridesOnly : ExportOverridesSetting.ExportInFull;
         }
 
         public ActiveExportPolicy ActivePolicy

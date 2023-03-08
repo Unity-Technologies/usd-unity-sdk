@@ -13,8 +13,8 @@ namespace UnityEditor.Formats.USD.Recorder
             EditorGUILayout.PropertyField(serializedObject.FindProperty("interpolationType"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("coordinateConversion"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("activePolicy"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("exportTransformOverrides"), new GUIContent("Override Setting"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("exportMaterials"), new GUIContent("Materials"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("exportTransformOverrides"), new GUIContent("Transform Overrides"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("scale"));
         }
     }
