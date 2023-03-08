@@ -1,0 +1,19 @@
+[version]
+repoconfig=7
+minimum-unity-meta=47
+
+[format]
+path-ignore=<<EOT
+# specially named folders that will be matched anywhere in a path (e.g. all files under any 'src' will be ignored)
+(^|/)(
+     src
+)(/|$)
+|
+(^|/)(
+     package/com.unity.formats.usd/Dependencies
+)(/|$)
+|
+.*\.meta
+|
+.md
+EOT

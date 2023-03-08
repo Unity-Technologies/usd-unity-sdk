@@ -813,6 +813,7 @@ namespace Unity.Formats.USD
                                 GameObject go = primMap[pathAndSample.path];
                                 NativeImporter.ImportObject(scene, go, scene.GetPrimAtPath(pathAndSample.path),
                                     importOptions);
+                                // TODO: should we restore the DeserializationContext here?
                                 pathAndSample.sample.Sanitize(scene, importOptions);
                                 XformImporter.BuildXform(pathAndSample.path, pathAndSample.sample, go, importOptions,
                                     scene);

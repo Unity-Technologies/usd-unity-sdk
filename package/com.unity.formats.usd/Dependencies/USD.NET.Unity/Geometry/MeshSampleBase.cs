@@ -13,35 +13,50 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace USD.NET.Unity
 {
     [System.Serializable]
     [UsdSchema("Mesh")]
-    public class MeshSampleBase : PointBasedSample
+    public class MeshSampleBase : PointBasedSample, IArbitraryPrimvars
     {
         public int[] faceVertexIndices;
         public Vector3[] points;
         public Vector3[] normals;
-        [VertexData] public Vector4[] tangents;
-
-        // Regarding UVs: this feels like a very specific solution for "default primvar data", which
-        // is fine, but this type of data may be specific to a given pipeline, though here it is
-        // declared as universal. In general, primvar data such as UVS, normals, and tangents should
-        // be driven by the need of the shader or because it was explicitly requested by the user,
-        // and not always included by default.
+        public Primvar<Vector4[]> tangents = new Primvar<Vector4[]>() {interpolation = PrimvarInterpolation.Varying};
 
         /// <summary>
-        /// When not explicitly specified by the shader, "st" should be considered the default uv set.
+        /// Container to hold extra primvars properties
         /// </summary>
-        /// <remarks>
-        /// UV object types should be Vector{2,3}[], List of Vector{2,3}, or null.
-        /// </remarks>
-        public Primvar<object> st = new Primvar<object>();
-        public Primvar<object> uv = new Primvar<object>();
-        public Primvar<object> uv2 = new Primvar<object>();
-        public Primvar<object> uv3 = new Primvar<object>();
-        public Primvar<object> uv4 = new Primvar<object>();
+        /// <details>
+        /// This is typically used to only deserialize the specific uv properties used by a mesh material and can only
+        /// be discovered when materials have been processed.
+        /// This could be extended to contains user defined primvars.
+        /// Note the ForceNoNamespace attribute that instruct the deserialization code to keep the attributes in the "primvars"
+        /// namespace.
+        /// In unity mesh attributes are the same size as the vertex array so let's set the default interpolation to varying.
+        /// When reading from USD the actual interpolation mode will be set.
+
+        /// </details>
+        [ForceNoNamespace] public Dictionary<string, Primvar<object>> ArbitraryPrimvars;
+
+        public Dictionary<string, Primvar<object>> GetArbitraryPrimvars() => ArbitraryPrimvars;
+
+        public MeshSampleBase()
+        {
+            ArbitraryPrimvars = new Dictionary<string, Primvar<object>>();
+        }
+
+        public void AddPrimvars(List<string> primvars)
+        {
+            if (primvars == null)
+                return;
+            if (ArbitraryPrimvars == null)
+                ArbitraryPrimvars = new Dictionary<string, Primvar<object>>();
+            foreach (var primvar in primvars)
+                ArbitraryPrimvars[primvar] = new Primvar<object> { interpolation = PrimvarInterpolation.Varying };
+        }
     }
 }

@@ -80,7 +80,7 @@ namespace Unity.Formats.USD
             sample.joints = new string[bones.Length];
             if (!string.IsNullOrEmpty(skeletonPath))
             {
-                sample.skeleton.targetPaths = new string[] {skeletonPath};
+                sample.skeleton.targetPaths = new string[] { skeletonPath };
             }
 
             int b = 0;
@@ -293,7 +293,7 @@ namespace Unity.Formats.USD
 
                 sample.normals = mesh.normals;
                 sample.points = mesh.vertices;
-                sample.tangents = mesh.tangents;
+                sample.tangents.SetValue(mesh.tangents);
 
                 sample.colors.SetValue(mesh.colors);
                 if (sample.colors.value != null && sample.colors.Length == 0)
@@ -309,7 +309,8 @@ namespace Unity.Formats.USD
                 }
 
                 // Gah. There is no way to inspect a meshes UVs.
-                sample.st.SetValue(mesh.uv);
+                sample.AddPrimvars(new List<string>() { "st" });
+                sample.ArbitraryPrimvars["st"].SetValue(mesh.uv);
 
                 // Set face vertex counts and indices.
                 var tris = mesh.triangles;
@@ -329,9 +330,9 @@ namespace Unity.Formats.USD
 
                         if (sample.tangents != null && sample.tangents.Length == sample.points.Length)
                         {
-                            var w = sample.tangents[i].w;
-                            var t = UnityTypeConverter.ChangeBasis(sample.tangents[i]);
-                            sample.tangents[i] = new Vector4(t.x, t.y, t.z, w);
+                            var w = sample.tangents.value[i].w;
+                            var t = UnityTypeConverter.ChangeBasis(sample.tangents.value[i]);
+                            sample.tangents.value[i] = new Vector4(t.x, t.y, t.z, w);
                         }
                     }
 

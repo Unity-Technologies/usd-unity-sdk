@@ -11,13 +11,10 @@ using USD.NET;
 
 namespace Unity.Formats.USD.Tests
 {
-    class AnimationRecordingTests
+    class AnimationRecordingTests : BaseFixtureRuntime
     {
-        readonly List<string> m_filesToDelete = new List<string>();
-        string m_recordedUsdFile;
-
-        [UnitySetUp]
-        public IEnumerator SetUp()
+        [UnityTest]
+        public IEnumerator TestExportSparseTimesampling()
         {
             // Create the necessary objects
             // Cube is animated by an animation clip, Cylinder by a rigidbody,
@@ -52,9 +49,8 @@ namespace Unity.Formats.USD.Tests
             var usdRecorderAsset = usdRecorderClip.asset as UsdRecorderClip;
 
             // set path to record to
-            m_recordedUsdFile = "Assets/" + Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".usd";
-            usdRecorderAsset.m_usdFile = m_recordedUsdFile;
-            m_filesToDelete.Add(usdRecorderAsset.m_usdFile);
+            var recordedUsdFile = GetUSDScenePath();
+            usdRecorderAsset.m_usdFile = recordedUsdFile;
 
             usdRecorderAsset.m_exportRoot = new ExposedReference<GameObject> { exposedName = Guid.NewGuid().ToString() };
             director.SetReferenceValue(usdRecorderAsset.m_exportRoot.exposedName, cube);
@@ -66,15 +62,10 @@ namespace Unity.Formats.USD.Tests
                 yield return null;
             director.Stop();
             yield return null;
-        }
 
-        [Test]
-        public void TestExportSparseTimesampling()
-        {
-            Assert.That(m_recordedUsdFile, Does.Exist);
+            Assert.That(recordedUsdFile, Does.Exist);
             // Check that the Cube and Cylinder have timesamples, but not the Sphere (not animated)
-            InitUsd.Initialize();
-            var stage = pxr.UsdStage.Open(m_recordedUsdFile, pxr.UsdStage.InitialLoadSet.LoadAll);
+            var stage = pxr.UsdStage.Open(recordedUsdFile, pxr.UsdStage.InitialLoadSet.LoadAll);
             var scene = Scene.Open(stage);
             var cubePath = "/Cube";
             var spherePath = "/Cube/Sphere";
@@ -87,16 +78,6 @@ namespace Unity.Formats.USD.Tests
             Assert.That(keyframeDict.ContainsKey(spherePath), Is.False, "There should not be timesamples for Sphere in the recorded usd");
 
             scene.Close();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            foreach (var file in m_filesToDelete)
-            {
-                File.Delete(file);
-            }
-            m_filesToDelete.Clear();
         }
 
         static void CreateTimeline(out PlayableDirector director, out TimelineAsset timeline)

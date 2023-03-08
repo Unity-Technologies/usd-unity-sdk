@@ -35,7 +35,7 @@ namespace USD.NET.Unity
         public Orientation orientation;
 
         // Should be an array of "3", one for each triangle, unles arbitrary polygons are used.
-        public int[] faceVertexCounts;
+        public int[] faceVertexCounts; // TODO: remove- they're always 3 so just create at export to save time & memory
 
         // ------------------------------------------------------------------------------------------ //
         // Helper Functions

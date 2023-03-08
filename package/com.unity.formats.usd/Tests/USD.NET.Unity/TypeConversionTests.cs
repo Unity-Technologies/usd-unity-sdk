@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
+using USD.NET.Tests;
 
 namespace USD.NET.Unity.Tests
 {
@@ -185,7 +186,7 @@ namespace USD.NET.Unity.Tests
             Assert.AreEqual("", UnityTypeConverter.GetPath(c.transform, c.transform));
             Assert.AreEqual("", UnityTypeConverter.GetPath(null));
             Assert.AreEqual("", UnityTypeConverter.GetPath(null, null));
-            Assert.Throws<System.Exception>(delegate() { UnityTypeConverter.GetPath(null, a.transform); });
+            Assert.Throws<System.Exception>(delegate () { UnityTypeConverter.GetPath(null, a.transform); });
         }
 
         [Test]

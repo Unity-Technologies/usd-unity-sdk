@@ -9,7 +9,7 @@ using USD.NET;
 namespace Unity.Formats.USD.Tests
 {
 #if UNITY_EDITOR
-    public class SanitizedMeshesTests : BaseFixture
+    public class SanitizedMeshesTests : BaseFixtureRuntime
     {
         class SanitizeTests
         {
@@ -189,13 +189,19 @@ namespace Unity.Formats.USD.Tests
             {
                 var sanitizedSample = new SanitizedMeshSample();
                 scene.Read("/grid_righthanded", sanitizedSample);
-                sanitizedSample.Triangulate(false);
 
+                var defaultToken = new TfToken();
+                Assert.AreEqual(defaultToken, sanitizedSample.GuessInterpolation(0));
                 Assert.AreEqual(UsdGeomTokens.constant, sanitizedSample.GuessInterpolation(1));
-                Assert.AreEqual(UsdGeomTokens.uniform, sanitizedSample.GuessInterpolation(2));
                 Assert.AreEqual(UsdGeomTokens.vertex, sanitizedSample.GuessInterpolation(6));
+
+                // If the topology is not backed up there's no way to guess uniform or facevarying
+                Assert.AreEqual(defaultToken, sanitizedSample.GuessInterpolation(2));
+                Assert.AreEqual(defaultToken, sanitizedSample.GuessInterpolation(8));
+
+                sanitizedSample.BackupTopology();
+                Assert.AreEqual(UsdGeomTokens.uniform, sanitizedSample.GuessInterpolation(2));
                 Assert.AreEqual(UsdGeomTokens.faceVarying, sanitizedSample.GuessInterpolation(8));
-                Assert.AreEqual(new TfToken(), sanitizedSample.GuessInterpolation(0));
             }
 
             [Test]

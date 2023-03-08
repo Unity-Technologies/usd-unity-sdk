@@ -152,7 +152,7 @@ namespace USD.NET.Tests
         {
             var s = CreateStageHierarchy();
             var prePostRange = new USD.NET.RangeIterator(UsdPrimRange.PreAndPostVisit(s.GetPseudoRoot()));
-            bool[] expected = {false, false, true, false, true, true};
+            bool[] expected = { false, false, true, false, true, true };
             bool[] actual = new bool[6];
             var i = 0;
             foreach (UsdPrim curPrim in prePostRange)
@@ -246,12 +246,11 @@ namespace USD.NET.Tests
         [Test]
         public static void RelationshipTest()
         {
-            var scene = USD.NET.Scene.Create();
             var shaderPath = "/Model/Materials/SimpleMat/StandardShader";
 
             var material = new MaterialSampleTest();
             material.surface = shaderPath;
-            material.surfaces = new string[] {"/Foo", "/Bar/Baz"};
+            material.surfaces = new string[] { "/Foo", "/Bar/Baz" };
 
             var mat2 = new MaterialSampleTest();
             WriteAndRead(ref material, ref mat2);
@@ -271,34 +270,6 @@ namespace USD.NET.Tests
             WriteAndRead(ref material, ref mat2);
             AssertEqual(material.surface.targetPaths, mat2.surface.targetPaths);
             AssertEqual(material.surfaces.targetPaths, mat2.surfaces.targetPaths);
-        }
-
-        [Test]
-        public static void StartEndTimeTest()
-        {
-            USD.NET.Scene scene = USD.NET.Scene.Create();
-            scene.StartTime = 0;
-            scene.EndTime = 1;
-            AssertEqual(scene.StartTime, 0);
-            AssertEqual(scene.EndTime, 1);
-            scene.Close();
-        }
-
-        [Test]
-        public static void FrameRateTest()
-        {
-            USD.NET.Scene scene = USD.NET.Scene.Create();
-            scene.FrameRate = 30;
-            AssertEqual(scene.FrameRate, 30);
-            scene.Close();
-        }
-
-        [Test]
-        public static void YUpTest()
-        {
-            USD.NET.Scene scene = USD.NET.Scene.Create();
-            AssertEqual(scene.UpAxis, USD.NET.Scene.UpAxes.Y);
-            scene.Close();
         }
 
         [Test]
@@ -332,18 +303,6 @@ namespace USD.NET.Tests
             Assert.AreEqual(meshToken, meshPrim.GetTypeName());
             var allPaths = s.GetAllPathsByType(meshToken, SdfPath.AbsoluteRootPath());
             Assert.AreEqual(2, allPaths.Count);
-        }
-
-        [Test]
-        public void WritingInvalidPrims_ShouldNotCrash()
-        {
-            var stage = pxr.UsdStage.CreateInMemory(UsdStage.InitialLoadSet.LoadNone);
-            var scene = Scene.Open(stage);
-            scene.Write("/Foo", new CubeSample());
-            scene.Stage.RemovePrim(scene.GetSdfPath("/Foo"));
-            scene.Write("/Foo", new CubeSample());
-
-            Assert.IsTrue(scene.GetPrimAtPath("/Foo").IsValid());
         }
     }
 }

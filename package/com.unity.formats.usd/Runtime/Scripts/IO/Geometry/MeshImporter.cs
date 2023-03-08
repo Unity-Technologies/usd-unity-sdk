@@ -69,29 +69,19 @@ namespace Unity.Formats.USD
             System.Reflection.MemberInfo points = null;
             System.Reflection.MemberInfo normals = null;
             System.Reflection.MemberInfo colors = null;
-            System.Reflection.MemberInfo st = null;
-            System.Reflection.MemberInfo uv = null;
-            System.Reflection.MemberInfo uv2 = null;
-            System.Reflection.MemberInfo uv3 = null;
-            System.Reflection.MemberInfo uv4 = null;
             System.Reflection.MemberInfo purpose = null;
             System.Reflection.MemberInfo visibility = null;
             var isDynamic = false;
 
             if (scene.AccessMask != null && scene.IsPopulatingAccessMask)
             {
-                var meshType = typeof(MeshSample);
+                var meshType = typeof(SanitizedMeshSample);
                 faceVertexCounts = meshType.GetMember("faceVertexCounts")[0];
                 faceVertexIndices = meshType.GetMember("faceVertexIndices")[0];
                 orientation = meshType.GetMember("orientation")[0];
                 points = meshType.GetMember("points")[0];
                 normals = meshType.GetMember("normals")[0];
                 colors = meshType.GetMember("colors")[0];
-                st = meshType.GetMember("st")[0];
-                uv = meshType.GetMember("uv")[0];
-                uv2 = meshType.GetMember("uv2")[0];
-                uv3 = meshType.GetMember("uv3")[0];
-                uv4 = meshType.GetMember("uv4")[0];
                 purpose = meshType.GetMember("purpose")[0];
                 visibility = meshType.GetMember("visibility")[0];
             }
@@ -100,43 +90,33 @@ namespace Unity.Formats.USD
             {
                 if (scene.AccessMask != null && scene.IsPopulatingAccessMask)
                 {
-                    HashSet<System.Reflection.MemberInfo> members;
-                    if (scene.AccessMask.Included.TryGetValue(pathAndSample.path, out members))
+                    DeserializationContext deserializationContext;
+                    if (scene.AccessMask.Included.TryGetValue(pathAndSample.path, out deserializationContext))
                     {
-                        if (members.Contains(faceVertexCounts)
-                            || members.Contains(orientation)
-                            || members.Contains(faceVertexIndices)
-                            || members.Contains(points)
-                            || members.Contains(normals)
-                            || members.Contains(colors)
-                            || members.Contains(st)
-                            || members.Contains(uv)
-                            || members.Contains(uv2)
-                            || members.Contains(uv3)
-                            || members.Contains(uv4)
+                        if (deserializationContext.dynamicMembers.Contains(faceVertexCounts)
+                            || deserializationContext.dynamicMembers.Contains(orientation)
+                            || deserializationContext.dynamicMembers.Contains(faceVertexIndices)
+                            || deserializationContext.dynamicMembers.Contains(points)
+                            || deserializationContext.dynamicMembers.Contains(normals)
+                            || deserializationContext.dynamicMembers.Contains(colors)
                         )
                         {
-                            members.Add(faceVertexCounts);
-                            members.Add(faceVertexIndices);
-                            members.Add(orientation);
-                            members.Add(points);
-                            members.Add(normals);
-                            members.Add(colors);
-                            members.Add(st);
-                            members.Add(uv);
-                            members.Add(uv2);
-                            members.Add(uv3);
-                            members.Add(uv4);
+                            deserializationContext.dynamicMembers.Add(faceVertexCounts);
+                            deserializationContext.dynamicMembers.Add(faceVertexIndices);
+                            deserializationContext.dynamicMembers.Add(orientation);
+                            deserializationContext.dynamicMembers.Add(points);
+                            deserializationContext.dynamicMembers.Add(normals);
+                            deserializationContext.dynamicMembers.Add(colors);
                         }
 
-                        if (pathAndSample.sample.purpose != Purpose.Default && !members.Contains(purpose))
+                        if (pathAndSample.sample.purpose != Purpose.Default && !deserializationContext.dynamicMembers.Contains(purpose))
                         {
-                            members.Add(purpose);
+                            deserializationContext.dynamicMembers.Add(purpose);
                         }
 
-                        if (pathAndSample.sample.visibility != Visibility.Inherited && !members.Contains(visibility))
+                        if (pathAndSample.sample.visibility != Visibility.Inherited && !deserializationContext.dynamicMembers.Contains(visibility))
                         {
-                            members.Add(visibility);
+                            deserializationContext.dynamicMembers.Add(visibility);
                         }
 
                         isDynamic = true;
@@ -298,10 +278,13 @@ namespace Unity.Formats.USD
             bool isDynamic,
             UsdSkelSkinningQuery skinningQuery = null)
         {
+            if (usdMesh.points == null)
+                return;
+
             var smr = ImporterBase.GetOrAddComponent<SkinnedMeshRenderer>(go);
             if (smr.sharedMesh == null)
             {
-                smr.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
+                smr.sharedMesh = new Mesh { name = UniqueMeshName(go.name) };
             }
 
             // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
@@ -404,11 +387,14 @@ namespace Unity.Formats.USD
             bool isDynamic,
             UsdSkelSkinningQuery skinQuery = null)
         {
+            if (usdMesh.points == null)
+                return;
+
             var mf = ImporterBase.GetOrAddComponent<MeshFilter>(go);
             var mr = ImporterBase.GetOrAddComponent<MeshRenderer>(go);
             if (mf.sharedMesh == null)
             {
-                mf.sharedMesh = new Mesh {name = UniqueMeshName(go.name)};
+                mf.sharedMesh = new Mesh { name = UniqueMeshName(go.name) };
             }
 
             // We only check if a mesh is dynamic when scene.IsPopulatingAccessMask is True. It only happens when a playable is
@@ -441,14 +427,14 @@ namespace Unity.Formats.USD
             //
             // Points.
             //
-            if (options.meshOptions.points == ImportMode.Import && usdMesh.points != null)
+            if (ShouldImport(options.meshOptions.points) && usdMesh.points != null)
             {
                 if (usdMesh.faceVertexIndices != null)
                 {
                     // Annoyingly, there is a circular dependency between vertices and triangles, which makes
                     // it impossible to have a fixed update order in this function. As a result, we must clear
                     // the triangles before setting the points, to break that dependency.
-                    unityMesh.SetTriangles(new int[0] {}, 0);
+                    unityMesh.SetTriangles(new int[0] { }, 0);
                 }
 
                 unityMesh.vertices = usdMesh.points;
@@ -457,7 +443,7 @@ namespace Unity.Formats.USD
             //
             // Mesh Topology.
             //
-            if (options.meshOptions.topology == ImportMode.Import && usdMesh.faceVertexIndices != null)
+            if (ShouldImport(options.meshOptions.topology) && usdMesh.faceVertexIndices != null)
             {
                 // Remap subsets
                 var newSubsets = new GeometrySubsets();
@@ -466,7 +452,13 @@ namespace Unity.Formats.USD
                     var newFaceIndices = new List<int>();
                     foreach (var faceIndex in nameAndSubset.Value)
                     {
-                        newFaceIndices.AddRange(usdMesh.faceMapping[faceIndex]);
+                        int firstFaceIndex = usdMesh.faceMapping[faceIndex];
+                        // Number of triangles generated by triangulation is number of verts in original face - 2
+                        int triCount = usdMesh.originalFaceVertexCounts[faceIndex] - 2;
+                        for (int mappedFaceIndex = 0; mappedFaceIndex < triCount; mappedFaceIndex++)
+                        {
+                            newFaceIndices.Add(firstFaceIndex + mappedFaceIndex);
+                        }
                     }
 
                     newSubsets.Subsets.Add(nameAndSubset.Key, newFaceIndices.ToArray());
@@ -519,7 +511,7 @@ namespace Unity.Formats.USD
                 unityMesh.bounds = usdMesh.extent;
                 Profiler.EndSample();
             }
-            else if (ShouldCompute(options.meshOptions.boundingBox))
+            else if (!usdMesh.IsRestoredFromCachedData() && ShouldCompute(options.meshOptions.boundingBox))
             {
                 Profiler.BeginSample("Calculate Bounds");
                 unityMesh.RecalculateBounds();
@@ -535,7 +527,8 @@ namespace Unity.Formats.USD
                 unityMesh.normals = usdMesh.normals;
                 Profiler.EndSample(); // Import Normals
             }
-            else if (ShouldCompute(options.meshOptions.tangents))
+            // If the mesh has normals that have already been sanitized and restored from cache don't compute again
+            else if (!usdMesh.IsRestoredFromCachedData() && ShouldCompute(options.meshOptions.normals))
             {
                 Profiler.BeginSample("Calculate Normals");
                 unityMesh.RecalculateNormals();
@@ -545,15 +538,15 @@ namespace Unity.Formats.USD
             //
             // Tangents.
             // TODO: move the tangents calculation to SanitizedMeshSample
-            if (usdMesh.tangents != null && ShouldImport(options.meshOptions.tangents))
+            if (usdMesh.tangents != null && usdMesh.tangents.value != null && ShouldImport(options.meshOptions.tangents))
             {
                 Profiler.BeginSample("Import Tangents");
                 // TODO: We should check the interpolation of tangents and treat them accordingly (for now, we assume they
                 //       are always face varying).
-                unityMesh.tangents = usdMesh.tangents;
+                unityMesh.tangents = usdMesh.tangents.value;
                 Profiler.EndSample(); // Import Tangents
             }
-            else if (ShouldCompute(options.meshOptions.tangents))
+            else if (!usdMesh.IsRestoredFromCachedData() && ShouldCompute(options.meshOptions.tangents))
             {
                 Profiler.BeginSample("Calculate Tangents");
                 unityMesh.RecalculateTangents();
@@ -605,7 +598,7 @@ namespace Unity.Formats.USD
                         options.materialMap.RequestBinding(
                             path,
                             (scene, boundMat, primvars) => BindMat(
-                                scene, unityMesh, boundMat, renderer, path, primvars, usdMesh));
+                                unityMesh, boundMat, renderer, path, primvars, usdMesh));
                 }
                 else
                 {
@@ -622,8 +615,7 @@ namespace Unity.Formats.USD
                             options.materialMap.RequestBinding(
                                 kvp.Key,
                                 (scene, boundMat, primvars) => BindMat(
-                                    scene, unityMesh, boundMat, renderer, idx, path, primvars,
-                                    usdMesh));
+                                    unityMesh, boundMat, renderer, idx, path, primvars, usdMesh));
                         }
                     }
                 }
@@ -661,7 +653,6 @@ namespace Unity.Formats.USD
         }
 
         static void LoadPrimvars(
-            Scene scene,
             Mesh unityMesh,
             string usdMeshPath,
             List<string> primvars,
@@ -673,36 +664,16 @@ namespace Unity.Formats.USD
             {
                 try
                 {
-                    if (primvars[i] == "st")
-                    {
-                        ImportUv(unityMesh, i, sample.st);
-                    }
-                    else if (primvars[i] == "uv")
-                    {
-                        ImportUv(unityMesh, i, sample.uv);
-                    }
-                    else if (primvars[i] == "uv2")
-                    {
-                        ImportUv(unityMesh, i, sample.uv2);
-                    }
-                    else if (primvars[i] == "uv3")
-                    {
-                        ImportUv(unityMesh, i, sample.uv3);
-                    }
-                    else if (primvars[i] == "uv4")
-                    {
-                        ImportUv(unityMesh, i, sample.uv4);
-                    }
+                    ImportUv(unityMesh, i, sample.ArbitraryPrimvars?[primvars[i]]);
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError(new Exception("Error reading UVs at " +  usdMeshPath + "> uv-index: " + i, ex));
+                    Debug.LogError(new Exception($"Error reading UVs at {usdMeshPath} > uv attribute: {primvars[i]}. ", ex));
                 }
             }
         }
 
-        static void BindMat(Scene scene,
-            Mesh unityMesh,
+        static void BindMat(Mesh unityMesh,
             Material mat,
             Renderer renderer,
             string usdMeshPath,
@@ -710,7 +681,7 @@ namespace Unity.Formats.USD
             MeshSample sample)
         {
             renderer.sharedMaterial = mat;
-            LoadPrimvars(scene, unityMesh, usdMeshPath, primvars, sample);
+            LoadPrimvars(unityMesh, usdMeshPath, primvars, sample);
         }
 
         // Pass in Unity Mesh from registration.
@@ -719,8 +690,7 @@ namespace Unity.Formats.USD
         // Read primvars from USD mesh.
         // Assign to UnityMesh sequentially.
         // Material must assign both primvar and Unity Mesh texcoord slots.
-        static void BindMat(Scene scene,
-            Mesh unityMesh,
+        static void BindMat(Mesh unityMesh,
             Material mat,
             Renderer renderer,
             int index,
@@ -731,7 +701,7 @@ namespace Unity.Formats.USD
             var sharedMats = renderer.sharedMaterials;
             sharedMats[index] = mat;
             renderer.sharedMaterials = sharedMats;
-            LoadPrimvars(scene, unityMesh, usdMeshPath, primvars, sample);
+            LoadPrimvars(unityMesh, usdMeshPath, primvars, sample);
         }
 
         /// <summary>

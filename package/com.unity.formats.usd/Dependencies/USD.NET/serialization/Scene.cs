@@ -139,7 +139,8 @@ namespace USD.NET
             }
             set
             {
-                lock (m_stageLock) {
+                lock (m_stageLock)
+                {
                     Stage.GetEditTarget().GetLayer().SetStartTimeCode(value);
                 }
             }
@@ -156,7 +157,8 @@ namespace USD.NET
             }
             set
             {
-                lock (m_stageLock) {
+                lock (m_stageLock)
+                {
                     Stage.GetEditTarget().GetLayer().SetEndTimeCode(value);
                 }
             }
@@ -177,7 +179,8 @@ namespace USD.NET
                 {
                     throw new ApplicationException("Invalid frame rate, frame rate must be > 0");
                 }
-                lock (m_stageLock) {
+                lock (m_stageLock)
+                {
                     Stage.SetTimeCodesPerSecond(value);
                     Stage.SetFramesPerSecond(value);
                 }
@@ -601,7 +604,6 @@ namespace USD.NET
             SdfLayerHandle rootLayer = other.Stage.GetRootLayer();
             var editTarget = Stage.GetEditTargetForLocalLayer(rootLayer);
             Stage.SetEditTarget(editTarget);
-            m_primMap.Clear();
         }
 
         /// <summary>
@@ -700,7 +702,7 @@ namespace USD.NET
             memberValue = (T)o;
         }
 
-        void  ReadInternal<T>(SdfPath path,
+        void ReadInternal<T>(SdfPath path,
             T sample,
             UsdTimeCode timeCode) where T : SampleBase
         {
@@ -708,7 +710,7 @@ namespace USD.NET
             if (!prim) { return; }
 
             var accessMap = AccessMask;
-            HashSet<System.Reflection.MemberInfo> dynamicMembers = null;
+            DeserializationContext deserializationContext = null;
 
             // mayVary is nullable and has an accumulation semantic:
             //   null = members have already been checked for animation
@@ -723,14 +725,14 @@ namespace USD.NET
                 lock (m_stageLock)
                 {
                     // Check which attributes of the prim are dynamic
-                    var primFound = accessMap.Included.TryGetValue(path, out dynamicMembers);
+                    var primFound = accessMap.Included.TryGetValue(path, out deserializationContext);
 
                     // Populating the access map happens when reading the first frame of animation
                     // so if the prim is not already in the map add it and everything will be deserialized
                     if (!primFound && populatingAccessMask)
                     {
-                        dynamicMembers = new HashSet<System.Reflection.MemberInfo>();
-                        accessMap.Included.Add(path, dynamicMembers);
+                        deserializationContext = new DeserializationContext();
+                        accessMap.Included.Add(path, deserializationContext);
                     }
                 }
 
@@ -738,7 +740,7 @@ namespace USD.NET
                 if (!populatingAccessMask)
                 {
                     // If there are no dynamic members, then no need to call deserialize
-                    if (dynamicMembers == null)
+                    if (deserializationContext?.dynamicMembers == null)
                         return;
 
                     // Notify the deserialization service that only dynamic members should be read
@@ -746,10 +748,11 @@ namespace USD.NET
                 }
             }
 
-            m_usdIo.Deserialize(sample, prim, timeCode, dynamicMembers, ref mayVary);
+            m_usdIo.Deserialize(sample, prim, timeCode, deserializationContext?.dynamicMembers, ref mayVary);
 
             // If no members are varying, remove the prim from the access map.
-            lock (m_stageLock) {
+            lock (m_stageLock)
+            {
                 if (accessMap != null && mayVary != null)
                 {
                     if (!mayVary.Value)
@@ -785,27 +788,34 @@ namespace USD.NET
             UsdTimeCode timeCode) where T : SampleBase
         {
             pxr.UsdPrim prim;
-            lock (m_stageLock) {
-                // TODO(jcowles): there is a potential issue here if the cache gets out of sync with the
-                // underlying USD scene. The correct fix is to listen for change processing events and
-                // clear the cache accordingly.
-                prim = GetUsdPrim(path);
-                if (!prim.IsValid())
+            lock (m_stageLock)
+            {
+                if (WriteMode == WriteModes.Define)
                 {
-                    if (WriteMode == WriteModes.Define)
+                    // At the moment multiple ExportPlans end up having the same SdfPath which make Xform schema type override the actual schema type
+                    // Also typeless Prims may be created when Child objects are created before Parents in the export plans and we need to make sure their type is updated
+                    // The next code is a hacky way to maintain the desired schema type until we refactor the export code
+                    var primTypeName = Reflect.GetSchema(typeof(T));
+
+                    prim = m_stage.GetPrimAtPath(path);
+                    if (prim == null || !prim.IsValid())
                     {
-                        prim = m_stage.DefinePrim(path, new TfToken(Reflect.GetSchema(typeof(T))));
+                        prim = m_stage.DefinePrim(path, new TfToken(primTypeName));
                     }
-                    else
+                    else if (!string.IsNullOrEmpty(primTypeName) && (string.IsNullOrEmpty(prim.GetTypeName().GetText()) || primTypeName != "Xform"))
                     {
-                        prim = m_stage.OverridePrim(path);
+                        prim.SetTypeName(new TfToken(primTypeName));
                     }
-                    if (prim == null || !prim)
-                    {
-                        throw new Exception("Failed to "
-                            + (WriteMode == WriteModes.Define ? "define" : "override") + " prim: " + path);
-                    }
-                    m_primMap.Add(path, prim);
+                }
+                else
+                {
+                    prim = m_stage.OverridePrim(path);
+                }
+
+                if (prim == null || !prim.IsValid())
+                {
+                    throw new Exception("Failed to "
+                        + (WriteMode == WriteModes.Define ? "define" : "override") + " prim: " + path);
                 }
             }
             m_usdIo.Serialize(sample, prim, timeCode);
@@ -857,24 +867,10 @@ namespace USD.NET
         /// </summary>
         private pxr.UsdPrim GetUsdPrim(SdfPath path)
         {
-            UsdPrim prim;
             lock (m_stageLock)
             {
-                var has = m_primMap.TryGetValue(path, out prim);
-                if (!has || !prim.IsValid())
-                {
-                    prim = Stage.GetPrimAtPath(path);
-                    if (prim.IsValid())
-                    {
-                        m_primMap[path] = prim;
-                    }
-                    else if (has)
-                    {
-                        m_primMap.Remove(path);
-                    }
-                }
+                return Stage.GetPrimAtPath(path);
             }
-            return prim;
         }
 
         /// <summary>
@@ -905,7 +901,6 @@ namespace USD.NET
         #endregion
 
         private Dictionary<string, pxr.SdfPath> m_pathMap = new Dictionary<string, SdfPath>();
-        private Dictionary<SdfPath, pxr.UsdPrim> m_primMap = new Dictionary<SdfPath, UsdPrim>();
         private object m_stageLock = new object();
         private UsdIo m_usdIo;
         private UsdStage m_stage;

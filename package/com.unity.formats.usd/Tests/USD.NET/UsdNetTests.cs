@@ -4,43 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using System.Runtime.CompilerServices;
+using Unity.Formats.USD.Tests;
 
 namespace USD.NET.Tests
 {
-    class UsdTests
+    public class UsdTests : BaseFixture
     {
-        readonly List<string> m_filesToDelete = new List<string>();
-
-        [SetUp]
-        public void SetUp()
-        {
-            InitUsd.Initialize();
-        }
-
-        protected string CreateTmpUsdFile(string fileName)
-        {
-            var filePath = Path.Combine(UnityEngine.Application.dataPath, fileName);
-            var scene = Scene.Create(filePath);
-            scene.Save();
-            scene.Close();
-            m_filesToDelete.Add(filePath);
-            return filePath;
-        }
-
-        [TearDown]
-        public void DeleteTmpFiles()
-        {
-            foreach (var file in m_filesToDelete)
-            {
-                if (File.Exists(file))
-                {
-                    File.Delete(file);
-                }
-            }
-
-            m_filesToDelete.Clear();
-        }
-
         protected static void WriteAndRead<T>(ref T inputSample, ref T outputSample)
             where T : SampleBase
         {

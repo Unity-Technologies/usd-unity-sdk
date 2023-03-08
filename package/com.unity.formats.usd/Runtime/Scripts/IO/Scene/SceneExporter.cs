@@ -766,7 +766,7 @@ namespace Unity.Formats.USD
                 context.plans.Add(go, new ExportPlan());
             }
 
-            var exp = new Exporter {exportFunc = exportFunc, sample = sample, path = path};
+            var exp = new Exporter { exportFunc = exportFunc, sample = sample, path = path };
             if (insertFirst)
             {
                 context.plans[go].exporters.Insert(0, exp);

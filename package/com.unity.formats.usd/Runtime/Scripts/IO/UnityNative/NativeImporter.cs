@@ -177,7 +177,8 @@ namespace Unity.Formats.USD
         static public void ImportObject(Scene scene,
             GameObject go,
             pxr.UsdPrim usdPrim,
-            SceneImportOptions options) {}
+            SceneImportOptions options)
+        { }
     }
 }
 #endif
