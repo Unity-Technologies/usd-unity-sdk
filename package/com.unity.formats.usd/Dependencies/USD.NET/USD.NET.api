@@ -14707,6 +14707,11 @@ namespace USD.NET
         public static pxr.VtValue ToVtValue(object value);
     }
 
+    public class ForceNoNamespaceAttribute : System.Attribute
+    {
+        public ForceNoNamespaceAttribute() {}
+    }
+
     public class DeserializationContext
     {
         public System.Collections.Generic.HashSet<System.Reflection.MemberInfo> dynamicMembers;
@@ -14722,6 +14727,12 @@ namespace USD.NET
     public class FusedTransformAttribute : System.Attribute
     {
         public FusedTransformAttribute() {}
+    }
+
+    public interface IArbitraryPrimvars
+    {
+        public abstract void AddPrimvars(System.Collections.Generic.List<string> primvars);
+        public abstract System.Collections.Generic.Dictionary<string, USD.NET.Primvar<object>> GetArbitraryPrimvars();
     }
 
     public interface IRestorableData
