@@ -1,10 +1,10 @@
 {
     "name": "Unity.Formats.USD.Editor",
-    "rootNamespace": "",
     "references": [
         "Unity.Formats.USD.Runtime",
         "Unity.Recorder.Editor",
-        "USD.NET"
+        "USD.NET",
+        "Unity.Formats.USD.Common"
     ],
     "includePlatforms": [
         "Editor"
