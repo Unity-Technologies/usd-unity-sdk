@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Unity.PerformanceTesting;
 using System.IO;
+using Unity.Formats.USD;
 
 namespace Unity.Formats.USD.Tests
 {

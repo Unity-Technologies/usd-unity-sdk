@@ -4,7 +4,8 @@
         "USD.NET",
         "Unity.Formats.USD.Runtime",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Common"
     ],
     "includePlatforms": [
         "Editor",

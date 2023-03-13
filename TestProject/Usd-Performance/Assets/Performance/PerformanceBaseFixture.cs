@@ -4,44 +4,48 @@ using UnityEngine.TestTools;
 using UnityEditor;
 using System.IO;
 
-public abstract class PerformanceBaseFixture : IPrebuildSetup, IPostBuildCleanup
+namespace Unity.Formats.USD.Tests
 {
-    protected string ArtifactsDirectoryName => "Artifacts";
-    protected string ArtifactsDirectoryFullPath => Path.Combine(Application.dataPath, ArtifactsDirectoryName);
-
-    public struct TestRunData
+    public abstract class PerformanceBaseFixture : IPrebuildSetup, IPostBuildCleanup
     {
-        public const int MeasurementCount = 3;
-        public const int IterationsPerMeasurement = 1;
-    }
+        protected string ArtifactsDirectoryName => "Artifacts";
+        protected string ArtifactsDirectoryFullPath => Path.Combine(Application.dataPath, ArtifactsDirectoryName);
 
-    public void Setup()
-    {
-        InitUsd.Initialize();
-        if (Directory.Exists(ArtifactsDirectoryFullPath))
+        public struct TestRunData
         {
-            Cleanup();
+            public const int MeasurementCount = 3;
+            public const int IterationsPerMeasurement = 1;
         }
-        AssetDatabase.Refresh();
-        TestUtilityFunction.CreateFolder(ArtifactsDirectoryFullPath);
-    }
 
-    public void Cleanup()
-    {
-        try
+        public void Setup()
         {
-            TestUtilityFunction.DeleteFolder(ArtifactsDirectoryFullPath);
-            TestUtilityFunction.DeleteMetaFile(ArtifactsDirectoryFullPath);
+            InitUsd.Initialize();
+            if (Directory.Exists(ArtifactsDirectoryFullPath))
+            {
+                Cleanup();
+            }
+            AssetDatabase.Refresh();
+            TestUtilityFunction.CreateFolder(ArtifactsDirectoryFullPath);
+        }
+
+        public void Cleanup()
+        {
+            try
+            {
+
+                TestUtilityFunction.DeleteFolder(ArtifactsDirectoryFullPath);
+                TestUtilityFunction.DeleteMetaFile(ArtifactsDirectoryFullPath);
 
 #if UNITY_EDITOR
-            TestUtilityFunction.DeleteAllTexture2DFiles();
+                TestUtilityFunction.DeleteAllTexture2DFiles();
 #endif
+            }
+            catch (IOException)
+            {
+                // Rarely a created prefab file can still be in use by system after tests are complete
+                // Do Nothing as it is a rare occurence, and the file usually only contains very small data
+            }
+            AssetDatabase.Refresh();
         }
-        catch (IOException)
-        {
-            // Rarely a created prefab file can still be in use by system after tests are complete
-            // Do Nothing as it is a rare occurence, and the file usually only contains very small data
-        }
-        AssetDatabase.Refresh();
     }
 }

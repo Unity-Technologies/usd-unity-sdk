@@ -7,7 +7,8 @@
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Tests.Common",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Common"
     ],
     "includePlatforms": [
         "Editor"
