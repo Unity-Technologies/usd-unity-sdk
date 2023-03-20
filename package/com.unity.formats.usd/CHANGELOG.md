@@ -1,7 +1,11 @@
 # Changes in usd-unitysdk for Unity
 
 ## Unreleased
+### Features
+- The USD Recorder now has an option to export transform overrides.
+
 ### Bug Fixes
+- "Export Transform Override" now properly exports modified transforms only.
 - Fixed an import bug causing instanced primitives not to be sanitized.
 - Disabled plugins on unsupported platforms.
 - Fixed a bug causing PointInstances to be duplicated.
@@ -9,7 +13,7 @@
 - Optimized triangulation to reduce the chance of a "Timed out while waiting for thread" error on importing a complex mesh.
 
 ### Changed
-- GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
+- GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath.
 
 ## [3.0.0-exp.2] - 2021-09-29
 ### Features
