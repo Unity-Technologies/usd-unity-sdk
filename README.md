@@ -34,14 +34,18 @@ settings under Edit > Project Settings > Quality:
 
 * Windows / OSX (Intel only)
 * Unity version: 2019.4 and up
-* API Compatibility Level .NET 4.x is no longer required but still provides better performances than .NET 2   
-   In Edit > Project Settings > Player :   
+* API Compatibility Level .NET 4.x is no longer required but still provides better performances than .NET 2
+   In Edit > Project Settings > Player :
     ![USD .NET version](Images/USD_.NET_version.png)
 
 ## Limitations
 
 * Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
 * The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
+
+## System Implementation
+
+ * Integration with C# Job System
 
 ## Samples
 
@@ -64,7 +68,7 @@ The following is a brief listing of currently supported features:
  * Timeline Recording Track
  * Mesh Import & Export
  * Material Import & Export (USD Preview Surface or DisplayColor)
- * Unity Materials: HDRP, Standard and limited LWRP support
+ * Unity Materials: HDRP, Standard and limited URP support
  * Material Export Plugins
  * Variant Selection
  * Payload Load/Unload
@@ -72,33 +76,55 @@ The following is a brief listing of currently supported features:
  * Skeletal Animation via UsdSkel
  * Scene Instancing
  * Point Instancing
- * Integration with C# Job System
  * High and Low Level Access to USD API via C#
+
+## Importing USD Files
+
+To import a USD file into Unity, use the USD context menu, and select one of the 'Import as ...' options as required
+Supported USD file formats are:
+ * .USD
+ * .USDA
+ * .USDC
+ * .USDZ
 
 ## Importing Materials
 
-To import materials from USD, firstly import the USD file using the USD menu. Then, to get the materials to render in the scene, change the Import Settings > Materials in the Inspector to 'Import Preview Surface'. Finally reimport the USD file.
+To import materials from USD, firstly import the USD file using the USD menu.
+Then, to get the materials to render in the scene, change the 'Import Settings' > 'Materials' in the Inspector to 'Import Preview Surface'. Finally re-import the USD file.
+You can furthermore import all texture files by changing the 'Import Settings' > 'Payload Policy' in the Inspector to 'Load All' and re-import the USD file.
+
+If upon initial import nothing is visible, try re-importing the USD file with the above 'Import Settings'
 
 ## Streaming Playback via Timeline
 
 After importing a USD file with either skeletal or point cache animation, open
-the Timeline window. Select the root of the USD file.
+the Timeline window.
 
-Create a playable director by clicking the "Create" button in the Timeline window.
-Next, drag the root USD file into the Timeline to create a track for this object.
-Finally, drag the USD file once more to add a USD clip to the track for plaback.
-Scrubbing through time will now update the USD scene by streaming dat from USD.
+1. Select the root of the USD file.
+2. Create a playable director by clicking the "Create" button in the Timeline window.
+3. Next, drag the root USD file into the Timeline to create a track for this object.
+4. Finally, drag the USD file once more to add a USD clip to the track for plaback.
+5. Scrubbing through time will now update the USD scene by streaming data from USD.
 
 Timeline playback is multi-threaded using the C# Job System.
 
 ## Variants, Models, & Payloads
 
 Access to variant selection, model details, and payload state are all accessible via
-the inspector on the game object at which these features were authored. Note that Payloads *are not loaded by default*. USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene. 
+the inspector on the game object at which these features were authored.
+
+Note that Payloads *are not loaded by default*.
+USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene.
+If imported USD file is not visible, try re-importing with the 'Load All' Paylaod Policy
 
 ## Exporting USD files
 
 USD files can be created by exporting GameObjects selected in the Hierarchy using the USD context menu options, or using the Recorder.
+Supported USD file formats are:
+ * .USD
+ * .USDA
+ * .USDC
+ * .USDZ
 
 ### Exporting via Recorder
 
