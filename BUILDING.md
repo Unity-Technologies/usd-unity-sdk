@@ -19,7 +19,7 @@ The following directories are important to be aware of during the build process.
 
 ## Compiling
 
-Note that currently only Windows, OSX (Intel CPU), and Linux builds are officially supported.
+Note that currently only Windows, and OSX (Intel CPU) are officially supported.
 
 ### Generating Bindings
 
@@ -35,17 +35,14 @@ and can build the native library (UsdCs), the C# library (USD.NET) and the tests
  * CMake 3.19 (available in your system PATH)
  * Swig 3.0.12 (available in your system PATH)
  * Mono 5.1x (available in your system PATH). As of v3.0.0 of this package, USD.NET sources are included in the package folder so you only need this if you intend to build USD.NET manually.
- 
+
  ##### Windows
  * Visual Studio 2015, 2017, or 2019
- 
- ##### Linux
- * gcc 7
- 
+
  ##### OSX
  * XCode
- 
-#### Building USD 
+
+#### Building USD
 
 We typically use the standard build steps from the [USD repo instructions](https://github.com/PixarAnimationStudios/USD#getting-and-building-the-code). The exact command lines we are using are:
 * with python support: `python3 build_scripts/build_usd.py --build-monolithic --alembic --no-imaging --no-examples --no-tutorials ../artifacts/usd-v20.08-python36/usd-v20.08`
@@ -85,14 +82,13 @@ You can specify the component using the --component option. The following comman
 2. Generate the SWIG bindings, produces C# files and the UsdCs library
 3. Decorate the SWIG callbacks in UsdCsPINVOKE.cs to allow IL2CPP support (bin/add_MonoPInvokeCallback_attribute.py)
 4. Install the generated C# files in src/USD.NET/generated directory (cmake/install_usd_bindings.cmake)
-5. Generate a CMakeLists.txt in src/USD.NET/generated to list the generated C# files 
+5. Generate a CMakeLists.txt in src/USD.NET/generated to list the generated C# files
 6. Install the library and its runtime dependencies to package/com.unity.formats.usd/Runtime/Plugins/x86_64/[Platform]/
 7. Install the USD plugins files to package/com.unity.formats.usd/Runtime/Plugins
 
 **USD.NET**
 1. Build the C# library
 2. Install the USD.NET library to package/com.unity.formats.usd/Runtime/Plugins/
-
 
 ## Updating USD
 
