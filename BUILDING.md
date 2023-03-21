@@ -19,7 +19,7 @@ The following directories are important to be aware of during the build process.
 
 ## Compiling
 
-Note that currently only Windows, and OSX (Intel CPU) are officially supported.
+Note that currently only Windows and OSX (Intel CPU) are officially supported.
 
 ### Generating Bindings
 

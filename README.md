@@ -43,10 +43,6 @@ settings under Edit > Project Settings > Quality:
 * Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
 * The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
 
-## System Implementation
-
- * Integration with C# Job System
-
 ## Samples
 
 The USD package also includes samples to help you get started.
@@ -60,32 +56,69 @@ Note that Samples will not work as expected when installed from Source. In these
 # Features
 
 The following is a brief listing of currently supported features:
+ * File:
+     * Import as GameObject, Prefab, or Timeline Clip
+         * Formats: USD, USDA, USDC, USDZ
+     * Export
+         * Includes Transform Override Export
+         * Formats: USD, USDA, USDC, USDZ
+     * Additive Update
+     * Destructive Update
+     * Round-Trip
 
- * Import as GameObject, Prefab, or Timeline Clip
- * USDZ Export
- * Transform Override Export
- * Timeline Playback (Vertex Streaming & Skeletal Animation)
- * Timeline Recording Track
- * Mesh Import & Export
- * Material Import & Export (USD Preview Surface or DisplayColor)
- * Unity Materials: HDRP, Standard and limited URP support
- * Material Export Plugins
- * Variant Selection
- * Payload Load/Unload
- * Automatic Lightmap UV Unwrapping
- * Skeletal Animation via UsdSkel
- * Scene Instancing
- * Point Instancing
- * High and Low Level Access to USD API via C#
+ * Geometry:
+     * UV Set
+     * Variant Selection
+     * Vertex Colour
+
+ * Instances:
+     * Point Instancing
+     * Nested Point Instancing
+     * Scene Instancing
+
+ * Primitive Types:
+     * Cameras
+         * Import and Export
+     * Mesh & Material
+         * Import and Export
+         * HDRP, URP (Limited) and Standard Support
+         * Payload Load & Unload
+             * Load All & Individual
+     * Lights
+         * Automatic Lightmap UV Unwrapping
+
+ * Animation:
+     * Timeline Playback
+         * Skeletal Animation
+             * Via USDSkel
+         * Animated Mesh
+     * Timeline Recording Track
+         * Via Unity Recorder Package
+
+ * General:
+    * High and Low Level Access to USD API via C#
+    * Uses USD Hierarchy within Unity upon Import
 
 ## Importing USD Files
 
-To import a USD file into Unity, use the USD context menu, and select one of the 'Import as ...' options as required
+To import a USD file into Unity, use the USD context menu, and select one of the 'Import as ...' [options](#importingoptions) as required
 Supported USD file formats are:
  * .USD
  * .USDA
  * .USDC
  * .USDZ
+
+ ## Importing Options
+ * Import As GameObjects:
+     * Imports selected USD file as Unity GameObjects directly into the Unity Scene Hierarchy.
+
+ * Import as Prefab:
+     * Imports selected USD file as a Unity Prefab object into the Unity Project.
+
+ * Import as Timeline Clip:
+     * Imports selected USD file as a Unity Prefab containing empty Materials and the Timeline Clip.
+     * If animation is recorded in the Timeline Clip, that can be used to animate other applicable Unity Objects.
+
 
 ## Importing Materials
 
@@ -93,19 +126,18 @@ To import materials from USD, firstly import the USD file using the USD menu.
 Then, to get the materials to render in the scene, change the 'Import Settings' > 'Materials' in the Inspector to 'Import Preview Surface'. Finally re-import the USD file.
 You can furthermore import all texture files by changing the 'Import Settings' > 'Payload Policy' in the Inspector to 'Load All' and re-import the USD file.
 
-If upon initial import nothing is visible, try re-importing the USD file with the above 'Import Settings'
+If upon initial import, the object is not visible, try re-importing the USD file with the above 'Import Settings'.
 
 ## Streaming Playback via Timeline
 
-After importing a USD file with either skeletal or point cache animation, open
-the Timeline window.
+After importing a USD file with either skeletal or point cache animation...
+1. Open the Timeline window.
+2. Select the root of the USD file.
+3. Create a playable director by clicking the "Create" button in the Timeline window.
+4. Next, drag the root USD file into the Timeline to create a track for this object.
+5. Finally, drag the USD file once more to add a USD clip to the track for plaback.
 
-1. Select the root of the USD file.
-2. Create a playable director by clicking the "Create" button in the Timeline window.
-3. Next, drag the root USD file into the Timeline to create a track for this object.
-4. Finally, drag the USD file once more to add a USD clip to the track for plaback.
-5. Scrubbing through time will now update the USD scene by streaming data from USD.
-
+Scrubbing through time will now update the USD scene by streaming data from USD.
 Timeline playback is multi-threaded using the C# Job System.
 
 ## Variants, Models, & Payloads
@@ -115,7 +147,8 @@ the inspector on the game object at which these features were authored.
 
 Note that Payloads *are not loaded by default*.
 USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene.
-If imported USD file is not visible, try re-importing with the 'Load All' Paylaod Policy
+
+If upon initial import, the object is not visible, try re-importing the USD file with the Payload Policy set to 'Load All'.
 
 ## Exporting USD files
 
@@ -125,6 +158,8 @@ Supported USD file formats are:
  * .USDA
  * .USDC
  * .USDZ
+
+Our default file format when Exporting is set to .USDC.
 
 ### Exporting via Recorder
 
