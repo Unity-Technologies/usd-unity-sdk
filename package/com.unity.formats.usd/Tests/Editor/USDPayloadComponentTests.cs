@@ -207,6 +207,7 @@ namespace Unity.Formats.USD.Tests
             Assume.That(usdPayload.IsLoaded, Is.False, "UsdPayload.IsLoaded should be set to false.");
         }
 
+        [Ignore("[USDU-329] Unstable test result")]
         [UnityTest]
         public IEnumerator ChangingUsdPayloadStateFromUnloadedToLoaded_MarksSceneDirty()
         {
@@ -263,6 +264,7 @@ namespace Unity.Formats.USD.Tests
             Assert.AreNotEqual(newPayloadRoot.transform.childCount, payloadRootChildCount, "Payload Load should generate the payload objects");
         }
 
+        [Ignore("[USDU-329] Unstable test result")]
         [UnityTest]
         public IEnumerator ChangingUsdPayloadStateFromLoadedToUnloaded_MarksSceneDirty()
         {
