@@ -96,8 +96,8 @@ The following is a brief listing of currently supported features:
          * Via Unity Recorder Package
 
  * General:
-    * High and Low Level Access to USD API via C#
-    * Uses USD Hierarchy within Unity upon Import
+     * High and Low Level Access to USD API via C#
+     * Uses USD Hierarchy within Unity upon Import
 
 ## Importing USD Files
 
