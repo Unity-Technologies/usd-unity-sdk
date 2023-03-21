@@ -108,7 +108,7 @@ Supported USD file formats are:
  * .USDC
  * .USDZ
 
- ## Importing Options
+ ### Importing Options
  * Import As GameObjects:
      * Imports selected USD file as Unity GameObjects directly into the Unity Scene Hierarchy.
 
