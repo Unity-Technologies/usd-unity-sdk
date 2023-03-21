@@ -47,6 +47,10 @@ namespace Unity.Formats.USD
         public SdfPath[] SkelRoots { get; set; }
         public SdfPath[] Skeletons { get; set; }
         public SdfPath[] Materials { get; set; }
+        public SdfPath[] DirectionalLights { get; set; }
+        public SdfPath[] SphereLights { get; set; }
+        public SdfPath[] RectLights { get; set; }
+        public SdfPath[] DiscLights { get; set; }
 
         // Normal objects in the hierarchy.
         private Dictionary<SdfPath, GameObject> m_prims = new Dictionary<SdfPath, GameObject>();
@@ -166,6 +170,10 @@ namespace Unity.Formats.USD
             SkelRoots = null;
             Skeletons = null;
             Materials = null;
+            DirectionalLights = null;
+            SphereLights = null;
+            RectLights = null;
+            DiscLights = null;
         }
     }
 }

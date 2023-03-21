@@ -166,6 +166,7 @@ namespace Unity.Formats.USD
 #if false
         [Header("Export Settings")]
         public bool m_exportCameras = true;
+        public bool m_exportLights = true;
         public bool m_exportMeshes = true;
         public bool m_exportSkinning = true;
         public bool m_exportTransforms = true;
