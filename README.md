@@ -185,6 +185,11 @@ When compatibility with runtime is required (i.e for a standalone build), the re
 
 >  **Note:** This feature has no dependency to and is not based on the Recorder package.
 
+## Unsupported
+We do not currently support the following:
+ * Custom Prims
+ * Blend Shapes (Unstable)
+
 # License
 
 The USD Unity SDK is licensed under the terms of the Apache
