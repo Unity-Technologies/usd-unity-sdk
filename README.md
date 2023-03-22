@@ -187,8 +187,21 @@ When compatibility with runtime is required (i.e for a standalone build), the re
 
 ## Unsupported
 We do not currently support the following:
- * Custom Prims
- * Blend Shapes (Unstable)
+ * Geometry:
+     * Multiple UV Set
+
+ * Primitive Types:
+     * Camera
+         * Physical Camera Settings
+     * Material:
+         * Transparency
+     * Lights
+
+ * Animation:
+     * Blend Shapes (Unstable)
+
+ * General:
+     * Custom prims
 
 # License
 
