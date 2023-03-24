@@ -351,42 +351,44 @@ namespace Unity.Formats.USD
                 throw new Exception("Joints weights and indices array element sizes don't match for: " + path);
             }
 
-            int bonesPerVertex = weightsElementSize;
-
-            var bonesPerVertexArray = new NativeArray<byte>(unityMesh.vertexCount, Allocator.Temp);
-            var boneWeightArray = new BoneWeight1[unityMesh.vertexCount * weightsElementSize];
-
             // Remap the vertex indices if mesh attribute have been converted to faceVarying
             var remapIndices = weightsInterpolation.GetString() == UsdGeomTokens.vertex
                 && usdMesh.arePrimvarsFaceVarying;
 
             int isNotConstant = weightsInterpolation.GetString() == UsdGeomTokens.constant ? 0 : 1;
 
+            int bonesPerVertex = weightsElementSize;
             if (isNotConstant > 0 && remapIndices)
             {
+                // The mesh vertices have been flattened, so we must flatten the joint indices and weights too
                 var newIndicesValues = new int[usdMesh.triangulatedFaceVertexIndices.Length * indicesElementSize];
                 var newWeightsValues = new float[usdMesh.triangulatedFaceVertexIndices.Length * weightsElementSize];
-                for (var i = 0; i < usdMesh.triangulatedFaceVertexIndices.Length; i += bonesPerVertex)
+                for (var triangulatedIndex = 0; triangulatedIndex < usdMesh.triangulatedFaceVertexIndices.Length; triangulatedIndex += bonesPerVertex)
                 {
-                    for (var j = 0; j < bonesPerVertex; j++)
+                    for (var boneIndex = 0; boneIndex < bonesPerVertex; boneIndex++)
                     {
-                        int index = usdMesh.triangulatedFaceVertexIndices[i] + j;
-                        newIndicesValues[i + j] = indices[index];
-                        newWeightsValues[i + j] = weights[index];
+                        int index = usdMesh.triangulatedFaceVertexIndices[triangulatedIndex] + boneIndex;
+                        newIndicesValues[triangulatedIndex + boneIndex] = indices[index];
+                        newWeightsValues[triangulatedIndex + boneIndex] = weights[index];
                     }
                 }
 
                 indices = newIndicesValues;
                 weights = newWeightsValues;
-
             }
 
-            for (var index = 0; index < unityMesh.vertexCount; index++)
+            var vertexCount = unityMesh.vertexCount;
+
+            // Getting and setting in a native array is not cheap, use an intermediary
+            var bonesPerVertexArray = new Byte[vertexCount];
+            var boneWeightArray = new BoneWeight1[vertexCount * weightsElementSize];
+
+            for (var index = 0; index < vertexCount; index++)
             {
+                bonesPerVertexArray[index] = (byte)bonesPerVertex;
+
                 var firstVertexBoneIndex = index * bonesPerVertex;
                 var usdIndex = isNotConstant * firstVertexBoneIndex;
-
-                bonesPerVertexArray[index] = (byte)bonesPerVertex;
 
                 for (var boneIndex = 0; boneIndex < bonesPerVertex; boneIndex++)
                 {
@@ -398,10 +400,11 @@ namespace Unity.Formats.USD
             }
 
             // TODO: Investigate if bone weights should be normalized before this line.
-            var boneWeights1 = new NativeArray<BoneWeight1>(boneWeightArray, Allocator.Temp);
-            unityMesh.SetBoneWeights(bonesPerVertexArray, boneWeights1);
-            bonesPerVertexArray.Dispose();
-            boneWeights1.Dispose();
+            var bonesPerVertexNativeArray = new NativeArray<byte>(bonesPerVertexArray, Allocator.Temp);
+            var boneWeights1NativeArray = new NativeArray<BoneWeight1>(boneWeightArray, Allocator.Temp);
+            unityMesh.SetBoneWeights(bonesPerVertexNativeArray, boneWeights1NativeArray);
+            bonesPerVertexNativeArray.Dispose();
+            boneWeights1NativeArray.Dispose();
         }
 
         /// <summary>
