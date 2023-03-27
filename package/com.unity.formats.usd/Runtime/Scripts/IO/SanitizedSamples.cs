@@ -373,9 +373,14 @@ namespace Unity.Formats.USD
                 }
             }
 
-            faceVertexIndices = newIndices;
-            triangulatedFaceVertexIndices = newIndices;
-            faceVertexCounts = newCounts;  // TODO: As this is always 3, remove it and only create on export to USD
+            faceVertexIndices = new int[newIndicesLength];
+            Array.Copy(newIndices, faceVertexIndices, newIndicesLength);
+
+            triangulatedFaceVertexIndices = new int[newIndicesLength];
+            Array.Copy(newIndices, triangulatedFaceVertexIndices, newIndicesLength);
+
+            faceVertexCounts = new int[newFaceCountsLength];
+            Array.Copy(newCounts, faceVertexCounts, newFaceCountsLength);// TODO: As this is always 3, remove it and only create on export to USD
         }
 
         internal bool ShouldUnweldVertices(bool bindMaterials)
