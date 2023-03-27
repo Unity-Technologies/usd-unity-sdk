@@ -358,18 +358,30 @@ namespace Unity.Formats.USD
             int isNotConstant = weightsInterpolation.GetString() == UsdGeomTokens.constant ? 0 : 1;
 
             int bonesPerVertex = weightsElementSize;
+
             if (isNotConstant > 0 && remapIndices)
             {
                 // The mesh vertices have been flattened, so we must flatten the joint indices and weights too
                 var newIndicesValues = new int[usdMesh.triangulatedFaceVertexIndices.Length * indicesElementSize];
                 var newWeightsValues = new float[usdMesh.triangulatedFaceVertexIndices.Length * weightsElementSize];
-                for (var triangulatedIndex = 0; triangulatedIndex < usdMesh.triangulatedFaceVertexIndices.Length; triangulatedIndex += bonesPerVertex)
+
+                for (var itrIndex = 0; itrIndex < usdMesh.triangulatedFaceVertexIndices.Length; itrIndex++)
                 {
-                    for (var boneIndex = 0; boneIndex < bonesPerVertex; boneIndex++)
+                    // look up the vertex index we're unwelding
+                    int correspondingVertexIndex = usdMesh.triangulatedFaceVertexIndices[itrIndex];
+
+                    // get the first joint from the original joints array and copy it into the new one, scaled by element size
+
+                    int jointElementFirstIndex = itrIndex * bonesPerVertex;
+
+                    for (int boneIndex = 0; boneIndex < bonesPerVertex; boneIndex++)
                     {
-                        int index = usdMesh.triangulatedFaceVertexIndices[triangulatedIndex] + boneIndex;
-                        newIndicesValues[triangulatedIndex + boneIndex] = indices[index];
-                        newWeightsValues[triangulatedIndex + boneIndex] = weights[index];
+                        int thisBoneOriginalIndex = (correspondingVertexIndex * bonesPerVertex) + boneIndex;
+
+                        if (thisBoneOriginalIndex >= indices.Length)
+                            UnityEngine.Debug.Log($"out of bounds on mesh: {unityMesh.name}. index: {thisBoneOriginalIndex}, vertex count: {unityMesh.vertexCount}");
+                        newIndicesValues[jointElementFirstIndex + boneIndex] = indices[thisBoneOriginalIndex];
+                        newWeightsValues[jointElementFirstIndex + boneIndex] = weights[thisBoneOriginalIndex];
                     }
                 }
 
