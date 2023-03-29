@@ -207,9 +207,8 @@ namespace Unity.Formats.USD.Tests
             Assume.That(usdPayload.IsLoaded, Is.False, "UsdPayload.IsLoaded should be set to false.");
         }
 
-        [Ignore("[USDU-329] Unstable test result")]
         [UnityTest]
-        public IEnumerator ChangingUsdPayloadStateFromUnloadedToLoaded_MarksSceneDirty()
+        public IEnumerator ChangingUsdPayloadStateFromUnloadedToLoaded_GeneratesPayloadObjects()
         {
             m_usdAsset.m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
             m_usdAsset.Reload(forceRebuild: true);
@@ -219,15 +218,20 @@ namespace Unity.Formats.USD.Tests
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
 
             // Change payload state and wait one frame to ensure Update runs
-            m_usdRoot.GetComponentInChildren<UsdPayload>().Load();
-            yield return null;
+            var payloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
+            var payloadRootChildCount = payloadRoot.transform.childCount;
 
-            Assert.IsTrue(m_UnityScene.isDirty, "Scene should be dirty after changing UsdPayload objects");
+            payloadRoot.Load();
+            yield return new WaitUntil(() => m_UnityScene.isDirty == true);
+
+            Assert.IsTrue(payloadRoot == null, "Payload Load should reset USD related components and older references to it should be null");
+
+            var newPayloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
+            Assert.AreNotEqual(payloadRootChildCount, newPayloadRoot.transform.childCount, "Payload Load should generate the payload objects");
         }
 
-        [Ignore("[USDU-329] Unstable test result")]
         [UnityTest]
-        public IEnumerator ChangingUsdPayloadStateFromLoadedToUnloaded_MarksSceneDirty()
+        public IEnumerator ChangingUsdPayloadStateFromLoadedToUnloaded_DestroysPayloadObjects()
         {
             m_usdAsset.m_payloadPolicy = PayloadPolicy.LoadAll;
             m_usdAsset.Reload(forceRebuild: true);
@@ -237,10 +241,13 @@ namespace Unity.Formats.USD.Tests
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
 
             // Change payload state and wait one frame to ensure Update runs
-            m_usdRoot.GetComponentInChildren<UsdPayload>().Unload();
-            yield return null;
+            var payloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
+            var payloadRootChildCount = payloadRoot.transform.childCount;
 
-            Assert.IsTrue(m_UnityScene.isDirty, "Scene should be dirty after changing UsdPayload objects");
+            payloadRoot.Unload();
+            yield return new WaitUntil(() => m_UnityScene.isDirty == true);
+
+            Assert.AreNotEqual(payloadRootChildCount, payloadRoot.transform.childCount, "Payload Unload should destroy the payload objects");
         }
     }
 }
