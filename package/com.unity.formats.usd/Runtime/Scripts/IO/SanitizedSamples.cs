@@ -170,8 +170,8 @@ namespace Unity.Formats.USD
 
         public void BackupTopology()
         {
-            originalFaceVertexCounts = faceVertexCounts;
-            originalFaceVertexIndices = faceVertexIndices;
+            originalFaceVertexCounts = (int[])faceVertexCounts.Clone();
+            originalFaceVertexIndices = (int[])faceVertexIndices.Clone();
         }
 
         public bool IsTopologyBackedUp()
@@ -495,10 +495,11 @@ namespace Unity.Formats.USD
         {
             var newValues = new List<T>();
             var last = 0;
-            for (var i = 0; i < faceVertexCount.Length; i++)
+            for (var faceIndex = 0; faceIndex < faceVertexCount.Length; faceIndex++)
             {
                 var next = last + 1;
-                for (var t = 0; t < faceVertexCount[i] - 2; t++)
+                for (var triangleIndex = 0; triangleIndex < faceVertexCount[faceIndex] - 2; triangleIndex++)
+                {
                     if (changeHandedness)
                     {
                         newValues.Add(values[next++]);
@@ -511,8 +512,9 @@ namespace Unity.Formats.USD
                         newValues.Add(values[next++]);
                         newValues.Add(values[next]);
                     }
+                }
 
-                last += faceVertexCount[i];
+                last += faceVertexCount[faceIndex];
             }
 
             values = newValues.ToArray();
@@ -521,14 +523,21 @@ namespace Unity.Formats.USD
         /// <summary>
         /// Utility method to convert a given array of values to the equivalent faceVarying array (one value per vertex per face).
         /// </summary>
-        /// <remarks> If the interpolation of the array to convert is not known, it will be guessed based on the length of the array. </remarks
+        /// <remarks> If the interpolation of the array to convert is not known, it will be guessed based on the length of the array. </remarks>
         void ConvertInterpolationToFaceVarying<T>(ref T[] values, int[] vertexIndices, bool changeHandedness = false, TfToken interpolation = null)
         {
             if (values == null)
                 return;
 
-            if (interpolation == null)
-                interpolation = GuessInterpolation(values.Length);
+            var newInterpolation = GuessInterpolation(values.Length);
+
+            if (interpolation != null && interpolation != newInterpolation)
+            {
+                UnityEngine.Debug.LogWarning($"Stated interpolation '{interpolation.ToString()}' for this PrimVar does not match required value counts. " +
+                    $"We will convert to FaceVarying assuming an original interpolation of '{newInterpolation.ToString()}'.");
+            }
+
+            interpolation = newInterpolation;
 
             if (interpolation == UsdGeomTokens.constant)
             {
