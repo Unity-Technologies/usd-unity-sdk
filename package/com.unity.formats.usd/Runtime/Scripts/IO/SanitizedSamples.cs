@@ -170,8 +170,10 @@ namespace Unity.Formats.USD
 
         public void BackupTopology()
         {
-            originalFaceVertexCounts = (int[])faceVertexCounts.Clone();
-            originalFaceVertexIndices = (int[])faceVertexIndices.Clone();
+            originalFaceVertexCounts = new int[faceVertexCounts.Length];
+            Buffer.BlockCopy(faceVertexCounts, 0, originalFaceVertexCounts, 0, Buffer.ByteLength(faceVertexCounts));
+            originalFaceVertexIndices = new int[faceVertexIndices.Length];
+            Buffer.BlockCopy(faceVertexIndices, 0, originalFaceVertexIndices, 0, Buffer.ByteLength(faceVertexIndices));
         }
 
         public bool IsTopologyBackedUp()
@@ -372,15 +374,14 @@ namespace Unity.Formats.USD
                     last += faceVertexCounts[i];
                 }
             }
+            
+            faceVertexIndices = newIndices;
 
-            faceVertexIndices = new int[newIndicesLength];
-            Array.Copy(newIndices, faceVertexIndices, newIndicesLength);
-
+            // triangulatedFaceVertexIndices needs to be a 'proper' copy of newIndices, else it will be affected when faceVertexIndices is modified
             triangulatedFaceVertexIndices = new int[newIndicesLength];
-            Array.Copy(newIndices, triangulatedFaceVertexIndices, newIndicesLength);
+            Buffer.BlockCopy(newIndices, 0, triangulatedFaceVertexIndices, 0, Buffer.ByteLength(newIndices));
 
-            faceVertexCounts = new int[newFaceCountsLength];
-            Array.Copy(newCounts, faceVertexCounts, newFaceCountsLength);// TODO: As this is always 3, remove it and only create on export to USD
+            faceVertexCounts = newCounts;
         }
 
         internal bool ShouldUnweldVertices(bool bindMaterials)
