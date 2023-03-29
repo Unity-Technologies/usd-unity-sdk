@@ -374,7 +374,7 @@ namespace Unity.Formats.USD
                     last += faceVertexCounts[i];
                 }
             }
-            
+
             faceVertexIndices = newIndices;
 
             // triangulatedFaceVertexIndices needs to be a 'proper' copy of newIndices, else it will be affected when faceVertexIndices is modified
