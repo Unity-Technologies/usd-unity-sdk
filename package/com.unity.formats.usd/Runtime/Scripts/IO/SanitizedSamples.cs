@@ -492,33 +492,47 @@ namespace Unity.Formats.USD
             }
         }
 
-        internal static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCount, bool changeHandedness)
+        internal static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCounts, bool changeHandedness)
         {
-            var newValues = new List<T>();
-            var last = 0;
-            for (var faceIndex = 0; faceIndex < faceVertexCount.Length; faceIndex++)
+            int newFacesCount = 0;
+            for (int i = 0; i < faceVertexCounts.Length; i++)
             {
-                var next = last + 1;
-                for (var triangleIndex = 0; triangleIndex < faceVertexCount[faceIndex] - 2; triangleIndex++)
-                {
-                    if (changeHandedness)
-                    {
-                        newValues.Add(values[next++]);
-                        newValues.Add(values[last]);
-                        newValues.Add(values[next]);
-                    }
-                    else
-                    {
-                        newValues.Add(values[last]);
-                        newValues.Add(values[next++]);
-                        newValues.Add(values[next]);
-                    }
-                }
-
-                last += faceVertexCount[faceIndex];
+                newFacesCount += faceVertexCounts[i] - 2;
             }
 
-            values = newValues.ToArray();
+            var newValues = new T[3 * newFacesCount]; // we're converting every face to a triangle, so must be three verts per face
+
+            int last = 0, currentIndex = 0;
+            if (changeHandedness)
+            {
+                for (var faceIndex = 0; faceIndex < faceVertexCounts.Length; faceIndex++)
+                {
+                    var next = last + 1;
+                    for (var triangleIndex = 0; triangleIndex < faceVertexCounts[faceIndex] - 2; triangleIndex++)
+                    {
+                        newValues[currentIndex++] = values[next++];
+                        newValues[currentIndex++] = values[last];
+                        newValues[currentIndex++] = values[next];
+                    }
+                    last += faceVertexCounts[faceIndex];
+                }
+            }
+            else
+            {
+                for (var faceIndex = 0; faceIndex < faceVertexCounts.Length; faceIndex++)
+                {
+                    var next = last + 1;
+                    for (var triangleIndex = 0; triangleIndex < faceVertexCounts[faceIndex] - 2; triangleIndex++)
+                    {
+                        newValues[currentIndex++] = values[last];
+                        newValues[currentIndex++] = values[next++];
+                        newValues[currentIndex++] = values[next];
+                    }
+                    last += faceVertexCounts[faceIndex];
+                }
+            }
+
+            values = newValues;
         }
 
         /// <summary>
