@@ -113,11 +113,9 @@ namespace USD.NET
             // Check if the given sdf type name is an alias
             // https://graphics.pixar.com/usd/docs/api/_usd__page__datatypes.html#Usd_Roles
             string name;
-            bool match = true;
             if (!typeAliases.TryGetValue(key.GetAsToken(), out name))
             {
                 name = key.GetAsToken();
-                match = false;
             }
 
             // TODO: we could keep a reverse mapping, but waiting for deeper performance analysis first.
