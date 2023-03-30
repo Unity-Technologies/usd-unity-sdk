@@ -346,6 +346,11 @@ namespace Unity.Formats.USD
                 throw new Exception("Joints weights information are invalid or empty for: " + path);
             }
 
+            if (weightsElementSize != indicesElementSize)
+            {
+                throw new Exception("Mismatch in joints weight and indices element sizes for: " + path);
+            }
+
             int vertexCount = unityMesh.vertexCount;
             var bonesPerVertexArray = new byte[vertexCount];
             var boneWeightsArray = new BoneWeight1[vertexCount * weightsElementSize];
