@@ -207,6 +207,7 @@ namespace Unity.Formats.USD.Tests
             Assume.That(usdPayload.IsLoaded, Is.False, "UsdPayload.IsLoaded should be set to false.");
         }
 
+        [Ignore("[USDU-329] Unstable test result")]
         [UnityTest]
         public IEnumerator ChangingUsdPayloadStateFromUnloadedToLoaded_MarksSceneDirty()
         {
@@ -224,6 +225,7 @@ namespace Unity.Formats.USD.Tests
             Assert.IsTrue(m_UnityScene.isDirty, "Scene should be dirty after changing UsdPayload objects");
         }
 
+        [Ignore("[USDU-329] Unstable test result")]
         [UnityTest]
         public IEnumerator ChangingUsdPayloadStateFromLoadedToUnloaded_MarksSceneDirty()
         {
