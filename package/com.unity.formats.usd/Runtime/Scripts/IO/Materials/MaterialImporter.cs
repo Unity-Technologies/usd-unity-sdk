@@ -236,7 +236,12 @@ namespace Unity.Formats.USD
                         if (attr != null)
                         {
                             var value = attr.Get(scene.Time);
-                            uvPrimvar = pxr.UsdCs.VtValueToTfToken(value).ToString();
+
+                            // This value type can be a string or a token, depending on USD version
+                            if (string.IsNullOrEmpty(value))
+                                uvPrimvar = pxr.UsdCs.VtValueToTfToken(value).ToString();
+                            else
+                                uvPrimvar = value;
                         }
                         else
                         {
