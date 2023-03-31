@@ -626,6 +626,8 @@ namespace Unity.Formats.USD
             {
                 if (overs != null)
                 {
+                    // Remove the reference to the original USD from the override file for flexibility in an asset pipeline
+                    // TODO: Make this an optional setting
                     overs.Stage.GetRootLayer().GetSubLayerPaths().Erase(0);
                     overs.Save();
                     overs.Close();

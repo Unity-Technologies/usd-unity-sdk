@@ -24,7 +24,7 @@ namespace Unity.Formats.USD
         {
             UnityEngine.Profiling.Profiler.BeginSample("USD: Xform Conversion");
 
-            XformableSample sample = (XformableSample)objContext.sample;
+            XformSample sample = (XformSample)objContext.sample;
             var path = new pxr.SdfPath(objContext.path);
 
             // If exporting for Z-Up, rotate the world.
@@ -76,7 +76,7 @@ namespace Unity.Formats.USD
 
             try
             {
-                foreach (var path in scene.Find<XformableSample>())
+                foreach (var path in scene.Find<XformSample>())
                 {
                     GameObject go;
                     if (!primMap.TryGetValue(path, out go))

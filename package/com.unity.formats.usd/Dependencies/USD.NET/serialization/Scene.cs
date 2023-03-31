@@ -802,7 +802,7 @@ namespace USD.NET
                     {
                         prim = m_stage.DefinePrim(path, new TfToken(primTypeName));
                     }
-                    else if (!string.IsNullOrEmpty(primTypeName) && (string.IsNullOrEmpty(prim.GetTypeName().GetText()) || primTypeName != "Xform" && primTypeName != "UsdGeomXformable"))
+                    else if (!string.IsNullOrEmpty(primTypeName) && (string.IsNullOrEmpty(prim.GetTypeName().GetText()) || primTypeName != "Xform"))
                     {
                         prim.SetTypeName(new TfToken(primTypeName));
                     }

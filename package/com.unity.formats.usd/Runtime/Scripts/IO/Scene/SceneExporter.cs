@@ -542,7 +542,7 @@ namespace Unity.Formats.USD
         {
             if (context.exportTransformOverrides)
             {
-                CreateExportPlan(go, CreateSample<XformableSample>(context), XformExporter.ExportXform, context);
+                CreateExportPlan(go, CreateSample<XformSample>(context), XformExporter.ExportXform, context);
             }
             else
             {
