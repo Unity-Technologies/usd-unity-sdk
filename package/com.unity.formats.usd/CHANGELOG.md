@@ -2,6 +2,8 @@
 
 ## Unreleased
 ### Bug Fixes
+- Fixed a bug where importing materials exported from a newer USD version would fail.
+
 - Fixed an import bug causing instanced primitives not to be sanitized.
 - Disabled plugins on unsupported platforms.
 - Fixed a bug causing PointInstances to be duplicated.

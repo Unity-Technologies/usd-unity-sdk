@@ -242,6 +242,11 @@ namespace Unity.Formats.USD
                                 uvPrimvar = pxr.UsdCs.VtValueToTfToken(value).ToString();
                             else
                                 uvPrimvar = value;
+
+                            if (string.IsNullOrEmpty(uvPrimvar))
+                            {
+                                Debug.LogWarning($"uvPrimvar at <{connPath}> was unable to be read from USD file.");
+                            }
                         }
                         else
                         {
