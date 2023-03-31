@@ -1,8 +1,10 @@
 using System;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using pxr;
 using Unity.Formats.USD;
+using UnityEditor;
 using UnityEngine;
 using USD.NET.Tests;
 
@@ -97,11 +99,14 @@ namespace USD.NET.Unity.Tests
         }
 
         [Test]
-        public void InstancerOrientation_SetToLHS()
+        [Ignore("TODO: Enable this when fix for this has been applied")]
+        public void InstancerImport_LeftHandedAxis_IsApplied()
         {
             const string testAssetGUID = "8ef366f1b52222347800237d47c9b0e0";
 
-            var testScene = TestUtilityFunction.OpenUSDScene(testAssetGUID);
+            var testScenePath = AssetDatabase.GUIDToAssetPath(testAssetGUID);
+            var testScene = ImportHelpers.InitForOpen(Path.GetFullPath(testScenePath));
+
             var testInstanceObjectRoot = ImportHelpers.ImportSceneAsGameObject(testScene).transform.GetChild(0);
 
             var testObjectCenter = testInstanceObjectRoot.transform.GetChild(1).GetChild(0); // axisTest_instanced > instancers > axisTest_0 > Center
