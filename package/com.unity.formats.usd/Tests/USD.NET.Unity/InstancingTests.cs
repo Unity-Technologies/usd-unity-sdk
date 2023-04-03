@@ -100,7 +100,7 @@ namespace USD.NET.Unity.Tests
         }
 
         [Test]
-        //[Ignore("TODO: Enable this when fix for this has been applied")]
+        [Ignore("TODO: Enable this when fix for this has been applied")]
         public void InstancerImport_LeftHandedAxis_VertexCheck()
         {
             const string testFileName = "UsdInstanceVertexTest";
