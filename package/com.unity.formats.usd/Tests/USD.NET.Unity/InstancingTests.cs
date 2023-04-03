@@ -100,14 +100,12 @@ namespace USD.NET.Unity.Tests
         }
 
         [Test]
-        [Ignore("TODO: Enable this when fix for this has been applied")]
+        //[Ignore("TODO: Enable this when fix for this has been applied")]
         public void InstancerImport_LeftHandedAxis_VertexCheck()
         {
+            const string testFileName = "UsdInstanceVertexTest";
             HashSet<Vector3> expectedVertexPoints = new HashSet<Vector3> { new Vector3(-1, 0, 3), new Vector3(-1, 0, 0), new Vector3(0, -1, 1), new Vector3(-2, -3, -1), new Vector3(-2, -1, 1), new Vector3(-3, -0.5f, -1), new Vector3(-1, -2, 1), new Vector3(-5, -2, -1) };
-            const string testAssetGUID = "e39567e914fdf7240b456e7519d0deba";
-
-            var testScenePath = AssetDatabase.GUIDToAssetPath(testAssetGUID);
-            var testScene = ImportHelpers.InitForOpen(Path.GetFullPath(testScenePath));
+            var testScene = ImportHelpers.InitForOpen(GetTestAssetPath(testFileName));
 
             var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().mesh;
 
