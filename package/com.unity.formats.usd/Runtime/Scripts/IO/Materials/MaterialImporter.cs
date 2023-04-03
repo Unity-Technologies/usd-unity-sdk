@@ -235,18 +235,16 @@ namespace Unity.Formats.USD
                         var attr = scene.GetAttributeAtPath(connPath);
                         if (attr != null)
                         {
-                            var value = attr.Get(scene.Time);
+                            pxr.VtValue value = attr.Get(scene.Time);
 
                             // This value type can be a string or a token, depending on USD version
-                            if (string.IsNullOrEmpty(value))
+                            string typeName = value.GetTypeName();
+                            if (typeName == "string")
+                                uvPrimvar = value;
+                            else if (typeName == "TfToken")
                                 uvPrimvar = pxr.UsdCs.VtValueToTfToken(value).ToString();
                             else
-                                uvPrimvar = value;
-
-                            if (string.IsNullOrEmpty(uvPrimvar))
-                            {
-                                Debug.LogWarning($"uvPrimvar at <{connPath}> was unable to be read from USD file.");
-                            }
+                                Debug.LogWarning($"Unexpected type <{typeName}> on uvPrimvar at <{connPath}>.");
                         }
                         else
                         {
