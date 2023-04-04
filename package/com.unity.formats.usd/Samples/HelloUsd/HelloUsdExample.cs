@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using UnityEditor;
 using UnityEngine;
 using USD.NET;
 
@@ -29,8 +30,14 @@ namespace Unity.Formats.USD.Examples
 
         void Start()
         {
+#if UNITY_EDITOR
+            FocusConsoleWindow();
+#endif
+
             InitUsd.Initialize();
+            Debug.Log("=-=-=-=-=-= Starting HelloUsd Test Example =-=-=-=-=-=");
             Test();
+            Debug.Log("=-=-=-=-=-= HelloUsd Test Example Finished =-=-=-=-=-=");
         }
 
         void Test()
@@ -66,6 +73,26 @@ namespace Unity.Formats.USD.Examples
             Debug.Log((string)vtValue);
 
             scene.Close();
+        }
+
+        private static EditorWindow GetConsoleWindow()
+        {
+            var editorWindowTypes = TypeCache.GetTypesDerivedFrom<EditorWindow>();
+            foreach (var type in editorWindowTypes)
+            {
+                if (type.Name == "ConsoleWindow")
+                {
+                    return EditorWindow.GetWindow(type);
+                }
+            }
+
+            throw new System.Exception("Error could not find ConsoleWindow type");
+        }
+
+        public static void FocusConsoleWindow()
+        {
+            var consoleWindow = GetConsoleWindow();
+            consoleWindow.Focus();
         }
     }
 }
