@@ -2,10 +2,10 @@
 (
     doc = "Blender v3.3.1"
     metersPerUnit = 1
-    upAxis = "Y"
+    upAxis = "Z"
 )
 
-def Xform "zAxisTest_Instanced"
+def Xform "UsdInstance_UpAxisZ_LeftHanded"
 {
     def PointInstancer "instancers" (
         kind = "group"
@@ -14,15 +14,15 @@ def Xform "zAxisTest_Instanced"
         int64[] invisibleIds = []
         point3f[] positions = [(0, 0, 0)]
         int[] protoIndices = [0]
-        rel prototypes = </zAxisTest_Instanced/instancers/uniquePointsMesh>
-        uniform token orientation = "leftHanded"
+        rel prototypes = </UsdInstance_UpAxisZ_LeftHanded/instancers/mesh>
+        uniform token orientation = "rightHanded"
 
-        def Xform "uniquePointsMesh"
+        def Xform "mesh"
         {
             matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
             uniform token[] xformOpOrder = ["xformOp:transform"]
             
-            def Mesh "uniquePointsMesh"
+            def Mesh "mesh"
             {
                 uniform bool doubleSided = 1
                 int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
