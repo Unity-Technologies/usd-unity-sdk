@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 using USD.NET;
 
@@ -130,7 +132,7 @@ namespace Unity.Formats.USD.Examples
                 }
                 else
                 {
-                    m_usdScene = Scene.Create(m_usdFile);
+                    m_usdScene = Scene.Create(Path.Combine(Application.dataPath, m_usdFile));
                 }
 
                 // USD operates on frames, so the frame rate is required for playback.
@@ -278,6 +280,11 @@ namespace Unity.Formats.USD.Examples
             {
                 SceneExporter.Export(m_exportRoot, m_context, zeroRootTransform: true);
             }
+        }
+
+        void OnApplicationQuit()
+        {
+            AssetDatabase.Refresh();
         }
 
         public static void Export(GameObject root,

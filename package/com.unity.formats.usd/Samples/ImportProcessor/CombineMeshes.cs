@@ -39,11 +39,16 @@ namespace Unity.Formats.USD.Examples
             }
         }
 
+        public void RefreshUSD()
+        {
+            this.GetComponent<UsdAsset>().Reload(true);
+        }
+
         void Reset()
         {
             matchExpression = "Geom";
             isNot = false;
-            matchType = EMatchType.Wildcard;
+            matchType = EMatchType.Regex;
             compareAgainst = ECompareAgainst.UsdName;
         }
 
@@ -91,6 +96,8 @@ namespace Unity.Formats.USD.Examples
             current.gameObject.SetActive(true);
             foreach (Transform child in current)
             {
+                if (child.name == "Materials")
+                    continue;
                 child.gameObject.SetActive(false);
             }
 
@@ -111,7 +118,10 @@ namespace Unity.Formats.USD.Examples
                 MeshRenderer mr = sub.gameObject.GetComponent<MeshRenderer>();
                 if (mr == null) mr = sub.gameObject.AddComponent<MeshRenderer>();
 
-                mf.mesh = new Mesh();
+                var combinedMesh = new Mesh();
+                combinedMesh.name = "CombinedMesh";
+
+                mf.mesh = combinedMesh;
                 if (vertexCount > kVertexLimit)
                 {
                     mf.sharedMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
@@ -132,7 +142,7 @@ namespace Unity.Formats.USD.Examples
                 {
                     if (materials.Count == 0)
                     {
-                        Debug.LogError("No material to assign to combined mesh for " + current.name);
+                        Debug.Log("No material to assign to combined mesh for " + current.name);
                     }
                     else
                     {

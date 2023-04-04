@@ -61,6 +61,11 @@ namespace Unity.Formats.USD.Examples
             }
         }
 
+        public void RefreshUSD()
+        {
+            this.GetComponent<UsdAsset>().Reload(true);
+        }
+
         void Reset()
         {
             matchExpression = @"^\/.+";
