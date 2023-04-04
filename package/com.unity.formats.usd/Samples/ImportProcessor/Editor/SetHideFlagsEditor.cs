@@ -30,4 +30,3 @@ namespace Unity.Formats.USD.Examples
         }
     }
 }
-
