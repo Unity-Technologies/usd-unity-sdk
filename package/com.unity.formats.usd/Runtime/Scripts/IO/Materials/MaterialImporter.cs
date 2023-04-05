@@ -237,7 +237,7 @@ namespace Unity.Formats.USD
                         {
                             pxr.VtValue value = attr.Get(scene.Time);
 
-                            // This value type can be a string or a token, depending on USD version
+                            // This value type is a TfToken in USD versions < 21.11, and a string in 21.11+
                             string typeName = value.GetTypeName();
                             if (typeName == "string")
                                 uvPrimvar = value;

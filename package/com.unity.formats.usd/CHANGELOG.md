@@ -2,7 +2,7 @@
 
 ## Unreleased
 ### Bug Fixes
-- Fixed a bug where importing materials exported from a newer USD version would fail.
+- Fixed a bug where importing materials exported from USD version >= 21.11 would fail.
 
 - Fixed an import bug causing instanced primitives not to be sanitized.
 - Disabled plugins on unsupported platforms.
