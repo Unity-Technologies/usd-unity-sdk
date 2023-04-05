@@ -13,7 +13,7 @@
 - Fixed scene not being marked dirty after changing load payload flag.
 - Fixed exported Prims not having a type and fixed export for objects with same name.
 - Fixed a bug causing an ApplicationException "all sample times in times and baseTime must either all be numeric or all be default" to be thrown when refreshing a PointInstancer.
-- Fixed an import bug causing instanced primitives not to be sanitized.
+- Fixed an import bug causing instanced primitives not to be sanitized to fit Unity formats, including converting basis, triangulating and unwinding meshes, and unrolling primvars.
 
 ### Changed
 - GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
