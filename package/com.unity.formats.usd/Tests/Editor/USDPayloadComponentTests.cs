@@ -210,35 +210,110 @@ namespace Unity.Formats.USD.Tests
         [UnityTest]
         public IEnumerator ChangingUsdPayloadStateFromUnloadedToLoaded_MarksSceneDirty()
         {
+            const int timeOutFrames = 3;
+
             m_usdAsset.m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
             m_usdAsset.Reload(forceRebuild: true);
+            // Wait at least one frame for Reload
             yield return null;
 
             EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
-            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
+            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after saving");
 
-            // Change payload state and wait one frame to ensure Update runs
             m_usdRoot.GetComponentInChildren<UsdPayload>().Load();
+            var startingFrame = Time.frameCount;
+            // Wait at least one frame to ensure Update runs, break out if we hit either the condition or have waited for too many frames
+            while (!m_UnityScene.isDirty && Time.frameCount - startingFrame < timeOutFrames)
+            {
+                yield return null;
+            }
+
+            Assert.Less(Time.frameCount - startingFrame, timeOutFrames, $"Timeout: Payload Unload should be done within {timeOutFrames} frames");
+            Assert.True(m_UnityScene.isDirty, "Scene should be dirty after Payload Load");
+        }
+
+        [UnityTest]
+        public IEnumerator ChangingUsdPayloadStateFromUnloadedToLoaded_GeneratesPayloadObjects()
+        {
+            const int timeOutFrames = 3;
+
+            m_usdAsset.m_payloadPolicy = PayloadPolicy.DontLoadPayloads;
+            m_usdAsset.Reload(forceRebuild: true);
+            // Wait at least one frame for Reload
             yield return null;
 
-            Assert.IsTrue(m_UnityScene.isDirty, "Scene should be dirty after changing UsdPayload objects");
+            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
+            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after saving");
+
+            var payloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
+            var payloadRootChildCount = payloadRoot.transform.childCount;
+
+            payloadRoot.Load();
+            var startingFrame = Time.frameCount;
+            // Wait at least one frame to ensure Update runs, break out if we hit either the condition or have waited for too many frames
+            while (!m_UnityScene.isDirty && Time.frameCount - startingFrame < timeOutFrames)
+            {
+                yield return null;
+            }
+
+            Assert.Less(Time.frameCount - startingFrame, timeOutFrames, $"Timeout: Payload Unload should be done within {timeOutFrames} frames");
+            Assert.IsTrue(payloadRoot == null, "Payload Load should reset USD related components and older references to it should be null");
+
+            var newPayloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
+            Assert.AreNotEqual(newPayloadRoot.transform.childCount, payloadRootChildCount, "Payload Load should generate the payload objects");
         }
 
         [UnityTest]
         public IEnumerator ChangingUsdPayloadStateFromLoadedToUnloaded_MarksSceneDirty()
         {
+            const int timeOutFrames = 3;
+
             m_usdAsset.m_payloadPolicy = PayloadPolicy.LoadAll;
             m_usdAsset.Reload(forceRebuild: true);
+            // Wait at least one frame for Reload
             yield return null;
 
             EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
-            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after after saving");
+            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after saving");
 
-            // Change payload state and wait one frame to ensure Update runs
             m_usdRoot.GetComponentInChildren<UsdPayload>().Unload();
+            var startingFrame = Time.frameCount;
+            // Wait at least one frame to ensure Update runs, break out if we hit either the condition or have waited for too many frames
+            while (!m_UnityScene.isDirty && Time.frameCount - startingFrame < timeOutFrames)
+            {
+                yield return null;
+            }
+
+            Assert.Less(Time.frameCount - startingFrame, timeOutFrames, $"Timeout: Payload Unload should be done within {timeOutFrames} frames");
+            Assert.True(m_UnityScene.isDirty, "Scene should be dirty after Payload Unload");
+        }
+
+        [UnityTest]
+        public IEnumerator ChangingUsdPayloadStateFromLoadedToUnloaded_DestroysPayloadObjects()
+        {
+            const int timeOutFrames = 3;
+
+            m_usdAsset.m_payloadPolicy = PayloadPolicy.LoadAll;
+            m_usdAsset.Reload(forceRebuild: true);
+            // Wait at least one frame for Reload
             yield return null;
 
-            Assert.IsTrue(m_UnityScene.isDirty, "Scene should be dirty after changing UsdPayload objects");
+            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
+            Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after saving");
+
+            var payloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
+            var payloadRootChildCount = payloadRoot.transform.childCount;
+
+            payloadRoot.Unload();
+            var startingFrame = Time.frameCount;
+            // Wait at least one frame to ensure Update runs, break out if we hit either the condition or have waited for too many frames
+            while (!m_UnityScene.isDirty && Time.frameCount - startingFrame < timeOutFrames)
+            {
+                yield return null;
+            }
+
+            Assert.Less(Time.frameCount - startingFrame, timeOutFrames, $"Timeout: Payload Unload should be done within {timeOutFrames} frames");
+            Assert.AreNotEqual(payloadRoot.transform.childCount, payloadRootChildCount, "Payload Unload should destroy the payload objects");
         }
     }
 }
