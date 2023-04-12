@@ -1,6 +1,8 @@
 test_editors:
   - version: trunk
-  - version: 2021.2
+  - version: 2023.1
+  - version: 2022.2
+  - version: 2021.3
   - version: 2020.3
   - version: 2019.4
 test_platforms:
