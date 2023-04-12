@@ -105,7 +105,7 @@ namespace USD.NET.Unity.Tests
         [TestCase("UsdInstance_UpAxisZ_RightHanded")]
         public void InstancerImport_VertexCheck(string testFileName)
         {
-            var originalVertices = new []
+            var originalVertices = new[]
             {
                 new Vector3(-1, 0, 3),
                 new Vector3(-1, 0, 0),
@@ -123,7 +123,7 @@ namespace USD.NET.Unity.Tests
             foreach (var vertex in testInstanceObjectMesh.vertices)
             {
                 // Flip the z-axis value to compensate for the z-axis difference between Unity and USD
-                var zFlippedVertex = new Vector3 (vertex.x, vertex.y, -vertex.z);
+                var zFlippedVertex = new Vector3(vertex.x, vertex.y, -vertex.z);
                 Assert.Contains(zFlippedVertex, originalVertices, $"Z Axis flipped vertex <{zFlippedVertex}> not found in original vertices");
             }
         }
