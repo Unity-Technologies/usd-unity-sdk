@@ -361,13 +361,17 @@ namespace Unity.Formats.USD
 
             int isNotConstant = weightsInterpolation.GetString() == UsdGeomTokens.constant ? 0 : 1;
 
+            // Convert the USD joint weights and indices into a Unity BoneWeights array, including remapping to the new triangulated vertices where required
             for (var vertexIndex = 0; vertexIndex < vertexCount; vertexIndex++)
             {
+                // For every new vertex, get the original vertex if it has been triangulated
                 var originalVertexIndex = remapIndices ? usdMesh.triangulatedFaceVertexIndices[vertexIndex] * weightsElementSize : vertexIndex * weightsElementSize;
                 var vertexLookupIndex = isNotConstant * originalVertexIndex;
 
+                // This intermediary array is faster than getting/setting to a NativeArray in a loop
                 bonesPerVertexArray[vertexIndex] = (byte)weightsElementSize;
 
+                // Create a BoneWeight for every element at every vertex
                 for (var weightElementIndex = 0; weightElementIndex < weightsElementSize; weightElementIndex++)
                 {
                     var boneWeight = new BoneWeight1();
