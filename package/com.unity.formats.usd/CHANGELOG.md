@@ -3,15 +3,24 @@
 ## Unreleased
 ### Bug Fixes
 - Fixed a bug where importing materials exported from USD version >= 21.11 would fail.
-
-- Fixed an import bug causing instanced primitives not to be sanitized.
-- Disabled plugins on unsupported platforms.
-- Fixed a bug causing PointInstances to be duplicated.
+- Fixed loading of meshes with arbitrary primvars.
+- Fixed regression in animated mesh properties.
+- Fixed timeout when importing complex meshes.
+- Fixed a bug on export where SkelRoot and Skeleton Prim were missing class identifiers.
+- Fixed 'ExportSelectedWithChildren' on Mac.
+- Fixed texture mapping for exported meshes.
+- Fixed  a bug causing PointInstances to be duplicated.
+- Fixed regression in JointsMatch().
+- Fixed scene not being marked dirty after changing load payload flag.
+- Fixed exported Prims not having a type and fixed export for objects with same name.
 - Fixed a bug causing an ApplicationException "all sample times in times and baseTime must either all be numeric or all be default" to be thrown when refreshing a PointInstancer.
-- Optimized triangulation to reduce the chance of a "Timed out while waiting for thread" error on importing a complex mesh.
+- Fixed an import bug causing instanced primitives not to be sanitized to fit Unity formats, including converting basis, triangulating and unwinding meshes, and unrolling primvars.
 
 ### Changed
 - GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
+- Disabled plugins on unsupported platforms.
+- Optimized triangulation to reduce the chance of a "Timed out while waiting for thread" error on importing a complex mesh.
+- Optimized PointInstance importing.
 
 ## [3.0.0-exp.2] - 2021-09-29
 ### Features
