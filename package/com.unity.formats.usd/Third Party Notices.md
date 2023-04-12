@@ -181,7 +181,7 @@ Component Name: Intel(R) Threading Building Blocks 2017 Update 6
 
 License Type: Apache 2.0
 
-Copyright: 
+Copyright: (c) 2005-2017 Intel Corporation
 
 https://github.com/oneapi-src/oneTBB/tree/2017_U6
 
@@ -399,7 +399,7 @@ Component Name: USD
 
 License Type: Modified Apache 2.0
 
-Copyright:
+Copyright: 2016 Pixar
 
 https://github.com/PixarAnimationStudios/USD
 
