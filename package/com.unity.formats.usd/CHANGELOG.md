@@ -2,6 +2,7 @@
 
 ## Unreleased
 ### Bug Fixes
+- Fixed a bug where importing materials exported from USD version >= 21.11 would fail.
 - Fixed loading of meshes with arbitrary primvars.
 - Fixed regression in animated mesh properties.
 - Fixed timeout when importing complex meshes.
