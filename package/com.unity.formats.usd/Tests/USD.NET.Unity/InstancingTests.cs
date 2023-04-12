@@ -99,19 +99,32 @@ namespace USD.NET.Unity.Tests
             scene.Close();
         }
 
-        [Test]
-        [Ignore("TODO: Enable this when fix for this has been applied")]
-        public void InstancerImport_LeftHandedAxis_VertexCheck()
+        [TestCase("UsdInstance_UpAxisY_LeftHanded")]
+        [TestCase("UsdInstance_UpAxisY_RightHanded")]
+        [TestCase("UsdInstance_UpAxisZ_LeftHanded")]
+        [TestCase("UsdInstance_UpAxisZ_RightHanded")]
+        public void InstancerImport_VertexCheck(string testFileName)
         {
-            const string testFileName = "UsdInstanceVertexTest";
-            HashSet<Vector3> expectedVertexPoints = new HashSet<Vector3> { new Vector3(-1, 0, 3), new Vector3(-1, 0, 0), new Vector3(0, -1, 1), new Vector3(-2, -3, -1), new Vector3(-2, -1, 1), new Vector3(-3, -0.5f, -1), new Vector3(-1, -2, 1), new Vector3(-5, -2, -1) };
+            var originalVertices = new []
+            {
+                new Vector3(-1, 0, 3),
+                new Vector3(-1, 0, 0),
+                new Vector3(0, -1, 1),
+                new Vector3(-2, -3, -1),
+                new Vector3(-2, -1, 1),
+                new Vector3(-3, -0.5f, -1),
+                new Vector3(-1, -2, 1),
+                new Vector3(-5, -2, -1)
+            };
             var testScene = ImportHelpers.InitForOpen(GetTestAssetPath(testFileName));
 
             var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().mesh;
 
             foreach (var vertex in testInstanceObjectMesh.vertices)
             {
-                Assert.That(expectedVertexPoints.Contains(vertex), $"Vertex <{vertex}> is not found in \n\t{string.Join("\n\t", expectedVertexPoints)}");
+                // Flip the z-axis value to compensate for the z-axis difference between Unity and USD
+                var zFlippedVertex = new Vector3 (vertex.x, vertex.y, -vertex.z);
+                Assert.Contains(zFlippedVertex, originalVertices, $"Z Axis flipped vertex <{zFlippedVertex}> not found in original vertices");
             }
         }
     }
