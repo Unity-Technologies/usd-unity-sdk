@@ -600,6 +600,7 @@ namespace Unity.Formats.USD
             {
                 throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
             }
+            overs.AddSubLayer(baseLayer);
 
             overs.Time = baseLayer.Time;
             overs.StartTime = baseLayer.StartTime;
@@ -614,20 +615,20 @@ namespace Unity.Formats.USD
                     overs,
                     BasisTransformation.SlowAndSafe,
                     exportUnvarying: false,
-                    zeroRootTransform: true);
-
-                var rel = ImporterBase.MakeRelativePath(overs.FilePath, sceneToReference.usdFullPath);
-                GetFirstPrim(overs).GetReferences().AddReference(rel, GetFirstPrim(baseLayer).GetPath());
+                    zeroRootTransform: true,
+                    exportOverrides: true);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 Debug.LogException(ex);
-                return;
             }
             finally
             {
                 if (overs != null)
                 {
+                    // Remove the reference to the original USD from the override file for flexibility in an asset pipeline
+                    // TODO: Make this an optional setting
+                    overs.Stage.GetRootLayer().GetSubLayerPaths().Erase(0);
                     overs.Save();
                     overs.Close();
                 }
