@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using pxr;
 using Unity.Formats.USD;
-using UnityEditor;
 using UnityEngine;
 using USD.NET.Tests;
 
