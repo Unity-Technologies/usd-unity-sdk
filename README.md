@@ -64,7 +64,6 @@ The following is a brief listing of currently supported features:
          * Formats: USD, USDA, USDC, USDZ
      * Additive Update
      * Destructive Update
-     * Round-Trip
 
  * Geometry:
      * UV Set
@@ -73,7 +72,6 @@ The following is a brief listing of currently supported features:
 
  * Instances:
      * Point Instancing
-     * Nested Point Instancing
      * Scene Instancing
 
  * Primitive Types:
@@ -84,8 +82,6 @@ The following is a brief listing of currently supported features:
          * HDRP, URP (Limited) and Standard Support
          * Payload Load & Unload
              * Load All & Individual
-     * Lights
-         * Automatic Lightmap UV Unwrapping
 
  * Animation:
      * Timeline Playback
@@ -187,21 +183,24 @@ When compatibility with runtime is required (i.e for a standalone build), the re
 
 ## Unsupported
 We do not currently support the following:
+ * General:
+     * Custom prims
+
  * Geometry:
      * Multiple UV Set
 
  * Primitive Types:
      * Camera
          * Physical Camera Settings
+         * Camera animations
      * Material:
-         * Transparency
+         * Automatically assigning the following flags (if manually set, it works):
+             * Transparency
+             * Double-Sided
      * Lights
 
  * Animation:
-     * Blend Shapes (Unstable)
-
- * General:
-     * Custom prims
+     * Blend Shapes
 
 # License
 
