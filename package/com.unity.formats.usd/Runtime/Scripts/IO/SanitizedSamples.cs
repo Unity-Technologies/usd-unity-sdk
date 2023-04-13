@@ -317,9 +317,9 @@ namespace Unity.Formats.USD
             // count the length of newCounts to pre-allocate the array-
             // this extra loop is more performant than using a dynamically-sized List
             int newFaceCountsLength = 0;
-            for (int i = 0; i < faceVertexCounts.Length; i++)
+            foreach (int faceVertexCount in faceVertexCounts)
             {
-                newFaceCountsLength += faceVertexCounts[i] - 2;
+                newFaceCountsLength += faceVertexCount - 2;
             }
 
             // We only have tris, so 3 indices per face
@@ -495,9 +495,9 @@ namespace Unity.Formats.USD
         internal static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCounts, bool changeHandedness)
         {
             int newFacesCount = 0;
-            for (int i = 0; i < faceVertexCounts.Length; i++)
+            foreach (int faceVertexCount in faceVertexCounts)
             {
-                newFacesCount += faceVertexCounts[i] - 2;
+                newFacesCount += faceVertexCount - 2;
             }
 
             var newValues = new T[3 * newFacesCount]; // we're converting every face to a triangle, so must be three verts per face
@@ -548,7 +548,7 @@ namespace Unity.Formats.USD
 
             if (interpolation != null && interpolation != newInterpolation)
             {
-                UnityEngine.Debug.LogWarning($"Stated interpolation '{interpolation.ToString()}' for this PrimVar does not match required value counts. " +
+                UnityEngine.Debug.LogWarning($"Stated interpolation '{interpolation.ToString()}' for a PrimVar does not match required value counts. " +
                     $"We will convert to FaceVarying assuming an original interpolation of '{newInterpolation.ToString()}'.");
             }
 
