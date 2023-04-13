@@ -52,6 +52,7 @@ namespace Unity.Formats.USD
         public bool exportMaterials;
         public bool exportNative;
         public UnityEngine.Transform exportRoot;
+        public bool exportTransformOverrides;
         public System.Collections.Generic.Dictionary<UnityEngine.Material, string> matMap;
         public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Transform[]> meshToBones;
         public System.Collections.Generic.Dictionary<UnityEngine.Transform, UnityEngine.Transform> meshToSkelRoot;
@@ -380,7 +381,7 @@ namespace Unity.Formats.USD
     public static class SceneExporter
     {
         public static void Export(UnityEngine.GameObject root, Unity.Formats.USD.ExportContext context, bool zeroRootTransform);
-        public static void Export(UnityEngine.GameObject root, USD.NET.Scene scene, Unity.Formats.USD.BasisTransformation basisTransform, bool exportUnvarying, bool zeroRootTransform, bool exportMaterials = False, bool exportMonoBehaviours = False);
+        public static void Export(UnityEngine.GameObject root, USD.NET.Scene scene, Unity.Formats.USD.BasisTransformation basisTransform, bool exportUnvarying, bool zeroRootTransform, bool exportMaterials = False, bool exportMonoBehaviours = False, bool exportOverrides = False);
         public static void SyncExportContext(UnityEngine.GameObject exportRoot, Unity.Formats.USD.ExportContext context);
     }
 

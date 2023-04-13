@@ -124,6 +124,34 @@ When compatibility with runtime is required (i.e for a standalone build), the re
 
 >  **Note:** This feature has no dependency to and is not based on the Recorder package.
 
+### Exporting Transform Overrides
+
+Modifications to transforms in USD files can be exported as overrides to the original files. 
+
+Overrides can be exported from the USD menu with the GameObject containing the UsdAsset component selected, which will export transform overrides for the entire hierarchy. Alternatively, you can also export just the overrides when exporting from the Recorder window by changing the 'Override Setting' to 'Export Transform Overrides Only'.
+
+For full asset pipeline flexibility these override files do not include a reference to the original file, but this can be added by manually adding a sublayer in the header of the resulting USDA file:
+
+```
+#usda 1.0
+(
+    defaultPrim = "myCube"
+    endTimeCode = 0
+    startTimeCode = 0
+    upAxis = "Y"
+    subLayers = [
+        @c:/path/to/original/myCube.usda@
+    ]
+)
+
+over "myCube"
+{
+    ...
+}
+```
+
+Note: Modifications to the transform of the Root GameObject is not currently reflected in the override, as Unity assumes the root in all USD files is at the origin.
+
 # License
 
 The USD Unity SDK is licensed under the terms of the Apache
