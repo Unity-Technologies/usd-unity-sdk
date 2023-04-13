@@ -30,5 +30,31 @@
         "url": "https://github.com/Unity-Technologies/usd-unity-sdk.git"
     },
     "unity": "2019.4",
-    "version": "3.0.0-exp.2"
+    "version": "3.0.0-exp.2",
+    "samples": [
+        {
+            "displayName" : "HelloUsd",
+            "path": "Samples~/HelloUsd"
+        },
+        {
+            "displayName" : "ImportMesh",
+            "path": "Samples~/ImportMesh"
+        },
+        {
+            "displayName" : "ImportMaterials",
+            "path": "Samples~/ImportMaterials"
+        },
+        {
+            "displayName" : "ImportProcessor",
+            "path": "Samples~/ImportProcessor"
+        },
+        {
+            "displayName" : "ExportMesh",
+            "path": "Samples~/ExportMesh"
+        },
+        {
+            "displayName" : "UsdTimelinePlayable",
+            "path": "Samples~/UsdTimelinePlayable"
+        }
+    ]
 }
