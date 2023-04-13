@@ -72,4 +72,5 @@ TestProject/**/Logs
 TestProject/**/*.csproj
 TestProject/**/*.sln
 TestProject/Usd-Development/Library
+TestProject/Usd-Development/.vs
 build_usdcs
