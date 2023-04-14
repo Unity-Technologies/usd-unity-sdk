@@ -301,6 +301,7 @@ namespace Unity.Formats.USD
         {
             Color c;
 
+#if EXPORT_UNITY_SPECIFIC_DATA
             // Export all generic parameter.
             // These are not useful to UsdPreviewSurface, but enable perfect round-tripping.
             surface.unity.shaderName = mat.shader.name;
@@ -333,6 +334,7 @@ namespace Unity.Formats.USD
                         break;
                 }
             }
+#endif
 #endif
 
             if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null)
