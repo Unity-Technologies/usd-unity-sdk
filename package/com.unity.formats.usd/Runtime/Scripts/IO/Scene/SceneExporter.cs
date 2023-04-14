@@ -245,6 +245,11 @@ namespace Unity.Formats.USD
                     continue;
                 }
 
+                if (go.CompareTag("EditorOnly"))
+                {
+                    continue;
+                }
+
                 if (go != root && !go.transform.IsChildOf(root.transform))
                 {
                     continue;
