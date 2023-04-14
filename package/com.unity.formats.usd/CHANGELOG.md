@@ -1,7 +1,11 @@
-# Changes in usd-unitysdk for Unity
+# Changes in usd-unity-sdk for Unity
 
 ## Unreleased
+### Features
+- The USD Recorder now has an option to export transform overrides.
+
 ### Bug Fixes
+- "Export Transform Override" now properly exports modified transforms only.
 - Fixed a bug where importing materials exported from USD version >= 21.11 would fail.
 - Fixed loading of meshes with arbitrary primvars.
 - Fixed regression in animated mesh properties.
@@ -17,7 +21,7 @@
 - Fixed an import bug causing instanced primitives not to be sanitized to fit Unity formats, including converting basis, triangulating and unwinding meshes, and unrolling primvars.
 
 ### Changed
-- GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath
+- GC allocs reduced by half for Scene.GetAttributeAtPath and Scene.GetRelationshipAtPath.
 - Disabled plugins on unsupported platforms.
 - Optimized triangulation to reduce the chance of a "Timed out while waiting for thread" error on importing a complex mesh.
 - Optimized PointInstance importing.
