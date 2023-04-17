@@ -16,9 +16,9 @@ The following is a brief listing of currently supported features:
 
 * Importing and exporting USD:
     * Import as GameObject, Prefab, or Timeline Clip
-        * Formats: USDA, USDC, USDZ
+        * File formats: .usd, .usda, .usdc, .usdz
     * Export Game Objects to USD
-        * Formats: USDA, USDC, USDZ
+        * File formats: .usd, .usda, .usdc, .usdz
         * Export of Transform Overrides
     * Export via Recorder package
 * Composition:
