@@ -77,7 +77,7 @@ A component to represent one or more USD variant sets. This object holds the sel
 ## Variants, Models, & Payloads
 Access to variant selection, model details, and payload state are all accessible via the inspector on the game object at which these features were authored.
 
-Note that Payloads *are not loaded by default*. USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene.
+Note that Payloads *are not loaded by default*. USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene. Alternatively, payloads can be loaded by either ticking 'IsLoaded' in the UsdPayload component of an individual payload, or using 'Load Payload Subtree' in the USD menu to load all payloads in the selected GameObject and its children.
 
 When importing a USD file containing variants as a prefab, any instantiated GameObject of that prefab must be unpacked before the selected variant can be changed.
 

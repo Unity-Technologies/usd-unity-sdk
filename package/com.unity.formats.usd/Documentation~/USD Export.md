@@ -10,7 +10,7 @@ The default file format when exporting is .usd with USDC encoding, but changing 
 
 ## Export Selected with Children
 
-On Mac you will see multiple file format options- USDC and USDA.
+On Mac you will see multiple file format options - USDC and USDA.
 
 On Windows the default is .usd with a USDC format, but you can change the file ending in the Save window to specify a different file ending and encoding.
 
@@ -19,7 +19,7 @@ On Windows the default is .usd with a USDC format, but you can change the file e
 
 Modifications to transforms in USD files can be exported as overrides to the original files. 
 
-Overrides can be exported from the USD menu with the GameObject containing the [UsdAsset](/USD-in-the-Editor#USD-Asset) component selected, which will export transform overrides for the entire hierarchy. Alternatively, you can also export just the overrides when exporting from the Recorder window by changing the 'Override Setting' to 'Export Transform Overrides Only'.
+Overrides can be exported from the USD menu with the GameObject containing the [UsdAsset](USD-in-the-Editor#USD-Asset) component selected, which will export transform overrides for the entire hierarchy. Alternatively, you can also export just the overrides when exporting from the Recorder window by changing the 'Override Setting' to 'Export Transform Overrides Only'.
 
 
 For full asset pipeline flexibility these override files do not include a reference to the original file, but this can be added by manually adding a sublayer in the header of the resulting USDA file:
@@ -59,7 +59,7 @@ To export a USD composition via Recorder, you can either use the Recorder Window
 * Then click on + Add Recorder,
 * Select USD Clip.
 
-Or add a Recorder track :
+Or add a Recorder track:
 
 * From the Timeline window, right-click and select UnityEditor.Recorder.Timeline > Recorder Track,
 * Then right-click on the track and add Recorder Clip,

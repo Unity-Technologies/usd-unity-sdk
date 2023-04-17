@@ -59,9 +59,9 @@ The following is a brief listing of currently supported features:
 
 * Importing and exporting USD:
     * Import as GameObject, Prefab, or Timeline Clip
-        * Formats: USDA, USDC, USDZ
+        * File formats: .usd, .usda, .usdc, .usdz
     * Export Game Objects to USD
-        * Formats: USDA, USDC, USDZ
+        * File formats: .usd, .usda, .usdc, .usdz
         * Export of Transform Overrides
     * Export via Recorder package
 * Composition:
@@ -105,8 +105,7 @@ We do not currently support the following:
     * Camera
         * We do not currently import and export all physical camera settings
     * Materials:
-        * Transparency Settings (these can be set manually)
-        * Some values are unassigned when importing URP
+        * Some settings are not correctly imported and must be fixed up manually, eg Rendering mode and Double-Sided
     * Lights
 * Animation:
     * Blend Shapes

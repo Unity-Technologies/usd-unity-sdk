@@ -4,16 +4,16 @@
 
 To import a USD file into Unity, use the USD context menu, and select one of the 'Import as ...' options as required. Supported USD file formats are:
 
--   .USD
--   .USDA
--   .USDC
--   .USDZ
+-   .usd
+-   .usda
+-   .usdc
+-   .usdz
 
 ## Importing Options
 
--   **Import As GameObjects**: Imports selected USD file as GameObjects directly into the Scene Hierarchy.
+-   **Import As GameObjects**: Imports selected USD file as GameObjects directly into the Scene Hierarchy for the open scene.
 
--   **Import as Prefab**: Imports selected USD file as a Prefab into the project folder.
+-   **Import as Prefab**: Imports selected USD file as a Prefab into the project folder. This method will also generate PlayableAssets and materials that can be reused. Note that the import will be much slower than for GameObjects, and the prefab must be unpacked to make any changes.
 
 -   **Import as Timeline Clip**: Imports selected USD file as a Prefab containing empty Materials and the Timeline Clip. If animation is recorded in the Timeline Clip, that can be used to animate other applicable Unity Objects.
 
@@ -23,7 +23,7 @@ To import materials from USD, firstly import the USD file using the USD menu. Th
 
 ## Importing Payloads
 
-Payloads are not loaded by default. If you are using payloads, in order to see anything in the scene,  firstly import the USD file using the USD menu. Then, to get the payloads, change the 'Import Settings' > 'Payload Policy' in the Inspector to 'Load All''. Finally re-import the USD file.
+Payloads are not loaded by default. If you are using payloads, in order to see anything in the scene,  firstly import the USD file using the USD menu. Then, to get the payloads, change the 'Import Settings' > 'Payload Policy' in the Inspector to 'Load All''. Finally re-import the USD file, which might take a while.
 
 ## Primitive Sanitization on Import
 
@@ -47,7 +47,7 @@ Triangulate meshes:
 - Converting from USD-supported mixed face meshes to a triangular mesh.
 
 Change vertex winding order: 
-- Unity uses a clockwise mesh winding order, where other DCCs may use anti-clockwise.
+- Unity uses a clockwise mesh winding order, where other DCCs may use counterclockwise.
 
 Unroll primvars: 
 - Unity meshes require same length arrays for all channels, so we convert all primvars to the interpolation that requires the longest arrays, which is *face varying*. Our mesh therefore has a vertex array containing one value per vertex per face, with no verts shared.
