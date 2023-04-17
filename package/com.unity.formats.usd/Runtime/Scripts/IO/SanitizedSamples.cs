@@ -544,6 +544,7 @@ namespace Unity.Formats.USD
             if (values == null)
                 return;
 
+            // We assume a certain number of values in the array for certain interpolations, so check whether this assumption will work and not cause array overflows
             bool interpolationIsValid = false;
 
             if (interpolation != null)
@@ -561,7 +562,6 @@ namespace Unity.Formats.USD
 
                 interpolation = newInterpolation;
             }
-
 
             if (interpolation == UsdGeomTokens.constant)
             {
