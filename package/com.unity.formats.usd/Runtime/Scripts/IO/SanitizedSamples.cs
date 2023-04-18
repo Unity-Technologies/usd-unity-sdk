@@ -629,7 +629,7 @@ namespace Unity.Formats.USD
             if (interpolation == UsdGeomTokens.vertex || interpolation == UsdGeomTokens.varying)
                 return (count == points.Length);
             if (interpolation == UsdGeomTokens.faceVarying)
-                    return (IsTopologyBackedUp() && count == originalFaceVertexIndices.Length);
+                return (IsTopologyBackedUp() && count == originalFaceVertexIndices.Length);
             return false;
         }
 
