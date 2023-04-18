@@ -1,7 +1,8 @@
-using System;
 using System.Linq;
 using NUnit.Framework;
 using pxr;
+using Unity.Formats.USD;
+using UnityEditor;
 using UnityEngine;
 using USD.NET.Tests;
 
@@ -93,6 +94,35 @@ namespace USD.NET.Unity.Tests
                 Assert.AreEqual(Matrix4x4.Translate(new Vector3(0 + i * 2, 0, 0)), matrices[i]);
             }
             scene.Close();
+        }
+
+        [TestCase("UsdInstance_UpAxisY_LeftHanded")]
+        [TestCase("UsdInstance_UpAxisY_RightHanded")]
+        [TestCase("UsdInstance_UpAxisZ_LeftHanded")]
+        [TestCase("UsdInstance_UpAxisZ_RightHanded")]
+        public void InstancerImport_VertexCheck(string testFileName)
+        {
+            var originalVertices = new[]
+            {
+                new Vector3(-1, 0, 3),
+                new Vector3(-1, 0, 0),
+                new Vector3(0, -1, 1),
+                new Vector3(-2, -3, -1),
+                new Vector3(-2, -1, 1),
+                new Vector3(-3, -0.5f, -1),
+                new Vector3(-1, -2, 1),
+                new Vector3(-5, -2, -1)
+            };
+            var testScene = ImportHelpers.InitForOpen(GetTestAssetPath(testFileName));
+
+            var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().mesh;
+
+            foreach (var vertex in testInstanceObjectMesh.vertices)
+            {
+                // Flip the z-axis value to compensate for the z-axis difference between Unity and USD
+                var zFlippedVertex = new Vector3(vertex.x, vertex.y, -vertex.z);
+                Assert.Contains(zFlippedVertex, originalVertices, $"Z Axis flipped vertex <{zFlippedVertex}> not found in original vertices");
+            }
         }
     }
 }
