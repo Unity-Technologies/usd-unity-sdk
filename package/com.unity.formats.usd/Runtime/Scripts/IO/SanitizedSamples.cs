@@ -545,12 +545,7 @@ namespace Unity.Formats.USD
                 return;
 
             // We assume a certain number of values in the array for certain interpolations, so check whether this assumption will work and not cause array overflows
-            bool interpolationIsValid = false;
-
-            if (interpolation != null)
-                interpolationIsValid = IsInterpolationValid(interpolation, values.Length);
-
-            if (!interpolationIsValid)
+            if (!IsInterpolationValid(interpolation, values.Length))
             {
                 var newInterpolation = GuessInterpolation(values.Length);
 
@@ -622,6 +617,8 @@ namespace Unity.Formats.USD
         /// </remarks>
         internal bool IsInterpolationValid(TfToken interpolation, int count)
         {
+            if (interpolation == null)
+                return false;
             if (interpolation == UsdGeomTokens.constant)
                 return count == 1;
             if (interpolation == UsdGeomTokens.uniform)
