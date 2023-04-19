@@ -6,7 +6,25 @@ This package includes a set of libraries designed to support the use of USD in C
 
 *Pixar's [USD Kitchen Set](https://openusd.org/release/dl_kitchen_set.html) in the Unity Editor.*
 
-## Getting Started
+# Getting Started
+
+## Requirements
+
+* Windows / OSX (Intel only)
+    * Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
+* Unity version: 2019.4 and up
+
+## Project Configuration
+
+* The USD importer works with linear color space only. To ensure colors are imported correctly, ensure that the project color space is set to "linear" in Edit > Project Settings > Player:
+
+![USD linear](Images/USD_linear.png)
+
+* This package supports importing USD skinned meshes with unlimited bone weights per vertex. However, to see the effect of more than 4 weights per vertex, Unlimited Skin Weights must be enabled for Unity in the project settings under Edit > Project Settings > Quality:
+
+![USD unlimited_weights](Images/USD_unlimited_weights.png)
+
+## Installing the Package
 
 To get started, install the USD package via the Unity Package Manager. You can do this by either:
 
@@ -20,24 +38,7 @@ Once the USD package is installed, a USD menu will appear, enabling you to easil
 
 ![USD menu](Images/USD_menu.png)
 
-The USD importer works with linear color space only. To ensure colors are imported correctly, set the project color space to "linear" in Edit > Project Settings > Player:
-
-![USD linear](Images/USD_linear.png)
-
-In Unity 2019, the USD importer supports importing unlimited weights per vertex. However, to see the effect of more than 4 weights per vertex, this must be enabled in the project settings under Edit > Project Settings > Quality:
-
-![USD unlimited_weights](Images/USD_unlimited_weights.png)
-
-## Requirements
-
-* Windows / OSX (Intel only)
-* Unity version: 2019.4 and up
-* API Compatibility Level .NET 4.x is no longer required but still provides better performances than .NET 2 
-In Edit > Project Settings > Player : ![USD .NET version](Images/USD_.NET_version.png)
-
-## Limitations
-
-* Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
+## Package Limitations
 
 * The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
 
@@ -49,9 +50,9 @@ Note that Samples will not work as expected when installed from Source. For a lo
 
 ## Documentation on Package Usage
 
-1. [USD Import](/package/com.unity.formats.usd/Documentation~/USD%20Import.md)
-2. [USD Export](/package/com.unity.formats.usd/Documentation~/USD%20Export.md)
-3. [USD in the Unity Editor](/package/com.unity.formats.usd/Documentation~/USD-in-the-Editor.md)
+1. [USD Import](package/com.unity.formats.usd/Documentation~/USD%20Import.md)
+2. [USD Export](package/com.unity.formats.usd/Documentation~/USD%20Export.md)
+3. [USD in the Unity Editor](package/com.unity.formats.usd/Documentation~/USD-in-the-Editor.md)
 
 ## Features
 

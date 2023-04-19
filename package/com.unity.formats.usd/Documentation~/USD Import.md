@@ -1,6 +1,6 @@
 # Importing USD Files
 
-![](Images/usd-import-options.PNG)
+![](Images/USD_Menu.png)
 
 To import a USD file into Unity, use the USD context menu, and select one of the 'Import as ...' options as required. Supported USD file formats are:
 
