@@ -171,12 +171,12 @@ namespace Unity.Formats.USD.Tests
             var skeletalRootInUsd = m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(skeletalRoot.transform)));
             var skeletalRootInUsdType = skeletalRootInUsd.GetTypeName();
             var expectedSkeletalRootInUsdType = new pxr.TfToken("SkelRoot");
-            Assert.AreEqual(skeletalRootInUsdType, expectedSkeletalRootInUsdType);
+            Assert.AreEqual(expectedSkeletalRootInUsdType, skeletalRootInUsdType);
 
             var skeletonInUsd = m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(skeleton.transform)));
             var skeletonInUsdType = skeletonInUsd.GetTypeName();
             var expectedSkeletonInUsdType = new pxr.TfToken("Skeleton");
-            Assert.AreEqual(skeletonInUsdType, expectedSkeletonInUsdType);
+            Assert.AreEqual(expectedSkeletonInUsdType, skeletonInUsdType);
         }
     }
 }

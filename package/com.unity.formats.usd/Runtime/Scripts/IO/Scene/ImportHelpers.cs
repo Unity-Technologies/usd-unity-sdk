@@ -158,7 +158,7 @@ namespace Unity.Formats.USD
         {
 #if UNITY_EDITOR
             if (String.IsNullOrEmpty(path) && !UnityEngine.Application.isPlaying)
-                path = EditorUtility.OpenFilePanel("Import USD File", "", "usd,usda,usdc,abc");
+                path = EditorUtility.OpenFilePanel("Import USD File", "", "usd,usda,usdc,usdz,abc");
 #endif
 
             if (String.IsNullOrEmpty(path))

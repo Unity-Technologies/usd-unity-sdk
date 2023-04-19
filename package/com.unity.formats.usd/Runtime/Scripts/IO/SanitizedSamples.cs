@@ -170,8 +170,10 @@ namespace Unity.Formats.USD
 
         public void BackupTopology()
         {
-            originalFaceVertexCounts = faceVertexCounts;
-            originalFaceVertexIndices = faceVertexIndices;
+            originalFaceVertexCounts = new int[faceVertexCounts.Length];
+            Buffer.BlockCopy(faceVertexCounts, 0, originalFaceVertexCounts, 0, Buffer.ByteLength(faceVertexCounts));
+            originalFaceVertexIndices = new int[faceVertexIndices.Length];
+            Buffer.BlockCopy(faceVertexIndices, 0, originalFaceVertexIndices, 0, Buffer.ByteLength(faceVertexIndices));
         }
 
         public bool IsTopologyBackedUp()
@@ -315,9 +317,9 @@ namespace Unity.Formats.USD
             // count the length of newCounts to pre-allocate the array-
             // this extra loop is more performant than using a dynamically-sized List
             int newFaceCountsLength = 0;
-            for (int i = 0; i < faceVertexCounts.Length; i++)
+            foreach (int faceVertexCount in faceVertexCounts)
             {
-                newFaceCountsLength += faceVertexCounts[i] - 2;
+                newFaceCountsLength += faceVertexCount - 2;
             }
 
             // We only have tris, so 3 indices per face
@@ -374,8 +376,12 @@ namespace Unity.Formats.USD
             }
 
             faceVertexIndices = newIndices;
-            triangulatedFaceVertexIndices = newIndices;
-            faceVertexCounts = newCounts;  // TODO: As this is always 3, remove it and only create on export to USD
+
+            // triangulatedFaceVertexIndices needs to be a 'proper' copy of newIndices, else it will be affected when faceVertexIndices is modified
+            triangulatedFaceVertexIndices = new int[newIndicesLength];
+            Buffer.BlockCopy(newIndices, 0, triangulatedFaceVertexIndices, 0, Buffer.ByteLength(newIndices));
+
+            faceVertexCounts = newCounts;
         }
 
         internal bool ShouldUnweldVertices(bool bindMaterials)
@@ -486,44 +492,67 @@ namespace Unity.Formats.USD
             }
         }
 
-        internal static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCount, bool changeHandedness)
+        internal static void TriangulateAttributes<T>(ref T[] values, int[] faceVertexCounts, bool changeHandedness)
         {
-            var newValues = new List<T>();
-            var last = 0;
-            for (var i = 0; i < faceVertexCount.Length; i++)
+            int newFacesCount = 0;
+            foreach (int faceVertexCount in faceVertexCounts)
             {
-                var next = last + 1;
-                for (var t = 0; t < faceVertexCount[i] - 2; t++)
-                    if (changeHandedness)
-                    {
-                        newValues.Add(values[next++]);
-                        newValues.Add(values[last]);
-                        newValues.Add(values[next]);
-                    }
-                    else
-                    {
-                        newValues.Add(values[last]);
-                        newValues.Add(values[next++]);
-                        newValues.Add(values[next]);
-                    }
-
-                last += faceVertexCount[i];
+                newFacesCount += faceVertexCount - 2;
             }
 
-            values = newValues.ToArray();
+            var newValues = new T[3 * newFacesCount]; // we're converting every face to a triangle, so must be three verts per face
+
+            int last = 0, currentIndex = 0;
+            if (changeHandedness)
+            {
+                for (var faceIndex = 0; faceIndex < faceVertexCounts.Length; faceIndex++)
+                {
+                    var next = last + 1;
+                    for (var triangleIndex = 0; triangleIndex < faceVertexCounts[faceIndex] - 2; triangleIndex++)
+                    {
+                        newValues[currentIndex++] = values[next++];
+                        newValues[currentIndex++] = values[last];
+                        newValues[currentIndex++] = values[next];
+                    }
+                    last += faceVertexCounts[faceIndex];
+                }
+            }
+            else
+            {
+                for (var faceIndex = 0; faceIndex < faceVertexCounts.Length; faceIndex++)
+                {
+                    var next = last + 1;
+                    for (var triangleIndex = 0; triangleIndex < faceVertexCounts[faceIndex] - 2; triangleIndex++)
+                    {
+                        newValues[currentIndex++] = values[last];
+                        newValues[currentIndex++] = values[next++];
+                        newValues[currentIndex++] = values[next];
+                    }
+                    last += faceVertexCounts[faceIndex];
+                }
+            }
+
+            values = newValues;
         }
 
         /// <summary>
         /// Utility method to convert a given array of values to the equivalent faceVarying array (one value per vertex per face).
         /// </summary>
-        /// <remarks> If the interpolation of the array to convert is not known, it will be guessed based on the length of the array. </remarks
+        /// <remarks> If the interpolation of the array to convert is not known, it will be guessed based on the length of the array. </remarks>
         void ConvertInterpolationToFaceVarying<T>(ref T[] values, int[] vertexIndices, bool changeHandedness = false, TfToken interpolation = null)
         {
             if (values == null)
                 return;
 
-            if (interpolation == null)
-                interpolation = GuessInterpolation(values.Length);
+            var newInterpolation = GuessInterpolation(values.Length);
+
+            if (interpolation != null && interpolation != newInterpolation)
+            {
+                UnityEngine.Debug.LogWarning($"Stated interpolation '{interpolation.ToString()}' for a PrimVar does not match required value counts. " +
+                    $"We will convert to FaceVarying assuming an original interpolation of '{newInterpolation.ToString()}'.");
+            }
+
+            interpolation = newInterpolation;
 
             if (interpolation == UsdGeomTokens.constant)
             {
