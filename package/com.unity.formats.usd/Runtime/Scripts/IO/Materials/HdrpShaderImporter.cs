@@ -153,13 +153,13 @@ namespace Unity.Formats.USD
 
             var newTex = new Texture2D(maxW, maxH, TextureFormat.ARGB32, true, true);
             ChannelCombinerMat.SetVector("_Invert", new Vector4(0, 0, 0, 1));
-            ChannelCombinerMat.SetTexture("_R", red);
+            ChannelCombinerMat.SetTexture("_R", red ? red : Texture2D.blackTexture);
             ChannelCombinerMat.SetVector("_RScale", new Vector4(1, 0, 0, 0));
-            ChannelCombinerMat.SetTexture("_G", green);
+            ChannelCombinerMat.SetTexture("_G", green ? green : Texture2D.blackTexture);
             ChannelCombinerMat.SetVector("_GScale", new Vector4(1, 0, 0, 0));
-            ChannelCombinerMat.SetTexture("_B", blue);
+            ChannelCombinerMat.SetTexture("_B", blue ? blue : Texture2D.blackTexture);
             ChannelCombinerMat.SetVector("_BScale", new Vector4(1, 0, 0, 0));
-            ChannelCombinerMat.SetTexture("_A", alpha);
+            ChannelCombinerMat.SetTexture("_A", alpha ? alpha : Texture2D.blackTexture);
             ChannelCombinerMat.SetVector("_AScale", new Vector4(1, 0, 0, 0));
             Graphics.Blit(red, tmp, ChannelCombinerMat);
 
