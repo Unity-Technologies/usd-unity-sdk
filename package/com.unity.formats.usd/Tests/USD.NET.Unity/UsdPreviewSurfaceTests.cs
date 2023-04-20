@@ -106,7 +106,7 @@ namespace USD.NET.Unity.Tests
         [Test]
         public void WritingAndReadingMaterialToUSDScene_ValuesAreCorrect()
         {
-            PrimvarReaderSampleExport<Vector2> primvarReaderTfToken = new PrimvarReaderSampleExport<Vector2> { varname = { defaultValue = new TfToken("st") } };
+            PrimvarReaderExportSample<Vector2> primvarReaderTfToken = new PrimvarReaderExportSample<Vector2> { varname = { defaultValue = new TfToken("st") } };
 
             m_USDScene.Write(k_primvarReaderPath, primvarReaderTfToken);
 

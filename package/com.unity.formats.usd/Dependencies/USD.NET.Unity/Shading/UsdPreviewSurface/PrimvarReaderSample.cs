@@ -95,7 +95,7 @@ namespace USD.NET.Unity
     // In 21.11+ the varname was switched to a string, and this should be removed when we upgrade our USD version.
     [System.Serializable]
     [UsdSchema("Shader")]
-    public class PrimvarReaderSampleExport<T> : PrimvarReaderSample<T> where T : struct
+    public class PrimvarReaderExportSample<T> : PrimvarReaderSample<T> where T : struct
     {
         /// <summary>
         /// Name of the primvar to be read from the primitive as a TfToken.
