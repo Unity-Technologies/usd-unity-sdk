@@ -1,3 +1,5 @@
+// Copyright 2017 Google Inc. All rights reserved.
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -28,12 +30,12 @@ namespace Unity.Formats.USD.Examples
 
         void Start()
         {
-            // This will open the Console Window even if it was closed
-            Debug.Log("=-=-=-=-=-= Starting HelloUsd Test Example =-=-=-=-=-=");
 #if UNITY_EDITOR
             FocusConsoleWindow();
 #endif
+
             InitUsd.Initialize();
+            Debug.Log("=-=-=-=-=-= Starting HelloUsd Test Example =-=-=-=-=-=");
             Test();
             Debug.Log("=-=-=-=-=-= HelloUsd Test Example Finished =-=-=-=-=-=");
         }
@@ -73,7 +75,7 @@ namespace Unity.Formats.USD.Examples
             scene.Close();
         }
 
-        private EditorWindow GetConsoleWindow()
+        private static EditorWindow GetConsoleWindow()
         {
             var editorWindowTypes = TypeCache.GetTypesDerivedFrom<EditorWindow>();
             foreach (var type in editorWindowTypes)
@@ -84,21 +86,13 @@ namespace Unity.Formats.USD.Examples
                 }
             }
 
-            // We should never reach here since we are opening the Console Window at the first step of the Start but just in case
             throw new System.Exception("Error could not find ConsoleWindow type");
         }
 
-        private void FocusConsoleWindow()
+        public static void FocusConsoleWindow()
         {
-            try
-            {
-                var consoleWindow = GetConsoleWindow();
-                consoleWindow.Focus();
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError(e.Message);
-            }
+            var consoleWindow = GetConsoleWindow();
+            consoleWindow.Focus();
         }
     }
 }

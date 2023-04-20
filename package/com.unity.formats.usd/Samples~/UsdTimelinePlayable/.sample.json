@@ -1,4 +1,0 @@
-{
-    "displayName" : "UsdTimelinePlayable",
-    "description" : "A sample showing how to use the USD integration in Timeline.\n\nUsdTimelinePlayable Sample:\n\t1. Open the \"UsdTimelinePlayable.unity\" scene\n\t2. Make sure the Unity Window, \"Timeline\" is open and visible\n\t\t2.1. Window -> Sequencing -> Timeline\n\t3. Within the Scene Hierarchy window, select \"TimelineDirector\"\n\t4. Notice in \"Timeline\" window, their is a \"Usd Playable Track\" with \"testRecording\"\n\t5.Play the timeline."
-}
