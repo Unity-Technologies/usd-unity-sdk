@@ -75,13 +75,13 @@ namespace USD.NET.Unity.Tests
             m_USDScene.Write(k_texturePath, m_originalTexture);
         }
 
-
         void ReadPrimsFromScene()
         {
             m_USDScene.Read(k_materialPath, m_USDReadMaterial);
             m_USDScene.Read(k_shaderPath, m_USDReadShader);
             m_USDScene.Read(k_texturePath, m_USDReadTexture);
         }
+
         void CheckShaderParams()
         {
             var param = m_USDReadShader.GetInputParameters().First();
@@ -143,5 +143,7 @@ namespace USD.NET.Unity.Tests
 
             Assert.AreEqual(primvarReaderString.varname.defaultValue, primvarReaderString.varname.defaultValue);
         }
+
+        // TODO: Add a test for a connected varname too
     }
 }
