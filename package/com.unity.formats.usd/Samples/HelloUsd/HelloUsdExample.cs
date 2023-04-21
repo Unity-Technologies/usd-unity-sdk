@@ -15,6 +15,7 @@
 using UnityEditor;
 using UnityEngine;
 using USD.NET;
+using Unity.Formats.USD;
 
 namespace Unity.Formats.USD.Examples
 {
@@ -28,71 +29,54 @@ namespace Unity.Formats.USD.Examples
             public Bounds aBoundingBox;
         }
 
-        void Start()
+        public void DoHelloUsdExampleDemo()
         {
 #if UNITY_EDITOR
-            FocusConsoleWindow();
+            SampleUtils.FocusConsoleWindow();
 #endif
 
             InitUsd.Initialize();
-            Debug.Log("=-=-=-=-=-= Starting HelloUsd Test Example =-=-=-=-=-=");
+            Debug.Log($"<color=#00FF00>Starting HelloUsd Test Example...</color>");
             Test();
-            Debug.Log("=-=-=-=-=-= HelloUsd Test Example Finished =-=-=-=-=-=");
+            Debug.Log($"<color=#FF2D2D>HelloUsd Test Example Finished</color>");
         }
 
         void Test()
         {
             string usdFile = System.IO.Path.Combine(UnityEngine.Application.dataPath, "sceneFile.usda");
 
-            // Populate Values.
+            // Create and Populate CustomData Values.
             var value = new MyCustomData();
-            value.aString = "IT'S ALIIIIIIIIIIIIIVE!";
+            value.aString = "Custom string value!";
             value.anArrayOfInts = new int[] { 1, 2, 3, 4 };
             value.aBoundingBox = new UnityEngine.Bounds();
 
             // Writing the value.
             var scene = Scene.Create(usdFile);
             scene.Time = 1.0;
-            scene.Write("/someValue", value);
+            Debug.Log($"<color=#338DFF>Writing data to: <{usdFile}> with values: </color>");
+            Debug.LogFormat("Value: string={0}, ints=[{1}, {2}, {3}, {4}], bounding box={5}",
+                value.aString, value.anArrayOfInts[0], value.anArrayOfInts[1], value.anArrayOfInts[2], value.anArrayOfInts[3], value.aBoundingBox);
+            scene.Write("/someCustomValue", value);
             Debug.Log(scene.Stage.GetRootLayer().ExportToString());
             scene.Save();
             scene.Close();
 
             // Reading the value.
-            Debug.Log(usdFile);
+            Debug.Log($"<color=#FF2090>Reading data from: <{usdFile}> values: </color>");
             value = new MyCustomData();
             scene = Scene.Open(usdFile);
             scene.Time = 1.0;
-            scene.Read("/someValue", value);
+            scene.Read("/someCustomValue", value);
 
-            Debug.LogFormat("Value: string={0}, ints={1}, bbox={2}",
-                value.aString, value.anArrayOfInts, value.aBoundingBox);
+            Debug.LogFormat("Value: string={0}, ints=[{1}, {2}, {3}, {4}], bounding box={5}",
+                value.aString, value.anArrayOfInts[0], value.anArrayOfInts[1], value.anArrayOfInts[2], value.anArrayOfInts[3], value.aBoundingBox);
 
-            var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/someValue"));
+            var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/someCustomValue"));
             var vtValue = prim.GetAttribute(new pxr.TfToken("aString")).Get(1);
-            Debug.Log((string)vtValue);
+            Debug.Log($"(string)VTValue of added 'Custom Value', TfToken 'aString': <color=#FFE92D><{(string)vtValue}></color>");
 
             scene.Close();
-        }
-
-        private static EditorWindow GetConsoleWindow()
-        {
-            var editorWindowTypes = TypeCache.GetTypesDerivedFrom<EditorWindow>();
-            foreach (var type in editorWindowTypes)
-            {
-                if (type.Name == "ConsoleWindow")
-                {
-                    return EditorWindow.GetWindow(type);
-                }
-            }
-
-            throw new System.Exception("Error could not find ConsoleWindow type");
-        }
-
-        public static void FocusConsoleWindow()
-        {
-            var consoleWindow = GetConsoleWindow();
-            consoleWindow.Focus();
         }
     }
 }

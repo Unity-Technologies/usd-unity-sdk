@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 337831424, guid: 6a10b2909283487f913b00d94cd3faf5, type: 3}
+  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
   m_Name: ObjectTimeline
   m_EditorClassIdentifier: 
-  m_NextId: 0
+  m_Version: 0
   m_Tracks:
   - {fileID: 114806365768102986}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 30
   m_DurationMode: 0
-  m_Version: 0
+  m_MarkerTrack: {fileID: 0}
 --- !u!114 &114041801898896892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -32,14 +32,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7730524778551f74894a8e6ca1eaa1e1, type: 3}
   m_Name: USD Playable Track
   m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
   m_Locked: 0
   m_Muted: 0
   m_CustomPlayableFullTypename: 
-  m_AnimClip: {fileID: 0}
+  m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips: []
-  m_Version: 2
+  m_Markers:
+    m_Objects: []
 --- !u!114 &114433926826240734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,14 +75,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7730524778551f74894a8e6ca1eaa1e1, type: 3}
   m_Name: Usd Playable Track
   m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
   m_Locked: 0
   m_Muted: 0
   m_CustomPlayableFullTypename: 
-  m_AnimClip: {fileID: 0}
+  m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips:
-  - m_Start: 1.1
+  - m_Version: 1
+    m_Start: 1.1
     m_ClipIn: 0
     m_Asset: {fileID: 114615900551568256}
     m_Duration: 5
@@ -147,8 +153,8 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: UsdPlayableAsset
-    m_Version: 1
-  m_Version: 2
+  m_Markers:
+    m_Objects: []
 --- !u!114 &114615900551568256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,7 +170,6 @@ MonoBehaviour:
   SourceUsdAsset:
     exposedName: 
     defaultValue: {fileID: 0}
-  UsdRootPath: 
 --- !u!114 &114737984377075494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,12 +180,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d77c09a5fe057484d896faeb25d94f62, type: 3}
-  m_Name: testRecording.usd
+  m_Name: mesh.usd
   m_EditorClassIdentifier: 
   SourceUsdAsset:
     exposedName: 55e26f8c66463bd43a5d6e532e8ee078
     defaultValue: {fileID: 0}
-  UsdRootPath: /
 --- !u!114 &114806365768102986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,14 +197,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7730524778551f74894a8e6ca1eaa1e1, type: 3}
   m_Name: Usd Playable Track
   m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
   m_Locked: 0
   m_Muted: 0
   m_CustomPlayableFullTypename: 
-  m_AnimClip: {fileID: 0}
+  m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips:
-  - m_Start: 0
+  - m_Version: 1
+    m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 114737984377075494}
     m_Duration: 5
@@ -268,8 +275,8 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: testRecording
-    m_Version: 1
-  m_Version: 2
+  m_Markers:
+    m_Objects: []
 --- !u!114 &114964042240500346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,7 +292,6 @@ MonoBehaviour:
   SourceUsdAsset:
     exposedName: 
     defaultValue: {fileID: 0}
-  UsdRootPath: 
 --- !u!114 &114980756893426964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,14 +304,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7730524778551f74894a8e6ca1eaa1e1, type: 3}
   m_Name: USD Playable Track
   m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
   m_Locked: 0
   m_Muted: 0
   m_CustomPlayableFullTypename: 
-  m_AnimClip: {fileID: 0}
+  m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips:
-  - m_Start: 0
+  - m_Version: 1
+    m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 114964042240500346}
     m_Duration: 7.666666666666667
@@ -373,5 +382,5 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: Test
-    m_Version: 1
-  m_Version: 2
+  m_Markers:
+    m_Objects: []

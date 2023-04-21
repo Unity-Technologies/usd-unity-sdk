@@ -3066,7 +3066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536733504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 4.02, z: -12.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 866301071}
@@ -10973,9 +10973,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf551a4e1d76a44b24772050c56c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_explodeTime: 4
+  m_explodeTime: 2
   m_effectRoot: {fileID: 1621364863}
-  m_force: 6654.16
+  m_force: 800
   m_radius: 337.01
 --- !u!1 &1731566940
 GameObject:
@@ -11658,7 +11658,7 @@ GameObject:
   - component: {fileID: 1887887007}
   - component: {fileID: 1887887006}
   m_Layer: 0
-  m_Name: ExportMeshExample
+  m_Name: ExportMeshWithAnimationExample - Select Me!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11678,14 +11678,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_exportRoot: {fileID: 866301070}
   m_trackedRoots: []
-  m_curFrame: 0
-  m_timeUnits: 0
-  m_frameRate: 60
-  m_frameCount: 100
   m_exportMaterials: 1
   m_convertHandedness: 1
   m_activePolicy: 0
-  m_usdFile: ExportMeshExample.usda
+  m_newUsdFileName: ExportMeshWithAnimationExample.usda
+  m_curFrame: 0
+  m_timeUnits: 0
+  m_frameRate: 60
+  m_maxFrameCount: 100
 --- !u!4 &1887887007
 Transform:
   m_ObjectHideFlags: 0
@@ -13710,81 +13710,3 @@ SpringJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!1 &2133590766
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2133590768}
-  - component: {fileID: 2133590769}
-  - component: {fileID: 2133590767}
-  m_Layer: 0
-  m_Name: TimelineRecorder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!95 &2133590767
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133590766}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!4 &2133590768
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133590766}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &2133590769
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133590766}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: f0e8052ae4dc66b4da67189feb161111, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 114384900094690320, guid: f0e8052ae4dc66b4da67189feb161111, type: 2}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References:
-    - 92b918ce641983549b592192755e7673: {fileID: 0}
-    - a7d2f0cbfee4a3040b534b10804d7be9: {fileID: 0}
-    - 9d74ea98a700fbe47b286d031cb19bc9: {fileID: 0}
-    - f5a7b71c89a48cf4784dc6bc97cbd58a: {fileID: 866301070}
-    - efcfefa397e6f1d4f85033bc96d2cddc: {fileID: 866301070}
-    - e70ce3d3740695f49be3627fd29993b1: {fileID: 0}
-    - 6b596b2517584e24a8428229f723828c: {fileID: 0}
-    - 5aea8f7d054341743935bbbbf6578109: {fileID: 0}

@@ -40,7 +40,7 @@ namespace Unity.Formats.USD.Examples
     ///    * Save and close the USD scene.
     ///    * Release the association map and USD scene.
     /// </remarks>
-    public class ExportMeshExample : MonoBehaviour
+    public class ExportMeshWithAnimationExample : MonoBehaviour
     {
         [Serializable]
         public enum TimeCode
@@ -64,9 +64,20 @@ namespace Unity.Formats.USD.Examples
             Fps90 = 90,
         }
 
+        [HeaderAttribute("Export Related Variables")]
         // The root GameObject to export to USD.
         public GameObject m_exportRoot;
         public GameObject[] m_trackedRoots;
+
+        public bool m_exportMaterials = true;
+        public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
+        public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
+
+        // The path to where the USD file will be written.
+        // If null/empty, the file will be created in memory only.
+        public string m_newUsdFileName;
+
+        [HeaderAttribute("Animation Related Variables")]
 
         public int m_curFrame;
 
@@ -77,15 +88,7 @@ namespace Unity.Formats.USD.Examples
         public FrameRate m_frameRate = FrameRate.Fps60;
 
         // The number of frames to capture after hitting record;
-        [Range(1, 500)] public int m_frameCount = 100;
-
-        public bool m_exportMaterials = true;
-        public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
-        public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
-
-        // The path to where the USD file will be written.
-        // If null/empty, the file will be created in memory only.
-        public string m_usdFile;
+        [Range(1, 500)] public int m_maxFrameCount = 100;
 
         // The scene object to which the recording will be saved.
         private Scene m_usdScene;
@@ -100,6 +103,7 @@ namespace Unity.Formats.USD.Examples
 
         // Used by the custom editor to determine recording state.
         public bool IsRecording { get; private set; }
+        public bool IsFinishedRecording { get; private set; }
 
         // ------------------------------------------------------------------------------------------ //
         // Recording Control.
@@ -126,13 +130,13 @@ namespace Unity.Formats.USD.Examples
 
             try
             {
-                if (string.IsNullOrEmpty(m_usdFile))
+                if (string.IsNullOrEmpty(m_newUsdFileName))
                 {
                     m_usdScene = Scene.Create();
                 }
                 else
                 {
-                    m_usdScene = Scene.Create(Path.Combine(Application.dataPath, m_usdFile));
+                    m_usdScene = Scene.Create(Path.Combine(Application.dataPath, m_newUsdFileName));
                 }
 
                 // USD operates on frames, so the frame rate is required for playback.
@@ -164,7 +168,7 @@ namespace Unity.Formats.USD.Examples
                 }
 
                 m_usdScene.StartTime = 0;
-                m_usdScene.EndTime = m_frameCount;
+                m_usdScene.EndTime = m_maxFrameCount;
 
                 // For simplicity in this example, adding game objects while recording is not supported.
                 m_context = new ExportContext();
@@ -201,7 +205,7 @@ namespace Unity.Formats.USD.Examples
             m_context = new ExportContext();
 
             // In a real exporter, additional error handling should be added here.
-            if (!string.IsNullOrEmpty(m_usdFile))
+            if (!string.IsNullOrEmpty(m_newUsdFileName))
             {
                 // We could use SaveAs here, which is fine for small scenes, though it will require
                 // everything to fit in memory and another step where that memory is copied to disk.
@@ -262,9 +266,11 @@ namespace Unity.Formats.USD.Examples
             m_context.exportMaterials = false;
 
             // Exit once we've recorded all frames.
-            if (m_curFrame > m_frameCount)
+            if (m_curFrame > m_maxFrameCount)
             {
                 StopRecording();
+                IsFinishedRecording = true;
+                AssetDatabase.Refresh();
                 return;
             }
 
@@ -280,11 +286,6 @@ namespace Unity.Formats.USD.Examples
             {
                 SceneExporter.Export(m_exportRoot, m_context, zeroRootTransform: true);
             }
-        }
-
-        void OnApplicationQuit()
-        {
-            AssetDatabase.Refresh();
         }
 
         public static void Export(GameObject root,

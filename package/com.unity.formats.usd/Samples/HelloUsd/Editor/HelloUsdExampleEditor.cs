@@ -13,38 +13,21 @@
 // limitations under the License.
 
 using UnityEngine;
+using UnityEditor;
 
-namespace USD.NET.Examples
+namespace Unity.Formats.USD.Examples
 {
-    public class Explode : MonoBehaviour
+    [CustomEditor(typeof(HelloUsdExample))]
+    public class HelloUsdExampleEditor : Editor
     {
-        public int m_explodeTime = 10;
-        public Transform m_effectRoot;
-        public float m_force = 1;
-        public float m_radius = 1;
-
-        private bool m_active = true;
-
-        void Start()
+        public override void OnInspectorGUI()
         {
-        }
+            DrawDefaultInspector();
 
-        void Update()
-        {
-            if (!m_active)
+            HelloUsdExample combineMeshesScript = (HelloUsdExample)target;
+            if (GUILayout.Button("Click Me to Run HelloUsd Sample"))
             {
-                return;
-            }
-
-            if (Time.time < m_explodeTime)
-            {
-                return;
-            }
-
-            m_active = false;
-            foreach (Rigidbody rb in m_effectRoot.GetComponentsInChildren<Rigidbody>())
-            {
-                rb.AddExplosionForce(m_force, transform.position, m_radius);
+                combineMeshesScript.DoHelloUsdExampleDemo();
             }
         }
     }
