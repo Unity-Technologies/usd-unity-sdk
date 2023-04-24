@@ -42,6 +42,8 @@ Once the USD package is installed, a USD menu will appear, enabling you to easil
 
 * The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
 
+* This package uses USD v20.08, so some of the functionality of newer USD versions may be missing.
+
 ## Samples
 
 The USD package also includes samples to help you get started. Use the Package Manager Window to import the samples into your Assets folder. For each of the samples, open the scene file and inspect the relevant Game Object in the Inspector Window to get started.
