@@ -1,11 +1,11 @@
-﻿project(usdcs LANGUAGES CXX)
+project(usdcs LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set(CMAKE_INSTALL_RPATH "@loader_path/../Frameworks")
     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH FALSE)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(CMAKE_INSTALL_RPATH "\$ORIGIN/../Frameworks")
+    set(CMAKE_INSTALL_RPATH "\$ORIGIN:\$ORIGIN/lib")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX /bigobj /EHsc")
 endif ()
@@ -33,7 +33,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR}/UsdCs.bundle/Contents/Frameworks)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Linux)
-    set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR})
+    set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR}/lib)
 else ()
     set(SWIG_OUTPUT_DIR ${SWIG_OUTPUT_DIR}/Windows)
     set(DEPENDENCIES_INSTALL_DIR ${SWIG_OUTPUT_DIR})
@@ -72,7 +72,7 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         PREFIX lib
         CXX_STANDARD_REQUIRED 14
         )
-    set(LINK_DEPENDENCIES Alembic.1.7 Iex-2_2.12 IexMath-2_2.12 Imath-2_2.12 IlmThread-2_2.12 IlmImf-2_2.22 Half.12 tbb)
+    set(LINK_DEPENDENCIES Alembic Iex-2_2 IexMath-2_2 Imath-2_2 IlmThread-2_2 IlmImf-2_2 Half tbb)
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
      set_target_properties(${USD_SWIG_LIBRARY}
         PROPERTIES
@@ -83,9 +83,13 @@ elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 endif ()
 
 
-add_dependencies(${USD_SWIG_LIBRARY}
-    USD_TYPE_INFO
-    )
+if (WIN32)
+   add_dependencies(${USD_SWIG_LIBRARY} USD_TYPE_INFO)
+else ()
+   add_dependencies(${USD_SWIG_LIBRARY}_swig_compilation USD_TYPE_INFO)
+endif ()
+
+
 
 swig_link_libraries(${USD_SWIG_LIBRARY}
     usd_ms
@@ -127,8 +131,31 @@ list(TRANSFORM PIXAR_DEPS PREPEND ${USD_LIBRARY_DIR}/${CMAKE_SHARED_LIBRARY_PREF
 list(TRANSFORM PIXAR_DEPS APPEND ${CMAKE_SHARED_LIBRARY_SUFFIX})
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     list(APPEND PIXAR_DEPS ${USD_BIN_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}tbb${CMAKE_SHARED_LIBRARY_SUFFIX})
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    list(APPEND PIXAR_DEPS ${USD_LIBRARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}tbb${CMAKE_SHARED_LIBRARY_SUFFIX}.2)
 endif()
-install(FILES ${PIXAR_DEPS} DESTINATION ${DEPENDENCIES_INSTALL_DIR})
+
+# install(FILES ${PIXAR_DEPS} DESTINATION ${DEPENDENCIES_INSTALL_DIR})
+# The above line is enough for windows and OSX but Linux libraries have the soname/linkername/realname setup with symlinks
+# so we need to follow the symlink chain
+install(CODE "set(PIXAR_DEPS \"${PIXAR_DEPS}\")")
+install(CODE "set(DEPENDENCIES_INSTALL_DIR \"${DEPENDENCIES_INSTALL_DIR}\")")
+install(CODE [[
+#  file(GET_RUNTIME_DEPENDENCIES
+#    LIBRARIES $<TARGET_FILE:UsdCs>
+#    RESOLVED_DEPENDENCIES_VAR _r_deps
+#    UNRESOLVED_DEPENDENCIES_VAR _u_deps
+#    DIRECTORIES ${MY_DEPENDENCY_PATHS}
+#  )
+foreach(_file ${PIXAR_DEPS})
+    file(INSTALL
+      DESTINATION "${DEPENDENCIES_INSTALL_DIR}"
+      TYPE SHARED_LIBRARY
+      FOLLOW_SYMLINK_CHAIN
+      FILES "${_file}"
+    )
+endforeach()
+]])
 
 # Install the usd schema folder
 install(DIRECTORY "${USD_LIBRARY_DIR}/usd" DESTINATION "${SWIG_OUTPUT_DIR}/.."

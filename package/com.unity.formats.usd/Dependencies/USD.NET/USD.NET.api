@@ -1703,21 +1703,20 @@ namespace pxr
         public JsValue(bool value) {}
         public JsValue(double value) {}
         public JsValue(int value) {}
-        public JsValue(long value) {}
         public JsValue(string value) {}
-        public JsValue(System.UInt64 value) {}
+        public JsValue(System.UInt32 value) {}
         public virtual void Dispose();
         protected virtual void Finalize();
         public bool GetBool();
         public int GetInt();
-        public long GetInt64();
+        public int GetInt64();
         public pxr.JsObjectVector GetJsArray();
         public pxr.JsObject GetJsObject();
         public pxr.JsValue.Type GetJsType();
         public double GetReal();
         public string GetString();
         public string GetTypeName();
-        public System.UInt64 GetUInt64();
+        public System.UInt32 GetUInt64();
         public bool IsArray();
         public bool IsBool();
         public bool IsInt();
@@ -5774,7 +5773,7 @@ namespace pxr
         }
     }
 
-    [System.Reflection.DefaultMember(@"Item")] public class StdUInt64Vector : System.Collections.Generic.ICollection<System.UInt64>, System.Collections.Generic.IEnumerable<System.UInt64>, System.Collections.Generic.IList<System.UInt64>, System.Collections.IEnumerable, System.IDisposable
+    [System.Reflection.DefaultMember(@"Item")] public class StdUInt64Vector : System.Collections.Generic.ICollection<System.UInt32>, System.Collections.Generic.IEnumerable<System.UInt32>, System.Collections.Generic.IList<System.UInt32>, System.Collections.IEnumerable, System.IDisposable
     {
         protected bool swigCMemOwn;
         public int Capacity { get; set; }
@@ -5782,36 +5781,36 @@ namespace pxr
         public bool IsFixedSize { get; }
         public virtual bool IsReadOnly { get; }
         public bool IsSynchronized { get; }
-        public virtual System.UInt64 this[int index] { get; set; }
+        public virtual System.UInt32 this[int index] { get; set; }
         public StdUInt64Vector() {}
         public StdUInt64Vector(pxr.StdUInt64Vector other) {}
         public StdUInt64Vector(System.Collections.ICollection c) {}
         public StdUInt64Vector(int capacity) {}
-        public virtual void Add(System.UInt64 x);
+        public virtual void Add(System.UInt32 x);
         public void AddRange(pxr.StdUInt64Vector values);
         public virtual void Clear();
-        public virtual bool Contains(System.UInt64 value);
-        public void CopyTo(System.UInt64[] array);
-        public virtual void CopyTo(System.UInt64[] array, int arrayIndex);
-        public void CopyTo(int index, System.UInt64[] array, int arrayIndex, int count);
+        public virtual bool Contains(System.UInt32 value);
+        public void CopyTo(System.UInt32[] array);
+        public virtual void CopyTo(System.UInt32[] array, int arrayIndex);
+        public void CopyTo(int index, System.UInt32[] array, int arrayIndex, int count);
         public virtual void Dispose();
         protected virtual void Finalize();
         public pxr.StdUInt64Vector.StdUInt64VectorEnumerator GetEnumerator();
         public pxr.StdUInt64Vector GetRange(int index, int count);
-        public virtual int IndexOf(System.UInt64 value);
-        public virtual void Insert(int index, System.UInt64 x);
+        public virtual int IndexOf(System.UInt32 value);
+        public virtual void Insert(int index, System.UInt32 x);
         public void InsertRange(int index, pxr.StdUInt64Vector values);
-        public int LastIndexOf(System.UInt64 value);
-        public virtual bool Remove(System.UInt64 value);
+        public int LastIndexOf(System.UInt32 value);
+        public virtual bool Remove(System.UInt32 value);
         public virtual void RemoveAt(int index);
         public void RemoveRange(int index, int count);
-        public static pxr.StdUInt64Vector Repeat(System.UInt64 value, int count);
+        public static pxr.StdUInt64Vector Repeat(System.UInt32 value, int count);
         public void Reverse();
         public void Reverse(int index, int count);
         public void SetRange(int index, pxr.StdUInt64Vector values);
-        public sealed class StdUInt64VectorEnumerator : System.Collections.Generic.IEnumerator<System.UInt64>, System.Collections.IEnumerator, System.IDisposable
+        public sealed class StdUInt64VectorEnumerator : System.Collections.Generic.IEnumerator<System.UInt32>, System.Collections.IEnumerator, System.IDisposable
         {
-            public virtual System.UInt64 Current { get; }
+            public virtual System.UInt32 Current { get; }
             public StdUInt64VectorEnumerator(pxr.StdUInt64Vector collection) {}
             public virtual void Dispose();
             public virtual bool MoveNext();
@@ -7604,8 +7603,8 @@ namespace pxr
         public static bool TfStringStartsWith(string s, pxr.TfToken prefix);
         public static bool TfStringStartsWith(string s, string prefix);
         public static double TfStringToDouble(string txt);
-        public static long TfStringToInt64(string txt);
-        public static long TfStringToInt64(string txt, ref bool outOfRange);
+        public static int TfStringToInt64(string txt);
+        public static int TfStringToInt64(string txt, ref bool outOfRange);
         public static pxr.StdStringVector TfStringTokenize(string source);
         public static pxr.StdStringVector TfStringTokenize(string source, string delimiters);
         public static pxr.SWIGTYPE_p_std__setT_std__string_t TfStringTokenizeToSet(string source);
@@ -7613,8 +7612,8 @@ namespace pxr
         public static int TfStringToLong(string txt);
         public static int TfStringToLong(string txt, ref bool outOfRange);
         public static string TfStringToLower(string source);
-        public static System.UInt64 TfStringToUInt64(string txt);
-        public static System.UInt64 TfStringToUInt64(string txt, ref bool outOfRange);
+        public static System.UInt32 TfStringToUInt64(string txt);
+        public static System.UInt32 TfStringToUInt64(string txt, ref bool outOfRange);
         public static System.UInt32 TfStringToULong(string txt);
         public static System.UInt32 TfStringToULong(string txt, ref bool outOfRange);
         public static string TfStringToUpper(string source);
@@ -7829,7 +7828,7 @@ namespace pxr
         public static int VtValueToint(pxr.VtValue value);
         public static void VtValueToint(pxr.VtValue value, ref int output);
         public static long VtValueTolong(pxr.VtValue value);
-        public static void VtValueTolong(pxr.VtValue value, ref long output);
+        public static void VtValueTolong(pxr.VtValue value, ref int output);
         public static pxr.SdfAssetPath VtValueToSdfAssetPath(pxr.VtValue value);
         public static void VtValueToSdfAssetPath(pxr.VtValue value, pxr.SdfAssetPath output);
         public static pxr.SdfAssetPathArray VtValueToSdfAssetPathArray(pxr.VtValue value);
@@ -7845,7 +7844,7 @@ namespace pxr
         public static System.UInt32 VtValueTouint(pxr.VtValue value);
         public static void VtValueTouint(pxr.VtValue value, ref System.UInt32 output);
         public static System.UInt64 VtValueToulong(pxr.VtValue value);
-        public static void VtValueToulong(pxr.VtValue value, ref System.UInt64 output);
+        public static void VtValueToulong(pxr.VtValue value, ref System.UInt32 output);
         public static pxr.VtBoolArray VtValueToVtBoolArray(pxr.VtValue value);
         public static void VtValueToVtBoolArray(pxr.VtValue value, pxr.VtBoolArray output);
         public static pxr.VtDoubleArray VtValueToVtDoubleArray(pxr.VtValue value);

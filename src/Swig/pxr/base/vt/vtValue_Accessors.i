@@ -68,7 +68,7 @@
 %csattributes VtValueToVtFloatArray "[Preserve]" 
 %typemap(csattributes) VtArray<GfHalf> "[Preserve]"
 %csattributes VtValueToVtHalfArray "[Preserve]" 
-%typemap(csattributes) VtArray<int64_t> "[Preserve]"
+%typemap(csattributes) VtArray<long> "[Preserve]"
 %csattributes VtValueToVtInt64Array "[Preserve]" 
 %typemap(csattributes) VtArray<int> "[Preserve]"
 %csattributes VtValueToVtIntArray "[Preserve]" 
@@ -90,7 +90,7 @@
 %csattributes VtValueToVtTokenArray "[Preserve]" 
 %typemap(csattributes) VtArray<unsigned char> "[Preserve]"
 %csattributes VtValueToVtUCharArray "[Preserve]" 
-%typemap(csattributes) VtArray<uint64_t> "[Preserve]"
+%typemap(csattributes) VtArray<unsigned long> "[Preserve]"
 %csattributes VtValueToVtUInt64Array "[Preserve]" 
 %typemap(csattributes) VtArray<unsigned int> "[Preserve]"
 %csattributes VtValueToVtUIntArray "[Preserve]" 
@@ -126,16 +126,16 @@
 %csattributes VtValueTofloat "[Preserve]" 
 %typemap(csattributes) int "[Preserve]"
 %csattributes VtValueToint "[Preserve]" 
-%typemap(csattributes) int64_t "[Preserve]"
+%typemap(csattributes) long "[Preserve]"
 %csattributes VtValueTolong "[Preserve]" 
 %typemap(csattributes) std::string "[Preserve]"
 %csattributes VtValueTostring "[Preserve]" 
-%typemap(csattributes) uint64_t "[Preserve]"
-%csattributes VtValueToulong "[Preserve]" 
 %typemap(csattributes) unsigned char "[Preserve]"
 %csattributes VtValueTobyte "[Preserve]" 
 %typemap(csattributes) unsigned int "[Preserve]"
 %csattributes VtValueTouint "[Preserve]" 
+%typemap(csattributes) unsigned long "[Preserve]"
+%csattributes VtValueToulong "[Preserve]" 
 
 %inline %{
 // This code manifests in UsdCs class.
@@ -825,15 +825,15 @@ extern void VtValueToint(VtValue const& value, int* output) {
   }
 }
 
-extern int64_t VtValueTolong(VtValue const& value) {
-  if (value.IsHolding<int64_t>()) {
-    return value.UncheckedGet<int64_t>();
+extern long VtValueTolong(VtValue const& value) {
+  if (value.IsHolding<long>()) {
+    return value.UncheckedGet<long>();
   }
-  return int64_t();
+  return long();
 }
-extern void VtValueTolong(VtValue const& value, int64_t* output) {
-  if (value.IsHolding<int64_t>()) {
-    *output = value.UncheckedGet<int64_t>();
+extern void VtValueTolong(VtValue const& value, long* output) {
+  if (value.IsHolding<long>()) {
+    *output = value.UncheckedGet<long>();
   }
 }
 
@@ -846,18 +846,6 @@ extern std::string VtValueTostring(VtValue const& value) {
 extern void VtValueTostring(VtValue const& value, std::string* output) {
   if (value.IsHolding<std::string>()) {
     *output = value.UncheckedGet<std::string>();
-  }
-}
-
-extern uint64_t VtValueToulong(VtValue const& value) {
-  if (value.IsHolding<uint64_t>()) {
-    return value.UncheckedGet<uint64_t>();
-  }
-  return uint64_t();
-}
-extern void VtValueToulong(VtValue const& value, uint64_t* output) {
-  if (value.IsHolding<uint64_t>()) {
-    *output = value.UncheckedGet<uint64_t>();
   }
 }
 
@@ -882,6 +870,18 @@ extern unsigned int VtValueTouint(VtValue const& value) {
 extern void VtValueTouint(VtValue const& value, unsigned int* output) {
   if (value.IsHolding<unsigned int>()) {
     *output = value.UncheckedGet<unsigned int>();
+  }
+}
+
+extern unsigned long VtValueToulong(VtValue const& value) {
+  if (value.IsHolding<unsigned long>()) {
+    return value.UncheckedGet<unsigned long>();
+  }
+  return (unsigned long)(0);
+}
+extern void VtValueToulong(VtValue const& value, unsigned long* output) {
+  if (value.IsHolding<unsigned long>()) {
+    *output = value.UncheckedGet<unsigned long>();
   }
 }
 %}

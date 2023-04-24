@@ -28,6 +28,27 @@
 //    }
 //%}
 
+
+// We want int64t to be bound to long int on Linux
+// https://stackoverflow.com/questions/13604137/definition-of-int64-t
+#if defined(SWIGCSHARP)
+#if defined(SWIGWORDSIZE64)
+%define PRIMITIVE_TYPEMAP(NEW_TYPE, TYPE)
+%clear NEW_TYPE;
+%clear NEW_TYPE *;
+%clear NEW_TYPE &;
+%clear const NEW_TYPE &;
+%apply TYPE { NEW_TYPE };
+%apply TYPE * { NEW_TYPE * };
+%apply TYPE & { NEW_TYPE & };
+%apply const TYPE & { const NEW_TYPE & };
+%enddef // PRIMITIVE_TYPEMAP
+PRIMITIVE_TYPEMAP(long int, long long);
+PRIMITIVE_TYPEMAP(unsigned long int, unsigned long long);
+#undef PRIMITIVE_TYPEMAP
+#endif // defined(SWIGWORDSIZE64)
+#endif // defined(SWIGCSHARP)
+
 %include "stdint.i"
 
 %rename (GetTfType) VtValue::GetType;

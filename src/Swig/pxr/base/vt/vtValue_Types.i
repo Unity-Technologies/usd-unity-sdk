@@ -69,8 +69,8 @@
 %template(VtValue) VtValue::VtValue<double>;
 %template(VtValue) VtValue::VtValue<float>;
 %template(VtValue) VtValue::VtValue<int>;
-%template(VtValue) VtValue::VtValue<int64_t>;
+%template(VtValue) VtValue::VtValue<long>;
 %template(VtValue) VtValue::VtValue<std::string>;
-%template(VtValue) VtValue::VtValue<uint64_t>;
 %template(VtValue) VtValue::VtValue<unsigned char>;
 %template(VtValue) VtValue::VtValue<unsigned int>;
+%template(VtValue) VtValue::VtValue<unsigned long>;

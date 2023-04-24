@@ -1,4 +1,4 @@
-﻿SET(INSTALL_DIR ${CMAKE_SOURCE_DIR}/../package/com.unity.formats.usd/Dependencies/USD.NET/generated)
+SET(INSTALL_DIR ${CMAKE_SOURCE_DIR}/../package/com.unity.formats.usd/Dependencies/USD.NET/generated)
 
 FILE(GLOB usd_tf ${CMAKE_BINARY_DIR}/generated/Tf*.cs)
 FILE(INSTALL ${usd_tf} DESTINATION ${INSTALL_DIR}/pxr/base/tf)
@@ -29,8 +29,8 @@ FILE(INSTALL ${usd_sdf} DESTINATION ${INSTALL_DIR}/pxr/usd/sdf)
 LIST(APPEND SWIG_FILES pxr/usd/sdf/*.cs)
 
 FILE(GLOB usd_usdcs ${CMAKE_BINARY_DIR}/generated/UsdCs*.cs)
-FILE(INSTALL ${usd_usdcs} DESTINATION ${INSTALL_DIR}/usdCs)
-LIST(APPEND SWIG_FILES usdCs/*.cs)
+FILE(INSTALL ${usd_usdcs} DESTINATION ${INSTALL_DIR}/UsdCs)
+LIST(APPEND SWIG_FILES UsdCs/*.cs)
 
 FILE(GLOB usd_usdgeom ${CMAKE_BINARY_DIR}/generated/UsdGeom*.cs)
 FILE(INSTALL ${usd_usdgeom} DESTINATION ${INSTALL_DIR}/pxr/usd/usdGeom)
@@ -94,6 +94,9 @@ LIST(APPEND SWIG_FILES SWIG/*.cs)
 FILE(GLOB usd_std ${CMAKE_BINARY_DIR}/generated/Std*.cs)
 FILE(INSTALL ${usd_std} DESTINATION ${INSTALL_DIR}/std)
 LIST(APPEND SWIG_FILES std/*.cs)
+
+FILE(GLOB usdCsCSHARP ${CMAKE_BINARY_DIR}/generated/*.cxx)
+FILE(INSTALL ${usdCsCSHARP} DESTINATION ${INSTALL_DIR})
 
 # Create a CMakeLists.txt file to list all the generated files
 set(GENERATED_CMAKE ${CMAKE_SOURCE_DIR}/../src/USD.NET/generated/CMakeLists.txt)

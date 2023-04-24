@@ -43,10 +43,10 @@ WRAP_EQUAL(VtHalfArray)
 %template (VtHalfArray) VtArray<GfHalf>;
 typedef VtArray<GfHalf> VtHalfArray;
 
-CSHARP_ARRAYS(int64_t, long);
+CSHARP_ARRAYS(long, long);
 WRAP_EQUAL(VtInt64Array)
-%template (VtInt64Array) VtArray<int64_t>;
-typedef VtArray<int64_t> VtInt64Array;
+%template (VtInt64Array) VtArray<long>;
+typedef VtArray<long> VtInt64Array;
 
 CSHARP_ARRAYS(int, int);
 WRAP_EQUAL(VtIntArray)
@@ -98,10 +98,10 @@ WRAP_EQUAL(VtUCharArray)
 %template (VtUCharArray) VtArray<unsigned char>;
 typedef VtArray<unsigned char> VtUCharArray;
 
-CSHARP_ARRAYS(uint64_t, ulong);
+CSHARP_ARRAYS(unsigned long, ulong);
 WRAP_EQUAL(VtUInt64Array)
-%template (VtUInt64Array) VtArray<uint64_t>;
-typedef VtArray<uint64_t> VtUInt64Array;
+%template (VtUInt64Array) VtArray<unsigned long>;
+typedef VtArray<unsigned long> VtUInt64Array;
 
 CSHARP_ARRAYS(unsigned int, uint);
 WRAP_EQUAL(VtUIntArray)

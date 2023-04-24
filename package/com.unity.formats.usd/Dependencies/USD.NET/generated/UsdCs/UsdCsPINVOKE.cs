@@ -496,7 +496,7 @@ namespace pxr
         public static extern void StdUInt64Vector_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_Add")]
-        public static extern void StdUInt64Vector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+        public static extern void StdUInt64Vector_Add(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_size")]
         public static extern uint StdUInt64Vector_size(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -517,13 +517,13 @@ namespace pxr
         public static extern global::System.IntPtr new_StdUInt64Vector__SWIG_2(int jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_getitemcopy")]
-        public static extern ulong StdUInt64Vector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+        public static extern uint StdUInt64Vector_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_getitem")]
-        public static extern ulong StdUInt64Vector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+        public static extern uint StdUInt64Vector_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_setitem")]
-        public static extern void StdUInt64Vector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, ulong jarg3);
+        public static extern void StdUInt64Vector_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, uint jarg3);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_AddRange")]
         public static extern void StdUInt64Vector_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -532,7 +532,7 @@ namespace pxr
         public static extern global::System.IntPtr StdUInt64Vector_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_Insert")]
-        public static extern void StdUInt64Vector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, ulong jarg3);
+        public static extern void StdUInt64Vector_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, uint jarg3);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_InsertRange")]
         public static extern void StdUInt64Vector_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
@@ -544,7 +544,7 @@ namespace pxr
         public static extern void StdUInt64Vector_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_Repeat")]
-        public static extern global::System.IntPtr StdUInt64Vector_Repeat(ulong jarg1, int jarg2);
+        public static extern global::System.IntPtr StdUInt64Vector_Repeat(uint jarg1, int jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_Reverse__SWIG_0")]
         public static extern void StdUInt64Vector_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -556,16 +556,16 @@ namespace pxr
         public static extern void StdUInt64Vector_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_Contains")]
-        public static extern bool StdUInt64Vector_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+        public static extern bool StdUInt64Vector_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_IndexOf")]
-        public static extern int StdUInt64Vector_IndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+        public static extern int StdUInt64Vector_IndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_LastIndexOf")]
-        public static extern int StdUInt64Vector_LastIndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+        public static extern int StdUInt64Vector_LastIndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_StdUInt64Vector_Remove")]
-        public static extern bool StdUInt64Vector_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+        public static extern bool StdUInt64Vector_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_delete_StdUInt64Vector")]
         public static extern void delete_StdUInt64Vector(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -886,16 +886,16 @@ namespace pxr
         public static extern uint TfStringToULong__SWIG_1(string jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_TfStringToInt64__SWIG_0")]
-        public static extern long TfStringToInt64__SWIG_0(string jarg1, ref bool jarg2);
+        public static extern int TfStringToInt64__SWIG_0(string jarg1, ref bool jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_TfStringToInt64__SWIG_1")]
-        public static extern long TfStringToInt64__SWIG_1(string jarg1);
+        public static extern int TfStringToInt64__SWIG_1(string jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_TfStringToUInt64__SWIG_0")]
-        public static extern ulong TfStringToUInt64__SWIG_0(string jarg1, ref bool jarg2);
+        public static extern uint TfStringToUInt64__SWIG_0(string jarg1, ref bool jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_TfStringToUInt64__SWIG_1")]
-        public static extern ulong TfStringToUInt64__SWIG_1(string jarg1);
+        public static extern uint TfStringToUInt64__SWIG_1(string jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_Tf_StringStartsWithImpl")]
         public static extern bool Tf_StringStartsWithImpl(string jarg1, uint jarg2, string jarg3, uint jarg4);
@@ -1410,11 +1410,8 @@ namespace pxr
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_JsValue__SWIG_9")]
         public static extern global::System.IntPtr new_JsValue__SWIG_9(int jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_JsValue__SWIG_10")]
-        public static extern global::System.IntPtr new_JsValue__SWIG_10(long jarg1);
-
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_JsValue__SWIG_11")]
-        public static extern global::System.IntPtr new_JsValue__SWIG_11(ulong jarg1);
+        public static extern global::System.IntPtr new_JsValue__SWIG_11(uint jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_JsValue__SWIG_12")]
         public static extern global::System.IntPtr new_JsValue__SWIG_12(double jarg1);
@@ -1435,10 +1432,10 @@ namespace pxr
         public static extern int JsValue_GetInt(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_JsValue_GetInt64")]
-        public static extern long JsValue_GetInt64(global::System.Runtime.InteropServices.HandleRef jarg1);
+        public static extern int JsValue_GetInt64(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_JsValue_GetUInt64")]
-        public static extern ulong JsValue_GetUInt64(global::System.Runtime.InteropServices.HandleRef jarg1);
+        public static extern uint JsValue_GetUInt64(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_JsValue_GetReal")]
         public static extern double JsValue_GetReal(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -5728,13 +5725,13 @@ namespace pxr
         public static extern global::System.IntPtr new_VtValue__SWIG_62(string jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_VtValue__SWIG_63")]
-        public static extern global::System.IntPtr new_VtValue__SWIG_63(ulong jarg1);
+        public static extern global::System.IntPtr new_VtValue__SWIG_63(byte jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_VtValue__SWIG_64")]
-        public static extern global::System.IntPtr new_VtValue__SWIG_64(byte jarg1);
+        public static extern global::System.IntPtr new_VtValue__SWIG_64(uint jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_VtValue__SWIG_65")]
-        public static extern global::System.IntPtr new_VtValue__SWIG_65(uint jarg1);
+        public static extern global::System.IntPtr new_VtValue__SWIG_65(ulong jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValue_Equals")]
         public static extern bool VtValue_Equals(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -6088,19 +6085,13 @@ namespace pxr
         public static extern long VtValueTolong__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueTolong__SWIG_1")]
-        public static extern void VtValueTolong__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref long jarg2);
+        public static extern void VtValueTolong__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref int jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueTostring__SWIG_0")]
         public static extern string VtValueTostring__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueTostring__SWIG_1")]
         public static extern void VtValueTostring__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueToulong__SWIG_0")]
-        public static extern ulong VtValueToulong__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueToulong__SWIG_1")]
-        public static extern void VtValueToulong__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref ulong jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueTobyte__SWIG_0")]
         public static extern byte VtValueTobyte__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -6113,6 +6104,12 @@ namespace pxr
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueTouint__SWIG_1")]
         public static extern void VtValueTouint__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref uint jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueToulong__SWIG_0")]
+        public static extern ulong VtValueToulong__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_VtValueToulong__SWIG_1")]
+        public static extern void VtValueToulong__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, ref uint jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("UsdCs", EntryPoint = "CSharp_pxr_new_Vt_ArrayForeignDataSource__SWIG_0")]
         public static extern global::System.IntPtr new_Vt_ArrayForeignDataSource__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);

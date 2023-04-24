@@ -11,7 +11,7 @@
 namespace pxr
 {
     public class StdUInt64Vector : global::System.IDisposable, global::System.Collections.IEnumerable
-        , global::System.Collections.Generic.IList<ulong>
+        , global::System.Collections.Generic.IList<uint>
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
@@ -52,7 +52,7 @@ namespace pxr
         {
             if (c == null)
                 throw new global::System.ArgumentNullException("c");
-            foreach (ulong element in c)
+            foreach (uint element in c)
             {
                 this.Add(element);
             }
@@ -74,7 +74,7 @@ namespace pxr
             }
         }
 
-        public ulong this[int index]
+        public uint this[int index]
         {
             get
             {
@@ -116,17 +116,17 @@ namespace pxr
             }
         }
 
-        public void CopyTo(ulong[] array)
+        public void CopyTo(uint[] array)
         {
             CopyTo(0, array, 0, this.Count);
         }
 
-        public void CopyTo(ulong[] array, int arrayIndex)
+        public void CopyTo(uint[] array, int arrayIndex)
         {
             CopyTo(0, array, arrayIndex, this.Count);
         }
 
-        public void CopyTo(int index, ulong[] array, int arrayIndex, int count)
+        public void CopyTo(int index, uint[] array, int arrayIndex, int count)
         {
             if (array == null)
                 throw new global::System.ArgumentNullException("array");
@@ -144,7 +144,7 @@ namespace pxr
                 array.SetValue(getitemcopy(index + i), arrayIndex + i);
         }
 
-        global::System.Collections.Generic.IEnumerator<ulong> global::System.Collections.Generic.IEnumerable<ulong>.GetEnumerator()
+        global::System.Collections.Generic.IEnumerator<uint> global::System.Collections.Generic.IEnumerable<uint>.GetEnumerator()
         {
             return new StdUInt64VectorEnumerator(this);
         }
@@ -165,7 +165,7 @@ namespace pxr
         /// collection but not when one of the elements of the collection is modified as it is a bit
         /// tricky to detect unmanaged code that modifies the collection under our feet.
         public sealed class StdUInt64VectorEnumerator : global::System.Collections.IEnumerator
-            , global::System.Collections.Generic.IEnumerator<ulong>
+            , global::System.Collections.Generic.IEnumerator<uint>
         {
             private StdUInt64Vector collectionRef;
             private int currentIndex;
@@ -181,7 +181,7 @@ namespace pxr
             }
 
             // Type-safe iterator Current
-            public ulong Current
+            public uint Current
             {
                 get
                 {
@@ -191,7 +191,7 @@ namespace pxr
                         throw new global::System.InvalidOperationException("Enumeration finished.");
                     if (currentObject == null)
                         throw new global::System.InvalidOperationException("Collection modified.");
-                    return (ulong)currentObject;
+                    return (uint)currentObject;
                 }
             }
 
@@ -242,7 +242,7 @@ namespace pxr
             UsdCsPINVOKE.StdUInt64Vector_Clear(swigCPtr);
         }
 
-        public void Add(ulong x)
+        public void Add(uint x)
         {
             UsdCsPINVOKE.StdUInt64Vector_Add(swigCPtr, x);
         }
@@ -278,21 +278,21 @@ namespace pxr
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private ulong getitemcopy(int index)
+        private uint getitemcopy(int index)
         {
-            ulong ret = UsdCsPINVOKE.StdUInt64Vector_getitemcopy(swigCPtr, index);
+            uint ret = UsdCsPINVOKE.StdUInt64Vector_getitemcopy(swigCPtr, index);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private ulong getitem(int index)
+        private uint getitem(int index)
         {
-            ulong ret = UsdCsPINVOKE.StdUInt64Vector_getitem(swigCPtr, index);
+            uint ret = UsdCsPINVOKE.StdUInt64Vector_getitem(swigCPtr, index);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private void setitem(int index, ulong val)
+        private void setitem(int index, uint val)
         {
             UsdCsPINVOKE.StdUInt64Vector_setitem(swigCPtr, index, val);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -312,7 +312,7 @@ namespace pxr
             return ret;
         }
 
-        public void Insert(int index, ulong x)
+        public void Insert(int index, uint x)
         {
             UsdCsPINVOKE.StdUInt64Vector_Insert(swigCPtr, index, x);
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
@@ -336,7 +336,7 @@ namespace pxr
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public static StdUInt64Vector Repeat(ulong value, int count)
+        public static StdUInt64Vector Repeat(uint value, int count)
         {
             global::System.IntPtr cPtr = UsdCsPINVOKE.StdUInt64Vector_Repeat(value, count);
             StdUInt64Vector ret = (cPtr == global::System.IntPtr.Zero) ? null : new StdUInt64Vector(cPtr, true);
@@ -361,25 +361,25 @@ namespace pxr
             if (UsdCsPINVOKE.SWIGPendingException.Pending) throw UsdCsPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public bool Contains(ulong value)
+        public bool Contains(uint value)
         {
             bool ret = UsdCsPINVOKE.StdUInt64Vector_Contains(swigCPtr, value);
             return ret;
         }
 
-        public int IndexOf(ulong value)
+        public int IndexOf(uint value)
         {
             int ret = UsdCsPINVOKE.StdUInt64Vector_IndexOf(swigCPtr, value);
             return ret;
         }
 
-        public int LastIndexOf(ulong value)
+        public int LastIndexOf(uint value)
         {
             int ret = UsdCsPINVOKE.StdUInt64Vector_LastIndexOf(swigCPtr, value);
             return ret;
         }
 
-        public bool Remove(ulong value)
+        public bool Remove(uint value)
         {
             bool ret = UsdCsPINVOKE.StdUInt64Vector_Remove(swigCPtr, value);
             return ret;
