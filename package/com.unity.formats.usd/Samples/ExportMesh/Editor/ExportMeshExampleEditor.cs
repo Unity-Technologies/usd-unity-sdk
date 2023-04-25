@@ -26,7 +26,7 @@ namespace Unity.Formats.USD.Examples
                 }
 
                 script.InitializeForExport();
-                Debug.Log($"<color=#00FF00>Created USD file: <b><{script.m_newUsdFileName}></b> under project <b>'Assets'</b> folder</color>");
+                Debug.Log($"<color={SampleUtils.TextColor.Green}>Created USD file: <b><{script.m_newUsdFileName}></b> under project <b>'Assets'</b> folder</color>");
             }
 
             if (GUILayout.Button("2. Export GameObject"))
@@ -40,7 +40,7 @@ namespace Unity.Formats.USD.Examples
 
                 script.ExportGameObject();
                 AssetDatabase.Refresh();
-                Debug.Log($"<color=#00FF00>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
+                Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
             }
 
             GUILayout.Label("\nB) For Exporting as USDZ, follow these step(s):", labelStyle);
@@ -54,7 +54,7 @@ namespace Unity.Formats.USD.Examples
                 }
                 script.ExportGameObjectAsUSDZ();
                 AssetDatabase.Refresh();
-                Debug.Log($"<color=#00FF00>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
+                Debug.Log($"<color={SampleUtils.TextColor.Green}Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
             }
         }
     }

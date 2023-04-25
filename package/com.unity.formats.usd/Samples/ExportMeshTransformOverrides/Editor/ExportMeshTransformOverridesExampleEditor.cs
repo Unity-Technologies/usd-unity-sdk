@@ -27,6 +27,7 @@ namespace Unity.Formats.USD.Examples
             {
                 if (ExportMeshTransformOverridesExample.m_exampleImportedUsdObject == null)
                 {
+                    InitUsd.Initialize();
                     exportMeshTransformOverridesScript.ImportInitialUsdFile();
                 }
             }

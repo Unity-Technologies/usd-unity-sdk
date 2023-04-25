@@ -31,5 +31,12 @@ namespace Unity.Formats.USD
             var consoleWindow = GetConsoleWindow();
             consoleWindow.Focus();
         }
+
+        public struct TextColor
+        {
+            public const string Red = "#FF2D2D";
+            public const string Green = "#00FF00";
+            public const string Blue = "#338DFF";
+        }
     }
 }

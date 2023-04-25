@@ -36,9 +36,9 @@ namespace Unity.Formats.USD.Examples
 #endif
 
             InitUsd.Initialize();
-            Debug.Log($"<color=#00FF00>Starting HelloUsd Test Example...</color>");
+            Debug.Log($"<color={SampleUtils.TextColor.Green}>Starting HelloUsd Test Example...</color>");
             Test();
-            Debug.Log($"<color=#FF2D2D>HelloUsd Test Example Finished</color>");
+            Debug.Log($"HelloUsd Test Example Finished");
         }
 
         void Test()
@@ -54,7 +54,7 @@ namespace Unity.Formats.USD.Examples
             // Writing the value.
             var scene = Scene.Create(usdFile);
             scene.Time = 1.0;
-            Debug.Log($"<color=#338DFF>Writing data to: <{usdFile}> with values: </color>");
+            Debug.Log($"<color={SampleUtils.TextColor.Blue}>Writing data to: <{usdFile}> with values: </color>");
             Debug.LogFormat("Value: string={0}, ints=[{1}, {2}, {3}, {4}], bounding box={5}",
                 value.aString, value.anArrayOfInts[0], value.anArrayOfInts[1], value.anArrayOfInts[2], value.anArrayOfInts[3], value.aBoundingBox);
             scene.Write("/someCustomValue", value);
@@ -63,7 +63,7 @@ namespace Unity.Formats.USD.Examples
             scene.Close();
 
             // Reading the value.
-            Debug.Log($"<color=#FF2090>Reading data from: <{usdFile}> values: </color>");
+            Debug.Log($"<color={SampleUtils.TextColor.Green}>Reading data from: <{usdFile}> values: </color>");
             value = new MyCustomData();
             scene = Scene.Open(usdFile);
             scene.Time = 1.0;
@@ -74,7 +74,7 @@ namespace Unity.Formats.USD.Examples
 
             var prim = scene.Stage.GetPrimAtPath(new pxr.SdfPath("/someCustomValue"));
             var vtValue = prim.GetAttribute(new pxr.TfToken("aString")).Get(1);
-            Debug.Log($"(string)VTValue of added 'Custom Value', TfToken 'aString': <color=#FFE92D><{(string)vtValue}></color>");
+            Debug.Log($"(string)VTValue of added 'Custom Value', TfToken 'aString': <color={SampleUtils.TextColor.Green}><{(string)vtValue}></color>");
 
             scene.Close();
         }

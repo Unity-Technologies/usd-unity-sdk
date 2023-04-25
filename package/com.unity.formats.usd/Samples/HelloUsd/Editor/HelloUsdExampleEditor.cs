@@ -23,7 +23,7 @@ namespace Unity.Formats.USD.Examples
             DrawDefaultInspector();
 
             HelloUsdExample helloUsdScript = (HelloUsdExample)target;
-            if (GUILayout.Button("Click Me to Run HelloUsd Sample"))
+            if (GUILayout.Button("Run HelloUsd Sample"))
             {
                 helloUsdScript.DoHelloUsdExampleDemo();
             }
