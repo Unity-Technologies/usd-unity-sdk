@@ -28,6 +28,7 @@ namespace Unity.Formats.USD.Examples
                 }
 
                 script.InitializeForExport();
+                AssetDatabase.Refresh();
                 Debug.Log($"<color=#00FF00>Created USD file: <b><{script.m_newUsdFileName}></b> under project <b>'Assets'</b> folder</color>");
             }
 
@@ -54,6 +55,7 @@ namespace Unity.Formats.USD.Examples
                     return;
                 }
                 script.ExportGameObjectAsUSDZ();
+                AssetDatabase.Refresh();
                 Debug.Log($"<color=#00FF00>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
             }
         }

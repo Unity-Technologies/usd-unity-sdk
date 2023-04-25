@@ -76,7 +76,7 @@ namespace Unity.Formats.USD.Examples
         public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
         public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
 
-        // The path to where the USD file will be written.
+        // The file name of the exported USD file - will be saved in the project's Asset folder.
         // If null/empty, the file will be created in memory only.
         public string m_newUsdFileName;
 

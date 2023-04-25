@@ -43,6 +43,7 @@ namespace Unity.Formats.USD.Examples
                         EditorApplication.isPlaying = false;
                         Debug.Log($"<color=#00FF00>Open the <b>'Assets' Folder</b> in your Unity 'Project' Window to see your newly exported USD file <{script.m_newUsdFileName}></color>");
                         SampleUtils.FocusConsoleWindow();
+                        AssetDatabase.Refresh();
                     }
                 }
 

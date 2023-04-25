@@ -24,7 +24,7 @@ namespace Unity.Formats.USD.Examples
         {
             DrawDefaultInspector();
 
-            HelloUsdExample combineMeshesScript = (HelloUsdExample)target;
+            HelloUsdExample helloUsdScript = (HelloUsdExample)target;
             if (GUILayout.Button("Click Me to Run HelloUsd Sample"))
             {
                 combineMeshesScript.DoHelloUsdExampleDemo();

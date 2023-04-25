@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Unity.Formats.USD;
+using UnityEditor;
 using UnityEngine;
 using USD.NET;
 
@@ -10,7 +11,7 @@ namespace Unity.Formats.USD.Examples
     /// <remarks>
     /// Export Mesh Example
     /// This Example uses the same methods used when exporting Unity Objects via the 'USD Menu' in 'OS Menu Bar'.
-    /// 
+    ///
     ///  * InitializeForExport:
     ///    * Create and configure an empty USD scene for Export.
     ///    ** For USDZ export, the Initialization of USD package is done within the export function itself
@@ -34,9 +35,11 @@ namespace Unity.Formats.USD.Examples
         public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
         public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
 
-        // The path to where the USD file will be written.
-        // If null/empty, the file will be created in memory only.
+        // The file name of the exported USD file.
         public string m_newUsdFileName;
+
+        // Full path to exported file
+        private string m_exportedUsdFilePath { get { return Path.Combine(Application.dataPath, m_newUsdFileName); } }
 
         // The scene object to which the recording will be saved.
         protected static Scene m_usdScene;
@@ -52,8 +55,7 @@ namespace Unity.Formats.USD.Examples
                 return;
             }
 
-            var path = Path.Combine(Application.dataPath, m_newUsdFileName);
-            m_usdScene = ExportHelpers.InitForSave(path);
+            m_usdScene = ExportHelpers.InitForSave(m_exportedUsdFilePath);
         }
 
         public void ExportGameObject()
@@ -65,6 +67,7 @@ namespace Unity.Formats.USD.Examples
         public void ExportGameObjectAsUSDZ()
         {
             UsdzExporter.ExportUsdz(Path.Combine(Application.dataPath, m_newUsdFileName), m_exportRoot);
+            AssetDatabase.Refresh();
         }
     }
 }

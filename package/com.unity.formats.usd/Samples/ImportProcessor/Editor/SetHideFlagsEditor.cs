@@ -22,10 +22,10 @@ namespace Unity.Formats.USD.Examples
         {
             DrawDefaultInspector();
 
-            SetHideFlags combineMeshesScript = (SetHideFlags)target;
+            SetHideFlags setHideFlagsScript = (SetHideFlags)target;
             if (GUILayout.Button("Click Me to Refresh USD Asset"))
             {
-                combineMeshesScript.RefreshUSD();
+                setHideFlagsScript.RefreshUSD();
             }
         }
     }
