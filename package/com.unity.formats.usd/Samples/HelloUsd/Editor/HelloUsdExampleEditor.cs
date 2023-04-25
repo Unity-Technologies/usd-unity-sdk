@@ -27,7 +27,7 @@ namespace Unity.Formats.USD.Examples
             HelloUsdExample helloUsdScript = (HelloUsdExample)target;
             if (GUILayout.Button("Click Me to Run HelloUsd Sample"))
             {
-                combineMeshesScript.DoHelloUsdExampleDemo();
+                helloUsdScript.DoHelloUsdExampleDemo();
             }
         }
     }
