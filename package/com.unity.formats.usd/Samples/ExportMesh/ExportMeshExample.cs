@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using Unity.Formats.USD;
-using UnityEditor;
 using UnityEngine;
 using USD.NET;
 
@@ -58,16 +54,19 @@ namespace Unity.Formats.USD.Examples
             m_usdScene = ExportHelpers.InitForSave(m_exportedUsdFilePath);
         }
 
+        // This is the function used in:
+        // Menu Bar -> USD -> Exported Selected with Children
         public void ExportGameObject()
         {
             ExportHelpers.ExportGameObjects(new GameObject[] { m_exportRoot }, m_usdScene, BasisTransformation.SlowAndSafe);
             m_usdScene = null;
         }
 
+        // This is the function used in:
+        // Menu Bar -> USD -> Exported Selected as USDZ
         public void ExportGameObjectAsUSDZ()
         {
             UsdzExporter.ExportUsdz(Path.Combine(Application.dataPath, m_newUsdFileName), m_exportRoot);
-            AssetDatabase.Refresh();
         }
     }
 }
