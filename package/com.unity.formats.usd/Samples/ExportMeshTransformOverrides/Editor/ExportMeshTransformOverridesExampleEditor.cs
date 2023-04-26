@@ -49,7 +49,7 @@ namespace Unity.Formats.USD.Examples
             {
                 var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
                 labelStyle.normal.textColor = Color.red;
-                GUILayout.Label("Example USD File has not been imported - Please Import the example USD file using the above button", labelStyle);
+                GUILayout.Label("Example USD File has not been imported - Please Import the example USD file using the button above", labelStyle);
             }
         }
     }
