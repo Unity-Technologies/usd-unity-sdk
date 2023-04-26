@@ -19,7 +19,7 @@ using System.IO;
 namespace Unity.Formats.USD.Examples
 {
     [CustomEditor(typeof(ExportMeshWithAnimationExample))]
-    public class ExportMeshExampleEditor : Editor
+    public class ExportMeshWithAnimationExampleEditor : Editor
     {
         public override void OnInspectorGUI()
         {
