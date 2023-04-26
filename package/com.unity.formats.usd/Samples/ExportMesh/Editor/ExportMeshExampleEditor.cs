@@ -54,7 +54,7 @@ namespace Unity.Formats.USD.Examples
                 }
                 script.ExportGameObjectAsUSDZ();
                 AssetDatabase.Refresh();
-                Debug.Log($"<color={SampleUtils.TextColor.Green}Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
+                Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
             }
         }
     }
