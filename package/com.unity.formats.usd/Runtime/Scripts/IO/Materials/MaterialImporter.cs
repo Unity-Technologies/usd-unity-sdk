@@ -224,7 +224,7 @@ namespace Unity.Formats.USD
             Connectable<Vector2> st = textureSample.st;
             if (st != null && st.IsConnected() && !string.IsNullOrEmpty(st.connectedPath))
             {
-                var pvSrc = new PrimvarReaderSample<Vector2>();
+                var pvSrc = new PrimvarReaderImportSample<Vector2>();
                 scene.Read(new pxr.SdfPath(textureSample.st.connectedPath).GetPrimPath(), pvSrc);
 
                 if (pvSrc.varname != null)
@@ -252,11 +252,16 @@ namespace Unity.Formats.USD
                             uvPrimvar = "";
                         }
                     }
-                    else if (pvSrc.varname.defaultValue != null)
+                    else if (!string.IsNullOrEmpty(pvSrc.varname.defaultValue))
                     {
                         // Ask the mesh importer to load the specified texcoord.
                         // This must be a callback, since materials-to-meshes are one-to-many.
                         uvPrimvar = pvSrc.varname.defaultValue;
+                    }
+                    else
+                    {
+                        // Assume a default
+                        uvPrimvar = "st";
                     }
                 }
             }

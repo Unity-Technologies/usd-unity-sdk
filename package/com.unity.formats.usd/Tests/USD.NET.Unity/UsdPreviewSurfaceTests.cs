@@ -112,7 +112,7 @@ namespace USD.NET.Unity.Tests
 
             MaterialSample.Bind(m_USDScene, k_cubePath, k_materialPath);
 
-            PrimvarReaderSample<Vector2> USDReadPrimvarReader = new PrimvarReaderSample<Vector2>();
+            PrimvarReaderImportSample<Vector2> USDReadPrimvarReader = new PrimvarReaderImportSample<Vector2>();
 
             ReadPrimsFromScene();
             m_USDScene.Read(k_primvarReaderPath, USDReadPrimvarReader);
@@ -127,7 +127,7 @@ namespace USD.NET.Unity.Tests
         [Test]
         public void WritingAndReadingStringPrimvarReaderToUSDScene_ValuesAreCorrect()
         {
-            PrimvarReaderSample<Vector2> primvarReaderString = new PrimvarReaderSample<Vector2> { varname = { defaultValue = new TfToken("uv") } }; // TfToken is automatically cast to string
+            PrimvarReaderImportSample<Vector2> primvarReaderString = new PrimvarReaderImportSample<Vector2> { varname = { defaultValue = new TfToken("uv") } }; // TfToken is automatically cast to string
 
             m_USDScene.Write(k_primvarReaderPath, primvarReaderString);
 
