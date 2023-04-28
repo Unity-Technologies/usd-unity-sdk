@@ -112,7 +112,7 @@ namespace Unity.Formats.USD.Examples
         }
 
         // -- USD Export Functions --
-        
+
         protected static Scene CreateNewScene(string fileName)
         {
             if (string.IsNullOrEmpty(fileName))
