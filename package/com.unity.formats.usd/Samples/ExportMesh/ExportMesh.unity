@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 551500626}
   - component: {fileID: 551500625}
   m_Layer: 0
-  m_Name: ExportMeshExample <- Select Me!
+  m_Name: SAMPLE ENTRY OBJECT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

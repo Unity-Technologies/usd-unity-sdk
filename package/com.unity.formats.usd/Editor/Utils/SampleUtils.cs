@@ -28,8 +28,10 @@ namespace Unity.Formats.USD
 
         public static void FocusConsoleWindow()
         {
+#if UNITY_EDITOR
             var consoleWindow = GetConsoleWindow();
             consoleWindow.Focus();
+#endif
         }
 
         public struct TextColor

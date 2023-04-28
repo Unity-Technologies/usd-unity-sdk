@@ -20,12 +20,59 @@ namespace Unity.Formats.USD.Examples
     {
         public override void OnInspectorGUI()
         {
+
             DrawDefaultInspector();
 
             HelloUsdExample helloUsdScript = (HelloUsdExample)target;
-            if (GUILayout.Button("Run HelloUsd Sample"))
+            var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft };
+            labelStyle.normal.textColor = Color.white;
+
+            GUILayout.Label($"\nAny USD operation first requires Initialization", labelStyle);
+            if (GUILayout.Button("Initialize USD"))
             {
-                helloUsdScript.DoHelloUsdExampleDemo();
+                SampleUtils.FocusConsoleWindow();
+                helloUsdScript.InitializeUsd();
+            }
+
+            GUILayout.Label($"\nCreate and add custom data to USD Scene", labelStyle);
+            if (GUILayout.Button("1. Create a new USD scene file"))
+            {
+                SampleUtils.FocusConsoleWindow();
+                helloUsdScript.CreateUsdScene();
+            }
+
+            if (GUILayout.Button("2. Add custom data to created USD scene file"))
+            {
+                SampleUtils.FocusConsoleWindow();
+                helloUsdScript.AddCustomDataToScene();
+            }
+
+            if (GUILayout.Button("3. Save added custom data in USD scene file"))
+            {
+                SampleUtils.FocusConsoleWindow();
+                helloUsdScript.SaveDataInScene();
+            }
+
+            if (GUILayout.Button("4. Close the USD scene file"))
+            {
+                helloUsdScript.CloseScene();
+            }
+
+            GUILayout.Label($"\nOpen and read custom data from USD Scene", labelStyle);
+            if (GUILayout.Button("1. Open USD Scene file"))
+            {
+                helloUsdScript.OpenScene();
+            }
+
+            if (GUILayout.Button("2. Read custom data from USD Scene file"))
+            {
+                SampleUtils.FocusConsoleWindow();
+                helloUsdScript.ReadCustomDataFromScene();
+            }
+
+            if (GUILayout.Button("3. Close the USD scene file"))
+            {
+                helloUsdScript.CloseScene();
             }
         }
     }

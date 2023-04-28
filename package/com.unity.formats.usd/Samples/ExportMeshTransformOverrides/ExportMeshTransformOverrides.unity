@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 1308795928}
   - component: {fileID: 1308795927}
   m_Layer: 0
-  m_Name: ExportMeshTransformOverridesExample <- Select Me!
+  m_Name: SAMPLE ENTRY OBJECT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
