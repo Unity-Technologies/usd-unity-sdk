@@ -5,7 +5,8 @@
         "Unity.Formats.USD.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Unity.Formats.USD.Editor"
+        "Unity.Formats.USD.Editor",
+        "Unity.Formats.USD.ExportMesh"
     ],
     "includePlatforms": [
         "Editor",

@@ -11678,6 +11678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_exportRoot: {fileID: 866301070}
   m_trackedRoots: []
+  extension: 0
   m_exportMaterials: 1
   m_convertHandedness: 1
   m_activePolicy: 0

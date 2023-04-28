@@ -43,7 +43,7 @@ namespace Unity.Formats.USD.Examples
     ///    * Save and close the USD scene.
     ///    * Release the association map and USD scene.
     /// </remarks>
-    public class ExportMeshWithAnimationExample : MonoBehaviour
+    public class ExportMeshWithAnimationExample : ExportMeshExample
     {
         [Serializable]
         public enum TimeCode
@@ -67,25 +67,6 @@ namespace Unity.Formats.USD.Examples
             Fps90 = 90,
         }
 
-        [HeaderAttribute("Export Related Variables")]
-        // The root GameObject to export to USD.
-        public GameObject m_exportRoot;
-        public GameObject[] m_trackedRoots;
-
-        public bool m_exportMaterials = true;
-        public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
-        public ActiveExportPolicy m_activePolicy = ActiveExportPolicy.ExportAsVisibility;
-
-        // The file name of the exported USD file - will be saved in the project's Asset folder.
-        // If null/empty, the file will be created in memory only.
-        public string m_newUsdFileName;
-
-        // The scene object to which the recording will be saved.
-        private Scene m_usdScene;
-
-        // Export Context settings
-        private ExportContext m_context = new ExportContext();
-
         [HeaderAttribute("Animation Related Variables")]
 
         public int m_curFrame;
@@ -97,7 +78,7 @@ namespace Unity.Formats.USD.Examples
         public FrameRate m_frameRate = FrameRate.Fps60;
 
         // The number of frames to capture after hitting record;
-        [Range(1, 500)] public int m_maxFrameCount = 100;
+        [Range(1, 500)] public int m_maxFrameCount = 200;
 
         // Recording start time in frames.
         private int m_startFrame;
@@ -166,7 +147,7 @@ namespace Unity.Formats.USD.Examples
                 m_usdScene.StartTime = 0;
                 m_usdScene.EndTime = m_maxFrameCount;
 
-                m_context = SetUpExportContext(m_usdScene, m_convertHandedness);
+                m_context = SetUpInitialExportContext(m_usdScene, m_convertHandedness, m_exportMaterials);
 
                 // Do this last, in case an exception is thrown above.
                 IsRecording = true;
@@ -202,57 +183,6 @@ namespace Unity.Formats.USD.Examples
             IsRecording = false;
         }
 
-        public static Scene CreateNewScene(string fileName)
-        {
-            if (string.IsNullOrEmpty(fileName))
-            {
-                return Scene.Create();
-            }
-            else
-            {
-                return Scene.Create(Path.Combine(Application.dataPath, fileName));
-            }
-        }
-
-        private void CloseScene(Scene scene)
-        {
-            // Release memory associated with the scene.
-            scene.Close();
-            scene = null;
-        }
-
-        private void SaveScene(Scene scene, string sceneName)
-        {
-            // In a real exporter, additional error handling should be added here.
-            if (!string.IsNullOrEmpty(sceneName))
-            {
-                // We could use SaveAs here, which is fine for small scenes, though it will require
-                // everything to fit in memory and another step where that memory is copied to disk.
-                scene.Save();
-            }
-        }
-
-        private void InitialExport(ExportContext context, GameObject exportRoot, bool exportMaterials)
-        {
-            // First write materials and unvarying values (mesh topology, etc).
-            context.exportMaterials = exportMaterials;
-            context.scene.Time = null;
-            context.activePolicy = ActiveExportPolicy.ExportAsVisibility;
-
-            SceneExporter.SyncExportContext(exportRoot, context);
-            SceneExporter.Export(exportRoot, context, zeroRootTransform: true);
-        }
-
-        private ExportContext SetUpExportContext(Scene usdScene, BasisTransformation convertHandedness)
-        {
-            // For simplicity in this example, adding game objects while recording is not supported.
-            var context = new ExportContext();
-            context.scene = usdScene;
-            context.basisTransform = convertHandedness;
-
-            return context;
-        }
-
         // ------------------------------------------------------------------------------------------ //
         // Unity Behavior Events.
         // ------------------------------------------------------------------------------------------ //
@@ -276,7 +206,7 @@ namespace Unity.Formats.USD.Examples
             // On subsequent frames, skip unvarying data to avoid writing redundant data.
             if (Time.frameCount == m_startFrame)
             {
-                InitialExport(m_context, m_exportRoot, m_exportMaterials);
+                InitialExport(m_exportRoot, m_trackedRoots);
             }
 
             // Set the time at which to read samples from USD.
@@ -303,17 +233,7 @@ namespace Unity.Formats.USD.Examples
             }
 
             // Record the time varying data that changes from frame to frame.
-            if (m_trackedRoots != null && m_trackedRoots.Length > 0)
-            {
-                foreach (var root in m_trackedRoots)
-                {
-                    SceneExporter.Export(root, m_context, zeroRootTransform: false);
-                }
-            }
-            else
-            {
-                SceneExporter.Export(m_exportRoot, m_context, zeroRootTransform: true);
-            }
+            ExportSceneData(m_exportRoot, m_trackedRoots);
         }
     }
 }

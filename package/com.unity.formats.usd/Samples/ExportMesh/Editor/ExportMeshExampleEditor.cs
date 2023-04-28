@@ -14,47 +14,77 @@ namespace Unity.Formats.USD.Examples
 
             var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft };
             labelStyle.normal.textColor = Color.white;
-            GUILayout.Label("\nA) For Exporting, follow these step(s):", labelStyle);
 
-            if (GUILayout.Button("1. Initialize and Create USD Scene for Export"))
+            GUILayout.Label($"\nFor Exporting as <.{script.Extension}>, follow these step(s):", labelStyle);
+
+            if (GUILayout.Button("1. Initialize USD Package"))
             {
-                SampleUtils.FocusConsoleWindow();
-                if (script.m_newUsdFileName.ToLower().EndsWith(".usdz"))
-                {
-                    Debug.LogError("To Export as USDZ file reference the section below, section B)");
-                    return;
-                }
-
-                script.InitializeForExport();
-                Debug.Log($"<color={SampleUtils.TextColor.Green}>Created USD file: <b><{script.m_newUsdFileName}></b> under project <b>'Assets'</b> folder</color>");
+                script.InitUSD();
             }
 
-            if (GUILayout.Button("2. Export GameObject"))
+            switch (script.Extension)
             {
-                SampleUtils.FocusConsoleWindow();
-                if (script.m_newUsdFileName.ToLower().EndsWith(".usdz"))
-                {
-                    Debug.LogError("To Export as USDZ file reference the section below, section B)");
-                    return;
-                }
+                case ExportMeshExample.UsdFileExtension.usd:
+                case ExportMeshExample.UsdFileExtension.usda:
+                case ExportMeshExample.UsdFileExtension.usdc:
+                    {
+                        if (GUILayout.Button("2. Create New USD Scene"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
 
-                script.ExportGameObject();
-                AssetDatabase.Refresh();
-                Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
-            }
+                            script.CreateNewUsdScene();
+                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Created USD file: <b><{script.m_newUsdFileName}.{script.Extension}></b> under project <b>'Assets'</b> folder</color>");
+                        }
 
-            GUILayout.Label("\nB) For Exporting as USDZ, follow these step(s):", labelStyle);
-            if (GUILayout.Button("1. Export GameObject as USDZ"))
-            {
-                SampleUtils.FocusConsoleWindow();
-                if (!script.m_newUsdFileName.ToLower().EndsWith(".usdz"))
-                {
-                    Debug.LogError($"To Export as non-USDZ file reference the section above, section A)");
-                    return;
-                }
-                script.ExportGameObjectAsUSDZ();
-                AssetDatabase.Refresh();
-                Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}></b></color>");
+                        if (GUILayout.Button("3. Set up Export Context"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.SetUpExportContext();
+                        }
+
+                        if (GUILayout.Button("3. Set up Export Context"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.SetUpExportContext();
+                        }
+
+                        if (GUILayout.Button("4. Export"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.Export();
+                        }
+
+                        if (GUILayout.Button("5. Save Scene"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.SaveScene();
+                            AssetDatabase.Refresh();
+                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.{script.Extension}></b></color>");
+                        }
+
+                        if (GUILayout.Button("6. Close Scene"))
+                        {
+                            script.CloseScene();
+                        }
+                        break;
+                    }
+
+                case ExportMeshExample.UsdFileExtension.usdz:
+                    {
+                        if (GUILayout.Button("2. Export GameObject as USDZ"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+                            Debug.Log("For USDZ Export the sample will utilize the <b>UsdzExporter.cs</b> script");
+                            script.ExportAsUsdz();
+                            AssetDatabase.Refresh();
+                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.usdz></b></color>");
+                        }
+                        break;
+                    }
             }
         }
     }

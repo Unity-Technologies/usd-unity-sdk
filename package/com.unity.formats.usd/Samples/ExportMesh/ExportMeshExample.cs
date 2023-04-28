@@ -34,10 +34,22 @@ namespace Unity.Formats.USD.Examples
     /// </remarks>
     public class ExportMeshExample : MonoBehaviour
     {
+        public enum UsdFileExtension
+        {
+            usd,
+            usda,
+            usdc,
+            usdz
+        }
+
         [HeaderAttribute("Export Related Variables")]
         // The root GameObject to export to USD.
         public GameObject m_exportRoot;
         public GameObject[] m_trackedRoots;
+
+        [SerializeField]
+        private UsdFileExtension extension;
+        public UsdFileExtension Extension => extension;
 
         public bool m_exportMaterials = true;
         public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
@@ -55,7 +67,14 @@ namespace Unity.Formats.USD.Examples
         // Export Context settings
         protected static ExportContext m_context = new ExportContext();
 
-        public void InitializeForExport()
+        // -- USD Export as Non .usdz Steps --
+
+        public void InitUSD()
+        {
+            InitUsd.Initialize();
+        }
+
+        public void CreateNewUsdScene()
         {
             if (m_newUsdFileName == null)
             {
@@ -63,22 +82,105 @@ namespace Unity.Formats.USD.Examples
                 return;
             }
 
-            m_usdScene = ExportHelpers.InitForSave(m_exportedUsdFilePath);
+            m_usdScene = CreateNewScene($"{m_newUsdFileName}.{extension}");
         }
 
-        // This is the function used in:
-        // Menu Bar -> USD -> Exported Selected with Children
-        public void ExportGameObject()
+        public void SetUpExportContext()
         {
-            ExportHelpers.ExportGameObjects(new GameObject[] { m_exportRoot }, m_usdScene, BasisTransformation.SlowAndSafe);
-            m_usdScene = null;
+            m_context = SetUpInitialExportContext(m_usdScene, m_convertHandedness, m_exportMaterials);
         }
 
-        // This is the function used in:
-        // Menu Bar -> USD -> Exported Selected as USDZ
-        public void ExportGameObjectAsUSDZ()
+        public void Export()
         {
-            UsdzExporter.ExportUsdz(Path.Combine(Application.dataPath, m_newUsdFileName), m_exportRoot);
+            InitialExport(m_exportRoot, m_trackedRoots);
+        }
+
+        public void SaveScene()
+        {
+            SaveScene(m_usdScene, m_newUsdFileName);
+        }
+
+        public void CloseScene()
+        {
+            CloseScene(m_usdScene);
+        }
+
+        // -- USD Export as .usdz Steps --
+
+        public void ExportAsUsdz()
+        {
+            // Refer to the UsdzExporter.ExportUsdz for Export as USDZ
+            // USDZ Export mainly follows the same steps as normal export, but involves some additional minor scale and folder changes to match the USDZ format
+            UsdzExporter.ExportUsdz(Path.Combine(Application.dataPath, $"{m_newUsdFileName}.usdz"), m_exportRoot);
+        }
+
+        // -- USD Export Functions --
+        
+        protected static Scene CreateNewScene(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return Scene.Create();
+            }
+            else
+            {
+                return Scene.Create(Path.Combine(Application.dataPath, fileName));
+            }
+        }
+
+        protected static ExportContext SetUpInitialExportContext(Scene usdScene, BasisTransformation convertHandedness, bool exportMaterials)
+        {
+            // For simplicity in this example, adding game objects while recording is not supported.
+            var context = new ExportContext();
+            context.scene = usdScene;
+            context.basisTransform = convertHandedness;
+
+            // First write materials and unvarying values (mesh topology, etc).
+            context.exportMaterials = exportMaterials;
+            context.scene.Time = null;
+            context.activePolicy = ActiveExportPolicy.ExportAsVisibility;
+
+            return context;
+        }
+
+        protected static void InitialExport(GameObject exportRoot, GameObject[] trackedRoots)
+        {
+            SceneExporter.SyncExportContext(exportRoot, m_context);
+            ExportSceneData(exportRoot, trackedRoots);
+        }
+
+        protected static void ExportSceneData(GameObject rootGameObject, GameObject[] trackedRoots)
+        {
+            // Record the time varying data that changes from frame to frame.
+            if (trackedRoots != null && trackedRoots.Length > 0)
+            {
+                foreach (var root in trackedRoots)
+                {
+                    SceneExporter.Export(root, m_context, zeroRootTransform: false);
+                }
+            }
+            else
+            {
+                SceneExporter.Export(rootGameObject, m_context, zeroRootTransform: true);
+            }
+        }
+
+        protected static void SaveScene(Scene scene, string sceneName)
+        {
+            // In a real exporter, additional error handling should be added here.
+            if (!string.IsNullOrEmpty(sceneName))
+            {
+                // We could use SaveAs here, which is fine for small scenes, though it will require
+                // everything to fit in memory and another step where that memory is copied to disk.
+                scene.Save();
+            }
+        }
+
+        protected static void CloseScene(Scene scene)
+        {
+            // Release memory associated with the scene.
+            scene.Close();
+            scene = null;
         }
     }
 }
