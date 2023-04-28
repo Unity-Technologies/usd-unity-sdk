@@ -44,8 +44,8 @@ namespace Unity.Formats.USD.Examples
 
         public void CreateUsdScene()
         {
-            string usdFile = System.IO.Path.Combine(UnityEngine.Application.dataPath, k_exampleUsdFileName);
-            Debug.Log($"<color={SampleUtils.TextColor.Blue}>Creating empty USD file called: <{k_exampleUsdFileName}> within your project's 'Assets' folder</color>");
+            string usdFile = System.IO.Path.Combine(SampleUtils.SampleArtifactDirectory, k_exampleUsdFileName);
+            Debug.Log($"<color={SampleUtils.TextColor.Blue}>Creating empty USD file called: <{k_exampleUsdFileName}> within your project's '{SampleUtils.SampleArtifactRelativeDirectory}' folder</color>");
             m_scene = Scene.Create(usdFile);
         }
 
@@ -72,14 +72,14 @@ namespace Unity.Formats.USD.Examples
             // Once any data is written in a USD Scene file, you need to save it to preserve it
             m_scene.Save();
 
-            Debug.Log($"<color={SampleUtils.TextColor.Green}>Custom data has been saved in USD file named <{k_exampleUsdFileName}> within your project's 'Assets' folder</color>");
+            Debug.Log($"<color={SampleUtils.TextColor.Green}>Custom data has been saved in USD file named <{k_exampleUsdFileName}> within your project's '{SampleUtils.SampleArtifactRelativeDirectory}' folder</color>");
 
             AssetDatabase.Refresh();
         }
 
         public void OpenScene()
         {
-            string usdFile = System.IO.Path.Combine(UnityEngine.Application.dataPath, k_exampleUsdFileName);
+            string usdFile = System.IO.Path.Combine(SampleUtils.SampleArtifactDirectory, k_exampleUsdFileName);
             m_scene = Scene.Open(usdFile);
         }
 

@@ -34,12 +34,12 @@ namespace Unity.Formats.USD.Examples
 
             if (ExportMeshTransformOverridesExample.m_exampleImportedUsdObject != null)
             {
-                if (GUILayout.Button("2. Change Transform data of imported USD File"))
+                if (GUILayout.Button("2. Change Transform data of imported assets"))
                 {
                     exportMeshTransformOverridesScript.ChangeExampleTransformData();
                 }
 
-                if (GUILayout.Button($"3. Export Transform Overrides as { ExportMeshTransformOverridesExample.m_exampleImportedUsdObject.name }"))
+                if (GUILayout.Button($"3. Export Transform Overrides of { ExportMeshTransformOverridesExample.m_exampleImportedUsdObject.name }"))
                 {
                     exportMeshTransformOverridesScript.ExportTransformOverride();
                     AssetDatabase.Refresh();
@@ -47,9 +47,10 @@ namespace Unity.Formats.USD.Examples
             }
             else
             {
-                var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
+                var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter, wordWrap = true };
                 labelStyle.normal.textColor = Color.red;
-                GUILayout.Label("Example USD File has not been imported - Please Import the example USD file using the button above", labelStyle);
+                GUILayout.Label("Example USD File has not been imported", labelStyle);
+                GUILayout.Label("Please Import the example USD file using the button above", labelStyle);
             }
         }
     }

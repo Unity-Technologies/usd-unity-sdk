@@ -12,17 +12,17 @@ namespace Unity.Formats.USD.Examples
 
             ExportMeshExample script = (ExportMeshExample)target;
 
-            var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft };
+            var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft, wordWrap = true };
             labelStyle.normal.textColor = Color.white;
 
-            GUILayout.Label($"\nFor Exporting as <.{script.Extension}>, follow these step(s):", labelStyle);
+            GUILayout.Label($"\nFor Exporting as <.{script.FileExtension}>, follow these step(s):", labelStyle);
 
             if (GUILayout.Button("1. Initialize USD Package"))
             {
                 script.InitUSD();
             }
 
-            switch (script.Extension)
+            switch (script.FileExtension)
             {
                 case ExportMeshExample.UsdFileExtension.usd:
                 case ExportMeshExample.UsdFileExtension.usda:
@@ -33,7 +33,7 @@ namespace Unity.Formats.USD.Examples
                             SampleUtils.FocusConsoleWindow();
 
                             script.CreateNewUsdScene();
-                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Created USD file: <b><{script.m_newUsdFileName}.{script.Extension}></b> under project <b>'Assets'</b> folder</color>");
+                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Created USD file: <b><{script.m_newUsdFileName}.{script.FileExtension}></b> under project <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> folder</color>");
                         }
 
                         if (GUILayout.Button("3. Set up Export Context"))
@@ -63,7 +63,7 @@ namespace Unity.Formats.USD.Examples
 
                             script.SaveScene();
                             AssetDatabase.Refresh();
-                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.{script.Extension}></b></color>");
+                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.{script.FileExtension}></b></color>");
                         }
 
                         if (GUILayout.Button("6. Close Scene"))

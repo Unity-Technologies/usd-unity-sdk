@@ -26,7 +26,7 @@ namespace Unity.Formats.USD.Examples
     ///    * Import an example USD file
     ///
     ///  * ChangeExampleTransformData:
-    ///    * Change the transform data of the imported example USD asset randomly
+    ///    * Change the transform data of the imported example asset randomly
     ///
     ///  * ExportTransformOverride:
     ///    * Create the Overrides USD file.
@@ -68,15 +68,15 @@ namespace Unity.Formats.USD.Examples
 
         // Utilizes the same method when doing Export Overrides through:
         // Menu Bar -> USD -> Exported Transform Overrides
-        // Will save the Transform Override file in the project 'Assets' folder
+        // Will save the Transform Override file in the project 'Assets/Samples' folder
         public void ExportTransformOverride()
         {
             var newFileName = $"{m_exampleImportedUsdObject.name}_overs.{k_exportOverridesFileExtension}";
-            var overs = ExportHelpers.InitForSave(Path.Combine(Application.dataPath, newFileName));
+            var overs = ExportHelpers.InitForSave(Path.Combine(SampleUtils.SampleArtifactDirectory, newFileName));
             m_exampleImportedUsdObject.GetComponent<UsdAsset>().ExportOverrides(overs);
 
             SampleUtils.FocusConsoleWindow();
-            Debug.Log($"<color={SampleUtils.TextColor.Green}>Transform Overrides have been saved in the Project 'Assets' folder as <<b>{newFileName}</b>></color>");
+            Debug.Log($"<color={SampleUtils.TextColor.Green}>Transform Overrides have been saved in the Project '{SampleUtils.SampleArtifactRelativeDirectory}' folder as <<b>{newFileName}</b>></color>");
         }
     }
 }

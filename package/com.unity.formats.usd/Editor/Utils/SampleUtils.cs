@@ -12,6 +12,9 @@ namespace Unity.Formats.USD
         /// Utils functions for the package Samples
         /// </summary>
 
+        public static string SampleArtifactDirectory => Path.Combine(Application.dataPath, "Samples");
+        public static string SampleArtifactRelativeDirectory => "Assets/Samples";
+
         private static EditorWindow GetConsoleWindow()
         {
             var editorWindowTypes = TypeCache.GetTypesDerivedFrom<EditorWindow>();

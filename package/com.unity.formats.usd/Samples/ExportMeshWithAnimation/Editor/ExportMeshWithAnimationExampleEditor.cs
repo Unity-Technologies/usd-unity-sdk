@@ -29,7 +29,7 @@ namespace Unity.Formats.USD.Examples
 
             if (!EditorApplication.isPlaying)
             {
-                if (GUILayout.Button("Play Scene to Start Animation"))
+                if (GUILayout.Button("Enter playmode and start animation"))
                 {
                     EditorApplication.isPlaying = true;
                 }
@@ -41,8 +41,8 @@ namespace Unity.Formats.USD.Examples
                     if (GUILayout.Button("Recording Complete - Stop Scene"))
                     {
                         EditorApplication.isPlaying = false;
-                        Debug.Log($"<color={SampleUtils.TextColor.Green}>Open the <b>'Assets'</b> Folder in your Unity 'Project' Window to see your newly exported USD file <{script.m_newUsdFileName}></color>");
                         SampleUtils.FocusConsoleWindow();
+                        Debug.Log($"<color={SampleUtils.TextColor.Green}>Open the <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> Folder in your Unity 'Project' Window to see your newly exported USD file <{script.m_newUsdFileName}></color>");
                         AssetDatabase.Refresh();
                     }
                 }
@@ -52,7 +52,7 @@ namespace Unity.Formats.USD.Examples
                     if (script.IsRecording)
                     {
                         GUI.backgroundColor = Color.white;
-                        var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
+                        var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter, wordWrap = true };
                         labelStyle.normal.textColor = Color.white;
                         GUILayout.Label("Recording...", labelStyle);
                     }

@@ -48,8 +48,8 @@ namespace Unity.Formats.USD.Examples
         public GameObject[] m_trackedRoots;
 
         [SerializeField]
-        private UsdFileExtension extension;
-        public UsdFileExtension Extension => extension;
+        private UsdFileExtension usdFileExtension;
+        public UsdFileExtension FileExtension => usdFileExtension;
 
         public bool m_exportMaterials = true;
         public BasisTransformation m_convertHandedness = BasisTransformation.SlowAndSafe;
@@ -57,9 +57,6 @@ namespace Unity.Formats.USD.Examples
 
         // The file name of the exported USD file.
         public string m_newUsdFileName;
-
-        // Full path to exported file
-        private string m_exportedUsdFilePath { get { return Path.Combine(Application.dataPath, m_newUsdFileName); } }
 
         // The scene object to which the recording will be saved.
         protected static Scene m_usdScene;
@@ -82,7 +79,7 @@ namespace Unity.Formats.USD.Examples
                 return;
             }
 
-            m_usdScene = CreateNewScene($"{m_newUsdFileName}.{extension}");
+            m_usdScene = CreateNewScene($"{m_newUsdFileName}.{FileExtension}");
         }
 
         public void SetUpExportContext()
@@ -111,7 +108,7 @@ namespace Unity.Formats.USD.Examples
         {
             // Refer to the UsdzExporter.ExportUsdz for Export as USDZ
             // USDZ Export mainly follows the same steps as normal export, but involves some additional minor scale and folder changes to match the USDZ format
-            UsdzExporter.ExportUsdz(Path.Combine(Application.dataPath, $"{m_newUsdFileName}.usdz"), m_exportRoot);
+            UsdzExporter.ExportUsdz(Path.Combine(SampleUtils.SampleArtifactDirectory, $"{m_newUsdFileName}.usdz"), m_exportRoot);
         }
 
         // -- USD Export Functions --
@@ -124,7 +121,7 @@ namespace Unity.Formats.USD.Examples
             }
             else
             {
-                return Scene.Create(Path.Combine(Application.dataPath, fileName));
+                return Scene.Create(Path.Combine(SampleUtils.SampleArtifactDirectory, fileName));
             }
         }
 
