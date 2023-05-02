@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ namespace Unity.Formats.USD.Examples
 {
     /// <remarks>
     /// Export Mesh With Animation Example
-    /// Note: This method of exporting a Unity object with animation is not recommended.
+    /// Note: This method of exporting a Unity object with animation is not recommended as a USD file.
     /// Instead use Unity's Recorder Package to export USD files with animation - com.unity.recorder.
     /// However, if installing the Recorder Package is impossible, use this script as a reference to implement a custom animated USD exporter.
     ///
