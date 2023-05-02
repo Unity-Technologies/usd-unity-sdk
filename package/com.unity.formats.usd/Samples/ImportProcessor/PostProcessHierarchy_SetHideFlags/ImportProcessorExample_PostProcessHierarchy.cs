@@ -20,7 +20,7 @@ namespace Unity.Formats.USD.Examples
     /// For matching Usd Paths, set the HideFlags on the GameObject.
     /// </summary>
     /// <seealso cref="UnityEngine.HideFlags"/>
-    public class SetHideFlags : RegexImportProcessor, IImportPostProcessHierarchy
+    public class ImportProcessorExample_PostProcessHierarchy : RegexImportProcessor, IImportPostProcessHierarchy
     {
         public HideFlags hideFlagsSettings = HideFlags.DontSave;
 
@@ -37,28 +37,34 @@ namespace Unity.Formats.USD.Examples
 
         public void PostProcessHierarchy(PrimMap primMap, SceneImportOptions sceneImportOptions)
         {
+            Debug.Log("PostProcessHierarchy:");
+
             InitRegex();
 
             foreach (KeyValuePair<SdfPath, GameObject> kvp in primMap)
             {
                 if (!IsMatch(kvp.Key)) continue;
                 GameObject go = kvp.Value;
+                if (go == this.gameObject) continue;
                 switch (operation)
                 {
                     case Operation.LogicalAND:
                         go.hideFlags &= hideFlagsSettings;
-                        continue;
+                        break;
                     case Operation.LogicalOR:
                         go.hideFlags |= hideFlagsSettings;
-                        continue;
+                        break;
                     case Operation.LogicalXOR:
                         go.hideFlags ^= hideFlagsSettings;
-                        continue;
+                        break;
                     default:
                         go.hideFlags = hideFlagsSettings;
-                        continue;
+                        break;
                 }
+                Debug.Log($"<color={SampleUtils.TextColor.Green}>Applying <{go.name}> HideFlags with <{hideFlagsSettings}></color>");
             }
+
+            Debug.Log("PostProcessHierarchy End");
         }
 
         public void RefreshUSD()

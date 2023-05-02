@@ -1,3 +1,5 @@
+// Copyright 2023 Unity Technologies. All rights reserved.
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -10,22 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
 namespace Unity.Formats.USD.Examples
 {
-    [CustomEditor(typeof(CombineMeshes))]
-    public class CombineMeshesEditor : Editor
+    [CustomEditor(typeof(ImportProcessorExample_EntryPoint))]
+    public class ImportProcessorExample_EntryPointEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            CombineMeshes combineMeshesScript = (CombineMeshes)target;
-            if (GUILayout.Button("Click Me to Refresh USD Asset"))
+            ImportProcessorExample_EntryPoint script = (ImportProcessorExample_EntryPoint)target;
+            script.usdAsset.usdFullPath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), "..", "ExampleAsset", "MultipleMeshes.usda");
+
+            if (GUILayout.Button("1. Initialize USD"))
             {
-                combineMeshesScript.RefreshUSD();
+                InitUsd.Initialize();
+            }
+
+            if (GUILayout.Button("2. Refresh Asset"))
+            {
+                script.RefreshUSD();
             }
         }
     }

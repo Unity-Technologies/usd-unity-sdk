@@ -1,3 +1,5 @@
+// Copyright 2023 Unity Technologies. All rights reserved.
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -10,23 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using UnityEditor;
 using UnityEngine;
 
 namespace Unity.Formats.USD.Examples
 {
-    [CustomEditor(typeof(SetHideFlags))]
-    public class SetHideFlagsEditor : Editor
+    public class ImportProcessorExample_EntryPoint : MonoBehaviour
     {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
+        public UsdAsset usdAsset;
 
-            SetHideFlags setHideFlagsScript = (SetHideFlags)target;
-            if (GUILayout.Button("Click Me to Refresh USD Asset"))
-            {
-                setHideFlagsScript.RefreshUSD();
-            }
+        // Refresh will trigger the USD Import Processors
+        public void RefreshUSD()
+        {
+            usdAsset.transform.GetComponent<UsdAsset>().Reload(true);
         }
     }
 }

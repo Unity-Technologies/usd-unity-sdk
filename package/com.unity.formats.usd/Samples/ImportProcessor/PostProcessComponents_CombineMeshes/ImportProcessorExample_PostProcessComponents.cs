@@ -1,3 +1,5 @@
+// Copyright 2023 Unity Technologies. All rights reserved.
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -21,15 +23,18 @@ namespace Unity.Formats.USD.Examples
     /// Deactivates the other child mesh GameObjects.
     /// Implements IImportPostProcessComponents, so it runs after Component instantiation
     /// </summary>
-    public class CombineMeshes : RegexImportProcessor, IImportPostProcessComponents
+    public class ImportProcessorExample_PostProcessComponents : RegexImportProcessor, IImportPostProcessComponents
     {
         const int kVertexLimit = 65534;
 
         [Tooltip("If true, prevents vertex count from exceeding 65534 (old 16bit limit)")]
         public bool m_enforceU16VertexLimit;
 
+        // Called by SceneImporter after GameObject hierarchy created and populated with geometry and other components
         public void PostProcessComponents(PrimMap primMap, SceneImportOptions sceneImportOptions)
         {
+            Debug.Log("PostProcessComponents:");
+
             InitRegex();
 
             foreach (KeyValuePair<SdfPath, GameObject> kvp in primMap)
@@ -37,11 +42,9 @@ namespace Unity.Formats.USD.Examples
                 if (!IsMatch(kvp.Key)) continue;
                 DoCombineMeshes(kvp.Value.transform);
             }
-        }
 
-        public void RefreshUSD()
-        {
-            this.GetComponent<UsdAsset>().Reload(true);
+            Debug.Log($"<color={SampleUtils.TextColor.Green}>Combined Mesh GameObject created as child of original USD asset <{this.gameObject.name}></color>");
+            Debug.Log("PostProcessComponents End");
         }
 
         void Reset()
