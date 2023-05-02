@@ -399,7 +399,7 @@ Component Name: USD
 
 License Type: Modified Apache 2.0
 
-Copyright: 2016 Pixar
+Copyright: (c) 2016 Pixar
 
 https://github.com/PixarAnimationStudios/USD
 
