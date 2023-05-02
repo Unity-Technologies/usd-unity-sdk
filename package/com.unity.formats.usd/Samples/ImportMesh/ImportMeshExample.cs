@@ -23,131 +23,81 @@ namespace Unity.Formats.USD.Examples
     /// Imports meshes and transforms from a USD file into the Unity GameObject hierarchy and
     /// creates meshes.
     /// </summary>
-    [ExecuteInEditMode]
     public class ImportMeshExample : MonoBehaviour
     {
-        public string m_usdFile;
+        [HideInInspector]
+        public string m_usdFile = null;
         private const string K_DEFAULT_MESH = "mesh.usd";
+
+        [HeaderAttribute("Import Settings:")]
         public Material m_material;
 
-        // The range is arbitrary, but adding it provides a slider in the UI.
-        [Range(0, 100)] public float m_usdTime;
-
-        public BasisTransformation m_changeHandedness = BasisTransformation.FastWithNegativeScale;
+        [Tooltip("Typically USD data is right-handed and Unity is left handed, this option indicates how that conversion should be handled.")]
+        public BasisTransformation m_changeHandedness = BasisTransformation.SlowAndSafe;
 
         [Tooltip("Enable GPU instancing on materials for USD point or scene instances.")]
         public bool m_enableGpuInstancing = false;
 
-        private float m_lastTime;
         private Scene m_scene;
 
-        // Keep track of all objects loaded.
-        private PrimMap m_primMap;
-
-        public Scene UsdScene
-        {
-            get { return m_scene; }
-        }
-
-        public PrimMap PrimMap
-        {
-            get { return m_primMap; }
-        }
-
-        void Start()
+        public void InitializeUsd()
         {
             InitUsd.Initialize();
-            m_lastTime = m_usdTime;
-            if (string.IsNullOrEmpty(m_usdFile))
+        }
+
+        public string GetUsdFilePath()
+        {
+            if (string.IsNullOrEmpty(m_usdFile) || !Directory.Exists(m_usdFile))
                 m_usdFile = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), K_DEFAULT_MESH);
+
+            return m_usdFile;
         }
 
-        void Update()
+        public void ImportUsdFile()
         {
-            if (string.IsNullOrEmpty(m_usdFile))
+            // Import the new scene.
+            m_scene = Scene.Open(m_usdFile);
+            if (m_scene == null)
             {
-                if (m_scene == null)
-                {
-                    return;
-                }
-                m_scene.Close();
-                m_scene = null;
-                UnloadGameObjects();
-                return;
+                throw new Exception("Failed to import");
             }
 
-            // Is the stage already loaded?
-            if (m_scene != null && m_scene.FilePath == m_usdFile && m_lastTime == m_usdTime)
-            {
-                return;
-            }
+            // When converting right handed (USD) to left handed (Unity), there are four options:
+            //
+            //  FastWithNegativeScale:
+            //      Apply a single negative scale and rotation at the root of the scene hierarchy.
+            //      Fastest, but may introduce additional complications when later exporting.
+            //
+            //  SlowAndSafe:
+            //      Transform to left-handed basis by processing all positions, triangles, transforms, and primvar data.
+            //      While slower, this is the safest option.
+            //
+            //  SlowAndSafeAsFBX:
+            //      Transform to left-handed basis by processing all positions, triangles, transforms, and primvar data.
+            //      It transforms to match the basis transformation of FBX which is from (X,Y,Z) to (-X,Y,Z) instead of the standard (SlowAndSafe option) (X,Y,Z) to (X,Y,-Z).
+            //      This is not a conventional behavior and this option is here only to allow consistency between geometry importers.
+            //
+            //  None:
+            //      Preform no transformation.
+            //      Should only be used when the USD file is known to contain data which was (non-portably) stored in a left-handed basis.
+            //
+            // SlowAndSafe is more computationally expensive, but results in fewer down stream surprises - It is set to be our default.
+            var importOptions = new SceneImportOptions();
+            importOptions.changeHandedness = m_changeHandedness;
+            importOptions.materialMap.DisplayColorMaterial = m_material;
+            importOptions.enableGpuInstancing = m_enableGpuInstancing;
 
-            try
-            {
-                m_lastTime = m_usdTime;
+            // The root object at which the USD scene will be reconstructed.
+            // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
+            var rootXf = new GameObject("ImportedMesh_GameObject");
+            SceneImporter.BuildScene(m_scene,
+                rootXf,
+                importOptions,
+                new PrimMap(),
+                composingSubtree: false);
 
-                // Clear out the old scene.
-                UnloadGameObjects();
-
-                // Import the new scene.
-                m_scene = Scene.Open(m_usdFile);
-                if (m_scene == null)
-                {
-                    throw new Exception("Failed to import");
-                }
-
-                // Set the time at which to read samples from USD.
-                m_scene.Time = m_usdTime;
-
-                // When converting right handed (USD) to left handed (Unity), there are two options:
-                //
-                //  1) Add an inversion at the root of the scene, leaving the points right-handed.
-                //  2) Convert all transforms and points to left-handed (deep change of basis).
-                //
-                // Option (2) is more computationally expensive, but results in fewer down stream
-                // surprises.
-                var importOptions = new SceneImportOptions();
-                importOptions.changeHandedness = m_changeHandedness;
-                importOptions.materialMap.DisplayColorMaterial = m_material;
-                importOptions.enableGpuInstancing = m_enableGpuInstancing;
-
-                // The root object at which the USD scene will be reconstructed.
-                // It may need a Z-up to Y-up conversion and a right- to left-handed change of basis.
-                var rootXf = new GameObject("root");
-                rootXf.transform.SetParent(this.transform, worldPositionStays: false);
-                m_primMap = SceneImporter.BuildScene(m_scene,
-                    rootXf,
-                    importOptions,
-                    new PrimMap(),
-                    composingSubtree: false);
-
-                // Ensure the file and the identifier match.
-                m_usdFile = m_scene.FilePath;
-            }
-            catch
-            {
-                enabled = false;
-                throw;
-            }
-        }
-
-        private void OnValidate()
-        {
-            if (!string.IsNullOrEmpty(m_usdFile) && !System.IO.File.Exists(m_usdFile))
-            {
-                enabled = false;
-                throw new System.IO.FileNotFoundException(m_usdFile);
-            }
-            enabled = true;
-        }
-
-        // Destroy all previously created objects.
-        void UnloadGameObjects()
-        {
-            if (m_primMap != null)
-            {
-                m_primMap.DestroyAll();
-            }
+            // Ensure the file and the identifier match.
+            m_usdFile = m_scene.FilePath;
         }
     }
 }
