@@ -19,7 +19,7 @@ To import a USD file into Unity, use the USD context menu, and select one of the
 
 ## Importing Materials
 
-To import materials from USD, firstly import the USD file using the USD menu. Then, to get the materials, change the 'Import Settings' > 'Materials' in the Inspector to 'Import Preview Surface'. Finally re-import the USD file.
+Materials are not loaded by default. To import materials from USD, firstly import the USD file using the USD menu. Then, to get the materials, change the 'Import Settings' > 'Materials' in the Inspector to 'Import Preview Surface'. Finally re-import the USD file.
 
 ## Importing Payloads
 
@@ -44,7 +44,7 @@ Convert basis:
 - As above, meshes also go through a basis conversion as required.
 
 Triangulate meshes:
-- Converting from USD-supported mixed face meshes to a triangular mesh.
+- Converting from USD-supported arbitrary polygon meshes to triangular meshes.
 
 Change vertex winding order: 
 - Unity uses a clockwise mesh winding order, where other DCCs may use counterclockwise.

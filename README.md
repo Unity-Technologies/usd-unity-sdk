@@ -31,7 +31,7 @@ The following is a brief listing of currently supported features:
     * Vertex Colour
 * Instancing:
     * Point Instancing
-    * Scene Instancing
+    * Scenegraph Instancing
 * Primitive Types:
     * Meshes:
         * Arbitrary Primvars

@@ -42,7 +42,7 @@ Overall payload import policy;
 * **Don’t Load Payloads (default)** - Import without any payloads.
 * **Load All** - Import and load all payloads.
  
- Payloads can also be individually loaded and unloaded on the individual objects.
+ Payloads can also be individually loaded and unloaded on the specific prims using the Inspector Window for the GameObject.
 
 **Advanced**
 
