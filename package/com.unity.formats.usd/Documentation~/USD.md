@@ -1,126 +1,116 @@
-# USD Unity SDK: USD C# Bindings for Unity
+# USD Experimental Package for Unity
 
-This repository contains a set of libraries designed to support the use of
-USD in C#/Unity. The goal of this package is to make it maximally easy to
-integrate and explore Universal Scene Description.
+This package includes a set of libraries designed to support the use of USD in C#, as well as code to import and export USD files into the editor. The goal of this package is to make it maximally easy to integrate and explore Universal Scene Description.
 
-![USD header](Images/USD_header.png)
+![Pixar's USD kitchen Set in the Unity Editor](Images/USD_header.png)
+
+*Pixar's [USD Kitchen Set](https://openusd.org/release/dl_kitchen_set.html) in the Unity Editor.*
 
 # Getting Started
-
-To get started, install the USD package via the Unity Package manager. You can do this by either:
-* Installing by name, "com.unity.formats.usd";
-* Installing by Git URL;
-* or browsing for a local package while working with
-source.
-
-Once the USD package is installed, a USD menu will appear, enabling you to
-easily import and export USD files.
-
-![USD menu](Images/USD_menu.png)
-
-The USD importer works with linear color space only. To ensure colors are imported correctly,
-set the project color space to "linear" in Edit > Project Settings > Player:
-
-![USD linear](Images/USD_linear.png)
-
-In Unity 2019, the USD importer supports importing unlimited weights per vertex. However,
-to see the effect of more than 4 weights per vertex, this must be enabled in the project
-settings under Edit > Project Settings > Quality:
-
-![USD unlimited_weights](Images/USD_unlimited_weights.png)
 
 ## Requirements
 
 * Windows / OSX (Intel only)
+    * Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
 * Unity version: 2019.4 and up
-* API Compatibility Level .NET 4.x is no longer required but still provides better performances than .NET 2   
-   In Edit > Project Settings > Player :   
-    ![USD .NET version](Images/USD_.NET_version.png)
 
-## Limitations
+## Project Configuration
 
-* Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
+* The USD importer works with linear color space only. To ensure colors are imported correctly, ensure that the project color space is set to "linear" in Edit > Project Settings > Player:
+
+![USD linear](Images/USD_linear.png)
+
+* This package supports importing USD skinned meshes with unlimited bone weights per vertex. However, to see the effect of more than 4 weights per vertex, Unlimited Skin Weights must be enabled for Unity in the project settings under Edit > Project Settings > Quality:
+
+![USD unlimited_weights](Images/USD_unlimited_weights.png)
+
+## Installing the Package
+
+To get started, install the USD package via the Unity Package Manager. You can do this by either:
+
+* installing by name, "com.unity.formats.usd";
+
+* installing by Git URL, "https://github.com/Unity-Technologies/usd-unity-sdk.git?path=package/com.unity.formats.usd";
+
+* or browsing for a local package while working with source.
+
+Once the USD package is installed, a USD menu will appear, enabling you to easily import and export USD files.
+
+![USD menu](Images/USD_menu.png)
+
+## Package Limitations
+
 * The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
+
+* This package uses USD v20.08, so some of the functionality of newer USD versions may be missing.
 
 ## Samples
 
-The USD package also includes samples to help you get started.
+The USD package also includes samples to help you get started. Use the Package Manager Window to import the samples into your Assets folder. For each of the samples, open the scene file and inspect the relevant Game Object in the Inspector Window to get started.
 
-Use Package Manager to import the samples into your Assets folder :
+Note that Samples will not work as expected when installed from Source. For a local package, you can open them directly from the project browser, in the Packages folder. If you are using a Git URL to install the package, the package will be in a readonly state and the Scene will not open. In this case, you will have to copy the Samples files into the project folder to use them.
 
-![USD .NET version](Images/USD_samples_import.png)
+## Documentation on Package Usage
 
-Note that Samples will not work as expected when installed from Source. In these cases, you will have to copy the Samples files into the project to use them.
+1. [USD Import](USD%20Import.md)
+2. [USD Export](USD%20Export.md)
+3. [USD in the Unity Editor](USD-in-the-Editor.md)
 
-# Features
+## Features
 
 The following is a brief listing of currently supported features:
 
- * Import as GameObject, Prefab, or Timeline Clip
- * USDZ Export
- * Transform Override Export
- * Timeline Playback (Vertex Streaming & Skeletal Animation)
- * Timeline Recording Track
- * Mesh Import & Export
- * Material Import & Export (USD Preview Surface or DisplayColor)
- * Unity Materials: HDRP, Standard and limited LWRP support
- * Material Export Plugins
- * Variant Selection
- * Payload Load/Unload
- * Automatic Lightmap UV Unwrapping
- * Skeletal Animation via UsdSkel
- * Scene Instancing
- * Point Instancing
- * Integration with C# Job System
- * High and Low Level Access to USD API via C#
+* Importing and exporting USD:
+    * Import as GameObject, Prefab, or Timeline Clip
+        * File formats: .usd, .usda, .usdc, .usdz
+    * Export Game Objects to USD
+        * File formats: .usd, .usda, .usdc, .usdz
+        * Export of Transform Overrides
+    * Export via Recorder package
+* Composition:
+    * Variant Selection
+    * Payloads
+        * Load All and Individual
+    * Layer stacks
+* Geometry:
+    * UV Set
+    * Vertex Colour
+* Instancing:
+    * Point Instancing
+    * Scene Instancing
+* Primitive Types:
+    * Meshes:
+        * Arbitrary Primvars
+        * Vertex Colors
+    * Materials:
+        * Standard Shader and Limited HDRP and URP Support
+* Cameras
+* Lightmaps:
+    * Automatic Lightmap UV Unwrapping
+* Animation:
+    * Timeline Playback:
+        * Skeletal Animation via USDSkel
+        * Animated Meshes
+    * Timeline Recording Track via Unity Recorder Package
+* General:
+    * High and Low Level Access to USD API via C#
 
-## Importing Materials
+## Known Limitations
 
-To import materials from USD, firstly import the USD file using the USD menu. Then, to get the materials to render in the scene, change the Import Settings > Materials in the Inspector to 'Import Preview Surface'. Finally reimport the USD file.
+We do not currently support the following:
 
-## Streaming Playback via Timeline
-
-After importing a USD file with either skeletal or point cache animation, open
-the Timeline window. Select the root of the USD file.
-
-Create a playable director by clicking the "Create" button in the Timeline window.
-Next, drag the root USD file into the Timeline to create a track for this object.
-Finally, drag the USD file once more to add a USD clip to the track for plaback.
-Scrubbing through time will now update the USD scene by streaming dat from USD.
-
-Timeline playback is multi-threaded using the C# Job System.
-
-## Variants, Models, & Payloads
-
-Access to variant selection, model details, and payload state are all accessible via
-the inspector on the game object at which these features were authored. Note that Payloads *are not loaded by default*. USD files using Payloads must be reloaded after changing the Payload Policy in the Inspector to 'Load All' for them to appear in the Scene. 
-
-## Exporting USD files
-
-USD files can be created by exporting GameObjects selected in the Hierarchy using the USD context menu options, or using the Recorder.
-
-### Exporting via Recorder
-
-> **Prerequisite:** You need to install the [Recorder package](https://docs.unity3d.com/Packages/com.unity.recorder@latest/index.html).  
-
-To export a USD composition via Recorder, you can either use the Recorder Window :
-* From the Editor main menu, select **Window > General > Recorder > Recorder Window**,
-* Then click on **+ Add Recorder**,
-* And select **USD Clip**.
-
-Or add a Recorder track:
-* From the Timeline window, right-click and select **UnityEditor.Recorder.Timeline > Recorder Track**,
-* Then right-click on the track and **add Recorder Clip**,
-* And in the **selected recorder**, choose **USD Clip**.
-
-Using Recorder is the recommended option *when compatibility with runtime is not required*.
-
-### Exporting via Usd Recorder Track (Legacy)
-
-When compatibility with runtime is required (i.e for a standalone build), the recommended option is to use the USD package Recorder Track :
-* From the Timeline window, right-click and select **Unity.Formats.USD > Usd Recorder Track**,
-* Then right-click on the track and **add USD Recorder Clip**.
-
->  **Note:** This feature has no dependency to and is not based on the Recorder package.
-
+* Geometry:
+    * Multiple UV Sets
+    * Importing mesh UVs for a prim without a material attached
+* Composition:
+    * Purposes
+* Primitive Types:
+    * Camera
+        * We do not currently import and export all physical camera settings
+    * Materials:
+        * Some settings are not correctly imported and must be fixed up manually, eg Rendering mode and Double-Sided
+    * Lights
+* Animation:
+    * Blend Shapes
+* General:
+    * Custom prims
