@@ -544,15 +544,19 @@ namespace Unity.Formats.USD
             if (values == null)
                 return;
 
-            var newInterpolation = GuessInterpolation(values.Length);
-
-            if (interpolation != null && interpolation != newInterpolation)
+            // We assume a certain number of values in the array for certain interpolations, so check whether this assumption will work and not cause array overflows
+            if (!IsInterpolationValid(interpolation, values.Length))
             {
-                UnityEngine.Debug.LogWarning($"Stated interpolation '{interpolation.ToString()}' for a PrimVar does not match required value counts. " +
-                    $"We will convert to FaceVarying assuming an original interpolation of '{newInterpolation.ToString()}'.");
-            }
+                var newInterpolation = GuessInterpolation(values.Length);
 
-            interpolation = newInterpolation;
+                if (interpolation != null && interpolation != newInterpolation)
+                {
+                    UnityEngine.Debug.LogWarning($"Stated interpolation '{interpolation.ToString()}' for a PrimVar does not match required value counts. " +
+                        $"We will convert to FaceVarying assuming an original interpolation of '{newInterpolation.ToString()}'.");
+                }
+
+                interpolation = newInterpolation;
+            }
 
             if (interpolation == UsdGeomTokens.constant)
             {
@@ -600,6 +604,30 @@ namespace Unity.Formats.USD
             }
 
             return new TfToken();
+        }
+
+        /// <summary>
+        /// Returns whether the stated interpolation is valid for the number of elements
+        /// </summary>
+        /// <param name="interpolation"> The expected interpolation of the array</param>
+        /// <param name="count"> The number of elements in the array</param>
+        /// <remarks>
+        /// Attributes can have interpolation tokens stated that do not fit with our assumptions of value counts.
+        /// This method checks that we can use the stated interpolation without risking array overflows, etc.
+        /// </remarks>
+        internal bool IsInterpolationValid(TfToken interpolation, int count)
+        {
+            if (interpolation == null)
+                return false;
+            if (interpolation == UsdGeomTokens.constant)
+                return count == 1;
+            if (interpolation == UsdGeomTokens.uniform)
+                return (IsTopologyBackedUp() && count == originalFaceVertexCounts.Length);
+            if (interpolation == UsdGeomTokens.vertex || interpolation == UsdGeomTokens.varying)
+                return (count == points.Length);
+            if (interpolation == UsdGeomTokens.faceVarying)
+                return (IsTopologyBackedUp() && count == originalFaceVertexIndices.Length);
+            return false;
         }
 
         /// <summary>
