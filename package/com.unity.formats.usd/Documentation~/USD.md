@@ -52,9 +52,9 @@ Note that Samples will not work as expected when installed from Source. For a lo
 
 ## Documentation on Package Usage
 
-1. [USD Import](package/com.unity.formats.usd/Documentation~/USD%20Import.md)
-2. [USD Export](package/com.unity.formats.usd/Documentation~/USD%20Export.md)
-3. [USD in the Unity Editor](package/com.unity.formats.usd/Documentation~/USD-in-the-Editor.md)
+1. [USD Import](USD%20Import.md)
+2. [USD Export](USD%20Export.md)
+3. [USD in the Unity Editor](USD-in-the-Editor.md)
 
 ## Features
 
