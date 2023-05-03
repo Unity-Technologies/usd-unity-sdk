@@ -106,7 +106,7 @@ namespace USD.NET.Unity.Tests
         [Test]
         public void WritingAndReadingMaterialToUSDScene_ValuesAreCorrect()
         {
-            PrimvarReaderExportSample<Vector2> primvarReaderTfToken = new PrimvarReaderExportSample<Vector2> { varname = { defaultValue = new TfToken("st") } };
+            PrimvarReaderExportSample<Vector2> primvarReaderTfToken = new PrimvarReaderExportSample<Vector2> { varname = { defaultValue = new TfToken("uv") } };
 
             m_USDScene.Write(k_primvarReaderPath, primvarReaderTfToken);
 
@@ -120,10 +120,11 @@ namespace USD.NET.Unity.Tests
             CheckShaderParams();
             CheckMaterialValues();
 
-            Assert.AreEqual(primvarReaderTfToken.varname.defaultValue, primvarReaderTfToken.varname.defaultValue);
+            Assert.AreEqual(primvarReaderTfToken.varname.defaultValue.GetText(), USDReadPrimvarReader.varname.defaultValue);
         }
 
         // The default PrimvarReaderSample has varname as a string type, to match USD spec 21.11+. Test that in this case the export and import still works.
+        // PrimvarReaderImportSample uses a string varname, so exporting this will match 21.11+.
         [Test]
         public void WritingAndReadingStringPrimvarReaderToUSDScene_ValuesAreCorrect()
         {
@@ -133,7 +134,7 @@ namespace USD.NET.Unity.Tests
 
             MaterialSample.Bind(m_USDScene, k_cubePath, k_materialPath);
 
-            PrimvarReaderSample<Vector2> USDReadPrimvarReader = new PrimvarReaderSample<Vector2>();
+            PrimvarReaderImportSample<Vector2> USDReadPrimvarReader = new PrimvarReaderImportSample<Vector2>();
 
             ReadPrimsFromScene();
             m_USDScene.Read(k_primvarReaderPath, USDReadPrimvarReader);
@@ -141,7 +142,7 @@ namespace USD.NET.Unity.Tests
             CheckShaderParams();
             CheckMaterialValues();
 
-            Assert.AreEqual(primvarReaderString.varname.defaultValue, primvarReaderString.varname.defaultValue);
+            Assert.AreEqual(primvarReaderString.varname.defaultValue, USDReadPrimvarReader.varname.defaultValue);
         }
 
         // TODO: Add a test for a connected varname too
