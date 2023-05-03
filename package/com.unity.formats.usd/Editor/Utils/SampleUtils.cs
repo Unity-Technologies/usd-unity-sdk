@@ -41,7 +41,10 @@ namespace Unity.Formats.USD
         {
             public const string Red = "#FF2D2D";
             public const string Green = "#00FF00";
-            public const string Blue = "#338DFF";
+            public static string Yellow = EditorGUIUtility.isProSkin ? "#FFFF00" : "#FFBF00";
+            public static string Blue = EditorGUIUtility.isProSkin ? "#00A2FF" : "#0008FC";
+
+            public static Color Default => EditorGUIUtility.isProSkin ? Color.white : Color.black;
         }
     }
 }

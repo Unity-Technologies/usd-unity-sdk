@@ -27,7 +27,7 @@ namespace Unity.Formats.USD.Examples
             ExportMeshExample script = (ExportMeshExample)target;
 
             var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft, wordWrap = true };
-            labelStyle.normal.textColor = Color.white;
+            labelStyle.normal.textColor = SampleUtils.TextColor.Default;
 
             GUILayout.Label($"\nFor Exporting as <.{script.FileExtension}>, follow these step(s):", labelStyle);
 

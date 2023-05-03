@@ -72,7 +72,7 @@ namespace Unity.Formats.USD.Examples
         }
 
         //
-        // Start generates a USD scene procedurally, containing a single cube with a material, shader
+        // Generates a USD scene procedurally, containing a single cube with a material, shader
         // and texture bound. It then inspects the cube to discover the material. A Unity material is
         // constructed and the parameters are copied in a generic way. Similarly, the texture is
         // discovered and loaded as a Unity Texture2D and bound to the material.

@@ -24,6 +24,7 @@ namespace Unity.Formats.USD.Examples
     /// Export Mesh With Animation Example
     /// Note: This method of exporting a Unity object with animation is not recommended as a USD file.
     /// Instead use Unity's Recorder Package to export USD files with animation - com.unity.recorder.
+    ///  - Refer to Sample 'ExportAnimationWithRecorder' or https://github.com/Unity-Technologies/usd-unity-sdk/blob/dev/package/com.unity.formats.usd/Documentation~/USD%20Export.md#exporting-via-recorder
     /// However, if installing the Recorder Package is impossible, use this script as a reference to implement a custom animated USD exporter.
     ///
     ///  * StartRecording:
@@ -31,9 +32,6 @@ namespace Unity.Formats.USD.Examples
     ///    * Traverse the Unity scene, for each GameObject:
     ///      * Create an association between the Unity object and a USD prim.
     ///      * Assign an ExportFunction that will export the data for the object.
-    ///
-    ///  * Export unvarying data:
-    ///    * Export mesh topology and any other data that doesn't change from frame-to-frame.
     ///
     ///  * On Update, export time-varying data:
     ///    * Traverse the map of GameObjects, for each object:

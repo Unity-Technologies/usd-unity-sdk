@@ -27,7 +27,7 @@ namespace Unity.Formats.USD.Examples
 
             HelloUsdExample helloUsdScript = (HelloUsdExample)target;
             var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft, wordWrap = true };
-            labelStyle.normal.textColor = Color.white;
+            labelStyle.normal.textColor = SampleUtils.TextColor.Default;
 
             GUILayout.Label($"\nAny USD operation first requires Initialization", labelStyle);
             if (GUILayout.Button("Initialize USD"))

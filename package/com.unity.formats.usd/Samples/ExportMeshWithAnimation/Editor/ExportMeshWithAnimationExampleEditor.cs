@@ -50,9 +50,8 @@ namespace Unity.Formats.USD.Examples
                 {
                     if (script.IsRecording)
                     {
-                        GUI.backgroundColor = Color.white;
                         var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter, wordWrap = true };
-                        labelStyle.normal.textColor = Color.white;
+                        labelStyle.normal.textColor = SampleUtils.TextColor.Default;
                         GUILayout.Label("Recording...", labelStyle);
                     }
                     else
