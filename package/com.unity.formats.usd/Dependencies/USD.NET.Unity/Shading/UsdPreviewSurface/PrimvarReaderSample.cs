@@ -80,32 +80,37 @@ namespace USD.NET.Unity
         public Outputs outputs = new Outputs();
     }
 
-    // Workaround so that exported shaders fit the USD spec for 20.08, as that's the version included in the package.
-    // In 21.11+ the varname was switched to a string, and this should be removed when we upgrade our USD version.
-    [System.Serializable]
-    [UsdSchema("Shader")]
-    public class PrimvarReaderExportSample<T> : PrimvarReaderSample<T> where T : struct
-    {
-        /// <summary>
-        /// Name of the primvar to be read from the primitive as a TfToken.
-        /// </summary>
-        [InputParameter("_Varname")]
-        public Connectable<pxr.TfToken> varname = new Connectable<pxr.TfToken>();
-    }
-
+    // In 21.11+ the PrimvarReader varname was switched to a string from a TfToken. As a TfToken can be cast to a string, in order to support older USD versions as
+    // well as newer, we treat the varname as a string. However, so that exported shaders fit the USD spec for 20.08 (the version included in this package) we have
+    // a different version of the class for export that uses a TfToken (see below). This should be removed when we upgrade our USD version.
     [System.Serializable]
     [UsdSchema("Shader")]
     public class PrimvarReaderImportSample<T> : PrimvarReaderSample<T> where T : struct
     {
         /// <summary>
-        /// Name of the primvar to be read from the primitive as a TfToken.
+        /// Name of the primvar to be read from the primitive as a string.
         /// </summary>
         /// <remarks>
-        /// In 21.11 the varname was switched from a TfToken to a string. However, as a TfToken can be implicitly converted to a string,
-        /// making this a string type works for both during *import*. For export, we have chosen to export as TfToken to align with
-        /// the version of USD this package is built against (see PrimvarReaderSampleExport override, below)
+        /// In USD 21.11 the varname was switched from a TfToken to a string. However, as a TfToken can be implicitly converted to a string,
+        /// making this a string type works for both during *import*.
         /// </remarks>
         [InputParameter("_Varname")]
         public Connectable<string> varname = new Connectable<string>("st");
     }
+
+    [System.Serializable]
+    [UsdSchema("Shader")]
+    public class PrimvarReaderExportSample<T> : PrimvarReaderSample<T> where T : struct
+    {
+        /// <summary>
+        /// Name of the primvar to be written to the primitive as a TfToken.
+        /// </summary>
+        /// <remarks>
+        /// In USD 21.11 the varname was switched from a TfToken to a string. However, so that the exported USD fits the USD 20.08 specification,
+        /// in this package we specify a TfToken type for *export*.
+        /// </remarks>
+        [InputParameter("_Varname")]
+        public Connectable<pxr.TfToken> varname = new Connectable<pxr.TfToken>();
+    }
+
 }
