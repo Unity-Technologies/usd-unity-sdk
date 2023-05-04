@@ -95,7 +95,7 @@ namespace USD.NET.Unity
         /// making this a string type works for both during *import*.
         /// </remarks>
         [InputParameter("_Varname")]
-        public Connectable<string> varname = new Connectable<string>("st");
+        public Connectable<string> varname = new Connectable<string>();
     }
 
     [System.Serializable]
