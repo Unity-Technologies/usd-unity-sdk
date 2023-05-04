@@ -14,7 +14,9 @@
 
 
 using UnityEditor;
+#if UNITY_RECORDER
 using UnityEditor.Recorder;
+#endif
 using UnityEngine;
 
 namespace Unity.Formats.USD.Examples

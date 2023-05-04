@@ -18,6 +18,6 @@ namespace Unity.Formats.USD.Examples
 {
     public class ExportAnimationWithRecorderExample : MonoBehaviour
     {
-        // Empty script needed for Editor script UsdTimelineRecorderExampleEditor
+        // Empty script needed for Editor script ExportAnimationWithRecorderExampleEditor
     }
 }
