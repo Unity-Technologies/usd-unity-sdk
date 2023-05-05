@@ -13,7 +13,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     UPMCI_PKG: "upm-ci-utils@stable"
   commands:
       - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
-      - upm-ci package test -u {{ editor.version }} --package-path package/com.unity.formats.usd --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--api-profile=NET_4_6"
+      - upm-ci package test -u {{ editor.version }} --package-path package/com.unity.formats.usd --type package-tests --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--api-profile=NET_4_6"
   artifacts:
     logs:
       paths:
@@ -36,7 +36,7 @@ test_recorder_{{ platform.name }}_{{ editor.version }}:
     UPMCI_PKG: "upm-ci-utils@stable"
   commands:
       - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
-      - upm-ci project test  --project-path TestProject/Usd-Recorder --type project-tests --unity-version {{ editor.version }} --extra-utr-arg="--api-profile=NET_4_6"
+      - upm-ci project test -u {{ editor.version }} --project-path TestProject/Usd-Recorder --type project-tests --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--api-profile=NET_4_6"
   artifacts:
     logs:
       paths:
@@ -59,8 +59,8 @@ test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}:
     UPMCI_PKG: "upm-ci-utils@stable"
   commands:
     - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
-    - upm-ci package test --unity-version {{ backend.editor }} --package-path package/com.unity.formats.usd
-      --platform standalone --backend {{ backend.name }} --extra-utr-arg="--testfilter=StandaloneSanityTest {{ backend.apiprofile }}"
+    - upm-ci package test -u {{ backend.editor }} --package-path package/com.unity.formats.usd  --type package-tests
+      --platform standalone --backend {{ backend.name }} --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--testfilter=StandaloneSanityTest {{ backend.apiprofile }}"
   artifacts:
     logs:
       paths:
@@ -115,7 +115,7 @@ test_trigger:
     - .yamato/package-test.yml#test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}
 {% endfor %}
 {% endfor %}
-    - .yamato/formatting.yml#formatting
+    - .yamato/package-formatting.yml#formatting
 
 nightly_test_trigger:
   name: Nightly Tests Trigger
