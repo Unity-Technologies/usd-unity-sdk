@@ -49,15 +49,13 @@ namespace Unity.Formats.USD.Examples
             var labelStyle = new GUIStyle() { alignment = TextAnchor.MiddleLeft, wordWrap = true };
             labelStyle.normal.textColor = SampleUtils.TextColor.Default;
 
-            GUILayout.Label($"\nTo export a Unity GameObject and its animation as a USD format file using Unity Recorder, follow the steps below:", labelStyle);
-            GUILayout.Label($"  1. From the 'Recorder' window, select 'Add Recorder' > <color={SampleUtils.TextColor.Blue}>'USD Clip'</color>.", labelStyle);
-            GUILayout.Label($"  2. Assign the Unity GameObject <color={SampleUtils.TextColor.Blue}>'AnimatedUnityGameObject'</color> to 'Recorder' > 'Capture' > <color={SampleUtils.TextColor.Yellow}>'Source'</color>.", labelStyle);
-            GUILayout.Label($"  3. Set 'Format' > <color={SampleUtils.TextColor.Blue}>'Export Format'</color> your desired USD format.", labelStyle);
-            GUILayout.Label($"  4. Set 'Format' > <color={SampleUtils.TextColor.Blue}>'Override Setting'</color> to either <color={SampleUtils.TextColor.Yellow}>'Export In Full'</color> or <color={SampleUtils.TextColor.Yellow}>'Export Transform Overrides Only'</color>.", labelStyle);
-            GUILayout.Label($"  5. Set 'Output File' > <color={SampleUtils.TextColor.Blue}>'Path'</color> to your desired location.", labelStyle);
-            GUILayout.Label($"  6. Select the <color={SampleUtils.TextColor.Green}>'START RECORDING'</color> button to enter Play Mode, the Recorder will automatically record the animation.", labelStyle);
-            GUILayout.Label($"  7. Select the <color={SampleUtils.TextColor.Red}>'STOP RECORDING'</color> button to Stop your recording - You may also exit Play Mode.", labelStyle);
-            GUILayout.Label($"  8. The resulting exported USD file should be at your designated directory.", labelStyle);
+            GUILayout.Label($"1. Select the '{SampleUtils.SetTextColor(SampleUtils.TextColor.Green, "START RECORDING")}' button to enter Play Mode, the Recorder will automatically record the animation.", labelStyle);
+            GUILayout.Label($"2. Select the '{SampleUtils.SetTextColor(SampleUtils.TextColor.Red, "STOP RECORDING")}' button to Stop your recording - You may also exit Play Mode.", labelStyle);
+            GUILayout.Label($"\n<b>Note:</b>", labelStyle);
+            GUILayout.Label($" - Set 'Format' > '{SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, "Export Format")}' to your desired USD format.", labelStyle);
+            GUILayout.Label($" - Set 'Format' > '{SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, "Override Setting")}' to either '{SampleUtils.SetTextColor(SampleUtils.TextColor.Yellow, "Export In Full")}' or '{SampleUtils.SetTextColor(SampleUtils.TextColor.Yellow, "Export Transform Overrides Only")}'.", labelStyle);
+            GUILayout.Label($" - Set 'Output File' > '{SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, "Path")}' to your desired location.", labelStyle);
+            GUILayout.Label($" - The resulting exported USD file should be at your designated directory.", labelStyle);
 #endif
         }
     }
