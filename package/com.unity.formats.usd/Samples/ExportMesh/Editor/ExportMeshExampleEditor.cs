@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Unity.Formats.USD.Examples
 {
@@ -25,30 +25,77 @@ namespace Unity.Formats.USD.Examples
             DrawDefaultInspector();
 
             ExportMeshExample script = (ExportMeshExample)target;
-            if (script.IsRecording)
-            {
-                var oldBg = GUI.backgroundColor;
-                GUI.backgroundColor = Color.white;
-                if (GUILayout.Button("Stop"))
-                {
-                    script.StopRecording();
-                    EditorApplication.isPaused = true;
-                }
 
-                GUI.backgroundColor = oldBg;
+            var labelStyle = new GUIStyle() { fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleLeft, wordWrap = true };
+            labelStyle.normal.textColor = SampleUtils.TextColor.Default;
+
+            GUILayout.Label($"\nFor Exporting as <.{script.FileExtension}>, follow these step(s):", labelStyle);
+
+            if (GUILayout.Button("1. Initialize USD Package"))
+            {
+                script.InitUSD();
             }
-            else
-            {
-                var oldBg = GUI.backgroundColor;
-                GUI.backgroundColor = Color.red;
-                if (GUILayout.Button("Record"))
-                {
-                    EditorApplication.isPaused = false;
-                    //EditorApplication.isPlaying = true;
-                    script.StartRecording();
-                }
 
-                GUI.backgroundColor = oldBg;
+            switch (script.FileExtension)
+            {
+                case ExportMeshExample.UsdFileExtension.usd:
+                case ExportMeshExample.UsdFileExtension.usda:
+                case ExportMeshExample.UsdFileExtension.usdc:
+                    {
+                        if (GUILayout.Button("2. Create New USD Scene"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.CreateNewUsdScene();
+                            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Created USD file: <b><{script.m_newUsdFileName}.{script.FileExtension}></b> under project <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> folder"));
+                        }
+
+                        if (GUILayout.Button("3. Set up Export Context"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.SetUpExportContext();
+                            Debug.Log($"Export Context has been set up.");
+                        }
+
+                        if (GUILayout.Button("4. Export"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.Export();
+                            Debug.Log($"Data of 'Export Context' has been exported to USD file <b><{script.m_newUsdFileName}.{script.FileExtension}></b>.");
+                        }
+
+                        if (GUILayout.Button("5. Save Scene"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+
+                            script.SaveScene();
+                            AssetDatabase.Refresh();
+                            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Data exported to <b><{script.m_newUsdFileName}.{script.FileExtension}></b> has been saved."));
+                            Debug.Log($"The file <b><{script.m_newUsdFileName}.{script.FileExtension}></b> is available at your project <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> directory.");
+                        }
+
+                        if (GUILayout.Button("6. Close Scene"))
+                        {
+                            script.CloseScene();
+                            Debug.Log("Closed USD Scene.");
+                        }
+                        break;
+                    }
+
+                case ExportMeshExample.UsdFileExtension.usdz:
+                    {
+                        if (GUILayout.Button("2. Export GameObject as USDZ"))
+                        {
+                            SampleUtils.FocusConsoleWindow();
+                            Debug.Log("For USDZ Export the sample will utilize the <b>UsdzExporter.cs</b> script.");
+                            script.ExportAsUsdz();
+                            AssetDatabase.Refresh();
+                            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.usdz></b>"));
+                        }
+                        break;
+                    }
             }
         }
     }

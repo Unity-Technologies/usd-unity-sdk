@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,18 +21,25 @@ namespace Unity.Formats.USD.Examples
 {
     /// <summary>Fill in a default USD Asset in case the user didn't choose one
     /// </summary>
-    [ExecuteInEditMode, RequireComponent(typeof(UsdAsset))]
+    [ExecuteAlways, RequireComponent(typeof(UsdAsset))]
     public class SetDefaultUSDMesh : MonoBehaviour
     {
-        private const string K_DEFAULT_MESH = "mesh.usd";
+        private const string K_DEFAULT_MESH = "TimelinePlayableUsd.usd";
 
-        void Start()
+        private void Awake()
         {
-            var asset = GetComponent<UsdAsset>();
-            if (string.IsNullOrEmpty(asset.usdFullPath))
-            {
-                asset.usdFullPath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), K_DEFAULT_MESH);
-            }
+            SetSampleUsdFilePath();
+        }
+
+        void Update()
+        {
+            SetSampleUsdFilePath();
+        }
+
+        private void SetSampleUsdFilePath()
+        {
+            var sampleUsdAsset = this.GetComponent<UsdAsset>();
+            sampleUsdAsset.usdFullPath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), K_DEFAULT_MESH);
         }
     }
 }

@@ -1,4 +1,4 @@
 {
     "displayName" : "ExportMesh",
-    "description" : "A sample showing how to record a scene to a USD file."
+    "description" : "A sample showing how Unity Game Object can be exported as a USD file (without animation)."
 }

@@ -1,3 +1,5 @@
+// Copyright 2023 Unity Technologies. All rights reserved.
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -21,15 +23,18 @@ namespace Unity.Formats.USD.Examples
     /// Deactivates the other child mesh GameObjects.
     /// Implements IImportPostProcessComponents, so it runs after Component instantiation
     /// </summary>
-    public class CombineMeshes : RegexImportProcessor, IImportPostProcessComponents
+    public class ImportProcessorExample_CombineMeshes : RegexImportProcessor, IImportPostProcessComponents
     {
         const int kVertexLimit = 65534;
-
+        const string kCombinedMeshName = "CombinedSubmesh";
         [Tooltip("If true, prevents vertex count from exceeding 65534 (old 16bit limit)")]
         public bool m_enforceU16VertexLimit;
 
+        // Called by SceneImporter after GameObject hierarchy created and populated with geometry and other components
         public void PostProcessComponents(PrimMap primMap, SceneImportOptions sceneImportOptions)
         {
+            Debug.Log("PostProcessComponents:");
+
             InitRegex();
 
             foreach (KeyValuePair<SdfPath, GameObject> kvp in primMap)
@@ -37,13 +42,16 @@ namespace Unity.Formats.USD.Examples
                 if (!IsMatch(kvp.Key)) continue;
                 DoCombineMeshes(kvp.Value.transform);
             }
+
+            Debug.Log($"Combined Mesh GameObject created as child of original USD asset <{SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, this.gameObject.name)}> as <{SampleUtils.SetTextColor(SampleUtils.TextColor.Green, kCombinedMeshName)}>");
+            Debug.Log("PostProcessComponents End");
         }
 
         void Reset()
         {
             matchExpression = "Geom";
             isNot = false;
-            matchType = EMatchType.Wildcard;
+            matchType = EMatchType.Regex;
             compareAgainst = ECompareAgainst.UsdName;
         }
 
@@ -91,6 +99,8 @@ namespace Unity.Formats.USD.Examples
             current.gameObject.SetActive(true);
             foreach (Transform child in current)
             {
+                if (child.name == "Materials")
+                    continue;
                 child.gameObject.SetActive(false);
             }
 
@@ -101,7 +111,7 @@ namespace Unity.Formats.USD.Examples
             {
                 // TODO: trim and rearrange materials so there is only one submesh per material?
                 GameObject go = new GameObject();
-                go.name = "CombinedSubmesh";
+                go.name = kCombinedMeshName;
                 Transform sub = go.transform;
                 sub.SetParent(current, false);
 
@@ -111,7 +121,10 @@ namespace Unity.Formats.USD.Examples
                 MeshRenderer mr = sub.gameObject.GetComponent<MeshRenderer>();
                 if (mr == null) mr = sub.gameObject.AddComponent<MeshRenderer>();
 
-                mf.mesh = new Mesh();
+                var combinedMesh = new Mesh();
+                combinedMesh.name = "CombinedMesh";
+
+                mf.mesh = combinedMesh;
                 if (vertexCount > kVertexLimit)
                 {
                     mf.sharedMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
@@ -132,7 +145,7 @@ namespace Unity.Formats.USD.Examples
                 {
                     if (materials.Count == 0)
                     {
-                        Debug.LogError("No material to assign to combined mesh for " + current.name);
+                        Debug.Log("No material to assign to combined mesh for " + current.name);
                     }
                     else
                     {

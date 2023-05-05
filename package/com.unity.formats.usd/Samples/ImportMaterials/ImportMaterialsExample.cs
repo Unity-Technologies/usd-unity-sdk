@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc. All rights reserved.
+// Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,7 +23,12 @@ namespace Unity.Formats.USD.Examples
     public class ImportMaterialsExample : MonoBehaviour
     {
         private const string kCubePath = "/Model/Geom/Cube";
-        private static string m_localPath;
+        private static Scene m_usdScene;
+        private static Material m_material;
+        private static MaterialSample m_usdMaterial;
+        private static string m_shaderId;
+        [HideInInspector]
+        public Transform m_cube;
 
         // The USD Shader ID is used to index into this map to find the corresponding ShaderPair,
         // i.e. the Unity / USD shader pair that should be instantiated for the ID.
@@ -44,31 +49,14 @@ namespace Unity.Formats.USD.Examples
             }
         }
 
-        private Transform m_cube;
-
-        void Update()
-        {
-            if (!m_cube)
-            {
-                return;
-            }
-
-            var rot = m_cube.localEulerAngles;
-            rot.y += Time.deltaTime * 10 + Mathf.Sin(Time.time) * .1f + .05f;
-            m_cube.localEulerAngles = rot;
-        }
-
-        //
-        // Technically, this entire example could be written in either Awake() or Start(), but Awake is
-        // used here to emphasize the one-time-only initialization from the work that could
-        // potentially be executed at run-time.
-        //
-
-        void Awake()
+        public void InitializeUsd()
         {
             // Init USD.
             InitUsd.Initialize();
+        }
 
+        public void InitializeSampleShaderMapDictionary()
+        {
             // In this example, we assume there is a set of well known shaders, we will look up the
             // material based on the associated ID. This map allows the identifier in USD to differ from
             // the identifier specified in the Unity shader.
@@ -79,38 +67,33 @@ namespace Unity.Formats.USD.Examples
                 new ShaderPair(UnityEngine.Shader.Find("Standard"), new StandardShaderSample()));
         }
 
+        public void CreateUsdScene()
+        {
+            // Create a scene for this sample, but could also be read from disk.
+            m_usdScene = CreateSceneWithShading(SampleUtils.SampleArtifactRelativeDirectory);
+        }
+
         //
-        // Start generates a USD scene procedurally, containing a single cube with a material, shader
+        // Generates a USD scene procedurally, containing a single cube with a material, shader
         // and texture bound. It then inspects the cube to discover the material. A Unity material is
         // constructed and the parameters are copied in a generic way. Similarly, the texture is
         // discovered and loaded as a Unity Texture2D and bound to the material.
         //
         // Also See: https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html
         //
-        void Start()
+        public void InitializeSampleMaterial()
         {
-            // Get the current local path
-            m_localPath = PackageUtils.GetCallerRelativeToProjectFolderPath();
-
-            // Create a scene for this test, but could also be read from disk.
-            Scene usdScene = CreateSceneWithShading();
-
-            // Read the material and shader ID.
-            var usdMaterial = new MaterialSample();
-            string shaderId;
-
-            // ReadMaterial was designed for Unity and assumes there is one "surface" shader bound.
-            if (!MaterialSample.ReadMaterial(usdScene, kCubePath, usdMaterial, out shaderId))
+            if (m_usdScene == null)
             {
-                throw new System.Exception("Failed to read material");
+                Debug.LogError("USD Scene has not yet been initialized - Please initialize the USD Scene first");
+                return;
             }
 
-            // Map the shader ID to the corresponding Unity/USD shader pair.
-            ShaderPair shader;
-            if (shaderId == null || !m_shaderMap.TryGetValue(shaderId, out shader))
-            {
-                throw new System.Exception("Material had no surface bound");
-            }
+            // Read the material from USD file and set the shader ID.
+            m_usdMaterial = new MaterialSample();
+            m_shaderId = ReadUsdMaterialGetShaderId();
+
+            var shaderPair = GetShaderPairFromShaderId();
 
             //
             // Read and process the shader-specific parameters.
@@ -118,23 +101,26 @@ namespace Unity.Formats.USD.Examples
 
             // UsdShade requires all connections target an attribute, but we actually want to deserialize
             // the entire prim, so we get just the prim path here.
-            var shaderPath = new pxr.SdfPath(usdMaterial.surface.connectedPath).GetPrimPath();
-            usdScene.Read(shaderPath, shader.usdShader);
+            var shaderPath = new pxr.SdfPath(m_usdMaterial.surface.connectedPath).GetPrimPath();
+            m_usdScene.Read(shaderPath, shaderPair.usdShader);
+        }
 
-            //
-            // Construct material & process the inputs, textures, and keywords.
-            //
-
-            var mat = new UnityEngine.Material(shader.unityShader);
+        //
+        // Construct Unity material & process the inputs, textures, and keywords.
+        //
+        public void ConstructAndSetUnityMaterial()
+        {
+            var shaderPair = GetShaderPairFromShaderId();
+            var mat = new UnityEngine.Material(shaderPair.unityShader);
 
             // Apply material keywords.
-            foreach (string keyword in usdMaterial.requiredKeywords ?? new string[0])
+            foreach (string keyword in m_usdMaterial.requiredKeywords ?? new string[0])
             {
                 mat.EnableKeyword(keyword);
             }
 
             // Iterate over all input parameters and copy values and/or construct textures.
-            foreach (var param in shader.usdShader.GetInputParameters())
+            foreach (var param in shaderPair.usdShader.GetInputParameters())
             {
                 if (!SetMaterialParameter(mat, param.unityName, param.value))
                 {
@@ -142,62 +128,105 @@ namespace Unity.Formats.USD.Examples
                 }
             }
 
-            foreach (var param in shader.usdShader.GetInputTextures())
+            foreach (var param in shaderPair.usdShader.GetInputTextures())
             {
-                if (string.IsNullOrEmpty(param.connectedPath))
-                {
-                    // Not connected to a texture.
-                    continue;
-                }
-
-                // Only 2D textures are supported in this example.
-                var usdTexture = new Texture2DSample();
-
-                // Again, we want the prim path, not the attribute path.
-                var texturePath = new pxr.SdfPath(param.connectedPath).GetPrimPath();
-                usdScene.Read(texturePath, usdTexture);
-
-                // This example also only supports explicit sourceFiles, they cannot be connected.
-                if (string.IsNullOrEmpty(usdTexture.sourceFile.defaultValue))
-                {
-                    continue;
-                }
-
-                // For details, see: https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html
-                foreach (string keyword in param.requiredShaderKeywords)
-                {
-                    mat.EnableKeyword(keyword);
-                }
-
-                var data = System.IO.File.ReadAllBytes(usdTexture.sourceFile.defaultValue);
-                var unityTex = new Texture2D(2, 2);
-                unityTex.LoadImage(data);
-                mat.SetTexture(param.unityName, unityTex);
-                Debug.Log("Set " + param.unityName + " to " + usdTexture.sourceFile.defaultValue);
-
-                unityTex.Apply(updateMipmaps: true, makeNoLongerReadable: false);
+                AssignShaderTextureInputParameter(param, mat);
             }
 
-            //
-            // Create and bind the geometry.
-            //
+            m_material = mat;
+        }
 
+        //
+        // Create and bind the geometry.
+        //
+        public void BindGeometry()
+        {
             // Create a cube and set the material.
             // Note that geometry is handled minimally here and is incomplete.
             var cubeSample = new CubeSample();
-            usdScene.Read(kCubePath, cubeSample);
+            m_usdScene.Read(kCubePath, cubeSample);
 
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            go.transform.SetParent(transform, worldPositionStays: false);
+            go.name = "SampleCubeGeom_GameObject";
             go.transform.localScale = Vector3.one * (float)cubeSample.size;
-            m_cube = transform;
 
-            go.GetComponent<MeshRenderer>().material = mat;
+            go.GetComponent<MeshRenderer>().material = m_material;
+            m_cube = go.transform;
+        }
+
+        public void CloseUsdScene()
+        {
+            m_usdScene.Close();
         }
 
         // ------------------------------------------------------------------------------------------ //
         // Unity parameter value helper.
         // ------------------------------------------------------------------------------------------ //
+
+        private ShaderPair GetShaderPairFromShaderId()
+        {
+            if (m_shaderId == null)
+            {
+                throw new System.Exception("ShaderId has not been set");
+            }
+
+            // Map the shader ID to the corresponding Unity/USD shader pair.
+            ShaderPair shaderPair;
+            if (!m_shaderMap.TryGetValue(m_shaderId, out shaderPair))
+            {
+                throw new System.Exception("Material had no surface bound");
+            }
+
+            return shaderPair;
+        }
+
+        private string ReadUsdMaterialGetShaderId()
+        {
+            string shaderId;
+            // ReadMaterial was designed for Unity and assumes there is one "surface" shader bound.
+            if (!MaterialSample.ReadMaterial(m_usdScene, kCubePath, m_usdMaterial, out shaderId))
+            {
+                throw new System.Exception("Failed to read material data from USD");
+            }
+
+            return shaderId;
+        }
+
+        private void AssignShaderTextureInputParameter(ParameterInfo param, Material shaderMat)
+        {
+            if (string.IsNullOrEmpty(param.connectedPath))
+            {
+                // Not connected to a texture.
+                return;
+            }
+
+            // Only 2D textures are supported in this example.
+            var usdTexture = new Texture2DSample();
+
+            // Again, we want the prim path, not the attribute path.
+            var texturePath = new pxr.SdfPath(param.connectedPath).GetPrimPath();
+            m_usdScene.Read(texturePath, usdTexture);
+
+            // This example also only supports explicit sourceFiles, they cannot be connected.
+            if (string.IsNullOrEmpty(usdTexture.sourceFile.defaultValue))
+            {
+                return;
+            }
+
+            // For details, see: https://docs.unity3d.com/Manual/MaterialsAccessingViaScript.html
+            foreach (string keyword in param.requiredShaderKeywords)
+            {
+                shaderMat.EnableKeyword(keyword);
+            }
+
+            var data = System.IO.File.ReadAllBytes(usdTexture.sourceFile.defaultValue);
+            var unityTex = new Texture2D(2, 2);
+            unityTex.LoadImage(data);
+            shaderMat.SetTexture(param.unityName, unityTex);
+            Debug.Log("Set " + param.unityName + " to " + usdTexture.sourceFile.defaultValue);
+
+            unityTex.Apply(updateMipmaps: true, makeNoLongerReadable: false);
+        }
 
         private bool SetMaterialParameter(Material mat, string unityParamName, object value)
         {
@@ -277,7 +306,7 @@ namespace Unity.Formats.USD.Examples
         // ------------------------------------------------------------------------------------------ //
         // Create a USD scene for testing
         // ------------------------------------------------------------------------------------------ //
-        static private Scene CreateSceneWithShading()
+        static private Scene CreateSceneWithShading(string relPath)
         {
             var scene = Scene.Create();
 
@@ -294,7 +323,7 @@ namespace Unity.Formats.USD.Examples
             var detailNormalMapPath = "/Model/Materials/SimpleMat/DetailNormalMap";
             var detailMaskPath = "/Model/Materials/SimpleMat/DetailMask";
 
-            var textureFilePath = Path.Combine(m_localPath, "Textures");
+            var textureFilePath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), "Textures");
 
             var cube = new CubeSample();
             cube.size = 7;
@@ -410,6 +439,18 @@ namespace Unity.Formats.USD.Examples
             scene.Stage.ExportToString(out s);
             Debug.Log("Loading:\n" + s);
             return scene;
+        }
+
+        void Update()
+        {
+            if (!m_cube)
+            {
+                return;
+            }
+
+            var rot = m_cube.localEulerAngles;
+            rot.y += Time.deltaTime * 10 + Mathf.Sin(Time.time) * .1f + .05f;
+            m_cube.localEulerAngles = rot;
         }
     }
 }

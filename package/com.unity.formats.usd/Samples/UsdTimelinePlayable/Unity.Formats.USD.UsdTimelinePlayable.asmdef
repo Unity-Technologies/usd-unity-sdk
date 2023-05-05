@@ -5,7 +5,9 @@
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Runtime",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Timeline",
+        "Unity.Timeline.Editor"
     ],
     "includePlatforms": [
         "Editor",
@@ -22,6 +24,12 @@
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.timeline",
+            "expression": "1.2.18",
+            "define": "UNITY_TIMELINE"
+        }
+    ],
     "noEngineReferences": false
 }

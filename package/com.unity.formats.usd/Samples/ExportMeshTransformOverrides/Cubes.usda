@@ -1,0 +1,248 @@
+#usda 1.0
+(
+    defaultPrim = "Cubes"
+    endTimeCode = 0
+    startTimeCode = 0
+    upAxis = "Y"
+)
+
+def Xform "Cubes"
+{
+    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+    def Scope "Materials"
+    {
+        def Material "Default_Material_668"
+        {
+            token outputs:displacement
+            token outputs:surface.connect = </Cubes/Materials/Default_Material_668/PreviewSurface.outputs:surface>
+            token[] requiredKeywords
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.01
+                float3 inputs:diffuseColor = (1, 1, 1)
+                float inputs:displacement = 0
+                float3 inputs:emissiveColor = (0, 0, 0)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float3 inputs:normal = (0, 0, 1)
+                float inputs:occlusion = 1
+                float inputs:opacity = 1
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 0.5
+                float3 inputs:specularColor = (0, 0, 0)
+                int inputs:useSpecularWorkflow = 0
+                token outputs:displacement
+                token outputs:surface
+                color4f unity:colors:_Color = (1, 1, 1, 1) (
+                    customData = {
+                        string sourceMember = "colorArgs"
+                    }
+                )
+                color4f unity:colors:_EmissionColor = (0, 0, 0, 0.99999994) (
+                    customData = {
+                        string sourceMember = "colorArgs"
+                    }
+                )
+                float unity:floats:_BumpScale = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_Cutoff = 0.5 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_DetailNormalMapScale = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_DstBlend = 0 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_Glossiness = 0.5 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_GlossMapScale = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_GlossyReflections = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_Metallic = 0 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_Mode = 0 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_OcclusionStrength = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_Parallax = 0.02 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_SmoothnessTextureChannel = 0 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_SpecularHighlights = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_SrcBlend = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_UVSec = 0 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                float unity:floats:_ZWrite = 1 (
+                    customData = {
+                        string sourceMember = "floatArgs"
+                    }
+                )
+                token[] unity:shaderKeywords = []
+                string unity:shaderName = "Standard"
+            }
+        }
+    }
+
+    def Mesh "Cube1"
+    {
+        uniform bool doubleSided
+        float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+        int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+        int[] faceVertexIndices = [2, 0, 3, 3, 0, 1, 4, 8, 5, 5, 8, 9, 6, 10, 7, 7, 10, 11, 13, 12, 14, 14, 12, 15, 17, 16, 18, 18, 16, 19, 21, 20, 22, 22, 20, 23]
+        rel material:binding = </Cubes/Materials/Default_Material_668>
+        normal3f[] normals = [(0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 1, 0), (0, 1, 0), (0, 0, 1), (0, 0, 1), (0, 1, 0), (0, 1, 0), (0, 0, 1), (0, 0, 1), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)]
+        uniform token orientation
+        point3f[] points = [(0.5, -0.5, -0.5), (-0.5, -0.5, -0.5), (0.5, 0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, 0.5), (0.5, -0.5, -0.5), (-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, -0.5, -0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (0.5, 0.5, 0.5), (0.5, 0.5, -0.5), (0.5, -0.5, -0.5)]
+        color4f[] primvars:colors (
+            elementSize = 1
+            interpolation = "constant"
+        )
+        color3f[] primvars:displayColor = [(1, 1, 1)] (
+            interpolation = "constant"
+        )
+        float[] primvars:displayOpacity = [1] (
+            interpolation = "constant"
+        )
+        float2[] primvars:st = [(0, 0), (1, 0), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 0), (1, 0), (0, 0), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0)] (
+            customData = {
+                string sourceMember = "ArbitraryPrimvars"
+            }
+            elementSize = 1
+            interpolation = "varying"
+        )
+        float4[] primvars:tangents = [(-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, -1, -1), (0, 0, -1, -1), (0, 0, -1, -1), (0, 0, -1, -1)] (
+            elementSize = 1
+            interpolation = "varying"
+        )
+        uniform token purpose
+        token visibility
+        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (-2, 0, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+
+    def Mesh "Cube2"
+    {
+        uniform bool doubleSided
+        float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+        int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+        int[] faceVertexIndices = [2, 0, 3, 3, 0, 1, 4, 8, 5, 5, 8, 9, 6, 10, 7, 7, 10, 11, 13, 12, 14, 14, 12, 15, 17, 16, 18, 18, 16, 19, 21, 20, 22, 22, 20, 23]
+        rel material:binding = </Cubes/Materials/Default_Material_668>
+        normal3f[] normals = [(0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 1, 0), (0, 1, 0), (0, 0, 1), (0, 0, 1), (0, 1, 0), (0, 1, 0), (0, 0, 1), (0, 0, 1), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)]
+        uniform token orientation
+        point3f[] points = [(0.5, -0.5, -0.5), (-0.5, -0.5, -0.5), (0.5, 0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, 0.5), (0.5, -0.5, -0.5), (-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, -0.5, -0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (0.5, 0.5, 0.5), (0.5, 0.5, -0.5), (0.5, -0.5, -0.5)]
+        color4f[] primvars:colors (
+            elementSize = 1
+            interpolation = "constant"
+        )
+        color3f[] primvars:displayColor = [(1, 1, 1)] (
+            interpolation = "constant"
+        )
+        float[] primvars:displayOpacity = [1] (
+            interpolation = "constant"
+        )
+        float2[] primvars:st = [(0, 0), (1, 0), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 0), (1, 0), (0, 0), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0)] (
+            customData = {
+                string sourceMember = "ArbitraryPrimvars"
+            }
+            elementSize = 1
+            interpolation = "varying"
+        )
+        float4[] primvars:tangents = [(-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, -1, -1), (0, 0, -1, -1), (0, 0, -1, -1), (0, 0, -1, -1)] (
+            elementSize = 1
+            interpolation = "varying"
+        )
+        uniform token purpose
+        token visibility
+        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+
+    def Mesh "Cube3"
+    {
+        uniform bool doubleSided
+        float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+        int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+        int[] faceVertexIndices = [2, 0, 3, 3, 0, 1, 4, 8, 5, 5, 8, 9, 6, 10, 7, 7, 10, 11, 13, 12, 14, 14, 12, 15, 17, 16, 18, 18, 16, 19, 21, 20, 22, 22, 20, 23]
+        rel material:binding = </Cubes/Materials/Default_Material_668>
+        normal3f[] normals = [(0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 1, 0), (0, 1, 0), (0, 0, 1), (0, 0, 1), (0, 1, 0), (0, 1, 0), (0, 0, 1), (0, 0, 1), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)]
+        uniform token orientation
+        point3f[] points = [(0.5, -0.5, -0.5), (-0.5, -0.5, -0.5), (0.5, 0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, 0.5), (-0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (-0.5, 0.5, -0.5), (0.5, 0.5, 0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, 0.5), (0.5, -0.5, -0.5), (-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, -0.5, -0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (-0.5, -0.5, 0.5), (0.5, -0.5, 0.5), (0.5, 0.5, 0.5), (0.5, 0.5, -0.5), (0.5, -0.5, -0.5)]
+        color4f[] primvars:colors (
+            elementSize = 1
+            interpolation = "constant"
+        )
+        color3f[] primvars:displayColor = [(1, 1, 1)] (
+            interpolation = "constant"
+        )
+        float[] primvars:displayOpacity = [1] (
+            interpolation = "constant"
+        )
+        float2[] primvars:st = [(0, 0), (1, 0), (0, 1), (1, 1), (0, 1), (1, 1), (0, 1), (1, 1), (0, 0), (1, 0), (0, 0), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0), (0, 0), (0, 1), (1, 1), (1, 0)] (
+            customData = {
+                string sourceMember = "ArbitraryPrimvars"
+            }
+            elementSize = 1
+            interpolation = "varying"
+        )
+        float4[] primvars:tangents = [(-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (-1, 0, 0, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, 1, -1), (0, 0, -1, -1), (0, 0, -1, -1), (0, 0, -1, -1), (0, 0, -1, -1)] (
+            elementSize = 1
+            interpolation = "varying"
+        )
+        uniform token purpose
+        token visibility
+        matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (2, 0, 0, 1) )
+        uniform token[] xformOpOrder = ["xformOp:transform"]
+    }
+}
+

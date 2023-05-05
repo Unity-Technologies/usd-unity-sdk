@@ -1,0 +1,28 @@
+{
+    "name": "Unity.Formats.USD.ExportMeshWithAnimation",
+    "references": [
+        "USD.NET",
+        "Unity.Formats.USD.Runtime",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Editor",
+        "Unity.Formats.USD.ExportMesh"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "macOSStandalone",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
