@@ -41,7 +41,7 @@ namespace Unity.Formats.USD.Examples
                     {
                         EditorApplication.isPlaying = false;
                         SampleUtils.FocusConsoleWindow();
-                        Debug.Log($"<color={SampleUtils.TextColor.Green}>Open the <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> Folder in your Unity 'Project' Window to see your newly exported USD file <{script.m_newUsdFileName}></color>");
+                        Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Open the <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> Folder in your Unity 'Project' Window to see your newly exported USD file <{script.m_newUsdFileName}>"));
                         AssetDatabase.Refresh();
                     }
                 }

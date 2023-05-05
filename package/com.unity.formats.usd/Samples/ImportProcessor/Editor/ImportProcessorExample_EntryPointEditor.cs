@@ -26,7 +26,32 @@ namespace Unity.Formats.USD.Examples
             DrawDefaultInspector();
 
             ImportProcessorExample_EntryPoint script = (ImportProcessorExample_EntryPoint)target;
-            script.usdAsset.usdFullPath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), "..", "ExampleAsset", "MultipleMeshes.usda");
+            script.usdAsset.usdFullPath = Path.Combine(PackageUtils.GetCallerRelativeToProjectFolderPath(), "..", "MultipleMeshes.usda");
+
+            var labelStyle = new GUIStyle() { alignment = TextAnchor.MiddleCenter, wordWrap = true };
+            labelStyle.normal.textColor = SampleUtils.TextColor.Default;
+
+            if (GUI.changed)
+            {
+                script.ResetUsdAsset();
+                script.SetImportProcessorMode(script.sampleMode);
+            }
+
+            switch (script.sampleMode)
+            {
+                case ImportProcessorExample_EntryPoint.SampleMode.CombineMeshes:
+                    GUILayout.Label($"<b>Combine Meshes</b> setting will combine the meshes of all children within <{script.usdAsset.gameObject.name}> and create a new child object containing the combined mesh.", labelStyle);
+                    break;
+
+                case ImportProcessorExample_EntryPoint.SampleMode.SetHideFlags:
+                    GUILayout.Label($"<b>Set Hide Flags</b> setting will apply all children within <{script.usdAsset.gameObject.name}> with the below Unity Hide Flag Settings", labelStyle);
+                    GUILayout.Label("Hide Flags Setting:");
+                    script.hideFlagsSetting = (HideFlags)EditorGUILayout.EnumFlagsField(script.hideFlagsSetting);
+                    break;
+            }
+
+            // Empty Space
+            GUILayout.Label("");
 
             if (GUILayout.Button("1. Initialize USD"))
             {
@@ -36,6 +61,16 @@ namespace Unity.Formats.USD.Examples
             if (GUILayout.Button("2. Refresh Asset"))
             {
                 script.RefreshUSD();
+                SampleUtils.FocusConsoleWindow();
+            }
+
+            // Empty Space
+            GUILayout.Label("");
+
+            if (GUILayout.Button("Reset Sample USD Asset"))
+            {
+                script.ResetUsdAsset();
+                script.SetImportProcessorMode(script.sampleMode);
             }
         }
     }

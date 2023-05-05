@@ -28,40 +28,33 @@ namespace Unity.Formats.USD.Examples
 
             ImportMaterialsExample script = (ImportMaterialsExample)target;
 
-            if (GUILayout.Button("1. Initialize USD Package"))
+            if (GUILayout.Button("1. Initialize USD plugin"))
             {
                 script.InitializeUsd();
             }
 
-            if (GUILayout.Button("2. Initialize Sample Shader Map Dictionary"))
+            if (GUILayout.Button("2. Construct And Set Unity Material"))
             {
                 script.InitializeSampleShaderMapDictionary();
-            }
-
-            if (GUILayout.Button("3. Create a Sample USD Scene"))
-            {
                 script.CreateUsdScene();
-            }
-
-            if (GUILayout.Button("4. Initialize Sample USD Material"))
-            {
                 script.InitializeSampleMaterial();
-            }
-
-            if (GUILayout.Button("5. Construct And Set Unity Material"))
-            {
                 script.ConstructAndSetUnityMaterial();
             }
 
-            if (GUILayout.Button("6. Bind Geometry"))
+            if (GUILayout.Button("3. Bind Geometry"))
             {
                 script.BindGeometry();
                 Debug.Log($"Unity GameObject created and assigned with the imported materials");
             }
 
-            if (GUILayout.Button("7. Close USD Scene"))
+            if (GUILayout.Button("4. Close USD Scene"))
             {
                 script.CloseUsdScene();
+            }
+
+            if (GUILayout.Button("5. Enter Play Mode."))
+            {
+                EditorApplication.EnterPlaymode();
             }
         }
     }

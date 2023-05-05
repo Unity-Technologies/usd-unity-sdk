@@ -45,7 +45,7 @@ namespace Unity.Formats.USD.Examples
         public void CreateUsdScene()
         {
             string usdFile = System.IO.Path.Combine(SampleUtils.SampleArtifactDirectory, k_exampleUsdFileName);
-            Debug.Log($"<color={SampleUtils.TextColor.Blue}>Creating empty USD file called: <{k_exampleUsdFileName}> within your project's '{SampleUtils.SampleArtifactRelativeDirectory}' folder</color>");
+            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, $"Creating empty USD file called: <{k_exampleUsdFileName}> within your project's '{SampleUtils.SampleArtifactRelativeDirectory}' folder"));
             m_scene = Scene.Create(usdFile);
         }
 
@@ -61,7 +61,7 @@ namespace Unity.Formats.USD.Examples
             // As well as UnityEngine types.
             value.aBoundingBox = new UnityEngine.Bounds();
 
-            Debug.Log($"<color={SampleUtils.TextColor.Blue}>Writing data to: <{k_exampleUsdFileName}> with values: </color>");
+            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, $"Writing data to: <{k_exampleUsdFileName}> with values: "));
             Debug.LogFormat("Value: string={0}, ints=[{1}, {2}, {3}, {4}], bounding box={5}",
                 value.aString, value.anArrayOfInts[0], value.anArrayOfInts[1], value.anArrayOfInts[2], value.anArrayOfInts[3], value.aBoundingBox);
             m_scene.Write("/someCustomValue", value); // Here "/someCustomvalue" is the path of the USD Prim the custom data, 'value' will be placed in
@@ -72,7 +72,7 @@ namespace Unity.Formats.USD.Examples
             // Once any data is written in a USD Scene file, you need to save it to preserve it
             m_scene.Save();
 
-            Debug.Log($"<color={SampleUtils.TextColor.Green}>Custom data has been saved in USD file named <{k_exampleUsdFileName}> within your project's '{SampleUtils.SampleArtifactRelativeDirectory}' folder</color>");
+            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Custom data has been saved in USD file named <{k_exampleUsdFileName}> within your project's '{SampleUtils.SampleArtifactRelativeDirectory}' folder"));
 
             AssetDatabase.Refresh();
         }
@@ -87,7 +87,7 @@ namespace Unity.Formats.USD.Examples
         {
             var value = new MyCustomData();
 
-            Debug.Log($"<color={SampleUtils.TextColor.Blue}>Reading data from: <{k_exampleUsdFileName}> values: </color>");
+            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, $"Reading data from: <{k_exampleUsdFileName}> values: "));
             // Reading the added custom data.
             m_scene.Read("/someCustomValue", value);
             Debug.LogFormat("Value: string={0}, ints=[{1}, {2}, {3}, {4}], bounding box={5}",
@@ -95,7 +95,7 @@ namespace Unity.Formats.USD.Examples
 
             var prim = m_scene.Stage.GetPrimAtPath(new pxr.SdfPath("/someCustomValue"));
             var vtValue = prim.GetAttribute(new pxr.TfToken("aString")).Get(1);
-            Debug.Log($"(string)VTValue of added 'Custom Value', TfToken 'aString': <color={SampleUtils.TextColor.Blue}><{(string)vtValue}></color>");
+            Debug.Log($"(string)VTValue of added 'Custom Value', TfToken 'aString': {SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, $"<{(string)vtValue}>")}");
 
         }
 

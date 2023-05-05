@@ -23,10 +23,10 @@ namespace Unity.Formats.USD.Examples
     /// Deactivates the other child mesh GameObjects.
     /// Implements IImportPostProcessComponents, so it runs after Component instantiation
     /// </summary>
-    public class ImportProcessorExample_PostProcessComponents : RegexImportProcessor, IImportPostProcessComponents
+    public class ImportProcessorExample_CombineMeshes : RegexImportProcessor, IImportPostProcessComponents
     {
         const int kVertexLimit = 65534;
-
+        const string kCombinedMeshName = "CombinedSubmesh";
         [Tooltip("If true, prevents vertex count from exceeding 65534 (old 16bit limit)")]
         public bool m_enforceU16VertexLimit;
 
@@ -43,7 +43,7 @@ namespace Unity.Formats.USD.Examples
                 DoCombineMeshes(kvp.Value.transform);
             }
 
-            Debug.Log($"<color={SampleUtils.TextColor.Green}>Combined Mesh GameObject created as child of original USD asset <{this.gameObject.name}></color>");
+            Debug.Log($"Combined Mesh GameObject created as child of original USD asset <{SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, this.gameObject.name)}> as <{SampleUtils.SetTextColor(SampleUtils.TextColor.Green, kCombinedMeshName)}>");
             Debug.Log("PostProcessComponents End");
         }
 
@@ -111,7 +111,7 @@ namespace Unity.Formats.USD.Examples
             {
                 // TODO: trim and rearrange materials so there is only one submesh per material?
                 GameObject go = new GameObject();
-                go.name = "CombinedSubmesh";
+                go.name = kCombinedMeshName;
                 Transform sub = go.transform;
                 sub.SetParent(current, false);
 

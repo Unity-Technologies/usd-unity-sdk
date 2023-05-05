@@ -20,7 +20,7 @@ namespace Unity.Formats.USD.Examples
     /// For matching Usd Paths, set the HideFlags on the GameObject.
     /// </summary>
     /// <seealso cref="UnityEngine.HideFlags"/>
-    public class ImportProcessorExample_PostProcessHierarchy : RegexImportProcessor, IImportPostProcessHierarchy
+    public class ImportProcessorExample_SetHideFlags : RegexImportProcessor, IImportPostProcessHierarchy
     {
         public HideFlags hideFlagsSettings = HideFlags.DontSave;
 
@@ -61,7 +61,7 @@ namespace Unity.Formats.USD.Examples
                         go.hideFlags = hideFlagsSettings;
                         break;
                 }
-                Debug.Log($"<color={SampleUtils.TextColor.Green}>Applying <{go.name}> HideFlags with <{hideFlagsSettings}></color>");
+                Debug.Log($"Applying Object <{SampleUtils.SetTextColor(SampleUtils.TextColor.Blue, go.name)}> HideFlags with <{SampleUtils.SetTextColor(SampleUtils.TextColor.Green, hideFlagsSettings.ToString())}>");
             }
 
             Debug.Log("PostProcessHierarchy End");

@@ -47,7 +47,7 @@ namespace Unity.Formats.USD.Examples
                             SampleUtils.FocusConsoleWindow();
 
                             script.CreateNewUsdScene();
-                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Created USD file: <b><{script.m_newUsdFileName}.{script.FileExtension}></b> under project <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> folder</color>");
+                            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Created USD file: <b><{script.m_newUsdFileName}.{script.FileExtension}></b> under project <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> folder"));
                         }
 
                         if (GUILayout.Button("3. Set up Export Context"))
@@ -55,13 +55,7 @@ namespace Unity.Formats.USD.Examples
                             SampleUtils.FocusConsoleWindow();
 
                             script.SetUpExportContext();
-                        }
-
-                        if (GUILayout.Button("3. Set up Export Context"))
-                        {
-                            SampleUtils.FocusConsoleWindow();
-
-                            script.SetUpExportContext();
+                            Debug.Log($"Export Context has been set up.");
                         }
 
                         if (GUILayout.Button("4. Export"))
@@ -69,6 +63,7 @@ namespace Unity.Formats.USD.Examples
                             SampleUtils.FocusConsoleWindow();
 
                             script.Export();
+                            Debug.Log($"Data of 'Export Context' has been exported to USD file <b><{script.m_newUsdFileName}.{script.FileExtension}></b>.");
                         }
 
                         if (GUILayout.Button("5. Save Scene"))
@@ -77,12 +72,14 @@ namespace Unity.Formats.USD.Examples
 
                             script.SaveScene();
                             AssetDatabase.Refresh();
-                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.{script.FileExtension}></b></color>");
+                            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Data exported to <b><{script.m_newUsdFileName}.{script.FileExtension}></b> has been saved."));
+                            Debug.Log($"The file <b><{script.m_newUsdFileName}.{script.FileExtension}></b> is available at your project <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> directory.");
                         }
 
                         if (GUILayout.Button("6. Close Scene"))
                         {
                             script.CloseScene();
+                            Debug.Log("Closed USD Scene.");
                         }
                         break;
                     }
@@ -92,10 +89,10 @@ namespace Unity.Formats.USD.Examples
                         if (GUILayout.Button("2. Export GameObject as USDZ"))
                         {
                             SampleUtils.FocusConsoleWindow();
-                            Debug.Log("For USDZ Export the sample will utilize the <b>UsdzExporter.cs</b> script");
+                            Debug.Log("For USDZ Export the sample will utilize the <b>UsdzExporter.cs</b> script.");
                             script.ExportAsUsdz();
                             AssetDatabase.Refresh();
-                            Debug.Log($"<color={SampleUtils.TextColor.Green}>Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.usdz></b></color>");
+                            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Exported details of <b><{script.m_exportRoot.name}></b> into <b><{script.m_newUsdFileName}.usdz></b>"));
                         }
                         break;
                     }

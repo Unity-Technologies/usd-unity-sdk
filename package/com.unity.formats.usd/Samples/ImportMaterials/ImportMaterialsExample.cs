@@ -27,6 +27,8 @@ namespace Unity.Formats.USD.Examples
         private static Material m_material;
         private static MaterialSample m_usdMaterial;
         private static string m_shaderId;
+        [HideInInspector]
+        public Transform m_cube;
 
         // The USD Shader ID is used to index into this map to find the corresponding ShaderPair,
         // i.e. the Unity / USD shader pair that should be instantiated for the ID.
@@ -149,6 +151,7 @@ namespace Unity.Formats.USD.Examples
             go.transform.localScale = Vector3.one * (float)cubeSample.size;
 
             go.GetComponent<MeshRenderer>().material = m_material;
+            m_cube = go.transform;
         }
 
         public void CloseUsdScene()
@@ -159,7 +162,6 @@ namespace Unity.Formats.USD.Examples
         // ------------------------------------------------------------------------------------------ //
         // Unity parameter value helper.
         // ------------------------------------------------------------------------------------------ //
-
 
         private ShaderPair GetShaderPairFromShaderId()
         {
@@ -437,6 +439,18 @@ namespace Unity.Formats.USD.Examples
             scene.Stage.ExportToString(out s);
             Debug.Log("Loading:\n" + s);
             return scene;
+        }
+
+        void Update()
+        {
+            if (!m_cube)
+            {
+                return;
+            }
+
+            var rot = m_cube.localEulerAngles;
+            rot.y += Time.deltaTime * 10 + Mathf.Sin(Time.time) * .1f + .05f;
+            m_cube.localEulerAngles = rot;
         }
     }
 }

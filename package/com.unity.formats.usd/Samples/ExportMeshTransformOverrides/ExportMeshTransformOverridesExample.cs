@@ -78,7 +78,7 @@ namespace Unity.Formats.USD.Examples
             m_exampleImportedUsdObject.GetComponent<UsdAsset>().ExportOverrides(overs);
 
             SampleUtils.FocusConsoleWindow();
-            Debug.Log($"<color={SampleUtils.TextColor.Green}>Transform Overrides have been saved in the Project '{SampleUtils.SampleArtifactRelativeDirectory}' folder as <<b>{newFileName}</b>></color>");
+            Debug.Log(SampleUtils.SetTextColor(SampleUtils.TextColor.Green, $"Created USD file of Transform Overrides: <<b>{newFileName}</b>> under project <b>'{SampleUtils.SampleArtifactRelativeDirectory}'</b> folder."));
         }
     }
 }

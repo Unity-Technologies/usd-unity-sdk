@@ -37,6 +37,11 @@ namespace Unity.Formats.USD
 #endif
         }
 
+        public static string SetTextColor(string color, string text)
+        {
+            return $"<color={color}>{text}</color>";
+        }
+
         public struct TextColor
         {
             public const string Red = "#FF2D2D";

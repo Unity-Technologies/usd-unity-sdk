@@ -1,4 +1,4 @@
 {
-    "displayName" : "ExportMesh",
+    "displayName" : "ExportMeshWithAnimation",
     "description" : "A sample showing how to record a scene to a USD file."
 }
