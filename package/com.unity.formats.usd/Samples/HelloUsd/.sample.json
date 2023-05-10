@@ -1,4 +1,4 @@
 {
     "displayName" : "HelloUsd",
-    "description" : "A sample showing how to write custom data to USDs."
+    "description" : "A sample showing how to write and read custom data to and from USDs."
 }
