@@ -1009,6 +1009,15 @@ namespace USD.NET
                 // ------------------------------------------ //
                 if (conn != null && csValue != null)
                 {
+                    // Hack to handle a re-typed connected value in PrimvarReader in USD 21.11+.
+                    // Previously it was a token type, now it's a string, but we need to handle both.
+                    // The serialization automatically picks it up as a string, so we get an incorrect empty string.
+                    // In this case of type mismatch, perform an explicit cast to get the actual value.
+                    if (conn.GetValueType() == typeof(string) && vtValue.GetTypeName() == "TfToken")
+                    {
+                        csValue = (string)VtValue.CastToTypeOf(vtValue, new VtValue(""));
+                    }
+
                     conn.SetValue(csValue);
                     csValue = conn;
                 }

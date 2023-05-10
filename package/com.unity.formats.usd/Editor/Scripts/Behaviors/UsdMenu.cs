@@ -203,13 +203,13 @@ namespace Unity.Formats.USD
             ImportHelpers.ImportAsTimelineClip(scene, null);
         }
 
-        [MenuItem("USD/Unload Subtree", true)]
+        [MenuItem("USD/Unload Payload Subtree", true)]
         static bool EnableMenuUnloadSubtree()
         {
             return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<UsdAsset>();
         }
 
-        [MenuItem("USD/Unload Subtree", priority = 100)]
+        [MenuItem("USD/Unload Payload Subtree", priority = 100)]
         public static void MenuUnloadSubtree()
         {
             var src = Selection.activeGameObject.transform;
@@ -242,13 +242,13 @@ namespace Unity.Formats.USD
             }
         }
 
-        [MenuItem("USD/Load Subtree", true)]
+        [MenuItem("USD/Load Payload Subtree", true)]
         static bool EnableMenuLoadSubtree()
         {
             return Selection.activeGameObject && Selection.activeGameObject.GetComponentInParent<UsdAsset>();
         }
 
-        [MenuItem("USD/Load Subtree", priority = 101)]
+        [MenuItem("USD/Load Payload Subtree", priority = 101)]
         public static void MenuLoadSubtree()
         {
             var src = Selection.activeGameObject.transform;

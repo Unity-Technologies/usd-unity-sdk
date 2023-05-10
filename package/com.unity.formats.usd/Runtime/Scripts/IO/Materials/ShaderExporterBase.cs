@@ -298,7 +298,7 @@ namespace Unity.Formats.USD
                 filePath = ImporterBase.MakeRelativePath(scene.FilePath, filePath);
                 filePath = filePath.Replace("\\", "/");
 
-                var uvReader = new PrimvarReaderSample<Vector2>();
+                var uvReader = new PrimvarReaderExportSample<Vector2>();
                 uvReader.varname.defaultValue = new TfToken("st");
                 scene.Write(usdShaderPath + "/uvReader", uvReader);
                 var usdTexReader = new TextureReaderSample(filePath, usdShaderPath + "/uvReader.outputs:result");
