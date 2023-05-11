@@ -71,7 +71,7 @@ test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}:
 {% endfor %}
 {% endfor %}
 
-{% for editor in promotion_test_editors -%}
+{% for editor in test_editors -%}
 {% for platform in test_platforms -%}
 validate_{{ platform.name }}_{{ editor.version }}:
   name : Validate {{ editor.version }} on {{ platform.name }}
