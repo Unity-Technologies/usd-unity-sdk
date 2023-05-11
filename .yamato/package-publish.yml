@@ -9,7 +9,7 @@ publish:
     flavor: b1.large
   commands:
     - npm install upm-ci-utils@stable -g --registry {{ registry.npm }}
-    - upm-ci package publish --package-path package/com.unity.formats.usd --dry-run
+    - upm-ci package publish --package-path package/com.unity.formats.usd
   triggers:
     tags:
       only:
