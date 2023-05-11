@@ -1,0 +1,54 @@
+test_editors:
+  - version: trunk
+  - version: 2023.1
+  - version: 2022.2
+  - version: 2021.3
+  - version: 2020.3
+  - version: 2019.4
+
+test_platforms:
+  - name: win
+    type: Unity::VM
+    image: package-ci/win10:v4
+    flavor: b1.large
+  - name: mac
+    type: Unity::VM::osx
+    image: package-ci/macos-12:v4
+    flavor: m1.mac
+
+test_backends:
+  - name: il2cpp
+    editor: 2020.3
+    apiprofile: --api-profile=NET_4_6
+  - name: mono
+    editor: 2020.3
+    apiprofile: --api-profile=NET_4_6
+
+player_test_editors:
+  - version: 2019.4
+  - version: trunk
+
+player_test_platforms:
+  - name: win
+    id: standalone
+    build:
+      type: Unity::VM
+      image: package-ci/win10:v4
+      flavor: b1.large
+    run:
+      type: Unity::VM
+      image: package-ci/win10:v4
+      flavor: b1.large
+  - name: mac
+    id: standalone
+    build:
+      type: Unity::VM::osx
+      image: package-ci/macos-12:v4
+      flavor: m1.mac
+    run:
+      type: Unity::VM::osx
+      image: package-ci/macos-12:v4
+      flavor: m1.mac
+
+registry:
+  npm: https://artifactory.prd.it.unity3d.com/artifactory/api/npm/upm-npm

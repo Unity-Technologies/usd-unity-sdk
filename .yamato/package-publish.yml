@@ -1,0 +1,31 @@
+{% metadata_file .yamato/package.metafile -%}
+---
+
+publish:
+  name: Publish to Internal Registry
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:v4
+    flavor: b1.large
+  commands:
+    - npm install upm-ci-utils@stable -g --registry {{ registry.npm }}
+    - upm-ci package publish --package-path package/com.unity.formats.usd
+  triggers:
+    tags:
+      only:
+        - /^[Rr][Cc]-(0\.\d+\.\d+|[1-9]\d*\.\d+\.\d+(-preview(\.\d+)?|-exp(\.\d+|-\w+\.\d+)|-pre\.\d+)?)$/
+  artifacts:
+    artifacts:
+      paths:
+        - "upm-ci~/packages/*.tgz"
+    logs:
+      paths:
+        - "upm-ci~/upm-ci.log"
+  dependencies:
+    - .yamato/package-pack.yml#pack
+{% for editor in test_editors -%}
+{% for platform in test_platforms -%}
+    - .yamato/package-test.yml#test_{{ platform.name }}_{{ editor.version }}
+    - .yamato/package-test.yml#validate_{{ platform.name }}_{{ editor.version }}
+{% endfor -%}
+{% endfor -%}

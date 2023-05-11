@@ -1,0 +1,136 @@
+{% metadata_file .yamato/package.metafile -%}
+---
+
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
+test_{{ platform.name }}_{{ editor.version }}:
+  name : Test {{ editor.version }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  variables:
+    UPMCI_PKG: "upm-ci-utils@stable"
+  commands:
+      - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
+      - upm-ci package test -u {{ editor.version }} --package-path package/com.unity.formats.usd --type package-tests --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--api-profile=NET_4_6"
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+        - "upm-ci~/upm-ci.log"
+  dependencies:
+    - .yamato/package-pack.yml#pack
+{% endfor %}
+{% endfor %}
+
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
+test_recorder_{{ platform.name }}_{{ editor.version }}:
+  name : Test Recorder {{ editor.version }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  variables:
+    UPMCI_PKG: "upm-ci-utils@stable"
+  commands:
+      - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
+      - upm-ci project test -u {{ editor.version }} --project-path TestProject/Usd-Recorder --type project-tests --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--api-profile=NET_4_6"
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+        - "upm-ci~/upm-ci.log"
+  dependencies:
+    - .yamato/package-pack.yml#pack
+{% endfor %}
+{% endfor %}
+
+{% for backend in test_backends %}
+{% for platform in test_platforms %}
+test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}:
+  name : Test standalone {{backend.editor}} {{ backend.name }} {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  variables:
+    UPMCI_PKG: "upm-ci-utils@stable"
+  commands:
+    - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
+    - upm-ci package test -u {{ backend.editor }} --package-path package/com.unity.formats.usd  --type package-tests
+      --platform standalone --backend {{ backend.name }} --extra-create-project-arg=-upmNoDefaultPackages --extra-utr-arg="--testfilter=StandaloneSanityTest {{ backend.apiprofile }}"
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+        - "upm-ci~/upm-ci.log"
+  dependencies:
+    - .yamato/package-pack.yml#pack
+{% endfor %}
+{% endfor %}
+
+{% for editor in test_editors -%}
+{% for platform in test_platforms -%}
+validate_{{ platform.name }}_{{ editor.version }}:
+  name : Validate {{ editor.version }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+  variables:
+    UPMCI_PKG: "upm-ci-utils@stable"
+  commands:
+    - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
+    - upm-ci package test -u {{ editor.version }} --package-path package/com.unity.formats.usd --type vetting-tests --platform editmode --extra-create-project-arg=-upmNoDefaultPackages
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+        - "upm-ci~/upm-ci.log"
+  dependencies:
+    - .yamato/package-pack.yml#pack
+{% endfor -%}
+{% endfor -%}
+
+test_trigger:
+  name: Package Tests Trigger
+  triggers:
+    branches:
+      only:
+        - "/.*/"
+      except:
+        - stable
+  dependencies:
+    - .yamato/package-pack.yml#pack
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
+    - .yamato/package-test.yml#test_{{platform.name}}_{{editor.version}}
+    - .yamato/package-test.yml#test_recorder_{{platform.name}}_{{editor.version}}
+{% endfor %}
+{% endfor %}
+{% for backend in test_backends %}
+{% for platform in test_platforms %}
+    - .yamato/package-test.yml#test_standalone_{{ platform.name }}_{{ backend.editor }}_{{ backend.name }}
+{% endfor %}
+{% endfor %}
+    - .yamato/package-formatting.yml#formatting
+
+nightly_test_trigger:
+  name: Nightly Tests Trigger
+  triggers:
+    recurring:
+      - branch: dev
+        frequency: daily
+        rerun: always
+      - branch: stable
+        frequency: daily
+        rerun: always
+  dependencies:
+    - .yamato/package-pack.yml#pack
+{% for editor in test_editors %}
+{% for platform in test_platforms %}
+    - .yamato/package-test.yml#test_{{platform.name}}_{{editor.version}}
+{% endfor %}
+{% endfor %}
