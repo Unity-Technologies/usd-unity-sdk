@@ -1,6 +1,8 @@
 # Changes in usd-unity-sdk for Unity
 
 ## Unreleased
+
+## [3.0.0-exp.3] - 2023-05-11
 ### Features
 - The USD Recorder now has an option to export transform overrides.
 

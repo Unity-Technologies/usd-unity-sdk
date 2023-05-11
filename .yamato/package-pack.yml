@@ -1,0 +1,18 @@
+{% metadata_file .yamato/package.metafile -%}
+---
+pack:
+  name: Pack
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.small
+  commands:
+    - npm install upm-ci-utils@latest -g --registry {{ registry.npm }}
+    - upm-ci package pack --package-path package/com.unity.formats.usd
+  artifacts:
+    packages:
+      paths:
+        - "upm-ci~/packages/**/*"
+    logs:
+      paths:
+        - "upm-ci~/upm-ci.log"

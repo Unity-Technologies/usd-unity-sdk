@@ -1,4 +1,4 @@
 {
     "displayName" : "ImportMesh",
-    "description" : "A sample showing how to import a scene from USD into Unity."
+    "description" : "A sample showing how to import a scene from USD into Unity using Unity's USD APIs directly."
 }
