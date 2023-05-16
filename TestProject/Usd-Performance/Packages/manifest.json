@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "com.unity.ext.nunit": "1.0.6",
+    "com.unity.formats.usd": "file:../../../package/com.unity.formats.usd/",
+    "com.unity.ide.visualstudio": "2.0.17",
+    "com.unity.recorder": "3.0.3",
+    "com.unity.test-framework": "1.1.33",
+    "com.unity.test-framework.performance": "2.8.1-preview",
+    "com.unity.modules.unitywebrequest": "1.0.0",
+    "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+    "com.unity.modules.unitywebrequestwww": "1.0.0"
+  },
+  "testables": [
+    "com.unity.formats.usd"
+  ]
+}

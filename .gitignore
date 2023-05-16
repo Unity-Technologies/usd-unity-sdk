@@ -47,6 +47,10 @@ vs2015/UsdCs/Release/*
 packages.config
 /inst/
 *.unitypackage
+*.csproj
+*.sln
+*.vs
+*.vsconfig
 
 # OSX
 .DS_Store
@@ -54,14 +58,6 @@ packages.config
 # UPM
 upm-ci~
 
-TestProject/Library
-TestProject/ProjectSettings
-TestProject/Temp
-TestProject/*.sln*
-TestProject/*.csproj
-TestProject/.idea
-TestProject/Logs
-TestProject/Assets/*
 inst-dbg/
 package/com.unity.formats.usd/TestRunnerOptions.json.meta
 /artifacts/
@@ -74,3 +70,6 @@ TestProject/**/*.sln
 TestProject/Usd-Development/Library
 TestProject/Usd-Development/.vs
 build_usdcs
+TestProject/**/ProjectSettings/*.asset
+TestProject/**/UserSettings/
+TestProject/Usd-Development-Performance/Library

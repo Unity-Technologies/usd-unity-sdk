@@ -1,27 +1,28 @@
 {
-    "name": "Unity.Formats.USD.Tests.Runtime",
+    "name": "Unity.Formats.USD.Tests.Performance",
     "references": [
+        "UnityEditor.TestRunner",
+        "UnityEngine.TestRunner",
         "USD.NET",
         "USD.NET.Unity",
+        "Unity.PerformanceTesting",
+        "Unity.Formats.USD.Tests.Editor",
+        "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Runtime",
-        "Unity.Timeline",
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
         "Unity.Formats.USD.Tests.Common",
+        "Unity.Formats.USD.Tests.Runtime",
         "Unity.Formats.USD.Common"
     ],
     "includePlatforms": [
-        "Editor",
-        "macOSStandalone",
-        "WindowsStandalone64"
+        "Editor"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": true,
     "precompiledReferences": [
         "nunit.framework.dll"
     ],
-    "autoReferenced": true,
+    "autoReferenced": false,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
