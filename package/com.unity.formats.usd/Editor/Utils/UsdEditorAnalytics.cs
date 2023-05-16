@@ -19,7 +19,7 @@ using UnityEngine.Analytics;
 
 namespace Unity.Formats.USD
 {
-    public class UsdEditorAnalytics
+    public static class UsdEditorAnalytics
     {
         // General analytics
         const int k_MaxEventsPerHour = 1000;
@@ -55,7 +55,7 @@ namespace Unity.Formats.USD
             public bool OnlyOverrides;
         }
 
-        Dictionary<string, bool> m_usdEditorAnalyticsEvents = new Dictionary<string, bool>()
+        public static Dictionary<string, bool> sUsdEditorAnalyticsEvents = new Dictionary<string, bool>()
         {
             { k_UsageEventName, false },
             { k_ImportEventName, false },
@@ -67,12 +67,12 @@ namespace Unity.Formats.USD
             bool returnValue = true;
             AnalyticsResult result;
 
-            foreach (var anaylticsEvent in UsdEditorAnalyticsEvents)
+            foreach (var analyticsEvent in sUsdEditorAnalyticsEvents)
             {
-                result = EditorAnalytics.RegisterEventWithLimit(anaylticsEvent.Key, k_MaxEventsPerHour, k_MaxNumberOfElements, k_VendorKey);
+                result = EditorAnalytics.RegisterEventWithLimit(analyticsEvent.Key, k_MaxEventsPerHour, k_MaxNumberOfElements, k_VendorKey);
                 if (result == AnalyticsResult.Ok)
-                    anaylticsEvent.Value = true;
-                returnValue &= anaylticsEvent.Value;
+                    sUsdEditorAnalyticsEvents[analyticsEvent.Key] = true;
+                returnValue &= analyticsEvent.Value;
             }
 
             return returnValue; // VRC: Not sure this is particularly necessary, could return nothing and just use the dictionary.
@@ -85,7 +85,7 @@ namespace Unity.Formats.USD
             if (!EditorAnalytics.enabled)
                 return;
 
-            if (!m_usdEditorAnalyticsEvents[k_UsageEventName] && !EnableAnalytics())
+            if (!sUsdEditorAnalyticsEvents[k_UsageEventName] && !EnableAnalytics())
                 return;
 
             var data = new UsageAnalyticsData()
@@ -101,7 +101,7 @@ namespace Unity.Formats.USD
             if (!EditorAnalytics.enabled)
                 return;
 
-            if (!m_usdEditorAnalyticsEvents[k_ImportEventName] && !EnableAnalytics())
+            if (!sUsdEditorAnalyticsEvents[k_ImportEventName] && !EnableAnalytics())
                 return;
 
             var data = new ImportAnalyticsData()
@@ -118,7 +118,7 @@ namespace Unity.Formats.USD
             if (!EditorAnalytics.enabled)
                 return;
 
-            if (!m_usdEditorAnalyticsEvents[k_ExportEventName] && !EnableAnalytics())
+            if (!sUsdEditorAnalyticsEvents[k_ExportEventName] && !EnableAnalytics())
                 return;
 
             var data = new ExportAnalyticsData()
