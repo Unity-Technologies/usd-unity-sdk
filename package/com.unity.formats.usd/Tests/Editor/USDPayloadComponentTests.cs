@@ -242,7 +242,7 @@ namespace Unity.Formats.USD.Tests
             // Wait at least one frame for Reload
             yield return null;
 
-            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
+            EditorSceneManager.SaveScene(m_UnityScene, TestUtilityFunction.GetUnityScenePath(ArtifactsDirectoryRelativePath));
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after saving");
 
             var payloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
@@ -298,7 +298,7 @@ namespace Unity.Formats.USD.Tests
             // Wait at least one frame for Reload
             yield return null;
 
-            EditorSceneManager.SaveScene(m_UnityScene, GetUnityScenePath());
+            EditorSceneManager.SaveScene(m_UnityScene, TestUtilityFunction.GetUnityScenePath(ArtifactsDirectoryRelativePath));
             Assert.IsFalse(m_UnityScene.isDirty, "Scene should not be dirty after saving");
 
             var payloadRoot = m_usdRoot.GetComponentInChildren<UsdPayload>();
