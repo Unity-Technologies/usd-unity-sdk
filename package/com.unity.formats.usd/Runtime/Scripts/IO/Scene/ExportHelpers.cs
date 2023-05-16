@@ -34,11 +34,13 @@ namespace Unity.Formats.USD
             return scene;
         }
 
-        public static void ExportGameObjects(GameObject[] objects, Scene scene, BasisTransformation basisTransform,
+        public static bool ExportGameObjects(GameObject[] objects, Scene scene, BasisTransformation basisTransform,
             bool exportMonoBehaviours = false)
         {
             if (scene == null)
-                return;
+                return false;
+
+            bool success = true;
 
             foreach (GameObject go in objects)
             {
@@ -51,10 +53,13 @@ namespace Unity.Formats.USD
                 catch (System.Exception ex)
                 {
                     Debug.LogException(ex);
+                    success = false;
                 }
             }
             scene.Save();
             scene.Close();
+
+            return success;
         }
     }
 }

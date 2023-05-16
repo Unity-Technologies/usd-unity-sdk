@@ -585,15 +585,17 @@ namespace Unity.Formats.USD
         /// scene being exported.
         /// </summary>
         /// <param name="sceneInWhichToStoreTransforms"></param>
-        public void ExportOverrides(Scene sceneInWhichToStoreTransforms)
+        public bool ExportOverrides(Scene sceneInWhichToStoreTransforms)
         {
             var sceneToReference = this;
             var overs = sceneInWhichToStoreTransforms;
 
             if (overs == null)
             {
-                return;
+                return false;
             }
+
+            bool success = true;
 
             var baseLayer = sceneToReference.GetScene();
             if (baseLayer == null)
@@ -621,6 +623,7 @@ namespace Unity.Formats.USD
             catch (Exception ex)
             {
                 Debug.LogException(ex);
+                success = false;
             }
             finally
             {
@@ -632,7 +635,13 @@ namespace Unity.Formats.USD
                     overs.Save();
                     overs.Close();
                 }
+                else
+                {
+                    success = false;
+                }
             }
+
+            return success;
         }
 
         /// <summary>

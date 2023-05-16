@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -55,7 +56,8 @@ namespace Unity.Formats.USD
             var go = Selection.gameObjects.First();
             var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, fileExtensions);
             var scene = ExportHelpers.InitForSave(filePath);
-            ExportHelpers.ExportGameObjects(Selection.gameObjects, scene, BasisTransformation.SlowAndSafe);
+            bool success = ExportHelpers.ExportGameObjects(Selection.gameObjects, scene, BasisTransformation.SlowAndSafe);
+            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(filePath), success);
         }
 
         [MenuItem("USD/Export Transform Overrides", true)]
@@ -76,7 +78,8 @@ namespace Unity.Formats.USD
 #endif
             var filePath = EditorUtility.SaveFilePanel("Export USD File", "", Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs", fileExtensions);
             var overs = ExportHelpers.InitForSave(filePath);
-            root.ExportOverrides(overs);
+            bool success = root.ExportOverrides(overs);
+            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(filePath), success, true);
         }
 
         [MenuItem("USD/Export Selected as USDZ", true)]
@@ -108,7 +111,8 @@ namespace Unity.Formats.USD
                 }
             }
 
-            UsdzExporter.ExportUsdz(filePath, Selection.activeGameObject);
+            bool success = UsdzExporter.ExportUsdz(filePath, Selection.activeGameObject);
+            UsdEditorAnalytics.SendExportEvent("usdz", success);
         }
 
 #if false
@@ -175,8 +179,10 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            ImportHelpers.ImportSceneAsGameObject(scene, Selection.activeGameObject);
+            var GO = ImportHelpers.ImportSceneAsGameObject(scene, Selection.activeGameObject);
             scene.Close();
+
+            UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath), GO != null);
         }
 
         [MenuItem("USD/Import as Prefab", priority = 1)]
@@ -188,7 +194,9 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            ImportHelpers.ImportAsPrefab(scene, null);
+            string prefabPath = ImportHelpers.ImportAsPrefab(scene, null);
+
+            UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath), !String.IsNullOrEmpty(prefabPath));
         }
 
         [MenuItem("USD/Import as Timeline Clip", priority = 2)]
@@ -200,7 +208,9 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            ImportHelpers.ImportAsTimelineClip(scene, null);
+            string path = ImportHelpers.ImportAsTimelineClip(scene, null);
+
+            UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath), !String.IsNullOrEmpty(path));
         }
 
         [MenuItem("USD/Unload Payload Subtree", true)]

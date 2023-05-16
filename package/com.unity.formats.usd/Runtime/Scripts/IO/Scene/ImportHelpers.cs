@@ -83,7 +83,7 @@ namespace Unity.Formats.USD
             {
                 UsdToGameObject(go, scene, importOptions);
                 SceneImporter.SavePrefab(go, prefabPath, clipName, importOptions);
-                return prefabPath;
+                return prefabPath; // VRC: I'm not sure what this returns if it throws- should be null
             }
             finally
             {

@@ -21,7 +21,7 @@ namespace Unity.Formats.USD
 {
     public class UsdzExporter
     {
-        public static void ExportUsdz(string usdzFilePath,
+        public static bool ExportUsdz(string usdzFilePath,
             GameObject root)
         {
             // Ensure USD is initialized before changing CWD.
@@ -39,6 +39,8 @@ namespace Unity.Formats.USD
             // Get the usd file name to export and the usdz file name of the archive.
             string usdcFileName = Path.GetFileNameWithoutExtension(usdzFilePath) + ".usdc";
             string usdzFileName = Path.GetFileName(usdzFilePath);
+
+            bool success = true;
 
             try
             {
@@ -74,12 +76,12 @@ namespace Unity.Formats.USD
                 }
 
                 SdfAssetPath assetPath = new SdfAssetPath(usdcFileName);
-                bool success = pxr.UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
+                success = pxr.UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
 
                 if (!success)
                 {
-                    Debug.LogError("Couldn't export " + root.name + " to the usdz file: " + usdzFilePath);
-                    return;
+                    Debug.LogError($"Couldn't export {root.name} to the usdz file {usdzFilePath}");
+                    success = false;
                 }
 
                 File.Copy(usdzFileName, usdzFilePath, overwrite: true);
@@ -90,6 +92,8 @@ namespace Unity.Formats.USD
                 Directory.SetCurrentDirectory(currentDir);
                 tmpDir.Delete(recursive: true);
             }
+
+            return success;
         }
     }
 }
