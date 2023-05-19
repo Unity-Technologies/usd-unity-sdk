@@ -39,6 +39,7 @@ namespace Unity.Formats.USD
         {
             if (scene == null)
             {
+                // TODO: It would be useful to get more context from a failed export.
                 UsdEditorAnalytics.SendExportEvent("", .0f, false);
                 return;
             }
