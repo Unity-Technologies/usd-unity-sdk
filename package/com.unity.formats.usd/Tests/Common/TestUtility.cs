@@ -73,25 +73,6 @@ namespace Unity.Formats.USD
             return usdScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(gameObject.transform)));
         }
 
-        public static void CreateFolder(string path)
-        {
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-#if UNITY_EDITOR
-                AssetDatabase.Refresh();
-#endif
-            }
-        }
-
-        public static void DeleteFolder(string path)
-        {
-            if (Directory.Exists(path))
-            {
-                Directory.Delete(path, true);
-            }
-        }
-
         public static void DeleteMetaFile(string fullPath)
         {
             if (File.Exists(fullPath.TrimEnd('/') + FileExtension.Meta))
@@ -122,13 +103,6 @@ namespace Unity.Formats.USD
             usdFileName = !EndsWithUSDExtension(usdFileName) ? usdFileName += FileExtension.Usda : usdFileName;
 
             return Path.Combine(fullPath, usdFileName);
-        }
-
-        public static string GetTestAssetFullPath(string relativePath, string fileName)
-        {
-            fileName = !EndsWithUSDExtension(fileName) ? fileName += FileExtension.Usda : fileName;
-
-            return Path.GetFullPath(Path.Combine(relativePath, fileName));
         }
 
         public static string GetPrefabPath(string relativePath, string prefabName = null, bool resource = false)

@@ -114,7 +114,7 @@ namespace USD.NET.Unity.Tests
                 new Vector3(-1, -2, 1),
                 new Vector3(-5, -2, -1)
             };
-            
+
             var testScene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
 
             var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().mesh;
