@@ -593,7 +593,7 @@ namespace Unity.Formats.USD
 
             if (overs == null)
             {
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), .0f, false, onlyOverrides : true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), .0f, false, onlyOverrides: true);
                 return false;
             }
 
@@ -605,7 +605,7 @@ namespace Unity.Formats.USD
             if (baseLayer == null)
             {
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds * 0.001f, success, onlyOverrides : true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds * 0.001f, success, onlyOverrides: true);
                 throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
             }
             overs.AddSubLayer(baseLayer);
@@ -648,7 +648,7 @@ namespace Unity.Formats.USD
                 }
 
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds * 0.001f, success, onlyOverrides : true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds * 0.001f, success, onlyOverrides: true);
             }
 
             return success;
