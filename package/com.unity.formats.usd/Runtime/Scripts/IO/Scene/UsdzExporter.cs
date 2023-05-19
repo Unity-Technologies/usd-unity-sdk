@@ -42,6 +42,9 @@ namespace Unity.Formats.USD
 
             bool success = true;
 
+            System.Diagnostics.Stopwatch analyticsTimer = new System.Diagnostics.Stopwatch();
+            analyticsTimer.Start();
+
             try
             {
                 // Set the current working directory to the tmp directory to export with relative paths.
@@ -91,6 +94,9 @@ namespace Unity.Formats.USD
                 // Clean up temp files.
                 Directory.SetCurrentDirectory(currentDir);
                 tmpDir.Delete(recursive: true);
+
+                analyticsTimer.Stop();
+                UsdEditorAnalytics.SendExportEvent("usdz",  analyticsTimer.ElapsedMilliseconds * 0.001f, success);
             }
 
             return success;

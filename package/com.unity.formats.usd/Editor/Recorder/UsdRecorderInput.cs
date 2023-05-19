@@ -1,4 +1,5 @@
 #if RECORDER_AVAILABLE
+using System.IO;
 using Unity.Formats.USD;
 using UnityEditor.Recorder;
 using USD.NET;
@@ -41,6 +42,12 @@ namespace UnityEditor.Formats.USD.Recorder
             Context.scene.Time = session.recorderTime * session.settings.FrameRate;
             Context.exportMaterials = false;
             SceneExporter.Export(Settings.GameObject, Context, zeroRootTransform: false);
+        }
+
+        protected override void EndRecording(RecordingSession session)
+        {
+            string extension = Path.GetExtension(Context.scene.FilePath);
+            UsdEditorAnalytics.SendRecorderExportEvent(extension, true, Context.exportTransformOverrides, session.frameIndex); // VRC: Where to record failures?
         }
     }
 }

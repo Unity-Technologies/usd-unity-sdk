@@ -14,11 +14,13 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Profiling;
 using USD.NET;
 using USD.NET.Unity;
 using Unity.Jobs;
+using Debug = UnityEngine.Debug;
 #if UNITY_EDITOR
 using UnityEditor;
 using System.IO;
@@ -275,10 +277,15 @@ namespace Unity.Formats.USD
             bool composingSubtree,
             SceneImportOptions importOptions)
         {
+            UsdEditorAnalytics.ImportResult importResult = UsdEditorAnalytics.ImportResult.Default;
             if (scene == null)
             {
+                UsdEditorAnalytics.SendImportEvent("", .0f, importResult);
                 throw new ImportException("Null USD Scene");
             }
+
+            Stopwatch analyticsTimer = new Stopwatch();
+            analyticsTimer.Start();
 
             // The matrix to convert USD (right-handed) to Unity (left-handed) is different for the legacy FBX importer
             // and incorrectly swaps the X-axis rather than the Z-axis. This changes the basisChange matrix to match the
@@ -304,11 +311,29 @@ namespace Unity.Formats.USD
                 ? Scene.InterpolationMode.Linear
                 : Scene.InterpolationMode.Held);
 
-            SceneImporter.BuildScene(scene,
+            primMap = SceneImporter.BuildScene(scene,
                 goRoot,
                 importOptions,
                 primMap,
                 composingSubtree);
+
+            analyticsTimer.Stop();
+
+            if (primMap.Xforms.Length == 0)
+            {
+                Debug.Log("primMap XForms empty");
+            }
+            importResult = new UsdEditorAnalytics.ImportResult()
+            {
+                ContainsMeshes = primMap.Meshes == null ? false : primMap.Meshes.Length > 0,
+                ContainsPointInstancer = primMap.InstanceRoots == null ? false : primMap.InstanceRoots.Count > 0, // VRC: This might also include SceneInstances- check
+                ContainsSkel = primMap.SkelRoots == null ? false : primMap.SkelRoots.Length > 0,
+                ContainsMaterials = primMap.Materials == null ? false : primMap.Materials.Length > 0
+            };
+
+            UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.ElapsedMilliseconds * 0.001f, importResult);
+
+            Debug.Log($"Import result: Meshes - {importResult.ContainsMeshes}, Materials - {importResult.ContainsMaterials}, PointInstancers - {importResult.ContainsPointInstancer}, Skeletons - {importResult.ContainsSkel}");
         }
 
         /// <summary>

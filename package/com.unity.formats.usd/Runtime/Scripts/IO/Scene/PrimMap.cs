@@ -53,7 +53,7 @@ namespace Unity.Formats.USD
 
         // Objects at the root of an instanced sub-tree.
         // Instances may be found in masters as well.
-        private Dictionary<SdfPath, InstanceRoot> m_instanceRoots = new Dictionary<SdfPath, InstanceRoot>();
+        public Dictionary<SdfPath, InstanceRoot> InstanceRoots = new Dictionary<SdfPath, InstanceRoot>();
         private HashSet<GameObject> m_instances = new HashSet<GameObject>();
 
         // Objects which exist only as source of instances.
@@ -107,7 +107,7 @@ namespace Unity.Formats.USD
 
         public void AddInstanceRoot(SdfPath instancePath, GameObject go, SdfPath masterPath)
         {
-            m_instanceRoots[instancePath] = new InstanceRoot { gameObject = go, masterPath = masterPath };
+            InstanceRoots[instancePath] = new InstanceRoot { gameObject = go, masterPath = masterPath };
         }
 
         public Dictionary<SdfPath, GameObject>.KeyCollection GetMasterRootPaths()
@@ -117,7 +117,7 @@ namespace Unity.Formats.USD
 
         public Dictionary<SdfPath, InstanceRoot>.ValueCollection GetInstanceRoots()
         {
-            return m_instanceRoots.Values;
+            return InstanceRoots.Values;
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Unity.Formats.USD
                 GameObject.DestroyImmediate(go);
             }
 
-            foreach (var instance in m_instanceRoots.Values)
+            foreach (var instance in InstanceRoots.Values)
             {
                 GameObject.DestroyImmediate(instance.gameObject);
             }
@@ -157,7 +157,7 @@ namespace Unity.Formats.USD
             m_prims.Clear();
             m_masterRoots.Clear();
             m_instances.Clear();
-            m_instanceRoots.Clear();
+            InstanceRoots.Clear();
             Cameras = null;
             Meshes = null;
             Cubes = null;

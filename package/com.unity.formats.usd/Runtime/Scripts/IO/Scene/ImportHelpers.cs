@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using pxr;
@@ -8,7 +9,9 @@ using UnityEditor;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
+using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
+using ImportResult = Unity.Formats.USD.UsdEditorAnalytics.ImportResult; // VRC: Is this wise? Do we want to be able to remove in runtime?
 
 namespace Unity.Formats.USD
 {
@@ -94,6 +97,8 @@ namespace Unity.Formats.USD
 
         public static string ImportAsTimelineClip(Scene scene, string prefabPath = null)
         {
+            Stopwatch analyticsTimer = new Stopwatch();
+            analyticsTimer.Start();
             string path = scene.FilePath;
 
             var importOptions = new SceneImportOptions();
@@ -117,6 +122,11 @@ namespace Unity.Formats.USD
             }
             finally
             {
+                analyticsTimer.Stop();
+                ImportResult result = ImportResult.Default;
+                result.Success = !string.IsNullOrEmpty(prefabPath);
+                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(path), analyticsTimer.ElapsedMilliseconds * 0.001f, result);
+
                 GameObject.DestroyImmediate(go);
                 scene.Close();
             }

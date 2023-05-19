@@ -38,9 +38,14 @@ namespace Unity.Formats.USD
             bool exportMonoBehaviours = false)
         {
             if (scene == null)
+            {
+                UsdEditorAnalytics.SendExportEvent("", .0f, false);
                 return false;
+            }
 
             bool success = true;
+            System.Diagnostics.Stopwatch analyticsTimer = new System.Diagnostics.Stopwatch();
+            analyticsTimer.Start();
 
             foreach (GameObject go in objects)
             {
@@ -57,6 +62,10 @@ namespace Unity.Formats.USD
                 }
             }
             scene.Save();
+
+            analyticsTimer.Stop();
+            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.ElapsedMilliseconds * 0.001f, success);
+
             scene.Close();
 
             return success;
