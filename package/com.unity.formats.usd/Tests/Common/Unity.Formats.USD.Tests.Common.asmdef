@@ -5,7 +5,8 @@
         "USD.NET.Unity",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Unity.Formats.USD.Runtime"
+        "Unity.Formats.USD.Runtime",
+        "Unity.Formats.USD.Common"
     ],
     "includePlatforms": [
         "Editor",
@@ -19,9 +20,7 @@
         "nunit.framework.dll"
     ],
     "autoReferenced": true,
-    "defineConstraints": [
-        "UNITY_INCLUDE_TESTS"
-    ],
+    "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
 }

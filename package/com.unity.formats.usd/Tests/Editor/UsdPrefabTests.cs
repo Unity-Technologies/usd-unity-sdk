@@ -5,8 +5,6 @@ namespace Unity.Formats.USD.Tests
 {
     public class UsdPrefabTests : BaseFixtureEditor
     {
-        const string k_USDZGUID = "a90ff3ebef4a2aa42b559da07e4151f5"; // test-roughness.usdz
-
         static string m_prefabUsdPath;
 
         [TearDown]
@@ -33,7 +31,7 @@ namespace Unity.Formats.USD.Tests
             [Ignore("USDU-276")]
             public void UsdPrefab_ForceReload_Succeed(MaterialImportMode mode)
             {
-                ImportAsPrefab(k_USDZGUID);
+                ImportAsPrefab(TestAssetData.GUID.PrimType.componentPayloadUsd);
 
                 var prefabAsset = AssetDatabase.LoadAssetAtPath<UsdAsset>(m_prefabUsdPath);
                 prefabAsset.m_materialImportMode = mode;
@@ -47,7 +45,7 @@ namespace Unity.Formats.USD.Tests
             public void UsdPrefab_ForceReload_ImportPreviewSurface_DoesNotDirtyScene()
             {
                 var initialRootGameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-                ImportAsPrefab(k_USDZGUID);
+                ImportAsPrefab(TestAssetData.GUID.PrimType.componentPayloadUsd);
 
                 var prefabAsset = AssetDatabase.LoadAssetAtPath<UsdAsset>(m_prefabUsdPath);
                 prefabAsset.m_materialImportMode = MaterialImportMode.ImportPreviewSurface;

@@ -38,7 +38,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void InitForSave_ValidPath()
         {
-            var filePath = GetUSDScenePath("dummyUsd.usd");
+            var filePath = TestUtility.GetUSDScenePath(ArtifactsDirectoryFullPath, "dummyUsd.usd");
             var scene = ExportHelpers.InitForSave(filePath);
             Assert.IsNotNull(scene);
             Assert.IsNotNull(scene.Stage);
@@ -48,7 +48,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportGameObjects_NullScene()
         {
-            var filePath = CreateTmpUsdFile();
+            var filePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = Scene.Open(filePath);
             scene.Close();
             var fileInfoBefore = new FileInfo(filePath);
@@ -64,7 +64,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportGameObjects_EmptyList()
         {
-            var filePath = CreateTmpUsdFile();
+            var filePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = Scene.Open(filePath);
             var fileInfoBefore = new FileInfo(filePath);
             Assert.DoesNotThrow(delegate ()
@@ -79,7 +79,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportGameObjects_InvalidGO()
         {
-            var filePath = CreateTmpUsdFile();
+            var filePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = Scene.Open(filePath);
             Assert.DoesNotThrow(delegate ()
             {
@@ -92,7 +92,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportGameObjects_ValidGO()
         {
-            var filePath = CreateTmpUsdFile();
+            var filePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = Scene.Open(filePath);
             ExportHelpers.ExportGameObjects(new[] { new GameObject("test") }, scene, BasisTransformation.SlowAndSafe);
             scene = Scene.Open(filePath);
@@ -105,7 +105,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ExportGameObjects_SceneClosedAfterExport()
         {
-            var filePath = CreateTmpUsdFile();
+            var filePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = Scene.Open(filePath);
             ExportHelpers.ExportGameObjects(new[] { new GameObject("test") }, scene, BasisTransformation.SlowAndSafe);
             Assert.IsNull(scene.Stage);
