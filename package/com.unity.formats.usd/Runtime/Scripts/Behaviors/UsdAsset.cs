@@ -585,7 +585,7 @@ namespace Unity.Formats.USD
         /// scene being exported.
         /// </summary>
         /// <param name="sceneInWhichToStoreTransforms"></param>
-        public bool ExportOverrides(Scene sceneInWhichToStoreTransforms)
+        public void ExportOverrides(Scene sceneInWhichToStoreTransforms)
         {
             var sceneToReference = this;
             var overs = sceneInWhichToStoreTransforms;
@@ -594,7 +594,7 @@ namespace Unity.Formats.USD
             if (overs == null)
             {
                 UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), .0f, false, onlyOverrides: true);
-                return false;
+                return;
             }
 
             bool success = false;
@@ -650,8 +650,6 @@ namespace Unity.Formats.USD
                 analyticsTimer.Stop();
                 UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds * 0.001f, success, onlyOverrides: true);
             }
-
-            return success;
         }
 
         /// <summary>

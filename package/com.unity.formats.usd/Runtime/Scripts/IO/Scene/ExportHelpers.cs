@@ -34,13 +34,13 @@ namespace Unity.Formats.USD
             return scene;
         }
 
-        public static bool ExportGameObjects(GameObject[] objects, Scene scene, BasisTransformation basisTransform,
+        public static void ExportGameObjects(GameObject[] objects, Scene scene, BasisTransformation basisTransform,
             bool exportMonoBehaviours = false)
         {
             if (scene == null)
             {
                 UsdEditorAnalytics.SendExportEvent("", .0f, false);
-                return false;
+                return;
             }
 
             bool success = true;
@@ -67,8 +67,6 @@ namespace Unity.Formats.USD
             UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.ElapsedMilliseconds * 0.001f, success);
 
             scene.Close();
-
-            return success;
         }
     }
 }

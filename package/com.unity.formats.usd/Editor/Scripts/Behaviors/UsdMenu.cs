@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -57,7 +55,6 @@ namespace Unity.Formats.USD
             var go = Selection.gameObjects.First();
             var filePath = EditorUtility.SaveFilePanel("Export USD File", "", go.name, fileExtensions);
             var scene = ExportHelpers.InitForSave(filePath);
-
             ExportHelpers.ExportGameObjects(Selection.gameObjects, scene, BasisTransformation.SlowAndSafe);
         }
 
@@ -79,8 +76,7 @@ namespace Unity.Formats.USD
 #endif
             var filePath = EditorUtility.SaveFilePanel("Export USD File", "", Path.GetFileNameWithoutExtension(root.usdFullPath) + "_overs", fileExtensions);
             var overs = ExportHelpers.InitForSave(filePath);
-
-            bool success = root.ExportOverrides(overs);
+            root.ExportOverrides(overs);
         }
 
         [MenuItem("USD/Export Selected as USDZ", true)]
@@ -193,7 +189,6 @@ namespace Unity.Formats.USD
             }
 
             ImportHelpers.ImportAsPrefab(scene, null);
-            scene.Close();
         }
 
         [MenuItem("USD/Import as Timeline Clip", priority = 2)]
@@ -206,7 +201,6 @@ namespace Unity.Formats.USD
             }
 
             ImportHelpers.ImportAsTimelineClip(scene, null);
-            scene.Close();
         }
 
         [MenuItem("USD/Unload Payload Subtree", true)]

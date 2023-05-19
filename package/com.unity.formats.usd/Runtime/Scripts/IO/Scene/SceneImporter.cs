@@ -319,22 +319,23 @@ namespace Unity.Formats.USD
 
             analyticsTimer.Stop();
 
-            if (primMap.Xforms.Length == 0)
+            if (primMap != null)
             {
-                Debug.Log("primMap XForms empty");
+                importResult = CreateImportResult(true, primMap);
             }
-            importResult = new UsdEditorAnalytics.ImportResult()
-            {
-                ContainsMeshes = primMap.Meshes == null ? false : primMap.Meshes.Length > 0,
-                ContainsPointInstancer = primMap.InstanceRoots == null ? false : primMap.InstanceRoots.Count > 0, // VRC: This might also include SceneInstances- check
-                ContainsSkel = primMap.SkelRoots == null ? false : primMap.SkelRoots.Length > 0,
-                ContainsMaterials = primMap.Materials == null ? false : primMap.Materials.Length > 0
-            };
 
-            UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.ElapsedMilliseconds * 0.001f, importResult);
-
-            Debug.Log($"Import result: Meshes - {importResult.ContainsMeshes}, Materials - {importResult.ContainsMaterials}, PointInstancers - {importResult.ContainsPointInstancer}, Skeletons - {importResult.ContainsSkel}");
+            UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
+                analyticsTimer.ElapsedMilliseconds * 0.001f, importResult);
         }
+
+        private static UsdEditorAnalytics.ImportResult CreateImportResult(bool success, PrimMap primMap) => new UsdEditorAnalytics.ImportResult()
+        {
+            Success = success,
+            ContainsMeshes = primMap.Meshes == null ? false : primMap.Meshes.Length > 0,
+            ContainsPointInstancer = primMap.InstanceRoots == null ? false : primMap.InstanceRoots.Count > 0, // VRC: This might also include SceneInstances- check
+            ContainsSkel = primMap.SkelRoots == null ? false : primMap.SkelRoots.Length > 0,
+            ContainsMaterials = primMap.Materials == null ? false : primMap.Materials.Length > 0
+        };
 
         /// <summary>
         /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.

@@ -21,7 +21,7 @@ namespace Unity.Formats.USD
 {
     public class UsdzExporter
     {
-        public static bool ExportUsdz(string usdzFilePath,
+        public static void ExportUsdz(string usdzFilePath,
             GameObject root)
         {
             // Ensure USD is initialized before changing CWD.
@@ -85,6 +85,7 @@ namespace Unity.Formats.USD
                 {
                     Debug.LogError($"Couldn't export {root.name} to the usdz file {usdzFilePath}");
                     success = false;
+                    return;
                 }
 
                 File.Copy(usdzFileName, usdzFilePath, overwrite: true);
@@ -98,8 +99,6 @@ namespace Unity.Formats.USD
                 analyticsTimer.Stop();
                 UsdEditorAnalytics.SendExportEvent("usdz", analyticsTimer.ElapsedMilliseconds * 0.001f, success);
             }
-
-            return success;
         }
     }
 }
