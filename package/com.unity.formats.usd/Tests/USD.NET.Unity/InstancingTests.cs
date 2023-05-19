@@ -2,6 +2,7 @@ using System.Linq;
 using NUnit.Framework;
 using pxr;
 using Unity.Formats.USD;
+using Unity.Formats.USD.Tests;
 using UnityEditor;
 using UnityEngine;
 using USD.NET.Tests;
@@ -12,7 +13,7 @@ namespace USD.NET.Unity.Tests
     {
         Scene CreatePointInstancerScene()
         {
-            var tmpScenePath = CreateTmpUsdFile("PointInstancerTest.usda");
+            var tmpScenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "PointInstancerTest.usda");
             var scene = Scene.Open(tmpScenePath);
             var pi = new PointInstancerSample();
             var cube = new CubeSample();
@@ -38,14 +39,14 @@ namespace USD.NET.Unity.Tests
             var cube = new CubeSample();
             var xform = new XformSample();
 
-            var cubeScenePath = CreateTmpUsdFile("cube.usda");
+            var cubeScenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "cube.usda");
             var scene = Scene.Open(cubeScenePath);
             scene.Write("/GEO", xform);
             scene.Write("/GEO/Cube", cube);
             scene.Save();
             scene.Close();
 
-            var tmpScenePath = CreateTmpUsdFile("InstanceTraversalTest.usda");
+            var tmpScenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "InstanceTraversalTest.usda");
             scene = Scene.Open(tmpScenePath);
             scene.Write("/InstancedCube1", xform);
             scene.Write("/InstancedCube1/cube", cube);
@@ -96,11 +97,11 @@ namespace USD.NET.Unity.Tests
             scene.Close();
         }
 
-        [TestCase("UsdInstance_UpAxisY_LeftHanded")]
-        [TestCase("UsdInstance_UpAxisY_RightHanded")]
-        [TestCase("UsdInstance_UpAxisZ_LeftHanded")]
-        [TestCase("UsdInstance_UpAxisZ_RightHanded")]
-        public void InstancerImport_VertexCheck(string testFileName)
+        [TestCase(TestAssetData.GUID.Instancer.upAxisYLeftHandedUsd, Description = "Up Axis: Y & Left Handed")]
+        [TestCase(TestAssetData.GUID.Instancer.upAxisYRightHandedUsd, Description = "Up Axis: Y & Right Handed")]
+        [TestCase(TestAssetData.GUID.Instancer.upAxisZLeftHandedUsd, Description = "Up Axis: Z & Left Handed")]
+        [TestCase(TestAssetData.GUID.Instancer.upAxisZRightHandedUsd, Description = "Up Axis: Z & Right Handed")]
+        public void InstancerImport_VertexCheck(string testAssetGUID)
         {
             var originalVertices = new[]
             {
@@ -113,7 +114,8 @@ namespace USD.NET.Unity.Tests
                 new Vector3(-1, -2, 1),
                 new Vector3(-5, -2, -1)
             };
-            var testScene = ImportHelpers.InitForOpen(GetTestAssetPath(testFileName));
+            
+            var testScene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
 
             var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().mesh;
 

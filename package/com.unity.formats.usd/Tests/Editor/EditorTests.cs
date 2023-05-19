@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using USD.NET;
-using USD.NET.Unity;
 using Assert = UnityEngine.Assertions.Assert;
 
 namespace Unity.Formats.USD.Tests
@@ -14,12 +13,11 @@ namespace Unity.Formats.USD.Tests
     public class UsdPrimTypeTest_Scope : BaseFixtureEditor
     {
         private GameObject m_usdRoot;
-        private string m_usdGUID = "5f0268198d3d7484cb1877bec2c5d31f"; // GUI of test_collections.usda
 
         [SetUp]
         public void SetUp()
         {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.PrimType.collectionsUsd));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
@@ -65,12 +63,11 @@ namespace Unity.Formats.USD.Tests
     public class UsdMaterialTest : BaseFixtureEditor
     {
         private GameObject m_usdRoot;
-        private string m_usdGUID = "c06c7eba08022b74ca49dce5f79ef3ba"; // GUI of simpleMaterialTest.usd
 
         [SetUp]
         public void SetUp()
         {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.Material.simpleMaterialUsd));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             var importOptions = new SceneImportOptions();
@@ -95,8 +92,8 @@ namespace Unity.Formats.USD.Tests
         }
     }
 
-    [TestFixture("a4a575275d6254853ac93b867a1a8471")] // Fully defined prims
-    [TestFixture("b66c9dc38fc1e0044b3d93a196ad1365")] // Prims with references
+    [TestFixture(TestAssetData.GUID.Variability.cubesUsd)]
+    [TestFixture(TestAssetData.GUID.Variability.referencedCubesUsd)] // Prims with references
     class AttributeScope : BaseFixtureEditor
     {
         GameObject gameObject;
