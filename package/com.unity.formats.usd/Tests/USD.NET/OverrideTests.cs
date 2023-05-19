@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,11 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 using pxr;
-using UnityEngine;
+using Unity.Formats.USD;
 
 namespace USD.NET.Tests
 {
@@ -58,12 +56,12 @@ namespace USD.NET.Tests
         public void WriteToUnderTest()
         {
             // Create the base scene layer.
-            var strongerLayerPath = CreateTmpUsdFile("stronger.usda");
+            var strongerLayerPath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "stronger.usda");
             var strongerLayer = Scene.Open(strongerLayerPath);
             strongerLayer.UpAxis = Scene.UpAxes.Z;
 
             // Create a layer for overrides.
-            var weakerLayerPath = CreateTmpUsdFile("weaker.usda");
+            var weakerLayerPath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "weaker.usda");
             var weakerLayer = Scene.Open(weakerLayerPath);
             weakerLayer.UpAxis = Scene.UpAxes.Z;
 
@@ -100,7 +98,7 @@ namespace USD.NET.Tests
         public void WriteOverOnlyTest()
         {
             // Create the base scene layer.
-            var strongerLayerPath = CreateTmpUsdFile("stronger.usda");
+            var strongerLayerPath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "stronger.usda");
             var strongerLayer = Scene.Open(strongerLayerPath);
             strongerLayer.UpAxis = Scene.UpAxes.Z;
 

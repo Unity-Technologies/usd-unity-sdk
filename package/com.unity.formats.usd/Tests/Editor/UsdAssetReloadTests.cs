@@ -13,11 +13,6 @@ namespace Unity.Formats.USD.Tests
 {
     public class UsdAssetReloadTests : BaseFixtureEditor
     {
-        const string k_USDGUID = "68d552f46d3740c47b17d0ac1c531e76";  // reloadTest.usda
-        const string k_USDModifiedGUID = "4eccf405e5254fd4089cef2f9bcbd882"; // reloadTest_modified.usda
-        const string k_USDOriginGUID = "069ae5d2d8a36fd4b8a0395de731eda0"; // reloadTest_origin.usda
-        const string k_USDInstancerGUID = "bfb4012f0c339574296e64f4d3c6c595"; // instanced_cubes.usda
-
         string testFilePath;
         string testFileModifiedPath;
 
@@ -27,7 +22,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void Setup()
         {
-            var scene = OpenUSDGUIDAssetScene(k_USDGUID, out testFilePath);
+            var scene = OpenUSDGUIDAssetScene(TestAssetData.GUID.Simple.simpleUsd, out testFilePath);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
             scene.Close();
 
@@ -116,7 +111,7 @@ namespace Unity.Formats.USD.Tests
             const int expectedChildrenCount = 101;
             const string instancerChildNamePrefix = "Root";
 
-            var scene = OpenUSDGUIDAssetScene(k_USDInstancerGUID, out _);
+            var scene = OpenUSDGUIDAssetScene(TestAssetData.GUID.Instancer.pointInstancedUsd, out _);
             var instancerObject = ImportHelpers.ImportSceneAsGameObject(scene);
 
             var originalChildrenData = new Dictionary<string, int>();
@@ -142,14 +137,14 @@ namespace Unity.Formats.USD.Tests
 
         void UpdateTestFile()
         {
-            testFileModifiedPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDModifiedGUID));
+            testFileModifiedPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.Simple.simpleModifiedUsd));
 
             File.WriteAllBytes(testFilePath, File.ReadAllBytes(testFileModifiedPath));
         }
 
         void ResetTestFile()
         {
-            var originFile = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_USDOriginGUID));
+            var originFile = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.Simple.simpleOriginUsd));
 
             File.WriteAllBytes(testFilePath, File.ReadAllBytes(originFile));
         }

@@ -29,7 +29,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            m_USDScenePath = GetUSDScenePath("USDExportTests");
+            m_USDScenePath = TestUtility.GetUSDScenePath(ArtifactsDirectoryRelativePath, "USDExportTests");
         }
 
         [TearDown]
@@ -49,7 +49,7 @@ namespace Unity.Formats.USD.Tests
 
             m_USDScene = Scene.Open(m_USDScenePath);
 
-            var cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
+            var cubePrim = TestUtility.GetGameObjectPrimInScene(m_USDScene, cube);
             Assert.IsNotNull(cubePrim);
             Assert.IsTrue(cubePrim.IsValid());
 
@@ -72,7 +72,7 @@ namespace Unity.Formats.USD.Tests
             var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
-                var cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
+                var cubePrim = TestUtility.GetGameObjectPrimInScene(m_USDScene, cube);
                 Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
                 Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
 
@@ -101,7 +101,7 @@ namespace Unity.Formats.USD.Tests
             var exportedPrims = new HashSet<pxr.UsdPrim>();
             foreach (GameObject cube in cubes)
             {
-                var cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
+                var cubePrim = TestUtility.GetGameObjectPrimInScene(m_USDScene, cube);
                 Assert.IsNotNull(cubePrim, $"GameObject {cube.name} doesn't have a corresponding Prim");
                 Assert.IsTrue(cubePrim.IsValid(), $"GameObject {cube.name} has invalid corresponding Prim");
 
@@ -120,7 +120,7 @@ namespace Unity.Formats.USD.Tests
             ExportHelpers.ExportGameObjects(new GameObject[] { cube }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
 
             m_USDScene = Scene.Open(m_USDScenePath);
-            pxr.UsdPrim cubePrim = TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, cube);
+            pxr.UsdPrim cubePrim = TestUtility.GetGameObjectPrimInScene(m_USDScene, cube);
 
             pxr.UsdGeomMesh usdGeomMesh = new pxr.UsdGeomMesh(cubePrim);
             var stPrimvar = usdGeomMesh.GetPrimvar(new pxr.TfToken("st"));
@@ -146,8 +146,8 @@ namespace Unity.Formats.USD.Tests
             ExportHelpers.ExportGameObjects(new GameObject[] { rootObject }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
             m_USDScene = Scene.Open(m_USDScenePath);
 
-            Assert.IsNotNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
-            Assert.IsNull(TestUtilityFunction.GetGameObjectPrimInScene(m_USDScene, editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
+            Assert.IsNotNull(TestUtility.GetGameObjectPrimInScene(m_USDScene, defaultChild), $"GameObject without Tag '{editorOnly}' should have been exported");
+            Assert.IsNull(TestUtility.GetGameObjectPrimInScene(m_USDScene, editorOnlyChild), $"GameObject <{editorOnlyChild.name}> with Tag '{editorOnly}' Shouldn't have been exported");
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace Unity.Formats.USD.Tests
         {
             // "Packages/com.unity.formats.usd/Tests/Editor/Data/SkinnedCharacter/Player/Player.prefab"
             // When running the tests on CI usd package paths get changed and the Prefab can't be loaded by path
-            var animationPrefabGUID = "7c508a5d4c9764686a6bcd60561eb2f2";
+            var animationPrefabGUID = TestAssetData.GUID.Animation.skinnedCharacterPrefab;
             var animationPrefabPath = AssetDatabase.GUIDToAssetPath(animationPrefabGUID);
             var animationPrefab = AssetDatabase.LoadMainAssetAtPath(animationPrefabPath) as GameObject;
             var skeletalRoot = GameObject.Instantiate(animationPrefab) as GameObject;

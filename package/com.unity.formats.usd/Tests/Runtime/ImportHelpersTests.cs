@@ -14,7 +14,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void InitForOpenTest_ValidPath_Succeeds()
         {
-            var dummyUsdPath = CreateTmpUsdFile();
+            var dummyUsdPath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = ImportHelpers.InitForOpen(dummyUsdPath);
             Assert.NotNull(scene);
             Assert.NotNull(scene.Stage);
@@ -40,7 +40,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ImportAsGameObjects_ImportAtRoot()
         {
-            var scene = CreateTestUsdScene();
+            var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
             var root = ImportHelpers.ImportSceneAsGameObject(scene);
             bool usdRootIsRoot = Array.Find(SceneManager.GetActiveScene().GetRootGameObjects(), r => r == root);
             Assert.IsTrue(usdRootIsRoot, "UsdAsset GameObject is not a root GameObject.");
@@ -50,7 +50,7 @@ namespace Unity.Formats.USD.Tests
         public void ImportAsGameObjects_ImportUnderParent()
         {
             var root = new GameObject("thisIsTheRoot");
-            var scene = CreateTestUsdScene();
+            var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
             var usdRoot = ImportHelpers.ImportSceneAsGameObject(scene, root);
             Assert.AreEqual(root.transform, usdRoot.transform.root, "UsdAsset is not a children of the given parent.");
         }
@@ -58,7 +58,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ImportAsGameObjects_SceneClosedAfterImport()
         {
-            var scene = CreateTestUsdScene();
+            var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
             ImportHelpers.ImportSceneAsGameObject(scene);
             Assert.IsNull(scene.Stage, "Scene was not closed after import.");
         }
@@ -66,7 +66,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ImportAsGameObjects_ImportClosedScene_LogsError()
         {
-            var scene = CreateTestUsdScene();
+            var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
             scene.Close();
             var root = ImportHelpers.ImportSceneAsGameObject(scene);
             Assert.IsNull(root);
@@ -76,7 +76,7 @@ namespace Unity.Formats.USD.Tests
         [Test]
         public void ImportAsGameObjects_CleanupAfterErrorAtRoot()
         {
-            var scenePath = CreateTmpUsdFile();
+            var scenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = ImportHelpers.InitForOpen(scenePath);
             scene.Close();
 
@@ -92,7 +92,7 @@ namespace Unity.Formats.USD.Tests
         public void ImportAsGameObjects_CleanupAfterErrorUnderParent()
         {
             var parent = new GameObject();
-            var scenePath = CreateTmpUsdFile();
+            var scenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = ImportHelpers.InitForOpen(scenePath);
             scene.Close();
 
@@ -107,7 +107,7 @@ namespace Unity.Formats.USD.Tests
         public void ImportAsGameObjects_UnderInactiveParent()
         {
             var parent = new GameObject();
-            var scenePath = CreateTmpUsdFile();
+            var scenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath);
             var scene = ImportHelpers.InitForOpen(scenePath);
 
             parent.SetActive(false);
@@ -117,11 +117,11 @@ namespace Unity.Formats.USD.Tests
             Assert.IsTrue(usdObject.activeSelf, "The USD Scene is self-inactive when imported under an inactive parent");
         }
 
-        [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
-        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture"), Ignore("[USDU-232] Test On HDRP")]
-        public void ImportAsGameObjects_TextureDataImported(string fileName)
+        [TestCase(TestAssetData.GUID.Material.texturedOpaqueUsd, TestAssetData.FileName.TexturedOpaque)]
+        [TestCase(TestAssetData.GUID.Material.texturedTransparentCutoutUsd, TestAssetData.FileName.TexturedTransparent_Cutout), Ignore("[USDU-232] Test On HDRP")]
+        public void ImportAsGameObjects_TextureDataImported(string testAssetGUID, string testAssetFileName)
         {
-            var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
+            var scene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
             var usdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
                 new SceneImportOptions()
                 {
@@ -129,15 +129,15 @@ namespace Unity.Formats.USD.Tests
                 }
             );
 
-            ImportAssert.IsTextureDataSaved(usdObject, fileName, isPrefab: false);
+            ImportAssert.IsTextureDataSaved(usdObject, testAssetFileName, isPrefab: false);
         }
 
         [Ignore("[USDU-275] | [USDU-230] | [FTV-202]")]
-        [TestCase(TestAssetData.FileName.TexturedOpaque, Description = "Opaque Texture")]
-        [TestCase(TestAssetData.FileName.TexturedTransparent_Cutout, Description = "Transparent Cutout Texture")]
-        public void ImportAsGameObject_TextureDataImported_FromUsdz(string fileName)
+        [TestCase(TestAssetData.GUID.Material.texturedOpaqueUsd, TestAssetData.FileName.TexturedOpaque)]
+        [TestCase(TestAssetData.GUID.Material.texturedTransparentCutoutUsd, TestAssetData.FileName.TexturedTransparent_Cutout)]
+        public void ImportAsGameObject_TextureDataImported_FromUsdz(string testAssetGUID, string testAssetFileName)
         {
-            var scene = ImportHelpers.InitForOpen(GetTestAssetPath(fileName));
+            var scene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
             var importedUsdObject = ImportHelpers.ImportSceneAsGameObject(scene, importOptions:
                 new SceneImportOptions()
                 {
@@ -145,7 +145,7 @@ namespace Unity.Formats.USD.Tests
                 }
             );
 
-            var usdzPath = GetUSDScenePath(importedUsdObject.name + ".usdz");
+            var usdzPath = TestUtility.GetUSDScenePath(ArtifactsDirectoryFullPath, importedUsdObject.name + TestUtility.FileExtension.Usdz);
             UsdzExporter.ExportUsdz(usdzPath, importedUsdObject);
 
             var usdzScene = ImportHelpers.InitForOpen(usdzPath);
@@ -157,7 +157,7 @@ namespace Unity.Formats.USD.Tests
             );
 
             // [USDU-275] | [FTV-202] | [USDU-230]
-            ImportAssert.IsTextureDataSaved(usdzObject.transform.GetChild(0).gameObject, fileName, isPrefab: false);
+            ImportAssert.IsTextureDataSaved(usdzObject.transform.GetChild(0).gameObject, testAssetFileName, isPrefab: false);
         }
     }
 }
