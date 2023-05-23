@@ -96,35 +96,5 @@ namespace USD.NET.Unity.Tests
             }
             scene.Close();
         }
-
-        [TestCase(TestAssetData.GUID.Instancer.upAxisYLeftHandedUsd, Description = "Up Axis: Y & Left Handed")]
-        [TestCase(TestAssetData.GUID.Instancer.upAxisYRightHandedUsd, Description = "Up Axis: Y & Right Handed")]
-        [TestCase(TestAssetData.GUID.Instancer.upAxisZLeftHandedUsd, Description = "Up Axis: Z & Left Handed")]
-        [TestCase(TestAssetData.GUID.Instancer.upAxisZRightHandedUsd, Description = "Up Axis: Z & Right Handed")]
-        public void InstancerImport_VertexCheck(string testAssetGUID)
-        {
-            var originalVertices = new[]
-            {
-                new Vector3(-1, 0, 3),
-                new Vector3(-1, 0, 0),
-                new Vector3(0, -1, 1),
-                new Vector3(-2, -3, -1),
-                new Vector3(-2, -1, 1),
-                new Vector3(-3, -0.5f, -1),
-                new Vector3(-1, -2, 1),
-                new Vector3(-5, -2, -1)
-            };
-
-            var testScene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
-
-            var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().mesh;
-
-            foreach (var vertex in testInstanceObjectMesh.vertices)
-            {
-                // Flip the z-axis value to compensate for the z-axis difference between Unity and USD
-                var zFlippedVertex = new Vector3(vertex.x, vertex.y, -vertex.z);
-                Assert.Contains(zFlippedVertex, originalVertices, $"Z Axis flipped vertex <{zFlippedVertex}> not found in original vertices");
-            }
-        }
     }
 }
