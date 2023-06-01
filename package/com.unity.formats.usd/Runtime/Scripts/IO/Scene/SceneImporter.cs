@@ -319,6 +319,7 @@ namespace Unity.Formats.USD
 
             analyticsTimer.Stop();
 
+#if UNITY_EDITOR // Path APIs are not available in builds, may as well skip the whole thing
             if (primMap != null)
             {
                 importResult = CreateImportResult(true, primMap);
@@ -326,6 +327,7 @@ namespace Unity.Formats.USD
 
             UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
                 analyticsTimer.ElapsedMilliseconds * 0.001f, importResult);
+#endif
         }
 
         private static UsdEditorAnalytics.ImportResult CreateImportResult(bool success, PrimMap primMap) => new UsdEditorAnalytics.ImportResult()

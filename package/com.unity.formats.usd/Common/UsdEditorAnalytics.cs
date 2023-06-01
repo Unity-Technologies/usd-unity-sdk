@@ -100,6 +100,7 @@ namespace Unity.Formats.USD
 
         static bool RegisterAnalytics(string eventName)
         {
+# if UNITY_EDITOR
             // If EditorAnalytics are disabled, don't waste cycles doing any of the set up
             if (!EditorAnalytics.enabled)
                 return false;
@@ -113,12 +114,13 @@ namespace Unity.Formats.USD
                 sUsdEditorAnalyticsEvents[eventName] = true;
                 return true;
             }
-
+# endif
             return false;
         }
 
         public static void SendUsageEvent(bool success, float timeTakenS)
         {
+# if UNITY_EDITOR
             if (!RegisterAnalytics(k_UsageEventName))
                 return;
 
@@ -129,10 +131,12 @@ namespace Unity.Formats.USD
             };
 
             EditorAnalytics.SendEventWithLimit(k_UsageEventName, data);
+# endif
         }
 
         public static void SendImportEvent(string fileExtension, float timeTakenS, ImportResult result)
         {
+# if UNITY_EDITOR
             if (!RegisterAnalytics(k_ImportEventName))
                 return;
 
@@ -148,10 +152,12 @@ namespace Unity.Formats.USD
             };
 
             EditorAnalytics.SendEventWithLimit(k_ImportEventName, data);
+# endif
         }
 
         public static void SendExportEvent(string fileExtension, float timeTakenS, bool exportSucceeded, bool onlyOverrides = false)
         {
+# if UNITY_EDITOR
             if (!RegisterAnalytics(k_ExportEventName))
                 return;
 
@@ -164,9 +170,12 @@ namespace Unity.Formats.USD
             };
 
             EditorAnalytics.SendEventWithLimit(k_ExportEventName, data);
+# endif
         }
+
         public static void SendRecorderExportEvent(string fileExtension, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
         {
+# if UNITY_EDITOR
             if (!RegisterAnalytics(k_RecorderExportEventName))
                 return;
 
@@ -179,6 +188,7 @@ namespace Unity.Formats.USD
             };
 
             EditorAnalytics.SendEventWithLimit(k_RecorderExportEventName, data);
+# endif
         }
     }
 }
