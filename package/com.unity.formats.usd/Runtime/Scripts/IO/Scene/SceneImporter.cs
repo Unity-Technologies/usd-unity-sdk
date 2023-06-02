@@ -334,7 +334,7 @@ namespace Unity.Formats.USD
         {
             Success = success,
             ContainsMeshes = primMap.Meshes == null ? false : primMap.Meshes.Length > 0,
-            ContainsPointInstancer = primMap.InstanceRoots == null ? false : primMap.InstanceRoots.Count > 0, // VRC: This might also include SceneInstances- check
+            ContainsPointInstancer = primMap.ContainsPointInstances,
             ContainsSkel = primMap.SkelRoots == null ? false : primMap.SkelRoots.Length > 0,
             ContainsMaterials = primMap.Materials == null ? false : primMap.Materials.Length > 0
         };

@@ -163,6 +163,8 @@ namespace Unity.Formats.USD
 
                 primMap.AddInstance(goInstance);
             }
+
+            primMap.ContainsPointInstances = instanceCount > 0;
         }
 
         private static void EnableGpuInstancing(GameObject go)

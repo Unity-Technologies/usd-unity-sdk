@@ -63,7 +63,7 @@ namespace Unity.Formats.USD
                 FileUtil.CopyFileOrDirectory(source + "/x86_64/usd", destination + "/usd");
                 FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
             }
-            catch (Exception e)
+            catch
             {
                 Debug.LogWarning("Unable to copy USD plugins directory to build. This may cause unexpected errors if using USD APIs at runtime.");
                 return;

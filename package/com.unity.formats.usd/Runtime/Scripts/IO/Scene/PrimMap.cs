@@ -48,6 +48,9 @@ namespace Unity.Formats.USD
         public SdfPath[] Skeletons { get; set; }
         public SdfPath[] Materials { get; set; }
 
+        // Flags for import analytics
+        public bool ContainsPointInstances { get; set; }
+
         // Normal objects in the hierarchy.
         private Dictionary<SdfPath, GameObject> m_prims = new Dictionary<SdfPath, GameObject>();
 
@@ -61,6 +64,7 @@ namespace Unity.Formats.USD
 
         public PrimMap()
         {
+            ContainsPointInstances = false;
         }
 
         public GameObject this[SdfPath path]
@@ -166,6 +170,8 @@ namespace Unity.Formats.USD
             SkelRoots = null;
             Skeletons = null;
             Materials = null;
+
+            ContainsPointInstances = false;
         }
     }
 }
