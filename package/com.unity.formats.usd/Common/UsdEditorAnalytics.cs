@@ -100,7 +100,7 @@ namespace Unity.Formats.USD
 
         static bool RegisterAnalytics(string eventName)
         {
-# if UNITY_EDITOR
+# if ENABLE_CLOUD_SERVICES_ANALYTICS
             // If EditorAnalytics are disabled, don't waste cycles doing any of the set up
             if (!EditorAnalytics.enabled)
                 return false;
@@ -120,7 +120,7 @@ namespace Unity.Formats.USD
 
         public static void SendUsageEvent(bool success, float timeTakenS)
         {
-# if UNITY_EDITOR
+# if ENABLE_CLOUD_SERVICES_ANALYTICS
             if (!RegisterAnalytics(k_UsageEventName))
                 return;
 
@@ -136,7 +136,7 @@ namespace Unity.Formats.USD
 
         public static void SendImportEvent(string fileExtension, float timeTakenS, ImportResult result)
         {
-# if UNITY_EDITOR
+# if ENABLE_CLOUD_SERVICES_ANALYTICS
             if (!RegisterAnalytics(k_ImportEventName))
                 return;
 
@@ -157,7 +157,7 @@ namespace Unity.Formats.USD
 
         public static void SendExportEvent(string fileExtension, float timeTakenS, bool exportSucceeded, bool onlyOverrides = false)
         {
-# if UNITY_EDITOR
+# if ENABLE_CLOUD_SERVICES_ANALYTICS
             if (!RegisterAnalytics(k_ExportEventName))
                 return;
 
@@ -175,7 +175,7 @@ namespace Unity.Formats.USD
 
         public static void SendRecorderExportEvent(string fileExtension, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
         {
-# if UNITY_EDITOR
+# if ENABLE_CLOUD_SERVICES_ANALYTICS
             if (!RegisterAnalytics(k_RecorderExportEventName))
                 return;
 
