@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -46,25 +45,20 @@ namespace Unity.Formats.USD
                 return;
             }
 
-            try
+            if (!Directory.Exists(destination))
             {
-                if (Directory.Exists(destination))
-                {
-                    Directory.Delete(destination, true);
-                }
-
                 Directory.CreateDirectory(destination);
-
-                // We need to copy the whole share folder
-                // TODO: make this optional, as we don't really support USD at runtime yet
-                FileUtil.CopyFileOrDirectory(source + "/x86_64/usd", destination + "/usd");
-                FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
             }
-            catch
+            else
             {
-                Debug.LogWarning("Unable to copy USD plugins directory to build. This may cause unexpected errors if using USD APIs at runtime.");
-                return;
+                var attrs = File.GetAttributes(destination);
+                attrs &= ~FileAttributes.ReadOnly;
+                File.SetAttributes(destination, attrs);
             }
+
+            // We need to copy the whole share folder
+            FileUtil.CopyFileOrDirectory(source + "/x86_64/usd", destination + "/usd");
+            FileUtil.CopyFileOrDirectory(source + "/x86_64/plugInfo.json", destination + "/plugInfo.json");
         }
 
         static string GetCurrentDir([CallerFilePath] string filePath = "")
