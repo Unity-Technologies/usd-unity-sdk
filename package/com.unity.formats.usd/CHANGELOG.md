@@ -5,6 +5,7 @@
 ## [3.0.0-exp.3] - 2023-05-11
 ### Features
 - The USD Recorder now has an option to export transform overrides.
+- Added EditorAnalytics to track internally which features are most used.
 
 ### Bug Fixes
 - "Export Transform Override" now properly exports modified transforms only.
