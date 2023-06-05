@@ -29,6 +29,8 @@ namespace USD.NET
         private SdfPath[] m_paths;
         private Scene m_scene;
 
+        public int GetLength() => m_paths.Length;
+
         public SampleCollection(Scene scene, SdfPathVector paths)
         {
             m_paths = new SdfPath[paths.Count];

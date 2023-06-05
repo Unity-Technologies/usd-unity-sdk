@@ -1203,7 +1203,11 @@ namespace Unity.Formats.USD
             {
                 Profiler.BeginSample("USD: Build Point-Instances");
                 // TODO: right now all point instancer data is read, but we only need prototypes and indices.
-                foreach (var pathAndSample in scene.ReadAll<PointInstancerSample>())
+                var pointInstancerSamples = scene.ReadAll<PointInstancerSample>();
+
+                primMap.ContainsPointInstances = pointInstancerSamples.GetLength() > 0;
+
+                foreach (var pathAndSample in pointInstancerSamples)
                 {
                     try
                     {

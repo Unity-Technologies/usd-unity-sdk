@@ -1,3 +1,7 @@
+# if ENABLE_CLOUD_SERVICES_ANALYTICS && UNITY_EDITOR
+# define USE_EDITOR_ANALYTICS
+# endif
+
 // Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -100,7 +104,7 @@ namespace Unity.Formats.USD
 
         static bool RegisterAnalytics(string eventName)
         {
-# if ENABLE_CLOUD_SERVICES_ANALYTICS
+# if USE_EDITOR_ANALYTICS
             // If EditorAnalytics are disabled, don't waste cycles doing any of the set up
             if (!EditorAnalytics.enabled)
                 return false;
@@ -120,7 +124,7 @@ namespace Unity.Formats.USD
 
         public static void SendUsageEvent(bool success, float timeTakenS)
         {
-# if ENABLE_CLOUD_SERVICES_ANALYTICS
+# if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_UsageEventName))
                 return;
 
@@ -136,7 +140,8 @@ namespace Unity.Formats.USD
 
         public static void SendImportEvent(string fileExtension, float timeTakenS, ImportResult result)
         {
-# if ENABLE_CLOUD_SERVICES_ANALYTICS
+            Debug.Log($"Send event called");
+# if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ImportEventName))
                 return;
 
@@ -157,7 +162,7 @@ namespace Unity.Formats.USD
 
         public static void SendExportEvent(string fileExtension, float timeTakenS, bool exportSucceeded, bool onlyOverrides = false)
         {
-# if ENABLE_CLOUD_SERVICES_ANALYTICS
+# if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ExportEventName))
                 return;
 
@@ -175,7 +180,7 @@ namespace Unity.Formats.USD
 
         public static void SendRecorderExportEvent(string fileExtension, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
         {
-# if ENABLE_CLOUD_SERVICES_ANALYTICS
+# if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_RecorderExportEventName))
                 return;
 

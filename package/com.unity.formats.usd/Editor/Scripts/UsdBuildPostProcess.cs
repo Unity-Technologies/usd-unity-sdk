@@ -48,15 +48,12 @@ namespace Unity.Formats.USD
 
             try
             {
-                if (!Directory.Exists(destination))
-                {
-                    Directory.CreateDirectory(destination);
-                }
-                else
+                if (Directory.Exists(destination))
                 {
                     Directory.Delete(destination, true);
-                    Directory.CreateDirectory(destination);
                 }
+
+                Directory.CreateDirectory(destination);
 
                 // We need to copy the whole share folder
                 // TODO: make this optional, as we don't really support USD at runtime yet
