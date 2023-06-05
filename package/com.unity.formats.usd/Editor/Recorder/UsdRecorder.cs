@@ -92,6 +92,10 @@ namespace UnityEditor.Formats.USD.Recorder
             }
 
             context.scene.EndTime = session.recorderTime * session.settings.FrameRate;
+
+            string extension = Path.GetExtension(context.scene.FilePath);
+            UsdEditorAnalytics.SendRecorderExportEvent(extension, true, context.exportTransformOverrides, session.frameIndex); // VRC: Where to record failures?
+
             context.scene.Save();
             context.scene.Close();
 

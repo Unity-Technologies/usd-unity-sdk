@@ -43,12 +43,6 @@ namespace UnityEditor.Formats.USD.Recorder
             Context.exportMaterials = false;
             SceneExporter.Export(Settings.GameObject, Context, zeroRootTransform: false);
         }
-
-        protected override void EndRecording(RecordingSession session)
-        {
-            string extension = Path.GetExtension(Context.scene.FilePath);
-            UsdEditorAnalytics.SendRecorderExportEvent(extension, true, Context.exportTransformOverrides, session.frameIndex); // VRC: Where to record failures?
-        }
     }
 }
 
