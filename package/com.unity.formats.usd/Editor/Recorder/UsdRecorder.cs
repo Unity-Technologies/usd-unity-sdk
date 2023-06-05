@@ -60,6 +60,8 @@ namespace UnityEditor.Formats.USD.Recorder
             }
             catch (Exception)
             {
+                string extension = Path.GetExtension(outputFile);
+                UsdEditorAnalytics.SendRecorderExportEvent(extension, false, context.exportTransformOverrides, 0);
                 throw new InvalidOperationException($"The file is already open in Unity. Please close all references to it and try again: {outputFile}");
             }
 
@@ -94,7 +96,7 @@ namespace UnityEditor.Formats.USD.Recorder
             context.scene.EndTime = session.recorderTime * session.settings.FrameRate;
 
             string extension = Path.GetExtension(context.scene.FilePath);
-            UsdEditorAnalytics.SendRecorderExportEvent(extension, true, context.exportTransformOverrides, session.frameIndex); // VRC: Where to record failures?
+            UsdEditorAnalytics.SendRecorderExportEvent(extension, true, context.exportTransformOverrides, session.frameIndex);
 
             context.scene.Save();
             context.scene.Close();

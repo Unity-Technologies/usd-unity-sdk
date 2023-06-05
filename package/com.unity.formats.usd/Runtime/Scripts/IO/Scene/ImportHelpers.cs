@@ -11,7 +11,7 @@ using USD.NET;
 using USD.NET.Unity;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
-using ImportResult = Unity.Formats.USD.UsdEditorAnalytics.ImportResult; // VRC: Is this wise? Do we want to be able to remove in runtime?
+using ImportResult = Unity.Formats.USD.UsdEditorAnalytics.ImportResult;
 
 namespace Unity.Formats.USD
 {
