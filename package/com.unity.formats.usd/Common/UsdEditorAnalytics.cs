@@ -162,10 +162,10 @@ namespace Unity.Formats.USD
                 IncludesSkel = importResult.ContainsSkel
             };
 
-            AnalyticsResult analyticsResult = EditorAnalytics.SendEventWithLimit(k_ImportEventName, data);
-            if (analyticsResult != AnalyticsResult.Ok)
+            AnalyticsResult result = EditorAnalytics.SendEventWithLimit(k_ImportEventName, data);
+            if (result != AnalyticsResult.Ok)
             {
-                Debug.LogError($"Failed to send EditorAnalytics event '{k_ImportEventName}'. Reason: {analyticsResult}.");
+                Debug.LogError($"Failed to send EditorAnalytics event '{k_ImportEventName}'. Reason: {result}.");
             }
 # endif
         }

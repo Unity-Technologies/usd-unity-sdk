@@ -19,11 +19,11 @@ using UnityEngine.Profiling;
 using USD.NET;
 using USD.NET.Unity;
 using Unity.Jobs;
+using Stopwatch = System.Diagnostics.Stopwatch;
+
 #if UNITY_EDITOR
 using UnityEditor;
 using System.IO;
-using Stopwatch = System.Diagnostics.Stopwatch;
-
 #endif
 
 namespace Unity.Formats.USD
