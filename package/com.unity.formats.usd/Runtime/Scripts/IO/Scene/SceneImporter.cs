@@ -14,16 +14,15 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Profiling;
 using USD.NET;
 using USD.NET.Unity;
 using Unity.Jobs;
-using Debug = UnityEngine.Debug;
 #if UNITY_EDITOR
 using UnityEditor;
 using System.IO;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 #endif
 
@@ -326,7 +325,7 @@ namespace Unity.Formats.USD
             }
 
             UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
-                analyticsTimer.ElapsedMilliseconds * 0.001f, importResult);
+                (float)analyticsTimer.Elapsed.TotalSeconds, importResult);
 #endif
         }
 
@@ -393,7 +392,7 @@ namespace Unity.Formats.USD
             float targetFrameMilliseconds,
             bool composingSubtree)
         {
-            var timer = new System.Diagnostics.Stopwatch();
+            var timer = new Stopwatch();
             var usdPrimRoot = new pxr.SdfPath(importOptions.usdRootPath);
 
             // Setting an arbitrary fudge factor of 20% is very non-scientific, however it's better than
@@ -1281,12 +1280,12 @@ namespace Unity.Formats.USD
             Profiler.EndSample();
         }
 
-        private static bool ShouldYield(float targetTime, System.Diagnostics.Stopwatch timer)
+        private static bool ShouldYield(float targetTime, Stopwatch timer)
         {
             return timer.ElapsedMilliseconds > targetTime;
         }
 
-        private static void ResetTimer(System.Diagnostics.Stopwatch timer)
+        private static void ResetTimer(Stopwatch timer)
         {
             timer.Stop();
             timer.Reset();

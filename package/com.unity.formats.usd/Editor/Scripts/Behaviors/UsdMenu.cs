@@ -14,9 +14,9 @@
 
 using System.IO;
 using System.Linq;
+using UnityEngine;
 using UnityEditor;
 using USD.NET;
-using Debug = UnityEngine.Debug;
 
 namespace Unity.Formats.USD
 {

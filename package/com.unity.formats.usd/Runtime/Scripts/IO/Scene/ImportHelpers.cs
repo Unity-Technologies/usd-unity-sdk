@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using pxr;
@@ -9,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
-using Debug = UnityEngine.Debug;
+using Stopwatch = System.Diagnostics.Stopwatch;
 using Object = UnityEngine.Object;
 using ImportResult = Unity.Formats.USD.UsdEditorAnalytics.ImportResult;
 
@@ -125,7 +124,7 @@ namespace Unity.Formats.USD
                 analyticsTimer.Stop();
                 ImportResult result = ImportResult.Default;
                 result.Success = !string.IsNullOrEmpty(prefabPath);
-                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(path), analyticsTimer.ElapsedMilliseconds * 0.001f, result);
+                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(path), (float)analyticsTimer.Elapsed.TotalSeconds, result);
 
                 GameObject.DestroyImmediate(go);
                 scene.Close();

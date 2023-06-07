@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using USD.NET;
 using USD.NET.Unity;
 using Debug = UnityEngine.Debug;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -61,12 +61,12 @@ namespace Unity.Formats.USD
             {
                 Debug.LogException(ex);
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendUsageEvent(false, analyticsTimer.ElapsedMilliseconds * 0.001f);
+                UsdEditorAnalytics.SendUsageEvent(false, (float)analyticsTimer.Elapsed.TotalSeconds);
                 return false;
             }
 
             analyticsTimer.Stop();
-            UsdEditorAnalytics.SendUsageEvent(true, analyticsTimer.ElapsedMilliseconds * 0.001f);
+            UsdEditorAnalytics.SendUsageEvent(true, (float)analyticsTimer.Elapsed.TotalSeconds);
             return true;
         }
 

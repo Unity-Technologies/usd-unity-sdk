@@ -2,6 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using USD.NET;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -45,7 +46,7 @@ namespace Unity.Formats.USD
             }
 
             bool success = true;
-            System.Diagnostics.Stopwatch analyticsTimer = new System.Diagnostics.Stopwatch();
+            Stopwatch analyticsTimer = new Stopwatch();
             analyticsTimer.Start();
 
             foreach (GameObject go in objects)
@@ -65,7 +66,7 @@ namespace Unity.Formats.USD
             scene.Save();
 
             analyticsTimer.Stop();
-            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.ElapsedMilliseconds * 0.001f, success);
+            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), (float)analyticsTimer.Elapsed.TotalSeconds, success);
 
             scene.Close();
         }

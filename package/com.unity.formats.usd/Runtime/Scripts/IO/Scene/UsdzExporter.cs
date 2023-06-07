@@ -16,6 +16,7 @@ using System.IO;
 using UnityEngine;
 using USD.NET;
 using pxr;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -42,7 +43,7 @@ namespace Unity.Formats.USD
 
             bool success = true;
 
-            System.Diagnostics.Stopwatch analyticsTimer = new System.Diagnostics.Stopwatch();
+            Stopwatch analyticsTimer = new Stopwatch();
             analyticsTimer.Start();
 
             try
@@ -97,7 +98,7 @@ namespace Unity.Formats.USD
                 tmpDir.Delete(recursive: true);
 
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent("usdz", analyticsTimer.ElapsedMilliseconds * 0.001f, success);
+                UsdEditorAnalytics.SendExportEvent("usdz", (float)analyticsTimer.Elapsed.TotalSeconds, success);
             }
         }
     }

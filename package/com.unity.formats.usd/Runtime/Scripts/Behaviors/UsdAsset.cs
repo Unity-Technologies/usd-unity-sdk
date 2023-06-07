@@ -19,6 +19,7 @@ using System.IO;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -599,13 +600,13 @@ namespace Unity.Formats.USD
 
             bool success = false;
 
-            System.Diagnostics.Stopwatch analyticsTimer = new System.Diagnostics.Stopwatch();
+            Stopwatch analyticsTimer = new Stopwatch();
             analyticsTimer.Start();
             var baseLayer = sceneToReference.GetScene();
             if (baseLayer == null)
             {
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds * 0.001f, success, onlyOverrides: true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), (float)analyticsTimer.Elapsed.TotalSeconds, success, onlyOverrides: true);
                 throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
             }
             overs.AddSubLayer(baseLayer);
@@ -648,7 +649,7 @@ namespace Unity.Formats.USD
                 }
 
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds * 0.001f, success, onlyOverrides: true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), (float)analyticsTimer.Elapsed.TotalSeconds, success, onlyOverrides: true);
             }
         }
 

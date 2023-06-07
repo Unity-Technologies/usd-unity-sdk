@@ -1,7 +1,3 @@
-# if ENABLE_CLOUD_SERVICES_ANALYTICS && UNITY_EDITOR
-# define USE_EDITOR_ANALYTICS
-# endif
-
 // Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+# if ENABLE_CLOUD_SERVICES_ANALYTICS && UNITY_EDITOR
+# define USE_EDITOR_ANALYTICS
+# endif
 
 using System.Collections.Generic;
 using UnityEditor;
@@ -118,6 +117,10 @@ namespace Unity.Formats.USD
                 sUsdEditorAnalyticsEvents[eventName] = true;
                 return true;
             }
+            else
+            {
+                Debug.LogError($"Failed to register EditorAnalytics event '{eventName}'. Reason: {result}.");
+            }
 # endif
             return false;
         }
@@ -134,13 +137,16 @@ namespace Unity.Formats.USD
                 TimeTakenS = timeTakenS
             };
 
-            EditorAnalytics.SendEventWithLimit(k_UsageEventName, data);
+            AnalyticsResult result = EditorAnalytics.SendEventWithLimit(k_UsageEventName, data);
+            if (result != AnalyticsResult.Ok)
+            {
+                Debug.LogError($"Failed to send EditorAnalytics event '{k_UsageEventName}'. Reason: {result}.");
+            }
 # endif
         }
 
-        public static void SendImportEvent(string fileExtension, float timeTakenS, ImportResult result)
+        public static void SendImportEvent(string fileExtension, float timeTakenS, ImportResult importResult)
         {
-            Debug.Log($"Send event called");
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ImportEventName))
                 return;
@@ -149,14 +155,18 @@ namespace Unity.Formats.USD
             {
                 FileExtension = fileExtension,
                 TimeTakenS = timeTakenS,
-                ImportSucceeded = result.Success,
-                IncludesMeshes = result.ContainsMeshes,
-                IncludesPointInstancer = result.ContainsPointInstancer,
-                IncludesMaterials = result.ContainsMaterials,
-                IncludesSkel = result.ContainsSkel
+                ImportSucceeded = importResult.Success,
+                IncludesMeshes = importResult.ContainsMeshes,
+                IncludesPointInstancer = importResult.ContainsPointInstancer,
+                IncludesMaterials = importResult.ContainsMaterials,
+                IncludesSkel = importResult.ContainsSkel
             };
 
-            EditorAnalytics.SendEventWithLimit(k_ImportEventName, data);
+            AnalyticsResult analyticsResult = EditorAnalytics.SendEventWithLimit(k_ImportEventName, data);
+            if (analyticsResult != AnalyticsResult.Ok)
+            {
+                Debug.LogError($"Failed to send EditorAnalytics event '{k_ImportEventName}'. Reason: {analyticsResult}.");
+            }
 # endif
         }
 
@@ -174,7 +184,11 @@ namespace Unity.Formats.USD
                 OnlyOverrides = onlyOverrides
             };
 
-            EditorAnalytics.SendEventWithLimit(k_ExportEventName, data);
+            AnalyticsResult result = EditorAnalytics.SendEventWithLimit(k_ExportEventName, data);
+            if (result != AnalyticsResult.Ok)
+            {
+                Debug.LogError($"Failed to send EditorAnalytics event '{k_ExportEventName}'. Reason: {result}.");
+            }
 # endif
         }
 
@@ -192,7 +206,11 @@ namespace Unity.Formats.USD
                 FrameCount = frameCount
             };
 
-            EditorAnalytics.SendEventWithLimit(k_RecorderExportEventName, data);
+            AnalyticsResult result = EditorAnalytics.SendEventWithLimit(k_RecorderExportEventName, data);
+            if (result != AnalyticsResult.Ok)
+            {
+                Debug.LogError($"Failed to send EditorAnalytics event '{k_RecorderExportEventName}'. Reason: {result}.");
+            }
 # endif
         }
     }
