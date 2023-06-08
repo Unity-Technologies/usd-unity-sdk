@@ -86,6 +86,7 @@ namespace Unity.Formats.USD
         struct RecorderExportAnalyticsData
         {
             public string FileExtension;
+            public float TimeTakenS;
             public bool ExportSucceeded;
             public bool OnlyOverrides;
             public int FrameCount;
@@ -192,7 +193,7 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendRecorderExportEvent(string fileExtension, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
+        public static void SendRecorderExportEvent(string fileExtension, float timeTakenS, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_RecorderExportEventName))
@@ -201,6 +202,7 @@ namespace Unity.Formats.USD
             var data = new RecorderExportAnalyticsData()
             {
                 FileExtension = fileExtension,
+                TimeTakenS = timeTakenS,
                 ExportSucceeded = exportSucceeded,
                 OnlyOverrides = onlyOverrides,
                 FrameCount = frameCount

@@ -13,6 +13,7 @@ namespace UnityEditor.Formats.USD.Recorder
 
         protected override void BeginRecording(RecordingSession session)
         {
+            Context.analyticsTotalTimeStopwatch.Start();
             if (Context.exportTransformOverrides)
             {
                 // Settings.
@@ -35,13 +36,16 @@ namespace UnityEditor.Formats.USD.Recorder
                 // this is very brittle- if we have the chance of other sublayers in future we should store the index it was added at and only erase that one.
                 Context.scene.Stage.GetRootLayer().GetSubLayerPaths().Erase(0);
             }
+            Context.analyticsTotalTimeStopwatch.Stop();
         }
 
         protected override void NewFrameReady(RecordingSession session)
         {
+            Context.analyticsTotalTimeStopwatch.Start();
             Context.scene.Time = session.recorderTime * session.settings.FrameRate;
             Context.exportMaterials = false;
             SceneExporter.Export(Settings.GameObject, Context, zeroRootTransform: false);
+            Context.analyticsTotalTimeStopwatch.Stop();
         }
     }
 }

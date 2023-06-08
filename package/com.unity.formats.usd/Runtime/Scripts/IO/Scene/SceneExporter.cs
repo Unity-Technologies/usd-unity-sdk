@@ -18,6 +18,7 @@ using System.Linq;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -80,6 +81,9 @@ namespace Unity.Formats.USD
 
         // Sample object instances, shared across multiple export methods.
         public Dictionary<Type, SampleBase> samples = new Dictionary<Type, SampleBase>();
+
+        // For analytics purposes
+        public Stopwatch analyticsTotalTimeStopwatch = new Stopwatch();
     }
 
     public class Exporter

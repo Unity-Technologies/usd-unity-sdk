@@ -1204,7 +1204,7 @@ namespace Unity.Formats.USD
                 // TODO: right now all point instancer data is read, but we only need prototypes and indices.
                 var pointInstancerSamples = scene.ReadAll<PointInstancerSample>();
 
-                primMap.ContainsPointInstances = pointInstancerSamples.GetLength() > 0;
+                primMap.ContainsPointInstances = pointInstancerSamples.Length > 0;
 
                 foreach (var pathAndSample in pointInstancerSamples)
                 {
