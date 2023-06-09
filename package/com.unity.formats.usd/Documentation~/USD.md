@@ -114,3 +114,8 @@ We do not currently support the following:
     * Blend Shapes
 * General:
     * Custom prims
+
+
+## Analytics
+
+We collect high level analytics of the features used in the package, to help us understand adoption and prioritize future development work. You can see exactly what data points are collected in `Common\UsdEditorAnalytics.cs`.
