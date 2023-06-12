@@ -276,7 +276,6 @@ namespace Unity.Formats.USD
             bool composingSubtree,
             SceneImportOptions importOptions)
         {
-#if UNITY_EDITOR
             UsdEditorAnalytics.ImportResult importResult = UsdEditorAnalytics.ImportResult.Default;
             if (scene == null)
             {
@@ -284,6 +283,7 @@ namespace Unity.Formats.USD
                 throw new ImportException("Null USD Scene");
             }
 
+#if UNITY_EDITOR
             Stopwatch analyticsTimer = new Stopwatch();
 
             if (!importOptions.SkipSendingImportAnalytics)
@@ -1209,7 +1209,6 @@ namespace Unity.Formats.USD
                 Profiler.BeginSample("USD: Build Point-Instances");
                 // TODO: right now all point instancer data is read, but we only need prototypes and indices.
                 var pointInstancerSamples = scene.ReadAll<PointInstancerSample>();
-
                 primMap.ContainsPointInstances = pointInstancerSamples.Length > 0;
 
                 foreach (var pathAndSample in pointInstancerSamples)

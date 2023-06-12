@@ -591,7 +591,6 @@ namespace Unity.Formats.USD
             var sceneToReference = this;
             var overs = sceneInWhichToStoreTransforms;
 
-
             if (overs == null)
             {
                 UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), 0, false, onlyOverrides: true);
@@ -626,7 +625,7 @@ namespace Unity.Formats.USD
                     exportUnvarying: false,
                     zeroRootTransform: true,
                     exportOverrides: true);
-                success = true;
+                    success = true;
             }
             catch (Exception ex)
             {

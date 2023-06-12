@@ -51,6 +51,7 @@ namespace Unity.Formats.USD
             public bool IncludesMaterials;
             public bool IncludesSkel;
         }
+
         public struct ImportResult
         {
             public bool Success;

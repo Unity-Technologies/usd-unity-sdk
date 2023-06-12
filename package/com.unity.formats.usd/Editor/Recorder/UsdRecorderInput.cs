@@ -1,5 +1,4 @@
 #if RECORDER_AVAILABLE
-using System.IO;
 using Unity.Formats.USD;
 using UnityEditor.Recorder;
 using USD.NET;
