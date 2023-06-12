@@ -41,7 +41,7 @@ namespace Unity.Formats.USD
             if (scene == null)
             {
                 // TODO: It would be useful to get more context from a failed export.
-                UsdEditorAnalytics.SendExportEvent("", .0f, false);
+                UsdEditorAnalytics.SendExportEvent("", 0, false);
                 return;
             }
 
@@ -66,7 +66,7 @@ namespace Unity.Formats.USD
             scene.Save();
 
             analyticsTimer.Stop();
-            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), (float)analyticsTimer.Elapsed.TotalSeconds, success);
+            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.ElapsedMilliseconds, success);
 
             scene.Close();
         }

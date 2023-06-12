@@ -124,7 +124,7 @@ namespace Unity.Formats.USD
                 analyticsTimer.Stop();
                 ImportResult result = ImportResult.Default;
                 result.Success = !string.IsNullOrEmpty(prefabPath);
-                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(path), (float)analyticsTimer.Elapsed.TotalSeconds, result);
+                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(path), analyticsTimer.ElapsedMilliseconds, result);
 
                 GameObject.DestroyImmediate(go);
                 scene.Close();

@@ -594,7 +594,7 @@ namespace Unity.Formats.USD
 
             if (overs == null)
             {
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), .0f, false, onlyOverrides: true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), 0, false, onlyOverrides: true);
                 return;
             }
 
@@ -606,7 +606,7 @@ namespace Unity.Formats.USD
             if (baseLayer == null)
             {
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), (float)analyticsTimer.Elapsed.TotalSeconds, success, onlyOverrides: true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds, success, onlyOverrides: true);
                 throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
             }
             overs.AddSubLayer(baseLayer);
@@ -649,7 +649,7 @@ namespace Unity.Formats.USD
                 }
 
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), (float)analyticsTimer.Elapsed.TotalSeconds, success, onlyOverrides: true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.ElapsedMilliseconds, success, onlyOverrides: true);
             }
         }
 
@@ -743,6 +743,7 @@ namespace Unity.Formats.USD
             }
 
             scene.AccessMask = m_lastAccessMask;
+            options.SkipSendingImportAnalytics = true;
             SceneImporter.ImportUsd(foreignRoot.gameObject,
                 scene,
                 foreignRoot.m_lastPrimMap,

@@ -276,15 +276,19 @@ namespace Unity.Formats.USD
             bool composingSubtree,
             SceneImportOptions importOptions)
         {
+#if UNITY_EDITOR
             UsdEditorAnalytics.ImportResult importResult = UsdEditorAnalytics.ImportResult.Default;
             if (scene == null)
             {
-                UsdEditorAnalytics.SendImportEvent("", .0f, importResult);
+                UsdEditorAnalytics.SendImportEvent("", 0, importResult);
                 throw new ImportException("Null USD Scene");
             }
 
             Stopwatch analyticsTimer = new Stopwatch();
-            analyticsTimer.Start();
+
+            if (!importOptions.SkipSendingImportAnalytics)
+                analyticsTimer.Start();
+# endif
 
             // The matrix to convert USD (right-handed) to Unity (left-handed) is different for the legacy FBX importer
             // and incorrectly swaps the X-axis rather than the Z-axis. This changes the basisChange matrix to match the
@@ -316,16 +320,18 @@ namespace Unity.Formats.USD
                 primMap,
                 composingSubtree);
 
-            analyticsTimer.Stop();
-
 #if UNITY_EDITOR // Path APIs are not available in builds, may as well skip the whole thing
-            if (primMap != null)
+            if (!importOptions.SkipSendingImportAnalytics)
             {
-                importResult = CreateImportResult(true, primMap);
-            }
+                analyticsTimer.Stop();
+                if (primMap != null)
+                {
+                    importResult = CreateImportResult(true, primMap);
+                }
 
-            UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
-                (float)analyticsTimer.Elapsed.TotalSeconds, importResult);
+                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
+                    analyticsTimer.ElapsedMilliseconds, importResult);
+            }
 #endif
         }
 

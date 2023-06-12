@@ -65,7 +65,7 @@ namespace UnityEditor.Formats.USD.Recorder
             {
                 string extension = Settings.ExportFormat == UsdRecorderSettings.Format.USDZ ? ".usdz" : Path.GetExtension(outputFile);
                 creationStopwatch.Stop();
-                UsdEditorAnalytics.SendRecorderExportEvent(extension, (float)creationStopwatch.Elapsed.TotalSeconds,false, Settings.ExportTransformOverrides, 0);
+                UsdEditorAnalytics.SendRecorderExportEvent(extension, creationStopwatch.ElapsedMilliseconds,false, Settings.ExportTransformOverrides, 0);
                 throw new InvalidOperationException($"The file is already open in Unity. Please close all references to it and try again: {outputFile}");
             }
 
@@ -135,11 +135,11 @@ namespace UnityEditor.Formats.USD.Recorder
             }
 
             context.analyticsTotalTimeStopwatch.Stop();
-            float totalTimeS = (float)context.analyticsTotalTimeStopwatch.Elapsed.TotalSeconds;
+            long totalTimeMs = context.analyticsTotalTimeStopwatch.ElapsedMilliseconds;
             context = null;
             Input.Context = null;
 
-            UsdEditorAnalytics.SendRecorderExportEvent(extension, totalTimeS,true, Settings.ExportTransformOverrides, session.frameIndex);
+            UsdEditorAnalytics.SendRecorderExportEvent(extension, totalTimeMs,true, Settings.ExportTransformOverrides, session.frameIndex);
             base.EndRecording(session);
         }
 

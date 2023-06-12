@@ -160,5 +160,13 @@ namespace Unity.Formats.USD
         {
             get { return materialImportMode == MaterialImportMode.ImportPreviewSurface; }
         }
+
+        /// <summary>
+        /// Indicates whether the import should have analytics sent.
+        /// </summary>
+        /// <remarks>
+        /// This is used when importing a single time sample as part of UsdPlayableBehaviour, to avoid sending every frame.
+        /// </remarks>
+        public bool SkipSendingImportAnalytics { get; set; } = false;
     }
 }
