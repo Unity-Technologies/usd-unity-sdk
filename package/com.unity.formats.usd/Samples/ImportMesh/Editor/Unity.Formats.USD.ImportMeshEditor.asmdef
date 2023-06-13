@@ -1,0 +1,19 @@
+{
+    "name": "Unity.Formats.USD.ImportMeshEditor",
+    "references": [
+        "Unity.Formats.USD.ImportMesh",
+        "Unity.Formats.USD.Runtime",
+        "USD.NET"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
