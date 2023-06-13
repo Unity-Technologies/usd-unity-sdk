@@ -1,0 +1,17 @@
+{
+    "name": "Unity.Formats.USD.ExportMesh.Editor",
+    "references": [
+        "Unity.Formats.USD.ExportMesh"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
