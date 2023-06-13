@@ -27,6 +27,7 @@
 - Disabled plugins on unsupported platforms.
 - Optimized triangulation to reduce the chance of a "Timed out while waiting for thread" error on importing a complex mesh.
 - Optimized PointInstance importing.
+- Updated AppCollector YAML file to reflect latest info.
 - We've removed the USD logo in a few places until we have a formal agreement in place to use it.
 
 ## [3.0.0-exp.2] - 2021-09-29
