@@ -515,6 +515,7 @@ namespace Unity.Formats.USD
             StateToOptions(ref options);
 
             options.forceRebuild = forceRebuild;
+            options.ImportType = forceRebuild ? ImportType.Reimport : ImportType.Refresh;
 
             if (string.IsNullOrEmpty(options.projectAssetPath))
             {
@@ -742,7 +743,7 @@ namespace Unity.Formats.USD
             }
 
             scene.AccessMask = m_lastAccessMask;
-            options.SkipSendingImportAnalytics = true;
+            options.ImportType = ImportType.Streaming;
             SceneImporter.ImportUsd(foreignRoot.gameObject,
                 scene,
                 foreignRoot.m_lastPrimMap,
@@ -870,6 +871,7 @@ namespace Unity.Formats.USD
             SceneImportOptions importOptions = new SceneImportOptions();
             this.StateToOptions(ref importOptions);
             importOptions.usdRootPath = prim.GetPath();
+            importOptions.ImportType = ImportType.Refresh; // force rebuild is false, so this is a refresh not a full reimport..?
             SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
         }
 
@@ -955,6 +957,7 @@ namespace Unity.Formats.USD
             SceneImportOptions importOptions = new SceneImportOptions();
             this.StateToOptions(ref importOptions);
             importOptions.usdRootPath = prim.GetPath();
+            importOptions.ImportType = ImportType.Refresh; // force rebuild is false, so this is a refresh not a full reimport..?
             SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
         }
     }

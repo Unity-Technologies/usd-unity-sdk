@@ -22,6 +22,14 @@ using UnityEngine.Analytics;
 
 namespace Unity.Formats.USD
 {
+    public enum ImportType
+    {
+        Initial,
+        Reimport,
+        Refresh,
+        // Do not send analytics when streaming, as they get sent for every frame.
+        Streaming
+    }
     public static class UsdEditorAnalytics
     {
         // General analytics
@@ -46,6 +54,7 @@ namespace Unity.Formats.USD
             public string FileExtension;
             public long TimeTakenMs;
             public bool ImportSucceeded;
+            public bool IsReimport;
             public bool IncludesMeshes;
             public bool IncludesPointInstancer;
             public bool IncludesMaterials;
@@ -55,6 +64,7 @@ namespace Unity.Formats.USD
         public struct ImportResult
         {
             public bool Success;
+            public ImportType ImportType;
             public bool ContainsMeshes;
             public bool ContainsPointInstancer;
             public bool ContainsSkel;
@@ -63,6 +73,7 @@ namespace Unity.Formats.USD
             public static ImportResult Default => new ImportResult()
             {
                 Success = false,
+                ImportType = ImportType.Initial,
                 ContainsMeshes = false,
                 ContainsPointInstancer = false,
                 ContainsSkel = false,
@@ -158,6 +169,7 @@ namespace Unity.Formats.USD
                 FileExtension = fileExtension,
                 TimeTakenMs = timeTakenMs,
                 ImportSucceeded = importResult.Success,
+                IsReimport = (importResult.ImportType == ImportType.Reimport || importResult.ImportType == ImportType.Refresh),
                 IncludesMeshes = importResult.ContainsMeshes,
                 IncludesPointInstancer = importResult.ContainsPointInstancer,
                 IncludesMaterials = importResult.ContainsMaterials,

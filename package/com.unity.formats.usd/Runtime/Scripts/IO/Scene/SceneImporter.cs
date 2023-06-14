@@ -277,6 +277,7 @@ namespace Unity.Formats.USD
             SceneImportOptions importOptions)
         {
             UsdEditorAnalytics.ImportResult importResult = UsdEditorAnalytics.ImportResult.Default;
+            importResult.ImportType = importOptions.ImportType;
             if (scene == null)
             {
                 UsdEditorAnalytics.SendImportEvent("", 0, importResult);
@@ -286,7 +287,7 @@ namespace Unity.Formats.USD
 #if UNITY_EDITOR
             Stopwatch analyticsTimer = new Stopwatch();
 
-            if (!importOptions.SkipSendingImportAnalytics)
+            if (importOptions.ImportType != ImportType.Streaming)
                 analyticsTimer.Start();
 # endif
 
@@ -321,12 +322,12 @@ namespace Unity.Formats.USD
                 composingSubtree);
 
 #if UNITY_EDITOR // Path APIs are not available in builds, may as well skip the whole thing
-            if (!importOptions.SkipSendingImportAnalytics)
+            if (importOptions.ImportType != ImportType.Streaming) // don't send analytics when the import is triggered by streaming time sampled data
             {
                 analyticsTimer.Stop();
                 if (primMap != null)
                 {
-                    importResult = CreateImportResult(true, primMap);
+                    importResult = CreateImportResult(true, primMap, importOptions.ImportType);
                 }
 
                 UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
@@ -335,9 +336,10 @@ namespace Unity.Formats.USD
 #endif
         }
 
-        private static UsdEditorAnalytics.ImportResult CreateImportResult(bool success, PrimMap primMap) => new UsdEditorAnalytics.ImportResult()
+        private static UsdEditorAnalytics.ImportResult CreateImportResult(bool success, PrimMap primMap, ImportType importType = ImportType.Initial) => new UsdEditorAnalytics.ImportResult()
         {
             Success = success,
+            ImportType = importType,
             ContainsMeshes = primMap.Meshes == null ? false : primMap.Meshes.Length > 0,
             ContainsPointInstancer = primMap.ContainsPointInstances,
             ContainsSkel = primMap.SkelRoots == null ? false : primMap.SkelRoots.Length > 0,

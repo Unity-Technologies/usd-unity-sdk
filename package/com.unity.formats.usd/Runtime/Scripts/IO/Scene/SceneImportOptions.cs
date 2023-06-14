@@ -162,11 +162,11 @@ namespace Unity.Formats.USD
         }
 
         /// <summary>
-        /// Indicates whether the import should have analytics sent.
+        /// Indicates what type of import is being performed.
         /// </summary>
         /// <remarks>
-        /// This is used when importing a single time sample as part of UsdPlayableBehaviour, to avoid sending every frame.
+        /// This is used to distinguish different analytics.
         /// </remarks>
-        public bool SkipSendingImportAnalytics { get; set; } = false;
+        public ImportType ImportType { get; set; } = ImportType.Initial;
     }
 }
