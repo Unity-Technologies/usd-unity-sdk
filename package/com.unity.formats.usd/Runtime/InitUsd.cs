@@ -61,12 +61,12 @@ namespace Unity.Formats.USD
             {
                 Debug.LogException(ex);
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendUsageEvent(false, analyticsTimer.ElapsedMilliseconds);
+                UsdEditorAnalytics.SendUsageEvent(false, (float)analyticsTimer.Elapsed.TotalMilliseconds);
                 return false;
             }
 
             analyticsTimer.Stop();
-            UsdEditorAnalytics.SendUsageEvent(true, analyticsTimer.ElapsedMilliseconds);
+            UsdEditorAnalytics.SendUsageEvent(true, (float)analyticsTimer.Elapsed.TotalMilliseconds);
             return true;
         }
 

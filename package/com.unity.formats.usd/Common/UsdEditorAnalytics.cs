@@ -25,7 +25,7 @@ namespace Unity.Formats.USD
     public enum ImportType
     {
         Initial,
-        Reimport,
+        ForceRebuild,
         Refresh,
         // Do not send analytics when streaming, as they get sent for every frame.
         Streaming
@@ -43,7 +43,7 @@ namespace Unity.Formats.USD
         struct UsageAnalyticsData
         {
             public bool InitSucceeded;
-            public long TimeTakenMs;
+            public float TimeTakenMs;
         }
 
         // USD Import Analytics
@@ -52,9 +52,8 @@ namespace Unity.Formats.USD
         struct ImportAnalyticsData
         {
             public string FileExtension;
-            public long TimeTakenMs;
-            public bool ImportSucceeded;
-            public bool IsReimport;
+            public float TimeTakenMs;
+            public bool Succeeded;
             public bool IncludesMeshes;
             public bool IncludesPointInstancer;
             public bool IncludesMaterials;
@@ -81,14 +80,29 @@ namespace Unity.Formats.USD
             };
         };
 
+        // USD Reimport Analytics
+        const string k_ReimportEventName = "USDFileReimport";
+
+        struct ReimportAnalyticsData
+        {
+            public string FileExtension;
+            public float TimeTakenMs;
+            public bool Succeeded;
+            public bool ForceRebuild;
+            public bool IncludesMeshes;
+            public bool IncludesPointInstancer;
+            public bool IncludesMaterials;
+            public bool IncludesSkel;
+        }
+
         // USD Export Analytics
         const string k_ExportEventName = "USDFileExport";
 
         struct ExportAnalyticsData
         {
             public string FileExtension;
-            public long TimeTakenMs;
-            public bool ExportSucceeded;
+            public float TimeTakenMs;
+            public bool Succeeded;
             public bool OnlyOverrides;
         }
 
@@ -98,8 +112,8 @@ namespace Unity.Formats.USD
         struct RecorderExportAnalyticsData
         {
             public string FileExtension;
-            public long TimeTakenMs;
-            public bool ExportSucceeded;
+            public float TimeTakenMs;
+            public bool Succeeded;
             public bool OnlyOverrides;
             public int FrameCount;
         }
@@ -110,6 +124,7 @@ namespace Unity.Formats.USD
         {
             { k_UsageEventName, false },
             { k_ImportEventName, false },
+            { k_ReimportEventName, false },
             { k_ExportEventName, false },
             { k_RecorderExportEventName, false }
         };
@@ -138,7 +153,7 @@ namespace Unity.Formats.USD
             return false;
         }
 
-        public static void SendUsageEvent(bool success, long timeTakenMs)
+        public static void SendUsageEvent(bool success, float timeTakenMs)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_UsageEventName))
@@ -158,7 +173,7 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendImportEvent(string fileExtension, long timeTakenMs, ImportResult importResult)
+        public static void SendImportEvent(string fileExtension, float timeTakenMs, ImportResult importResult)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ImportEventName))
@@ -168,8 +183,7 @@ namespace Unity.Formats.USD
             {
                 FileExtension = fileExtension,
                 TimeTakenMs = timeTakenMs,
-                ImportSucceeded = importResult.Success,
-                IsReimport = (importResult.ImportType == ImportType.Reimport || importResult.ImportType == ImportType.Refresh),
+                Succeeded = importResult.Success,
                 IncludesMeshes = importResult.ContainsMeshes,
                 IncludesPointInstancer = importResult.ContainsPointInstancer,
                 IncludesMaterials = importResult.ContainsMaterials,
@@ -184,7 +198,33 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendExportEvent(string fileExtension, long timeTakenMs, bool exportSucceeded, bool onlyOverrides = false)
+        public static void SendReimportEvent(string fileExtension, float timeTakenMs, ImportResult importResult)
+        {
+# if USE_EDITOR_ANALYTICS
+            if (!RegisterAnalytics(k_ReimportEventName))
+                return;
+
+            var data = new ReimportAnalyticsData()
+            {
+                FileExtension = fileExtension,
+                TimeTakenMs = timeTakenMs,
+                Succeeded = importResult.Success,
+                ForceRebuild = importResult.ImportType == ImportType.ForceRebuild,
+                IncludesMeshes = importResult.ContainsMeshes,
+                IncludesPointInstancer = importResult.ContainsPointInstancer,
+                IncludesMaterials = importResult.ContainsMaterials,
+                IncludesSkel = importResult.ContainsSkel
+            };
+
+            AnalyticsResult result = EditorAnalytics.SendEventWithLimit(k_ReimportEventName, data);
+            if (result != AnalyticsResult.Ok)
+            {
+                Debug.LogError($"Failed to send EditorAnalytics event '{k_ReimportEventName}'. Reason: {result}.");
+            }
+# endif
+        }
+
+        public static void SendExportEvent(string fileExtension, float timeTakenMs, bool exportSucceeded, bool onlyOverrides = false)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ExportEventName))
@@ -194,7 +234,7 @@ namespace Unity.Formats.USD
             {
                 FileExtension = fileExtension,
                 TimeTakenMs = timeTakenMs,
-                ExportSucceeded = exportSucceeded,
+                Succeeded = exportSucceeded,
                 OnlyOverrides = onlyOverrides
             };
 
@@ -206,7 +246,7 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendRecorderExportEvent(string fileExtension, long timeTakenMs, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
+        public static void SendRecorderExportEvent(string fileExtension, float timeTakenMs, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_RecorderExportEventName))
@@ -216,7 +256,7 @@ namespace Unity.Formats.USD
             {
                 FileExtension = fileExtension,
                 TimeTakenMs = timeTakenMs,
-                ExportSucceeded = exportSucceeded,
+                Succeeded = exportSucceeded,
                 OnlyOverrides = onlyOverrides,
                 FrameCount = frameCount
             };

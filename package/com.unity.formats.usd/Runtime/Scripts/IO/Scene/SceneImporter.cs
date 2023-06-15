@@ -280,7 +280,7 @@ namespace Unity.Formats.USD
             importResult.ImportType = importOptions.ImportType;
             if (scene == null)
             {
-                UsdEditorAnalytics.SendImportEvent("", 0, importResult);
+                UsdEditorAnalytics.SendImportEvent("", 0.0f, importResult);
                 throw new ImportException("Null USD Scene");
             }
 
@@ -329,9 +329,13 @@ namespace Unity.Formats.USD
                 {
                     importResult = CreateImportResult(true, primMap, importOptions.ImportType);
                 }
+                if (importOptions.ImportType == ImportType.Initial)
+                    UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
+                        (float)analyticsTimer.Elapsed.TotalMilliseconds, importResult);
+                else
+                    UsdEditorAnalytics.SendReimportEvent(Path.GetExtension(scene.FilePath),
+                        (float)analyticsTimer.Elapsed.TotalMilliseconds, importResult);
 
-                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
-                    analyticsTimer.ElapsedMilliseconds, importResult);
             }
 #endif
         }

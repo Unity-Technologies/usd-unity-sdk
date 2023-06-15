@@ -66,7 +66,7 @@ namespace Unity.Formats.USD
             scene.Save();
 
             analyticsTimer.Stop();
-            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.ElapsedMilliseconds, success);
+            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), (float)analyticsTimer.Elapsed.TotalMilliseconds, success);
 
             scene.Close();
         }
