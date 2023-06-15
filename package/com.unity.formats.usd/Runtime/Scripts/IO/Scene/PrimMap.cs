@@ -50,6 +50,7 @@ namespace Unity.Formats.USD
 
         // Flags for import analytics
         public bool ContainsPointInstances { get; set; }
+        public bool HasErrors { get; set; } = false;
 
         // Normal objects in the hierarchy.
         private Dictionary<SdfPath, GameObject> m_prims = new Dictionary<SdfPath, GameObject>();
@@ -151,6 +152,9 @@ namespace Unity.Formats.USD
             }
 
             m_prims.Clear();
+
+            ContainsPointInstances = false;
+            HasErrors = false;
         }
 
         /// <summary>
@@ -172,6 +176,7 @@ namespace Unity.Formats.USD
             Materials = null;
 
             ContainsPointInstances = false;
+            HasErrors = false;
         }
     }
 }

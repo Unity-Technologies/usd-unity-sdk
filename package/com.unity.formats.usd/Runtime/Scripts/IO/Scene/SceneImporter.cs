@@ -327,7 +327,7 @@ namespace Unity.Formats.USD
                 analyticsTimer.Stop();
                 if (primMap != null)
                 {
-                    importResult = CreateImportResult(true, primMap, importOptions.ImportType);
+                    importResult = CreateImportResult(!primMap.HasErrors, primMap, importOptions.ImportType);
                 }
                 if (importOptions.ImportType == ImportType.Initial)
                     UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
@@ -462,6 +462,7 @@ namespace Unity.Formats.USD
                 catch (System.Exception ex)
                 {
                     Debug.LogException(ex);
+                    primMap.HasErrors = true;
                 }
             }
 
@@ -496,6 +497,7 @@ namespace Unity.Formats.USD
                         if (!skelRoot)
                         {
                             Debug.LogWarning("SkelRoot prim not SkelRoot type: " + path);
+                            primMap.HasErrors = true;
                             continue;
                         }
 
@@ -507,6 +509,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error pre-processing SkelRoot <" + path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -544,6 +547,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing material <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -599,6 +603,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -626,6 +631,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -657,6 +663,7 @@ namespace Unity.Formats.USD
                         {
                             Debug.LogException(
                                 new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                            primMap.HasErrors = true;
                         }
 
                         if (ShouldYield(targetTime, timer))
@@ -705,6 +712,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -734,6 +742,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -778,6 +787,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -817,6 +827,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -835,6 +846,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -867,6 +879,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing mesh <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -889,6 +902,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -912,6 +926,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -938,6 +953,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -948,6 +964,7 @@ namespace Unity.Formats.USD
                 {
                     Debug.LogException(
                         new ImportException("Error processing master <" + masterRootPath + ">", ex));
+                    primMap.HasErrors = true;
                 }
 
                 if (ShouldYield(targetTime, timer))
@@ -976,6 +993,7 @@ namespace Unity.Formats.USD
             catch (System.Exception ex)
             {
                 Debug.LogException(new ImportException("Failed in ProcessMaterialBindings", ex));
+                primMap.HasErrors = true;
             }
 
             Profiler.EndSample();
@@ -1001,11 +1019,13 @@ namespace Unity.Formats.USD
                         if (!primMap.SkelBindings.TryGetValue(skelRoot.GetPath(), out bindings))
                         {
                             Debug.LogWarning("No bindings found skelRoot: " + skelRoot.GetPath());
+                            primMap.HasErrors = true;
                         }
 
                         if (bindings.Count == 0)
                         {
                             Debug.LogWarning("No bindings found skelRoot: " + skelRoot.GetPath());
+                            primMap.HasErrors = true;
                         }
 
                         foreach (var skelBinding in bindings)
@@ -1087,6 +1107,7 @@ namespace Unity.Formats.USD
                                     catch (System.Exception ex)
                                     {
                                         Debug.LogException(new ImportException("Error skinning mesh: " + meshPath, ex));
+                                        primMap.HasErrors = true;
                                     }
                                 }
 
@@ -1098,6 +1119,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing SkelRoot <" + skelRoot.GetPath() + ">", ex));
+                        primMap.HasErrors = true;
                     }
                 } // foreach SkelRoot
 
@@ -1172,6 +1194,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing SkelRoot <" + skelPath + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -1234,6 +1257,7 @@ namespace Unity.Formats.USD
                     catch (System.Exception ex)
                     {
                         Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -1285,6 +1309,7 @@ namespace Unity.Formats.USD
                 catch (System.Exception ex)
                 {
                     Debug.LogException(ex);
+                    primMap.HasErrors = true;
                 }
             }
 

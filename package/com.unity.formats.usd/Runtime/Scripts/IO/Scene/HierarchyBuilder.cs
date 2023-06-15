@@ -270,6 +270,7 @@ namespace Unity.Formats.USD
                     catch (Exception ex)
                     {
                         Debug.LogException(new Exception("Error processing " + masterRootPrim.GetPath(), ex));
+                        map.HasErrors = true;
                     }
 
                     foreach (var usdPrim in masterRootPrim.GetAllDescendants())
@@ -308,6 +309,7 @@ namespace Unity.Formats.USD
                         catch (Exception ex)
                         {
                             Debug.LogException(new Exception("Error processing " + usdPrim.GetPath(), ex));
+                            map.HasErrors = true;
                             continue;
                         }
                     }
@@ -333,6 +335,7 @@ namespace Unity.Formats.USD
                     catch (Exception ex)
                     {
                         Debug.LogException(new Exception("Error expanding skeleton at " + info.prim.GetPath(), ex));
+                        map.HasErrors = true;
                     }
                 }
 
@@ -524,6 +527,7 @@ namespace Unity.Formats.USD
                 catch (Exception ex)
                 {
                     Debug.LogException(new Exception("Error processing " + prim.GetPath(), ex));
+                    map.HasErrors = true;
                 }
             }
 
