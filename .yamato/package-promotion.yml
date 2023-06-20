@@ -42,7 +42,7 @@ promote:
     UPMCI_PROMOTION: 1
   commands:
     - npm install upm-ci-utils@stable -g --registry {{ registry.npm }}
-    - upm-ci package promote --package-path package/com.unity.formats.usd --dry-run
+    - upm-ci package promote --package-path package/com.unity.formats.usd
   triggers:
     tags:
       only:
