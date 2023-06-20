@@ -280,7 +280,7 @@ namespace Unity.Formats.USD
             importResult.ImportType = importOptions.ImportType;
             if (scene == null)
             {
-                UsdEditorAnalytics.SendImportEvent("", 0.0f, importResult);
+                UsdEditorAnalytics.SendImportEvent("", 0, importResult);
                 throw new ImportException("Null USD Scene");
             }
 

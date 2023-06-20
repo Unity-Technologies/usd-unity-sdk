@@ -139,7 +139,7 @@ namespace UnityEditor.Formats.USD.Recorder
             context = null;
             Input.Context = null;
 
-            UsdEditorAnalytics.SendRecorderExportEvent(extension, totalTimeMs,true, Settings.ExportTransformOverrides, session.frameIndex);
+            UsdEditorAnalytics.SendRecorderExportEvent(extension, totalTimeMs, true, Settings.ExportTransformOverrides, session.frameIndex);
             base.EndRecording(session);
         }
 
