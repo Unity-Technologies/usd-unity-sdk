@@ -331,10 +331,10 @@ namespace Unity.Formats.USD
                 }
                 if (importOptions.ImportType == ImportType.Initial)
                     UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
-                        (float)analyticsTimer.Elapsed.TotalMilliseconds, importResult);
+                        analyticsTimer.Elapsed.TotalMilliseconds, importResult);
                 else
                     UsdEditorAnalytics.SendReimportEvent(Path.GetExtension(scene.FilePath),
-                        (float)analyticsTimer.Elapsed.TotalMilliseconds, importResult);
+                        analyticsTimer.Elapsed.TotalMilliseconds, importResult);
 
             }
 #endif

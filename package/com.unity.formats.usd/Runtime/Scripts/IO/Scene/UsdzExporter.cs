@@ -98,7 +98,7 @@ namespace Unity.Formats.USD
                 tmpDir.Delete(recursive: true);
 
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(".usdz", (float)analyticsTimer.Elapsed.TotalMilliseconds, success);
+                UsdEditorAnalytics.SendExportEvent(".usdz", analyticsTimer.Elapsed.TotalMilliseconds, success);
             }
         }
     }

@@ -43,7 +43,7 @@ namespace Unity.Formats.USD
         struct UsageAnalyticsData
         {
             public bool InitSucceeded;
-            public float TimeTakenMs;
+            public double TimeTakenMs;
         }
 
         // USD Import Analytics
@@ -52,7 +52,7 @@ namespace Unity.Formats.USD
         struct ImportAnalyticsData
         {
             public string FileExtension;
-            public float TimeTakenMs;
+            public double TimeTakenMs;
             public bool Succeeded;
             public bool IncludesMeshes;
             public bool IncludesPointInstancer;
@@ -86,7 +86,7 @@ namespace Unity.Formats.USD
         struct ReimportAnalyticsData
         {
             public string FileExtension;
-            public float TimeTakenMs;
+            public double TimeTakenMs;
             public bool Succeeded;
             public bool ForceRebuild;
             public bool IncludesMeshes;
@@ -101,7 +101,7 @@ namespace Unity.Formats.USD
         struct ExportAnalyticsData
         {
             public string FileExtension;
-            public float TimeTakenMs;
+            public double TimeTakenMs;
             public bool Succeeded;
             public bool OnlyOverrides;
         }
@@ -112,7 +112,7 @@ namespace Unity.Formats.USD
         struct RecorderExportAnalyticsData
         {
             public string FileExtension;
-            public float TimeTakenMs;
+            public double TimeTakenMs;
             public bool Succeeded;
             public bool OnlyOverrides;
             public int FrameCount;
@@ -153,7 +153,7 @@ namespace Unity.Formats.USD
             return false;
         }
 
-        public static void SendUsageEvent(bool success, float timeTakenMs)
+        public static void SendUsageEvent(bool success, double timeTakenMs)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_UsageEventName))
@@ -173,7 +173,7 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendImportEvent(string fileExtension, float timeTakenMs, ImportResult importResult)
+        public static void SendImportEvent(string fileExtension, double timeTakenMs, ImportResult importResult)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ImportEventName))
@@ -198,7 +198,7 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendReimportEvent(string fileExtension, float timeTakenMs, ImportResult importResult)
+        public static void SendReimportEvent(string fileExtension, double timeTakenMs, ImportResult importResult)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ReimportEventName))
@@ -224,7 +224,7 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendExportEvent(string fileExtension, float timeTakenMs, bool exportSucceeded, bool onlyOverrides = false)
+        public static void SendExportEvent(string fileExtension, double timeTakenMs, bool exportSucceeded, bool onlyOverrides = false)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_ExportEventName))
@@ -246,7 +246,7 @@ namespace Unity.Formats.USD
 # endif
         }
 
-        public static void SendRecorderExportEvent(string fileExtension, float timeTakenMs, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
+        public static void SendRecorderExportEvent(string fileExtension, double timeTakenMs, bool exportSucceeded, bool onlyOverrides = false, int frameCount = 0)
         {
 # if USE_EDITOR_ANALYTICS
             if (!RegisterAnalytics(k_RecorderExportEventName))

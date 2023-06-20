@@ -606,7 +606,7 @@ namespace Unity.Formats.USD
             if (baseLayer == null)
             {
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), (float)analyticsTimer.Elapsed.TotalMilliseconds, success, onlyOverrides: true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.Elapsed.TotalMilliseconds, success, onlyOverrides: true);
                 throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
             }
             overs.AddSubLayer(baseLayer);
@@ -649,7 +649,7 @@ namespace Unity.Formats.USD
                 }
 
                 analyticsTimer.Stop();
-                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), (float)analyticsTimer.Elapsed.TotalMilliseconds, success, onlyOverrides: true);
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.Elapsed.TotalMilliseconds, success, onlyOverrides: true);
             }
         }
 
