@@ -4,7 +4,8 @@ using System.IO;
 using pxr;
 using Unity.Formats.USD;
 using UnityEditor.Recorder;
-using UnityEngine;
+using Debug = UnityEngine.Debug;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace UnityEditor.Formats.USD.Recorder
 {
@@ -21,6 +22,8 @@ namespace UnityEditor.Formats.USD.Recorder
         string currentDir;
         protected override void SessionCreated(RecordingSession session)
         {
+            Stopwatch creationStopwatch = new Stopwatch();
+            creationStopwatch.Start();
             base.SessionCreated(session);
 
             InitUsd.Initialize();
@@ -60,6 +63,9 @@ namespace UnityEditor.Formats.USD.Recorder
             }
             catch (Exception)
             {
+                string extension = Settings.ExportFormat == UsdRecorderSettings.Format.USDZ ? ".usdz" : Path.GetExtension(outputFile);
+                creationStopwatch.Stop();
+                UsdEditorAnalytics.SendRecorderExportEvent(extension, creationStopwatch.Elapsed.TotalMilliseconds,false, Settings.ExportTransformOverrides, 0);
                 throw new InvalidOperationException($"The file is already open in Unity. Please close all references to it and try again: {outputFile}");
             }
 
@@ -78,7 +84,8 @@ namespace UnityEditor.Formats.USD.Recorder
 
             // Export the "default" frame, that is, all data which doesn't vary over time.
             context.scene.Time = null;
-
+            creationStopwatch.Stop();
+            context.analyticsTotalTimeStopwatch = creationStopwatch;
             Input.Context = context;
         }
 
@@ -91,7 +98,11 @@ namespace UnityEditor.Formats.USD.Recorder
                 return;
             }
 
+            context.analyticsTotalTimeStopwatch.Start();
             context.scene.EndTime = session.recorderTime * session.settings.FrameRate;
+
+            string extension = Settings.ExportFormat == UsdRecorderSettings.Format.USDZ ? ".usdz" : Path.GetExtension(context.scene.FilePath);
+
             context.scene.Save();
             context.scene.Close();
 
@@ -123,9 +134,12 @@ namespace UnityEditor.Formats.USD.Recorder
                 }
             }
 
+            context.analyticsTotalTimeStopwatch.Stop();
+            double totalTimeMs = context.analyticsTotalTimeStopwatch.Elapsed.TotalMilliseconds;
             context = null;
             Input.Context = null;
 
+            UsdEditorAnalytics.SendRecorderExportEvent(extension, totalTimeMs, true, Settings.ExportTransformOverrides, session.frameIndex);
             base.EndRecording(session);
         }
 

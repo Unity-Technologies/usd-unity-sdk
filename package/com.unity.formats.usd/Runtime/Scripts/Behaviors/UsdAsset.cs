@@ -19,6 +19,7 @@ using System.IO;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -514,6 +515,7 @@ namespace Unity.Formats.USD
             StateToOptions(ref options);
 
             options.forceRebuild = forceRebuild;
+            options.ImportType = forceRebuild ? ImportType.ForceRebuild : ImportType.Refresh;
 
             if (string.IsNullOrEmpty(options.projectAssetPath))
             {
@@ -592,12 +594,19 @@ namespace Unity.Formats.USD
 
             if (overs == null)
             {
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), 0, false, onlyOverrides: true);
                 return;
             }
 
+            bool success = false;
+
+            Stopwatch analyticsTimer = new Stopwatch();
+            analyticsTimer.Start();
             var baseLayer = sceneToReference.GetScene();
             if (baseLayer == null)
             {
+                analyticsTimer.Stop();
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.Elapsed.TotalMilliseconds, success, onlyOverrides: true);
                 throw new Exception("Could not open base layer: " + sceneToReference.usdFullPath);
             }
             overs.AddSubLayer(baseLayer);
@@ -617,10 +626,12 @@ namespace Unity.Formats.USD
                     exportUnvarying: false,
                     zeroRootTransform: true,
                     exportOverrides: true);
+                success = true;
             }
             catch (Exception ex)
             {
                 Debug.LogException(ex);
+                success = false;
             }
             finally
             {
@@ -632,6 +643,13 @@ namespace Unity.Formats.USD
                     overs.Save();
                     overs.Close();
                 }
+                else
+                {
+                    success = false;
+                }
+
+                analyticsTimer.Stop();
+                UsdEditorAnalytics.SendExportEvent(Path.GetExtension(sceneToReference.usdFullPath), analyticsTimer.Elapsed.TotalMilliseconds, success, onlyOverrides: true);
             }
         }
 
@@ -725,6 +743,7 @@ namespace Unity.Formats.USD
             }
 
             scene.AccessMask = m_lastAccessMask;
+            options.ImportType = ImportType.Streaming;
             SceneImporter.ImportUsd(foreignRoot.gameObject,
                 scene,
                 foreignRoot.m_lastPrimMap,
@@ -852,6 +871,7 @@ namespace Unity.Formats.USD
             SceneImportOptions importOptions = new SceneImportOptions();
             this.StateToOptions(ref importOptions);
             importOptions.usdRootPath = prim.GetPath();
+            importOptions.ImportType = ImportType.Refresh; // force rebuild is false, so this is a refresh not a full reimport..?
             SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
         }
 
@@ -937,6 +957,7 @@ namespace Unity.Formats.USD
             SceneImportOptions importOptions = new SceneImportOptions();
             this.StateToOptions(ref importOptions);
             importOptions.usdRootPath = prim.GetPath();
+            importOptions.ImportType = ImportType.Refresh; // force rebuild is false, so this is a refresh not a full reimport..?
             SceneImporter.ImportUsd(go, scene, new PrimMap(), true, importOptions);
         }
     }

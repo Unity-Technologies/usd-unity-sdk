@@ -191,6 +191,7 @@ namespace Unity.Formats.USD
                     Debug.LogException(
                         new SceneImporter.ImportException(
                             "Error processing mesh <" + pathAndSample.path + ">", ex));
+                    primMap.HasErrors = true;
                 }
 
                 Profiler.EndSample();

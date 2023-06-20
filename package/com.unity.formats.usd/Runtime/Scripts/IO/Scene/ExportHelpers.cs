@@ -2,6 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using USD.NET;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -38,7 +39,15 @@ namespace Unity.Formats.USD
             bool exportMonoBehaviours = false)
         {
             if (scene == null)
+            {
+                // TODO: It would be useful to get more context from a failed export.
+                UsdEditorAnalytics.SendExportEvent("", 0, false);
                 return;
+            }
+
+            bool success = true;
+            Stopwatch analyticsTimer = new Stopwatch();
+            analyticsTimer.Start();
 
             foreach (GameObject go in objects)
             {
@@ -51,9 +60,14 @@ namespace Unity.Formats.USD
                 catch (System.Exception ex)
                 {
                     Debug.LogException(ex);
+                    success = false;
                 }
             }
             scene.Save();
+
+            analyticsTimer.Stop();
+            UsdEditorAnalytics.SendExportEvent(Path.GetExtension(scene.FilePath), analyticsTimer.Elapsed.TotalMilliseconds, success);
+
             scene.Close();
         }
     }

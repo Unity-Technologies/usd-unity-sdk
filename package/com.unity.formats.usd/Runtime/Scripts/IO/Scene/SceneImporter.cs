@@ -19,10 +19,11 @@ using UnityEngine.Profiling;
 using USD.NET;
 using USD.NET.Unity;
 using Unity.Jobs;
+using Stopwatch = System.Diagnostics.Stopwatch;
+
 #if UNITY_EDITOR
 using UnityEditor;
 using System.IO;
-
 #endif
 
 namespace Unity.Formats.USD
@@ -275,10 +276,20 @@ namespace Unity.Formats.USD
             bool composingSubtree,
             SceneImportOptions importOptions)
         {
+            UsdEditorAnalytics.ImportResult importResult = UsdEditorAnalytics.ImportResult.Default;
+            importResult.ImportType = importOptions.ImportType;
             if (scene == null)
             {
+                UsdEditorAnalytics.SendImportEvent("", 0, importResult);
                 throw new ImportException("Null USD Scene");
             }
+
+#if UNITY_EDITOR
+            Stopwatch analyticsTimer = new Stopwatch();
+
+            if (importOptions.ImportType != ImportType.Streaming)
+                analyticsTimer.Start();
+# endif
 
             // The matrix to convert USD (right-handed) to Unity (left-handed) is different for the legacy FBX importer
             // and incorrectly swaps the X-axis rather than the Z-axis. This changes the basisChange matrix to match the
@@ -304,12 +315,40 @@ namespace Unity.Formats.USD
                 ? Scene.InterpolationMode.Linear
                 : Scene.InterpolationMode.Held);
 
-            SceneImporter.BuildScene(scene,
+            primMap = SceneImporter.BuildScene(scene,
                 goRoot,
                 importOptions,
                 primMap,
                 composingSubtree);
+
+#if UNITY_EDITOR // Path APIs are not available in builds, may as well skip the whole thing
+            if (importOptions.ImportType != ImportType.Streaming) // don't send analytics when the import is triggered by streaming time sampled data
+            {
+                analyticsTimer.Stop();
+                if (primMap != null)
+                {
+                    importResult = CreateImportResult(!primMap.HasErrors, primMap, importOptions.ImportType);
+                }
+                if (importOptions.ImportType == ImportType.Initial)
+                    UsdEditorAnalytics.SendImportEvent(Path.GetExtension(scene.FilePath),
+                        analyticsTimer.Elapsed.TotalMilliseconds, importResult);
+                else
+                    UsdEditorAnalytics.SendReimportEvent(Path.GetExtension(scene.FilePath),
+                        analyticsTimer.Elapsed.TotalMilliseconds, importResult);
+
+            }
+#endif
         }
+
+        private static UsdEditorAnalytics.ImportResult CreateImportResult(bool success, PrimMap primMap, ImportType importType = ImportType.Initial) => new UsdEditorAnalytics.ImportResult()
+        {
+            Success = success,
+            ImportType = importType,
+            ContainsMeshes = primMap.Meshes == null ? false : primMap.Meshes.Length > 0,
+            ContainsPointInstancer = primMap.ContainsPointInstances,
+            ContainsSkel = primMap.SkelRoots == null ? false : primMap.SkelRoots.Length > 0,
+            ContainsMaterials = primMap.Materials == null ? false : primMap.Materials.Length > 0
+        };
 
         /// <summary>
         /// Rebuilds the USD scene as Unity GameObjects, maintaining a mapping from USD to Unity.
@@ -365,7 +404,7 @@ namespace Unity.Formats.USD
             float targetFrameMilliseconds,
             bool composingSubtree)
         {
-            var timer = new System.Diagnostics.Stopwatch();
+            var timer = new Stopwatch();
             var usdPrimRoot = new pxr.SdfPath(importOptions.usdRootPath);
 
             // Setting an arbitrary fudge factor of 20% is very non-scientific, however it's better than
@@ -423,6 +462,7 @@ namespace Unity.Formats.USD
                 catch (System.Exception ex)
                 {
                     Debug.LogException(ex);
+                    primMap.HasErrors = true;
                 }
             }
 
@@ -457,6 +497,7 @@ namespace Unity.Formats.USD
                         if (!skelRoot)
                         {
                             Debug.LogWarning("SkelRoot prim not SkelRoot type: " + path);
+                            primMap.HasErrors = true;
                             continue;
                         }
 
@@ -468,6 +509,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error pre-processing SkelRoot <" + path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -505,6 +547,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing material <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -560,6 +603,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -587,6 +631,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -618,6 +663,7 @@ namespace Unity.Formats.USD
                         {
                             Debug.LogException(
                                 new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                            primMap.HasErrors = true;
                         }
 
                         if (ShouldYield(targetTime, timer))
@@ -666,6 +712,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -695,6 +742,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -739,6 +787,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -778,6 +827,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -796,6 +846,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing xform <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -828,6 +879,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing mesh <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -850,6 +902,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing cube <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -873,6 +926,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing sphere <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -899,6 +953,7 @@ namespace Unity.Formats.USD
                             {
                                 Debug.LogException(
                                     new ImportException("Error processing camera <" + pathAndSample.path + ">", ex));
+                                primMap.HasErrors = true;
                             }
                         }
 
@@ -909,6 +964,7 @@ namespace Unity.Formats.USD
                 {
                     Debug.LogException(
                         new ImportException("Error processing master <" + masterRootPath + ">", ex));
+                    primMap.HasErrors = true;
                 }
 
                 if (ShouldYield(targetTime, timer))
@@ -937,6 +993,7 @@ namespace Unity.Formats.USD
             catch (System.Exception ex)
             {
                 Debug.LogException(new ImportException("Failed in ProcessMaterialBindings", ex));
+                primMap.HasErrors = true;
             }
 
             Profiler.EndSample();
@@ -962,11 +1019,13 @@ namespace Unity.Formats.USD
                         if (!primMap.SkelBindings.TryGetValue(skelRoot.GetPath(), out bindings))
                         {
                             Debug.LogWarning("No bindings found skelRoot: " + skelRoot.GetPath());
+                            primMap.HasErrors = true;
                         }
 
                         if (bindings.Count == 0)
                         {
                             Debug.LogWarning("No bindings found skelRoot: " + skelRoot.GetPath());
+                            primMap.HasErrors = true;
                         }
 
                         foreach (var skelBinding in bindings)
@@ -1048,6 +1107,7 @@ namespace Unity.Formats.USD
                                     catch (System.Exception ex)
                                     {
                                         Debug.LogException(new ImportException("Error skinning mesh: " + meshPath, ex));
+                                        primMap.HasErrors = true;
                                     }
                                 }
 
@@ -1059,6 +1119,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing SkelRoot <" + skelRoot.GetPath() + ">", ex));
+                        primMap.HasErrors = true;
                     }
                 } // foreach SkelRoot
 
@@ -1133,6 +1194,7 @@ namespace Unity.Formats.USD
                     {
                         Debug.LogException(
                             new ImportException("Error processing SkelRoot <" + skelPath + ">", ex));
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -1175,7 +1237,10 @@ namespace Unity.Formats.USD
             {
                 Profiler.BeginSample("USD: Build Point-Instances");
                 // TODO: right now all point instancer data is read, but we only need prototypes and indices.
-                foreach (var pathAndSample in scene.ReadAll<PointInstancerSample>())
+                var pointInstancerSamples = scene.ReadAll<PointInstancerSample>();
+                primMap.ContainsPointInstances = pointInstancerSamples.Length > 0;
+
+                foreach (var pathAndSample in pointInstancerSamples)
                 {
                     try
                     {
@@ -1192,6 +1257,7 @@ namespace Unity.Formats.USD
                     catch (System.Exception ex)
                     {
                         Debug.LogError("Error processing point instancer <" + pathAndSample.path + ">: " + ex.Message);
+                        primMap.HasErrors = true;
                     }
 
                     if (ShouldYield(targetTime, timer))
@@ -1243,18 +1309,19 @@ namespace Unity.Formats.USD
                 catch (System.Exception ex)
                 {
                     Debug.LogException(ex);
+                    primMap.HasErrors = true;
                 }
             }
 
             Profiler.EndSample();
         }
 
-        private static bool ShouldYield(float targetTime, System.Diagnostics.Stopwatch timer)
+        private static bool ShouldYield(float targetTime, Stopwatch timer)
         {
             return timer.ElapsedMilliseconds > targetTime;
         }
 
-        private static void ResetTimer(System.Diagnostics.Stopwatch timer)
+        private static void ResetTimer(Stopwatch timer)
         {
             timer.Stop();
             timer.Reset();

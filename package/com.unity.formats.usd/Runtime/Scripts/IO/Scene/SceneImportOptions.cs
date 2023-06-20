@@ -160,5 +160,13 @@ namespace Unity.Formats.USD
         {
             get { return materialImportMode == MaterialImportMode.ImportPreviewSurface; }
         }
+
+        /// <summary>
+        /// Indicates what type of import is being performed.
+        /// </summary>
+        /// <remarks>
+        /// This is used to distinguish different analytics.
+        /// </remarks>
+        public ImportType ImportType { get; set; } = ImportType.Initial;
     }
 }
