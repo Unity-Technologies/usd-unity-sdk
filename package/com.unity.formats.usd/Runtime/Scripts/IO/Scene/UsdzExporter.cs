@@ -16,6 +16,7 @@ using System.IO;
 using UnityEngine;
 using USD.NET;
 using pxr;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Unity.Formats.USD
 {
@@ -39,6 +40,11 @@ namespace Unity.Formats.USD
             // Get the usd file name to export and the usdz file name of the archive.
             string usdcFileName = Path.GetFileNameWithoutExtension(usdzFilePath) + ".usdc";
             string usdzFileName = Path.GetFileName(usdzFilePath);
+
+            bool success = true;
+
+            Stopwatch analyticsTimer = new Stopwatch();
+            analyticsTimer.Start();
 
             try
             {
@@ -74,11 +80,12 @@ namespace Unity.Formats.USD
                 }
 
                 SdfAssetPath assetPath = new SdfAssetPath(usdcFileName);
-                bool success = pxr.UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
+                success = pxr.UsdCs.UsdUtilsCreateNewARKitUsdzPackage(assetPath, usdzFileName);
 
                 if (!success)
                 {
-                    Debug.LogError("Couldn't export " + root.name + " to the usdz file: " + usdzFilePath);
+                    Debug.LogError($"Couldn't export {root.name} to the usdz file {usdzFilePath}");
+                    success = false;
                     return;
                 }
 
@@ -89,6 +96,9 @@ namespace Unity.Formats.USD
                 // Clean up temp files.
                 Directory.SetCurrentDirectory(currentDir);
                 tmpDir.Delete(recursive: true);
+
+                analyticsTimer.Stop();
+                UsdEditorAnalytics.SendExportEvent(".usdz", analyticsTimer.Elapsed.TotalMilliseconds, success);
             }
         }
     }

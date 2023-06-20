@@ -8,7 +8,9 @@ using UnityEditor;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
+using Stopwatch = System.Diagnostics.Stopwatch;
 using Object = UnityEngine.Object;
+using ImportResult = Unity.Formats.USD.UsdEditorAnalytics.ImportResult;
 
 namespace Unity.Formats.USD
 {
@@ -94,6 +96,8 @@ namespace Unity.Formats.USD
 
         public static string ImportAsTimelineClip(Scene scene, string prefabPath = null)
         {
+            Stopwatch analyticsTimer = new Stopwatch();
+            analyticsTimer.Start();
             string path = scene.FilePath;
 
             var importOptions = new SceneImportOptions();
@@ -117,6 +121,11 @@ namespace Unity.Formats.USD
             }
             finally
             {
+                analyticsTimer.Stop();
+                ImportResult result = ImportResult.Default;
+                result.Success = !string.IsNullOrEmpty(prefabPath);
+                UsdEditorAnalytics.SendImportEvent(Path.GetExtension(path), analyticsTimer.Elapsed.TotalMilliseconds, result);
+
                 GameObject.DestroyImmediate(go);
                 scene.Close();
             }

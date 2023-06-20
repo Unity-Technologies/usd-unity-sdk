@@ -1,11 +1,6 @@
 {
-    "name": "Unity.Formats.USD.Runtime",
-    "references": [
-        "Unity.Timeline",
-        "USD.NET",
-        "USD.NET.Unity",
-        "Unity.Formats.USD.Common"
-    ],
+    "name": "Unity.Formats.USD.Common",
+    "references": [],
     "includePlatforms": [
         "Editor",
         "macOSStandalone",
