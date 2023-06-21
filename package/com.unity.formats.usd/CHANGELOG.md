@@ -1,10 +1,11 @@
 # Changes in usd-unity-sdk for Unity
 
-## Unreleased
-
 ## [3.0.0-exp.4] - 2023-06-21
 ### Features
 - Added EditorAnalytics to track internally which features are most used.
+
+### Bug Fixes
+- Fixed the Samples Assembly Definitions compile errors.
 
 ### Changed
 - Updated AppCollector YAML file to reflect latest info.
