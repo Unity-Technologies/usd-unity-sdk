@@ -2,10 +2,17 @@
 
 ## Unreleased
 
-## [3.0.0-exp.3] - 2023-05-11
+## [3.0.0-exp.4] - 2023-06-21
+### Features
+- Added EditorAnalytics to track internally which features are most used.
+
+### Changed
+- Updated AppCollector YAML file to reflect latest info.
+- We've removed the USD logo in a few places until we have a formal agreement in place to use it.
+
+## [3.0.0-exp.3] - 2023-06-20
 ### Features
 - The USD Recorder now has an option to export transform overrides.
-- Added EditorAnalytics to track internally which features are most used.
 
 ### Bug Fixes
 - "Export Transform Override" now properly exports modified transforms only.
@@ -28,8 +35,6 @@
 - Disabled plugins on unsupported platforms.
 - Optimized triangulation to reduce the chance of a "Timed out while waiting for thread" error on importing a complex mesh.
 - Optimized PointInstance importing.
-- Updated AppCollector YAML file to reflect latest info.
-- We've removed the USD logo in a few places until we have a formal agreement in place to use it.
 
 ## [3.0.0-exp.2] - 2021-09-29
 ### Features
