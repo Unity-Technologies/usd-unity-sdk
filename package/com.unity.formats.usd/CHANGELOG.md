@@ -1,5 +1,11 @@
 # Changes in usd-unity-sdk for Unity
 
+## [Unreleased]
+
+### Changed
+- Renamed USD.md in the Documentation folder to index.md to match documentation generation standards for landing pages.
+- Updated link in README.md to point to newly named index.md
+
 ## [3.0.0-exp.4] - 2023-06-21
 ### Features
 - Added EditorAnalytics to track internally which features are most used.
