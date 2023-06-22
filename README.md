@@ -8,7 +8,7 @@ This repository contains the source code for the `com.unity.formats.usd` package
 
 ## Documentation
 
-For full documentation of this package, including usage, see the [package docs](package/com.unity.formats.usd/Documentation~/USD.md).
+For full documentation of this package, including usage, see the [package docs](package/com.unity.formats.usd/Documentation~/index.md).
 
 ## Features
 
