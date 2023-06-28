@@ -52,7 +52,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            var fbxPath = AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.CameraRelated.cameraIncludedFbx);
+            var fbxPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.CameraRelated.CameraIncludedFbx);
             var asset = AssetDatabase.LoadAssetAtPath<GameObject>(fbxPath);
             fbxRoot = PrefabUtility.InstantiatePrefab(asset) as GameObject;
 

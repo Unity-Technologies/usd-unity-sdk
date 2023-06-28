@@ -17,7 +17,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.PrimType.collectionsUsd));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.PrimType.CollectionsUsd));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
@@ -67,7 +67,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.Material.simpleMaterialUsd));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Material.SimpleMaterialUsd));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             var importOptions = new SceneImportOptions();
@@ -92,8 +92,8 @@ namespace Unity.Formats.USD.Tests
         }
     }
 
-    [TestFixture(TestAssetData.GUID.Variability.cubesUsd)]
-    [TestFixture(TestAssetData.GUID.Variability.referencedCubesUsd)] // Prims with references
+    [TestFixture(TestDataGuids.Variability.CubesUsd)]
+    [TestFixture(TestDataGuids.Variability.ReferencedCubesUsd)] // Prims with references
     class AttributeScope : BaseFixtureEditor
     {
         GameObject gameObject;

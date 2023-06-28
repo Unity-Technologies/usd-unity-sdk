@@ -155,7 +155,7 @@ namespace Unity.Formats.USD.Tests
         {
             // "Packages/com.unity.formats.usd/Tests/Editor/Data/SkinnedCharacter/Player/Player.prefab"
             // When running the tests on CI usd package paths get changed and the Prefab can't be loaded by path
-            var animationPrefabGUID = TestAssetData.GUID.Animation.skinnedCharacterPrefab;
+            var animationPrefabGUID = TestDataGuids.Animation.SkinnedCharacterPrefab;
             var animationPrefabPath = AssetDatabase.GUIDToAssetPath(animationPrefabGUID);
             var animationPrefab = AssetDatabase.LoadMainAssetAtPath(animationPrefabPath) as GameObject;
             var skeletalRoot = GameObject.Instantiate(animationPrefab) as GameObject;

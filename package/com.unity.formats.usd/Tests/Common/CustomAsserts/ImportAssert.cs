@@ -72,8 +72,8 @@ namespace Unity.Formats.USD.Tests
 
         public static void IsTextureDataSaved(GameObject usdObject, string fileName, bool isPrefab)
         {
-            var materials = usdObject.transform.Find(TestAssetData.ImportedGameObjectName.Material);
-            var rootPrim = usdObject.transform.Find(TestAssetData.ImportedGameObjectName.RootPrim);
+            var materials = usdObject.transform.Find("Material");
+            var rootPrim = usdObject.transform.Find("RootPrim");
 
             Assert.IsTrue(rootPrim.childCount == 1);
             Assert.AreEqual(materials.childCount, rootPrim.childCount);
@@ -106,16 +106,16 @@ namespace Unity.Formats.USD.Tests
         {
             switch (fileName)
             {
-                case TestAssetData.FileName.TexturedTransparent_Cutout:
+                case "TexturedTransparent_Cutout":
                     {
-                        Assert.AreEqual(TestAssetData.Material.Transparency.Cutout, material.GetTag(TestAssetData.Material.Tag.RenderType, false));
+                        Assert.AreEqual("Cutout", material.GetTag("RenderType", false));
                         Assert.AreEqual("textured_transparency", material.mainTexture.name);
-                        Assert.AreEqual(1f, material.GetFloat(TestAssetData.Material.ShaderParam.CutOff));
+                        Assert.AreEqual(1f, material.GetFloat("_Cutoff"));
                         break;
                     }
-                case TestAssetData.FileName.TexturedOpaque:
+                case "TexturedOpaque":
                     {
-                        Assert.AreEqual(TestAssetData.Material.Transparency.Opaque, material.GetTag(TestAssetData.Material.Tag.RenderType, false));
+                        Assert.AreEqual("Opaque", material.GetTag("RenderType", false));
                         Assert.AreEqual("textured", material.mainTexture.name);
                         break;
                     }
@@ -124,9 +124,9 @@ namespace Unity.Formats.USD.Tests
                     break;
             }
 
-            Assert.AreEqual("textured_metallic.metalicRough", material.GetTexture(TestAssetData.Material.ShaderParam.MetallicGlossMap).name);
-            Assert.AreEqual("textured_normal", material.GetTexture(TestAssetData.Material.ShaderParam.BumpMap).name);
-            Assert.AreEqual("textured_emissive", material.GetTexture(TestAssetData.Material.ShaderParam.EmissionMap).name);
+            Assert.AreEqual("textured_metallic.metalicRough", material.GetTexture("_MetallicGlossMap").name);
+            Assert.AreEqual("textured_normal", material.GetTexture("_BumpMap").name);
+            Assert.AreEqual("textured_emissive", material.GetTexture("_EmissionMap").name);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Unity.Formats.USD.Tests
             [SetUp]
             public void SetUp()
             {
-                var assetPath = AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.VariedCollection.attributeScopeUsd);
+                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsd);
                 scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
             }
 
@@ -129,7 +129,7 @@ namespace Unity.Formats.USD.Tests
             [SetUp]
             public void SetUp()
             {
-                var assetPath = AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.VariedCollection.attributeScopeUsd);
+                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsd);
                 scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
             }
 
@@ -238,7 +238,7 @@ namespace Unity.Formats.USD.Tests
         public void SetUp()
         {
             InitUsd.Initialize();
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.Instancer.instancedUsd));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Instancer.MeshInstancesUsd));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);

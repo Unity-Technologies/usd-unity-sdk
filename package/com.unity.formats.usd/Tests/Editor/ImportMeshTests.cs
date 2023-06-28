@@ -14,7 +14,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestAssetData.GUID.Mesh.skinnedMeshUsd));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Mesh.SkinnedMeshUsd));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);

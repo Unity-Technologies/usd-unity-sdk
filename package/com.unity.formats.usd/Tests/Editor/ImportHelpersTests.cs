@@ -165,8 +165,8 @@ namespace Unity.Formats.USD.Tests
             // TODO: Implement when we can change the SceneImportOptions when calling ImportHelpers.ImportAsPrefab
         }
 
-        [TestCase(TestAssetData.GUID.Material.texturedOpaqueUsd, TestAssetData.FileName.TexturedOpaque)]
-        [TestCase(TestAssetData.GUID.Material.texturedTransparentCutoutUsd, TestAssetData.FileName.TexturedTransparent_Cutout), Ignore("[USDU-232] Test On HDRP")]
+        [TestCase(TestDataGuids.Material.TexturedOpaqueUsd, "TexturedOpaque")]
+        [TestCase(TestDataGuids.Material.TexturedTransparentCutoutUsd, "TexturedTransparent_Cutout"), Ignore("[USDU-232] Test On HDRP")]
         public void ImportAsGameObjects_TextureDataImported(string testAssetGUID, string testAssetFileName)
         {
             var scene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
@@ -181,8 +181,8 @@ namespace Unity.Formats.USD.Tests
         }
 
         [Ignore("[USDU-275] | [USDU-230] | [FTV-202]")]
-        [TestCase(TestAssetData.GUID.Material.texturedOpaqueUsd, TestAssetData.FileName.TexturedOpaque)]
-        [TestCase(TestAssetData.GUID.Material.texturedTransparentCutoutUsd, TestAssetData.FileName.TexturedTransparent_Cutout)]
+        [TestCase(TestDataGuids.Material.TexturedOpaqueUsd, "TexturedOpaque")]
+        [TestCase(TestDataGuids.Material.TexturedTransparentCutoutUsd, "TexturedTransparent_Cutout")]
         public void ImportAsGameObject_TextureDataImported_FromUsdz(string testAssetGUID, string testAssetFileName)
         {
             var scene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
@@ -208,10 +208,10 @@ namespace Unity.Formats.USD.Tests
             ImportAssert.IsTextureDataSaved(usdzObject.transform.GetChild(0).gameObject, testAssetFileName, isPrefab: false);
         }
 
-        [TestCase(TestAssetData.GUID.Instancer.upAxisYLeftHandedUsd, Description = "Up Axis: Y & Left Handed")]
-        [TestCase(TestAssetData.GUID.Instancer.upAxisYRightHandedUsd, Description = "Up Axis: Y & Right Handed")]
-        [TestCase(TestAssetData.GUID.Instancer.upAxisZLeftHandedUsd, Description = "Up Axis: Z & Left Handed")]
-        [TestCase(TestAssetData.GUID.Instancer.upAxisZRightHandedUsd, Description = "Up Axis: Z & Right Handed")]
+        [TestCase(TestDataGuids.Instancer.UpAxisYLeftHandedUsd, Description = "Up Axis: Y & Left Handed")]
+        [TestCase(TestDataGuids.Instancer.UpAxisYRightHandedUsd, Description = "Up Axis: Y & Right Handed")]
+        [TestCase(TestDataGuids.Instancer.UpAxisZLeftHandedUsd, Description = "Up Axis: Z & Left Handed")]
+        [TestCase(TestDataGuids.Instancer.UpAxisZRightHandedUsd, Description = "Up Axis: Z & Right Handed")]
         public void ImportInstancerAsGameObject_VertexCheck(string testAssetGUID)
         {
             var originalVertices = new[]

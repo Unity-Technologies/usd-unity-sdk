@@ -6,13 +6,23 @@
         "Unity.Formats.USD.Runtime",
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Tests.Common",
+        "Unity.Formats.USD.Common",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "Unity.Formats.USD.Common"
+        "UnityEditor.TestRunner"
     ],
     "includePlatforms": [
         "Editor"
     ],
+    "excludePlatforms": [],
     "allowUnsafeCode": true,
-    "precompiledReferences": []
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

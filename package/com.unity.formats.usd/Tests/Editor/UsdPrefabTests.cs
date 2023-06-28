@@ -31,7 +31,7 @@ namespace Unity.Formats.USD.Tests
             [Ignore("USDU-276")]
             public void UsdPrefab_ForceReload_Succeed(MaterialImportMode mode)
             {
-                ImportAsPrefab(TestAssetData.GUID.PrimType.componentPayloadUsd);
+                ImportAsPrefab(TestDataGuids.PrimType.ComponentPayloadUsd);
 
                 var prefabAsset = AssetDatabase.LoadAssetAtPath<UsdAsset>(m_prefabUsdPath);
                 prefabAsset.m_materialImportMode = mode;
@@ -45,7 +45,7 @@ namespace Unity.Formats.USD.Tests
             public void UsdPrefab_ForceReload_ImportPreviewSurface_DoesNotDirtyScene()
             {
                 var initialRootGameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-                ImportAsPrefab(TestAssetData.GUID.PrimType.componentPayloadUsd);
+                ImportAsPrefab(TestDataGuids.PrimType.ComponentPayloadUsd);
 
                 var prefabAsset = AssetDatabase.LoadAssetAtPath<UsdAsset>(m_prefabUsdPath);
                 prefabAsset.m_materialImportMode = MaterialImportMode.ImportPreviewSurface;
