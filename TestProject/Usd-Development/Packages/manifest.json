@@ -2,10 +2,12 @@
   "dependencies": {
     "com.unity.analytics": "3.5.3",
     "com.unity.ext.nunit": "1.0.6",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.formats.usd": "file:../../../package/com.unity.formats.usd/",
     "com.unity.ide.rider": "1.1.4",
     "com.unity.recorder": "2.5.5",
     "com.unity.test-framework": "1.1.24",
+    "com.unity.editor-analytics-debugger": "0.1.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.assetbundle": "1.0.0",
@@ -39,5 +41,14 @@
   },
   "testables": [
     "com.unity.formats.usd"
+  ],
+  "scopedRegistries": [
+    {
+      "name": "Analytics Debugger",
+      "url": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
+      "scopes": [
+        "com.unity.editor-analytics-debugger"
+      ]
+    }
   ]
 }
