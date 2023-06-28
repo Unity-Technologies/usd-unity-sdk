@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Runtime.CompilerServices;
+using USD.NET;
 using USD.NET.Unity;
 using Debug = UnityEngine.Debug;
 using Stopwatch = System.Diagnostics.Stopwatch;
