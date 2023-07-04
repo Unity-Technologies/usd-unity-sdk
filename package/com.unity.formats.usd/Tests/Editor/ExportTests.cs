@@ -178,5 +178,31 @@ namespace Unity.Formats.USD.Tests
             var expectedSkeletonInUsdType = new pxr.TfToken("Skeleton");
             Assert.AreEqual(expectedSkeletonInUsdType, skeletonInUsdType);
         }
+
+        [Test]
+        public void ExportPrefabFromProjectWindow_ExportsWithoutErrors()
+        {
+            // "Packages/com.unity.formats.usd/Tests/Editor/Data/Prefabs/TestPrefab.prefab"
+            // When running the tests on CI usd package paths get changed and the Prefab can't be loaded by path
+            var testPrefabGUID = "90633c08c7035c74aab77931779245bd";
+            var testPrefabPath = AssetDatabase.GUIDToAssetPath(testPrefabGUID);
+            var testPrefabGO = AssetDatabase.LoadMainAssetAtPath(testPrefabPath) as GameObject;
+
+            // Export without instantiating into the Scene
+            ExportHelpers.ExportGameObjects(new GameObject[] { testPrefabGO }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
+
+            m_USDScene = Scene.Open(m_USDScenePath);
+
+            var rootTestPrefabPrim = m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(testPrefabGO.transform)));
+            var rootTestPrefabPrimType = rootTestPrefabPrim.GetTypeName();
+            var expectedRootInUsdType = new pxr.TfToken("Mesh");
+            Assert.AreEqual(expectedRootInUsdType, rootTestPrefabPrimType);
+
+
+            var childTestPrefabPrim = m_USDScene.Stage.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(testPrefabGO.transform.GetChild(0))));
+            var childTestPrefabPrimType = childTestPrefabPrim.GetTypeName();
+            var expectedChildInUsdType = new pxr.TfToken("Mesh");
+            Assert.AreEqual(expectedChildInUsdType, childTestPrefabPrimType);
+        }
     }
 }
