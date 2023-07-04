@@ -1,5 +1,13 @@
 # Changes in usd-unity-sdk for Unity
 
+## [3.0.0-exp.5] - Unreleased
+### Features
+
+### Bug Fixes
+- Fixed export for Prefabs from the Project Window.
+
+### Changed
+
 ## [3.0.0-exp.4] - 2023-06-21
 ### Features
 - Added EditorAnalytics to track internally which features are most used.
