@@ -291,6 +291,10 @@ namespace USD.NET.Unity
         {
             if (transform.parent == null)
             {
+                // When exporting prefabs from project window, scene is null.
+                // If the GameObject doesn't have a parent, it can't have any siblings anyway.
+                if (!transform.gameObject.scene.IsValid())
+                    return false;
                 return transform.gameObject.scene.GetRootGameObjects().Any(sibling => sibling != transform.gameObject && sibling.name == name);
             }
 

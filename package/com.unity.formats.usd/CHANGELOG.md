@@ -1,6 +1,10 @@
 # Changes in usd-unity-sdk for Unity
 
-## [Unreleased]
+## [3.0.0-exp.5] - Unreleased
+### Features
+
+### Bug Fixes
+- Fixed export for Prefabs from the Project Window.
 
 ### Changed
 - Renamed USD.md in the Documentation folder to index.md to match documentation generation standards for landing pages.
