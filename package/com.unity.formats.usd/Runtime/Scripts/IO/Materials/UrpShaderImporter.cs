@@ -147,6 +147,7 @@ namespace Unity.Formats.USD
             */
         }
 
+        // TODO: Should share the HDRP one
         private static Texture2D BuildMaskMap(Texture2D red, Texture2D green, Texture2D blue, Texture2D alpha)
         {
             var maxW = Mathf.Max(red ? red.width : 0, green ? green.width : 0);
