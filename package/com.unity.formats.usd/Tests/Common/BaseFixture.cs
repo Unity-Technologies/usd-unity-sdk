@@ -55,7 +55,7 @@ namespace Unity.Formats.USD.Tests
                 usdFileName = System.Guid.NewGuid().ToString();
             }
 
-            if (!usdFileName.EndsWith(".usd") && !usdFileName.EndsWith(".usda") && !usdFileName.EndsWith(".usdz"))
+            if (!usdFileName.EndsWith(".usd") && !usdFileName.EndsWith(".usda") && !usdFileName.EndsWith(".usdz") && !usdFileName.EndsWith(".usdc"))
             {
                 usdFileName += ".usda";
             }
@@ -75,6 +75,8 @@ namespace Unity.Formats.USD.Tests
                 prefabName += ".prefab";
             }
 
+            var test = Path.Combine(ArtifactsDirectoryRelativePath, resource ? "Resources" : "", prefabName);
+            Debug.Log(test);
             return Path.Combine(ArtifactsDirectoryRelativePath, resource ? "Resources" : "", prefabName);
         }
 
@@ -106,6 +108,15 @@ namespace Unity.Formats.USD.Tests
             return scene;
         }
 
+        public Scene CreateEmptyTestUsdScene(string fileName = "testUsd.usda")
+        {
+            var dummyUsdPath = CreateTmpUsdFile(fileName);
+            var scene = ImportHelpers.InitForOpen(dummyUsdPath);
+            scene.Write("/emptyRoot", new XformSample());
+            scene.Save();
+            return scene;
+        }
+
         [SetUp]
         public void InitUSDAndArtifactsDirectory()
         {
@@ -126,7 +137,14 @@ namespace Unity.Formats.USD.Tests
         {
             if (Directory.Exists(ArtifactsDirectoryFullPath))
             {
-                Directory.Delete(ArtifactsDirectoryFullPath, true);
+                try
+                {
+                    Directory.Delete(ArtifactsDirectoryFullPath, true);
+                }
+                catch
+                {
+                    Debug.Log("Artifact Clean up has failed - This should not happen in most cases, but even if so, the test case should not be affected.");
+                }
             }
 
             DeleteMetaFile(ArtifactsDirectoryFullPath);

@@ -8,7 +8,10 @@
         "Unity.Formats.USD.Editor",
         "Unity.Formats.USD.Tests.Common",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Common",
+        "Unity.Recorder",
+        "Unity.Recorder.Editor"
     ],
     "includePlatforms": [
         "Editor"
