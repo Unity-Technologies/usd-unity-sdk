@@ -20,6 +20,7 @@ using USDScene = USD.NET.Scene;
 using UnityScene = UnityEngine.SceneManagement.Scene;
 using USD.NET;
 using USD.NET.Unity;
+using System;
 
 namespace Unity.Formats.USD.Tests
 {
@@ -139,9 +140,10 @@ namespace Unity.Formats.USD.Tests
                 {
                     Directory.Delete(ArtifactsDirectoryFullPath, true);
                 }
-                catch
+                catch (Exception e)
                 {
                     Debug.Log("Artifact Clean up has failed - This should not happen in most cases, but even if so, the test case should not be affected.");
+                    Debug.Log($"Exception Message: {e.Message}");
                 }
             }
 
