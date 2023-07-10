@@ -1,16 +1,17 @@
 # if UNITY_2023_2_OR_NEWER
 
-using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Unity.Formats.USD.Tests
 {
     public class EditorAnalyticsBaseFixture : BaseFixtureEditor
     {
-        protected const string k_testPrefabName = "TestPrefab";
+        static bool m_PackageSetUp = false;
+        protected const string k_TestPrefabName = "TestPrefab";
 
         protected struct UsdAnalyticsTypes
         {
@@ -40,6 +41,17 @@ namespace Unity.Formats.USD.Tests
             EditorAnalytics.enabled = true;
             EditorAnalytics.recordEventsEnabled = true;
             EditorAnalytics.SendAnalyticsEventsImmediately = true;
+        }
+
+        // Unity has no OneTimeSetUp for IEnumerator, gotta use this instead
+        [UnitySetUp]
+        public IEnumerator SetUpAnalyticsDebuggerPackage()
+        {
+            if (!m_PackageSetUp)
+            {
+                m_PackageSetUp = true;
+                yield return AddPackage.Add("com.unity.editor-analytics-debugger");
+            }
         }
 
         [OneTimeTearDown]
