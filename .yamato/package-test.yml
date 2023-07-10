@@ -11,6 +11,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     flavor: {{ platform.flavor}}
   variables:
     UPMCI_PKG: "upm-ci-utils@stable"
+    UNITY_THISISABUILDMACHINE: 1
   commands:
       - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
       - upm-ci package test -u {{ editor.version }} --package-path package/com.unity.formats.usd --type package-tests --extra-utr-arg="--api-profile=NET_4_6"

@@ -201,11 +201,11 @@ namespace Unity.Formats.USD.Tests
             switch (importMethod)
             {
                 case ImportMethods.AsPrefab:
-                    ImportHelpers.ImportAsPrefab(scene, GetPrefabPath(k_testPrefabName));
+                    ImportHelpers.ImportAsPrefab(scene, GetPrefabPath(k_TestPrefabName));
                     break;
 
                 case ImportMethods.AsTimelineRecording:
-                    ImportHelpers.ImportAsTimelineClip(scene, GetPrefabPath(k_testPrefabName));
+                    ImportHelpers.ImportAsTimelineClip(scene, GetPrefabPath(k_TestPrefabName));
                     break;
 
                 case ImportMethods.AsGameObject:

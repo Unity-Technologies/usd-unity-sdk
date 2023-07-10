@@ -75,8 +75,6 @@ namespace Unity.Formats.USD.Tests
                 prefabName += ".prefab";
             }
 
-            var test = Path.Combine(ArtifactsDirectoryRelativePath, resource ? "Resources" : "", prefabName);
-            Debug.Log(test);
             return Path.Combine(ArtifactsDirectoryRelativePath, resource ? "Resources" : "", prefabName);
         }
 
