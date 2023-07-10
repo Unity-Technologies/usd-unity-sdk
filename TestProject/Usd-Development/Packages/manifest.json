@@ -2,7 +2,6 @@
   "dependencies": {
     "com.unity.analytics": "3.5.3",
     "com.unity.ext.nunit": "1.0.6",
-    "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.formats.usd": "file:../../../package/com.unity.formats.usd/",
     "com.unity.ide.rider": "1.1.4",
     "com.unity.recorder": "2.5.5",

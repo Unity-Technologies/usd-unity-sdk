@@ -1,12 +1,10 @@
-# if UNITY_2023_1_OR_NEWER
+# if UNITY_2023_2_OR_NEWER
 
+using System;
 using System.Collections;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
-using USD.NET;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace Unity.Formats.USD.Tests
 {
@@ -82,7 +80,7 @@ namespace Unity.Formats.USD.Tests
                     var usdIndex = FindUsdAnalyticsIndex(expectedType, splitEvents);
 
                     //var sharedEvent = JsonConvert.DeserializeObject<SharedAnalyticsEvent>(splitEvents[0]);
-                    var usdEvent = JsonConvert.DeserializeObject<T>(splitEvents[usdIndex]);
+                    var usdEvent = JsonUtility.FromJson<T>(splitEvents[usdIndex]);
 
                     if (usdEvent.type.Contains(expectedType))
                     {
