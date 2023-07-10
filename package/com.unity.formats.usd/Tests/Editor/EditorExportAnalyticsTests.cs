@@ -82,7 +82,7 @@ namespace Unity.Formats.USD.Tests
 
             Assert.IsFalse(exportUsdEventMsg.Succeeded, "Expected Fail for re-import Successful");
             Assert.AreEqual(exportUsdEventMsg.TimeTakenMs, 0, "Expected 0 for export error of null USD Scene");
-            Assert.IsTrue(string.IsNullOrEmpty(exportUsdEventMsg.FileExtension), "Expected \"\" for export error of null USD Scene"); 
+            Assert.IsTrue(string.IsNullOrEmpty(exportUsdEventMsg.FileExtension), "Expected \"\" for export error of null USD Scene");
         }
 
         [UnityTest]

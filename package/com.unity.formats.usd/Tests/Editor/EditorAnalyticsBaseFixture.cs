@@ -55,7 +55,7 @@ namespace Unity.Formats.USD.Tests
         }
 
         [SetUp]
-        public void ResetEventList() 
+        public void ResetEventList()
         {
             DebuggerEventListHandler.ClearEventList();
             InitUsd.Initialize();
