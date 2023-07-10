@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 # if ENABLE_CLOUD_SERVICES_ANALYTICS && UNITY_EDITOR
 # define USE_EDITOR_ANALYTICS
 # endif
@@ -40,7 +41,10 @@ namespace Unity.Formats.USD
         // Universal USD Analytics
         const string k_UsageEventName = "USDPackageUsage";
 
-        struct UsageAnalyticsData
+        public interface IUsdAnalyticsData
+        { }
+
+        public struct UsageAnalyticsData : IUsdAnalyticsData
         {
             public bool InitSucceeded;
             public double TimeTakenMs;
@@ -49,7 +53,7 @@ namespace Unity.Formats.USD
         // USD Import Analytics
         const string k_ImportEventName = "USDFileImport";
 
-        struct ImportAnalyticsData
+        public struct ImportAnalyticsData : IUsdAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -83,7 +87,7 @@ namespace Unity.Formats.USD
         // USD Reimport Analytics
         const string k_ReimportEventName = "USDFileReimport";
 
-        struct ReimportAnalyticsData
+        public struct ReimportAnalyticsData : IUsdAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -98,7 +102,7 @@ namespace Unity.Formats.USD
         // USD Export Analytics
         const string k_ExportEventName = "USDFileExport";
 
-        struct ExportAnalyticsData
+        public struct ExportAnalyticsData : IUsdAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -109,7 +113,7 @@ namespace Unity.Formats.USD
         // USD Recorder Export Analytics
         const string k_RecorderExportEventName = "USDFileRecorderExport";
 
-        struct RecorderExportAnalyticsData
+        public struct RecorderExportAnalyticsData : IUsdAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;

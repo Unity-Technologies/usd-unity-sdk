@@ -2,7 +2,7 @@
 
 def Xform "TestPrim"
 {
-    double3 xformOp:translate = (1, 1, 1)
+    double3 xformOp:translate = (2, 2, 2)
     uniform token[] xformOpOrder = ["xformOp:translate"]
 }
 

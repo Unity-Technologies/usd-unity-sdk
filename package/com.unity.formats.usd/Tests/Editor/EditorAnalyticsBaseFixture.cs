@@ -1,4 +1,4 @@
-# if UNITY_2023_2_OR_NEWER
+# if UNITY_2023_1_OR_NEWER
 
 using System.Collections;
 using NUnit.Framework;
@@ -6,11 +6,28 @@ using UnityEditor;
 using UnityEngine;
 using USD.NET;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace Unity.Formats.USD.Tests
 {
     public class EditorAnalyticsBaseFixture : BaseFixtureEditor
     {
+        protected const string k_testPrefabName = "TestPrefab";
+
+        protected struct UsdAnalyticsTypes
+        {
+            public const string Import = "editor.USDFileImport";
+            public const string ReImport = "editor.USDFileReimport";
+            public const string Export = "editor.USDFileExport";
+        }
+
+        public enum ImportMethods
+        {
+            AsGameObject,
+            AsPrefab,
+            AsTimelineRecording
+        }
+
         bool m_initialAnalyticsSetting;
         bool m_initialRecordEventsSetting;
         bool m_initialSendEventsImmediatelySetting;
@@ -30,34 +47,46 @@ namespace Unity.Formats.USD.Tests
         [OneTimeTearDown]
         public void RevertEditorAnalyticsSettings()
         {
+            // Maybe implmeent a package clean up here
+
             EditorAnalytics.enabled = m_initialAnalyticsSetting;
             EditorAnalytics.recordEventsEnabled = m_initialRecordEventsSetting;
             EditorAnalytics.SendAnalyticsEventsImmediately = m_initialSendEventsImmediatelySetting;
         }
 
         [SetUp]
-        public void ResetEventList()
+        public void ResetEventList() 
         {
             DebuggerEventListHandler.ClearEventList();
+            InitUsd.Initialize();
         }
 
-        public IEnumerator WaitForUsdAnalytics(string expectedType, System.Action<AnalyticsEvent> expectedEvent, float attemptTimeLimit = 1f)
+        public IEnumerator WaitForUsdAnalytics<T>(string expectedType, System.Action<AnalyticsEvent> expectedEvent, float attemptFrameCountLimit = 150) where T: UsdAnalyticsEvent
         {
-            float currTimeCount = 0;
             bool found = false;
+            float currFrameCount = 0;
 
-            while (!found && currTimeCount < attemptTimeLimit)
+            while (!found && currFrameCount < attemptFrameCountLimit)
             {
                 AnalyticsEvent expectedAnalyticsEvent = new AnalyticsEvent();
                 foreach (var concattedEvent in DebuggerEventListHandler.fetchEventList())
                 {
-                    var splitEvents = concattedEvent.Split("\n");
-                    var sharedEvent = JsonConvert.DeserializeObject<SharedAnalyticsEvent>(splitEvents[0]);
-                    var usdEvent = JsonConvert.DeserializeObject<UsdAnalyticsEvent>(splitEvents[1]);
-
-                    if (usdEvent.type == expectedType)
+                    if (!concattedEvent.Contains(expectedType))
                     {
-                        expectedAnalyticsEvent.shared = sharedEvent;
+                        continue;
+                    }
+
+                    Debug.Log($"Raw Log: {concattedEvent}");
+
+                    var splitEvents = concattedEvent.Split("\n");
+                    var usdIndex = FindUsdAnalyticsIndex(expectedType, splitEvents);
+
+                    //var sharedEvent = JsonConvert.DeserializeObject<SharedAnalyticsEvent>(splitEvents[0]);
+                    var usdEvent = JsonConvert.DeserializeObject<T>(splitEvents[usdIndex]);
+
+                    if (usdEvent.type.Contains(expectedType))
+                    {
+                        //expectedAnalyticsEvent.shared = sharedEvent;
                         expectedAnalyticsEvent.usd = usdEvent;
 
                         expectedEvent(expectedAnalyticsEvent);
@@ -66,52 +95,57 @@ namespace Unity.Formats.USD.Tests
                     }
                 }
 
-                currTimeCount += Time.fixedDeltaTime;
+                DebuggerEventListHandler.ClearEventList();
+                currFrameCount++;
 
                 yield return null;
             }
         }
+
+        private int FindUsdAnalyticsIndex(string expectedType, string[] splitEvents)
+        {
+            for (int index = 0; index < splitEvents.Length; index++)
+            {
+                if (splitEvents[index].Contains(expectedType))
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
     }
 
-    [System.Serializable]
     public class AnalyticsEvent
     {
         public SharedAnalyticsEvent shared;
         public UsdAnalyticsEvent usd;
     }
 
-    [System.Serializable]
     public class SharedAnalyticsEvent
     {
+        // check if the class for this is in Unity source (if its a bit convoluted just make it)
         object common;
     }
 
-    [System.Serializable]
     public class UsdAnalyticsEvent
     {
         public string type;
-        public IMsgContent msg;
-
-        public UsdAnalyticsEvent(string type, ImportAnalyticsMsg msg)
-        {
-            this.type = type;
-            this.msg = msg;
-        }
     }
 
-    public interface IMsgContent
-    { }
-
-    [System.Serializable]
-    public class ImportAnalyticsMsg : IMsgContent
+    public class UsdAnalyticsEventImport: UsdAnalyticsEvent
     {
-        public string FileExtension;
-        public float TimeTakenMs;
-        public bool Succeeded;
-        public bool IncludesMeshes;
-        public bool IncludesPointInstancer;
-        public bool IncludesMaterials;
-        public bool IncludesSkel;
+        public UsdEditorAnalytics.ImportAnalyticsData msg;
+    }
+
+    public class UsdAnalyticsEventReImport : UsdAnalyticsEvent
+    {
+        public UsdEditorAnalytics.ReimportAnalyticsData msg;
+    }
+
+    public class UsdAnalyticsEventExport : UsdAnalyticsEvent
+    {
+        public UsdEditorAnalytics.ExportAnalyticsData msg;
     }
 }
 #endif

@@ -27,6 +27,15 @@ namespace Unity.Formats.USD.Tests
         protected string ArtifactsDirectoryFullPath => Path.Combine(Application.dataPath, ArtifactsDirectoryName);
         protected string ArtifactsDirectoryRelativePath => Path.Combine("Assets", ArtifactsDirectoryName);
 
+        public Scene CreateEmptyTestUsdScene(string fileName = "testUsd.usda")
+        {
+            var dummyUsdPath = CreateTmpUsdFile(fileName);
+            var scene = ImportHelpers.InitForOpen(dummyUsdPath);
+            scene.Write("/emptyRoot", new XformSample());
+            scene.Save();
+            return scene;
+        }
+
         [SetUp]
         public void InitUSDAndArtifactsDirectory()
         {
@@ -47,7 +56,14 @@ namespace Unity.Formats.USD.Tests
         {
             if (Directory.Exists(ArtifactsDirectoryFullPath))
             {
-                Directory.Delete(ArtifactsDirectoryFullPath, true);
+                try
+                {
+                    Directory.Delete(ArtifactsDirectoryFullPath, true);
+                }
+                catch
+                {
+                    Debug.Log("Artifact Clean up has failed - This should not happen in most cases, but even if so, the test case should not be affected.");
+                }
             }
 
             TestUtility.DeleteMetaFile(ArtifactsDirectoryFullPath);
