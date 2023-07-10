@@ -16,6 +16,7 @@
 # define USE_EDITOR_ANALYTICS
 # endif
 
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -44,6 +45,7 @@ namespace Unity.Formats.USD
         public interface IUsdAnalyticsData
         { }
 
+        [Serializable]
         public struct UsageAnalyticsData : IUsdAnalyticsData
         {
             public bool InitSucceeded;
@@ -53,6 +55,7 @@ namespace Unity.Formats.USD
         // USD Import Analytics
         const string k_ImportEventName = "USDFileImport";
 
+        [Serializable]
         public struct ImportAnalyticsData : IUsdAnalyticsData
         {
             public string FileExtension;
@@ -87,6 +90,7 @@ namespace Unity.Formats.USD
         // USD Reimport Analytics
         const string k_ReimportEventName = "USDFileReimport";
 
+        [Serializable]
         public struct ReimportAnalyticsData : IUsdAnalyticsData
         {
             public string FileExtension;
@@ -102,6 +106,7 @@ namespace Unity.Formats.USD
         // USD Export Analytics
         const string k_ExportEventName = "USDFileExport";
 
+        [Serializable]
         public struct ExportAnalyticsData : IUsdAnalyticsData
         {
             public string FileExtension;
@@ -113,7 +118,7 @@ namespace Unity.Formats.USD
         // USD Recorder Export Analytics
         const string k_RecorderExportEventName = "USDFileRecorderExport";
 
-        public struct RecorderExportAnalyticsData : IUsdAnalyticsData
+        public struct RecorderExportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;

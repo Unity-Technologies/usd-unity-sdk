@@ -1,4 +1,4 @@
-# if UNITY_2023_1_OR_NEWER
+# if UNITY_2023_2_OR_NEWER
 
 using System.Collections;
 using NUnit.Framework;
