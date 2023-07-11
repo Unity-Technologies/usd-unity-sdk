@@ -1,4 +1,4 @@
-// Copyright 2018 Jeremy Cowles. All rights reserved.
+// Copyright 2023 Unity Technologies. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,13 +18,11 @@ namespace Unity.Formats.USD
 {
     public class UrpShaderImporter : ShaderImporterBase
     {
-        private static Material ChannelCombinerMat;
-
         public UrpShaderImporter(Material material) : base(material)
         {
         }
 
-        // Based on HdrpShaderImporter, reordered to the same order as URP's Lit.shader
+        // Based on HdrpShaderImporter.cs, reordered to the same order as URP's Lit.shader
         public override void ImportFromUsd()
         {
             Material mat = Material;
@@ -45,20 +43,10 @@ namespace Unity.Formats.USD
             // AlphaCutoff - ignored
 
             // Smoothness
-            // TODO: Roughness/ Smoothness map in URP Lit can be the metallic or albedo map alpha channel.
+            // TODO: Roughness/ Smoothness map in URP Lit can be the metallic or albedo map alpha channel. Pack it into the right one.
             // For now just set the float value.
             var smoothness = 1 - Roughness.GetValueOrDefault();
             mat.SetFloat("_Smoothness", smoothness);
-
-            // HACK: Let's reuse the MaskMapPacker to pack the Metallic and Smoothness maps into a single texture
-            // No- still need to invert the Roughness texture to make it a smoothness texture. Nevermind. // TODO
-            /*
-            if (MetallicMap)
-            {
-                var newMetallicTex = BuildMaskMap(MetallicMap, MetallicMap, MetallicMap, RoughnessMap);
-                MetallicMap = newMetallicTex;
-            }
-            */
 
             // Metallic or Specular
             if (!IsSpecularWorkflow)
@@ -121,19 +109,7 @@ namespace Unity.Formats.USD
                 mat.SetColor("_EmissionColor", Emission.GetValueOrDefault());
             }
 
-
-            // DetailMask
-            // VRC: This works, but I'm not sure the use of it yet
-            /*
-            // R=Metallic, G=Occlusion, B=Displacement, A=Roughness(Smoothness)
-            var MaskMap = BuildMaskMap(!IsSpecularWorkflow ? MetallicMap : null, OcclusionMap, DisplacementMap,
-                RoughnessMap);
-            if (MaskMap)
-            {
-                mat.SetTexture("_DetailMask", MaskMap);
-                mat.EnableKeyword("_MASKMAP");
-            }
-            */
+            // DetailMask - ignoring for now
 
             // ClearCoat - not used in Lit but keep for compatibility or something
             /*
@@ -145,66 +121,6 @@ namespace Unity.Formats.USD
 
             mat.SetFloat("_CoatMask", ClearcoatRoughness.GetValueOrDefault());
             */
-        }
-
-        // TODO: Should share the HDRP one
-        private static Texture2D BuildMaskMap(Texture2D red, Texture2D green, Texture2D blue, Texture2D alpha)
-        {
-            var maxW = Mathf.Max(red ? red.width : 0, green ? green.width : 0);
-            maxW = Mathf.Max(maxW, blue ? blue.width : 0);
-            maxW = Mathf.Max(maxW, alpha ? alpha.width : 0);
-
-            var maxH = Mathf.Max(red ? red.height : 0, green ? green.height : 0);
-            maxH = Mathf.Max(maxH, blue ? blue.height : 0);
-            maxH = Mathf.Max(maxH, alpha ? alpha.height : 0);
-
-            if (maxH == 0 || maxW == 0)
-            {
-                return null;
-            }
-
-            var tmp = RenderTexture.GetTemporary(maxW, maxH, 0, RenderTextureFormat.ARGBFloat,
-                RenderTextureReadWrite.Linear);
-
-            if (!ChannelCombinerMat)
-            {
-                ChannelCombinerMat = new Material(Shader.Find("Hidden/USD/ChannelCombiner"));
-            }
-
-            var newTex = new Texture2D(maxW, maxH, TextureFormat.ARGB32, true, true);
-            ChannelCombinerMat.SetVector("_Invert", new Vector4(0, 0, 0, 1));
-            ChannelCombinerMat.SetTexture("_R", red ? red : Texture2D.blackTexture);
-            ChannelCombinerMat.SetVector("_RScale", new Vector4(1, 0, 0, 0));
-            ChannelCombinerMat.SetTexture("_G", green ? green : Texture2D.blackTexture);
-            ChannelCombinerMat.SetVector("_GScale", new Vector4(1, 0, 0, 0));
-            ChannelCombinerMat.SetTexture("_B", blue ? blue : Texture2D.blackTexture);
-            ChannelCombinerMat.SetVector("_BScale", new Vector4(1, 0, 0, 0));
-            ChannelCombinerMat.SetTexture("_A", alpha ? alpha : Texture2D.blackTexture);
-            ChannelCombinerMat.SetVector("_AScale", new Vector4(1, 0, 0, 0));
-            Graphics.Blit(red, tmp, ChannelCombinerMat);
-
-            RenderTexture.active = tmp;
-            newTex.ReadPixels(new Rect(0, 0, tmp.width, tmp.height), 0, 0);
-            newTex.Apply();
-            RenderTexture.ReleaseTemporary(tmp);
-
-#if UNITY_EDITOR
-            var newAssetPath = UnityEditor.AssetDatabase.GenerateUniqueAssetPath("Assets/maskMap.png");
-            var bytes = newTex.EncodeToPNG();
-            Debug.Log(newAssetPath);
-            System.IO.File.WriteAllBytes(newAssetPath, bytes);
-            UnityEditor.AssetDatabase.ImportAsset(newAssetPath);
-            var texImporter = (UnityEditor.TextureImporter)UnityEditor.AssetImporter.GetAtPath(newAssetPath);
-            UnityEditor.EditorUtility.SetDirty(texImporter);
-            texImporter.SaveAndReimport();
-#endif
-            // To get the correct file ID, the texture must be reloaded from the asset path.
-            Texture2D.DestroyImmediate(newTex);
-#if UNITY_EDITOR
-            return (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath(newAssetPath, typeof(Texture2D));
-#else
-            return null;
-#endif
         }
     }
 }
