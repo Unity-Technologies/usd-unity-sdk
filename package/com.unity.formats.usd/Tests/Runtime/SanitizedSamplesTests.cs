@@ -18,7 +18,7 @@ namespace Unity.Formats.USD.Tests
             [SetUp]
             public void SetUp()
             {
-                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsd);
+                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsda);
                 scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
             }
 
@@ -129,7 +129,7 @@ namespace Unity.Formats.USD.Tests
             [SetUp]
             public void SetUp()
             {
-                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsd);
+                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsda);
                 scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
             }
 

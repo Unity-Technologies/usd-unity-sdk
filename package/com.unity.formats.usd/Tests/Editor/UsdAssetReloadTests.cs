@@ -22,7 +22,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void Setup()
         {
-            var scene = OpenUSDGUIDAssetScene(TestDataGuids.Simple.SimpleUsd, out testFilePath);
+            var scene = OpenUSDGUIDAssetScene(TestDataGuids.Simple.SimpleUsda, out testFilePath);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
             scene.Close();
 
@@ -111,7 +111,7 @@ namespace Unity.Formats.USD.Tests
             const int expectedChildrenCount = 101;
             const string instancerChildNamePrefix = "Root";
 
-            var scene = OpenUSDGUIDAssetScene(TestDataGuids.Instancer.PointInstancedUsd, out _);
+            var scene = OpenUSDGUIDAssetScene(TestDataGuids.Instancer.PointInstancedUsda, out _);
             var instancerObject = ImportHelpers.ImportSceneAsGameObject(scene);
 
             var originalChildrenData = new Dictionary<string, int>();
@@ -137,14 +137,14 @@ namespace Unity.Formats.USD.Tests
 
         void UpdateTestFile()
         {
-            testFileModifiedPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Simple.SimpleModifiedUsd));
+            testFileModifiedPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Simple.SimpleModifiedUsda));
 
             File.WriteAllBytes(testFilePath, File.ReadAllBytes(testFileModifiedPath));
         }
 
         void ResetTestFile()
         {
-            var originFile = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Simple.SimpleOriginUsd));
+            var originFile = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Simple.SimpleOriginUsda));
 
             File.WriteAllBytes(testFilePath, File.ReadAllBytes(originFile));
         }

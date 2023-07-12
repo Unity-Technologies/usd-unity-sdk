@@ -31,7 +31,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void Setup()
         {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.PrimType.CollectionsUsd));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.PrimType.CollectionsUsda));
             var stage = pxr.UsdStage.Open(usdPath, pxr.UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
