@@ -32,7 +32,8 @@ namespace Unity.Formats.USD
             return OpenUSDSceneWithFullPath(usdPath, loadSet);
         }
 
-        // TODO: If materialImportMode = MaterialImportMode.ImportPreviewSurface, it creates all the texture2d files on the root assets
+        // TODO: [USDU-455]
+        // If materialImportMode = MaterialImportMode.ImportPreviewSurface, it creates all the texture2d files on the root assets
         // Figure out if the texture2ds can be set into a different location - such as our artifacts directory
         public static void DeleteAllTexture2DFiles(string folderName = "Assets")
         {
