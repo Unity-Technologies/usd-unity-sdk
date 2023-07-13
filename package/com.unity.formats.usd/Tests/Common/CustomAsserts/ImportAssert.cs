@@ -1,3 +1,17 @@
+// Copyright 2023 Unity Technologies. All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 using UnityEngine;
 using NUnit.Framework;
 
@@ -58,8 +72,8 @@ namespace Unity.Formats.USD.Tests
 
         public static void IsTextureDataSaved(GameObject usdObject, string fileName, bool isPrefab)
         {
-            var materials = usdObject.transform.Find(TestAssetData.ImportGameObjectName.Material);
-            var rootPrim = usdObject.transform.Find(TestAssetData.ImportGameObjectName.RootPrim);
+            var materials = usdObject.transform.Find("Material");
+            var rootPrim = usdObject.transform.Find("RootPrim");
 
             Assert.IsTrue(rootPrim.childCount == 1);
             Assert.AreEqual(materials.childCount, rootPrim.childCount);
@@ -92,14 +106,14 @@ namespace Unity.Formats.USD.Tests
         {
             switch (fileName)
             {
-                case TestAssetData.FileName.TexturedTransparent_Cutout:
+                case "TexturedTransparent_Cutout":
                     {
                         Assert.AreEqual("Cutout", material.GetTag("RenderType", false));
                         Assert.AreEqual("textured_transparency", material.mainTexture.name);
                         Assert.AreEqual(1f, material.GetFloat("_Cutoff"));
                         break;
                     }
-                case TestAssetData.FileName.TexturedOpaque:
+                case "TexturedOpaque":
                     {
                         Assert.AreEqual("Opaque", material.GetTag("RenderType", false));
                         Assert.AreEqual("textured", material.mainTexture.name);

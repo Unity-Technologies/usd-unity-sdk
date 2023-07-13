@@ -13,13 +13,12 @@ namespace Unity.Formats.USD.Tests
     {
         class SanitizeTests
         {
-            string assetGuid = "b2bf96b7908c0a74682f7e92cb5ba652";
             Scene scene;
 
             [SetUp]
             public void SetUp()
             {
-                var assetPath = AssetDatabase.GUIDToAssetPath(assetGuid);
+                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsda);
                 scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
             }
 
@@ -125,13 +124,12 @@ namespace Unity.Formats.USD.Tests
 
         class MethodUnitTests
         {
-            string assetGuid = "b2bf96b7908c0a74682f7e92cb5ba652";
             Scene scene;
 
             [SetUp]
             public void SetUp()
             {
-                var assetPath = AssetDatabase.GUIDToAssetPath(assetGuid);
+                var assetPath = AssetDatabase.GUIDToAssetPath(TestDataGuids.VariedCollection.AttributeScopeUsda);
                 scene = ImportHelpers.InitForOpen(Path.GetFullPath(assetPath));
             }
 
@@ -235,13 +233,12 @@ namespace Unity.Formats.USD.Tests
     public class SanitizedInstancesTests
     {
         GameObject m_usdRoot;
-        string m_usdGUID = "c5046ed8700c010469c4c557353bc241"; // GUI of mesh_instances.usda
 
         [SetUp]
         public void SetUp()
         {
             InitUsd.Initialize();
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(m_usdGUID));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Instancer.MeshInstancesUsd));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);
