@@ -26,7 +26,7 @@ namespace Unity.Formats.USD.Tests
         // Analytics for valid re-import contains non-zero timestamp
         public IEnumerator OnValidReImportForceRebuild_AnalyticsAreSent([ValueSource("forceRebuild")] bool forceRebuild)
         {
-            m_scene = CreateEmptyTestUsdScene();
+            m_scene = TestUtility.CreateEmptyTestUsdScene(ArtifactsDirectoryFullPath);
             var importedObject = ImportHelpers.ImportSceneAsGameObject(m_scene);
             importedObject.GetComponent<UsdAsset>().Reload(forceRebuild);
 
@@ -49,7 +49,7 @@ namespace Unity.Formats.USD.Tests
         // Analytics for valid re-import contains non-zero timestamp
         public IEnumerator OnValidReImportExtensions_AnalyticsAreSent([ValueSource("usdExtensions")] string extension)
         {
-            m_scene = CreateTestUsdScene("testFile" + extension);
+            m_scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath, "testFile" + extension);
             var importedObject = ImportHelpers.ImportSceneAsGameObject(m_scene);
 
             AnalyticsEvent importEvent = null;

@@ -27,7 +27,7 @@ namespace Unity.Formats.USD.Tests
         // Analytics for valid import contains non-zero timestamp
         public IEnumerator OnValidImportExtensions_AnalyticsAreSent([ValueSource("importMethod")] ImportMethods importMethod, [ValueSource("usdExtensions")] string extension)
         {
-            m_scene = CreateTestUsdScene("testFile" + extension);
+            m_scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath, "testFile" + extension);
             ImportAs(m_scene, importMethod);
 
             AnalyticsEvent expectedEvent = null;
@@ -95,7 +95,7 @@ namespace Unity.Formats.USD.Tests
         // Analytics for a small / empty import are empty but valid
         public IEnumerator OnValidImportEmptyScene_AnalyticsAreSent([ValueSource("importMethod")] ImportMethods importMethod, [ValueSource("usdExtensions")] string extension)
         {
-            m_scene = CreateEmptyTestUsdScene("testFile" + extension);
+            m_scene = TestUtility.CreateEmptyTestUsdScene(ArtifactsDirectoryFullPath, "testFile" + extension);
             ImportAs(m_scene, importMethod);
 
             AnalyticsEvent expectedEvent = null;
@@ -201,11 +201,11 @@ namespace Unity.Formats.USD.Tests
             switch (importMethod)
             {
                 case ImportMethods.AsPrefab:
-                    ImportHelpers.ImportAsPrefab(scene, GetPrefabPath(k_TestPrefabName));
+                    ImportHelpers.ImportAsPrefab(scene, TestUtility.GetPrefabPath(ArtifactsDirectoryRelativePath, k_TestPrefabName));
                     break;
 
                 case ImportMethods.AsTimelineRecording:
-                    ImportHelpers.ImportAsTimelineClip(scene, GetPrefabPath(k_TestPrefabName));
+                    ImportHelpers.ImportAsTimelineClip(scene, TestUtility.GetPrefabPath(ArtifactsDirectoryRelativePath, k_TestPrefabName));
                     break;
 
                 case ImportMethods.AsGameObject:

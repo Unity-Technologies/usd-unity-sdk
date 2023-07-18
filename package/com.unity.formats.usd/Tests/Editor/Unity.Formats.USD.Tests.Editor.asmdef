@@ -10,7 +10,6 @@
         "Unity.Formats.USD.Common",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Unity.Formats.USD.Common",
         "Unity.Recorder",
         "Unity.Recorder.Editor"
     ],

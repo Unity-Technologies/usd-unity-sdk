@@ -18,7 +18,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            m_USDScenePath = GetUSDScenePath("EditorExportAnalyticsTests");
+            m_USDScenePath = TestUtility.GetUSDScenePath("EditorExportAnalyticsTests");
         }
 
         [UnityTest]
