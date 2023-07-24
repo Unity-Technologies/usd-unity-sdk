@@ -143,7 +143,18 @@ namespace Unity.Formats.USD.Tests
             // ExpectedGameObjectCount: The Root GameObject + Sphere GameObject added
             // ExpectedPrimSourceCount: Root Source + Sphere Source
             // ExpectedMaterialCount: The 3 default materials + 1 material from Sphere meshRender
-            ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 2, expectedPrimSourceCount: 2, expectedMaterialCount: 4);
+            ImportAssert.Editor.IsValidPrefabImport(usdAsObjects, expectedGameObjectCount: 2, expectedPrimSourceCount: 2, expectedMaterialCount: 4);
+        }
+
+        [Test]
+        public void ImportAsGameObjectTest_SimpleFile_ContentOk()
+        {
+            var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
+            var importedGameObject = ImportHelpers.ImportSceneAsGameObject(scene);
+
+            // ExpectedPrimSourceCount: Root Source + Sphere Source
+            // ExpectedMeshCount: Sphere Mesh
+            ImportAssert.Editor.IsValidGameObjectImport(importedGameObject, expectedPrimSourceCount: 2, expectedMeshCount: 1);
         }
 
         [Test]
@@ -155,10 +166,21 @@ namespace Unity.Formats.USD.Tests
             Assert.IsTrue(File.Exists(assetPath));
             var usdAsObjects = AssetDatabase.LoadAllAssetsAtPath(assetPath);
 
-            // ExpectedGameObjectCount: The Root GameObject + Box GameObjects added
-            // ExpectedPrimSourceCount: Root Source + Boxes Source
-            // ExpectedMaterialCount: The 3 default materials + 1 material from Box meshRender + 1 from grid
-            ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 25, expectedPrimSourceCount: 25, expectedMaterialCount: 5);
+            // ExpectedGameObjectCount: The Root GameObject + 24 Cube GameObjects added
+            // ExpectedPrimSourceCount: Root Source + 24 Cube PrimSources
+            // ExpectedMaterialCount: The 3 default materials + 1 material from Cube meshRender + 1 from Grid Object
+            ImportAssert.Editor.IsValidPrefabImport(usdAsObjects, expectedGameObjectCount: 25, expectedPrimSourceCount: 25, expectedMaterialCount: 5);
+        }
+
+        [Test]
+        public void ImportAsGameObjectTest_VariedCollection_ContentOk()
+        {
+            var scene = TestUtility.OpenUSDSceneWithGUID(TestDataGuids.VariedCollection.AttributeScopeUsda);
+            var importedGameObject = ImportHelpers.ImportSceneAsGameObject(scene);
+
+            // ExpectedPrimSourceCount: Root Source + 24 various cube objects
+            // ExpectedMeshCount: 24 cube meshes
+            ImportAssert.Editor.IsValidGameObjectImport(importedGameObject, expectedPrimSourceCount: 25, expectedMeshCount: 24);
         }
 
         public void ImportAsTimelineClipTest_ContentOk()
@@ -173,7 +195,7 @@ namespace Unity.Formats.USD.Tests
             // ExpectedGameObjectCount: The Root GameObject
             // ExpectedPrimSourceCount: 0 TODO: Shouldnt there be a prim source object for the root object?
             // ExpectedMaterialCount: The 3 default materials
-            ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
+            ImportAssert.Editor.IsValidPrefabImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
         }
 
         public void ImportAsPrefab_TextureDataImported()

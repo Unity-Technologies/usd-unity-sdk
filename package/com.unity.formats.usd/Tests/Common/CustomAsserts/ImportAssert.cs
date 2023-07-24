@@ -29,7 +29,31 @@ namespace Unity.Formats.USD.Tests
                 UsdPrimSource = 3
             }
 
-            public static void IsValidImport(Object[] usdAsObjects, int expectedGameObjectCount, int expectedPrimSourceCount, int expectedMaterialCount)
+            public static void IsValidGameObjectImport(GameObject rootObject, int expectedPrimSourceCount, int expectedMeshCount)
+            {
+                Assert.IsNotNull(rootObject.GetComponent<UsdAsset>());
+
+                var actualPrimSourceCount = 1; // root has one
+                var actualMeshCount = 0;
+
+                foreach (Transform child in rootObject.transform)
+                {
+                    if (child.GetComponent<UsdPrimSource>() != null)
+                    {
+                        actualPrimSourceCount++;
+                    }
+
+                    if (child.GetComponent<MeshRenderer>() != null)
+                    {
+                        actualMeshCount++;
+                    }
+                }
+
+                Assert.AreEqual(expectedPrimSourceCount, actualPrimSourceCount, "Expected PrimSource count does not match the actual PrimSource count.");
+                Assert.AreEqual(expectedMeshCount, actualMeshCount, "Expected Mesh count does not match the actual Mesh count.");
+            }
+
+            public static void IsValidPrefabImport(Object[] usdAsObjects, int expectedGameObjectCount, int expectedPrimSourceCount, int expectedMaterialCount)
             {
                 Assert.NotZero(usdAsObjects.Length);
 
