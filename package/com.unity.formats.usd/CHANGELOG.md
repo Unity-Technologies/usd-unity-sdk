@@ -2,6 +2,7 @@
 
 ## [3.0.0-exp.5] - Unreleased
 ### Features
+- Added basic URP Import support.
 
 ### Bug Fixes
 - Fixed export for Prefabs from the Project Window.

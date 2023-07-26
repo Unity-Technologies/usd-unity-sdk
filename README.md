@@ -63,7 +63,8 @@ We do not currently support the following:
         * We do not currently import and export all physical camera settings
     * Materials:
         * Transparency Settings (these can be set manually)
-        * Some values are unassigned when importing URP
+        * Smoothness is not correctly handled when importing into URP
+        * URP export not fully featured
     * Lights
 * Animation:
     * Blend Shapes

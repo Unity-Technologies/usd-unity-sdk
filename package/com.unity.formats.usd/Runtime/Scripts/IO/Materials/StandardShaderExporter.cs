@@ -200,11 +200,7 @@ namespace Unity.Formats.USD
                 surface.metallic.defaultValue = .5f;
             }
 
-            // Gross heuristics to detect workflow.
-            if (material.IsKeywordEnabled("_SPECGLOSSMAP")
-                || material.HasProperty("_SpecColor")
-                || material.HasProperty("_SpecularColor")
-                || material.shader.name.ToLower().Contains("specular"))
+            if (ShouldUseSpecularWorkflow(material))
             {
                 if (material.HasProperty("_SpecGlossMap") && material.GetTexture("_SpecGlossMap") != null)
                 {
@@ -458,6 +454,20 @@ namespace Unity.Formats.USD
             Cutout = 1,
             Fade = 2, // Old school alpha-blending mode, fresnel does not affect amount of transparency
             Transparent = 3 // Physically plausible transparency mode, implemented as alpha pre-multiply
+        }
+
+        // return true if the material should use specular workflow
+        private static bool ShouldUseSpecularWorkflow(Material material)
+        {
+            // Workflow mode of 0 is Specular and 1 is Metallic
+            if (material.HasProperty("_WorkflowMode"))
+                return (material.GetFloat("_WorkflowMode") == 0.0f);
+
+            // Gross heuristics to detect specular workflow if workflow mode not set
+            return material.IsKeywordEnabled("_SPECGLOSSMAP")
+                || material.HasProperty("_SpecColor")
+                || material.HasProperty("_SpecularColor")
+                || material.shader.name.ToLower().Contains("specular");
         }
     }
 }
