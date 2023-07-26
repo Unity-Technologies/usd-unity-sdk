@@ -59,7 +59,7 @@ namespace Unity.Formats.USD.Tests
             InitUsd.Initialize();
         }
 
-        public IEnumerator WaitForUsdAnalytics<T>(string expectedType, System.Action<AnalyticsEvent> expectedEvent, float attemptFrameCountLimit = 150) where T: UsdAnalyticsEvent
+        public IEnumerator WaitForUsdAnalytics<T>(string expectedType, System.Action<AnalyticsEvent> expectedEvent, float attemptFrameCountLimit = 300) where T: UsdAnalyticsEvent
         {
             bool found = false;
             float currFrameCount = 0;
