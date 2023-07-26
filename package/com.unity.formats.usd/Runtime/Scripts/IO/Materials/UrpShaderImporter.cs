@@ -53,7 +53,7 @@ namespace Unity.Formats.USD
                 {
                     // CombineRoughness also flips rough to smooth
                     metallicGloss = MaterialImporter.CombineRoughness(MetallicMap, RoughnessMap, "metallicGloss");
-                    mat.EnableKeyword("_METALLICGLOSSMAP");
+                    mat.EnableKeyword("_METALLICSPECGLOSSMAP");
                     mat.SetFloat("_SmoothnessTextureChannel", 0.0f);
                 }
             }
