@@ -43,10 +43,25 @@ namespace Unity.Formats.USD
             // AlphaCutoff - ignored
 
             // Smoothness
-            // TODO: Roughness/ Smoothness map in URP Lit can be the metallic or albedo map alpha channel. Pack it into the right one.
-            // For now just set the float value.
-            var smoothness = 1 - Roughness.GetValueOrDefault();
-            mat.SetFloat("_Smoothness", smoothness);
+            Texture2D metallicGloss = null;
+            if (RoughnessMap && !IsSpecularWorkflow && MetallicMap)
+            {
+                // If we have and are using a metallic map, combine the roughness into the metallic map alpha channel.
+                if (!IsSpecularWorkflow)
+                {
+                    // CombineRoughness also flips rough to smooth
+                    metallicGloss = MaterialImporter.CombineRoughness(MetallicMap, RoughnessMap, "metallicGloss");
+                    mat.EnableKeyword("_METALLICGLOSSMAP");
+                    mat.SetFloat("_SmoothnessTextureChannel", 0.0f);
+                }
+            }
+            else
+            {
+                // TODO: We could alternatively bake the roughness into the albedo alpha channel. However this should be
+                // optional because we shouldn't silently overwrite the albedo alpha channel.
+                var smoothness = 1 - Roughness.GetValueOrDefault();
+                mat.SetFloat("_Smoothness", smoothness);
+            }
 
             // Metallic or Specular
             if (!IsSpecularWorkflow)
@@ -54,6 +69,10 @@ namespace Unity.Formats.USD
                 if (!MetallicMap)
                 {
                     mat.SetFloat("_Metallic", Metallic.GetValueOrDefault());
+                }
+                else if (metallicGloss)
+                {
+                    mat.SetTexture("_MetallicGlossMap", metallicGloss);
                 }
                 else
                 {
