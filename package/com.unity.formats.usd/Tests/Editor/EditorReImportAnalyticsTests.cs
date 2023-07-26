@@ -1,4 +1,4 @@
-# if UNITY_2023_2_OR_NEWER
+# if UNITY_2023_3_OR_NEWER
 
 using System.Collections;
 using NUnit.Framework;
@@ -9,14 +9,12 @@ namespace Unity.Formats.USD.Tests
 {
     public class EditorReImportAnalyticsTests : EditorAnalyticsBaseFixture
     {
-        const string k_meshedFileGUID = "c06c7eba08022b74ca49dce5f79ef3ba"; // ImportSkinnedMesh.usda
-        const string k_materialedFileGUID = "c06c7eba08022b74ca49dce5f79ef3ba"; // simpleMaterialTest.usd
-        const string k_pointInstancerFileGUID = "bfb4012f0c339574296e64f4d3c6c595"; // point_instanced_cubes.usda
-        const string k_skelFileGUID = "3d00d71254d14bdda401019eb84373ce"; // ImportSkinnedMesh.usda
-
-        static string[] usdExtensions = new string[] { ".usd", ".usda", ".usdc" };
         static bool[] forceRebuild = new bool[] { true, false };
-        static string[] testFileGUIDs = new string[] { k_meshedFileGUID, k_pointInstancerFileGUID, k_skelFileGUID };
+        static string[] testFileGUIDs = new string[] {
+            TestDataGuids.Material.SimpleMaterialUsd,
+            TestDataGuids.Instancer.PointInstancedUsda,
+            TestDataGuids.Mesh.SkinnedMeshUsda
+        };
 
         Scene m_scene;
 
@@ -82,7 +80,7 @@ namespace Unity.Formats.USD.Tests
         // ReImport with ImportPreviewSurface will set IncludesMaterials to be True
         public IEnumerator OnValidReImportMaterialsGenerated_AnalyticsAreSent()
         {
-            m_scene = OpenUSDGUIDAssetScene(k_materialedFileGUID, out _);
+            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Material.SimpleMaterialUsd, out _);
 
             var importedObject = ImportHelpers.ImportSceneAsGameObject(m_scene);
             AnalyticsEvent importEvent = null;

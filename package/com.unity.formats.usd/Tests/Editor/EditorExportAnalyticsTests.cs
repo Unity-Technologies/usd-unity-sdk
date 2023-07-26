@@ -1,4 +1,4 @@
-# if UNITY_2023_2_OR_NEWER
+# if UNITY_2023_3_OR_NEWER
 
 using System.Collections;
 using NUnit.Framework;
@@ -9,7 +9,6 @@ namespace Unity.Formats.USD.Tests
 {
     public class EditorExportAnalyticsTests : EditorAnalyticsBaseFixture
     {
-        static string[] usdExtensions = new string[] { ".usd", ".usda", ".usdc" };
         static bool[] forceRebuild = new bool[] { true, false };
         static PrimitiveType[] primitiveTypes = new PrimitiveType[] { PrimitiveType.Cube, PrimitiveType.Sphere };
 
@@ -18,7 +17,7 @@ namespace Unity.Formats.USD.Tests
         [SetUp]
         public void SetUp()
         {
-            m_USDScenePath = TestUtility.GetUSDScenePath("EditorExportAnalyticsTests");
+            m_USDScenePath = TestUtility.GetUSDScenePath(ArtifactsDirectoryFullPath, "EditorExportAnalyticsTests");
         }
 
         [UnityTest]

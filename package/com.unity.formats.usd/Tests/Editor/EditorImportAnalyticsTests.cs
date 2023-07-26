@@ -1,4 +1,4 @@
-# if UNITY_2023_2_OR_NEWER
+# if UNITY_2023_3_OR_NEWER
 
 using System.Collections;
 using NUnit.Framework;
@@ -9,13 +9,6 @@ namespace Unity.Formats.USD.Tests
 {
     public class EditorImportAnalyticsTests : EditorAnalyticsBaseFixture
     {
-        const string k_unsupportedFileGUID = "75fca2f4d3ec4f646b435a4059d435c8"; // Blend Shapes Kiki
-        const string k_meshedFileGUID = "c06c7eba08022b74ca49dce5f79ef3ba"; // ImportSkinnedMesh.usda
-        const string k_materialedFileGUID = "c06c7eba08022b74ca49dce5f79ef3ba"; // simpleMaterialTest.usd
-        const string k_pointInstancerFileGUID = "bfb4012f0c339574296e64f4d3c6c595"; // point_instanced_cubes.usda
-        const string k_skelFileGUID = "3d00d71254d14bdda401019eb84373ce"; // ImportSkinnedMesh.usda
-
-        static string[] usdExtensions = new string[] { ".usd", ".usda", ".usdc" };
         static ImportMethods[] importMethod = new ImportMethods[] { ImportMethods.AsGameObject, ImportMethods.AsPrefab, ImportMethods.AsTimelineRecording };
 
         Scene m_scene;
@@ -48,7 +41,7 @@ namespace Unity.Formats.USD.Tests
         // Analytics for a mesh 'contains mesh'
         public IEnumerator OnValidImportMeshedScene_AnalyticsAreSent([ValueSource("importMethod")] ImportMethods importMethod)
         {
-            m_scene = OpenUSDGUIDAssetScene(k_meshedFileGUID, out _);
+            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Material.SimpleMaterialUsd, out _);
             ImportAs(m_scene, importMethod);
 
             AnalyticsEvent expectedEvent = null;
@@ -72,7 +65,7 @@ namespace Unity.Formats.USD.Tests
         // Analytics for a mesh 'contains material'
         public IEnumerator OnValidImportSceneWithMaterial_AnalyticsAreSent()
         {
-            m_scene = OpenUSDGUIDAssetScene(k_materialedFileGUID, out _);
+            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Material.SimpleMaterialUsd, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene, null, new SceneImportOptions() { materialImportMode = MaterialImportMode.ImportPreviewSurface });
 
             AnalyticsEvent expectedEvent = null;
@@ -139,7 +132,7 @@ namespace Unity.Formats.USD.Tests
         {
             LogAssert.ignoreFailingMessages = true; // Expecting a bunch of errors on import
 
-            m_scene = OpenUSDGUIDAssetScene(k_unsupportedFileGUID, out _);
+            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Invalid.KikiBlendShapesUsd, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene);
 
             AnalyticsEvent expectedEvent = null;
@@ -159,7 +152,7 @@ namespace Unity.Formats.USD.Tests
         // Analytics for a PointInstancer 'contains pointinstancer'
         public IEnumerator OnValidImportPointInstancerScene_AnalyticsAreSent()
         {
-            m_scene = OpenUSDGUIDAssetScene(k_pointInstancerFileGUID, out _);
+            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Instancer.PointInstancedUsda, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene);
 
             AnalyticsEvent expectedEvent = null;
@@ -180,7 +173,8 @@ namespace Unity.Formats.USD.Tests
         // Analytics for a skeleton 'contains skeleton'
         public IEnumerator OnValidImportSkelScene_AnalyticsAreSent()
         {
-            m_scene = OpenUSDGUIDAssetScene(k_skelFileGUID, out _);
+            // TestDataGuids.Mesh.SkinnedMeshUsda contains USDSkel attribute
+            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Mesh.SkinnedMeshUsda, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene);
 
             AnalyticsEvent expectedEvent = null;

@@ -1,4 +1,4 @@
-# if UNITY_2023_2_OR_NEWER
+# if UNITY_2023_3_OR_NEWER
 
 using System.Collections;
 using NUnit.Framework;
@@ -11,6 +11,7 @@ namespace Unity.Formats.USD.Tests
     public class EditorAnalyticsBaseFixture : BaseFixtureEditor
     {
         protected const string k_TestPrefabName = "TestPrefab";
+        protected static string[] usdExtensions = new string[] { TestUtility.FileExtension.Usd, TestUtility.FileExtension.Usda, TestUtility.FileExtension.Usdc };
 
         protected struct UsdAnalyticsTypes
         {

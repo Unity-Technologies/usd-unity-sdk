@@ -75,5 +75,10 @@ namespace Unity.Formats.USD.Tests
             public const string UpAxisZLeftHandedUsda = "a01f0befc190ba34e9b0a5405f145a86"; // Tests/Common/Data/Instancer/UsdInstance_UpAxisZ_LeftHanded.usda
             public const string UpAxisZRightHandedUsda = "051b4a1cb85f6024191275df09e12fc2"; // Tests/Common/Data/Instancer/UsdInstance_UpAxisZ_RightHanded.usda
         }
+
+        public struct Invalid
+        {
+            public const string KikiBlendShapesUsd = "75fca2f4d3ec4f646b435a4059d435c8"; // Tests/Common/Data/Invalid/Kiki_Blendshape.usd
+        }
     }
 }
