@@ -22,6 +22,8 @@ namespace Unity.Formats.USD.Tests
 {
     public class ImportHelpersTests : BaseFixtureEditor
     {
+        public enum ImportMode { AsGameObject, AsPrefab }
+
         [Test]
         public void InitForOpenTest_ValidPath_Succeeds()
         {
@@ -130,7 +132,7 @@ namespace Unity.Formats.USD.Tests
         }
 
         [Test]
-        public void ImportAsPrefabTest_ContentOk()
+        public void ImportAsPrefabTest_SimpleFile_ContentOk()
         {
             var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
             var assetPath = ImportHelpers.ImportAsPrefab(scene, TestUtility.GetPrefabPath(ArtifactsDirectoryRelativePath));
@@ -141,10 +143,46 @@ namespace Unity.Formats.USD.Tests
             // ExpectedGameObjectCount: The Root GameObject + Sphere GameObject added
             // ExpectedPrimSourceCount: Root Source + Sphere Source
             // ExpectedMaterialCount: The 3 default materials + 1 material from Sphere meshRender
-            ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 2, expectedPrimSourceCount: 2, expectedMaterialCount: 4);
+            ImportAssert.Editor.IsValidPrefabImport(usdAsObjects, expectedGameObjectCount: 2, expectedPrimSourceCount: 2, expectedMaterialCount: 4);
         }
 
         [Test]
+        public void ImportAsGameObjectTest_SimpleFile_ContentOk()
+        {
+            var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
+            var importedGameObject = ImportHelpers.ImportSceneAsGameObject(scene);
+
+            // ExpectedPrimSourceCount: Root Source + Sphere Source
+            // ExpectedMeshCount: Sphere Mesh
+            ImportAssert.Editor.IsValidGameObjectImport(importedGameObject, expectedPrimSourceCount: 2, expectedMeshCount: 1);
+        }
+
+        [Test]
+        public void ImportAsPrefabTest_VariedCollection_ContentOk()
+        {
+            var scene = TestUtility.OpenUSDSceneWithGUID(TestDataGuids.VariedCollection.AttributeScopeUsda);
+            var assetPath = ImportHelpers.ImportAsPrefab(scene, TestUtility.GetPrefabPath(ArtifactsDirectoryRelativePath));
+
+            Assert.IsTrue(File.Exists(assetPath));
+            var usdAsObjects = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+
+            // ExpectedGameObjectCount: The Root GameObject + 24 Cube GameObjects added
+            // ExpectedPrimSourceCount: Root Source + 24 Cube PrimSources
+            // ExpectedMaterialCount: The 3 default materials + 1 material from Cube meshRender + 1 from Grid Object
+            ImportAssert.Editor.IsValidPrefabImport(usdAsObjects, expectedGameObjectCount: 25, expectedPrimSourceCount: 25, expectedMaterialCount: 5);
+        }
+
+        [Test]
+        public void ImportAsGameObjectTest_VariedCollection_ContentOk()
+        {
+            var scene = TestUtility.OpenUSDSceneWithGUID(TestDataGuids.VariedCollection.AttributeScopeUsda);
+            var importedGameObject = ImportHelpers.ImportSceneAsGameObject(scene);
+
+            // ExpectedPrimSourceCount: Root Source + 24 various cube objects
+            // ExpectedMeshCount: 24 cube meshes
+            ImportAssert.Editor.IsValidGameObjectImport(importedGameObject, expectedPrimSourceCount: 25, expectedMeshCount: 24);
+        }
+
         public void ImportAsTimelineClipTest_ContentOk()
         {
             var scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath);
@@ -157,7 +195,7 @@ namespace Unity.Formats.USD.Tests
             // ExpectedGameObjectCount: The Root GameObject
             // ExpectedPrimSourceCount: 0 TODO: Shouldnt there be a prim source object for the root object?
             // ExpectedMaterialCount: The 3 default materials
-            ImportAssert.Editor.IsValidImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
+            ImportAssert.Editor.IsValidPrefabImport(usdAsObjects, expectedGameObjectCount: 1, expectedPrimSourceCount: 0, expectedMaterialCount: 3);
         }
 
         public void ImportAsPrefab_TextureDataImported()
@@ -208,11 +246,15 @@ namespace Unity.Formats.USD.Tests
             ImportAssert.IsTextureDataSaved(usdzObject.transform.GetChild(0).gameObject, testAssetFileName, isPrefab: false);
         }
 
-        [TestCase(TestDataGuids.Instancer.UpAxisYLeftHandedUsda, Description = "Up Axis: Y & Left Handed")]
-        [TestCase(TestDataGuids.Instancer.UpAxisYRightHandedUsda, Description = "Up Axis: Y & Right Handed")]
-        [TestCase(TestDataGuids.Instancer.UpAxisZLeftHandedUsda, Description = "Up Axis: Z & Left Handed")]
-        [TestCase(TestDataGuids.Instancer.UpAxisZRightHandedUsda, Description = "Up Axis: Z & Right Handed")]
-        public void ImportInstancerAsGameObject_VertexCheck(string testAssetGUID)
+        [TestCase(TestDataGuids.Instancer.UpAxisYLeftHandedUsda, ImportMode.AsGameObject, Description = "Up Axis: Y & Left Handed - As GameObject")]
+        [TestCase(TestDataGuids.Instancer.UpAxisYRightHandedUsda, ImportMode.AsGameObject, Description = "Up Axis: Y & Right Handed - As GameObject")]
+        [TestCase(TestDataGuids.Instancer.UpAxisZLeftHandedUsda, ImportMode.AsGameObject, Description = "Up Axis: Z & Left Handed - As GameObject")]
+        [TestCase(TestDataGuids.Instancer.UpAxisZRightHandedUsda, ImportMode.AsGameObject, Description = "Up Axis: Z & Right Handed - As GameObject")]
+        [TestCase(TestDataGuids.Instancer.UpAxisYLeftHandedUsda, ImportMode.AsPrefab, Description = "Up Axis: Y & Left Handed - As Prefab")]
+        [TestCase(TestDataGuids.Instancer.UpAxisYRightHandedUsda, ImportMode.AsPrefab, Description = "Up Axis: Y & Right Handed - As Prefab")]
+        [TestCase(TestDataGuids.Instancer.UpAxisZLeftHandedUsda, ImportMode.AsPrefab, Description = "Up Axis: Z & Left Handed - As Prefab")]
+        [TestCase(TestDataGuids.Instancer.UpAxisZRightHandedUsda, ImportMode.AsPrefab, Description = "Up Axis: Z & Right Handed - As Prefab")]
+        public void ImportInstancer_VertexCheck(string testAssetGUID, ImportMode importAs)
         {
             var originalVertices = new[]
             {
@@ -228,9 +270,19 @@ namespace Unity.Formats.USD.Tests
 
             var testScene = TestUtility.OpenUSDSceneWithGUID(testAssetGUID);
 
-            var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().sharedMesh;
+            Mesh importedGameObjectMesh = null;
+            switch (importAs)
+            {
+                case ImportMode.AsGameObject:
+                    importedGameObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().sharedMesh;
+                    break;
+                case ImportMode.AsPrefab:
+                    var prefabPath = ImportHelpers.ImportAsPrefab(testScene, TestUtility.GetPrefabPath(ArtifactsDirectoryRelativePath, "VertexCheck"));
+                    importedGameObjectMesh = ((GameObject)(AssetDatabase.LoadMainAssetAtPath(prefabPath))).GetComponentInChildren<MeshFilter>().sharedMesh;
+                    break;
+            }
 
-            foreach (var vertex in testInstanceObjectMesh.vertices)
+            foreach (var vertex in importedGameObjectMesh.vertices)
             {
                 // Flip the z-axis value to compensate for the z-axis difference between Unity and USD
                 var zFlippedVertex = new Vector3(vertex.x, vertex.y, -vertex.z);
