@@ -43,6 +43,8 @@ namespace Unity.Formats.USD
             // AlphaCutoff - ignored
 
             // Smoothness
+            // TODO: We could alternatively bake the roughness into the albedo alpha channel. However this should be
+            // optional because we shouldn't silently overwrite the albedo alpha channel.
             Texture2D metallicGloss = null;
             if (RoughnessMap && !IsSpecularWorkflow && MetallicMap)
             {
@@ -57,8 +59,8 @@ namespace Unity.Formats.USD
             }
             else
             {
-                // TODO: We could alternatively bake the roughness into the albedo alpha channel. However this should be
-                // optional because we shouldn't silently overwrite the albedo alpha channel.
+                // TODO: In URP we combine a smoothness map with a constant smoothness value, so we should actually
+                // keep both. However we only read one or the other from the USD file currently, so settle for this.
                 var smoothness = 1 - Roughness.GetValueOrDefault();
                 mat.SetFloat("_Smoothness", smoothness);
             }
