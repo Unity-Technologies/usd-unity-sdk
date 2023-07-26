@@ -415,7 +415,7 @@ namespace Unity.Formats.USD
             if (mat.HasProperty("_OcclusionMap") && mat.GetTexture("_OcclusionMap") != null)
             {
                 var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath,
-                    "_OcclusionMap", "r");
+                    "_OcclusionMap", "g");
                 surface.occlusion.SetConnectedPath(newTex);
             }
 
