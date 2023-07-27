@@ -49,13 +49,10 @@ namespace Unity.Formats.USD
             if (RoughnessMap && !IsSpecularWorkflow && MetallicMap)
             {
                 // If we have and are using a metallic map, combine the roughness into the metallic map alpha channel.
-                if (!IsSpecularWorkflow)
-                {
-                    // CombineRoughness also flips rough to smooth
-                    metallicGloss = MaterialImporter.CombineRoughness(MetallicMap, RoughnessMap, "metallicGloss");
-                    mat.EnableKeyword("_METALLICSPECGLOSSMAP");
-                    mat.SetFloat("_SmoothnessTextureChannel", 0.0f);
-                }
+                // CombineRoughness also flips rough to smooth.
+                metallicGloss = MaterialImporter.CombineRoughness(MetallicMap, RoughnessMap, "metallicGloss");
+                mat.EnableKeyword("_METALLICSPECGLOSSMAP");
+                mat.SetFloat("_SmoothnessTextureChannel", 0.0f);
             }
             else
             {
