@@ -120,6 +120,9 @@ namespace Unity.Formats.USD
                 sample.extent.center = UnityTypeConverter.ChangeBasis(sample.extent.center);
             }
 
+            pxr.UsdPrim usdPrim = exportContext.scene.GetPrimAtPath(objContext.path);
+            pxr.UsdSkelBindingAPI.Apply(usdPrim);
+
             // Convert the transform
             var path = new pxr.SdfPath(objContext.path);
 

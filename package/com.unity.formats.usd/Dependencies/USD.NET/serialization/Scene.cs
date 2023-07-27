@@ -219,6 +219,36 @@ namespace USD.NET
         }
 
         /// <summary>
+        /// The linear meters per unit of the world contained in the cache.
+        /// The fallback value if not authored is centimeters.
+        /// </summary>
+        public double MetersPerUnit
+        {
+            get
+            {
+                // default to centimeters if we cannot retrieve metadata
+                const double centimeters = 0.01;
+                if (Stage == null)
+                    return centimeters;
+                VtValue val = new VtValue();
+                if (Stage.GetMetadata(kMetersPerUnitToken, val))
+                {
+                    return UsdCs.VtValueTodouble(val);
+                }
+                return centimeters;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ApplicationException("Invalid metersPerUnit, meters per unit must be > 0");
+                }
+                Stage.SetMetadata(kMetersPerUnitToken, new VtValue(value));
+            }
+        }
+
+
+        /// <summary>
         /// A list of all Prim paths present in the scene.
         /// </summary>
         public SdfPath[] AllPaths
@@ -260,6 +290,7 @@ namespace USD.NET
             }
             var scene = new Scene(stage);
             scene.UpAxis = UpAxes.Y;
+            scene.MetersPerUnit = 1.0;
             return scene;
         }
 
@@ -274,6 +305,7 @@ namespace USD.NET
         {
             var scene = new Scene(UsdStage.CreateInMemory());
             scene.UpAxis = UpAxes.Y;
+            scene.MetersPerUnit = 1.0;
             return scene;
         }
 
@@ -908,5 +940,6 @@ namespace USD.NET
         // Cache TfTokens for reuse to avoid P/Invoke and token churn.
         private static readonly TfToken kUpAxisToken = new TfToken("upAxis");
         private static readonly TfToken kYUpToken = new TfToken("Y");
+        private static readonly TfToken kMetersPerUnitToken = new TfToken("metersPerUnit");
     }
 }

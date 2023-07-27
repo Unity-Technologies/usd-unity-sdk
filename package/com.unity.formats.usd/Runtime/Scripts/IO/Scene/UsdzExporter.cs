@@ -59,7 +59,7 @@ namespace Unity.Formats.USD
                 {
                     // USDZ is in centimeters.
                     root.transform.localScale = localScale * 100;
-
+                    scene.MetersPerUnit = 0.01;
                     // Export the temp scene.
                     SceneExporter.Export(root,
                         scene,
