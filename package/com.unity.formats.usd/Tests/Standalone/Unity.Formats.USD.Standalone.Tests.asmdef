@@ -6,7 +6,8 @@
         "Unity.Formats.USD.Runtime",
         "Unity.Timeline",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Formats.USD.Common"
     ],
     "includePlatforms": [
         "Editor",

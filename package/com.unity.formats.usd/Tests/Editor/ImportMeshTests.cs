@@ -9,13 +9,12 @@ namespace Unity.Formats.USD.Tests
 {
     public class ImportSkinnedMeshTests : BaseFixtureEditor
     {
-        static string k_testAssetGUID = "3d00d71254d14bdda401019eb84373ce";
         GameObject m_usdRoot;
 
         [SetUp]
         public void SetUp()
         {
-            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(k_testAssetGUID));
+            var usdPath = Path.GetFullPath(AssetDatabase.GUIDToAssetPath(TestDataGuids.Mesh.SkinnedMeshUsda));
             var stage = UsdStage.Open(usdPath, UsdStage.InitialLoadSet.LoadNone);
             var scene = Scene.Open(stage);
             m_usdRoot = ImportHelpers.ImportSceneAsGameObject(scene);

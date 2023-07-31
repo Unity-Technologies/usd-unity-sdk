@@ -2,6 +2,7 @@ using System.Linq;
 using NUnit.Framework;
 using pxr;
 using Unity.Formats.USD;
+using Unity.Formats.USD.Tests;
 using UnityEditor;
 using UnityEngine;
 using USD.NET.Tests;
@@ -12,7 +13,7 @@ namespace USD.NET.Unity.Tests
     {
         Scene CreatePointInstancerScene()
         {
-            var tmpScenePath = CreateTmpUsdFile("PointInstancerTest.usda");
+            var tmpScenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "PointInstancerTest.usda");
             var scene = Scene.Open(tmpScenePath);
             var pi = new PointInstancerSample();
             var cube = new CubeSample();
@@ -38,14 +39,14 @@ namespace USD.NET.Unity.Tests
             var cube = new CubeSample();
             var xform = new XformSample();
 
-            var cubeScenePath = CreateTmpUsdFile("cube.usda");
+            var cubeScenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "cube.usda");
             var scene = Scene.Open(cubeScenePath);
             scene.Write("/GEO", xform);
             scene.Write("/GEO/Cube", cube);
             scene.Save();
             scene.Close();
 
-            var tmpScenePath = CreateTmpUsdFile("InstanceTraversalTest.usda");
+            var tmpScenePath = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "InstanceTraversalTest.usda");
             scene = Scene.Open(tmpScenePath);
             scene.Write("/InstancedCube1", xform);
             scene.Write("/InstancedCube1/cube", cube);
@@ -94,35 +95,6 @@ namespace USD.NET.Unity.Tests
                 Assert.AreEqual(Matrix4x4.Translate(new Vector3(0 + i * 2, 0, 0)), matrices[i]);
             }
             scene.Close();
-        }
-
-        [TestCase("UsdInstance_UpAxisY_LeftHanded")]
-        [TestCase("UsdInstance_UpAxisY_RightHanded")]
-        [TestCase("UsdInstance_UpAxisZ_LeftHanded")]
-        [TestCase("UsdInstance_UpAxisZ_RightHanded")]
-        public void InstancerImport_VertexCheck(string testFileName)
-        {
-            var originalVertices = new[]
-            {
-                new Vector3(-1, 0, 3),
-                new Vector3(-1, 0, 0),
-                new Vector3(0, -1, 1),
-                new Vector3(-2, -3, -1),
-                new Vector3(-2, -1, 1),
-                new Vector3(-3, -0.5f, -1),
-                new Vector3(-1, -2, 1),
-                new Vector3(-5, -2, -1)
-            };
-            var testScene = ImportHelpers.InitForOpen(GetTestAssetPath(testFileName));
-
-            var testInstanceObjectMesh = ImportHelpers.ImportSceneAsGameObject(testScene).GetComponentInChildren<MeshFilter>().mesh;
-
-            foreach (var vertex in testInstanceObjectMesh.vertices)
-            {
-                // Flip the z-axis value to compensate for the z-axis difference between Unity and USD
-                var zFlippedVertex = new Vector3(vertex.x, vertex.y, -vertex.z);
-                Assert.Contains(zFlippedVertex, originalVertices, $"Z Axis flipped vertex <{zFlippedVertex}> not found in original vertices");
-            }
         }
     }
 }

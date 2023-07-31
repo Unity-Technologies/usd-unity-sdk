@@ -1,6 +1,9 @@
 {
     "name": "Unity.Formats.USD.Common",
-    "references": [],
+    "references": [
+        "USD.NET",
+        "USD.NET.Unity"
+    ],
     "includePlatforms": [
         "Editor",
         "macOSStandalone",
