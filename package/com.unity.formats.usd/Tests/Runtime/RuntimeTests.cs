@@ -30,7 +30,7 @@ namespace Unity.Formats.USD.Tests
             value.aBoundingBox = new UnityEngine.Bounds();
 
             // Writing the value.
-            string usdFile = CreateTmpUsdFile("sceneFile.usda");
+            string usdFile = TestUtility.CreateTmpUsdFile(ArtifactsDirectoryFullPath, "sceneFile.usda");
             var scene = ImportHelpers.InitForOpen(usdFile);
             scene.Time = 1.0;
             scene.Write("/someValue", value);

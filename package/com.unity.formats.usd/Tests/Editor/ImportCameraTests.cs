@@ -9,13 +9,11 @@ namespace Unity.Formats.USD.Tests
 {
     public class ImportCameraTests : BaseFixtureEditor
     {
-        string k_testCameraGUID = "6aa58f080f5cc0542989c8ff7737bdc3"; // physicalCam.usda
-
         [Test]
         [Ignore("USDU-292")]
         public void ImportPhysicalCamera_PhysicalDataKept()
         {
-            var cameraScene = TestUtilityFunction.OpenUSDScene(k_testCameraGUID);
+            var cameraScene = TestUtility.OpenUSDSceneWithGUID(TestDataGuids.CameraRelated.PhysicalCameraUsda);
             var m_testCamera = ImportHelpers.ImportSceneAsGameObject(cameraScene).transform.GetChild(0).GetComponent<Camera>();
             cameraScene.Close();
 
