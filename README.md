@@ -62,8 +62,7 @@ We do not currently support the following:
     * Camera
         * We do not currently import and export all physical camera settings
     * Materials:
-        * Transparency Settings (these can be set manually)
-        * URP export not fully featured
+        * Transparency Settings eg Alpha Clipping, Double Sided (these can be set manually)
     * Lights
 * Animation:
     * Blend Shapes
