@@ -40,7 +40,36 @@ namespace Unity.Formats.USD
                 mat.SetColor("_BaseColor", Diffuse.GetValueOrDefault(mat.color));
             }
 
-            // AlphaCutoff - ignored
+            bool isTransparent = OpacityMap || Opacity.HasValue;
+            bool isCutout = OpacityThreshold.HasValue && OpacityThreshold.Value > 0.0f;
+
+            // AlphaCutoff
+            if (OpacityThreshold.HasValue)
+            {
+                mat.SetFloat("_Cutoff", OpacityThreshold.GetValueOrDefault(0.5f));
+                if (OpacityThreshold.Value > 0.0f)
+                {
+                    mat.SetFloat("_AlphaClip", 1);
+                    //mat.SetFloat("_AlphaToMask", 1);
+                    mat.EnableKeyword("_ALPHATEST_ON");
+                    mat.SetOverrideTag("RenderType", "TransparentCutout");
+                }
+            }
+
+            // Opacity is often set to a default of 1, only treat it as transparent if a map is assigned.
+            if (OpacityMap)
+            {
+                mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                mat.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+
+                if (!isCutout)
+                {
+                    mat.SetOverrideTag("RenderType", "Transparent");
+                    mat.SetFloat("_ZWrite", 0);
+                    mat.SetShaderPassEnabled("DepthOnly", false);
+                    mat.SetShaderPassEnabled("SHADOWCASTER", false);
+                }
+            }
 
             // Smoothness
             // TODO: We could alternatively bake the roughness into the albedo alpha channel. However this should be
