@@ -78,7 +78,7 @@ namespace Unity.Formats.USD.Tests
 
         public struct Invalid
         {
-            public const string KikiBlendShapesUsd = "75fca2f4d3ec4f646b435a4059d435c8"; // Tests/Common/Data/Invalid/Kiki_Blendshape.usd
+            public const string InvalidContent = "1a61f8a8f354bba4cb68212f4609270e"; // Tests/Common/Data/Invalid/InvalidContent.usda
         }
     }
 }

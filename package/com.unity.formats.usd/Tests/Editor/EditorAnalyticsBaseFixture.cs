@@ -60,14 +60,14 @@ namespace Unity.Formats.USD.Tests
             InitUsd.Initialize();
         }
 
-        public IEnumerator WaitForUsdAnalytics<T>(string expectedType, System.Action<AnalyticsEvent> expectedEvent, float attemptFrameCountLimit = 300) where T: UsdAnalyticsEvent
+        public IEnumerator WaitForUsdAnalytics<T>(string expectedType, System.Action<T> actualEvent, float attemptTimeLimitMs = 1500) where T: UsdAnalyticsEvent
         {
             bool found = false;
-            float currFrameCount = 0;
+            var stopWatch = System.Diagnostics.Stopwatch.StartNew();
 
-            while (!found && currFrameCount < attemptFrameCountLimit)
+            while (!found && stopWatch.Elapsed.TotalMilliseconds < attemptTimeLimitMs)
             {
-                AnalyticsEvent expectedAnalyticsEvent = new AnalyticsEvent();
+                T expectedAnalyticsEvent = null;
                 foreach (var concattedEvent in DebuggerEventListHandler.fetchEventList())
                 {
                     if (!concattedEvent.Contains(expectedType))
@@ -75,27 +75,21 @@ namespace Unity.Formats.USD.Tests
                         continue;
                     }
 
-                    Debug.Log($"Raw Log: {concattedEvent}");
-
                     var splitEvents = concattedEvent.Split("\n");
                     var usdIndex = FindUsdAnalyticsIndex(expectedType, splitEvents);
-
-                    //var sharedEvent = JsonConvert.DeserializeObject<SharedAnalyticsEvent>(splitEvents[0]);
                     var usdEvent = JsonUtility.FromJson<T>(splitEvents[usdIndex]);
 
                     if (usdEvent.type.Contains(expectedType))
                     {
-                        //expectedAnalyticsEvent.shared = sharedEvent;
-                        expectedAnalyticsEvent.usd = usdEvent;
+                        expectedAnalyticsEvent = usdEvent;
 
-                        expectedEvent(expectedAnalyticsEvent);
+                        actualEvent(expectedAnalyticsEvent);
                         found = true;
                         break;
                     }
                 }
 
                 DebuggerEventListHandler.ClearEventList();
-                currFrameCount++;
 
                 yield return null;
             }
@@ -113,18 +107,6 @@ namespace Unity.Formats.USD.Tests
 
             return -1;
         }
-    }
-
-    public class AnalyticsEvent
-    {
-        public SharedAnalyticsEvent shared;
-        public UsdAnalyticsEvent usd;
-    }
-
-    public class SharedAnalyticsEvent
-    {
-        // check if the class for this is in Unity source (if its a bit convoluted just make it)
-        object common;
     }
 
     public class UsdAnalyticsEvent

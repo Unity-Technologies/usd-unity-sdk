@@ -28,13 +28,13 @@ namespace Unity.Formats.USD.Tests
             var importedObject = ImportHelpers.ImportSceneAsGameObject(m_scene);
             importedObject.GetComponent<UsdAsset>().Reload(forceRebuild);
 
-            AnalyticsEvent reImportEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, (AnalyticsEvent waitedEvent) => {
+            UsdAnalyticsEventReImport reImportEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, waitedEvent => {
                 reImportEvent = waitedEvent;
             }));
 
             Assert.IsNotNull(reImportEvent);
-            var reImportUsdEventMsg = ((UsdAnalyticsEventReImport)reImportEvent.usd).msg;
+            var reImportUsdEventMsg = reImportEvent.msg;
 
             Assert.IsTrue(reImportUsdEventMsg.Succeeded, "Expected True for re-import Successful");
             Assert.AreEqual(reImportUsdEventMsg.ForceRebuild, forceRebuild, "Expected True for re-import Successful");
@@ -50,24 +50,24 @@ namespace Unity.Formats.USD.Tests
             m_scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath, "testFile" + extension);
             var importedObject = ImportHelpers.ImportSceneAsGameObject(m_scene);
 
-            AnalyticsEvent importEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
                 importEvent = waitedEvent;
             }));
 
             Assert.IsNotNull(importEvent);
 
-            var importUsdEventMsg = ((UsdAnalyticsEventImport)importEvent.usd).msg;
+            var importUsdEventMsg = importEvent.msg;
 
             importedObject.GetComponent<UsdAsset>().Reload(false);
 
-            AnalyticsEvent reImportEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, (AnalyticsEvent waitedEvent) => {
+            UsdAnalyticsEventReImport reImportEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, waitedEvent => {
                 reImportEvent = waitedEvent;
             }));
 
             Assert.IsNotNull(reImportEvent);
-            var reImportUsdEventMsg = ((UsdAnalyticsEventReImport)reImportEvent.usd).msg;
+            var reImportUsdEventMsg = reImportEvent.msg;
 
             Assert.IsTrue(reImportUsdEventMsg.Succeeded, "Expected True for re-import Successful");
             Assert.Greater(reImportUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0 for Re-Import");
@@ -83,27 +83,27 @@ namespace Unity.Formats.USD.Tests
             m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Material.SimpleMaterialUsd, out _);
 
             var importedObject = ImportHelpers.ImportSceneAsGameObject(m_scene);
-            AnalyticsEvent importEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
                 importEvent = waitedEvent;
             }));
 
             Assert.IsNotNull(importEvent);
 
-            var importUsdEventMsg = ((UsdAnalyticsEventImport)importEvent.usd).msg;
+            var importUsdEventMsg = ((UsdAnalyticsEventImport)importEvent).msg;
             Assert.IsTrue(importUsdEventMsg.Succeeded, "Expected True for import Successful");
             Assert.IsFalse(importUsdEventMsg.IncludesMaterials, "Expected Includes Materials to be False initially");
 
             importedObject.GetComponent<UsdAsset>().m_materialImportMode = MaterialImportMode.ImportPreviewSurface;
             importedObject.GetComponent<UsdAsset>().Reload(false);
 
-            AnalyticsEvent reImportEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, (AnalyticsEvent waitedEvent) => {
+            UsdAnalyticsEventReImport reImportEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, waitedEvent => {
                 reImportEvent = waitedEvent;
             }));
 
             Assert.IsNotNull(reImportEvent);
-            var reImportUsdEventMsg = ((UsdAnalyticsEventReImport)reImportEvent.usd).msg;
+            var reImportUsdEventMsg = reImportEvent.msg;
 
             Assert.IsTrue(reImportUsdEventMsg.Succeeded, "Expected True for re-import Successful");
             Assert.Greater(reImportUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0 for Re-Import");
@@ -118,25 +118,25 @@ namespace Unity.Formats.USD.Tests
             m_scene = OpenUSDGUIDAssetScene(testFileGUID, out _);
 
             var importedObject = ImportHelpers.ImportSceneAsGameObject(m_scene);
-            AnalyticsEvent importEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
                 importEvent = waitedEvent;
             }));
 
             Assert.IsNotNull(importEvent);
 
-            var importUsdEventMsg = ((UsdAnalyticsEventImport)importEvent.usd).msg;
+            var importUsdEventMsg = importEvent.msg;
 
             importedObject.GetComponent<UsdAsset>().m_materialImportMode = MaterialImportMode.ImportPreviewSurface;
             importedObject.GetComponent<UsdAsset>().Reload(false);
 
-            AnalyticsEvent reImportEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, (AnalyticsEvent waitedEvent) => {
+            UsdAnalyticsEventReImport reImportEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventReImport>(UsdAnalyticsTypes.ReImport, waitedEvent => {
                 reImportEvent = waitedEvent;
             }));
 
             Assert.IsNotNull(reImportEvent);
-            var reImportUsdEventMsg = ((UsdAnalyticsEventReImport)reImportEvent.usd).msg;
+            var reImportUsdEventMsg = reImportEvent.msg;
 
             Assert.IsTrue(reImportUsdEventMsg.Succeeded, "Expected True for re-import Successful");
             Assert.Greater(reImportUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0 for Re-Import");

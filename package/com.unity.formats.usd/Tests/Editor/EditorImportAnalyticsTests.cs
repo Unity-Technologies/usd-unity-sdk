@@ -23,17 +23,17 @@ namespace Unity.Formats.USD.Tests
             m_scene = TestUtility.CreateTestUsdScene(ArtifactsDirectoryFullPath, "testFile" + extension);
             ImportAs(m_scene, importMethod);
 
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsTrue(expectedUsdEventMsg.Succeeded, "Expected True for import successful");
-            Assert.AreEqual(extension, expectedUsdEventMsg.FileExtension, "Expected file extension was incorrect");
-            Assert.Greater(expectedUsdEventMsg.TimeTakenMs, 0, "Time Taken MS was reported to be 0 or less");
+            var importUsdEventData = importEvent.msg;
+            Assert.IsTrue(importUsdEventData.Succeeded, "Expected True for import successful");
+            Assert.AreEqual(extension, importUsdEventData.FileExtension, "Expected file extension was incorrect");
+            Assert.Greater(importUsdEventData.TimeTakenMs, 0, "Time Taken MS was reported to be 0 or less");
         }
 
         [UnityTest]
@@ -44,20 +44,20 @@ namespace Unity.Formats.USD.Tests
             m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Material.SimpleMaterialUsd, out _);
             ImportAs(m_scene, importMethod);
 
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsTrue(expectedUsdEventMsg.Succeeded, "Expected True for import successful");
-            Assert.Greater(expectedUsdEventMsg.TimeTakenMs, 0, "Time Taken MS was reported to be 0 or less");
+            var importUsdEventMsg = importEvent.msg;
+            Assert.IsTrue(importUsdEventMsg.Succeeded, "Expected True for import successful");
+            Assert.Greater(importUsdEventMsg.TimeTakenMs, 0, "Time Taken MS was reported to be 0 or less");
 
             // Import as Timeline recording does not include meshes, materials, skels, or point instancers
             var includesMeshes = importMethod != ImportMethods.AsTimelineRecording;
-            Assert.AreEqual(expectedUsdEventMsg.IncludesMeshes, includesMeshes, $"Expected Includes Meshes to be {includesMeshes}");
+            Assert.AreEqual(importUsdEventMsg.IncludesMeshes, includesMeshes, $"Expected Includes Meshes to be {includesMeshes}");
         }
 
         [UnityTest]
@@ -68,18 +68,18 @@ namespace Unity.Formats.USD.Tests
             m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Material.SimpleMaterialUsd, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene, null, new SceneImportOptions() { materialImportMode = MaterialImportMode.ImportPreviewSurface });
 
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsTrue(expectedUsdEventMsg.Succeeded, "Expected True for import successful");
-            Assert.Greater(expectedUsdEventMsg.TimeTakenMs, 0, "Time Taken MS was reported to be 0 or less");
-            Assert.IsTrue(expectedUsdEventMsg.IncludesMeshes, "Expected Includes Meshes to be True");
-            Assert.IsTrue(expectedUsdEventMsg.IncludesMaterials, "Expected Includes Materials to be True");
+            var importUsdEventMsg = importEvent.msg;
+            Assert.IsTrue(importUsdEventMsg.Succeeded, "Expected True for import successful");
+            Assert.Greater(importUsdEventMsg.TimeTakenMs, 0, "Time Taken MS was reported to be 0 or less");
+            Assert.IsTrue(importUsdEventMsg.IncludesMeshes, "Expected Includes Meshes to be True");
+            Assert.IsTrue(importUsdEventMsg.IncludesMaterials, "Expected Includes Materials to be True");
         }
 
         [UnityTest]
@@ -91,21 +91,21 @@ namespace Unity.Formats.USD.Tests
             m_scene = TestUtility.CreateEmptyTestUsdScene(ArtifactsDirectoryFullPath, "testFile" + extension);
             ImportAs(m_scene, importMethod);
 
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsTrue(expectedUsdEventMsg.Succeeded, "Expected True for import Successful");
-            Assert.AreEqual(extension, expectedUsdEventMsg.FileExtension, "Expected file extension was incorrect");
-            Assert.Greater(expectedUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
-            Assert.IsFalse(expectedUsdEventMsg.IncludesMeshes, "Expected Includes Meshes from Empty file to be False");
-            Assert.IsFalse(expectedUsdEventMsg.IncludesMaterials, "Expected Includes Materials from Empty file to be False");
-            Assert.IsFalse(expectedUsdEventMsg.IncludesSkel, "Expected Includes Skel from Empty file to be False");
-            Assert.IsFalse(expectedUsdEventMsg.IncludesPointInstancer, "Expected Includes Point Instancers from Empty file to be False");
+            var importUsdEventMsg = importEvent.msg;
+            Assert.IsTrue(importUsdEventMsg.Succeeded, "Expected True for import Successful");
+            Assert.AreEqual(extension, importUsdEventMsg.FileExtension, "Expected file extension was incorrect");
+            Assert.Greater(importUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
+            Assert.IsFalse(importUsdEventMsg.IncludesMeshes, "Expected Includes Meshes from Empty file to be False");
+            Assert.IsFalse(importUsdEventMsg.IncludesMaterials, "Expected Includes Materials from Empty file to be False");
+            Assert.IsFalse(importUsdEventMsg.IncludesSkel, "Expected Includes Skel from Empty file to be False");
+            Assert.IsFalse(importUsdEventMsg.IncludesPointInstancer, "Expected Includes Point Instancers from Empty file to be False");
         }
 
         [UnityTest]
@@ -114,15 +114,15 @@ namespace Unity.Formats.USD.Tests
         public IEnumerator OnFailedImportNullFile_AnalyticsAreSent()
         {
             Assert.Throws<SceneImporter.ImportException>(() => SceneImporter.ImportUsd(null, null, null, new SceneImportOptions()));
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsFalse(expectedUsdEventMsg.Succeeded, "Expected False for import Successful");
+            var importUsdEventMsg = importEvent.msg;
+            Assert.IsFalse(importUsdEventMsg.Succeeded, "Expected False for import Successful");
         }
 
         [UnityTest]
@@ -132,19 +132,19 @@ namespace Unity.Formats.USD.Tests
         {
             LogAssert.ignoreFailingMessages = true; // Expecting a bunch of errors on import
 
-            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Invalid.KikiBlendShapesUsd, out _);
+            m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Invalid.InvalidContent, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene);
 
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsFalse(expectedUsdEventMsg.Succeeded, "Expected False for import Successful");
-            Assert.Greater(expectedUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
+            var importUsdEventMsg = importEvent.msg;
+            Assert.IsFalse(importUsdEventMsg.Succeeded, "Expected False for import Successful");
+            Assert.Greater(importUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
         }
 
         [UnityTest]
@@ -155,17 +155,17 @@ namespace Unity.Formats.USD.Tests
             m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Instancer.PointInstancedUsda, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene);
 
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsTrue(expectedUsdEventMsg.Succeeded, "Expected True for import Successful");
-            Assert.Greater(expectedUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
-            Assert.IsTrue(expectedUsdEventMsg.IncludesPointInstancer, "Expected Includes Point Instancers to be True");
+            var importUsdEventMsg = importEvent.msg;
+            Assert.IsTrue(importUsdEventMsg.Succeeded, "Expected True for import Successful");
+            Assert.Greater(importUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
+            Assert.IsTrue(importUsdEventMsg.IncludesPointInstancer, "Expected Includes Point Instancers to be True");
         }
 
         [UnityTest]
@@ -177,17 +177,17 @@ namespace Unity.Formats.USD.Tests
             m_scene = OpenUSDGUIDAssetScene(TestDataGuids.Mesh.SkinnedMeshUsda, out _);
             ImportHelpers.ImportSceneAsGameObject(m_scene);
 
-            AnalyticsEvent expectedEvent = null;
-            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, (AnalyticsEvent waitedEvent) => {
-                expectedEvent = waitedEvent;
+            UsdAnalyticsEventImport importEvent = null;
+            yield return (WaitForUsdAnalytics<UsdAnalyticsEventImport>(UsdAnalyticsTypes.Import, waitedEvent => {
+                importEvent = waitedEvent;
             }));
 
-            Assert.IsNotNull(expectedEvent);
+            Assert.IsNotNull(importEvent);
 
-            var expectedUsdEventMsg = ((UsdAnalyticsEventImport)expectedEvent.usd).msg;
-            Assert.IsTrue(expectedUsdEventMsg.Succeeded, "Expected True for import Successful");
-            Assert.Greater(expectedUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
-            Assert.IsTrue(expectedUsdEventMsg.IncludesSkel, "Expected Includes Skel to be True");
+            var importUsdEventMsg = importEvent.msg;
+            Assert.IsTrue(importUsdEventMsg.Succeeded, "Expected True for import Successful");
+            Assert.Greater(importUsdEventMsg.TimeTakenMs, 0, "Expected Time Taken MS should be greater than 0");
+            Assert.IsTrue(importUsdEventMsg.IncludesSkel, "Expected Includes Skel to be True");
         }
 
         protected void ImportAs(Scene scene, ImportMethods importMethod)

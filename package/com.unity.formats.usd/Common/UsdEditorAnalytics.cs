@@ -42,11 +42,8 @@ namespace Unity.Formats.USD
         // Universal USD Analytics
         const string k_UsageEventName = "USDPackageUsage";
 
-        public interface IUsdAnalyticsData
-        { }
-
         [Serializable]
-        public struct UsageAnalyticsData : IUsdAnalyticsData
+        public struct UsageAnalyticsData
         {
             public bool InitSucceeded;
             public double TimeTakenMs;
@@ -56,7 +53,7 @@ namespace Unity.Formats.USD
         const string k_ImportEventName = "USDFileImport";
 
         [Serializable]
-        public struct ImportAnalyticsData : IUsdAnalyticsData
+        public struct ImportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -91,7 +88,7 @@ namespace Unity.Formats.USD
         const string k_ReimportEventName = "USDFileReimport";
 
         [Serializable]
-        public struct ReimportAnalyticsData : IUsdAnalyticsData
+        public struct ReimportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -107,7 +104,7 @@ namespace Unity.Formats.USD
         const string k_ExportEventName = "USDFileExport";
 
         [Serializable]
-        public struct ExportAnalyticsData : IUsdAnalyticsData
+        public struct ExportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
