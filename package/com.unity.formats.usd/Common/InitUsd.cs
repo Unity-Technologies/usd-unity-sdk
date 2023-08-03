@@ -83,9 +83,8 @@ namespace Unity.Formats.USD
                                   !EditorUtility.IsRunningUnderCPUEmulation();
             if (isAppleSilicon)
             {
-                Debug.LogError("The USD plugin built for this package does not currently support Apple Silicon. " +
-                                 "Please use an Intel-based editor with Rosetta emulation to use the USD plugin.");
-                return;
+                throw new System.NotSupportedException("The USD plugin built for this package does not currently support Apple Silicon. " +
+                                                       "Please use an Intel-based editor with Rosetta emulation to use the USD plugin.");
             }
 #endif
 
