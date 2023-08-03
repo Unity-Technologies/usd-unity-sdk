@@ -53,6 +53,7 @@ The following is a brief listing of currently supported features:
 
 We do not currently support the following:
 
+* Apple Silicon (MacOS users must use Intel Editor)
 * Geometry:
     * Multiple UV Sets
     * Importing mesh UVs for a prim without a material attached

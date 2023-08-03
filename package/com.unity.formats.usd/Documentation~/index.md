@@ -10,8 +10,8 @@ This package includes a set of libraries designed to support the use of USD in C
 
 ## Requirements
 
-* Windows / OSX (Intel only)
-    * Apple Silicon architectures are not currently supported by this package. To use this package on M1 devices, you must use an x64 install of the Unity Editor.
+* Windows / OSX (*Intel only*)
+    * Apple Silicon architectures are not currently supported by this package. To use this package on M1 and M2 devices, you must use an x64 install of the Unity Editor.
 * Unity version: 2019.4 and up
 
 ## Project Configuration
@@ -40,7 +40,10 @@ Once the USD package is installed, a USD menu will appear, enabling you to easil
 
 ## Package Limitations
 
-* The USD plugin bundles are not currently code signed, so will need to be manually signed or removed from standalone player builds.
+* The USD plugin bundles are not currently code signed, so will need to be manually signed. 
+    * In some cases on MacOS devices, this may mean manually removing the 'com.apple.quarantine' meta flag from the UsdCs.bundle plugin, eg: run `xattr -d com.apple.quarantine <UsdCs.bundle path>`.
+
+* The USD Plugin in this package has not been built against Apple Silicon chips, so running in Silicon native editors is not supported.
 
 * This package uses USD v20.08, so some of the functionality of newer USD versions may be missing.
 

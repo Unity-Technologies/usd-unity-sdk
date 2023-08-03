@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using USD.NET;
 using USD.NET.Unity;
 using Debug = UnityEngine.Debug;
@@ -75,6 +76,19 @@ namespace Unity.Formats.USD
         // USD's libPlug know where to look to find them.
         private static void SetupUsdPath([CallerFilePath] string sourceFilePath = "")
         {
+#if UNITY_2020_2_OR_NEWER
+            // The 'IsRunningUnderCPUEmulation' API is only available in 2020.2 and later.
+            // The current build of the plugin does not support native Silicon. Give a useful warning.
+            bool isAppleSilicon = UnityEngine.SystemInfo.processorType.Contains("Apple") &&
+                                  !EditorUtility.IsRunningUnderCPUEmulation();
+            if (isAppleSilicon)
+            {
+                Debug.LogError("The USD plugin built for this package does not currently support Apple Silicon. " +
+                                 "Please use an Intel-based editor with Rosetta emulation to use the USD plugin.");
+                return;
+            }
+#endif
+
 #if UNITY_EDITOR
             var fileInfo = new System.IO.FileInfo(sourceFilePath);
             var supPath = System.IO.Path.Combine(fileInfo.DirectoryName, "..", "Runtime", "Plugins");
