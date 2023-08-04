@@ -14,6 +14,7 @@
 
 using UnityEngine;
 
+
 namespace Unity.Formats.USD
 {
     public class UrpShaderImporter : ShaderImporterBase
@@ -168,6 +169,11 @@ namespace Unity.Formats.USD
 
             mat.SetFloat("_CoatMask", ClearcoatRoughness.GetValueOrDefault());
             */
+
+            // Remove compile errors when URP package not installed
+#if URP_AVAILABLE
+            UnityEditor.BaseShaderGUI.SetupMaterialBlendMode(mat);
+#endif
         }
     }
 }
