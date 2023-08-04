@@ -428,6 +428,9 @@ namespace Unity.Formats.USD
 
             if (mat.HasProperty("_OcclusionMap") && mat.GetTexture("_OcclusionMap") != null)
             {
+                // Occlusion maps in built-in standard shaders have the same data in every channel.
+                // In URP, the occlusion is packed into the G channel of a mask map.
+                // https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@16.0/manual/lit-shader.html#channel-packing
                 var newTex = SetupTexture(scene, usdShaderPath, mat, surface, Vector4.one, destTexturePath,
                     "_OcclusionMap", "g");
                 surface.occlusion.SetConnectedPath(newTex);
