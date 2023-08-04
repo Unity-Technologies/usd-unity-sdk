@@ -176,6 +176,12 @@ namespace Unity.Formats.USD
                 matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
                 matAdapter.ImportFromUsd();
             }
+            else if (pipeline.GetType().Name == "UniversalRenderPipelineAsset")
+            {
+                var matAdapter = new UrpShaderImporter(mat);
+                matAdapter.ImportParametersFromUsd(scene, materialPath, sample, previewSurf, options);
+                matAdapter.ImportFromUsd();
+            }
             else
             {
                 // Fallback to the Standard importer, which may pickup some attributes by luck.
