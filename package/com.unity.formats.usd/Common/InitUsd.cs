@@ -25,10 +25,16 @@ namespace Unity.Formats.USD
     public static class InitUsd
     {
         private static bool m_usdInitialized;
+        private static bool m_usdInitializeFailed = false;
         private static DiagnosticHandler m_handler;
 
         public static bool Initialize()
         {
+            if (m_usdInitializeFailed)
+            {
+                return false;
+            }
+
             if (m_usdInitialized)
             {
                 return true;
@@ -64,6 +70,7 @@ namespace Unity.Formats.USD
                 Debug.LogException(ex);
                 analyticsTimer.Stop();
                 UsdEditorAnalytics.SendUsageEvent(false, analyticsTimer.Elapsed.TotalMilliseconds);
+                m_usdInitializeFailed = true;
                 return false;
             }
 
