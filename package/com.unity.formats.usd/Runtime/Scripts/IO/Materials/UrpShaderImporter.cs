@@ -40,7 +40,6 @@ namespace Unity.Formats.USD
                 mat.SetColor("_BaseColor", Diffuse.GetValueOrDefault(mat.color));
             }
 
-            bool isTransparent = OpacityMap || Opacity.HasValue;
             bool isCutout = OpacityThreshold.HasValue && OpacityThreshold.Value > 0.0f;
 
             // AlphaCutoff
