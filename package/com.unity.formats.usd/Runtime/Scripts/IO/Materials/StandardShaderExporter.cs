@@ -340,7 +340,8 @@ namespace Unity.Formats.USD
                     "rgb");
                 surface.diffuseColor.SetConnectedPath(newTex);
             }
-            else if (mat.HasProperty("_Color"))
+            
+            if (mat.HasProperty("_Color"))
             {
                 // Standard.
                 c = mat.GetColor("_Color").linear;
