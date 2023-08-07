@@ -473,7 +473,9 @@ namespace Unity.Formats.USD
         /// </summary>
         public void RemoveAllUsdComponents()
         {
-            UnityEditor.Undo.RegisterFullObjectHierarchyUndo(this, "Clear USD");
+#if UNITY_EDITOR
+            Undo.RegisterFullObjectHierarchyUndo(this, "Remove USD components");
+#endif
             foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true))
             {
                 if (src)
@@ -495,7 +497,9 @@ namespace Unity.Formats.USD
         /// </summary>
         public void DestroyAllImportedObjects()
         {
-            UnityEditor.Undo.RegisterFullObjectHierarchyUndo(this, "Delete USD objects");
+#if UNITY_EDITOR
+            Undo.RegisterFullObjectHierarchyUndo(this, "Delete USD imported objects");
+#endif
             foreach (var src in GetComponentsInChildren<UsdPrimSource>(includeInactive: true))
             {
                 // Remove the object if it is valid, but never remove the UsdAsset root GameObject, which
