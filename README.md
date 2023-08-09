@@ -70,6 +70,8 @@ We do not currently support the following:
 * General:
     * Custom prims
 
+Due to conflicting USD plugins, this package may have unexpected errors when installed side-by-side with NVidia's Omniverse Connector package.
+
 # License
 
 The USD Unity SDK is licensed under the terms of the Apache
