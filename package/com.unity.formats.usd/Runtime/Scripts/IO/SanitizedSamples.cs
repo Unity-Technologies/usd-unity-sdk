@@ -250,7 +250,7 @@ namespace Unity.Formats.USD
             }
 
             // Arbitrary primvars
-            if (sanitizePrimvars && ArbitraryPrimvars != null)
+            if (ArbitraryPrimvars != null)
             {
                 foreach (var primvar in ArbitraryPrimvars)
                 {
@@ -258,7 +258,7 @@ namespace Unity.Formats.USD
                 }
             }
 
-            if (!ShouldUnweldVertices(sanitizePrimvars))
+            if (!ShouldUnweldVertices())
                 return;
 
             // At that point we know that primvars are of different interpolation type.
@@ -384,7 +384,7 @@ namespace Unity.Formats.USD
             faceVertexCounts = newCounts;
         }
 
-        internal bool ShouldUnweldVertices(bool bindMaterials)
+        internal bool ShouldUnweldVertices()
         {
             // If any primvar is face varying (1 value per vertex) or uniform (1 value per face), all  primvars + mesh attributes will have to be converted to face varying
             bool shouldUnweldColors = colors != null && (colors.GetInterpolationToken() == UsdGeomTokens.uniform || colors.GetInterpolationToken() == UsdGeomTokens.faceVarying);
@@ -392,7 +392,7 @@ namespace Unity.Formats.USD
             bool shouldUnweldNormals = normals != null && (normals.Length == originalFaceVertexCounts.Length || normals.Length > points.Length);
             bool shouldUnweldTangents = tangents != null && (tangents.Length == originalFaceVertexCounts.Length || tangents.Length > points.Length);
 
-            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || (bindMaterials && AreAnyArbitraryPrimvarsFaceVarying());
+            return arePrimvarsFaceVarying || shouldUnweldNormals || shouldUnweldColors || shouldUnweldTangents || AreAnyArbitraryPrimvarsFaceVarying();
         }
 
         internal bool AreAnyArbitraryPrimvarsFaceVarying()
