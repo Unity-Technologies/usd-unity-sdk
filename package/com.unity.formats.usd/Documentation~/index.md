@@ -41,7 +41,7 @@ Once the USD package is installed, a USD menu will appear, enabling you to easil
 ## Package Limitations
 
 * The USD plugin bundles are not currently code signed, so will need to be manually signed. 
-    * In some cases on MacOS devices, this may mean manually removing the 'com.apple.quarantine' meta flag from the UsdCs.bundle plugin, eg: run `xattr -d com.apple.quarantine <UsdCs.bundle path>`.
+    * In some cases on MacOS devices, this may mean manually removing the 'com.apple.quarantine' meta flag from the UsdCs.bundle plugin, eg: run `xattr -d com.apple.quarantine <path to package code>/Runtime/Plugins/x86_64/MacOS/UsdCs.bundle`.
 
 * The USD Plugin in this package has not been built against Apple Silicon chips, so running in Silicon native editors is not supported.
 
