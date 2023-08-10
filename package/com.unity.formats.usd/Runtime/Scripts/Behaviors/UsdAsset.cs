@@ -367,7 +367,8 @@ namespace Unity.Formats.USD
         /// </summary>
         public Scene GetScene()
         {
-            InitUsd.Initialize();
+            if (!InitUsd.Initialize())
+                return null;
 
             if (m_lastScene?.Stage == null || SceneFileChanged())
             {
