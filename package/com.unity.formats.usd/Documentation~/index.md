@@ -114,6 +114,7 @@ We do not currently support the following:
         * We do not currently import and export all physical camera settings
     * Materials:
         * Some settings are not correctly imported and must be fixed up manually, eg Rendering mode and Double-Sided
+        * Texture scale is not imported to the material's base color
     * Lights
 * Animation:
     * Blend Shapes
