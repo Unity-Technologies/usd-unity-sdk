@@ -388,7 +388,7 @@ namespace Unity.Formats.USD
                 return;
             }
 #if UNITY_EDITOR
-            Component.DestroyImmediate(c);
+            Component.DestroyImmediate(c, true);
 #else
             Component.Destroy(c);
 #endif
