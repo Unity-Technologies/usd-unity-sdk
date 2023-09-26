@@ -7,6 +7,7 @@
 ### Bug Fixes
 - Fixed export for Prefabs from the Project Window.
 - Fixed export of URP base and occlusion maps for Lit shader.
+- Fixed USD component removal workflows for Prefabs.
 - Fixed transparency import for URP only.
 
 ### Changed

@@ -53,6 +53,7 @@ The following is a brief listing of currently supported features:
 
 We do not currently support the following:
 
+* Apple Silicon (MacOS users must use Intel Editor)
 * Geometry:
     * Multiple UV Sets
     * Importing mesh UVs for a prim without a material attached
@@ -69,6 +70,8 @@ We do not currently support the following:
     * Blend Shapes
 * General:
     * Custom prims
+
+Due to conflicting USD plugins, this package may have unexpected errors when installed side-by-side with NVidia's Omniverse Connector package.
 
 # License
 
