@@ -62,7 +62,7 @@ We do not currently support the following:
     * Camera
         * We do not currently import and export all physical camera settings
     * Materials:
-        * Transparency Settings eg Alpha Clipping, Double Sided are not imported (these can be set manually)
+        * Transparency Settings eg Alpha Clipping, Double Sided are not imported for HDRP and Built in (these can be set manually)
         * Imported maps override imported single values, eg presence of ColorMap will stop single Color being imported, same for Smoothness/ Roughness.
     * Lights
 * Animation:
