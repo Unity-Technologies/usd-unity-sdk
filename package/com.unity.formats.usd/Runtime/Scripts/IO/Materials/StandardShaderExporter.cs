@@ -364,6 +364,20 @@ namespace Unity.Formats.USD
                 shaderMode = (StandardShaderBlendMode)mat.GetFloat("_Mode");
             }
 
+            if (mat.HasProperty("_Surface"))
+            {
+                if (mat.HasProperty("_AlphaClip") && mat.GetFloat("_AlphaClip") == 1.0f)
+                {
+                    shaderMode = StandardShaderBlendMode.Cutout;
+                }
+                else
+                {
+                    shaderMode = mat.GetFloat("_Surface") == 0.0f
+                        ? StandardShaderBlendMode.Opaque
+                        : StandardShaderBlendMode.Transparent;
+                }
+            }
+
             if (shaderMode != StandardShaderBlendMode.Opaque)
             {
                 if (mat.HasProperty("_MainTex") && mat.GetTexture("_MainTex") != null)
