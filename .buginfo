@@ -1,5 +1,5 @@
 system: jira
-system: jira.unity3d.com
+server: jira.unity3d.com
 issuetype: Bug
 package: USD
 project: USDU
