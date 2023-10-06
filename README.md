@@ -53,6 +53,7 @@ The following is a brief listing of currently supported features:
 
 We do not currently support the following:
 
+* Apple Silicon (MacOS users must use Intel Editor)
 * Geometry:
     * Multiple UV Sets
     * Importing mesh UVs for a prim without a material attached
@@ -62,13 +63,15 @@ We do not currently support the following:
     * Camera
         * We do not currently import and export all physical camera settings
     * Materials:
-        * Transparency Settings (these can be set manually)
-        * Some values are unassigned when importing URP
+        * Transparency Settings eg Alpha Clipping, Double Sided are not imported for HDRP and Built in (these can be set manually)
+        * Imported maps override imported single values, eg presence of ColorMap will stop single Color being imported, same for Smoothness/ Roughness.
     * Lights
 * Animation:
     * Blend Shapes
 * General:
     * Custom prims
+
+Due to conflicting USD plugins, this package may have unexpected errors when installed side-by-side with NVidia's Omniverse Connector package.
 
 # License
 

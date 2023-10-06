@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using UnityEditor;
 using USD.NET;
 using USD.NET.Unity;
 using Debug = UnityEngine.Debug;
@@ -23,10 +25,16 @@ namespace Unity.Formats.USD
     public static class InitUsd
     {
         private static bool m_usdInitialized;
+        private static bool m_usdInitializeFailed = false;
         private static DiagnosticHandler m_handler;
 
         public static bool Initialize()
         {
+            if (m_usdInitializeFailed)
+            {
+                return false;
+            }
+
             if (m_usdInitialized)
             {
                 return true;
@@ -62,6 +70,7 @@ namespace Unity.Formats.USD
                 Debug.LogException(ex);
                 analyticsTimer.Stop();
                 UsdEditorAnalytics.SendUsageEvent(false, analyticsTimer.Elapsed.TotalMilliseconds);
+                m_usdInitializeFailed = true;
                 return false;
             }
 
@@ -76,6 +85,20 @@ namespace Unity.Formats.USD
         private static void SetupUsdPath([CallerFilePath] string sourceFilePath = "")
         {
 #if UNITY_EDITOR
+            // The current build of the plugin does not support ARM64 architectures. Give a useful warning depending on platform.
+            bool isArm64 = RuntimeInformation.ProcessArchitecture == Architecture.Arm64;
+
+            if (isArm64)
+            {
+#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
+                throw new System.NotSupportedException("The USD plugin built for this package does not currently support Apple Silicon. " +
+                                                       "Please use an Intel-based editor with Rosetta emulation to use the USD plugin.");
+#elif (UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
+                throw new System.NotSupportedException("The USD plugin built for this package does not currently support ARM-64 architectures. " +
+                                                       "Please use an x64 based editor with x64 emulation to use the USD plugin.");
+#endif
+            }
+
             var fileInfo = new System.IO.FileInfo(sourceFilePath);
             var supPath = System.IO.Path.Combine(fileInfo.DirectoryName, "..", "Runtime", "Plugins");
 #else

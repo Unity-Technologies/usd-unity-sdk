@@ -53,6 +53,11 @@ namespace Unity.Formats.USD
 
         public float? ClearcoatRoughness;
 
+        public float? OpacityThreshold;
+
+        public float? Opacity;
+        public Texture2D OpacityMap;
+
         public ShaderImporterBase(Material material)
         {
             Material = material;
@@ -154,6 +159,11 @@ namespace Unity.Formats.USD
             MergePrimvars(uvPrimvar, primvars);
 
             ClearcoatRoughness = previewSurf.clearcoatRoughness.defaultValue;
+            OpacityThreshold = previewSurf.opacityThreshold.defaultValue;
+
+            ImportValueOrMap(scene, previewSurf.opacity, false, options, ref OpacityMap, ref Opacity,
+                out uvPrimvar);
+            MergePrimvars(uvPrimvar, primvars);
 
             if (IsSpecularWorkflow)
             {
