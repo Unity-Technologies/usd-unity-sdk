@@ -164,6 +164,8 @@ namespace Unity.Formats.USD.Tests
             var skeleton = GameObject.Find("Skeleton");
             Assert.IsTrue(skeleton != null, "Failed to find Skeleton GameObject");
 
+            var mesh = GameObject.Find("Mesh");
+            Assert.IsTrue(mesh != null, "Failed to find Mesh GameObject");
             ExportHelpers.ExportGameObjects(new GameObject[] { skeletalRoot }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
 
             m_USDScene = Scene.Open(m_USDScenePath);
@@ -177,6 +179,11 @@ namespace Unity.Formats.USD.Tests
             var skeletonInUsdType = skeletonInUsd.GetTypeName();
             var expectedSkeletonInUsdType = new pxr.TfToken("Skeleton");
             Assert.AreEqual(expectedSkeletonInUsdType, skeletonInUsdType);
+
+            // check for SkelBindingAPI/MaterialBindingAPI
+            var primInUsd = m_USDScene.GetPrimAtPath(new pxr.SdfPath(mesh.transform));
+            Assert.IsTrue(primInUsd.HasAPI("SkelBindingAPI"));
+            Assert.IsTrue(primInUsd.HasAPI("MaterialBindingAPI"));
         }
 
         [Test]
