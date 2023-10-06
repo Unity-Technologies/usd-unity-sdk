@@ -181,9 +181,11 @@ namespace Unity.Formats.USD.Tests
             Assert.AreEqual(expectedSkeletonInUsdType, skeletonInUsdType);
 
             // check for SkelBindingAPI/MaterialBindingAPI
-            var primInUsd = m_USDScene.GetPrimAtPath(new pxr.SdfPath(mesh.transform));
-            Assert.IsTrue(primInUsd.HasAPI("SkelBindingAPI"));
-            Assert.IsTrue(primInUsd.HasAPI("MaterialBindingAPI"));
+            var primInUsd = m_USDScene.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(mesh.transform)));
+            var skelBindingAPIType = pxr.TfType.FindByName("SkelBindingAPI");
+            Assert.IsTrue(primInUsd.HasAPI(skelBindingAPIType));
+            var matBindingAPIType = pxr.TfType.FindByName("MaterialBindingAPI");
+            Assert.IsTrue(primInUsd.HasAPI(matBindingAPIType));
         }
 
         [Test]
