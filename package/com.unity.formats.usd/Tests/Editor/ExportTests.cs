@@ -182,10 +182,12 @@ namespace Unity.Formats.USD.Tests
 
             // check for SkelBindingAPI/MaterialBindingAPI
             var primInUsd = m_USDScene.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(mesh.transform)));
-            var skelBindingAPIType = pxr.TfType.FindByName("SkelBindingAPI");
-            Assert.IsTrue(primInUsd.HasAPI(skelBindingAPIType));
-            var matBindingAPIType = pxr.TfType.FindByName("MaterialBindingAPI");
-            Assert.IsTrue(primInUsd.HasAPI(matBindingAPIType));
+            var skelBindingAPIType = pxr.TfType.FindByName("UsdSkelBindingAPI");
+            Assert.IsTrue(!skelBindingAPIType.IsUnknown(), "SkelBindingAPI TfType not found");
+            Assert.IsTrue(primInUsd.HasAPI(skelBindingAPIType), "Prim does not have skel binding API applied to it");
+            var matBindingAPIType = pxr.TfType.FindByName("UsdShadeMaterialBindingAPI");
+            Assert.IsTrue(!matBindingAPIType.IsUnknown(), "MaterialBindingAPI TfType not found");
+            Assert.IsTrue(primInUsd.HasAPI(matBindingAPIType), "Prim does not have material binding API applied to it");
         }
 
         [Test]
