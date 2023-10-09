@@ -2,9 +2,9 @@
 
 This package includes a set of libraries designed to support the use of USD in C#, as well as code to import and export USD files into the editor. The goal of this package is to make it maximally easy to integrate and explore Universal Scene Description.
 
-![Pixar's USD kitchen Set in the Unity Editor](Images/USD_header.png)
+![Animal Logic's ALab USD Sample in the Unity Editor](Images/USD_header.png)
 
-*Pixar's [USD Kitchen Set](https://openusd.org/release/dl_kitchen_set.html) in the Unity Editor.*
+*Animal Logic's [ALab USD Sample](https://animallogic.com/alab/) in the Unity Editor.*
 
 # Getting Started
 
