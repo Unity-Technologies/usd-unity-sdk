@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using System.IO;
 using Unity.Formats.USD;
 using Unity.Formats.USD.Tests;
 using UnityEngine;
