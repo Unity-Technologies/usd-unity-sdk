@@ -69,5 +69,17 @@ namespace Unity.Formats.USD.Tests
             var outmpu = m_USDScene.MetersPerUnit;
             Assert.AreEqual(inmpu, outmpu, "Unexpected inconsistency in MetersPerUnit metadata");
         }
+
+        [Test]
+        public void ExportScene_USDZ_MetersPerUnit()
+        {
+            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var usdzPath = Path.ChangeExtension(m_USDScenePath, ".usdz");
+            UsdzExporter.ExportUsdz(usdzPath, cube);
+
+            m_USDScene = Scene.Open(usdzPath);
+            var outmpu = m_USDScene.MetersPerUnit;
+            Assert.AreEqual(0.01, outmpu, "Unexpected inconsistency in USDZ MetersPerUnit metadata");
+        }
     }
 }
