@@ -9,6 +9,8 @@
 - Fixed export of URP base and occlusion maps for Lit shader.
 - Fixed USD component removal workflows for Prefabs.
 - Fixed transparency import for URP only.
+- Fixed exports to apply UsdShadeMaterialBindingAPI/UsdSkelBindingAPI APIs where appropriate.
+- Fixed exports to include metersPerUnit stage-level metadata.
 
 ### Changed
 - Renamed USD.md in the Documentation folder to index.md to match documentation generation standards for landing pages.
