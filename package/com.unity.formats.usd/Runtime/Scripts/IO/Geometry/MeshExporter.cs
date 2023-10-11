@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using USD.NET;
 using USD.NET.Unity;
@@ -51,6 +52,10 @@ namespace Unity.Formats.USD
                     UnityTypeConverter.GetPath(smr.rootBone));
                 return;
             }
+
+            // apply the skel binding API to the skinned mesh prim
+            pxr.UsdPrim meshPrim = exportContext.scene.GetPrimAtPath(objContext.path);
+            pxr.UsdSkelBindingAPI.Apply(meshPrim);
 
             UnityEngine.Profiling.Profiler.BeginSample("USD: Skinning Weights");
 
@@ -372,6 +377,10 @@ namespace Unity.Formats.USD
                     }
                     else
                     {
+                        // apply the materialbinding api to the mesh prim
+                        pxr.UsdPrim usdPrim = scene.GetPrimAtPath(path);
+                        pxr.UsdShadeMaterialBindingAPI.Apply(usdPrim);
+
                         MaterialSample.Bind(scene, path, usdMaterialPath);
                     }
                 }
@@ -433,6 +442,9 @@ namespace Unity.Formats.USD
                             }
                             else
                             {
+                                // apply the materialbinding api to the mesh prim
+                                pxr.UsdShadeMaterialBindingAPI.Apply(usdPrim);
+
                                 MaterialSample.Bind(scene, subset.GetPath(), usdMaterialPath);
                             }
                         }

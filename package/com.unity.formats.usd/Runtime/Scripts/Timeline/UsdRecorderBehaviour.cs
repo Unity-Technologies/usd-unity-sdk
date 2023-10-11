@@ -83,6 +83,8 @@ namespace Unity.Formats.USD
                     Directory.SetCurrentDirectory(tmpDirPath);
 
                     Clip.UsdScene = ExportHelpers.InitForSave(Path.Combine(tmpDirPath, usdcFileName));
+                    // set the unit to centimeters for usdz
+                    Clip.UsdScene.MetersPerUnit = 0.01;
                 }
                 else
                 {

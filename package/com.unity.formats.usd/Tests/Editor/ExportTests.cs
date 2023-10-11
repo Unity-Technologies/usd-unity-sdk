@@ -164,6 +164,8 @@ namespace Unity.Formats.USD.Tests
             var skeleton = GameObject.Find("Skeleton");
             Assert.IsTrue(skeleton != null, "Failed to find Skeleton GameObject");
 
+            var mesh = GameObject.Find("Mesh");
+            Assert.IsTrue(mesh != null, "Failed to find Mesh GameObject");
             ExportHelpers.ExportGameObjects(new GameObject[] { skeletalRoot }, ExportHelpers.InitForSave(m_USDScenePath), BasisTransformation.SlowAndSafe);
 
             m_USDScene = Scene.Open(m_USDScenePath);
@@ -177,6 +179,15 @@ namespace Unity.Formats.USD.Tests
             var skeletonInUsdType = skeletonInUsd.GetTypeName();
             var expectedSkeletonInUsdType = new pxr.TfToken("Skeleton");
             Assert.AreEqual(expectedSkeletonInUsdType, skeletonInUsdType);
+
+            // check for SkelBindingAPI/MaterialBindingAPI
+            var primInUsd = m_USDScene.GetPrimAtPath(new pxr.SdfPath(UnityTypeConverter.GetPath(mesh.transform)));
+            var skelBindingAPIType = pxr.TfType.FindByName("UsdSkelBindingAPI");
+            Assert.IsTrue(!skelBindingAPIType.IsUnknown(), "SkelBindingAPI TfType not found");
+            Assert.IsTrue(primInUsd.HasAPI(skelBindingAPIType), "Prim does not have skel binding API applied to it");
+            var matBindingAPIType = pxr.TfType.FindByName("UsdShadeMaterialBindingAPI");
+            Assert.IsTrue(!matBindingAPIType.IsUnknown(), "MaterialBindingAPI TfType not found");
+            Assert.IsTrue(primInUsd.HasAPI(matBindingAPIType), "Prim does not have material binding API applied to it");
         }
 
         [Test]
