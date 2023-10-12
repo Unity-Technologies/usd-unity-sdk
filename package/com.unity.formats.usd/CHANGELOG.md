@@ -1,6 +1,6 @@
 # Changes in usd-unity-sdk for Unity
 
-## [3.0.0-exp.5] - Unreleased
+## [3.0.0-exp.5] - 2023-10-12
 ### Features
 - Added basic URP Import support.
 
