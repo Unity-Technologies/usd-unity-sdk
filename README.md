@@ -1,3 +1,20 @@
+
+>[!IMPORTANT]
+> # Update - December 12 2023
+> We have just released a bundle of packages that provide Unity's next generation USD support. These supersede this package and are available for Unity 2023.1+. Further details can be found in our forum [announcement](https://forum.unity.com/threads/new-openusd-packages-now-available.1524583/).
+>
+>The new packages can be installed [by name](https://docs.unity3d.com/2023.3/Documentation/Manual/upm-ui-quick.html) via Unity's [Package Manager](https://docs.unity3d.com/2023.3/Documentation/Manual/Packages.html).
+>
+> | Package name | What it does | Further Details |
+> | :--- | :--- | :--- |
+> | **com.unity.importer.usd** | USD Import | [manual](https://docs.unity3d.com/Packages/com.unity.importer.usd@1.0/manual/index.html) |
+> | **com.unity.exporter.usd** | USD Export | [manual](https://docs.unity3d.com/Packages/com.unity.exporter.usd@1.0/manual/index.html) |
+> | **com.unity.usd.core**<sup>1</sup> | USD C# SDK | [manual](https://docs.unity3d.com/Packages/com.unity.usd.core@1.0/manual/index.html) |
+>
+> 1\. Please note **com.unity.usd.core** is installed automatically when either the importer or exporter are installed. You only need to install this by name if you are not using either import or export.
+
+
+
 # USD Unity SDK: USD Experimental Package for Unity
 
 This repository contains the source code for the `com.unity.formats.usd` package. It includes a set of libraries designed to support the use of USD in C#, as well as code to import and export USD files into the editor. The goal of this package is to make it maximally easy to integrate and explore Universal Scene Description.
