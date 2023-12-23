@@ -43,7 +43,7 @@ namespace Unity.Formats.USD
             }
 
             var scene = stageRoot.GetScene();
-            if (scene == null)
+            if (scene == null || !stageRoot.IsAssetPathValid())
             {
                 Debug.LogError("Failed to open scene: " + stageRoot.usdFullPath);
                 return;

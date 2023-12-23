@@ -31,6 +31,13 @@ namespace Unity.Formats.USD
     [ExecuteInEditMode]
     public class UsdAsset : MonoBehaviour
     {
+        enum USDPathType
+        {
+            Unknown,
+            External,
+            Relative
+        }
+
         /// <summary>
         /// The length of the USD playback time in seconds.
         /// </summary>
@@ -41,23 +48,64 @@ namespace Unity.Formats.USD
 
         /// <summary>
         /// The absolute file path to the USD file from which this asset was created. This path may
-        /// point to a location outside of the Unity project and may be any file type supported by
-        /// USD (e.g. usd, usda, usdc, abc, ...). Setting this path will not trigger the asset to be
-        /// reimported, Reload must be called explicitly.
+        /// be any file type supported by USD (e.g. usd, usda, usdc, abc, ...). Setting this path
+        /// will not trigger the asset to be reimported, Reload must be called explicitly.
+        /// While files external to the project folder are supported, they are not recommended as the
+        /// project will have errors when shared or moved.
         /// </summary>
         public string usdFullPath
         {
-            get { return string.IsNullOrEmpty(m_usdFile) ? string.Empty : (Path.GetFullPath(m_usdFile)); }
-            set { m_usdFile = value; }
+            get
+            {
+                switch (m_usdFilePathType)
+                {
+                    case USDPathType.Relative:
+                        // if we already have a relative path, return it
+                        return Path.GetFullPath(m_relativeUSDPath);
+                    case USDPathType.External:
+                        // if we know the path is external, try to use it
+                        return string.IsNullOrEmpty(m_usdFile) ? string.Empty : m_usdFile;
+                    case USDPathType.Unknown:
+                        // if we haven't inspected the path yet, do it now
+                        AttemptUSDPathFixup();
+                        if (!string.IsNullOrEmpty(m_relativeUSDPath))
+                            return Path.GetFullPath(m_relativeUSDPath);
+                        else
+                            return string.IsNullOrEmpty(m_usdFile) ? string.Empty : m_usdFile;
+                    default:
+                        return string.Empty;
+                }
+            }
+            set
+            {
+                m_relativeUSDPath = DetermineRelativePathFromFullPath(value);
+                m_usdFilePathType = USDPathType.Relative;
+
+                if (string.IsNullOrEmpty(m_relativeUSDPath))
+                {
+                    Debug.Log("USD file path provided is not within the Project folder. You may encounter errors if this project is later shared.");
+                    m_relativeUSDPath = string.Empty;
+                    m_usdFile = Path.IsPathRooted(value) ? value : Path.GetFullPath(value);
+                    m_usdFilePathType = USDPathType.External;
+                }
+            }
         }
 
         // ----------------------------------------------------------------------------------------- //
         // Source Asset.
         // ----------------------------------------------------------------------------------------- //
 
+        // Wherever possible, use m_relativeUSDPath instead
         [Header("Source Asset")]
         [SerializeField]
         string m_usdFile;
+
+        [SerializeField]
+        string m_relativeUSDPath;
+
+        // do not serialize so that we can try to fix paths on domain reload
+        [NonSerialized]
+        USDPathType m_usdFilePathType = USDPathType.Unknown;
 
         [HideInInspector]
         [Tooltip("The Unity project path into which imported files (such as textures) will be placed.")]
@@ -211,6 +259,69 @@ namespace Unity.Formats.USD
         }
 
 #endif
+        public bool IsAssetPathValid()
+        {
+            if (string.IsNullOrEmpty(usdFullPath))
+                return false;
+            if (!File.Exists(usdFullPath))
+                return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Converts inputPath to a Relative Path, if the inputPath is inside the Project folder. If the path is not inside the project folder, returns empty string.
+        /// </summary>
+        /// <param name="inputPath">
+        /// The path to determine a path relative to the project folder from. We assume the inputPath is a full path, else this will fail.
+        /// </param>
+        private string DetermineRelativePathFromFullPath(string inputPath)
+        {
+            string pathLower = inputPath.ToLower().Replace('\\', '/');
+            string projectPath = System.IO.Directory.GetCurrentDirectory().ToLower().Replace('\\', '/'); // VRC: This might only be correct in editor- check this
+
+            if (pathLower.StartsWith(projectPath))
+            {
+                return inputPath.Substring(projectPath.Length + 1); // plus 1 for the trailing seperator
+            }
+
+            return string.Empty;
+        }
+
+
+        /// <summary>
+        /// Attempt to fix an m_usdPath, which could previously be relative or external, to a relative path.
+        /// If the path is not inside the project folder, leave it.
+        /// </summary>
+        /// <remarks>
+        /// This method does *not* determine whether a path exists or not. It is down to the user to make sure the path exists,
+        /// else it will error later.
+        /// </remarks>
+        private void AttemptUSDPathFixup()
+        {
+            if (!string.IsNullOrEmpty(m_relativeUSDPath))
+            {
+                m_usdFilePathType = USDPathType.Relative;
+                return;
+            }
+            else if (string.IsNullOrEmpty(m_usdFile))
+            {
+                return;
+            }
+
+            // set the m_usdFile var to contain full path in case it is external, and clear it later if it's not.
+            m_usdFile = Path.IsPathRooted(m_usdFile) ? m_usdFile : Path.GetFullPath(m_usdFile);
+            m_relativeUSDPath = DetermineRelativePathFromFullPath(m_usdFile);
+
+            if (!string.IsNullOrEmpty(m_relativeUSDPath))
+            {
+                m_usdFile = string.Empty;
+                m_usdFilePathType = USDPathType.Relative;
+            }
+            else
+            {
+                m_usdFilePathType = USDPathType.External;
+            }
+        }
 
         private void OnDestroy()
         {
@@ -373,7 +484,7 @@ namespace Unity.Formats.USD
             if (m_lastScene?.Stage == null || SceneFileChanged())
             {
                 pxr.UsdStage stage = null;
-                if (string.IsNullOrEmpty(usdFullPath))
+                if (!IsAssetPathValid())
                 {
                     return null;
                 }
@@ -803,6 +914,7 @@ namespace Unity.Formats.USD
             SceneImportOptions importOptions,
             float targetFrameMilliseconds)
         {
+            // TODO: this would be much cleaner if we just used the path and time member variables, but that would be a breaking API change
             InitUsd.Initialize();
             var scene = Scene.Open(usdFilePath);
             if (scene == null)
