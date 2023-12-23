@@ -132,6 +132,15 @@ namespace Unity.Formats.USD
             return usdScenePath;
         }
 
+        public static USDScene CreateEmptyTestUsdScene(string testArtifactFullPath, string fileName = "testUsd.usda")
+        {
+            var dummyUsdPath = CreateTmpUsdFile(testArtifactFullPath, fileName);
+            var scene = ImportHelpers.InitForOpen(dummyUsdPath);
+            scene.Write("/emptyRoot", new XformSample());
+            scene.Save();
+            return scene;
+        }
+
         public static USDScene CreateTestUsdScene(string testArtifactFullPath, string fileName = "testUsd.usda")
         {
             var dummyUsdPath = CreateTmpUsdFile(testArtifactFullPath, fileName);

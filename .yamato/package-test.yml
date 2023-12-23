@@ -13,7 +13,11 @@ test_{{ platform.name }}_{{ editor.version }}:
     UPMCI_PKG: "upm-ci-utils@stable"
   commands:
       - npm install {% if platform.name == "win" %}"%UPMCI_PKG%"{% else %}"$UPMCI_PKG"{% endif %} -g --registry {{ registry.npm }}
+      {% if editor.version == "trunk" %}
+      - upm-ci package test -u {{ editor.version }} --package-path package/com.unity.formats.usd --type package-tests --extra-utr-arg="--api-profile=NET_4_6" --extra-editor-arg=-editorAnalyticsTestMode        
+      {% else %}
       - upm-ci package test -u {{ editor.version }} --package-path package/com.unity.formats.usd --type package-tests --extra-utr-arg="--api-profile=NET_4_6"
+      {% endif %}
   artifacts:
     logs:
       paths:
