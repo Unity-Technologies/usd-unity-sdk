@@ -1,9 +1,10 @@
 
 >[!IMPORTANT]
-> # Update - December 12 2023
-> We have just released a bundle of packages that provide Unity's next generation USD support. These supersede this package and are available for Unity 2023.1+. Further details can be found in our forum [announcement](https://forum.unity.com/threads/new-openusd-packages-now-available.1524583/).
+> # Update - November 15 2024
+> The `com.unity.formats.usd` package is now deprecated and will no longer be supported or updated. 
 >
->The new packages can be installed [by name](https://docs.unity3d.com/2023.3/Documentation/Manual/upm-ui-quick.html) via Unity's [Package Manager](https://docs.unity3d.com/2023.3/Documentation/Manual/Packages.html).
+> Please use the supported USD packages that are listed in the table below. 
+> These packages can be installed [by name](https://docs.unity3d.com/2023.3/Documentation/Manual/upm-ui-quick.html) via Unity's [Package Manager](https://docs.unity3d.com/2023.3/Documentation/Manual/Packages.html).
 >
 > | Package name | What it does | Further Details |
 > | :--- | :--- | :--- |
@@ -11,7 +12,7 @@
 > | **com.unity.exporter.usd** | USD Export | [manual](https://docs.unity3d.com/Packages/com.unity.exporter.usd@1.0/manual/index.html) |
 > | **com.unity.usd.core**<sup>1</sup> | USD C# SDK | [manual](https://docs.unity3d.com/Packages/com.unity.usd.core@1.0/manual/index.html) |
 >
-> 1\. Please note **com.unity.usd.core** is installed automatically when either the importer or exporter are installed. You only need to install this by name if you are not using either import or export.
+> Please note that **com.unity.usd.core** is installed automatically when either the importer or exporter are installed. You only need to install this by name if you are not using either import or export.
 
 
 
