@@ -1,5 +1,6 @@
 {
     "name": "Unity.Formats.USD.Tests.Editor",
+    "rootNamespace": "",
     "references": [
         "USD.NET",
         "USD.NET.Unity",
@@ -8,7 +9,9 @@
         "Unity.Formats.USD.Tests.Common",
         "Unity.Formats.USD.Common",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.Recorder",
+        "Unity.Recorder.Editor"
     ],
     "includePlatforms": [
         "Editor"

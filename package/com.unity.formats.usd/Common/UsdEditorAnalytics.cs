@@ -11,10 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 # if ENABLE_CLOUD_SERVICES_ANALYTICS && UNITY_EDITOR
 # define USE_EDITOR_ANALYTICS
 # endif
 
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -40,7 +42,8 @@ namespace Unity.Formats.USD
         // Universal USD Analytics
         const string k_UsageEventName = "USDPackageUsage";
 
-        struct UsageAnalyticsData
+        [Serializable]
+        public struct UsageAnalyticsData
         {
             public bool InitSucceeded;
             public double TimeTakenMs;
@@ -49,7 +52,8 @@ namespace Unity.Formats.USD
         // USD Import Analytics
         const string k_ImportEventName = "USDFileImport";
 
-        struct ImportAnalyticsData
+        [Serializable]
+        public struct ImportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -83,7 +87,8 @@ namespace Unity.Formats.USD
         // USD Reimport Analytics
         const string k_ReimportEventName = "USDFileReimport";
 
-        struct ReimportAnalyticsData
+        [Serializable]
+        public struct ReimportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -98,7 +103,8 @@ namespace Unity.Formats.USD
         // USD Export Analytics
         const string k_ExportEventName = "USDFileExport";
 
-        struct ExportAnalyticsData
+        [Serializable]
+        public struct ExportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
@@ -109,7 +115,7 @@ namespace Unity.Formats.USD
         // USD Recorder Export Analytics
         const string k_RecorderExportEventName = "USDFileRecorderExport";
 
-        struct RecorderExportAnalyticsData
+        public struct RecorderExportAnalyticsData
         {
             public string FileExtension;
             public double TimeTakenMs;
