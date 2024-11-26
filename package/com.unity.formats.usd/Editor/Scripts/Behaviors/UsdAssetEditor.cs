@@ -229,7 +229,7 @@ namespace Unity.Formats.USD
             {
                 string lastDir;
                 if (string.IsNullOrEmpty(usdAsset.usdFullPath))
-                    lastDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+                    lastDir = Application.dataPath;
                 else
                     lastDir = Path.GetDirectoryName(usdAsset.usdFullPath);
                 string importFilepath =
@@ -343,8 +343,15 @@ namespace Unity.Formats.USD
             stageRoot.StateToOptions(ref options);
             var parent = stageRoot.gameObject.transform.parent;
             var root = parent ? parent.gameObject : null;
-            stageRoot.ImportUsdAsCoroutine(root, stageRoot.usdFullPath, stageRoot.m_usdTimeOffset, options,
-                targetFrameMilliseconds: 5);
+            if (stageRoot.IsAssetPathValid())
+            {
+                stageRoot.ImportUsdAsCoroutine(root, stageRoot.usdFullPath, stageRoot.m_usdTimeOffset, options,
+                    targetFrameMilliseconds: 5);
+            }
+            else
+            {
+                Debug.LogWarning($"USD Asset path for `{stageRoot.name}` is invalid. Check that the path <{stageRoot.usdFullPath}> exists.");
+            }
         }
     }
 }

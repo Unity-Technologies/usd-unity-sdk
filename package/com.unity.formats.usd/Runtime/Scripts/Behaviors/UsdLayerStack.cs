@@ -89,10 +89,16 @@ namespace Unity.Formats.USD
                 throw new NullReferenceException("Could not create layer: " + m_targetLayer);
             }
 
+            if (!stageRoot.IsAssetPathValid())
+            {
+                Debug.LogWarning($"Asset path for {stageRoot.name} invalid.");
+                return;
+            }
+
             Scene rootScene = Scene.Open(stageRoot.usdFullPath);
             if (rootScene == null)
             {
-                throw new NullReferenceException("Could not open base layer: " + stageRoot.usdFullPath);
+                throw new NullReferenceException($"Could not open base layer: <{stageRoot.usdFullPath}>");
             }
 
             SetupNewSubLayer(rootScene, subLayerScene);

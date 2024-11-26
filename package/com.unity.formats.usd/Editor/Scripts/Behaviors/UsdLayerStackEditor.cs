@@ -43,6 +43,13 @@ namespace Unity.Formats.USD
             if (GUILayout.Button("Save Layer Stack"))
             {
                 InitUsd.Initialize();
+                var usdAsset = layerStack.GetComponent<UsdAsset>();
+                if (!usdAsset.IsAssetPathValid())
+                {
+                    Debug.LogWarning($"USD Asset path for `{usdAsset.name}` is invalid.");
+                    return;
+                }
+
                 Scene scene = Scene.Open(layerStack.GetComponent<UsdAsset>().usdFullPath);
                 try
                 {
